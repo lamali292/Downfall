@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xy810srp83lq"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dfhqf0uconfxl" path="res://Downfall/character/visuals/angry.tres" id="1_8kdh1"]
+
+[node name="Angry" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_8kdh1")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

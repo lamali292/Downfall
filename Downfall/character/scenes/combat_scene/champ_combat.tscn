@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://4mnryhpwm56n"]
+
+[ext_resource type="PackedScene" uid="uid://c01c5fc3gfe4p" path="res://Downfall/character/scenes/visuals/champ.tscn" id="1_iqfof"]
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_o1y6q"]
+
+[node name="ChampCombat" type="Node2D"]
+script = ExtResource("1_o1y6q")
+
+[node name="Visuals" parent="." instance=ExtResource("1_iqfof")]
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -127.0
+offset_top = -348.0
+offset_right = 140.0
+offset_bottom = 16.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, -181)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -362)
