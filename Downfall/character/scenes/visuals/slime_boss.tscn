@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://6h8axxnhdam0"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://daqmdv5pawrjl" path="res://Downfall/character/visuals/slime_boss.tres" id="1_iwpke"]
+
+[node name="SlimeBoss" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_iwpke")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

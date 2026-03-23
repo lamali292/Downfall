@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk2lrxdqssxdw"]
+
+[ext_resource type="Texture2D" uid="uid://dwhsjntilxmkx" path="res://Downfall/images/selection_screen/bg_champ.png" id="1_x4yrt"]
+
+[node name="WatcherBg" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -83.0
+offset_right = 2417.6
+offset_bottom = 1428.0
+texture = ExtResource("1_x4yrt")

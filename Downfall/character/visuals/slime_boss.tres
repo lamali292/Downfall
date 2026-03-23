@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://daqmdv5pawrjl"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dplty5wa3l3mc" path="res://Downfall/character/visuals/slime_boss.spatlas" id="1_lqjqw"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://b4y8hoe18k7jp" path="res://Downfall/character/visuals/slime_boss.spskel" id="2_2mwsc"]
+
+[resource]
+atlas_res = ExtResource("1_lqjqw")
+skeleton_file_res = ExtResource("2_2mwsc")

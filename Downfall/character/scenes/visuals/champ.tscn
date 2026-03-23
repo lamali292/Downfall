@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c01c5fc3gfe4p"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bdapmsjn710l6" path="res://Downfall/character/visuals/champ.tres" id="1_2nbna"]
+
+[node name="Champ" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_2nbna")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

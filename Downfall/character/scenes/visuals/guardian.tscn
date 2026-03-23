@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkgqllji6dre7"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://baewould73ghb" path="res://Downfall/character/visuals/guardian.tres" id="1_gbfb6"]
+
+[node name="Guardian" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_gbfb6")
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0

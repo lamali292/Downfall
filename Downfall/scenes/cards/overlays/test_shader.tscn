@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://n3yiulfroyr4"]
+
+[ext_resource type="Shader" uid="uid://dt3j10i6y8qe2" path="res://Downfall/scenes/cards/overlays/function_card.gdshader" id="1_x8unp"]
+[ext_resource type="Texture2D" uid="uid://dh47elxkf4n4m" path="res://Downfall/scenes/cards/overlays/ui_atlas_0.png" id="2_x8unp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8unp"]
+shader = ExtResource("1_x8unp")
+shader_parameter/glitch_intensity = 0.5
+shader_parameter/block_glitch = 0.1
+shader_parameter/time_scale = 0.5
+shader_parameter/aberration = 0.01
+shader_parameter/block_frequency = 6.0
+shader_parameter/block_size = 0.1
+shader_parameter/scanline_strength = 0.1
+shader_parameter/scanline_density = 3.0
+shader_parameter/desync_strength = 0.08
+shader_parameter/desync_speed = 0.3
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0000000475
+shader_parameter/v = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxg5a"]
+atlas = ExtResource("2_x8unp")
+region = Rect2(1320, 83, 598, 844)
+
+[node name="TestShader" type="Node2D"]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_x8unp")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_wxg5a")

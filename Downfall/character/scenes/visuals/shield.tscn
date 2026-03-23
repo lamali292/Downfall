@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bje6ndpj0ya1x"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dfmlsas517ck7" path="res://Downfall/character/visuals/shield.tres" id="1_3uoy4"]
+
+[node name="Shield" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_3uoy4")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

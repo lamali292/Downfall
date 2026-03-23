@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://nmprnicfcy3d"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://ds8cge0d3kioc" path="res://Downfall/character/visuals/sneak.tres" id="1_r7u00"]
+
+[node name="Sneak" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_r7u00")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

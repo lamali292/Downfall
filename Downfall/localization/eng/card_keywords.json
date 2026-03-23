@@ -1,0 +1,15 @@
+{
+  "DOWNFALL-SCRY.description": "Look at the top X cards of your draw pile. You may discard any of them.",
+  "DOWNFALL-SCRY.title": "Scry",
+  "DOWNFALL-ENCODE.title": "Encode",
+  "DOWNFALL-ENCODE.description": "Encode a card.\nWhen 3 cards are Encoded, their effects (other than Encode) are merged into a Function that costs [blue]1[/blue]",
+  "DOWNFALL-COMPILE.title": "Compile",
+  "DOWNFALL-COMPILE_ERROR.title": "Compile Error",
+  "DOWNFALL-COMPILE.description": "An effect that triggers when this card is merged into a Function.\nCan be negative effect, which is referred to as an 'Error'.",
+  "DOWNFALL-STATUS.title": "Status",
+  "DOWNFALL-STATUS.description": "Status cards are removed at the end of combat.",
+  "DOWNFALL-CYCLE.title": "Cycle",
+  "DOWNFALL-CYCLE.description": "Discard a card, drawing a new card to replace it.",
+  "DOWNFALL-INSERT.title": "Insert",
+  "DOWNFALL-INSERT.description": "Shuffle a card into you draw pile."
+}

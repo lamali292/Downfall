@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://r7vansx7lo70"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bbo338bvr48i0" path="res://Downfall/character/visuals/fat.tres" id="1_ir64j"]
+
+[node name="Fat" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_ir64j")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

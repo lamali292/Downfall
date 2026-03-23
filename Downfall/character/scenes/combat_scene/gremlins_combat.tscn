@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://ytayt0rrhp7e"]
+
+[ext_resource type="PackedScene" uid="uid://bje6ndpj0ya1x" path="res://Downfall/character/scenes/visuals/shield.tscn" id="1_t0hqa"]
+[ext_resource type="PackedScene" uid="uid://dky2244g821kb" path="res://Downfall/character/scenes/visuals/wizard.tscn" id="2_iua42"]
+[ext_resource type="PackedScene" uid="uid://xy810srp83lq" path="res://Downfall/character/scenes/visuals/angry.tscn" id="3_edhxt"]
+[ext_resource type="PackedScene" uid="uid://nmprnicfcy3d" path="res://Downfall/character/scenes/visuals/sneak.tscn" id="4_1p5fm"]
+[ext_resource type="PackedScene" uid="uid://r7vansx7lo70" path="res://Downfall/character/scenes/visuals/fat.tscn" id="5_nppxe"]
+
+[node name="GremlinsCombat" type="Node2D"]
+
+[node name="Visuals" type="Node" parent="."]
+
+[node name="Shield" parent="Visuals" instance=ExtResource("1_t0hqa")]
+preview_animation = "idle"
+preview_frame = true
+position = Vector2(15.6, 0)
+
+[node name="Wizard" parent="Visuals" instance=ExtResource("2_iua42")]
+preview_animation = "animation"
+preview_frame = true
+show_behind_parent = true
+position = Vector2(-6.605, 0)
+
+[node name="Angry" parent="Visuals" instance=ExtResource("3_edhxt")]
+preview_animation = "idle"
+preview_frame = true
+position = Vector2(46.515, 0)
+
+[node name="Sneak" parent="Visuals" instance=ExtResource("4_1p5fm")]
+preview_animation = "animation"
+preview_frame = true
+show_behind_parent = true
+
+[node name="Fat" parent="Visuals" instance=ExtResource("5_nppxe")]
+preview_animation = "animation"
+preview_frame = true
+position = Vector2(-60.805, 0)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -125.0
+offset_top = -305.0
+offset_right = 125.0
+offset_bottom = 10.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, -181)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -362)
+
+[node name="Camera2D" type="Camera2D" parent="."]

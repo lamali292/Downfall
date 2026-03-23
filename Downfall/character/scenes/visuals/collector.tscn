@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://da814ygbtb6qy"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cr878n0fw8q75" path="res://Downfall/character/visuals/collector.tres" id="1_0ggna"]
+
+[node name="Collector" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_0ggna")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
