@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,12 +20,14 @@ namespace Downfall.Code.Cards.Automaton.Rare;
 public class Break() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy), IEncodable,
     ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(15, ValueProp.Move)
     ];
 
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
         HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
         HoverTipFactory.FromCard<Dazed>(),
@@ -33,23 +35,16 @@ public class Break() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, T
         HoverTipFactory.FromCard<Wound>(),
         HoverTipFactory.FromCard<Burn>(),
         HoverTipFactory.FromCard<Void>()
-        
     ];
 
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-    }
-
-    public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
+    public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
+        CompileContext compileContext,
         bool forGameplay)
     {
         var combatState = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(combatState);
-        List<CardModel> burns = [
+        List<CardModel> burns =
+        [
             combatState.CreateCard<Dazed>(Owner),
             combatState.CreateCard<Slimed>(Owner),
             combatState.CreateCard<Wound>(Owner),
@@ -57,6 +52,14 @@ public class Break() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, T
             combatState.CreateCard<Void>(Owner)
         ];
         await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, true);
+    }
+
+    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(ctx);
     }
 
     protected override void OnUpgrade()

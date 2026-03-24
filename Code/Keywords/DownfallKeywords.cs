@@ -24,6 +24,9 @@ public static class DownfallKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Insert;
 
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
+    public static CardKeyword Conjure;
+
     public static bool IsScry(this CardModel card)
     {
         return card.Keywords.Contains(Scry);
@@ -52,5 +55,10 @@ public static class DownfallKeywords
     public static bool IsInsert(this CardModel card)
     {
         return card.Keywords.Contains(Insert);
+    }
+
+    public static bool IsConjure(this CardModel card)
+    {
+        return card.Keywords.Contains(Conjure);
     }
 }

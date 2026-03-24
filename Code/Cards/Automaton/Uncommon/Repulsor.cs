@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,9 +16,9 @@ public sealed class Repulsor() : AutomatonCardModel(2, CardType.Power, CardRarit
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(DownfallKeywords.Status),
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     ];
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PowerCmd.Apply<ExhaustStatusesPower>(Owner.Creature, 1, Owner.Creature, this);

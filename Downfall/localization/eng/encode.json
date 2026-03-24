@@ -1,4 +1,4 @@
-﻿{
+{
   "DOWNFALL-GOTO.encode": "Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "DOWNFALL-GOTO.compile": "Next turn, draw {Compile:diff()} {Compile:plural:card|cards}.",
   "DOWNFALL-GOTO.functionPrefix": "running",

@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Cards.Automaton;
-using Downfall.Code.Cards.CardModels;
+﻿using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Godot;
 using HarmonyLib;

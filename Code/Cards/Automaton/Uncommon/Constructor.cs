@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +17,8 @@ public class Constructor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Un
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(5, ValueProp.Move)
+        new BlockVar(5, ValueProp.Move),
+        new BlockVar("ExtraBlock", 5, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,7 +29,7 @@ public class Constructor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Un
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         var isFirst = encodeContext is { IsFromFunction: true, SlotIndex: 0 };
-        var amount = isFirst ? DynamicVars.Block.IntValue * 2 : DynamicVars.Block.IntValue;
+        var amount = DynamicVars.Block.IntValue + (isFirst ? DynamicVars["ExtraBlock"].IntValue : 0);
         await CreatureCmd.GainBlock(Owner.Creature, amount, DynamicVars.Block.Props, cardPlay);
     }
 
@@ -39,7 +40,8 @@ public class Constructor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Un
 
         // Build a loc string with the doubled value
         var loc = new LocString("encode", Id.Entry + ".encode");
-        var doubled = new BlockVar(DynamicVars.Block.IntValue * 2, DynamicVars.Block.Props);
+        var doubled = new BlockVar(DynamicVars.Block.IntValue + DynamicVars["ExtraBlock"].IntValue,
+            DynamicVars.Block.Props);
         doubled.SetOwner(this);
         loc.Add(doubled);
         return loc;
@@ -48,5 +50,6 @@ public class Constructor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Un
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars["ExtraBlock"].UpgradeValueBy(2);
     }
 }

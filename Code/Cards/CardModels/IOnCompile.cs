@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Cards.Automaton;
-using Downfall.Code.Cards.Automaton.Token;
+﻿using Downfall.Code.Cards.Automaton.Token;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ev1xo2lik1bs"]
+
+[ext_resource type="SpineSkeletonDataResource" path="res://Downfall/character/visuals/awakened.tres" id="1_u3ubk"]
+
+[node name="Awakened" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_u3ubk")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

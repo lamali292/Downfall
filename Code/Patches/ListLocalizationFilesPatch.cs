@@ -2,15 +2,14 @@
 using System.Reflection.Emit;
 using BaseLib.Utils.Patching;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Keywords;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using FileAccess = Godot.FileAccess;
 
 namespace Downfall.Code.Patches;
-
 
 [HarmonyPatch(typeof(LocManager), "ListLocalizationFiles")]
 public static class ListLocalizationFilesPatch
@@ -30,7 +29,7 @@ public static class LoadTablePatch
 {
     public static bool Prefix(string path, ref Dictionary<string, string> __result)
     {
-        if (Godot.FileAccess.FileExists(path)) return true;
+        if (FileAccess.FileExists(path)) return true;
         __result = new Dictionary<string, string>();
         return false;
     }
@@ -42,22 +41,27 @@ public static class GetDescriptionForPilePatch
     private const int SourceLocalIndex = 5;
     private const string KeywordsTable = "card_keywords";
 
-    static MethodBase TargetMethod() =>
-        AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
         [
             typeof(PileType),
             AccessTools.Inner(typeof(CardModel), "DescriptionPreviewType"),
             typeof(Creature)
         ]);
+    }
 
-    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) =>
-        (List<CodeInstruction>)new InstructionPatcher(instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        return (List<CodeInstruction>)new InstructionPatcher(instructions)
             .Match(new InstructionMatcher().ldloc_s(SourceLocalIndex).opcode(OpCodes.Ldsfld))
             .Insert([
                 new CodeInstruction(OpCodes.Ldarg_0),
                 new CodeInstruction(OpCodes.Ldloc_S, (byte)SourceLocalIndex),
-                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GetDescriptionForPilePatch), nameof(InjectLines)))
+                new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(GetDescriptionForPilePatch), nameof(InjectLines)))
             ]);
+    }
 
     public static void InjectLines(CardModel card, List<string> source)
     {
@@ -89,6 +93,8 @@ public static class GetDescriptionForPilePatch
         source.Add($"[gold]{GetTitle(titleKey)}[/gold] - {loc.GetFormattedText()}");
     }
 
-    private static string GetTitle(string key) =>
-        new LocString(KeywordsTable, key).GetFormattedText();
+    private static string GetTitle(string key)
+    {
+        return new LocString(KeywordsTable, key).GetFormattedText();
+    }
 }
