@@ -1,4 +1,4 @@
-﻿using Downfall.Code.Cards.Automaton;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
@@ -22,7 +22,7 @@ public class ClassDefaultPower : AutomatonPowerModel, IOnCompile
         if (Amount <= 0) return;
 
         var creature = Owner;
-        var pile = AutomatonCmd.GetPile(creature);
+        var pile = AutomatonCmd.GetEncodePile(creature);
         if (pile == null) return;
         var copy = creature.CombatState!.CloneCard(cardPlay.Card);
         if (copy is IEncodable encodable) await encodable.Encode(ctx, cardPlay);

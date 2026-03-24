@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Cards.Automaton.Token;
+﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Automaton.Token;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +18,7 @@ public class InfiniteBeamsPower : AutomatonPowerModel
         if (side != Owner.Side || Owner.Player == null) return;
 
         var beams = Enumerable.Range(0, Amount)
-            .Select(_ => (CardModel)combatState.CreateCard<MinorBeam>(Owner.Player))
+            .Select(CardModel (_) => combatState.CreateCard<MinorBeam>(Owner.Player))
             .ToList();
 
         await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, true);

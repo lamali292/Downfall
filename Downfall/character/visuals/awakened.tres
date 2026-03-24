@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cbb7d48x2xofd"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cia0xcaou5ugk" path="res://Downfall/character/visuals/awakened.spatlas" id="1_vlxs5"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://k65j0inso3vg" path="res://Downfall/character/visuals/awakened.spskel" id="2_gknde"]
+
+[resource]
+atlas_res = ExtResource("1_vlxs5")
+skeleton_file_res = ExtResource("2_gknde")

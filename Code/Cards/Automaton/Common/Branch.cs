@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -48,12 +48,12 @@ public class Branch() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
                 .Targeting(cardPlay.Target).Execute(ctx);
-            await AutomatonCmd.AddToSequence(blockOption, ctx, cardPlay);
+            await AutomatonCmd.EncodeCard(blockOption, ctx, cardPlay);
         }
         else
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-            await AutomatonCmd.AddToSequence(attackOption, ctx, cardPlay);
+            await AutomatonCmd.EncodeCard(attackOption, ctx, cardPlay);
         }
     }
 

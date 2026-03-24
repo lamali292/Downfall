@@ -1,0 +1,75 @@
+﻿{
+  "projectId": "Downfall",
+  "localizationBase": "Downfall/localization/eng",
+  "presets": [
+    {
+      "id": "card",
+      "markers": [
+        "AutomatonCardModel",
+        "AwakenedCardModel",
+        "CustomCardModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "cards.json",
+          "optional": true
+        },
+        {
+          "name": "encode",
+          "file": "encode.json",
+          "optional": true
+        },
+        {
+          "name": "compile",
+          "file": "encode.json",
+          "optional": true
+        },
+        {
+          "name": "functionPrefix",
+          "file": "encode.json",
+          "optional": true
+        },
+        {
+          "name": "functionName",
+          "file": "encode.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "markers": [
+        "AutomatonPowerModel",
+        "CustomPowerModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "smartDescription",
+          "file": "powers.json",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}

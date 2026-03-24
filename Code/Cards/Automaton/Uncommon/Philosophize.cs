@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,9 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Potions;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -37,7 +35,8 @@ public class Philosophize() : AutomatonCardModel(1, CardType.Skill, CardRarity.U
     {
         var state = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(state);
-        await PowerCmd.Apply<StrengthPower>(state.Enemies, DynamicVars["EnemyStrength"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(state.Enemies, DynamicVars["EnemyStrength"].BaseValue, Owner.Creature,
+            this);
     }
 
 

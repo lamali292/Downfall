@@ -1,4 +1,4 @@
-﻿using Downfall.Code.Cards.Automaton;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

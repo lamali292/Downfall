@@ -11,5 +11,7 @@
   "DOWNFALL-CYCLE.title": "Cycle",
   "DOWNFALL-CYCLE.description": "Discard a card, drawing a new card to replace it.",
   "DOWNFALL-INSERT.title": "Insert",
-  "DOWNFALL-INSERT.description": "Shuffle a card into you draw pile."
+  "DOWNFALL-INSERT.description": "Shuffle a card into you draw pile.",
+  "DOWNFALL-CONJURE.title": "Conjure",
+  "DOWNFALL-CONJURE.description": "Create the next card from you Spellbook in your hand."
 }

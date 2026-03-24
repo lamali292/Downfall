@@ -2,10 +2,9 @@
 using System.Reflection.Emit;
 using BaseLib.Utils;
 using BaseLib.Utils.Patching;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
-using Downfall.Code.Commands;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +29,7 @@ public class DevTools() : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare,
             Owner.Creature.CombatState!.CreateCard<Debug>(Owner),
             Owner.Creature.CombatState!.CreateCard<Batch>(Owner),
             Owner.Creature.CombatState!.CreateCard<Decompile>(Owner),
-            Owner.Creature.CombatState!.CreateCard<ByteShift>(Owner),
+            Owner.Creature.CombatState!.CreateCard<ByteShift>(Owner)
         };
 
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
@@ -50,7 +49,7 @@ public class DevTools() : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare,
 [HarmonyPatch]
 public static class FromChooseACardScreenPatch
 {
-    static MethodBase TargetMethod()
+    private static MethodBase TargetMethod()
     {
         // Target the MoveNext method of the async state machine
         var stateMachine = typeof(CardSelectCmd).GetNestedTypes(AccessTools.all)
@@ -58,11 +57,12 @@ public static class FromChooseACardScreenPatch
         return AccessTools.Method(stateMachine, "MoveNext");
     }
 
-    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) =>
-        (List<CodeInstruction>)new InstructionPatcher(instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        return (List<CodeInstruction>)new InstructionPatcher(instructions)
             .Match(new InstructionMatcher()
-                .opcode(OpCodes.Ldstr)  // "Only works with less than 3 cards"
-                .opcode(OpCodes.Ldstr)  // "cards"
+                .opcode(OpCodes.Ldstr) // "Only works with less than 3 cards"
+                .opcode(OpCodes.Ldstr) // "cards"
                 .opcode(OpCodes.Newobj) // new ArgumentException
                 .opcode(OpCodes.Throw))
             .ReplaceLastMatch([
@@ -71,5 +71,5 @@ public static class FromChooseACardScreenPatch
                 new CodeInstruction(OpCodes.Nop),
                 new CodeInstruction(OpCodes.Nop)
             ]);
+    }
 }
-

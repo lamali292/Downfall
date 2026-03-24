@@ -8,7 +8,7 @@
 
 [node name="GremlinsCombat" type="Node2D"]
 
-[node name="Visuals" type="Node" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
 
 [node name="Shield" parent="Visuals" instance=ExtResource("1_t0hqa")]
 preview_animation = "idle"

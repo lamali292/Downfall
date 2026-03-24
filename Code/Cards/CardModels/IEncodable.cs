@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
@@ -9,7 +10,9 @@ namespace Downfall.Code.Cards.CardModels;
 public interface IEncodable
 {
     LocString? EncodeLocString => this is CardModel card ? BuildEncodeLocString(card) : null;
+
     bool AutoEncode => true;
+
     // Default implementation of the logic
     async Task Encode(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -17,7 +20,8 @@ public interface IEncodable
         if (this is CardModel card)
         {
             await OnEncode(ctx, cardPlay);
-            await AutomatonCmd.AddToSequence(card, ctx, cardPlay);
+            await AutomatonCmd.EncodeCard(card, ctx, cardPlay);
+            await Cmd.Wait(0.2f);
         }
     }
 

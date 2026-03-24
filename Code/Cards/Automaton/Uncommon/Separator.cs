@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,7 +18,8 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move)
+        new DamageVar(6, ValueProp.Move),
+        new DamageVar("ExtraDamage", 6, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -31,8 +32,8 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
         var maxSlots = AutomatonCmd.GetMax(Owner.Creature);
         var isMiddle = encodeContext is { IsFromFunction: true, SlotIndex: > 0 }
                        && encodeContext.SlotIndex < maxSlots - 1;
-        var amount = isMiddle ? DynamicVars.Damage.IntValue * 2 : DynamicVars.Damage.IntValue;
-    
+        var amount = DynamicVars.Damage.IntValue + (isMiddle ? DynamicVars["ExtraDamage"].IntValue : 0);
+
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(amount).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -49,7 +50,8 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
             return IEncodable.BuildEncodeLocString(this);
 
         var loc = new LocString("encode", Id.Entry + ".encode");
-        var doubled = new DamageVar(DynamicVars.Damage.IntValue * 2, DynamicVars.Damage.Props);
+        var doubled = new DamageVar(DynamicVars.Damage.IntValue + DynamicVars["ExtraDamage"].IntValue,
+            DynamicVars.Damage.Props);
         doubled.SetOwner(this);
         loc.Add(doubled);
         return loc;
@@ -58,5 +60,6 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["ExtraDamage"].UpgradeValueBy(2);
     }
 }

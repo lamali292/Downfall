@@ -1,7 +1,6 @@
-﻿using Downfall.Code.Cards.Automaton;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -34,12 +33,9 @@ public class OptimizePower : AutomatonPowerModel, IOnEncode
             {
                 cardNode.UpdateVisuals(encodedCard.Pile?.Type ?? PileType.Play, CardPreviewMode.Normal);
                 var vfx = NCardSmithVfx.Create(cardNode);
-                if (vfx != null)
-                {
-                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
-                }
-                   
+                if (vfx != null) NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
             }
+
             AutomatonCmd.RefreshDisplay(encodedCard.Owner.Creature);
         }
     }

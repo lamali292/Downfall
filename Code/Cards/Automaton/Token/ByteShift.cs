@@ -1,9 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Piles;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -20,9 +18,12 @@ public class ByteShift() : AutomatonCardModel(0, CardType.Skill, CardRarity.Toke
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var sequencePile = AutomatonPile.Sequence.GetPile(Owner);
+        var sequencePile = AutomatonPile.EncodePile.GetPile(Owner);
         var choices = sequencePile.Cards.ToList();
         if (choices.Count == 0) return;
+
+        foreach (var cardModel in choices) cardModel.AddKeyword(CardKeyword.Retain);
+
         await AutomatonCmd.MoveFromSequenceToHand(choices, Owner.Creature);
     }
 

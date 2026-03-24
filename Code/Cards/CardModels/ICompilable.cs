@@ -9,12 +9,13 @@ namespace Downfall.Code.Cards.CardModels;
 
 public interface ICompilable
 {
+    LocString? CompileLocString => this is CardModel card ? BuildCompileLocString(card) : null;
+
     Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
         bool forGameplay)
-        => Task.CompletedTask;
-    
-    
-    LocString? CompileLocString => this is CardModel card ? BuildCompileLocString(card) : null;
+    {
+        return Task.CompletedTask;
+    }
 
     static LocString? BuildCompileLocString(CardModel card)
     {

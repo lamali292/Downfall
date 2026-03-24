@@ -1,8 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Basic;
-using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,9 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Potions;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
@@ -44,8 +40,8 @@ public class RecursiveStrike() : AutomatonCardModel(2, CardType.Attack, CardRari
         if (combatState == null) return;
         var strike1 = combatState.CreateCard<StrikeAutomaton>(Owner);
         var strike2 = combatState.CreateCard<StrikeAutomaton>(Owner);
-        await AutomatonCmd.AddToSequence(strike1, ctx, cardPlay);
-        await AutomatonCmd.AddToSequence(strike2, ctx, cardPlay);
+        await AutomatonCmd.EncodeCard(strike1, ctx, cardPlay);
+        await AutomatonCmd.EncodeCard(strike2, ctx, cardPlay);
     }
 
     protected override void OnUpgrade()

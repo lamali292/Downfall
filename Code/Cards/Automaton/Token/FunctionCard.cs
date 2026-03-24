@@ -16,7 +16,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Downfall.Code.Cards.Automaton.Token;
 
-
 #pragma warning disable STS001
 [Pool(typeof(TokenCardPool))]
 public sealed class FunctionAttackCard() : FunctionCard(CardType.Attack, TargetType.AnyEnemy);
@@ -41,9 +40,17 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
     public override bool CanBeGeneratedByModifiers => false;
     public override int MaxUpgradeLevel => 0;
 
+    public override bool HasBuiltInOverlay => true;
+
     public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
     {
         _sourceCards = sourceCards;
+    }
+
+    public IEnumerable<DynamicVarSet> getDynamicVars()
+    {
+        return _sourceCards.Select(t => t.DynamicVars
+        );
     }
 
     public string GetDynamicTitle()
@@ -106,7 +113,6 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
                 if (_sourceCards[i] is IEncodable encodable)
                     await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
         }
-        
     }
 
     public ImageTexture? GetCompositePortrait()
@@ -143,8 +149,6 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
         _cachedPortrait = ImageTexture.CreateFromImage(result);
         return _cachedPortrait;
     }
-
-    public override bool HasBuiltInOverlay => true;
 }
 
 [HarmonyPatch(typeof(CardModel), "get_OverlayPath")]
@@ -153,7 +157,7 @@ public static class OverlayPathPatch
     public static bool Prefix(CardModel __instance, ref string __result)
     {
         if (__instance is not FunctionCard) return true;
-        
+
         __result = "res://Downfall/scenes/cards/overlays/function_card.tscn";
         return false;
     }

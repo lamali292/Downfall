@@ -1,10 +1,6 @@
 ﻿using BaseLib.Utils;
-using Downfall.Code.Cards.Automaton.Token;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
-using Downfall.Code.Commands;
-using Downfall.Code.Keywords;
-using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -37,8 +33,10 @@ public sealed class Undervolt() : AutomatonCardModel(1, CardType.Skill, CardRari
     {
         var combatState = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(combatState);
-        await PowerCmd.Apply<StrengthPower>(combatState.Enemies, -DynamicVars["StrengthPower"].BaseValue, Owner.Creature, this);
-        List<CardModel> burns = [
+        await PowerCmd.Apply<StrengthPower>(combatState.Enemies, -DynamicVars["StrengthPower"].BaseValue,
+            Owner.Creature, this);
+        List<CardModel> burns =
+        [
             combatState.CreateCard<Burn>(Owner),
             combatState.CreateCard<Burn>(Owner)
         ];

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://clvfiabamedm2"]
+
+[ext_resource type="PackedScene" uid="uid://ev1xo2lik1bs" path="res://Downfall/character/scenes/visuals/awakened.tscn" id="1_qyr5i"]
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="2_a8i81"]
+
+[node name="AwakenedCombat" type="Node2D"]
+script = ExtResource("2_a8i81")
+
+[node name="Visuals" parent="." instance=ExtResource("1_qyr5i")]
+unique_name_in_owner = true
+position = Vector2(5, -22)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -234.0
+offset_top = -243.0
+offset_right = 204.0
+offset_bottom = 3.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(100, -130)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(78, -141)

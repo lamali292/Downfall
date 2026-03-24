@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,14 +10,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class StrikeAutomaton() : AutomatonCardModel(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
+public sealed class StrikeAutomaton()
+    : AutomatonCardModel(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
 {
-    
-    public bool AutoEncode => false;
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
-    
+
+    public bool AutoEncode => false;
+
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

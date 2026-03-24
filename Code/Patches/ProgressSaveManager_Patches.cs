@@ -1,4 +1,4 @@
-﻿using Downfall.Code.Character.Automaton;
+﻿using Downfall.Code.Character;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Saves.Managers;
@@ -19,6 +19,5 @@ internal class ProgressSaveManager_Patches
             // TODO: general check or check if base lib fixed this
             return localPlayer.Character is not Automaton;
         }
-        
     }
 }

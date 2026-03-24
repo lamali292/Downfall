@@ -1,5 +1,5 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,18 +13,13 @@ public abstract class AutomatonCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : CustomCardModel(cost, type, rarity, targetType)
+    : DownfallCardModel(cost, type, rarity, targetType)
 {
     public sealed override string PortraitPath =>
-        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImageAutomatonPath();
+        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<Character.Automaton>();
 
     public bool SkipEncode { get; set; }
     public bool SuppressCompileError { get; set; }
-    
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
 
 
     public virtual void ApplyToFunctionPreview(FunctionCard card)
@@ -40,7 +35,7 @@ public abstract class AutomatonCardModel(
             if (!SkipEncode && encodable.AutoEncode) await encodable.Encode(ctx, cardPlay);
         }
     }
-    
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
         if (this is IEncodable encodable)
@@ -49,12 +44,14 @@ public abstract class AutomatonCardModel(
             if (encode != null)
                 description.Add("encode", encode);
         }
+
         if (this is ICompilable compilable)
         {
             var compile = compilable.CompileLocString;
             if (compile != null)
                 description.Add("compile", compile);
         }
+
         if (this is not ICompilableError compilableError) return;
         var compileError = compilableError.CompileErrorLocString;
         if (compileError != null)
