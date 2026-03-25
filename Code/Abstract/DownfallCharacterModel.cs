@@ -1,19 +1,21 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.Code.Powers.Awakened;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Abstract;
 
-public abstract class DownfallCharacterModel<TCharacter> : CustomCharacterModel
-    where TCharacter : DownfallCharacterModel<TCharacter>
+public abstract class DownfallCharacterModel: CustomCharacterModel
 {
     public virtual string? CharId => null;
     protected virtual Color EnergyOutlineColor => new(0, 0, 0);
     protected virtual Color EnergyBurstColor => new(1, 1, 1);
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
-    public virtual Color CardHsv => new(1, 1, 1);
+    public virtual Color CardColor => new(1, 1, 1);
 
     private string? _id => CharId!.ToSnakeCase();
 
@@ -81,6 +83,7 @@ public abstract class DownfallCharacterModel<TCharacter> : CustomCharacterModel
         ];
     }
 
+    
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         GD.Print("[Downfall] GenerateAnimator called");

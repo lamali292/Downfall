@@ -18,7 +18,7 @@ public class ByteShift() : AutomatonCardModel(0, CardType.Skill, CardRarity.Toke
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var sequencePile = AutomatonPile.EncodePile.GetPile(Owner);
+        var sequencePile = AutomatonPile.FunctionSequence.GetPile(Owner);
         var choices = sequencePile.Cards.ToList();
         if (choices.Count == 0) return;
 

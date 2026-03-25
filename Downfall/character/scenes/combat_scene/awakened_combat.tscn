@@ -8,16 +8,16 @@ script = ExtResource("2_a8i81")
 
 [node name="Visuals" parent="." instance=ExtResource("1_qyr5i")]
 unique_name_in_owner = true
-position = Vector2(5, -22)
+position = Vector2(5, -30)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -234.0
+offset_left = -114.0
 offset_top = -243.0
-offset_right = 204.0
-offset_bottom = 3.0
+offset_right = 136.0
+offset_bottom = 19.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

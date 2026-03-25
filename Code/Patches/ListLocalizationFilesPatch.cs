@@ -2,6 +2,7 @@
 using System.Reflection.Emit;
 using BaseLib.Utils.Patching;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

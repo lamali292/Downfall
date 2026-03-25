@@ -31,17 +31,17 @@ public static class StringExtensions
         return Path.Join(MainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
     }
 
-    public static string CardImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    public static string CardImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         return path.CardImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
 
-    public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         return path.PowerImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
 
-    public static string BigPowerImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    public static string BigPowerImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         return path.BigPowerImageCharacterPath(ModelDb.Character<T>().CharId!);
     }

@@ -112,5 +112,11 @@
   "DOWNFALL-SENTIENT_FORM_POWER.smartDescription": "Whenever you draw a Function, increase all numbers on it by {Amount} except for cost.",
   "DOWNFALL-SUMMON_ORB_POWER.title": "Summon Orb",
   "DOWNFALL-SUMMON_ORB_POWER.description": "Whenever you create or play a Function, gain X [gold]Block[/gold] and deal X damage to a random enemy.",
-  "DOWNFALL-SUMMON_ORB_POWER.smartDescription": "Whenever you create or play a Function, gain {Amount} [gold]Block[/gold] and deal {Amount} damage to a random enemy."
+  "DOWNFALL-SUMMON_ORB_POWER.smartDescription": "Whenever you create or play a Function, gain {Amount} [gold]Block[/gold] and deal {Amount} damage to a random enemy.",
+  "DOWNFALL-DRAINED_POWER.title": "Drained",
+  "DOWNFALL-DRAINED_POWER.description": "Gain X less {energyPrefix:energyIcons(1)} next turn.",
+  "DOWNFALL-DRAINED_POWER.smartDescription": "Gain {Amount} less {energyPrefix:energyIcons(1)} next turn.",
+  "DOWNFALL-MANABURN_POWER.title": "Manaburn",
+  "DOWNFALL-MANABURN_POWER.description": "Whenever you are [gold]Drained[/gold], loses X HP.",
+  "DOWNFALL-MANABURN_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], loses {Amount} HP."
 }

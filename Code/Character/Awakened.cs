@@ -1,25 +1,27 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Awakened;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
-public class Awakened : DownfallCharacterModel<Awakened>
+public class Awakened : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(0x767EB3FF);
     public override string CharId => "Awakened";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardHsv => new(0.64f, 0.5f, 1f);
-
+    public override Color CardColor => Color;
+    public override Color MapDrawingColor => Color;
+    
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 72;
@@ -35,8 +37,8 @@ public class Awakened : DownfallCharacterModel<Awakened>
         ModelDb.Card<DefendAwakened>(),
         ModelDb.Card<DefendAwakened>(),
         ModelDb.Card<DefendAwakened>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<Hymn>(),
+        ModelDb.Card<TalonRake>()
     ];
 
 
@@ -53,29 +55,35 @@ public class Awakened : DownfallCharacterModel<Awakened>
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AwakenedPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
 
+    
+        
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        GD.Print("[Downfall] GenerateAnimator called");
+        var idleState      = new AnimState("Idle_1", true);
+        var hitState       = new AnimState("Hit");
+        var attackState    = new AnimState("Attack_1");
+        var awakenedIdle   = new AnimState("Idle_2", true);
+        var awakenedAttack = new AnimState("Attack_2");
+        var awakenedHit    = new AnimState("Hit");
 
-        var animState = new AnimState("Idle_1", true);
-        var state1 = new AnimState("Idle_1");
-        var state2 = new AnimState("Attack_1");
-        var state3 = new AnimState("Hit");
-        var state4 = new AnimState("Idle_1");
-        var state5 = new AnimState("Idle_1");
-        state1.NextState = animState;
-        state2.NextState = animState;
-        state3.NextState = animState;
-        state5.NextState = animState;
-        state5.AddBranch("Idle", animState);
-        var animator = new CreatureAnimator(animState, controller);
-        animator.AddAnyState("Idle", animState);
-        animator.AddAnyState("Dead", state4);
-        animator.AddAnyState("Hit", state3);
-        animator.AddAnyState("Attack", state2);
-        animator.AddAnyState("Cast", state1);
-        animator.AddAnyState("Relaxed", state5);
+        hitState.NextState       = idleState;
+        attackState.NextState    = idleState;
+        awakenedAttack.NextState = awakenedIdle;
+        awakenedHit.NextState    = awakenedIdle;
+
+        var animator = new CreatureAnimator(idleState, controller);
+        animator.AddAnyState("Idle",   idleState,       () => !IsAwakened());
+        animator.AddAnyState("Idle",   awakenedIdle,    IsAwakened);
+        animator.AddAnyState("Attack", attackState,     () => !IsAwakened());
+        animator.AddAnyState("Attack", awakenedAttack,  IsAwakened);
+        animator.AddAnyState("Hit",    hitState,         () => !IsAwakened());
+        animator.AddAnyState("Hit",    awakenedHit,     IsAwakened);
 
         return animator;
+
+        bool IsAwakened() =>
+            CombatManager.Instance.DebugOnlyGetState()
+                ?.Players.FirstOrDefault(p => p.Character == this)
+                ?.Creature.HasPower<AwakenedFormPower>() ?? false;
     }
 }
