@@ -20,6 +20,6 @@ public partial class DNCreatureVisuals : NCreatureVisuals
         if (SpineBody != null)
             SpineBody.SetNormalMaterial(premultMat);
         else
-            Body.Material = premultMat;
+            GetCurrentBody().Material = premultMat;
     }
 }

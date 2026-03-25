@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Collector.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -27,16 +28,16 @@ public class Collector : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeCollector>(),
+        ModelDb.Card<StrikeCollector>(),
+        ModelDb.Card<StrikeCollector>(),
+        ModelDb.Card<StrikeCollector>(),
+        ModelDb.Card<DefendCollector>(),
+        ModelDb.Card<DefendCollector>(),
+        ModelDb.Card<DefendCollector>(),
+        ModelDb.Card<DefendCollector>(),
+        ModelDb.Card<FuelTheFire>(),
+        ModelDb.Card<YouAreMine>()
     ];
 
 

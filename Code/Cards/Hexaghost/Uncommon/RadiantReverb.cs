@@ -1,0 +1,12 @@
+using BaseLib.Utils;
+using Downfall.Code.Abstract;
+using Downfall.Code.Cards.CardModels;
+using MegaCrit.Sts2.Core.Entities.Cards;
+
+namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+
+[Pool(typeof(HexaghostCardPool))]
+public class RadiantReverb() : HexaghostCardModel(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+{
+    // TODO: Implement
+}

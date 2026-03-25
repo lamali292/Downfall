@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.SlimeBoss.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -28,15 +29,16 @@ public class SlimeBoss : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeSlimeBoss>(),
+        ModelDb.Card<StrikeSlimeBoss>(),
+        ModelDb.Card<StrikeSlimeBoss>(),
+        ModelDb.Card<DefendSlimeBoss>(),
+        ModelDb.Card<DefendSlimeBoss>(),
+        ModelDb.Card<DefendSlimeBoss>(),
+        ModelDb.Card<DefendSlimeBoss>(),
+        ModelDb.Card<CorrosiveSpit>(),
+        ModelDb.Card<Split>(),
+        ModelDb.Card<Tackle>()
     ];
 
 

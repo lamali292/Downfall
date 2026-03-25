@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Champ.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -27,16 +28,16 @@ public class Champ : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeChamp>(),
+        ModelDb.Card<StrikeChamp>(),
+        ModelDb.Card<StrikeChamp>(),
+        ModelDb.Card<StrikeChamp>(),
+        ModelDb.Card<DefendChamp>(),
+        ModelDb.Card<DefendChamp>(),
+        ModelDb.Card<DefendChamp>(),
+        ModelDb.Card<BerserkersShout>(),
+        ModelDb.Card<DefensiveShout>(),
+        ModelDb.Card<Execute>()
     ];
 
 

@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Gremlins.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
@@ -25,16 +26,16 @@ public class Gremlins : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeGremlins>(),
+        ModelDb.Card<StrikeGremlins>(),
+        ModelDb.Card<StrikeGremlins>(),
+        ModelDb.Card<StrikeGremlins>(),
+        ModelDb.Card<DefendGremlins>(),
+        ModelDb.Card<DefendGremlins>(),
+        ModelDb.Card<DefendGremlins>(),
+        ModelDb.Card<DefendGremlins>(),
+        ModelDb.Card<GremlinDance>(),
+        ModelDb.Card<TagTeam>()
     ];
 
 
