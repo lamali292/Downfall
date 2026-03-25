@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Hexaghost.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
@@ -25,16 +26,16 @@ public class Hexaghost : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeHexaghost>(),
+        ModelDb.Card<StrikeHexaghost>(),
+        ModelDb.Card<StrikeHexaghost>(),
+        ModelDb.Card<DefendHexaghost>(),
+        ModelDb.Card<DefendHexaghost>(),
+        ModelDb.Card<DefendHexaghost>(),
+        ModelDb.Card<DefendHexaghost>(),
+        ModelDb.Card<Sear>(),
+        ModelDb.Card<Float>(),
+        ModelDb.Card<Kindle>()
     ];
 
 

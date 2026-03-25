@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Snecko.Basic;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -27,16 +28,16 @@ public class Snecko : DownfallCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>(),
-        ModelDb.Card<Void>()
+        ModelDb.Card<StrikeSnecko>(),
+        ModelDb.Card<StrikeSnecko>(),
+        ModelDb.Card<StrikeSnecko>(),
+        ModelDb.Card<StrikeSnecko>(),
+        ModelDb.Card<DefendSnecko>(),
+        ModelDb.Card<DefendSnecko>(),
+        ModelDb.Card<DefendSnecko>(),
+        ModelDb.Card<DefendSnecko>(),
+        ModelDb.Card<SnekBite>(),
+        ModelDb.Card<TailWhip>()
     ];
 
 
