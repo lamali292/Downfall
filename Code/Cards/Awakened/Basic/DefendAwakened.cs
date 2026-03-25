@@ -16,8 +16,7 @@ public class DefendAwakened() : AwakenedCardModel(1, CardType.Skill, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5m, ValueProp.Move)];
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)    {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 

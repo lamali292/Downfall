@@ -6,7 +6,7 @@ using Downfall.Code.Extensions;
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallPowerModel<T> : CustomPowerModel
-    where T : DownfallCharacterModel<T>
+    where T : DownfallCharacterModel
 {
     private string IconName => Id.Entry
         .RemovePrefix()

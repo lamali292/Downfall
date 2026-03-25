@@ -10,10 +10,10 @@ namespace Downfall.Code.Cards.Piles;
 
 public class AutomatonPile : CustomPile
 {
-    [CustomEnum] public static PileType EncodePile;
+    [CustomEnum] public static PileType FunctionSequence;
 
     // No-parameter constructor — required by BaseLib's reflection
-    public AutomatonPile() : base(EncodePile)
+    public AutomatonPile() : base(FunctionSequence)
     {
     }
 

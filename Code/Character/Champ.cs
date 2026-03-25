@@ -10,15 +10,15 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
-public class Champ : DownfallCharacterModel<Champ>
+public class Champ : DownfallCharacterModel
 {
     private static readonly Color Color = StsColors.purple;
     public override string CharId => "Champ";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardHsv => new(0.75f, 1f, 1f);
-
+    public override Color CardColor => Color;
+    public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;

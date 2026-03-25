@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallRelicPool<T> : CustomRelicPoolModel
-    where T : DownfallCharacterModel<T>
+    where T : DownfallCharacterModel
 {
     private static T Character => ModelDb.Character<T>();
 

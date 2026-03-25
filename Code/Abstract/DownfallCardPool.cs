@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallCardPool<T> : CustomCardPoolModel
-    where T : DownfallCharacterModel<T>
+    where T : DownfallCharacterModel
 {
     private static T Character => ModelDb.Character<T>();
     public override string Title => Character.CharId!;
@@ -17,9 +17,9 @@ public abstract class DownfallCardPool<T> : CustomCardPoolModel
     public override string? TextEnergyIconPath =>
         $"res://Downfall/character/energy_counters/text/text_{Title.ToSnakeCase()}_energy_icon.png";
 
-    public override float H => Character.CardHsv.H;
-    public override float S => Character.CardHsv.S;
-    public override float V => Character.CardHsv.V;
+    public override float H => Character.CardColor.H;
+    public override float S => Character.CardColor.S;
+    public override float V => Character.CardColor.V;
 
     public override Color DeckEntryCardColor => Character.DeckEntryCardColor;
     public override bool IsColorless => false;

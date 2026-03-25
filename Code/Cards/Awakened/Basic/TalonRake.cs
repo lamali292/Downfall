@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
+public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move)];
 
@@ -21,8 +21,8 @@ public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basi
     [
         HoverTipFactory.FromKeyword(DownfallKeywords.Conjure)
     ];
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
@@ -30,7 +30,7 @@ public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basi
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
 
-        await AwakenedCmd.Conjure(this, ctx, cardPlay);
+        await AwakenedCmd.Conjure(Owner, this, ctx, cardPlay);
     }
 
 

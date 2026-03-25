@@ -10,15 +10,16 @@ using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Downfall.Code.Character;
 
-public class Automaton : DownfallCharacterModel<Automaton>
+public class Automaton : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(1f, 0.87f, 0.5f);
     public override string CharId => "Automaton";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardHsv => new(0.127f, 0.52f, 1f);
-
+    public override Color CardColor => Color;
+    public override Color MapDrawingColor => Color;
+    
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 72;

@@ -334,7 +334,7 @@
   "DOWNFALL-DEV_TOOLS.description": "Gain [gold]Debug[/gold], [gold]Batch[/gold], [gold]Decompile[/gold], or [gold]Byte Shift[/gold].",
   "DOWNFALL-DECOMPILE.title": "Decompile",
   "DOWNFALL-DECOMPILE.description": "[gold]Exhaust[/gold] all Encoded cards.\nGain {energyPrefix:energyIcons(1)} and draw a card for each card [gold]Exhausted[/gold].",
-  "DOWNFALL-FIND_AND_REPLACE.title": "Find and Replace",
+  "DOWNFALL-FIND_AND_REPLACE.title": "Find and [gold]Replace[/gold]",
   "DOWNFALL-FIND_AND_REPLACE.description": "[gold]Fetch[/gold] a card from you draw or discard pile.\nAdd a [gold]Dazed[/gold] where it was.",
   "DOWNFALL-FIND_AND_REPLACE.selectionScreenPrompt": "Choose a card to fetch.",
   "DOWNFALL-FORMAT.title": "Format",
@@ -368,5 +368,15 @@
   "DOWNFALL-CEREMONY.title": "Ceremony",
   "DOWNFALL-CEREMONY.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "DOWNFALL-HYMN.title": "Hymn",
-  "DOWNFALL-HYMN.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain a [gold]Ceremony[/gold].\nNext turn, lose {energyPrefix:energyIcons(1)}."
+  "DOWNFALL-HYMN.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain a [gold]Ceremony[/gold].\nNext turn, lose {energyPrefix:energyIcons(1)}.",
+  "DOWNFALL-BURNING_STUDY.title": "Burning Study",
+  "DOWNFALL-BURNING_STUDY.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
+  "DOWNFALL-CRYOSTASIS.title": "Cryostasis",
+  "DOWNFALL-CRYOSTASIS.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "DOWNFALL-DARKLEECH.title": "Darkleech",
+  "DOWNFALL-DARKLEECH.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {ManaburnPower:diff()} [gold]Manaburn[/gold].",
+  "DOWNFALL-E_S_P.title": "ESP",
+  "DOWNFALL-E_S_P.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.",
+  "DOWNFALL-THUNDERBOLT.title": "Thunderbolt",
+  "DOWNFALL-THUNDERBOLT.description": "Deal {Damage:diff()} damage."
 }

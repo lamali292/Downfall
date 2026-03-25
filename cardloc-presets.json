@@ -51,6 +51,7 @@
       "id": "power",
       "markers": [
         "AutomatonPowerModel",
+        "AwakenedPowerModel",
         "CustomPowerModel"
       ],
       "fields": [
@@ -69,6 +70,86 @@
           "file": "powers.json",
           "optional": true
         }
+      ]
+    },
+    {
+      "id": "character",
+      "markers": [
+        "DownfallCharacterModel",
+        "CustomCharacterModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "titleObject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounSubject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounPossessive",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounObject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "possessiveAdjective",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "goldMonologue",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "eventDeathPrevention",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "cardsModifierTitle",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "cardsModifierDescription",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "banter.dead.endTurnPing",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "banter.alive.endTurnPing",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "aromaPrinciple",
+          "file": "characters.json",
+          "optional": false
+        }
+        
       ]
     }
   ]

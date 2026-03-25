@@ -1,7 +1,9 @@
-﻿using BaseLib.Extensions;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Extensions;
+using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
@@ -13,7 +15,7 @@ public abstract class AutomatonCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel(cost, type, rarity, targetType)
+    : CustomCardModel(cost, type, rarity, targetType)
 {
     public sealed override string PortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<Character.Automaton>();
@@ -21,6 +23,10 @@ public abstract class AutomatonCardModel(
     public bool SkipEncode { get; set; }
     public bool SuppressCompileError { get; set; }
 
+    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await Task.CompletedTask;
+    }
 
     public virtual void ApplyToFunctionPreview(FunctionCard card)
     {

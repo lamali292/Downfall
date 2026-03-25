@@ -10,15 +10,16 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
-public class Snecko : DownfallCharacterModel<Snecko>
+public class Snecko : DownfallCharacterModel
 {
     private static readonly Color Color = StsColors.purple;
     public override string CharId => "Snecko";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardHsv => new(0.75f, 1f, 1f);
-
+    public override Color CardColor => Color;
+    public override Color MapDrawingColor => Color;
+    
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 72;
