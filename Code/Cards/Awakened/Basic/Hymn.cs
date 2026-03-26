@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Basic;
@@ -23,7 +22,7 @@ public class Hymn() : AwakenedCardModel(0, CardType.Skill, CardRarity.Basic, Tar
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
-        
+
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
 
         var card = CombatState.CreateCard<Ceremony>(Owner);
