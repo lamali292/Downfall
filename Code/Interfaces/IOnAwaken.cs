@@ -6,5 +6,7 @@ namespace Downfall.Code.Interfaces;
 public interface IOnAwaken
 {
     Task OnAwaken(PlayerChoiceContext ctx, Player player)
-        => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 }

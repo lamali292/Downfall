@@ -1,6 +1,4 @@
-﻿using Downfall.Code.Abstract;
-using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Cards.Vfx;
+﻿using Downfall.Code.Cards.Vfx;
 using Downfall.Code.Character;
 using Downfall.Code.Commands;
 using Downfall.Code.Powers.Awakened;
@@ -34,7 +32,7 @@ public static class CombatRoomLoadedPatch
 
             var creatureNode = combatRoom.GetCreatureNode(creature);
             var vfxContainer = combatRoom.CombatVfxContainer;
-            
+
             switch (player.Character)
             {
                 case Automaton:
@@ -57,9 +55,9 @@ public static class CombatRoomLoadedPatch
                 {
                     var rng = creature.CombatState!.RunState.Rng.CombatCardSelection;
                     AwakenedCmd.GetSpellbook(player)?.Refresh(player, creature.CombatState, rng);
-                    
-                    TaskHelper.RunSafely(PowerCmd.Apply<AwakenMeterPower>(creature, 1, creature, null, silent: true));
-                    
+
+                    TaskHelper.RunSafely(PowerCmd.Apply<AwakenMeterPower>(creature, 1, creature, null, true));
+
                     var spellbookDisplay = NSpellbookDisplay.Create(player);
                     vfxContainer.AddChildSafely(spellbookDisplay);
                     AwakenedCmd.RegisterDisplay(player, spellbookDisplay);

@@ -1,8 +1,8 @@
 ﻿using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
-using Godot;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
@@ -12,19 +12,22 @@ public partial class NSpellbookDisplay : Control
 {
     public const float IconSize = 64f;
     private const float IconDistance = IconSize + 8f;
-
-    private readonly List<TextureRect> _iconNodes = [];
-    private float _bobTime;
     private readonly float[] _bobOffsets = new float[8];
     private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f, 1.0f, 0.85f, 1.15f, 0.98f];
 
+    private readonly List<TextureRect> _iconNodes = [];
+    private float _bobTime;
+
     private Player? _trackedPlayer;
 
-    public static NSpellbookDisplay Create(Player player) => new()
+    public static NSpellbookDisplay Create(Player player)
     {
-        _trackedPlayer = player,
-        Position = Vector2.Zero
-    };
+        return new NSpellbookDisplay
+        {
+            _trackedPlayer = player,
+            Position = Vector2.Zero
+        };
+    }
 
     public void Refresh()
     {
@@ -56,7 +59,7 @@ public partial class NSpellbookDisplay : Control
                 Modulate = card == spellbook.NextSpell
                     ? new Color(1.4f, 1.4f, 0.6f)
                     : Colors.White,
-                MouseFilter = MouseFilterEnum.Stop  // add this
+                MouseFilter = MouseFilterEnum.Stop // add this
             };
 
             // Add hover tip

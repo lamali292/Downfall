@@ -22,7 +22,8 @@ public class Ceremony() : AwakenedCardModel(0, CardType.Power, CardRarity.Token,
         new PowerVar<StrengthPower>(1)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<StrengthPower>()
     ];
 

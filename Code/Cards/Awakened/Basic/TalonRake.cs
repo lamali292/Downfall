@@ -21,7 +21,7 @@ public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basi
     [
         HoverTipFactory.FromKeyword(DownfallKeywords.Conjure)
     ];
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

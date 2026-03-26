@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Downfall.Code.Powers.Automaton;
 
-public class FullReleasePower :AutomatonPowerModel
+public class FullReleasePower : AutomatonPowerModel
 {
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
     public override PowerType Type => PowerType.Buff;

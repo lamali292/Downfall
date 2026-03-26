@@ -4,7 +4,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 
@@ -19,7 +18,7 @@ public class Automaton : DownfallCharacterModel
     public override Color DeckEntryCardColor => Color;
     public override Color CardColor => Color;
     public override Color MapDrawingColor => Color;
-    
+
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 72;

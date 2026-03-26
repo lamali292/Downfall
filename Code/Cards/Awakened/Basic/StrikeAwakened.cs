@@ -19,7 +19,8 @@ public sealed class StrikeAwakened()
 
     public bool AutoEncode => false;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)    {
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")

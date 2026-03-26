@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Powers.Awakened;
 
 #pragma warning disable STS001
-public class AwakenMeterPower: AwakenedPowerModel
+public class AwakenMeterPower : AwakenedPowerModel
 #pragma warning restore STS001
 {
     public override PowerType Type => PowerType.Buff;

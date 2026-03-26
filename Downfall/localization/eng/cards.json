@@ -231,7 +231,7 @@
   "DOWNFALL-STICKY_SHIELD.title": "Sticky Shield",
   "DOWNFALL-STICKY_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Insert[/gold] 1 [gold]Slimed[/gold].",
   "DOWNFALL-TURBO.title": "Turbo",
-  "DOWNFALL-TURBO.description": "Gain {Energy:energyIcons()}.\n Add a [gold]Void[/gold] into you discard pile.",
+  "DOWNFALL-TURBO.description": "Gain {Energy:energyIcons()}.\nAdd a [gold]Void[/gold] into you discard pile.",
   "DOWNFALL-WILD_STRIKE.title": "Wild Strike",
   "DOWNFALL-WILD_STRIKE.description": "Deal {Damage:diff()} damage.\n[gold]Insert[/gold] a [gold]Wound[/gold].",
   "DOWNFALL-ALLOCATE.title": "Allocate",
