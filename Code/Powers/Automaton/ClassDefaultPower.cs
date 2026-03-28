@@ -1,7 +1,7 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,12 +20,10 @@ public class ClassDefaultPower : AutomatonPowerModel, IOnCompile
     public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot,
         FunctionCard functionCard, CardPlay cardPlay)
     {
-        if (Amount <= 0) return;
-
-        var creature = Owner;
-        var pile = AutomatonCmd.GetEncodePile(creature);
+        if (Amount <= 0 || Owner.Player == null) return;
+        var pile = AutomatonCmd.GetEncodePile(Owner.Player);
         if (pile == null) return;
-        var copy = creature.CombatState!.CloneCard(cardPlay.Card);
+        var copy = Owner.CombatState!.CloneCard(cardPlay.Card);
         if (copy is IEncodable encodable) await encodable.Encode(ctx, cardPlay);
         await PowerCmd.Decrement(this);
     }

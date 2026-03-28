@@ -118,5 +118,11 @@
   "DOWNFALL-DRAINED_POWER.smartDescription": "Gain {Amount} less {energyPrefix:energyIcons(1)} next turn.",
   "DOWNFALL-MANABURN_POWER.title": "Manaburn",
   "DOWNFALL-MANABURN_POWER.description": "Whenever you are [gold]Drained[/gold], loses X HP.",
-  "DOWNFALL-MANABURN_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], loses {Amount} HP."
+  "DOWNFALL-MANABURN_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], loses {Amount} HP.",
+  "DOWNFALL-CLARION_CALL_POWER.title": "Clarion Call",
+  "DOWNFALL-CLARION_CALL_POWER.description": "The next time you are [gold]Drained[/gold], gain X {energyPrefix:energyIcons(1)}.",
+  "DOWNFALL-CLARION_CALL_POWER.smartDescription": "The next time you are [gold]Drained[/gold], gain {Amount:energyIcons()}.",
+  "DOWNFALL-RISING_CHORUS_POWER.title": "Rising Chorus",
+  "DOWNFALL-RISING_CHORUS_POWER.description": "The first X [gold]Chant[/gold] effects activated this turn are triggered twice.",
+  "DOWNFALL-RISING_CHORUS_POWER.smartDescription": "The first{Amount:plural:| {Amount}} [gold]Chant[/gold] {Amount:plural:effect|effects} activated this turn {Amount:plural:is|are} triggered twice.\n({UsesLeft}/{Amount})"
 }

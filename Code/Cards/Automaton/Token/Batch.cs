@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -14,7 +14,7 @@ public class Batch() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, T
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await AutomatonCmd.CompileFunctionCard(Owner.Creature, choiceContext, cardPlay);
+        await AutomatonCmd.CompileFunctionCard(Owner, choiceContext, cardPlay);
     }
 
     protected override void OnUpgrade()

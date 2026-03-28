@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,15 +15,14 @@ public class Debug() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, T
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var creature = cardPlay.Card.Owner.Creature;
-        var sequence = AutomatonCmd.GetSequence(creature)
+        var sequence = AutomatonCmd.GetSequence(Owner)
             .OfType<AutomatonCardModel>()
             .Where(c => c is ICompilableError)
             .ToList();
 
         foreach (var card in sequence)
             card.SuppressCompileError = true;
-        AutomatonCmd.RefreshDisplay(creature);
+        AutomatonDisplay.Refresh(Owner);
         await Task.CompletedTask;
     }
 

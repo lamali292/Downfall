@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Unleash() : AwakenedCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Unleash : AwakenedCardModel
 {
+    public Unleash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }

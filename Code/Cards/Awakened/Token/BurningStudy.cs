@@ -10,20 +10,15 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class BurningStudy() : AwakenedCardModel(1, CardType.Skill, CardRarity.Token, TargetType.Self), ISpell
+public class BurningStudy : AwakenedCardModel, ISpell
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(1),
-        new PowerVar<WeakPower>(1)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-        CardKeyword.Retain
-    ];
-
+    public BurningStudy() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+        WithPower<StrengthPower>(1);
+        WithPower<WeakPower>(1);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);

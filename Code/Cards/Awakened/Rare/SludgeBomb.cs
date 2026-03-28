@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Rare;
 
 [Pool(typeof(AwakenedCardPool))]
-public class SludgeBomb() : AwakenedCardModel(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class SludgeBomb : AwakenedCardModel
 {
+    public SludgeBomb() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+    }
+
     // TODO: Implement
 }

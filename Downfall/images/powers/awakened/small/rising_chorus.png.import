@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy7yls1tni7bx"
-path="res://.godot/imported/RisingChantPower32.png-c3c508611220f8914190bd1d5048622b.ctex"
+path="res://.godot/imported/rising_chorus.png-b61ed733a5b21f813ff66350001b4c31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/images/powers/awakened/small/RisingChantPower32.png"
-dest_files=["res://.godot/imported/RisingChantPower32.png-c3c508611220f8914190bd1d5048622b.ctex"]
+source_file="res://Downfall/images/powers/awakened/small/rising_chorus.png"
+dest_files=["res://.godot/imported/rising_chorus.png-b61ed733a5b21f813ff66350001b4c31.ctex"]
 
 [params]
 

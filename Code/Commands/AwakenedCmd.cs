@@ -1,5 +1,5 @@
 ﻿using Downfall.Code.Cards.Piles;
-using Downfall.Code.Cards.Vfx;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,19 +13,7 @@ namespace Downfall.Code.Commands;
 
 public static class AwakenedCmd
 {
-    private static readonly Dictionary<Player, NSpellbookDisplay> _displays = new();
-
-    public static void RegisterDisplay(Player player, NSpellbookDisplay display)
-    {
-        if (_displays.TryGetValue(player, out var old))
-            old.QueueFree();
-        _displays[player] = display;
-    }
-
-    public static void RefreshDisplay(Player player)
-    {
-        _displays.GetValueOrDefault(player)?.Refresh();
-    }
+   
 
     public static AwakenedPile? GetSpellbook(Player player)
     {
@@ -53,14 +41,14 @@ public static class AwakenedCmd
             }
 
             spellbook.UpgradeOnAdd = true;
-            RefreshDisplay(player);
+            AwakenedDisplay.Refresh(player);
         }
 
         foreach (var model in player.Creature.CombatState!.IterateHookListeners().OfType<IOnAwaken>())
             await model.OnAwaken(ctx, player);
     }
-
-    public static async Task Conjure(
+    
+    public static async Task<CardModel?> Conjure(
         Player player,
         CardModel card,
         PlayerChoiceContext ctx,
@@ -68,19 +56,18 @@ public static class AwakenedCmd
     {
         var spellbook = GetSpellbook(player);
         var rng = card.CombatState!.RunState.Rng.CombatCardSelection;
-        if (spellbook == null) return;
-
-        // Refresh if empty
-
-
+        if (spellbook == null) return null;
+        
         var spell = spellbook.NextSpell ?? (spellbook.Cards.Count > 0 ? spellbook.Cards[0] : null);
-        if (spell == null) return;
+        if (spell == null) return null;
 
         spellbook.RemoveInternal(spell);
         spellbook.SetNextSpell(rng);
         await CardPileCmd.Add(spell, PileType.Hand);
 
         if (spellbook.Cards.Count == 0) spellbook.Refresh(player, card.CombatState, rng);
-        RefreshDisplay(player);
+        AwakenedDisplay.Refresh(player);
+        return spell;
+
     }
 }

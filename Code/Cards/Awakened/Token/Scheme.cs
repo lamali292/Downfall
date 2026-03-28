@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Scheme() : AwakenedCardModel(1, CardType.Skill, CardRarity.Token, TargetType.Self)
+public class Scheme : AwakenedCardModel
 {
+    public Scheme() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

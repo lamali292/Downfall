@@ -13,5 +13,7 @@
   "DOWNFALL-INSERT.title": "Insert",
   "DOWNFALL-INSERT.description": "Shuffle a card into you draw pile.",
   "DOWNFALL-CONJURE.title": "Conjure",
-  "DOWNFALL-CONJURE.description": "Create the next card from you Spellbook in your hand."
+  "DOWNFALL-CONJURE.description": "Create the next card from you Spellbook in your hand.",
+  "DOWNFALL-CHANT.title": "Chant",
+  "DOWNFALL-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card."
 }

@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +21,7 @@ public class Turbo() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-        await DownfallCardCmd.DiscardGenerated(ModelDb.Card<Void>(), Owner);
+        await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Discard);
     }
 
     protected override void OnUpgrade()

@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Rare;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Procession() : AwakenedCardModel(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Procession : AwakenedCardModel
 {
+    public Procession() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+    }
+
     // TODO: Implement
 }

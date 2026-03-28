@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Rare;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Bloodthirst() : AwakenedCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class Bloodthirst : AwakenedCardModel
 {
+    public Bloodthirst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+    }
+
     // TODO: Implement
 }

@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class SoulStrike() : AwakenedCardModel(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class SoulStrike : AwakenedCardModel
 {
+    public SoulStrike() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }

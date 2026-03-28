@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Ensorcelate() : AwakenedCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Ensorcelate : AwakenedCardModel
 {
+    public Ensorcelate() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Eventide() : AwakenedCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class Eventide : AwakenedCardModel
 {
+    public Eventide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }

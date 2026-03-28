@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Thaumaturgy() : AwakenedCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class Thaumaturgy : AwakenedCardModel
 {
+    public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+    }
     // TODO: Implement
 }

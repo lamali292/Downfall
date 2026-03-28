@@ -1,5 +1,5 @@
 ﻿using Downfall.Code.Abstract;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -36,7 +36,7 @@ public class OptimizePower : AutomatonPowerModel, IOnEncode
                 if (vfx != null) NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
             }
 
-            AutomatonCmd.RefreshDisplay(encodedCard.Owner.Creature);
+            AutomatonDisplay.Refresh(encodedCard.Owner);
         }
     }
 }

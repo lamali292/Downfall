@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Piles;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -24,7 +24,7 @@ public class ByteShift() : AutomatonCardModel(0, CardType.Skill, CardRarity.Toke
 
         foreach (var cardModel in choices) cardModel.AddKeyword(CardKeyword.Retain);
 
-        await AutomatonCmd.MoveFromSequenceToHand(choices, Owner.Creature);
+        await AutomatonCmd.MoveFromSequenceToHand(choices, Owner);
     }
 
     protected override void OnUpgrade()

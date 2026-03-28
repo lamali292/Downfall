@@ -10,12 +10,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public class DefendAwakened() : AwakenedCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class DefendAwakened : AwakenedCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5m, ValueProp.Move)];
-
+    public DefendAwakened() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        WithTags(CardTag.Defend);
+        WithBlock(5);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

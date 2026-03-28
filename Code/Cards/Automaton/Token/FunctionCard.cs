@@ -3,6 +3,7 @@
 using System.Text;
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Interfaces;
 using Downfall.Code.Powers.Automaton;
 using Godot;
 using HarmonyLib;

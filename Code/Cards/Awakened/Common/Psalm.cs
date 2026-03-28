@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Psalm() : AwakenedCardModel(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Psalm : AwakenedCardModel
 {
+    public Psalm() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }

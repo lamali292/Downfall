@@ -1,7 +1,8 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
+using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,7 +30,7 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        var maxSlots = AutomatonCmd.GetMax(Owner.Creature);
+        var maxSlots = AutomatonCmd.GetMax(Owner);
         var isMiddle = encodeContext is { IsFromFunction: true, SlotIndex: > 0 }
                        && encodeContext.SlotIndex < maxSlots - 1;
         var amount = DynamicVars.Damage.IntValue + (isMiddle ? DynamicVars["ExtraDamage"].IntValue : 0);
@@ -42,7 +43,7 @@ public class Separator() : AutomatonCardModel(1, CardType.Attack, CardRarity.Unc
 
     public LocString? GetEncodeLocString(EncodeContext context)
     {
-        var maxSlots = AutomatonCmd.GetMax(Owner.Creature);
+        var maxSlots = AutomatonCmd.GetMax(Owner);
         var isMiddle = context is { IsFromFunction: true, SlotIndex: > 0 }
                        && context.SlotIndex < maxSlots - 1;
 

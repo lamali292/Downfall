@@ -12,12 +12,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Hymn() : AwakenedCardModel(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class Hymn : AwakenedCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(3, ValueProp.Move)
-    ];
+    public Hymn() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        WithBlock(3);
+    }
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

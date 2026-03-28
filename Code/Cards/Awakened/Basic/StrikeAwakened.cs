@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,15 +11,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public sealed class StrikeAwakened()
-    : AwakenedCardModel(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
+public sealed class StrikeAwakened : AwakenedCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
-
-    public bool AutoEncode => false;
-
+   
+    public StrikeAwakened() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        WithDamage(6);
+        WithTags(CardTag.Strike);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

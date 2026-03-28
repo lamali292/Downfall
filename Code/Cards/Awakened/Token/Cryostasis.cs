@@ -10,18 +10,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Cryostasis() : AwakenedCardModel(1, CardType.Skill, CardRarity.Token, TargetType.Self), ISpell
+public class Cryostasis : AwakenedCardModel, ISpell
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(10, ValueProp.Move)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-        CardKeyword.Retain
-    ];
+    public Cryostasis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        WithBlock(10);
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+    }
+    
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

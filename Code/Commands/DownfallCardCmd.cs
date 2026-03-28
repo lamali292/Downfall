@@ -1,9 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
-namespace Downfall.Code.Commands;
+namespace Downfall.Code.Displays;
 
 public class DownfallCardCmd
 {
@@ -25,11 +28,46 @@ public class DownfallCardCmd
         CardCmd.PreviewCardPileAdd(results);
     }
 
-    public static async Task DiscardGenerated(CardModel card, Player player)
+    public static async Task GiveCard<T>(Player player, 
+        PileType pileType,  
+        CardPilePosition position = CardPilePosition.Bottom,
+        float animationTime = 0.6f,
+        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
     {
-        var dazed = player.Creature.CombatState!.CreateCard(card, player);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(dazed, PileType.Discard, true);
+        var dazed = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(dazed, pileType, true, position);
         if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
+            CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+    }
+    
+    public static async Task AutoPlayFromDrawPile(
+        PlayerChoiceContext choiceContext,
+        Player player,
+        int count,
+        AutoPlayType autoPlayType = AutoPlayType.Default,
+        bool skipXCapture = false)
+    {
+        if (CombatManager.Instance.IsOverOrEnding)
+            return;
+
+        var cards = new List<CardModel>(count);
+        var drawPile = PileType.Draw.GetPile(player);
+        for (var i = 0; i < count; ++i)
+        {
+            await CardPileCmd.ShuffleIfNecessary(choiceContext, player);
+            if (drawPile.Cards.Count == 0) break;
+            cards.Add(drawPile.Cards[0]);
+        }
+
+        foreach (var card in cards.TakeWhile(card => !card.Owner.Creature.IsDead))
+        {
+            await CardCmd.AutoPlay(
+                choiceContext,
+                card,
+                target: null,
+                type: autoPlayType,
+                skipXCapture: skipXCapture,
+                skipCardPileVisuals: false);
+        }
     }
 }

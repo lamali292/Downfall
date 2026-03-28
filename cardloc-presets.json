@@ -1,6 +1,6 @@
-﻿{
-  "projectId": "Downfall",
+{
   "localizationBase": "Downfall/localization/eng",
+  "projectId": "Downfall",
   "presets": [
     {
       "id": "card",

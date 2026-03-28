@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Altar() : AwakenedCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Altar : AwakenedCardModel
 {
+    public Altar() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

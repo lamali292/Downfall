@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class DarkEcho() : AwakenedCardModel(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class DarkEcho : AwakenedCardModel
 {
+    public DarkEcho() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+    }
     // TODO: Implement
 }
