@@ -15,7 +15,7 @@ public sealed class Repulsor() : AutomatonCardModel(2, CardType.Power, CardRarit
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Status),
+        DownfallKeyword.Status.ToHoverTip(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     ];
 

@@ -20,8 +20,8 @@ public class BugBarrage() : AutomatonCardModel(1, CardType.Attack, CardRarity.Co
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Cycle),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Status),
+        DownfallKeyword.Cycle.ToHoverTip(),
+        DownfallKeyword.Status.ToHoverTip(),
         HoverTipFactory.FromCard<Wound>()
     ];
 

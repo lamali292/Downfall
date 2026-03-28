@@ -61,9 +61,9 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public override string CustomMerchantAnimPath => "res://Downfall/scenes/watcher/watcher_merchant.tscn";
 
 
-    public override string CustomAttackSfx => "res://";
-    public override string CustomCastSfx => "res://";
-    public override string CustomDeathSfx => "res://";
+    public override string CustomAttackSfx => "event:/sfx/characters/ironclad/ironclad_attack";
+    //public override string CustomCastSfx => "res://";
+    public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
 
     private string EnergyCounterPaths(int i)
     {

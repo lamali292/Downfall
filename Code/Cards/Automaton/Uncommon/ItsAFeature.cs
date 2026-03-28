@@ -22,7 +22,7 @@ public class ItsAFeature() : AutomatonCardModel(1, CardType.Power, CardRarity.Un
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Status),
+        DownfallKeyword.Status.ToHoverTip(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];

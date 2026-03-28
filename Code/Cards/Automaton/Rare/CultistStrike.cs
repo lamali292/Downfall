@@ -30,8 +30,8 @@ public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, Car
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

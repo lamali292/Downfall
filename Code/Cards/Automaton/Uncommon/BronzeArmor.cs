@@ -27,9 +27,9 @@ public class BronzeArmor() : AutomatonCardModel(0, CardType.Skill, CardRarity.Un
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+        DownfallKeyword.Encode.ToHoverTip(),
         HoverTipFactory.FromPower<ArtifactPower>(),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

@@ -26,8 +26,8 @@ public sealed class Repair() : AutomatonCardModel(1, CardType.Skill, CardRarity.
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

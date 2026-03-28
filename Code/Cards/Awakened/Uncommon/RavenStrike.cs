@@ -17,7 +17,7 @@ public class RavenStrike : AwakenedCardModel, IChantable
     public RavenStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(15);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

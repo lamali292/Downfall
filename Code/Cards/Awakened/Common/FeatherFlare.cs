@@ -15,7 +15,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     public FeatherFlare() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

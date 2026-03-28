@@ -28,13 +28,13 @@ public class Blockchain() : AutomatonCardModel(1, CardType.Skill, CardRarity.Unc
         IsUpgraded
             ?
             [
-                HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
-                HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+                DownfallKeyword.Compile.ToHoverTip(),
+                DownfallKeyword.Encode.ToHoverTip(),
                 HoverTipFactory.FromPower<BlurPower>()
             ]
             :
             [
-                HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+                DownfallKeyword.Encode.ToHoverTip(),
                 HoverTipFactory.FromPower<BlurPower>()
             ];
 
