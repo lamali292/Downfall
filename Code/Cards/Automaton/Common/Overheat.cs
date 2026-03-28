@@ -19,8 +19,8 @@ public class Overheat() : AutomatonCardModel(2, CardType.Attack, CardRarity.Comm
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Compile.ToHoverTip(),
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

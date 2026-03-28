@@ -26,9 +26,9 @@ public class OilSpill() : AutomatonCardModel(1, CardType.Attack, CardRarity.Comm
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+        DownfallKeyword.Encode.ToHoverTip(),
         HoverTipFactory.FromPower<PoisonPower>(),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromCard<Slimed>()
     ];
 

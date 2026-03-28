@@ -26,7 +26,7 @@ public class Flail() : AutomatonCardModel(2, CardType.Attack, CardRarity.Uncommo
         CardKeyword.Exhaust
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(DownfallKeywords.Status)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Status.ToHoverTip()];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

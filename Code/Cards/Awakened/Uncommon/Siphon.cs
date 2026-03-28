@@ -19,7 +19,7 @@ public class Siphon : AwakenedCardModel, IChantable
     public Siphon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -26,8 +26,8 @@ public class Philosophize() : AutomatonCardModel(1, CardType.Skill, CardRarity.U
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromPower<StrengthPower>()
     ];
 

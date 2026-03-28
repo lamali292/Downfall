@@ -23,8 +23,8 @@ public class Backtrace() : AutomatonCardModel(0, CardType.Attack, CardRarity.Unc
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     ];
 

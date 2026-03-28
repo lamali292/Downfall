@@ -40,7 +40,7 @@ public static class LoadTablePatch
 public static class GetDescriptionForPilePatch
 {
     private const int SourceLocalIndex = 5;
-    private const string KeywordsTable = "card_keywords";
+    private const string KeywordsTable = "static_hover_tips";
 
     private static MethodBase TargetMethod()
     {
@@ -71,11 +71,15 @@ public static class GetDescriptionForPilePatch
         if (automaton is IEncodable { AutoEncode: true } encodable)
             AddEncodeLine(source, encodable);
 
-        if (automaton is ICompilable)
-            AddLine(source, ICompilable.BuildCompileLocString(automaton), "DOWNFALL-COMPILE.title");
-
-        if (automaton is ICompilableError && !automaton.SuppressCompileError)
-            AddLine(source, ICompilableError.BuildErrorLocString(automaton), "DOWNFALL-COMPILE_ERROR.title");
+        switch (automaton)
+        {
+            case ICompilable:
+                AddLine(source, ICompilable.BuildCompileLocString(automaton), "DOWNFALL-COMPILE.title");
+                break;
+            case ICompilableError when !automaton.SuppressCompileError:
+                AddLine(source, ICompilableError.BuildErrorLocString(automaton), "DOWNFALL-COMPILE_ERROR.title");
+                break;
+        }
     }
 
     private static void AddEncodeLine(List<string> source, IEncodable encodable)

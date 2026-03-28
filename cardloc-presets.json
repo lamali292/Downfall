@@ -13,8 +13,7 @@
         "GremlinsCardModel",
         "HexaghostCardModel",
         "SlimeBossCardModel",
-        "SneckoCardModel",
-        "CustomCardModel"
+        "SneckoCardModel"
       ],
       "fields": [
         {
@@ -59,8 +58,7 @@
       "markers": [
         "AutomatonPowerModel",
         "AwakenedPowerModel",
-        "GuardianPowerModel",
-        "CustomPowerModel"
+        "GuardianPowerModel"
       ],
       "fields": [
         {
@@ -83,8 +81,7 @@
     {
       "id": "character",
       "markers": [
-        "DownfallCharacterModel",
-        "CustomCharacterModel"
+        "DownfallCharacterModel"
       ],
       "fields": [
         {

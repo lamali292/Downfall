@@ -15,7 +15,7 @@ public class CopyPaste() : AutomatonCardModel(1, CardType.Skill, CardRarity.Unco
 {
     public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(DownfallKeywords.Encode)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Encode.ToHoverTip()];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

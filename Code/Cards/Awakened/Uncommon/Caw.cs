@@ -19,7 +19,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     {
         WithDamage(3);
         WithVar("Caw", 3);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
     private static readonly LocString CawCawDialogue = new("monsters", "DAMP_CULTIST.moves.INCANTATION.banter");
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -20,7 +20,7 @@ public class Cleanse() : AutomatonCardModel(1, CardType.Attack, CardRarity.Commo
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Status)
+        DownfallKeyword.Status.ToHoverTip()
     ];
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)

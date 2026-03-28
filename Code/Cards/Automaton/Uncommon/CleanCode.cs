@@ -15,8 +15,8 @@ public sealed class CleanCode() : AutomatonCardModel(1, CardType.Power, CardRari
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromPower<RemoveErrorsPower>()
     ];
 

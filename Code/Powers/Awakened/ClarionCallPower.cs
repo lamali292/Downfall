@@ -12,7 +12,7 @@ public class ClarionCallPower : AwakenedPowerModel, IOnDrained
     public override PowerStackType StackType => PowerStackType.Counter;
 
 
-    public async Task OnDrained(Player player, DrainedPower drainedPower, int amount)
+    public async Task OnDrained(Player player, int amount)
     {
         if (player != Owner.Player) return;
         await PlayerCmd.GainEnergy(Amount, player);

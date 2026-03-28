@@ -16,9 +16,9 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
     public override PowerStackType StackType => PowerStackType.Counter;
 
 
-    public async Task OnDrained(Player player, DrainedPower drainedPower, int amount)
+    public async Task OnDrained(Player player, int amount)
     {
-        if (Applier != drainedPower.Owner || LocalContext.NetId == null) return;
+        if (Applier != player.Creature || LocalContext.NetId == null) return;
 
         var ctx = new HookPlayerChoiceContext(
             player,
@@ -26,6 +26,6 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
             GameActionType.Combat);
         await CreatureCmd.Damage(ctx,
             Owner, Amount * amount,
-            ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, drainedPower.Owner);
+            ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, player.Creature);
     }
 }

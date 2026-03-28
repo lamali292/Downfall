@@ -12,7 +12,7 @@ namespace Downfall.Code.Cards.Automaton.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Allocate() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(DownfallKeywords.Status)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Status.ToHoverTip()];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

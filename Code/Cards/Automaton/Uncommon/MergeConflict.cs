@@ -24,7 +24,7 @@ public class MergeConflict() : AutomatonCardModel(2, CardType.Attack, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -17,7 +17,7 @@ public class Gather : AwakenedCardModel, IChantable
     public Gather() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(3);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

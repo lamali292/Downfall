@@ -22,8 +22,8 @@ public class DigitalCarnage() : AutomatonCardModel(2, CardType.Attack, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
     ];
 

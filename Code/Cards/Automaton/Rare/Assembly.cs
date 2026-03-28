@@ -18,8 +18,8 @@ public class Assembly() : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Scry)
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Scry.ToHoverTip()
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

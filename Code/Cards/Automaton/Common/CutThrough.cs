@@ -26,9 +26,9 @@ public class CutThrough() : AutomatonCardModel(1, CardType.Attack, CardRarity.Co
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Scry),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Scry.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
 

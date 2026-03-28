@@ -16,7 +16,7 @@ public class Optimize() : AutomatonCardModel(0, CardType.Power, CardRarity.Uncom
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

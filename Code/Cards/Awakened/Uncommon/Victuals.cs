@@ -17,7 +17,7 @@ public class Victuals : AwakenedCardModel, IChantable
     {
         WithVars(new EnergyVar(2));
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallKeywords.Chant);
+        WithTip(DownfallKeyword.Chant);
     }
     
     public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
