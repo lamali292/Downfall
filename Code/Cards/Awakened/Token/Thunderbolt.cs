@@ -10,19 +10,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Thunderbolt() : AwakenedCardModel(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy), ISpell
+public class Thunderbolt : AwakenedCardModel, ISpell
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(12, ValueProp.Move)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-        CardKeyword.Retain
-    ];
-
+    public Thunderbolt() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+    {
+        WithDamage(12);
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

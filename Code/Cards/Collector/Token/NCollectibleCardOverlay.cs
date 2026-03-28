@@ -10,7 +10,7 @@ public partial class NCollectibleCardOverlay : Control
 
     public void SetMonster(MonsterModel monster)
     {
-        _visuals?.QueueFree();
+        /*?.QueueFree();
         _visuals = monster.CreateVisuals();
         
         // Scale to fit card portrait area (~300x200px)
@@ -21,6 +21,6 @@ public partial class NCollectibleCardOverlay : Control
         
         // Generate animator so spine plays
         var animator = monster.GenerateAnimator(_visuals.SpineBody);
-        animator.SetTrigger("Idle");
+        animator.SetTrigger("Idle");*/
     }
 }

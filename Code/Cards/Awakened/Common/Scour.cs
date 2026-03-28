@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Scour() : AwakenedCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Scour : AwakenedCardModel
 {
+    public Scour() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }

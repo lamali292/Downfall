@@ -2,7 +2,7 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Piles;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +26,7 @@ public class BitShift() : AutomatonCardModel(0, CardType.Skill, CardRarity.Commo
         var card = await CardSelectCmd.FromChooseACardScreen(choiceContext, choices, Owner);
         if (card == null) return;
 
-        await AutomatonCmd.MoveFromSequenceToHand(card, Owner.Creature);
+        await AutomatonCmd.MoveFromSequenceToHand(card, Owner);
     }
 
     protected override void OnUpgrade()

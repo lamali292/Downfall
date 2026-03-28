@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ipioy5om5ev"
-path="res://.godot/imported/VoidRefundPower32.png-98671acb5ea7f22377db2ebb636208f1.ctex"
+uid="uid://du5oqkl3safek"
+path="res://.godot/imported/clarion_call.png-868111a68ee80c3d50aefe6971bba3d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/images/powers/awakened/small/VoidRefundPower32.png"
-dest_files=["res://.godot/imported/VoidRefundPower32.png-98671acb5ea7f22377db2ebb636208f1.ctex"]
+source_file="res://Downfall/images/powers/awakened/big/clarion_call.png"
+dest_files=["res://.godot/imported/clarion_call.png-868111a68ee80c3d50aefe6971bba3d3.ctex"]
 
 [params]
 

@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class FeatherVeil() : AwakenedCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class FeatherVeil : AwakenedCardModel
 {
+    public FeatherVeil() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

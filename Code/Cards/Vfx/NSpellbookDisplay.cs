@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -10,7 +11,7 @@ namespace Downfall.Code.Cards.Vfx;
 
 public partial class NSpellbookDisplay : Control
 {
-    public const float IconSize = 64f;
+    private const float IconSize = 64f;
     private const float IconDistance = IconSize + 8f;
     private readonly float[] _bobOffsets = new float[8];
     private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f, 1.0f, 0.85f, 1.15f, 0.98f];
@@ -40,8 +41,6 @@ public partial class NSpellbookDisplay : Control
         if (spellbook == null) return;
 
         var cards = spellbook.Cards;
-        GD.Print($"[SpellbookDisplay] Refreshing with {cards.Count} spells");
-
         for (var i = 0; i < cards.Count; i++)
         {
             var card = cards[i];
@@ -50,23 +49,20 @@ public partial class NSpellbookDisplay : Control
             var iconPath = spell.SpellIconPath;
             if (!ResourceLoader.Exists(iconPath)) continue;
 
+            var isNext = card == spellbook.NextSpell;
+            
             var icon = new TextureRect
             {
                 Texture = ResourceLoader.Load<Texture2D>(iconPath),
                 StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-                CustomMinimumSize = new Vector2(IconSize, IconSize),
-                Position = new Vector2(i * IconDistance, 0f),
-                Modulate = card == spellbook.NextSpell
-                    ? new Color(1.4f, 1.4f, 0.6f)
-                    : Colors.White,
-                MouseFilter = MouseFilterEnum.Stop // add this
+                CustomMinimumSize = new Vector2(IconSize + (isNext ? 12 : 0), IconSize + (isNext ? 12 : 0)),
+                Position = new Vector2(i * IconDistance - (isNext ? 6 : 0), isNext ? -6 : 0),
+                MouseFilter = MouseFilterEnum.Stop
             };
-
-            // Add hover tip
-            var captured = card;
+            
             icon.MouseEntered += () =>
             {
-                var tip = HoverTipFactory.FromCard(captured);
+                var tip = HoverTipFactory.FromCard(card);
                 NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
             };
             icon.MouseExited += () => NHoverTipSet.Remove(icon);

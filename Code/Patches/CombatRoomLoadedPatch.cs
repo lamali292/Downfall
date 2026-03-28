@@ -1,6 +1,7 @@
 ﻿using Downfall.Code.Cards.Vfx;
 using Downfall.Code.Character;
 using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Powers.Awakened;
 using Godot;
 using HarmonyLib;
@@ -37,9 +38,9 @@ public static class CombatRoomLoadedPatch
             {
                 case Automaton:
                 {
-                    var display = NSequenceDisplay.Create(creature);
+                    var display = NSequenceDisplay.Create(player);
                     vfxContainer.AddChildSafely(display);
-                    AutomatonCmd.RegisterDisplay(creature, display);
+                    AutomatonDisplay.Register(player, display);
                     display.Refresh();
 
                     if (creatureNode != null)
@@ -60,7 +61,7 @@ public static class CombatRoomLoadedPatch
 
                     var spellbookDisplay = NSpellbookDisplay.Create(player);
                     vfxContainer.AddChildSafely(spellbookDisplay);
-                    AwakenedCmd.RegisterDisplay(player, spellbookDisplay);
+                    AwakenedDisplay.Register(player, spellbookDisplay);
                     spellbookDisplay.Refresh();
 
                     if (creatureNode == null) continue;

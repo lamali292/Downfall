@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -13,17 +14,42 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.Code.Cards.Collector.Token;
 
+
 [Pool(typeof(CollectorCardPool))]
 public class MonsterTest1() : Collectible<Inklet>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.0f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest2() : Collectible<OwlMagistrate>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.25f);
+public class MonsterTest2() : Collectible<OwlMagistrate>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.1f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest3() : Collectible<Parafright>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy,0.5f);
+public class MonsterTest3() : Collectible<PunchConstruct>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.2f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest4() : Collectible<Seapunk>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.75f);
+public class MonsterTest4() : Collectible<Seapunk>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest5() : Collectible<Wriggler>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.4f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest6() : Collectible<SoulNexus>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.5f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest7() : Collectible<ShrinkerBeetle>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.6f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest8() : Collectible<Nibbit>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.7f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest9() : Collectible<SpectralKnight>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.8f);
+
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest10() : Collectible<Tunneler>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.9f);
+
+
+[Pool(typeof(CollectorCardPool))]
+public abstract class ACollectible<T>() : Collectible<T>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+where T : MonsterModel;
+
 
 public interface ICollectible
 {
@@ -79,9 +105,9 @@ public static class CreateOverlayPatch
     {
         if (__instance is not ICollectible collectible) return true;
 
-        var monster = collectible.GetMonsterModel().ToMutable();
+        var monsterModel = collectible.GetMonsterModel();
+        var monster = monsterModel.ToMutable();
         var visuals = monster.CreateVisuals();
-        monster.SetupSkins(visuals);
 
         var container = new Control
         {
@@ -95,6 +121,7 @@ public static class CreateOverlayPatch
 
         visuals.Ready += () =>
         {
+            //monster.SetupSkins(visuals);
             if (visuals.SpineBody != null)
                 monster.GenerateAnimator(visuals.SpineBody);
             foreach (var node in visuals.GetChildrenRecursive<Control>())

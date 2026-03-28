@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class MirePit() : AwakenedCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class MirePit : AwakenedCardModel
 {
+    public MirePit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

@@ -2,6 +2,7 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,15 +14,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public class TalonRake() : AwakenedCardModel(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public class TalonRake : AwakenedCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Conjure)
-    ];
-
+    
+    public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        WithDamage(5);
+        WithTip(DownfallKeywords.Conjure);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

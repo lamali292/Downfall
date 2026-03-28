@@ -1,12 +1,32 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Displays;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Planeswalk() : AwakenedCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class Planeswalk : AwakenedCardModel
 {
-    // TODO: Implement
+    public Planeswalk() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithVars(new EnergyVar(2));
+    }
+
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+        await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Random);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Energy.UpgradeValueBy(1);
+    }
 }
