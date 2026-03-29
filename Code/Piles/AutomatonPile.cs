@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
-namespace Downfall.Code.Cards.Piles;
+namespace Downfall.Code.Piles;
 
 public class AutomatonPile : CustomPile
 {
