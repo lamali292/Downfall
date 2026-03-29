@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 
-namespace Downfall.Code.Cards.Vfx;
+namespace Downfall.Code.Vfx;
 
 public partial class NSequenceDisplay : Control
 {

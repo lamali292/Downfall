@@ -22,7 +22,7 @@ public class Envision : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var card = await AwakenedCmd.Conjure(Owner, this, ctx, cardPlay);
+        var card = await AwakenedCmd.Conjure(Owner, this);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }

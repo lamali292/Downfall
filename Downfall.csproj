@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
         <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <DefaultItemExcludes>packages/**</DefaultItemExcludes>
@@ -100,6 +101,14 @@
         <None Include="Downfall.json"/>
         <None Include="project.godot"/>
         <None Include="Downfall/**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove=".godot\**" />
+        <None Remove=".godot\**" />
+
+        <Content Remove="Downfall\**\*.import" />
+        <None Remove="Downfall\**\*.import" />
     </ItemGroup>
 
     <ItemGroup>
