@@ -124,5 +124,17 @@
   "DOWNFALL-CLARION_CALL_POWER.smartDescription": "The next time you are [gold]Drained[/gold], gain {Amount:energyIcons()}.",
   "DOWNFALL-RISING_CHORUS_POWER.title": "Rising Chorus",
   "DOWNFALL-RISING_CHORUS_POWER.description": "The first X [gold]Chant[/gold] effects activated this turn are triggered twice.",
-  "DOWNFALL-RISING_CHORUS_POWER.smartDescription": "The first{Amount:plural:| {Amount}} [gold]Chant[/gold] {Amount:plural:effect|effects} activated this turn {Amount:plural:is|are} triggered twice.\n({UsesLeft}/{Amount})"
+  "DOWNFALL-RISING_CHORUS_POWER.smartDescription": "The first{Amount:plural:| {Amount}} [gold]Chant[/gold] {Amount:plural:effect|effects} activated this turn {Amount:plural:is|are} triggered twice.\n({UsesLeft}/{Amount})",
+  "DOWNFALL-CHOSEN_VERSE_POWER.title": "Chosen Verse",
+  "DOWNFALL-CHOSEN_VERSE_POWER.description": "The next time you play a non-Attack card this turn, draw a card and gain X [gold]Block[/gold].",
+  "DOWNFALL-CHOSEN_VERSE_POWER.smartDescription": "The next time you play a non-Attack card this turn, draw a card and gain {Block} [gold]Block[/gold].",
+  "DOWNFALL-DARK_ECHO_POWER.title": "Dark Echo",
+  "DOWNFALL-DARK_ECHO_POWER.description": "At the end of your turn deal 4 damage  increased by [gold]Strength[/gold] to ALL enemies X times. ",
+  "DOWNFALL-DARK_ECHO_POWER.smartDescription": "At the end of your turn deal 4 damage  increased by [gold]Strength[/gold] to ALL enemies {Amount} times. ",
+  "DOWNFALL-DARKNESS_FALLS_POWER.title": "Darkness Falls",
+  "DOWNFALL-DARKNESS_FALLS_POWER.description": "Whenever you are [gold]Drained[/gold], gain X [gold]Block[/gold].",
+  "DOWNFALL-DARKNESS_FALLS_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], gain {Amount} [gold]Block[/gold].",
+  "DOWNFALL-DARKBLESSED_POWER.title": "Darkblessed",
+  "DOWNFALL-DARKBLESSED_POWER.description": "Whenever you are [gold]Drained[/gold], gain X [gold]Strength[/gold].",
+  "DOWNFALL-DARKBLESSED_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], gain {Amount} [gold]Strength[/gold]."
 }

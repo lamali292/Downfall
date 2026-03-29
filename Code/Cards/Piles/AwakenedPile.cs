@@ -52,8 +52,11 @@ public class AwakenedPile : CustomPile
                 : null;
     }
 
-    public void Refresh(Player owner, CombatState state, Rng rng)
+    public void  Refresh(Player owner)
     {
+        var state = owner.Creature.CombatState;
+        if (state == null) return;
+        var rng = state.RunState.Rng.CombatCardSelection;
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
 

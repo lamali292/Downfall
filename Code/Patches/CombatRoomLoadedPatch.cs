@@ -3,14 +3,15 @@ using Downfall.Code.Character;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
 using Downfall.Code.Powers.Awakened;
+using Downfall.Code.Vfx;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using NSequenceDisplay = Downfall.Code.Cards.Vfx.NSequenceDisplay;
 
 namespace Downfall.Code.Patches;
 
@@ -25,7 +26,7 @@ public static class CombatRoomLoadedPatch
 
         foreach (var player in combatState.Players)
         {
-            if (!LocalContext.IsMe(player)) continue;
+            //if (!LocalContext.IsMe(player)) continue;
 
             var creature = player.Creature;
             var combatRoom = NCombatRoom.Instance;
@@ -54,9 +55,7 @@ public static class CombatRoomLoadedPatch
                 }
                 case Awakened:
                 {
-                    var rng = creature.CombatState!.RunState.Rng.CombatCardSelection;
-                    AwakenedCmd.GetSpellbook(player)?.Refresh(player, creature.CombatState, rng);
-
+                    AwakenedCmd.GetSpellbook(player)?.Refresh(player);
                     TaskHelper.RunSafely(PowerCmd.Apply<AwakenMeterPower>(creature, 1, creature, null, true));
 
                     var spellbookDisplay = NSpellbookDisplay.Create(player);
