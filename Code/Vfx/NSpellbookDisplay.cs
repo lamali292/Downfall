@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
-namespace Downfall.Code.Cards.Vfx;
+namespace Downfall.Code.Vfx;
 
 public partial class NSpellbookDisplay : Control
 {
@@ -30,59 +30,94 @@ public partial class NSpellbookDisplay : Control
         };
     }
 
-    public void Refresh()
+   public void Refresh()
+{
+    if (_trackedPlayer == null) return;
+
+    // Clean up old icons
+    foreach (var icon in _iconNodes) icon.QueueFree();
+    _iconNodes.Clear();
+
+    var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
+    if (spellbook == null) return;
+
+    // GROUPING: Group cards by their Model ID (or Type)
+    var groupedCards = spellbook.Cards
+        .GroupBy(c => c.Id) 
+        .ToList();
+
+    for (var i = 0; i < groupedCards.Count; i++)
     {
-        if (_trackedPlayer == null) return;
+        var group = groupedCards[i];
+        var firstCard = group.First(); // Use the first instance for the icon/tooltips
+        var count = group.Count();
+        
+        if (firstCard is not ISpell spell) continue;
 
-        foreach (var icon in _iconNodes) icon.QueueFree();
-        _iconNodes.Clear();
+        var iconPath = spell.SpellIconPath;
+        if (!ResourceLoader.Exists(iconPath)) continue;
 
-        var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
-        if (spellbook == null) return;
-
-        var cards = spellbook.Cards;
-        for (var i = 0; i < cards.Count; i++)
+        // Visual logic for the "Next Spell"
+        var isNext = firstCard == spellbook.NextSpell || group.Contains(spellbook.NextSpell);
+        
+        var icon = new TextureRect
         {
-            var card = cards[i];
-            if (card is not ISpell spell) continue;
+            Texture = ResourceLoader.Load<Texture2D>(iconPath),
+            StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+            CustomMinimumSize = new Vector2(IconSize + (isNext ? 12 : 0), IconSize + (isNext ? 12 : 0)),
+            // We use 'i' (the group index) for positioning
+            Position = new Vector2(i * IconDistance - (isNext ? 6 : 0), isNext ? -6 : 0),
+            MouseFilter = MouseFilterEnum.Stop
+        };
 
-            var iconPath = spell.SpellIconPath;
-            if (!ResourceLoader.Exists(iconPath)) continue;
-
-            var isNext = card == spellbook.NextSpell;
-            
-            var icon = new TextureRect
+        // ADD COUNTER: Only if there is more than one
+        if (count > 1)
+        {
+            var label = new Label
             {
-                Texture = ResourceLoader.Load<Texture2D>(iconPath),
-                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-                CustomMinimumSize = new Vector2(IconSize + (isNext ? 12 : 0), IconSize + (isNext ? 12 : 0)),
-                Position = new Vector2(i * IconDistance - (isNext ? 6 : 0), isNext ? -6 : 0),
-                MouseFilter = MouseFilterEnum.Stop
+                Text = $"{count}x",
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Size = icon.CustomMinimumSize,
+                Position = new Vector2(4, 4), // Offset slightly from the corner
             };
             
-            icon.MouseEntered += () =>
-            {
-                var tip = HoverTipFactory.FromCard(card);
-                NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
-            };
-            icon.MouseExited += () => NHoverTipSet.Remove(icon);
-
-            AddChild(icon);
-            _iconNodes.Add(icon);
+            // Give the label a shadow or outline so it's readable over the icon
+            label.AddThemeColorOverride("font_outline_color", Colors.Black);
+            label.AddThemeConstantOverride("outline_size", 4);
+            
+            icon.AddChild(label);
         }
-    }
+        
+        icon.MouseEntered += () =>
+        {
+            var tip = HoverTipFactory.FromCard(firstCard);
+            NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
+        };
+        icon.MouseExited += () => NHoverTipSet.Remove(icon);
 
-    public override void _Process(double delta)
+        AddChild(icon);
+        _iconNodes.Add(icon);
+    }
+}
+
+public override void _Process(double delta)
+{
+    if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
+
+    _bobTime += (float)delta;
+    // Update bobbing logic
+    for (var i = 0; i < _bobOffsets.Length; i++)
+        _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 4f;
+
+    // Position the grouped icons
+    for (var i = 0; i < _iconNodes.Count; i++)
     {
-        if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
-
-        _bobTime += (float)delta;
-        for (var i = 0; i < _bobOffsets.Length; i++)
-            _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 4f;
-
-        for (var i = 0; i < _iconNodes.Count; i++)
-            _iconNodes[i].Position = new Vector2(
-                i * IconDistance,
-                i < _bobOffsets.Length ? _bobOffsets[i] : 0f);
+        var isNext = _iconNodes[i].CustomMinimumSize.X > IconSize; // Check if it's the "Next" spell
+        _iconNodes[i].Position = new Vector2(
+            i * IconDistance - (isNext ? 6 : 0), 
+            (i < _bobOffsets.Length ? _bobOffsets[i] : 0f) - (isNext ? 6 : 0)
+        );
     }
+}
 }

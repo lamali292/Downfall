@@ -6,6 +6,7 @@ using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Awakened;
+using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Logging;
@@ -30,8 +31,8 @@ public class Siphon : AwakenedCardModel, IChantable
     public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CommonActions.ApplySelf<SiphonPower>(this, 2);
-        await CommonActions.Apply<SiphonPower>(cardPlay.Target, this, -2);
+        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this, 2);
+        await CommonActions.Apply<TemporaryStrengthDownPower>(cardPlay.Target, this, 2);
     }
     
 

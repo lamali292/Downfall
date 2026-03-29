@@ -10,16 +10,23 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Random;
 
-namespace Downfall.Code.Cards.Piles;
+namespace Downfall.Code.Piles;
 
 public class AwakenedPile : CustomPile
 {
     [CustomEnum] public static PileType Spellbook;
 
-    public AwakenedPile() : base(Spellbook)
-    {
-    }
+    // This stores the types of cards added by "Inscribe" etc.
+    private readonly List<Type> _dynamicTypes = [];
 
+    public AwakenedPile() : base(Spellbook) { }
+
+    // Call this from Inscribe.cs
+    public void AddPersistentType(Type type)
+    {
+        _dynamicTypes.Add(type);
+    }
+    
     public CardModel? NextSpell { get; private set; }
 
     public bool UpgradeOnAdd { get; set; }
@@ -29,6 +36,7 @@ public class AwakenedPile : CustomPile
         return false;
     }
 
+    
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
@@ -42,6 +50,8 @@ public class AwakenedPile : CustomPile
         return new Vector2(startX, y);
     }
 
+
+    
     public void SetNextSpell(Rng rng)
     {
         var available = Cards.Where(c => c != NextSpell).ToList();
@@ -52,37 +62,55 @@ public class AwakenedPile : CustomPile
                 : null;
     }
 
-    public void  Refresh(Player owner)
+    public void Refresh(Player owner)
     {
         var state = owner.Creature.CombatState;
         if (state == null) return;
+        
         var rng = state.RunState.Rng.CombatCardSelection;
+        
+        // Clear current instances
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
 
+        // 1. Add the hardcoded base spells
         AddBaseSpells(owner, state);
+
+        // 2. Add the dynamic spells added during this combat
+        foreach (var type in _dynamicTypes)
+        {
+            CreateAndAddSpell(owner, state, type);
+        }
+
         SetNextSpell(rng);
     }
 
     private void AddBaseSpells(Player owner, CombatState state)
     {
-        var baseSpells = new CardModel[]
-        {
-            state.CreateCard<BurningStudy>(owner),
-            state.CreateCard<Cryostasis>(owner),
-            state.CreateCard<Darkleech>(owner),
-            state.CreateCard<Thunderbolt>(owner)
+        Type[] baseTypes = { 
+            typeof(BurningStudy), typeof(Cryostasis), 
+            typeof(Darkleech), typeof(Thunderbolt) 
         };
 
-        foreach (var spell in baseSpells)
+        foreach (var type in baseTypes)
         {
-            if (UpgradeOnAdd && spell.IsUpgradable)
-            {
-                spell.UpgradeInternal();
-                spell.FinalizeUpgradeInternal();
-            }
-
-            AddInternal(spell);
+            // Wir rufen die Version auf, die ein Type-Objekt akzeptiert
+            CreateAndAddSpell(owner, state, type);
         }
+    }
+
+// 1. Die Version für die Schleife (nimmt System.Type)
+    private void CreateAndAddSpell(Player owner, CombatState state, Type type)
+    {
+        var id = ModelDb.GetId(type);
+        var model = ModelDb.GetById<CardModel>(id);
+        var spell = state.CreateCard(model, owner);
+    
+        if (UpgradeOnAdd && spell.IsUpgradable)
+        {
+            spell.UpgradeInternal();
+            spell.FinalizeUpgradeInternal();
+        }
+        AddInternal(spell);
     }
 }

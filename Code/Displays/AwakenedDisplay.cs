@@ -1,4 +1,4 @@
-﻿using Downfall.Code.Cards.Vfx;
+﻿using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 

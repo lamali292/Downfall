@@ -31,10 +31,23 @@ public static class StringExtensions
         return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
     }
 
+    
+    public static string DownfallPowerImagePath(this string path) 
+    {
+        return Path.Join(DownfallMainFile.ModId, "images", "powers", "downfall", "small", path);
+    }
+
+    public static string DownfallBigPowerImagePath(this string path)
+    {
+        return Path.Join(DownfallMainFile.ModId, "images", "powers", "downfall", "big", path);
+    }
+
+    
     public static string CardImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         return path.CardImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
+    
 
     public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel
     {
@@ -59,18 +72,7 @@ public static class StringExtensions
             ? s[..lastIndex]
             : s;
     }
-
-    public static string PowerImagePath(this string path)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", path);
-    }
-
-    public static string BigPowerImagePath(this string path)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", "big", path);
-    }
-
-
+    
     public static string RelicImagePath(this string path)
     {
         return Path.Join(DownfallMainFile.ModId, "images", "relics", path);

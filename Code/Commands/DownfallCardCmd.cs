@@ -34,10 +34,28 @@ public class DownfallCardCmd
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
     {
-        var dazed = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(dazed, pileType, true, position);
+        var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, true, position);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+    }
+    
+    public static async Task GiveCards<T>(Player player, 
+        PileType pileType,  
+        int count,
+        CardPilePosition position = CardPilePosition.Bottom,
+        float animationTime = 0.6f,
+        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
+    {
+        var cardInstances = new List<CardModel>();
+        var model = ModelDb.Card<T>();
+        for (var i = 0; i < count; i++)
+        {
+            var card = player.Creature.CombatState!.CreateCard(model, player);
+            cardInstances.Add(card);
+        }
+        var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
+        CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
     
     public static async Task AutoPlayFromDrawPile(
