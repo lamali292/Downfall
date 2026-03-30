@@ -157,6 +157,38 @@
           "optional": false
         }
       ]
+    },
+    {
+      "id": "relic",
+      "markers": [
+        "DownfallRelicModel",
+        "AutomatonRelicPool",
+        "AwakenedRelicPool",
+        "ChampRelicPool",
+        "CollectorRelicPool",
+        "GremlinsRelicPool",
+        "GuardianRelicPool",
+        "HexaghostRelicPool",
+        "SlimeBossRelicPool",
+        "SneckoRelicPool"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "flavor",
+          "file": "relics.json",
+          "optional": false
+        }
+      ]
     }
   ]
 }

@@ -19,7 +19,7 @@
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
         <Optimize>true</Optimize>
         <DebugType>none</DebugType>
-        <PathMap>$(AppOutputBase)=.\</PathMap> 
+        <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
     <!-- OS Detection -->
@@ -31,7 +31,6 @@
         <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
         <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
     </PropertyGroup>
-
 
 
     <!-- // NOTE: Megadot is version 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
@@ -85,16 +84,25 @@
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
             <Private>false</Private>
+            <!--Publicize>True</Publicize-->
         </Reference>
         <Reference Include="SmartFormat">
             <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.1" PrivateAssets="All" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.0.9"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.1" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
+    
+    <!--ItemGroup>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup-->
+
 
     <ItemGroup>
         <Compile Remove="Downfall/**"/>
@@ -111,11 +119,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Remove=".godot\**" />
-        <None Remove=".godot\**" />
+        <Content Remove=".godot\**"/>
+        <None Remove=".godot\**"/>
 
-        <Content Remove="Downfall\**\*.import" />
-        <None Remove="Downfall\**\*.import" />
+        <Content Remove="Downfall\**\*.import"/>
+        <None Remove="Downfall\**\*.import"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -132,17 +140,17 @@
     </ItemGroup>
 
 
-    <Target Name="SyncModToGame" AfterTargets="PostBuildEvent">
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Syncing Mod Files to Steam Mods Folder..." Importance="high"/>
 
-        <MakeDir Directories="$(ModsPath)$(MSBuildProjectName)" />
+        <MakeDir Directories="$(ModsPath)$(MSBuildProjectName)"/>
 
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"/>
+        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"/>
 
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"
-              Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
 
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
         <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Guardian.Basic;
+using Downfall.Code.Relics.Guardian;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -12,7 +13,7 @@ namespace Downfall.Code.Character;
 
 public class Guardian : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(0xCA5B5BFF);
     public override string CharId => "Guardian";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -42,7 +43,7 @@ public class Guardian : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<BronzeGear>()
     ];
 
     public override float AttackAnimDelay => 0.15f;

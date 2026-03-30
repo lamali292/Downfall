@@ -1,8 +1,6 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Patches.Content;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Godot;
 using HarmonyLib;
@@ -14,15 +12,16 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.Code.Cards.Collector.Token;
 
+[Pool(typeof(CollectorCardPool))]
+public class MonsterTest1() : Collectible<Inklet>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest1() : Collectible<Inklet>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.0f);
+public class MonsterTest2()
+    : Collectible<OwlMagistrate>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.1f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest2() : Collectible<OwlMagistrate>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.1f);
-
-[Pool(typeof(CollectorCardPool))]
-public class MonsterTest3() : Collectible<PunchConstruct>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.2f);
+public class MonsterTest3()
+    : Collectible<PunchConstruct>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.2f);
 
 [Pool(typeof(CollectorCardPool))]
 public class MonsterTest4() : Collectible<Seapunk>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
@@ -34,29 +33,29 @@ public class MonsterTest5() : Collectible<Wriggler>(0, CardType.Attack, CardRari
 public class MonsterTest6() : Collectible<SoulNexus>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.5f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest7() : Collectible<ShrinkerBeetle>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.6f);
+public class MonsterTest7()
+    : Collectible<ShrinkerBeetle>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.6f);
 
 [Pool(typeof(CollectorCardPool))]
 public class MonsterTest8() : Collectible<Nibbit>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.7f);
 
 [Pool(typeof(CollectorCardPool))]
-public class MonsterTest9() : Collectible<SpectralKnight>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.8f);
+public class MonsterTest9()
+    : Collectible<SpectralKnight>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.8f);
 
 [Pool(typeof(CollectorCardPool))]
 public class MonsterTest10() : Collectible<Tunneler>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.9f);
 
-
 [Pool(typeof(CollectorCardPool))]
 public abstract class ACollectible<T>() : Collectible<T>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
-where T : MonsterModel;
-
+    where T : MonsterModel;
 
 public interface ICollectible
 {
-    MonsterModel GetMonsterModel();
     float HueShift => 0f;
     float Saturation => 1f;
     float Value => 1f;
+    MonsterModel GetMonsterModel();
 }
 
 public abstract class Collectible<T>(
@@ -71,9 +70,14 @@ public abstract class Collectible<T>(
 {
     public sealed override string PortraitPath =>
         "monster_background.png".CardImagePath<Character.Collector>();
+
     public override bool HasBuiltInOverlay => true;
-    public MonsterModel GetMonsterModel() => ModelDb.Monster<T>();
-    
+
+    public MonsterModel GetMonsterModel()
+    {
+        return ModelDb.Monster<T>();
+    }
+
     public float HueShift => h;
     public float Saturation => s;
     public float Value => v;
@@ -130,12 +134,12 @@ public static class CreateOverlayPatch
             var boundsPos = visuals.Bounds.Position;
             const float portraitW = 250f;
             const float portraitH = 190f;
-            const float portraitCenterX = 0f;  
-            const float portraitBottom = 22f;  
-            
+            const float portraitCenterX = 0f;
+            const float portraitBottom = 22f;
+
             const float fitScale = 0.8f;
             const float verticalPadding = (1.0f - fitScale) / 2.0f;
-            
+
             var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
             visuals.Scale = Vector2.One * scale;
 
@@ -144,7 +148,7 @@ public static class CreateOverlayPatch
                 portraitBottom - boundsSize.Y * scale * verticalPadding
             );
         };
-        
+
         __result = container;
         return false;
     }

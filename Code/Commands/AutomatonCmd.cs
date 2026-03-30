@@ -15,10 +15,8 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Commands;
 
-
 public static class AutomatonCmd
 {
-
     public static int GetSequenceCount(Player creature)
     {
         return GetEncodePile(creature)?.Cards.Count ?? 0;
@@ -32,7 +30,7 @@ public static class AutomatonCmd
     public static AutomatonPile? GetEncodePile(Player creature)
     {
         return CustomPiles.GetCustomPile(creature.PlayerCombatState, AutomatonPile.FunctionSequence) as
-                AutomatonPile;
+            AutomatonPile;
     }
 
     public static int GetMax(Player creature)
@@ -53,25 +51,23 @@ public static class AutomatonCmd
         if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
         await CardPileCmd.Add(card, pile, skipVisuals: isMe);
         if (isMe) AutomatonDisplay.Refresh(creature);
-        
+
         var combatState = creature.Creature.CombatState;
         if (combatState == null) return;
         foreach (var model in combatState.IterateHookListeners()
                      .OfType<IOnEncode>())
             await model.OnCardEncoded(ctx, card, cardPlay);
-        
+
         if (pile.Cards.Count >= GetMax(creature))
             await CompileFunctionCard(creature, ctx, cardPlay);
-       
     }
-    
+
 
     public static async Task CompileFunctionCard(
         Player creature,
         PlayerChoiceContext ctx,
         CardPlay cardPlay)
     {
-        
         var pile = GetEncodePile(creature);
         if (pile == null) return;
         await Cmd.Wait(0.3f);
@@ -97,8 +93,8 @@ public static class AutomatonCmd
                     break;
             }
         }
-        
-     
+
+
         foreach (var model in combatState.IterateHookListeners()
                      .OfType<IOnCompile>())
             await model.OnCompile(ctx, snapshot, functionCard, cardPlay);
@@ -107,7 +103,8 @@ public static class AutomatonCmd
             CardCmd.PreviewCardPileAdd(result, 0.7f);
     }
 
-    private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<AutomatonCardModel> snapshot, CombatState combatState)
+    private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<AutomatonCardModel> snapshot,
+        CombatState combatState)
     {
         FunctionCard functionCard;
         if (snapshot.Any(c => c is FullRelease))
@@ -135,5 +132,4 @@ public static class AutomatonCmd
         if (LocalContext.IsMe(creature))
             AutomatonDisplay.Refresh(creature);
     }
-
 }

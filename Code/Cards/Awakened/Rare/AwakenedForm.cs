@@ -21,9 +21,8 @@ public class AwakenedForm : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
-            await CommonActions.ApplySelf<AwakenedFormPower>(this, 1);
+            await AwakenedCmd.Awaken(Owner, ctx);
         await MyCommonActions.ApplySelf<CuriosityPower>(this);
         await MyCommonActions.ApplySelf<RitualPower>(this);
     }
-    
 }

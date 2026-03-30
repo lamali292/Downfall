@@ -1,4 +1,3 @@
-using System.Numerics;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -35,7 +34,7 @@ public class Deathcoil : AwakenedCardModel
             // Fire the effect!
             NHemokinesisEffect.Spawn(start, target);
         }
-        
+
         await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
     }

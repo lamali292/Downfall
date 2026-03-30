@@ -3,7 +3,6 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Displays;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
@@ -48,7 +47,8 @@ public class OilSpill() : AutomatonCardModel(1, CardType.Attack, CardRarity.Comm
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, DynamicVars.Power<PoisonPower>().IntValue, Owner.Creature, this);
+        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, DynamicVars.Power<PoisonPower>().IntValue, Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()

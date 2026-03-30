@@ -8,7 +8,6 @@ using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Rare;
@@ -22,12 +21,6 @@ public class Nihil : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
-    }
-    
     public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
@@ -42,6 +35,12 @@ public class Nihil : AwakenedCardModel, IChantable
                 ValueProp.Unpowered | ValueProp.Unblockable,
                 this);
         }
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
     }
 
     protected override void OnUpgrade()

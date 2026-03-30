@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -18,12 +17,12 @@ public class ArcaneNesting : AwakenedCardModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (Pile == null 
-            || cardPlay.Card.Owner != Owner 
-            || Pile.Type != PileType.Hand 
+        if (Pile == null
+            || cardPlay.Card.Owner != Owner
+            || Pile.Type != PileType.Hand
             || cardPlay.Card.Type != CardType.Power) return;
 
-        
+
         await CommonActions.CardBlock(this, cardPlay);
     }
 

@@ -3,7 +3,6 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,10 +26,6 @@ public class Dejection : AwakenedCardModel
         var selected = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Hand);
         if (selected == null) return;
         await CardCmd.Exhaust(ctx, selected);
-        if (selected is ISpell)
-        {
-            await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
-            
-        }
+        if (selected is ISpell) await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
     }
 }
