@@ -12,6 +12,6 @@ public static class ColorfulPhilosophersPatch
     [HarmonyPostfix]
     public static void Postfix(ref IEnumerable<CardPoolModel> __result)
     {
-        __result = __result.Append(ModelDb.CardPool<AutomatonCardPool>());
+        //__result = __result.Append(ModelDb.CardPool<AutomatonCardPool>());
     }
 }
