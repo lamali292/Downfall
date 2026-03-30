@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -37,7 +38,7 @@ public class Mutator() : AutomatonCardModel(1, CardType.Power, CardRarity.Rare, 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars["StrengthPower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue, Owner.Creature,
             this);
 
         var statuses = PileType.Hand

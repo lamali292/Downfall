@@ -2,6 +2,7 @@ using System.Numerics;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Vfx;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -35,12 +36,12 @@ public class Deathcoil : AwakenedCardModel
             NHemokinesisEffect.Spawn(start, target);
         }
         
-        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars["ManaburnPower"].BaseValue);
+        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ManaburnPower"].UpgradeValueBy(3);
+        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

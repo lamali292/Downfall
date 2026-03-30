@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,15 +23,15 @@ public class BurningStudy : AwakenedCardModel, ISpell
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
-        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars["StrengthPower"].BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
         foreach (var combatStateEnemy in CombatState.Enemies)
-            await CommonActions.Apply<WeakPower>(combatStateEnemy, this, DynamicVars["WeakPower"].BaseValue);
+            await CommonActions.Apply<WeakPower>(combatStateEnemy, this, DynamicVars.Power<WeakPower>().BaseValue);
     }
 
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthPower"].UpgradeValueBy(1);
-        DynamicVars["WeakPower"].UpgradeValueBy(1);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
+        DynamicVars.Power<WeakPower>().UpgradeValueBy(1);
     }
 }

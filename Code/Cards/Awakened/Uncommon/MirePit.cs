@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +24,7 @@ public class MirePit : AwakenedCardModel
         if (CombatState == null) return;
         foreach (var combatStateEnemy in CombatState.Enemies)
         {
-            await CommonActions.Apply<TemporaryStrengthDownPower>(combatStateEnemy, this, DynamicVars["TemporaryStrengthDownPower"].BaseValue);
+            await CommonActions.Apply<TemporaryStrengthDownPower>(combatStateEnemy, this, DynamicVars.Power<TemporaryStrengthDownPower>().BaseValue);
         }
 
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
@@ -31,6 +32,6 @@ public class MirePit : AwakenedCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars["TemporaryStrengthDownPower"].UpgradeValueBy(2);
+        DynamicVars.Power<TemporaryStrengthDownPower>().UpgradeValueBy(2);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,7 +33,7 @@ public class ThunderWave() : AutomatonCardModel(2, CardType.Attack, CardRarity.R
             .TargetingAllOpponents(cardPlay.Card.CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<BufferPower>(this, DynamicVars["BufferPower"].BaseValue);
+        await CommonActions.ApplySelf<BufferPower>(this, DynamicVars.Power<BufferPower>().BaseValue);
     }
 
     protected override void OnUpgrade()

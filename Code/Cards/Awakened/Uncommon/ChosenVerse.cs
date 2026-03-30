@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,12 +23,12 @@ public class ChosenVerse : AwakenedCardModel
     {
         var power = await CommonActions.ApplySelf<ChosenVersePower>(this, 2);
         if (power == null) return;
-        power.SetBlock(DynamicVars["ChosenVersePower"].IntValue);
+        power.SetBlock(DynamicVars.Power<ChosenVersePower>().IntValue);
         power.CardPlay = cardPlay;
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ChosenVersePower"].UpgradeValueBy(2);
+        DynamicVars.Power<ChosenVersePower>().UpgradeValueBy(2);
     }
 }

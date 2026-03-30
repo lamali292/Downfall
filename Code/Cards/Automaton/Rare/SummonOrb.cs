@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,11 +19,11 @@ public class SummonOrb() : AutomatonCardModel(2, CardType.Power, CardRarity.Rare
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SummonOrbPower>(this, DynamicVars["SummonOrbPower"].BaseValue);
+        await CommonActions.ApplySelf<SummonOrbPower>(this, DynamicVars.Power<SummonOrbPower>().BaseValue);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["SummonOrbPower"].UpgradeValueBy(1);
+        DynamicVars.Power<SummonOrbPower>().UpgradeValueBy(1);
     }
 }

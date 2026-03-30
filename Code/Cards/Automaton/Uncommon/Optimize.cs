@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,12 +27,12 @@ public class Optimize() : AutomatonCardModel(0, CardType.Power, CardRarity.Uncom
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<OptimizePower>(Owner.Creature, DynamicVars["OptimizePower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<OptimizePower>(Owner.Creature, DynamicVars.Power<OptimizePower>().BaseValue, Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["OptimizePower"].UpgradeValueBy(2);
+        DynamicVars.Power<OptimizePower>().UpgradeValueBy(2);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,13 +26,13 @@ public class DelayedGuard() : AutomatonCardModel(0, CardType.Skill, CardRarity.C
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<BlockNextTurnPower>(Owner.Creature, DynamicVars["BlockNextTurnPower"].BaseValue,
+        await PowerCmd.Apply<BlockNextTurnPower>(Owner.Creature, DynamicVars.Power<BlockNextTurnPower>().BaseValue,
             Owner.Creature, this);
     }
 
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BlockNextTurnPower"].UpgradeValueBy(3);
+        DynamicVars.Power<BlockNextTurnPower>().UpgradeValueBy(3);
     }
 }

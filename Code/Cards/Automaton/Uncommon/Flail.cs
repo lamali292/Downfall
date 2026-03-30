@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -36,13 +37,13 @@ public class Flail() : AutomatonCardModel(2, CardType.Attack, CardRarity.Uncommo
             .WithHitCount(2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars["ArtifactPower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue, Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars["ArtifactPower"].UpgradeValueBy(1);
+        DynamicVars.Power<ArtifactPower>().UpgradeValueBy(1);
     }
 }

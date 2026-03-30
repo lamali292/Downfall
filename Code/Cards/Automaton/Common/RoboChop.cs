@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -31,13 +32,13 @@ public class RoboChop() : AutomatonCardModel(1, CardType.Attack, CardRarity.Comm
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars["DrawCardsNextTurnPower"].IntValue,
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars.Power<DrawCardsNextTurnPower>().IntValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(1m);
-        DynamicVars["DrawCardsNextTurnPower"].UpgradeValueBy(1);
+        DynamicVars.Power<DrawCardsNextTurnPower>().UpgradeValueBy(1);
     }
 }
