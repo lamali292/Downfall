@@ -9,9 +9,19 @@
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <!--PathMap>$(AppOutputBase)=.\</PathMap-->
         <RootNamespace>Downfall</RootNamespace>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <Optimize>false</Optimize>
+        <DebugType>portable</DebugType>
+        <OutputPath>bin\Debug\</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <DebugType>none</DebugType>
+        <OutputPath>bin\Release\</OutputPath>
+        <PathMap>$(AppOutputBase)=.\</PathMap> 
     </PropertyGroup>
 
     <!-- OS Detection -->
