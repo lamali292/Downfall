@@ -17,6 +17,8 @@ public class Hymn : AwakenedCardModel
     public Hymn() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithBlock(3);
+        WithTip(typeof(Ceremony));
+        WithTip(typeof(DrainedPower));
     }
 
 
