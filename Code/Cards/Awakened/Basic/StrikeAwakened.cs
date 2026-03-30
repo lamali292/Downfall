@@ -20,11 +20,14 @@ public sealed class StrikeAwakened : AwakenedCardModel
         WithTags(CardTag.Strike);
     }
     
+    private int GetHitCount() => 20;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitCount(1)
             .Execute(ctx);
     }
 

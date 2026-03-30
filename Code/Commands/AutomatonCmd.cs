@@ -2,6 +2,7 @@
 using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Combat;
@@ -12,7 +13,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.Code.Displays;
+namespace Downfall.Code.Commands;
 
 
 public static class AutomatonCmd

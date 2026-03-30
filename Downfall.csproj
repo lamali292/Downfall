@@ -7,8 +7,11 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <DefaultItemExcludes>packages/**</DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
+        <!--PathMap>$(AppOutputBase)=.\</PathMap-->
         <RootNamespace>Downfall</RootNamespace>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
     </PropertyGroup>
 
     <!-- OS Detection -->
@@ -21,11 +24,7 @@
         <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
     </PropertyGroup>
 
-    <Target Name="CopyPdbToModsFolder" AfterTargets="CopyToModsFolderOnBuild">
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
-              DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"
-              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
-    </Target>
+
 
     <!-- // NOTE: Megadot is version 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
 
@@ -125,11 +124,19 @@
     </ItemGroup>
 
 
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
-        <Message Text="Copying .dll and manifest to mods folder." Importance="high"/>
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"/>
-        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"/>
-        <Message Text="Copying BaseLib to mods folder." Importance="high"/>
+    <Target Name="SyncModToGame" AfterTargets="PostBuildEvent">
+        <Message Text="Syncing Mod Files to Steam Mods Folder..." Importance="high"/>
+
+        <MakeDir Directories="$(ModsPath)$(MSBuildProjectName)" />
+
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+
+        <Message Text="Copying BaseLib dependencies..." Importance="high"/>
         <ItemGroup>
             <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
         </ItemGroup>
