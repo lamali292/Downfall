@@ -27,7 +27,8 @@ public class Optimize() : AutomatonCardModel(0, CardType.Power, CardRarity.Uncom
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<OptimizePower>(Owner.Creature, DynamicVars.Power<OptimizePower>().BaseValue, Owner.Creature,
+        await PowerCmd.Apply<OptimizePower>(Owner.Creature, DynamicVars.Power<OptimizePower>().BaseValue,
+            Owner.Creature,
             this);
     }
 

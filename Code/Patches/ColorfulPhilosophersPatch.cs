@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Abstract;
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 

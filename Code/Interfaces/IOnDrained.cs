@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Powers.Awakened;
-using MegaCrit.Sts2.Core.Entities.Players;
+﻿using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Downfall.Code.Interfaces;
 

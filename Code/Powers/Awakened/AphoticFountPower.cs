@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class AphoticFountPower: AwakenedPowerModel
+public class AphoticFountPower : AwakenedPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

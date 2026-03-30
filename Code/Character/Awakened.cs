@@ -1,22 +1,20 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
-using Downfall.Code.Interfaces;
 using Downfall.Code.Powers.Awakened;
+using Downfall.Code.Relics.Awakened;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
 public class Awakened : DownfallCharacterModel
 {
-    private static readonly Color Color = new(0x767EB3FF);
+    private static readonly Color Color = new(0x12FAF0FF);
     public override string CharId => "Awakened";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -46,7 +44,7 @@ public class Awakened : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<RippedDoll>()
     ];
 
     public override float AttackAnimDelay => 0.15f;
@@ -56,7 +54,6 @@ public class Awakened : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<AwakenedCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AwakenedPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
-
 
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

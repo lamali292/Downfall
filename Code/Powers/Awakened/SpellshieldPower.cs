@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class SpellshieldPower : AwakenedPowerModel 
+public class SpellshieldPower : AwakenedPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

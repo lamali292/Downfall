@@ -6,7 +6,6 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]

@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class DarknessFallsPower: AwakenedPowerModel, IOnDrained
+public class DarknessFallsPower : AwakenedPowerModel, IOnDrained
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -15,6 +15,6 @@ public class DarknessFallsPower: AwakenedPowerModel, IOnDrained
     public async Task OnDrained(Player player, int amount)
     {
         if (player.Creature != Owner) return;
-        await CreatureCmd.GainBlock(player.Creature, Amount*amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(player.Creature, Amount * amount, ValueProp.Unpowered, null);
     }
 }

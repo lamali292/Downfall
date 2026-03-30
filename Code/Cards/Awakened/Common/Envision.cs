@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Displays;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,8 +20,9 @@ public class Envision : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardBlock(this, cardPlay);
-        var card = await AwakenedCmd.Conjure(Owner, this);
+        var card = await AwakenedCmd.Conjure(Owner, CombatState);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }

@@ -12,7 +12,6 @@ public class Archmagus : AwakenedCardModel
 {
     public Archmagus() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -26,10 +26,10 @@ public static class SfxPlayer
         var audioPlayer = new AudioStreamPlayer();
         audioPlayer.Stream = stream;
         audioPlayer.Bus = "SFX";
-        
+
         audioPlayer.PitchScale = pitch;
         audioPlayer.VolumeDb = Mathf.LinearToDb(volume);
-        
+
         audioPlayer.Finished += () => audioPlayer.QueueFree();
 
         // Add to the tree via NCombatRoom or NGame to ensure it plays

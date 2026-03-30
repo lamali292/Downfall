@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.Code.Character;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
@@ -22,46 +23,46 @@ public abstract class ChampCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Champ>(cost, type, rarity, targetType);
+    : DownfallCardModel<Champ>(cost, type, rarity, targetType);
 
 public abstract class CollectorCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Collector>(cost, type, rarity, targetType);
+    : DownfallCardModel<Collector>(cost, type, rarity, targetType);
 
 public abstract class GremlinsCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Gremlins>(cost, type, rarity, targetType);
+    : DownfallCardModel<Gremlins>(cost, type, rarity, targetType);
 
 public abstract class GuardianCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Guardian>(cost, type, rarity, targetType);
+    : DownfallCardModel<Guardian>(cost, type, rarity, targetType);
 
 public abstract class HexaghostCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Hexaghost>(cost, type, rarity, targetType);
+    : DownfallCardModel<Hexaghost>(cost, type, rarity, targetType);
 
 public abstract class SlimeBossCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.SlimeBoss>(cost, type, rarity, targetType);
+    : DownfallCardModel<SlimeBoss>(cost, type, rarity, targetType);
 
 public abstract class SneckoCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Snecko>(cost, type, rarity, targetType);
+    : DownfallCardModel<Snecko>(cost, type, rarity, targetType);

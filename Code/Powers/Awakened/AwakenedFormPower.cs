@@ -2,7 +2,6 @@
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Powers.Awakened;
@@ -19,7 +18,7 @@ public class AwakenedFormPower : AwakenedPowerModel
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Owner);
         if (creatureNode == null) return Task.CompletedTask;
-        
+
         creatureNode.SetAnimationTrigger("Idle");
         var current = creatureNode.SpineAnimation.GetAnimationState()?.GetCurrent(0);
         current?.SetMixDuration(0.5f);

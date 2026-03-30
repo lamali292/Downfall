@@ -4,21 +4,18 @@ using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
 public class DefendAwakened : AwakenedCardModel
 {
-
     public DefendAwakened() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithTags(CardTag.Defend);
         WithBlock(5);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

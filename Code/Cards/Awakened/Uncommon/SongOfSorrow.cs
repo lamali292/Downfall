@@ -17,7 +17,7 @@ public class SongOfSorrow : AwakenedCardModel
         WithPower<SongOfSorrowPower>(7);
         WithTip(typeof(Void));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SongOfSorrowPower>(this, DynamicVars.Power<SongOfSorrowPower>().BaseValue);

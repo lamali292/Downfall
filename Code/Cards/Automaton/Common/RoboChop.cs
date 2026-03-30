@@ -32,7 +32,8 @@ public class RoboChop() : AutomatonCardModel(1, CardType.Attack, CardRarity.Comm
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars.Power<DrawCardsNextTurnPower>().IntValue,
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature,
+            DynamicVars.Power<DrawCardsNextTurnPower>().IntValue,
             Owner.Creature, this);
     }
 

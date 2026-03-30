@@ -4,7 +4,6 @@ using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Downfall.Code.Cards.Awakened.Token;
@@ -17,7 +16,7 @@ public class ESP : AwakenedCardModel, ISpell
         WithCards(1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, cardPlay.Card.Owner);

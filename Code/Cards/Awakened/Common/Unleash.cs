@@ -19,7 +19,7 @@ public class Unleash : AwakenedCardModel
             new CalculationBaseVar(5m),
             new ExtraDamageVar(1m),
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier(DamageCalc)
-            );
+        );
         //WithCalculatedDamage(12, 1, DamageCalc);
     }
 

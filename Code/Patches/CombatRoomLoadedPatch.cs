@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Cards.Vfx;
-using Downfall.Code.Character;
+﻿using Downfall.Code.Character;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
 using Downfall.Code.Powers.Awakened;
@@ -8,10 +7,7 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Patches;

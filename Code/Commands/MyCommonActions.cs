@@ -11,7 +11,7 @@ public static class MyCommonActions
     {
         return await CommonActions.ApplySelf<T>(card, card.DynamicVars.Power<T>().BaseValue, silent);
     }
-    
+
     public static async Task<T?> Apply<T>(
         Creature target,
         CardModel card,

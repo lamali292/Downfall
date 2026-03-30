@@ -47,6 +47,7 @@ public class DownfallCardCmd
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
     {
+        if (count <= 0) return;
         var cardInstances = new List<CardModel>();
         var model = ModelDb.Card<T>();
         for (var i = 0; i < count; i++)

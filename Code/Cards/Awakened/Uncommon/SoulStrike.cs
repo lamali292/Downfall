@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -36,12 +35,11 @@ public class SoulStrike : AwakenedCardModel
     {
         if (card != this || IsClone)
             return Task.CompletedTask;
-        ReduceCostBy(CombatManager.Instance.History.CardPlaysFinished.Count(
-            e => 
-                e.CardPlay.Card.Type == CardType.Power 
-                 && e.CardPlay.Card.Owner == Owner 
-                 && e.HappenedThisTurn(CombatState)
-                ));
+        ReduceCostBy(CombatManager.Instance.History.CardPlaysFinished.Count(e =>
+            e.CardPlay.Card.Type == CardType.Power
+            && e.CardPlay.Card.Owner == Owner
+            && e.HappenedThisTurn(CombatState)
+        ));
         return Task.CompletedTask;
     }
 
@@ -53,6 +51,8 @@ public class SoulStrike : AwakenedCardModel
         return Task.CompletedTask;
     }
 
-    private void ReduceCostBy(int amount) => EnergyCost.AddThisTurn(-amount);
- 
+    private void ReduceCostBy(int amount)
+    {
+        EnergyCost.AddThisTurn(-amount);
+    }
 }

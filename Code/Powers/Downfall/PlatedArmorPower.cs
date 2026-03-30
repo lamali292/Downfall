@@ -14,7 +14,8 @@ public class PlatedArmorPower : DownfallPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
+        DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || result.UnblockedDamage == 0) return;
@@ -28,5 +29,4 @@ public class PlatedArmorPower : DownfallPowerModel
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
-    
 }

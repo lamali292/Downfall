@@ -67,8 +67,8 @@ os.makedirs("tres", exist_ok=True)
 
 PADDING = 4
 IMG_SIZE = 93
-ATLAS_RES_PATH = "res://Watcher/images/relics/atlas/watcher_atlas.png"
-OUTLINE_ATLAS_RES_PATH = "res://Watcher/images/relics/atlas/watcher_outline_atlas.png"
+ATLAS_RES_PATH = "res://Downfall/images/relics/relic_atlas.png"
+OUTLINE_ATLAS_RES_PATH = "res://Downfall/images/relics/relic_outline_atlas.png"
 
 # --- collect all images first ---
 entries = []
@@ -111,8 +111,8 @@ for i, (stem, big, outline_downscaled, image_downscaled) in enumerate(entries):
     write_tres(os.path.join("tres", f"{stem}.tres"), ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE)
     write_tres(os.path.join("tres", f"{stem}_outline.tres"), OUTLINE_ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE)
 
-atlas.save(os.path.join("atlas", "watcher_atlas.png"))
-outline_atlas.save(os.path.join("atlas", "watcher_outline_atlas.png"))
+atlas.save("relic_atlas.png")
+outline_atlas.save("relic_outline_atlas.png")
 
 print(f"\nAtlases saved: {atlas_w}x{atlas_h}px, {n} images ({cols}x{rows} grid)")
 print("Done!")

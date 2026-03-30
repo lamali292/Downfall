@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Gremlins.Basic;
+using Downfall.Code.Relics.Gremlins;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
@@ -10,7 +11,7 @@ namespace Downfall.Code.Character;
 
 public class Gremlins : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(0xCA5B5BFF);
     public override string CharId => "Gremlins";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -40,7 +41,7 @@ public class Gremlins : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<MobLeadersStaff>()
     ];
 
     public override float AttackAnimDelay => 0.15f;

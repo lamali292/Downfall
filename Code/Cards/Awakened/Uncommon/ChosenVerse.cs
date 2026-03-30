@@ -17,7 +17,7 @@ public class ChosenVerse : AwakenedCardModel
         WithPower<ChosenVersePower>(4);
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
     }
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
