@@ -20,8 +20,6 @@ public sealed class StrikeAwakened : AwakenedCardModel
         WithTags(CardTag.Strike);
     }
     
-    private int GetHitCount() => 20;
-    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
