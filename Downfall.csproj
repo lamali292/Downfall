@@ -14,13 +14,11 @@
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <Optimize>false</Optimize>
         <DebugType>portable</DebugType>
-        <OutputPath>bin\Debug\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
         <Optimize>true</Optimize>
         <DebugType>none</DebugType>
-        <OutputPath>bin\Release\</OutputPath>
         <PathMap>$(AppOutputBase)=.\</PathMap> 
     </PropertyGroup>
 
