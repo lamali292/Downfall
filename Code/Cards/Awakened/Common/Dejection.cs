@@ -28,4 +28,9 @@ public class Dejection : AwakenedCardModel
         await CardCmd.Exhaust(ctx, selected);
         if (selected is ISpell) await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
     }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(3);
+    }
 }

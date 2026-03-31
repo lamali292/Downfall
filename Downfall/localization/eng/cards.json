@@ -369,5 +369,15 @@
   "DOWNFALL-SPELLBINDER.title": "Spellbinder",
   "DOWNFALL-SPELLBINDER.description": "At the start of your turn, [gold]Conjure[/gold].",
   "DOWNFALL-THE_TOWER.title": "The Tower",
-  "DOWNFALL-THE_TOWER.description": "Deal {CalculationBaseVar:diff()} damage to ALL enemies.\nDeals {ExtraDamageVar:diff()} damage for each card created this combat."
+  "DOWNFALL-THE_TOWER.description": "Deal {CalculationBaseVar:diff()} damage to ALL enemies.\nDeals {ExtraDamageVar:diff()} damage for each card created this combat.",
+  "DOWNFALL-ARTIFICE.title": "Artifice",
+  "DOWNFALL-ARTIFICE.description": "Apply {ManaburnPower:diff()} Manaburn.",
+  "DOWNFALL-FROM_WITHIN.title": "From Within",
+  "DOWNFALL-FROM_WITHIN.description": "Gain {Block:diff()} [gold]Block[/gold]. The next time you play a Colorless card, gain {energyPrefix:energyIcons(1)}.",
+  "DOWNFALL-IMMOLATION.title": "Immolation",
+  "DOWNFALL-IMMOLATION.description": "Gain {Block:diff()} [gold]Block[/gold].\nCosts 1 less until played for each {energyPrefix:energyIcons(1)} [gold]Drained[/gold] this combat.",
+  "DOWNFALL-GREAT_HEX.title": "Great Hex",
+  "DOWNFALL-GREAT_HEX.description": "Chant: Target enemy gains {ManaburnPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",
+  "DOWNFALL-MAGICIANISM.title": "Magicianism",
+  "DOWNFALL-MAGICIANISM.description": "Whenever you play a Colorless card, gain {MagicianismPower:diff()} Block."
 }

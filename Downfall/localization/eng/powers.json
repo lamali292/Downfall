@@ -127,5 +127,14 @@
   "DOWNFALL-AWAKENING_POWER.smartDescription": "Whenever you would die, heal [blue]{Amount}[/blue] HP and remove this effect.",
   "DOWNFALL-SPELLBINDER_POWER.title": "Spellbinder",
   "DOWNFALL-SPELLBINDER_POWER.description": "At the start of your turn, [gold]Conjure[/gold].",
-  "DOWNFALL-SPELLBINDER_POWER.smartDescription": "At the start of your turn, [gold]Conjure[/gold]{Amount:plural:| [blue]{Amount}[/blue] times}."
+  "DOWNFALL-SPELLBINDER_POWER.smartDescription": "At the start of your turn, [gold]Conjure[/gold]{Amount:plural:| [blue]{Amount}[/blue] times}.",
+  "DOWNFALL-FROM_WITHIN_POWER.title": "From Within",
+  "DOWNFALL-FROM_WITHIN_POWER.description": "The next time you play a Colorless card, gain {energyPrefix:energyIcons(1)}.",
+  "DOWNFALL-FROM_WITHIN_POWER.smartDescription": "The next {Amount:plural:time|{Amount} times} you play a Colorless card, gain {energyPrefix:energyIcons(1)}.",
+  "DOWNFALL-GREAT_HEX_POWER.title": "Grea tHex",
+  "DOWNFALL-GREAT_HEX_POWER.description": "Gain X [gold]Manaburn[/gold] at the end of the turn.",
+  "DOWNFALL-GREAT_HEX_POWER.smartDescription": "Gain {Amount} Manaburn at the end of the turn.",
+  "DOWNFALL-MAGICIANISM_POWER.title": "Magicianism",
+  "DOWNFALL-MAGICIANISM_POWER.description": "Whenever you play a Colorless card, gain X [gold]Block[/gold].",
+  "DOWNFALL-MAGICIANISM_POWER.smartDescription": "Whenever you play a Colorless card, gain {Amount} [gold]Block[/gold]."
 }
