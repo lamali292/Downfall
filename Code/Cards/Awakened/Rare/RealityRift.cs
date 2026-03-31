@@ -2,9 +2,12 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Cards.Awakened.Rare;
 
@@ -20,16 +23,18 @@ public class RealityRift : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Draw);
-        if (card == null) return;
-        await CardCmd.AutoPlay(ctx, card, null);
-        await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Draw,  card.EnergyCost.GetResolved(), CardPilePosition.Random);
+        await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top);
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        // TODO
+        var card2 = (await CardSelectCmd.FromSimpleGrid(ctx, [], Owner, prefs)).FirstOrDefault();
+        if (card2 == null) return;
+        var card = CombatState!.CreateCard(card2, Owner);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        if (result.success)
+            CardCmd.PreviewCardPileAdd(result);
+        
     }
 
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
-    }
-   
+    
 }

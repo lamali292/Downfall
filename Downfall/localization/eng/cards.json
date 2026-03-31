@@ -377,7 +377,12 @@
   "DOWNFALL-IMMOLATION.title": "Immolation",
   "DOWNFALL-IMMOLATION.description": "Gain {Block:diff()} [gold]Block[/gold].\nCosts 1 less until played for each {energyPrefix:energyIcons(1)} [gold]Drained[/gold] this combat.",
   "DOWNFALL-GREAT_HEX.title": "Great Hex",
-  "DOWNFALL-GREAT_HEX.description": "Chant: Target enemy gains {ManaburnPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",
+  "DOWNFALL-GREAT_HEX.description": "[gold]Chant[/gold]: Target enemy gains {ManaburnPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",
   "DOWNFALL-MAGICIANISM.title": "Magicianism",
-  "DOWNFALL-MAGICIANISM.description": "Whenever you play a Colorless card, gain {MagicianismPower:diff()} Block."
+  "DOWNFALL-MAGICIANISM.description": "Whenever you play a Colorless card, gain {MagicianismPower:diff()} Block.",
+  "DOWNFALL-TALON_REND.title": "Talon Rend",
+  "DOWNFALL-TALON_REND.description": "Deal {Damage:diff()} damage twice. [gold]Conjure[/gold] twice.",
+  "DOWNFALL-REALITY_RIFT.title": "Reality Rift",
+  "DOWNFALL-REALITY_RIFT.description": "Put a [gold]Void[/gold] on top of your draw pile. Choose 1 of 3 {IfUpgraded:show:upgraded |}cards from another dimension to add into your hand.",
+  "DOWNFALL-REALITY_RIFT.selectionScreenPrompt": "Add into your hand."
 }
