@@ -1,12 +1,20 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Basic;
+using Downfall.Code.Displays;
 using Downfall.Code.Relics.Automaton;
+using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Character;
 
@@ -76,5 +84,44 @@ public class Automaton : DownfallCharacterModel
         animator.AddAnyState("Relaxed", state5);
 
         return animator;
+    }
+    
+    
+    public override bool ShouldReceiveCombatHooks => true;
+
+    
+    public override Task AfterRoomEntered(AbstractRoom room)
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+
+        var combatRoomNode = NCombatRoom.Instance;
+        if (combatRoomNode == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+        {
+            if (player.Character is Automaton)
+            {
+                SetupAutomatonUi(combatRoomNode, player);
+            }
+        }
+        return Task.CompletedTask;
+    }
+
+    private static void SetupAutomatonUi(NCombatRoom combatRoom, Player player)
+    {
+        var display = NSequenceDisplay.Create(player);
+        var vfxContainer = combatRoom.CombatVfxContainer;
+        vfxContainer.AddChildSafely(display);
+
+        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        if (creatureNode != null)
+        {
+            var globalTopPos = creatureNode.GetTopOfHitbox();
+            display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
+            display.Position += new Vector2(100f, -80f);
+        }
+
+        AutomatonDisplay.Register(player, display);
+        display.Refresh();
     }
 }
