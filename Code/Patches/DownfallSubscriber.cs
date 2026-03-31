@@ -10,7 +10,7 @@ public static class DownfallSubscriber
     public static void Subscribe()
     {
         // Tell the game: "When a run starts, call 'CollectModels' to find my hook listeners."
-        ModHelper.SubscribeForRunStateHooks(MainFile.ModId, CollectModels);
+        ModHelper.SubscribeForRunStateHooks(DownfallMainFile.ModId, CollectModels);
     }
 
     private static IEnumerable<AbstractModel> CollectModels(RunState runState)

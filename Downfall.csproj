@@ -91,7 +91,7 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.1" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.2" PrivateAssets="All" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
