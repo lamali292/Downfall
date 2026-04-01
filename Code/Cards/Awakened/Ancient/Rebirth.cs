@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Awakened.Rare;
+namespace Downfall.Code.Cards.Awakened.Ancient;
 
 [Pool(typeof(AwakenedCardPool))]
 public class Rebirth : AwakenedCardModel

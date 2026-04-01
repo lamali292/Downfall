@@ -139,5 +139,17 @@
   "DOWNFALL-MAGICIANISM_POWER.smartDescription": "Whenever you play a Colorless card, gain {Amount} [gold]Block[/gold].",
   "DOWNFALL-BLOODIED_PREENING_POWER.title": "Bloodied Preening",
   "DOWNFALL-BLOODIED_PREENING_POWER.description": "At the start of your turn, gain a [gold]Plume Jab[/gold].",
-  "DOWNFALL-BLOODIED_PREENING_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:a|{Amount}} [gold]Plume Jab[/gold]."
+  "DOWNFALL-BLOODIED_PREENING_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:a|{Amount}} [gold]Plume Jab[/gold].",
+  "DOWNFALL-RAZOR_SHARP_POWER.title": "Razor Sharp",
+  "DOWNFALL-RAZOR_SHARP_POWER.description": "Plume Jabs hit X more times.",
+  "DOWNFALL-RAZOR_SHARP_POWER.smartDescription": "Plume Jabs hit {Amount} more times.",
+  "DOWNFALL-ANCESTRAL_GROUNDS_POWER.title": "Ancestral Grounds",
+  "DOWNFALL-ANCESTRAL_GROUNDS_POWER.description": "At the start of your next X turns, gain  {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your draw pile.",
+  "DOWNFALL-ANCESTRAL_GROUNDS_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your draw pile.",
+  "DOWNFALL-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Ancestral Grounds+",
+  "DOWNFALL-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "At the start of your next X turns, gain  {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your draw pile.",
+  "DOWNFALL-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your draw pile.",
+  "DOWNFALL-FERVENT_WORSHIP_POWER.title": "Fervent Worship",
+  "DOWNFALL-FERVENT_WORSHIP_POWER.description": "Ceremonies cost 1 additional {energyPrefix:energyIcons(1)} and are played twice.",
+  "DOWNFALL-FERVENT_WORSHIP_POWER.smartDescription": "Ceremonies cost {Amount} additional {energyPrefix:energyIcons(1)} and are played {Amount} extra {Amount:plural:time|times}."
 }

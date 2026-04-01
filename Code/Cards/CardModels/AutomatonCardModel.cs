@@ -16,7 +16,7 @@ public abstract class AutomatonCardModel(
     TargetType targetType)
     : CustomCardModel(cost, type, rarity, targetType)
 {
-    public sealed override string PortraitPath =>
+    public sealed override string CustomPortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<Character.Automaton>();
 
     public bool SkipEncode { get; set; }

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Powers.Awakened;
@@ -36,8 +37,9 @@ public class AwakeningPower : AwakenedPowerModel
         if (!wasRemovalPrevented || creature != Owner) return;
 
         _isReviving = true;
-        foreach (var power in Owner.Powers.Where(p => p.Type == PowerType.Debuff).ToList())
-            power.RemoveInternal();
+        await PowerCmd.Remove<WeakPower>(Owner);
+        await PowerCmd.Remove<VulnerablePower>(Owner);
+        await PowerCmd.Remove<FrailPower>(Owner);
         await CreatureCmd.Heal(Owner, Amount);
         _isReviving = false;
         

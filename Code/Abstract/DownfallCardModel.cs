@@ -14,7 +14,7 @@ public abstract class DownfallCardModel<T>(
     : CustomCardModel(cost, type, rarity, targetType)
     where T : DownfallCharacterModel
 {
-    public sealed override string PortraitPath =>
+    public sealed override string CustomPortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<T>();
 }
 
