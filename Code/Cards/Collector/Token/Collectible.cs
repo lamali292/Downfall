@@ -68,7 +68,7 @@ public abstract class Collectible<T>(
     float v = 1.0f) : CustomCardModel(cost, type, rarity, targetType), ICollectible
     where T : MonsterModel
 {
-    public sealed override string PortraitPath =>
+    public sealed override string CustomPortraitPath =>
         "monster_background.png".CardImagePath<Character.Collector>();
 
     public override bool HasBuiltInOverlay => true;
