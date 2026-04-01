@@ -13,14 +13,13 @@ using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class FindAndReplace() : AutomatonCardModel(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class FindAndReplace : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
-
+    public FindAndReplace() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+    }
+  
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // get draw and discard piles

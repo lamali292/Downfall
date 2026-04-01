@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class CobraCoil() : SneckoCardModel(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class CobraCoil : SneckoCardModel
 {
+    public CobraCoil() : base(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

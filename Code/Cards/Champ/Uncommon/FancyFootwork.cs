@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class FancyFootwork() : ChampCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class FancyFootwork : ChampCardModel
 {
+    public FancyFootwork() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

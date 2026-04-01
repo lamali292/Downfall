@@ -11,13 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class ClassDefault() : AutomatonCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class ClassDefault : AutomatonCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<ClassDefaultPower>()
-    ];
+    public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        WithTip(DownfallKeyword.Encode);
+        WithTip(typeof(ClassDefaultPower));
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

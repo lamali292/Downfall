@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class Deception() : SneckoCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Deception : SneckoCardModel
 {
+    public Deception() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

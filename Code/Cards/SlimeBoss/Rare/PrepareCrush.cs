@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class PrepareCrush() : SlimeBossCardModel(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class PrepareCrush : SlimeBossCardModel
 {
+    public PrepareCrush() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

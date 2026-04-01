@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class StanceDance() : ChampCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class StanceDance : ChampCardModel
 {
+    public StanceDance() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

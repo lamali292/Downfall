@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class FlamesFromBeyond() : HexaghostCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class FlamesFromBeyond : HexaghostCardModel
 {
+    public FlamesFromBeyond() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

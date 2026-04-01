@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class LevelUp() : SlimeBossCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class LevelUp : SlimeBossCardModel
 {
+    public LevelUp() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

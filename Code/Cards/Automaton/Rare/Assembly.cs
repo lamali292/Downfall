@@ -12,18 +12,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Assembly() : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Assembly : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("Scry", 5)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Scry.ToHoverTip()
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
+    public Assembly() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithVar("Scry", 5);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Scry);
+        WithKeywords(CardKeyword.Exhaust);
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);

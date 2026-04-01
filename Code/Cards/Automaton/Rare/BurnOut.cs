@@ -10,12 +10,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class BurnOut() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
+public class BurnOut : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
-
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
+    public BurnOut() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
+    {
+        WithDamage(6);
+        WithKeywords(CardKeyword.Exhaust);
+        
+    }
+   
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(Owner.Creature.CombatState);

@@ -15,22 +15,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class CutThrough() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), ICompilable,
+public class CutThrough : AutomatonCardModel, ICompilable,
     IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(5, ValueProp.Move),
-        new("Scry", 2)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Scry.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
-
+    public CutThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(5);
+        WithVar("Scry", 2);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallKeyword.Scry);
+    }
 
     // Compile bonus — draw 1 card
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard function, CardPlay cardPlay,

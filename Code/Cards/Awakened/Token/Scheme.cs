@@ -1,6 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Extensions;
+using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Downfall.Code.Cards.Awakened.Token;
@@ -10,6 +14,17 @@ public class Scheme : AwakenedCardModel
 {
     public Scheme() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
+        WithPower<SchemePower>(1);
     }
-    // TODO: Implement
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await MyCommonActions.ApplySelf<SchemePower>(this);
+    }
+
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Power<SchemePower>().UpgradeValueBy(1);
+    }
 }

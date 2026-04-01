@@ -12,20 +12,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class ThunderWave() : AutomatonCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+public class ThunderWave : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(12, ValueProp.Move),
-        new PowerVar<BufferPower>(1)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
-
+    public ThunderWave() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    {
+        WithDamage(12);
+        WithPower<BufferPower>(1);
+        WithKeywords(CardKeyword.Exhaust);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);

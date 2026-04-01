@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class BramblesparKindling() : CollectorCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class BramblesparKindling : CollectorCardModel
 {
+    public BramblesparKindling() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Premonition() : HexaghostCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Premonition : HexaghostCardModel
 {
+    public Premonition() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

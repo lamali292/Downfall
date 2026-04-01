@@ -13,17 +13,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Safeguard() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self), IEncodable
+public class Safeguard : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.Static(StaticHoverTip.Block)
-    ];
-
-
+    public Safeguard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithBlock(4);
+        WithTip(DownfallKeyword.Encode);
+    }
+    
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

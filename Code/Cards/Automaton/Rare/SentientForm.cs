@@ -9,14 +9,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class SentientForm() : AutomatonCardModel(3, CardType.Power, CardRarity.Rare, TargetType.None)
+public class SentientForm : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Ethereal
-    ];
-
-
+    public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        WithKeywords(CardKeyword.Ethereal);
+    }
+  
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PowerCmd.Apply<SentientFormPower>(Owner.Creature, 1, Owner.Creature, this);

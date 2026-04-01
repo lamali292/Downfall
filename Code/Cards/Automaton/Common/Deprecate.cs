@@ -13,15 +13,13 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Deprecate() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy), IEncodable
+public class Deprecate : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(1)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<WeakPower>()
-    ];
+    public Deprecate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithPower<WeakPower>(1);
+        WithTip(DownfallKeyword.Encode);
+    }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

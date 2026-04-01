@@ -15,28 +15,17 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Blockchain() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IEncodable,
+public class Blockchain : AutomatonCardModel, IEncodable,
     ICompilable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<BlurPower>(1),
-        new("BlurCompilePower", 1)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        IsUpgraded
-            ?
-            [
-                DownfallKeyword.Compile.ToHoverTip(),
-                DownfallKeyword.Encode.ToHoverTip(),
-                HoverTipFactory.FromPower<BlurPower>()
-            ]
-            :
-            [
-                DownfallKeyword.Encode.ToHoverTip(),
-                HoverTipFactory.FromPower<BlurPower>()
-            ];
+    public Blockchain() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithPower<BlurPower>(1);
+        WithVar("BlurCompilePower", 1);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(new TooltipSource(card => 
+            card.IsUpgraded ? DownfallKeyword.Compile.ToHoverTip() : null!));
+    }
 
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

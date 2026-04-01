@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class ForkedFlame() : HexaghostCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class ForkedFlame : HexaghostCardModel
 {
+    public ForkedFlame() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -14,18 +14,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Constructor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IEncodable
+public class Constructor : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(5, ValueProp.Move),
-        new BlockVar("ExtraBlock", 5, ValueProp.Move)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
+    public Constructor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(5);
+        WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move));
+        WithTip(DownfallKeyword.Encode);
+    }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

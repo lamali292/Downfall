@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Common;
 
 [Pool(typeof(GuardianCardPool))]
-public class Suspension() : GuardianCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class Suspension : GuardianCardModel
 {
+    public Suspension() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

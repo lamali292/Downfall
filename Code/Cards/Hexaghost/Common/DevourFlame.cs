@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Common;
 
 [Pool(typeof(HexaghostCardPool))]
-public class DevourFlame() : HexaghostCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class DevourFlame : HexaghostCardModel
 {
+    public DevourFlame() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

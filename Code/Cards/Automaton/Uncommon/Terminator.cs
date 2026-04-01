@@ -11,15 +11,15 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Terminator() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
+public class Terminator : AutomatonCardModel,
     IEncodable, ICompilable
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
-
+    public Terminator() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
+    
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
         bool forGameplay)
     {

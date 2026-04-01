@@ -12,11 +12,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class BitShift() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class BitShift : AutomatonCardModel
 {
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
+    public BitShift() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Retain);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

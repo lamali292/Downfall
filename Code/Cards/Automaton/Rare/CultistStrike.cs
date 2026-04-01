@@ -19,20 +19,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy),
+public class CultistStrike : AutomatonCardModel,
     IEncodable, ICompilable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(6, ValueProp.Move),
-        new IntVar("Increase", 1)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
+    public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithDamage(6);
+        WithVar("Increase", 1);
+    }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)

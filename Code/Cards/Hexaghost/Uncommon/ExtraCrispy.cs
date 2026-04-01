@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class ExtraCrispy() : HexaghostCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class ExtraCrispy : HexaghostCardModel
 {
+    public ExtraCrispy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

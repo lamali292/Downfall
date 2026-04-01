@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class Misdirect() : CollectorCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class Misdirect : CollectorCardModel
 {
+    public Misdirect() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

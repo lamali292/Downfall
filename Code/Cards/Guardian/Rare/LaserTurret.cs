@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class LaserTurret() : GuardianCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class LaserTurret : GuardianCardModel
 {
+    public LaserTurret() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

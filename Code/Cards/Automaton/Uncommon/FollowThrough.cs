@@ -12,15 +12,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class FollowThrough() : AutomatonCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class FollowThrough : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(4, ValueProp.Move),
-        new DamageVar(7, ValueProp.Move)
-    ];
-
-
+    public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithBlock(4);
+        WithDamage(7);
+    }
+    
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
 
     private bool WasLastCardPlayedFunction

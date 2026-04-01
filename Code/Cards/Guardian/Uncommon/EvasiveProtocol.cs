@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class EvasiveProtocol() : GuardianCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class EvasiveProtocol : GuardianCardModel
 {
+    public EvasiveProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }
