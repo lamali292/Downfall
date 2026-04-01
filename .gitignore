@@ -15,3 +15,4 @@ loc_editor_settings.json
 .run/
 .gitattributes
 *.import
+!Downfall/character/visuals/*.import
