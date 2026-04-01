@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class ThornWhip() : CollectorCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class ThornWhip : CollectorCardModel
 {
+    public ThornWhip() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

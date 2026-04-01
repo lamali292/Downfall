@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Basic;
 
 [Pool(typeof(HexaghostCardPool))]
-public class DefendHexaghost() : HexaghostCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class DefendHexaghost : HexaghostCardModel
 {
+    public DefendHexaghost() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

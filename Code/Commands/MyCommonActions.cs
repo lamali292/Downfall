@@ -1,6 +1,9 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Extensions;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Commands;
@@ -20,4 +23,7 @@ public static class MyCommonActions
     {
         return await CommonActions.Apply<T>(target, card, card.DynamicVars.Power<T>().BaseValue, silent);
     }
+    
+    
+
 }

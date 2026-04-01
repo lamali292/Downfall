@@ -14,17 +14,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Frontload()
-    : AutomatonCardModel(2, CardType.Skill, CardRarity.Common, TargetType.Self), ICompilable, IEncodable
+public class Frontload : AutomatonCardModel, ICompilable, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(8, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip(),
-        HoverTipFactory.FromKeyword(CardKeyword.Retain)
-    ];
+    public Frontload() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithBlock(8);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(CardKeyword.Retain);
+    }
 
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard function, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class RoundaboutSwing() : SneckoCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class RoundaboutSwing : SneckoCardModel
 {
+    public RoundaboutSwing() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

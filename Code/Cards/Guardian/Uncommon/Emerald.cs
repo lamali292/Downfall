@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class Emerald() : GuardianCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Emerald : GuardianCardModel
 {
+    public Emerald() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

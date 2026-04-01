@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Common;
 
 [Pool(typeof(HexaghostCardPool))]
-public class SwordOfNight() : HexaghostCardModel(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class SwordOfNight : HexaghostCardModel
 {
+    public SwordOfNight() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

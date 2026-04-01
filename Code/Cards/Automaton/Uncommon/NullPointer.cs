@@ -14,22 +14,18 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class NullPointer() : AutomatonCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy),
+public class NullPointer : AutomatonCardModel,
     IEncodable, ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(12, ValueProp.Move),
-        new BlockVar(12, ValueProp.Move)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip(),
-        HoverTipFactory.FromKeyword(CardKeyword.Unplayable)
-    ];
-
+    public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithDamage(12);
+        WithBlock(12);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(CardKeyword.Unplayable);
+    }
+   
     public Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)
     {

@@ -17,20 +17,15 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class HyperBeamAutomaton() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+public class HyperBeamAutomaton : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(25M, ValueProp.Move)];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Retain
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Void>()
-    ];
-
+    public HyperBeamAutomaton() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    {
+        WithDamage(25);
+        WithKeywords(CardKeyword.Retain);
+        WithTip(typeof(Void));
+    }
+  
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(10);

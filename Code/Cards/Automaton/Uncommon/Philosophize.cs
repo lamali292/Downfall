@@ -14,22 +14,17 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Philosophize() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
+public class Philosophize : AutomatonCardModel,
     IEncodable, ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(1),
-        new PowerVar<StrengthPower>("EnemyStrength", 2)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip(),
-        HoverTipFactory.FromPower<StrengthPower>()
-    ];
-
+    public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithPower<StrengthPower>(1);
+        WithVars(new PowerVar<StrengthPower>("EnemyStrength", 2));
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
+    
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)
     {

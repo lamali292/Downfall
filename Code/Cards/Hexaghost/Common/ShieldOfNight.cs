@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Common;
 
 [Pool(typeof(HexaghostCardPool))]
-public class ShieldOfNight() : HexaghostCardModel(2, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class ShieldOfNight : HexaghostCardModel
 {
+    public ShieldOfNight() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

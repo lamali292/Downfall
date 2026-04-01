@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class FaceSlap() : ChampCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class FaceSlap : ChampCardModel
 {
+    public FaceSlap() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

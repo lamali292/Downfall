@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class ScorchingRay() : CollectorCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class ScorchingRay : CollectorCardModel
 {
+    public ScorchingRay() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

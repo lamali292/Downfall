@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class ComboString() : SneckoCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class ComboString : SneckoCardModel
 {
+    public ComboString() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

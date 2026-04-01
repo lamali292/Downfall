@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class WideAngle() : SneckoCardModel(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class WideAngle : SneckoCardModel
 {
+    public WideAngle() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -12,17 +12,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Cleanse() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Cleanse : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(1, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-        DownfallKeyword.Status.ToHoverTip()
-    ];
-
+    public Cleanse() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(1);
+        WithTip(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Status);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

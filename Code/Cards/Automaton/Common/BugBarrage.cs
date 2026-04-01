@@ -13,17 +13,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class BugBarrage() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class BugBarrage : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(5, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Cycle.ToHoverTip(),
-        DownfallKeyword.Status.ToHoverTip(),
-        HoverTipFactory.FromCard<Wound>()
-    ];
+    public BugBarrage() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(5);
+        WithTip(DownfallKeyword.Cycle);
+        WithTip(DownfallKeyword.Status);
+        WithTip(typeof(Wound));
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

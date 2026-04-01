@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class PrismaticBarrier() : GuardianCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class PrismaticBarrier : GuardianCardModel
 {
+    public PrismaticBarrier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -11,11 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class CopyPaste() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class CopyPaste : AutomatonCardModel
 {
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Encode.ToHoverTip()];
+    public CopyPaste() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Encode);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

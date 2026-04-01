@@ -17,25 +17,20 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Break() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy), IEncodable,
+public class Break : AutomatonCardModel, IEncodable,
     ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(15, ValueProp.Move)
-    ];
-
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip(),
-        HoverTipFactory.FromCard<Dazed>(),
-        HoverTipFactory.FromCard<Slimed>(),
-        HoverTipFactory.FromCard<Wound>(),
-        HoverTipFactory.FromCard<Burn>(),
-        HoverTipFactory.FromCard<Void>()
-    ];
+    public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        WithDamage(15);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(typeof(Burn));
+        WithTip(typeof(Void));
+        WithTip(typeof(Dazed));
+        WithTip(typeof(Slimed));
+        WithTip(typeof(Wound));
+    }
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext,

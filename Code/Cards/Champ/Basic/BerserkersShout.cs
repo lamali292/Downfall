@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Basic;
 
 [Pool(typeof(ChampCardPool))]
-public class BerserkersShout() : ChampCardModel(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class BerserkersShout : ChampCardModel
 {
+    public BerserkersShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Rare;
 
 [Pool(typeof(GremlinsCardPool))]
-public class Erupt() : GremlinsCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Erupt : GremlinsCardModel
 {
+    public Erupt() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

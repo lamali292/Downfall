@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class SnakeEyes() : SneckoCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class SnakeEyes : SneckoCardModel
 {
+    public SnakeEyes() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class LuckyBreak() : SneckoCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class LuckyBreak : SneckoCardModel
 {
+    public LuckyBreak() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -14,15 +14,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class DelayedGuard() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self), IEncodable
+public class DelayedGuard : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<BlockNextTurnPower>(7)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.Static(StaticHoverTip.Block)
-    ];
+    public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithPower<BlockNextTurnPower>(7);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(StaticHoverTip.Block);
+    }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

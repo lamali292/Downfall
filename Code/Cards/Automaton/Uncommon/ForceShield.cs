@@ -16,19 +16,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class ForceShield()
-    : AutomatonCardModel(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IOnCompile
+public class ForceShield : AutomatonCardModel, IOnCompile
 {
+    public ForceShield() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(12);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(typeof(MergePower));
+    }
     private int _functionsCreated;
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(12m, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<MergePower>()
-    ];
-
+    
     public override bool ShouldReceiveCombatHooks => true;
 
     public Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot,

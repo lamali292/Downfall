@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class OpeningTackle() : SlimeBossCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class OpeningTackle : SlimeBossCardModel
 {
+    public OpeningTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

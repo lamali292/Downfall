@@ -10,13 +10,13 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Automaton.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Decompile() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public class Decompile : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
+    public Decompile() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;

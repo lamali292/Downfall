@@ -14,12 +14,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class StickyShield() : AutomatonCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class StickyShield : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(11, ValueProp.Move)];
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<Slimed>()];
-
+    public StickyShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithBlock(11);
+        WithKeywords(CardKeyword.Retain);
+        WithTip(typeof(Slimed));
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

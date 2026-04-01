@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class Blunderbus() : SneckoCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class Blunderbus : SneckoCardModel
 {
+    public Blunderbus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

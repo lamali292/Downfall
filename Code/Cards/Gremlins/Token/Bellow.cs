@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Gremlins.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Bellow() : GremlinsCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public class Bellow : GremlinsCardModel
 {
+    public Bellow() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

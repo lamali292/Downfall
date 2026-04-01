@@ -13,17 +13,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Optimize() : AutomatonCardModel(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class Optimize : AutomatonCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<OptimizePower>(3)
-    ];
+    public Optimize() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        WithTip(DownfallKeyword.Encode);
+        WithPower<OptimizePower>(3);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

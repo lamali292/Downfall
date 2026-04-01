@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Goodbye() : CollectorCardModel(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Goodbye : CollectorCardModel
 {
+    public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

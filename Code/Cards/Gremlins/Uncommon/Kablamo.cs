@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Uncommon;
 
 [Pool(typeof(GremlinsCardPool))]
-public class Kablamo() : GremlinsCardModel(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class Kablamo : GremlinsCardModel
 {
+    public Kablamo() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

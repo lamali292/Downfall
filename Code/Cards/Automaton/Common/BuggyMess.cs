@@ -16,17 +16,15 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class BuggyMess() : AutomatonCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self), IEncodable
+public class BuggyMess : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new EnergyVar(1)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.ForEnergy(this),
-        HoverTipFactory.FromCard<Dazed>()
-    ];
+    public BuggyMess() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithVars(new EnergyVar(1));
+        WithTip(DownfallKeyword.Encode);
+        WithTip(typeof(Dazed));
+        WithEnergyTip();
+    }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

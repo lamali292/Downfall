@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Divider() : HexaghostCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class Divider : HexaghostCardModel
 {
+    public Divider() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

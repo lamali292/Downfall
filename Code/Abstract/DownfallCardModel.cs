@@ -2,16 +2,34 @@
 using BaseLib.Extensions;
 using Downfall.Code.Character;
 using Downfall.Code.Extensions;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Abstract;
+
+
+public abstract class DownfallCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : ConstructedCardModel(cost, type, rarity, targetType)
+{
+    protected async Task<CardModel?> SelectFromHand(PlayerChoiceContext ctx, int count = 1, Func<CardModel, bool>? filter = null)
+    {
+        return (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(SelectionScreenPrompt, count), filter, this)).FirstOrDefault();
+    }
+}
 
 public abstract class DownfallCardModel<T>(
     int cost,
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : CustomCardModel(cost, type, rarity, targetType)
+    : DownfallCardModel(cost, type, rarity, targetType)
     where T : DownfallCharacterModel
 {
     public sealed override string CustomPortraitPath =>

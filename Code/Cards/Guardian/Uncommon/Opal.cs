@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class Opal() : GuardianCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Opal : GuardianCardModel
 {
+    public Opal() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

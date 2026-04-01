@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Rare;
 
 [Pool(typeof(GremlinsCardPool))]
-public class TargetWounds() : GremlinsCardModel(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public class TargetWounds : GremlinsCardModel
 {
+    public TargetWounds() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Common;
 
 [Pool(typeof(GremlinsCardPool))]
-public class CatScratch() : GremlinsCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class CatScratch : GremlinsCardModel
 {
+    public CatScratch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

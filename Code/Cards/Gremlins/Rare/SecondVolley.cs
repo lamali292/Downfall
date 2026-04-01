@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Rare;
 
 [Pool(typeof(GremlinsCardPool))]
-public class SecondVolley() : GremlinsCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class SecondVolley : GremlinsCardModel
 {
+    public SecondVolley() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

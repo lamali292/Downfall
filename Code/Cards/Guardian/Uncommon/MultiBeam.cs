@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class MultiBeam() : GuardianCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class MultiBeam : GuardianCardModel
 {
+    public MultiBeam() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

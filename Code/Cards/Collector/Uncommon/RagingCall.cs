@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class RagingCall() : CollectorCardModel(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class RagingCall : CollectorCardModel
 {
+    public RagingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

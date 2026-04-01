@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class GlitteringGambit() : SneckoCardModel(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public class GlitteringGambit : SneckoCardModel
 {
+    public GlitteringGambit() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

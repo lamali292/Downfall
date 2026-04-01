@@ -16,21 +16,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class BronzeArmor() : AutomatonCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IEncodable,
+public class BronzeArmor : AutomatonCardModel, IEncodable,
     ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new IntVar("EnemyBlock", 12),
-        new PowerVar<ArtifactPower>(1)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<ArtifactPower>(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
+    public BronzeArmor() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithPower<ArtifactPower>(1);
+        WithVar("EnemyBlock", 12);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext,

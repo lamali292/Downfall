@@ -10,9 +10,12 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Automaton.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Debug() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public class Debug : AutomatonCardModel
 {
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public Debug() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

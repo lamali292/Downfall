@@ -14,11 +14,15 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Turbo() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class Turbo : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(2)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<Void>()];
-
+    public Turbo() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithEnergyTip();
+        WithVars(new EnergyVar(2));
+        WithTip(typeof(Void));
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

@@ -10,11 +10,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class DefendAutomaton() : AutomatonCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public sealed class DefendAutomaton : AutomatonCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5m, ValueProp.Move)];
+    public DefendAutomaton() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        WithTags(CardTag.Defend);
+        WithBlock(5);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

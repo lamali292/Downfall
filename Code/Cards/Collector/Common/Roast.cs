@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class Roast() : CollectorCardModel(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Roast : CollectorCardModel
 {
+    public Roast() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

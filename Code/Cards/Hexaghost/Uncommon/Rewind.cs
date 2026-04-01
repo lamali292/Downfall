@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Rewind() : HexaghostCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Rewind : HexaghostCardModel
 {
+    public Rewind() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class LingeringShades() : HexaghostCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class LingeringShades : HexaghostCardModel
 {
+    public LingeringShades() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

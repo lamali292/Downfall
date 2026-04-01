@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class Repurpose() : SlimeBossCardModel(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Repurpose : SlimeBossCardModel
 {
+    public Repurpose() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

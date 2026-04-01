@@ -11,13 +11,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class SpaghettiCode() : AutomatonCardModel(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class SpaghettiCode : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
+    public SpaghettiCode() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var rng = CombatState!.RunState.Rng.CombatCardSelection;

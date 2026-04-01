@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class ToothAndClaw() : SneckoCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class ToothAndClaw : SneckoCardModel
 {
+    public ToothAndClaw() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

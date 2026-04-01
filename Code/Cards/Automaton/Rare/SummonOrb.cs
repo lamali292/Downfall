@@ -10,12 +10,12 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class SummonOrb() : AutomatonCardModel(2, CardType.Power, CardRarity.Rare, TargetType.None)
+public class SummonOrb : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<SummonOrbPower>(3)
-    ];
+    public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        WithPower<SummonOrbPower>(3);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

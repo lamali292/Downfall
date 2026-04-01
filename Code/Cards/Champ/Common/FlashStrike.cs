@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class FlashStrike() : ChampCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class FlashStrike : ChampCardModel
 {
+    public FlashStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

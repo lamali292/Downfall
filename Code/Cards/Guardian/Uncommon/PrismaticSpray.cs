@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class PrismaticSpray() : GuardianCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class PrismaticSpray : GuardianCardModel
 {
+    public PrismaticSpray() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

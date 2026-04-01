@@ -14,21 +14,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Refactor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Refactor : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new IntVar("Scry", 4),
-        new BlockVar(4, ValueProp.Move)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-        DownfallKeyword.Scry.ToHoverTip(),
-        DownfallKeyword.Status.ToHoverTip()
-    ];
-
+    public Refactor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(4);
+        WithVar("Scry", 4);
+        WithTip(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Scry);
+        WithTip(DownfallKeyword.Status);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);

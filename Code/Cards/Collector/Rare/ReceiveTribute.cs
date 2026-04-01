@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class ReceiveTribute() : CollectorCardModel(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class ReceiveTribute : CollectorCardModel
 {
+    public ReceiveTribute() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

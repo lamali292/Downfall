@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class AdrenalArmor() : ChampCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class AdrenalArmor : ChampCardModel
 {
+    public AdrenalArmor() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

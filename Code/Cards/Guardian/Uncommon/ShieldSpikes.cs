@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class ShieldSpikes() : GuardianCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class ShieldSpikes : GuardianCardModel
 {
+    public ShieldSpikes() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

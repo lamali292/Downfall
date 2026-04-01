@@ -10,10 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Allocate() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Allocate : AutomatonCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Status.ToHoverTip()];
-
+    public Allocate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithTip(DownfallKeyword.Status);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var statusCount = PileType.Draw.GetPile(Owner).Cards

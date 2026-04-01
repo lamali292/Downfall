@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class SpeedBoost() : GuardianCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class SpeedBoost : GuardianCardModel
 {
+    public SpeedBoost() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

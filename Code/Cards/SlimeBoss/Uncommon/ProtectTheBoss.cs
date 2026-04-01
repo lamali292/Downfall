@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class ProtectTheBoss() : SlimeBossCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class ProtectTheBoss : SlimeBossCardModel
 {
+    public ProtectTheBoss() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

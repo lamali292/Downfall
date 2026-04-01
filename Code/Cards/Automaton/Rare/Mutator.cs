@@ -16,17 +16,13 @@ using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Mutator() : AutomatonCardModel(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public class Mutator : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(2)
-    ];
+    public Mutator() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        WithPower<StrengthPower>(2);
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<StrengthPower>()
-    ];
+    }
 
     private async Task<CardModel?> PickOne(List<CardModel> cards)
     {

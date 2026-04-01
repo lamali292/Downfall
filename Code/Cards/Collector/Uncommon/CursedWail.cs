@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class CursedWail() : CollectorCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class CursedWail : CollectorCardModel
 {
+    public CursedWail() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class Deathmark() : CollectorCardModel(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Deathmark : CollectorCardModel
 {
+    public Deathmark() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

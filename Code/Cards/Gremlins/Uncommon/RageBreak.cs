@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Gremlins.Uncommon;
 
 [Pool(typeof(GremlinsCardPool))]
-public class RageBreak() : GremlinsCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class RageBreak : GremlinsCardModel
 {
+    public RageBreak() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

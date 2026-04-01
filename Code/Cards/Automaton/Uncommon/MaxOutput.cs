@@ -7,19 +7,20 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class MaxOutput() : AutomatonCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class MaxOutput : AutomatonCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Insert.ToHoverTip()
-    ];
+    public MaxOutput() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        WithTip(DownfallKeyword.Insert);
+        WithTip(typeof(Dazed));
+    }
 
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(ctx, 3, cardPlay.Card.Owner);
         await PowerCmd.Apply<MaxOutputPower>(Owner.Creature, 1, Owner.Creature, this);

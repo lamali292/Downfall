@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Common;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Firestarter() : HexaghostCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Firestarter : HexaghostCardModel
 {
+    public Firestarter() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

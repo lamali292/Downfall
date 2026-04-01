@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Hexaghost.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class FourthSeal() : HexaghostCardModel(2, CardType.Power, CardRarity.Token, TargetType.None)
+public class FourthSeal : HexaghostCardModel
 {
+    public FourthSeal() : base(2, CardType.Power, CardRarity.Token, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

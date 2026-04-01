@@ -151,5 +151,11 @@
   "DOWNFALL-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your draw pile.",
   "DOWNFALL-FERVENT_WORSHIP_POWER.title": "Fervent Worship",
   "DOWNFALL-FERVENT_WORSHIP_POWER.description": "Ceremonies cost 1 additional {energyPrefix:energyIcons(1)} and are played twice.",
-  "DOWNFALL-FERVENT_WORSHIP_POWER.smartDescription": "Ceremonies cost {Amount} additional {energyPrefix:energyIcons(1)} and are played {Amount} extra {Amount:plural:time|times}."
+  "DOWNFALL-FERVENT_WORSHIP_POWER.smartDescription": "Ceremonies cost {Amount} additional {energyPrefix:energyIcons(1)} and are played {Amount} extra {Amount:plural:time|times}.",
+  "DOWNFALL-DAGGERSTORM_POWER.title": "Daggerstorm",
+  "DOWNFALL-DAGGERSTORM_POWER.description": "Whenever you create a card, deal X damage to a random enemy. ",
+  "DOWNFALL-DAGGERSTORM_POWER.smartDescription": "Whenever you create a card, deal {Amount} damage to a random enemy. ",
+  "DOWNFALL-SCHEME_POWER.title": "Scheme",
+  "DOWNFALL-SCHEME_POWER.description": "The next card you play this turn that cost 1 or less are played twice. ",
+  "DOWNFALL-SCHEME_POWER.smartDescription": "The next {Amount:plural:card|{Amount} cards} you play this turn that cost 1 or less {Amount:plural:is|are} played twice. "
 }

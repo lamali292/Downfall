@@ -1,7 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Awakened.Token;
 
@@ -10,6 +13,19 @@ public class Mantis : AwakenedCardModel
 {
     public Mantis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
+        WithPower<StrengthPower>(2);
+        WithTip(typeof(PlumeJab));
     }
-    // TODO: Implement
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await MyCommonActions.ApplySelf<StrengthPower>(this);
+        await DownfallCardCmd.GiveCard<PlumeJab>(Owner, PileType.Hand, animationTime: 0.1f);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Strength.UpgradeValueBy(1);
+    }
+    
 }

@@ -12,16 +12,16 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class InfiniteBeams() : AutomatonCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class InfiniteBeams : AutomatonCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        get
+        WithTip(new TooltipSource(card =>
         {
-            var card = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
-            if (IsUpgraded) card.UpgradeInternal();
-            return [HoverTipFactory.FromCard(card)];
-        }
+            var beam = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
+            if (card.IsUpgraded) beam.UpgradeInternal();
+            return HoverTipFactory.FromCard(beam);
+        }));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

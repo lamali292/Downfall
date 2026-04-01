@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Common;
 
 [Pool(typeof(GuardianCardPool))]
-public class Incinerate() : GuardianCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Incinerate : GuardianCardModel
 {
+    public Incinerate() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class GoodCleanFight() : ChampCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class GoodCleanFight : ChampCardModel
 {
+    public GoodCleanFight() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

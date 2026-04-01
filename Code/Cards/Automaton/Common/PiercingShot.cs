@@ -13,16 +13,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class PiercingShot()
-    : AutomatonCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies), IEncodable
+public class PiercingShot : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
-
+    public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+    {
+        WithDamage(6);
+        WithTip(DownfallKeyword.Encode);
+    }
+ 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);

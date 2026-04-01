@@ -14,21 +14,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Flail() : AutomatonCardModel(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+public class Flail : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(7, ValueProp.Move),
-        new PowerVar<ArtifactPower>(1)
-    ];
-
-    public override HashSet<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Status.ToHoverTip()];
-
+    public Flail() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    {
+        WithDamage(7);
+        WithPower<ArtifactPower>(1);
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Status);
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class SplitBruiser() : SlimeBossCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class SplitBruiser : SlimeBossCardModel
 {
+    public SplitBruiser() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

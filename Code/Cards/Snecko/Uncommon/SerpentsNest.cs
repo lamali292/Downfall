@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class SerpentsNest() : SneckoCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class SerpentsNest : SneckoCardModel
 {
+    public SerpentsNest() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

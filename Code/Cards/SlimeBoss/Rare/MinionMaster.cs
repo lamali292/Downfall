@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class MinionMaster() : SlimeBossCardModel(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public class MinionMaster : SlimeBossCardModel
 {
+    public MinionMaster() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

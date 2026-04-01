@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class Orbwalk() : GuardianCardModel(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class Orbwalk : GuardianCardModel
 {
+    public Orbwalk() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }
