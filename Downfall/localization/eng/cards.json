@@ -401,5 +401,9 @@
   "DOWNFALL-DEFEND_COLLECTOR.description": "",
   "DOWNFALL-DEFEND_SLIME_BOSS.title": "",
   "DOWNFALL-DEFEND_SLIME_BOSS.description": "",
-  "DOWNFALL-THE_ENCYCLOPEDIA.selectionScreenPrompt": "Pick a card"
+  "DOWNFALL-THE_ENCYCLOPEDIA.selectionScreenPrompt": "Pick a card",
+  "DOWNFALL-BOOK_OF_SECRETS.title": "Book of Secrets",
+  "DOWNFALL-BOOK_OF_SECRETS.description": "Gain {Block:diff()} Block.\nAll other players Conjure a copy of your next up spell.",
+  "DOWNFALL-DARK_INCANTATION.title": "Dark Incantation",
+  "DOWNFALL-DARK_INCANTATION.description": "hoose another player to gain {RitualPower:diff()} Ritual. Exhaust."
 }
