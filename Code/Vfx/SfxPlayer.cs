@@ -31,8 +31,7 @@ public static class SfxPlayer
         audioPlayer.VolumeDb = Mathf.LinearToDb(volume);
 
         audioPlayer.Finished += () => audioPlayer.QueueFree();
-
-        // Add to the tree via NCombatRoom or NGame to ensure it plays
+        
         var root = (Node?)NCombatRoom.Instance ?? NGame.Instance;
         if (root != null)
         {

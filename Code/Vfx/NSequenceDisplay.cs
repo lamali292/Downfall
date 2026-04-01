@@ -75,7 +75,6 @@ public partial class NSequenceDisplay : Control
 
         for (var i = 0; i < max; i++)
         {
-            // Slot icon
             if (ResourceLoader.Exists(SlotImagePath))
             {
                 var slot = new TextureRect
@@ -90,7 +89,6 @@ public partial class NSequenceDisplay : Control
                 _slotNodes.Add(slot);
             }
 
-            // Container scales down — holder inside stays at its natural SmallScale
             var container = new Control
             {
                 Scale = Vector2.One * SequencedCardScale,

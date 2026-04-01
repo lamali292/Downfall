@@ -23,8 +23,7 @@ public partial class NBlurWaveParticle : Sprite2D
             }
         };
     }
-
-    // Change Setup signature to include delay
+    
     public void Setup(Color color, float chosenSpeed, float startDelay)
     {
         Material = new CanvasItemMaterial
@@ -49,8 +48,7 @@ public partial class NBlurWaveParticle : Sprite2D
 
         var maxVisibilityColor = new Color(color.R * 0.4f, color.G * 0.4f, color.B * 0.4f);
         var invisibleColor = new Color(0, 0, 0);
-
-        // --- FADE ---
+        
         tween.TweenProperty(this, "modulate", maxVisibilityColor, 0.4f)
             .SetDelay(startDelay);
         tween.TweenProperty(this, "modulate", invisibleColor, 0.8f)
