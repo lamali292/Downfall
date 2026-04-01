@@ -122,7 +122,7 @@
   "DOWNFALL-BOTTLED_BRAIN.flavor": "Collected from a wizard's laboratory.",
   "DOWNFALL-CRESCENT_TALISMAN.title": "Crescent Talisman",
   "DOWNFALL-CRESCENT_TALISMAN.description": "Upon pickup, choose a card that does NOT have Conjure, and add Conjure to it.",
-  "DOWNFALL-CRESCENT_TALISMAN.flavor": "\u201cPlease, just... don't forget me. Even after I die.\u201d",
+  "DOWNFALL-CRESCENT_TALISMAN.flavor": "“Please, just... don't forget me. Even after I die.”",
   "DOWNFALL-CRYO_CHAMBER.title": "Cryo Chamber",
   "DOWNFALL-CRYO_CHAMBER.description": "At the start of each combat, gain 1 Stasis slot. Whenever a card enters Stasis, Upgrade it.",
   "DOWNFALL-CRYO_CHAMBER.flavor": "Things always seem better coming out than they did going in.",
@@ -167,7 +167,7 @@
   "DOWNFALL-WIZARD_STAFF.flavor": "The pride and joy of every Gremlin Wizard, this staff is a frequent target of theft by rival mobs.",
   "DOWNFALL-ZENER_DECK.title": "Zener Deck",
   "DOWNFALL-ZENER_DECK.description": "At the start of combat, add {{C|ESP}} to your Spellbook and Conjure it.",
-  "DOWNFALL-ZENER_DECK.flavor": "\u201cOne, two, three, all eyes should be on me.\u201d",
+  "DOWNFALL-ZENER_DECK.flavor": "“One, two, three, all eyes should be on me.”",
   "DOWNFALL-BOTTLED_CODE.title": "Bottled Code",
   "DOWNFALL-BOTTLED_CODE.description": "Upon pickup, choose a card with Encode. Start each combat with this card Encoded.",
   "DOWNFALL-BOTTLED_CODE.flavor": "Actually, I have code for that exact thing...",
@@ -317,5 +317,8 @@
   "DOWNFALL-VICTORIOUS_CROWN.flavor": "Conglaturation!! You are the greatest winner.",
   "DOWNFALL-DOLPHINS_STYLE_GUIDE.title": "Dolphin's Style Guide",
   "DOWNFALL-DOLPHINS_STYLE_GUIDE.description": "If you end your turn while in no Stance, draw 1 additional card next turn.",
-  "DOWNFALL-DOLPHINS_STYLE_GUIDE.flavor": "Author: Renowned explorer and pugilist Dolphin K. Mist."
+  "DOWNFALL-DOLPHINS_STYLE_GUIDE.flavor": "Author: Renowned explorer and pugilist Dolphin K. Mist.",
+  "DOWNFALL-DOWNFALL_RELIC_MODEL.title": "",
+  "DOWNFALL-DOWNFALL_RELIC_MODEL.description": "",
+  "DOWNFALL-DOWNFALL_RELIC_MODEL.flavor": ""
 }
