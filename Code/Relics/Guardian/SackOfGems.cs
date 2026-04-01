@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Guardian;
 public class SackOfGems : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

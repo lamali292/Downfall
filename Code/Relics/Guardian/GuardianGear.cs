@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Guardian;
 public class GuardianGear : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

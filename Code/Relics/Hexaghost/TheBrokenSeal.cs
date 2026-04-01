@@ -9,4 +9,5 @@ public class TheBrokenSeal : HexaghostRelicModel
 {
     // TODO - Event relic
     public override RelicRarity Rarity => RelicRarity.Event;
+    // TODO
 }

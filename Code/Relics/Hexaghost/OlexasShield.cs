@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Hexaghost;
 public class OlexasShield : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

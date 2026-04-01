@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class ShreddedDoll : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

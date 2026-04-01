@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Automaton;
 public class PlatinumCore : AutomatonRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

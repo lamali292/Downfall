@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Hexaghost;
 public class SoulOfChaos : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

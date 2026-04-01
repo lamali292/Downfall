@@ -13,4 +13,5 @@ public class BronzeGear : GuardianRelicModel
     
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<GuardianGear>();
+    // TODO
 }

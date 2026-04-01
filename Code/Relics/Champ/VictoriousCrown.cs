@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class VictoriousCrown : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

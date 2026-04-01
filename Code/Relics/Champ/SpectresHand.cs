@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class SpectresHand : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

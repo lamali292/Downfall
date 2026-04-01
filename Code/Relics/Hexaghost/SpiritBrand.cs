@@ -12,4 +12,5 @@ public class SpiritBrand : HexaghostRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<MarkOfTheEther>();
+    // TODO
 }

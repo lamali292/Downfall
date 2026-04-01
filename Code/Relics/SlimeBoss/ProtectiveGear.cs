@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.SlimeBoss;
 public class ProtectiveGear : SlimeBossRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }
