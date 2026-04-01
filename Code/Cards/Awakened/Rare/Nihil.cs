@@ -21,7 +21,7 @@ public class Nihil : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         foreach (var combatStateEnemy in CombatState.Enemies)

@@ -18,7 +18,7 @@ public class GreatHex : AwakenedCardModel, IChantable
         WithPower<ManaburnPower>(5);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.Apply<GreatHexPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);

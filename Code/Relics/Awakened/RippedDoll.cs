@@ -11,7 +11,8 @@ namespace Downfall.Code.Relics.Awakened;
 public class RippedDoll : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
+    /*
+     * TODO: needs to call update methods
     public override int DisplayAmount
     {
         get
@@ -25,7 +26,7 @@ public class RippedDoll : AwakenedRelicModel
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress && Status == RelicStatus.Normal;
     
-    
+    */
     
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {

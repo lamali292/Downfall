@@ -1,6 +1,7 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
 using Downfall.Code.Commands;
+using Downfall.Code.Core;
 using Downfall.Code.Displays;
 using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Relics.Awakened;
@@ -92,49 +93,12 @@ public class Awakened : DownfallCharacterModel
 
         bool IsAwakened()
         {
-            return CombatManager.Instance.DebugOnlyGetState()
-                ?.Players.FirstOrDefault(p => p.Character == this)
-                ?.Creature.HasPower<AwakenedFormPower>() ?? false;
+            return AwakenedModel
+                .IsAwakened(CombatManager.Instance.DebugOnlyGetState()?.Players
+                .FirstOrDefault(p => p.Character == this));
         }
     }
     
-    
-    public override bool ShouldReceiveCombatHooks => true;
-
-    public override Task AfterRoomEntered(AbstractRoom room)
-    {
-        var state = CombatManager.Instance.DebugOnlyGetState();
-        if (state == null) return Task.CompletedTask;
-        foreach (var player in state.Players)
-        {
-            if (player.Character is not Awakened) continue;
-            AwakenedCmd.GetSpellbook(player)?.Refresh(player);
-            TaskHelper.RunSafely(PowerCmd.Apply<AwakenMeterPower>(player.Creature, 1, player.Creature, null, true));
-            var combatRoomNode = NCombatRoom.Instance;
-            if (combatRoomNode != null)
-            {
-                SetupAwakenedUi(combatRoomNode, player);
-            }
-        }
-
-        return Task.CompletedTask;
-    }
-
-    private static void SetupAwakenedUi(NCombatRoom combatRoom, Player player)
-    {
-        var display = NSpellbookDisplay.Create(player);
-        var vfxContainer = combatRoom.CombatVfxContainer;
-        vfxContainer.AddChildSafely(display);
-        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
-        if (creatureNode != null)
-        {
-            var globalTopPos = creatureNode.GetTopOfHitbox();
-            display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
-            display.Position += new Vector2(-120f, -80f);
-        }
-        AwakenedDisplay.Register(player, display);
-        display.Refresh();
-    }
     
     
     

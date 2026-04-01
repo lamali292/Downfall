@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,9 +26,7 @@ public class Spew : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        foreach (var model in CombatState.IterateHookListeners().OfType<IOnDrained>())
-            await model.OnDrained(Owner, cardPlay.Resources.EnergySpent);
+        await DownfallHook.OnDrained(ctx, Owner, cardPlay.Resources.EnergySpent);
     }
 }

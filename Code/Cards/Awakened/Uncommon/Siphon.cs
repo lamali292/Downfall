@@ -18,7 +18,7 @@ public class Siphon : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this, 2);

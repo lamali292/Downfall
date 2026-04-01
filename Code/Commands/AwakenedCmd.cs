@@ -1,11 +1,11 @@
 ﻿using Downfall.Code.Displays;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Piles;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -19,45 +19,27 @@ public static class AwakenedCmd
     {
         return AwakenedPile.Spellbook.GetPile(player) as AwakenedPile;
     }
-
-
     
-    public static bool IsAwakened(Creature creature)
-    {
-        return creature.Powers.Any(p => p is AwakenedFormPower);
-    }
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {
-        if (IsAwakened(player.Creature)) return;
+        /*
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        if (creatureNode == null) return;
 
-        // Todo: Update all spells everywhere to be upgraded. currenly only new spells
-        await PowerCmd.Apply<AwakenedFormPower>(player.Creature, 1, player.Creature, null);
-        var spellbook = GetSpellbook(player);
-        if (spellbook != null)
-        {
-            foreach (var card in spellbook.Cards.Where(c => c.IsUpgradable))
-            {
-                card.UpgradeInternal();
-                card.FinalizeUpgradeInternal();
-            }
-
-            spellbook.UpgradeOnAdd = true;
-            AwakenedDisplay.Refresh(player);
-        }
-
-        foreach (var model in player.Creature.CombatState!.IterateHookListeners().OfType<IOnAwaken>())
-            await model.OnAwaken(ctx, player);
+        creatureNode.SetAnimationTrigger("Idle");
+        var current = creatureNode.SpineAnimation.GetAnimationState()?.GetCurrent(0);
+        current?.SetMixDuration(0.5f);
+        */
+        await DownfallHook.OnAwaken(ctx, player);
     }
 
     public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         if (card is not IChantable chantable) return;
         chantable.HasChanted = true;
-        await chantable.OnChant(ctx, cardPlay);
-        if (cardPlay.Card.CombatState == null) return;
-        var listeners = cardPlay.Card.CombatState.IterateHookListeners().OfType<IOnChant>();
-        foreach (var listener in listeners) await listener.OnCardChanted(card, ctx, cardPlay);
+        await chantable.PlayChantEffect(ctx, cardPlay);
+        await DownfallHook.OnCardChanted(ctx, card, cardPlay);
     }
     
     public static bool CanConjure(Player player) 

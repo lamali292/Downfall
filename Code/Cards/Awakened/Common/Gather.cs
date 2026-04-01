@@ -18,7 +18,7 @@ public class Gather : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selected = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Discard);
         if (selected == null) return;

@@ -6,5 +6,5 @@ namespace Downfall.Code.Interfaces;
 public interface IChantable
 {
     bool HasChanted { get; set; }
-    Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay);
+    Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }

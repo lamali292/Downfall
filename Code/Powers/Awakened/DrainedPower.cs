@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -20,9 +21,7 @@ public class DrainedPower : AwakenedPowerModel
         if (player != Owner.Player)
             return;
         await PlayerCmd.LoseEnergy(Amount, player);
-        foreach (var model in CombatState.IterateHookListeners()
-                     .OfType<IOnDrained>())
-            await model.OnDrained(Owner.Player, Amount);
+        await DownfallHook.OnDrained(Owner.Player, Amount);
         await PowerCmd.Remove(this);
     }
 }

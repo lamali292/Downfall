@@ -18,7 +18,7 @@ public class RavenStrike : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.AutoPlayFromDrawPile(ctx, Owner, 1);
     }
