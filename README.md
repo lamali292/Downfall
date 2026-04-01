@@ -33,24 +33,23 @@ i.e in Windows look for
 ```
 
 
-
 You only need to change:
 
+- **SteamLibraryPath** → Path to your Steam library
+- **GodotPath** → Path to your Godot installation
 
+Recommended: [MegaDot — MegaCrit's custom Godot fork](https://megadot.megacrit.com/)
 
-- **SteamLibraryPath** → Path to your Steam Library
-
-- **GodotPath** → Path to your [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
-
-
+Standard: [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
 
 ### 3. Build the Mod
 
+Build the project using your IDE or the .NET CLI to copy the mod's DLL to the mods folder. 
+Then publish the mod to copy images and localization files as well.
 
+For detailed setup instructions, see the [BaseLib wiki](https://github.com/Alchyr/ModTemplate-StS2/wiki/Setup).
 
-Build the project using your IDE or the .NET CLI.  
-
-After building, mod is placed into your Slay the Spire 2 mods folder.
+After building, the mod is placed into your Slay the Spire 2 mods folder:
 
 ```xml
 ...\Steam\steamapps\common\Slay the Spire 2\mods\Downfall
