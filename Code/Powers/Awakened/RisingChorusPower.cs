@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;

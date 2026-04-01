@@ -1,17 +1,21 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Events;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class BurningStudy : AwakenedCardModel, ISpell
+public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
 {
     public BurningStudy() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
@@ -28,6 +32,11 @@ public class BurningStudy : AwakenedCardModel, ISpell
             await CommonActions.Apply<WeakPower>(combatStateEnemy, this, DynamicVars.Power<WeakPower>().BaseValue);
     }
 
+    public Task OnAwaken(PlayerChoiceContext ctx, Player player)
+    {
+        CardCmd.Upgrade(this, CardPreviewStyle.None);
+        return Task.CompletedTask;
+    }
 
     protected override void OnUpgrade()
     {
