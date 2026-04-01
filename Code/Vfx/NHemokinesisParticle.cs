@@ -43,8 +43,7 @@ public partial class NHemokinesisParticle : Sprite2D
             Material = new CanvasItemMaterial { BlendMode = CanvasItemMaterial.BlendModeEnum.Add },
             ZIndex = 1 
         };
-
-        // Create the Taper (Scale from 0 to 1)
+        
         var curve = new Curve();
         curve.AddPoint(new Vector2(0, 0)); // Tail tip
         curve.AddPoint(new Vector2(1, 1)); // Head connection
@@ -56,7 +55,7 @@ public partial class NHemokinesisParticle : Sprite2D
     public override void _Process(double delta)
     {
         var fDelta = (float)delta;
-        _lastPos = GlobalPosition; // Store position before moving
+        _lastPos = GlobalPosition;
         
         var diff = _targetPos - GlobalPosition;
         if (!_lockedOn)
@@ -84,7 +83,6 @@ public partial class NHemokinesisParticle : Sprite2D
 
     private bool CheckHit()
     {
-        // Simple distance check first
         if (GlobalPosition.DistanceTo(_targetPos) < 42f) return true;
 
         var toTarget = _targetPos - _lastPos;

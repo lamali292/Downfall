@@ -8,11 +8,10 @@ public partial class NShockWaveVfx : Node2D
 {
     private Color _color;
     private int _count = 40;
-
-    // No more ScenePath or PreloadManager.Cache.GetScene needed
+    
     public static NShockWaveVfx Create(Vector2 position, Color color)
     {
-        var vfx = new NShockWaveVfx(); // Standard C# instantiation
+        var vfx = new NShockWaveVfx();
         vfx.GlobalPosition = position;
         vfx._color = color;
         return vfx;
@@ -20,7 +19,6 @@ public partial class NShockWaveVfx : Node2D
 
     public override void _Ready()
     {
-        // Use Godot's built-in Task runner or your TaskHelper
         _ = PlaySequence();
     }
 
@@ -38,8 +36,6 @@ public partial class NShockWaveVfx : Node2D
         {
             var speed = (float)GD.RandRange(1000.0f, 1300.0f);
             var delay = (float)GD.RandRange(0.0f, 0.2f);
-
-            // Use the new sceneless factory
             var p = NBlurWaveParticle.Create();
             AddChild(p);
             p.Setup(color, speed, delay);
