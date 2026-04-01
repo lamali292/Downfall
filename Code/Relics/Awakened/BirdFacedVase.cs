@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class BirdFacedVase : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

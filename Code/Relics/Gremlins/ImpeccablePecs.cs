@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class ImpeccablePecs : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class TagTeamwork : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

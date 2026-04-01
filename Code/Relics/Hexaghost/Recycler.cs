@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Hexaghost;
 public class Recycler : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

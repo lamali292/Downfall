@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.SlimeBoss;
 public class SlimySkull : SlimeBossRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

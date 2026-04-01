@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class MagicMallet : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

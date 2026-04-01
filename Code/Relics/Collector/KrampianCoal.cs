@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class KrampianCoal : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class WizardHat : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

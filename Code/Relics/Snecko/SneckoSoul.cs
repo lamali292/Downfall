@@ -12,4 +12,5 @@ public class SneckoSoul : SneckoRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<SuperSneckoSoul>();
+    // TODO
 }

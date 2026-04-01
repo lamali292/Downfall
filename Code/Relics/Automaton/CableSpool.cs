@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Automaton;
 public class CableSpool : AutomatonRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

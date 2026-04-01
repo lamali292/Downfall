@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class BottledBrain : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

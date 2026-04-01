@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Snecko;
 public class UnidentifiedEgg : SneckoRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

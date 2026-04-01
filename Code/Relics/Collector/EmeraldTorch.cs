@@ -12,4 +12,5 @@ public class EmeraldTorch : CollectorRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<PrismaticTorch>();
+    // TODO
 }

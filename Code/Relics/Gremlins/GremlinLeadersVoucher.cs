@@ -9,4 +9,5 @@ public class GremlinLeadersVoucher : GremlinsRelicModel
 {
     // TODO - Boss relic
     public override RelicRarity Rarity => RelicRarity.Ancient;
+    // TODO
 }

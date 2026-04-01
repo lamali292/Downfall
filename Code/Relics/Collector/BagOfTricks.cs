@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class BagOfTricks : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

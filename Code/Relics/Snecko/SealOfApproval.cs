@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Snecko;
 public class SealOfApproval : SneckoRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

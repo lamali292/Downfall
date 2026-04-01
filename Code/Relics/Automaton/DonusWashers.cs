@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Automaton;
 public class DonusWashers : AutomatonRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

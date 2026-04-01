@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class TomeOfPortalmancy : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

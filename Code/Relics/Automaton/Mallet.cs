@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Automaton;
 public class Mallet : AutomatonRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class MobLeadersCrown : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Guardian;
 public class CryoChamber : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

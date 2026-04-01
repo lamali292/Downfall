@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class ThimbleHelm : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

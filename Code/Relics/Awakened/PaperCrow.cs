@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class PaperCrow : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

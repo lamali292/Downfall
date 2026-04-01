@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Guardian;
 public class BaalorsLordlyPlate : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

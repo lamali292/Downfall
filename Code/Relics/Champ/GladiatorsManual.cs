@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class GladiatorsManual : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

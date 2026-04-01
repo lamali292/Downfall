@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class DessicatedHand : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

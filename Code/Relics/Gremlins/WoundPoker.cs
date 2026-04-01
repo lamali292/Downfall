@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Gremlins;
 public class WoundPoker : GremlinsRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

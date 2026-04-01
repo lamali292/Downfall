@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class Manabomb : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

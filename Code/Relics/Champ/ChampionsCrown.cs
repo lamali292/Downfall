@@ -12,4 +12,5 @@ public class ChampionsCrown : ChampRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<VictoriousCrown>();
+    // TODO
 }
