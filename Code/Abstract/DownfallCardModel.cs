@@ -36,12 +36,6 @@ public abstract class DownfallCardModel<T>(
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<T>();
 }
 
-public abstract class ChampCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Champ>(cost, type, rarity, targetType);
 
 public abstract class CollectorCardModel(
     int cost,
