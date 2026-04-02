@@ -58,7 +58,7 @@ public class AutomatonDisplay
 			.SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
 		tween.TweenProperty(cardNode, "scale", Vector2.One * NSequenceDisplay.SequencedCardScale, 0.3f)
 			.SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
-		cardNode.ToSignal(tween, Tween.SignalName.Finished);
+		await cardNode.ToSignal(tween, Tween.SignalName.Finished);
 		cardNode.QueueFree();
 	}
 }

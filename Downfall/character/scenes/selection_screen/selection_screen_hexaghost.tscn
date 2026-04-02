@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ub7edbc3nuhu"]
 
-[ext_resource type="Texture2D" uid="uid://d3rj5g0pevm3n" path="res://Downfall/images/selection_screen/bg_hexaghost.png" id="1_vru63"]
+[ext_resource type="Texture2D" uid="uid://d3rj5g0pevm3n" path="res://Downfall/images/selection_screen/background/bg_hexaghost.png" id="1_vru63"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3
