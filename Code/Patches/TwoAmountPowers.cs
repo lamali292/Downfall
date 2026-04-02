@@ -43,7 +43,7 @@ internal static class TwoAmountPowers
 
         amount2Label.Visible = true;
         amount2Label.SetTextAutoSize(text);
-        var fontSize = amount2Label.GetThemeFontSize(ThemeConstants.Label.fontSize);
+        var fontSize = amount2Label.GetThemeFontSize(ThemeConstants.Label.FontSize);
         amount2Label.Position = amount1Label.Position + new Vector2(0, -(fontSize + 2));
     }
 }
