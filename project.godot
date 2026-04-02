@@ -14,6 +14,18 @@ config/name="Downfall"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+FmodManager="*res://addons/fmod/FmodManager.gd"
+
+[debug]
+
+settings/gdscript/always_track_call_stacks=true
+
 [dotnet]
 
 project/assembly_name="Downfall"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/atlas_generator/plugin.cfg", "res://addons/dev_tools/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/mega_text/plugin.cfg", "res://addons/megacontentcreator/plugin.cfg")

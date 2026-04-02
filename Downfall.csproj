@@ -129,6 +129,7 @@
 
     <ItemGroup>
         <Folder Include="Code\Potions\"/>
+        <Folder Include="Code\Powers\Champ\" />
         <Folder Include="Downfall\character\scenes\card_trail\"/>
         <Folder Include="Downfall\character\scenes\icon\"/>
         <Folder Include="Downfall\character\scenes\merchant\"/>

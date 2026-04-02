@@ -1,0 +1,9 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://dgpmy6g1vcmca"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://8t2ablwr4p45" path="res://Downfall/animation/twig_slime_m/twig_slime_m.spatlas" id="1_3m2i8"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dqehotlnm1k0m" path="res://Downfall/animation/twig_slime_m/twig_slime_m.spskel" id="2_bclt8"]
+
+[resource]
+atlas_res = ExtResource("1_3m2i8")
+skeleton_file_res = ExtResource("2_bclt8")
+default_mix = 0.05
