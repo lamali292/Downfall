@@ -21,10 +21,11 @@ public class Crusher : AwakenedCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
     {
-        if (card.Owner != Owner) return;
+        if (card.Owner != Owner) return Task.CompletedTask;
         EnergyCost.AddUntilPlayed(-1);
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()

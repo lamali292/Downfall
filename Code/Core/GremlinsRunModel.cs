@@ -62,10 +62,10 @@ public class GremlinsRunModel : AbstractModel
 
 
     
-    public override async Task BeforeCombatStart()
+    public override Task BeforeCombatStart()
     {
         var combatState = CombatManager.Instance.DebugOnlyGetState();
-        if (combatState == null) return;
+        if (combatState == null) return Task.CompletedTask;
 
 
         
@@ -76,6 +76,7 @@ public class GremlinsRunModel : AbstractModel
             var state = new GremlinState();
             _states[player] = state;
 
+            if (player.PlayerCombatState == null) continue;
             foreach (var model in FormModels)
             {
                 var mutable = model.ToMutable();
@@ -94,5 +95,7 @@ public class GremlinsRunModel : AbstractModel
             if (creatureNode?.Visuals is NGremlinsCreatureVisuals visuals)
                 visuals.ArrangeGremlins(state.Gremlins);
         }
+
+        return Task.CompletedTask;
     }
 }

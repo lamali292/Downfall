@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://lo3kxuu3i25q"]
 
-[ext_resource type="Texture2D" uid="uid://hvvy13kj2qft" path="res://Downfall/images/selection_screen/bg_slime_boss.png" id="1_hvir1"]
+[ext_resource type="Texture2D" uid="uid://hvvy13kj2qft" path="res://Downfall/images/selection_screen/background/bg_slime_boss.png" id="1_hvir1"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3
