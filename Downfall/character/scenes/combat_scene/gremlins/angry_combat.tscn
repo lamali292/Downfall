@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dniitlb2ic0uy"]
+
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_mcfc6"]
+[ext_resource type="PackedScene" uid="uid://xy810srp83lq" path="res://Downfall/character/scenes/visuals/angry.tscn" id="4_cjgn5"]
+
+[node name="AngryCombat" type="Node2D"]
+script = ExtResource("1_mcfc6")
+
+[node name="Visuals" parent="." instance=ExtResource("4_cjgn5")]
+preview_animation = "idle"
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -33.0
+offset_top = -204.0
+offset_right = 38.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -78)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, -134)

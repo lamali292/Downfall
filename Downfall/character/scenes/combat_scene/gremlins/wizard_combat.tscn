@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dee6sutw6nbsq"]
+
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_m7krg"]
+[ext_resource type="PackedScene" uid="uid://dky2244g821kb" path="res://Downfall/character/scenes/visuals/wizard.tscn" id="3_8tnlq"]
+
+[node name="WizardCombat" type="Node2D"]
+script = ExtResource("1_m7krg")
+
+[node name="Visuals" parent="." instance=ExtResource("3_8tnlq")]
+preview_animation = "animation"
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(31.69, -1)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -38.0
+offset_top = -204.0
+offset_right = 19.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -78)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, -134)

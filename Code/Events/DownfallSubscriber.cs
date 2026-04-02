@@ -10,6 +10,9 @@ public static class DownfallSubscriber
 {
     private static readonly AwakenedModel AwakenedModel = ModelDb.GetById<AwakenedModel>(ModelDb.GetId<AwakenedModel>());
     private static readonly AutomatonModel AutomatonModel = ModelDb.GetById<AutomatonModel>(ModelDb.GetId<AutomatonModel>());
+    private static readonly GremlinsModel GremlinsModel = ModelDb.GetById<GremlinsModel>(ModelDb.GetId<GremlinsModel>());
+    private static readonly GremlinsRunModel GremlinsRunModel = ModelDb.GetById<GremlinsRunModel>(ModelDb.GetId<GremlinsRunModel>());
+
     public static void Subscribe()
     {
         // Tell the game: "When a run starts, call 'CollectModels' to find my hook listeners."
@@ -19,11 +22,11 @@ public static class DownfallSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        return [AwakenedModel, AutomatonModel];
+        return [AwakenedModel, AutomatonModel,GremlinsModel];
     }
 
     private static IEnumerable<AbstractModel> CollectModels(RunState runState)
     {
-        return [AwakenedModel, AutomatonModel];
+        return [AwakenedModel, AutomatonModel, GremlinsRunModel];
     }
 }

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://duurt4o4sg58b"]
+
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_u5ke6"]
+[ext_resource type="PackedScene" uid="uid://r7vansx7lo70" path="res://Downfall/character/scenes/visuals/fat.tscn" id="6_oro81"]
+
+[node name="FatCombat" type="Node2D"]
+script = ExtResource("1_u5ke6")
+
+[node name="Visuals" parent="." instance=ExtResource("6_oro81")]
+preview_animation = "animation"
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = -204.0
+offset_right = 36.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -78)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, -134)

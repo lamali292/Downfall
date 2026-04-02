@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ry0tpaq2bgps"]
+
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_kpqvy"]
+[ext_resource type="PackedScene" uid="uid://bje6ndpj0ya1x" path="res://Downfall/character/scenes/visuals/shield.tscn" id="2_4jb0q"]
+
+[node name="ShieldCombat" type="Node2D"]
+script = ExtResource("1_kpqvy")
+
+[node name="Visuals" parent="." instance=ExtResource("2_4jb0q")]
+preview_animation = "idle"
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -36.0
+offset_top = -204.0
+offset_right = 26.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -78)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, -134)
