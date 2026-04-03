@@ -19,7 +19,7 @@ public class Victuals : AwakenedCardModel, IChantable
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Chant);
     }
-    
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

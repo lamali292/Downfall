@@ -21,7 +21,6 @@ public class Spellbinder : AwakenedCardModel
         await MyCommonActions.ApplySelf<SpellbinderPower>(this);
     }
 
-  
 
     protected override void OnUpgrade()
     {

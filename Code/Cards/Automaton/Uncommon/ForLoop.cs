@@ -6,7 +6,6 @@ using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -19,7 +18,7 @@ public class ForLoop : AutomatonCardModel
         WithTip(DownfallKeyword.Encode);
         WithTip(typeof(MergePower));
     }
-   
+
     protected override bool HasEnergyCostX => true;
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)

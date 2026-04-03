@@ -3,30 +3,27 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Events;
-using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class ForceShield : AutomatonCardModel, IOnCompile
 {
+    private int _functionsCreated;
+
     public ForceShield() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12);
         WithTip(DownfallKeyword.Encode);
         WithTip(typeof(MergePower));
     }
-    private int _functionsCreated;
-    
+
     public override bool ShouldReceiveCombatHooks => true;
 
     public Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot,

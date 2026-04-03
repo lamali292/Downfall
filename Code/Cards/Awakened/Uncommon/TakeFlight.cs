@@ -19,14 +19,14 @@ public class TakeFlight : AwakenedCardModel, IChantable
         WithPower<BlurPower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardBlock(this, cardPlay);
-    }
-    
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BlurPower>(this, 1);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 
     protected override void OnUpgrade()

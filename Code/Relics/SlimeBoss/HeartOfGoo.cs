@@ -9,7 +9,10 @@ namespace Downfall.Code.Relics.SlimeBoss;
 public class HeartOfGoo : SlimeBossRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
-    public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<BlackHeartOfGoo>();
+
+    public override RelicModel GetUpgradeReplacement()
+    {
+        return ModelDb.Relic<BlackHeartOfGoo>();
+    }
     // TODO
 }

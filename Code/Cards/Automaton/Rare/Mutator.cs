@@ -6,8 +6,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
@@ -21,7 +19,6 @@ public class Mutator : AutomatonCardModel
     public Mutator() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithPower<StrengthPower>(2);
-
     }
 
     private async Task<CardModel?> PickOne(List<CardModel> cards)
@@ -34,7 +31,8 @@ public class Mutator : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue, Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
+            Owner.Creature,
             this);
 
         var statuses = PileType.Hand

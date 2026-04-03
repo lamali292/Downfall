@@ -21,7 +21,6 @@ public abstract class DownfallRelicPool<T> : CustomRelicPoolModel
         $"res://Downfall/character/energy_counters/text/text_{Title.ToSnakeCase()}_energy_icon.png";
 }
 
-
 public class AutomatonRelicPool : DownfallRelicPool<Automaton>;
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;

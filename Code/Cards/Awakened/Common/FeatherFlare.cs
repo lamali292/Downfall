@@ -18,16 +18,15 @@ public class FeatherFlare : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-       await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this, 1);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
     protected override void OnUpgrade()

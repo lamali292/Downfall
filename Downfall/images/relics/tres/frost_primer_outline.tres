@@ -1,5 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://xkr8526"]
-[ext_resource type="Texture2D" path="res://Downfall/images/relics/relic_outline_atlas.png" id="1"]
-[resource]
-atlas = ExtResource("1")
-region = Rect2(469, 190, 85, 85)

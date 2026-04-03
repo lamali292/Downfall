@@ -35,7 +35,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
     private ImageTexture? _cachedPortrait;
     private IReadOnlyList<AutomatonCardModel> _lastPortraitSource = [];
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
-    
+
     public override bool CanBeGeneratedInCombat => false;
     public override bool CanBeGeneratedByModifiers => false;
     public override int MaxUpgradeLevel => 0;

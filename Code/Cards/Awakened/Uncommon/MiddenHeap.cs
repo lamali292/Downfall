@@ -24,11 +24,9 @@ public class MiddenHeap : AwakenedCardModel
         var cardsToSelect = PileType.Discard.GetPile(Owner).Cards
             .Concat(PileType.Hand.GetPile(Owner).Cards).Where(c => c.Type is CardType.Status or CardType.Curse)
             .ToList();
-        var selected = await CardSelectCmd.FromSimpleGrid(ctx, cardsToSelect, Owner, new CardSelectorPrefs(SelectionScreenPrompt, 2));
-        foreach (var cardModel in selected)
-        {
-            await CardPileCmd.Add(cardModel, PileType.Hand);
-        }
+        var selected = await CardSelectCmd.FromSimpleGrid(ctx, cardsToSelect, Owner,
+            new CardSelectorPrefs(SelectionScreenPrompt, 2));
+        foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 
 

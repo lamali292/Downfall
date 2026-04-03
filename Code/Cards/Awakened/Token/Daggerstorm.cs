@@ -26,5 +26,4 @@ public class Daggerstorm : AwakenedCardModel
     {
         DynamicVars.Power<DaggerstormPower>().UpgradeValueBy(2);
     }
-    // TODO: Implement
 }

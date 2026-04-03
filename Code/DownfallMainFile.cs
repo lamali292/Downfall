@@ -1,12 +1,14 @@
 using System.Reflection;
-using BaseLib.Patches.Content;
-using Downfall.Code.Core;
+using BaseLib.Config;
+using Downfall.Code.Config;
 using Downfall.Code.Events;
+using Downfall.Code.Localization;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using SmartFormat;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.Code;
@@ -18,16 +20,20 @@ public partial class DownfallMainFile : Node
 
     public static Logger Logger { get; } =
         new(ModId, LogType.Generic);
-    
-    
+
+
     public static void Initialize()
     {
+        ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
-        
+
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
-        
+
+        Smart.Default.AddExtensions(new PowerIconFormatter());
+        foreach (var f in Smart.Default.GetFormatterExtensions())
+            Log.Info($"Formatter registered: {f.Name}");
         DownfallSubscriber.Subscribe();
     }
 }

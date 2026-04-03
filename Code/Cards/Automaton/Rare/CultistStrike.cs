@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,11 +9,8 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Rare;
 

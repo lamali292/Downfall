@@ -1,12 +1,9 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Awakened.Multiplayer;
 
@@ -19,6 +16,7 @@ public class BookOfSecrets : AwakenedCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithBlock(6);
     }
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -33,8 +31,8 @@ public class BookOfSecrets : AwakenedCardModel
         {
             var player = creature.Player;
             if (player == null || player == Owner) continue;
-    
-        
+
+
             var card = CombatState.CreateCard(ModelDb.GetById<CardModel>(nextSpell.Id), player);
             var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
             if (result.success)

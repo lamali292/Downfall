@@ -1,11 +1,9 @@
 ﻿using Downfall.Code.Abstract;
-using Downfall.Code.Cards.Awakened.Uncommon;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +19,12 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+
+
+    public string GetSecondAmount()
+    {
+        return $"{Owner.GetPowerAmount<StrengthPower>() + 4}";
+    }
 
     public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
@@ -48,15 +52,10 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
         }
     }
 
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+        CardModel? cardSource)
     {
-        if (power is StrengthPower && power.Owner == Owner)
-        {
-            InvokeDisplayAmountChanged();
-        }
+        if (power is StrengthPower && power.Owner == Owner) InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
-
-
-    public string GetSecondAmount() => $"{Owner.GetPowerAmount<StrengthPower>() + 4}";
 }

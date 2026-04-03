@@ -19,7 +19,7 @@ public class DarkEcho : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-       await CommonActions.ApplySelf<DarkEchoPower>(this, 1);
+        await CommonActions.ApplySelf<DarkEchoPower>(this, 1);
     }
 
     protected override void OnUpgrade()

@@ -16,7 +16,7 @@ public class Manastorm : AwakenedCardModel
         WithDamage(14);
         WithTip(DownfallKeyword.Conjure);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -24,7 +24,7 @@ public class Manastorm : AwakenedCardModel
         await AwakenedCmd.Conjure(Owner, CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4);

@@ -1,27 +1,15 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
-using Downfall.Code.Commands;
 using Downfall.Code.Core;
-using Downfall.Code.Displays;
-using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Relics.Awakened;
-using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Character;
-
 
 public class Awakened : DownfallCharacterModel
 {
@@ -69,25 +57,20 @@ public class Awakened : DownfallCharacterModel
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        var idleState = new AnimState("Idle_1", true);
-        var hitState = new AnimState("Hit");
-        var attackState = new AnimState("Attack_1");
-        var awakenedIdle = new AnimState("Idle_2", true);
+        var idleState     = new AnimState("Idle_1", true);
+        var hitState      = new AnimState("Hit");
+        var attackState   = new AnimState("Attack_1");
+        var awakenedIdle  = new AnimState("Idle_2", true);
         var awakenedAttack = new AnimState("Attack_2");
-        var awakenedHit = new AnimState("Hit");
-
-        hitState.NextState = idleState;
-        attackState.NextState = idleState;
-        awakenedAttack.NextState = awakenedIdle;
-        awakenedHit.NextState = awakenedIdle;
+        var awakenedHit   = new AnimState("Hit");
 
         var animator = new CreatureAnimator(idleState, controller);
-        animator.AddAnyState("Idle", idleState, () => !IsAwakened());
-        animator.AddAnyState("Idle", awakenedIdle, IsAwakened);
-        animator.AddAnyState("Attack", attackState, () => !IsAwakened());
+        animator.AddAnyState("Idle",   idleState,      () => !IsAwakened());
+        animator.AddAnyState("Idle",   awakenedIdle,   IsAwakened);
+        animator.AddAnyState("Attack", attackState,    () => !IsAwakened());
         animator.AddAnyState("Attack", awakenedAttack, IsAwakened);
-        animator.AddAnyState("Hit", hitState, () => !IsAwakened());
-        animator.AddAnyState("Hit", awakenedHit, IsAwakened);
+        animator.AddAnyState("Hit",    hitState,       () => !IsAwakened());
+        animator.AddAnyState("Hit",    awakenedHit,    IsAwakened);
 
         return animator;
 
@@ -95,12 +78,7 @@ public class Awakened : DownfallCharacterModel
         {
             return AwakenedModel
                 .IsAwakened(CombatManager.Instance.DebugOnlyGetState()?.Players
-                .FirstOrDefault(p => p.Character == this));
+                    .FirstOrDefault(p => p.Character == this));
         }
     }
-    
-    
-    
-    
-    
 }

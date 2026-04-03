@@ -2,14 +2,10 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Displays;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -24,7 +20,7 @@ public class Refactor : AutomatonCardModel
         WithTip(DownfallKeyword.Scry);
         WithTip(DownfallKeyword.Status);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);

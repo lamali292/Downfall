@@ -25,9 +25,9 @@ public class RippedDoll : AwakenedRelicModel
     }
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress && Status == RelicStatus.Normal;
-    
+
     */
-    
+
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 2)
@@ -37,6 +37,8 @@ public class RippedDoll : AwakenedRelicModel
     }
 
 
-    
-    public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<ShreddedDoll>();
+    public override RelicModel GetUpgradeReplacement()
+    {
+        return ModelDb.Relic<ShreddedDoll>();
+    }
 }

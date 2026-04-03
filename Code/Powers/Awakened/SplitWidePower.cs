@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,7 +15,8 @@ public class SplitWidePower : AwakenedPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
 
-    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props,
+    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer,
+        DamageResult result, ValueProp props,
         Creature target, CardModel? cardSource)
     {
         if (target != Owner || Applier == null) return;

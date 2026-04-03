@@ -1,26 +1,26 @@
 ﻿using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Core;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Events;
 
 public static class DownfallHook
 {
-    
     public static async Task OnDrained(Player player, int amount)
     {
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
         foreach (var model in combatState.IterateHookListeners().OfType<IOnDrained>())
-        {
             await model.OnDrained(player, amount);
-        }
     }
-    
+
     public static async Task OnCardChanted(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         var combatState = card.CombatState;
@@ -33,7 +33,7 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
+
     public static async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         var combatState = player.Creature.CombatState;
@@ -46,11 +46,10 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
-    public static async Task OnCompile(PlayerChoiceContext ctx, CombatState combatState, 
+
+    public static async Task OnCompile(PlayerChoiceContext ctx, CombatState combatState,
         List<AutomatonCardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
     {
-        
         foreach (var model in combatState.IterateHookListeners().OfType<IOnCompile>())
         {
             var abstractModel = (AbstractModel)model;
@@ -59,7 +58,7 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
+
     public static async Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
         var combatState = player.Creature.CombatState;
@@ -72,10 +71,9 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
+
     public static async Task OnCardEncoded(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
-        
         var combatState = card.CombatState;
         if (combatState == null) return;
         foreach (var model in combatState.IterateHookListeners().OfType<IOnEncode>())
@@ -86,8 +84,42 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
+    
+    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStance oldStance, ChampStance newStance)
+    {
+        var combatState = player.Creature.CombatState;
+        if (combatState == null) return;
+        
+        Callable.From(() =>
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+            if (creatureNode == null) return;
 
-    
-    
+            var animState = creatureNode.SpineAnimation.GetAnimationState();
+            var currentAnim = animState.GetCurrent(0)?.GetAnimation().GetName();
+
+            string? trigger = currentAnim switch
+            {
+                "Idle" or "IdleBerserker" or "IdleDefensive" or "IdleUltimate" or "IdleGladiator" => "Idle",
+                _ => null
+            };
+
+            if (trigger == null) return;
+
+            creatureNode.SetAnimationTrigger(trigger);
+            animState.GetCurrent(0)?.SetMixDuration(0.3f);
+
+        }).CallDeferred();
+        
+        foreach (var model in combatState.IterateHookListeners().OfType<IOnStanceChange>())
+        {
+            var abstractModel = (AbstractModel)model;
+            ctx.PushModel(abstractModel);
+            await model.OnStanceChange(ctx, player, oldStance, newStance);
+            ctx.PopModel(abstractModel);
+        }
+    }
+
+
     // add more custom hooks here...
 }

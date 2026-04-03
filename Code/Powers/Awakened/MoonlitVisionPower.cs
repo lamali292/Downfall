@@ -21,7 +21,10 @@ public class MoonlitVisionPower : AwakenedPowerModel, IHasSecondAmount
                     e.CardPlay.Card is ISpell &&
                     e.CardPlay.Card.Owner == Owner.Player);
 
-    public string GetSecondAmount() => $"{Math.Max(Amount-SpellsPlayedThisTurn, 0)}";
+    public string GetSecondAmount()
+    {
+        return $"{Math.Max(Amount - SpellsPlayedThisTurn, 0)}";
+    }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
@@ -40,11 +43,8 @@ public class MoonlitVisionPower : AwakenedPowerModel, IHasSecondAmount
 
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature == Owner)
-        {
-            InvokeDisplayAmountChanged();
-        }
-        
+        if (player.Creature == Owner) InvokeDisplayAmountChanged();
+
         return Task.CompletedTask;
     }
 }

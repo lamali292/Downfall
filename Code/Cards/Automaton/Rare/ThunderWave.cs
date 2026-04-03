@@ -5,9 +5,7 @@ using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Rare;
 
@@ -20,7 +18,7 @@ public class ThunderWave : AutomatonCardModel
         WithPower<BufferPower>(1);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);

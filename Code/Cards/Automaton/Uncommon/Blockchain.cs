@@ -8,8 +8,6 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
@@ -23,7 +21,7 @@ public class Blockchain : AutomatonCardModel, IEncodable,
         WithPower<BlurPower>(1);
         WithVar("BlurCompilePower", 1);
         WithTip(DownfallKeyword.Encode);
-        WithTip(new TooltipSource(card => 
+        WithTip(new TooltipSource(card =>
             card.IsUpgraded ? DownfallKeyword.Compile.ToHoverTip() : null!));
     }
 

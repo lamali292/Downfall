@@ -6,10 +6,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Token;
 
@@ -21,13 +19,13 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
         WithDamage(12);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
-    
+
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
         CardCmd.Upgrade(this, CardPreviewStyle.None);
         return Task.CompletedTask;
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

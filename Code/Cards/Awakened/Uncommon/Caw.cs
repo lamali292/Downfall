@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
@@ -40,7 +41,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     {
         await CommonActions
             .CardAttack(this, cardPlay, sfx: "event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp").Execute(ctx);
-        TalkCmd.Play(CawCawDialogue, Owner.Creature);
+        TalkCmd.Play(CawCawDialogue, Owner.Creature, VfxColor.Blue);
     }
 
 

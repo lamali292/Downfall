@@ -14,7 +14,7 @@ public class Batch : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
     }
-  
+
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

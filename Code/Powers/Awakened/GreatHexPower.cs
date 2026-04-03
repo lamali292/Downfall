@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;

@@ -92,11 +92,11 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.3" PrivateAssets="All" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.5" PrivateAssets="All" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
-    
+
     <!--ItemGroup>
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
             <PrivateAssets>all</PrivateAssets>
@@ -129,7 +129,6 @@
 
     <ItemGroup>
         <Folder Include="Code\Potions\"/>
-        <Folder Include="Code\Powers\Champ\" />
         <Folder Include="Downfall\character\scenes\card_trail\"/>
         <Folder Include="Downfall\character\scenes\icon\"/>
         <Folder Include="Downfall\character\scenes\merchant\"/>

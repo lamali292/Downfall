@@ -11,25 +11,28 @@ public static class StringExtensions
         return Path.Join(DownfallMainFile.ModId, "images", "card_portraits", characterId.ToLowerInvariant(), path);
     }
 
+
     private static string PowerImageCharacterPath(this string path, string characterId)
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "small", path);
+        return path.DownfallPowerImagePath();
+        //return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "small", path);
     }
 
     private static string BigPowerImageCharacterPath(this string path, string characterId)
     {
+        return path.DownfallBigPowerImagePath();
         return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
     }
 
 
     public static string DownfallPowerImagePath(this string path)
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", "downfall", "small", path);
+        return Path.Join(DownfallMainFile.ModId, "images", "atlases", "power_atlas.sprites", path);
     }
 
     public static string DownfallBigPowerImagePath(this string path)
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", "downfall", "big", path);
+        return Path.Join(DownfallMainFile.ModId, "images", "powers", path);
     }
 
 
@@ -48,38 +51,17 @@ public static class StringExtensions
     {
         return path.BigPowerImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
-    
-    private static string BigRelicImageCharacterPath(this string path, string characterId)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "relics", characterId.ToLowerInvariant(), "big", path);
-    }
-    
-    private static string TresRelicImageCharacterPath(this string path, string characterId)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "relics", characterId.ToLowerInvariant(), "tres", path);
-    }
 
-    
     public static string BigRelicImagePath(this string path)
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "relics", "big", path);
-
+        return Path.Join(DownfallMainFile.ModId, "images", "relics", path);
     }
 
     public static string TresRelicImagePath(this string path)
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "relics", "tres", path);
-    }
-    
-    public static string BigRelicImagePath<T>(this string path) where T : DownfallCharacterModel
-    {
-           return path.BigRelicImageCharacterPath(ModelDb.Character<T>().CharId!);
+        return Path.Join(DownfallMainFile.ModId, "images", "atlases", "relic_atlas.sprites", path);
     }
 
-    public static string TresRelicImagePath<T>(this string path) where T : DownfallCharacterModel
-    {
-        return path.TresRelicImageCharacterPath(ModelDb.Character<T>().CharId!);
-    }
 
     public static string RemoveSuffix(this string s, string suffix)
     {
@@ -89,8 +71,4 @@ public static class StringExtensions
             ? s[..lastIndex]
             : s;
     }
-    
-
-   
-    
 }

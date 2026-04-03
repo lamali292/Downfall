@@ -15,7 +15,7 @@ public class AutomatonModel : AbstractModel
 {
     public override bool ShouldReceiveCombatHooks => true;
 
-    
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -24,12 +24,9 @@ public class AutomatonModel : AbstractModel
         var combatRoomNode = NCombatRoom.Instance;
         if (combatRoomNode == null) return Task.CompletedTask;
         foreach (var player in state.Players)
-        {
             if (player.Character is Automaton)
-            {
                 SetupAutomatonUi(combatRoomNode, player);
-            }
-        }
+
         return Task.CompletedTask;
     }
 
@@ -50,5 +47,4 @@ public class AutomatonModel : AbstractModel
         AutomatonDisplay.Register(player, display);
         display.Refresh();
     }
-    
 }

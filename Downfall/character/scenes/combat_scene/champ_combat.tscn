@@ -7,6 +7,7 @@
 script = ExtResource("1_o1y6q")
 
 [node name="Visuals" parent="." instance=ExtResource("1_iqfof")]
+preview_animation = "IdleUltimate"
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]

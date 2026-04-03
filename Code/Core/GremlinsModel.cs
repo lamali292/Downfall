@@ -2,14 +2,12 @@
 using Downfall.Code.Commands;
 using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Core;
@@ -24,7 +22,8 @@ public class GremlinsModel : AbstractModel
         for (var i = 0; i < state.Gremlins.Count; i++)
         {
             var g = state.Gremlins[i];
-            GD.Print($"  [{i}] {g.Name} hp={g.CurrentHp}/{g.MaxHp} alive={g.IsAlive} petOwner={g.PetOwner?.Character?.GetType().Name ?? "null"}");
+            GD.Print(
+                $"  [{i}] {g.Name} hp={g.CurrentHp}/{g.MaxHp} alive={g.IsAlive} petOwner={g.PetOwner?.Character?.GetType().Name ?? "null"}");
         }
     }
 
@@ -37,7 +36,8 @@ public class GremlinsModel : AbstractModel
         var state = GremlinsRunModel.GetState(originalTarget.Player);
         var active = state.Active;
 
-        GD.Print($"[Gremlins:ModifyUnblockedDamageTarget] originalTarget={originalTarget.Name} amount={amount} dealer={dealer?.Name ?? "null"}");
+        GD.Print(
+            $"[Gremlins:ModifyUnblockedDamageTarget] originalTarget={originalTarget.Name} amount={amount} dealer={dealer?.Name ?? "null"}");
         LogState("ModifyUnblockedDamageTarget", state);
         GD.Print($"  -> active={active?.Name ?? "null"} isAlive={active?.IsAlive}");
 
@@ -50,7 +50,8 @@ public class GremlinsModel : AbstractModel
         if (target.Player?.Character is not Gremlins)
             return amount;
 
-        GD.Print($"[Gremlins:ModifyHpLostAfterOsty] target={target.Name} amount={amount} -> blocking overkill, returning 0");
+        GD.Print(
+            $"[Gremlins:ModifyHpLostAfterOsty] target={target.Name} amount={amount} -> blocking overkill, returning 0");
         return 0m;
     }
 
@@ -59,7 +60,7 @@ public class GremlinsModel : AbstractModel
         ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         var gremlin = result.Receiver;
-
+        if (gremlin.Player?.Character is not Gremlins) return;
         GD.Print($"[Gremlins:AfterDamageReceived] target={target.Name} result.Receiver={gremlin.Name}");
         GD.Print($"  result.UnblockedDamage={result.UnblockedDamage} WasTargetKilled={result.WasTargetKilled}");
         GD.Print($"  gremlin.PetOwner={gremlin.PetOwner?.Character?.GetType().Name ?? "null"}");
@@ -132,9 +133,11 @@ public class GremlinsModel : AbstractModel
         return Task.CompletedTask;
     }
 
-    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
+        bool wasRemovalPrevented, float deathAnimLength)
     {
-        GD.Print($"[Gremlins:AfterDeath] creature={creature.Name} deathAnimLength={deathAnimLength} petOwner={creature.PetOwner?.Character?.GetType().Name ?? "null"}");
+        GD.Print(
+            $"[Gremlins:AfterDeath] creature={creature.Name} deathAnimLength={deathAnimLength} petOwner={creature.PetOwner?.Character?.GetType().Name ?? "null"}");
 
         if (creature.PetOwner?.Character is not Gremlins) return;
 
@@ -156,7 +159,7 @@ public class GremlinsModel : AbstractModel
         // GremlinsCmd.KillGremlin(player.Creature, gremlinIndex);
 
         // Small pause so the kill anim registers visually
-        
+
 
         var next = state.GetNextLivingIndex();
         GD.Print($"  next={next}");
@@ -167,6 +170,7 @@ public class GremlinsModel : AbstractModel
             await CreatureCmd.Kill(player.Creature, true);
             return;
         }
+
         await Cmd.CustomScaledWait(0.4f, 0.6f);
 
         state.ActiveIndex = next;
@@ -176,11 +180,14 @@ public class GremlinsModel : AbstractModel
 }
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.GetCurrentAnimationTimeRemaining))]
-class GremlinDeathAnimTimePatch
+internal class GremlinDeathAnimTimePatch
 {
     private static readonly HashSet<NCreature> _dyingGremlins = new();
 
-    public static void MarkAsDying(NCreature creature) => _dyingGremlins.Add(creature);
+    public static void MarkAsDying(NCreature creature)
+    {
+        _dyingGremlins.Add(creature);
+    }
 
     public static bool Prefix(NCreature __instance, ref float __result)
     {
@@ -192,7 +199,7 @@ class GremlinDeathAnimTimePatch
 }
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-class GremlinDeathAnimStartPatch
+internal class GremlinDeathAnimStartPatch
 {
     public static void Prefix(NCreature __instance)
     {

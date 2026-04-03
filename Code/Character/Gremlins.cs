@@ -4,9 +4,7 @@ using Downfall.Code.Nodes;
 using Downfall.Code.Relics.Gremlins;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.Code.Character;
@@ -26,12 +24,7 @@ public class Gremlins : DownfallCharacterModel
     public override int StartingHp => 72;
     public override int StartingGold => 99;
 
-    
-    public override NCreatureVisuals? CreateCustomVisuals()
-        => GD.Load<PackedScene>("res://Downfall/character/scenes/combat_scene/gremlins_combat.tscn")
-            .Instantiate<NGremlinsCreatureVisuals>();
-    
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeGremlins>(),
@@ -59,4 +52,11 @@ public class Gremlins : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<GremlinsCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<GremlinsPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GremlinsRelicPool>();
+
+
+    public override NCreatureVisuals? CreateCustomVisuals()
+    {
+        return GD.Load<PackedScene>("res://Downfall/character/scenes/combat_scene/gremlins_combat.tscn")
+            .Instantiate<NGremlinsCreatureVisuals>();
+    }
 }

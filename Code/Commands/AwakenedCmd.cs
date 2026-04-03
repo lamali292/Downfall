@@ -19,7 +19,7 @@ public static class AwakenedCmd
     {
         return AwakenedPile.Spellbook.GetPile(player) as AwakenedPile;
     }
-    
+
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {
@@ -41,10 +41,12 @@ public static class AwakenedCmd
         await chantable.PlayChantEffect(ctx, cardPlay);
         await DownfallHook.OnCardChanted(ctx, card, cardPlay);
     }
-    
-    public static bool CanConjure(Player player) 
-        => !player.Creature.Powers.Any(p => p is BurnoutPower);
-    
+
+    public static bool CanConjure(Player player)
+    {
+        return !player.Creature.Powers.Any(p => p is BurnoutPower);
+    }
+
     public static async Task<CardModel?> Conjure(
         Player player,
         CombatState state)
@@ -78,7 +80,7 @@ public static class AwakenedCmd
         Player player,
         CardModel spell,
         AwakenedPile spellbook,
-        Rng rng) 
+        Rng rng)
     {
         spellbook.RemoveInternal(spell);
         spellbook.SetNextSpell(rng);

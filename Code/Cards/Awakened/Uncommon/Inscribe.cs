@@ -1,11 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
-using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
-using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +16,6 @@ public class Inscribe : AwakenedCardModel
 {
     public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -28,7 +25,7 @@ public class Inscribe : AwakenedCardModel
             await AwakenedCmd.Conjure(Owner, CombatState);
 
         var combatState = Owner.Creature.CombatState!;
-        
+
         // Wir erstellen die Auswahlmöglichkeiten
         var choices = new List<CardModel>
         {
@@ -43,16 +40,14 @@ public class Inscribe : AwakenedCardModel
 
         var spellbook = AwakenedCmd.GetSpellbook(Owner);
         if (spellbook == null) return;
-        
-            spellbook.AddPersistentType(chosen.GetType());
-            spellbook.AddPersistentType(chosen.GetType());
-            
-            var dupe = chosen.CreateClone();
-            spellbook.AddInternal(chosen);
-            spellbook.AddInternal(dupe);
-            
-            AwakenedDisplay.Refresh(Owner);
-        
+
+        spellbook.AddPersistentType(chosen.GetType());
+        spellbook.AddPersistentType(chosen.GetType());
+
+        var dupe = chosen.CreateClone();
+        spellbook.AddInternal(chosen);
+        spellbook.AddInternal(dupe);
+
+        AwakenedDisplay.Refresh(Owner);
     }
- 
 }

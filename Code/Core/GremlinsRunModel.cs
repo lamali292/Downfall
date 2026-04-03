@@ -10,8 +10,6 @@ namespace Downfall.Code.Core;
 
 public class GremlinsRunModel : AbstractModel
 {
-    public override bool ShouldReceiveCombatHooks => true;
-
     private static readonly CustomMonsterModel[] FormModels =
     [
         ModelDb.Monster<ShieldGremlin>(),
@@ -20,55 +18,36 @@ public class GremlinsRunModel : AbstractModel
         ModelDb.Monster<SneakGremlin>(),
         ModelDb.Monster<WizardGremlin>()
     ];
-    
-    public class GremlinState
-    {
-        public List<Creature> Gremlins { get; } = [];
-        public int ActiveIndex { get; set; }
-
-        public Creature? Active => Gremlins.ElementAtOrDefault(ActiveIndex);
-
-        public int GetNextLivingIndex()
-        {
-            var count = Gremlins.Count;
-            for (var i = 1; i < count; i++)
-            {
-                var next = (ActiveIndex + i) % count;
-                if (Gremlins[next].IsAlive) return next;
-            }
-            return -1;
-        }
-
-        public bool HasLivingGremlins => Gremlins.Any(g => g.IsAlive);
-    }
 
     private static readonly Dictionary<Player, GremlinState> _states = new();
+    public override bool ShouldReceiveCombatHooks => true;
 
     public static GremlinState GetState(Player player)
     {
-        if (!_states.TryGetValue(player, out var state))
-        {
-            state = new GremlinState();
-            _states[player] = state;
-        }
+        if (_states.TryGetValue(player, out var state)) return state;
+        state = new GremlinState();
+        _states[player] = state;
+
         return state;
     }
 
     public static List<Creature>? GetGremlins(Player player)
-        => _states.TryGetValue(player, out var s) ? s.Gremlins : null;
+    {
+        return _states.TryGetValue(player, out var s) ? s.Gremlins : null;
+    }
 
     public static int GetActiveIndex(Player player)
-        => _states.TryGetValue(player, out var s) ? s.ActiveIndex : 0;
+    {
+        return _states.TryGetValue(player, out var s) ? s.ActiveIndex : 0;
+    }
 
 
-    
     public override Task BeforeCombatStart()
     {
         var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return Task.CompletedTask;
 
 
-        
         foreach (var player in combatState.Players)
         {
             if (player.Character is not Gremlins) continue;
@@ -97,5 +76,27 @@ public class GremlinsRunModel : AbstractModel
         }
 
         return Task.CompletedTask;
+    }
+
+    public class GremlinState
+    {
+        public List<Creature> Gremlins { get; } = [];
+        public int ActiveIndex { get; set; }
+
+        public Creature? Active => Gremlins.ElementAtOrDefault(ActiveIndex);
+
+        public bool HasLivingGremlins => Gremlins.Any(g => g.IsAlive);
+
+        public int GetNextLivingIndex()
+        {
+            var count = Gremlins.Count;
+            for (var i = 1; i < count; i++)
+            {
+                var next = (ActiveIndex + i) % count;
+                if (Gremlins[next].IsAlive) return next;
+            }
+
+            return -1;
+        }
     }
 }

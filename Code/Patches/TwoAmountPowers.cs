@@ -10,7 +10,6 @@ namespace Downfall.Code.Patches;
  * Credits to kiooeht, this displays a second amount for powers that require tracking multiple values.
  * https://github.com/erasels/Minty-Spire-2/blob/main/src/combat/TwoAmountPowers.cs
  */
-
 [HarmonyPatch(typeof(NPower))]
 internal static class TwoAmountPowers
 {

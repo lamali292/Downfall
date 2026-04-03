@@ -5,7 +5,6 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -16,7 +15,7 @@ public class Allocate : AutomatonCardModel
     {
         WithTip(DownfallKeyword.Status);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var statusCount = PileType.Draw.GetPile(Owner).Cards

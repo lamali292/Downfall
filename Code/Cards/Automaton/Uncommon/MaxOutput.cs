@@ -6,7 +6,6 @@ using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;

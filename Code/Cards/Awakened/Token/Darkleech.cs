@@ -29,7 +29,7 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
         CardCmd.Upgrade(this, CardPreviewStyle.None);
         return Task.CompletedTask;
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

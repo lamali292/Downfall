@@ -11,17 +11,19 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class AwakeningPower : AwakenedPowerModel
 {
+    private bool _isReviving;
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override bool ShouldAllowHitting(Creature creature)
-        => creature != Owner || !_isReviving;
+    {
+        return creature != Owner || !_isReviving;
+    }
 
     public override bool ShouldCreatureBeRemovedFromCombatAfterDeath(Creature creature)
-        => creature != Owner || !_isReviving;
-
-    
-    private bool _isReviving;
+    {
+        return creature != Owner || !_isReviving;
+    }
 
     public override bool ShouldDie(Creature creature)
     {
@@ -42,21 +44,17 @@ public class AwakeningPower : AwakenedPowerModel
         await PowerCmd.Remove<FrailPower>(Owner);
         await CreatureCmd.Heal(Owner, Amount);
         _isReviving = false;
-        
-        if (Owner.Player != null) 
+
+        if (Owner.Player != null)
             await AwakenedCmd.Awaken(Owner.Player, choiceContext);
 
-        
-        await PowerCmd.Remove(this);
 
-       
+        await PowerCmd.Remove(this);
     }
-    
+
     public override async Task AfterCombatEnd(CombatRoom room)
     {
         if (Owner.IsAlive) return;
         await CreatureCmd.Heal(Owner, Amount);
     }
-
-  
 }

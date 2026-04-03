@@ -17,6 +17,5 @@ public class StormRulerPower : AwakenedPowerModel
     {
         if (dealer != Owner || cardSource is not Thunderbolt) return 0;
         return Amount;
-
     }
 }

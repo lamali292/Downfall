@@ -27,7 +27,8 @@ public class SpreadingSpores : AwakenedCardModel
         var card = CreateClone();
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, true, CardPilePosition.Random);
         if (result.success)
-            CardCmd.PreviewCardPileAdd(result, 0.1f, CardPreviewStyle.MessyLayout); }
+            CardCmd.PreviewCardPileAdd(result, 0.1f, CardPreviewStyle.MessyLayout);
+    }
 
 
     protected override void OnUpgrade()

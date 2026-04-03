@@ -16,7 +16,7 @@ public class Decompile : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
     }
- 
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;

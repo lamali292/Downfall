@@ -60,7 +60,8 @@
         "AwakenedPowerModel",
         "GuardianPowerModel",
         "DownfallPowerModel",
-        "TemporaryPower"
+        "TemporaryPower",
+        "ChampPowerModel"
       ],
       "fields": [
         {

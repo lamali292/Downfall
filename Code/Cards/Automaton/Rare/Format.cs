@@ -7,7 +7,6 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Downfall.Code.Cards.Automaton.Rare;
 
@@ -19,7 +18,7 @@ public class Format : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Encode);
     }
-  
+
     protected override bool HasEnergyCostX => true;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Events;
-using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,21 +15,17 @@ public class Immolation : AwakenedCardModel, IOnDrained
     {
         WithBlock(13);
         WithKeywords(CardKeyword.Retain);
+    }
 
+    public Task OnDrained(Player player, int amount)
+    {
+        if (player == Owner) EnergyCost.AddUntilPlayed(-amount);
+        return Task.CompletedTask;
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    public Task OnDrained(Player player, int amount)
-    {
-        if (player == Owner)
-        {
-            EnergyCost.AddUntilPlayed(-amount);
-        }
-        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()

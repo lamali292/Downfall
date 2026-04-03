@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Commands;
-using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -30,86 +29,86 @@ public partial class NSpellbookDisplay : Control
         };
     }
 
-   public void Refresh()
-{
-    if (_trackedPlayer == null) return;
-    
-    foreach (var icon in _iconNodes) icon.QueueFree();
-    _iconNodes.Clear();
-
-    var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
-    if (spellbook == null) return;
-    
-    var groupedCards = spellbook.Cards
-        .GroupBy(c => c.Id) 
-        .ToList();
-
-    for (var i = 0; i < groupedCards.Count; i++)
+    public void Refresh()
     {
-        var group = groupedCards[i];
-        var firstCard = group.First(); 
-        var count = group.Count();
-        
-        if (firstCard is not ISpell spell) continue;
+        if (_trackedPlayer == null) return;
 
-        var iconPath = spell.SpellIconPath;
-        if (!ResourceLoader.Exists(iconPath)) continue;
-        
-        var isNext = firstCard == spellbook.NextSpell || group.Contains(spellbook.NextSpell);
-        
-        var icon = new TextureRect
+        foreach (var icon in _iconNodes) icon.QueueFree();
+        _iconNodes.Clear();
+
+        var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
+        if (spellbook == null) return;
+
+        var groupedCards = spellbook.Cards
+            .GroupBy(c => c.Id)
+            .ToList();
+
+        for (var i = 0; i < groupedCards.Count; i++)
         {
-            Texture = ResourceLoader.Load<Texture2D>(iconPath),
-            StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-            CustomMinimumSize = new Vector2(IconSize + (isNext ? 12 : 0), IconSize + (isNext ? 12 : 0)),
-            Position = new Vector2(i * IconDistance - (isNext ? 6 : 0), isNext ? -6 : 0),
-            MouseFilter = MouseFilterEnum.Stop
-        };
-        
-        if (count > 1)
-        {
-            var label = new Label
+            var group = groupedCards[i];
+            var firstCard = group.First();
+            var count = group.Count();
+
+            if (firstCard is not ISpell spell) continue;
+
+            var iconPath = spell.SpellIconPath;
+            if (!ResourceLoader.Exists(iconPath)) continue;
+
+            var isNext = firstCard == spellbook.NextSpell || group.Contains(spellbook.NextSpell);
+
+            var icon = new TextureRect
             {
-                Text = $"{count}x",
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Size = icon.CustomMinimumSize,
-                Position = new Vector2(4, 4), // Offset slightly from the corner
+                Texture = ResourceLoader.Load<Texture2D>(iconPath),
+                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                CustomMinimumSize = new Vector2(IconSize + (isNext ? 12 : 0), IconSize + (isNext ? 12 : 0)),
+                Position = new Vector2(i * IconDistance - (isNext ? 6 : 0), isNext ? -6 : 0),
+                MouseFilter = MouseFilterEnum.Stop
             };
-            
-            label.AddThemeColorOverride("font_outline_color", Colors.Black);
-            label.AddThemeConstantOverride("outline_size", 4);
-            
-            icon.AddChild(label);
+
+            if (count > 1)
+            {
+                var label = new Label
+                {
+                    Text = $"{count}x",
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Size = icon.CustomMinimumSize,
+                    Position = new Vector2(4, 4) // Offset slightly from the corner
+                };
+
+                label.AddThemeColorOverride("font_outline_color", Colors.Black);
+                label.AddThemeConstantOverride("outline_size", 4);
+
+                icon.AddChild(label);
+            }
+
+            icon.MouseEntered += () =>
+            {
+                var tip = HoverTipFactory.FromCard(firstCard);
+                NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
+            };
+            icon.MouseExited += () => NHoverTipSet.Remove(icon);
+
+            AddChild(icon);
+            _iconNodes.Add(icon);
         }
-        
-        icon.MouseEntered += () =>
-        {
-            var tip = HoverTipFactory.FromCard(firstCard);
-            NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
-        };
-        icon.MouseExited += () => NHoverTipSet.Remove(icon);
-
-        AddChild(icon);
-        _iconNodes.Add(icon);
     }
-}
 
-public override void _Process(double delta)
-{
-    if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
-
-    _bobTime += (float)delta;
-    for (var i = 0; i < _bobOffsets.Length; i++)
-        _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 4f;
-    
-    for (var i = 0; i < _iconNodes.Count; i++)
+    public override void _Process(double delta)
     {
-        var isNext = _iconNodes[i].CustomMinimumSize.X > IconSize; // Check if it's the "Next" spell
-        _iconNodes[i].Position = new Vector2(
-            i * IconDistance - (isNext ? 6 : 0), 
-            (i < _bobOffsets.Length ? _bobOffsets[i] : 0f) - (isNext ? 6 : 0)
-        );
+        if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
+
+        _bobTime += (float)delta;
+        for (var i = 0; i < _bobOffsets.Length; i++)
+            _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 4f;
+
+        for (var i = 0; i < _iconNodes.Count; i++)
+        {
+            var isNext = _iconNodes[i].CustomMinimumSize.X > IconSize; // Check if it's the "Next" spell
+            _iconNodes[i].Position = new Vector2(
+                i * IconDistance - (isNext ? 6 : 0),
+                (i < _bobOffsets.Length ? _bobOffsets[i] : 0f) - (isNext ? 6 : 0)
+            );
+        }
     }
-}
 }

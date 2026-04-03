@@ -1,25 +1,24 @@
-﻿namespace Downfall.Code.Vfx;
-
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using System.Collections.Generic;
+
+namespace Downfall.Code.Vfx;
 
 public partial class NHemokinesisEffect : Node
 {
+    private float _duration = 0.5f;
+    private float _spawnInterval = 0.04f;
     private Vector2 _startPos;
     private Vector2 _targetPos;
-    private float _timer = 0f;
-    private float _spawnInterval = 0.04f;
-    private float _duration = 0.5f;
+    private float _timer;
 
     public static void Spawn(Vector2 start, Vector2 target)
     {
-        var manager = new NHemokinesisEffect 
-        { 
-            _startPos = start, 
-            _targetPos = target 
+        var manager = new NHemokinesisEffect
+        {
+            _startPos = start,
+            _targetPos = target
         };
-        
+
         NCombatRoom.Instance?.CombatVfxContainer.AddChild(manager);
     }
 
@@ -35,12 +34,9 @@ public partial class NHemokinesisEffect : Node
             var particle = NHemokinesisParticle.Create(_startPos, _targetPos);
             AddChild(particle);
         }
-        else 
+        else
         {
-            if (GetChildCount() == 0) 
-            {
-                QueueFree();
-            }
+            if (GetChildCount() == 0) QueueFree();
         }
     }
 }

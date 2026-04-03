@@ -1,7 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,14 +24,14 @@ public class IntensifyPower : AwakenedPowerModel
             modifiedCost = originalCost;
             return false;
         }
+
         modifiedCost = 0M;
         return true;
     }
-    
+
     public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
         await PowerCmd.Decrement(this);
     }
-
 }
