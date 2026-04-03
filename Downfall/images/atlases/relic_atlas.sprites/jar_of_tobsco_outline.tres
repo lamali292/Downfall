@@ -1,4 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://jc554xo"]
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://eb43876"]
 [ext_resource type="Texture2D" path="res://Downfall/images/atlases/relic_outline_atlas.png" id="1"]
 [resource]
 atlas = ExtResource("1")
