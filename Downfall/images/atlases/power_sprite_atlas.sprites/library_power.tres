@@ -1,4 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://nj7wlv2"]
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://uj6d5pu"]
 [ext_resource type="Texture2D" path="res://Downfall/images/atlases/power_sprite_atlas.png" id="1"]
 [resource]
 atlas = ExtResource("1")
