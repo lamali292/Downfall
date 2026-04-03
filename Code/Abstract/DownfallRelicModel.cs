@@ -6,11 +6,12 @@ using Downfall.Code.Extensions;
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallRelicModel<T> : CustomRelicModel
-where T : DownfallCharacterModel
+    where T : DownfallCharacterModel
 {
     private string IconName => Id.Entry
         .RemovePrefix()
         .ToLowerInvariant();
+
     public override string PackedIconPath => $"{IconName}.tres".TresRelicImagePath();
     protected override string PackedIconOutlinePath => $"{IconName}_outline.tres".TresRelicImagePath();
     protected override string BigIconPath => $"{IconName}.png".BigRelicImagePath();

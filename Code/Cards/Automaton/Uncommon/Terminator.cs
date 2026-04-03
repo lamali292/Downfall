@@ -6,7 +6,6 @@ using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -19,7 +18,7 @@ public class Terminator : AutomatonCardModel,
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
-    
+
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
         bool forGameplay)
     {

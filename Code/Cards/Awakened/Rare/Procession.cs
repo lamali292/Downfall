@@ -23,7 +23,8 @@ public class Procession : AwakenedCardModel
         var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Draw);
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);
-        await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Draw,  card.EnergyCost.GetResolved(), CardPilePosition.Random);
+        await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Draw, card.EnergyCost.GetResolved(),
+            CardPilePosition.Random);
     }
 
 
@@ -31,5 +32,4 @@ public class Procession : AwakenedCardModel
     {
         RemoveKeyword(CardKeyword.Exhaust);
     }
-   
 }

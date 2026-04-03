@@ -11,15 +11,12 @@ public class AwakenedDisplay
     public static void Register(Player player, NSpellbookDisplay display)
     {
         if (Displays.TryGetValue(player, out var old))
-        {
             if (GodotObject.IsInstanceValid(old))
-            {
                 old.QueueFree();
-            }
-        }
+
         Displays[player] = display;
     }
-    
+
     public static void Refresh(Player player)
     {
         Displays.GetValueOrDefault(player)?.Refresh();

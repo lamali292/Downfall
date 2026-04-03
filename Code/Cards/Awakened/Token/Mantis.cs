@@ -27,5 +27,4 @@ public class Mantis : AwakenedCardModel
     {
         DynamicVars.Strength.UpgradeValueBy(1);
     }
-    
 }

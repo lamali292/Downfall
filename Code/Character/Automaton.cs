@@ -76,7 +76,4 @@ public class Automaton : DownfallCharacterModel
 
         return animator;
     }
-    
-    
-
 }

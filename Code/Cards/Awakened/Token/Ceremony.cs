@@ -5,8 +5,6 @@ using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -31,9 +29,8 @@ public class Ceremony : AwakenedCardModel
     {
         DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
     }
-    
-    
-    
+
+
     // Fervent Worship stuff
     public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
     {
@@ -45,8 +42,9 @@ public class Ceremony : AwakenedCardModel
         return Task.CompletedTask;
     }
 
-    
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+
+    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+        CardModel? cardSource)
     {
         if (power is not FerventWorshipPower || power.Owner != Owner.Creature) return Task.CompletedTask;
         var i = (int)amount;

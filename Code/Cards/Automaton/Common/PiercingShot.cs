@@ -6,9 +6,6 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Common;
 
@@ -20,7 +17,7 @@ public class PiercingShot : AutomatonCardModel, IEncodable
         WithDamage(6);
         WithTip(DownfallKeyword.Encode);
     }
- 
+
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);

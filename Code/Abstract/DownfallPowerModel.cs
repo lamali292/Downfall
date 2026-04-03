@@ -9,7 +9,6 @@ public abstract class DownfallPowerModel : CustomPowerModel
 {
     protected string IconName => Id.Entry
         .RemovePrefix()
-        .RemoveSuffix("Power")
         .ToLowerInvariant();
 
     public override string CustomPackedIconPath => $"{IconName}.png".DownfallPowerImagePath();
@@ -19,7 +18,7 @@ public abstract class DownfallPowerModel : CustomPowerModel
 public abstract class DownfallPowerModel<T> : DownfallPowerModel
     where T : DownfallCharacterModel
 {
-    public override string CustomPackedIconPath => $"{IconName}.png".PowerImagePath<T>();
+    public override string CustomPackedIconPath => $"{IconName}.tres".PowerImagePath<T>();
     public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<T>();
 }
 

@@ -8,7 +8,7 @@ public partial class NShockWaveVfx : Node2D
 {
     private Color _color;
     private int _count = 40;
-    
+
     public static NShockWaveVfx Create(Vector2 position, Color color)
     {
         var vfx = new NShockWaveVfx();

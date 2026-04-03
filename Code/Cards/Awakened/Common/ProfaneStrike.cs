@@ -1,12 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Awakened.Common;
 
@@ -26,7 +23,6 @@ public class ProfaneStrike : AwakenedCardModel
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
-
 
 
     protected override void OnUpgrade()

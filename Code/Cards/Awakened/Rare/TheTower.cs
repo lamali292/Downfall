@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -31,9 +30,12 @@ public class TheTower : AwakenedCardModel
         await CommonActions.CardAttack(this, cardPlay.Target, DynamicVars.CalculatedDamage).Execute(ctx);
     }
 
-    private static decimal DamageCalc(CardModel card, Creature? creature) => CombatManager.Instance.History.Entries
-        .OfType<CardGeneratedEntry>()
-        .Count(e => e.GeneratedByPlayer && e.Card.Owner == card.Owner);
+    private static decimal DamageCalc(CardModel card, Creature? creature)
+    {
+        return CombatManager.Instance.History.Entries
+            .OfType<CardGeneratedEntry>()
+            .Count(e => e.GeneratedByPlayer && e.Card.Owner == card.Owner);
+    }
 
     protected override void OnUpgrade()
     {

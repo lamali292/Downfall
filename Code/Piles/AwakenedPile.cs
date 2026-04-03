@@ -16,12 +16,12 @@ namespace Downfall.Code.Piles;
 public class AwakenedPile() : CustomPile(Spellbook)
 {
     [CustomEnum] public static PileType Spellbook;
-    
+
     private readonly List<Type> _dynamicTypes = [];
 
     public CardModel? NextSpell { get; private set; }
-    
-    
+
+
     public void AddPersistentType(Type type)
     {
         _dynamicTypes.Add(type);
@@ -63,12 +63,12 @@ public class AwakenedPile() : CustomPile(Spellbook)
         if (state == null) return;
 
         var rng = state.RunState.Rng.CombatCardSelection;
-        
+
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
-        
+
         AddBaseSpells(owner, state);
-        
+
         foreach (var type in _dynamicTypes) CreateAndAddSpell(owner, state, type);
 
         SetNextSpell(rng);
@@ -85,13 +85,13 @@ public class AwakenedPile() : CustomPile(Spellbook)
         foreach (var type in baseTypes)
             CreateAndAddSpell(owner, state, type);
     }
-    
+
     private void CreateAndAddSpell(Player owner, CombatState state, Type type)
     {
         var id = ModelDb.GetId(type);
         var model = ModelDb.GetById<CardModel>(id);
         var spell = state.CreateCard(model, owner);
-        if ( AwakenedModel.IsAwakened(owner) && spell.IsUpgradable)
+        if (AwakenedModel.IsAwakened(owner) && spell.IsUpgradable)
         {
             spell.UpgradeInternal();
             spell.FinalizeUpgradeInternal();

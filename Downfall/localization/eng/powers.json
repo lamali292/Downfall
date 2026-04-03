@@ -157,5 +157,8 @@
   "DOWNFALL-DAGGERSTORM_POWER.smartDescription": "Whenever you create a card, deal {Amount} damage to a random enemy. ",
   "DOWNFALL-SCHEME_POWER.title": "Scheme",
   "DOWNFALL-SCHEME_POWER.description": "The next card you play this turn that cost 1 or less are played twice. ",
-  "DOWNFALL-SCHEME_POWER.smartDescription": "The next {Amount:plural:card|{Amount} cards} you play this turn that cost 1 or less {Amount:plural:is|are} played twice. "
+  "DOWNFALL-SCHEME_POWER.smartDescription": "The next {Amount:plural:card|{Amount} cards} you play this turn that cost 1 or less {Amount:plural:is|are} played twice. ",
+  "DOWNFALL-COUNTER_POWER.title": "Counter",
+  "DOWNFALL-COUNTER_POWER.description": "The next time you take Attack damage, gain [red]Riposte Strike[/red] that deals that much damage.",
+  "DOWNFALL-COUNTER_POWER.smartDescription": "The next time you take Attack damage, gain [red]Riposte Strike[/red] that deals {Amount} damage."
 }

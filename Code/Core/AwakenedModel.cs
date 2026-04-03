@@ -19,9 +19,8 @@ namespace Downfall.Code.Core;
 
 public class AwakenedModel : AbstractModel
 {
-    public override bool ShouldReceiveCombatHooks => true;
-    
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
+    public override bool ShouldReceiveCombatHooks => true;
 
     public static bool IsAwakened(Player? player)
     {
@@ -45,13 +44,10 @@ public class AwakenedModel : AbstractModel
         if (IsAwakened(owner))
             await AwakenedCmd.Awaken(owner, ctx);
     }
-    
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card is Void)
-        {
-            await DownfallHook.OnDrained(choiceContext, card.Owner, 1);
-        }
+        if (card is Void) await DownfallHook.OnDrained(choiceContext, card.Owner, 1);
     }
 
     public override Task AfterRoomEntered(AbstractRoom room)
@@ -63,10 +59,7 @@ public class AwakenedModel : AbstractModel
             if (player.Character is not Awakened) continue;
             AwakenedCmd.GetSpellbook(player)?.Refresh(player);
             var combatRoomNode = NCombatRoom.Instance;
-            if (combatRoomNode != null)
-            {
-                SetupAwakenedUi(combatRoomNode, player);
-            }
+            if (combatRoomNode != null) SetupAwakenedUi(combatRoomNode, player);
         }
 
         return Task.CompletedTask;
@@ -84,6 +77,7 @@ public class AwakenedModel : AbstractModel
             display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
             display.Position += new Vector2(-120f, -80f);
         }
+
         AwakenedDisplay.Register(player, display);
         display.Refresh();
     }

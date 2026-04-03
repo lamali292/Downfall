@@ -11,12 +11,12 @@ namespace Downfall.Code.Cards.Awakened.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class SludgeBomb : AwakenedCardModel
 {
-    protected override bool IsPlayable => PileType.Exhaust.GetPile(Owner).Cards.Any(c => c is Void);
-
     public SludgeBomb() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(18);
     }
+
+    protected override bool IsPlayable => PileType.Exhaust.GetPile(Owner).Cards.Any(c => c is Void);
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -25,7 +25,6 @@ public class SludgeBomb : AwakenedCardModel
         var card = PileType.Exhaust.GetPile(Owner).Cards.FirstOrDefault(c => c is Void);
         if (card == null) return;
         await CardPileCmd.RemoveFromCombat(card);
-
     }
 
     protected override void OnUpgrade()

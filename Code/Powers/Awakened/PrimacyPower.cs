@@ -25,7 +25,10 @@ public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
                     e.Actor == Owner &&
                     e is { Power: StrengthPower, Amount: > 0 });
 
-    public string GetSecondAmount() => $"{Math.Max(Amount-StrengthGainsThisTurn, 0)}";
+    public string GetSecondAmount()
+    {
+        return $"{Math.Max(Amount - StrengthGainsThisTurn, 0)}";
+    }
 
     public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)

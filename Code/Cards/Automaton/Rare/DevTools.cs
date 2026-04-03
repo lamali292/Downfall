@@ -1,12 +1,7 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
-using BaseLib.Utils;
-using BaseLib.Utils.Patching;
+﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +21,7 @@ public class DevTools : AutomatonCardModel
         WithTip(typeof(Decompile));
         WithTip(typeof(ByteShift));
     }
-  
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -51,4 +46,3 @@ public class DevTools : AutomatonCardModel
         EnergyCost.UpgradeBy(-1);
     }
 }
-
