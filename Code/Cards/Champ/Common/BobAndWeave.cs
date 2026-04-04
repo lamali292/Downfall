@@ -23,7 +23,7 @@ public class BobAndWeave : ChampCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await MyCommonActions.ApplySelf<VigorPower>(this);
-        await ChampCmd.BerserkerStance(ctx, Owner);
+        await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 
 

@@ -18,7 +18,7 @@ public class BattlePlan : ChampCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.DefensiveStance(ctx, Owner);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
         await CommonActions.CardBlock(this, cardPlay);
         await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
     }

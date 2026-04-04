@@ -22,7 +22,7 @@ public class RecklessStrike : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.ApplySelf<StrengthPower>(this);
-        await ChampCmd.BerserkerStance(ctx, Owner);
+        await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 
 
