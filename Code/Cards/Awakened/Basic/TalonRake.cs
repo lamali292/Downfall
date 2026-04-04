@@ -14,7 +14,7 @@ public class TalonRake : AwakenedCardModel
 {
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(5, 3);
         WithTip(DownfallKeyword.Conjure);
     }
 
@@ -28,11 +28,5 @@ public class TalonRake : AwakenedCardModel
             .Execute(ctx);
 
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

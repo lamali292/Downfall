@@ -16,7 +16,7 @@ public class Iterate : AutomatonCardModel, IEncodable
     public Iterate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVars(new RepeatVar(3));
+        WithVar("Repeat", 3, 1);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -29,10 +29,5 @@ public class Iterate : AutomatonCardModel, IEncodable
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Repeat.UpgradeValueBy(1);
     }
 }

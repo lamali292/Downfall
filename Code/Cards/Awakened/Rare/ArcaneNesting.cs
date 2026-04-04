@@ -12,7 +12,7 @@ public class ArcaneNesting : AwakenedCardModel
     public ArcaneNesting() : base(-1, CardType.Skill, CardRarity.Rare, TargetType.None)
     {
         WithKeywords(CardKeyword.Unplayable);
-        WithBlock(4);
+        WithBlock(4, 2);
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
@@ -24,10 +24,5 @@ public class ArcaneNesting : AwakenedCardModel
 
 
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

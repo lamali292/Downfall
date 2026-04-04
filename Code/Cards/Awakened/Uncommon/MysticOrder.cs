@@ -14,7 +14,7 @@ public class MysticOrder : AwakenedCardModel
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(DownfallKeyword.Conjure);
-        WithCards(2);
+        WithCards(2, 1);
     }
 
 
@@ -23,10 +23,5 @@ public class MysticOrder : AwakenedCardModel
         ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.Draw(this, ctx);
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

@@ -15,7 +15,7 @@ public class MirePit : AwakenedCardModel
     public MirePit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<TemporaryStrengthDownPower>(6);
+        WithPower<TemporaryStrengthDownPower>(6, 2);
     }
 
 
@@ -27,10 +27,5 @@ public class MirePit : AwakenedCardModel
                 DynamicVars.Power<TemporaryStrengthDownPower>().BaseValue);
 
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<TemporaryStrengthDownPower>().UpgradeValueBy(2);
     }
 }

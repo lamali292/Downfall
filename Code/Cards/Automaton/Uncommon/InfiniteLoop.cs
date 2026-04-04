@@ -17,7 +17,7 @@ public class InfiniteLoop : AutomatonCardModel,
     public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6);
-        WithVar("Increase", 2);
+        WithVar("Increase", 2, 2);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -42,10 +42,5 @@ public class InfiniteLoop : AutomatonCardModel,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Increase"].UpgradeValueBy(2);
     }
 }

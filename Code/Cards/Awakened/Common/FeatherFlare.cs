@@ -14,7 +14,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
 {
     public FeatherFlare() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4);
+        WithDamage(4, 3);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -27,10 +27,5 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

@@ -14,7 +14,7 @@ public class Artifice : AwakenedCardModel
 {
     public Artifice() : base(2, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<ManaburnPower>(7);
+        WithPower<ManaburnPower>(7, 3);
         WithKeywords(CardKeyword.Retain);
     }
 
@@ -23,11 +23,5 @@ public class Artifice : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await MyCommonActions.Apply<ManaburnPower>(cardPlay.Target, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

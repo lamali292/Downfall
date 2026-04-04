@@ -17,7 +17,7 @@ public class Repair : AutomatonCardModel, IEncodable, ICompilable
     public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(4);
-        WithVars(new HealVar(7));
+        WithVar("Heal", 7, 3);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -33,10 +33,5 @@ public class Repair : AutomatonCardModel, IEncodable, ICompilable
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Heal.UpgradeValueBy(3);
     }
 }

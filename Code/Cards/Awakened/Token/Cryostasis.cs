@@ -16,7 +16,7 @@ public class Cryostasis : AwakenedCardModel, ISpell, IOnAwaken
 {
     public Cryostasis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithBlock(10);
+        WithBlock(10, 3);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 
@@ -29,10 +29,5 @@ public class Cryostasis : AwakenedCardModel, ISpell, IOnAwaken
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

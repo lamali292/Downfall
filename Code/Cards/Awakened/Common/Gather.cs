@@ -14,7 +14,7 @@ public class Gather : AwakenedCardModel, IChantable
 {
     public Gather() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(3);
+        WithBlock(3, 3);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -28,10 +28,5 @@ public class Gather : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

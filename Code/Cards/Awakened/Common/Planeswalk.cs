@@ -15,7 +15,7 @@ public class Planeswalk : AwakenedCardModel
 {
     public Planeswalk() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithVars(new EnergyVar(2));
+        WithVar("Energy", 2, 1);
     }
 
 
@@ -23,10 +23,5 @@ public class Planeswalk : AwakenedCardModel
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Random);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

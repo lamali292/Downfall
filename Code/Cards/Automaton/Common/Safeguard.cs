@@ -14,18 +14,12 @@ public class Safeguard : AutomatonCardModel, IEncodable
 {
     public Safeguard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(4);
+        WithBlock(4, 2);
         WithTip(DownfallKeyword.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

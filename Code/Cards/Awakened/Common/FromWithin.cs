@@ -12,7 +12,7 @@ public class FromWithin : AwakenedCardModel
 {
     public FromWithin() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(10);
+        WithBlock(10, 3);
     }
 
 
@@ -20,11 +20,5 @@ public class FromWithin : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<FromWithinPower>(this, 1);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

@@ -15,7 +15,7 @@ public class PlumeJab : AwakenedCardModel
 {
     public PlumeJab() : base(0, CardType.Attack, CardRarity.Token, TargetType.RandomEnemy)
     {
-        WithDamage(2);
+        WithDamage(2, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithVars(new RepeatVar(2));
     }
@@ -24,14 +24,7 @@ public class PlumeJab : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1);
-    }
-
-
+    
     // Razor Sharp stuff. 
     public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
     {

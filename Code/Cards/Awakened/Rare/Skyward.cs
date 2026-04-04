@@ -14,7 +14,7 @@ public class Skyward : AwakenedCardModel
 {
     public Skyward() : base(7, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(18);
+        WithBlock(18, 6);
         WithCards(1);
     }
 
@@ -50,10 +50,5 @@ public class Skyward : AwakenedCardModel
     private void ReduceCostBy(int amount)
     {
         EnergyCost.AddThisCombat(-amount);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(6);
     }
 }

@@ -13,7 +13,7 @@ public class Pluck : AwakenedCardModel
 {
     public Pluck() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(2);
+        WithDamage(2, 3);
         WithTip(typeof(PlumeJab));
     }
 
@@ -21,10 +21,5 @@ public class Pluck : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<PlumeJab>(Owner, PileType.Hand);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

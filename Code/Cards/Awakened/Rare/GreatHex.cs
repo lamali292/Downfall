@@ -15,17 +15,12 @@ public class GreatHex : AwakenedCardModel, IChantable
     public GreatHex() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<ManaburnPower>(5);
+        WithPower<ManaburnPower>(5, 3);
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.Apply<GreatHexPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

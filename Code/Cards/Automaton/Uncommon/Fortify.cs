@@ -18,7 +18,7 @@ public class Fortify : AutomatonCardModel, IEncodable,
     public Fortify() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(8);
-        WithPower<DexterityPower>(2);
+        WithPower<DexterityPower>(2, 1);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -36,10 +36,5 @@ public class Fortify : AutomatonCardModel, IEncodable,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Dexterity.UpgradeValueBy(1);
     }
 }

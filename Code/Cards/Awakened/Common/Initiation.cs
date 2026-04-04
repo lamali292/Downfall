@@ -13,7 +13,7 @@ public class Initiation : AwakenedCardModel
 {
     public Initiation() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(11);
+        WithBlock(11, 3);
         WithTip(typeof(Ceremony));
     }
 
@@ -22,10 +22,5 @@ public class Initiation : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

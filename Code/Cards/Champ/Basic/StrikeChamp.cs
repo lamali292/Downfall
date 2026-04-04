@@ -11,7 +11,7 @@ public class StrikeChamp : ChampCardModel
 {
     public StrikeChamp() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithTags(CardTag.Strike);
     }
 
@@ -19,11 +19,5 @@ public class StrikeChamp : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

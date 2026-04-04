@@ -14,7 +14,7 @@ public class Siphon : AwakenedCardModel, IChantable
 {
     public Siphon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(9);
+        WithDamage(9, 2);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -28,11 +28,5 @@ public class Siphon : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

@@ -13,7 +13,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
 {
     public Immolation() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(13);
+        WithBlock(13, 4);
         WithKeywords(CardKeyword.Retain);
     }
 
@@ -26,10 +26,5 @@ public class Immolation : AwakenedCardModel, IOnDrained
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(4);
     }
 }

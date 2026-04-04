@@ -19,7 +19,7 @@ public class ForceShield : AutomatonCardModel, IOnCompile
 
     public ForceShield() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(12);
+        WithBlock(12, 4);
         WithTip(DownfallKeyword.Encode);
         WithTip(typeof(MergePower));
     }
@@ -49,10 +49,5 @@ public class ForceShield : AutomatonCardModel, IOnCompile
 
         modifiedCost = Math.Max(0, originalCost - _functionsCreated);
         return modifiedCost != originalCost;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(4);
     }
 }

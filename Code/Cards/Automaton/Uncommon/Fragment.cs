@@ -14,8 +14,8 @@ public class Fragment : AutomatonCardModel, IEncodable
 {
     public Fragment() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4);
-        WithBlock(4);
+        WithDamage(4, 1);
+        WithBlock(4, 1);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -27,11 +27,5 @@ public class Fragment : AutomatonCardModel, IEncodable
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(1);
-        DynamicVars.Damage.UpgradeValueBy(1);
-    }
+    
 }

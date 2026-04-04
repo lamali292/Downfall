@@ -14,8 +14,8 @@ public class FollowThrough : AutomatonCardModel
 {
     public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithBlock(4);
-        WithDamage(7);
+        WithBlock(4, 2);
+        WithDamage(7, 2);
     }
 
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
@@ -49,11 +49,5 @@ public class FollowThrough : AutomatonCardModel
             var dupe = CreateDupe();
             await CardCmd.AutoPlay(ctx, dupe, cardPlay.Target);
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2);
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

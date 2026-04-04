@@ -13,8 +13,8 @@ public class WaveOfMiasma : AwakenedCardModel
 {
     public WaveOfMiasma() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(12);
-        WithPower<ManaburnPower>(4);
+        WithBlock(12, 3);
+        WithPower<ManaburnPower>(4, 2);
         WithKeywords(CardKeyword.Exhaust);
     }
 
@@ -26,12 +26,5 @@ public class WaveOfMiasma : AwakenedCardModel
         var currentEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
         foreach (var enemy in currentEnemies)
             await CommonActions.Apply<ManaburnPower>(enemy, this, DynamicVars.Power<ManaburnPower>().BaseValue);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(2);
     }
 }

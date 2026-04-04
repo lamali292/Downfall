@@ -14,7 +14,7 @@ public class BronzeOrb : AutomatonCardModel
 {
     public BronzeOrb() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 4);
         WithKeywords(CardKeyword.Innate);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Encode);
@@ -36,10 +36,5 @@ public class BronzeOrb : AutomatonCardModel
 
         if (randomCard is not IEncodable encodable) return;
         await encodable.Encode(ctx, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }

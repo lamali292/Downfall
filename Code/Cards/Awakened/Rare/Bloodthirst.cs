@@ -15,7 +15,7 @@ public class Bloodthirst : AwakenedCardModel
 {
     public Bloodthirst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(20);
+        WithDamage(20, 5);
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(PowerPotion));
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Fatal)));
@@ -32,10 +32,5 @@ public class Bloodthirst : AwakenedCardModel
         var potion = ModelDb.Potion<PowerPotion>().ToMutable();
         await PotionCmd.TryToProcure(potion, Owner);
         await CardCmd.Exhaust(ctx, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(5);
     }
 }

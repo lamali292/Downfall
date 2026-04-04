@@ -16,7 +16,7 @@ public class RazorSharp : AwakenedCardModel
     public RazorSharp() : base(0, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithTip(typeof(PlumeJab));
-        WithPower<RazorSharpPower>(1);
+        WithPower<RazorSharpPower>(1, 1);
     }
 
 
@@ -24,10 +24,5 @@ public class RazorSharp : AwakenedCardModel
     {
         await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);
         await MyCommonActions.ApplySelf<RazorSharpPower>(this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<RazorSharpPower>().UpgradeValueBy(1);
     }
 }
