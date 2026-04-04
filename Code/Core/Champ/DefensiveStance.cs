@@ -2,26 +2,26 @@
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Core.Champ;
 
-public class DefensiveStance : StanceModel
+public class DefensiveStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
+    public override bool HasFinisher => true;
+    public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_active.png";
 
-    public override async Task OnEnter(PlayerChoiceContext ctx)
+    public override async Task SkillBonus()
     {
-        DownfallMainFile.Logger.Info("Defensive Stance Entered " + Owner.NetId);
-    }
-
-    public override async Task OnExit(PlayerChoiceContext ctx)
-    {
-        DownfallMainFile.Logger.Info("Defensive Stance Existed " + Owner.NetId);
+        var amount = DownfallHook.ModifySkillBonus<CounterPower>(this, 2);
+        await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
     }
     
-    public override async Task SkillBonus(PlayerChoiceContext ctx)
+    
+    
+    public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var amount = DownfallHook.ModifySkillBonus<CounterPower>(ctx, this, 2);
-        await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
+        await CreatureCmd.GainBlock(Owner.Creature, 6, ValueProp.Unpowered, null);
     }
 }

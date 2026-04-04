@@ -6,5 +6,5 @@ namespace Downfall.Code.Events;
 
 public interface IOnStanceChange
 {
-    Task OnStanceChange(PlayerChoiceContext ctx, Player player, StanceModel oldStance, StanceModel newStance);
+    Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance);
 }
