@@ -14,7 +14,7 @@ public class BugBarrage : AutomatonCardModel
 {
     public BugBarrage() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(5, 2);
         WithTip(DownfallKeyword.Cycle);
         WithTip(DownfallKeyword.Status);
         WithTip(typeof(Wound));
@@ -44,10 +44,5 @@ public class BugBarrage : AutomatonCardModel
             .WithHitCount(statuses.Count)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

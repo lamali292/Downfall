@@ -13,7 +13,7 @@ public class Cleanse : AutomatonCardModel
 {
     public Cleanse() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(1);
+        WithDamage(10, 4);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Status);
     }
@@ -33,11 +33,5 @@ public class Cleanse : AutomatonCardModel
 
         if (status != null)
             await CardCmd.Exhaust(choiceContext, status);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

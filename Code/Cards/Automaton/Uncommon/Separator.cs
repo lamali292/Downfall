@@ -18,7 +18,7 @@ public class Separator : AutomatonCardModel, IEncodable
 {
     public Separator() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 2);
         WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move));
         WithTip(DownfallKeyword.Encode);
     }
@@ -56,7 +56,6 @@ public class Separator : AutomatonCardModel, IEncodable
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
         DynamicVars["ExtraDamage"].UpgradeValueBy(2);
     }
 }

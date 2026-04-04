@@ -13,8 +13,8 @@ public class Psalm : AwakenedCardModel
 {
     public Psalm() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(10);
-        WithPower<WeakPower>(1);
+        WithDamage(10, 2);
+        WithPower<WeakPower>(1, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -22,11 +22,5 @@ public class Psalm : AwakenedCardModel
         if (CombatState == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await PowerCmd.Apply<WeakPower>(CombatState.Enemies, DynamicVars.Weak.BaseValue, Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars.Weak.UpgradeValueBy(1);
     }
 }

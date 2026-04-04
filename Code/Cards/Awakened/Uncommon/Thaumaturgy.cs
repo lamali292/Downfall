@@ -14,7 +14,7 @@ public class Thaumaturgy : AwakenedCardModel
 {
     public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<DexterityPower>(1);
+        WithPower<DexterityPower>(1, 1);
         WithPower<ThaumaturgyPower>(2);
     }
 
@@ -22,11 +22,5 @@ public class Thaumaturgy : AwakenedCardModel
     {
         await CommonActions.ApplySelf<DexterityPower>(this, DynamicVars.Dexterity.BaseValue);
         await CommonActions.ApplySelf<ThaumaturgyPower>(this, DynamicVars.Power<ThaumaturgyPower>().BaseValue);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Dexterity.UpgradeValueBy(1);
     }
 }

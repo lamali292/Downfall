@@ -14,7 +14,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
 {
     public TakeFlight() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(12);
+        WithBlock(12, 3);
         WithTip(DownfallKeyword.Chant);
         WithPower<BlurPower>(1);
     }
@@ -27,10 +27,5 @@ public class TakeFlight : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

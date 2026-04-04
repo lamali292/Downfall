@@ -13,7 +13,7 @@ public class Carrionmaker : AwakenedCardModel
 {
     public Carrionmaker() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
-        WithDamage(9);
+        WithDamage(9, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -21,11 +21,5 @@ public class Carrionmaker : AwakenedCardModel
         var extra = CombatManager.Instance.History.CardPlaysStarted.Count(s =>
             s.HappenedThisTurn(CombatState) && s.CardPlay.Card is ISpell);
         await CommonActions.CardAttack(this, cardPlay, 1 + extra).Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

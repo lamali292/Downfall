@@ -13,7 +13,7 @@ public class SludgeBomb : AwakenedCardModel
 {
     public SludgeBomb() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(18);
+        WithDamage(18, 4);
     }
 
     protected override bool IsPlayable => PileType.Exhaust.GetPile(Owner).Cards.Any(c => c is Void);
@@ -25,10 +25,5 @@ public class SludgeBomb : AwakenedCardModel
         var card = PileType.Exhaust.GetPile(Owner).Cards.FirstOrDefault(c => c is Void);
         if (card == null) return;
         await CardPileCmd.RemoveFromCombat(card);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

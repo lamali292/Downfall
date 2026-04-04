@@ -16,7 +16,7 @@ public class Ceremony : AwakenedCardModel
 {
     public Ceremony() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
     {
-        WithPower<StrengthPower>(1);
+        WithPower<StrengthPower>(1, 1);
         WithKeywords(CardKeyword.Retain);
     }
 
@@ -24,12 +24,6 @@ public class Ceremony : AwakenedCardModel
     {
         await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
-    }
-
 
     // Fervent Worship stuff
     public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)

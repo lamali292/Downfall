@@ -15,7 +15,7 @@ public class DarkIncantation : AwakenedCardModel
 {
     public DarkIncantation() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly)
     {
-        WithPower<RitualPower>(2);
+        WithPower<RitualPower>(2, 1);
         WithKeywords(CardKeyword.Exhaust);
     }
 
@@ -26,10 +26,5 @@ public class DarkIncantation : AwakenedCardModel
         var a = cardPlay.Card.Owner.GetRelic<Akabeko>();
         if (cardPlay.Target == null) return;
         await MyCommonActions.Apply<RitualPower>(cardPlay.Target, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<RitualPower>().UpgradeValueBy(1);
     }
 }

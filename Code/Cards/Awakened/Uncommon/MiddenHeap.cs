@@ -13,8 +13,8 @@ public class MiddenHeap : AwakenedCardModel
 {
     public MiddenHeap() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(3);
-        WithCards(1);
+        WithBlock(3, 1);
+        WithCards(1, 1);
     }
 
 
@@ -27,12 +27,5 @@ public class MiddenHeap : AwakenedCardModel
         var selected = await CardSelectCmd.FromSimpleGrid(ctx, cardsToSelect, Owner,
             new CardSelectorPrefs(SelectionScreenPrompt, 2));
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(1);
-        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

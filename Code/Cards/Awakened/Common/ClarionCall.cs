@@ -12,7 +12,7 @@ public class ClarionCall : AwakenedCardModel
 {
     public ClarionCall() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 3);
         WithPower<ClarionCallPower>(1);
     }
 
@@ -20,10 +20,5 @@ public class ClarionCall : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<ClarionCallPower>(this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

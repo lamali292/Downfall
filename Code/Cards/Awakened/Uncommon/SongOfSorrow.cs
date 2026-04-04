@@ -14,18 +14,12 @@ public class SongOfSorrow : AwakenedCardModel
 {
     public SongOfSorrow() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<SongOfSorrowPower>(7);
+        WithPower<SongOfSorrowPower>(7, 3);
         WithTip(typeof(Void));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SongOfSorrowPower>(this, DynamicVars.Power<SongOfSorrowPower>().BaseValue);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<SongOfSorrowPower>().UpgradeValueBy(3);
     }
 }

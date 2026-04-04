@@ -15,7 +15,7 @@ public class Return : AutomatonCardModel
 {
     public Return() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new EnergyVar(1));
+        WithVar("Energy", 1, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -38,10 +38,5 @@ public class Return : AutomatonCardModel
         foreach (var card in selected)
             await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
         await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

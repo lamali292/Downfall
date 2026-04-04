@@ -14,7 +14,7 @@ public class PiercingShot : AutomatonCardModel, IEncodable
 {
     public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(6);
+        WithDamage(6, 2);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -25,11 +25,5 @@ public class PiercingShot : AutomatonCardModel, IEncodable
             .TargetingAllOpponents(cardPlay.Card.CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

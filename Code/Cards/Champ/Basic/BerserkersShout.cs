@@ -15,7 +15,7 @@ public class BerserkersShout : ChampCardModel
 {
     public BerserkersShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithPower<VigorPower>(3);
+        WithPower<VigorPower>(2, 2);
         WithIcon<VigorPower>();
     }
     
@@ -23,11 +23,5 @@ public class BerserkersShout : ChampCardModel
     {
         await MyCommonActions.ApplySelf<VigorPower>(this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<VigorPower>().UpgradeValueBy(3);
     }
 }

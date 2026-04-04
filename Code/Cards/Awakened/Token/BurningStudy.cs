@@ -19,8 +19,8 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
     public BurningStudy() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
-        WithPower<StrengthPower>(1);
-        WithPower<WeakPower>(1);
+        WithPower<StrengthPower>(1, 1);
+        WithPower<WeakPower>(1, 1);
     }
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
@@ -35,11 +35,5 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
         await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
         foreach (var combatStateEnemy in CombatState.Enemies)
             await CommonActions.Apply<WeakPower>(combatStateEnemy, this, DynamicVars.Power<WeakPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
-        DynamicVars.Power<WeakPower>().UpgradeValueBy(1);
     }
 }

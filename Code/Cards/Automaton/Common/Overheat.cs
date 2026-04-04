@@ -14,7 +14,7 @@ public class Overheat : AutomatonCardModel
 {
     public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(18);
+        WithDamage(18, 4);
         WithTip(DownfallKeyword.Compile);
         WithTip(DownfallKeyword.Encode);
     }
@@ -26,10 +26,5 @@ public class Overheat : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await PowerCmd.Apply<RemoveErrorsPower>(Owner.Creature, 1, Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }

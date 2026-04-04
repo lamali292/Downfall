@@ -16,7 +16,7 @@ public class DigitalCarnage : AutomatonCardModel,
 {
     public DigitalCarnage() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(15);
+        WithDamage(15, 5);
         WithTip(CardKeyword.Ethereal);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
@@ -43,10 +43,5 @@ public class DigitalCarnage : AutomatonCardModel,
     {
         if (SuppressCompileError) return;
         card.AddKeyword(CardKeyword.Ethereal);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(5);
     }
 }

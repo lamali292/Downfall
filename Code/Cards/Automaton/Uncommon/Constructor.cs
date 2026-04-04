@@ -17,7 +17,7 @@ public class Constructor : AutomatonCardModel, IEncodable
 {
     public Constructor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5);
+        WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move));
         WithTip(DownfallKeyword.Encode);
     }
@@ -45,7 +45,6 @@ public class Constructor : AutomatonCardModel, IEncodable
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
         DynamicVars["ExtraBlock"].UpgradeValueBy(2);
     }
 }

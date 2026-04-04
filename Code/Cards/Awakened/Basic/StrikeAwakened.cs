@@ -12,7 +12,7 @@ public sealed class StrikeAwakened : AwakenedCardModel
 {
     public StrikeAwakened() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithTags(CardTag.Strike);
     }
 
@@ -22,11 +22,5 @@ public sealed class StrikeAwakened : AwakenedCardModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

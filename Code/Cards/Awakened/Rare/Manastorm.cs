@@ -13,7 +13,7 @@ public class Manastorm : AwakenedCardModel
 {
     public Manastorm() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(14);
+        WithDamage(14, 4);
         WithTip(DownfallKeyword.Conjure);
     }
 
@@ -23,10 +23,5 @@ public class Manastorm : AwakenedCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await AwakenedCmd.Conjure(Owner, CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

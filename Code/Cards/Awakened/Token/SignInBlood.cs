@@ -19,7 +19,7 @@ public class SignInBlood : AwakenedCardModel
         WithPower<StrengthPower>(2);
         WithKeywords(CardKeyword.Exhaust);
         WithVars(new HpLossVar(2));
-        WithCards(3);
+        WithCards(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -29,11 +29,5 @@ public class SignInBlood : AwakenedCardModel
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await CommonActions.Draw(this, ctx);
         await MyCommonActions.ApplySelf<StrengthPower>(this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

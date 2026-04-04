@@ -15,7 +15,7 @@ public class AphoticFount : AwakenedCardModel
 {
     public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<AphoticFountPower>(1);
+        WithPower<AphoticFountPower>(1, 1);
         WithTip(typeof(PlatedArmorPower));
     }
 
@@ -24,10 +24,5 @@ public class AphoticFount : AwakenedCardModel
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
         await MyCommonActions.ApplySelf<AphoticFountPower>(this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<AphoticFountPower>().UpgradeValueBy(1);
     }
 }

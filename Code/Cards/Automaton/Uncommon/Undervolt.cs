@@ -16,7 +16,7 @@ public class Undervolt : AutomatonCardModel
 {
     public Undervolt() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<StrengthPower>(2);
+        WithPower<StrengthPower>(2, 1);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(typeof(Burn));
     }
@@ -33,10 +33,5 @@ public class Undervolt : AutomatonCardModel
             combatState.CreateCard<Burn>(Owner)
         ];
         await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, true);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
     }
 }

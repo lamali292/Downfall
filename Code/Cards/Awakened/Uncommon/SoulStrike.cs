@@ -14,7 +14,7 @@ public class SoulStrike : AwakenedCardModel
 {
     public SoulStrike() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4);
+        WithDamage(4,2);
         WithVars(new RepeatVar(3));
     }
 
@@ -24,11 +24,6 @@ public class SoulStrike : AwakenedCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 
     public override Task AfterCardEnteredCombat(CardModel card)

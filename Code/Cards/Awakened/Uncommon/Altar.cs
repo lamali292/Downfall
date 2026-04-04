@@ -14,7 +14,7 @@ public class Altar : AwakenedCardModel
 {
     public Altar() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5);
+        WithBlock(5, 3);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Conjure);
     }
@@ -27,10 +27,5 @@ public class Altar : AwakenedCardModel
         var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Hand);
         if (card != null) await CardCmd.Exhaust(ctx, card);
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

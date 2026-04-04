@@ -16,8 +16,8 @@ public class Branch : AutomatonCardModel
     public Branch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithBlock(6);
-        WithDamage(7);
+        WithBlock(6, 2);
+        WithDamage(7, 2);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -50,11 +50,5 @@ public class Branch : AutomatonCardModel
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await AutomatonCmd.EncodeCard(attackOption, ctx, cardPlay);
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

@@ -19,7 +19,7 @@ public class Philosophize : AutomatonCardModel,
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(1);
-        WithVars(new PowerVar<StrengthPower>("EnemyStrength", 2));
+        WithPower<StrengthPower>("EnemyStrength", 2, -1);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -38,9 +38,5 @@ public class Philosophize : AutomatonCardModel,
     {
         await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["EnemyStrength"].UpgradeValueBy(-1);
-    }
+    
 }

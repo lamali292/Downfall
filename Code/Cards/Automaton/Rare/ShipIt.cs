@@ -12,7 +12,7 @@ public class ShipIt : AutomatonCardModel
 {
     public ShipIt() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(5, 2);
         WithTip(CardKeyword.Exhaust);
     }
 
@@ -30,11 +30,5 @@ public class ShipIt : AutomatonCardModel
             .WithHitCount(1 + statuses)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

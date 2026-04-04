@@ -20,8 +20,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
 
     public Caw() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3);
-        WithVar("Caw", 3);
+        WithDamage(3, 1);
+        WithVar("Caw", 3, 1);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -42,12 +42,5 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         await CommonActions
             .CardAttack(this, cardPlay, sfx: "event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp").Execute(ctx);
         TalkCmd.Play(CawCawDialogue, Owner.Creature, VfxColor.Blue);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars["Caw"].UpgradeValueBy(1);
     }
 }

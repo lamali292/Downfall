@@ -15,7 +15,7 @@ public class Virus : AutomatonCardModel
 {
     public Virus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(4);
+        WithDamage(4, 2);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(new TooltipSource(card =>
         {
@@ -46,10 +46,5 @@ public class Virus : AutomatonCardModel
         }).ToList();
 
         await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, true);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

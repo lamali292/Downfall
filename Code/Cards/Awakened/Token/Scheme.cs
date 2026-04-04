@@ -14,17 +14,11 @@ public class Scheme : AwakenedCardModel
 {
     public Scheme() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithPower<SchemePower>(1);
+        WithPower<SchemePower>(1, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<SchemePower>(this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<SchemePower>().UpgradeValueBy(1);
     }
 }

@@ -19,7 +19,7 @@ public class Break : AutomatonCardModel, IEncodable,
 {
     public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(15);
+        WithDamage(15, 5);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
         WithTip(typeof(Burn));
@@ -53,9 +53,5 @@ public class Break : AutomatonCardModel, IEncodable,
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(5);
-    }
+    
 }

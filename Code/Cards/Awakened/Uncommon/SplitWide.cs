@@ -13,8 +13,8 @@ public class SplitWide : AwakenedCardModel
 {
     public SplitWide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(5);
-        WithPower<SplitWidePower>(1);
+        WithDamage(5, 2);
+        WithPower<SplitWidePower>(1, 1);
         WithKeywords(CardKeyword.Exhaust);
     }
 
@@ -24,11 +24,5 @@ public class SplitWide : AwakenedCardModel
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<SplitWidePower>(cardPlay.Target, this, DynamicVars.Power<SplitWidePower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars.Power<SplitWidePower>().UpgradeValueBy(1);
     }
 }

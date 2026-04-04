@@ -15,7 +15,7 @@ public class WildStrike : AutomatonCardModel
 {
     public WildStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12);
+        WithDamage(12, 5);
         WithTip(typeof(Wound));
     }
 
@@ -26,10 +26,5 @@ public class WildStrike : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await DownfallCardCmd.Insert(ModelDb.Card<Wound>(), Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(5m);
     }
 }

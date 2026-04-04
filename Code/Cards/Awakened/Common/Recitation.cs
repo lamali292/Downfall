@@ -13,7 +13,7 @@ public class Recitation : AwakenedCardModel, IChantable
 {
     public Recitation() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 2);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -25,10 +25,5 @@ public class Recitation : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

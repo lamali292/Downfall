@@ -16,7 +16,7 @@ public class ItsAFeature : AutomatonCardModel
 {
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<ItsAFeaturePower>(3);
+        WithPower<ItsAFeaturePower>(3, 1);
         WithTip(DownfallKeyword.Status);
         WithTip(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Block);
@@ -26,10 +26,5 @@ public class ItsAFeature : AutomatonCardModel
     {
         await PowerCmd.Apply<ItsAFeaturePower>(Owner.Creature, DynamicVars.Power<ItsAFeaturePower>().BaseValue,
             Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ItsAFeaturePower>().UpgradeValueBy(1);
     }
 }

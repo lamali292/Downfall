@@ -15,7 +15,7 @@ public class StormRuler : AwakenedCardModel
 {
     public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<StormRulerPower>(6);
+        WithPower<StormRulerPower>(6, 3);
         WithTip(DownfallKeyword.Conjure);
     }
 
@@ -25,10 +25,5 @@ public class StormRuler : AwakenedCardModel
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
         await CommonActions.ApplySelf<StormRulerPower>(this, DynamicVars.Power<StormRulerPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<StormRulerPower>().UpgradeValueBy(3);
     }
 }

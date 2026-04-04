@@ -12,7 +12,7 @@ public class BurnOut : AutomatonCardModel
 {
     public BurnOut() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
     }
 
@@ -34,10 +34,5 @@ public class BurnOut : AutomatonCardModel
             .Execute(ctx);
 
         foreach (var status in statuses) await CardCmd.Exhaust(ctx, status);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

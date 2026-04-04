@@ -13,7 +13,7 @@ public class Gloomguard : AwakenedCardModel
 {
     public Gloomguard() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(8);
+        WithBlock(8, 3);
     }
 
     public override bool ShouldReceiveCombatHooks => true;
@@ -45,10 +45,5 @@ public class Gloomguard : AwakenedCardModel
         if (card.Owner == Owner && (oldPileType == PileType.Hand || card.Pile?.Type == PileType.Hand))
             InvokeEnergyCostChanged();
         return Task.CompletedTask;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

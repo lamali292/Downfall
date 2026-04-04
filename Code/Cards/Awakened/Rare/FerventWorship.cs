@@ -27,6 +27,6 @@ public class FerventWorship : AwakenedCardModel
 
     protected override void OnUpgrade()
     {
-        // TODO
+        EnergyCost.UpgradeBy(-1);
     }
 }

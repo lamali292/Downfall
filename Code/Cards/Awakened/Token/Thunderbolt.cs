@@ -16,7 +16,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
 {
     public Thunderbolt() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(12);
+        WithDamage(12, 6);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 
@@ -32,10 +32,5 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_lightning")
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(6);
     }
 }

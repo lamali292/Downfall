@@ -14,7 +14,7 @@ public class Envision : AwakenedCardModel
 {
     public Envision() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(4);
+        WithBlock(4, 3);
         WithTip(DownfallKeyword.Conjure);
     }
 
@@ -25,10 +25,5 @@ public class Envision : AwakenedCardModel
         var card = await AwakenedCmd.Conjure(Owner, CombatState);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

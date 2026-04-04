@@ -17,7 +17,7 @@ public class TheEncyclopedia : AwakenedCardModel
     public TheEncyclopedia() : base(2, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithCards(4);
+        WithCards(4, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -34,11 +34,5 @@ public class TheEncyclopedia : AwakenedCardModel
 
         foreach (var cardModel in card) cardModel.EnergyCost.UpgradeBy(-2);
         await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, true);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(2);
     }
 }

@@ -12,7 +12,7 @@ public class Crusher : AwakenedCardModel
 {
     public Crusher() : base(5, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(25);
+        WithDamage(25, 5);
         WithKeywords(CardKeyword.Retain);
     }
 
@@ -26,10 +26,5 @@ public class Crusher : AwakenedCardModel
         if (card.Owner != Owner) return Task.CompletedTask;
         EnergyCost.AddUntilPlayed(-1);
         return Task.CompletedTask;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(5);
     }
 }

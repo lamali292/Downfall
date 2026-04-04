@@ -15,7 +15,7 @@ public class DefensiveShout : ChampCardModel
 {
     public DefensiveShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithPower<CounterPower>(4);
+        WithPower<CounterPower>(3,3);
         WithIcon<CounterPower>();
     }
 
@@ -24,9 +24,5 @@ public class DefensiveShout : ChampCardModel
         await MyCommonActions.ApplySelf<CounterPower>(this);
         await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<CounterPower>().UpgradeValueBy(4);
-    }
+    
 }

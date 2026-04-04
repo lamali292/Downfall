@@ -14,8 +14,8 @@ public class RoboChop : AutomatonCardModel
 {
     public RoboChop() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(9);
-        WithPower<DrawCardsNextTurnPower>(1);
+        WithDamage(9,1 );
+        WithPower<DrawCardsNextTurnPower>(1, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -27,11 +27,5 @@ public class RoboChop : AutomatonCardModel
         await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature,
             DynamicVars.Power<DrawCardsNextTurnPower>().IntValue,
             Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1m);
-        DynamicVars.Power<DrawCardsNextTurnPower>().UpgradeValueBy(1);
     }
 }

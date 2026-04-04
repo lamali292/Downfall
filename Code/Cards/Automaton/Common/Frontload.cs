@@ -15,7 +15,7 @@ public class Frontload : AutomatonCardModel, ICompilable, IEncodable
 {
     public Frontload() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(8);
+        WithBlock(8, 3);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
         WithTip(CardKeyword.Retain);
@@ -37,10 +37,5 @@ public class Frontload : AutomatonCardModel, ICompilable, IEncodable
     public override void ApplyToFunctionPreview(FunctionCard card)
     {
         card.AddKeyword(CardKeyword.Retain);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

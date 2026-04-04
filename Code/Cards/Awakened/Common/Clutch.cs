@@ -12,7 +12,7 @@ public class Clutch : AwakenedCardModel
 {
     public Clutch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 3);
     }
 
     protected override bool ShouldGlowRedInternal => Has0CostInDraw;
@@ -33,11 +33,5 @@ public class Clutch : AwakenedCardModel
             .Cards.FirstOrDefault(c => c.EnergyCost is { Canonical: 0, CostsX: false });
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

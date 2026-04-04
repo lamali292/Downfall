@@ -17,8 +17,8 @@ public class CutThrough : AutomatonCardModel, ICompilable,
 {
     public CutThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(5);
-        WithVar("Scry", 2);
+        WithDamage(5, 2);
+        WithVar("Scry", 2, 1);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
         WithTip(DownfallKeyword.Scry);
@@ -40,11 +40,5 @@ public class CutThrough : AutomatonCardModel, ICompilable,
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await ScryCmd.Execute(ctx, Owner, 2);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars["Scry"].UpgradeValueBy(1);
     }
 }

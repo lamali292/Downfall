@@ -18,7 +18,7 @@ public class Boost : AutomatonCardModel, IEncodable,
     public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(6);
-        WithPower<StrengthPower>(1);
+        WithPower<StrengthPower>(1, 1);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -34,10 +34,5 @@ public class Boost : AutomatonCardModel, IEncodable,
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Strength.UpgradeValueBy(1);
     }
 }

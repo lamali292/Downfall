@@ -14,7 +14,7 @@ public class TalonRend : AwakenedCardModel
 {
     public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(5, 3);
         WithTip(DownfallKeyword.Conjure);
     }
 
@@ -29,11 +29,5 @@ public class TalonRend : AwakenedCardModel
 
         await AwakenedCmd.Conjure(Owner, CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

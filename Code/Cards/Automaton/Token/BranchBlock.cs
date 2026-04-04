@@ -14,7 +14,7 @@ public class BranchBlock : AutomatonCardModel, IEncodable
 {
     public BranchBlock() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithBlock(6);
+        WithBlock(6, 2);
         WithKeywords(CardKeyword.Retain);
         WithTip(DownfallKeyword.Encode);
     }
@@ -23,11 +23,5 @@ public class BranchBlock : AutomatonCardModel, IEncodable
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2m);
     }
 }

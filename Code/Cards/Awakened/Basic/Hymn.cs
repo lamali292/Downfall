@@ -14,7 +14,7 @@ public class Hymn : AwakenedCardModel
 {
     public Hymn() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBlock(3);
+        WithBlock(3, 3);
         WithTip(typeof(Ceremony));
         WithTip(typeof(DrainedPower));
     }
@@ -29,10 +29,5 @@ public class Hymn : AwakenedCardModel
         var card = CombatState.CreateCard<Ceremony>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

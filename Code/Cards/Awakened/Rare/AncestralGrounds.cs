@@ -15,7 +15,7 @@ public class AncestralGrounds : AwakenedCardModel
     public AncestralGrounds() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(12);
-        WithVars(new EnergyVar(2));
+        WithVar("Energy", 2, 1);
         WithEnergyTip();
         WithTip(typeof(Void));
     }
@@ -28,10 +28,5 @@ public class AncestralGrounds : AwakenedCardModel
             await CommonActions.ApplySelf<AncestralGroundsUpgradedPower>(this, 2);
         else
             await CommonActions.ApplySelf<AncestralGroundsPower>(this, 2);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

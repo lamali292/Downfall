@@ -12,7 +12,7 @@ public class ProfaneStrike : AwakenedCardModel
 {
     public ProfaneStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(10);
+        WithDamage(10, 3);
     }
 
 
@@ -22,11 +22,5 @@ public class ProfaneStrike : AwakenedCardModel
         var card = await SelectFromHand(ctx);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

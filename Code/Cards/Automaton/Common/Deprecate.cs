@@ -15,7 +15,7 @@ public class Deprecate : AutomatonCardModel, IEncodable
 {
     public Deprecate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<WeakPower>(1);
+        WithPower<WeakPower>(1, 1);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -23,11 +23,5 @@ public class Deprecate : AutomatonCardModel, IEncodable
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await PowerCmd.Apply<WeakPower>(cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Weak.UpgradeValueBy(1);
     }
 }

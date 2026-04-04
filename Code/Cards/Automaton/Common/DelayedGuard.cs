@@ -17,7 +17,7 @@ public class DelayedGuard : AutomatonCardModel, IEncodable
 {
     public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPower<BlockNextTurnPower>(7);
+        WithPower<BlockNextTurnPower>(7, 3);
         WithTip(DownfallKeyword.Encode);
         WithTip(StaticHoverTip.Block);
     }
@@ -26,11 +26,5 @@ public class DelayedGuard : AutomatonCardModel, IEncodable
     {
         await PowerCmd.Apply<BlockNextTurnPower>(Owner.Creature, DynamicVars.Power<BlockNextTurnPower>().BaseValue,
             Owner.Creature, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<BlockNextTurnPower>().UpgradeValueBy(3);
     }
 }

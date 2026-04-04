@@ -16,7 +16,7 @@ public class Backtrace : AutomatonCardModel, IEncodable,
 {
     public Backtrace() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 4);
         WithKeywords(CardKeyword.Innate);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Encode);
@@ -44,10 +44,5 @@ public class Backtrace : AutomatonCardModel, IEncodable,
     {
         if (SuppressCompileError) return;
         card.AddKeyword(CardKeyword.Exhaust);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

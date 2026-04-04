@@ -16,7 +16,7 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken
 {
     public ESP() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithCards(1);
+        WithCards(1, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 
@@ -29,10 +29,5 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, cardPlay.Card.Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

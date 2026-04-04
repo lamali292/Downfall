@@ -13,18 +13,12 @@ public class Eventide : AwakenedCardModel
 {
     public Eventide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

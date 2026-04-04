@@ -14,7 +14,7 @@ public class ChosenVerse : AwakenedCardModel
 {
     public ChosenVerse() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ChosenVersePower>(4);
+        WithPower<ChosenVersePower>(4, 2);
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
     }
 
@@ -25,10 +25,5 @@ public class ChosenVerse : AwakenedCardModel
         if (power == null) return;
         power.SetBlock(DynamicVars.Power<ChosenVersePower>().IntValue);
         power.CardPlay = cardPlay;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ChosenVersePower>().UpgradeValueBy(2);
     }
 }

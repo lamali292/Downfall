@@ -19,4 +19,9 @@ public class Library : AutomatonCardModel
     {
         await PowerCmd.Apply<LibraryPower>(Owner.Creature, 1, Owner.Creature, this);
     }
+    
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
+    }
 }

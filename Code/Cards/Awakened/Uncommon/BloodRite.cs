@@ -13,7 +13,7 @@ public class BloodRite : AwakenedCardModel
 {
     public BloodRite() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(8);
+        WithDamage(8, 3);
         WithTip(typeof(Ceremony));
     }
 
@@ -22,10 +22,5 @@ public class BloodRite : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

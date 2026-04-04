@@ -15,8 +15,8 @@ public class Flail : AutomatonCardModel
 {
     public Flail() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithDamage(7);
-        WithPower<ArtifactPower>(1);
+        WithDamage(7, 1);
+        WithPower<ArtifactPower>(1, 1);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Status);
     }
@@ -32,11 +32,5 @@ public class Flail : AutomatonCardModel
         await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue,
             Owner.Creature,
             this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars.Power<ArtifactPower>().UpgradeValueBy(1);
     }
 }

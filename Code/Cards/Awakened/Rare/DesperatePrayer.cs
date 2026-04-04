@@ -15,16 +15,11 @@ public class DesperatePrayer : AwakenedCardModel
     {
         WithTip(typeof(Ceremony));
         WithKeywords(CardKeyword.Exhaust);
-        WithCards(3);
+        WithCards(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<Ceremony>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

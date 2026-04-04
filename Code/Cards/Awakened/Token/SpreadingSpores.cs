@@ -17,7 +17,7 @@ public class SpreadingSpores : AwakenedCardModel
     public SpreadingSpores() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
     {
         WithKeywords(CardKeyword.Ethereal);
-        WithPower<ThornsPower>(2);
+        WithPower<ThornsPower>(2, 2);
     }
 
 
@@ -28,11 +28,5 @@ public class SpreadingSpores : AwakenedCardModel
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, true, CardPilePosition.Random);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, 0.1f, CardPreviewStyle.MessyLayout);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ThornsPower>().UpgradeValueBy(2);
     }
 }
