@@ -2,16 +2,9 @@
 
 namespace Downfall.Code.Core.Champ;
 
-public class GladiatorStance : StanceModel
+public class GladiatorStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
-
-    public override async Task OnEnter(PlayerChoiceContext ctx)
-    {
-        
-    }
-
-    public override async Task OnExit(PlayerChoiceContext ctx)
-    {
-    }
+    public override bool HasFinisher => true;
+    public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_active.png";
 }

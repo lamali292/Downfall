@@ -112,7 +112,7 @@ public class Champ : DownfallCharacterModel
 
         return animator;
 
-        bool IsInStance<T>() where T : StanceModel
+        bool IsInStance<T>() where T : ChampStanceModel
         {
             return ControllerToPlayer.TryGetValue(controller, out var player)
                    && ChampModel.IsInStance<T>(player);

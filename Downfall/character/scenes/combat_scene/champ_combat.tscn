@@ -9,6 +9,7 @@ script = ExtResource("1_o1y6q")
 [node name="Visuals" parent="." instance=ExtResource("1_iqfof")]
 preview_animation = "IdleUltimate"
 unique_name_in_owner = true
+position = Vector2(0, -19)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

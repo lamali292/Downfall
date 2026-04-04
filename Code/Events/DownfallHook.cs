@@ -86,7 +86,7 @@ public static class DownfallHook
         }
     }
     
-    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, StanceModel oldStance, StanceModel newStance)
+    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance)
     {
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
@@ -122,7 +122,7 @@ public static class DownfallHook
     }
     
     
-    public static int ModifySkillBonus<TPower>(PlayerChoiceContext ctx, StanceModel stanceModel, int baseAmount)
+    public static int ModifySkillBonus<TPower>(ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel
     {
         var combatState =  stanceModel.Owner.Creature.CombatState;
@@ -131,9 +131,7 @@ public static class DownfallHook
         foreach (var model in combatState.IterateHookListeners().OfType<IModifySkillBonus>())
         {
             var abstractModel = (AbstractModel)model;
-            ctx.PushModel(abstractModel);
-            amount = model.ModifySkillBonus<TPower>(ctx, stanceModel, amount);
-            ctx.PopModel(abstractModel);
+            amount = model.ModifySkillBonus<TPower>(stanceModel, amount);
         }
             
         return amount;

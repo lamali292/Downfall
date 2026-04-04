@@ -52,6 +52,6 @@ public static class DownfallSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels(RunState runState)
     {
-        return [AwakenedModel, AutomatonModel, GremlinsRunModel, ChampModel, SlimeBossModel];
+        return [AwakenedModel, AutomatonModel, GremlinsRunModel];
     }
 }

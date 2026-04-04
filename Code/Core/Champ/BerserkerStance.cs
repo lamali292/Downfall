@@ -6,24 +6,22 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Core.Champ;
 
 
-public class BerserkerStance : StanceModel
+public class BerserkerStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
+    public override bool HasFinisher => true;
+    public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_active.png";
 
-    public override async Task OnEnter(PlayerChoiceContext ctx)
+    public override async Task SkillBonus()
     {
-        DownfallMainFile.Logger.Info("Berserker Stance Entered " + Owner.NetId);
-    }
-
-    public override async Task OnExit(PlayerChoiceContext ctx)
-    {
-        DownfallMainFile.Logger.Info("Berserker Stance Existed " + Owner.NetId);
-    }
-
-
-    public override async Task SkillBonus(PlayerChoiceContext ctx)
-    {
-        var amount = DownfallHook.ModifySkillBonus<VigorPower>(ctx, this, 2);
+        var amount = DownfallHook.ModifySkillBonus<VigorPower>(this, 2);
         await PowerCmd.Apply<VigorPower>(Owner.Creature, amount, Owner.Creature, null);
     }
+
+    public override async Task Finisher(PlayerChoiceContext ctx)
+    {
+        await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, null);
+    }
+
+ 
 }
