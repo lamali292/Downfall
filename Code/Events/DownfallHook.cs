@@ -1,6 +1,7 @@
 ﻿using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core;
+using Downfall.Code.Core.Champ;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -85,7 +86,7 @@ public static class DownfallHook
         }
     }
     
-    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStance oldStance, ChampStance newStance)
+    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, StanceModel oldStance, StanceModel newStance)
     {
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
@@ -93,12 +94,12 @@ public static class DownfallHook
         Callable.From(() =>
         {
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            if (creatureNode == null) return;
 
-            var animState = creatureNode.SpineAnimation.GetAnimationState();
-            var currentAnim = animState.GetCurrent(0)?.GetAnimation().GetName();
+            var animState = creatureNode?.SpineAnimation.GetAnimationState();
+            if (animState == null) return;
+            var currentAnim = animState.GetCurrent(0).GetAnimation().GetName();
 
-            string? trigger = currentAnim switch
+            var trigger = currentAnim switch
             {
                 "Idle" or "IdleBerserker" or "IdleDefensive" or "IdleUltimate" or "IdleGladiator" => "Idle",
                 _ => null
@@ -106,8 +107,8 @@ public static class DownfallHook
 
             if (trigger == null) return;
 
-            creatureNode.SetAnimationTrigger(trigger);
-            animState.GetCurrent(0)?.SetMixDuration(0.3f);
+            creatureNode?.SetAnimationTrigger(trigger);
+            animState.GetCurrent(0).SetMixDuration(0.3f);
 
         }).CallDeferred();
         
@@ -118,6 +119,24 @@ public static class DownfallHook
             await model.OnStanceChange(ctx, player, oldStance, newStance);
             ctx.PopModel(abstractModel);
         }
+    }
+    
+    
+    public static int ModifySkillBonus<TPower>(PlayerChoiceContext ctx, StanceModel stanceModel, int baseAmount)
+        where TPower : PowerModel
+    {
+        var combatState =  stanceModel.Owner.Creature.CombatState;
+        if (combatState == null) return baseAmount;
+        var amount = baseAmount;
+        foreach (var model in combatState.IterateHookListeners().OfType<IModifySkillBonus>())
+        {
+            var abstractModel = (AbstractModel)model;
+            ctx.PushModel(abstractModel);
+            amount = model.ModifySkillBonus<TPower>(ctx, stanceModel, amount);
+            ctx.PopModel(abstractModel);
+        }
+            
+        return amount;
     }
 
 

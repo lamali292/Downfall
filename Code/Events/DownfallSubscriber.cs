@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Core;
+using Downfall.Code.Core.Champ;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -24,17 +25,29 @@ public static class DownfallSubscriber
 
     private static readonly SlimeBossModel SlimeBossModel =
         ModelDb.GetById<SlimeBossModel>(ModelDb.GetId<SlimeBossModel>());
+    
 
     public static void Subscribe()
     {
-        // Tell the game: "When a run starts, call 'CollectModels' to find my hook listeners."
         ModHelper.SubscribeForRunStateHooks(DownfallMainFile.ModId, CollectModels);
         ModHelper.SubscribeForCombatStateHooks(DownfallMainFile.ModId, CollectModels2);
     }
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        return [AwakenedModel, AutomatonModel, GremlinsModel, ChampModel, SlimeBossModel];
+        var models = new List<AbstractModel>
+        {
+            AwakenedModel, AutomatonModel, GremlinsModel, ChampModel, SlimeBossModel
+        };
+
+        models.AddRange(
+            combatState.Players
+                .Select(ChampModel.GetStanceModel)
+                .Where(s => s is not NoneStance)
+                .Cast<AbstractModel>()
+        );
+
+        return models;
     }
 
     private static IEnumerable<AbstractModel> CollectModels(RunState runState)

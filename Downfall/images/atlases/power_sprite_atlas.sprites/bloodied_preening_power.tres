@@ -1,5 +1,5 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://rt8t5w9"]
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d46f479"]
 [ext_resource type="Texture2D" path="res://Downfall/images/atlases/power_sprite_atlas.png" id="1"]
 [resource]
 atlas = ExtResource("1")
-region = Rect2(120, 24, 24, 24)
+region = Rect2(96, 24, 24, 24)

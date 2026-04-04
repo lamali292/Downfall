@@ -32,8 +32,18 @@ public partial class DownfallMainFile : Node
         harmony.PatchAll();
 
         Smart.Default.AddExtensions(new PowerIconFormatter());
-        foreach (var f in Smart.Default.GetFormatterExtensions())
-            Log.Info($"Formatter registered: {f.Name}");
         DownfallSubscriber.Subscribe();
+    }
+}
+
+
+
+[HarmonyPatch(typeof(Log), nameof(Log.Error))]
+public static class LogErrorPatch
+{
+    [HarmonyPrefix]
+    public static bool DowngradeLocErrors(string text)
+    {
+        return !text.StartsWith("Localization formatting error!");
     }
 }

@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Character;
+﻿using BaseLib.Abstracts;
+using Downfall.Code.Character;
 using Downfall.Code.Nodes;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;

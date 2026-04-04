@@ -160,5 +160,11 @@
   "DOWNFALL-SCHEME_POWER.smartDescription": "The next {Amount:plural:card|{Amount} cards} you play this turn that cost 1 or less {Amount:plural:is|are} played twice. ",
   "DOWNFALL-COUNTER_POWER.title": "Counter",
   "DOWNFALL-COUNTER_POWER.description": "The next time you take Attack damage, gain [red]Riposte Strike[/red] that deals that much damage.",
-  "DOWNFALL-COUNTER_POWER.smartDescription": "The next time you take Attack damage, gain [red]Riposte Strike[/red] that deals {Amount} damage."
+  "DOWNFALL-COUNTER_POWER.smartDescription": "The next time you take Attack damage, gain [red]Riposte Strike[/red] that deals {Amount} damage.",
+  "DOWNFALL-DEFENSIVE_STYLE_POWER.title": "Defensive Style",
+  "DOWNFALL-DEFENSIVE_STYLE_POWER.description": "[gold]Skill Bonuses[/gold] grant X additional {:icon(Downfall-CounterPower)}.",
+  "DOWNFALL-DEFENSIVE_STYLE_POWER.smartDescription": "[gold]Skill Bonuses[/gold] grant {Amount} additional {:icon(Downfall-CounterPower)}.",
+  "DOWNFALL-BERSERKER_STYLE_POWER.title": "Berserker Style",
+  "DOWNFALL-BERSERKER_STYLE_POWER.description": "[gold]Skill Bonuses[/gold] grant X additional {:icon(VigorPower)}.",
+  "DOWNFALL-BERSERKER_STYLE_POWER.smartDescription": "[gold]Skill Bonuses[/gold] grant {Amount} additional {:icon(VigorPower)}."
 }

@@ -1,11 +1,10 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Champ.Basic;
-using Downfall.Code.Core;
+using Downfall.Code.Core.Champ;
 using Downfall.Code.Relics.Champ;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 
@@ -55,68 +54,68 @@ public class Champ : DownfallCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-{
-    var idleNone      = new AnimState("Idle",          true);
-    var idleBerserker = new AnimState("IdleBerserker", true);
-    var idleDefensive = new AnimState("IdleDefensive", true);
-    var idleUltimate  = new AnimState("IdleUltimate",  true);
-    var idleGladiator = new AnimState("IdleGladiator", true);
-
-    var hitNone      = new AnimState("Hit");
-    var hitBerserker = new AnimState("HitBerserker");
-    var hitDefensive = new AnimState("HitDefensive");
-    var hitUltimate  = new AnimState("IdleUltimate");
-    var hitGladiator = new AnimState("HitGladiator");
-    
-    hitNone.NextState      = idleNone;
-    hitBerserker.NextState = idleBerserker;
-    hitDefensive.NextState = idleDefensive;
-    hitUltimate.NextState = idleUltimate;
-    hitGladiator.NextState = idleGladiator;
-    
-    var attackNone      = new AnimState("Attack");
-    var attackBerserker = new AnimState("Attack");
-    var attackDefensive = new AnimState("Attack");
-    var attackUltimate  = new AnimState("Attack");
-    var attackGladiator = new AnimState("Attack");
-    
-    attackNone.NextState      = idleNone;
-    attackBerserker.NextState = idleBerserker;
-    attackDefensive.NextState = idleDefensive;
-    attackUltimate.NextState = idleUltimate;
-    attackGladiator.NextState  = idleGladiator;
-    
-    var deadState = new AnimState("Idle");
-
-    var animator = new CreatureAnimator(idleNone, controller);
-
-    animator.AddAnyState("Dead",   deadState);
-
-    animator.AddAnyState("Attack", attackNone,      () => GetStance() == ChampStance.None);
-    animator.AddAnyState("Attack", attackBerserker, () => GetStance() == ChampStance.Berserker);
-    animator.AddAnyState("Attack", attackDefensive, () => GetStance() == ChampStance.Defensive);
-    animator.AddAnyState("Attack", attackUltimate,  () => GetStance() == ChampStance.Ultimate);
-    animator.AddAnyState("Attack", attackGladiator, () => GetStance() == ChampStance.Gladiator);
-    
-    animator.AddAnyState("Idle", idleNone,      () => GetStance() == ChampStance.None);
-    animator.AddAnyState("Idle", idleBerserker, () => GetStance() == ChampStance.Berserker);
-    animator.AddAnyState("Idle", idleDefensive, () => GetStance() == ChampStance.Defensive);
-    animator.AddAnyState("Idle", idleUltimate,  () => GetStance() == ChampStance.Ultimate);
-    animator.AddAnyState("Idle", idleGladiator, () => GetStance() == ChampStance.Gladiator);
-
-    animator.AddAnyState("Hit", hitNone,      () => GetStance() == ChampStance.None);
-    animator.AddAnyState("Hit", hitBerserker, () => GetStance() == ChampStance.Berserker);
-    animator.AddAnyState("Hit", hitDefensive, () => GetStance() == ChampStance.Defensive);
-    animator.AddAnyState("Hit", hitUltimate,  () => GetStance() == ChampStance.Ultimate);
-    animator.AddAnyState("Hit", hitGladiator, () => GetStance() == ChampStance.Gladiator);
-
-    return animator;
-
-    ChampStance GetStance()
     {
-        var player = CombatManager.Instance.DebugOnlyGetState()?.Players
-            .FirstOrDefault(p => p.Character == this);
-        return ChampModel.GetStance(player);
+        var idleNone      = new AnimState("Idle",          true);
+        var idleBerserker = new AnimState("IdleBerserker", true);
+        var idleDefensive = new AnimState("IdleDefensive", true);
+        var idleUltimate  = new AnimState("IdleUltimate",  true);
+        var idleGladiator = new AnimState("IdleGladiator", true);
+
+        var hitNone      = new AnimState("Hit");
+        var hitBerserker = new AnimState("HitBerserker");
+        var hitDefensive = new AnimState("HitDefensive");
+        var hitUltimate  = new AnimState("IdleUltimate");
+        var hitGladiator = new AnimState("HitGladiator");
+        
+        hitNone.NextState      = idleNone;
+        hitBerserker.NextState = idleBerserker;
+        hitDefensive.NextState = idleDefensive;
+        hitUltimate.NextState = idleUltimate;
+        hitGladiator.NextState = idleGladiator;
+        
+        var attackNone      = new AnimState("Attack");
+        var attackBerserker = new AnimState("Attack");
+        var attackDefensive = new AnimState("Attack");
+        var attackUltimate  = new AnimState("Attack");
+        var attackGladiator = new AnimState("Attack");
+        
+        attackNone.NextState      = idleNone;
+        attackBerserker.NextState = idleBerserker;
+        attackDefensive.NextState = idleDefensive;
+        attackUltimate.NextState = idleUltimate;
+        attackGladiator.NextState  = idleGladiator;
+        
+        var deadState = new AnimState("Idle");
+
+        var animator = new CreatureAnimator(idleNone, controller);
+
+        animator.AddAnyState("Dead",   deadState);
+
+        animator.AddAnyState("Attack", attackNone,      IsInStance<NoneStance>);
+        animator.AddAnyState("Attack", attackBerserker, IsInStance<BerserkerStance>);
+        animator.AddAnyState("Attack", attackDefensive, IsInStance<DefensiveStance>);
+        animator.AddAnyState("Attack", attackUltimate,  IsInStance<UltimateStance>);
+        animator.AddAnyState("Attack", attackGladiator, IsInStance<GladiatorStance>);
+    
+        animator.AddAnyState("Idle", idleNone,      IsInStance<NoneStance>);
+        animator.AddAnyState("Idle", idleBerserker, IsInStance<BerserkerStance>);
+        animator.AddAnyState("Idle", idleDefensive, IsInStance<DefensiveStance>);
+        animator.AddAnyState("Idle", idleUltimate,  IsInStance<UltimateStance>);
+        animator.AddAnyState("Idle", idleGladiator, IsInStance<GladiatorStance>);
+
+        animator.AddAnyState("Hit", hitNone,      IsInStance<NoneStance>);
+        animator.AddAnyState("Hit", hitBerserker, IsInStance<BerserkerStance>);
+        animator.AddAnyState("Hit", hitDefensive, IsInStance<DefensiveStance>);
+        animator.AddAnyState("Hit", hitUltimate,  IsInStance<UltimateStance>);
+        animator.AddAnyState("Hit", hitGladiator, IsInStance<GladiatorStance>);
+
+
+        return animator;
+
+        bool IsInStance<T>() where T : StanceModel
+        {
+            return ControllerToPlayer.TryGetValue(controller, out var player)
+                   && ChampModel.IsInStance<T>(player);
+        }
     }
-}
 }

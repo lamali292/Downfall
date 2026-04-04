@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 import math
-import random
+import hashlib
 import string
 import shutil
 
@@ -35,11 +35,11 @@ CUSTOM_SUFFIX         = "_power"
 OUT_TRES        = os.path.join(OUT_ATLASES, ATLAS_SPRITES)
 OUT_TRES_SPRITE = os.path.join(OUT_ATLASES, SPRITE_SPRITES)
 
-def random_uid(length=7):
-    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+def deterministic_uid(name: str, length=7) -> str:
+    return hashlib.md5(name.encode()).hexdigest()[:length]
 
-def write_tres(path, atlas_res_path, x, y, size):
-    content = f'''[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://{random_uid()}"]
+def write_tres(path, atlas_res_path, x, y, size, name: str):
+    content = f'''[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://{deterministic_uid(name)}"]
 [ext_resource type="Texture2D" path="{atlas_res_path}" id="1"]
 [resource]
 atlas = ExtResource("1")
@@ -97,7 +97,7 @@ for i, (stem, big, small, sprite) in enumerate(non_sprite_only):
     ax  = col * ATLAS_SIZE
     ay  = row * ATLAS_SIZE
     atlas.paste(small, (ax, ay))
-    write_tres(os.path.join(OUT_TRES, f"{stem}{CUSTOM_SUFFIX}.tres"), ATLAS_RES_PATH, ax, ay, ATLAS_SIZE)
+    write_tres(os.path.join(OUT_TRES, f"{stem}{CUSTOM_SUFFIX}.tres"), ATLAS_RES_PATH, ax, ay, ATLAS_SIZE, f"{stem}_atlas")
     big.save(os.path.join(OUT_POWERS, f"{stem}{CUSTOM_SUFFIX}.png"))
 
 for i, (stem, big, small, sprite, is_sprite_only) in enumerate(all_entries):
@@ -107,7 +107,7 @@ for i, (stem, big, small, sprite, is_sprite_only) in enumerate(all_entries):
     sy  = row * SPRITE_SIZE
     sprite_atlas.paste(sprite, (sx, sy))
     filename = f"{stem}.tres" if is_sprite_only else f"{stem}{CUSTOM_SUFFIX}.tres"
-    write_tres(os.path.join(OUT_TRES_SPRITE, filename), SPRITE_ATLAS_RES_PATH, sx, sy, SPRITE_SIZE)
+    write_tres(os.path.join(OUT_TRES_SPRITE, filename), SPRITE_ATLAS_RES_PATH, sx, sy, SPRITE_SIZE, f"{stem}_sprite")
 
 atlas.save(os.path.join(OUT_ATLASES, ATLAS_FILENAME))
 sprite_atlas.save(os.path.join(OUT_ATLASES, SPRITE_ATLAS_FILENAME))
