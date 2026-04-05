@@ -2,6 +2,7 @@
 
 namespace Downfall.Code.Config;
 
-internal class DownfallConfig : SimpleModConfig {
+internal class DownfallConfig : SimpleModConfig
+{
     public static bool IconPowers { get; set; } = true;
 }

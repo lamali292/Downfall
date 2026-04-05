@@ -35,7 +35,7 @@ public class DemonGlyph : AwakenedCardModel
         {
             await CommonActions.ApplySelf<StrengthPower>(this, 1);
             await CommonActions.ApplySelf<DexterityPower>(this, 1);
-            await MyCommonActions.ApplySelf<DemonGlyphPower>(this);
+            await CommonActions.ApplySelf<DemonGlyphPower>(this);
         }
     }
 }

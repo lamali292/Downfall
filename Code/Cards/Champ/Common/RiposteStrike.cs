@@ -15,7 +15,7 @@ public class RiposteStrike : ChampCardModel
         WithKeywords(CardKeyword.Ethereal);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);

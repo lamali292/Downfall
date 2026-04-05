@@ -166,5 +166,13 @@
   "DOWNFALL-DEFENSIVE_STYLE_POWER.smartDescription": "[gold]Skill Bonuses[/gold] grant {Amount} additional {:icon(Downfall-CounterPower)}.",
   "DOWNFALL-BERSERKER_STYLE_POWER.title": "Berserker Style",
   "DOWNFALL-BERSERKER_STYLE_POWER.description": "[gold]Skill Bonuses[/gold] grant X additional {:icon(VigorPower)}.",
-  "DOWNFALL-BERSERKER_STYLE_POWER.smartDescription": "[gold]Skill Bonuses[/gold] grant {Amount} additional {:icon(VigorPower)}."
+  "DOWNFALL-BERSERKER_STYLE_POWER.smartDescription": "[gold]Skill Bonuses[/gold] grant {Amount} additional {:icon(VigorPower)}.",
+  "DOWNFALL-CHAIN_LASH_POWER.title": "Chain Lash",
+  "DOWNFALL-CHAIN_LASH_POWER.description": "This turn, [gold]Skill[/gold] Bonuses grant X more effect.",
+  "DOWNFALL-CHAIN_LASH_POWER.smartDescription": "This turn, [gold]Skill[/gold] Bonuses grant {Amount} more effect.",
+  "DOWNFALL-EN_GARDE_POWER.title": "En Garde",
+  "DOWNFALL-EN_GARDE_POWER.description": "If your [gold]Block[/gold] is broken this turn, gain X [gold]Block[/gold] next turn.",
+  "DOWNFALL-EN_GARDE_POWER.smartDescription": "If your [gold]Block[/gold] is broken this turn, gain {Amount} [gold]Block[/gold] next turn.",
+  "DOWNFALL-GLORY_POWER.title": "Glory",
+  "DOWNFALL-GLORY_POWER.description": "?"
 }

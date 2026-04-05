@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Localization;
 
-public class ChampDescriptionSource : IExtraDescriptionSource
+public class FinisherDescriptionSource : IExtraDescriptionSource
 {
     private const string DownfallTable = "downfall";
 

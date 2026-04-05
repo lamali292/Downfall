@@ -1,4 +1,5 @@
 ﻿// NChampStanceDisplay.cs
+
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using Godot;
@@ -17,10 +18,10 @@ public partial class NChampStanceDisplay : Control
     private const int TotalWidth = IconCount * ChargeIconSize + (IconCount - 1) * Separation;
     private const int TotalHeight = ChargeIconSize;
     private const int MarginAboveHead = 20;
+    private readonly List<TextureRect> _icons = new();
+    private Control? _bounds;
 
     private Player? _trackedPlayer;
-    private Control? _bounds;
-    private readonly List<TextureRect> _icons = new();
 
     public static NChampStanceDisplay? Show(Player player)
     {

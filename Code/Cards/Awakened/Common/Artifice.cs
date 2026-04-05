@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,6 +21,6 @@ public class Artifice : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await MyCommonActions.Apply<ManaburnPower>(cardPlay.Target, this);
+        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this);
     }
 }

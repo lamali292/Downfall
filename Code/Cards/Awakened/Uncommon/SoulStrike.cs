@@ -14,7 +14,7 @@ public class SoulStrike : AwakenedCardModel
 {
     public SoulStrike() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4,2);
+        WithDamage(4, 2);
         WithVars(new RepeatVar(3));
     }
 

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +22,7 @@ public class SpreadingSpores : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<ThornsPower>(this);
+        await CommonActions.ApplySelf<ThornsPower>(this);
         var card = CreateClone();
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, true, CardPilePosition.Random);
         if (result.success)

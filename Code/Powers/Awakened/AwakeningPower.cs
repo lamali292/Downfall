@@ -2,7 +2,6 @@
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
@@ -12,8 +11,6 @@ namespace Downfall.Code.Powers.Awakened;
 public class AwakeningPower : AwakenedPowerModel
 {
     private bool _isReviving;
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override bool ShouldAllowHitting(Creature creature)
     {

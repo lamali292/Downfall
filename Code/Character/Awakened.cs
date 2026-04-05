@@ -57,20 +57,20 @@ public class Awakened : DownfallCharacterModel
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        var idleState     = new AnimState("Idle_1", true);
-        var hitState      = new AnimState("Hit");
-        var attackState   = new AnimState("Attack_1");
-        var awakenedIdle  = new AnimState("Idle_2", true);
+        var idleState = new AnimState("Idle_1", true);
+        var hitState = new AnimState("Hit");
+        var attackState = new AnimState("Attack_1");
+        var awakenedIdle = new AnimState("Idle_2", true);
         var awakenedAttack = new AnimState("Attack_2");
-        var awakenedHit   = new AnimState("Hit");
+        var awakenedHit = new AnimState("Hit");
 
         var animator = new CreatureAnimator(idleState, controller);
-        animator.AddAnyState("Idle",   idleState,      () => !IsAwakened());
-        animator.AddAnyState("Idle",   awakenedIdle,   IsAwakened);
-        animator.AddAnyState("Attack", attackState,    () => !IsAwakened());
+        animator.AddAnyState("Idle", idleState, () => !IsAwakened());
+        animator.AddAnyState("Idle", awakenedIdle, IsAwakened);
+        animator.AddAnyState("Attack", attackState, () => !IsAwakened());
         animator.AddAnyState("Attack", awakenedAttack, IsAwakened);
-        animator.AddAnyState("Hit",    hitState,       () => !IsAwakened());
-        animator.AddAnyState("Hit",    awakenedHit,    IsAwakened);
+        animator.AddAnyState("Hit", hitState, () => !IsAwakened());
+        animator.AddAnyState("Hit", awakenedHit, IsAwakened);
 
         return animator;
 

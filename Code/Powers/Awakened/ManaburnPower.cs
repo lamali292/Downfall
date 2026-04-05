@@ -10,12 +10,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class ManaburnPower : AwakenedPowerModel, IOnDrained
+public class ManaburnPower() : AwakenedPowerModel(PowerType.Debuff), IOnDrained
 {
-    public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-
     public async Task OnDrained(Player player, int amount)
     {
         if (Applier != player.Creature || LocalContext.NetId == null) return;

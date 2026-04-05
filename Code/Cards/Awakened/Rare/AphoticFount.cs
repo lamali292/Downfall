@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,6 +22,6 @@ public class AphoticFount : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-        await MyCommonActions.ApplySelf<AphoticFountPower>(this);
+        await CommonActions.ApplySelf<AphoticFountPower>(this);
     }
 }

@@ -1,4 +1,5 @@
 ﻿// ChampModel.cs
+
 using System.Runtime.CompilerServices;
 using BaseLib.Utils;
 using Downfall.Code.Events;
@@ -13,31 +14,46 @@ namespace Downfall.Code.Core.Champ;
 
 public class ChampModel : AbstractModel
 {
+    private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
+        new(DownfallModelDb.ChampStance<NoChampStance>);
+
+    private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
     public override bool ShouldReceiveCombatHooks => true;
 
-    private static readonly SpireField<Player, ChampStanceModel> ActiveStance = new(DownfallModelDb.ChampStance<NoChampStance>);
-    private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
-
     public static T GetStanceAs<T>(Player player) where T : ChampStanceModel
-        => (ActiveStance[player] as T)!;
+    {
+        return (ActiveStance[player] as T)!;
+    }
 
     public static ChampStanceModel GetStanceModel(Player player)
-        => ActiveStance[player] ?? DownfallModelDb.ChampStance<NoChampStance>();
+    {
+        return ActiveStance[player] ?? DownfallModelDb.ChampStance<NoChampStance>();
+    }
 
     public static bool IsInStance<T>(Player player) where T : ChampStanceModel
-        => ActiveStance[player] is T;
+    {
+        return ActiveStance[player] is T;
+    }
 
     private static NChampStanceDisplay? GetDisplay(Player player)
-        => StanceDisplays.TryGetValue(player, out var d) ? d : null;
+    {
+        return StanceDisplays.TryGetValue(player, out var d) ? d : null;
+    }
 
     private static void RegisterDisplay(Player player, NChampStanceDisplay display)
-        => StanceDisplays.AddOrUpdate(player, display);
+    {
+        StanceDisplays.AddOrUpdate(player, display);
+    }
 
     public static void RefreshDisplay(Player player)
-        => GetDisplay(player)?.Refresh();
+    {
+        GetDisplay(player)?.Refresh();
+    }
 
     public static async Task SetStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
-        => await SetStance(ctx, player, DownfallModelDb.ChampStance<T>());
+    {
+        await SetStance(ctx, player, DownfallModelDb.ChampStance<T>());
+    }
 
     private static async Task SetStance(PlayerChoiceContext ctx, Player player, ChampStanceModel newCanonical)
     {

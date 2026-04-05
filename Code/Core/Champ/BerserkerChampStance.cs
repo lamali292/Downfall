@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Core.Champ;
 
-
 public class BerserkerChampStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
@@ -22,6 +21,4 @@ public class BerserkerChampStance : ChampStanceModel
     {
         await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, null);
     }
-
- 
 }

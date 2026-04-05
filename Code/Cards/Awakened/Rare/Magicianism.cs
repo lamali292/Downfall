@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +20,6 @@ public class Magicianism : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<MagicianismPower>(this);
+        await CommonActions.ApplySelf<MagicianismPower>(this);
     }
 }

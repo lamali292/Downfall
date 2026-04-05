@@ -2,8 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Core;
-using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -18,10 +16,10 @@ public class BerserkersShout : ChampCardModel
         WithPower<VigorPower>(2, 2);
         WithIcon<VigorPower>();
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<VigorPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 }

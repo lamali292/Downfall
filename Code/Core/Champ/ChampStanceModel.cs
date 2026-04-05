@@ -7,20 +7,20 @@ namespace Downfall.Code.Core.Champ;
 
 public abstract class ChampStanceModel : AbstractModel
 {
+    private Player? _player;
 
     public abstract bool HasFinisher { get; }
     public virtual string? ChargeIconPath => null;
+
+    public int Charges { get; private set; }
+    public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
+
     public ChampStanceModel ToMutable(Player player)
     {
         var mutable = (ChampStanceModel)MutableClone();
         mutable._player = player;
         return mutable;
     }
-
-    public int Charges { get; private set; }
-
-    private Player? _player;
-    public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     public Task OnEnter(PlayerChoiceContext ctx)
     {
@@ -42,13 +42,14 @@ public abstract class ChampStanceModel : AbstractModel
         ChampModel.RefreshDisplay(Owner);
         await SkillBonus();
     }
-    
-    public virtual Task SkillBonus()  => Task.CompletedTask;
-    public virtual Task Finisher(PlayerChoiceContext ctx)  => Task.CompletedTask;
+
+    public virtual Task SkillBonus()
+    {
+        return Task.CompletedTask;
+    }
+
+    public virtual Task Finisher(PlayerChoiceContext ctx)
+    {
+        return Task.CompletedTask;
+    }
 }
-
-
-
-
-
-

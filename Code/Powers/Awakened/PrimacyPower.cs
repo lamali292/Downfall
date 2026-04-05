@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -16,9 +15,6 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
 {
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
     private int StrengthGainsThisTurn => CombatManager.Instance.History.Entries
         .OfType<PowerReceivedEntry>()
         .Count(e => e.HappenedThisTurn(CombatState) &&

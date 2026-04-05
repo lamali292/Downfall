@@ -27,5 +27,4 @@ public class Fragment : AutomatonCardModel, IEncodable
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
-    
 }

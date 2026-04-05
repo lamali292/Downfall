@@ -9,12 +9,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class SplitWidePower : AwakenedPowerModel
+public class SplitWidePower() : AwakenedPowerModel(PowerType.Debuff)
 {
-    public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-
     public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer,
         DamageResult result, ValueProp props,
         Creature target, CardModel? cardSource)

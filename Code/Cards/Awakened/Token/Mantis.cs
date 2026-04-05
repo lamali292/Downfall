@@ -19,7 +19,7 @@ public class Mantis : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(this);
         await DownfallCardCmd.GiveCard<PlumeJab>(Owner, PileType.Hand, animationTime: 0.1f);
     }
 }

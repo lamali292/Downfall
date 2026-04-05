@@ -17,9 +17,8 @@ public class DefensiveChampStance : ChampStanceModel
         var amount = DownfallHook.ModifySkillBonus<CounterPower>(this, 2);
         await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
     }
-    
-    
-    
+
+
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
         await CreatureCmd.GainBlock(Owner.Creature, 6, ValueProp.Unpowered, null);

@@ -85,7 +85,6 @@ public class DownfallCardCmd
                 card,
                 null,
                 autoPlayType,
-                skipXCapture,
-                false);
+                skipXCapture);
     }
 }
