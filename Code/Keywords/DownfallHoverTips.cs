@@ -15,6 +15,7 @@ public readonly struct DownfallKeyword
     public static readonly DownfallKeyword Conjure = new(nameof(Conjure));
     public static readonly DownfallKeyword Chant = new(nameof(Chant));
     public static readonly DownfallKeyword Drained = new(nameof(Drained));
+    public static readonly DownfallKeyword Finisher = new(nameof(Finisher));
     private readonly string _name;
 
     private DownfallKeyword(string name)

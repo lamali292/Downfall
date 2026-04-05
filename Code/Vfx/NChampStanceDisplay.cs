@@ -1,5 +1,6 @@
 ﻿// NChampStanceDisplay.cs
 using Downfall.Code.Core.Champ;
+using Downfall.Code.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -24,9 +25,8 @@ public partial class NChampStanceDisplay : Control
     public static NChampStanceDisplay? Show(Player player)
     {
         var combatRoom = NCombatRoom.Instance;
-        if (combatRoom == null) return null;
 
-        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        var creatureNode = combatRoom?.GetCreatureNode(player.Creature);
         if (creatureNode == null) return null;
 
         var display = new NChampStanceDisplay
@@ -36,8 +36,7 @@ public partial class NChampStanceDisplay : Control
             ZIndex = creatureNode.ZIndex - 1
         };
 
-        combatRoom.CombatVfxContainer.AddChildSafely(display);
-        creatureNode.MoveChild(display, 0);
+        combatRoom?.CombatVfxContainer.AddChildSafely(display);
         return display;
     }
 
@@ -63,7 +62,7 @@ public partial class NChampStanceDisplay : Control
         Refresh();
     }
 
-    public void Reposition()
+    private void Reposition()
     {
         if (_bounds == null) return;
 
@@ -77,9 +76,9 @@ public partial class NChampStanceDisplay : Control
     {
         if (_trackedPlayer == null || _icons.Count == 0) return;
 
-        var stance = ChampModel.GetStanceModel(_trackedPlayer);
+        var stance = _trackedPlayer.ChampStance();
 
-        if (stance is NoneStance or null)
+        if (stance is NoChampStance or null)
         {
             QueueFree();
             return;

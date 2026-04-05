@@ -4,6 +4,7 @@ using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Champ.Basic;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Champ;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -40,8 +41,7 @@ public class StanceDance : ChampCardModel
                 break;
         }
 
-        var stance =  ChampModel.GetStanceModel(Owner);
-        if (stance == null) return;
+        var stance = Owner.ChampStance();
         await stance.SkillBonus();
         if (IsUpgraded)
         {
