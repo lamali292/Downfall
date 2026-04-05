@@ -17,12 +17,11 @@ public class BobAndWeave : ChampCardModel
         WithBlock(4);
         WithPower<VigorPower>(4);
     }
-    // TODO: Implement
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await MyCommonActions.ApplySelf<VigorPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 

@@ -8,7 +8,6 @@ namespace Downfall.Code.Abstract;
 public abstract class DownfallPotionPool<T> : CustomPotionPoolModel
     where T : DownfallCharacterModel
 {
-
     private static T Character => ModelDb.Character<T>();
 
     public override string EnergyColorName => Character.CharId!;

@@ -18,7 +18,7 @@ public class Spellbinder : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<SpellbinderPower>(this);
+        await CommonActions.ApplySelf<SpellbinderPower>(this);
     }
 
 

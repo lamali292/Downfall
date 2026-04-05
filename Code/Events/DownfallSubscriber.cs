@@ -25,7 +25,7 @@ public static class DownfallSubscriber
 
     private static readonly SlimeBossModel SlimeBossModel =
         ModelDb.GetById<SlimeBossModel>(ModelDb.GetId<SlimeBossModel>());
-    
+
 
     public static void Subscribe()
     {
@@ -44,7 +44,6 @@ public static class DownfallSubscriber
             combatState.Players
                 .Select(ChampModel.GetStanceModel)
                 .Where(s => s is not NoChampStance)
-                .Cast<AbstractModel>()
         );
 
         return models;

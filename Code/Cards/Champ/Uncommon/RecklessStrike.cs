@@ -17,11 +17,11 @@ public class RecklessStrike : ChampCardModel
         WithPower<StrengthPower>(1);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 

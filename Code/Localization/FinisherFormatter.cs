@@ -1,15 +1,6 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
-using Downfall.Code.Config;
-using Godot;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
-using SmartFormat;
-using SmartFormat.Core.Extensions;
+﻿using SmartFormat.Core.Extensions;
 
 namespace Downfall.Code.Localization;
-
 
 public class FinisherFormatter : IFormatter
 {
@@ -27,4 +18,3 @@ public class FinisherFormatter : IFormatter
         return true;
     }
 }
-

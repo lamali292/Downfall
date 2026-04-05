@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Core;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +17,7 @@ public class Inspiration : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithKeywords(CardKeyword.Retain);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var stance = Owner.ChampStance();

@@ -16,12 +16,12 @@ public class DoubleStyle : ChampCardModel
         WithPower<DefensiveStylePower>(1);
         WithPower<BerserkerStylePower>(1);
     }
-    
-    
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.ApplySelf<DefensiveStylePower>(this);
-        await MyCommonActions.ApplySelf<BerserkerStylePower>(this);
+        await CommonActions.ApplySelf<DefensiveStylePower>(this);
+        await CommonActions.ApplySelf<BerserkerStylePower>(this);
     }
 
 

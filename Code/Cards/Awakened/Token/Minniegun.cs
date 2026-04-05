@@ -3,7 +3,6 @@ using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 

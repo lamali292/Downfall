@@ -1,6 +1,4 @@
-﻿using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-
-namespace Downfall.Code.Core.Champ;
+﻿namespace Downfall.Code.Core.Champ;
 
 public class UltimateChampStance : ChampStanceModel
 {

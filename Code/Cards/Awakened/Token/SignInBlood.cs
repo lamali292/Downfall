@@ -28,6 +28,6 @@ public class SignInBlood : AwakenedCardModel
         await CreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await CommonActions.Draw(this, ctx);
-        await MyCommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(this);
     }
 }

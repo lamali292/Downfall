@@ -22,7 +22,7 @@ public class AwakenedForm : AwakenedCardModel
     {
         if (IsUpgraded)
             await AwakenedCmd.Awaken(Owner, ctx);
-        await MyCommonActions.ApplySelf<CuriosityPower>(this);
-        await MyCommonActions.ApplySelf<RitualPower>(this);
+        await CommonActions.ApplySelf<CuriosityPower>(this);
+        await CommonActions.ApplySelf<RitualPower>(this);
     }
 }

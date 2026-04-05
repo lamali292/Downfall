@@ -20,8 +20,8 @@ public class ChampionsCrown : ChampRelicModel
     {
         return ModelDb.Relic<VictoriousCrown>();
     }
-    
-    
+
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,

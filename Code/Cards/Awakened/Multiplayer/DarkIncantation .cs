@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -25,6 +24,6 @@ public class DarkIncantation : AwakenedCardModel
     {
         var a = cardPlay.Card.Owner.GetRelic<Akabeko>();
         if (cardPlay.Target == null) return;
-        await MyCommonActions.Apply<RitualPower>(cardPlay.Target, this);
+        await CommonActions.Apply<RitualPower>(cardPlay.Target, this);
     }
 }

@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Patches;
 
-
 [HarmonyPatch]
 public static class CardDescriptionPatch
 {
@@ -38,5 +37,7 @@ public static class CardDescriptionPatch
     }
 
     public static void InjectLines(CardModel card, List<string> source)
-        => CardDescriptionRegistry.InjectLines(card, source);
+    {
+        CardDescriptionRegistry.InjectLines(card, source);
+    }
 }
