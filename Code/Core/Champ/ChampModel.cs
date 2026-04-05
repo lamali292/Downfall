@@ -15,14 +15,14 @@ public class ChampModel : AbstractModel
 {
     public override bool ShouldReceiveCombatHooks => true;
 
-    private static readonly SpireField<Player, ChampStanceModel> ActiveStance = new(DownfallModelDb.ChampStance<NoneStance>);
+    private static readonly SpireField<Player, ChampStanceModel> ActiveStance = new(DownfallModelDb.ChampStance<NoChampStance>);
     private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
 
     public static T GetStanceAs<T>(Player player) where T : ChampStanceModel
         => (ActiveStance[player] as T)!;
 
     public static ChampStanceModel GetStanceModel(Player player)
-        => ActiveStance[player] ?? DownfallModelDb.ChampStance<NoneStance>();
+        => ActiveStance[player] ?? DownfallModelDb.ChampStance<NoChampStance>();
 
     public static bool IsInStance<T>(Player player) where T : ChampStanceModel
         => ActiveStance[player] is T;
@@ -55,7 +55,7 @@ public class ChampModel : AbstractModel
 
         Callable.From(() =>
         {
-            if (newCanonical is NoneStance)
+            if (newCanonical is NoChampStance)
             {
                 GetDisplay(player)?.Refresh(); // QueueFrees itself
             }
@@ -80,6 +80,6 @@ public class ChampModel : AbstractModel
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return;
         foreach (var player in state.Players)
-            ActiveStance[player] = DownfallModelDb.ChampStance<NoneStance>();
+            ActiveStance[player] = DownfallModelDb.ChampStance<NoChampStance>();
     }
 }

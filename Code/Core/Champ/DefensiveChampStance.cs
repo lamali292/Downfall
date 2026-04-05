@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Core.Champ;
 
-public class DefensiveStance : ChampStanceModel
+public class DefensiveChampStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;

@@ -43,7 +43,7 @@ public static class DownfallSubscriber
         models.AddRange(
             combatState.Players
                 .Select(ChampModel.GetStanceModel)
-                .Where(s => s is not NoneStance)
+                .Where(s => s is not NoChampStance)
                 .Cast<AbstractModel>()
         );
 

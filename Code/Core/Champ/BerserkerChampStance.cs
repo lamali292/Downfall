@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Core.Champ;
 
 
-public class BerserkerStance : ChampStanceModel
+public class BerserkerChampStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;

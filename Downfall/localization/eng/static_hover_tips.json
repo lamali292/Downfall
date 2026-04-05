@@ -17,5 +17,7 @@
   "DOWNFALL-CHANT.title": "Chant",
   "DOWNFALL-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card.",
   "DOWNFALL-DRAINED.title": "Drained",
-  "DOWNFALL-DRAINED.description": "Any effect that caused you to lose {energyPrefix:energyIcons(1)}, even if you had none to lose.\n(Does not include {energyPrefix:energyIcons(1)} spent playing cards.)"
+  "DOWNFALL-DRAINED.description": "Any effect that caused you to lose {energyPrefix:energyIcons(1)}, even if you had none to lose.\n(Does not include {energyPrefix:energyIcons(1)} spent playing cards.)",
+  "DOWNFALL-FINISHER.title": "Finisher",
+  "DOWNFALL-FINISHER.description": "Requires a Stance.\nAfter playing a Finisher, exit your [gold]Stance[/gold] and trigger its Finisher bonus."
 }
