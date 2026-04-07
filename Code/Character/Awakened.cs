@@ -1,4 +1,6 @@
-﻿using Downfall.Code.Abstract;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
 using Downfall.Code.Core;
 using Downfall.Code.Relics.Awakened;

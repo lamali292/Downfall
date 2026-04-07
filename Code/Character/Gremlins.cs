@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Abstract;
+﻿using System.Collections.Generic;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Gremlins.Basic;
 using Downfall.Code.Nodes;
 using Downfall.Code.Relics.Gremlins;

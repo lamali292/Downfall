@@ -1,4 +1,5 @@
-﻿using SmartFormat.Core.Extensions;
+﻿using System;
+using SmartFormat.Core.Extensions;
 
 namespace Downfall.Code.Localization;
 

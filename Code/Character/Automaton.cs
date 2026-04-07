@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Abstract;
+﻿using System.Collections.Generic;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Basic;
 using Downfall.Code.Relics.Automaton;
 using Godot;

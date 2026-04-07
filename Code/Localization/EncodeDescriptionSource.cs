@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Interfaces;
+﻿using System.Collections.Generic;
+using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 

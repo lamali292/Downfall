@@ -1,4 +1,6 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;

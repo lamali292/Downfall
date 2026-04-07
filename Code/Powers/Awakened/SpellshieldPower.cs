@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Abstract;
+﻿using System.Threading.Tasks;
+using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;

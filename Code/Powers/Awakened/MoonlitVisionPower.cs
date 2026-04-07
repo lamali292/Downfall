@@ -1,4 +1,7 @@
-﻿using Downfall.Code.Abstract;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Downfall.Code.Abstract;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;

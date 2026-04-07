@@ -1,5 +1,6 @@
 ﻿// NChampStanceDisplay.cs
 
+using System.Collections.Generic;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using Godot;

@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Abstract;
+﻿using System.Threading.Tasks;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Combat;

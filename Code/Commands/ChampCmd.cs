@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Core.Champ;
+﻿using System.Threading.Tasks;
+using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;

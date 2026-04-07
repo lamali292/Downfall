@@ -1,4 +1,7 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BaseLib.Abstracts;
 using Downfall.Code.Character;
 using Downfall.Code.Nodes;
 using MegaCrit.Sts2.Core.Combat;
@@ -9,7 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Core;
 
-public class GremlinsRunModel : AbstractModel
+public class GremlinsRunModel()  : CustomSingletonModel(false, true)
 {
     private static readonly CustomMonsterModel[] FormModels =
     [
@@ -21,8 +24,6 @@ public class GremlinsRunModel : AbstractModel
     ];
 
     private static readonly Dictionary<Player, GremlinState> _states = new();
-    public override bool ShouldReceiveCombatHooks => true;
-
     public static GremlinState GetState(Player player)
     {
         if (_states.TryGetValue(player, out var state)) return state;

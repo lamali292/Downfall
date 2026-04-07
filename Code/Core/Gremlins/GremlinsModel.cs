@@ -1,4 +1,7 @@
-﻿using Downfall.Code.Character;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Abstracts;
+using Downfall.Code.Character;
 using Downfall.Code.Commands;
 using Godot;
 using HarmonyLib;
@@ -12,9 +15,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Core;
 
-public class GremlinsModel : AbstractModel
+public class GremlinsModel() : CustomSingletonModel(true, false)
 {
-    public override bool ShouldReceiveCombatHooks => true;
 
     private static void LogState(string context, GremlinsRunModel.GremlinState state)
     {

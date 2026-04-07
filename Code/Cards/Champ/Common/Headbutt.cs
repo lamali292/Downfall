@@ -1,8 +1,12 @@
+using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Champ.Common;
 
@@ -11,15 +15,17 @@ public class Headbutt : ChampCardModel
 {
     public Headbutt() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(9, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Discard);
+        if (card == null)
+            return;
+        await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
 
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

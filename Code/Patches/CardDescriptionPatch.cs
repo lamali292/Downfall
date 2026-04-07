@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using BaseLib.Utils.Patching;
 using Downfall.Code.Localization;
