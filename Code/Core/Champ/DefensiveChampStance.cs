@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Events;
+﻿using System.Threading.Tasks;
+using Downfall.Code.Events;
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

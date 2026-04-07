@@ -1,6 +1,9 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Interfaces;

@@ -1,4 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using System;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;

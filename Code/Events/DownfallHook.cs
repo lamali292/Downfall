@@ -1,4 +1,7 @@
-﻿using Downfall.Code.Cards.Automaton.Token;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
 using Godot;
@@ -102,6 +105,7 @@ public static class DownfallHook
             var trigger = currentAnim switch
             {
                 "Idle" or "IdleBerserker" or "IdleDefensive" or "IdleUltimate" or "IdleGladiator" => "Idle",
+                "Attack" => "Attack",
                 _ => null
             };
 
