@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Powers.Automaton;
 using Godot;
@@ -33,8 +35,10 @@ public sealed class FunctionPowerCard() : FunctionCard(CardType.Power, TargetTyp
 
 public abstract class FunctionCard(CardType type, TargetType targetType) : AutomatonCardModel(1, type,
     CardRarity.Token, targetType)
-
 {
+    public override string CustomPortraitPath =>
+        "function_card.png".CardImagePath<Character.Automaton>();
+    
     private ImageTexture? _cachedPortrait;
     private IReadOnlyList<AutomatonCardModel> _lastPortraitSource = [];
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];

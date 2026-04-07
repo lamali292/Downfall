@@ -18,8 +18,7 @@ public class PerfecterStrike : ChampCardModel
     public PerfecterStrike() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTags(CardTag.Strike);
-        WithCalculatedDamage(8, CalculateStrikeCount);
-        WithVars(new ExtraDamageVar(2).WithUpgrade(1));
+        WithCalculatedDamage(8, 2, CalculateStrikeCount, bonusUpgrade: 1);
     }
     
     private static decimal CalculateStrikeCount(CardModel card, Creature? creatures)

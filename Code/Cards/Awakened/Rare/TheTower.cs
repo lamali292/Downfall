@@ -19,13 +19,8 @@ public class TheTower : AwakenedCardModel
 {
     public TheTower() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithVars(
-            new CalculationBaseVar(2m),
-            new ExtraDamageVar(2m),
-            new CalculatedDamageVar(ValueProp.Move).WithMultiplier(DamageCalc)
-        );
+        WithCalculatedDamage(2,2,DamageCalc, ValueProp.Move,1, 1);
     }
-
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -37,11 +32,5 @@ public class TheTower : AwakenedCardModel
         return CombatManager.Instance.History.Entries
             .OfType<CardGeneratedEntry>()
             .Count(e => e.GeneratedByPlayer && e.Card.Owner == card.Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.CalculationBase.UpgradeValueBy(1);
-        DynamicVars.ExtraDamage.UpgradeValueBy(1);
     }
 }

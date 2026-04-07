@@ -28,7 +28,7 @@ public class BitShift : AutomatonCardModel
 
         var card = await CardSelectCmd.FromChooseACardScreen(choiceContext, choices, Owner);
         if (card == null) return;
-
+        card.AddKeyword(CardKeyword.Retain);
         await AutomatonCmd.MoveFromSequenceToHand(card, Owner);
     }
 
