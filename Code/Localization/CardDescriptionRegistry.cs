@@ -1,42 +1,51 @@
 ﻿using System.Collections.Generic;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Localization;
 
 public interface IExtraDescriptionSource
 {
-    void AddDescriptionLines(CardModel card, List<string> source);
+    IEnumerable<string> GetLines(CardModel card);
 }
 
 public static class CardDescriptionRegistry
 {
-    private static readonly Dictionary<Type, List<IExtraDescriptionSource>> Sources = new();
-
-    public static void RegisterAll()
+    private static readonly Dictionary<Type, List<(DescriptionInjectionPoint point, IExtraDescriptionSource source)>> Sources = new();
+  public static void RegisterAll()
     {
-        Register<AutomatonCardModel>(new EncodeDescriptionSource());
-        Register<AutomatonCardModel>(new CompileDescriptionSource());
-        Register<AutomatonCardModel>(new CompileErrorDescriptionSource());
-        Register<ChampCardModel>(new FinisherDescriptionSource());
+        Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText, new EncodeDescriptionSource());
+        Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileDescriptionSource());
+        Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileErrorDescriptionSource());
+        Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText, new FinisherDescriptionSource());
     }
 
-    private static void Register<T>(IExtraDescriptionSource source) where T : CardModel
+    private static void Register<T>(DescriptionInjectionPoint point, IExtraDescriptionSource source) where T : CardModel
     {
         if (!Sources.TryGetValue(typeof(T), out var list))
             Sources[typeof(T)] = list = [];
-        list.Add(source);
+        list.Add((point, source));
     }
 
-    public static void InjectLines(CardModel card, List<string> source)
+    public static IEnumerable<string> GetLines(CardModel card, DescriptionInjectionPoint point)
     {
+        var hierarchy = new List<Type>();
         var type = card.GetType();
         while (type != null && type != typeof(CardModel))
         {
-            if (Sources.TryGetValue(type, out var list))
-                foreach (var s in list)
-                    s.AddDescriptionLines(card, source);
+            hierarchy.Add(type);
             type = type.BaseType;
+        }
+        hierarchy.Reverse();
+
+        foreach (var t in hierarchy)
+        {
+            if (!Sources.TryGetValue(t, out var list)) continue;
+            foreach (var (p, source) in list)
+                if (p == point)
+                    foreach (var line in source.GetLines(card))
+                        yield return line;
         }
     }
 }

@@ -25,7 +25,7 @@ public class Endure : ChampCardModel
 
     private static decimal BlockCalc(CardModel card, Creature? creature)
     {
-        return creature?.GetPowerAmount<StrengthPower>() ?? 0;
+        return card.Owner.Creature.GetPowerAmount<StrengthPower>();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

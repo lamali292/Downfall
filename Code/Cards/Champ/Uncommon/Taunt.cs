@@ -5,13 +5,15 @@ using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Champ.Common;
+namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
 public class Taunt : ChampCardModel
 {
-    public Taunt() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Taunt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        
+        
     }
 
     // TODO: Implement

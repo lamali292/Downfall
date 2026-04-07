@@ -2,6 +2,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Godot;
 using HarmonyLib;
@@ -66,14 +67,12 @@ public abstract class Collectible<T>(
     TargetType targetType,
     float h = 0.0f,
     float s = 1.0f,
-    float v = 1.0f) : CustomCardModel(cost, type, rarity, targetType), ICollectible
+    float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible
     where T : MonsterModel
 {
-    public sealed override string CustomPortraitPath =>
-        "monster_background.png".CardImagePath<Character.Collector>();
-
     public override bool HasBuiltInOverlay => true;
-
+    public override string CustomPortraitPath =>
+        $"collectible.png".CardImagePath<Character.Collector>();
     public MonsterModel GetMonsterModel()
     {
         return ModelDb.Monster<T>();

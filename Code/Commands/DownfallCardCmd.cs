@@ -35,12 +35,13 @@ public class DownfallCardCmd
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
         float animationTime = 0.6f,
-        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
+        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
+        bool skipAnimation = false) where T : CardModel
     {
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, true, position);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+        if (!result.success || skipAnimation) return;
+        CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
 
     public static async Task GiveCards<T>(Player player,
@@ -48,7 +49,8 @@ public class DownfallCardCmd
         int count,
         CardPilePosition position = CardPilePosition.Bottom,
         float animationTime = 0.6f,
-        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
+        CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
+        bool skipAnimation = false) where T : CardModel
     {
         if (count <= 0) return;
         var cardInstances = new List<CardModel>();
@@ -60,6 +62,7 @@ public class DownfallCardCmd
         }
 
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
+        if (skipAnimation) return;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
 

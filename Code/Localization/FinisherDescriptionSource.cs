@@ -4,6 +4,7 @@ using Downfall.Code.Core;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
+using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -13,13 +14,12 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
 {
     private const string DownfallTable = "downfall";
 
-    public void AddDescriptionLines(CardModel card, List<string> source)
+    public IEnumerable<string> GetLines(CardModel card)
     {
-        if (!card.Tags.Contains(DownfallTag.Finisher)) return;
+        if (!card.Tags.Contains(DownfallTag.Finisher)) yield break;
         var stance = card.IsCanonical || card.Owner == null
             ? DownfallModelDb.ChampStance<NoChampStance>()
             : card.Owner.ChampStance();
-        var loc = new LocString(DownfallTable, $"{stance.Id.Entry}.finisher").GetFormattedText();
-        source.Add(loc);
+        yield return new LocString(DownfallTable, $"{stance.Id.Entry}.finisher").GetFormattedText();
     }
 }
