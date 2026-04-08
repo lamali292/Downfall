@@ -190,5 +190,8 @@
   "DOWNFALL-PARRYING_POWER.smartDescription": "If your [gold]Counter[/gold] is used this gain {Amount:plural:an|{Amount}} additional [gold]Riposte Strike[/gold].",
   "DOWNFALL-TECHNICAL_JIG_POWER.title": "Technical Jig",
   "DOWNFALL-TECHNICAL_JIG_POWER.description": "Whenever you enter a [gold]Stance[/gold], gain X [gold]Block[/gold].",
-  "DOWNFALL-TECHNICAL_JIG_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], gain {Amount} [gold]Block[/gold]."
+  "DOWNFALL-TECHNICAL_JIG_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], gain {Amount} [gold]Block[/gold].",
+  "DOWNFALL-PROTECTIVE_AURA_POWER.title": "Protective Aura",
+  "DOWNFALL-PROTECTIVE_AURA_POWER.description": "Whenever you end your turn while in no [gold]Stance[/gold], gain X [gold]Block[/gold].",
+  "DOWNFALL-PROTECTIVE_AURA_POWER.smartDescription": "Whenever you end your turn while in no [gold]Stance[/gold], gain {Amount} [gold]Block[/gold]."
 }
