@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Champ.Basic;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Relics.Champ;

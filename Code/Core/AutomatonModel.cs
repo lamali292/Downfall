@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using Downfall.Code.Character;
 using Downfall.Code.Displays;
 using Downfall.Code.Vfx;
@@ -7,7 +6,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 

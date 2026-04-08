@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Downfall.Code.Cards.Automaton.Token;
+﻿using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
 using Godot;
@@ -129,17 +126,42 @@ public static class DownfallHook
         where TPower : PowerModel
     {
         var combatState = stanceModel.Owner.Creature.CombatState;
-        if (combatState == null) return baseAmount;
-        var amount = baseAmount;
-        foreach (var model in combatState.IterateHookListeners().OfType<IModifySkillBonus>())
-        {
-            var abstractModel = (AbstractModel)model;
-            amount = model.ModifySkillBonus<TPower>(stanceModel, amount);
-        }
-
-        return amount;
+        return combatState == null
+            ? baseAmount
+            : combatState
+                .IterateHookListeners()
+                .OfType<IModifySkillBonus>()
+                .Aggregate(baseAmount,
+                    (current, model) => model.ModifySkillBonus<TPower>(stanceModel, current)
+                );
     }
 
+
+    public static async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var combatState = cardPlay.Card.CombatState;
+        if (combatState == null) return;
+        foreach (var model in combatState.IterateHookListeners().OfType<IOnFinisher>())
+        {
+            var abstractModel = (AbstractModel)model;
+            ctx.PushModel(abstractModel);
+            await model.OnFinisher(ctx, cardPlay);
+            ctx.PopModel(abstractModel);
+        }
+    }
+
+    public static int ModifyCounterStrikeCount(Player player, int baseAmount)
+    {
+        var combatState = player.Creature.CombatState;
+        return combatState == null
+            ? baseAmount
+            : combatState
+                .IterateHookListeners()
+                .OfType<IModifyCounterStrikeCount>()
+                .Aggregate(baseAmount,
+                    (current, model) => model.ModifyCounterStrikeCount(player, current)
+                );
+    }
 
     // add more custom hooks here...
 }

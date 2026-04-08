@@ -1,9 +1,10 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
@@ -12,15 +13,20 @@ public class Shatter : ChampCardModel
 {
     public Shatter() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithDamage(14, 2);
+        WithPower<VulnerablePower>(1, 1);
+        WithPower<WeakPower>(1, 1);
     }
 
-    // TODO: Implement
+    protected override bool ShouldGlowGoldInternal =>
+        Owner.ShouldBerserkerComboTrigger() || Owner.ShouldDefensiveComboTrigger();
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        if ((!Owner.ShouldDefensiveComboTrigger() && !Owner.ShouldBerserkerComboTrigger()) ||
+            cardPlay.Target == null) return;
+        await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
     }
 }

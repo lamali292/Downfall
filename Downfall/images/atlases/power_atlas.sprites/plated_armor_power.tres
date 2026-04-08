@@ -2,4 +2,5 @@
 [ext_resource type="Texture2D" path="res://Downfall/images/atlases/power_atlas.png" id="1"]
 [resource]
 atlas = ExtResource("1")
-region = Rect2(192, 512, 64, 64)
+region = Rect2(631, 130, 63, 64)
+margin = Rect2(1, 0, 0, 0)

@@ -1,17 +1,12 @@
-using System.Threading.Tasks;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
@@ -23,12 +18,13 @@ public class CrookedStrike : ChampCardModel
     {
         WithTags(DownfallTag.Finisher);
         WithDamage(6, 3);
+        WithTip(DownfallKeyword.Finisher);
     }
 
-        
+
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         decimal a = Owner.Creature.GetPowerAmount<VigorPower>();
@@ -36,9 +32,7 @@ public class CrookedStrike : ChampCardModel
         // Todo: Not consuming Vigor power needs a lot of annoying patching.
         if (a > 0)
             await PowerCmd.Apply<VigorPower>(Owner.Creature, a, Owner.Creature, this, true);
-       
+
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
-
-    
 }

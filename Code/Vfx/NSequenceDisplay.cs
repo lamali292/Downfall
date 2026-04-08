@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;

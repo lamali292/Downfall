@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -16,11 +15,10 @@ public class DeathBlow : ChampCardModel
         WithDamage(12, 3);
         WithPower<VigorPower>(8, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
         await CommonActions.ApplySelf<VigorPower>(this);
     }
-    
 }

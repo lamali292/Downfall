@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -16,6 +15,10 @@ public class PreciseThrust : ChampCardModel
         WithDamage(6, 2);
         WithBlock(6, 2);
     }
+
+    protected override bool ShouldGlowGoldInternal =>
+        Owner.ShouldBerserkerComboTrigger() || Owner.ShouldDefensiveComboTrigger();
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
@@ -25,6 +28,4 @@ public class PreciseThrust : ChampCardModel
         if (Owner.ShouldDefensiveComboTrigger())
             await CommonActions.CardBlock(this, cardPlay);
     }
-
-    
 }

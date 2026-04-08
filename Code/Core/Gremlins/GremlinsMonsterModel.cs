@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;

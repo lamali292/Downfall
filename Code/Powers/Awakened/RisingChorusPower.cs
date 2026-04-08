@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Threading.Tasks;
 using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
 using Downfall.Code.Events;
@@ -13,7 +12,7 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class RisingChorusPower : AwakenedPowerModel, IOnChant, IHasSecondAmount
 {
-    public RisingChorusPower() : base()
+    public RisingChorusPower()
     {
         WithVar("UsesLeft", 0);
     }

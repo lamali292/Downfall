@@ -1,9 +1,6 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Core.Champ;
-using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -21,25 +18,7 @@ public class Inspiration : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var stance = Owner.ChampStance();
-        switch (stance)
-        {
-            case BerserkerChampStance:
-                await ChampCmd.EnterDefensiveStance(ctx, Owner);
-                break;
-            case DefensiveChampStance:
-                await ChampCmd.EnterBerserkerStance(ctx, Owner);
-                break;
-            default:
-            {
-                var rng = CombatState!.RunState.Rng.CombatCardSelection;
-                if (rng.NextBool())
-                    await ChampCmd.EnterDefensiveStance(ctx, Owner);
-                else
-                    await ChampCmd.EnterBerserkerStance(ctx, Owner);
-                break;
-            }
-        }
+        await ChampCmd.EnterDifferentStance(ctx, Owner);
     }
 
 

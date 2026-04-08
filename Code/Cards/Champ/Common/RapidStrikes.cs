@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -16,14 +14,14 @@ public class RapidStrikes : ChampCardModel
     {
         WithDamage(4, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).WithHitCount(2).Execute(ctx);
         PileType.Hand
             .GetPile(Owner)
             .Cards
-            .Where(c=>c.Tags.Contains(CardTag.Strike))
+            .Where(c => c.Tags.Contains(CardTag.Strike))
             .ToList()
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)
             .FirstOrDefault()?

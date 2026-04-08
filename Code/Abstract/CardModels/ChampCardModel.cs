@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
-using Downfall.Code.Extensions;
-using Downfall.Code.Keywords;
+﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 

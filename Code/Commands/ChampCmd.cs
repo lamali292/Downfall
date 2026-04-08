@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Core.Champ;
+﻿using Downfall.Code.Core.Champ;
+using Downfall.Code.Events;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -34,6 +34,29 @@ public class ChampCmd
         await ChampModel.SetStance<T>(ctx, player);
     }
 
+    public static async Task EnterDifferentStance(PlayerChoiceContext ctx, Player owner)
+    {
+        var stance = owner.ChampStance();
+        switch (stance)
+        {
+            case BerserkerChampStance:
+                await EnterDefensiveStance(ctx, owner);
+                break;
+            case DefensiveChampStance:
+                await EnterBerserkerStance(ctx, owner);
+                break;
+            default:
+            {
+                var rng = owner.Creature.CombatState!.RunState.Rng.CombatCardSelection;
+                if (rng.NextBool())
+                    await EnterDefensiveStance(ctx, owner);
+                else
+                    await EnterBerserkerStance(ctx, owner);
+                break;
+            }
+        }
+    }
+
     public static async Task ClearStance(PlayerChoiceContext ctx, Player player)
     {
         await ChampModel.SetStance<NoChampStance>(ctx, player);
@@ -44,7 +67,9 @@ public class ChampCmd
         var player = cardPlay.Card.Owner;
         var m = player.ChampStance();
         if (!m.HasFinisher) return;
+
         await m.Finisher(ctx);
+        await DownfallHook.OnFinisher(ctx, cardPlay);
         if (skipClear) return;
         await ClearStance(ctx, player);
     }

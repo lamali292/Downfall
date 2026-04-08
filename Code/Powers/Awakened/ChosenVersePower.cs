@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,7 +9,7 @@ public class ChosenVersePower : AwakenedPowerModel
 {
     public CardPlay? CardPlay;
 
-    public ChosenVersePower() : base()
+    public ChosenVersePower()
     {
         WithBlock(4);
     }

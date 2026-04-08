@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Downfall.Code.Cards.CardModels;
+﻿using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Interfaces;
-using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -14,6 +12,7 @@ public class CompileErrorDescriptionSource : IExtraDescriptionSource
         if (card is not ICompilableError || ((AutomatonCardModel)card).SuppressCompileError) yield break;
         var loc = ICompilableError.BuildErrorLocString((AutomatonCardModel)card);
         if (loc == null) yield break;
-        yield return $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
+        yield return
+            $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
     }
 }

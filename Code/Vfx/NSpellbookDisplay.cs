@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Downfall.Code.Commands;
+﻿using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Extensions;

@@ -13,7 +13,7 @@ public abstract class DownfallPowerModel(
         .RemovePrefix()
         .ToLowerInvariant();
 
-    public override string CustomPackedIconPath => $"{IconName}.png".DownfallPowerImagePath();
+    public override string CustomPackedIconPath => $"{IconName}.tres".DownfallPowerImagePath();
     public override string CustomBigIconPath => $"{IconName}.png".DownfallBigPowerImagePath();
 }
 

@@ -15,6 +15,7 @@ public class VictoryIsMine : ChampCardModel
         WithBlock(3, 1);
         WithPower<GloryPower>(2, 1);
     }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

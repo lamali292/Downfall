@@ -1,6 +1,4 @@
-﻿using System;
-using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
@@ -71,8 +69,10 @@ public abstract class Collectible<T>(
     where T : MonsterModel
 {
     public override bool HasBuiltInOverlay => true;
+
     public override string CustomPortraitPath =>
-        $"collectible.png".CardImagePath<Character.Collector>();
+        "collectible.png".CardImagePath<Character.Collector>();
+
     public MonsterModel GetMonsterModel()
     {
         return ModelDb.Monster<T>();

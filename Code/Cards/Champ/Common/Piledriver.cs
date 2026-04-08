@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -25,11 +24,11 @@ public class Piledriver : ChampCardModel
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-       
+
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
         await CommonActions.Apply<WeakPower>(cardPlay.Target, this);

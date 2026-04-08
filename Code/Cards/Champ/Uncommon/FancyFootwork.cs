@@ -1,7 +1,8 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,15 +13,12 @@ public class FancyFootwork : ChampCardModel
 {
     public FancyFootwork() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithPower<FancyFootworkPower>(10, 5);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await ChampCmd.EnterDifferentStance(ctx, Owner);
+        await CommonActions.ApplySelf<FancyFootworkPower>(this);
     }
 }

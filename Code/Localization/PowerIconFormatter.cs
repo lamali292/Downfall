@@ -1,5 +1,4 @@
-﻿using System;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using Downfall.Code.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Models;

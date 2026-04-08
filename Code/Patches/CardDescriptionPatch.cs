@@ -12,29 +12,36 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Patches;
 
-
 public enum DescriptionInjectionPoint
 {
-    TopOfCard,  
-    AboveMainText,  
-    BelowMainText,      
-    AboveKeywords,  
-    BottomOfCard 
+    TopOfCard,
+    AboveMainText,
+    BelowMainText,
+    AboveKeywords,
+    BottomOfCard
 }
-
 
 [HarmonyPatch]
 public static class CardDescriptionPatch
 {
-    private static MethodBase TargetMethod() =>
-        AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
+    private static readonly Action<CardModel, LocString> AddExtraArgsToDescription =
+        AccessTools.MethodDelegate<Action<CardModel, LocString>>(
+            AccessTools.Method(typeof(CardModel), "AddExtraArgsToDescription"));
+
+    private static readonly LocString Period = new("card_keywords", "PERIOD");
+
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
         [
             typeof(PileType),
             AccessTools.Inner(typeof(CardModel), "DescriptionPreviewType"),
             typeof(Creature)
         ]);
+    }
 
-    public static bool Prefix(CardModel __instance, PileType pileType, object previewType, Creature? target, ref string __result)
+    public static bool Prefix(CardModel __instance, PileType pileType, object previewType, Creature? target,
+        ref string __result)
     {
         if (__instance is not DownfallCardModel) return true; // let original run for non-downfall cards
         __result = BuildDescription(__instance, pileType, previewType, target);
@@ -47,9 +54,9 @@ public static class CardDescriptionPatch
 
 
         var source = new List<string>();
-    
+
         source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.TopOfCard));
-    
+
         source.AddRange(from keyword in CardKeywordOrder.beforeDescription
             let flag = keyword switch
             {
@@ -59,20 +66,19 @@ public static class CardDescriptionPatch
             }
             where flag
             select GetCardText(keyword));
-    
+
         source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.AboveMainText));
         source.Add(description.GetFormattedText());
         source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.BelowMainText));
-        
+
         var dynamicExtraCardText1 = card.Enchantment?.DynamicExtraCardText;
         if (dynamicExtraCardText1 != null)
             source.Add($"[purple]{dynamicExtraCardText1.GetFormattedText()}[/purple]");
         var dynamicExtraCardText2 = card.Affliction?.DynamicExtraCardText;
         if (dynamicExtraCardText2 != null)
             source.Add($"[purple]{dynamicExtraCardText2.GetFormattedText()}[/purple]");
-    
-   
-    
+
+
         var enchantedReplayCount = card.GetEnchantedReplayCount();
         if (enchantedReplayCount > 0)
         {
@@ -80,7 +86,7 @@ public static class CardDescriptionPatch
             locString.Add("Times", enchantedReplayCount);
             source.Add(locString.GetFormattedText());
         }
-    
+
         source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.AboveKeywords));
         source.AddRange(CardKeywordOrder.afterDescription.Intersect(card.Keywords).Select(GetCardText));
         source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.BottomOfCard));
@@ -88,10 +94,6 @@ public static class CardDescriptionPatch
         return string.Join('\n', source.Where(l => !string.IsNullOrEmpty(l)));
     }
 
-    private static readonly Action<CardModel, LocString> AddExtraArgsToDescription =
-        AccessTools.MethodDelegate<Action<CardModel, LocString>>(
-            AccessTools.Method(typeof(CardModel), "AddExtraArgsToDescription"));
-    
     private static LocString LocString(CardModel card, PileType pileType, object previewType, Creature? target)
     {
         var descPreviewType = (int)previewType;
@@ -102,7 +104,9 @@ public static class CardDescriptionPatch
 
         var upgradeDisplay = descPreviewType == 1
             ? UpgradeDisplay.UpgradePreview
-            : card.IsUpgraded ? UpgradeDisplay.Upgraded : UpgradeDisplay.Normal;
+            : card.IsUpgraded
+                ? UpgradeDisplay.Upgraded
+                : UpgradeDisplay.Normal;
 
         description.Add(new IfUpgradedVar(upgradeDisplay));
 
@@ -119,15 +123,12 @@ public static class CardDescriptionPatch
         description.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
 
         foreach (var variable3 in description.Variables)
-        {
             if (variable3.Value is EnergyVar energyVar)
                 energyVar.ColorPrefix = prefix;
-        }
 
         return description;
     }
-    
-    private static readonly LocString Period = new("card_keywords", "PERIOD");
+
     private static string GetCardText(CardKeyword keyword)
     {
         var slugify = StringHelper.Slugify(keyword.ToString());
@@ -135,4 +136,3 @@ public static class CardDescriptionPatch
         return $"[gold]{title.GetFormattedText()}[/gold]{Period.GetRawText()}";
     }
 }
-

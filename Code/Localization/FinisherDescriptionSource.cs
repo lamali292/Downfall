@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Downfall.Code.Core;
+﻿using Downfall.Code.Core;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
-using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 

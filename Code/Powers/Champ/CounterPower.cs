@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Champ.Common;
+using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -31,11 +31,16 @@ public class CounterPower : ChampPowerModel
     {
         if (target != Owner || dealer == Owner || Owner.Player == null) return;
         var player = Owner.Player;
-        var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<RiposteStrike>(), player);
-        card.DynamicVars.Damage.BaseValue = Amount;
-        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result, 0.2f);
+        var strikeCount = DownfallHook.ModifyCounterStrikeCount(player, 1);
+        var cards = new List<CardModel>();
+        for (var i = 0; i < strikeCount; i++)
+        {
+            var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<RiposteStrike>(), player);
+            card.DynamicVars.Damage.BaseValue = Amount;
+            cards.Add(card);
+        }
+
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
         await PowerCmd.Remove(this);
     }
 }

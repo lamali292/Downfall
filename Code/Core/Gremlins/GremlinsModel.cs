@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using Downfall.Code.Character;
 using Downfall.Code.Commands;
 using Godot;
@@ -17,7 +15,6 @@ namespace Downfall.Code.Core;
 
 public class GremlinsModel() : CustomSingletonModel(true, false)
 {
-
     private static void LogState(string context, GremlinsRunModel.GremlinState state)
     {
         GD.Print($"[Gremlins:{context}] activeIndex={state.ActiveIndex} count={state.Gremlins.Count}");
