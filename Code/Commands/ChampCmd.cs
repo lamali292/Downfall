@@ -1,9 +1,15 @@
-﻿using Downfall.Code.Core.Champ;
+﻿using BaseLib.Utils;
+using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Cards.Champ.Basic;
+using Downfall.Code.Core.Champ;
 using Downfall.Code.Events;
 using Downfall.Code.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Downfall.Code.Commands;
 
@@ -73,4 +79,41 @@ public class ChampCmd
         if (skipClear) return;
         await ClearStance(ctx, player);
     }
+    
+    
+    public static async Task SelectStanceToEnter(PlayerChoiceContext ctx, Player owner)
+    {
+        var choices = new List<CardModel>
+        {
+            owner.Creature.CombatState!.CreateCard<StanceDanceBerserker>(owner),
+            owner.Creature.CombatState!.CreateCard<StanceDanceDefensive>(owner)
+        };
+
+        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, owner);
+        if (chosen == null) return;
+        switch (chosen)
+        {
+            case StanceDanceBerserker:
+                await EnterBerserkerStance(ctx, owner);
+                break;
+            case StanceDanceDefensive:
+                await ChampCmd.EnterDefensiveStance(ctx, owner);
+                break;
+        }
+        
+    }
+    
+}
+
+// Todo: rename or make dynamic title
+[Pool(typeof(TokenCardPool))]
+public class StanceDanceBerserker() : ChampCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
+{
+    public override string CustomPortraitPath => ModelDb.Card<BerserkersShout>().CustomPortraitPath;
+}
+
+[Pool(typeof(TokenCardPool))]
+public class StanceDanceDefensive() : ChampCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
+{
+    public override string CustomPortraitPath => ModelDb.Card<DefensiveShout>().CustomPortraitPath;
 }

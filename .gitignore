@@ -15,4 +15,5 @@ loc_editor_settings.json
 .gitattributes
 *.import
 *.TMP
+*.dll
 !Downfall/character/visuals/*.import
