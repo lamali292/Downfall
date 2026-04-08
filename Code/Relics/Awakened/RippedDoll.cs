@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Combat;

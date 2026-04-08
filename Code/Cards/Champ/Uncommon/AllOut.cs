@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
@@ -20,7 +19,7 @@ public class AllOut : ChampCardModel
         WithVars(new RepeatVar(2).WithUpgrade(1));
         WithTags(DownfallTag.Finisher);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)

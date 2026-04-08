@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Localization;
 
 public class EncodeDescriptionSource : IExtraDescriptionSource
-{ 
+{
     public IEnumerable<string> GetLines(CardModel card)
     {
         if (card is not IEncodable { AutoEncode: true } encodable) yield break;

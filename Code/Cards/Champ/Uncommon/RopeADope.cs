@@ -1,9 +1,14 @@
-using System.Threading.Tasks;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Extensions;
+using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
@@ -12,15 +17,24 @@ public class RopeADope : ChampCardModel
 {
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithTags(DownfallTag.Finisher);
+        WithTip(DownfallKeyword.Finisher);
+        WithBlock(8, 2);
+        WithPower<EnergyNextTurnPower>(1, 1);
+        WithVars(new EnergyVar(1).WithUpgrade(1));
+        WithPower<DrawCardsNextTurnPower>(2);
+        WithCards(1);
+        WithEnergyTip();
     }
 
-    // TODO: Implement
+    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
+    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(this);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this);
+        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

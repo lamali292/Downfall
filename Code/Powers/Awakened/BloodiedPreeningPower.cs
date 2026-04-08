@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Combat;
@@ -11,7 +10,7 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class BloodiedPreeningPower : AwakenedPowerModel
 {
-    public BloodiedPreeningPower() : base()
+    public BloodiedPreeningPower()
     {
         WithTip(typeof(PlumeJab));
     }

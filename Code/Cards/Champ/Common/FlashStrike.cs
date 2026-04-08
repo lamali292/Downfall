@@ -1,8 +1,6 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,9 +16,10 @@ public class FlashStrike : ChampCardModel
         WithDamage(6, 3);
         WithBlock(5, 2);
         WithPower<CounterPower>(4, 2);
-
     }
-    
+
+    protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
