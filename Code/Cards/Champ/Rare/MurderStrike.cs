@@ -11,15 +11,21 @@ public class MurderStrike : ChampCardModel
 {
     public MurderStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithKeywords(CardKeyword.Retain);
+        WithDamage(6, 3);
+        WithVar("Increase", 2, 1);
+        WithTags(CardTag.Strike);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-
-    protected override void OnUpgrade()
+    public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
+        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        return Task.CompletedTask;
     }
 }

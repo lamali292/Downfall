@@ -17,9 +17,10 @@ public class EnchantCrown : ChampCardModel
 {
     public EnchantCrown() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust, CardKeyword.Ethereal);
-        WithTip(DownfallTip.Enchantment<Crowned>());
-        
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(Crowned));
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -30,10 +31,6 @@ public class EnchantCrown : ChampCardModel
         CardCmd.Enchant<Crowned>(card, 1);
     }
     
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Ethereal);
-    }
     
    
 }

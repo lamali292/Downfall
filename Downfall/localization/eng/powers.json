@@ -202,5 +202,9 @@
   "DOWNFALL-GLADIATOR_FORM_POWER.smartDescription": "At the start of each turn, gain {Amount} [gold]Vigor[/gold] for every 3 [gold]Vigor[/gold] spent last turn. Then do the same for [gold]Counter[/gold].",
   "DOWNFALL-IMPROVISING_POWER.title": "Improvising",
   "DOWNFALL-IMPROVISING_POWER.description": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus[/gold] X times.",
-  "DOWNFALL-IMPROVISING_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus[/gold] {Amount} times."
+  "DOWNFALL-IMPROVISING_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus[/gold] {Amount} times.",
+  "DOWNFALL-STRIKE_OF_GENIUS_POWER.title": "Strike of Genius",
+  "DOWNFALL-STRIKE_OF_GENIUS_POWER.description": "At the start of your turn gain a random \"Strike\" [gold]Echo[/gold].\nIt costs [blue]0[/blue] until played.",
+  "DOWNFALL-STRIKE_OF_GENIUS_PLUS_POWER.title": "Strike of Genius+",
+  "DOWNFALL-STRIKE_OF_GENIUS_PLUS_POWER.description": "At the start of your turn gain a random [gold]upgraded[/gold] \"Strike\" [gold]Echo[/gold].\nIt costs [blue]0[/blue] until played."
 }

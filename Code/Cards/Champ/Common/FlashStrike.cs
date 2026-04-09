@@ -16,6 +16,7 @@ public class FlashStrike : ChampCardModel
         WithDamage(6, 3);
         WithBlock(5, 2);
         WithPower<CounterPower>(4, 2);
+        WithTags(CardTag.Strike);
     }
 
     protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();

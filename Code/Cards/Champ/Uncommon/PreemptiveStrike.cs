@@ -16,6 +16,7 @@ public class PreemptiveStrike : ChampCardModel
     public PreemptiveStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithCalculatedDamage(0, CalcDamage);
+        WithTags(CardTag.Strike);
     }
 
     protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();

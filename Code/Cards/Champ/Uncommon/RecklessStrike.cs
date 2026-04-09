@@ -16,6 +16,7 @@ public class RecklessStrike : ChampCardModel
         WithDamage(6);
         WithPower<StrengthPower>(1);
         WithKeywords(CardKeyword.Exhaust);
+        WithTags(CardTag.Strike);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -18,8 +18,9 @@ public class EnchantShield : ChampCardModel
 {
     public EnchantShield() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust, CardKeyword.Ethereal);
-        WithTip(DownfallTip.Enchantment<Sturdy>());
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(Sturdy));
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -30,8 +31,4 @@ public class EnchantShield : ChampCardModel
         CardCmd.Enchant<Sturdy>(card, 1);
     }
     
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Ethereal);
-    }
 }
