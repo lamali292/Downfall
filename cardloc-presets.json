@@ -195,6 +195,24 @@
           "optional": false
         }
       ]
+    },
+    {
+      "id": "enchantment",
+      "markers": [
+        "DownfallEnchantmentModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "enchantments.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "enchantments.json",
+          "optional": false
+        }
+      ]
     }
   ]
 }

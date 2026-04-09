@@ -1,25 +1,39 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Enchantments;
+using Downfall.Code.Keywords;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Champ.Rare;
 
 [Pool(typeof(ChampCardPool))]
 public class EnchantCrown : ChampCardModel
 {
-    public EnchantCrown() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public EnchantCrown() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Ethereal);
+        WithTip(DownfallTip.Enchantment<Crowned>());
+        
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var selectorPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Crowned>().CanEnchant, this)).FirstOrDefault();
+        if (card == null) return;
+        CardCmd.Enchant<Crowned>(card, 1);
     }
-
-
+    
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Ethereal);
     }
+    
+   
 }

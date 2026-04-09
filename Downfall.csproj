@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="local.props" Condition="Exists('local.props')"/>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
@@ -28,6 +29,11 @@
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
+
+    <PropertyGroup>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
+    </PropertyGroup>
+    
     <!-- OS Detection -->
     <PropertyGroup>
         <IsWindows>false</IsWindows>
@@ -98,7 +104,11 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.8" PrivateAssets="All"/>
+        <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
+            <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.8" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
@@ -112,6 +122,7 @@
 
 
     <ItemGroup>
+        <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never" />
         <Compile Remove="Downfall/**"/>
         <Compile Remove="shaders/**"/>
         <EmbeddedResource Remove="Downfall/**"/>
@@ -159,13 +170,20 @@
               DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
 
+        
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
-        <ItemGroup>
+        <ItemGroup Condition="'$(UseLocalBaseLib)' == 'true'">
+            <BaseLibFiles Include="C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll;
+                           C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.pdb;
+                           C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.pck;
+                           C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.json;"/>
+        </ItemGroup>
+        <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
             <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
         </ItemGroup>
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/" Condition="Exists('%(FullPath)')"/>
     </Target>
-
+    
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
 

@@ -41,6 +41,6 @@ public class CounterPower : ChampPowerModel
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
-        await PowerCmd.Remove(this);
+        await PowerCmd.ModifyAmount(this, -Amount, Owner, null);
     }
 }

@@ -1,25 +1,37 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Enchantments;
+using Downfall.Code.Keywords;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Downfall.Code.Cards.Champ.Rare;
 
 [Pool(typeof(ChampCardPool))]
 public class EnchantShield : ChampCardModel
 {
-    public EnchantShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public EnchantShield() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Ethereal);
+        WithTip(DownfallTip.Enchantment<Sturdy>());
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var selectorPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Sturdy>().CanEnchant, this)).FirstOrDefault();
+        if (card == null) return;
+        CardCmd.Enchant<Sturdy>(card, 1);
     }
-
-
+    
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

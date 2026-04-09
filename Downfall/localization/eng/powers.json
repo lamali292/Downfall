@@ -193,5 +193,14 @@
   "DOWNFALL-TECHNICAL_JIG_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], gain {Amount} [gold]Block[/gold].",
   "DOWNFALL-PROTECTIVE_AURA_POWER.title": "Protective Aura",
   "DOWNFALL-PROTECTIVE_AURA_POWER.description": "Whenever you end your turn while in no [gold]Stance[/gold], gain X [gold]Block[/gold].",
-  "DOWNFALL-PROTECTIVE_AURA_POWER.smartDescription": "Whenever you end your turn while in no [gold]Stance[/gold], gain {Amount} [gold]Block[/gold]."
+  "DOWNFALL-PROTECTIVE_AURA_POWER.smartDescription": "Whenever you end your turn while in no [gold]Stance[/gold], gain {Amount} [gold]Block[/gold].",
+  "DOWNFALL-DANCING_MASTER_POWER.title": "Dancing Master",
+  "DOWNFALL-DANCING_MASTER_POWER.description": "The first time you use a [gold]Finisher[/gold] each turn, gain {energyPrefix:energyIcons(1)} and draw 1 card.",
+  "DOWNFALL-DANCING_MASTER_POWER.smartDescription": "The first time you use a [gold]Finisher[/gold] each turn, gain {Amount:energyIcons()} and draw {Amount} {Amount:plural:card|cards}.",
+  "DOWNFALL-GLADIATOR_FORM_POWER.title": "Gladiator Form",
+  "DOWNFALL-GLADIATOR_FORM_POWER.description": "At the start of each turn, gain X [gold]Vigor[/gold] for every 3 [gold]Vigor[/gold] spent last turn. Then do the same for [gold]Counter[/gold].",
+  "DOWNFALL-GLADIATOR_FORM_POWER.smartDescription": "At the start of each turn, gain {Amount} [gold]Vigor[/gold] for every 3 [gold]Vigor[/gold] spent last turn. Then do the same for [gold]Counter[/gold].",
+  "DOWNFALL-IMPROVISING_POWER.title": "Improvising",
+  "DOWNFALL-IMPROVISING_POWER.description": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus[/gold] X times.",
+  "DOWNFALL-IMPROVISING_POWER.smartDescription": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus[/gold] {Amount} times."
 }

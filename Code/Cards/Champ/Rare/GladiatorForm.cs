@@ -1,6 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Champ;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +14,14 @@ public class GladiatorForm : ChampCardModel
 {
     public GladiatorForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithPower<GladiatorFormPower>(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.ApplySelf<GladiatorFormPower>(this);
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }
+
+

@@ -13,7 +13,8 @@ __pycache__
 loc_editor_settings.json
 .run/
 .gitattributes
-*.import
 *.TMP
 *.dll
+*.import
 !Downfall/character/visuals/*.import
+local.props
