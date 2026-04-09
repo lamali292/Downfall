@@ -1,8 +1,13 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Champ.Rare;
 
@@ -11,15 +16,16 @@ public class ClobberStrike : ChampCardModel
 {
     public ClobberStrike() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithBlock(1);
+        WithDamage(6, 3);
+        WithTip(StaticHoverTip.Block);
+        WithTags(CardTag.Strike);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        var unblockedDamage = attackCommand.Results.Sum(r => r.UnblockedDamage);
+        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
     }
 }

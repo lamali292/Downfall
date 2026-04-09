@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Interfaces;
@@ -6,6 +7,7 @@ using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -15,7 +17,7 @@ public class Iterate : AutomatonCardModel, IEncodable
     public Iterate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVar("Repeat", 3, 1);
+        WithVars(new RepeatVar(3).WithUpgrade(1));
         WithTip(DownfallKeyword.Encode);
     }
 

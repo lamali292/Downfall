@@ -9,7 +9,8 @@ namespace Downfall.Code.Cards.Champ.Uncommon;
 
 
 [Pool(typeof(ChampCardPool))]
-public class WinnersCircle : ChampCardModel
+public class 
+    WinnersCircle : ChampCardModel
 {
     public WinnersCircle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {

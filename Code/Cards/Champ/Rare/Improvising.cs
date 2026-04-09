@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,11 @@ public class Improvising : ChampCardModel
 {
     public Improvising() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithPower<ImprovisingPower>(2, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<ImprovisingPower>(this);
     }
 }
