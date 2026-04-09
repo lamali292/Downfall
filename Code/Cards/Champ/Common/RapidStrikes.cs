@@ -13,6 +13,7 @@ public class RapidStrikes : ChampCardModel
     public RapidStrikes() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
+        WithTags(CardTag.Strike);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
