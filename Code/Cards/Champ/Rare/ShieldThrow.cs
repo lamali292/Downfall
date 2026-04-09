@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
+using Downfall.Code.Powers.Champ;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -23,7 +24,8 @@ public class ShieldThrow : ChampCardModel
     }
 
     private static decimal BlockDamage(CardModel card, Creature? creature) => card.Owner.Creature.Block;
-    
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);

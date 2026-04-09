@@ -16,7 +16,7 @@ public class Format : AutomatonCardModel
     public Format() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     protected override bool HasEnergyCostX => true;

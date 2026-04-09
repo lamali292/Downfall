@@ -14,7 +14,7 @@ public class Spew : AwakenedCardModel
     public Spew() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithTip(DownfallKeyword.Drained);
+        WithTip(DownfallTip.Drained);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

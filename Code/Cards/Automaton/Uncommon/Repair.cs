@@ -17,8 +17,8 @@ public class Repair : AutomatonCardModel, IEncodable, ICompilable
     {
         WithBlock(4);
         WithVar("Heal", 7, 3);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
 

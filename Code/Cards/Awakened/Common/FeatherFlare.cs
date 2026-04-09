@@ -15,7 +15,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     public FeatherFlare() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 3);
-        WithTip(DownfallKeyword.Chant);
+        WithTip(DownfallTip.Chant);
     }
 
 

@@ -18,7 +18,7 @@ public class Branch : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithBlock(6, 2);
         WithDamage(7, 2);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -14,7 +14,7 @@ public class Recitation : AwakenedCardModel, IChantable
     public Recitation() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
-        WithTip(DownfallKeyword.Chant);
+        WithTip(DownfallTip.Chant);
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

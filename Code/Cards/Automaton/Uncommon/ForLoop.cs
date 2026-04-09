@@ -15,7 +15,7 @@ public class ForLoop : AutomatonCardModel
     public ForLoop() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(typeof(MergePower));
     }
 

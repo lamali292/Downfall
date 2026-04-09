@@ -15,7 +15,7 @@ public class TalonRake : AwakenedCardModel
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -18,7 +18,7 @@ public class Nihil : AwakenedCardModel, IChantable
     public Nihil() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithPower<ManaburnPower>(13, 3);
-        WithTip(DownfallKeyword.Chant);
+        WithTip(DownfallTip.Chant);
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

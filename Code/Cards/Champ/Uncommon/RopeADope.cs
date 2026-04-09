@@ -18,7 +18,7 @@ public class RopeADope : ChampCardModel
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTags(DownfallTag.Finisher);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
         WithBlock(8, 2);
         WithPower<EnergyNextTurnPower>(1, 1);
         WithVars(new EnergyVar(1).WithUpgrade(1));

@@ -4,12 +4,12 @@ using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Champ.Uncommon;
+namespace Downfall.Code.Cards.Champ.Rare;
 
 [Pool(typeof(ChampCardPool))]
 public class FlurryOfStrikes : ChampCardModel
 {
-    public FlurryOfStrikes() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public FlurryOfStrikes() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
     }
 

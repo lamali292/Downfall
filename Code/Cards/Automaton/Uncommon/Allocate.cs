@@ -13,7 +13,7 @@ public class Allocate : AutomatonCardModel
 {
     public Allocate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(DownfallKeyword.Status);
+        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

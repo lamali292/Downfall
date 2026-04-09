@@ -16,7 +16,7 @@ public class MomentOfTruth : ChampCardModel
     {
         WithCards(1, 1);
         WithTags(DownfallTag.Finisher);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
         WithKeywords(CardKeyword.Retain);
     }
 

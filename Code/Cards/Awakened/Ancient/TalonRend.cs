@@ -15,7 +15,7 @@ public class TalonRend : AwakenedCardModel
     public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -19,7 +19,7 @@ public class Piledriver : ChampCardModel
         WithPower<VulnerablePower>(2);
         WithPower<WeakPower>(2);
         WithTags(DownfallTag.Finisher);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
     }
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;

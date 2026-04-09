@@ -16,7 +16,7 @@ public class Execute : ChampCardModel
     {
         WithDamage(6, 3);
         WithTags(DownfallTag.Finisher);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
     }
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;

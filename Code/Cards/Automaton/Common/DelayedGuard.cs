@@ -18,7 +18,7 @@ public class DelayedGuard : AutomatonCardModel, IEncodable
     public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithPower<BlockNextTurnPower>(7, 3);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(StaticHoverTip.Block);
     }
 

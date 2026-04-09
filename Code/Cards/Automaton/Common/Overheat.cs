@@ -15,8 +15,8 @@ public class Overheat : AutomatonCardModel
     public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(18, 4);
-        WithTip(DownfallKeyword.Compile);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Compile);
+        WithTip(DownfallTip.Encode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

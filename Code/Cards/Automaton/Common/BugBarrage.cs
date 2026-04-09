@@ -15,8 +15,8 @@ public class BugBarrage : AutomatonCardModel
     public BugBarrage() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithTip(DownfallKeyword.Cycle);
-        WithTip(DownfallKeyword.Status);
+        WithTip(DownfallTip.Cycle);
+        WithTip(DownfallTip.Status);
         WithTip(typeof(Wound));
     }
 

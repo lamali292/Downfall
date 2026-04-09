@@ -22,6 +22,7 @@ cards = defaultdict(dict)
 images = defaultdict(set)
 
 for root, dirs, files in os.walk(card_base):
+    dirs[:] = [d for d in dirs if d != "Abstract"]
     folder = normalize(os.path.relpath(root, card_base).split(os.sep)[0])
     for file in files:
         if file.endswith(".cs"):
@@ -56,11 +57,12 @@ powers = defaultdict(dict)
 power_images = defaultdict(set)
 
 for root, dirs, files in os.walk(power_base):
+    dirs[:] = [d for d in dirs if d != "Abstract"]
     folder = normalize(os.path.relpath(root, power_base).split(os.sep)[0])
     for file in files:
         if file.endswith(".cs"):
             snake = to_snake(os.path.splitext(file)[0])
-            snake = re.sub(r'_power$', '', snake)  # strip Power suffix
+            snake = re.sub(r'_power$', '', snake)
             powers[folder][normalize(snake)] = snake
 
 for root, dirs, files in os.walk(power_img_base):
