@@ -15,8 +15,8 @@ public class Assembly : AutomatonCardModel
     public Assembly() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithVar("Scry", 5, 3);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Scry);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Scry);
         WithKeywords(CardKeyword.Exhaust);
     }
 

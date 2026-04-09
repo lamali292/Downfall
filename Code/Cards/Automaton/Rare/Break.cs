@@ -20,8 +20,8 @@ public class Break : AutomatonCardModel, IEncodable,
     public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(15, 5);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
         WithTip(typeof(Burn));
         WithTip(typeof(Void));
         WithTip(typeof(Dazed));

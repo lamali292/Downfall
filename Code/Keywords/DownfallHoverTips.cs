@@ -4,21 +4,21 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace Downfall.Code.Keywords;
 
-public readonly struct DownfallKeyword
+public readonly struct DownfallTip
 {
-    public static readonly DownfallKeyword Scry = new(nameof(Scry));
-    public static readonly DownfallKeyword Encode = new(nameof(Encode));
-    public static readonly DownfallKeyword Compile = new(nameof(Compile));
-    public static readonly DownfallKeyword Cycle = new(nameof(Cycle));
-    public static readonly DownfallKeyword Status = new(nameof(Status));
-    public static readonly DownfallKeyword Insert = new(nameof(Insert));
-    public static readonly DownfallKeyword Conjure = new(nameof(Conjure));
-    public static readonly DownfallKeyword Chant = new(nameof(Chant));
-    public static readonly DownfallKeyword Drained = new(nameof(Drained));
-    public static readonly DownfallKeyword Finisher = new(nameof(Finisher));
+    public static readonly DownfallTip Scry = new(nameof(Scry));
+    public static readonly DownfallTip Encode = new(nameof(Encode));
+    public static readonly DownfallTip Compile = new(nameof(Compile));
+    public static readonly DownfallTip Cycle = new(nameof(Cycle));
+    public static readonly DownfallTip Status = new(nameof(Status));
+    public static readonly DownfallTip Insert = new(nameof(Insert));
+    public static readonly DownfallTip Conjure = new(nameof(Conjure));
+    public static readonly DownfallTip Chant = new(nameof(Chant));
+    public static readonly DownfallTip Drained = new(nameof(Drained));
+    public static readonly DownfallTip Finisher = new(nameof(Finisher));
     private readonly string _name;
 
-    private DownfallKeyword(string name)
+    private DownfallTip(string name)
     {
         _name = name;
     }
@@ -35,7 +35,7 @@ public readonly struct DownfallKeyword
         );
     }
 
-    public static implicit operator TooltipSource(DownfallKeyword tip)
+    public static implicit operator TooltipSource(DownfallTip tip)
     {
         return new TooltipSource(_ => tip.ToHoverTip());
     }

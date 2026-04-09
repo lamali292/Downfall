@@ -20,11 +20,6 @@ namespace Downfall.Code.Powers.Downfall;
 
 public class VigorNextTurnPower : PowerNextTurn<VigorPower>;
 
-public class NoBlockNextTurnPower : PowerNextTurn<NoBlockPower>
-{
-    public override Color IconColor => Colors.LightSeaGreen;
-}
-
 public abstract class PowerNextTurn<T> : CustomPowerModel, IColoredPower
     where T : PowerModel
 {

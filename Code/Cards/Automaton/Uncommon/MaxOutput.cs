@@ -15,7 +15,7 @@ public class MaxOutput : AutomatonCardModel
 {
     public MaxOutput() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(DownfallKeyword.Insert);
+        WithTip(DownfallTip.Insert);
         WithTip(typeof(Dazed));
     }
 

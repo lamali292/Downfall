@@ -16,7 +16,7 @@ public class BranchAttack : AutomatonCardModel, IEncodable
     {
         WithDamage(7, 2);
         WithKeywords(CardKeyword.Retain);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

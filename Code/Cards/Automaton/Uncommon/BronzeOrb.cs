@@ -17,7 +17,7 @@ public class BronzeOrb : AutomatonCardModel
         WithDamage(8, 4);
         WithKeywords(CardKeyword.Innate);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

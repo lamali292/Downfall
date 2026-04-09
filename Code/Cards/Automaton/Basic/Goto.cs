@@ -18,8 +18,8 @@ public class Goto : AutomatonCardModel, ICompilable, IEncodable
     {
         WithCards(1, 1);
         WithVar("Compile", 1, 1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard function, CardPlay cardPlay,

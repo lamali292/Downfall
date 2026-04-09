@@ -19,8 +19,8 @@ public class Fortify : AutomatonCardModel, IEncodable,
     {
         WithDamage(8);
         WithPower<DexterityPower>(2, 1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

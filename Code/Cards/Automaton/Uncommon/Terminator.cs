@@ -15,8 +15,8 @@ public class Terminator : AutomatonCardModel,
 {
     public Terminator() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,

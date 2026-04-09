@@ -19,8 +19,8 @@ public class Backtrace : AutomatonCardModel, IEncodable,
         WithDamage(8, 4);
         WithKeywords(CardKeyword.Innate);
         WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

@@ -15,7 +15,7 @@ public class DarknessFalls : AwakenedCardModel
 {
     public DarknessFalls() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(DownfallKeyword.Drained);
+        WithTip(DownfallTip.Drained);
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
         WithTip(typeof(StrengthPower));
     }

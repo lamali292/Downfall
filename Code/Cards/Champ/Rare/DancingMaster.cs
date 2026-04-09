@@ -13,7 +13,7 @@ public class DancingMaster : ChampCardModel
 {
     public DancingMaster() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
         WithEnergyTip();
         WithPower<DancingMasterPower>(1);
     }

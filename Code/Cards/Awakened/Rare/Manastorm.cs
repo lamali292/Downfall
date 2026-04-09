@@ -14,7 +14,7 @@ public class Manastorm : AwakenedCardModel
     public Manastorm() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(14, 4);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -14,7 +14,7 @@ public class ClassDefault : AutomatonCardModel
 {
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(typeof(ClassDefaultPower));
     }
 

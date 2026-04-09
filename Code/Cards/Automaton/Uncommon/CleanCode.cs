@@ -15,8 +15,8 @@ public class CleanCode : AutomatonCardModel
     public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(typeof(RemoveErrorsPower));
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)

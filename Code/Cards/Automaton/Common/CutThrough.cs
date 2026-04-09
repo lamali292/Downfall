@@ -19,9 +19,9 @@ public class CutThrough : AutomatonCardModel, ICompilable,
     {
         WithDamage(5, 2);
         WithVar("Scry", 2, 1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
-        WithTip(DownfallKeyword.Scry);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
+        WithTip(DownfallTip.Scry);
     }
 
     // Compile bonus — draw 1 card

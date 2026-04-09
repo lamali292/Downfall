@@ -18,7 +18,7 @@ public class Iterate : AutomatonCardModel, IEncodable
     {
         WithDamage(2);
         WithVars(new RepeatVar(3).WithUpgrade(1));
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

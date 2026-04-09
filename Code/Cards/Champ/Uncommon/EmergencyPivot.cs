@@ -17,7 +17,7 @@ public class EmergencyPivot : ChampCardModel
         WithKeywords(CardKeyword.Retain);
         WithBlock(10, 4);
         WithTags(DownfallTag.Finisher);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
     }
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;

@@ -16,7 +16,7 @@ public class Invalidate : AutomatonCardModel, IEncodable
     public Invalidate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<VulnerablePower>(1, 1);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

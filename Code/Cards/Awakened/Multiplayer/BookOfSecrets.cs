@@ -12,7 +12,7 @@ public class BookOfSecrets : AwakenedCardModel
 {
     public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
         WithKeywords(CardKeyword.Exhaust);
         WithBlock(6);
     }

@@ -16,7 +16,7 @@ public class Intensify : AwakenedCardModel
     {
         WithPower<IntensifyPower>(1);
         WithPower<BurnoutPower>(1);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

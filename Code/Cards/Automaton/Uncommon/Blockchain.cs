@@ -20,9 +20,9 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     {
         WithPower<BlurPower>(1);
         WithVar("BlurCompilePower", 1);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(new TooltipSource(card =>
-            card.IsUpgraded ? DownfallKeyword.Compile.ToHoverTip() : null!));
+            card.IsUpgraded ? DownfallTip.Compile.ToHoverTip() : null!));
     }
 
 

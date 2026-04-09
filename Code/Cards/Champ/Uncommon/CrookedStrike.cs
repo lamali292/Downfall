@@ -18,7 +18,7 @@ public class CrookedStrike : ChampCardModel
     {
         WithTags(DownfallTag.Finisher);
         WithDamage(6, 3);
-        WithTip(DownfallKeyword.Finisher);
+        WithTip(DownfallTip.Finisher);
         WithTags(CardTag.Strike);
     }
 

@@ -16,7 +16,7 @@ public class RecursiveStrike : AutomatonCardModel
     public RecursiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(typeof(StrikeAutomaton));
     }
 

@@ -18,8 +18,8 @@ public class NullPointer : AutomatonCardModel,
     {
         WithDamage(12, 3);
         WithBlock(12, 3);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
         WithTip(CardKeyword.Unplayable);
     }
 

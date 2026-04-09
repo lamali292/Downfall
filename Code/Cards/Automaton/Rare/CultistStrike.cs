@@ -20,8 +20,8 @@ public class CultistStrike : AutomatonCardModel,
 {
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
         WithDamage(6);
         WithVar("Increase", 1);
     }

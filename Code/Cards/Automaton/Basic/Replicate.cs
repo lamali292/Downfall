@@ -15,7 +15,7 @@ public class Replicate : AutomatonCardModel, IEncodable
     public Replicate() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

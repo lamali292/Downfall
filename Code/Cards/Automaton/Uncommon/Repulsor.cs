@@ -14,7 +14,7 @@ public class Repulsor : AutomatonCardModel
 {
     public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(DownfallKeyword.Status);
+        WithTip(DownfallTip.Status);
         WithTip(CardKeyword.Exhaust);
     }
 

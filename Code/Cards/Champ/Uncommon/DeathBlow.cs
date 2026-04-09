@@ -14,6 +14,7 @@ public class DeathBlow : ChampCardModel
     {
         WithDamage(12, 3);
         WithPower<VigorPower>(8, 2);
+        WithKeywords(CardKeyword.Exhaust);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

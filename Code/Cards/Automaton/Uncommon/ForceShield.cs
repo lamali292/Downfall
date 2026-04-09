@@ -20,7 +20,7 @@ public class ForceShield : AutomatonCardModel, IOnCompile
     public ForceShield() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 4);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(typeof(MergePower));
     }
 

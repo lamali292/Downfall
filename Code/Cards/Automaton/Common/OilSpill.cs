@@ -23,8 +23,8 @@ public class OilSpill : AutomatonCardModel, IEncodable,
     {
         WithDamage(4, 1);
         WithPower<PoisonPower>(4, 1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
         WithTip(typeof(Slimed));
     }
 

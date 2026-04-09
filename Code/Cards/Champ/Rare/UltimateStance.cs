@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,13 @@ public class UltimateStance : ChampCardModel
 {
     public UltimateStance() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithPower<GloryPower>(10);
+        WithCostUpgradeBy(-1);
+        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<GloryPower>(this);
     }
 }

@@ -14,7 +14,8 @@ public class GladiatorForm : ChampCardModel
 {
     public GladiatorForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<GladiatorFormPower>(1, 1);
+        WithPower<GladiatorFormPower>(1);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
