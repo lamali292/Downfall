@@ -21,10 +21,19 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
 
         var locString = new LocString(DownfallTable, $"{stance.Id.Entry}.finisher");
 
-        var berserkerBonus = card.Owner?.Creature.GetPower<ArenaMasteryBerserkerPower>()?.Amount ?? 0;
-        var defensiveBonus = card.Owner?.Creature.GetPower<ArenaMasteryDefensivePower>()?.Amount ?? 0;
-        locString.Add("strength", 1 + berserkerBonus);
-        locString.Add("block", 6 + defensiveBonus);
+        if (card.IsMutable)
+        {
+            var creature = card.Owner?.Creature;
+            var berserkerBonus = creature?.GetPower<ArenaMasteryBerserkerPower>()?.Amount ?? 0;
+            var defensiveBonus = creature?.GetPower<ArenaMasteryDefensivePower>()?.Amount ?? 0;
+            locString.Add("strength", BerserkerChampStance.BaseFinisherAmount + berserkerBonus);
+            locString.Add("block", DefensiveChampStance.BaseFinisherAmount + defensiveBonus);
+        }
+        else
+        {
+            locString.Add("strength", BerserkerChampStance.BaseFinisherAmount);
+            locString.Add("block", DefensiveChampStance.BaseFinisherAmount);
+        }
         
         yield return locString.GetFormattedText();
     }
