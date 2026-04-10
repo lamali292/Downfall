@@ -223,5 +223,13 @@
   "DOWNFALL-KILLING_SPREE_POWER.smartDescription": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].",
   "DOWNFALL-MAGNIFICENCE_POWER.title": "Magnificence",
   "DOWNFALL-MAGNIFICENCE_POWER.description": "At the start of your turn, gain X [gold]Glory[/gold].",
-  "DOWNFALL-MAGNIFICENCE_POWER.smartDescription": "At the start of your turn, gain {Amount} [gold]Glory[/gold]."
+  "DOWNFALL-MAGNIFICENCE_POWER.smartDescription": "At the start of your turn, gain {Amount} [gold]Glory[/gold].",
+  "DOWNFALL-ARENA_MASTERY_POWER.title": "",
+  "DOWNFALL-ARENA_MASTERY_POWER.description": "",
+  "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.title": "Arena Mastery Berserker",
+  "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.description": "Berserker Finishers grant X more [gold]Strength[/gold]. ",
+  "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.title": "Arena Mastery Defensive",
+  "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.description": "Defensive Finishers grant X more [gold]Block[/gold]. ",
+  "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "Defensive Finishers grant {Amount} more [gold]Block[/gold]. ",
+  "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "Berserker Finishers grant {Amount} more [gold]Strength[/gold]. "
 }
