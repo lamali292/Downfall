@@ -117,7 +117,7 @@ internal static class CustomRunScreenPagedPatch
         arrow.GrowHorizontal = Control.GrowDirection.Both;
         arrow.GrowVertical = Control.GrowDirection.Both;
 
-        var shader = ResourceLoader.Load<Shader>("res://shaders/hsv.gdshader");
+        var shader = ResourceLoader.Load<Shader>("res://Downfall/shaders/hsv.gdshader");
         var mat = new ShaderMaterial();
         mat.Shader = shader;
         mat.SetShaderParameter("h", 1.0f);
