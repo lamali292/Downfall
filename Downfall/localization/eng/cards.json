@@ -501,7 +501,7 @@
   "DOWNFALL-FLOATWORK.title": "Floatwork",
   "DOWNFALL-FLURRY.description": "Deal {Damage:diff()} damage for each card played this turn.\nExhaust.",
   "DOWNFALL-FLURRY.title": "Flurry",
-  "DOWNFALL-FLURRY_OF_STRIKES.description": "",
+  "DOWNFALL-FLURRY_OF_STRIKES.description": "Deal {Damage:diff()} damage.\nWhenever you enter a [gold]Stance[/gold], return this to your Hand from the [gold]Discard Pile[/gold]",
   "DOWNFALL-FLURRY_OF_STRIKES.title": "Flurry Of Strikes",
   "DOWNFALL-FOLLOW_THROUGH.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nIf the last played card was a Function, play this again.",
   "DOWNFALL-FOLLOW_THROUGH.title": "Follow Through",
@@ -1499,5 +1499,7 @@
   "DOWNFALL-SWIFT_STRIKE.title": "",
   "DOWNFALL-SWIFT_STRIKE.description": "",
   "DOWNFALL-WREATH_OF_VICTORY.title": "Wreath of Victory",
-  "DOWNFALL-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold]."
+  "DOWNFALL-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
+  "DOWNFALL-KILLING_SPREE.title": "Killing Spree",
+  "DOWNFALL-KILLING_SPREE.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].\nTrigger your current [gold]Stance's Skill Bonus[/gold] {Skill:diff()} times."
 }

@@ -6,5 +6,4 @@ namespace Downfall.Code.Keywords;
 public class DownfallTag
 {
     [CustomEnum] public static CardTag Finisher;
-
 }

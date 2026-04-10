@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Downfall.Code.Powers.Champ;
 
@@ -18,7 +17,7 @@ public class StrikeOfGeniusPower : ChampPowerModel
         var pool = ModelDb.CardPool<ChampCardPool>()
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
             .Where(e => e.Tags.Contains(CardTag.Strike));
-        var cards = CardFactory.GetDistinctForCombat(player, pool, Amount, 
+        var cards = CardFactory.GetDistinctForCombat(player, pool, Amount,
             player.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var c in cards)
         {
@@ -26,12 +25,7 @@ public class StrikeOfGeniusPower : ChampPowerModel
             c.AddKeyword(CardKeyword.Ethereal);
             c.AddKeyword(CardKeyword.Exhaust);
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
 
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
     }
 }
-
-
-
-
-

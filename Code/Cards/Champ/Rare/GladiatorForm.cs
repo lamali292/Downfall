@@ -2,8 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Champ;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -17,12 +15,9 @@ public class GladiatorForm : ChampCardModel
         WithPower<GladiatorFormPower>(1);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GladiatorFormPower>(this);
     }
-    
 }
-
-

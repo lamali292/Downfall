@@ -3,7 +3,6 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Champ;
-using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,8 +22,12 @@ public class ShieldThrow : ChampCardModel
         WithTip(typeof(NoBlockPower));
     }
 
-    private static decimal BlockDamage(CardModel card, Creature? creature) => card.Owner.Creature.Block;
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
+
+    private static decimal BlockDamage(CardModel card, Creature? creature)
+    {
+        return card.Owner.Creature.Block;
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -11,13 +11,12 @@ namespace Downfall.Code.Powers.Champ;
 
 public class EntangledNextTurnPower() : ChampPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<EntangledPower>()];
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
         await PowerCmd.Apply<EntangledPower>(Owner, Amount, Applier, null);
-        
     }
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<EntangledPower>()];
 }

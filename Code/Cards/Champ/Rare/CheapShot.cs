@@ -18,7 +18,7 @@ public class CheapShot : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Stun);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState?.Encounter == null || cardPlay.Target == null) return;
@@ -31,7 +31,6 @@ public class CheapShot : ChampCardModel
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
             await CreatureCmd.Stun(cardPlay.Target);
         }
-        
     }
 
     protected override void OnUpgrade()

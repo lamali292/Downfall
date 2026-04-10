@@ -217,5 +217,8 @@
   "DOWNFALL-ENTANGLED_NEXT_TURN_POWER.smartDescription": "You can't play [gold]Attacks[/gold] next turn.",
   "DOWNFALL-ENTANGLED_POWER.title": "Entangled",
   "DOWNFALL-ENTANGLED_POWER.description": "You cannot play [gold]Attacks[/gold] this turn.",
-  "DOWNFALL-ENTANGLED_POWER.smartDescription": "You cannot play [gold]Attacks[/gold] this turn."
+  "DOWNFALL-ENTANGLED_POWER.smartDescription": "You cannot play [gold]Attacks[/gold] this turn.",
+  "DOWNFALL-KILLING_SPREE_POWER.title": "Killing Spree",
+  "DOWNFALL-KILLING_SPREE_POWER.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].",
+  "DOWNFALL-KILLING_SPREE_POWER.smartDescription": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold]."
 }

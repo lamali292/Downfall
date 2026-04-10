@@ -8,12 +8,10 @@ namespace Downfall.Code.Powers.Champ;
 
 public class ImprovisingPower : ChampPowerModel, IOnStanceChange
 {
-    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance)
+    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance)
     {
         if (player.Creature != Owner || newStance is NoChampStance) return;
-        for (var i = 0; i < Amount; i++)
-        {
-            await newStance.SkillBonus();
-        }
+        for (var i = 0; i < Amount; i++) await newStance.SkillBonus();
     }
 }

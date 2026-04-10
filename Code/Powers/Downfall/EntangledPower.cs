@@ -20,4 +20,3 @@ public class EntangledPower() : DownfallPowerModel(PowerType.Debuff, PowerStackT
         await PowerCmd.Remove(this);
     }
 }
-

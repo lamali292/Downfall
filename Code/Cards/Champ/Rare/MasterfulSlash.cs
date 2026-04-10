@@ -15,7 +15,7 @@ public class MasterfulSlash : ChampCardModel
         WithDamage(9, 3);
         WithTip(typeof(VigorNextTurnPower));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -23,4 +23,3 @@ public class MasterfulSlash : ChampCardModel
         await CommonActions.ApplySelf<VigorNextTurnPower>(this, unblocked);
     }
 }
-

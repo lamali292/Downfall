@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,12 +17,10 @@ public abstract class ChampCardModel(
     {
         await Task.CompletedTask;
     }
+
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        if (Keywords.Contains(DownfallKeywords.TriggerSkillBonus))
-        {
-            await Owner.ChampStance().SkillBonus();
-        }
+        if (Keywords.Contains(DownfallKeywords.TriggerSkillBonus)) await Owner.ChampStance().SkillBonus();
     }
 }

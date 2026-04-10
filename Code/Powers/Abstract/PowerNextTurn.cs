@@ -16,8 +16,6 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.Code.Powers.Downfall;
 
-
-
 public class VigorNextTurnPower : PowerNextTurn<VigorPower>;
 
 public abstract class PowerNextTurn<T> : CustomPowerModel, IColoredPower
@@ -25,32 +23,31 @@ public abstract class PowerNextTurn<T> : CustomPowerModel, IColoredPower
 {
     public override string CustomPackedIconPath => ModelDb.Power<T>().PackedIconPath;
     public override string CustomBigIconPath => ModelDb.Power<T>().ResolvedBigIconPath;
-    public override PowerType Type =>  ModelDb.Power<T>().Type;
+    public override PowerType Type => ModelDb.Power<T>().Type;
     public override PowerStackType StackType => ModelDb.Power<T>().StackType;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => ModelDb.Power<T>().HoverTips;
 
     public override List<(string, string)> Localization => new PowerLoc(
-        Title: $"Next Turn {ModelDb.Power<T>().Title.GetFormattedText()}", 
-        Description: $"Next turn, gain [gold]{ModelDb.Power<T>().Title.GetFormattedText()}[/gold].",
-        SmartDescription: $"Next turn, gain {{Amount:plural:|{{Amount}} }}[gold]{ModelDb.Power<T>().Title.GetFormattedText()}[/gold]."
+        $"Next Turn {ModelDb.Power<T>().Title.GetFormattedText()}",
+        $"Next turn, gain [gold]{ModelDb.Power<T>().Title.GetFormattedText()}[/gold].",
+        $"Next turn, gain {{Amount:plural:|{{Amount}} }}[gold]{ModelDb.Power<T>().Title.GetFormattedText()}[/gold]."
     );
+
+    public virtual Color IconColor => Colors.Green;
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
         await PowerCmd.Apply<T>(Owner, Amount, Applier, null);
-        
     }
-
-    public virtual Color IconColor => Colors.Green;
 }
 
 [HarmonyPatch(typeof(NPower), "Reload")]
-static class NPowerReloadPatch
+internal static class NPowerReloadPatch
 {
-    static void Postfix(NPower __instance)
+    private static void Postfix(NPower __instance)
     {
         if (__instance.Model is IColoredPower colored)
             __instance.GetNode<TextureRect>("%Icon").Modulate = colored.IconColor;
@@ -58,9 +55,9 @@ static class NPowerReloadPatch
 }
 
 [HarmonyPatch(typeof(NPowerAppliedVfx), "Create")]
-static class NPowerAppliedVfxCreatePatch
+internal static class NPowerAppliedVfxCreatePatch
 {
-    static void Postfix(NPowerAppliedVfx? __result, PowerModel power)
+    private static void Postfix(NPowerAppliedVfx? __result, PowerModel power)
     {
         if (__result == null) return;
         if (power is IColoredPower colored)
@@ -69,9 +66,9 @@ static class NPowerAppliedVfxCreatePatch
 }
 
 [HarmonyPatch(typeof(NPowerFlashVfx), "Create")]
-static class NPowerFlashVfxCreatePatch
+internal static class NPowerFlashVfxCreatePatch
 {
-    static void Postfix(NPowerFlashVfx? __result, PowerModel power)
+    private static void Postfix(NPowerFlashVfx? __result, PowerModel power)
     {
         if (__result == null) return;
         if (power is IColoredPower colored)
@@ -80,9 +77,9 @@ static class NPowerFlashVfxCreatePatch
 }
 
 [HarmonyPatch(typeof(NPowerRemovedVfx), "Create")]
-static class NPowerRemovedVfxCreatePatch
+internal static class NPowerRemovedVfxCreatePatch
 {
-    static void Postfix(NPowerRemovedVfx? __result, PowerModel power)
+    private static void Postfix(NPowerRemovedVfx? __result, PowerModel power)
     {
         if (__result == null) return;
         if (power is IColoredPower colored)
@@ -91,22 +88,25 @@ static class NPowerRemovedVfxCreatePatch
 }
 
 [HarmonyPatch]
-static class NHoverTipSetInitPatch
+internal static class NHoverTipSetInitPatch
 {
-    static MethodBase TargetMethod() => 
-        AccessTools.Method(typeof(NHoverTipSet), "Init");
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(NHoverTipSet), "Init");
+    }
 
-    static void Postfix(NHoverTipSet __instance, IEnumerable<IHoverTip> hoverTips)
+    private static void Postfix(NHoverTipSet __instance, IEnumerable<IHoverTip> hoverTips)
     {
         var tips = hoverTips.ToList();
         Callable.From(() =>
         {
             if (!GodotObject.IsInstanceValid(__instance)) return;
-            var container = (Control)AccessTools.Field(typeof(NHoverTipSet), "_textHoverTipContainer").GetValue(__instance)!;
+            var container = (Control)AccessTools.Field(typeof(NHoverTipSet), "_textHoverTipContainer")
+                .GetValue(__instance)!;
 
             var tipList = tips.OfType<HoverTip>().ToList();
             var children = container.GetChildren().OfType<Control>().ToList();
-    
+
             for (var i = 0; i < Math.Min(tipList.Count, children.Count); i++)
             {
                 var ht = tipList[i];
@@ -115,12 +115,15 @@ static class NHoverTipSetInitPatch
                     var modelId = ModelId.Deserialize(ht.Id);
                     var power = ModelDb.GetById<PowerModel>(modelId);
                     if (power is not IColoredPower colored) continue;
-               
+
                     var iconRect = children[i].GetNodeOrNull<TextureRect>("%Icon");
                     if (iconRect != null)
                         iconRect.Modulate = colored.IconColor;
                 }
-                catch { /* not a power or not found */ }
+                catch
+                {
+                    /* not a power or not found */
+                }
             }
         }).CallDeferred();
     }

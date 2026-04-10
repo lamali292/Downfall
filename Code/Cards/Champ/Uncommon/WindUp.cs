@@ -18,7 +18,7 @@ public class WindUp : ChampCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.SelectStanceToEnter(ctx, Owner);
@@ -35,6 +35,7 @@ public class WindUp : ChampCardModel
             var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
             card = (await CardSelectCmd.FromSimpleGrid(ctx, cards, Owner, prefs)).FirstOrDefault();
         }
+
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
     }

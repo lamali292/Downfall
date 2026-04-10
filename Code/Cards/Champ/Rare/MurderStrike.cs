@@ -24,7 +24,8 @@ public class MurderStrike : ChampCardModel
 
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
+        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill || Pile is not { Type: PileType.Hand })
+            return Task.CompletedTask;
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         return Task.CompletedTask;
     }

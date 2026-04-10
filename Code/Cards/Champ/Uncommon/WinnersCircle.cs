@@ -7,9 +7,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
-
 [Pool(typeof(ChampCardPool))]
-public class 
+public class
     WinnersCircle : ChampCardModel
 {
     public WinnersCircle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
@@ -17,7 +16,7 @@ public class
         WithBlock(7, 3);
         WithPower<GloryPower>(3, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

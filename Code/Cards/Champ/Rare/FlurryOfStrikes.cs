@@ -3,6 +3,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Events;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,22 +13,22 @@ namespace Downfall.Code.Cards.Champ.Rare;
 [Pool(typeof(ChampCardPool))]
 public class FlurryOfStrikes : ChampCardModel, IOnStanceChange
 {
-    public FlurryOfStrikes() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public FlurryOfStrikes() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithDamage(6, 2);
+        WithTags(CardTag.Strike);
     }
 
-    // TODO: Implement
+
+    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance)
+    {
+        if (newStance.Owner != Owner && Pile?.Type != PileType.Discard) return;
+        await CardPileCmd.Add(this, PileType.Hand);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
-    }
-
-    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance)
-    {
-      
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

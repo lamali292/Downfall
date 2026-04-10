@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Powers.Champ;
 
-public class StrikeOfGeniusPlusPower  : ChampPowerModel
+public class StrikeOfGeniusPlusPower : ChampPowerModel
 {
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
@@ -17,7 +17,7 @@ public class StrikeOfGeniusPlusPower  : ChampPowerModel
         var pool = ModelDb.CardPool<ChampCardPool>()
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
             .Where(e => e.Tags.Contains(CardTag.Strike));
-        var cards = CardFactory.GetDistinctForCombat(player, pool, Amount, 
+        var cards = CardFactory.GetDistinctForCombat(player, pool, Amount,
             player.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var c in cards)
         {
@@ -26,6 +26,7 @@ public class StrikeOfGeniusPlusPower  : ChampPowerModel
             c.AddKeyword(CardKeyword.Ethereal);
             c.AddKeyword(CardKeyword.Exhaust);
         }
+
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
     }
 }

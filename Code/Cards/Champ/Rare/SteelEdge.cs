@@ -36,7 +36,5 @@ public class SteelEdge : ChampCardModel
             await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
             await ChampCmd.PlayFinisher(ctx, cardPlay, repeat: x);
         }
-       
     }
-    
 }

@@ -16,7 +16,7 @@ public class UltimateStance : ChampCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GloryPower>(this);
