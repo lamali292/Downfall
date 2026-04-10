@@ -1507,5 +1507,11 @@
   "DOWNFALL-ARENA_MASTERY.title": "Arena Mastery",
   "DOWNFALL-ARENA_MASTERY.description": "[gold]Berserker Finishers[/gold] grant {ArenaMasteryBerserkerPower:diff()} more [gold]Strength. \nDefensive Finishers[/gold] grant {ArenaMasteryDefensivePower:diff()} more [gold]Block[/gold]. ",
   "DOWNFALL-MAGNIFICENCE.title": "Magnificence",
-  "DOWNFALL-MAGNIFICENCE.description": "At the start of your turn, gain {MagnificencePower:diff()} [gold]Glory[/gold]."
+  "DOWNFALL-MAGNIFICENCE.description": "At the start of your turn, gain {MagnificencePower:diff()} [gold]Glory[/gold].",
+  "DOWNFALL-EXECUTION.title": "Execution",
+  "DOWNFALL-EXECUTION.description": "Deal {Damage:diff()} damage 3 times.\nPerform 2 times without exiting your [gold]Stance[/gold]: ",
+  "DOWNFALL-SHOW_OFF.title": "Show-off",
+  "DOWNFALL-SHOW_OFF.description": "Trigger your current [gold]Stance's Skill Bonus[/gold].\nChoose another player to draw {Cards:diff()} cards",
+  "DOWNFALL-HUDDLE.title": "Huddle",
+  "DOWNFALL-HUDDLE.description": "All players gain {VigorPower:diff()} [gold]Vigor[/gold]."
 }
