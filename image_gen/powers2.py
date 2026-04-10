@@ -1,5 +1,6 @@
 from PIL import Image
 import os, math, hashlib, shutil, json
+import string
 
 # ============================================================
 # CONFIG
@@ -136,8 +137,15 @@ def trim_alpha(img: Image.Image):
     return trimmed, bbox[0], bbox[1], img.width - bbox[2], img.height - bbox[3]
 
 
+UID_CHARS = string.ascii_lowercase + string.digits  # 'abcdefghijklmnopqrstuvwxyz0123456789'
+
 def deterministic_uid(name: str, length=7) -> str:
-    return hashlib.md5(name.encode()).hexdigest()[:length]
+    h = int(hashlib.md5(name.encode()).hexdigest(), 16)
+    result = []
+    for _ in range(length):
+        result.append(UID_CHARS[h % len(UID_CHARS)])
+        h //= len(UID_CHARS)
+    return ''.join(result)
 
 
 def write_tres(path, atlas_res_path, x, y, w, h, name,
