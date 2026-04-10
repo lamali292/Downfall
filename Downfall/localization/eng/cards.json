@@ -1501,5 +1501,11 @@
   "DOWNFALL-WREATH_OF_VICTORY.title": "Wreath of Victory",
   "DOWNFALL-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
   "DOWNFALL-KILLING_SPREE.title": "Killing Spree",
-  "DOWNFALL-KILLING_SPREE.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].\nTrigger your current [gold]Stance's Skill Bonus[/gold] {Skill:diff()} times."
+  "DOWNFALL-KILLING_SPREE.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].\nTrigger your current [gold]Stance's Skill Bonus[/gold] {Skill:diff()} times.",
+  "DOWNFALL-DEFIANCE.title": "",
+  "DOWNFALL-DEFIANCE.description": "",
+  "DOWNFALL-ARENA_MASTERY.title": "",
+  "DOWNFALL-ARENA_MASTERY.description": "",
+  "DOWNFALL-MAGNIFICENCE.title": "Magnificence",
+  "DOWNFALL-MAGNIFICENCE.description": "At the start of your turn, gain {MagnificencePower:diff()} [gold]Glory[/gold]."
 }

@@ -220,5 +220,8 @@
   "DOWNFALL-ENTANGLED_POWER.smartDescription": "You cannot play [gold]Attacks[/gold] this turn.",
   "DOWNFALL-KILLING_SPREE_POWER.title": "Killing Spree",
   "DOWNFALL-KILLING_SPREE_POWER.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].",
-  "DOWNFALL-KILLING_SPREE_POWER.smartDescription": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold]."
+  "DOWNFALL-KILLING_SPREE_POWER.smartDescription": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].",
+  "DOWNFALL-MAGNIFICENCE_POWER.title": "Magnificence",
+  "DOWNFALL-MAGNIFICENCE_POWER.description": "At the start of your turn, gain X [gold]Glory[/gold].",
+  "DOWNFALL-MAGNIFICENCE_POWER.smartDescription": "At the start of your turn, gain {Amount} [gold]Glory[/gold]."
 }
