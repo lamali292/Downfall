@@ -24,9 +24,15 @@ public abstract class ChampStanceModel : AbstractModel
         return mutable;
     }
 
-    public Task OnEnter(PlayerChoiceContext ctx)
+    public void ResetCharges()
     {
         Charges = 3;
+        ChampModel.RefreshDisplay(Owner);
+    }
+
+    public Task OnEnter(PlayerChoiceContext ctx)
+    {
+        ResetCharges();
         return Task.CompletedTask;
     }
 
