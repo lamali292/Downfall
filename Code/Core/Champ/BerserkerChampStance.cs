@@ -13,7 +13,7 @@ public class BerserkerChampStance : ChampStanceModel
 
     public override async Task SkillBonus()
     {
-        var amount = DownfallHook.ModifySkillBonus<VigorPower>(this, 2);
+        var amount = DownfallHook.ModifySkillBonus<VigorPower>(CombatState, this, 2);
         await PowerCmd.Apply<VigorPower>(Owner.Creature, amount, Owner.Creature, null);
     }
 

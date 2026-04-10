@@ -15,10 +15,10 @@ public class DrainedPower : AwakenedPowerModel
 
     public override async Task AfterEnergyReset(Player player)
     {
-        if (player != Owner.Player)
+        if (player != Owner.Player || Owner.CombatState == null)
             return;
         await PlayerCmd.LoseEnergy(Amount, player);
-        await DownfallHook.OnDrained(Owner.Player, Amount);
+        await DownfallHook.OnDrained(Owner.CombatState, Owner.Player, Amount);
         await PowerCmd.Remove(this);
     }
 }

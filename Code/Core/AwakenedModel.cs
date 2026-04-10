@@ -46,7 +46,7 @@ public class AwakenedModel() : CustomSingletonModel(true, true)
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card is Void) await DownfallHook.OnDrained(choiceContext, card.Owner, 1);
+        if (card is Void) await DownfallHook.OnDrained(card.CombatState!, choiceContext, card.Owner, 1);
     }
 
     public override Task AfterRoomEntered(AbstractRoom room)

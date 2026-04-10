@@ -31,7 +31,7 @@ public class CounterPower : ChampPowerModel
     {
         if (target != Owner || dealer == Owner || Owner.Player == null) return;
         var player = Owner.Player;
-        var strikeCount = DownfallHook.ModifyCounterStrikeCount(player, 1);
+        var strikeCount = DownfallHook.ModifyCounterStrikeCount(CombatState, player, 1);
         var cards = new List<CardModel>();
         for (var i = 0; i < strikeCount; i++)
         {
