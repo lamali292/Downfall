@@ -13,7 +13,7 @@ public class ProtectiveAura : ChampCardModel
 {
     public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<ProtectiveAuraPower>(4, 6);
+        WithPower<ProtectiveAuraPower>(4, 2);
         WithTip(StaticHoverTip.Block);
     }
 

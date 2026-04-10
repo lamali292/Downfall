@@ -2,37 +2,33 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Cards.Champ.Ancient;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.Code.Cards.Champ.Basic;
+namespace Downfall.Code.Cards.Champ.Ancient;
 
 [Pool(typeof(ChampCardPool))]
-public class Execute : ChampCardModel, ITranscendenceCard
+public class Execution : ChampCardModel
 {
-    public Execute() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
         WithTags(DownfallTag.Finisher);
         WithTip(DownfallTip.Finisher);
     }
-
+    
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
-    }
-
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<Execution>();
+        await CommonActions.CardAttack(this, cardPlay).WithHitCount(3).Execute(ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, true, 2);
     }
 }
