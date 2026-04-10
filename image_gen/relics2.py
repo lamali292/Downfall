@@ -1,7 +1,7 @@
 from PIL import Image
 import numpy as np
 from scipy.ndimage import gaussian_filter
-import os, math, hashlib
+import os, math, hashlib, json, io
 
 # ============================================================
 # CONFIG
@@ -25,11 +25,77 @@ OUTLINE_ATLAS_RES_PATH = "res://Downfall/images/atlases/relic_outline_atlas.png"
 CROP_BOX        = (56, 56, 200, 200)
 OUTLINE_RADIUS  = 10
 OUTLINE_SIGMA   = 0.5
+CACHE_FILE      = ".relics_cache.json"
 # ============================================================
 
 OUT_TRES = os.path.join(OUT_ATLASES, ATLAS_SPRITES)
 
 
+# ---------------------------------------------------------------
+# Cache helpers
+# ---------------------------------------------------------------
+def file_hash(path: str) -> str:
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def load_cache() -> dict:
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE) as f:
+            return json.load(f)
+    return {}
+
+def save_cache(cache: dict):
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f, indent=2)
+
+def write_if_changed(path: str, data: bytes) -> bool:
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            if f.read() == data:
+                return False
+    with open(path, "wb") as f:
+        f.write(data)
+    return True
+
+def save_image_if_changed(img: Image.Image, path: str) -> bool:
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return write_if_changed(path, buf.getvalue())
+
+
+# ---------------------------------------------------------------
+# Early exit if nothing changed
+# ---------------------------------------------------------------
+def collect_input_hashes() -> dict:
+    return {
+        f: file_hash(os.path.join(INPUT_DIR, f))
+        for f in sorted(os.listdir(INPUT_DIR))
+        if f.lower().endswith(".png")
+    }
+
+cache = load_cache()
+current_hashes = collect_input_hashes()
+
+outputs_exist = (
+    os.path.exists(os.path.join(OUT_ATLASES, ATLAS_FILENAME)) and
+    os.path.exists(os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME))
+)
+
+if outputs_exist and cache.get("input_hashes") == current_hashes:
+    print("Relics: nothing changed, skipping.")
+    exit(0)
+
+changed = {k for k, v in current_hashes.items()
+           if cache.get("input_hashes", {}).get(k) != v}
+print(f"Changed/new relics: {changed or 'none (atlas layout changed)'}")
+
+
+# ---------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------
 class ShelfPacker:
     def __init__(self, width: int):
         self.width   = width
@@ -88,8 +154,7 @@ def write_tres(path, atlas_res_path, x, y, w, h, name):
         f'atlas = ExtResource("1")\n'
         f'region = Rect2({x}, {y}, {w}, {h})\n'
     )
-    with open(path, "w") as f:
-        f.write(content)
+    write_if_changed(path, content.encode())
 
 
 def process_image(path, crop_box=CROP_BOX, radius=OUTLINE_RADIUS, sigma=OUTLINE_SIGMA):
@@ -120,22 +185,21 @@ def process_image(path, crop_box=CROP_BOX, radius=OUTLINE_RADIUS, sigma=OUTLINE_
 
 
 # ---------------------------------------------------------------
-# 1. Collect & process
+# 1. Collect & process (skip unchanged big images)
 # ---------------------------------------------------------------
 entries = []
 for file in sorted(os.listdir(INPUT_DIR)):
     if file.lower().endswith(".png"):
-        stem = os.path.splitext(file)[0]
-        big, outline_ds, image_ds = process_image(os.path.join(INPUT_DIR, file))
-        entries.append((stem, big, outline_ds, image_ds))
-        print("processed:", file, "→", stem)
+        stem    = os.path.splitext(file)[0]
+        in_path = os.path.join(INPUT_DIR, file)
+        big, outline_ds, image_ds = process_image(in_path)
+        entries.append((stem, big, outline_ds, image_ds, file in changed))
+        print("processed:", file, "->", stem, ("(changed)" if file in changed else ""))
 
 n = len(entries)
 
 # ---------------------------------------------------------------
-# 2. Bin-pack — all tiles are the same IMG_SIZE so shelf packer
-#    degenerates to a simple rows layout, but exact height avoids
-#    the wasted blank rows at the bottom
+# 2. Bin-pack
 # ---------------------------------------------------------------
 est_width = next_power_of_two(int(math.sqrt(n * (IMG_SIZE + PADDING) ** 2) * 1.2))
 est_width = max(est_width, IMG_SIZE + PADDING)
@@ -145,9 +209,9 @@ placements = [packer.pack(IMG_SIZE, IMG_SIZE) for _ in entries]
 
 cw, ch = packer.canvas_size()
 aw = next_power_of_two(cw)
-ah = ch                        # exact height — no wasted rows
+ah = ch
 
-print(f"\nPacking: width={aw}, canvas={cw}×{ah}, {n} images")
+print(f"\nPacking: width={aw}, canvas={cw}x{ah}, {n} images")
 
 # ---------------------------------------------------------------
 # 3. Render
@@ -155,21 +219,30 @@ print(f"\nPacking: width={aw}, canvas={cw}×{ah}, {n} images")
 atlas         = Image.new("RGBA", (aw, ah), (0, 0, 0, 0))
 outline_atlas = Image.new("RGBA", (aw, ah), (0, 0, 0, 0))
 
-for i, (stem, big, outline_ds, image_ds) in enumerate(entries):
+for i, (stem, big, outline_ds, image_ds, is_changed) in enumerate(entries):
     x, y = placements[i]
     atlas.paste(image_ds,   (x, y))
     outline_atlas.paste(outline_ds, (x, y))
-    big.save(os.path.join(OUT_RELICS, f"{stem}.png"))
 
-    # INSET trims the known 4px border — same logic as original, now with packed coords
+    big_path = os.path.join(OUT_RELICS, f"{stem}.png")
+    if is_changed:
+        if save_image_if_changed(big, big_path):
+            print("updated big:", stem)
+
     write_tres(os.path.join(OUT_TRES, f"{stem}.tres"),
                ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, stem)
     write_tres(os.path.join(OUT_TRES, f"{stem}_outline.tres"),
                OUTLINE_ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, f"{stem}_outline")
 
-atlas.save(        os.path.join(OUT_ATLASES, ATLAS_FILENAME))
-outline_atlas.save(os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME))
+save_image_if_changed(atlas,         os.path.join(OUT_ATLASES, ATLAS_FILENAME))
+save_image_if_changed(outline_atlas, os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME))
 
-print(f"\n{ATLAS_FILENAME}:         {aw}×{ah}px, {n} images")
-print(f"{OUTLINE_ATLAS_FILENAME}: {aw}×{ah}px, {n} images")
+# ---------------------------------------------------------------
+# 4. Save cache
+# ---------------------------------------------------------------
+cache["input_hashes"] = current_hashes
+save_cache(cache)
+
+print(f"\n{ATLAS_FILENAME}:         {aw}x{ah}px, {n} images")
+print(f"{OUTLINE_ATLAS_FILENAME}: {aw}x{ah}px, {n} images")
 print("Done!")

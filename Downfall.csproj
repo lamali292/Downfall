@@ -157,11 +157,24 @@
         <Content Include="cardloc-presets.json"/>
     </ItemGroup>
 
+    <Target Name="CheckPython" BeforeTargets="RunImageGen">
+        <Exec Command="python --version" ContinueOnError="true" IgnoreExitCode="false"
+              Condition="'$(PythonChecked)' != 'true'">
+            <Output TaskParameter="ExitCode" PropertyName="PythonMissing"/>
+        </Exec>
+    </Target>
+
     <Target Name="RunImageGen" BeforeTargets="GodotPublish">
         <Message Text="Running image generation scripts..." Importance="high"/>
-        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\missing.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
-        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\powers2.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
-        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\relics2.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\missing.py&quot; 2&gt;&amp;1"
+              WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"
+              ContinueOnError="WarnAndContinue"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\powers2.py&quot; 2&gt;&amp;1"
+              WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"
+              ContinueOnError="WarnAndContinue"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\relics2.py&quot; 2&gt;&amp;1"
+              WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"
+              ContinueOnError="WarnAndContinue"/>
     </Target>
     
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">

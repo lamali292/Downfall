@@ -41,8 +41,16 @@ You only need to change:
 Recommended: [MegaDot — MegaCrit's custom Godot fork](https://megadot.megacrit.com/)
 
 Standard: [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
+### 3 Image Generation Scripts
 
-### 3. Build the Mod
+These scripts regenerate the relic and power atlases from source PNGs.
+They run automatically on `dotnet publish`.
+
+1. Install [Python 3.x](https://www.python.org/downloads/)
+2. Run `pip install -r image_gen/requirements.txt`
+
+
+### 4. Build the Mod
 
 Build the project using your IDE or the .NET CLI to copy the mod's DLL to the mods folder. 
 Then publish the mod to copy images and localization files as well.
