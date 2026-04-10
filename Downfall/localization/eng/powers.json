@@ -231,5 +231,8 @@
   "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.title": "Arena Mastery Defensive",
   "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.description": "Defensive Finishers grant X more [gold]Block[/gold]. ",
   "DOWNFALL-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "Defensive Finishers grant {Amount} more [gold]Block[/gold]. ",
-  "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "Berserker Finishers grant {Amount} more [gold]Strength[/gold]. "
+  "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "Berserker Finishers grant {Amount} more [gold]Strength[/gold]. ",
+  "DOWNFALL-IGNORE_PAIN_POWER.title": "Ignoring Pain",
+  "DOWNFALL-IGNORE_PAIN_POWER.description": "you cannot lose HP for this turn.",
+  "DOWNFALL-IGNORE_PAIN_POWER.smartDescription": "you cannot lose HP for {Amount:plural:this turn|the next {Amount} turns}."
 }

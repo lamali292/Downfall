@@ -17,9 +17,11 @@ public class BerserkerChampStance : ChampStanceModel
         await PowerCmd.Apply<VigorPower>(Owner.Creature, amount, Owner.Creature, null);
     }
 
+    internal const int BaseFinisherAmount = 1;
+
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var amount = DownfallHook.ModifyFinisherBonus(CombatState, this, 1);
+        var amount = DownfallHook.ModifyFinisherBonus(CombatState, this, BaseFinisherAmount);
         await PowerCmd.Apply<StrengthPower>(Owner.Creature, amount, Owner.Creature, null);
     }
 }

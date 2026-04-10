@@ -24,10 +24,10 @@ public class UltimateChampStance : ChampStanceModel
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var strength = DownfallHook.ModifyFinisherBonus(CombatState, this, 1);
+        var strength = DownfallHook.ModifyFinisherBonus(CombatState, this, BerserkerChampStance.BaseFinisherAmount);
         await PowerCmd.Apply<StrengthPower>(Owner.Creature, strength, Owner.Creature, null);
 
-        var block = DownfallHook.ModifyFinisherBonus(CombatState, this, 6);
+        var block = DownfallHook.ModifyFinisherBonus(CombatState, this, DefensiveChampStance.BaseFinisherAmount);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Unpowered, null);
     }
 }
