@@ -157,7 +157,13 @@
         <Content Include="cardloc-presets.json"/>
     </ItemGroup>
 
-
+    <Target Name="RunImageGen" BeforeTargets="GodotPublish">
+        <Message Text="Running image generation scripts..." Importance="high"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\missing.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\powers2.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
+        <Exec Command="set PYTHONIOENCODING=utf-8 &amp;&amp; python &quot;$(MSBuildProjectDirectory)\image_gen\relics2.py&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"/>
+    </Target>
+    
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Syncing Mod Files to Steam Mods Folder..." Importance="high"/>
 

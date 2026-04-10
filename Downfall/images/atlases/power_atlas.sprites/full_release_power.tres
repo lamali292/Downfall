@@ -1,6 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://da0bd0f"]
-[ext_resource type="Texture2D" path="res://Downfall/images/atlases/power_atlas.png" id="1"]
-[resource]
-atlas = ExtResource("1")
-region = Rect2(114, 0, 48, 64)
-margin = Rect2(8, 0, 8, 0)
