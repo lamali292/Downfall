@@ -75,6 +75,8 @@ public partial class NChampStanceDisplay : Control
 
     public void Refresh()
     {
+        if (!IsInstanceValid(this)) return;
+        if (IsQueuedForDeletion()) return; 
         if (_trackedPlayer == null || _icons.Count == 0) return;
 
         var stance = _trackedPlayer.ChampStance();

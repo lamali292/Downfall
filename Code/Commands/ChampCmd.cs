@@ -15,14 +15,30 @@ namespace Downfall.Code.Commands;
 
 public class ChampCmd
 {
-    public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player)
+    public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        await ChampModel.SetStance<BerserkerChampStance>(ctx, player);
+        if (!force && player.ChampStance() is UltimateChampStance stance)
+        {
+            stance.ResetCharges();
+        }
+        else
+        {
+            await ChampModel.SetStance<BerserkerChampStance>(ctx, player);
+        }
     }
 
-    public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player)
+    public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        await ChampModel.SetStance<DefensiveChampStance>(ctx, player);
+        if (!force && player.ChampStance() is UltimateChampStance stance)
+        {
+            stance.ResetCharges();
+        }
+        else
+        {
+            await ChampModel.SetStance<DefensiveChampStance>(ctx, player);
+        }
+        
+        
     }
 
     public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)
@@ -81,7 +97,7 @@ public class ChampCmd
             await DownfallHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 
-        if (skipClear) return;
+        if (skipClear || m is UltimateChampStance) return;
         await ClearStance(ctx, player);
     }
 

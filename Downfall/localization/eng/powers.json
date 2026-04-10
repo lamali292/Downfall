@@ -234,5 +234,7 @@
   "DOWNFALL-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "Berserker Finishers grant {Amount} more [gold]Strength[/gold]. ",
   "DOWNFALL-IGNORE_PAIN_POWER.title": "Ignoring Pain",
   "DOWNFALL-IGNORE_PAIN_POWER.description": "you cannot lose HP for this turn.",
-  "DOWNFALL-IGNORE_PAIN_POWER.smartDescription": "you cannot lose HP for {Amount:plural:this turn|the next {Amount} turns}."
+  "DOWNFALL-IGNORE_PAIN_POWER.smartDescription": "you cannot lose HP for {Amount:plural:this turn|the next {Amount} turns}.",
+  "DOWNFALL-ULTIMATE_STANCE_POWER.title": "",
+  "DOWNFALL-ULTIMATE_STANCE_POWER.description": ""
 }
