@@ -20,6 +20,6 @@ public class Spew : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallHook.OnDrained(ctx, Owner, cardPlay.Resources.EnergySpent);
+        await DownfallHook.OnDrained(CombatState!, ctx, Owner, cardPlay.Resources.EnergySpent);
     }
 }

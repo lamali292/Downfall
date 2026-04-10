@@ -14,7 +14,7 @@ public class DefensiveChampStance : ChampStanceModel
 
     public override async Task SkillBonus()
     {
-        var amount = DownfallHook.ModifySkillBonus<CounterPower>(this, 2);
+        var amount = DownfallHook.ModifySkillBonus<CounterPower>(CombatState, this, 2);
         await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
     }
 

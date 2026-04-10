@@ -78,7 +78,7 @@ public class ChampCmd
         for (var i = 0; i < repeat; i++)
         {
             await m.Finisher(ctx);
-            await DownfallHook.OnFinisher(ctx, cardPlay);
+            await DownfallHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 
         if (skipClear) return;
