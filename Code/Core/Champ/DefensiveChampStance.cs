@@ -21,6 +21,7 @@ public class DefensiveChampStance : ChampStanceModel
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, 6, ValueProp.Unpowered, null);
+        var amount = DownfallHook.ModifyFinisherBonus(CombatState, this, 6);
+        await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
     }
 }
