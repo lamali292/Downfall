@@ -14,7 +14,7 @@ public class Improvising : ChampCardModel
     {
         WithPower<ImprovisingPower>(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ImprovisingPower>(this);

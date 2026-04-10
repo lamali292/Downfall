@@ -33,7 +33,7 @@
     <PropertyGroup>
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
-    
+
     <!-- OS Detection -->
     <PropertyGroup>
         <IsWindows>false</IsWindows>
@@ -108,7 +108,7 @@
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.3.0" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.3.0" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
@@ -122,7 +122,7 @@
 
 
     <ItemGroup>
-        <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never" />
+        <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never"/>
         <Compile Remove="Downfall/**"/>
         <Compile Remove="shaders/**"/>
         <EmbeddedResource Remove="Downfall/**"/>
@@ -170,7 +170,7 @@
               DestinationFolder="$(ModsPath)$(MSBuildProjectName)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
 
-        
+
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
         <ItemGroup Condition="'$(UseLocalBaseLib)' == 'true'">
             <BaseLibFiles Include="C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll;
@@ -183,7 +183,7 @@
         </ItemGroup>
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/" Condition="Exists('%(FullPath)')"/>
     </Target>
-    
+
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
 

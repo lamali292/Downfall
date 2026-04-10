@@ -12,6 +12,5 @@ public class SkillBonusDescriptionSource : IExtraDescriptionSource
     {
         if (!card.Keywords.Contains(DownfallKeywords.TriggerSkillBonus)) yield break;
         yield return new LocString(DownfallTable, "TRIGGER_SKILL_BONUS.title").GetFormattedText();
-        
     }
 }

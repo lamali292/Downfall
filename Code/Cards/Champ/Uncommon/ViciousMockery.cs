@@ -16,7 +16,7 @@ public class ViciousMockery : ChampCardModel
         WithPower<VigorPower>(5, 1);
         WithPower<WeakPower>(1, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

@@ -22,7 +22,7 @@ public class EmergencyPivot : ChampCardModel
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
