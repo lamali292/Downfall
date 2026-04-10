@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Powers.Automaton;
 
@@ -15,7 +16,7 @@ public class FullReleasePower : AutomatonPowerModel
 
     public FullReleasePower() : base(PowerType.Buff, PowerStackType.None)
     {
-        WithVars(new EffectsDynamicVar(this));
+        WithVars(new EffectsDynamicVar());
     }
 
     public override bool ShouldReceiveCombatHooks => true;
@@ -26,6 +27,7 @@ public class FullReleasePower : AutomatonPowerModel
         _sourceCards = sourceCards;
     }
 
+    
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player || Owner.CombatState == null) return;
@@ -53,11 +55,22 @@ public class FullReleasePower : AutomatonPowerModel
             }
     }
 
-    private class EffectsDynamicVar(FullReleasePower power) : DynamicVar("effects", 0)
+    private class EffectsDynamicVar : DynamicVar
     {
+        private FullReleasePower? _power;
+
+        public EffectsDynamicVar() : base("effects", 0) { }
+
+        public override void SetOwner(AbstractModel model)
+        {
+            base.SetOwner(model);
+            _power = model as FullReleasePower;
+        }
+
         public override string ToString()
         {
-            var lines = power._sourceCards
+            if (_power == null) return "";
+            var lines = _power._sourceCards
                 .Select((c, i) => (c as IEncodable)?.GetEncodeLocString(new EncodeContext(true, i)))
                 .Where(loc => loc != null)
                 .Select(loc => loc!.GetFormattedText())
