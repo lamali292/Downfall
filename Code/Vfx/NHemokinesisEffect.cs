@@ -9,7 +9,7 @@ public partial class NHemokinesisEffect : Node
     private Vector2 _startPos;
     private Vector2 _targetPos;
     private float _timer = 0f;
-    private float _spawnInterval = 0.04f; // Spawns a particle every 0.04s
+    private float _spawnInterval = 0.04f;
     private float _duration = 0.5f;
 
     public static void Spawn(Vector2 start, Vector2 target)
@@ -20,7 +20,6 @@ public partial class NHemokinesisEffect : Node
             _targetPos = target 
         };
         
-        // Add it to the combat VFX layer so it renders over the characters
         NCombatRoom.Instance?.CombatVfxContainer.AddChild(manager);
     }
 
@@ -28,8 +27,6 @@ public partial class NHemokinesisEffect : Node
     {
         var fDelta = (float)delta;
         _timer += fDelta;
-    
-        // 1. Only spawn if we still have duration left
         if (_duration > 0)
         {
             _duration -= fDelta;

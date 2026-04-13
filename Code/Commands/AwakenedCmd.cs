@@ -31,7 +31,7 @@ public static class AwakenedCmd
     {
         if (IsAwakened(player.Creature)) return;
 
-        // Todo: Update all spells everywhere to be upgraded
+        // Todo: Update all spells everywhere to be upgraded. currenly only new spells
         await PowerCmd.Apply<AwakenedFormPower>(player.Creature, 1, player.Creature, null);
         var spellbook = GetSpellbook(player);
         if (spellbook != null)
@@ -96,7 +96,7 @@ public static class AwakenedCmd
         Player player,
         CardModel spell,
         AwakenedPile spellbook,
-        Rng rng) // replace 'object' with the actual RNG type used in your codebase
+        Rng rng) 
     {
         spellbook.RemoveInternal(spell);
         spellbook.SetNextSpell(rng);
