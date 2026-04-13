@@ -10,22 +10,13 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Ceremony() : AwakenedCardModel(0, CardType.Power, CardRarity.Token, TargetType.None)
+public class Ceremony : AwakenedCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Retain
-    ];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(1)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<StrengthPower>()
-    ];
+    public Ceremony() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
+    {
+        WithPower<StrengthPower>(1);
+        WithKeywords(CardKeyword.Retain);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

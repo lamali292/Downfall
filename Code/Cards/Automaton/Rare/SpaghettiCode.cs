@@ -1,7 +1,8 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
+using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -20,11 +21,10 @@ public class SpaghettiCode() : AutomatonCardModel(2, CardType.Skill, CardRarity.
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var rng = CombatState!.RunState.Rng.CombatCardSelection;
-        var creature = Owner.Creature;
 
-        while (AutomatonCmd.GetSequenceCount(creature) < AutomatonCmd.GetMax(creature))
+        while (AutomatonCmd.GetSequenceCount(Owner) < AutomatonCmd.GetMax(Owner))
         {
-            var countBefore = AutomatonCmd.GetSequenceCount(creature);
+            var countBefore = AutomatonCmd.GetSequenceCount(Owner);
             var choices = Pool
                 .AllCards
                 .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token)
@@ -37,7 +37,7 @@ public class SpaghettiCode() : AutomatonCardModel(2, CardType.Skill, CardRarity.
                 c.RemoveFromState();
             if (selected == null) break;
             await AutomatonCmd.EncodeCard(selected, ctx, cardPlay);
-            if (AutomatonCmd.GetSequenceCount(creature) < countBefore + 1)
+            if (AutomatonCmd.GetSequenceCount(Owner) < countBefore + 1)
                 return;
         }
     }

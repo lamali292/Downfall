@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,13 +14,13 @@ public class FineTuning() : AutomatonCardModel(0, CardType.Skill, CardRarity.Com
 
     protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var sequence = AutomatonCmd.GetSequence(Owner.Creature);
+        var sequence = AutomatonCmd.GetSequence(Owner);
         foreach (var card in sequence)
         {
             foreach (var dynVar in card.DynamicVars.Values) dynVar.UpgradeValueBy(1m);
         }
 
-        AutomatonCmd.RefreshDisplay(Owner.Creature);
+        AutomatonDisplay.Refresh(Owner);
         return Task.CompletedTask;
     }
 

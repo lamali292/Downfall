@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -38,7 +39,7 @@ public sealed class Replicate()
         var copiedCard = combatState.CloneCard(cardPlay.Card);
         var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, true);
         if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
+            CardCmd.PreviewCardPileAdd(result, 0.4f);
     }
 
     protected override void OnUpgrade()

@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class SpreadingSpores() : AwakenedCardModel(0, CardType.Power, CardRarity.Token, TargetType.None)
+public class SpreadingSpores : AwakenedCardModel
 {
+    public SpreadingSpores() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
+    {
+    }
     // TODO: Implement
 }

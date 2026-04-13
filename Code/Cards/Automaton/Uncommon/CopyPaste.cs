@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,8 +19,7 @@ public class CopyPaste() : AutomatonCardModel(1, CardType.Skill, CardRarity.Unco
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var creature = cardPlay.Card.Owner.Creature;
-        var sequence = AutomatonCmd.GetSequence(creature)
+        var sequence = AutomatonCmd.GetSequence(Owner)
             .OfType<AutomatonCardModel>()
             .ToList();
 

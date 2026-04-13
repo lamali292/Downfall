@@ -1,12 +1,13 @@
 using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Patches;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -37,13 +38,13 @@ public partial class NSequenceDisplay : Control
     private NGridCardHolder? _previewHolder;
     private FunctionCard? _previewModel;
 
-    private Creature? _trackedCreature;
+    private Player? _trackedPlayer;
 
-    public static NSequenceDisplay Create(Creature creature)
+    public static NSequenceDisplay Create(Player creature)
     {
         return new NSequenceDisplay
         {
-            _trackedCreature = creature,
+            _trackedPlayer = creature,
             Position = Vector2.Zero
         };
     }
@@ -57,7 +58,7 @@ public partial class NSequenceDisplay : Control
 
     public void Refresh()
     {
-        if (_trackedCreature == null) return;
+        if (_trackedPlayer == null) return;
 
         foreach (var h in _cardHolders) FindOnTablePatch.Unregister(h.CardModel);
         foreach (var c in _cardContainers) c.QueueFree();
@@ -70,8 +71,8 @@ public partial class NSequenceDisplay : Control
         _previewHolder = null;
         _previewModel = null;
 
-        var sequence = AutomatonCmd.GetSequence(_trackedCreature);
-        var max = AutomatonCmd.GetMax(_trackedCreature);
+        var sequence = AutomatonCmd.GetSequence(_trackedPlayer);
+        var max = AutomatonCmd.GetMax(_trackedPlayer);
 
         for (var i = 0; i < max; i++)
         {
@@ -136,7 +137,7 @@ public partial class NSequenceDisplay : Control
 
         _previewModel.SetSourceCards(sequence.OfType<AutomatonCardModel>().ToList());
         foreach (var card in sequence.OfType<AutomatonCardModel>()) card.ApplyToFunctionPreview(_previewModel);
-        if (_trackedCreature.Player != null) _previewModel.Owner = _trackedCreature.Player;
+        if (_trackedPlayer != null) _previewModel.Owner = _trackedPlayer;
 
         var funcCardNode = NCard.Create(_previewModel);
         if (funcCardNode == null) return;
@@ -168,7 +169,7 @@ public partial class NSequenceDisplay : Control
 
     public override void _Process(double delta)
     {
-        if (_trackedCreature == null || !CombatManager.Instance.IsInProgress) return;
+        if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
 
         _bobTime += (float)delta;
         for (var i = 0; i < 4; i++)
@@ -181,7 +182,7 @@ public partial class NSequenceDisplay : Control
             _slotNodes[i].Position = new Vector2(i * CardDistance, _bobOffsets[i]) - SlotHalf;
 
         if (_previewContainer == null) return;
-        var funcX = FuncPositionsX + (AutomatonCmd.GetMax(_trackedCreature) >= 4 ? CardDistance : 0f);
+        var funcX = FuncPositionsX + (AutomatonCmd.GetMax(_trackedPlayer) >= 4 ? CardDistance : 0f);
         _previewContainer.Position = new Vector2(funcX, 0f);
     }
 

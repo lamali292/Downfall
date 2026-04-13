@@ -1,6 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,7 +20,7 @@ public class RemoveErrorsPower : AutomatonPowerModel, IOnEncode
         if (encodedCard.Owner != Owner.Player) return;
         if (encodedCard is not (ICompilableError and AutomatonCardModel automatonCardModel)) return;
         automatonCardModel.SuppressCompileError = true;
-        AutomatonCmd.RefreshDisplay(Owner);
+        AutomatonDisplay.Refresh(Owner.Player);
         Flash();
         await PowerCmd.Decrement(this);
     }

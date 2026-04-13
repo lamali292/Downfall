@@ -11,19 +11,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Awakened.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Darkleech() : AwakenedCardModel(1, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy), ISpell
+public class Darkleech : AwakenedCardModel, ISpell
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<VulnerablePower>(1),
-        new PowerVar<ManaburnPower>(4)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-        CardKeyword.Retain
-    ];
+    public Darkleech() : base(1, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
+    {
+        WithPower<VulnerablePower>(1);
+        WithPower<ManaburnPower>(4);
+        WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

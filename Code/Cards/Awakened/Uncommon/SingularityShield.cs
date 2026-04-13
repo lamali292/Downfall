@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class SingularityShield() : AwakenedCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class SingularityShield : AwakenedCardModel
 {
+    public SingularityShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
     // TODO: Implement
 }

@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Rare;
 
 [Pool(typeof(AwakenedCardPool))]
-public class DesperatePrayer() : AwakenedCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class DesperatePrayer : AwakenedCardModel
 {
+    public DesperatePrayer() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+    }
+
     // TODO: Implement
 }

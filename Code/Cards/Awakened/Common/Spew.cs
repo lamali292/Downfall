@@ -6,7 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Awakened.Common;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Spew() : AwakenedCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Spew : AwakenedCardModel
 {
+    public Spew() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+    }
     // TODO: Implement
 }
