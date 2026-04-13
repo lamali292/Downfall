@@ -657,7 +657,7 @@
   "DOWNFALL-HYMN.title": "Hymn",
   "DOWNFALL-HYPER_BEAM_AUTOMATON.description": "Deal {Damage:diff()} damage to ALL enemies. \nPut 5 [gold]Voids[/gold] on top of your draw pile.",
   "DOWNFALL-HYPER_BEAM_AUTOMATON.title": "HYPER BEAM",
-  "DOWNFALL-IGNORE_PAIN.description": "Your HP cannot be reduced until your next turn.\nExhaust.",
+  "DOWNFALL-IGNORE_PAIN.description": "Your HP cannot be reduced until your next turn.",
   "DOWNFALL-IGNORE_PAIN.title": "Ignore Pain",
   "DOWNFALL-ILL_TAKE_THAT.description": "Steal up to {IllTakeThatPower:diff()} of the enemy's Block.\nDeal {Damage:diff()} damage.",
   "DOWNFALL-ILL_TAKE_THAT.title": "I'll Take That",

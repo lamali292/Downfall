@@ -18,10 +18,11 @@ public class DefensiveChampStance : ChampStanceModel
         await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
     }
 
+    internal const int BaseFinisherAmount = 6;
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var amount = DownfallHook.ModifyFinisherBonus(CombatState, this, 6);
+        var amount = DownfallHook.ModifyFinisherBonus(CombatState, this, BaseFinisherAmount);
         await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
     }
 }
