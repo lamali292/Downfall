@@ -52,7 +52,7 @@ public static class AutomatonCmd
         if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
         await CardPileCmd.Add(card, pile, skipVisuals: isMe);
         if (isMe) AutomatonDisplay.Refresh(creature);
-        await DownfallHook.OnCardEncoded(ctx, card, cardPlay);
+        await DownfallHook.OnCardEncoded(card.CombatState!, ctx, card, cardPlay);
         if (pile.Cards.Count >= GetMax(creature))
             await CompileFunctionCard(creature, ctx, cardPlay);
     }

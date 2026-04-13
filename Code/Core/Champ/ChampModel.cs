@@ -68,7 +68,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
         await mutable.OnEnter(ctx);
 
         TriggerStanceAnimation(player);
-        await DownfallHook.OnStanceChange(ctx, player, current!, ActiveStance[player]!);
+        await DownfallHook.OnStanceChange(player.Creature.CombatState!, ctx, player, current!, ActiveStance[player]!);
         RefreshStanceDisplay(player, newCanonical);
     }
 

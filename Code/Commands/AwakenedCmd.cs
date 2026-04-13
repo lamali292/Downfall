@@ -31,7 +31,7 @@ public static class AwakenedCmd
         var current = creatureNode.SpineAnimation.GetAnimationState()?.GetCurrent(0);
         current?.SetMixDuration(0.5f);
         */
-        await DownfallHook.OnAwaken(ctx, player);
+        await DownfallHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }
 
     public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
@@ -39,7 +39,7 @@ public static class AwakenedCmd
         if (card is not IChantable chantable) return;
         chantable.HasChanted = true;
         await chantable.PlayChantEffect(ctx, cardPlay);
-        await DownfallHook.OnCardChanted(ctx, card, cardPlay);
+        await DownfallHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay);
     }
 
     public static bool CanConjure(Player player)
