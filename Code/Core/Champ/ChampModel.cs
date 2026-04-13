@@ -1,6 +1,8 @@
 ﻿// ChampModel.cs
 
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Events;
 using Downfall.Code.Vfx;
@@ -12,13 +14,12 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Core.Champ;
 
-public class ChampModel : AbstractModel
+public class ChampModel()  : CustomSingletonModel(true, true)
 {
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
         new(DownfallModelDb.ChampStance<NoChampStance>);
 
     private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
-    public override bool ShouldReceiveCombatHooks => true;
 
     public static T GetStanceAs<T>(Player player) where T : ChampStanceModel
     {

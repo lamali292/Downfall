@@ -1,8 +1,9 @@
-﻿using MegaCrit.Sts2.Core.Models;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Core;
 
-public class SlimeBossModel : AbstractModel
+public class SlimeBossModel() : CustomSingletonModel(true, true)
 {
-    public override bool ShouldReceiveCombatHooks => true;
+   
 }

@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
 using FileAccess = Godot.FileAccess;
 

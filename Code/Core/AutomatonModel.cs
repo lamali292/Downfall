@@ -1,4 +1,6 @@
-﻿using Downfall.Code.Character;
+﻿using System.Threading.Tasks;
+using BaseLib.Abstracts;
+using Downfall.Code.Character;
 using Downfall.Code.Displays;
 using Downfall.Code.Vfx;
 using Godot;
@@ -11,11 +13,8 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Core;
 
-public class AutomatonModel : AbstractModel
+public class AutomatonModel() : CustomSingletonModel(true, true)
 {
-    public override bool ShouldReceiveCombatHooks => true;
-
-
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

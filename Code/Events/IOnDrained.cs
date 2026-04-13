@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+﻿using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Downfall.Code.Events;
 
