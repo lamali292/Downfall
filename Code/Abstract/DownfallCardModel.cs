@@ -1,24 +1,67 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Abstract;
 
-public abstract class DownfallCardModel(
-    int baseCost,
+public abstract class DownfallCardModel<T>(
+    int cost,
     CardType type,
     CardRarity rarity,
-    TargetType target,
-    bool showInCardLibrary = true,
-    bool autoAdd = true) : CustomCardModel(baseCost, type, rarity, target, showInCardLibrary, autoAdd)
+    TargetType targetType)
+    : CustomCardModel(cost, type, rarity, targetType)
+    where T : DownfallCharacterModel
 {
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
-
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await PlayEffect(ctx, cardPlay);
-    }
+    public sealed override string PortraitPath =>
+        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<T>();
 }
+
+public abstract class ChampCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Champ>(cost, type, rarity, targetType);
+
+public abstract class CollectorCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Collector>(cost, type, rarity, targetType);
+
+public abstract class GremlinsCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Gremlins>(cost, type, rarity, targetType);
+
+public abstract class GuardianCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Guardian>(cost, type, rarity, targetType);
+
+public abstract class HexaghostCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Hexaghost>(cost, type, rarity, targetType);
+
+public abstract class SlimeBossCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.SlimeBoss>(cost, type, rarity, targetType);
+
+public abstract class SneckoCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType)
+    : DownfallCardModel<Character.Snecko>(cost, type, rarity, targetType);

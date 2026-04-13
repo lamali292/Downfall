@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.Code.Commands;
 
@@ -50,24 +51,43 @@ public static class AwakenedCmd
     
     public static async Task<CardModel?> Conjure(
         Player player,
-        CardModel card,
-        PlayerChoiceContext ctx,
-        CardPlay cardPlay)
+        CardModel card)
     {
         var spellbook = GetSpellbook(player);
         var rng = card.CombatState!.RunState.Rng.CombatCardSelection;
         if (spellbook == null) return null;
-        
+
         var spell = spellbook.NextSpell ?? (spellbook.Cards.Count > 0 ? spellbook.Cards[0] : null);
         if (spell == null) return null;
 
+        return await ConjureSpell(player, spell, spellbook, rng);
+    }
+    
+    public static async Task<CardModel?> ConjureSelected(
+        Player player,
+        CardModel sourceCard,
+        CardModel selectedSpell)
+    {
+        var spellbook = GetSpellbook(player);
+        var rng = sourceCard.CombatState!.RunState.Rng.CombatCardSelection;
+        if (spellbook == null) return null;
+        
+        if (!spellbook.Cards.Contains(selectedSpell)) return null;
+        return await ConjureSpell(player, selectedSpell, spellbook, rng);
+    }
+    
+    private static async Task<CardModel?> ConjureSpell(
+        Player player,
+        CardModel spell,
+        AwakenedPile spellbook,
+        Rng rng)          // replace 'object' with the actual RNG type used in your codebase
+    {
         spellbook.RemoveInternal(spell);
         spellbook.SetNextSpell(rng);
         await CardPileCmd.Add(spell, PileType.Hand);
 
-        if (spellbook.Cards.Count == 0) spellbook.Refresh(player, card.CombatState, rng);
+        if (spellbook.Cards.Count == 0) spellbook.Refresh(player);
         AwakenedDisplay.Refresh(player);
         return spell;
-
     }
 }

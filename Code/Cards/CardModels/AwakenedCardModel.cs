@@ -55,7 +55,7 @@ public abstract class AwakenedCardModel(
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        if (this is IChantable chantable && WasLastCardPlayedPower)
+        if (this is IChantable chantable && (WasLastCardPlayedPower || chantable.HasChanted))
         {
             chantable.HasChanted = true;
             await chantable.OnChant(ctx, cardPlay);

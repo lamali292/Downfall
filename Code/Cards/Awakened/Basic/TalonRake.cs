@@ -31,7 +31,7 @@ public class TalonRake : AwakenedCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
 
-        await AwakenedCmd.Conjure(Owner, this, ctx, cardPlay);
+        await AwakenedCmd.Conjure(Owner, this);
     }
 
 
