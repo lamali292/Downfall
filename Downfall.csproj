@@ -86,7 +86,7 @@
     <PropertyGroup>
         <!-- Diasble architecture mismatch warning; mods are ideally built for all platforms (MSIL)
              while your local StS2 version will be for your specific platform. -->
-        <NoWarn>$(NoWarn);MSB3270</NoWarn>
+        <NoWarn>$(NoWarn);MSB3270;CS1998</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -138,6 +138,7 @@
 
     <ItemGroup>
         <Content Remove=".godot\**"/>
+        <Content Include="Downfall\animation\eye\the_watcher_eye.png.import" />
         <None Remove=".godot\**"/>
 
         <Content Remove="Downfall\**\*.import"/>
@@ -176,6 +177,8 @@
               WorkingDirectory="$(MSBuildProjectDirectory)\image_gen"
               ContinueOnError="WarnAndContinue"/>
     </Target>
+
+
     
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Syncing Mod Files to Steam Mods Folder..." Importance="high"/>

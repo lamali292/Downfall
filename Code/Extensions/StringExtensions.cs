@@ -21,7 +21,7 @@ public static class StringExtensions
     private static string BigPowerImageCharacterPath(this string path, string characterId)
     {
         return path.DownfallBigPowerImagePath();
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
+        // return Path.Join(DownfallMainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
     }
 
 

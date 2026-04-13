@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6pjrayk8hfxt"]
 
-[ext_resource type="Texture2D" uid="uid://c84clxq42kwcn" path="res://eye/the_watcher_eye.png" id="1_fh63m"]
+[ext_resource type="Texture2D" uid="uid://c84clxq42kwcn" path="res://Downfall/animation/eye/the_watcher_eye.png" id="1_fh63m"]
 
 [sub_resource type="Animation" id="Animation_ghdpf"]
 length = 0.1
