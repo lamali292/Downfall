@@ -41,7 +41,7 @@ public static class StringExtensions
         return path.CardImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
 
-    
+
     public static string EnchantmentPath(this string path)
     {
         return Path.Join(DownfallMainFile.ModId, "images", "enchantments", path);

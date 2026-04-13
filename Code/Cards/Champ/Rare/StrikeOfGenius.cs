@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
-using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,21 +17,18 @@ public class StrikeOfGenius : ChampCardModel
         WithTip(new TooltipSource(HoverTip));
     }
 
-    private static IHoverTip HoverTip(CardModel card) => card.IsUpgraded
-        ? HoverTipFactory.FromPower<StrikeOfGeniusPlusPower>()
-        : HoverTipFactory.FromPower<StrikeOfGeniusPower>();
-    
+    private static IHoverTip HoverTip(CardModel card)
+    {
+        return card.IsUpgraded
+            ? HoverTipFactory.FromPower<StrikeOfGeniusPlusPower>()
+            : HoverTipFactory.FromPower<StrikeOfGeniusPower>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
-        {
             await CommonActions.ApplySelf<StrikeOfGeniusPlusPower>(this, 1);
-        }
         else
-        {
             await CommonActions.ApplySelf<StrikeOfGeniusPower>(this, 1);
-        }
     }
-
-    
 }

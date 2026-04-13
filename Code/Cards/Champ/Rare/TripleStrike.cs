@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Champ.Basic;
-using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -50,7 +49,7 @@ public class TripleStrike : ChampCardModel
             card.EnergyCost.SetThisCombat(0);
             cardInstances.Add(card);
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, PileType.Hand, true);
 
+        await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, PileType.Hand, true);
     }
 }

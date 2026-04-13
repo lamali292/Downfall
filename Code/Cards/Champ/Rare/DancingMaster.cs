@@ -18,7 +18,7 @@ public class DancingMaster : ChampCardModel
         WithPower<DancingMasterPower>(1);
     }
 
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DancingMasterPower>(this);

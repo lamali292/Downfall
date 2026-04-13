@@ -9,6 +9,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Core.Champ;
 
@@ -66,28 +67,9 @@ public class ChampModel() : CustomSingletonModel(true, true)
         ActiveStance[player] = mutable;
         await mutable.OnEnter(ctx);
 
+        TriggerStanceAnimation(player);
         await DownfallHook.OnStanceChange(ctx, player, current!, ActiveStance[player]!);
-
-        Callable.From(() =>
-        {
-            if (newCanonical is NoChampStance)
-            {
-                GetDisplay(player)?.Refresh(); // QueueFrees itself
-            }
-            else
-            {
-                var existing = GetDisplay(player);
-                if (existing == null || !GodotObject.IsInstanceValid(existing))
-                {
-                    var display = NChampStanceDisplay.Show(player);
-                    if (display != null) RegisterDisplay(player, display);
-                }
-                else
-                {
-                    existing.Refresh();
-                }
-            }
-        }).CallDeferred();
+        RefreshStanceDisplay(player, newCanonical);
     }
 
     public override async Task BeforeCombatStart()
@@ -96,5 +78,50 @@ public class ChampModel() : CustomSingletonModel(true, true)
         if (state == null) return;
         foreach (var player in state.Players)
             ActiveStance[player] = DownfallModelDb.ChampStance<NoChampStance>();
+    }
+
+
+    private static void TriggerStanceAnimation(Player player)
+    {
+        Callable.From(() =>
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+            var animState = creatureNode?.SpineAnimation.GetAnimationState();
+            if (animState == null) return;
+
+            var trigger = animState.GetCurrent(0).GetAnimation().GetName() switch
+            {
+                "Idle" or "IdleBerserker" or "IdleDefensive" or "IdleUltimate" or "IdleGladiator" => "Idle",
+                "Attack" => "Attack",
+                _ => null
+            };
+
+            if (trigger == null) return;
+            creatureNode?.SetAnimationTrigger(trigger);
+            animState.GetCurrent(0).SetMixDuration(0.3f);
+        }).CallDeferred();
+    }
+
+    private static void RefreshStanceDisplay(Player player, ChampStanceModel newCanonical)
+    {
+        Callable.From(() =>
+        {
+            if (newCanonical is NoChampStance)
+            {
+                GetDisplay(player)?.Refresh();
+                return;
+            }
+
+            var existing = GetDisplay(player);
+            if (existing == null || !GodotObject.IsInstanceValid(existing))
+            {
+                var display = NChampStanceDisplay.Show(player);
+                if (display != null) RegisterDisplay(player, display);
+            }
+            else
+            {
+                existing.Refresh();
+            }
+        }).CallDeferred();
     }
 }

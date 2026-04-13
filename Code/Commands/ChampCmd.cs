@@ -68,7 +68,8 @@ public class ChampCmd
         await ChampModel.SetStance<NoChampStance>(ctx, player);
     }
 
-    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false, int repeat = 1)
+    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false,
+        int repeat = 1)
     {
         var player = cardPlay.Card.Owner;
         var m = player.ChampStance();
@@ -79,12 +80,12 @@ public class ChampCmd
             await m.Finisher(ctx);
             await DownfallHook.OnFinisher(ctx, cardPlay);
         }
-        
+
         if (skipClear) return;
         await ClearStance(ctx, player);
     }
-    
-    
+
+
     public static async Task SelectStanceToEnter(PlayerChoiceContext ctx, Player owner)
     {
         var choices = new List<CardModel>
@@ -101,12 +102,10 @@ public class ChampCmd
                 await EnterBerserkerStance(ctx, owner);
                 break;
             case StanceDanceDefensive:
-                await ChampCmd.EnterDefensiveStance(ctx, owner);
+                await EnterDefensiveStance(ctx, owner);
                 break;
         }
-        
     }
-    
 }
 
 // Todo: rename or make dynamic title

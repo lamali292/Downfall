@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,13 +18,13 @@ public class EnchantSword : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(typeof(Instinct));
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selectorPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Instinct>().CanEnchant, this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Instinct>().CanEnchant,
+            this)).FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Instinct>(card, 1);
     }

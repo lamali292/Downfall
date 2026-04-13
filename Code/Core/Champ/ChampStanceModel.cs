@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using Downfall.Code.Events;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -37,8 +38,14 @@ public abstract class ChampStanceModel : AbstractModel
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (Owner != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Skill || Charges <= 0) return;
-        Charges--;
+        if (Owner != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Skill) return;
+
+        if (!DownfallHook.IgnoreChargeCap(Owner))
+        {
+            if (Charges <= 0) return;
+            Charges--;
+        }
+
         ChampModel.RefreshDisplay(Owner);
         await SkillBonus();
     }
