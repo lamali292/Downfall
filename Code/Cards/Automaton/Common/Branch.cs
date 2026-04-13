@@ -24,7 +24,7 @@ public class Branch() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common
         new DamageVar(7m, ValueProp.Move)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(DownfallKeywords.Encode)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [DownfallKeyword.Encode.ToHoverTip()];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

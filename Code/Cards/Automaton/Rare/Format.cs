@@ -21,7 +21,7 @@ public class Format() : AutomatonCardModel(0, CardType.Skill, CardRarity.Rare, T
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     protected override bool HasEnergyCostX => true;

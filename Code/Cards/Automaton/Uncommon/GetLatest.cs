@@ -18,7 +18,7 @@ public class GetLatest() : AutomatonCardModel(1, CardType.Skill, CardRarity.Unco
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

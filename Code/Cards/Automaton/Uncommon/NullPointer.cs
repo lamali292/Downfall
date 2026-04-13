@@ -26,8 +26,8 @@ public class NullPointer() : AutomatonCardModel(1, CardType.Attack, CardRarity.U
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip(),
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable)
     ];
 

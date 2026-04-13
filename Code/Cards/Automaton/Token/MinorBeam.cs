@@ -19,7 +19,7 @@ public class MinorBeam() : AutomatonCardModel(0, CardType.Attack, CardRarity.Tok
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

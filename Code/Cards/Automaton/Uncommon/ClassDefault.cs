@@ -15,7 +15,7 @@ public sealed class ClassDefault() : AutomatonCardModel(1, CardType.Power, CardR
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+        DownfallKeyword.Encode.ToHoverTip(),
         HoverTipFactory.FromPower<ClassDefaultPower>()
     ];
 

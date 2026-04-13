@@ -19,7 +19,7 @@ public class Safeguard() : AutomatonCardModel(0, CardType.Skill, CardRarity.Comm
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+        DownfallKeyword.Encode.ToHoverTip(),
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 

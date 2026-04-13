@@ -22,7 +22,7 @@ public class DrainedPower : AwakenedPowerModel
         await PlayerCmd.LoseEnergy(Amount, player);
         foreach (var model in CombatState.IterateHookListeners()
                      .OfType<IOnDrained>())
-            await model.OnDrained(player, this, Amount);
+            await model.OnDrained(Owner.Player, Amount);
         await PowerCmd.Remove(this);
     }
 }

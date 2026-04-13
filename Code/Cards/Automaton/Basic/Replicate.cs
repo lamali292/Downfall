@@ -20,7 +20,7 @@ public sealed class Replicate()
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
 

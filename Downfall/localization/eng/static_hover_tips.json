@@ -1,4 +1,4 @@
-{
+﻿{
   "DOWNFALL-SCRY.description": "Look at the top X cards of your draw pile. You may discard any of them.",
   "DOWNFALL-SCRY.title": "Scry",
   "DOWNFALL-ENCODE.title": "Encode",
@@ -15,5 +15,7 @@
   "DOWNFALL-CONJURE.title": "Conjure",
   "DOWNFALL-CONJURE.description": "Create the next card from you Spellbook in your hand.",
   "DOWNFALL-CHANT.title": "Chant",
-  "DOWNFALL-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card."
+  "DOWNFALL-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card.",
+  "DOWNFALL-DRAINED.title": "Drained",
+  "DOWNFALL-DRAINED.description": "Any effect that caused you to lose {energyPrefix:energyIcons(1)}, even if you had none to lose.\n(Does not include {energyPrefix:energyIcons(1)} spent playing cards.)"
 }

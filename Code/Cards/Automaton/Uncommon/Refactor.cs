@@ -24,8 +24,8 @@ public sealed class Refactor() : AutomatonCardModel(1, CardType.Skill, CardRarit
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Scry),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Status)
+        DownfallKeyword.Scry.ToHoverTip(),
+        DownfallKeyword.Status.ToHoverTip()
     ];
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

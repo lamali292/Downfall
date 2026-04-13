@@ -17,8 +17,8 @@ public sealed class Terminator() : AutomatonCardModel(1, CardType.Skill, CardRar
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Encode.ToHoverTip(),
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,

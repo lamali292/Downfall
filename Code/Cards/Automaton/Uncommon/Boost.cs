@@ -27,9 +27,9 @@ public class Boost() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
+        DownfallKeyword.Encode.ToHoverTip(),
         HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
+        DownfallKeyword.Compile.ToHoverTip()
     ];
 
 

@@ -15,7 +15,7 @@ public class MaxOutput() : AutomatonCardModel(1, CardType.Power, CardRarity.Unco
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Insert)
+        DownfallKeyword.Insert.ToHoverTip()
     ];
 
 

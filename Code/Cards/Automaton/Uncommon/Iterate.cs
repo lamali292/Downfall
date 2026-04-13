@@ -23,7 +23,7 @@ public class Iterate() : AutomatonCardModel(1, CardType.Attack, CardRarity.Uncom
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(DownfallKeywords.Encode)
+        DownfallKeyword.Encode.ToHoverTip()
     ];
 
 
