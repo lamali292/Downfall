@@ -40,7 +40,6 @@ public class AwakenedModel() : CustomSingletonModel(true, true)
         if (cardPlay.Card.Type != CardType.Power) return;
         var meter = AwakenMeter.GetOrCreateValue(owner);
         meter.Value++;
-        DownfallMainFile.Logger.Info(meter.Value.ToString());
         if (IsAwakened(owner))
             await AwakenedCmd.Awaken(owner, ctx);
     }
