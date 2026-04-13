@@ -22,7 +22,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     {
         WithDamage(3, 1);
         WithVar("Caw", 3, 1);
-        WithTip(DownfallKeyword.Chant);
+        WithTip(DownfallTip.Chant);
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

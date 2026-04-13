@@ -19,8 +19,8 @@ public class Philosophize : AutomatonCardModel,
     {
         WithPower<StrengthPower>(1);
         WithPower<StrengthPower>("EnemyStrength", 2, -1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

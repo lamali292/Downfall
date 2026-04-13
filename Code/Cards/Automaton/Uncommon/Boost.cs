@@ -19,8 +19,8 @@ public class Boost : AutomatonCardModel, IEncodable,
     {
         WithBlock(6);
         WithPower<StrengthPower>(1, 1);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
 

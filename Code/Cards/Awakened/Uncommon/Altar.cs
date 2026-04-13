@@ -16,7 +16,7 @@ public class Altar : AwakenedCardModel
     {
         WithBlock(5, 3);
         WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
 

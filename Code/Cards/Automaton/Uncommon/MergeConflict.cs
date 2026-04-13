@@ -16,7 +16,7 @@ public class MergeConflict : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithDamage(14);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

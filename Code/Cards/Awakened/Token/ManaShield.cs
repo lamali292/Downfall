@@ -15,7 +15,7 @@ public class ManaShield : AwakenedCardModel
     public ManaShield() : base(2, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithBlock(14, 4);
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

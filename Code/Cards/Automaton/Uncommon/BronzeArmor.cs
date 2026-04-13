@@ -21,8 +21,8 @@ public class BronzeArmor : AutomatonCardModel, IEncodable,
     {
         WithPower<ArtifactPower>(1);
         WithVar("EnemyBlock", 12, -4);
-        WithTip(DownfallKeyword.Encode);
-        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallTip.Encode);
+        WithTip(DownfallTip.Compile);
     }
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

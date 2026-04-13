@@ -15,7 +15,7 @@ public class Safeguard : AutomatonCardModel, IEncodable
     public Safeguard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(4, 2);
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

@@ -13,7 +13,7 @@ public class MysticOrder : AwakenedCardModel
 {
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(DownfallKeyword.Conjure);
+        WithTip(DownfallTip.Conjure);
         WithCards(2, 1);
     }
 

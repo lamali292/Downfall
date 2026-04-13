@@ -19,7 +19,7 @@ public class BuggyMess : AutomatonCardModel, IEncodable
     public BuggyMess() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithVars(new EnergyVar(1));
-        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallTip.Encode);
         WithTip(typeof(Dazed));
         WithEnergyTip();
     }
