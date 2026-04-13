@@ -22,7 +22,7 @@ public class DefensiveShout : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<CounterPower>(this);
-        await ChampCmd.DefensiveStance(ctx, Owner);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
 
     protected override void OnUpgrade()

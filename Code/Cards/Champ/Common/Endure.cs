@@ -31,7 +31,7 @@ public class Endure : ChampCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.DefensiveStance(ctx, Owner);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
         var block = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
     }

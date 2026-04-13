@@ -1,12 +1,17 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Runtime.CompilerServices;
+using BaseLib.Abstracts;
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
+    public static readonly ConditionalWeakTable<MegaSprite, Player> ControllerToPlayer = new();
     public virtual string? CharId => null;
     protected virtual Color EnergyOutlineColor => new(0, 0, 0);
     protected virtual Color EnergyBurstColor => new(1, 1, 1);
@@ -106,5 +111,19 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
         animator.AddAnyState("Relaxed", state5);
 
         return animator;
+    }
+}
+
+[HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
+internal static class NCreatureReadyPatch
+{
+    [HarmonyPostfix]
+    public static void CapturePlayerForAnimator(NCreature __instance)
+    {
+        if (__instance.Entity.Player?.Character is DownfallCharacterModel 
+            && __instance.Visuals.SpineBody != null)
+            DownfallCharacterModel.ControllerToPlayer.AddOrUpdate(
+                __instance.Visuals.SpineBody, 
+                __instance.Entity.Player);
     }
 }
