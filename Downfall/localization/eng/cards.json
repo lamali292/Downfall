@@ -1504,8 +1504,8 @@
   "DOWNFALL-KILLING_SPREE.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].\nTrigger your current [gold]Stance's Skill Bonus[/gold] {Skill:diff()} times.",
   "DOWNFALL-DEFIANCE.title": "",
   "DOWNFALL-DEFIANCE.description": "",
-  "DOWNFALL-ARENA_MASTERY.title": "",
-  "DOWNFALL-ARENA_MASTERY.description": "",
+  "DOWNFALL-ARENA_MASTERY.title": "Arena Mastery",
+  "DOWNFALL-ARENA_MASTERY.description": "[gold]Berserker Finishers[/gold] grant {ArenaMasteryBerserkerPower:diff()} more [gold]Strength. \nDefensive Finishers[/gold] grant {ArenaMasteryDefensivePower:diff()} more [gold]Block[/gold]. ",
   "DOWNFALL-MAGNIFICENCE.title": "Magnificence",
   "DOWNFALL-MAGNIFICENCE.description": "At the start of your turn, gain {MagnificencePower:diff()} [gold]Glory[/gold]."
 }

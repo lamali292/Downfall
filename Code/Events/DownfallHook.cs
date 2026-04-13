@@ -86,4 +86,8 @@ public static class DownfallHook
 
     public static bool IgnoreChargeCap(CombatState cs, Player player) =>  
         Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
+    
+    public static int ModifyFinisherBonus(CombatState cs, ChampStanceModel stanceModel, int baseAmount) =>
+        Aggregate<IModifyFinisherBonus, int>(cs, baseAmount,
+            (m, current) => m.ModifyFinisherBonus(stanceModel, current));
 }
