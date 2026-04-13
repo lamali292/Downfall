@@ -6,7 +6,6 @@ namespace Downfall.Code.Nodes;
 [GlobalClass]
 public partial class DNCreatureVisuals : NCreatureVisuals
 {
-    
     public override void _Ready()
     {
         base._Ready();
@@ -22,6 +21,5 @@ public partial class DNCreatureVisuals : NCreatureVisuals
             SpineBody.SetNormalMaterial(premultMat);
         else
             Body.Material = premultMat;
-        
     }
 }

@@ -16,178 +16,179 @@ namespace Downfall.Code.Cards.Vfx;
 
 public partial class NSequenceDisplay : Control
 {
-	public const float SequencedCardScale = 0.35f;
-	private const float FuncCardScale = 0.55f;
+    public const float SequencedCardScale = 0.35f;
+    private const float FuncCardScale = 0.55f;
 
-	private const float CardDistance = 280 * SequencedCardScale;
-	private const float FuncPositionsX = 2.5f * CardDistance + 280 * FuncCardScale / 2f;
+    private const float CardDistance = 280 * SequencedCardScale;
+    private const float FuncPositionsX = 2.5f * CardDistance + 280 * FuncCardScale / 2f;
 
-	private const string SlotImagePath = "res://Downfall/images/ui/sequenceSlot.png";
+    private const string SlotImagePath = "res://Downfall/images/ui/sequenceSlot.png";
 
-	private static readonly Vector2 SlotHalf = new Vector2(76f, 230f) / 2f;
+    private static readonly Vector2 SlotHalf = new Vector2(76f, 230f) / 2f;
 
-	private readonly float[] _bobOffsets = new float[4];
-	private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
-	
-	private readonly List<Control> _cardContainers = [];
-	private readonly List<NGridCardHolder> _cardHolders = [];
-	private readonly List<TextureRect> _slotNodes = [];
-	private float _bobTime;
-	private Control? _previewContainer;
-	private NGridCardHolder? _previewHolder;
-	private FunctionCard? _previewModel;
+    private readonly float[] _bobOffsets = new float[4];
+    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
 
-	private Creature? _trackedCreature;
-	public static NSequenceDisplay Create(Creature creature)
-	{
-		return new NSequenceDisplay
-		{
-			_trackedCreature = creature,
-			Position = Vector2.Zero
-		};
-	}
+    private readonly List<Control> _cardContainers = [];
+    private readonly List<NGridCardHolder> _cardHolders = [];
+    private readonly List<TextureRect> _slotNodes = [];
+    private float _bobTime;
+    private Control? _previewContainer;
+    private NGridCardHolder? _previewHolder;
+    private FunctionCard? _previewModel;
 
-	public Vector2 GetSlotGlobalPosition(int index)
-	{
-		if (index < _cardContainers.Count)
-			return _cardContainers[index].GlobalPosition;
-		return GlobalPosition + new Vector2(index * CardDistance, 0f);
-	}
+    private Creature? _trackedCreature;
 
-	public void Refresh()
-	{
-		if (_trackedCreature == null) return;
+    public static NSequenceDisplay Create(Creature creature)
+    {
+        return new NSequenceDisplay
+        {
+            _trackedCreature = creature,
+            Position = Vector2.Zero
+        };
+    }
 
-		foreach (var h in _cardHolders) FindOnTablePatch.Unregister(h.CardModel);
-		foreach (var c in _cardContainers) c.QueueFree();
-		_cardContainers.Clear();
-		_cardHolders.Clear();
-		foreach (var s in _slotNodes) s.QueueFree();
-		_slotNodes.Clear();
-		_previewContainer?.QueueFree();
-		_previewContainer = null;
-		_previewHolder = null;
-		_previewModel = null;
+    public Vector2 GetSlotGlobalPosition(int index)
+    {
+        if (index < _cardContainers.Count)
+            return _cardContainers[index].GlobalPosition;
+        return GlobalPosition + new Vector2(index * CardDistance, 0f);
+    }
 
-		var sequence = AutomatonCmd.GetSequence(_trackedCreature);
-		var max = AutomatonCmd.GetMax(_trackedCreature);
+    public void Refresh()
+    {
+        if (_trackedCreature == null) return;
 
-		for (var i = 0; i < max; i++)
-		{
-			// Slot icon
-			if (ResourceLoader.Exists(SlotImagePath))
-			{
-				var slot = new TextureRect
-				{
-					Texture = ResourceLoader.Load<Texture2D>(SlotImagePath),
-					StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-					PivotOffset = SlotHalf,
-					Scale = Vector2.One * SequencedCardScale * 3.6f,
-					Position = new Vector2(i * CardDistance, 0f) - SlotHalf
-				};
-				AddChild(slot);
-				_slotNodes.Add(slot);
-			}
+        foreach (var h in _cardHolders) FindOnTablePatch.Unregister(h.CardModel);
+        foreach (var c in _cardContainers) c.QueueFree();
+        _cardContainers.Clear();
+        _cardHolders.Clear();
+        foreach (var s in _slotNodes) s.QueueFree();
+        _slotNodes.Clear();
+        _previewContainer?.QueueFree();
+        _previewContainer = null;
+        _previewHolder = null;
+        _previewModel = null;
 
-			// Container scales down — holder inside stays at its natural SmallScale
-			var container = new Control
-			{
-				Scale = Vector2.One * SequencedCardScale,
-				Position = new Vector2(i * CardDistance, 0f)
-			};
-			AddChild(container);
-			_cardContainers.Add(container);
+        var sequence = AutomatonCmd.GetSequence(_trackedCreature);
+        var max = AutomatonCmd.GetMax(_trackedCreature);
 
-			if (i >= sequence.Count) continue;
+        for (var i = 0; i < max; i++)
+        {
+            // Slot icon
+            if (ResourceLoader.Exists(SlotImagePath))
+            {
+                var slot = new TextureRect
+                {
+                    Texture = ResourceLoader.Load<Texture2D>(SlotImagePath),
+                    StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                    PivotOffset = SlotHalf,
+                    Scale = Vector2.One * SequencedCardScale * 3.6f,
+                    Position = new Vector2(i * CardDistance, 0f) - SlotHalf
+                };
+                AddChild(slot);
+                _slotNodes.Add(slot);
+            }
 
-			var cardNode = NCard.Create(sequence[i]);
-			if (cardNode == null) continue;
+            // Container scales down — holder inside stays at its natural SmallScale
+            var container = new Control
+            {
+                Scale = Vector2.One * SequencedCardScale,
+                Position = new Vector2(i * CardDistance, 0f)
+            };
+            AddChild(container);
+            _cardContainers.Add(container);
 
-			var holder = NGridCardHolder.Create(cardNode);
-			if (holder == null)
-			{
-				cardNode.QueueFree();
-				continue;
-			}
+            if (i >= sequence.Count) continue;
 
-			holder.SetClickable(true);
-			var captured = i;
-			holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen().Open(AllCardsForInspect(), captured);
+            var cardNode = NCard.Create(sequence[i]);
+            if (cardNode == null) continue;
 
-			container.AddChild(holder);
-			cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-			FindOnTablePatch.Register(sequence[i], cardNode);
-			_cardHolders.Add(holder);
-		}
-		
-		var snapshot = sequence.OfType<AutomatonCardModel>().ToList();
+            var holder = NGridCardHolder.Create(cardNode);
+            if (holder == null)
+            {
+                cardNode.QueueFree();
+                continue;
+            }
 
-		FunctionCard? previewCanonical;
-		if (snapshot.Any(c => c is FullRelease))
-			previewCanonical = ModelDb.Card<FunctionPowerCard>();
-		else if (snapshot.Any(c => c.Type == CardType.Attack))
-			previewCanonical = ModelDb.Card<FunctionAttackCard>();
-		else
-			previewCanonical = ModelDb.Card<FunctionSkillCard>();
+            holder.SetClickable(true);
+            var captured = i;
+            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen().Open(AllCardsForInspect(), captured);
 
-		_previewModel = previewCanonical?.ToMutable() as FunctionCard;
-		if (_previewModel == null) return;
+            container.AddChild(holder);
+            cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+            FindOnTablePatch.Register(sequence[i], cardNode);
+            _cardHolders.Add(holder);
+        }
 
-		_previewModel.SetSourceCards(sequence.OfType<AutomatonCardModel>().ToList());
-		foreach (var card in sequence.OfType<AutomatonCardModel>()) card.ApplyToFunctionPreview(_previewModel);
-		if (_trackedCreature.Player != null) _previewModel.Owner = _trackedCreature.Player;
+        var snapshot = sequence.OfType<AutomatonCardModel>().ToList();
 
-		var funcCardNode = NCard.Create(_previewModel);
-		if (funcCardNode == null) return;
+        FunctionCard? previewCanonical;
+        if (snapshot.Any(c => c is FullRelease))
+            previewCanonical = ModelDb.Card<FunctionPowerCard>();
+        else if (snapshot.Any(c => c.Type == CardType.Attack))
+            previewCanonical = ModelDb.Card<FunctionAttackCard>();
+        else
+            previewCanonical = ModelDb.Card<FunctionSkillCard>();
 
-		_previewHolder = NGridCardHolder.Create(funcCardNode);
-		if (_previewHolder == null)
-		{
-			funcCardNode.QueueFree();
-			return;
-		}
+        _previewModel = previewCanonical?.ToMutable() as FunctionCard;
+        if (_previewModel == null) return;
 
-		var funcX = FuncPositionsX + (max >= 4 ? CardDistance : 0f);
-		_previewContainer = new Control
-		{
-			Scale = Vector2.One * FuncCardScale,
-			Position = new Vector2(funcX, 0f)
-		};
-		AddChild(_previewContainer);
+        _previewModel.SetSourceCards(sequence.OfType<AutomatonCardModel>().ToList());
+        foreach (var card in sequence.OfType<AutomatonCardModel>()) card.ApplyToFunctionPreview(_previewModel);
+        if (_trackedCreature.Player != null) _previewModel.Owner = _trackedCreature.Player;
 
-		_previewHolder.SetClickable(true);
-		_previewHolder.Pressed += _ =>
-		{
-			var cards = AllCardsForInspect();
-			NGame.Instance?.GetInspectCardScreen().Open(cards, cards.Count - 1);
-		};
-		_previewContainer.AddChild(_previewHolder);
-		funcCardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-	}
+        var funcCardNode = NCard.Create(_previewModel);
+        if (funcCardNode == null) return;
 
-	public override void _Process(double delta)
-	{
-		if (_trackedCreature == null || !CombatManager.Instance.IsInProgress) return;
+        _previewHolder = NGridCardHolder.Create(funcCardNode);
+        if (_previewHolder == null)
+        {
+            funcCardNode.QueueFree();
+            return;
+        }
 
-		_bobTime += (float)delta;
-		for (var i = 0; i < 4; i++)
-			_bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 5f;
+        var funcX = FuncPositionsX + (max >= 4 ? CardDistance : 0f);
+        _previewContainer = new Control
+        {
+            Scale = Vector2.One * FuncCardScale,
+            Position = new Vector2(funcX, 0f)
+        };
+        AddChild(_previewContainer);
 
-		for (var i = 0; i < _cardContainers.Count; i++)
-			_cardContainers[i].Position = new Vector2(i * CardDistance, _bobOffsets[i]);
+        _previewHolder.SetClickable(true);
+        _previewHolder.Pressed += _ =>
+        {
+            var cards = AllCardsForInspect();
+            NGame.Instance?.GetInspectCardScreen().Open(cards, cards.Count - 1);
+        };
+        _previewContainer.AddChild(_previewHolder);
+        funcCardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+    }
 
-		for (var i = 0; i < _slotNodes.Count; i++)
-			_slotNodes[i].Position = new Vector2(i * CardDistance, _bobOffsets[i]) - SlotHalf;
+    public override void _Process(double delta)
+    {
+        if (_trackedCreature == null || !CombatManager.Instance.IsInProgress) return;
 
-		if (_previewContainer == null) return;
-		var funcX = FuncPositionsX + (AutomatonCmd.GetMax(_trackedCreature) >= 4 ? CardDistance : 0f);
-		_previewContainer.Position = new Vector2(funcX, 0f);
-	}
+        _bobTime += (float)delta;
+        for (var i = 0; i < 4; i++)
+            _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 5f;
 
-	private List<CardModel> AllCardsForInspect()
-	{
-		var list = _cardHolders.Select(h => h.CardModel).ToList();
-		if (_previewModel != null) list.Add(_previewModel);
-		return list;
-	}
+        for (var i = 0; i < _cardContainers.Count; i++)
+            _cardContainers[i].Position = new Vector2(i * CardDistance, _bobOffsets[i]);
+
+        for (var i = 0; i < _slotNodes.Count; i++)
+            _slotNodes[i].Position = new Vector2(i * CardDistance, _bobOffsets[i]) - SlotHalf;
+
+        if (_previewContainer == null) return;
+        var funcX = FuncPositionsX + (AutomatonCmd.GetMax(_trackedCreature) >= 4 ? CardDistance : 0f);
+        _previewContainer.Position = new Vector2(funcX, 0f);
+    }
+
+    private List<CardModel> AllCardsForInspect()
+    {
+        var list = _cardHolders.Select(h => h.CardModel).ToList();
+        if (_previewModel != null) list.Add(_previewModel);
+        return list;
+    }
 }

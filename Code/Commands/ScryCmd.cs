@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Commands;
 
-
 public record ScryResult(IReadOnlyList<CardModel> Discarded);
 
 public static class ScryCmd

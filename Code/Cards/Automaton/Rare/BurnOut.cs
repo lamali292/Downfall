@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +20,7 @@ public sealed class BurnOut() : AutomatonCardModel(1, CardType.Attack, CardRarit
     {
         ArgumentNullException.ThrowIfNull(Owner.Creature.CombatState);
         ArgumentNullException.ThrowIfNull(Owner.PlayerCombatState);
-        
+
         var statuses = Owner.PlayerCombatState.AllCards
             .Where(c => c.Type is CardType.Status)
             .ToList();
@@ -32,11 +32,8 @@ public sealed class BurnOut() : AutomatonCardModel(1, CardType.Attack, CardRarit
             .WithHitCount(statuses.Count)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        
-        foreach (var status in statuses)
-        {
-            await CardCmd.Exhaust(ctx, status);
-        }
+
+        foreach (var status in statuses) await CardCmd.Exhaust(ctx, status);
     }
 
     protected override void OnUpgrade()

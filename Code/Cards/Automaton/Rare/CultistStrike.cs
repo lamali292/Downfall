@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,9 +18,11 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy), IEncodable, ICompilable
+public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy),
+    IEncodable, ICompilable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(6, ValueProp.Move),
         new IntVar("Increase", 1)
     ];
@@ -28,18 +30,11 @@ public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, Car
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(DownfallKeywords.Encode),
-        HoverTipFactory.FromKeyword(DownfallKeywords.Compile),
+        HoverTipFactory.FromKeyword(DownfallKeywords.Compile)
     ];
 
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-    }
-
-    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext, bool forGameplay)
+    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
+        CompileContext compileContext, bool forGameplay)
     {
         if (!forGameplay) return;
 
@@ -58,6 +53,14 @@ public sealed class CultistStrike() : AutomatonCardModel(2, CardType.Attack, Car
                 NCombatRoom.Instance?.Ui.CardPreviewContainer
                     .AddChildSafely(vfx);
         }
+    }
+
+    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(ctx);
     }
 
     protected override void OnUpgrade()

@@ -9,15 +9,15 @@ namespace Downfall.Code.Cards.CardModels;
 
 public interface ICompilableError
 {
+    LocString? CompileErrorLocString => this is CardModel card ? BuildErrorLocString(card) : null;
+
     Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
         bool forGameplay)
     {
         return Task.CompletedTask;
     }
-    
-    LocString? CompileErrorLocString => this is CardModel card ? BuildErrorLocString(card) : null;
 
-    
+
     static LocString? BuildErrorLocString(CardModel card)
     {
         var key = card.Id.Entry + ".error";

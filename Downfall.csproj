@@ -83,7 +83,7 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.1.9" PrivateAssets="All" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.1.9" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.0.9"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
@@ -103,12 +103,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Code\Potions\" />
+        <Folder Include="Code\Potions\"/>
         <Folder Include="Downfall\character\scenes\card_trail\"/>
         <Folder Include="Downfall\character\scenes\icon\"/>
         <Folder Include="Downfall\character\scenes\merchant\"/>
         <Folder Include="Downfall\character\scenes\rest_site\"/>
         <Folder Include="Downfall\character\scenes\visuals\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="cardloc-presets.json"/>
     </ItemGroup>
 
 

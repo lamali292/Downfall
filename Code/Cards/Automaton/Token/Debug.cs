@@ -11,7 +11,7 @@ namespace Downfall.Code.Cards.Automaton.Token;
 public class Debug() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
     public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var creature = cardPlay.Card.Owner.Creature;

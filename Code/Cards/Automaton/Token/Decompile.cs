@@ -11,7 +11,6 @@ namespace Downfall.Code.Cards.Automaton.Token;
 [Pool(typeof(TokenCardPool))]
 public class Decompile() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
-    
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Exhaust

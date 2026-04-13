@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,7 +15,8 @@ namespace Downfall.Code.Cards.Automaton.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public sealed class Refactor() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new IntVar("Scry", 4),
         new BlockVar(4, ValueProp.Move)
     ];
@@ -36,7 +37,8 @@ public sealed class Refactor() : AutomatonCardModel(1, CardType.Skill, CardRarit
             await CardCmd.Exhaust(ctx, status);
 
         if (statuses.Count > 0)
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue * statuses.Count, DynamicVars.Block.Props, cardPlay);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue * statuses.Count,
+                DynamicVars.Block.Props, cardPlay);
     }
 
     protected override void OnUpgrade()

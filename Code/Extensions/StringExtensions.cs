@@ -1,5 +1,5 @@
-﻿using Downfall.Code.Character.Automaton;
-using Downfall.Code.Character.Guardian;
+﻿using Downfall.Code.Abstract;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Extensions;
 
@@ -31,26 +31,21 @@ public static class StringExtensions
         return Path.Join(MainFile.ModId, "images", "powers", characterId.ToLowerInvariant(), "big", path);
     }
 
+    public static string CardImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    {
+        return path.CardImageCharacterPath(ModelDb.Character<T>().CharId!);
+    }
 
-    public static string CardImageAutomatonPath(this string path)
-        => path.CardImageCharacterPath(Automaton.CharacterId);
+    public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    {
+        return path.PowerImageCharacterPath(ModelDb.Character<T>().CharId!);
+    }
 
-    public static string PowerImageAutomatonPath(this string path)
-        => path.PowerImageCharacterPath(Automaton.CharacterId);
+    public static string BigPowerImagePath<T>(this string path) where T : DownfallCharacterModel<T>
+    {
+        return path.BigPowerImageCharacterPath(ModelDb.Character<T>().CharId!);
+    }
 
-    public static string BigPowerImageAutomatonPath(this string path)
-        => path.BigPowerImageCharacterPath(Automaton.CharacterId);
-    
-    
-    public static string CardImageGuardianPath(this string path)
-        => path.CardImageCharacterPath(Guardian.CharacterId);
-
-    public static string PowerImageGuardianPath(this string path)
-        => path.PowerImageCharacterPath(Guardian.CharacterId);
-
-    public static string BigPowerImageGuardianPath(this string path)
-        => path.BigPowerImageCharacterPath(Guardian.CharacterId);
-    
     public static string BigCardImagePath(this string path)
     {
         return Path.Join(MainFile.ModId, "images", "card_portraits", "big", path);

@@ -1,7 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Character.Automaton;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -30,13 +30,6 @@ public class NullPointer() : AutomatonCardModel(1, CardType.Attack, CardRarity.U
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable)
     ];
 
-    
-    public override void ApplyToFunctionPreview(FunctionCard card)
-    {
-        if (SuppressCompileError) return;
-        card.AddKeyword(CardKeyword.Unplayable);
-    }
-    
     public Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)
     {
@@ -55,7 +48,12 @@ public class NullPointer() : AutomatonCardModel(1, CardType.Attack, CardRarity.U
     }
 
 
- 
+    public override void ApplyToFunctionPreview(FunctionCard card)
+    {
+        if (SuppressCompileError) return;
+        card.AddKeyword(CardKeyword.Unplayable);
+    }
+
 
     protected override void OnUpgrade()
     {
