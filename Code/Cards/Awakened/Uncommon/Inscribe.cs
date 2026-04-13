@@ -23,8 +23,9 @@ public class Inscribe : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(CombatState);
         if (IsUpgraded)
-            await AwakenedCmd.Conjure(Owner, this);
+            await AwakenedCmd.Conjure(Owner, CombatState);
 
         var combatState = Owner.Creature.CombatState!;
         

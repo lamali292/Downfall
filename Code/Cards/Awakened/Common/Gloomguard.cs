@@ -1,4 +1,3 @@
-using BaseLib.Patches.Content;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -25,7 +24,9 @@ public class Gloomguard : AwakenedCardModel
     }
 
     private bool HasVoidInHand()
-        => PileType.Hand.GetPile(Owner).Cards.Any(e => e.Id == ModelDb.Card<Void>().Id);
+    {
+        return PileType.Hand.GetPile(Owner).Cards.Any(e => e.Id == ModelDb.Card<Void>().Id);
+    }
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
@@ -34,10 +35,11 @@ public class Gloomguard : AwakenedCardModel
             modifiedCost = 0;
             return true;
         }
+
         modifiedCost = originalCost;
         return false;
     }
-    
+
     public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (card.Owner == Owner && (oldPileType == PileType.Hand || card.Pile?.Type == PileType.Hand))

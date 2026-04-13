@@ -4,10 +4,8 @@ using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
-using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Awakened.Rare;
 
@@ -18,10 +16,11 @@ public class AphoticFount : AwakenedCardModel
     {
         WithPower<AphoticFountPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AwakenedCmd.Conjure(Owner, this);
+        ArgumentNullException.ThrowIfNull(CombatState);
+        await AwakenedCmd.Conjure(Owner, CombatState);
         await MyCommonActions.ApplySelf<AphoticFountPower>(this);
     }
 

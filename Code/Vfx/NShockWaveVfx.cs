@@ -1,10 +1,8 @@
-﻿using MegaCrit.Sts2.Core.Nodes;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 
 namespace Downfall.Code.Vfx;
-
-using Godot;
-using System.Threading.Tasks;
 
 public partial class NShockWaveVfx : Node2D
 {
@@ -23,7 +21,7 @@ public partial class NShockWaveVfx : Node2D
     public override void _Ready()
     {
         // Use Godot's built-in Task runner or your TaskHelper
-        _ = PlaySequence(); 
+        _ = PlaySequence();
     }
 
     private async Task PlaySequence()
@@ -31,7 +29,7 @@ public partial class NShockWaveVfx : Node2D
         NGame.Instance?.ScreenShake(ShakeStrength.Strong, ShakeDuration.Short);
         SpawnBurst(_color);
         await ToSignal(GetTree().CreateTimer(2.2f), SceneTreeTimer.SignalName.Timeout);
-        this.QueueFree();
+        QueueFree();
     }
 
     private void SpawnBurst(Color color)
@@ -43,7 +41,7 @@ public partial class NShockWaveVfx : Node2D
 
             // Use the new sceneless factory
             var p = NBlurWaveParticle.Create();
-            AddChild(p); 
+            AddChild(p);
             p.Setup(color, speed, delay);
         }
     }

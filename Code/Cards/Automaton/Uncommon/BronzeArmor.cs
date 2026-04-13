@@ -2,7 +2,6 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Displays;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
@@ -46,7 +45,8 @@ public class BronzeArmor() : AutomatonCardModel(0, CardType.Skill, CardRarity.Un
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue, Owner.Creature,
+        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue,
+            Owner.Creature,
             this);
     }
 

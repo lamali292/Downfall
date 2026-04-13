@@ -22,7 +22,8 @@ public class StormRuler : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AwakenedCmd.Conjure(Owner, this);
+        ArgumentNullException.ThrowIfNull(CombatState);
+        await AwakenedCmd.Conjure(Owner, CombatState);
         await CommonActions.ApplySelf<StormRulerPower>(this, DynamicVars.Power<StormRulerPower>().BaseValue);
     }
 

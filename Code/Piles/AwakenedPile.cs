@@ -19,24 +19,26 @@ public class AwakenedPile : CustomPile
     // This stores the types of cards added by "Inscribe" etc.
     private readonly List<Type> _dynamicTypes = [];
 
-    public AwakenedPile() : base(Spellbook) { }
+    public AwakenedPile() : base(Spellbook)
+    {
+    }
+
+    public CardModel? NextSpell { get; private set; }
+
+    public bool UpgradeOnAdd { get; set; }
 
     // Call this from Inscribe.cs
     public void AddPersistentType(Type type)
     {
         _dynamicTypes.Add(type);
     }
-    
-    public CardModel? NextSpell { get; private set; }
-
-    public bool UpgradeOnAdd { get; set; }
 
     public override bool CardShouldBeVisible(CardModel card)
     {
         return false;
     }
 
-    
+
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
@@ -51,7 +53,6 @@ public class AwakenedPile : CustomPile
     }
 
 
-    
     public void SetNextSpell(Rng rng)
     {
         var available = Cards.Where(c => c != NextSpell).ToList();
@@ -66,9 +67,9 @@ public class AwakenedPile : CustomPile
     {
         var state = owner.Creature.CombatState;
         if (state == null) return;
-        
+
         var rng = state.RunState.Rng.CombatCardSelection;
-        
+
         // Clear current instances
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
@@ -77,26 +78,22 @@ public class AwakenedPile : CustomPile
         AddBaseSpells(owner, state);
 
         // 2. Add the dynamic spells added during this combat
-        foreach (var type in _dynamicTypes)
-        {
-            CreateAndAddSpell(owner, state, type);
-        }
+        foreach (var type in _dynamicTypes) CreateAndAddSpell(owner, state, type);
 
         SetNextSpell(rng);
     }
 
     private void AddBaseSpells(Player owner, CombatState state)
     {
-        Type[] baseTypes = { 
-            typeof(BurningStudy), typeof(Cryostasis), 
-            typeof(Darkleech), typeof(Thunderbolt) 
+        Type[] baseTypes =
+        {
+            typeof(BurningStudy), typeof(Cryostasis),
+            typeof(Darkleech), typeof(Thunderbolt)
         };
 
         foreach (var type in baseTypes)
-        {
             // Wir rufen die Version auf, die ein Type-Objekt akzeptiert
             CreateAndAddSpell(owner, state, type);
-        }
     }
 
 // 1. Die Version für die Schleife (nimmt System.Type)
@@ -105,12 +102,13 @@ public class AwakenedPile : CustomPile
         var id = ModelDb.GetId(type);
         var model = ModelDb.GetById<CardModel>(id);
         var spell = state.CreateCard(model, owner);
-    
+
         if (UpgradeOnAdd && spell.IsUpgradable)
         {
             spell.UpgradeInternal();
             spell.FinalizeUpgradeInternal();
         }
+
         AddInternal(spell);
     }
 }

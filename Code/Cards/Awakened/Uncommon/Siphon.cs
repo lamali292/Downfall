@@ -1,16 +1,11 @@
-using System.Security.Cryptography;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Displays;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
-using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Logging;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
@@ -23,18 +18,18 @@ public class Siphon : AwakenedCardModel, IChantable
         WithTip(DownfallKeyword.Chant);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-    
     public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this, 2);
         await CommonActions.Apply<TemporaryStrengthDownPower>(cardPlay.Target, this, 2);
     }
-    
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
 
     protected override void OnUpgrade()
     {

@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Basic;
+using Downfall.Code.Relics.Automaton;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -11,7 +12,7 @@ namespace Downfall.Code.Character;
 
 public class Automaton : DownfallCharacterModel
 {
-    private static readonly Color Color = new(1f, 0.87f, 0.5f);
+    private static readonly Color Color = new(0xD4C99DFF);
     public override string CharId => "Automaton";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -26,7 +27,7 @@ public class Automaton : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<BronzeCore>()
     ];
 
     public override float AttackAnimDelay => 0.15f;

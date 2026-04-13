@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class RisingChorus : AwakenedCardModel 
+public class RisingChorus : AwakenedCardModel
 {
     public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {

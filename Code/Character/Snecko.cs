@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Snecko.Basic;
+using Downfall.Code.Relics.Snecko;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -12,7 +13,7 @@ namespace Downfall.Code.Character;
 
 public class Snecko : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(0x467A94FF);
     public override string CharId => "Snecko";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -42,7 +43,7 @@ public class Snecko : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<SneckoSoul>()
     ];
 
     public override float AttackAnimDelay => 0.15f;

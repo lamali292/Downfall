@@ -22,16 +22,15 @@ public class Altar : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay); 
+        ArgumentNullException.ThrowIfNull(CombatState);
+        await CommonActions.CardBlock(this, cardPlay);
         var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Hand);
         if (card != null) await CardCmd.Exhaust(ctx, card);
-        await AwakenedCmd.Conjure(Owner, this);
+        await AwakenedCmd.Conjure(Owner, CombatState);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3);
     }
-    
-    
 }

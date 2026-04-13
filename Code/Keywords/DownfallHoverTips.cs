@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 
@@ -18,7 +17,10 @@ public readonly struct DownfallKeyword
     public static readonly DownfallKeyword Drained = new(nameof(Drained));
     private readonly string _name;
 
-    private DownfallKeyword(string name) => _name = name;
+    private DownfallKeyword(string name)
+    {
+        _name = name;
+    }
 
     public IHoverTip ToHoverTip()
     {

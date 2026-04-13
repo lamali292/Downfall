@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Abstract;
-using Downfall.Code.Cards.Automaton.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -11,12 +10,12 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class ChosenVersePower : AwakenedPowerModel
 {
+    public CardPlay? CardPlay;
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    public CardPlay? CardPlay;
-    
+
     public override bool IsInstanced => true;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(4m, ValueProp.Unpowered)
@@ -26,7 +25,7 @@ public class ChosenVersePower : AwakenedPowerModel
     {
         DynamicVars.Block.BaseValue = block;
     }
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player) return;
@@ -37,5 +36,4 @@ public class ChosenVersePower : AwakenedPowerModel
         Flash();
         await PowerCmd.Decrement(this);
     }
-
 }

@@ -37,7 +37,8 @@ public class Flail() : AutomatonCardModel(2, CardType.Attack, CardRarity.Uncommo
             .WithHitCount(2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue, Owner.Creature,
+        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue,
+            Owner.Creature,
             this);
     }
 

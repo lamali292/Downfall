@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Awakened.Uncommon;
 
@@ -22,10 +21,7 @@ public class ByrdsEye : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (IsUpgraded)
-        {
-            AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);
-        }
+        if (IsUpgraded) AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);
         var cards = AwakenedPile.Spellbook.GetPile(Owner).Cards;
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected = (await CardSelectCmd.FromSimpleGrid(ctx, cards, Owner, prefs)).FirstOrDefault();

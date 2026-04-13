@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,7 +27,7 @@ public class Extension : AwakenedCardModel
         if (cardPlay.Card.Type != CardType.Power) return;
         if (Pile is not { Type: PileType.Discard }) return;
         var result = await CardPileCmd.Add(this, PileType.Hand);
-        CardCmd.PreviewCardPileAdd(result, time: 0.3f);
+        CardCmd.PreviewCardPileAdd(result, 0.3f);
     }
 
     protected override void OnUpgrade()

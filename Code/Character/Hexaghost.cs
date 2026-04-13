@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Hexaghost.Basic;
+using Downfall.Code.Relics.Hexaghost;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
@@ -10,7 +11,7 @@ namespace Downfall.Code.Character;
 
 public class Hexaghost : DownfallCharacterModel
 {
-    private static readonly Color Color = StsColors.purple;
+    private static readonly Color Color = new(0x723E6DFF);
     public override string CharId => "Hexaghost";
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
@@ -40,7 +41,7 @@ public class Hexaghost : DownfallCharacterModel
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<TungstenRod>()
+        ModelDb.Relic<SpiritBrand>()
     ];
 
     public override float AttackAnimDelay => 0.15f;

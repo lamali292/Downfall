@@ -62,6 +62,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
 
     public override string CustomAttackSfx => "event:/sfx/characters/ironclad/ironclad_attack";
+
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
 

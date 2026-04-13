@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
@@ -17,6 +18,7 @@ public abstract class AwakenedCardModel(
     : ConstructedCardModel(cost, type, rarity, targetType)
 {
     public bool HasChanted { get; set; } = false;
+
     public sealed override string PortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<AwakenedCharacter>();
 
@@ -35,14 +37,11 @@ public abstract class AwakenedCardModel(
         }
     }
 
-    protected override bool ShouldGlowGoldInternal 
+    protected override bool ShouldGlowGoldInternal
     {
-        get 
+        get
         {
-            if (this is IChantable chantable)
-            {
-                return WasLastCardPlayedPower || chantable.HasChanted;
-            }
+            if (this is IChantable chantable) return WasLastCardPlayedPower || chantable.HasChanted;
             return false;
         }
     }
@@ -57,15 +56,7 @@ public abstract class AwakenedCardModel(
         await PlayEffect(ctx, cardPlay);
         if (this is IChantable chantable && (WasLastCardPlayedPower || chantable.HasChanted))
         {
-            chantable.HasChanted = true;
-            await chantable.OnChant(ctx, cardPlay);
-            if (cardPlay.Card.CombatState == null) return;
-            var listeners = cardPlay.Card.CombatState.IterateHookListeners().OfType<IOnChant>();
-            foreach (var listener in listeners)
-            {
-                await listener.OnCardChanted(this, ctx, cardPlay);
-            }
+            await AwakenedCmd.Chant(ctx, this, cardPlay);
         }
     }
-    
 }
