@@ -5,17 +5,27 @@ using Downfall.Code.Extensions;
 
 namespace Downfall.Code.Abstract;
 
-public abstract class DownfallPowerModel<T> : CustomPowerModel
-    where T : DownfallCharacterModel
+
+public abstract class DownfallPowerModel : CustomPowerModel
 {
-    private string IconName => Id.Entry
+    protected string IconName => Id.Entry
         .RemovePrefix()
         .RemoveSuffix("Power")
         .ToLowerInvariant();
 
+    public override string CustomPackedIconPath => $"{IconName}.png".DownfallPowerImagePath();
+    public override string CustomBigIconPath => $"{IconName}.png".DownfallBigPowerImagePath();
+}
+
+public abstract class DownfallPowerModel<T> : DownfallPowerModel
+    where T : DownfallCharacterModel
+{
+
     public override string CustomPackedIconPath => $"{IconName}.png".PowerImagePath<T>();
     public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<T>();
 }
+
+
 
 public abstract class AutomatonPowerModel : DownfallPowerModel<Automaton>;
 

@@ -1,13 +1,16 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
+using Downfall.Code.Interfaces;
 using Downfall.Code.Powers.Awakened;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
@@ -53,6 +56,7 @@ public class Awakened : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<AwakenedCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AwakenedPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
+
 
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

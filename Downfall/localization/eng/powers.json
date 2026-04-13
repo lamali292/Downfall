@@ -136,5 +136,18 @@
   "DOWNFALL-DARKNESS_FALLS_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], gain {Amount} [gold]Block[/gold].",
   "DOWNFALL-DARKBLESSED_POWER.title": "Darkblessed",
   "DOWNFALL-DARKBLESSED_POWER.description": "Whenever you are [gold]Drained[/gold], gain X [gold]Strength[/gold].",
-  "DOWNFALL-DARKBLESSED_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], gain {Amount} [gold]Strength[/gold]."
+  "DOWNFALL-DARKBLESSED_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], gain {Amount} [gold]Strength[/gold].",
+  "DOWNFALL-ENSORCELATE_POWER.title": "Ensorcelate",
+  "DOWNFALL-ENSORCELATE_POWER.description": "The next [blue]X[/blue] [gold]Powers[/gold] you play cost [blue]0[/blue].",
+  "DOWNFALL-ENSORCELATE_POWER.smartDescription": "The next {Amount:plural:[gold]Power[/gold]|{Amount} [gold]Powers[/gold]} you play {Amount:plural:costs|cost} [blue]0[/blue].",
+  "DOWNFALL-AWAKEN_METER_POWER.title": "",
+  "DOWNFALL-AWAKEN_METER_POWER.description": "",
+  "DOWNFALL-AWAKENED_FORM_POWER.title": "",
+  "DOWNFALL-AWAKENED_FORM_POWER.description": "",
+  "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.title": "Shackled",
+  "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.description": "Lose X [gold]Strength[/gold] until the end of this turn.",
+  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Strength Down",
+  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.description": "Gain X [gold]Strength[/gold]. At the end of your turn, lose X [gold]Strength[/gold].",
+  "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.smartDescription": "Lose {Amount} [gold]Strength[/gold] until the end of this turn.",
+  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain {Amount} [gold]Strength[/gold]. At the end of your turn, lose {Amount} [gold]Strength[/gold]."
 }

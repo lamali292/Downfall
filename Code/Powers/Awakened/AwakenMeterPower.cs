@@ -1,10 +1,13 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
+using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Powers.Awakened;
 
@@ -28,4 +31,17 @@ public class AwakenMeterPower : AwakenedPowerModel
         if (Amount >= 8)
             await AwakenedCmd.Awaken(Owner.Player!, ctx);
     }
+    
+    
+    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+    {
+        if (card.CombatState == null) return;
+        if( card.Owner != Owner.Player) return;
+        if (card is Void)
+        {
+            foreach (var model in card.CombatState.IterateHookListeners().OfType<IOnDrained>())
+                await model.OnDrained(card.Owner, 1);
+        }
+    }
+
 }

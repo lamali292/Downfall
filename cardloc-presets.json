@@ -58,7 +58,9 @@
       "markers": [
         "AutomatonPowerModel",
         "AwakenedPowerModel",
-        "GuardianPowerModel"
+        "GuardianPowerModel",
+        "DownfallPowerModel",
+        "TemporaryPower"
       ],
       "fields": [
         {

@@ -6,7 +6,9 @@ using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Powers.Awakened;
 
