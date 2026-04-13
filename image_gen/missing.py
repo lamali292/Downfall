@@ -87,8 +87,4 @@ for folder in sorted(set(list(powers.keys()) + list(power_images.keys()))):
                 shutil.copy(missing_power_png, dest)
                 print(f"    -> copied to {dest}")
                 
-                
-print("\nPress ESC to exit...")
-while True:
-    if msvcrt.getch() == b'\x1b':
-        break
+               
