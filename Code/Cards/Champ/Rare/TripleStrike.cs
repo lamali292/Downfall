@@ -11,6 +11,7 @@ public class TripleStrike : ChampCardModel
 {
     public TripleStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithTags(CardTag.Strike);
     }
 
     // TODO: Implement

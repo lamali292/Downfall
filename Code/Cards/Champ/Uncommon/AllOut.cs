@@ -22,7 +22,6 @@ public class AllOut : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
-            await ChampCmd.PlayFinisher(ctx, cardPlay, true);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, true, DynamicVars.Repeat.IntValue);
     }
 }

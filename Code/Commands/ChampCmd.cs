@@ -68,14 +68,18 @@ public class ChampCmd
         await ChampModel.SetStance<NoChampStance>(ctx, player);
     }
 
-    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false)
+    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false, int repeat = 1)
     {
         var player = cardPlay.Card.Owner;
         var m = player.ChampStance();
         if (!m.HasFinisher) return;
 
-        await m.Finisher(ctx);
-        await DownfallHook.OnFinisher(ctx, cardPlay);
+        for (var i = 0; i < repeat; i++)
+        {
+            await m.Finisher(ctx);
+            await DownfallHook.OnFinisher(ctx, cardPlay);
+        }
+        
         if (skipClear) return;
         await ClearStance(ctx, player);
     }

@@ -16,8 +16,9 @@ public class EnchantSword : ChampCardModel
 {
     public EnchantSword() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust, CardKeyword.Ethereal);
-        WithTip(DownfallTip.Enchantment<Instinct>());
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(Instinct));
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
 
     }
     
@@ -27,10 +28,5 @@ public class EnchantSword : ChampCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Instinct>().CanEnchant, this)).FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Instinct>(card, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Ethereal);
     }
 }
