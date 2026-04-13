@@ -6,11 +6,10 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 
-
 [HarmonyPatch(typeof(ModelDb), nameof(ModelDb.Init))]
 class MyModRewardEnumInit
 {
-    [HarmonyPostfix] // runs after BaseLib's prefix, so CustomEnums.GenerateKey is already set up
+    [HarmonyPostfix]
     static void RegisterCustomRewards()
     {
         foreach (var t in ReflectionHelper.ModTypes)
@@ -21,12 +20,8 @@ class MyModRewardEnumInit
                 if (field.FieldType != typeof(RewardType)) continue;
                 if (!t.IsAssignableTo(typeof(CustomReward))) continue;
 
-                // Assign the enum value if BaseLib hasn't already
-                if (field.GetValue(null) is RewardType rt && rt == default)
-                {
-                    var key = CustomEnums.GenerateKey(typeof(RewardType));
-                    field.SetValue(null, key);
-                }
+                var key = CustomEnums.GenerateKey(field);
+                field.SetValue(null, key);
 
                 if (t.CreateInstance() is not CustomReward dummyReward)
                 {

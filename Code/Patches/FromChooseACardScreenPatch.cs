@@ -11,7 +11,6 @@ public static class FromChooseACardScreenPatch
 {
     private static MethodBase TargetMethod()
     {
-        // Target the MoveNext method of the async state machine
         var stateMachine = typeof(CardSelectCmd).GetNestedTypes(AccessTools.all)
             .First(t => t.Name.Contains("FromChooseACardScreen"));
         return AccessTools.Method(stateMachine, "MoveNext");

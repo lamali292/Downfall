@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.Code.Cards.Automaton.Token;
 
@@ -163,5 +164,34 @@ public static class OverlayPathPatch
 
         __result = "res://Downfall/scenes/cards/overlays/function_card.tscn";
         return false;
+    }
+}
+
+[HarmonyPatch(typeof(CardModel), "get_Title")]
+public static class FunctionCardTitlePatch
+{
+    private static bool Prefix(CardModel __instance, ref string __result)
+    {
+        if (__instance is not FunctionCard fc) return true; // run original for all other cards
+
+        __result = fc.GetDynamicTitle();
+        return false; // skip original
+    }
+}
+
+[HarmonyPatch(typeof(NCard))]
+[HarmonyPatch("Reload")]
+public static class NCardPortraitPatch
+{
+    private static void Postfix(NCard __instance)
+    {
+        if (__instance.Model is not FunctionCard fc) return;
+
+        var composite = fc.GetCompositePortrait();
+        if (composite == null) return;
+
+        var portrait = __instance.GetNode<TextureRect>("%Portrait");
+        if (portrait != null)
+            portrait.Texture = composite;
     }
 }

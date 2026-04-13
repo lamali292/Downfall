@@ -25,7 +25,6 @@ public class ShadowDaggers : CollectorCardModel
 
     private static bool IsCollected(CardModel card)
     {
-        // Todo:  Collected card
         return card is ICollectible;
     }
 

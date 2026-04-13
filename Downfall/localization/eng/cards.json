@@ -727,7 +727,7 @@
   "DOWNFALL-JUST_DESSERTS.title": "Just Desserts",
   "DOWNFALL-KABLAMO.description": "Deal {Damage:diff()} damage to ALL enemies twice.\nThis attack does not consume [gold]Wiz[/gold].",
   "DOWNFALL-KABLAMO.title": "Kablamo!",
-  "DOWNFALL-KARMA.description": "At the end of your turn, gain {KarmaPower:diff()} Block.\nIf an enemy is [gold]Afflicted[/gold], gain {clm2:diff()} more.",
+  "DOWNFALL-KARMA.description": "At the end of your turn, gain {MetallicizePower:diff()} Block.\nIf an enemy is [gold]Afflicted[/gold], gain {KarmaPower:diff()} more.",
   "DOWNFALL-KARMA.title": "Karma",
   "DOWNFALL-KINDLE.description": "{IfUpgraded:show:[gold]Ignite|If} the current {IfUpgraded:show:Ghostflame[/gold].|Ghostflame is not [gold]Ignited[/gold], [gold]Ignite it[/gold].}",
   "DOWNFALL-KINDLE.title": "Kindle",
