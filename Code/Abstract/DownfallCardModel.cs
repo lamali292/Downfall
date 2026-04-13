@@ -18,9 +18,8 @@ public abstract class DownfallCardModel(
     TargetType targetType)
     : ConstructedCardModel(cost, type, rarity, targetType)
 {
-    
-    private ConditionalWeakTable<string, PowerModel> _powerCache = new();
-    
+    private readonly ConditionalWeakTable<string, PowerModel> _powerCache = new();
+
     protected ConstructedCardModel WithIcon<T>(string iconKey = "Power")
         where T : PowerModel
     {
@@ -31,10 +30,7 @@ public abstract class DownfallCardModel(
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        foreach (var keyValuePair in _powerCache)
-        {
-            description.AddObj(keyValuePair.Key, keyValuePair.Value);
-        }
+        foreach (var keyValuePair in _powerCache) description.AddObj(keyValuePair.Key, keyValuePair.Value);
     }
 
 

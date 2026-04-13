@@ -12,6 +12,7 @@ public class CompileErrorDescriptionSource : IExtraDescriptionSource
         if (card is not ICompilableError || ((AutomatonCardModel)card).SuppressCompileError) return;
         var loc = ICompilableError.BuildErrorLocString((AutomatonCardModel)card);
         if (loc == null) return;
-        source.Add($"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}");
+        source.Add(
+            $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}");
     }
 }

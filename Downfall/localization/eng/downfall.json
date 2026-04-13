@@ -1,7 +1,7 @@
 ﻿{
-  "NO_CHAMP_STANCE.finisher" : "{:finisher()} [gold]Finisher[/gold]",
-  "BERSERKER_CHAMP_STANCE.finisher" : "{:finisher()}: Gain 1 {:icon(StrengthPower)}.",
-  "DEFENSIVE_CHAMP_STANCE.finisher" : "{:finisher()}: Gain 6 [gold]Block[/gold].",
-  "ULTIMATE_CHAMP_STANCE.finisher" : "{:finisher()}: All Bonuses.",
-  "GLADIATOR_CHAMP_STANCE.finisher" : "{:finisher()}: Gladiator"
+  "NO_CHAMP_STANCE.finisher": "{:finisher()} [gold]Finisher[/gold]",
+  "BERSERKER_CHAMP_STANCE.finisher": "{:finisher()}: Gain 1 {:icon(StrengthPower)}.",
+  "DEFENSIVE_CHAMP_STANCE.finisher": "{:finisher()}: Gain 6 [gold]Block[/gold].",
+  "ULTIMATE_CHAMP_STANCE.finisher": "{:finisher()}: All Bonuses.",
+  "GLADIATOR_CHAMP_STANCE.finisher": "{:finisher()}: Gladiator"
 }

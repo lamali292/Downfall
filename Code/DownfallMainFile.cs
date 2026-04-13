@@ -38,12 +38,11 @@ public partial class DownfallMainFile : Node
     }
 }
 
-
 [HarmonyPatch(typeof(ModelDb), "InitIds")]
 internal static class ModelDbInitIdsPatch
 {
     [HarmonyPostfix]
-    static void LogRegisteredCounts()
+    private static void LogRegisteredCounts()
     {
         var modAssembly = typeof(DownfallMainFile).Assembly;
         var characters = ModelDb.AllCharacters
@@ -53,8 +52,8 @@ internal static class ModelDbInitIdsPatch
         foreach (var character in characters.OrderBy(c => c.Id.Entry))
         {
             var charName = character.GetType().Name;
-            var cards   = ModelDb.AllCards.Count(c => c.Pool == character.CardPool);
-            var relics  = ModelDb.AllRelics.Count(r => r.Pool == character.RelicPool);
+            var cards = ModelDb.AllCards.Count(c => c.Pool == character.CardPool);
+            var relics = ModelDb.AllRelics.Count(r => r.Pool == character.RelicPool);
             var potions = ModelDb.AllPotions.Count(p => p.Pool == character.PotionPool);
             DownfallMainFile.Logger.Info($"{charName}: {cards} cards, {relics} relics, {potions} potions");
         }

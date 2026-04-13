@@ -3,17 +3,15 @@ using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Downfall.Code.Powers.Awakened;
 
 public class DrainedPower : AwakenedPowerModel
 {
-    public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
+    public DrainedPower() : base(PowerType.Debuff)
+    {
+        WithEnergyTip();
+    }
 
     public override async Task AfterEnergyReset(Player player)
     {

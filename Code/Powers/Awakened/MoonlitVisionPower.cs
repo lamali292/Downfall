@@ -5,16 +5,12 @@ using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Awakened;
 
 public class MoonlitVisionPower : AwakenedPowerModel, IHasSecondAmount
 {
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
     private int SpellsPlayedThisTurn => CombatManager.Instance.History.Entries
         .OfType<CardPlayStartedEntry>()
         .Count(e => e.HappenedThisTurn(CombatState) &&

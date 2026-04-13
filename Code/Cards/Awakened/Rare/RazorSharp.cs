@@ -3,7 +3,6 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,6 +22,6 @@ public class RazorSharp : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);
-        await MyCommonActions.ApplySelf<RazorSharpPower>(this);
+        await CommonActions.ApplySelf<RazorSharpPower>(this);
     }
 }

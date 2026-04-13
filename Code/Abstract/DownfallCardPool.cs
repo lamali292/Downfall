@@ -8,7 +8,6 @@ namespace Downfall.Code.Abstract;
 public abstract class DownfallCardPool<T> : CustomCardPoolModel
     where T : DownfallCharacterModel
 {
-    
     private static T Character => ModelDb.Character<T>();
     public override string Title => Character.CharId!;
 

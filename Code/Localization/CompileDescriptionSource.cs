@@ -12,6 +12,7 @@ public class CompileDescriptionSource : IExtraDescriptionSource
         if (card is not ICompilable) return;
         var loc = ICompilable.BuildCompileLocString((AutomatonCardModel)card);
         if (loc == null) return;
-        source.Add($"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}");
+        source.Add(
+            $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}");
     }
 }

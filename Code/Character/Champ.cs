@@ -55,58 +55,58 @@ public class Champ : DownfallCharacterModel
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        var idleNone      = new AnimState("Idle",          true);
+        var idleNone = new AnimState("Idle", true);
         var idleBerserker = new AnimState("IdleBerserker", true);
         var idleDefensive = new AnimState("IdleDefensive", true);
-        var idleUltimate  = new AnimState("IdleUltimate",  true);
+        var idleUltimate = new AnimState("IdleUltimate", true);
         var idleGladiator = new AnimState("IdleGladiator", true);
 
-        var hitNone      = new AnimState("Hit");
+        var hitNone = new AnimState("Hit");
         var hitBerserker = new AnimState("HitBerserker");
         var hitDefensive = new AnimState("HitDefensive");
-        var hitUltimate  = new AnimState("IdleUltimate");
+        var hitUltimate = new AnimState("IdleUltimate");
         var hitGladiator = new AnimState("HitGladiator");
-        
-        hitNone.NextState      = idleNone;
+
+        hitNone.NextState = idleNone;
         hitBerserker.NextState = idleBerserker;
         hitDefensive.NextState = idleDefensive;
         hitUltimate.NextState = idleUltimate;
         hitGladiator.NextState = idleGladiator;
-        
-        var attackNone      = new AnimState("Attack");
+
+        var attackNone = new AnimState("Attack");
         var attackBerserker = new AnimState("Attack");
         var attackDefensive = new AnimState("Attack");
-        var attackUltimate  = new AnimState("Attack");
+        var attackUltimate = new AnimState("Attack");
         var attackGladiator = new AnimState("Attack");
-        
-        attackNone.NextState      = idleNone;
+
+        attackNone.NextState = idleNone;
         attackBerserker.NextState = idleBerserker;
         attackDefensive.NextState = idleDefensive;
         attackUltimate.NextState = idleUltimate;
-        attackGladiator.NextState  = idleGladiator;
-        
+        attackGladiator.NextState = idleGladiator;
+
         var deadState = new AnimState("Idle");
 
         var animator = new CreatureAnimator(idleNone, controller);
 
-        animator.AddAnyState("Dead",   deadState);
+        animator.AddAnyState("Dead", deadState);
 
-        animator.AddAnyState("Attack", attackNone,      IsInStance<NoChampStance>);
+        animator.AddAnyState("Attack", attackNone, IsInStance<NoChampStance>);
         animator.AddAnyState("Attack", attackBerserker, IsInStance<BerserkerChampStance>);
         animator.AddAnyState("Attack", attackDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Attack", attackUltimate,  IsInStance<UltimateChampStance>);
+        animator.AddAnyState("Attack", attackUltimate, IsInStance<UltimateChampStance>);
         animator.AddAnyState("Attack", attackGladiator, IsInStance<GladiatorChampStance>);
-    
-        animator.AddAnyState("Idle", idleNone,      IsInStance<NoChampStance>);
+
+        animator.AddAnyState("Idle", idleNone, IsInStance<NoChampStance>);
         animator.AddAnyState("Idle", idleBerserker, IsInStance<BerserkerChampStance>);
         animator.AddAnyState("Idle", idleDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Idle", idleUltimate,  IsInStance<UltimateChampStance>);
+        animator.AddAnyState("Idle", idleUltimate, IsInStance<UltimateChampStance>);
         animator.AddAnyState("Idle", idleGladiator, IsInStance<GladiatorChampStance>);
 
-        animator.AddAnyState("Hit", hitNone,      IsInStance<NoChampStance>);
+        animator.AddAnyState("Hit", hitNone, IsInStance<NoChampStance>);
         animator.AddAnyState("Hit", hitBerserker, IsInStance<BerserkerChampStance>);
         animator.AddAnyState("Hit", hitDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Hit", hitUltimate,  IsInStance<UltimateChampStance>);
+        animator.AddAnyState("Hit", hitUltimate, IsInStance<UltimateChampStance>);
         animator.AddAnyState("Hit", hitGladiator, IsInStance<GladiatorChampStance>);
 
 

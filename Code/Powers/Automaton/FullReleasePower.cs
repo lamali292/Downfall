@@ -12,12 +12,14 @@ namespace Downfall.Code.Powers.Automaton;
 public class FullReleasePower : AutomatonPowerModel
 {
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+
+    public FullReleasePower() : base(PowerType.Buff, PowerStackType.None)
+    {
+        WithVars(new EffectsDynamicVar(this));
+    }
+
     public override bool ShouldReceiveCombatHooks => true;
     public override bool IsInstanced => true;
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EffectsDynamicVar(this)];
 
     public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
     {

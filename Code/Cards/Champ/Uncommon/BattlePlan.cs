@@ -15,7 +15,7 @@ public class BattlePlan : ChampCardModel
         WithBlock(2);
         WithVar("Scry", 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.EnterDefensiveStance(ctx, Owner);
@@ -24,7 +24,7 @@ public class BattlePlan : ChampCardModel
     }
 
 
-    protected override void OnUpgrade()  
+    protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2);
         DynamicVars["Scry"].UpgradeValueBy(1);

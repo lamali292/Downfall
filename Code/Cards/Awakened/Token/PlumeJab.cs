@@ -24,7 +24,7 @@ public class PlumeJab : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }
-    
+
     // Razor Sharp stuff. 
     public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
     {

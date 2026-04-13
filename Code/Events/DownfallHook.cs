@@ -1,6 +1,5 @@
 ﻿using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Core;
 using Downfall.Code.Core.Champ;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -85,12 +84,13 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
-    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance)
+
+    public static async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance)
     {
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
-        
+
         Callable.From(() =>
         {
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
@@ -109,9 +109,8 @@ public static class DownfallHook
 
             creatureNode?.SetAnimationTrigger(trigger);
             animState.GetCurrent(0).SetMixDuration(0.3f);
-
         }).CallDeferred();
-        
+
         foreach (var model in combatState.IterateHookListeners().OfType<IOnStanceChange>())
         {
             var abstractModel = (AbstractModel)model;
@@ -120,12 +119,12 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
-    
+
+
     public static int ModifySkillBonus<TPower>(ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel
     {
-        var combatState =  stanceModel.Owner.Creature.CombatState;
+        var combatState = stanceModel.Owner.Creature.CombatState;
         if (combatState == null) return baseAmount;
         var amount = baseAmount;
         foreach (var model in combatState.IterateHookListeners().OfType<IModifySkillBonus>())
@@ -133,7 +132,7 @@ public static class DownfallHook
             var abstractModel = (AbstractModel)model;
             amount = model.ModifySkillBonus<TPower>(stanceModel, amount);
         }
-            
+
         return amount;
     }
 
