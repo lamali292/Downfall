@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class TongueLash() : SlimeBossCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class TongueLash : SlimeBossCardModel
 {
+    public TongueLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

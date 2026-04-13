@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class Behold() : SneckoCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Behold : SneckoCardModel
 {
+    public Behold() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

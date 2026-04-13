@@ -12,14 +12,13 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class GetLatest() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class GetLatest : AutomatonCardModel
 {
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
+    public GetLatest() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Encode);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

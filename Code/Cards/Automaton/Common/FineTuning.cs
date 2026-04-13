@@ -9,9 +9,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class FineTuning() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class FineTuning : AutomatonCardModel
 {
-    public override HashSet<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public FineTuning() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+    }
 
     protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

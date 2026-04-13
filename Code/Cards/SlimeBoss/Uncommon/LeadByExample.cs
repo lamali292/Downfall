@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class LeadByExample() : SlimeBossCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class LeadByExample : SlimeBossCardModel
 {
+    public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

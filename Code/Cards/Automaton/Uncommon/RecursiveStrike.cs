@@ -14,18 +14,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class RecursiveStrike() : AutomatonCardModel(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class RecursiveStrike : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(6, ValueProp.Move)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromCard<StrikeAutomaton>()
-    ];
+    public RecursiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithDamage(6);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(typeof(StrikeAutomaton));
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

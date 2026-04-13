@@ -11,13 +11,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class StrikeAutomaton()
-    : AutomatonCardModel(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
+public class StrikeAutomaton : AutomatonCardModel, IEncodable
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
-
+    public StrikeAutomaton() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        WithTags(CardTag.Strike);
+        WithDamage(6);
+    }
+    
     public bool AutoEncode => false;
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

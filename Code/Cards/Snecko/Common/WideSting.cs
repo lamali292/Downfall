@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class WideSting() : SneckoCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class WideSting : SneckoCardModel
 {
+    public WideSting() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

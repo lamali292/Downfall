@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Guardian.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class FuturePlans() : GuardianCardModel(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public class FuturePlans : GuardianCardModel
 {
+    public FuturePlans() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

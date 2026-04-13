@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class DangerNoodle() : SneckoCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class DangerNoodle : SneckoCardModel
 {
+    public DangerNoodle() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

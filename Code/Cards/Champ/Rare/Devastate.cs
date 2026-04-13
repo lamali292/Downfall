@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Rare;
 
 [Pool(typeof(ChampCardPool))]
-public class Devastate() : ChampCardModel(5, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class Devastate : ChampCardModel
 {
+    public Devastate() : base(5, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

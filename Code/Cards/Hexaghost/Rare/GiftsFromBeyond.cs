@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class GiftsFromBeyond() : HexaghostCardModel(2, CardType.Power, CardRarity.Rare, TargetType.None)
+public class GiftsFromBeyond : HexaghostCardModel
 {
+    public GiftsFromBeyond() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

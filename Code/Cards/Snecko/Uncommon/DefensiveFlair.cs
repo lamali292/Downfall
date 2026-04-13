@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class DefensiveFlair() : SneckoCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class DefensiveFlair : SneckoCardModel
 {
+    public DefensiveFlair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

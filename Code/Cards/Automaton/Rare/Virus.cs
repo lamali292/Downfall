@@ -13,23 +13,18 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Virus() : AutomatonCardModel(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class Virus : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(4, ValueProp.Move)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    public Virus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        get
+        WithDamage(4);
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(new TooltipSource(card =>
         {
-            var card = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
-            if (IsUpgraded) card.UpgradeInternal();
-            return [HoverTipFactory.FromCard(card)];
-        }
+            var beam = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
+            if (card.IsUpgraded) beam.UpgradeInternal();
+            return HoverTipFactory.FromCard(beam);
+        }));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

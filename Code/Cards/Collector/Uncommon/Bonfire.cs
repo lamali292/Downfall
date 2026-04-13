@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class Bonfire() : CollectorCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Bonfire : CollectorCardModel
 {
+    public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

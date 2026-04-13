@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class SoulDraw() : SneckoCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class SoulDraw : SneckoCardModel
 {
+    public SoulDraw() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

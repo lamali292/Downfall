@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class LanternFlare() : CollectorCardModel(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class LanternFlare : CollectorCardModel
 {
+    public LanternFlare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

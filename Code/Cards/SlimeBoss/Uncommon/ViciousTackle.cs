@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class ViciousTackle() : SlimeBossCardModel(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class ViciousTackle : SlimeBossCardModel
 {
+    public ViciousTackle() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

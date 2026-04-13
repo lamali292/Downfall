@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Whomp() : CollectorCardModel(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class Whomp : CollectorCardModel
 {
+    public Whomp() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class DivideConquer() : SlimeBossCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class DivideConquer : SlimeBossCardModel
 {
+    public DivideConquer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -14,22 +14,15 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Undervolt() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Undervolt : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(2)
-    ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromCard<Burn>()
-    ];
-
-
+    public Undervolt() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithPower<StrengthPower>(2);
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(Burn));
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var combatState = Owner.Creature.CombatState;

@@ -1,11 +1,15 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using AwakenedCharacter = Downfall.Code.Character.Awakened;
 
 namespace Downfall.Code.Cards.CardModels;
@@ -15,12 +19,9 @@ public abstract class AwakenedCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : ConstructedCardModel(cost, type, rarity, targetType)
+    : DownfallCardModel<AwakenedCharacter>(cost, type, rarity, targetType)
 {
     public bool HasChanted { get; set; } = false;
-
-    public sealed override string CustomPortraitPath =>
-        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<AwakenedCharacter>();
 
     private bool WasLastCardPlayedPower
     {
@@ -59,4 +60,6 @@ public abstract class AwakenedCardModel(
             await AwakenedCmd.Chant(ctx, this, cardPlay);
         }
     }
+
+
 }

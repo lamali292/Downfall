@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.SlimeBoss.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class DoubleLick() : SlimeBossCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public class DoubleLick : SlimeBossCardModel
 {
+    public DoubleLick() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class YouAreMine() : CollectorCardModel(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class YouAreMine : CollectorCardModel
 {
+    public YouAreMine() : base(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

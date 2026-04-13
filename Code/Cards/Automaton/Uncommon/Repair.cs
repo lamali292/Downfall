@@ -14,20 +14,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Repair() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IEncodable,
-    ICompilable
+public class Repair : AutomatonCardModel, IEncodable, ICompilable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(4, ValueProp.Move),
-        new HealVar(7)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
+    public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(4);
+        WithVars(new HealVar(7));
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
+    
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)

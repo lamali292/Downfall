@@ -14,13 +14,18 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class DevTools() : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class DevTools : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-        CardKeyword.Retain
-    ];
+    public DevTools() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+        WithKeywords(CardKeyword.Retain);
+        WithTip(typeof(Debug));
+        WithTip(typeof(Batch));
+        WithTip(typeof(Decompile));
+        WithTip(typeof(ByteShift));
+    }
+  
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

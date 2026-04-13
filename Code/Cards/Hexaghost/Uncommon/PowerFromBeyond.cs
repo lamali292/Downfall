@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class PowerFromBeyond() : HexaghostCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class PowerFromBeyond : HexaghostCardModel
 {
+    public PowerFromBeyond() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

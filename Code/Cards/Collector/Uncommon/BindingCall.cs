@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class BindingCall() : CollectorCardModel(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class BindingCall : CollectorCardModel
 {
+    public BindingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

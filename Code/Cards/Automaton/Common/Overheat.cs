@@ -13,16 +13,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Overheat() : AutomatonCardModel(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class Overheat : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(18m, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Compile.ToHoverTip(),
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
-
+    public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(18);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(DownfallKeyword.Encode);
+    }
+ 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

@@ -16,21 +16,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Boost() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IEncodable,
+public class Boost : AutomatonCardModel, IEncodable,
     ICompilable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(6, ValueProp.Move),
-        new PowerVar<StrengthPower>(1)
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<StrengthPower>(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
+    public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(6);
+        WithPower<StrengthPower>(1);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
 
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

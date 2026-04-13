@@ -12,18 +12,14 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace Downfall.Code.Cards.Automaton.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Format() : AutomatonCardModel(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Format : AutomatonCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
-
+    public Format() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithKeywords(CardKeyword.Exhaust);
+        WithTip(DownfallKeyword.Encode);
+    }
+  
     protected override bool HasEnergyCostX => true;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

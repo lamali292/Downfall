@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class CheapStock() : SneckoCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public class CheapStock : SneckoCardModel
 {
+    public CheapStock() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    {
+        
+    }
     // TODO: Implement
 }

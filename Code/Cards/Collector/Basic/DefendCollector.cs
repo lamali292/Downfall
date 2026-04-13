@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class DefendCollector() : CollectorCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class DefendCollector : CollectorCardModel
 {
+    public DefendCollector() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

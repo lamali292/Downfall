@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Snecko.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class PowerShot() : SneckoCardModel(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class PowerShot : SneckoCardModel
 {
+    public PowerShot() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

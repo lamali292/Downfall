@@ -13,16 +13,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Replicate()
-    : AutomatonCardModel(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IEncodable
+public class Replicate : AutomatonCardModel, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip()
-    ];
-
+    public Replicate() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        WithDamage(5);
+        WithTip(DownfallKeyword.Encode);
+    }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

@@ -14,18 +14,15 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Goto()
-    : AutomatonCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self), ICompilable, IEncodable
+public class Goto : AutomatonCardModel, ICompilable, IEncodable
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new CardsVar(1), new CardsVar("Compile", 1)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        DownfallKeyword.Compile.ToHoverTip()
-    ];
-
+    public Goto() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    {
+        WithCards(1);
+        WithVars(new CardsVar("Compile", 1));
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+    }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard function, CardPlay cardPlay,
         CompileContext compileContext,

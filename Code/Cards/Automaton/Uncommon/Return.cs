@@ -11,12 +11,12 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class Return() : AutomatonCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Return : AutomatonCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new EnergyVar(1)
-    ];
+    public Return() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithVars(new EnergyVar(1));
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

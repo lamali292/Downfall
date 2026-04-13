@@ -19,21 +19,18 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Downfall.Code.Cards.Automaton.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class OilSpill() : AutomatonCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), IEncodable,
+public class OilSpill : AutomatonCardModel, IEncodable,
     ICompilableError
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(4m, ValueProp.Move), new PowerVar<PoisonPower>(4)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        DownfallKeyword.Encode.ToHoverTip(),
-        HoverTipFactory.FromPower<PoisonPower>(),
-        DownfallKeyword.Compile.ToHoverTip(),
-        HoverTipFactory.FromCard<Slimed>()
-    ];
-
-
+    public OilSpill() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(4);
+        WithPower<PoisonPower>(4);
+        WithTip(DownfallKeyword.Encode);
+        WithTip(DownfallKeyword.Compile);
+        WithTip(typeof(Slimed));
+    }
+ 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext,
         bool forGameplay)

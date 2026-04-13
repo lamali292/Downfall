@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Basic;
 
 [Pool(typeof(ChampCardPool))]
-public class StrikeChamp() : ChampCardModel(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public class StrikeChamp : ChampCardModel
 {
+    public StrikeChamp() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

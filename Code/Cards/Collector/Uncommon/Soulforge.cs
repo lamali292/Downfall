@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class Soulforge() : CollectorCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class Soulforge : CollectorCardModel
 {
+    public Soulforge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        
+    }
     // TODO: Implement
 }

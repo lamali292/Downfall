@@ -5,7 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class CrookedStrike() : ChampCardModel(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class CrookedStrike : ChampCardModel
 {
+    public CrookedStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }

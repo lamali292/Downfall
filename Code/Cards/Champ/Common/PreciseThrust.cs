@@ -6,7 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Downfall.Code.Cards.Champ.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class PreciseThrust() : ChampCardModel(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class PreciseThrust : ChampCardModel
 {
+    public PreciseThrust() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        
+    }
     // TODO: Implement
 }
