@@ -30,7 +30,7 @@ public partial class SNCreatureVisuals : NCreatureVisuals
 
         //StancePower.EnsureEyeSetup(Body);
     }
-    
+
 
     private void SetupEye()
     {

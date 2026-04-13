@@ -7,23 +7,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Awakened;
 
-public class SpellbinderPower: AwakenedPowerModel
+public class SpellbinderPower : AwakenedPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
         CombatState combatState)
     {
         if (player != Owner.Player) return;
-        for (var i = 0; i < Amount; i++)
-        {
-            await AwakenedCmd.Conjure(player, combatState);
-        }
-        
+        for (var i = 0; i < Amount; i++) await AwakenedCmd.Conjure(player, combatState);
     }
-    
-
 }

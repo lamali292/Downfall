@@ -19,7 +19,7 @@ public class FindAndReplace : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
     }
-  
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // get draw and discard piles

@@ -21,5 +21,4 @@ public class AncestralGroundsPower : AwakenedPowerModel
         await DownfallCardCmd.GiveCard<Void>(Owner.Player, PileType.Draw, CardPilePosition.Top, 0.2f);
         await PowerCmd.Decrement(this);
     }
-
 }

@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace Downfall.Code.Cards.Awakened.Rare;
 
-
 [Pool(typeof(AwakenedCardPool))]
 public class RealityRift : AwakenedCardModel
 {
@@ -21,7 +20,8 @@ public class RealityRift : AwakenedCardModel
     }
 
 
-    private static CardModel[] AnotherDimensionCards => [
+    private static CardModel[] AnotherDimensionCards =>
+    [
         ModelDb.Card<Crusher>(),
         ModelDb.Card<Daggerstorm>(),
         ModelDb.Card<ManaShield>(),
@@ -30,22 +30,21 @@ public class RealityRift : AwakenedCardModel
         ModelDb.Card<Scheme>(),
         ModelDb.Card<SignInBlood>(),
         ModelDb.Card<SpreadingSpores>(),
-        ModelDb.Card<TheEncyclopedia>(),
+        ModelDb.Card<TheEncyclopedia>()
     ];
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var list = CardFactory.GetDistinctForCombat(Owner, AnotherDimensionCards, 3, Owner.RunState.Rng.CombatCardGeneration).ToList();
+        var list = CardFactory
+            .GetDistinctForCombat(Owner, AnotherDimensionCards, 3, Owner.RunState.Rng.CombatCardGeneration).ToList();
         if (IsUpgraded)
             CardCmd.Upgrade(list, CardPreviewStyle.HorizontalLayout);
-      
+
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, list, Owner, true);
 
         if (card == null)
             return;
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
     }
-
-    
 }

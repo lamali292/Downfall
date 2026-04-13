@@ -28,8 +28,8 @@ public class DownfallCardCmd
         CardCmd.PreviewCardPileAdd(results);
     }
 
-    public static async Task GiveCard<T>(Player player, 
-        PileType pileType,  
+    public static async Task GiveCard<T>(Player player,
+        PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout) where T : CardModel
@@ -39,9 +39,9 @@ public class DownfallCardCmd
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
-    
-    public static async Task GiveCards<T>(Player player, 
-        PileType pileType,  
+
+    public static async Task GiveCards<T>(Player player,
+        PileType pileType,
         int count,
         CardPilePosition position = CardPilePosition.Bottom,
         float animationTime = 0.6f,
@@ -55,10 +55,11 @@ public class DownfallCardCmd
             var card = player.Creature.CombatState!.CreateCard(model, player);
             cardInstances.Add(card);
         }
+
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
-    
+
     public static async Task AutoPlayFromDrawPile(
         PlayerChoiceContext choiceContext,
         Player player,
@@ -79,14 +80,12 @@ public class DownfallCardCmd
         }
 
         foreach (var card in cards.TakeWhile(card => !card.Owner.Creature.IsDead))
-        {
             await CardCmd.AutoPlay(
                 choiceContext,
                 card,
-                target: null,
-                type: autoPlayType,
-                skipXCapture: skipXCapture,
-                skipCardPileVisuals: false);
-        }
+                null,
+                autoPlayType,
+                skipXCapture,
+                false);
     }
 }

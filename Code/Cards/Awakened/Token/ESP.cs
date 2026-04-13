@@ -19,7 +19,7 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken
         WithCards(1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
-    
+
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
         CardCmd.Upgrade(this, CardPreviewStyle.None);

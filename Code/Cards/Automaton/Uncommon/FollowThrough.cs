@@ -6,8 +6,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Uncommon;
 
@@ -19,7 +17,7 @@ public class FollowThrough : AutomatonCardModel
         WithBlock(4);
         WithDamage(7);
     }
-    
+
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
 
     private bool WasLastCardPlayedFunction

@@ -20,9 +20,4 @@ public static class MyCommonActions
     {
         return await CommonActions.Apply<T>(target, card, card.DynamicVars.Power<T>().BaseValue, silent);
     }
-    
-    
-    
- 
-
 }

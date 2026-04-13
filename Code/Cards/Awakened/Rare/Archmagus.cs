@@ -23,7 +23,4 @@ public class Archmagus : AwakenedCardModel
     {
         EnergyCost.UpgradeBy(-1);
     }
-
-
-    // TODO: Implement
 }

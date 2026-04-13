@@ -24,7 +24,8 @@ public class FourthDimension : AwakenedCardModel
         var clone1 = card.CreateClone();
         var clone2 = card.CreateClone();
         var clone3 = card.CreateClone();
-        var a = await CardPileCmd.AddGeneratedCardsToCombat([clone1, clone2, clone3], PileType.Draw, true, CardPilePosition.Random);
+        var a = await CardPileCmd.AddGeneratedCardsToCombat([clone1, clone2, clone3], PileType.Draw, true,
+            CardPilePosition.Random);
         await CardCmd.Exhaust(ctx, card);
         CardCmd.PreviewCardPileAdd(a, 0.1f, CardPreviewStyle.MessyLayout);
     }

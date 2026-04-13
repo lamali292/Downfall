@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Awakened.Common;
 
-
 [Pool(typeof(AwakenedCardPool))]
 public class Artifice : AwakenedCardModel
 {

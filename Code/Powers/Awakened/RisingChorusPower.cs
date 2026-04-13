@@ -17,8 +17,12 @@ public class RisingChorusPower : AwakenedPowerModel, IOnChant, IHasSecondAmount
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public string GetSecondAmount() => (Amount - DynamicVars["UsesLeft"].BaseValue).ToString(CultureInfo.InvariantCulture);
     protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("UsesLeft", 0)];
+
+    public string GetSecondAmount()
+    {
+        return (Amount - DynamicVars["UsesLeft"].BaseValue).ToString(CultureInfo.InvariantCulture);
+    }
 
     public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -28,11 +32,11 @@ public class RisingChorusPower : AwakenedPowerModel, IOnChant, IHasSecondAmount
             DynamicVars["UsesLeft"].BaseValue++;
             InvokeDisplayAmountChanged();
             Flash();
-            
+
             await AwakenedCmd.Chant(ctx, card, cardPlay);
         }
     }
-    
+
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature != Owner) return Task.CompletedTask;

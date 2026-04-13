@@ -3,9 +3,7 @@ using Downfall.Code.Cards.Hexaghost.Basic;
 using Downfall.Code.Relics.Hexaghost;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Downfall.Code.Character;
 

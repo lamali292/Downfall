@@ -2,10 +2,7 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -27,14 +24,14 @@ public class Bloodthirst : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if(cardPlay.Target == null) return;
+        if (cardPlay.Target == null) return;
         var shouldTriggerFatal = cardPlay.Target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
         var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!shouldTriggerFatal || !attackCommand.Results.Any(r => r.WasTargetKilled))
             return;
         var potion = ModelDb.Potion<PowerPotion>().ToMutable();
         await PotionCmd.TryToProcure(potion, Owner);
-        await CardCmd.Exhaust(ctx,this);
+        await CardCmd.Exhaust(ctx, this);
     }
 
     protected override void OnUpgrade()

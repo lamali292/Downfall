@@ -15,7 +15,7 @@ public class SentientForm : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Ethereal);
     }
-  
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PowerCmd.Apply<SentientFormPower>(Owner.Creature, 1, Owner.Creature, this);

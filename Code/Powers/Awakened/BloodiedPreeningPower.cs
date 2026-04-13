@@ -2,7 +2,6 @@
 using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -20,8 +19,8 @@ public class BloodiedPreeningPower : AwakenedPowerModel
     [
         HoverTipFactory.FromCard<PlumeJab>()
     ];
-    
-    
+
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,

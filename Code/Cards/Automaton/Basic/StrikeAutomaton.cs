@@ -5,8 +5,6 @@ using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Automaton.Basic;
 
@@ -18,7 +16,7 @@ public class StrikeAutomaton : AutomatonCardModel, IEncodable
         WithTags(CardTag.Strike);
         WithDamage(6);
     }
-    
+
     public bool AutoEncode => false;
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

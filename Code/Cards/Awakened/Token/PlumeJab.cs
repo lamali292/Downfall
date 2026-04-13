@@ -24,14 +24,14 @@ public class PlumeJab : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }
-    
+
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(1);
     }
-    
-    
+
+
     // Razor Sharp stuff. 
     public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
     {
@@ -42,13 +42,11 @@ public class PlumeJab : AwakenedCardModel
         return Task.CompletedTask;
     }
 
-    
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+
+    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+        CardModel? cardSource)
     {
-        if (power is RazorSharpPower && power.Owner == Owner.Creature)
-        {
-            DynamicVars.Repeat.UpgradeValueBy(amount);
-        }
+        if (power is RazorSharpPower && power.Owner == Owner.Creature) DynamicVars.Repeat.UpgradeValueBy(amount);
         return Task.CompletedTask;
     }
 }

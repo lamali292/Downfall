@@ -5,7 +5,6 @@ using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Awakened.Ancient;
@@ -17,7 +16,7 @@ public class Rebirth : AwakenedCardModel
     {
         WithPower<AwakeningPower>(8);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<AwakeningPower>(this);

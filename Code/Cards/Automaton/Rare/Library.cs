@@ -13,8 +13,8 @@ public class Library : AutomatonCardModel
 {
     public Library() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        
     }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PowerCmd.Apply<LibraryPower>(Owner.Creature, 1, Owner.Creature, this);
