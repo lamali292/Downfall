@@ -46,7 +46,7 @@ public class MonsterTest9()
 
 [Pool(typeof(CollectorCardPool))]
 public class MonsterTest10() : Collectible<Tunneler>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.9f);
-*/ 
+*/
 
 [Pool(typeof(CollectorCardPool))]
 public abstract class ACollectible<T>() : Collectible<T>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)

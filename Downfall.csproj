@@ -122,6 +122,7 @@
 
 
     <ItemGroup>
+        <Compile Include="Downfall\localization\eng\badges.json.cs" />
         <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never"/>
         <Compile Remove="Downfall/**"/>
         <Compile Remove="shaders/**"/>
@@ -135,7 +136,9 @@
         <None Include="project.godot"/>
         <None Include="Downfall/**"/>
     </ItemGroup>
-
+    <ItemGroup>
+        <Compile Remove="addons/mega_text/**" />
+    </ItemGroup>
     <ItemGroup>
         <Content Remove=".godot\**"/>
         <Content Include="Downfall\animation\eye\the_watcher_eye.png.import" />

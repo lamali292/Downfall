@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,11 @@ public class FeelMyPain : CollectorCardModel
 {
     public FeelMyPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<FeelMyPainPower>(4, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<FeelMyPainPower>(this);
     }
 }

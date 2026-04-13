@@ -2,7 +2,11 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Collector.Common;
 
@@ -11,15 +15,14 @@ public class Wildfire : CollectorCardModel
 {
     public Wildfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithCalculatedDamage(0,4, DamageCalc, ValueProp.Move, 0,2);
     }
 
-    // TODO: Implement
+    private static decimal DamageCalc(CardModel card, Creature? creature) =>
+        creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

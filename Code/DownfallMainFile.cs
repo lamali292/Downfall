@@ -1,5 +1,6 @@
 using System.Reflection;
 using BaseLib.Config;
+using Downfall.Code.Abstract;
 using Downfall.Code.Config;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
@@ -28,7 +29,9 @@ public partial class DownfallMainFile : Node
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
-
+        
+        DownfallBadgePool.Initialize(typeof(DownfallMainFile).Assembly);
+        
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();

@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
@@ -11,15 +13,20 @@ public class InflictAgony : CollectorCardModel
 {
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-    }
+        WithDamage(12, 6);
+        WithPower<VulnerablePower>(2);
+        WithPower<WeakPower>(2);
 
-    // TODO: Implement
+    }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (!cardPlay.Target.IsAfflicted())
+        {
+            await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
+            await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
+        }
     }
 }

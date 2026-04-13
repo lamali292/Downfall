@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Core.Champ;
+﻿using Downfall.Code.Core;
+using Downfall.Code.Core.Champ;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -14,8 +15,13 @@ public static class DownfallSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        return combatState.Players
-            .Select(ChampModel.GetStanceModel)
-            .Where(s => s is not NoChampStance);
+        foreach (var player in combatState.Players)
+        {
+            var stance = ChampModel.GetStanceModel(player);
+            if (stance is not NoChampStance)
+                yield return stance;
+            
+            yield return DownfallHistory.Get(player);
+        }
     }
 }

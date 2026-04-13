@@ -11,15 +11,11 @@ public class GreenpyreLocus : CollectorCardModel
 {
     public GreenpyreLocus() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithCards(2, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        // TODO: Implement - Choose 1 of 3 Collected cards to add into your hand. Add 3 copies of it into your Collected pile. 
     }
 }

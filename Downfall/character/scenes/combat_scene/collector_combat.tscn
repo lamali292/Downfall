@@ -8,6 +8,7 @@ script = ExtResource("1_ebnpl")
 
 [node name="Visuals" parent="." instance=ExtResource("1_orqfj")]
 unique_name_in_owner = true
+position = Vector2(0, -24.575)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

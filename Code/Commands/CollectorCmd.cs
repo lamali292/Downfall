@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Downfall.Code.Core.Collector;
+using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,16 +30,28 @@ public class CollectorCmd
     return pyred;
   }
 
-  public static async Task<Creature> Summon<T>(
+
+
+  public static async Task<Creature> Torchhead(
+    PlayerChoiceContext ctx,
+    Player summoner,
+    int hp,
+    AbstractModel? source) => 
+    await Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
+
+
+  private static async Task<Creature> Summon<T>(
     PlayerChoiceContext ctx,
     Player summoner,
     int hp,
     AbstractModel? source) where T : MonsterModel
   {
     var combatState = summoner.Creature.CombatState;
+    ArgumentNullException.ThrowIfNull(combatState);
+    ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
     var existing = combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
     
-    var isReviving = existing != null && !existing.IsAlive;
+    var isReviving = existing is { IsAlive: false };
     
     if (existing is { IsAlive: true })
     {
@@ -52,8 +65,11 @@ public class CollectorCmd
     {
       existing = await PlayerCmd.AddPet<T>(summoner);
       var node = NCombatRoom.Instance?.GetCreatureNode(existing);
-      if (node != null && source is CardModel)
+      var playerNode = NCombatRoom.Instance?.GetCreatureNode(summoner.Creature);
+ 
+      if (node != null && source is CardModel && playerNode != null)
       {
+        node.Position = playerNode.Position + new Vector2(250f, -75f);
         node.Modulate = Colors.Transparent;
         node.CreateTween()
           .TweenProperty(node, "modulate", Colors.White, 0.35)
@@ -61,12 +77,14 @@ public class CollectorCmd
       }
       await PowerCmd.Apply<DieForYouPower>(existing, 1M, null, null);
       node?.TrackBlockStatus(summoner.Creature);
+      node?.ToggleIsInteractable(true); 
     }
 
+    ArgumentNullException.ThrowIfNull(existing);
     await CreatureCmd.SetMaxHp(existing, hp);
     await CreatureCmd.Heal(existing, hp, isReviving);
     
-    return existing!;
+    return existing;
   }
   
 }

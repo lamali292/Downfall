@@ -11,15 +11,15 @@ public class FlameLash : CollectorCardModel
 {
     public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithPyre();
+        WithDamage(8, 4);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (PyredCard == null || !PyredCard.DynamicVars.ContainsKey("Damage")) return;
+        DynamicVars.Damage.UpgradeValueBy(PyredCard.DynamicVars.Damage.BaseValue);
+        
     }
 }

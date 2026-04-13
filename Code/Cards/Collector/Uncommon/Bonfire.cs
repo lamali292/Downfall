@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,14 @@ public class Bonfire : CollectorCardModel
 {
     public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithPyre();
+        WithBlock(12, 4);
+        WithPower<ReserveNextTurnPower>(1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(this);
     }
 }

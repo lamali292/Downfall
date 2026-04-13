@@ -11,15 +11,12 @@ public class DoubleTrouble : CollectorCardModel
 {
     public DoubleTrouble() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithBlock(6, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
+        // TODO: Implement - Your next Collected card this turn is played twice. 
     }
 }

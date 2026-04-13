@@ -1,4 +1,6 @@
 ﻿using Downfall.Code.Core.Champ;
+using Downfall.Code.Core.Collector;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Downfall.Code.Extensions;
@@ -27,4 +29,6 @@ public static class PlayerExtensions
         return ChampModel.IsInStance<BerserkerChampStance>(player) ||
                ChampModel.IsInStance<UltimateChampStance>(player);
     }
+    
+    public static Creature? Torchhead(this Player player) => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
 }

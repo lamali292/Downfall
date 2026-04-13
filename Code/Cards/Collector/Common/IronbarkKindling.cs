@@ -20,6 +20,7 @@ public class IronbarkKindling : CollectorCardModel
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
+        if (card != this) return;
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
     }
 }

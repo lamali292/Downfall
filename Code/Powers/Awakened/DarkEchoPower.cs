@@ -16,10 +16,13 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
 {
+
+  
     public string GetSecondAmount()
     {
         return $"{Owner.GetPowerAmount<StrengthPower>() + 4}";
     }
+    
 
     public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {

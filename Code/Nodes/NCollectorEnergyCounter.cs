@@ -2,20 +2,15 @@
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.addons.mega_text;
 
 namespace Downfall.Code.Nodes;
 
 [GlobalClass]
 public partial class NCollectorEnergyCounter : Control
 {
-    private Player?      _player;
-    private MegaLabel?   _label;
-    private TextureRect? _icon;
-
-    private const int LabelX    = 100;
-    private const int LabelY    = 90;
-    private const int LabelSize = 100;
+    private Player? _player;
+    private Label? _label;
+    private Control? _rotationLayers;
 
     public void Initialize(Player player)
     {
@@ -25,35 +20,9 @@ public partial class NCollectorEnergyCounter : Control
 
     public override void _Ready()
     {
-        _icon = new TextureRect
-        {
-            Texture     = ResourceLoader.Load<Texture2D>("res://Downfall/images/ui/collector_energy.png"),
-            StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-            Size        = new Vector2(LabelSize, LabelSize),
-            Position    = new Vector2(LabelX, LabelY)
-        };
-        AddChild(_icon);
-
-        _label = new MegaLabel
-        {
-            Size                = new Vector2(LabelSize, LabelSize),
-            Position            = new Vector2(LabelX, LabelY),
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment   = VerticalAlignment.Center,
-            MaxFontSize         = 38,
-            MinFontSize         = 25,
-        };
-
-        // MegaLabel requires a font override or it throws in _Ready
-        var font = ResourceLoader.Load<Font>("res://addons/mega_text/fonts/regular.ttf");
-        _label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
-        _label.AddThemeConstantOverride("outline_size", 6);
-        _label.AddThemeColorOverride(ThemeConstants.Label.FontColor, StsColors.cream);
-        _label.AddThemeColorOverride(ThemeConstants.Label.FontOutlineColor, new Color("900000"));
-
-        AddChild(_label);
-
-        Size    = new Vector2(LabelSize, LabelSize);
+        _rotationLayers = GetNode<Control>("%RotationLayers");
+        _label = GetNode<Label>("%Label");
+        
         Visible = false;
         Refresh();
     }
@@ -61,6 +30,13 @@ public partial class NCollectorEnergyCounter : Control
     public override void _ExitTree()
     {
         CollectorEnergy.Changed -= OnEnergyChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (_rotationLayers == null) return;
+        for (int i = 0; i < _rotationLayers.GetChildCount(); i++)
+            _rotationLayers.GetChild<Control>(i).RotationDegrees += (float)delta * 30f * (i + 1);
     }
 
     private void OnEnergyChanged(Player player, int amount)
@@ -76,19 +52,20 @@ public partial class NCollectorEnergyCounter : Control
         if (_player == null || _label == null) return;
         var amount = CollectorEnergy.Get(_player);
 
-        _label.SetTextAutoSize(amount.ToString());
-        _label.AddThemeColorOverride(ThemeConstants.Label.FontColor,
+        _label.Text = amount.ToString();
+        _label.AddThemeColorOverride("font_color",
             amount == 0 ? StsColors.red : new Color("EBFFAD"));
-        _label.AddThemeColorOverride(ThemeConstants.Label.FontOutlineColor,
+        _label.AddThemeColorOverride("font_outline_color",
             amount == 0 ? StsColors.unplayableEnergyCostOutline : new Color("3A3F2B"));
 
         var targetAlpha = amount > 0 ? 1f : 0f;
 
         if (!Visible && amount > 0)
         {
-            Visible      = true;
-            Modulate     = new Color(1, 1, 1, 0f);
+            Visible = true;
+            Modulate = new Color(1, 1, 1, 0f);
         }
+
         _fadeTween?.Kill();
         _fadeTween = CreateTween();
         _fadeTween.TweenProperty(this, "modulate:a", targetAlpha, 0.3)
@@ -97,5 +74,13 @@ public partial class NCollectorEnergyCounter : Control
 
         if (amount == 0)
             _fadeTween.TweenCallback(Callable.From(() => Visible = false));
+    }
+    
+    public static NCollectorEnergyCounter Create(Player player)
+    {
+        var scene = ResourceLoader.Load<PackedScene>("res://Downfall/scenes/collector_energy.tscn");
+        var instance = scene.Instantiate<NCollectorEnergyCounter>();
+        instance.Initialize(player);
+        return instance;
     }
 }

@@ -28,7 +28,7 @@ public class DownfallCardCmd
         CardCmd.PreviewCardPileAdd(results);
     }
 
-    public static async Task GiveCard<T>(Player player,
+    public static async Task<CardModel> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
         bool upgraded = false,
@@ -39,11 +39,12 @@ public class DownfallCardCmd
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         if (upgraded) card.UpgradeInternal();
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, true, position);
-        if (!result.success || skipAnimation || pileType == PileType.Hand) return;
+        if (!result.success || skipAnimation || pileType == PileType.Hand) return result.cardAdded;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+        return result.cardAdded;
     }
 
-    public static async Task GiveCards<T>(Player player,
+    public static async Task<IEnumerable<CardModel>> GiveCards<T>(Player player,
         PileType pileType,
         int count,
         CardPilePosition position = CardPilePosition.Bottom,
@@ -52,7 +53,7 @@ public class DownfallCardCmd
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false) where T : CardModel
     {
-        if (count <= 0) return;
+        if (count <= 0) return [];
         var cardInstances = new List<CardModel>();
         var model = ModelDb.Card<T>();
         for (var i = 0; i < count; i++)
@@ -63,8 +64,9 @@ public class DownfallCardCmd
         }
 
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
-        if (skipAnimation || pileType == PileType.Hand) return;
+        if (skipAnimation || pileType == PileType.Hand) return result.Select(e=>e.cardAdded);
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+        return result.Select(e=>e.cardAdded);
     }
 
     public static async Task AutoPlayFromDrawPile(

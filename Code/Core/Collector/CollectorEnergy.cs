@@ -37,6 +37,15 @@ public class CollectorEnergy : CustomSingletonModel
         var cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         return card.Owner.PlayerCombatState.Energy + reserve >= cost;
     }
+    public override Task BeforeCombatStart()
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+            Reset(player);
+        return Task.CompletedTask;
+    }
+    
     public override async Task AfterEnergyReset(Player player)
     {
         Changed?.Invoke(player, Get(player));
@@ -87,6 +96,7 @@ static class HasEnoughResourcesPatch
 }
 
 
+
 [HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
 static class NCombatUiActivatePatch
 {
@@ -95,8 +105,9 @@ static class NCombatUiActivatePatch
         var player = LocalContext.GetMe(state);
         if (player == null) return;
 
-        var counter = new NCollectorEnergyCounter();
-        counter.Initialize(player);
+        var counter = NCollectorEnergyCounter.Create(player);
+        counter.Position = new Vector2(80f, 80f);
+        counter.Scale = new Vector2(0.6f, 0.6f);
         __instance.EnergyCounterContainer.AddChildSafely(counter);
     }
 }
