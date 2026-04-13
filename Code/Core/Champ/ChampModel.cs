@@ -102,17 +102,25 @@ public class ChampModel() : CustomSingletonModel(true, true)
         }).CallDeferred();
     }
 
+    private static void RemoveDisplay(Player player)
+    {
+        StanceDisplays.Remove(player);
+    }
+    
     private static void RefreshStanceDisplay(Player player, ChampStanceModel newCanonical)
     {
         Callable.From(() =>
         {
+            var existing = GetDisplay(player);
+
             if (newCanonical is NoChampStance)
             {
-                GetDisplay(player)?.Refresh();
+                if (existing != null && GodotObject.IsInstanceValid(existing))
+                    existing.QueueFree();
+                RemoveDisplay(player);
                 return;
             }
 
-            var existing = GetDisplay(player);
             if (existing == null || !GodotObject.IsInstanceValid(existing))
             {
                 var display = NChampStanceDisplay.Show(player);
