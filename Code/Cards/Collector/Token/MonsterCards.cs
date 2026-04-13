@@ -1,11 +1,13 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Automaton.Uncommon;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Monsters;
 
 namespace Downfall.Code.Cards.Collector.Token;
 
+// Act 1
 
 // Underdocks
 
@@ -25,7 +27,11 @@ public class DampCultistCard() : Collectible<DampCultist>(0, CardType.Attack, Ca
 [Pool(typeof(CollectibleCardPool))]
 public class LivingFogCard() : Collectible<LivingFog>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
+public class GasBombCard() : Collectible<GasBomb>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
 public class FossilStalkerCard() : Collectible<FossilStalker>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class GremlinMercCard() : Collectible<GremlinMerc>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
 public class FatGremlinCard() : Collectible<FatGremlin>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
@@ -41,19 +47,19 @@ public class TwoTailedRatCard() : Collectible<TwoTailedRat>(0, CardType.Attack, 
 
 // Elite
 [Pool(typeof(CollectibleCardPool))]
-public class SkulkingColonyCard() : Collectible<SkulkingColony>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class SkulkingColonyCard() : Collectible<SkulkingColony>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class PhantasmalGardenerCard() : Collectible<PhantasmalGardener>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class PhantasmalGardenerCard() : Collectible<PhantasmalGardener>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class TerrorEelCard() : Collectible<TerrorEel>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class TerrorEelCard() : Collectible<TerrorEel>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 
 // Boss
 [Pool(typeof(CollectibleCardPool))]
-public class WaterfallGiantCard() : Collectible<WaterfallGiant>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class WaterfallGiantCard() : Collectible<WaterfallGiant>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class SoulFyshCard() : Collectible<SoulFysh>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class SoulFyshCard() : Collectible<SoulFysh>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class LagavulinMatriarchCard() : Collectible<LagavulinMatriarch>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class LagavulinMatriarchCard() : Collectible<LagavulinMatriarch>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 
 
 
@@ -106,16 +112,140 @@ public class TrackerRubyRaiderCard() : Collectible<TrackerRubyRaider>(0, CardTyp
 
 // Elite
 [Pool(typeof(CollectibleCardPool))]
-public class BygoneEffigyCard() : Collectible<BygoneEffigy>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class BygoneEffigyCard() : Collectible<BygoneEffigy>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class ByrdonisCard() : Collectible<Byrdonis>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class ByrdonisCard() : Collectible<Byrdonis>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class PhrogParasiteCard() : Collectible<PhrogParasite>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class PhrogParasiteCard() : Collectible<PhrogParasite>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class WrigglerCard() : Collectible<Wriggler>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
 
 // Boss
 [Pool(typeof(CollectibleCardPool))]
-public class CeremonialBeastCard() : Collectible<CeremonialBeast>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class CeremonialBeastCard() : Collectible<CeremonialBeast>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class KinPriestCard() : Collectible<KinPriest>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class KinPriestCard() : Collectible<KinPriest>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 [Pool(typeof(CollectibleCardPool))]
-public class VantomCard() : Collectible<Vantom>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+public class KinFollowerCard() : Collectible<KinFollower>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class VantomCard() : Collectible<Vantom>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+
+
+// Act 2
+
+// Hive
+
+// Monster
+[Pool(typeof(CollectibleCardPool))]
+public class BowlbugRockCard() : Collectible<BowlbugRock>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class BowlbugEggCard() : Collectible<BowlbugEgg>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class BowlbugSilkCard() : Collectible<BowlbugSilk>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class BowlbugNectarCard() : Collectible<BowlbugNectar>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ExoskeletonCard() : Collectible<Exoskeleton>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ThievingHopperCard() : Collectible<ThievingHopper>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TunnelerCard() : Collectible<Tunneler>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ChomperCard() : Collectible<Chomper>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class HunterKillerCard() : Collectible<HunterKiller>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class LouseProgenitorCard() : Collectible<LouseProgenitor>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class MyteCard() : Collectible<Myte>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class OvicopterCard() : Collectible<Ovicopter>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class SlumberingBeetleCard() : Collectible<SlumberingBeetle>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class SpinyToadCard() : Collectible<SpinyToad>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TheObscuraCard() : Collectible<TheObscura>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ParafrightCard() : Collectible<Parafright>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+
+// Elite
+[Pool(typeof(CollectibleCardPool))]
+public class DecimillipedeBackCard() : Collectible<DecimillipedeSegmentBack>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class DecimillipedeMiddleCard() : Collectible<DecimillipedeSegmentMiddle>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class DecimillipedeFrontCard() : Collectible<DecimillipedeSegmentFront>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class EntomancerCard() : Collectible<Entomancer>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class InfestedPrismCard() : Collectible<InfestedPrism>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+
+// Boss
+[Pool(typeof(CollectibleCardPool))]
+public class TheInsatiableCard() : Collectible<TheInsatiable>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class KnowledgeDemonCard() : Collectible<KnowledgeDemon>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class KaiserCrusherCard() : Collectible<Crusher>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class KaiserRocketCard() : Collectible<Rocket>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+
+
+// Act 3
+
+// Glory
+
+// Monster
+[Pool(typeof(CollectibleCardPool))]
+public class AxebotCard() : Collectible<Axebot>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class DevotedSculptorCard() : Collectible<DevotedSculptor>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class FabricatorCard() : Collectible<Fabricator>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class GuardbotCard() : Collectible<Guardbot>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class NoisebotCard() : Collectible<Noisebot>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class StabbotCard() : Collectible<Stabbot>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ZapbotCard() : Collectible<Zapbot>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class FrogKnightCard() : Collectible<FrogKnight>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class GlobeHeadCard() : Collectible<GlobeHead>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class LivingShieldCard() : Collectible<LivingShield>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TurretOperatorCard() : Collectible<TurretOperator>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class OwlMagistrateCard() : Collectible<OwlMagistrate>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class ScrollOfBitingCard() : Collectible<ScrollOfBiting>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class SlimedBerserkerCard() : Collectible<SlimedBerserker>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TheLostCard() : Collectible<TheLost>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TheForgottenCard() : Collectible<TheForgotten>(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, 0.3f);
+
+// Elite
+[Pool(typeof(CollectibleCardPool))]
+public class FlailKnightCard() : Collectible<FlailKnight>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class SpectralKnightCard() : Collectible<SpectralKnight>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class MagiKnightCard() : Collectible<MagiKnight>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class MechaKnightCard() : Collectible<MechaKnight>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class SoulNexusCard() : Collectible<SoulNexus>(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f);
+
+// Boss
+[Pool(typeof(CollectibleCardPool))]
+public class QueenCard() : Collectible<Queen>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class TestSubjectCard() : Collectible<TestSubject>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+[Pool(typeof(CollectibleCardPool))]
+public class DoormakerCard() : Collectible<Doormaker>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);

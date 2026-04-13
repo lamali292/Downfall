@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens;
@@ -43,13 +44,13 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
 
     public override NetScreenType ScreenType => NetScreenType.DeckView;
 
-   public static NCollectiblesViewScreen? ShowScreen(Player player)
+   public static NCollectiblesViewScreen? ShowScreen(Player player, List<CardModel> cards)
     {
         if (TestMode.IsOn || NCapstoneContainer.Instance == null)
             return null;
         var screen = PreloadManager.Cache.GetScene(ScenePath).Instantiate<NCollectiblesViewScreen>();
         screen._player = player;
-        screen._cards = CollectiblesModel.GetCollectibles(player);
+        screen._cards = cards;
         NDebugAudioManager.Instance?.Play("map_open.mp3");
         Callable.From(() => NCapstoneContainer.Instance.Open(screen)).CallDeferred();
         return screen;

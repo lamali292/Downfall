@@ -290,5 +290,8 @@
   "DOWNFALL-SCORCHED_POWER.title": "Scorched",
   "DOWNFALL-SCORCHED_POWER.description": "At the end of its turn, gains [blue]X[/blue] [gold]Doom[/gold].",
   "DOWNFALL-KARMA_POWER.smartDescription": "At the end of your turn, if any enemy is [gold]Afflicted[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
-  "DOWNFALL-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Doom[/gold]"
+  "DOWNFALL-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Doom[/gold]",
+  "DOWNFALL-DOUBLE_TROUBLE_POWER.title": "Double Up",
+  "DOWNFALL-DOUBLE_TROUBLE_POWER.description": "Your next Collected card this turn is played twice.",
+  "DOWNFALL-DOUBLE_TROUBLE_POWER.smartDescription": "Your next {Amount:plural:|[blue]{Amount}[/blue] }Collected {Amount:plural:card:cards} this turn {Amount:plural:is|are} played twice."
 }

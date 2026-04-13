@@ -52,29 +52,13 @@ public class Collector : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<CollectorPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<CollectorRelicPool>();
 
+    
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        GD.Print("[Downfall] GenerateAnimator called");
-
-        var animState = new AnimState("idle", true);
-        var state1 = new AnimState("idle");
-        var state2 = new AnimState("idle");
-        var state3 = new AnimState("Hit");
-        var state4 = new AnimState("idle");
-        var state5 = new AnimState("idle");
-        state1.NextState = animState;
-        state2.NextState = animState;
-        state3.NextState = animState;
-        state5.NextState = animState;
-        state5.AddBranch("Idle", animState);
-        var animator = new CreatureAnimator(animState, controller);
-        animator.AddAnyState("Idle", animState);
-        animator.AddAnyState("Dead", state4);
-        animator.AddAnyState("Hit", state3);
-        animator.AddAnyState("Attack", state2);
-        animator.AddAnyState("Cast", state1);
-        animator.AddAnyState("Relaxed", state5);
-
-        return animator;
+        return SetupAnimationState(
+            controller,
+            idleName: "idle",
+            hitName: "Hit"
+        );
     }
 }
