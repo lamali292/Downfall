@@ -17,23 +17,14 @@ public class Unleash : AwakenedCardModel
 {
     public Unleash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithVars(
-            new CalculationBaseVar(5m),
-            new ExtraDamageVar(1m),
-            new CalculatedDamageVar(ValueProp.Move).WithMultiplier(DamageCalc)
-        );
-        //WithCalculatedDamage(12, 1, DamageCalc);
+        WithCalculatedDamage(5, DamageCalc, bonusUpgrade: 1);
     }
 
     private static decimal DamageCalc(CardModel card, Creature? creature)
     {
         return PileType.Hand.GetPile(card.Owner).Cards.Count(c => c != card);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.ExtraDamage.UpgradeValueBy(1);
-    }
+    
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
