@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://rhup5hqaj6ss"]
+
+[ext_resource type="Script" uid="uid://bu4r3wfmlo5f7" path="res://Code/Cards/Vfx/NFunctionCardOverlay.cs" id="2_57ivt"]
+[ext_resource type="Shader" uid="uid://dt3j10i6y8qe2" path="res://Downfall/scenes/cards/overlays/function_card.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_57ivt"]
+shader = ExtResource("2_shader")
+shader_parameter/glitch_intensity = 0.10000000475
+shader_parameter/block_glitch = 0.400000019
+shader_parameter/time_scale = 0.50000002375
+shader_parameter/aberration = 0.0050000002375
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[node name="FunctionCardOverlay" type="Control"]
+material = SubResource("ShaderMaterial_57ivt")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_57ivt")

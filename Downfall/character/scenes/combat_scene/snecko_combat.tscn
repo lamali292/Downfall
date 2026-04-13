@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b530iyrk6mvxf"]
+
+[ext_resource type="PackedScene" uid="uid://brr7b4dtxctqm" path="res://Downfall/character/scenes/visuals/snecko.tscn" id="1_svhpa"]
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="2_3vjed"]
+
+[node name="SneckoCombat" type="Node2D"]
+script = ExtResource("2_3vjed")
+
+[node name="Visuals" parent="." instance=ExtResource("1_svhpa")]
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -134.0
+offset_top = -305.0
+offset_right = 131.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, -181)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -362)

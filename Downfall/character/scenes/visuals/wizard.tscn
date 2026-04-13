@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dky2244g821kb"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cqx1sevfsoe2b" path="res://Downfall/character/visuals/wizard.tres" id="1_rqycl"]
+
+[node name="Wizard" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_rqycl")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
