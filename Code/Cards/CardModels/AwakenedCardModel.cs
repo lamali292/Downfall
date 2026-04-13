@@ -19,7 +19,7 @@ public abstract class AwakenedCardModel(
 {
     public bool HasChanted { get; set; } = false;
 
-    public sealed override string PortraitPath =>
+    public sealed override string CustomPortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<AwakenedCharacter>();
 
     private bool WasLastCardPlayedPower
