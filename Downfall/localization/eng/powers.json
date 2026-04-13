@@ -174,8 +174,8 @@
   "DOWNFALL-EN_GARDE_POWER.description": "If your [gold]Block[/gold] is broken this turn, gain X [gold]Block[/gold] next turn.",
   "DOWNFALL-EN_GARDE_POWER.smartDescription": "If your [gold]Block[/gold] is broken this turn, gain {Amount} [gold]Block[/gold] next turn.",
   "DOWNFALL-GLORY_POWER.title": "Glory",
-  "DOWNFALL-GLORY_POWER.description": "?",
-  "DOWNFALL-GLORY_POWER.smartDescription": "?",
+  "DOWNFALL-GLORY_POWER.description": "At the start of your turn, if you have 10 or more [gold]Glory[/gold], enter [gold]Ultimate[/gold].",
+  "DOWNFALL-GLORY_POWER.smartDescription": "At the start of your turn, if you have 10 or more [gold]Glory[/gold], enter [gold]Ultimate[/gold].",
   "DOWNFALL-FANCY_FOOTWORK_POWER.title": "Fancy Footwork",
   "DOWNFALL-FANCY_FOOTWORK_POWER.description": "The next time you use a [gold]Finisher[/gold] this turn.\nAll enemies lose X HP.",
   "DOWNFALL-FANCY_FOOTWORK_POWER.smartDescription": "The next time you use a [gold]Finisher[/gold] this turn. All enemies lose {Amount} HP.",
@@ -235,6 +235,7 @@
   "DOWNFALL-IGNORE_PAIN_POWER.title": "Ignoring Pain",
   "DOWNFALL-IGNORE_PAIN_POWER.description": "you cannot lose HP for this turn.",
   "DOWNFALL-IGNORE_PAIN_POWER.smartDescription": "you cannot lose HP for {Amount:plural:this turn|the next {Amount} turns}.",
-  "DOWNFALL-ULTIMATE_STANCE_POWER.title": "",
-  "DOWNFALL-ULTIMATE_STANCE_POWER.description": ""
+  "DOWNFALL-ULTIMATE_STANCE_POWER.title": "Ultimate Stance",
+  "DOWNFALL-ULTIMATE_STANCE_POWER.description": "You are in [gold]Ultimate Stance[/gold] this turn.",
+  "DOWNFALL-ULTIMATE_STANCE_POWER.smartDescription": "You are in [gold]Ultimate Stance[/gold] this turn."
 }
