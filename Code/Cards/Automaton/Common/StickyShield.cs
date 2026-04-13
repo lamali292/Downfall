@@ -15,7 +15,7 @@ public class StickyShield : AutomatonCardModel
 {
     public StickyShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(11);
+        WithBlock(11, 3);
         WithKeywords(CardKeyword.Retain);
         WithTip(typeof(Slimed));
     }
@@ -24,10 +24,5 @@ public class StickyShield : AutomatonCardModel
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await DownfallCardCmd.Insert(ModelDb.Card<Slimed>(), Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

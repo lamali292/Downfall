@@ -11,7 +11,7 @@ public class DefendChamp : ChampCardModel
 {
     public DefendChamp() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBlock(5);
+        WithBlock(5, 3);
         WithTags(CardTag.Defend);
     }
 
@@ -19,10 +19,5 @@ public class DefendChamp : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

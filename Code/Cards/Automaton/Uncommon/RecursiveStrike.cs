@@ -15,7 +15,7 @@ public class RecursiveStrike : AutomatonCardModel
 {
     public RecursiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithTip(DownfallKeyword.Encode);
         WithTip(typeof(StrikeAutomaton));
     }
@@ -35,10 +35,5 @@ public class RecursiveStrike : AutomatonCardModel
         var strike2 = combatState.CreateCard<StrikeAutomaton>(Owner);
         await AutomatonCmd.EncodeCard(strike1, ctx, cardPlay);
         await AutomatonCmd.EncodeCard(strike2, ctx, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

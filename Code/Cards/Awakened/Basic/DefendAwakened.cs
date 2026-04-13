@@ -13,16 +13,11 @@ public class DefendAwakened : AwakenedCardModel
     public DefendAwakened() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithTags(CardTag.Defend);
-        WithBlock(5);
+        WithBlock(5, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

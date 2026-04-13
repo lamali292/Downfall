@@ -15,7 +15,7 @@ public class Dejection : AwakenedCardModel
 {
     public Dejection() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(7);
+        WithDamage(7, 3);
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(Ceremony));
     }
@@ -27,10 +27,5 @@ public class Dejection : AwakenedCardModel
         if (selected == null) return;
         await CardCmd.Exhaust(ctx, selected);
         if (selected is ISpell) await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

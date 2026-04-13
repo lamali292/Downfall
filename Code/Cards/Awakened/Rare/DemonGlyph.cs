@@ -18,7 +18,7 @@ public class DemonGlyph : AwakenedCardModel
     {
         WithTip(typeof(StrengthPower));
         WithTip(typeof(DexterityPower));
-        WithPower<DemonGlyphPower>(2);
+        WithPower<DemonGlyphPower>(2, 1);
     }
 
 
@@ -37,10 +37,5 @@ public class DemonGlyph : AwakenedCardModel
             await CommonActions.ApplySelf<DexterityPower>(this, 1);
             await MyCommonActions.ApplySelf<DemonGlyphPower>(this);
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<DemonGlyphPower>().UpgradeValueBy(1);
     }
 }

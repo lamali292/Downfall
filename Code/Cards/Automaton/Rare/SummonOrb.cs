@@ -13,16 +13,11 @@ public class SummonOrb : AutomatonCardModel
 {
     public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<SummonOrbPower>(3);
+        WithPower<SummonOrbPower>(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SummonOrbPower>(this, DynamicVars.Power<SummonOrbPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<SummonOrbPower>().UpgradeValueBy(1);
     }
 }

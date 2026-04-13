@@ -20,7 +20,7 @@ public class BronzeArmor : AutomatonCardModel, IEncodable,
     public BronzeArmor() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ArtifactPower>(1);
-        WithVar("EnemyBlock", 12);
+        WithVar("EnemyBlock", 12, -4);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
     }
@@ -41,10 +41,5 @@ public class BronzeArmor : AutomatonCardModel, IEncodable,
         await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue,
             Owner.Creature,
             this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["EnemyBlock"].UpgradeValueBy(-4);
     }
 }

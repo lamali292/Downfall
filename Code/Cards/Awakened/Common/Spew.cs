@@ -13,16 +13,10 @@ public class Spew : AwakenedCardModel
 {
     public Spew() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithTip(DownfallKeyword.Drained);
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
-    }
-
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

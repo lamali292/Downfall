@@ -12,9 +12,9 @@ public class Peck : AwakenedCardModel
 {
     public Peck() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithBlock(5);
+        WithBlock(5, 1);
         WithDamage(1);
-        WithCards(1);
+        WithCards(1, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -22,11 +22,5 @@ public class Peck : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(1);
-        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

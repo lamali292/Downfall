@@ -14,16 +14,11 @@ public class Daggerstorm : AwakenedCardModel
 {
     public Daggerstorm() : base(2, CardType.Power, CardRarity.Token, TargetType.None)
     {
-        WithPower<DaggerstormPower>(4);
+        WithPower<DaggerstormPower>(4, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<DaggerstormPower>(this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<DaggerstormPower>().UpgradeValueBy(2);
     }
 }

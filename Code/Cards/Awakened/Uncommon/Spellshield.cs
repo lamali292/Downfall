@@ -15,17 +15,11 @@ public class Spellshield : AwakenedCardModel
     public Spellshield() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
-        WithPower<SpellshieldPower>(2);
+        WithPower<SpellshieldPower>(2, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpellshieldPower>(this, DynamicVars.Power<SpellshieldPower>().BaseValue);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<SpellshieldPower>().UpgradeValueBy(1);
     }
 }

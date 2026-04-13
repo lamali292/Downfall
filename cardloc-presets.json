@@ -50,6 +50,11 @@
           "name": "functionName",
           "file": "encode.json",
           "optional": true
+        },
+        {
+          "name": "error",
+          "file": "encode.json",
+          "optional": true
         }
       ]
     },

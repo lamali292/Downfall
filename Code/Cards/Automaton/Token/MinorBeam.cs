@@ -14,7 +14,7 @@ public class MinorBeam : AutomatonCardModel, IEncodable
 {
     public MinorBeam() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(4);
+        WithDamage(4, 2);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -23,11 +23,5 @@ public class MinorBeam : AutomatonCardModel, IEncodable
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
             .Targeting(cardPlay.Target).Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

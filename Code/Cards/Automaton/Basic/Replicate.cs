@@ -14,7 +14,7 @@ public class Replicate : AutomatonCardModel, IEncodable
 {
     public Replicate() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(5, 2);
         WithTip(DownfallKeyword.Encode);
     }
 
@@ -34,10 +34,5 @@ public class Replicate : AutomatonCardModel, IEncodable
         var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, true);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, 0.4f);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

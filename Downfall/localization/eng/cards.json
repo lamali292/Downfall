@@ -417,7 +417,7 @@
   "DOWNFALL-EVENTIDE.title": "Eventide",
   "DOWNFALL-EXACERBATE.description": "Deal {Damage:diff()} damage.\nWhenever you apply Weak to this enemy, they lose {ExacerbatePower:diff()} HP.\nExhaust.",
   "DOWNFALL-EXACERBATE.title": "Exacerbate",
-  "DOWNFALL-EXECUTE.description": "Deal {Damage:diff()} damage 2 times.",
+  "DOWNFALL-EXECUTE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
   "DOWNFALL-EXECUTE.title": "Execute",
   "DOWNFALL-EXOTIC_FORM.description": "",
   "DOWNFALL-EXOTIC_FORM.title": "Exotic Form",
@@ -1470,5 +1470,7 @@
   "DOWNFALL-YOU_ARE_MINE.description": "Apply {YouAreMinePower:diff()} Weak.\nApply {YouAreMinePower:diff()} Vulnerable. Apply {clm2:diff()} [gold]Doom[/gold].",
   "DOWNFALL-YOU_ARE_MINE.title": "You Are Mine!",
   "DOWNFALL-DARK_INCANTATION.title": "Dark Incantation ",
-  "DOWNFALL-DARK_INCANTATION.description": "Choose another player to gain {RitualPower:diff()} [gold]Ritual[/gold]."
+  "DOWNFALL-DARK_INCANTATION.description": "Choose another player to gain {RitualPower:diff()} [gold]Ritual[/gold].",
+  "DOWNFALL-E_S_P.title": "",
+  "DOWNFALL-E_S_P.description": ""
 }

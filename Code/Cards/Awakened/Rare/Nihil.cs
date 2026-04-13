@@ -17,7 +17,7 @@ public class Nihil : AwakenedCardModel, IChantable
 {
     public Nihil() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<ManaburnPower>(13);
+        WithPower<ManaburnPower>(13, 3);
         WithTip(DownfallKeyword.Chant);
     }
 
@@ -41,10 +41,5 @@ public class Nihil : AwakenedCardModel, IChantable
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

@@ -13,7 +13,7 @@ public class Brainshock : AwakenedCardModel
 {
     public Brainshock() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12);
+        WithDamage(12, 4);
         WithTip(typeof(Void));
     }
 
@@ -21,10 +21,5 @@ public class Brainshock : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Discard);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

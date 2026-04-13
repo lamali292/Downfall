@@ -15,7 +15,7 @@ public class Minniegun : AwakenedCardModel
     public Minniegun() : base(2, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVars(new RepeatVar(5));
+        WithVar("Repeat", 5, 1);
         WithTip(typeof(Void));
     }
 
@@ -23,10 +23,5 @@ public class Minniegun : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.Repeat.IntValue).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Random, 0.3f);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Repeat.UpgradeValueBy(1);
     }
 }

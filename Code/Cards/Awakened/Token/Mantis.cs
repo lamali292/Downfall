@@ -13,7 +13,7 @@ public class Mantis : AwakenedCardModel
 {
     public Mantis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithPower<StrengthPower>(2);
+        WithPower<StrengthPower>(2, 1);
         WithTip(typeof(PlumeJab));
     }
 
@@ -21,10 +21,5 @@ public class Mantis : AwakenedCardModel
     {
         await MyCommonActions.ApplySelf<StrengthPower>(this);
         await DownfallCardCmd.GiveCard<PlumeJab>(Owner, PileType.Hand, animationTime: 0.1f);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Strength.UpgradeValueBy(1);
     }
 }

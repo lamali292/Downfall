@@ -15,7 +15,7 @@ public class Victuals : AwakenedCardModel, IChantable
 {
     public Victuals() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new EnergyVar(2));
+        WithVar("Energy", 2, 1);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Chant);
     }
@@ -23,10 +23,5 @@ public class Victuals : AwakenedCardModel, IChantable
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

@@ -12,7 +12,7 @@ public class Extension : AwakenedCardModel
 {
     public Extension() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(11);
+        WithDamage(11, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -28,10 +28,5 @@ public class Extension : AwakenedCardModel
         if (Pile is not { Type: PileType.Discard }) return;
         var result = await CardPileCmd.Add(this, PileType.Hand);
         CardCmd.PreviewCardPileAdd(result, 0.3f);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

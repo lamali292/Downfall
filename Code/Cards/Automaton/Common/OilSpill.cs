@@ -21,8 +21,8 @@ public class OilSpill : AutomatonCardModel, IEncodable,
 {
     public OilSpill() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4);
-        WithPower<PoisonPower>(4);
+        WithDamage(4, 1);
+        WithPower<PoisonPower>(4, 1);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
         WithTip(typeof(Slimed));
@@ -43,11 +43,5 @@ public class OilSpill : AutomatonCardModel, IEncodable,
             .Execute(ctx);
         await PowerCmd.Apply<PoisonPower>(cardPlay.Target, DynamicVars.Power<PoisonPower>().IntValue, Owner.Creature,
             this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars.Power<PoisonPower>().UpgradeValueBy(1);
     }
 }

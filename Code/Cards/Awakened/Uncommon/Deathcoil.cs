@@ -15,7 +15,7 @@ public class Deathcoil : AwakenedCardModel
 {
     public Deathcoil() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<ManaburnPower>(8);
+        WithPower<ManaburnPower>(8, 3);
         WithEnergyTip();
     }
 
@@ -37,10 +37,5 @@ public class Deathcoil : AwakenedCardModel
 
         await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

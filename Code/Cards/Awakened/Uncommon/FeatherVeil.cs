@@ -12,7 +12,7 @@ public class FeatherVeil : AwakenedCardModel
 {
     public FeatherVeil() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(10);
+        WithBlock(10, 3);
         WithPower<StrengthPower>(1);
     }
 
@@ -21,10 +21,5 @@ public class FeatherVeil : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<StrengthPower>(this, -DynamicVars.Strength.BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

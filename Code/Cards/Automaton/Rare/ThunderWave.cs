@@ -14,7 +14,7 @@ public class ThunderWave : AutomatonCardModel
 {
     public ThunderWave() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(12);
+        WithDamage(12, 4);
         WithPower<BufferPower>(1);
         WithKeywords(CardKeyword.Exhaust);
     }
@@ -27,10 +27,5 @@ public class ThunderWave : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await CommonActions.ApplySelf<BufferPower>(this, DynamicVars.Power<BufferPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

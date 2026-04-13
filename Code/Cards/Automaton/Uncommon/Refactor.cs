@@ -14,7 +14,7 @@ public class Refactor : AutomatonCardModel
 {
     public Refactor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(4);
+        WithBlock(4, 2);
         WithVar("Scry", 4);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallKeyword.Scry);
@@ -32,10 +32,5 @@ public class Refactor : AutomatonCardModel
         if (statuses.Count > 0)
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue * statuses.Count,
                 DynamicVars.Block.Props, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

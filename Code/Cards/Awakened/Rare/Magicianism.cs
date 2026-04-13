@@ -16,16 +16,11 @@ public class Magicianism : AwakenedCardModel
     public Magicianism() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
-        WithPower<MagicianismPower>(2);
+        WithPower<MagicianismPower>(2, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<MagicianismPower>(this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<MagicianismPower>().UpgradeValueBy(1);
     }
 }

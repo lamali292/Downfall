@@ -16,8 +16,8 @@ public class NullPointer : AutomatonCardModel,
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(12);
-        WithBlock(12);
+        WithDamage(12, 3);
+        WithBlock(12, 3);
         WithTip(DownfallKeyword.Encode);
         WithTip(DownfallKeyword.Compile);
         WithTip(CardKeyword.Unplayable);
@@ -45,12 +45,5 @@ public class NullPointer : AutomatonCardModel,
     {
         if (SuppressCompileError) return;
         card.AddKeyword(CardKeyword.Unplayable);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
-        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

@@ -16,7 +16,7 @@ public class Optimize : AutomatonCardModel
     public Optimize() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(DownfallKeyword.Encode);
-        WithPower<OptimizePower>(3);
+        WithPower<OptimizePower>(3, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -24,10 +24,5 @@ public class Optimize : AutomatonCardModel
         await PowerCmd.Apply<OptimizePower>(Owner.Creature, DynamicVars.Power<OptimizePower>().BaseValue,
             Owner.Creature,
             this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<OptimizePower>().UpgradeValueBy(2);
     }
 }

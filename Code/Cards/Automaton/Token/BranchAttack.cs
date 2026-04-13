@@ -14,7 +14,7 @@ public class BranchAttack : AutomatonCardModel, IEncodable
 {
     public BranchAttack() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(7);
+        WithDamage(7, 2);
         WithKeywords(CardKeyword.Retain);
         WithTip(DownfallKeyword.Encode);
     }
@@ -24,11 +24,5 @@ public class BranchAttack : AutomatonCardModel, IEncodable
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
             .Targeting(cardPlay.Target).Execute(ctx);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

@@ -14,16 +14,11 @@ public class Rebirth : AwakenedCardModel
 {
     public Rebirth() : base(1, CardType.Power, CardRarity.Ancient, TargetType.None)
     {
-        WithPower<AwakeningPower>(8);
+        WithPower<AwakeningPower>(8, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.ApplySelf<AwakeningPower>(this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Power<AwakeningPower>().UpgradeValueBy(3);
     }
 }
