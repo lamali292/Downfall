@@ -405,5 +405,13 @@
   "DOWNFALL-BOOK_OF_SECRETS.title": "Book of Secrets",
   "DOWNFALL-BOOK_OF_SECRETS.description": "Gain {Block:diff()} Block.\nAll other players Conjure a copy of your next up spell.",
   "DOWNFALL-DARK_INCANTATION.title": "Dark Incantation",
-  "DOWNFALL-DARK_INCANTATION.description": "hoose another player to gain {RitualPower:diff()} Ritual. Exhaust."
+  "DOWNFALL-DARK_INCANTATION.description": "hoose another player to gain {RitualPower:diff()} Ritual. Exhaust.",
+  "DOWNFALL-STRIKE_GREMLINS.title": "Strike",
+  "DOWNFALL-STRIKE_GREMLINS.description": "...",
+  "DOWNFALL-TAG_TEAM.title": "Tag Team",
+  "DOWNFALL-TAG_TEAM.description": "...",
+  "DOWNFALL-GREMLIN_DANCE.title": "Gremlin Dance",
+  "DOWNFALL-GREMLIN_DANCE.description": "...",
+  "DOWNFALL-DEFEND_GREMLINS.title": "Defend",
+  "DOWNFALL-DEFEND_GREMLINS.description": "..."
 }

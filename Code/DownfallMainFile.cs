@@ -1,4 +1,6 @@
 using System.Reflection;
+using BaseLib.Patches.Content;
+using Downfall.Code.Core;
 using Downfall.Code.Events;
 using Godot;
 using Godot.Bridge;
@@ -16,7 +18,8 @@ public partial class DownfallMainFile : Node
 
     public static Logger Logger { get; } =
         new(ModId, LogType.Generic);
-
+    
+    
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
