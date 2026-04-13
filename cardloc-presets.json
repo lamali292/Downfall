@@ -7,6 +7,13 @@
       "markers": [
         "AutomatonCardModel",
         "AwakenedCardModel",
+        "ChampCardModel",
+        "CollectorCardModel",
+        "GuardianCardModel",
+        "GremlinsCardModel",
+        "HexaghostCardModel",
+        "SlimeBossCardModel",
+        "SneckoCardModel",
         "CustomCardModel"
       ],
       "fields": [
@@ -52,6 +59,7 @@
       "markers": [
         "AutomatonPowerModel",
         "AwakenedPowerModel",
+        "GuardianPowerModel",
         "CustomPowerModel"
       ],
       "fields": [
