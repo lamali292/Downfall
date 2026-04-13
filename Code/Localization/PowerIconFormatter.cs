@@ -74,13 +74,3 @@ public class PowerIconFormatter : IFormatter
         return true;
     }
 }
-
-[HarmonyPatch(typeof(LocManager), nameof(LocManager.Initialize))]
-public static class LocManagerPatch
-{
-    [HarmonyPostfix]
-    private static void AddCustomFormatters()
-    {
-        Smart.Default.AddExtensions(new PowerIconFormatter());
-    }
-}

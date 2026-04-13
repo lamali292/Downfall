@@ -11,6 +11,10 @@ namespace Downfall.Code.Abstract;
 
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
+    public DownfallCharacterModel() {
+        DownfallMainFile.Logger.Info($"Creating {GetType().Name}");
+    }
+    
     public static readonly ConditionalWeakTable<MegaSprite, Player> ControllerToPlayer = new();
     public virtual string? CharId => null;
     protected virtual Color EnergyOutlineColor => new(0, 0, 0);

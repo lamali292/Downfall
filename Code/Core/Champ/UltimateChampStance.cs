@@ -2,7 +2,7 @@
 
 namespace Downfall.Code.Core.Champ;
 
-public class GladiatorStance : ChampStanceModel
+public class UltimateChampStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;

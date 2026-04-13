@@ -3,6 +3,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Champ;
+using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,9 +17,10 @@ public class Execute : ChampCardModel
     {
         WithDamage(6, 3);
         WithTags(DownfallTag.Finisher);
+        WithTip(DownfallKeyword.Finisher);
     }
     
-    protected override bool IsPlayable => ChampModel.GetStanceModel(Owner).HasFinisher;
+    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
