@@ -15,11 +15,11 @@ git clone https://github.com/lamali292/Downfall.git
 
 
 
-### 2. Configure `Watcher.csproj`
+### 2. Configure `Downfall.csproj`
 
 
 
-Open the `Watcher.csproj` file and update the paths to match your system:
+Open the `Downfall.csproj` file and update the paths to match your system:
 
 i.e in Windows look for
 
