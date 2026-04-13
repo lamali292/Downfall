@@ -3,7 +3,7 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 import os
 import math
-import random
+import hashlib
 import string
 
 # ============================================================
@@ -44,11 +44,11 @@ clean_dir(OUT_RELICS,  [".png", ".import"])
 clean_dir(OUT_TRES,    [".tres"])
 os.makedirs(OUT_ATLASES, exist_ok=True)
 
-def random_uid(length=7):
-    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+def deterministic_uid(name: str, length=7) -> str:
+    return hashlib.md5(name.encode()).hexdigest()[:length]
 
-def write_tres(path, atlas_res_path, x, y, size):
-    content = f'''[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://{random_uid()}"]
+def write_tres(path, atlas_res_path, x, y, size, name):
+    content = f'''[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://{deterministic_uid(name)}"]
 [ext_resource type="Texture2D" path="{atlas_res_path}" id="1"]
 [resource]
 atlas = ExtResource("1")
@@ -60,7 +60,7 @@ region = Rect2({x}, {y}, {size}, {size})
 def process_image(path, crop_box=CROP_BOX, radius=OUTLINE_RADIUS, sigma=OUTLINE_SIGMA):
     img = Image.open(path).convert("RGBA")
     img_cropped = img.crop(crop_box)
-    img_upscaled = img_cropped.resize((256, 256), Image.NEAREST)
+    img_upscaled = img_cropped.resize((256, 256), Image.LANCZOS)
     alpha = np.array(img_upscaled.split()[3])
     size = radius * 2 + 1
     y, x = np.ogrid[-radius:radius+1, -radius:radius+1]
@@ -83,8 +83,8 @@ def process_image(path, crop_box=CROP_BOX, radius=OUTLINE_RADIUS, sigma=OUTLINE_
     black_outline[..., 3] = (outline_alpha * 0.5).astype(np.uint8)
     black_result = Image.fromarray(black_outline, "RGBA")
     big = Image.alpha_composite(black_result, img_upscaled)
-    outline_downscaled = image_outline.resize((IMG_SIZE, IMG_SIZE), Image.NEAREST)
-    image_downscaled = img_cropped.resize((IMG_SIZE, IMG_SIZE), Image.NEAREST)
+    outline_downscaled = image_outline.resize((IMG_SIZE, IMG_SIZE), Image.LANCZOS)
+    image_downscaled = img_cropped.resize((IMG_SIZE, IMG_SIZE), Image.LANCZOS)
     return big, outline_downscaled, image_downscaled
 
 # --- collect all images ---
@@ -115,8 +115,8 @@ for i, (stem, big, outline_downscaled, image_downscaled) in enumerate(entries):
     atlas.paste(image_downscaled, (x, y))
     outline_atlas.paste(outline_downscaled, (x, y))
     big.save(os.path.join(OUT_RELICS, f"{stem}.png"))
-    write_tres(os.path.join(OUT_TRES, f"{stem}.tres"),         ATLAS_RES_PATH,         x + INSET, y + INSET, REGION_SIZE)
-    write_tres(os.path.join(OUT_TRES, f"{stem}_outline.tres"), OUTLINE_ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE)
+    write_tres(os.path.join(OUT_TRES, f"{stem}.tres"),         ATLAS_RES_PATH,         x + INSET, y + INSET, REGION_SIZE, stem)
+    write_tres(os.path.join(OUT_TRES, f"{stem}_outline.tres"), OUTLINE_ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE, f"{stem}_outline")
 
 atlas.save(os.path.join(OUT_ATLASES, ATLAS_FILENAME))
 outline_atlas.save(os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME))

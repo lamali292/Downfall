@@ -61,7 +61,7 @@
   "DOWNFALL-BAD_OMEN.title": "Bad Omen",
   "DOWNFALL-BATCH.description": "Create a Function immediately out of the cards currently Encoded.",
   "DOWNFALL-BATCH.title": "Batch",
-  "DOWNFALL-BATTLE_PLAN.description": "",
+  "DOWNFALL-BATTLE_PLAN.description": "Enter [gold]Defensive[/gold].\nGain {Block:diff()} [gold]Block[/gold].\n[gold]Scry[/gold] {Scry:diff()}.",
   "DOWNFALL-BATTLE_PLAN.title": "Battle Plan",
   "DOWNFALL-BAUBLE_BURST.description": "",
   "DOWNFALL-BAUBLE_BURST.title": "Bauble Burst",
