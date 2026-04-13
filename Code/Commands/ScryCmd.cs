@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.Code.Displays;
+namespace Downfall.Code.Commands;
 
 public record ScryResult(IReadOnlyList<CardModel> Discarded);
 
