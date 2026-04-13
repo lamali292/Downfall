@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Hexaghost;
 public class MarkOfTheEther : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

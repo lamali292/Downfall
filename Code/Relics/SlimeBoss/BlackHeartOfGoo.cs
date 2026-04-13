@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.SlimeBoss;
 public class BlackHeartOfGoo : SlimeBossRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

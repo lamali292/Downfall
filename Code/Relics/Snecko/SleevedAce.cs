@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Snecko;
 public class SleevedAce : SneckoRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Snecko;
 public class SuperSneckoSoul : SneckoRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class DolphinsStyleGuide : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+    // TODO
 }

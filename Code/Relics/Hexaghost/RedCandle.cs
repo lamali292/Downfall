@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Hexaghost;
 public class RedCandle : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
+    // TODO
 }

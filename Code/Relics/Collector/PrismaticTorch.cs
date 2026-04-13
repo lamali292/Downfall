@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class PrismaticTorch : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    // TODO
 }

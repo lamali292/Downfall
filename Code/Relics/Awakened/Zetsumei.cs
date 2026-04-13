@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Awakened;
 public class Zetsumei : AwakenedRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

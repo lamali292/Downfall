@@ -11,4 +11,5 @@ public class HeartOfGoo : SlimeBossRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
     
     public override RelicModel GetUpgradeReplacement() => ModelDb.Relic<BlackHeartOfGoo>();
+    // TODO
 }

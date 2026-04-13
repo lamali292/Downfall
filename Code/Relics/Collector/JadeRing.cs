@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Collector;
 public class JadeRing : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class BerserkersGuide : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }

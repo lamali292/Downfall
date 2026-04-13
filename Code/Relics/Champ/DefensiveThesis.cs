@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Champ;
 public class DefensiveThesis : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+    // TODO
 }

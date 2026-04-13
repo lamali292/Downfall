@@ -8,4 +8,5 @@ namespace Downfall.Code.Relics.Automaton;
 public class SilverBullet : AutomatonRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    // TODO
 }
