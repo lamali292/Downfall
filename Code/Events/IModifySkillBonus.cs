@@ -7,5 +7,5 @@ namespace Downfall.Code.Events;
 
 public interface IModifySkillBonus
 {
-    int ModifySkillBonus<TPower>(PlayerChoiceContext ctx, StanceModel player, int amount)  where TPower : PowerModel;
+    int ModifySkillBonus<TPower>(ChampStanceModel player, int amount)  where TPower : PowerModel;
 }
