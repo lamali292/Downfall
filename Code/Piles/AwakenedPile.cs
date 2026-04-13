@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using Downfall.Code.Cards.Awakened.Token;
+using Downfall.Code.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,20 +13,14 @@ using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.Code.Piles;
 
-public class AwakenedPile : CustomPile
+public class AwakenedPile() : CustomPile(Spellbook)
 {
     [CustomEnum] public static PileType Spellbook;
     
     private readonly List<Type> _dynamicTypes = [];
 
-    public AwakenedPile() : base(Spellbook)
-    {
-    }
-
     public CardModel? NextSpell { get; private set; }
-
-    public bool UpgradeOnAdd { get; set; }
-
+    
     
     public void AddPersistentType(Type type)
     {
@@ -96,8 +91,7 @@ public class AwakenedPile : CustomPile
         var id = ModelDb.GetId(type);
         var model = ModelDb.GetById<CardModel>(id);
         var spell = state.CreateCard(model, owner);
-
-        if (UpgradeOnAdd && spell.IsUpgradable)
+        if ( AwakenedModel.IsAwakened(owner) && spell.IsUpgradable)
         {
             spell.UpgradeInternal();
             spell.FinalizeUpgradeInternal();

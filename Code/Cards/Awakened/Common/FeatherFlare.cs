@@ -25,7 +25,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
 
 
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this, 1);
     }

@@ -3,6 +3,7 @@ using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Displays;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Combat;
@@ -51,13 +52,7 @@ public static class AutomatonCmd
         if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
         await CardPileCmd.Add(card, pile, skipVisuals: isMe);
         if (isMe) AutomatonDisplay.Refresh(creature);
-
-        var combatState = creature.Creature.CombatState;
-        if (combatState == null) return;
-        foreach (var model in combatState.IterateHookListeners()
-                     .OfType<IOnEncode>())
-            await model.OnCardEncoded(ctx, card, cardPlay);
-
+        await DownfallHook.OnCardEncoded(ctx, card, cardPlay);
         if (pile.Cards.Count >= GetMax(creature))
             await CompileFunctionCard(creature, ctx, cardPlay);
     }
@@ -82,7 +77,6 @@ public static class AutomatonCmd
         {
             var card = snapshot[i];
             var compileContext = new CompileContext(i, snapshot.Count);
-
             switch (card)
             {
                 case ICompilableError compileErrorCard when !card.SuppressCompileError:
@@ -94,10 +88,7 @@ public static class AutomatonCmd
             }
         }
 
-
-        foreach (var model in combatState.IterateHookListeners()
-                     .OfType<IOnCompile>())
-            await model.OnCompile(ctx, snapshot, functionCard, cardPlay);
+        await DownfallHook.OnCompile(ctx, combatState, snapshot, functionCard, cardPlay);
         var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, true);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, 0.7f);

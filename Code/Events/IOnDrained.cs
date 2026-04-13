@@ -1,6 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Players;
 
-namespace Downfall.Code.Interfaces;
+namespace Downfall.Code.Events;
 
 public interface IOnDrained
 {

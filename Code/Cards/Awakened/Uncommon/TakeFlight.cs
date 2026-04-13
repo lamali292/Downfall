@@ -24,7 +24,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
         await CommonActions.CardBlock(this, cardPlay);
     }
     
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BlurPower>(this, 1);
     }

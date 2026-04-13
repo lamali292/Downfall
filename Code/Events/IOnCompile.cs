@@ -3,7 +3,7 @@ using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Interfaces;
+namespace Downfall.Code.Events;
 
 public interface IOnCompile
 {

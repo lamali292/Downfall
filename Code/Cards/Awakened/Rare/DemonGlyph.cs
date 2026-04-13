@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
+using Downfall.Code.Core;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -24,7 +25,7 @@ public class DemonGlyph : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // could be done better.
-        if (AwakenedCmd.IsAwakened(Owner.Creature))
+        if (AwakenedModel.IsAwakened(Owner))
         {
             var count = DynamicVars.Power<DemonGlyphPower>().BaseValue;
             await CommonActions.ApplySelf<StrengthPower>(this, 1 + count);

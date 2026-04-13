@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,7 +24,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         WithTip(DownfallKeyword.Chant);
     }
 
-    public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
     }
