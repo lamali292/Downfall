@@ -384,5 +384,7 @@
   "DOWNFALL-TALON_REND.description": "Deal {Damage:diff()} damage twice. [gold]Conjure[/gold] twice.",
   "DOWNFALL-REALITY_RIFT.title": "Reality Rift",
   "DOWNFALL-REALITY_RIFT.description": "Put a [gold]Void[/gold] on top of your draw pile. Choose 1 of 3 {IfUpgraded:show:upgraded |}cards from another dimension to add into your hand.",
-  "DOWNFALL-REALITY_RIFT.selectionScreenPrompt": "Add into your hand."
+  "DOWNFALL-REALITY_RIFT.selectionScreenPrompt": "Add into your hand.",
+  "DOWNFALL-BLOODIED_PREENING.title": "BloodiedPreening",
+  "DOWNFALL-BLOODIED_PREENING.description": "Lose 2 [gold]Strength[/gold]. \nAt the start of your turn, gain a [gold]Plume Jab[/gold]."
 }

@@ -136,5 +136,8 @@
   "DOWNFALL-GREAT_HEX_POWER.smartDescription": "Gain {Amount} Manaburn at the end of the turn.",
   "DOWNFALL-MAGICIANISM_POWER.title": "Magicianism",
   "DOWNFALL-MAGICIANISM_POWER.description": "Whenever you play a Colorless card, gain X [gold]Block[/gold].",
-  "DOWNFALL-MAGICIANISM_POWER.smartDescription": "Whenever you play a Colorless card, gain {Amount} [gold]Block[/gold]."
+  "DOWNFALL-MAGICIANISM_POWER.smartDescription": "Whenever you play a Colorless card, gain {Amount} [gold]Block[/gold].",
+  "DOWNFALL-BLOODIED_PREENING_POWER.title": "Bloodied Preening",
+  "DOWNFALL-BLOODIED_PREENING_POWER.description": "At the start of your turn, gain a [gold]Plume Jab[/gold].",
+  "DOWNFALL-BLOODIED_PREENING_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:a|{Amount}} [gold]Plume Jab[/gold]."
 }
