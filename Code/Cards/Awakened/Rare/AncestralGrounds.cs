@@ -1,9 +1,11 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Cards.Awakened.Rare;
@@ -14,7 +16,7 @@ public class AncestralGrounds : AwakenedCardModel
     public AncestralGrounds() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(12);
-        WithVar("Energy", 2, 1);
+        WithVars(new EnergyVar(2).WithUpgrade(1));
         WithEnergyTip();
         WithTip(typeof(Void));
     }
