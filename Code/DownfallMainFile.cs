@@ -1,4 +1,5 @@
 using System.Reflection;
+using Downfall.Code.Patches;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -24,5 +25,7 @@ public partial class DownfallMainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
+        
+        DownfallSubscriber.Subscribe();
     }
 }

@@ -1,16 +1,26 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Awakened.Basic;
+using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Powers.Awakened;
 using Downfall.Code.Relics.Awakened;
+using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Character;
+
 
 public class Awakened : DownfallCharacterModel
 {
@@ -87,4 +97,46 @@ public class Awakened : DownfallCharacterModel
                 ?.Creature.HasPower<AwakenedFormPower>() ?? false;
         }
     }
+    
+    
+    public override bool ShouldReceiveCombatHooks => true;
+
+    public override Task AfterRoomEntered(AbstractRoom room)
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+        {
+            if (player.Character is not Awakened) continue;
+            AwakenedCmd.GetSpellbook(player)?.Refresh(player);
+            TaskHelper.RunSafely(PowerCmd.Apply<AwakenMeterPower>(player.Creature, 1, player.Creature, null, true));
+            var combatRoomNode = NCombatRoom.Instance;
+            if (combatRoomNode != null)
+            {
+                SetupAwakenedUi(combatRoomNode, player);
+            }
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private static void SetupAwakenedUi(NCombatRoom combatRoom, Player player)
+    {
+        var display = NSpellbookDisplay.Create(player);
+        var vfxContainer = combatRoom.CombatVfxContainer;
+        vfxContainer.AddChildSafely(display);
+        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        if (creatureNode != null)
+        {
+            var globalTopPos = creatureNode.GetTopOfHitbox();
+            display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
+            display.Position += new Vector2(-120f, -80f);
+        }
+        AwakenedDisplay.Register(player, display);
+        display.Refresh();
+    }
+    
+    
+    
+    
 }
