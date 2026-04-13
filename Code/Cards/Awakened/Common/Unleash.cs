@@ -1,14 +1,10 @@
-using System.Linq;
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Common;
 
@@ -24,7 +20,7 @@ public class Unleash : AwakenedCardModel
     {
         return PileType.Hand.GetPile(card.Owner).Cards.Count(c => c != card);
     }
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

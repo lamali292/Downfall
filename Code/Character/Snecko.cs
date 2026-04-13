@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Snecko.Basic;
 using Downfall.Code.Relics.Snecko;
 using Godot;

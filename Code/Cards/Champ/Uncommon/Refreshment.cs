@@ -1,9 +1,12 @@
-using System.Threading.Tasks;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
@@ -12,15 +15,22 @@ public class Refreshment : ChampCardModel
 {
     public Refreshment() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithVars(new EnergyVar(2).WithUpgrade(1));
+        WithCards(3, 1);
     }
 
-    // TODO: Implement
+
+    protected override bool ShouldGlowGoldInternal =>
+        Owner.ShouldBerserkerComboTrigger() || Owner.ShouldDefensiveComboTrigger();
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
+        if (Owner.ShouldBerserkerComboTrigger())
+        {
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+            await CardCmd.Exhaust(ctx, this);
+        }
 
-
-    protected override void OnUpgrade()
-    {
+        if (Owner.ShouldDefensiveComboTrigger()) await CommonActions.Draw(this, ctx);
     }
 }

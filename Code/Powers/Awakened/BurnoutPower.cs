@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

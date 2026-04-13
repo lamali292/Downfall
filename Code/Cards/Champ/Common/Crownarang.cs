@@ -1,8 +1,6 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +16,7 @@ public class Crownarang : ChampCardModel
         WithCards(2, 1);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.IsInChampStance<BerserkerChampStance>();
+    protected override bool ShouldGlowGoldInternal => Owner.ShouldBerserkerComboTrigger();
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
@@ -17,10 +16,11 @@ public class TornadoPunch : ChampCardModel
         WithDamage(12, 2);
         WithBlock(7, 2);
     }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = result.Results.Count(r => r.TotalDamage>0);
+        var a = result.Results.Count(r => r.TotalDamage > 0);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue * a, ValueProp.Move, cardPlay);
     }
 }

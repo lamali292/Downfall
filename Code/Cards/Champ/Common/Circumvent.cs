@@ -1,8 +1,6 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Core.Champ;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +18,7 @@ public class Circumvent : ChampCardModel
         WithCards(2);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.IsInChampStance<DefensiveChampStance>();
+    protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

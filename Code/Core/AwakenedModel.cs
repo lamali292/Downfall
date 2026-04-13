@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using Downfall.Code.Character;
 using Downfall.Code.Commands;
@@ -22,7 +21,8 @@ namespace Downfall.Code.Core;
 public class AwakenedModel() : CustomSingletonModel(true, true)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
-   public static bool IsAwakened(Player? player)
+
+    public static bool IsAwakened(Player? player)
     {
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }

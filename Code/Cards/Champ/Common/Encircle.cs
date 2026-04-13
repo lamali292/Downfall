@@ -1,10 +1,7 @@
-using System.Linq;
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Champ;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -18,7 +15,7 @@ public class Encircle : ChampCardModel
         WithDamage(5, 3);
         WithPower<GloryPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

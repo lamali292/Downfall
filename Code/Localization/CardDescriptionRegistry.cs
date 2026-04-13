@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Downfall.Code.Cards.CardModels;
+﻿using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Models;
 
@@ -12,8 +11,10 @@ public interface IExtraDescriptionSource
 
 public static class CardDescriptionRegistry
 {
-    private static readonly Dictionary<Type, List<(DescriptionInjectionPoint point, IExtraDescriptionSource source)>> Sources = new();
-  public static void RegisterAll()
+    private static readonly Dictionary<Type, List<(DescriptionInjectionPoint point, IExtraDescriptionSource source)>>
+        Sources = new();
+
+    public static void RegisterAll()
     {
         Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText, new EncodeDescriptionSource());
         Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileDescriptionSource());
@@ -37,6 +38,7 @@ public static class CardDescriptionRegistry
             hierarchy.Add(type);
             type = type.BaseType;
         }
+
         hierarchy.Reverse();
 
         foreach (var t in hierarchy)

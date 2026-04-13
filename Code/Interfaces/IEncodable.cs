@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Cards.CardModels;
+﻿using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

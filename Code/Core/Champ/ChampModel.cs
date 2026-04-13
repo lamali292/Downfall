@@ -1,7 +1,6 @@
 ﻿// ChampModel.cs
 
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Events;
@@ -10,11 +9,10 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Core.Champ;
 
-public class ChampModel()  : CustomSingletonModel(true, true)
+public class ChampModel() : CustomSingletonModel(true, true)
 {
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
         new(DownfallModelDb.ChampStance<NoChampStance>);

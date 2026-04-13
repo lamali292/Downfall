@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Downfall.Code.Abstract;
+﻿using Downfall.Code.Abstract;
 using Downfall.Code.Displays;
 using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Commands;

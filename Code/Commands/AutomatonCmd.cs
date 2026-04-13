@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BaseLib.Patches.Content;
+﻿using BaseLib.Patches.Content;
 using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;

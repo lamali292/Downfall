@@ -1,28 +1,38 @@
-using System.Threading.Tasks;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Champ.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
 public class Taunt : ChampCardModel
 {
-    public Taunt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Taunt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        
-        
+        WithPower<VulnerablePower>(1);
+        WithPower<WeakPower>(1);
     }
 
-    // TODO: Implement
+
+    public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        if (IsUpgraded)
+        {
+            if (CombatState == null) return;
+            var enemies = CombatState.HittableEnemies;
+            await CommonActions.Apply<VulnerablePower>(enemies, this);
+            await CommonActions.Apply<WeakPower>(enemies, this);
+        }
+        else
+        {
+            if (cardPlay.Target == null) return;
+            await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
+            await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
+        }
     }
 }
