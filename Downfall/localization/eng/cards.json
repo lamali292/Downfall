@@ -358,8 +358,8 @@
   "DOWNFALL-SPREADING_SPORES.description": "Gain {ThornsPower:diff()} Thorns.\nShuffle a copy of this into your draw pile. ",
   "DOWNFALL-SIGN_IN_BLOOD.title": "Sign in Blood",
   "DOWNFALL-SIGN_IN_BLOOD.description": "Take {HpLoss:diff()} damage.\nDraw {Cards:diff()} cards.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
-  "DOWNFALL-THE_ENCYCLOPEDIA.title": "",
-  "DOWNFALL-THE_ENCYCLOPEDIA.description": "",
+  "DOWNFALL-THE_ENCYCLOPEDIA.title": "The Encyclopedia",
+  "DOWNFALL-THE_ENCYCLOPEDIA.description": "Choose 2 of {Cards:diff()} random cards to add into your hand.\nThey cost 2 less.",
   "DOWNFALL-SKYWARD.title": "Skyward",
   "DOWNFALL-SKYWARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} card.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Power played this combat.",
   "DOWNFALL-SOUL_DRAW.title": "",
@@ -398,5 +398,8 @@
   "DOWNFALL-MANA_SHIELD.title": "Mana Shield",
   "DOWNFALL-MANA_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Conjure[/gold].\nReduce the cost of a random [gold]Spell[/gold] in hand by 1. ",
   "DOWNFALL-DEFEND_COLLECTOR.title": "",
-  "DOWNFALL-DEFEND_COLLECTOR.description": ""
+  "DOWNFALL-DEFEND_COLLECTOR.description": "",
+  "DOWNFALL-DEFEND_SLIME_BOSS.title": "",
+  "DOWNFALL-DEFEND_SLIME_BOSS.description": "",
+  "DOWNFALL-THE_ENCYCLOPEDIA.selectionScreenPrompt": "Pick a card"
 }
