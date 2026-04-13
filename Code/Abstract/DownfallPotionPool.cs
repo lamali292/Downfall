@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.Code.Abstract;
 
 public abstract class DownfallPotionPool<T> : CustomPotionPoolModel
-    where T : DownfallCharacterModel<T>
+    where T : DownfallCharacterModel
 {
     private static T Character => ModelDb.Character<T>();
 

@@ -1,0 +1,89 @@
+﻿using Downfall.Code.Commands;
+using Downfall.Code.Interfaces;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Players;
+using Godot;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
+
+namespace Downfall.Code.Cards.Vfx;
+
+public partial class NSpellbookDisplay : Control
+{
+    public const float IconSize = 64f;
+    private const float IconDistance = IconSize + 8f;
+
+    private readonly List<TextureRect> _iconNodes = [];
+    private float _bobTime;
+    private readonly float[] _bobOffsets = new float[8];
+    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f, 1.0f, 0.85f, 1.15f, 0.98f];
+
+    private Player? _trackedPlayer;
+
+    public static NSpellbookDisplay Create(Player player) => new()
+    {
+        _trackedPlayer = player,
+        Position = Vector2.Zero
+    };
+
+    public void Refresh()
+    {
+        if (_trackedPlayer == null) return;
+
+        foreach (var icon in _iconNodes) icon.QueueFree();
+        _iconNodes.Clear();
+
+        var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
+        if (spellbook == null) return;
+
+        var cards = spellbook.Cards;
+        GD.Print($"[SpellbookDisplay] Refreshing with {cards.Count} spells");
+
+        for (var i = 0; i < cards.Count; i++)
+        {
+            var card = cards[i];
+            if (card is not ISpell spell) continue;
+
+            var iconPath = spell.SpellIconPath;
+            if (!ResourceLoader.Exists(iconPath)) continue;
+
+            var icon = new TextureRect
+            {
+                Texture = ResourceLoader.Load<Texture2D>(iconPath),
+                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                CustomMinimumSize = new Vector2(IconSize, IconSize),
+                Position = new Vector2(i * IconDistance, 0f),
+                Modulate = card == spellbook.NextSpell
+                    ? new Color(1.4f, 1.4f, 0.6f)
+                    : Colors.White,
+                MouseFilter = MouseFilterEnum.Stop  // add this
+            };
+
+            // Add hover tip
+            var captured = card;
+            icon.MouseEntered += () =>
+            {
+                var tip = HoverTipFactory.FromCard(captured);
+                NHoverTipSet.CreateAndShow(icon, tip, HoverTipAlignment.Center);
+            };
+            icon.MouseExited += () => NHoverTipSet.Remove(icon);
+
+            AddChild(icon);
+            _iconNodes.Add(icon);
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
+
+        _bobTime += (float)delta;
+        for (var i = 0; i < _bobOffsets.Length; i++)
+            _bobOffsets[i] = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 4f;
+
+        for (var i = 0; i < _iconNodes.Count; i++)
+            _iconNodes[i].Position = new Vector2(
+                i * IconDistance,
+                i < _bobOffsets.Length ? _bobOffsets[i] : 0f);
+    }
+}

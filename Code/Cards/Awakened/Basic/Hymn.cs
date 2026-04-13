@@ -1,9 +1,13 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Awakened.Token;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Awakened;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Awakened.Basic;
@@ -16,8 +20,19 @@ public class Hymn() : AwakenedCardModel(0, CardType.Skill, CardRarity.Basic, Tar
         new BlockVar(3, ValueProp.Move)
     ];
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return base.PlayEffect(ctx, cardPlay);
+        ArgumentNullException.ThrowIfNull(CombatState);
+        
+        await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
+
+        var card = CombatState.CreateCard<Ceremony>(Owner);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        await CommonActions.ApplySelf<DrainedPower>(this, 1);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Character;
+﻿using Downfall.Code.Abstract;
+using Downfall.Code.Character;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Saves.Managers;
@@ -17,7 +18,7 @@ internal class ProgressSaveManager_Patches
         {
             // Skip method for Downfall or handle custom logic
             // TODO: general check or check if base lib fixed this
-            return localPlayer.Character is not Automaton;
+            return localPlayer.Character is not DownfallCharacterModel;
         }
     }
 }

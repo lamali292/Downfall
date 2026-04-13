@@ -3,6 +3,7 @@ using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Piles;
+using Downfall.Code.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -52,7 +53,7 @@ public static class AutomatonCmd
     {
         return creature.Player == null
             ? null
-            : CustomPiles.GetCustomPile(creature.Player.PlayerCombatState, AutomatonPile.EncodePile) as AutomatonPile;
+            : CustomPiles.GetCustomPile(creature.Player.PlayerCombatState, AutomatonPile.FunctionSequence) as AutomatonPile;
     }
 
     public static int GetMax(Creature creature)

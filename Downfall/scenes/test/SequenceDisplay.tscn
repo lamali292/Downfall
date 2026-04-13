@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://2ddcjyxi66gv"]
-
-[ext_resource type="Script" uid="uid://bi8der1y0ybv" path="res://Code/Cards/Automaton/NSequenceDisplay.cs" id="1_2h3sv"]
-
-[node name="Node2D" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_2h3sv")
