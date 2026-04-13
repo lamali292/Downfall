@@ -21,6 +21,6 @@ public class Thaumaturgy : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(this, DynamicVars.Dexterity.BaseValue);
-        await CommonActions.ApplySelf<ThaumaturgyPower>(this, DynamicVars.Power<ThaumaturgyPower>().BaseValue);
+        await CommonActions.ApplySelf<ThaumaturgyPower>(this);
     }
 }

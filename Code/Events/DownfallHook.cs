@@ -3,6 +3,7 @@ using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -90,4 +91,7 @@ public static class DownfallHook
     public static int ModifyFinisherBonus(CombatState cs, ChampStanceModel stanceModel, int baseAmount) =>
         Aggregate<IModifyFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyFinisherBonus(stanceModel, current));
+    
+    public static bool PreventDoomRemoval(CombatState cs, Creature creature) =>
+        Any<IPreventDoomRemoval>(cs, m => m.PreventDoomRemoval(creature));
 }

@@ -1,0 +1,128 @@
+queen.png
+size:2033,515
+filter:Linear,Linear
+scale:0.186
+back arm lower
+bounds:1891,103,72,171
+offsets:0,0,72,180
+back wrist
+bounds:161,9,38,38
+back_arm_upper
+bounds:1462,132,57,142
+bottom coat layer
+bounds:2,49,336,464
+chain
+bounds:201,16,69,31
+cloak back
+bounds:1237,112,194,401
+crown
+bounds:1589,18,60,114
+death_ghost
+bounds:340,56,457,515
+offsets:0,0,460,515
+rotate:90
+gem_shine
+bounds:1719,92,170,86
+glow_hand_1
+bounds:1818,4,55,86
+offsets:1,1,57,89
+glow_hand_2
+bounds:1345,7,103,60
+offsets:1,1,105,62
+rotate:90
+hand 1
+bounds:1875,4,53,86
+offsets:0,0,54,86
+hand 10
+bounds:1651,38,66,94
+offsets:0,0,67,94
+hand 2
+bounds:1747,4,69,86
+offsets:0,0,71,86
+hand 3
+bounds:1965,201,56,73
+offsets:1,0,57,73
+hand 4
+bounds:1930,24,77,74
+offsets:0,0,79,74
+rotate:90
+hand 5
+bounds:1801,207,67,82
+rotate:90
+hand 6
+bounds:702,8,46,105
+rotate:90
+hand 8
+bounds:1528,15,59,117
+offsets:0,0,59,120
+hand 9
+bounds:1466,9,60,121
+offsets:2,0,62,124
+hand a
+bounds:809,8,46,105
+rotate:90
+hand b
+bounds:1698,180,46,94
+offsets:1,0,47,94
+hand c
+bounds:348,2,52,83
+offsets:1,0,54,86
+rotate:90
+hand d
+bounds:1746,188,53,86
+offsets:0,0,54,86
+hand e
+bounds:1407,11,99,57
+offsets:0,0,101,57
+rotate:90
+hand l bottom
+bounds:113,5,42,46
+offsets:2,0,44,46
+rotate:90
+hand l top
+bounds:62,4,43,49
+offsets:0,0,46,49
+rotate:90
+hand7
+bounds:510,6,48,100
+offsets:0,0,48,105
+rotate:90
+head scarf
+bounds:916,5,90,146
+rotate:90
+head void
+bounds:612,6,48,88
+rotate:90
+scarf
+bounds:1433,124,150,27
+rotate:90
+shadow
+bounds:1167,108,405,68
+offsets:1,0,406,68
+rotate:90
+shoulders
+bounds:1521,134,140,175
+rotate:90
+sleeve L
+bounds:1651,9,27,94
+rotate:90
+slleeve R
+bounds:2,2,58,45
+staff
+bounds:1433,276,110,590
+rotate:90
+staff jewel
+bounds:272,19,28,74
+rotate:90
+staff_shadow
+bounds:1433,388,125,598
+offsets:4,6,134,610
+rotate:90
+top arm
+bounds:1064,9,86,279
+rotate:90
+top coat layer
+bounds:857,97,308,416
+top hand
+bounds:433,3,51,75
+rotate:90

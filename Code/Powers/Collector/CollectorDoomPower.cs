@@ -1,5 +1,8 @@
 ﻿using BaseLib.Hooks;
 using Downfall.Code.Abstract;
+using Downfall.Code.Commands;
+using Downfall.Code.Events;
+using Downfall.Code.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,14 +23,14 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         yield return new HealthBarForecastSegment(
             amount:    Amount,
             color:     new Color("880088"),
-            direction: HealthBarForecastDirection.FromLeft,
+            direction: HealthBarForecastDirection.FromRight,
             order:     0
         );
     }
     
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
-        if (side != Owner.Side) return;
+        if (side != Owner.Side || Owner.CombatState == null) return;
 
         var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
@@ -39,7 +42,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         
         if (Owner.IsAlive)
         {
-            if (!IsAfflicted(Owner))
+            if (!Owner.IsAfflicted() && !DownfallHook.PreventDoomRemoval(Owner.CombatState, Owner))
                 await PowerCmd.Remove(this);
         }
         else
@@ -47,9 +50,6 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
     }
     
 
-    public static bool IsAfflicted(Creature creature)
-    {
-        return creature.GetPowerAmount<VulnerablePower>() > 0 && creature.GetPowerAmount<WeakPower>() > 0;
-    }
+ 
     
 }

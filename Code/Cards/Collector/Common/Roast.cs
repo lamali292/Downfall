@@ -11,15 +11,12 @@ public class Roast : CollectorCardModel
 {
     public Roast() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithPyre();
+        WithDamage(4, 3);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

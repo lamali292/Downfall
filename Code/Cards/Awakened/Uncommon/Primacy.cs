@@ -18,6 +18,6 @@ public class Primacy : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PrimacyPower>(this, DynamicVars.Power<PrimacyPower>().BaseValue);
+        await CommonActions.ApplySelf<PrimacyPower>(this);
     }
 }

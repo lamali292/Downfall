@@ -20,6 +20,6 @@ public class SongOfSorrow : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SongOfSorrowPower>(this, DynamicVars.Power<SongOfSorrowPower>().BaseValue);
+        await CommonActions.ApplySelf<SongOfSorrowPower>(this);
     }
 }

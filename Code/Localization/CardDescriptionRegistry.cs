@@ -29,6 +29,9 @@ public static class CardDescriptionRegistry
             Sources[typeof(T)] = list = [];
         list.Add((point, source));
     }
+    
+    public static string GetJoined(CardModel card, DescriptionInjectionPoint point) =>
+        string.Join('\n', GetLines(card, point).Where(l => !string.IsNullOrEmpty(l)));
 
     public static IEnumerable<string> GetLines(CardModel card, DescriptionInjectionPoint point)
     {

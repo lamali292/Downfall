@@ -31,13 +31,15 @@ public class DownfallCardCmd
     public static async Task GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
+        bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false) where T : CardModel
     {
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
+        if (upgraded) card.UpgradeInternal();
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, true, position);
-        if (!result.success || skipAnimation) return;
+        if (!result.success || skipAnimation || pileType == PileType.Hand) return;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
 
@@ -45,6 +47,7 @@ public class DownfallCardCmd
         PileType pileType,
         int count,
         CardPilePosition position = CardPilePosition.Bottom,
+        bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false) where T : CardModel
@@ -55,11 +58,12 @@ public class DownfallCardCmd
         for (var i = 0; i < count; i++)
         {
             var card = player.Creature.CombatState!.CreateCard(model, player);
+            if (upgraded) card.UpgradeInternal();
             cardInstances.Add(card);
         }
 
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
-        if (skipAnimation) return;
+        if (skipAnimation || pileType == PileType.Hand) return;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
     }
 

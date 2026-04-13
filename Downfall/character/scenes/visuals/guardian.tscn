@@ -8,3 +8,4 @@ preview_skin = "Default"
 preview_animation = "idle"
 preview_frame = false
 preview_time = 0.0
+scale = Vector2(-1, 1)

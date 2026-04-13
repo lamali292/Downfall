@@ -35,7 +35,7 @@ public class Deathcoil : AwakenedCardModel
             NHemokinesisEffect.Spawn(start, target);
         }
 
-        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
+        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this);
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
     }
 }

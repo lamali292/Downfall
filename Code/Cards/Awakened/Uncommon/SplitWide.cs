@@ -23,6 +23,6 @@ public class SplitWide : AwakenedCardModel
     {
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<SplitWidePower>(cardPlay.Target, this, DynamicVars.Power<SplitWidePower>().BaseValue);
+        await CommonActions.Apply<SplitWidePower>(cardPlay.Target, this);
     }
 }

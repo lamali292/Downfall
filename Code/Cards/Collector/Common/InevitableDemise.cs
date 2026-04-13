@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,13 @@ public class InevitableDemise : CollectorCardModel
 {
     public InevitableDemise() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(9, 3);
+        WithPower<DemisePower>(1);
     }
-
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.Apply<DemisePower>(cardPlay.Target, this);
     }
 }

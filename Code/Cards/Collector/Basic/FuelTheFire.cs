@@ -1,9 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Core.Collector;
+using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Collector.Basic;
 
@@ -12,16 +13,16 @@ public class FuelTheFire : CollectorCardModel
 {
     public FuelTheFire() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
+        WithPower<ReserveNextTurnPower>(2);
+        WithPyre();
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        CollectorEnergy.Gain(cardPlay.Card.Owner, 1);
-    }
-
-
-    protected override void OnUpgrade()
-    {
+       await CommonActions.ApplySelf<ReserveNextTurnPower>(this);
+       if (IsUpgraded)
+       {
+           await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this, 1);
+       }
     }
 }

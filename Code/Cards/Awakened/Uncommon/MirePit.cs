@@ -23,8 +23,7 @@ public class MirePit : AwakenedCardModel
     {
         if (CombatState == null) return;
         foreach (var combatStateEnemy in CombatState.Enemies)
-            await CommonActions.Apply<TemporaryStrengthDownPower>(combatStateEnemy, this,
-                DynamicVars.Power<TemporaryStrengthDownPower>().BaseValue);
+            await CommonActions.Apply<TemporaryStrengthDownPower>(combatStateEnemy, this);
 
         await CommonActions.ApplySelf<DrainedPower>(this, 1);
     }

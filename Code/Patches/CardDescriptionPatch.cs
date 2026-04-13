@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Reflection.Emit;
 using Downfall.Code.Abstract;
 using Downfall.Code.Localization;
 using HarmonyLib;
@@ -24,115 +25,81 @@ public enum DescriptionInjectionPoint
 [HarmonyPatch]
 public static class CardDescriptionPatch
 {
-    private static readonly Action<CardModel, LocString> AddExtraArgsToDescription =
-        AccessTools.MethodDelegate<Action<CardModel, LocString>>(
-            AccessTools.Method(typeof(CardModel), "AddExtraArgsToDescription"));
-
-    private static readonly LocString Period = new("card_keywords", "PERIOD");
-
-    private static MethodBase TargetMethod()
-    {
-        return AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
+    private static MethodBase TargetMethod() =>
+        AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
         [
             typeof(PileType),
             AccessTools.Inner(typeof(CardModel), "DescriptionPreviewType"),
             typeof(Creature)
         ]);
+
+    public static void Postfix(CardModel __instance, ref string __result)
+    {
+        if (__instance is not DownfallCardModel) return;
+
+        var top    = CardDescriptionRegistry.GetJoined(__instance, DescriptionInjectionPoint.TopOfCard);
+        var bottom = CardDescriptionRegistry.GetJoined(__instance, DescriptionInjectionPoint.BottomOfCard);
+
+        if (!string.IsNullOrEmpty(top))
+            __result = top + "\n" + __result;
+        if (!string.IsNullOrEmpty(bottom))
+            __result = __result + "\n" + bottom;
     }
 
-    public static bool Prefix(CardModel __instance, PileType pileType, object previewType, Creature? target,
-        ref string __result)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+{
+    var codes = instructions.ToList();
+
+    var joinMethod = typeof(string)
+        .GetMethods()
+        .First(m => m.Name == nameof(string.Join)
+                 && m.IsGenericMethod
+                 && m.GetParameters().Length == 2
+                 && m.GetParameters()[0].ParameterType == typeof(char));
+
+    var injectMethod = AccessTools.Method(typeof(CardDescriptionPatch), nameof(Inject));
+
+    for (int i = 0; i < codes.Count; i++)
     {
-        if (__instance is not DownfallCardModel) return true; // let original run for non-downfall cards
-        __result = BuildDescription(__instance, pileType, previewType, target);
-        return false;
-    }
-
-    private static string BuildDescription(CardModel card, PileType pileType, object previewType, Creature? target)
-    {
-        var description = LocString(card, pileType, previewType, target);
-
-
-        var source = new List<string>();
-
-        source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.TopOfCard));
-
-        source.AddRange(from keyword in CardKeywordOrder.beforeDescription
-            let flag = keyword switch
-            {
-                CardKeyword.Retain => card.ShouldRetainThisTurn,
-                CardKeyword.Sly => card.IsSlyThisTurn,
-                _ => card.Keywords.Contains(keyword)
-            }
-            where flag
-            select GetCardText(keyword));
-
-        source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.AboveMainText));
-        source.Add(description.GetFormattedText());
-        source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.BelowMainText));
-
-        var dynamicExtraCardText1 = card.Enchantment?.DynamicExtraCardText;
-        if (dynamicExtraCardText1 != null)
-            source.Add($"[purple]{dynamicExtraCardText1.GetFormattedText()}[/purple]");
-        var dynamicExtraCardText2 = card.Affliction?.DynamicExtraCardText;
-        if (dynamicExtraCardText2 != null)
-            source.Add($"[purple]{dynamicExtraCardText2.GetFormattedText()}[/purple]");
-
-
-        var enchantedReplayCount = card.GetEnchantedReplayCount();
-        if (enchantedReplayCount > 0)
+        // After stloc.s source (local 5) — inject AboveMainText at index 0, BelowMainText as Add
+        if (codes[i].opcode == OpCodes.Stloc_S && codes[i].operand is LocalBuilder lb && lb.LocalIndex == 5)
         {
-            var locString = new LocString("static_hover_tips", "REPLAY.extraText");
-            locString.Add("Times", enchantedReplayCount);
-            source.Add(locString.GetFormattedText());
+            // Insert after the stloc
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, injectMethod));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.BelowMainText));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldloc_S, (byte)5));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldarg_0));
+
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, injectMethod));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.AboveMainText));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldloc_S, (byte)5));
+            codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldarg_0));
+            break;
         }
 
-        source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.AboveKeywords));
-        source.AddRange(CardKeywordOrder.afterDescription.Intersect(card.Keywords).Select(GetCardText));
-        source.AddRange(CardDescriptionRegistry.GetLines(card, DescriptionInjectionPoint.BottomOfCard));
-
-        return string.Join('\n', source.Where(l => !string.IsNullOrEmpty(l)));
+        // Before final Join — inject AboveKeywords
+        if (codes[i].Calls(joinMethod))
+        {
+            codes.Insert(i, new CodeInstruction(OpCodes.Call, injectMethod));
+            codes.Insert(i, new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.AboveKeywords));
+            codes.Insert(i, new CodeInstruction(OpCodes.Ldloc_S, (byte)5));
+            codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_0));
+            break;
+        }
     }
 
-    private static LocString LocString(CardModel card, PileType pileType, object previewType, Creature? target)
-    {
-        var descPreviewType = (int)previewType;
+    return codes;
+}
 
-        var description = card.Description;
-        card.DynamicVars.AddTo(description);
-        AddExtraArgsToDescription(card, description);
+public static void Inject(CardModel card, List<string> source, DescriptionInjectionPoint point)
+{
+    if (card is not DownfallCardModel) return;
+    var lines = CardDescriptionRegistry.GetLines(card, point).Where(l => !string.IsNullOrEmpty(l)).ToList();
+    if (lines.Count == 0) return;
 
-        var upgradeDisplay = descPreviewType == 1
-            ? UpgradeDisplay.UpgradePreview
-            : card.IsUpgraded
-                ? UpgradeDisplay.Upgraded
-                : UpgradeDisplay.Normal;
-
-        description.Add(new IfUpgradedVar(upgradeDisplay));
-
-        var variable1 = pileType is PileType.Hand or PileType.Play;
-        description.Add("OnTable", variable1);
-
-        var variable2 = CombatManager.Instance.IsInProgress && (card.Pile?.IsCombatPile ?? pileType.IsCombatPile());
-        description.Add("InCombat", variable2);
-        description.Add("IsTargeting", target != null);
-        description.Add("TargetType", card.TargetType.ToString());
-
-        var prefix = EnergyIconHelper.GetPrefix(card);
-        description.Add("energyPrefix", prefix);
-        description.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
-
-        foreach (var variable3 in description.Variables)
-            if (variable3.Value is EnergyVar energyVar)
-                energyVar.ColorPrefix = prefix;
-
-        return description;
-    }
-
-    private static string GetCardText(CardKeyword keyword)
-    {
-        var slugify = StringHelper.Slugify(keyword.ToString());
-        var title = new LocString("card_keywords", slugify + ".title");
-        return $"[gold]{title.GetFormattedText()}[/gold]{Period.GetRawText()}";
-    }
+    if (point == DescriptionInjectionPoint.AboveMainText)
+        source.InsertRange(0, lines);
+    else
+        source.AddRange(lines);
+}
 }

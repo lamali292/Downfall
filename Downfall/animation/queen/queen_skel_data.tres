@@ -1,0 +1,19 @@
+[gd_resource type="SpineSkeletonDataResource" format=3 uid="uid://ds8q51a2m3aex"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://bo5m1n1nip132" path="res://Downfall/animation/queen/queen.atlas" id="1_ehjj2"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bxlvu43qm4712" path="res://Downfall/animation/queen/queen.skel" id="2_a1qmc"]
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_58vjy"]
+from = "idle_loop"
+to = "hurt"
+mix = 0.01
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ph014"]
+from = "hurt"
+to = "hurt"
+
+[resource]
+atlas_res = ExtResource("1_ehjj2")
+skeleton_file_res = ExtResource("2_a1qmc")
+default_mix = 0.05
+animation_mixes = [SubResource("SpineAnimationMix_58vjy"), SubResource("SpineAnimationMix_ph014")]

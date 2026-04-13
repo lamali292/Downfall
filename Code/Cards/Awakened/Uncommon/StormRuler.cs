@@ -24,6 +24,6 @@ public class StormRuler : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-        await CommonActions.ApplySelf<StormRulerPower>(this, DynamicVars.Power<StormRulerPower>().BaseValue);
+        await CommonActions.ApplySelf<StormRulerPower>(this);
     }
 }

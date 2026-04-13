@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Collector;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +13,15 @@ public class Deathmark : CollectorCardModel
 {
     public Deathmark() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(7, 2);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        if (cardPlay.Target == null) return;
+        var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var damage = 2 * attack.Results.Sum(e => e.UnblockedDamage);
+        await PowerCmd.Apply<DeathmarkedPower>(cardPlay.Target, damage, Owner.Creature, this);
     }
 }
+    

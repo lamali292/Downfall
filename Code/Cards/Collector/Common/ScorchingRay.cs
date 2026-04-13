@@ -9,17 +9,17 @@ namespace Downfall.Code.Cards.Collector.Common;
 [Pool(typeof(CollectorCardPool))]
 public class ScorchingRay : CollectorCardModel
 {
-    public ScorchingRay() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
     {
+        WithDamage(8, 3);
     }
 
-    // TODO: Implement
+    protected override bool HasEnergyCostX => true;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var amount = ResolveEnergyXValue();
+        await CommonActions.CardAttack(this, cardPlay, amount).Execute(ctx);
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

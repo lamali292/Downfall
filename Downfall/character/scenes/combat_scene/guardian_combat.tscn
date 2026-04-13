@@ -8,7 +8,7 @@ script = ExtResource("1_im64a")
 
 [node name="Visuals" parent="." instance=ExtResource("1_nk2yg")]
 unique_name_in_owner = true
-scale = Vector2(0.56, 0.56)
+scale = Vector2(-0.56, 0.56)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

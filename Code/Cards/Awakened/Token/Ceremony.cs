@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Awakened;
@@ -22,7 +23,7 @@ public class Ceremony : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(this);
     }
 
     // Fervent Worship stuff

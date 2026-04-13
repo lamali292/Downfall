@@ -1,6 +1,9 @@
 ﻿using Downfall.Code.Abstract;
+using Downfall.Code.Commands;
+using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.CardModels;
 
@@ -11,6 +14,19 @@ public abstract class CollectorCardModel(
     TargetType targetType)
     : DownfallCardModel<Character.Collector>(cost, type, rarity, targetType)
 {
+    
+    private bool _hasPyre;
+    protected CardModel? PyredCard { get; private set; }
+    
+    protected CollectorCardModel WithPyre()
+    {
+        _hasPyre = true;
+        WithKeyword(DownfallKeywords.Pyre);
+        return this;
+    }
+
+    protected override bool IsPlayable => !_hasPyre || PyreCondition();
+    
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -18,6 +34,13 @@ public abstract class CollectorCardModel(
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (_hasPyre)
+        {
+            PyredCard = await CollectorCmd.Pyre(ctx, this);
+            if (PyredCard == null) return;
+        }
         await PlayEffect(ctx, cardPlay);
     }
+    
+    protected bool PyreCondition() => PileType.Hand.GetPile(Owner).Cards.Any(e => e != this);
 }

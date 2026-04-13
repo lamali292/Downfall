@@ -25,6 +25,6 @@ public class WaveOfMiasma : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
         var currentEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
         foreach (var enemy in currentEnemies)
-            await CommonActions.Apply<ManaburnPower>(enemy, this, DynamicVars.Power<ManaburnPower>().BaseValue);
+            await CommonActions.Apply<ManaburnPower>(enemy, this);
     }
 }

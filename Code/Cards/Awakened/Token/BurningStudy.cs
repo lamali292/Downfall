@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Events;
 using Downfall.Code.Extensions;
@@ -32,8 +33,8 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
-        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(this);
         foreach (var combatStateEnemy in CombatState.Enemies)
-            await CommonActions.Apply<WeakPower>(combatStateEnemy, this, DynamicVars.Power<WeakPower>().BaseValue);
+            await CommonActions.Apply<WeakPower>(combatStateEnemy, this);
     }
 }

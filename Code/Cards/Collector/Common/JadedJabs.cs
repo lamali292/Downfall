@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.Code.Cards.Collector.Common;
 
@@ -11,15 +13,16 @@ public class JadedJabs : CollectorCardModel
 {
     public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithPyre();
+        WithDamage(15, 2);
+        WithVar("JadedJabs", 1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var cost = PyredCard!.EnergyCost.GetWithModifiers(CostModifiers.All);
+        var jadedJabs = DynamicVars["JadedJabs"].IntValue;
+        await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
     }
 }
