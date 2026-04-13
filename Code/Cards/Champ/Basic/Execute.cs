@@ -1,16 +1,19 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Cards.Champ.Ancient;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Champ.Basic;
 
 [Pool(typeof(ChampCardPool))]
-public class Execute : ChampCardModel
+public class Execute : ChampCardModel, ITranscendenceCard
 {
     public Execute() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -26,5 +29,10 @@ public class Execute : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
         await ChampCmd.PlayFinisher(ctx, cardPlay);
+    }
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Execution>();
     }
 }

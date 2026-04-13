@@ -1,16 +1,19 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Awakened.Ancient;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Cards.Awakened.Basic;
 
 [Pool(typeof(AwakenedCardPool))]
-public class TalonRake : AwakenedCardModel
+public class TalonRake : AwakenedCardModel, ITranscendenceCard
 {
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -28,5 +31,10 @@ public class TalonRake : AwakenedCardModel
             .Execute(ctx);
 
         await AwakenedCmd.Conjure(Owner, CombatState);
+    }
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<TalonRend>();
     }
 }
