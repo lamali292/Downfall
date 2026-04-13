@@ -67,6 +67,22 @@ def save_image_if_changed(img: Image.Image, path: str) -> bool:
 
 
 # ---------------------------------------------------------------
+# UID helpers
+# ---------------------------------------------------------------
+def read_import_uid(import_path: str) -> str:
+    if not os.path.exists(import_path):
+        return ""
+    with open(import_path) as f:
+        for line in f:
+            if line.startswith("uid="):
+                return line.strip().split('"')[1]  # e.g. uid://i38f3wjmpkc3
+    return ""
+
+def deterministic_uid(name: str, length=7) -> str:
+    return hashlib.md5(name.encode()).hexdigest()[:length]
+
+
+# ---------------------------------------------------------------
 # Early exit if nothing changed
 # ---------------------------------------------------------------
 def collect_input_hashes() -> dict:
@@ -142,14 +158,11 @@ clean_dir(OUT_TRES,   [".tres"])
 os.makedirs(OUT_ATLASES, exist_ok=True)
 
 
-def deterministic_uid(name: str, length=7) -> str:
-    return hashlib.md5(name.encode()).hexdigest()[:length]
-
-
-def write_tres(path, atlas_res_path, x, y, w, h, name):
+def write_tres(path, atlas_res_path, atlas_uid, x, y, w, h, name):
+    uid_part = f' uid="{atlas_uid}"' if atlas_uid else ""
     content = (
         f'[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://{deterministic_uid(name)}"]\n'
-        f'[ext_resource type="Texture2D" path="{atlas_res_path}" id="1"]\n'
+        f'[ext_resource type="Texture2D"{uid_part} path="{atlas_res_path}" id="1"]\n'
         f'[resource]\n'
         f'atlas = ExtResource("1")\n'
         f'region = Rect2({x}, {y}, {w}, {h})\n'
@@ -185,7 +198,7 @@ def process_image(path, crop_box=CROP_BOX, radius=OUTLINE_RADIUS, sigma=OUTLINE_
 
 
 # ---------------------------------------------------------------
-# 1. Collect & process (skip unchanged big images)
+# 1. Collect & process
 # ---------------------------------------------------------------
 entries = []
 for file in sorted(os.listdir(INPUT_DIR)):
@@ -219,6 +232,10 @@ print(f"\nPacking: width={aw}, canvas={cw}x{ah}, {n} images")
 atlas         = Image.new("RGBA", (aw, ah), (0, 0, 0, 0))
 outline_atlas = Image.new("RGBA", (aw, ah), (0, 0, 0, 0))
 
+# Read atlas UIDs after saving (import files may not exist yet on first run)
+atlas_import_path         = os.path.join(OUT_ATLASES, ATLAS_FILENAME + ".import")
+outline_atlas_import_path = os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME + ".import")
+
 for i, (stem, big, outline_ds, image_ds, is_changed) in enumerate(entries):
     x, y = placements[i]
     atlas.paste(image_ds,   (x, y))
@@ -229,13 +246,19 @@ for i, (stem, big, outline_ds, image_ds, is_changed) in enumerate(entries):
         if save_image_if_changed(big, big_path):
             print("updated big:", stem)
 
-    write_tres(os.path.join(OUT_TRES, f"{stem}.tres"),
-               ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, stem)
-    write_tres(os.path.join(OUT_TRES, f"{stem}_outline.tres"),
-               OUTLINE_ATLAS_RES_PATH, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, f"{stem}_outline")
-
 save_image_if_changed(atlas,         os.path.join(OUT_ATLASES, ATLAS_FILENAME))
 save_image_if_changed(outline_atlas, os.path.join(OUT_ATLASES, OUTLINE_ATLAS_FILENAME))
+
+# Read UIDs after atlas files are written (Godot must have imported them already)
+atlas_uid         = read_import_uid(atlas_import_path)
+outline_atlas_uid = read_import_uid(outline_atlas_import_path)
+
+for i, (stem, big, outline_ds, image_ds, is_changed) in enumerate(entries):
+    x, y = placements[i]
+    write_tres(os.path.join(OUT_TRES, f"{stem}.tres"),
+               ATLAS_RES_PATH, atlas_uid, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, stem)
+    write_tres(os.path.join(OUT_TRES, f"{stem}_outline.tres"),
+               OUTLINE_ATLAS_RES_PATH, outline_atlas_uid, x + INSET, y + INSET, REGION_SIZE, REGION_SIZE, f"{stem}_outline")
 
 # ---------------------------------------------------------------
 # 4. Save cache

@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://rwomwvbbfxlw" path="res://Code/Nodes/NCollectorEnergyCounter.cs" id="1_dnfak"]
 [ext_resource type="Texture2D" uid="uid://bf4s7282opl0a" path="res://Downfall/images/ui/collector/collector_energy_layer1.png" id="2_e2yny"]
 [ext_resource type="FontFile" uid="uid://8847rc8oktxy" path="res://fonts/kreon_bold.ttf" id="2_evxyu"]
-[ext_resource type="Script" uid="uid://pxyeukdn3gnc" path="res://Code/Nodes/NDownfallMegaLabel.cs" id="3_evxyu"]
 [ext_resource type="Texture2D" uid="uid://c2x4jgc2cbot0" path="res://Downfall/images/ui/collector/collector_energy_layer2.png" id="3_vjviq"]
 [ext_resource type="Texture2D" uid="uid://d3mfmxhy7uuxd" path="res://Downfall/images/ui/collector/collector_energy_layer3.png" id="4_vjviq"]
 [ext_resource type="Texture2D" uid="uid://upnspyppyo8" path="res://Downfall/images/ui/collector/collector_energy_layer4.png" id="5_ahd4u"]
 [ext_resource type="Texture2D" uid="uid://cc72sby01ruv4" path="res://Downfall/images/ui/collector/collector_energy_layer5.png" id="6_wgqhr"]
+[ext_resource type="Script" uid="uid://b5d4qkfq60ffq" path="res://Code/Nodes/Base/NDownfallMegaLabel.cs" id="8_wgqhr"]
 
 [sub_resource type="FontVariation" id="FontVariation_e2yny"]
 base_font = ExtResource("2_evxyu")
@@ -132,6 +132,4 @@ theme_override_font_sizes/font_size = 36
 text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_evxyu")
-theme_override_colors/font_outline_color = Color(0.08627451, 0.2509804, 0.18039216, 1)
-metadata/_custom_type_script = "uid://dtfio45agppyj"
+script = ExtResource("8_wgqhr")

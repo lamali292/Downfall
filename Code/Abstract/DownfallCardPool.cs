@@ -43,3 +43,28 @@ public class HexaghostCardPool : DownfallCardPool<Hexaghost>;
 public class SlimeBossCardPool : DownfallCardPool<SlimeBoss>;
 
 public class SneckoCardPool : DownfallCardPool<Snecko>;
+
+
+
+public class CollectibleCardPool: CustomCardPoolModel
+{
+    private static Collector Character => ModelDb.Character<Collector>();
+    public override string Title => "Collectible";
+
+    public override string BigEnergyIconPath =>
+        $"res://Downfall/character/energy_counters/icon/{Character.CharId.ToSnakeCase()}_energy_icon.png";
+
+    public override string TextEnergyIconPath =>
+        $"res://Downfall/character/energy_counters/text/text_{Character.CharId.ToSnakeCase()}_energy_icon.png";
+
+    private static readonly Color Color = new("C6C1FF");
+    
+    public override float H => Color.H;
+    public override float S => Color.S;
+    public override float V => Color.V;
+
+    
+    public override Color DeckEntryCardColor => Color;
+    public override bool IsColorless => false;
+    public override bool IsShared => true;
+}

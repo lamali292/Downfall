@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://bn2ib008f0c4g"]
 
-[ext_resource type="Script" uid="uid://dw0jfsad1bpah" path="res://Code/Nodes/SNCardTrailVfx.cs" id="1_h4i0j"]
+[ext_resource type="Script" uid="uid://b1lu6sejjqh2f" path="res://Code/Nodes/Base/NDownfallCardTrailVfx.cs" id="1_h4i0j"]
 [ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://Downfall/themes/canvas_item_material_additive_shared.tres" id="2_8ildm"]
 [ext_resource type="Texture2D" uid="uid://djck45yn3ba4s" path="res://Downfall/images/packed/vfx/trail.png" id="3_mijy4"]
-[ext_resource type="Script" uid="uid://dqqgie3thupph" path="res://Code/Nodes/SNCardTrail.cs" id="4_3d6jd"]
+[ext_resource type="Script" uid="uid://d3samselx42pq" path="res://Code/Nodes/Base/NDownfallCardTrail.cs" id="4_8ildm"]
 [ext_resource type="Texture2D" uid="uid://d0v5ki8nnilxw" path="res://Downfall/images/packed/vfx/trail2.png" id="5_7w850"]
 [ext_resource type="Texture2D" uid="uid://bye2kf6y17erd" path="res://Downfall/images/vfx/brush_particle_2.png" id="6_m2orh"]
 [ext_resource type="Texture2D" uid="uid://b5mp1yvvyjcwo" path="res://Downfall/images/vfx/vfx_ghostly_power_up/sparkle.png" id="7_ybltj"]
@@ -48,7 +48,7 @@ gradient = SubResource("Gradient_6eyfw")
 texture = ExtResource("3_mijy4")
 texture_mode = 2
 joint_mode = 2
-script = ExtResource("4_3d6jd")
+script = ExtResource("4_8ildm")
 
 [node name="InnerTrail" type="Line2D" parent="Trails"]
 modulate = Color(0.9764706, 0.93333334, 0.33333334, 0.5019608)
@@ -59,7 +59,7 @@ gradient = SubResource("Gradient_fdg7u")
 texture = ExtResource("5_7w850")
 texture_mode = 2
 joint_mode = 2
-script = ExtResource("4_3d6jd")
+script = ExtResource("4_8ildm")
 
 [node name="Sprites" type="Node2D" parent="."]
 

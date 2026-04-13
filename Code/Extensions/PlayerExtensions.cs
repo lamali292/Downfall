@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Downfall.Code.Extensions;
 
-public static class PlayerExtensions
+internal static class PlayerExtensions
 {
     public static ChampStanceModel ChampStance(this Player player)
     {
@@ -31,4 +31,14 @@ public static class PlayerExtensions
     }
     
     public static Creature? Torchhead(this Player player) => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
+
+
+
+    public static int GetEssence(this Player player) => EssenceModel.GetEssence(player);
+
+    public static bool CanAffordEssence(this Player player, int amount) => EssenceModel.CanAfford(player, amount);
+
+    public static void AddEssence(this Player player, int amount) => EssenceModel.AddEssence(player, amount);
+
+    public static bool SpendEssence(this Player player, int amount) => EssenceModel.SpendEssence(player, amount);
 }

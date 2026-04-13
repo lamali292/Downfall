@@ -1,8 +1,11 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.Code.Cards.Collector.Uncommon;
 
@@ -11,15 +14,23 @@ public class SeverSoul : CollectorCardModel
 {
     public SeverSoul() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithDamage(16, 6);
+        WithTip(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        foreach (var card in GetCards())
+        {
+            await CardCmd.Exhaust(ctx, card);
+        }
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-
-    protected override void OnUpgrade()
+    
+    
+    private IEnumerable<CardModel> GetCards()
     {
+        return PileType.Hand.GetPile(Owner).Cards.Where(c => c.Type != CardType.Attack);
     }
 }

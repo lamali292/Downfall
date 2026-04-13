@@ -21,6 +21,7 @@ public static class DownfallSubscriber
             if (stance is not NoChampStance)
                 yield return stance;
             
+            
             yield return DownfallHistory.Get(player);
         }
     }

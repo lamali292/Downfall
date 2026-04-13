@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgy88bk44xxvk"]
 
-[ext_resource type="Script" uid="uid://42n22x7pwgct" path="res://Code/Nodes/SNSelectionReticle.cs" id="1_kg5ub"]
+[ext_resource type="Script" uid="uid://da4qa0kw7j288" path="res://Code/Nodes/Base/NDownfallSelectionReticle.cs" id="1_bwn2h"]
 [ext_resource type="Texture2D" uid="uid://d34d8sduc1wa7" path="res://Downfall/images/ui/combat/combat_reticle.png" id="2_75ikg"]
 
 [node name="SelectionReticle" type="Control"]
@@ -12,7 +12,7 @@ offset_right = 123.0
 offset_bottom = -1.0
 pivot_offset = Vector2(126, 84)
 mouse_filter = 2
-script = ExtResource("1_kg5ub")
+script = ExtResource("1_bwn2h")
 
 [node name="Border" type="TextureRect" parent="."]
 layout_mode = 0

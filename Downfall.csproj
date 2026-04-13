@@ -109,7 +109,7 @@
             <Private>false</Private>
         </Reference>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.1" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.8" />
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
 

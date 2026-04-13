@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cso1enqajc1tc"]
+
+[ext_resource type="Script" uid="uid://dhdp3bypjdwbi" path="res://Code/Nodes/Base/NDownfallCardGrid.cs" id="1_sla0l"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/screens/scrollbar.tscn" id="2_f6v55"]
+
+[sub_resource type="Gradient" id="Gradient_6ny73"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.05, 0.95, 1)
+colors = PackedColorArray(0, 0, 0, 0.9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.9)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pcr5u"]
+gradient = SubResource("Gradient_6ny73")
+width = 2
+height = 256
+fill_to = Vector2(0, 1)
+
+[node name="CardGrid" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sla0l")
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="Control" parent="."]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_right = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Scrollbar" parent="." instance=ExtResource("2_f6v55")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = 129.6
+offset_right = -50.0
+offset_bottom = -130.4
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BorderGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.01)
+pivot_offset = Vector2(0, 540)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_pcr5u")
+expand_mode = 1

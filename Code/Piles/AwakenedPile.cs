@@ -36,14 +36,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
-        if (creatureNode == null) return Vector2.Zero;
-
-        var index = Cards.IndexOf(model);
-        var totalWidth = Cards.Count * (size.X + 8f);
-        var startX = creatureNode.GlobalPosition.X - totalWidth / 2f + index * (size.X + 8f);
-        var y = creatureNode.GlobalPosition.Y - creatureNode.Size.Y / 2f - size.Y - 16f;
-
-        return new Vector2(startX, y);
+        return creatureNode?.GlobalPosition ?? Vector2.Zero;
     }
 
 

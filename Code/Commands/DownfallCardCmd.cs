@@ -1,10 +1,16 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using BaseLib.Abstracts;
+using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.Code.Commands;
 
@@ -95,5 +101,35 @@ public class DownfallCardCmd
                 null,
                 autoPlayType,
                 skipXCapture);
+    }
+    
+    
+    public static async Task AnimateCardFromRewardScreen(Vector2 targetPos, CardModel card, Player player)
+    {
+        var node = NCard.Create(card);
+        if (node == null) return;
+
+        var previewContainer = NRun.Instance?.GlobalUi.CardPreviewContainer;
+        var trailContainer = NRun.Instance?.GlobalUi.TopBar.TrailContainer;
+        if (previewContainer == null || trailContainer == null) return;
+
+        previewContainer.AddChildSafely(node);
+
+        var tween = node.CreateTween();
+        tween.TweenProperty(node, "scale", Vector2.One, 0.25f)
+            .From(Vector2.Zero)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Cubic);
+
+        // wait for preview
+        await node.ToSignal(tween, Tween.SignalName.Finished);
+
+        // now create the fly - node is still alive here
+        var fly = NCardFlyVfx.Create(node, targetPos, true, player.Character.TrailPath);
+        trailContainer.AddChildSafely(fly);
+
+        // wait for fly to finish before returning
+        if (fly != null)
+            await fly.ToSignal(fly, Node.SignalName.TreeExited);
     }
 }

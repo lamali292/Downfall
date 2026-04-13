@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://b80b6c3w1yud7"]
 
-[ext_resource type="Script" uid="uid://dw0jfsad1bpah" path="res://Code/Nodes/SNCardTrailVfx.cs" id="1_vqqmx"]
 [ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://Downfall/themes/canvas_item_material_additive_shared.tres" id="2_ncj25"]
 [ext_resource type="Texture2D" uid="uid://djck45yn3ba4s" path="res://Downfall/images/packed/vfx/trail.png" id="3_8q4en"]
-[ext_resource type="Script" uid="uid://dqqgie3thupph" path="res://Code/Nodes/SNCardTrail.cs" id="4_n2xjq"]
+[ext_resource type="Script" uid="uid://b1lu6sejjqh2f" path="res://Code/Nodes/Base/NDownfallCardTrailVfx.cs" id="4_ncj25"]
 [ext_resource type="Texture2D" uid="uid://d0v5ki8nnilxw" path="res://Downfall/images/packed/vfx/trail2.png" id="5_18ou5"]
+[ext_resource type="Script" uid="uid://d3samselx42pq" path="res://Code/Nodes/Base/NDownfallCardTrail.cs" id="6_ncj25"]
 [ext_resource type="Texture2D" uid="uid://bye2kf6y17erd" path="res://Downfall/images/vfx/brush_particle_2.png" id="6_nxwox"]
 [ext_resource type="Texture2D" uid="uid://b5mp1yvvyjcwo" path="res://Downfall/images/vfx/vfx_ghostly_power_up/sparkle.png" id="7_cqxpo"]
 [ext_resource type="Texture2D" uid="uid://7fvvxfqj4vb4" path="res://Downfall/images/packed/vfx/small_card_silhouette.png" id="8_1pax0"]
@@ -34,7 +34,7 @@ colors = PackedColorArray(1, 1, 0.7019608, 1, 0.8784314, 0.92941177, 0.47843137,
 
 [node name="CardTrailWatcher" type="Node2D"]
 show_behind_parent = true
-script = ExtResource("1_vqqmx")
+script = ExtResource("4_ncj25")
 
 [node name="Trails" type="Node2D" parent="."]
 
@@ -48,7 +48,7 @@ gradient = SubResource("Gradient_6eyfw")
 texture = ExtResource("3_8q4en")
 texture_mode = 2
 joint_mode = 2
-script = ExtResource("4_n2xjq")
+script = ExtResource("6_ncj25")
 
 [node name="InnerTrail" type="Line2D" parent="Trails"]
 modulate = Color(0.9764706, 0.93333334, 0.7294118, 0.5019608)
@@ -59,7 +59,7 @@ gradient = SubResource("Gradient_fdg7u")
 texture = ExtResource("5_18ou5")
 texture_mode = 2
 joint_mode = 2
-script = ExtResource("4_n2xjq")
+script = ExtResource("6_ncj25")
 
 [node name="Sprites" type="Node2D" parent="."]
 

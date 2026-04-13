@@ -285,6 +285,10 @@
   "DOWNFALL-FINALIZE_POWER.title": "Finalized",
   "DOWNFALL-FINALIZE_POWER.description": "When this creature dies, heal [blue]X[/blue] HP.",
   "DOWNFALL-FINALIZE_POWER.smartDescription": "When [gold]{Owner}[/gold] dies, heal [blue]{Amount}[/blue] HP.",
-  "DOWNFALL-KARMA_POWER.title": "",
-  "DOWNFALL-KARMA_POWER.description": ""
+  "DOWNFALL-KARMA_POWER.title": "Karma",
+  "DOWNFALL-KARMA_POWER.description": "At the end of your turn, if any enemy is [gold]Afflicted[/gold], gain [blue]X[/blue] [gold]Block[/gold].",
+  "DOWNFALL-SCORCHED_POWER.title": "Scorched",
+  "DOWNFALL-SCORCHED_POWER.description": "At the end of its turn, gains [blue]X[/blue] [gold]Doom[/gold].",
+  "DOWNFALL-KARMA_POWER.smartDescription": "At the end of your turn, if any enemy is [gold]Afflicted[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "DOWNFALL-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Doom[/gold]"
 }

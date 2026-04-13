@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://bl4mbjqjfffa4"]
+
+[ext_resource type="Script" uid="uid://bkr41cvg2exhv" path="res://Code/Nodes/Base/NDownfallBackButton.cs" id="1_0mwkb"]
+[ext_resource type="Texture2D" path="res://Downfall/scenes/screens/back_button.tres" id="2_7pdbc"]
+[ext_resource type="Texture2D" path="res://Downfall/scenes/screens/back_button_arrow.tres" id="2_kddgw"]
+[ext_resource type="Texture2D" path="res://Downfall/scenes/screens/back_button_outline.tres" id="3_outline"]
+[ext_resource type="Shader" uid="uid://dpumy2ugymrcc" path="res://Downfall/shaders/hsv.gdshader" id="5_mp3lu"]
+[ext_resource type="Texture2D" uid="uid://c83ntiejbn6ia" path="res://Downfall/scenes/screens/placeholder_controller_icon.png" id="7_yqvhb"]
+[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://Downfall/themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckc57"]
+resource_local_to_scene = true
+shader = ExtResource("5_mp3lu")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[node name="BackButton" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -354.0
+offset_right = 160.0
+offset_bottom = -244.0
+grow_vertical = 0
+pivot_offset = Vector2(20, 40)
+script = ExtResource("1_0mwkb")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Shadow" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = -1.0
+offset_right = 58.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_7pdbc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Outline" type="TextureRect" parent="."]
+modulate = Color(0.941176, 0.705882, 0, 1)
+material = ExtResource("shared_additive_mat")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 49.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_outline")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -13.0
+offset_right = 46.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_7pdbc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="Image"]
+modulate = Color(1, 0.964706, 0.886275, 1)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 28.0
+offset_right = 168.0
+offset_bottom = 108.0
+mouse_filter = 2
+texture = ExtResource("2_kddgw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ControllerIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ckc57")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -48.0
+offset_right = 21.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(256, 128)
+mouse_filter = 2
+texture = ExtResource("7_yqvhb")
+expand_mode = 1
+stretch_mode = 5

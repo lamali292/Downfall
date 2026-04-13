@@ -30,8 +30,6 @@ public partial class DownfallMainFile : Node
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
         
-        DownfallBadgePool.Initialize(typeof(DownfallMainFile).Assembly);
-        
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
