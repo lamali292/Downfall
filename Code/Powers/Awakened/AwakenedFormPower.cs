@@ -13,6 +13,7 @@ public class AwakenedFormPower : AwakenedPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
     protected override bool IsVisibleInternal => false;
+
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Owner);

@@ -53,7 +53,8 @@ public static class AutomatonCmd
     {
         return creature.Player == null
             ? null
-            : CustomPiles.GetCustomPile(creature.Player.PlayerCombatState, AutomatonPile.FunctionSequence) as AutomatonPile;
+            : CustomPiles.GetCustomPile(creature.Player.PlayerCombatState, AutomatonPile.FunctionSequence) as
+                AutomatonPile;
     }
 
     public static int GetMax(Creature creature)

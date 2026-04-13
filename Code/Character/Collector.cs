@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Downfall.Code.Character;
 
@@ -20,10 +19,10 @@ public class Collector : DownfallCharacterModel
     public override Color DeckEntryCardColor => Color;
     public override Color CardColor => Color;
     public override Color MapDrawingColor => Color;
-    
-    public override CharacterGender Gender => CharacterGender.Masculine;
+
+    public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 65;
     public override int StartingGold => 99;
 
     public override IEnumerable<CardModel> StartingDeck =>

@@ -15,10 +15,14 @@ namespace Downfall.Code.Cards.Piles;
 public class AwakenedPile : CustomPile
 {
     [CustomEnum] public static PileType Spellbook;
-    
+
     public AwakenedPile() : base(Spellbook)
     {
     }
+
+    public CardModel? NextSpell { get; private set; }
+
+    public bool UpgradeOnAdd { get; set; }
 
     public override bool CardShouldBeVisible(CardModel card)
     {
@@ -37,20 +41,17 @@ public class AwakenedPile : CustomPile
 
         return new Vector2(startX, y);
     }
-    
-    private CardModel? _nextSpell;
 
-    public CardModel? NextSpell => _nextSpell;
     public void SetNextSpell(Rng rng)
     {
-        var available = Cards.Where(c => c != _nextSpell).ToList();
-        _nextSpell = available.Count > 0
+        var available = Cards.Where(c => c != NextSpell).ToList();
+        NextSpell = available.Count > 0
             ? rng.NextItem(available)
-            : (Cards.Count > 0 ? Cards[0] : null);
+            : Cards.Count > 0
+                ? Cards[0]
+                : null;
     }
-    
-    public bool UpgradeOnAdd { get; set; }
-    
+
     public void Refresh(Player owner, CombatState state, Rng rng)
     {
         foreach (var card in Cards.ToList())
@@ -67,7 +68,7 @@ public class AwakenedPile : CustomPile
             state.CreateCard<BurningStudy>(owner),
             state.CreateCard<Cryostasis>(owner),
             state.CreateCard<Darkleech>(owner),
-            state.CreateCard<Thunderbolt>(owner),
+            state.CreateCard<Thunderbolt>(owner)
         };
 
         foreach (var spell in baseSpells)
@@ -77,6 +78,7 @@ public class AwakenedPile : CustomPile
                 spell.UpgradeInternal();
                 spell.FinalizeUpgradeInternal();
             }
+
             AddInternal(spell);
         }
     }

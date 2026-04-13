@@ -1,7 +1,5 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Interfaces;
-using Godot;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
@@ -27,8 +25,7 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
             LocalContext.NetId.Value,
             GameActionType.Combat);
         await CreatureCmd.Damage(ctx,
-            Owner, Amount*amount, 
+            Owner, Amount * amount,
             ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, drainedPower.Owner);
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Abstract;
-using Downfall.Code.Character;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Saves.Managers;
