@@ -14,9 +14,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
-namespace Downfall.Code.Powers.Downfall;
-
-public class VigorNextTurnPower : PowerNextTurn<VigorPower>;
+namespace Downfall.Code.Powers.Abstract;
 
 public abstract class PowerNextTurn<T> : CustomPowerModel, IColoredPower
     where T : PowerModel

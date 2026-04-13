@@ -237,5 +237,11 @@
   "DOWNFALL-IGNORE_PAIN_POWER.smartDescription": "you cannot lose HP for {Amount:plural:this turn|the next {Amount} turns}.",
   "DOWNFALL-ULTIMATE_STANCE_POWER.title": "Ultimate Stance",
   "DOWNFALL-ULTIMATE_STANCE_POWER.description": "You are in [gold]Ultimate Stance[/gold] this turn.",
-  "DOWNFALL-ULTIMATE_STANCE_POWER.smartDescription": "You are in [gold]Ultimate Stance[/gold] this turn."
+  "DOWNFALL-ULTIMATE_STANCE_POWER.smartDescription": "You are in [gold]Ultimate Stance[/gold] this turn.",
+  "DOWNFALL-COLLECTOR_DOOM_POWER.title": "Doom",
+  "DOWNFALL-COLLECTOR_DOOM_POWER.description": "Loses HP at the start of its turn, removing all [gold]Doom[/gold] unless they are [gold]Afflicted[/gold].",
+  "DOWNFALL-COLLECTOR_DOOM_POWER.smartDescription": "Loses [blue]{Amount}[/blue] HP at the start of its turn, removing all [gold]Doom[/gold] unless they are [gold]Afflicted[/gold].",
+  "DOWNFALL-VIGOR_NEXT_TURN_POWER.title": "Next Turn Vigor",
+  "DOWNFALL-VIGOR_NEXT_TURN_POWER.description": "Next turn, gain [gold]Vigor[/gold].",
+  "DOWNFALL-VIGOR_NEXT_TURN_POWER.smartDescription": "Next turn, gain {{Amount:plural:|{{Amount}} }}[gold]Vigor[/gold]."
 }

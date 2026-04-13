@@ -11,15 +11,11 @@ public class DefendCollector : CollectorCardModel
 {
     public DefendCollector() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
+        WithBlock(5, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }
