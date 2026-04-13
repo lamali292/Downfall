@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Awakened;
@@ -24,7 +25,7 @@ public class Nihil : AwakenedCardModel, IChantable
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars["ManaburnPower"].BaseValue);
+        await CommonActions.Apply<ManaburnPower>(cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
     }
     
     public async Task OnChant(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -45,6 +46,6 @@ public class Nihil : AwakenedCardModel, IChantable
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ManaburnPower"].UpgradeValueBy(3);
+        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(3);
     }
 }

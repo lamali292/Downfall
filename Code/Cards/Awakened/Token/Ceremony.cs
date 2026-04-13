@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -20,11 +21,11 @@ public class Ceremony : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars["StrengthPower"].BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Power<StrengthPower>().BaseValue);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthPower"].UpgradeValueBy(1);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
     }
 }

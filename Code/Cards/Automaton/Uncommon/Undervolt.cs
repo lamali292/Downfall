@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,7 +34,7 @@ public sealed class Undervolt() : AutomatonCardModel(1, CardType.Skill, CardRari
     {
         var combatState = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(combatState);
-        await PowerCmd.Apply<StrengthPower>(combatState.Enemies, -DynamicVars["StrengthPower"].BaseValue,
+        await PowerCmd.Apply<StrengthPower>(combatState.Enemies, -DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
         List<CardModel> burns =
         [
@@ -45,6 +46,6 @@ public sealed class Undervolt() : AutomatonCardModel(1, CardType.Skill, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthPower"].UpgradeValueBy(1);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
     }
 }

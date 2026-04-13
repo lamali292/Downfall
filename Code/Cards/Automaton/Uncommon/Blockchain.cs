@@ -3,6 +3,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Displays;
+using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -51,6 +52,6 @@ public class Blockchain() : AutomatonCardModel(1, CardType.Skill, CardRarity.Unc
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<BlurPower>(Owner.Creature, DynamicVars["BlurPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BlurPower>(Owner.Creature, DynamicVars.Power<BlurPower>().BaseValue, Owner.Creature, this);
     }
 }

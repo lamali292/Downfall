@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,12 +30,12 @@ public class ItsAFeature() : AutomatonCardModel(1, CardType.Power, CardRarity.Un
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ItsAFeaturePower>(Owner.Creature, DynamicVars["ItsAFeaturePower"].BaseValue,
+        await PowerCmd.Apply<ItsAFeaturePower>(Owner.Creature, DynamicVars.Power<ItsAFeaturePower>().BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ItsAFeaturePower"].UpgradeValueBy(1);
+        DynamicVars.Power<ItsAFeaturePower>().UpgradeValueBy(1);
     }
 }
