@@ -33,16 +33,14 @@ i.e in Windows look for
 ```
 
 
-
 You only need to change:
 
+- **SteamLibraryPath** → Path to your Steam library
+- **GodotPath** → Path to your Godot installation
 
+Recommended: [MegaDot — MegaCrit's custom Godot fork](https://megadot.megacrit.com/)
 
-- **SteamLibraryPath** → Path to your Steam Library
-
-- **GodotPath** → Path to your [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
-
-
+Standard: [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
 
 ### 3. Build the Mod
 
