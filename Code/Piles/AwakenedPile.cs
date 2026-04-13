@@ -15,8 +15,7 @@ namespace Downfall.Code.Piles;
 public class AwakenedPile : CustomPile
 {
     [CustomEnum] public static PileType Spellbook;
-
-    // This stores the types of cards added by "Inscribe" etc.
+    
     private readonly List<Type> _dynamicTypes = [];
 
     public AwakenedPile() : base(Spellbook)
@@ -27,7 +26,7 @@ public class AwakenedPile : CustomPile
 
     public bool UpgradeOnAdd { get; set; }
 
-    // Call this from Inscribe.cs
+    
     public void AddPersistentType(Type type)
     {
         _dynamicTypes.Add(type);
@@ -69,15 +68,12 @@ public class AwakenedPile : CustomPile
         if (state == null) return;
 
         var rng = state.RunState.Rng.CombatCardSelection;
-
-        // Clear current instances
+        
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
-
-        // 1. Add the hardcoded base spells
+        
         AddBaseSpells(owner, state);
-
-        // 2. Add the dynamic spells added during this combat
+        
         foreach (var type in _dynamicTypes) CreateAndAddSpell(owner, state, type);
 
         SetNextSpell(rng);
@@ -86,17 +82,15 @@ public class AwakenedPile : CustomPile
     private void AddBaseSpells(Player owner, CombatState state)
     {
         Type[] baseTypes =
-        {
+        [
             typeof(BurningStudy), typeof(Cryostasis),
             typeof(Darkleech), typeof(Thunderbolt)
-        };
+        ];
 
         foreach (var type in baseTypes)
-            // Wir rufen die Version auf, die ein Type-Objekt akzeptiert
             CreateAndAddSpell(owner, state, type);
     }
-
-// 1. Die Version für die Schleife (nimmt System.Type)
+    
     private void CreateAndAddSpell(Player owner, CombatState state, Type type)
     {
         var id = ModelDb.GetId(type);

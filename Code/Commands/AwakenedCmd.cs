@@ -31,6 +31,7 @@ public static class AwakenedCmd
     {
         if (IsAwakened(player.Creature)) return;
 
+        // Todo: Update all spells everywhere to be upgraded
         await PowerCmd.Apply<AwakenedFormPower>(player.Creature, 1, player.Creature, null);
         var spellbook = GetSpellbook(player);
         if (spellbook != null)

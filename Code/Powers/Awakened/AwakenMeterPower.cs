@@ -32,7 +32,8 @@ public class AwakenMeterPower : AwakenedPowerModel
             await AwakenedCmd.Awaken(Owner.Player!, ctx);
     }
     
-    
+    // Todo : why is this here. Cant that be at a different place. here is it always loaded i guess.
+    // Temporary just triggers drained on void card drawn
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         if (card.CombatState == null) return;
