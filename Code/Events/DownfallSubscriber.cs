@@ -12,6 +12,8 @@ public static class DownfallSubscriber
     private static readonly AutomatonModel AutomatonModel = ModelDb.GetById<AutomatonModel>(ModelDb.GetId<AutomatonModel>());
     private static readonly GremlinsModel GremlinsModel = ModelDb.GetById<GremlinsModel>(ModelDb.GetId<GremlinsModel>());
     private static readonly GremlinsRunModel GremlinsRunModel = ModelDb.GetById<GremlinsRunModel>(ModelDb.GetId<GremlinsRunModel>());
+    private static readonly ChampModel ChampModel = ModelDb.GetById<ChampModel>(ModelDb.GetId<ChampModel>());
+    private static readonly SlimeBossModel SlimeBossModel = ModelDb.GetById<SlimeBossModel>(ModelDb.GetId<SlimeBossModel>());
 
     public static void Subscribe()
     {
@@ -22,11 +24,11 @@ public static class DownfallSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        return [AwakenedModel, AutomatonModel,GremlinsModel];
+        return [AwakenedModel, AutomatonModel,GremlinsModel, ChampModel, SlimeBossModel];
     }
 
     private static IEnumerable<AbstractModel> CollectModels(RunState runState)
     {
-        return [AwakenedModel, AutomatonModel, GremlinsRunModel];
+        return [AwakenedModel, AutomatonModel, GremlinsRunModel, ChampModel, SlimeBossModel];
     }
 }
