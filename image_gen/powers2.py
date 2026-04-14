@@ -5,7 +5,11 @@ import string
 # ============================================================
 # CONFIG
 # ============================================================
-INPUT_DIR       = "powers"
+SCRIPT_DIR      = os.path.dirname(os.path.abspath(__file__))
+
+# Input dirs in priority order — first wins per stem
+INPUT_DIRS      = ["powers", "powers_beta", "powers_missing"]
+
 OUT_POWERS      = "../Downfall/images/powers"
 OUT_ATLASES     = "../Downfall/images/atlases"
 ATLAS_SPRITES   = "power_atlas.sprites"
@@ -30,10 +34,8 @@ CACHE_FILE            = ".powers_cache.json"
 OUT_TRES        = os.path.join(OUT_ATLASES, ATLAS_SPRITES)
 OUT_TRES_SPRITE = os.path.join(OUT_ATLASES, SPRITE_SPRITES)
 
+# ── Cache helpers ─────────────────────────────────────────────
 
-# ---------------------------------------------------------------
-# Cache helpers
-# ---------------------------------------------------------------
 def file_hash(path: str) -> str:
     h = hashlib.md5()
     with open(path, "rb") as f:
@@ -52,7 +54,6 @@ def save_cache(cache: dict):
         json.dump(cache, f, indent=2)
 
 def write_if_changed(path: str, data: bytes):
-    """Write file only if content has changed."""
     if os.path.exists(path):
         with open(path, "rb") as f:
             if f.read() == data:
@@ -62,26 +63,27 @@ def write_if_changed(path: str, data: bytes):
     return True
 
 def save_image_if_changed(img: Image.Image, path: str) -> bool:
-    """Save PIL image only if it differs from what's on disk."""
     import io
     buf = io.BytesIO()
     img.save(buf, format="PNG")
     return write_if_changed(path, buf.getvalue())
 
+# ── Cache check ───────────────────────────────────────────────
 
-# ---------------------------------------------------------------
-# Check if any input changed since last run
-# ---------------------------------------------------------------
 def collect_input_hashes() -> dict:
     hashes = {}
-    for root, dirs, files in os.walk(INPUT_DIR):
-        for file in sorted(files):
-            if file.lower().endswith(".png"):
-                path = os.path.join(root, file)
-                hashes[path] = file_hash(path)
+    for input_dir in INPUT_DIRS:
+        full = os.path.join(SCRIPT_DIR, input_dir)
+        if not os.path.exists(full):
+            continue
+        for root, dirs, files in os.walk(full):
+            for file in sorted(files):
+                if file.lower().endswith(".png"):
+                    path = os.path.join(root, file)
+                    hashes[path] = file_hash(path)
     return hashes
 
-cache = load_cache()
+cache          = load_cache()
 current_hashes = collect_input_hashes()
 
 outputs_exist = (
@@ -93,10 +95,8 @@ if outputs_exist and cache.get("input_hashes") == current_hashes:
     print("Nothing changed, skipping.")
     exit(0)
 
+# ── Helpers ───────────────────────────────────────────────────
 
-# ---------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------
 class ShelfPacker:
     def __init__(self, width: int):
         self.width   = width
@@ -123,21 +123,18 @@ class ShelfPacker:
     def canvas_size(self):
         return self.width, self.height
 
-
 def next_power_of_two(n):
     p = 1
     while p < n:
         p <<= 1
     return p
 
-
 def trim_alpha(img: Image.Image):
     bbox = img.getbbox() or (0, 0, img.width, img.height)
     trimmed = img.crop(bbox)
     return trimmed, bbox[0], bbox[1], img.width - bbox[2], img.height - bbox[3]
 
-
-UID_CHARS = string.ascii_lowercase + string.digits  # 'abcdefghijklmnopqrstuvwxyz0123456789'
+UID_CHARS = string.ascii_lowercase + string.digits
 
 def deterministic_uid(name: str, length=7) -> str:
     h = int(hashlib.md5(name.encode()).hexdigest(), 16)
@@ -146,7 +143,6 @@ def deterministic_uid(name: str, length=7) -> str:
         result.append(UID_CHARS[h % len(UID_CHARS)])
         h //= len(UID_CHARS)
     return ''.join(result)
-
 
 def write_tres(path, atlas_res_path, x, y, w, h, name,
                margin_l=0, margin_t=0, margin_r=0, margin_b=0):
@@ -163,7 +159,6 @@ def write_tres(path, atlas_res_path, x, y, w, h, name,
     )
     write_if_changed(path, content.encode())
 
-
 def clean_dir(folder, extensions):
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -177,37 +172,45 @@ clean_dir(OUT_TRES,        [".tres"])
 clean_dir(OUT_TRES_SPRITE, [".tres"])
 os.makedirs(OUT_ATLASES, exist_ok=True)
 
-# ---------------------------------------------------------------
-# 1. Collect & resize
-# ---------------------------------------------------------------
-entries = []
-for root, dirs, files in os.walk(INPUT_DIR):
-    is_sprite_only = os.path.basename(root) in SPRITE_ONLY_FOLDERS
-    for file in sorted(files):
-        if file.lower().endswith(".png"):
+# ── Collect — first source wins per stem ─────────────────────
+
+seen    = set()   # stems already collected
+entries = []      # (stem, big, small, sprite, is_sprite_only)
+
+for input_dir in INPUT_DIRS:
+    full = os.path.join(SCRIPT_DIR, input_dir)
+    if not os.path.exists(full):
+        continue
+    for root, dirs, files in os.walk(full):
+        is_sprite_only = os.path.basename(root) in SPRITE_ONLY_FOLDERS
+        for file in sorted(files):
+            if not file.lower().endswith(".png"):
+                continue
+            stem = os.path.splitext(file)[0]
+            if stem in seen:
+                continue  # higher-priority source already has this
+            seen.add(stem)
+
             in_path = os.path.join(root, file)
-            stem    = os.path.splitext(file)[0]
             img     = Image.open(in_path).convert("RGBA")
-            big     = img.resize((BIG_SIZE,    BIG_SIZE),    Image.LANCZOS) if not is_sprite_only else None
-            small   = img.resize((ATLAS_SIZE,  ATLAS_SIZE),  Image.LANCZOS) if not is_sprite_only else None
+            big     = img.resize((BIG_SIZE,   BIG_SIZE),   Image.LANCZOS) if not is_sprite_only else None
+            small   = img.resize((ATLAS_SIZE, ATLAS_SIZE), Image.LANCZOS) if not is_sprite_only else None
             sprite  = img.resize((SPRITE_SIZE, SPRITE_SIZE), Image.LANCZOS)
             entries.append((stem, big, small, sprite, is_sprite_only))
-            print("collected:", in_path, "->", stem, ("(sprite only)" if is_sprite_only else ""))
+            print(f"collected [{input_dir}]: {file}", ("(sprite only)" if is_sprite_only else ""))
 
 non_sprite_only = [(s, big, sm, sp) for s, big, sm, sp, iso in entries if not iso]
 
-# ---------------------------------------------------------------
-# 2. Trim alpha
-# ---------------------------------------------------------------
+# ── Trim alpha ────────────────────────────────────────────────
+
 def trimmed_data(images_iter):
     return [(stem, *trim_alpha(img)) for stem, img in images_iter]
 
 atlas_data  = trimmed_data((s, sm) for s, _, sm, _ in non_sprite_only)
 sprite_data = trimmed_data((s, sp) for s, _, _, sp, _ in entries)
 
-# ---------------------------------------------------------------
-# 3. Pack
-# ---------------------------------------------------------------
+# ── Pack ──────────────────────────────────────────────────────
+
 def pack_all(data, label):
     total_area = sum((d[1].width + PADDING) * (d[1].height + PADDING) for d in data)
     est_side   = max(next_power_of_two(int(math.sqrt(total_area) * 1.2)), 64)
@@ -229,9 +232,8 @@ atlas_packer,  atlas_placements  = pack_all(atlas_data,  "atlas")
 print("Packing sprite atlas textures...")
 sprite_packer, sprite_placements = pack_all(sprite_data, "sprite")
 
-# ---------------------------------------------------------------
-# 4. Render & write — skip unchanged files
-# ---------------------------------------------------------------
+# ── Render & write ────────────────────────────────────────────
+
 aw = next_power_of_two(atlas_packer.canvas_size()[0])
 ah = atlas_packer.canvas_size()[1]
 sw = next_power_of_two(sprite_packer.canvas_size()[0])
@@ -263,9 +265,8 @@ for i, (stem, trimmed, ml, mt, mr, mb) in enumerate(sprite_data):
 save_image_if_changed(atlas,        os.path.join(OUT_ATLASES, ATLAS_FILENAME))
 save_image_if_changed(sprite_atlas, os.path.join(OUT_ATLASES, SPRITE_ATLAS_FILENAME))
 
-# ---------------------------------------------------------------
-# 5. Save cache
-# ---------------------------------------------------------------
+# ── Save cache ────────────────────────────────────────────────
+
 cache["input_hashes"] = current_hashes
 save_cache(cache)
 
