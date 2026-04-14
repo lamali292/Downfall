@@ -18,7 +18,7 @@ internal static class TwoAmountPowers
     private static void ShowSecondAmount(NPower __instance)
     {
         if (!__instance.IsNodeReady()) return;
-        if (__instance.Model is not IHasSecondAmount power) return;
+        if (__instance._model is not IHasSecondAmount power) return;
 
         if (!__instance.HasNode("Amount2Label"))
         {

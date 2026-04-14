@@ -34,31 +34,30 @@ public class CopyNextTurnPower : CollectorPowerModel
 
     public override bool IsInstanced => true;
     public CardModel? Card;
+    public Action<CardModel>? OnAdd;
     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Creature != Owner || Card == null) return;
         await CardPileCmd.Add(Card, PileType.Hand);
+        OnAdd?.Invoke(Card);
         await PowerCmd.Remove(this);
     }
     
     
-    private class CardDynamicVar : DynamicVar
+    private class CardDynamicVar() : DynamicVar("card", 0)
     {
         private CopyNextTurnPower? _power;
-
-        public CardDynamicVar() : base("card", 0) { }
 
         public override void SetOwner(AbstractModel model)
         {
             base.SetOwner(model);
             _power = model as CopyNextTurnPower;
         }
-
+        
         public override string ToString()
         {
-            if (_power?.Card == null) return "?";
-            return _power.Card.Title;
+            return _power?.Card == null ? "?" : _power.Card.Title;
         }
     }
 }

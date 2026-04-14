@@ -293,5 +293,17 @@
   "DOWNFALL-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Doom[/gold]",
   "DOWNFALL-DOUBLE_TROUBLE_POWER.title": "Double Up",
   "DOWNFALL-DOUBLE_TROUBLE_POWER.description": "Your next Collected card this turn is played twice.",
-  "DOWNFALL-DOUBLE_TROUBLE_POWER.smartDescription": "Your next {Amount:plural:|[blue]{Amount}[/blue] }Collected {Amount:plural:card:cards} this turn {Amount:plural:is|are} played twice."
+  "DOWNFALL-DOUBLE_TROUBLE_POWER.smartDescription": "Your next {Amount:plural:|[blue]{Amount}[/blue] }Collected {Amount:plural:card:cards} this turn {Amount:plural:is|are} played twice.",
+  "DOWNFALL-OMEN_POWER.title": "Omen",
+  "DOWNFALL-OMEN_POWER.description": "Whenever you play [gold]Collected[/gold] card, gain [blue]1[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-OMEN_POWER.smartDescription": "Whenever you play [gold]Collected[/gold] card, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-SUFFERING_POWER.title": "Suffering",
+  "DOWNFALL-SUFFERING_POWER.description": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] also apply 2[gold] Doom[/gold] to them.",
+  "DOWNFALL-SUFFERING_POWER.smartDescription": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] also apply [blue]{Amount}[/blue] [gold]Doom[/gold] to them.",
+  "DOWNFALL-DARK_LORD_FORM_POWER.title": "Dark Lord Form",
+  "DOWNFALL-DARK_LORD_FORM_POWER.description": "At the start of your turn, play [gold]You Are Mine [/gold]on a random enemy.",
+  "DOWNFALL-DARK_LORD_FORM_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount}[/blue] copies of} [gold]You Are Mine[/gold] on a random enemy.",
+  "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.title": "Dark Lord Form",
+  "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.description": "At the start of your turn, play [gold]You Are Mine+[/gold] on a random enemy.",
+  "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount} [/blue]copies of} [gold]You Are Mine+[/gold] on a random enemy."
 }

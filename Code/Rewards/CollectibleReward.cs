@@ -88,6 +88,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public static CustomReward Deserialize(SerializableReward save, Player player)
     {
+        ArgumentNullException.ThrowIfNull(save.SpecialCard);
         var cardModel = CardModel.FromSerializable(save.SpecialCard);
         player.RunState.AddCard(cardModel, player);
         return new CollectibleReward(cardModel, player);

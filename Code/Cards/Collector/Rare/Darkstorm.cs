@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Cards.Collector.Token;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +13,14 @@ public class Darkstorm : CollectorCardModel
 {
     public Darkstorm() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithCards(2, 2);
+        WithKeyword(CardKeyword.Exhaust);
+        WithTip(typeof(Blighting));
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await DownfallCardCmd.GiveCard<Blighting>(Owner, PileType.Hand);
+        await DownfallCardCmd.GiveCards<Blighting>(Owner, PileType.Draw, DynamicVars.Cards.IntValue, CardPilePosition.Random);
     }
 }

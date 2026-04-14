@@ -11,6 +11,7 @@ public class SunbloomKindling : CollectorCardModel
 {
     public SunbloomKindling() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+     	
     }
 
     // TODO: Implement

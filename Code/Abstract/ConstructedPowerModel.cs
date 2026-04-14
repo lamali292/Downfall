@@ -11,18 +11,18 @@ public abstract class ConstructedPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel
 {
-    private readonly List<DynamicVar> _dynamicVars = [];
+    private readonly List<DynamicVar> _newDynamicVars = [];
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
     public override PowerType Type => powerType;
     public override PowerStackType StackType => stackType;
-    protected sealed override IEnumerable<DynamicVar> CanonicalVars => _dynamicVars;
+    protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
 
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
         {
-            _dynamicVars.Add(dynVar);
+            _newDynamicVars.Add(dynVar);
             var type = dynVar.GetType();
             if (!type.IsGenericType) continue;
 
@@ -38,19 +38,19 @@ public abstract class ConstructedPowerModel(
 
     protected ConstructedPowerModel WithVar(string name, int baseVal)
     {
-        _dynamicVars.Add(new DynamicVar(name, baseVal));
+        _newDynamicVars.Add(new DynamicVar(name, baseVal));
         return this;
     }
 
     protected ConstructedPowerModel WithBlock(int baseVal)
     {
-        _dynamicVars.Add(new BlockVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
+        _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
         return this;
     }
 
     protected ConstructedPowerModel WithDamage(int baseVal)
     {
-        _dynamicVars.Add(new DamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
+        _newDynamicVars.Add(new DamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
         return this;
     }
 

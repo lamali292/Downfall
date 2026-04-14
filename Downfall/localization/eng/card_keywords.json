@@ -1,6 +1,6 @@
 ﻿{
-  "DOWNFALL-TRIGGER_SKILL_BONUS.title": "Skill Bonus",
-  "DOWNFALL-TRIGGER_SKILL_BONUS.description": "If you are in Stance, trigger its Skill Bonus.",
+  "DOWNFALL-TRIGGERSKILLBONUS.title": "Skill Bonus",
+  "DOWNFALL-TRIGGERSKILLBONUS.description": "If you are in Stance, trigger its Skill Bonus.",
   "DOWNFALL-PYRE.description": "Requires exhausting a card in hand in addition to paying its energy cost.",
   "DOWNFALL-PYRE.title": "Pyre"
 }
