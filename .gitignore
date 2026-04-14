@@ -32,5 +32,9 @@ Downfall/images/card_portraits/
 Downfall/images/atlases/
 image_gen/.powers_cache.json
 image_gen/.relics_cache.json
-
+image_gen/.cards_cache.json
+image_gen/.placeholders.json
+image_gen/service_account.json
+*.xlsx#
 **/*.sprites/
+/image_gen/.excel_cache
