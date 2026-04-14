@@ -50,6 +50,8 @@ public abstract class DownfallCardModel<T>(
     : DownfallCardModel(cost, type, rarity, targetType)
     where T : DownfallCharacterModel
 {
+    //public override string CustomPortraitPath =>
+    //    $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<T>();
     public override string CustomPortraitPath =>
-        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath<T>();
+        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<T>();
 }

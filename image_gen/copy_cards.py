@@ -5,7 +5,6 @@ import os, hashlib, json, string
 # CONFIG
 # ============================================================
 INPUT_DIRS      = ["cards", "cards_beta", "cards_missing"]  # priority: first wins
-OUT_PORTRAITS   = "../Downfall/images/card_portraits"
 OUT_ATLASES     = "../Downfall/images/atlases"
 SPRITES_DIR     = "card_atlas.sprites"
 
@@ -98,14 +97,14 @@ def collect_input_hashes():
         full = os.path.join(SCRIPT_DIR, input_dir)
         if not os.path.exists(full):
             continue
-        for root, dirs, files in os.walk(full):
+        for root, _, files in os.walk(full):
             for file in sorted(files):
                 if file.lower().endswith(".png"):
                     path = os.path.join(root, file)
                     hashes[path] = file_hash(path)
     return hashes
 
-cache          = load_cache()
+cache = load_cache()
 current_hashes = collect_input_hashes()
 
 existing = [
@@ -119,43 +118,37 @@ if existing and cache.get("input_hashes") == current_hashes:
 
 # ── Prepare output dirs ───────────────────────────────────────
 
-clean_dir(OUT_TRES,      [".tres"])
-clean_dir(OUT_PORTRAITS, [".png", ".import"])
+clean_dir(OUT_TRES, [".tres"])
 os.makedirs(OUT_ATLASES, exist_ok=True)
 
 for f in os.listdir(OUT_ATLASES):
     if (f.startswith(NORMAL_BASE) or f.startswith(ANCIENT_BASE)) and f.endswith(".png"):
         os.remove(os.path.join(OUT_ATLASES, f))
 
-# ── Collect — first source wins per (rel_folder, stem) ───────
+# ── Collect — first source wins ───────────────────────────────
 
-seen            = set()
-normal_entries  = []
+seen = set()
+normal_entries = []
 ancient_entries = []
 
 for input_dir in INPUT_DIRS:
     full = os.path.join(SCRIPT_DIR, input_dir)
     if not os.path.exists(full):
         continue
-    for root, dirs, files in os.walk(full):
+    for root, _, files in os.walk(full):
         rel_folder = os.path.relpath(root, full)
         for file in sorted(files):
             if not file.lower().endswith(".png"):
                 continue
             stem = os.path.splitext(file)[0]
-            key  = (rel_folder, stem)
+            key = (rel_folder, stem)
             if key in seen:
                 continue
             seen.add(key)
 
             path = os.path.join(root, file)
-            img  = Image.open(path).convert("RGBA")
-            src  = os.path.relpath(path)
-
-            # Copy full-size portrait
-            dest_folder = os.path.join(OUT_PORTRAITS, rel_folder)
-            os.makedirs(dest_folder, exist_ok=True)
-            save_image_if_changed(flatten_alpha(img), os.path.join(dest_folder, f"{stem}.png"))
+            img = Image.open(path).convert("RGBA")
+            src = os.path.relpath(path)
 
             if is_ancient(img):
                 resized = flatten_alpha(img.resize(ANCIENT_SIZE, Image.LANCZOS))
@@ -190,8 +183,8 @@ class StripPacker:
     def canvas_height(self):
         return self.y + self.row_h
 
-def pack_entries(entries, atlas_base):
-    atlases    = []
+def pack_entries(entries, atlas_base, type_prefix):
+    atlases = []
     placements = []
 
     def new_atlas():
@@ -203,7 +196,7 @@ def pack_entries(entries, atlas_base):
     new_atlas()
 
     for stem, rel_folder, resized in entries:
-        w, h   = resized.size
+        w, h = resized.size
         placed = False
         for idx, (packer, canvas) in enumerate(atlases):
             pos = packer.try_pack(w, h)
@@ -221,31 +214,35 @@ def pack_entries(entries, atlas_base):
 
     atlas_res_paths = []
     for idx, (packer, canvas) in enumerate(atlases):
-        used_h   = packer.canvas_height()
-        cropped  = canvas.crop((0, 0, MAX_ATLAS, used_h))
+        used_h = packer.canvas_height()
+        cropped = canvas.crop((0, 0, MAX_ATLAS, used_h))
         filename = f"{atlas_base}_{idx}.png"
         res_path = f"{ATLAS_RES_BASE}/{filename}"
         atlas_res_paths.append(res_path)
-        if save_image_if_changed(cropped, os.path.join(OUT_ATLASES, filename)):
-            print(f"wrote: {filename} ({MAX_ATLAS}x{used_h})")
+        save_image_if_changed(cropped, os.path.join(OUT_ATLASES, filename))
+        print(f"wrote: {filename} ({MAX_ATLAS}x{used_h})")
 
     for i, (stem, rel_folder, resized) in enumerate(entries):
         atlas_idx, x, y = placements[i]
-        w, h      = resized.size
-        tres_name = stem if rel_folder == "." else f"{rel_folder.replace(os.sep, '_')}_{stem}"
+        w, h = resized.size
+        
+        # Match C# fix: lower_char_id + "_" + stem
+        char_id = rel_folder.lower() if rel_folder != "." else ""
+        tres_name = f"{char_id}_{stem}" if char_id else stem
+        
         write_tres(
             os.path.join(OUT_TRES, f"{tres_name}.tres"),
             atlas_res_paths[atlas_idx],
             x, y, w, h,
-            f"card_{tres_name}"
+            f"{type_prefix}_{tres_name}"
         )
 
     return len(atlases)
 
 # ── Run ───────────────────────────────────────────────────────
 
-n_normal  = pack_entries(normal_entries,  NORMAL_BASE)
-n_ancient = pack_entries(ancient_entries, ANCIENT_BASE)
+n_normal  = pack_entries(normal_entries,  NORMAL_BASE,  "card")
+n_ancient = pack_entries(ancient_entries, ANCIENT_BASE, "ancient")
 
 cache["input_hashes"] = current_hashes
 save_cache(cache)

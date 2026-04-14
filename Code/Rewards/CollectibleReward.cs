@@ -64,7 +64,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         RunManager.Instance.RewardSynchronizer.SyncLocalObtainedCard(card);
         var target = NTopBarCollectorButton.ButtonPosition + NTopBarCollectorButton.ButtonSize * 0.5f;
         if (LocalContext.IsMe(Player))
-            TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(target, card, player));
+            _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(target, card, Player));
         
         _wasTaken = true;
         return true;
