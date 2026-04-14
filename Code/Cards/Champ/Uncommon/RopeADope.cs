@@ -21,10 +21,9 @@ public class RopeADope : ChampCardModel
         WithTip(DownfallTip.Finisher);
         WithBlock(8, 2);
         WithPower<EnergyNextTurnPower>(1, 1);
-        WithVars(new EnergyVar(1).WithUpgrade(1));
+        WithEnergy(1, 1);
         WithPower<DrawCardsNextTurnPower>(2);
         WithCards(1);
-        WithEnergyTip();
     }
 
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;

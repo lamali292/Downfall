@@ -132,4 +132,23 @@ public class DownfallCardCmd
         if (fly != null)
             await fly.ToSignal(fly, Node.SignalName.TreeExited);
     }
+    
+    
+    public static async Task<CardPileAddResult> DrawFromCustomPile(Player player, PileType pileType)
+    {
+        var a = await DrawFromCustomPile(player, pileType, 1);
+        return a.Count == 0 ? default : a[0];
+    }
+
+    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(Player player, PileType pileType, int amount)
+    {
+        var pile = pileType.GetPile(player);
+        
+        var cardsToDraw = pile.Cards.Take(amount).ToList();
+        if (cardsToDraw.Count == 0) 
+        {
+            return [];
+        }
+        return await CardPileCmd.Add(cardsToDraw, PileType.Hand);
+    }
 }

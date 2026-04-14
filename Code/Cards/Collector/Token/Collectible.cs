@@ -44,8 +44,8 @@ public abstract class Collectible<T>(
         ("description", "")
     ];
     
-    public override string CustomPortraitPath =>
-        "collectible.png".CardImagePath<Character.Collector>();
+    //public override string CustomPortraitPath => "collectible.png".CardImagePath<Character.Collector>();
+    public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Character.Collector>();
 
     public MonsterModel GetMonsterModel()
     {

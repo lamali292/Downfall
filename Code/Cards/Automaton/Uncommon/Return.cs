@@ -16,7 +16,7 @@ public class Return : AutomatonCardModel
 {
     public Return() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new EnergyVar(1).WithUpgrade(1));
+        WithEnergy(1, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

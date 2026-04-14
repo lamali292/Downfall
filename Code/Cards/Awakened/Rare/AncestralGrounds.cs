@@ -16,8 +16,7 @@ public class AncestralGrounds : AwakenedCardModel
     public AncestralGrounds() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(12);
-        WithVars(new EnergyVar(2).WithUpgrade(1));
-        WithEnergyTip();
+        WithEnergy(2, 1);
         WithTip(typeof(Void));
     }
 

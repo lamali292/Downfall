@@ -37,8 +37,8 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
     private IReadOnlyList<AutomatonCardModel> _lastPortraitSource = [];
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
 
-    public override string CustomPortraitPath =>
-        "function_card.png".CardImagePath<Character.Automaton>();
+    public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Character.Automaton>();
+    //public override string CustomPortraitPath => "function_card.png".CardImagePath<Character.Automaton>();
 
     public override bool CanBeGeneratedInCombat => false;
     public override bool CanBeGeneratedByModifiers => false;

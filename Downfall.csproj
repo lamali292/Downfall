@@ -108,18 +108,12 @@
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.2" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.3" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.8" />
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
-
-    <!--ItemGroup>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup-->
-
+    
 
     <ItemGroup>
         <Compile Include="Downfall\localization\eng\badges.json.cs" />

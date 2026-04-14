@@ -41,3 +41,7 @@ image_gen/service_account.json
 **/*.sprites/
 /image_gen/.excel_cache
 /image_gen/.sheets_cache.json
+
+
+**/.ipynb_checkpoints/
+*.ipynb

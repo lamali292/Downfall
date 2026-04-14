@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Piles;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +13,15 @@ public class DarkApotheosis : CollectorCardModel
 {
     public DarkApotheosis() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        foreach (var cardModel in CollectorPile.Collected.GetPile(Owner).Cards)
+        {
+            CardCmd.Upgrade(cardModel);
+        }
+        return Task.CompletedTask;
     }
 }

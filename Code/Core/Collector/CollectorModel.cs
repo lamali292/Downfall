@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Collector.Token;
+using Downfall.Code.Commands;
 using Downfall.Code.Piles;
 using Downfall.Code.Rewards;
 using HarmonyLib;
@@ -63,12 +64,7 @@ public class CollectorModel() : CustomSingletonModel(true, false)
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
-        
-        var hand = PileType.Hand.GetPile(player);
-        var drawPile = CollectorPile.Collected.GetPile(player);
-        var card = drawPile.Cards.FirstOrDefault();
-        if (card == null) return;
-        await CardPileCmd.Add(card, hand);
+        await DownfallCardCmd.DrawFromCustomPile(player, CollectorPile.Collected);
     }
 
     public override Task AfterCombatEnd(CombatRoom room)

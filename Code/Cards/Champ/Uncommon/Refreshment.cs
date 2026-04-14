@@ -15,7 +15,7 @@ public class Refreshment : ChampCardModel
 {
     public Refreshment() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new EnergyVar(2).WithUpgrade(1));
+        WithEnergy(2, 1);
         WithCards(3, 1);
     }
 
