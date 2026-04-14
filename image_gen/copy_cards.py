@@ -20,8 +20,9 @@ ATLAS_RES_BASE  = "res://Downfall/images/atlases"
 CACHE_FILE      = ".cards_cache.json"
 # ============================================================
 
-OUT_TRES  = os.path.join(OUT_ATLASES, SPRITES_DIR)
-UID_CHARS = string.ascii_lowercase + string.digits
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_TRES   = os.path.join(OUT_ATLASES, SPRITES_DIR)
+UID_CHARS  = string.ascii_lowercase + string.digits
 
 # ── Helpers ───────────────────────────────────────────────────
 
@@ -94,9 +95,10 @@ def clean_dir(folder, extensions):
 def collect_input_hashes():
     hashes = {}
     for input_dir in INPUT_DIRS:
-        if not os.path.exists(input_dir):
+        full = os.path.join(SCRIPT_DIR, input_dir)
+        if not os.path.exists(full):
             continue
-        for root, dirs, files in os.walk(input_dir):
+        for root, dirs, files in os.walk(full):
             for file in sorted(files):
                 if file.lower().endswith(".png"):
                     path = os.path.join(root, file)
@@ -127,22 +129,23 @@ for f in os.listdir(OUT_ATLASES):
 
 # ── Collect — first source wins per (rel_folder, stem) ───────
 
-seen            = set()   # (rel_folder, stem)
-normal_entries  = []      # (stem, rel_folder, resized_rgb)
+seen            = set()
+normal_entries  = []
 ancient_entries = []
 
 for input_dir in INPUT_DIRS:
-    if not os.path.exists(input_dir):
+    full = os.path.join(SCRIPT_DIR, input_dir)
+    if not os.path.exists(full):
         continue
-    for root, dirs, files in os.walk(input_dir):
-        rel_folder = os.path.relpath(root, input_dir)
+    for root, dirs, files in os.walk(full):
+        rel_folder = os.path.relpath(root, full)
         for file in sorted(files):
             if not file.lower().endswith(".png"):
                 continue
             stem = os.path.splitext(file)[0]
             key  = (rel_folder, stem)
             if key in seen:
-                continue  # higher-priority source already has this
+                continue
             seen.add(key)
 
             path = os.path.join(root, file)

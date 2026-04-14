@@ -38,3 +38,4 @@ image_gen/service_account.json
 *.xlsx#
 **/*.sprites/
 /image_gen/.excel_cache
+/image_gen/.sheets_cache.json
