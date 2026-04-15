@@ -25,7 +25,7 @@ public class Blightning : CollectorCardModel
     {
         await MyCommonActions.Apply<CollectorDoomPower>(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallCardCmd.DrawFromCustomPile(Owner, CollectorPile.Collected);
+        await CollectorCmd.DrawCollected(ctx, Owner);
     }
 
     

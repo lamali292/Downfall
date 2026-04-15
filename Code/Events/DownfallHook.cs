@@ -104,5 +104,7 @@ public static class DownfallHook
     public static Task OnPyre(CombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred) => 
         Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));
 
+    public static Task AfterCustomDraw(CombatState cs, PlayerChoiceContext ctx, Player player, PileType pile, CardPileAddResult result) => 
+        Dispatch<IAfterCustomDraw>(cs, ctx, m => m.AfterCustomDraw(ctx, player, pile, result));
 
 }

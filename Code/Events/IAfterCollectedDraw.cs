@@ -1,0 +1,10 @@
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Downfall.Code.Events;
+
+public interface IAfterCustomDraw
+{
+    Task AfterCustomDraw(PlayerChoiceContext ctx, Player player, PileType pile, CardPileAddResult result);
+}

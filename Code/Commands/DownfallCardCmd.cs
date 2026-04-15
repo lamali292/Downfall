@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.Code.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -134,21 +135,31 @@ public class DownfallCardCmd
     }
     
     
-    public static async Task<CardPileAddResult> DrawFromCustomPile(Player player, PileType pileType)
+    public static async Task<CardPileAddResult> DrawFromCustomPile(PlayerChoiceContext ctx, Player player, PileType pileType)
     {
-        var a = await DrawFromCustomPile(player, pileType, 1);
-        return a.Count == 0 ? default : a[0];
+        if (player.Creature.CombatState == null) return default;
+        var pile = pileType.GetPile(player);
+        CardPileAddResult result;
+        if (pile.Cards.Count == 0)
+        {
+            result = new CardPileAddResult();
+        }
+        else
+        {
+            var cardsToDraw = pile.Cards[0];
+            result = await CardPileCmd.Add(cardsToDraw, PileType.Hand);
+        }
+        await DownfallHook.AfterCustomDraw(player.Creature.CombatState, ctx, player, pileType, result);
+        return result;
     }
 
-    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(Player player, PileType pileType, int amount)
+    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(PlayerChoiceContext ctx, Player player, PileType pileType, int amount)
     {
-        var pile = pileType.GetPile(player);
-        
-        var cardsToDraw = pile.Cards.Take(amount).ToList();
-        if (cardsToDraw.Count == 0) 
+        var result = new List<CardPileAddResult>();
+        for (var i = 0; i < amount; i++)
         {
-            return [];
+            result.Add(await DrawFromCustomPile(ctx, player, pileType));
         }
-        return await CardPileCmd.Add(cardsToDraw, PileType.Hand);
+        return result;
     }
 }

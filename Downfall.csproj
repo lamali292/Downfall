@@ -114,6 +114,7 @@
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
 
+    
     <ItemGroup> <!--Allows access to originally private/protected members but may (unlikely to) cause errors.-->
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
     </ItemGroup>

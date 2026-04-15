@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Core.Collector;
 using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Downfall.Code.Relics.Collector;
@@ -8,5 +9,10 @@ namespace Downfall.Code.Relics.Collector;
 public class TheContract : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
-    // TODO
+    public override Task AfterObtained()
+    {
+        EssenceModel.AddEssence(Owner, 10);
+        return Task.CompletedTask;
+    }
+
 }

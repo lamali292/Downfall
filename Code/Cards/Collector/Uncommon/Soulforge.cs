@@ -22,7 +22,7 @@ public class Soulforge : CollectorCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = await DownfallCardCmd.DrawFromCustomPile(Owner, CollectorPile.Collected);
+        var result = await CollectorCmd.DrawCollected(ctx, Owner);
         if (!result.success) return;
         List<CardModel> cards = [];
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)

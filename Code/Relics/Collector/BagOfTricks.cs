@@ -19,7 +19,7 @@ public class BagOfTricks : CollectorRelicModel
         CombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
-        await DownfallCardCmd.DrawFromCustomPile(player, CollectorPile.Collected, 2);
+        await CollectorCmd.DrawCollected(choiceContext, player, 2);
         Flash();
     }
 }

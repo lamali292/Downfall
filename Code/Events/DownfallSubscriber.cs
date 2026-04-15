@@ -1,5 +1,4 @@
-﻿using Downfall.Code.Core;
-using Downfall.Code.Core.Champ;
+﻿using Downfall.Code.Core.Champ;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -20,9 +19,6 @@ public static class DownfallSubscriber
             var stance = ChampModel.GetStanceModel(player);
             if (stance is not NoChampStance)
                 yield return stance;
-            
-            
-            yield return DownfallHistory.Get(player);
         }
     }
 }

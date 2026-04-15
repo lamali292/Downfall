@@ -1532,5 +1532,7 @@
   "DOWNFALL-BLIGHTNING.title": "Blightning",
   "DOWNFALL-BLIGHTNING.description": "Apply {CollectorDoomPower:diff()} [gold]Doom[/gold].\nApply {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards} from your Collected pile.",
   "DOWNFALL-BLIGHTING.title": "Blighting",
-  "DOWNFALL-BLIGHTING.description": "Apply {CollectorDoomPower:diff()} [gold]Doom[/gold].\nApply {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards} from your Collected pile."
+  "DOWNFALL-BLIGHTING.description": "Apply {CollectorDoomPower:diff()} [gold]Doom[/gold].\nApply {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards} from your Collected pile.",
+  "DOWNFALL-LUCKY_WICK.title": "Lucky Wick",
+  "DOWNFALL-LUCKY_WICK.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage."
 }

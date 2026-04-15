@@ -24,7 +24,7 @@ public class DragonsTrove : CollectorCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.DrawFromCustomPile(Owner, CollectorPile.Collected, DynamicVars.Cards.IntValue);
+        await CollectorCmd.DrawCollected(ctx, Owner, DynamicVars.Cards.IntValue);
         CollectorEnergy.Gain(Owner, DynamicVars["Reserve"].IntValue);
     }
     

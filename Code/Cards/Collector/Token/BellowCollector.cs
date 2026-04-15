@@ -2,6 +2,7 @@
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Core;
+using Downfall.Code.History;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,13 +30,15 @@ public class BellowCollector : CollectorCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        return DownfallHistory.Get(card.Owner).UnusedBlockLastTurn;
+        return CombatManager.Instance.History.Entries.OfType<UnusedBlockEntry>().Where(x => 
+            x.Actor == card.Owner.Creature && x.HappenedThisTurn(card.Owner.Creature.CombatState) 
+            ).Sum(x => x.Amount);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var unusedBlock = DownfallHistory.Get(Owner).UnusedBlockLastTurn;
+        var unusedBlock = Calc(this, cardPlay.Target);
         await CommonActions.Apply<CollectorDoomPower>(cardPlay.Target, this, unusedBlock);
     }
 
