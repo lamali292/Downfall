@@ -12,7 +12,7 @@ namespace Downfall.Code.Cards.Collector.Token;
 [Pool(typeof(TokenCardPool))]
 public class Ember : CollectorCardModel
 {
-    public Ember() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+    public Ember() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);

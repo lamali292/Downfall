@@ -2,11 +2,11 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Collector.Token;
 using Downfall.Code.Commands;
+using Downfall.Code.Events;
 using Downfall.Code.Piles;
 using Downfall.Code.Rewards;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -23,7 +23,11 @@ public class CollectorModel() : CustomSingletonModel(true, false)
     public override bool ShouldReceiveCombatHooks => true;
     private readonly List<MonsterModel> _defeatedEnemies = [];
     
-    
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    {
+        if (!DownfallHook.PreventCollectedDraw(combatState, player))
+            await DownfallCardCmd.DrawFromCustomPile(player, CollectorPile.Collected);
+    }
     
     public override Task BeforeCombatStart()
     {
@@ -62,10 +66,7 @@ public class CollectorModel() : CustomSingletonModel(true, false)
         return Task.CompletedTask;
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
-    {
-        await DownfallCardCmd.DrawFromCustomPile(player, CollectorPile.Collected);
-    }
+
 
     public override Task AfterCombatEnd(CombatRoom room)
     {

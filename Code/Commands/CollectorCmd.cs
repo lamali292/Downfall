@@ -32,16 +32,27 @@ public class CollectorCmd
   }
   
 
-  public static async Task<Creature> Torchhead(
+  public static async Task<Creature> SummonTorchhead(
     PlayerChoiceContext ctx,
     Player summoner,
     int hp,
     AbstractModel? source) => 
-    await Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
+    await Summon<TorchheadMonsterModel>(summoner, hp, source);
 
 
+  public static Creature? Torchhead(Player summoner)
+        => GainPet<TorchheadMonsterModel>(summoner);
+
+
+  private static Creature? GainPet<T>(Player summoner)  where T : MonsterModel
+  {
+    var combatState = summoner.Creature.CombatState;
+    ArgumentNullException.ThrowIfNull(combatState);
+    ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
+    return combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
+  }
+  
   private static async Task<Creature> Summon<T>(
-    PlayerChoiceContext ctx,
     Player summoner,
     int hp,
     AbstractModel? source) where T : MonsterModel

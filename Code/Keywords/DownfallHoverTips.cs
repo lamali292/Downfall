@@ -16,6 +16,7 @@ public readonly struct DownfallTip
     public static readonly DownfallTip Chant = new(nameof(Chant));
     public static readonly DownfallTip Drained = new(nameof(Drained));
     public static readonly DownfallTip Finisher = new(nameof(Finisher));
+    public static readonly DownfallTip Kindle = new(nameof(Kindle));
     private readonly string _name;
 
     private DownfallTip(string name)

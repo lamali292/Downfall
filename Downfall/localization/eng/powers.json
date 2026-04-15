@@ -311,5 +311,8 @@
   "DOWNFALL-PYROMANCY_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] [gold]Reserve[/gold].",
   "DOWNFALL-SHOOTING_STAR_POWER.title": "Shooting Star",
   "DOWNFALL-SHOOTING_STAR_POWER.description": "The first time you [gold]Pyre[/gold] an [gold]Attack[/gold] each turn, gain a copy of it. It costs [blue]0[/blue] until played.",
-  "DOWNFALL-SHOOTING_STAR_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Pyre[/gold] an [gold]Attack[/gold] each turn, gain a copy of it. It costs [blue]0[/blue] until played."
+  "DOWNFALL-SHOOTING_STAR_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Pyre[/gold] an [gold]Attack[/gold] each turn, gain a copy of it. It costs [blue]0[/blue] until played.",
+  "DOWNFALL-BRUISE_POWER.title": "Bruise",
+  "DOWNFALL-BRUISE_POWER.description": "This turn, target takes [blue]X[/blue] more attack damage.",
+  "DOWNFALL-BRUISE_POWER.smartDescription": "This turn, target takes [blue]{Amount}[/blue] more attack damage."
 }

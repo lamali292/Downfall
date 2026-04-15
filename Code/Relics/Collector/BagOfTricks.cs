@@ -1,6 +1,11 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Commands;
+using Downfall.Code.Piles;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Relics.Collector;
 
@@ -8,5 +13,13 @@ namespace Downfall.Code.Relics.Collector;
 public class BagOfTricks : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
-    // TODO
+    public override async Task BeforeHandDraw(
+        Player player,
+        PlayerChoiceContext choiceContext,
+        CombatState combatState)
+    {
+        if (player != Owner || combatState.RoundNumber > 1) return;
+        await DownfallCardCmd.DrawFromCustomPile(player, CollectorPile.Collected, 2);
+        Flash();
+    }
 }

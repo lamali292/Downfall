@@ -21,5 +21,7 @@
   "DOWNFALL-FINISHER.title": "Finisher",
   "DOWNFALL-FINISHER.description": "Requires a Stance.\nAfter playing a Finisher, exit your [gold]Stance[/gold] and trigger its Finisher bonus.",
   "DOWNFALL-COLLECTED_PILE.title": "Collected Pile",
-  "DOWNFALL-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of each turn."
+  "DOWNFALL-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of each turn.",
+  "DOWNFALL-KINDLE.title": "Kindle",
+  "DOWNFALL-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat."
 }

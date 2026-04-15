@@ -4,6 +4,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
+using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,11 +21,12 @@ public class BindingCall : CollectorCardModel
     {
         WithVars(new SummonVar(6).WithUpgrade(2));
         WithPower<BindingCallPower>(2, 1);
+        WithTip(DownfallTip.Kindle);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var torchhead = await CollectorCmd.Torchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+        var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
         await CommonActions.Apply<BindingCallPower>(torchhead, this);
     }
 }

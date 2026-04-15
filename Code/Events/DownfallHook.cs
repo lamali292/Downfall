@@ -84,7 +84,10 @@ public static class DownfallHook
         Aggregate<IModifyCounterStrikeCount, int>(cs, baseAmount, 
             (m, current) => m.ModifyCounterStrikeCount(player, current));
     
-
+    public static int ModifyCollectorDoomDamage(CombatState cs, Creature creature, int baseAmount) => 
+        Aggregate<IModifyCollectorDoomDamage, int>(cs, baseAmount, 
+            (m, current) => m.ModifyCollectorDoomDamage(creature, current));
+    
     public static bool IgnoreChargeCap(CombatState cs, Player player) =>  
         Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
     
@@ -94,6 +97,9 @@ public static class DownfallHook
     
     public static bool PreventDoomRemoval(CombatState cs, Creature creature) =>
         Any<IPreventDoomRemoval>(cs, m => m.PreventDoomRemoval(creature));
+    
+    public static bool PreventCollectedDraw(CombatState cs, Player player) =>
+        Any<IPreventCollectedDraw>(cs, m => m.PreventCollectedDraw(player));
     
     public static Task OnPyre(CombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred) => 
         Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));

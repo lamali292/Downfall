@@ -1,15 +1,12 @@
 ﻿using BaseLib.Hooks;
 using Downfall.Code.Abstract;
-using Downfall.Code.Commands;
 using Downfall.Code.Events;
 using Downfall.Code.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Collector;
@@ -32,7 +29,8 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
     {
         if (side != Owner.Side || Owner.CombatState == null) return;
 
-        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        var damage = DownfallHook.ModifyCollectorDoomDamage(Owner.CombatState, Owner, Amount);
+        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, damage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
         if (results.Any(r => r.WasTargetKilled))
         {

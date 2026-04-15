@@ -4,6 +4,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
+using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,10 +18,11 @@ public class Torchbearer : CollectorCardModel
     {
         WithVars(new SummonVar(10).WithUpgrade(4));
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(DownfallTip.Kindle);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.Torchhead(ctx, Owner, 10, this);
+        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
     }
 }
