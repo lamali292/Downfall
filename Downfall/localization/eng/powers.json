@@ -305,5 +305,11 @@
   "DOWNFALL-DARK_LORD_FORM_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount}[/blue] copies of} [gold]You Are Mine[/gold] on a random enemy.",
   "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.title": "Dark Lord Form",
   "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.description": "At the start of your turn, play [gold]You Are Mine+[/gold] on a random enemy.",
-  "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount} [/blue]copies of} [gold]You Are Mine+[/gold] on a random enemy."
+  "DOWNFALL-DARK_LORD_FORM_PLUS_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount} [/blue]copies of} [gold]You Are Mine+[/gold] on a random enemy.",
+  "DOWNFALL-PYROMANCY_POWER.title": "Crackle",
+  "DOWNFALL-PYROMANCY_POWER.description": "At the start of your turn, gain [blue]1[/blue] [gold]Reserve[/gold].",
+  "DOWNFALL-PYROMANCY_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] [gold]Reserve[/gold].",
+  "DOWNFALL-SHOOTING_STAR_POWER.title": "Shooting Star",
+  "DOWNFALL-SHOOTING_STAR_POWER.description": "The first time you [gold]Pyre[/gold] an [gold]Attack[/gold] each turn, gain a copy of it. It costs [blue]0[/blue] until played.",
+  "DOWNFALL-SHOOTING_STAR_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Pyre[/gold] an [gold]Attack[/gold] each turn, gain a copy of it. It costs [blue]0[/blue] until played."
 }

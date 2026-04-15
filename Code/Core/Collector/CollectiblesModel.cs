@@ -12,7 +12,8 @@ namespace Downfall.Code.Core.Collector;
 
 public static class CollectiblesModel
 {
- 
+    
+    
     // TODO - ??????????? what did  i do here, help
     public static readonly SavedSpireField<RelicModel, SerializableCard[]> Collectibles = new(Array.Empty<SerializableCard>, "Downfall_Collector_Collectibles");
 
@@ -43,7 +44,5 @@ public static class CollectiblesModel
         var actualRelic = player.GetRelicById(relicId);
         return actualRelic ?? throw new Exception("No relic with id " + relicId);
     }
-    
-    
 }
 

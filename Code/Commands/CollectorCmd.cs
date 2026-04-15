@@ -1,5 +1,6 @@
 ﻿using BaseLib.Patches.Content;
 using Downfall.Code.Core.Collector;
+using Downfall.Code.Events;
 using Downfall.Code.Piles;
 using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -24,11 +25,9 @@ public class CollectorCmd
   {
     var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1, 1);
     var pyred = (await CardSelectCmd.FromHand(ctx, card.Owner, prefs, e => e != card, card)).FirstOrDefault();
-    if (pyred != null)
-    {
-      await CardCmd.Exhaust(ctx, pyred);
-    }
-
+    if (pyred == null || card.CombatState == null) return pyred;
+    await CardCmd.Exhaust(ctx, pyred);
+    await DownfallHook.OnPyre(card.CombatState, ctx, card, pyred);
     return pyred;
   }
   

@@ -9,17 +9,15 @@ namespace Downfall.Code.Cards.Collector.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class ReceiveTribute : CollectorCardModel
 {
+    // Todo: nah
     public ReceiveTribute() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithPyre();
+        WithKeyword(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

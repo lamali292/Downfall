@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Nodes;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -55,34 +56,64 @@ public class CollectorEnergy : CustomSingletonModel
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.SpendResources))]
 static class SpendResourcesPatch
 {
-    static void Prefix(CardModel __instance)
+    [HarmonyPrefix]
+    static bool HandleCollectorSpending(CardModel __instance, ref Task<(int, int)> __result)
     {
         var player = __instance.Owner;
-        if (player?.PlayerCombatState == null) return;
+        if (player.PlayerCombatState == null) return true;
 
         var reserve = CollectorEnergy.Get(player);
-        if (reserve <= 0) return;
-
-        var energy = player.PlayerCombatState.Energy;
+        if (reserve <= 0) return true;
         var cost   = __instance.EnergyCost.GetAmountToSpend();
-        if (energy >= cost) return;
+
+        if (__instance is CollectorCardModel { UsesCollectorEnergyOnly: true })
+        {
+            if (!CollectorEnergy.CanAfford(player, cost))
+                return true;
+
+            CollectorEnergy.Spend(player, cost);
+            __result = Task.FromResult((0, 0));
+            return false;
+        }
+        var energy = player.PlayerCombatState.Energy;
+        if (energy >= cost) return true;
 
         var deficit = cost - energy;
         var cover   = Math.Min(deficit, reserve);
         
         CollectorEnergy.Spend(player, cover);
+        return true;
     }
 }
+
 
 [HarmonyPatch(typeof(PlayerCombatState), nameof(PlayerCombatState.HasEnoughResourcesFor))]
 static class HasEnoughResourcesPatch
 {
-    static void Postfix(
+    [HarmonyPrefix]
+    static bool HandleExclusivityLogic( PlayerCombatState __instance, CardModel card, ref bool __result, ref UnplayableReason reason) {
+        if (card is not CollectorCardModel { UsesCollectorEnergyOnly: true }) return true; 
+        
+        var player = card.Owner;
+        var reserve = CollectorEnergy.Get(player);
+        var cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        reason = UnplayableReason.None;
+        if (reserve < cost)
+            reason |= UnplayableReason.EnergyCostTooHigh;
+
+        __result = reason == UnplayableReason.None;
+        return false;
+    }
+    
+    [HarmonyPostfix]
+    static void HandleReserveEnergyLogic(
         PlayerCombatState __instance,
         CardModel card,
         ref bool __result,
         ref UnplayableReason reason)
     {
+        if (card is CollectorCardModel { UsesCollectorEnergyOnly: true })
+            return;
         if (__result) return;
         if (!reason.HasFlag(UnplayableReason.EnergyCostTooHigh)) return;
         var player = card.Owner;

@@ -9,13 +9,14 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Piles;
 
-public class CollectorPile (): CustomPile(Collected)
+public class CollectorPile(): CustomPile(Collected)
 {
     [CustomEnum] public static PileType Collected;
     public override bool CardShouldBeVisible(CardModel card)
     {
         return false;
     }
+    
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var container = NCombatRoom.Instance?.Ui.GetNodeOrNull<NCombatPilesContainer>("%CombatPileContainer");

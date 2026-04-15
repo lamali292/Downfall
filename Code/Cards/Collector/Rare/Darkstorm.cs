@@ -15,12 +15,12 @@ public class Darkstorm : CollectorCardModel
     {
         WithCards(2, 2);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(typeof(Blighting));
+        WithTip(typeof(Blightning));
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.GiveCard<Blighting>(Owner, PileType.Hand);
-        await DownfallCardCmd.GiveCards<Blighting>(Owner, PileType.Draw, DynamicVars.Cards.IntValue, CardPilePosition.Random);
+        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Hand);
+        await DownfallCardCmd.GiveCards<Blightning>(Owner, PileType.Draw, DynamicVars.Cards.IntValue, CardPilePosition.Random);
     }
 }

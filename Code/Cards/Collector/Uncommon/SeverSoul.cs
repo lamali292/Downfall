@@ -20,13 +20,15 @@ public class SeverSoul : CollectorCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        foreach (var card in GetCards())
+        var cardsToExhaust = GetCards().ToList(); 
+
+        foreach (var card in cardsToExhaust)
         {
             await CardCmd.Exhaust(ctx, card);
         }
+    
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
     
     
     private IEnumerable<CardModel> GetCards()

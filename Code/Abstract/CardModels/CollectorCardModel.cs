@@ -14,7 +14,7 @@ public abstract class CollectorCardModel(
     TargetType targetType)
     : DownfallCardModel<Character.Collector>(cost, type, rarity, targetType)
 {
-    
+    public virtual bool UsesCollectorEnergyOnly => false;
     private bool _hasPyre;
     protected CardModel? PyredCard { get; private set; }
     

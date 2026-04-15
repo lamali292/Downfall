@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,13 @@ public class Pyromancy : CollectorCardModel
 {
     public Pyromancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithCostUpgradeBy(-1);
+        WithPower<PyromancyPower>(1);
+        WithPyre();
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<PyromancyPower>(this);
     }
 }

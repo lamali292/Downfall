@@ -10,10 +10,10 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Downfall.Code.Cards.Collector.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Blighting : CollectorCardModel
+public class Blightning : CollectorCardModel
 {
     
-    public Blighting() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+    public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithPower<CollectorDoomPower>(6, 2);
         WithDamage(6, 2);

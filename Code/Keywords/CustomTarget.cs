@@ -38,6 +38,7 @@ class ShowMultiCreatureTargetingVisualsPatch
 }
 
 
+
 [HarmonyPatch(typeof(NMouseCardPlay), "TargetSelection")]
 class TargetSelectionPatch
 {

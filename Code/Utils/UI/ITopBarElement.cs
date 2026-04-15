@@ -4,7 +4,6 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -66,7 +65,6 @@ internal static class TopBarElementRegistry
     }
 }
 
-// ── Patch ─────────────────────────────────────────────────────────────────────
 
 [HarmonyPatch(typeof(NTopBar), nameof(NTopBar.Initialize))]
 class PatchTopBarInitialize
@@ -76,49 +74,28 @@ class PatchTopBarInitialize
     {
         var localPlayer = LocalContext.GetMe(runState);
         if (localPlayer == null) return;
-
-        var elements = new List<(Control node, ITopBarElement element)>();
-
+        
+        var rightContainer = __instance.GetNodeOrNull<HBoxContainer>("RightAlignedStuff");
+        if (rightContainer == null) return;
+        
         foreach (var type in TopBarElementRegistry.Types)
         {
-            var (scenePath, canUse, _) = TopBarElementRegistry.ReadMetadata(type);
+            var (scenePath, canUse, width) = TopBarElementRegistry.ReadMetadata(type);
             if (!canUse(localPlayer)) continue;
 
             var scene = ResourceLoader.Load<PackedScene>(scenePath);
             if (scene == null) continue;
 
             var node = scene.Instantiate<Control>();
-            var element = (ITopBarElement)node;
-            __instance.AddChildSafely(node);
-            element.Initialize(localPlayer);
-            elements.Add((node, element));
-        }
-
-        if (elements.Count == 0) return;
-
-        Callable.From(() =>
-        {
-            // Stack elements leftward from the Map button.
-            var cursor = __instance.Map.GlobalPosition;
-            var totalWidth = 0f;
-
-            foreach (var (node, element) in elements)
+            node.CustomMinimumSize = new Vector2(width, 0);
+            node.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin; 
+            
+            rightContainer.AddChild(node);
+            rightContainer.MoveChild(node, 3);
+            if (node is ITopBarElement element)
             {
-                cursor += new Vector2(-element.Width, 0);
-                node.GlobalPosition = cursor;
-                totalWidth += element.Width;
+                element.Initialize(localPlayer);
             }
-
-            // Insert a spacer so the map node's siblings don't overlap.
-            var map = __instance.GetNodeOrNull<Node>("RightAlignedStuff/Map");
-            if (map == null) return;
-
-            var spacer = new Control();
-            spacer.CustomMinimumSize = new Vector2(totalWidth, 0);
-            spacer.MouseFilter = Control.MouseFilterEnum.Ignore;
-            var parent = map.GetParent();
-            parent.AddChild(spacer);
-            parent.MoveChild(spacer, map.GetIndex());
-        }).CallDeferred();
+        }
     }
 }
