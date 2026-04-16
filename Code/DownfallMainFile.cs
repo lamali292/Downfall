@@ -29,7 +29,6 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
-       
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);

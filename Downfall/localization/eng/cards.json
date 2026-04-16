@@ -93,7 +93,7 @@
   "DOWNFALL-BOB_AND_WEAVE.title": "Bob and Weave",
   "DOWNFALL-BODY_CRASH.description": "",
   "DOWNFALL-BODY_CRASH.title": "Body Crash",
-  "DOWNFALL-BONFIRE.description": "[gold]Pyre[/gold].\nGain {Block:diff()} Block.\nNext turn, gain 1 [gold]Reserve[/gold].",
+  "DOWNFALL-BONFIRE.description": "Gain {Block:diff()} Block.\nNext turn, gain 1 [gold]Reserve[/gold].",
   "DOWNFALL-BONFIRE.title": "Bonfire",
   "DOWNFALL-BOOK_OF_SECRETS.description": "Gain {Block:diff()} Block.\nAll other players Conjure a copy of your next up spell.",
   "DOWNFALL-BOOK_OF_SECRETS.title": "Book of Secrets",

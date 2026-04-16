@@ -1,26 +1,14 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
-using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Monsters;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.Code.Cards.Collector.Token;
 
-
-
-[Pool(typeof(CollectibleCardPool))]
-public abstract class ACollectible<T>() : Collectible<T>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
-    where T : MonsterModel;
 
 public interface ICollectible
 {
