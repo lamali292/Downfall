@@ -20,14 +20,14 @@ internal static class PlayerExtensions
 
     public static bool ShouldDefensiveComboTrigger(this Player player)
     {
-        return ChampModel.IsInStance<DefensiveChampStance>(player) ||
-               ChampModel.IsInStance<UltimateChampStance>(player);
+        return ChampModel.IsInStance<ChampDefensiveStance>(player) ||
+               ChampModel.IsInStance<ChampUltimateStance>(player);
     }
 
     public static bool ShouldBerserkerComboTrigger(this Player player)
     {
-        return ChampModel.IsInStance<BerserkerChampStance>(player) ||
-               ChampModel.IsInStance<UltimateChampStance>(player);
+        return ChampModel.IsInStance<ChampBerserkerStance>(player) ||
+               ChampModel.IsInStance<ChampUltimateStance>(player);
     }
     
     public static Creature? Torchhead(this Player player) => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();

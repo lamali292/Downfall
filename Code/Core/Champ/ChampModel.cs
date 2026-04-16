@@ -16,7 +16,7 @@ namespace Downfall.Code.Core.Champ;
 public class ChampModel() : CustomSingletonModel(true, true)
 {
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
-        new(DownfallModelDb.ChampStance<NoChampStance>);
+        new(DownfallModelDb.ChampStance<ChampNoStance>);
 
     private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
 
@@ -27,7 +27,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
 
     public static ChampStanceModel GetStanceModel(Player player)
     {
-        return ActiveStance[player] ?? DownfallModelDb.ChampStance<NoChampStance>();
+        return ActiveStance[player] ?? DownfallModelDb.ChampStance<ChampNoStance>();
     }
 
     public static bool IsInStance<T>(Player player) where T : ChampStanceModel
@@ -68,7 +68,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
         await mutable.OnEnter(ctx);
 
         TriggerStanceAnimation(player);
-        await DownfallHook.OnStanceChange(player.Creature.CombatState!, ctx, player, current!, ActiveStance[player]!);
+        await DownfallHook.OnChampStanceChange(player.Creature.CombatState!, ctx, player, current!, ActiveStance[player]!);
         RefreshStanceDisplay(player, newCanonical);
     }
 
@@ -77,7 +77,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return;
         foreach (var player in state.Players)
-            ActiveStance[player] = DownfallModelDb.ChampStance<NoChampStance>();
+            ActiveStance[player] = DownfallModelDb.ChampStance<ChampNoStance>();
     }
 
 
@@ -113,7 +113,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
         {
             var existing = GetDisplay(player);
 
-            if (newCanonical is NoChampStance)
+            if (newCanonical is ChampNoStance)
             {
                 if (existing != null && GodotObject.IsInstanceValid(existing))
                     existing.QueueFree();

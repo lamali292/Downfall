@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Champ.Rare;
 
 [Pool(typeof(ChampCardPool))]
-public class FlurryOfStrikes : ChampCardModel, IOnStanceChange
+public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
 {
     public FlurryOfStrikes() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -20,7 +20,7 @@ public class FlurryOfStrikes : ChampCardModel, IOnStanceChange
     }
 
 
-    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+    public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
         if (newStance.Owner != Owner && Pile?.Type != PileType.Discard) return;

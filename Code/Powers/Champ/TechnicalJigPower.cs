@@ -8,9 +8,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Powers.Champ;
 
-public class TechnicalJigPower : ChampPowerModel, IOnStanceChange
+public class TechnicalJigPower : ChampPowerModel, IOnChampStanceChange
 {
-    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+    public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
         if (player.Creature != Owner) return;

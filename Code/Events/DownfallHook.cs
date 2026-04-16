@@ -1,6 +1,7 @@
 ﻿using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
+using Downfall.Code.Core.Guardian;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -70,11 +71,15 @@ public static class DownfallHook
         Dispatch<IOnFinisher>(cs, ctx, m => m.OnFinisher(ctx, cardPlay));
     
 
-    public static Task OnStanceChange(CombatState cs, PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+    public static Task OnChampStanceChange(CombatState cs, PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance) => 
-        Dispatch<IOnStanceChange>(cs, ctx, m => m.OnStanceChange(ctx, player, oldStance, newStance));
+        Dispatch<IOnChampStanceChange>(cs, ctx, m => m.OnChampStanceChange(ctx, player, oldStance, newStance));
     
 
+    public static Task OnGuardianModeChange(CombatState cs, PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+        GuardianModeModel newMode) => 
+        Dispatch<IOnGuardianModeChange>(cs, ctx, m => m.OnGuardianModeChange(ctx, player, oldMode, newMode));
+    
     public static int ModifySkillBonus<TPower>(CombatState cs, ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel => 
          Aggregate<IModifySkillBonus, int>(cs, baseAmount,
@@ -105,6 +110,6 @@ public static class DownfallHook
         Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));
 
     public static Task AfterCustomDraw(CombatState cs, PlayerChoiceContext ctx, Player player, PileType pile, CardPileAddResult result) => 
-        Dispatch<IAfterCustomDraw>(cs, ctx, m => m.AfterCustomDraw(ctx, player, pile, result));
+        Dispatch<IAfterCustomDraw>(cs, ctx, m => m.AfterCustomDraw(player, pile, result));
 
 }

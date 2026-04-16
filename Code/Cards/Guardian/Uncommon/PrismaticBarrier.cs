@@ -9,6 +9,7 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class PrismaticBarrier : GuardianCardModel
 {
+    protected override int GemSlots => 3;
     public PrismaticBarrier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }

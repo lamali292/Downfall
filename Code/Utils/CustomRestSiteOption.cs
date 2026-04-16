@@ -1,0 +1,23 @@
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.RestSite;
+
+namespace Downfall.Code.Utils;
+
+public abstract class CustomRestSiteOption(Player owner) : RestSiteOption(owner)
+{
+    public virtual string? CustomIconPath => null;
+}
+
+[HarmonyPatch(typeof(RestSiteOption),"IconPath", MethodType.Getter)]
+class CustomOrbIconPath
+{
+    [HarmonyPrefix]
+    static bool Custom(RestSiteOption __instance, ref string __result)
+    {
+        if (__instance is not CustomRestSiteOption { CustomIconPath: { } path })
+            return true;
+        __result = path;
+        return false;
+    }
+}

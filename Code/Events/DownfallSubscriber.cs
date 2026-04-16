@@ -17,7 +17,7 @@ public static class DownfallSubscriber
         foreach (var player in combatState.Players)
         {
             var stance = ChampModel.GetStanceModel(player);
-            if (stance is not NoChampStance)
+            if (stance is not ChampNoStance)
                 yield return stance;
         }
     }

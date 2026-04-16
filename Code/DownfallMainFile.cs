@@ -3,11 +3,13 @@ using BaseLib.Config;
 using Downfall.Code.Abstract;
 using Downfall.Code.Config;
 using Downfall.Code.Core;
+using Downfall.Code.CustomEnums;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -27,6 +29,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+       
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
@@ -65,7 +68,7 @@ internal static class ModelDbInitIdsPatch
     }
 }
 
-/*
+
 [HarmonyPatch(typeof(Log), nameof(Log.Error))]
 public static class LogErrorPatch
 {
@@ -74,4 +77,4 @@ public static class LogErrorPatch
     {
         return !text.StartsWith("Localization formatting error!");
     }
-}*/
+}

@@ -17,25 +17,25 @@ public class ChampCmd
 {
     public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        if (!force && player.ChampStance() is UltimateChampStance stance)
+        if (!force && player.ChampStance() is ChampUltimateStance stance)
         {
             stance.ResetCharges();
         }
         else
         {
-            await ChampModel.SetStance<BerserkerChampStance>(ctx, player);
+            await ChampModel.SetStance<ChampBerserkerStance>(ctx, player);
         }
     }
 
     public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        if (!force && player.ChampStance() is UltimateChampStance stance)
+        if (!force && player.ChampStance() is ChampUltimateStance stance)
         {
             stance.ResetCharges();
         }
         else
         {
-            await ChampModel.SetStance<DefensiveChampStance>(ctx, player);
+            await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
         }
         
         
@@ -43,12 +43,12 @@ public class ChampCmd
 
     public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)
     {
-        await ChampModel.SetStance<UltimateChampStance>(ctx, player);
+        await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
     }
 
     public static async Task EnterGladiatorStance(PlayerChoiceContext ctx, Player player)
     {
-        await ChampModel.SetStance<GladiatorChampStance>(ctx, player);
+        await ChampModel.SetStance<ChampGladiatorStance>(ctx, player);
     }
 
     public static async Task EnterStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
@@ -61,10 +61,10 @@ public class ChampCmd
         var stance = owner.ChampStance();
         switch (stance)
         {
-            case BerserkerChampStance:
+            case ChampBerserkerStance:
                 await EnterDefensiveStance(ctx, owner);
                 break;
-            case DefensiveChampStance:
+            case ChampDefensiveStance:
                 await EnterBerserkerStance(ctx, owner);
                 break;
             default:
@@ -81,7 +81,7 @@ public class ChampCmd
 
     public static async Task ClearStance(PlayerChoiceContext ctx, Player player)
     {
-        await ChampModel.SetStance<NoChampStance>(ctx, player);
+        await ChampModel.SetStance<ChampNoStance>(ctx, player);
     }
 
     public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false,
@@ -97,7 +97,7 @@ public class ChampCmd
             await DownfallHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 
-        if (skipClear || m is UltimateChampStance) return;
+        if (skipClear || m is ChampUltimateStance) return;
         await ClearStance(ctx, player);
     }
 

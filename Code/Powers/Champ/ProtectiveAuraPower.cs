@@ -12,7 +12,7 @@ public class ProtectiveAuraPower : ChampPowerModel
 {
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        if (side != Owner.Side || Owner.Player == null || !Owner.Player.IsInChampStance<NoChampStance>()) return;
+        if (side != Owner.Side || Owner.Player == null || !Owner.Player.IsInChampStance<ChampNoStance>()) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
         Flash();
     }

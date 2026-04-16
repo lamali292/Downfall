@@ -9,6 +9,7 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class PrismaticSpray : GuardianCardModel
 {
+    protected override int GemSlots => MaxUpgradeLevel;
     public PrismaticSpray() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }

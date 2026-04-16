@@ -1,10 +1,14 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Extensions;
+using Downfall.Code.Patches;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -20,9 +24,6 @@ public abstract class ACollectible<T>() : Collectible<T>(0, CardType.Attack, Car
 
 public interface ICollectible
 {
-    float HueShift => 0f;
-    float Saturation => 1f;
-    float Value => 1f;
     MonsterModel GetMonsterModel();
 }
 
@@ -33,16 +34,17 @@ public abstract class Collectible<T>(
     TargetType targetType,
     float h = 0.0f,
     float s = 1.0f,
-    float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible
+    float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible, IAdditionalOverlay, IColoredPortrait
     where T : MonsterModel
 {
-    public override bool HasBuiltInOverlay => true;
+    public override bool HasBuiltInOverlay => false;
     
     public override List<(string, string)> Localization =>
-    [
-        ("title", GetMonsterModel().Title.GetFormattedText()),
-        ("description", "")
-    ];
+        new CardLoc(
+            GetMonsterModel().Title.GetFormattedText(),
+            ""
+        );
+    
     
     //public override string CustomPortraitPath => "collectible.png".CardImagePath<Character.Collector>();
     public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Character.Collector>();
@@ -55,90 +57,45 @@ public abstract class Collectible<T>(
     public float HueShift => h;
     public float Saturation => s;
     public float Value => v;
-}
-
-[HarmonyPatch(typeof(NCard), "Reload")]
-public static class NCardReloadCollectiblePatch
-{
-    public static void Postfix(NCard __instance)
+    
+    
+    public Control? CreateAdditionalOverlay()
     {
-        if (__instance.Model is not ICollectible collectible) return;
-
-        var portrait = __instance.GetNodeOrNull<TextureRect>("%Portrait");
-        if (portrait == null) return;
-
-        var shaderMaterial = new ShaderMaterial();
-        shaderMaterial.Shader = ResourceLoader.Load<Shader>("res://Downfall/shaders/hsv.gdshader");
-        shaderMaterial.SetShaderParameter("h", collectible.HueShift);
-        shaderMaterial.SetShaderParameter("s", collectible.Saturation);
-        shaderMaterial.SetShaderParameter("v", collectible.Value);
-        portrait.Material = shaderMaterial;
-    }
-}
-
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.CreateOverlay))]
-public static class CreateOverlayPatch
-{
-    public static bool Prefix(CardModel __instance, ref Control __result)
-    {
-        if (__instance is not ICollectible collectible) return true;
-
-        try
-        {
-        var monsterModel = collectible.GetMonsterModel();
-        var monster = monsterModel.ToMutable();
+        var monster = GetMonsterModel().ToMutable();
         var visuals = monster.CreateVisuals();
-
-        var container = new Control
-        {
-            CustomMinimumSize = new Vector2(300f, 200f),
-            ClipContents = false,
-            Position = Vector2.Zero,
-            MouseFilter = Control.MouseFilterEnum.Ignore
-        };
-
+        
+        var container = new Control { Name = OverlayNodeName, MouseFilter = Control.MouseFilterEnum.Ignore };
         container.AddChild(visuals);
+        
+        visuals.Ready += () => {
+            if (visuals.SpineBody != null)
+                monster.GenerateAnimator(visuals.SpineBody);
+                        
+            foreach (var node in visuals.GetChildrenRecursive<Control>())
+                node.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        visuals.Ready += () =>
-        {
-            try
-            {
-                //monster.SetupSkins(visuals);
-                if (visuals.SpineBody != null)
-                    monster.GenerateAnimator(visuals.SpineBody);
-                foreach (var node in visuals.GetChildrenRecursive<Control>())
-                    node.MouseFilter = Control.MouseFilterEnum.Ignore;
-                var boundsSize = visuals.Bounds.Size;
-                var boundsPos = visuals.Bounds.Position;
-                const float portraitW = 250f;
-                const float portraitH = 190f;
-                const float portraitCenterX = 0f;
-                const float portraitBottom = 22f;
+            // --- YOUR CUSTOM VALUES ---
+            var boundsSize = visuals.Bounds.Size;
+            var boundsPos = visuals.Bounds.Position;
+            const float portraitW = 250f;
+            const float portraitH = 190f;
+            const float portraitCenterX = 0f;
+            const float portraitBottom = 22f;
+            const float fitScale = 0.8f;
+            const float verticalPadding = (1.0f - fitScale) / 2.0f;
 
-                const float fitScale = 0.8f;
-                const float verticalPadding = (1.0f - fitScale) / 2.0f;
-
-                var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
-                visuals.Scale = Vector2.One * scale;
+            var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
+            visuals.Scale = Vector2.One * scale;
                 
-                visuals.Position = new Vector2(
-                    portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
-                    portraitBottom - boundsSize.Y * scale * verticalPadding
-                );
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr($"[Downfall] Failed to setup collectible visuals: {e.Message}");
-            }
+            visuals.Position = new Vector2(
+                portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
+                portraitBottom - boundsSize.Y * scale * verticalPadding
+            );
         };
-
-        __result = container;
-        return false;
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr($"[Downfall] Failed to create collectible overlay: {e.Message}");
-            return true; // fall back to default overlay
-        }
+        
+        return container;
     }
+
+    public string OverlayNodeName => "DownfallMonsterOverlay";
 }
+

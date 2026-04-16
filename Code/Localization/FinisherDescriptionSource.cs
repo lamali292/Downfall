@@ -16,7 +16,7 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
     {
         if (!card.Tags.Contains(DownfallTag.Finisher)) yield break;
         var stance = card.IsCanonical || card.Owner == null
-            ? DownfallModelDb.ChampStance<NoChampStance>()
+            ? DownfallModelDb.ChampStance<ChampNoStance>()
             : card.Owner.ChampStance();
 
         var locString = new LocString(DownfallTable, $"{stance.Id.Entry}.finisher");
@@ -26,13 +26,13 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
             var creature = card.Owner?.Creature;
             var berserkerBonus = creature?.GetPower<ArenaMasteryBerserkerPower>()?.Amount ?? 0;
             var defensiveBonus = creature?.GetPower<ArenaMasteryDefensivePower>()?.Amount ?? 0;
-            locString.Add("strength", BerserkerChampStance.BaseFinisherAmount + berserkerBonus);
-            locString.Add("block", DefensiveChampStance.BaseFinisherAmount + defensiveBonus);
+            locString.Add("strength", ChampBerserkerStance.BaseFinisherAmount + berserkerBonus);
+            locString.Add("block", ChampDefensiveStance.BaseFinisherAmount + defensiveBonus);
         }
         else
         {
-            locString.Add("strength", BerserkerChampStance.BaseFinisherAmount);
-            locString.Add("block", DefensiveChampStance.BaseFinisherAmount);
+            locString.Add("strength", ChampBerserkerStance.BaseFinisherAmount);
+            locString.Add("block", ChampDefensiveStance.BaseFinisherAmount);
         }
         
         yield return locString.GetFormattedText();

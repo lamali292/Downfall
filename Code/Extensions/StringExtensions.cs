@@ -46,6 +46,17 @@ public static class StringExtensions
         return path.CardImageCharacterPath(ModelDb.Character<T>().CharId!);
     }
 
+    public static string GemPath(this string path)
+    {
+        return Path.Join(DownfallMainFile.ModId, "images", "ui", "gems", path);
+    }
+
+    public static string RestSitePath(this string path)
+    {
+        return Path.Join(DownfallMainFile.ModId, "images", "ui", "restsite", path);
+    }
+
+    
 
     public static string EnchantmentPath(this string path)
     {

@@ -9,6 +9,7 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class VentSteam : GuardianCardModel
 {
+    protected override int GemSlots => 2;
     public VentSteam() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }

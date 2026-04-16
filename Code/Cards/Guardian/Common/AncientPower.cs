@@ -9,6 +9,8 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class AncientPower : GuardianCardModel
 {
+    protected override int GemSlots => 1;
+
     public AncientPower() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
     }

@@ -172,10 +172,16 @@ public static class FunctionCardTitlePatch
 {
     private static bool Prefix(CardModel __instance, ref string __result)
     {
-        if (__instance is not FunctionCard fc) return true; // run original for all other cards
+        if (__instance is not FunctionCard fc) return true;
 
-        __result = fc.GetDynamicTitle();
-        return false; // skip original
+        var txt =  fc.GetDynamicTitle();
+        if (!__instance.IsUpgraded)
+            __result = txt;
+        else if (__instance.MaxUpgradeLevel <= 1)
+            __result = txt + "+";
+        else
+            __result = $"{txt}+{__instance.CurrentUpgradeLevel}";
+        return false;
     }
 }
 

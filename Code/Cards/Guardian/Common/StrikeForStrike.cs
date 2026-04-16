@@ -9,6 +9,7 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class StrikeForStrike : GuardianCardModel
 {
+    protected override int GemSlots => 1;
     public StrikeForStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
     }

@@ -91,23 +91,23 @@ public class Champ : DownfallCharacterModel
 
         animator.AddAnyState("Dead", deadState);
 
-        animator.AddAnyState("Attack", attackNone, IsInStance<NoChampStance>);
-        animator.AddAnyState("Attack", attackBerserker, IsInStance<BerserkerChampStance>);
-        animator.AddAnyState("Attack", attackDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Attack", attackUltimate, IsInStance<UltimateChampStance>);
-        animator.AddAnyState("Attack", attackGladiator, IsInStance<GladiatorChampStance>);
+        animator.AddAnyState("Attack", attackNone, IsInStance<ChampNoStance>);
+        animator.AddAnyState("Attack", attackBerserker, IsInStance<ChampBerserkerStance>);
+        animator.AddAnyState("Attack", attackDefensive, IsInStance<ChampDefensiveStance>);
+        animator.AddAnyState("Attack", attackUltimate, IsInStance<ChampUltimateStance>);
+        animator.AddAnyState("Attack", attackGladiator, IsInStance<ChampGladiatorStance>);
 
-        animator.AddAnyState("Idle", idleNone, IsInStance<NoChampStance>);
-        animator.AddAnyState("Idle", idleBerserker, IsInStance<BerserkerChampStance>);
-        animator.AddAnyState("Idle", idleDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Idle", idleUltimate, IsInStance<UltimateChampStance>);
-        animator.AddAnyState("Idle", idleGladiator, IsInStance<GladiatorChampStance>);
+        animator.AddAnyState("Idle", idleNone, IsInStance<ChampNoStance>);
+        animator.AddAnyState("Idle", idleBerserker, IsInStance<ChampBerserkerStance>);
+        animator.AddAnyState("Idle", idleDefensive, IsInStance<ChampDefensiveStance>);
+        animator.AddAnyState("Idle", idleUltimate, IsInStance<ChampUltimateStance>);
+        animator.AddAnyState("Idle", idleGladiator, IsInStance<ChampGladiatorStance>);
 
-        animator.AddAnyState("Hit", hitNone, IsInStance<NoChampStance>);
-        animator.AddAnyState("Hit", hitBerserker, IsInStance<BerserkerChampStance>);
-        animator.AddAnyState("Hit", hitDefensive, IsInStance<DefensiveChampStance>);
-        animator.AddAnyState("Hit", hitUltimate, IsInStance<UltimateChampStance>);
-        animator.AddAnyState("Hit", hitGladiator, IsInStance<GladiatorChampStance>);
+        animator.AddAnyState("Hit", hitNone, IsInStance<ChampNoStance>);
+        animator.AddAnyState("Hit", hitBerserker, IsInStance<ChampBerserkerStance>);
+        animator.AddAnyState("Hit", hitDefensive, IsInStance<ChampDefensiveStance>);
+        animator.AddAnyState("Hit", hitUltimate, IsInStance<ChampUltimateStance>);
+        animator.AddAnyState("Hit", hitGladiator, IsInStance<ChampGladiatorStance>);
 
 
         return animator;

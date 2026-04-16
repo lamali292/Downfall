@@ -9,6 +9,7 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class ChargeUp : GuardianCardModel
 {
+    protected override int GemSlots => 1;
     public ChargeUp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
     }

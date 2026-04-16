@@ -9,7 +9,7 @@ public class ArenaMasteryDefensivePower : ChampPowerModel, IModifyFinisherBonus
     public int ModifyFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
     {
         if (stanceModel.Owner.Creature != Owner) return baseAmount;
-        if (stanceModel is DefensiveChampStance or UltimateChampStance)
+        if (stanceModel is ChampDefensiveStance or ChampUltimateStance)
             return baseAmount + Amount;
         return baseAmount;
     }

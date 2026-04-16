@@ -9,6 +9,8 @@ namespace Downfall.Code.Cards.Guardian.Basic;
 [Pool(typeof(GuardianCardPool))]
 public class TwinSlam : GuardianCardModel
 {
+    protected override int GemSlots => IsUpgraded ? 2 : 1;
+
     public TwinSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
     }
@@ -16,6 +18,7 @@ public class TwinSlam : GuardianCardModel
     // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        
     }
 
 

@@ -9,7 +9,7 @@ public class ArenaMasteryBerserkerPower : ChampPowerModel, IModifyFinisherBonus
     public int ModifyFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
     {
         if (stanceModel.Owner.Creature != Owner) return baseAmount;
-        if (stanceModel is BerserkerChampStance or UltimateChampStance)
+        if (stanceModel is ChampBerserkerStance or ChampUltimateStance)
             return baseAmount + Amount;
         return baseAmount;
     }

@@ -21,6 +21,7 @@ public static class CardDescriptionRegistry
         Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileErrorDescriptionSource());
         Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText, new SkillBonusDescriptionSource());
         Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText, new FinisherDescriptionSource());
+        Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText, new GemDescriptionSource());
     }
 
     private static void Register<T>(DescriptionInjectionPoint point, IExtraDescriptionSource source) where T : CardModel

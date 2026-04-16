@@ -6,5 +6,5 @@ namespace Downfall.Code.Events;
 
 public interface IAfterCustomDraw
 {
-    Task AfterCustomDraw(PlayerChoiceContext ctx, Player player, PileType pile, CardPileAddResult result);
+    Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result);
 }

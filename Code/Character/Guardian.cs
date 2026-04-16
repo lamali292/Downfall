@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Cards.Guardian.Basic;
+using Downfall.Code.Core.Guardian;
 using Downfall.Code.Relics.Guardian;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -52,29 +53,21 @@ public class Guardian : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<GuardianPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GuardianRelicPool>();
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+  public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
-        GD.Print("[Downfall] GenerateAnimator called");
-
-        var animState = new AnimState("idle", true);
-        var state1 = new AnimState("idle");
-        var state2 = new AnimState("idle");
-        var state3 = new AnimState("idle");
-        var state4 = new AnimState("idle");
-        var state5 = new AnimState("idle");
-        state1.NextState = animState;
-        state2.NextState = animState;
-        state3.NextState = animState;
-        state5.NextState = animState;
-        state5.AddBranch("Idle", animState);
-        var animator = new CreatureAnimator(animState, controller);
-        animator.AddAnyState("Idle", animState);
-        animator.AddAnyState("Dead", state4);
-        animator.AddAnyState("Hit", state3);
-        animator.AddAnyState("Attack", state2);
-        animator.AddAnyState("Cast", state1);
-        animator.AddAnyState("Relaxed", state5);
-
+        var idleNormal = new AnimState("idle", true);
+        var idleDefensive = new AnimState("defensive", true);
+        
+        
+        var animator = new CreatureAnimator(idleNormal, controller);
+        animator.AddAnyState("Idle", idleNormal, IsInMode<GuardianNormalMode>);
+        animator.AddAnyState("Idle", idleDefensive, IsInMode<GuardianDefensiveMode>);
         return animator;
+
+        bool IsInMode<T>() where T : GuardianModeModel
+        {
+            return ControllerToPlayer.TryGetValue(controller, out var player)
+                   && GuardianModel.IsInMode<T>(player);
+        }
     }
 }

@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Champ;
 
-public class ImprovisingPower : ChampPowerModel, IOnStanceChange
+public class ImprovisingPower : ChampPowerModel, IOnChampStanceChange
 {
-    public async Task OnStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+    public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        if (player.Creature != Owner || newStance is NoChampStance) return;
+        if (player.Creature != Owner || newStance is ChampNoStance) return;
         for (var i = 0; i < Amount; i++) await newStance.SkillBonus();
     }
 }

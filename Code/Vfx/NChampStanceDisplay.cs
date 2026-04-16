@@ -81,7 +81,7 @@ public partial class NChampStanceDisplay : Control
 
         var stance = _trackedPlayer.ChampStance();
 
-        if (stance is NoChampStance or null)
+        if (stance is ChampNoStance or null)
         {
             QueueFree();
             return;
