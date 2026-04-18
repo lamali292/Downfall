@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Downfall.Code.Rewards;
@@ -22,7 +23,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
         return new EssenceReward(save.GoldAmount, player);
     }
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Serializer;
+    public override SerializableCustomReward<CustomReward?> SerializeMethod => Serializer;
 
     public override SerializableReward ToSerializable() => new()
     {
@@ -57,6 +58,12 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
     protected override async Task<bool> OnSelect()
     {
         Player.AddEssence(Amount);
+        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new EssenceRewardMessage
+        {
+            wasSkipped = false,
+            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
+            Amount = Amount
+        });
         return true;
     }
 

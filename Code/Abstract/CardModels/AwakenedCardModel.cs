@@ -1,12 +1,11 @@
-﻿using Downfall.Code.Abstract;
-using Downfall.Code.Commands;
+﻿using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using AwakenedCharacter = Downfall.Code.Character.Awakened;
 
-namespace Downfall.Code.Cards.CardModels;
+namespace Downfall.Code.Abstract.CardModels;
 
 public abstract class AwakenedCardModel(
     int cost,

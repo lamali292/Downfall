@@ -46,8 +46,18 @@ internal static class NPowerReloadPatch
 {
     private static void Postfix(NPower __instance)
     {
-        if (__instance.Model is IColoredPower colored)
-            __instance.GetNode<TextureRect>("%Icon").Modulate = colored.IconColor;
+        try
+        {
+            if (!__instance.IsNodeReady()) return;
+            if (!GodotObject.IsInstanceValid(__instance)) return;
+            if (__instance.Model is IColoredPower colored)
+                __instance.GetNode<TextureRect>("%Icon").Modulate = colored.IconColor;
+        }
+        catch
+        {
+            
+        }
+       
     }
 }
 

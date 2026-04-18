@@ -320,5 +320,11 @@
   "DOWNFALL-THIMBLE_HELM_POWER.smartDescription": "While [gold]Torchhead[/gold] is alive, gain [blue]{Amount}[/blue] additional [gold]Block[/gold] from cards.",
   "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Thorns Down",
   "DOWNFALL-TEMPORARY_THORNS_POWER.description": "Gain [blue]X[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]X[/blue] [gold]Thorns[/gold].",
-  "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Thorns[/gold]."
+  "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Thorns[/gold].",
+  "DOWNFALL-MODE_SHIFT_POWER.title": "Mode Shift",
+  "DOWNFALL-MODE_SHIFT_POWER.description": "When you lose [blue]X[/blue] HP gain [blue]16[/blue] [gold]Block[/gold] enter [gold]Defensive Mode[/gold] until next turn, and increase this amount requiored to trigger this effect again by [blue]10[/blue], up to a maximun of [blue]50[/blue].",
+  "DOWNFALL-MODE_SHIFT_POWER.smartDescription": "When you lose [blue]{Amount}[/blue] HP gain [blue]{Block:diff()}[/blue] [gold]Block[/gold] enter [gold]Defensive Mode[/gold] until next turn, and increase this amount required to trigger this effect again by [blue]{Increase:diff()}[/blue], up to a maximun of [blue]{MaxLimit:diff()}[/blue].",
+  "DOWNFALL-DEFENSIVE_MODE_POWER.title": "Defensive Mode",
+  "DOWNFALL-DEFENSIVE_MODE_POWER.description": "You have [blue]3[/blue] [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.\nYou will exit [gold]Defensive Mode[/gold] at the end of this combat round.",
+  "DOWNFALL-DEFENSIVE_MODE_POWER.smartDescription": "You have {ThornsPower:diff()} [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.\n{Amount:plural:You will exit [gold]Defensive Mode[/gold] at the end of this combat round.|[gold]Defensive Mode[/gold] will be active for [blue]{Amount}[/blue] more rounds.}"
 }

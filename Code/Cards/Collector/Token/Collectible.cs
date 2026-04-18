@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;

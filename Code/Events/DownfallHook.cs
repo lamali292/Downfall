@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Cards.Automaton.Token;
+﻿using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Core.Guardian;
@@ -76,9 +77,9 @@ public static class DownfallHook
         Dispatch<IOnChampStanceChange>(cs, ctx, m => m.OnChampStanceChange(ctx, player, oldStance, newStance));
     
 
-    public static Task OnGuardianModeChange(CombatState cs, PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    public static Task OnGuardianModeChange(CombatState cs, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode) => 
-        Dispatch<IOnGuardianModeChange>(cs, ctx, m => m.OnGuardianModeChange(ctx, player, oldMode, newMode));
+        Dispatch<IOnGuardianModeChange>(cs, m => m.OnGuardianModeChange(player, oldMode, newMode));
     
     public static int ModifySkillBonus<TPower>(CombatState cs, ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel => 

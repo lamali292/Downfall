@@ -6,5 +6,5 @@ namespace Downfall.Code.Events;
 
 public interface IOnGuardianModeChange
 {
-    Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode, GuardianModeModel newMode);
+    Task OnGuardianModeChange(Player player, GuardianModeModel oldMode, GuardianModeModel newMode);
 }

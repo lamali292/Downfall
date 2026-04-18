@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.Code.Abstract;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
@@ -10,7 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.Code.Cards.CardModels;
+namespace Downfall.Code.Abstract.CardModels;
 
 public abstract class GuardianCardModel(
     int cost,
@@ -19,14 +18,14 @@ public abstract class GuardianCardModel(
     TargetType targetType)
     : DownfallCardModel<Character.Guardian>(cost, type, rarity, targetType), IAdditionalOverlay
 {
-    private static readonly SavedSpireField<CardModel, string> _gemData = new(() => "", "DOWNFALL-GEM");
+    private static readonly SavedSpireField<CardModel, string?> _gemData = new(() => null, "DOWNFALL-GEM");
     private List<GemModel>? _cachedGems;
 
     public List<GemModel> Gems
     {
         get
         {
-            _cachedGems ??= _gemData.Get(this)
+            _cachedGems ??= (_gemData.Get(this) ?? "")
                 .Split('|', StringSplitOptions.RemoveEmptyEntries)
                 .Select(ModelId.Deserialize)
                 .Select(ModelDb.GetById<GemModel>)
@@ -53,7 +52,7 @@ public abstract class GuardianCardModel(
         }
     }*/
     
-    public static string GetRawGemData(CardModel card) => _gemData.Get(card);
+    public static string GetRawGemData(CardModel card) => _gemData.Get(card)!;
     public static void SetRawGemData(CardModel card, string data) => _gemData.Set(card, data);
     
     protected virtual int GemSlots => 0;

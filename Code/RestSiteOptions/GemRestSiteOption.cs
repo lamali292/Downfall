@@ -1,3 +1,4 @@
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Commands;

@@ -1,4 +1,6 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,7 +19,8 @@ public abstract class ConstructedPowerModel(
     public override PowerStackType StackType => stackType;
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
-
+    public virtual bool ShouldRemoveDueToZero => true;
+    
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
@@ -34,6 +37,11 @@ public abstract class ConstructedPowerModel(
         }
 
         return this;
+    }
+    
+    protected ConstructedPowerModel WithPower<T>(int i) where T : PowerModel
+    {
+        return WithVars(new PowerVar<T>(i));
     }
 
     protected ConstructedPowerModel WithVar(string name, int baseVal)
@@ -67,3 +75,18 @@ public abstract class ConstructedPowerModel(
         return this;
     }
 }
+
+
+[HarmonyPatch(nameof(PowerModel), nameof(PowerModel.ShouldRemoveDueToAmount))]
+public static class PowerModelMutableClonePatch
+{
+    [HarmonyPrefix]
+    public static bool ShouldRemoveOnZero(PowerModel __instance, ref bool __result)
+    {
+        if (__instance is not ConstructedPowerModel { ShouldRemoveDueToZero: false }) return true;
+        __result = false;
+        return false;
+    }
+
+}
+

@@ -19,12 +19,12 @@ public abstract class GuardianModeModel : AbstractModel
     }
 
     
-    public Task OnEnter(PlayerChoiceContext ctx)
+    public Task OnEnter()
     {
         return Task.CompletedTask;
     }
 
-    public Task OnExit(PlayerChoiceContext ctx)
+    public Task OnExit()
     {
         return Task.CompletedTask;
     }

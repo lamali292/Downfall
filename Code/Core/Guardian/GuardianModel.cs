@@ -1,23 +1,32 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Cards.Guardian.Abstract;
-using Downfall.Code.Core.Champ;
 using Downfall.Code.Events;
+using Downfall.Code.Powers.Guardian;
 using Downfall.Code.RestSiteOptions;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Core.Guardian;
 
 public class GuardianModel() : CustomSingletonModel(true, true)
 {
-    private static readonly SpireField<Player, GuardianModeModel> ActiveStance =
-        new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+    private static readonly SpireField<Player, GuardianModeModel> ActiveStance = new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+
+
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    {
+        if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
+        await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null);
+    }
+    
+    
 
     public static GuardianModeModel GetModeModel(Player player)
     {
@@ -29,25 +38,29 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         return ActiveStance[player] is T;
     }
     
-    public static async Task SetMode<T>(PlayerChoiceContext ctx, Player player) where T : GuardianModeModel
+    public static async Task SetMode<T>(Player player) where T : GuardianModeModel
     {
-        await SetMode(ctx, player, DownfallModelDb.GuardianMode<T>());
+        await SetMode(player, DownfallModelDb.GuardianMode<T>());
     }
+
     
-    private static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
+   
+    
+
+    private static async Task SetMode(Player player, GuardianModeModel newCanonical)
     {
         var current = ActiveStance[player];
         if (current?.GetType() == newCanonical.GetType()) return;
 
         if (current != null)
-            await current.OnExit(ctx);
+            await current.OnExit();
 
         var mutable = newCanonical.ToMutable(player);
         ActiveStance[player] = mutable;
-        await mutable.OnEnter(ctx);
+        await mutable.OnEnter();
 
         TriggerStanceAnimation(player);
-        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!, ActiveStance[player]!);
+        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, player, current!, ActiveStance[player]!);
     }
     
     

@@ -103,8 +103,14 @@ class PatchNewRun
     [HarmonyPostfix]
     static void GiveStartingEssence(RunState __result)
     {
+
         foreach (var player in __result.Players)
+        {
+            EssenceModel.ClearEssence(player);
+            CollectiblesModel.ClearCollectibles(player);
             if (player.Character is Character.Collector)
                 EssenceModel.AddEssence(player, 5);
+        }
+            
     }
 }

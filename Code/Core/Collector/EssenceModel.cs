@@ -10,18 +10,22 @@ public static class EssenceModel
 {
     // Reach directly into the SaveManager using the player's NetId
     public static int GetEssence(Player player) => 
-        DownfallSaveManager.GetPlayerData(player.NetId).Essence;
+        DownfallSaveManager.GetPlayerData(player).Essence;
 
     public static void AddEssence(Player player, int amount)
     {
-        var data = DownfallSaveManager.GetPlayerData(player.NetId);
-        data.Essence += amount;
+        DownfallSaveManager.GetPlayerData(player).Essence += amount;
         NTopBarEssenceDisplay.RefreshDisplay();
+    }
+    
+    public static void ClearEssence(Player player)
+    {
+        DownfallSaveManager.GetPlayerData(player).Essence = 0;
     }
 
     public static bool SpendEssence(Player player, int amount)
     {
-        var data = DownfallSaveManager.GetPlayerData(player.NetId);
+        var data = DownfallSaveManager.GetPlayerData(player);
         if (data.Essence < amount) return false;
         
         data.Essence -= amount;

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;

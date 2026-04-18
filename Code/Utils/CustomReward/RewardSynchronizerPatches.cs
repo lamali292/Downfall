@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using BaseLib.Abstracts;
-using BaseLib.Common.Rewards;
+﻿using BaseLib.Abstracts;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -60,57 +58,21 @@ public static class RewardSynchronizerExtensions
     /// <summary>
     /// Exposes the private LocalPlayer property from <seealso cref="RewardSynchronizer"/>
     /// </summary>
-    public static Player? LocalPlayerRef(this RewardSynchronizer rewardSynchronizer)
-    {
-        var playerCollection = rewardSynchronizer.PlayerCollection();
-        var localPlayerId = typeof(RewardSynchronizer)
-            .GetField("_localPlayerId", BindingFlags.NonPublic | BindingFlags.Instance)
-            ?.GetValue(rewardSynchronizer);
-        return localPlayerId is ulong id ? playerCollection?.GetPlayer(id) : null;
-    }
-
+    public static Player? LocalPlayerRef(this RewardSynchronizer rewardSynchronizer) => rewardSynchronizer._playerCollection.GetPlayer(rewardSynchronizer._localPlayerId);
     /// <summary>
-    /// Exposes the private IPlayerCollection field
+    /// Exposes the private IPlayerCollection property
     /// </summary>
-    public static IPlayerCollection? PlayerCollection(this RewardSynchronizer rewardSynchronizer) =>
-        typeof(RewardSynchronizer)
-            .GetField("_playerCollection", BindingFlags.NonPublic | BindingFlags.Instance)
-            ?.GetValue(rewardSynchronizer) as IPlayerCollection;
-
+    public static IPlayerCollection? PlayerCollection(this RewardSynchronizer rewardSynchronizer) => rewardSynchronizer._playerCollection;
     /// <summary>
-    /// Exposes the private RunLocationTargetedMessageBuffer field
+    /// Exposes the private RunLocationTargetedMessageBuffer property
     /// </summary>
-    public static RunLocationTargetedMessageBuffer? MessageBuffer(this RewardSynchronizer rewardSynchronizer) =>
-        typeof(RewardSynchronizer)
-            .GetField("_messageBuffer", BindingFlags.NonPublic | BindingFlags.Instance)
-            ?.GetValue(rewardSynchronizer) as RunLocationTargetedMessageBuffer;
-
+    public static RunLocationTargetedMessageBuffer? MessageBuffer(this RewardSynchronizer rewardSynchronizer)  => rewardSynchronizer._messageBuffer;
     /// <summary>
-    /// Exposes the private INetGameService field
+    /// Exposes the private INetGameService property
     /// </summary>
-    public static INetGameService? GameService(this RewardSynchronizer rewardSynchronizer) =>
-        typeof(RewardSynchronizer)
-            .GetField("_gameService", BindingFlags.NonPublic | BindingFlags.Instance)
-            ?.GetValue(rewardSynchronizer) as INetGameService;
+    public static INetGameService? GameService(this RewardSynchronizer rewardSynchronizer)  => rewardSynchronizer._gameService;
+
     
-    /// <summary>
-    /// Method to handle transforming a card as a combat reward
-    /// </summary>
-    public static async Task<bool> DoLocalCardTransform(this RewardSynchronizer rewardSynchronizer, int amount = 1, bool upgrade = false)
-    {
-        CardTransformRewardMessage message = new CardTransformRewardMessage
-        {
-            Location = rewardSynchronizer.MessageBuffer()!.CurrentLocation,
-            wasSkipped = false,
-            Upgrade = upgrade,
-            Amount = amount
-        };
-        BaseLibMain.Logger.Debug($"Transforming card for local player {rewardSynchronizer.LocalPlayerRef}");
-
-        rewardSynchronizer.GameService()?.SendMessage(message);
-        return await rewardSynchronizer.DoCardTransform(rewardSynchronizer.LocalPlayerRef()!, amount, upgrade);
-    }
-
     /// <summary>
     /// Transform a card for a specific player as a combat reward
     /// </summary>
@@ -141,26 +103,14 @@ public static class RewardSynchronizerExtensions
         return cards.Count > 0;
     }
 
-    [HarmonyPatch(nameof(RewardSynchronizer), "OnCombatEnded")]
+    [HarmonyPatch(nameof(RewardSynchronizer.OnCombatEnded))]
     [HarmonyPrefix]
-    private static void HandleCustomBufferedMessages(RewardSynchronizer __instance)
+    private static void OnCombat_HandleCustomBufferedMessages(RewardSynchronizer __instance)
     {
-        var messageBuffer = __instance.MessageBuffer();
-        if (messageBuffer == null) return;
-
-        var callHandlers = messageBuffer.GetType()
-            .GetMethod("CallHandlersOfType", BindingFlags.NonPublic | BindingFlags.Instance);
-
         foreach (BufferedCustomRewardMessage bufferedMessage in __instance.BufferedCustomRewardMessages())
         {
-            callHandlers?.Invoke(messageBuffer, new object[]
-            {
-                bufferedMessage.message.GetType(),
-                bufferedMessage.message,
-                bufferedMessage.senderId
-            });
+            __instance.MessageBuffer()?.CallHandlersOfType(bufferedMessage.message.GetType(), bufferedMessage.message, bufferedMessage.senderId);
         }
-
         __instance.BufferedCustomRewardMessages().Clear();
     }
 }

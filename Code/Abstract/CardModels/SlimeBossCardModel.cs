@@ -1,8 +1,7 @@
-﻿using Downfall.Code.Abstract;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.CardModels;
+namespace Downfall.Code.Abstract.CardModels;
 
 public abstract class SlimeBossCardModel(
     int cost,

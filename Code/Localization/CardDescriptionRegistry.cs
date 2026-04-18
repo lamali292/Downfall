@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Cards.CardModels;
+﻿using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Models;
 

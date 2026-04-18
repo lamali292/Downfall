@@ -109,27 +109,18 @@ public class DownfallCardCmd
     {
         var node = NCard.Create(card);
         if (node == null) return;
-
         var previewContainer = NRun.Instance?.GlobalUi.CardPreviewContainer;
         var trailContainer = NRun.Instance?.GlobalUi.TopBar.TrailContainer;
         if (previewContainer == null || trailContainer == null) return;
-
         previewContainer.AddChildSafely(node);
-
         var tween = node.CreateTween();
         tween.TweenProperty(node, "scale", Vector2.One, 0.25f)
             .From(Vector2.Zero)
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
-
-        // wait for preview
         await node.ToSignal(tween, Tween.SignalName.Finished);
-
-        // now create the fly - node is still alive here
         var fly = NCardFlyVfx.Create(node, targetPos, true, player.Character.TrailPath);
         trailContainer.AddChildSafely(fly);
-
-        // wait for fly to finish before returning
         if (fly != null)
             await fly.ToSignal(fly, Node.SignalName.TreeExited);
     }

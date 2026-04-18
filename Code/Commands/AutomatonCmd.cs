@@ -1,4 +1,5 @@
 ﻿using BaseLib.Patches.Content;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Automaton.Rare;
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Cards.CardModels;

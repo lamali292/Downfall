@@ -2,6 +2,7 @@
 
 using System.Text;
 using BaseLib.Utils;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
@@ -121,7 +122,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
 
     public ImageTexture? GetCompositePortrait()
     {
-        if (_cachedPortrait != null && Equals(_sourceCards, _lastPortraitSource))
+        if (_cachedPortrait != null && _sourceCards.SequenceEqual(_lastPortraitSource))
             return _cachedPortrait;
 
         var images = _sourceCards
@@ -136,20 +137,28 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
         var h = images[0].GetHeight();
         var sliceW = w / images.Count;
 
+        // Use Rgba8 as the standard
         var result = Image.CreateEmpty(w, h, false, Image.Format.Rgba8);
 
         for (var i = 0; i < images.Count; i++)
         {
             var src = images[i];
+            if (src.GetFormat() != Image.Format.Rgba8)
+            {
+                src.Convert(Image.Format.Rgba8);
+            }
+            if (src.IsCompressed())
+            {
+                src.Decompress();
+            }
+
             if (src.GetWidth() != w || src.GetHeight() != h)
                 src.Resize(w, h);
 
-            // last slice takes any remaining pixels to avoid gaps
             var width = i == images.Count - 1 ? w - i * sliceW : sliceW;
             result.BlitRect(src, new Rect2I(i * sliceW, 0, width, h), new Vector2I(i * sliceW, 0));
         }
-
-        _lastPortraitSource = _sourceCards;
+        _lastPortraitSource = _sourceCards.ToList();
         _cachedPortrait = ImageTexture.CreateFromImage(result);
         return _cachedPortrait;
     }

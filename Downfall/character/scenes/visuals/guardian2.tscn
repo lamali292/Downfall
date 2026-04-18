@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cskkr2d8cv3jd"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dxrfamwbn5jog" path="res://Downfall/character/visuals/guardian2.spatlas" id="1_5ufsh"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dguhnbf28c3cj" path="res://Downfall/character/visuals/guardian2.spskel" id="2_qi8ws"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_o7lla"]
+atlas_res = ExtResource("1_5ufsh")
+skeleton_file_res = ExtResource("2_qi8ws")
+
+[node name="Guardian2" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_o7lla")
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(0, 150)
+scale = Vector2(-1, 1)

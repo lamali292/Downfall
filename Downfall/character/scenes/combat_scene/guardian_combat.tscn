@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://3lnmth8a55om"]
 
-[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_im64a"]
-[ext_resource type="PackedScene" uid="uid://bkgqllji6dre7" path="res://Downfall/character/scenes/visuals/guardian.tscn" id="1_nk2yg"]
+[ext_resource type="Script" uid="uid://bkldvlxlrhexb" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_im64a"]
+[ext_resource type="PackedScene" uid="uid://cskkr2d8cv3jd" path="res://Downfall/character/scenes/visuals/guardian2.tscn" id="2_im64a"]
 
 [node name="GuardianCombat" type="Node2D"]
 script = ExtResource("1_im64a")
 
-[node name="Visuals" parent="." instance=ExtResource("1_nk2yg")]
+[node name="Visuals" parent="." instance=ExtResource("2_im64a")]
 unique_name_in_owner = true
-scale = Vector2(-0.56, 0.56)
+position = Vector2(0, 100)
+scale = Vector2(-0.6, 0.6)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

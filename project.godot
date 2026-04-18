@@ -23,6 +23,8 @@ settings/gdscript/always_track_call_stacks=true
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/initial_position_type=3
+window/size/window_width_override=860
+window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

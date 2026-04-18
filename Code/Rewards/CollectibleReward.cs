@@ -1,22 +1,14 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
-using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
 using Downfall.Code.Extensions;
 using Downfall.Code.Nodes;
-using Downfall.Code.Piles;
-using Godot;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.History;
@@ -36,12 +28,12 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     protected override string IconPath => RewardIcon;
 
     public override int RewardsSetIndex => 9;
-    
+
     public override LocString Description
     {
         get
         {
-            var desc = Player.CanAffordEssence(3) ? 
+            var desc = Player.CanAffordEssence(3) ?
                 new LocString("gameplay_ui", "COLLECTIBLE_REWARD") :
                 new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
             desc.Add("Card", card.Title);
@@ -59,25 +51,25 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     protected override async Task<bool> OnSelect()
     {
-        if (!Player.SpendEssence(3)) return false;
-        CollectiblesModel.AddCollectible(Player, card);
-        RunManager.Instance.RewardSynchronizer.SyncLocalObtainedCard(card);
-        var target = NTopBarCollectorButton.ButtonPosition + NTopBarCollectorButton.ButtonSize * 0.5f;
-        if (LocalContext.IsMe(Player))
-            _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(target, card, Player));
-        
+        if (!Player.CanAffordEssence(3)) return false;
+        CollectiblesModel.SyncAdd(Player, card, 3);
         _wasTaken = true;
         return true;
     }
 
-    
     public override void OnSkipped()
     {
         if (_wasTaken || LocalContext.NetId == null) return;
         Player.RunState.CurrentMapPointHistoryEntry?
             .GetEntry(LocalContext.NetId.Value)
             .CardChoices.Add(new CardChoiceHistoryEntry(card, false));
-        RunManager.Instance.RewardSynchronizer.SyncLocalSkippedCard(card);
+        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CollectibleRewardMessage
+        {
+            wasSkipped = true,
+            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
+            Card = card.ToSerializable(),
+            EssenceCost = 0
+        });
     }
 
     public override SerializableReward ToSerializable() => new()
@@ -88,9 +80,8 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public static CustomReward Deserialize(SerializableReward save, Player player)
     {
-        ArgumentNullException.ThrowIfNull(save.SpecialCard);
         var cardModel = CardModel.FromSerializable(save.SpecialCard);
-        player.RunState.AddCard(cardModel, player);
+        CollectiblesModel.AddCollectible(player, cardModel);
         return new CollectibleReward(cardModel, player);
     }
 

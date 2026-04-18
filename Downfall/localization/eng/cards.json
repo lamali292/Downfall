@@ -241,7 +241,7 @@
   "DOWNFALL-CRYSTAL_RAY.title": "Crystal Ray",
   "DOWNFALL-CULTIST_STRIKE.description": "",
   "DOWNFALL-CULTIST_STRIKE.title": "Cultist Strike",
-  "DOWNFALL-CURL_UP.description": "Place a {IfUpgraded:show:|random }card {IfUpgraded:show:in|from} your hand into [gold]Stasis[/gold].\n[gold]Brace [/gold]{CurlUpPower:diff()}.",
+  "DOWNFALL-CURL_UP.description": "Place a {IfUpgraded:show:card in|random card from} your hand into [gold]Stasis[/gold].\n[gold]Brace [/gold]{Brace:diff()}.",
   "DOWNFALL-CURL_UP.title": "Curl Up",
   "DOWNFALL-CURSED_WAIL.description": "ALL enemies lose {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn.\n[gold]Afflicted[/gold] enemies lose {StrengthPower:diff()} [gold]Strength[/gold].",
   "DOWNFALL-CURSED_WAIL.title": "Cursed Wail",

@@ -1,6 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Champ.Ancient;
 using Downfall.Code.Commands;

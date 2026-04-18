@@ -108,7 +108,7 @@
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.3" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.6" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>

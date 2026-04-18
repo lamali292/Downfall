@@ -1,6 +1,7 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Commands;

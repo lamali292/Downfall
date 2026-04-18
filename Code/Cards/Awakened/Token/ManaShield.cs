@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;

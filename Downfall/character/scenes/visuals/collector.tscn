@@ -5,6 +5,6 @@
 [node name="Collector" type="SpineSprite"]
 skeleton_data_res = ExtResource("1_0ggna")
 preview_skin = "Default"
-preview_animation = "Hit"
+preview_animation = "idle"
 preview_frame = false
 preview_time = 0.0

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Events;
 using Downfall.Code.Extensions;
