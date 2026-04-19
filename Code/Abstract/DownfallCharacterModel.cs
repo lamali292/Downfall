@@ -1,12 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
-using BaseLib.Utils;
+using BaseLib.Patches.UI;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.Code.Abstract;
@@ -26,6 +27,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
     public virtual Color CardColor => new(1, 1, 1);
+
 
     private string? _id => CharId!.ToSnakeCase();
 
@@ -69,6 +71,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
         $"res://Downfall/character/scenes/combat_scene/{_id}_combat.tscn";
 
     public override string CustomIconPath => $"res://Downfall/character/scenes/icon/{_id}_icon.tscn";
+    public override string CustomIconOutlineTexturePath => $"res://Downfall/character/icons/character_icon_{_id}_outline.png";
     public override string CustomTrailPath => $"res://Downfall/character/scenes/card_trail/card_trail_{_id}.tscn";
     public override string CustomRestSiteAnimPath => "res://Downfall/scenes/watcher/watcher_rest_site.tscn";
     public override string CustomMerchantAnimPath => "res://Downfall/scenes/watcher/watcher_merchant.tscn";

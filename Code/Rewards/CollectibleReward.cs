@@ -80,7 +80,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public static CustomReward Deserialize(SerializableReward save, Player player)
     {
-        var cardModel = CardModel.FromSerializable(save.SpecialCard);
+        var cardModel = CardModel.FromSerializable(save.SpecialCard!);
         CollectiblesModel.AddCollectible(player, cardModel);
         return new CollectibleReward(cardModel, player);
     }

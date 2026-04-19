@@ -147,11 +147,13 @@ internal static class CustomRunScreenPagedPatch
 
 /**
  * changes
- * this._charButtonContainer.GetChild
- * <NCharacterSelectButton>
- *     (0)
- *     with
- *     this._charButtonContainer.GetChildren().OfType<NCharacterSelectButton>().First()
+ * <code>
+ * this._charButtonContainer.GetChild&lt;NCharacterSelectButton>(0)
+ * </code>
+ * to
+ * <code>
+ * this._charButtonContainer.GetChildren().OfType&lt;NCharacterSelectButton>().First()
+ * </code>
  */
 [HarmonyPatch(typeof(NCustomRunScreen), nameof(NCustomRunScreen.OnSubmenuOpened))]
 internal static class CustomRunOnSubmenuOpenedPatch

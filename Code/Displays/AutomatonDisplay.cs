@@ -41,22 +41,21 @@ public class AutomatonDisplay
 	{
 		var display = Displays.GetValueOrDefault(creature);
 		if (display == null) return;
-   
-		var slotIndex = pile.Cards.Count; 
-		var targetPos = display.GetSlotGlobalPosition(slotIndex);
-   
+
+		var vfx = NCombatRoom.Instance?.CombatVfxContainer;
+		if (vfx == null) return;
+
 		var cardNode = NCard.FindOnTable(card);
 		if (cardNode == null) return;
 
-		var vfx = NCombatRoom.Instance?.CombatVfxContainer;
-		if (vfx != null)
-		{
-			var originalGlobalPos = cardNode.GlobalPosition;
-			cardNode.GetParent()?.RemoveChild(cardNode);
-			vfx.AddChild(cardNode);
-			cardNode.GlobalPosition = originalGlobalPos;
-		}
-		
+		var slotIndex = pile.Cards.Count;
+		var targetPos = display.GetSlotGlobalPosition(slotIndex);
+
+		var originalGlobalPos = cardNode.GlobalPosition;
+		cardNode.GetParent()?.RemoveChild(cardNode);
+		vfx.AddChild(cardNode);
+		cardNode.GlobalPosition = originalGlobalPos;
+
 		var finalSizeHalf = (cardNode.Size * display.Scale) / 2f;
 		var centeredTarget = targetPos - finalSizeHalf;
 
@@ -64,14 +63,14 @@ public class AutomatonDisplay
 		tween.TweenProperty(cardNode, "global_position", centeredTarget, 0.4f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Cubic);
-	  
+
 		tween.TweenProperty(cardNode, "scale", display.Scale, 0.4f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Cubic);
 
 		await display.ToSignal(tween, Tween.SignalName.Finished);
-   
+
 		cardNode.QueueFree();
-		display.Refresh(); 
+		display.Refresh(force: true);
 	}
 }

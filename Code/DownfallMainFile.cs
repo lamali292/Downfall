@@ -6,6 +6,7 @@ using Downfall.Code.Core;
 using Downfall.Code.CustomEnums;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
+using Downfall.Code.Nodes;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -37,7 +38,9 @@ public partial class DownfallMainFile : Node
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
 
-        Smart.Default.AddExtensions(new PowerIconFormatter());
+        //Smart.Default.AddExtensions(new PowerIconFormatter(), new FinisherFormatter());
+        
+        NCustomCardHolder.InitPool();
         DownfallSubscriber.Subscribe();
     }
 }

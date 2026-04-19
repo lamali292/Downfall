@@ -5,7 +5,7 @@ using SmartFormat;
 
 namespace Downfall.Code.Patches;
 
-[HarmonyPatch(typeof(LocManager), nameof(LocManager.Initialize))]
+[HarmonyPatch(typeof(LocManager), nameof(LocManager.LoadLocFormatters))]
 public static class LocManagerPatch
 {
     [HarmonyPostfix]

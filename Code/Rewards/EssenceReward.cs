@@ -23,7 +23,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
         return new EssenceReward(save.GoldAmount, player);
     }
 
-    public override SerializableCustomReward<CustomReward?> SerializeMethod => Serializer;
+    public override SerializableCustomReward<CustomReward> SerializeMethod => Serializer;
 
     public override SerializableReward ToSerializable() => new()
     {

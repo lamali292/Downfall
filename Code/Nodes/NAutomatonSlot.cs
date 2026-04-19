@@ -1,13 +1,14 @@
 using Godot;
 using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 
+namespace Downfall.Code.Nodes;
+
+[GlobalClass]
 public partial class NAutomatonSlot : Control
 {
 	private Control?         _visualParent;
-	private NGridCardHolder? _holder;
+	private NCustomCardHolder? _holder;
 	
-	// Accurate global center regardless of parent scaling or HBox layout
 	public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + (Size * GetGlobalTransform().Scale / 2f);
 	
 	private float _baseY;
@@ -27,11 +28,11 @@ public partial class NAutomatonSlot : Control
 		_baseY = _visualParent.Position.Y;
 	}
 
-	public NGridCardHolder? SetCard(NCard cardNode)
+	public NCustomCardHolder? SetCard(NCard cardNode)
 	{
 		ClearCard();
 
-		_holder = NGridCardHolder.Create(cardNode);
+		_holder = NCustomCardHolder.Create(cardNode, 1.0f, 2.0f);
 		if (_holder == null) return null;
 
 		_visualParent!.AddChild(_holder);
