@@ -1,8 +1,10 @@
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
+using Downfall.Code.Displays;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Piles;
@@ -18,13 +20,17 @@ public class GuardianPile : CustomPile
 
     public override bool CardShouldBeVisible(CardModel card)
     {
-        return false;
+        return true;
     }
 
-    
+    public override NCard? GetNCard(CardModel card)
+    {
+        return GuardianDisplay.GetNCard(card);
+    }
+
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
-        return creatureNode?.GlobalPosition ?? Vector2.Zero;
+        return GuardianDisplay.GetPosition(model) ?? creatureNode?.GetTopOfHitbox() ?? Vector2.Zero;
     }
 }

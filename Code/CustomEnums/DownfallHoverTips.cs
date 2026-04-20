@@ -17,12 +17,19 @@ public readonly struct DownfallTip
     public static readonly DownfallTip Drained = new(nameof(Drained));
     public static readonly DownfallTip Finisher = new(nameof(Finisher));
     public static readonly DownfallTip Kindle = new(nameof(Kindle));
+    public static readonly DownfallTip Accelerate = new(nameof(Accelerate));
+    public static readonly DownfallTip Stasis = new(nameof(Stasis));
+    public static readonly DownfallTip Brace = new(nameof(Brace));
+    public static readonly DownfallTip Tick = new(nameof(Tick));
     private readonly string _name;
 
     private DownfallTip(string name)
     {
         _name = name;
     }
+
+
+
 
     public IHoverTip ToHoverTip()
     {

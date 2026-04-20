@@ -1,11 +1,16 @@
 ﻿using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using BaseLib.Utils;
+using Downfall.Code.Cards.Automaton.Token;
+using Downfall.Code.DynamicVars;
 using Downfall.Code.Extensions;
+using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -26,6 +31,30 @@ public abstract class DownfallCardModel(
         var power = ModelDb.Power<T>();
         _powerCache.Add(iconKey, power);
         return this;
+    }
+    
+    
+    protected ConstructedCardModel WithUpgradedCardTip<T>()
+        where T : CardModel
+    {
+        return WithTip(new TooltipSource(card =>
+        {
+            var tip = ModelDb.GetById<T>(ModelDb.Card<T>().Id).ToMutable();
+            if (card.IsUpgraded) tip.UpgradeInternal();
+            return HoverTipFactory.FromCard(tip);
+        }));
+    }
+    
+    protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
+    {
+        WithTip(DownfallTip.Accelerate);
+        return WithVars(new AccelerateVar(baseVal).WithUpgrade(upgradeVal));
+    }
+
+    protected ConstructedCardModel WithBrace(int baseVal, int upgradeVal = 0)
+    {
+        WithTip(DownfallTip.Brace);
+        return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
 
     protected override void AddExtraArgsToDescription(LocString description)

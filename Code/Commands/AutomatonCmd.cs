@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Commands;
 
@@ -48,8 +49,12 @@ public static class AutomatonCmd
         var creature = cardPlay.Card.Owner;
         var pile = GetEncodePile(creature);
         if (pile == null) return;
-
         var isMe = LocalContext.IsMe(creature);
+        if (isMe && card.Pile?.Type == PileType.Hand)
+        {
+            var hand = NCombatRoom.Instance?.Ui.Hand;
+            hand?.Remove(card);
+        }
         if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
         await CardPileCmd.Add(card, pile, skipVisuals: isMe);
         if (isMe) AutomatonDisplay.Refresh(creature);

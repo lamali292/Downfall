@@ -1,7 +1,12 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Cards.Guardian.Abstract;
+using Downfall.Code.Commands;
+using Downfall.Code.Displays;
 using Downfall.Code.Events;
+using Downfall.Code.Interfaces;
+using Downfall.Code.Keywords;
+using Downfall.Code.Piles;
 using Downfall.Code.Powers.Guardian;
 using Downfall.Code.RestSiteOptions;
 using Godot;
@@ -11,7 +16,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Downfall.Code.Core.Guardian;
 
@@ -23,10 +30,57 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
-        await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null);
+        await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null, true);
+    }
+
+    public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
+    {
+        if (card.Pile != null && card.Pile.Type != GuardianPile.Stasis) return Task.CompletedTask;
+        GuardianDisplay.Refresh(card.Owner);
+        return Task.CompletedTask;
     }
     
+
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
+    {
+        await StasisTickAll(player, ctx);
+        GuardianDisplay.Refresh(player);
+    }
+
+    private static async Task StasisTickAll(Player player, PlayerChoiceContext ctx)
+    {
+        var stasisPile = GuardianPile.Stasis.GetPile(player);
+        var cards = stasisPile.Cards.ToList(); // Copy to avoid modification during iteration
     
+        foreach (var card in from card in cards let counter = GuardianCmd.GetStasisCounter(card) where counter > 0 select card)
+        {
+            GuardianCmd.DecrementStasisCounter(card);
+            if (card is ITickCard tickCard)
+            {
+                await tickCard.OnTick(ctx);
+            }
+            var newCounter = GuardianCmd.GetStasisCounter(card);
+            if (newCounter == 0)
+            {
+                await ReturnFromStasis(card, player, ctx);
+            }
+        }
+    
+        GuardianDisplay.Refresh(player);
+    }
+    
+    private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
+    {
+        var hand = PileType.Hand.GetPile(player);
+        if (card.Keywords.Contains(DownfallKeywords.Volatile))
+        {
+            await CardCmd.Exhaust(ctx, card);
+            return;
+        }
+        await CardPileCmd.Add(card, hand);
+        card.EnergyCost.SetUntilPlayed(0);
+    }
+
 
     public static GuardianModeModel GetModeModel(Player player)
     {
@@ -42,10 +96,6 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     {
         await SetMode(player, DownfallModelDb.GuardianMode<T>());
     }
-
-    
-   
-    
 
     private static async Task SetMode(Player player, GuardianModeModel newCanonical)
     {
@@ -85,4 +135,17 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         options.Add(new GemRestSiteOption(player));
         return true;
     }
+    
+    public override Task AfterRoomEntered(AbstractRoom room)
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        var combatRoomNode = NCombatRoom.Instance;
+        if (state == null || combatRoomNode == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+            if (player.Character is Character.Guardian)
+                GuardianDisplay.SetupGuardianUi(combatRoomNode, player);
+        return Task.CompletedTask;
+    }
+
+   
 }

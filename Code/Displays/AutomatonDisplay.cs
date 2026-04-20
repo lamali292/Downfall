@@ -3,6 +3,7 @@ using Downfall.Code.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -37,6 +38,25 @@ public class AutomatonDisplay
 
 		Displays[creature] = display;
 	}
+	
+	public static void SetupAutomatonUi(NCombatRoom combatRoom, Player player)
+	{
+		var display = NSequenceDisplay.Create(player);
+		var vfxContainer = combatRoom.CombatVfxContainer;
+		vfxContainer.AddChildSafely(display);
+
+		var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+		if (creatureNode != null)
+		{
+			var globalTopPos = creatureNode.GetTopOfHitbox();
+			display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
+			display.Position += new Vector2(100f, -80f);
+		}
+
+		Register(player, display);
+		display.Refresh();
+	}
+	
 	public static async Task AnimateCardToSequence(CardModel card, AutomatonPile pile, Player creature)
 	{
 		var display = Displays.GetValueOrDefault(creature);

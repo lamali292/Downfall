@@ -1,20 +1,15 @@
 using System.Reflection;
 using BaseLib.Config;
-using Downfall.Code.Abstract;
 using Downfall.Code.Config;
-using Downfall.Code.Core;
-using Downfall.Code.CustomEnums;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
 using Downfall.Code.Nodes;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using SmartFormat;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.Code;

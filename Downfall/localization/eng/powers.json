@@ -326,5 +326,11 @@
   "DOWNFALL-MODE_SHIFT_POWER.smartDescription": "When you lose [blue]{Amount}[/blue] HP gain [blue]{Block:diff()}[/blue] [gold]Block[/gold] enter [gold]Defensive Mode[/gold] until next turn, and increase this amount required to trigger this effect again by [blue]{Increase:diff()}[/blue], up to a maximun of [blue]{MaxLimit:diff()}[/blue].",
   "DOWNFALL-DEFENSIVE_MODE_POWER.title": "Defensive Mode",
   "DOWNFALL-DEFENSIVE_MODE_POWER.description": "You have [blue]3[/blue] [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.\nYou will exit [gold]Defensive Mode[/gold] at the end of this combat round.",
-  "DOWNFALL-DEFENSIVE_MODE_POWER.smartDescription": "You have {ThornsPower:diff()} [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.\n{Amount:plural:You will exit [gold]Defensive Mode[/gold] at the end of this combat round.|[gold]Defensive Mode[/gold] will be active for [blue]{Amount}[/blue] more rounds.}"
+  "DOWNFALL-DEFENSIVE_MODE_POWER.smartDescription": "You have {ThornsPower:diff()} [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.\n{Amount:plural:You will exit [gold]Defensive Mode[/gold] at the end of this combat round.|[gold]Defensive Mode[/gold] will be active for [blue]{Amount}[/blue] more rounds.}",
+  "DOWNFALL-REROUTE_POWER.title": "Reroute",
+  "DOWNFALL-REROUTE_POWER.description": "Place the next card you play this turn into [gold]Stasis[/gold].",
+  "DOWNFALL-REROUTE_POWER.smartDescription": "Place the next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn into Stasis.",
+  "DOWNFALL-TIME_SIFTER_POWER.title": "Time Sifter",
+  "DOWNFALL-TIME_SIFTER_POWER.description": "At the start of your turn, [gold]Accelerate[/gold]. ",
+  "DOWNFALL-TIME_SIFTER_POWER.smartDescription": "At the start of your turn, [gold]Accelerate[/gold] {Amount:plural:| [blue]{Amount}[/blue] times}. "
 }

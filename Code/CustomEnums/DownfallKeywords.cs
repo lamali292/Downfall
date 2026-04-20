@@ -9,11 +9,13 @@ public class DownfallKeywords
     [CustomEnum] 
     public static CardKeyword TriggerSkillBonus;
     
-    
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] 
     public static CardKeyword Pyre;
     
-    
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] 
     public static CardKeyword Gem;
+    
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.After)] 
+    public static CardKeyword Volatile;
+
 }

@@ -23,5 +23,13 @@
   "DOWNFALL-COLLECTED_PILE.title": "Collected Pile",
   "DOWNFALL-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of each turn.",
   "DOWNFALL-KINDLE.title": "Kindle",
-  "DOWNFALL-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat."
+  "DOWNFALL-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat.",
+  "DOWNFALL-BRACE.title": "Brace",
+  "DOWNFALL-BRACE.description": "Reduce the HP loss required to trigger [gold]Mode Shift[/gold].",
+  "DOWNFALL-ACCELERATE.title": "Accelerate",
+  "DOWNFALL-ACCELERATE.description": "Reduce the turn coutner of the right-most card in [gold]Stasis[/gold].",
+  "DOWNFALL-STASIS.title": "Stasis",
+  "DOWNFALL-STASIS.description": "A card in Stasis stays there for amount of turns equal to its cost plus 1. When it exits, it is returned to your hand and is free until played.",
+  "DOWNFALL-TICK.title": "Tick",
+  "DOWNFALL-TICK.description": "When this card's [gold]Stasis[/gold] turn counter is reduced..."
 }

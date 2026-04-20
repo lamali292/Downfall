@@ -1,7 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,15 +12,14 @@ public class Emergency : GuardianCardModel
 {
     public Emergency() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithAccelerate(1, 1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
-    // TODO: Implement
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await GuardianCmd.Accelerate(this, AccelerateType.All);
     }
 }

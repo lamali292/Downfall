@@ -1,0 +1,74 @@
+using Downfall.Code.Commands;
+using Downfall.Code.Nodes;
+using Godot;
+using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+
+namespace Downfall.Code.Vfx.Guardian;
+
+[GlobalClass]
+public partial class NStasisSlot : Control
+{
+    
+    private Control? _visualParent;
+    private MegaLabel? _count;
+    private NCustomCardHolder? _holder;
+    public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + (Size * GetGlobalTransform().Scale / 2f);
+    private float _baseY;
+
+    public static float CardScale => 0.25f;
+    
+    public override void _Ready()
+    {
+        _visualParent = GetNode<Control>("%Visuals");
+        _count = GetNode<MegaLabel>("%Count");
+        //_cardHolder = GetNode<NCustomCardHolder>("%CardHolder");
+        _count.Text = ""; // Clear default text
+        _count.Visible = false;
+        _baseY = _visualParent.Position.Y;
+    }
+
+    public NCustomCardHolder? SetCard(NCard cardNode)
+    {
+        ClearCard();
+
+        _holder = NCustomCardHolder.Create(cardNode, CardScale, CardScale*3.0f);
+        if (_holder == null) return null;
+
+        _visualParent!.AddChild(_holder);
+        if (cardNode.Model != null)
+            UpdateCounterDisplay(cardNode.Model);
+        Callable.From(() =>
+        {
+            if (_holder == null || _visualParent == null) return;
+            _holder.Position = _visualParent.Size / 2f - _holder.Size / 2f;
+        }).CallDeferred();
+
+        return _holder;
+    }
+    
+    
+    public void UpdateCounterDisplay(CardModel card)
+    {
+        if (_count == null) return;
+        var counter = GuardianCmd.GetStasisCounter(card);
+        if (counter > 0)
+        {
+            _count.Text = counter.ToString();
+            _count.Visible = true;
+        }
+        else
+        {
+            _count.Visible = false;
+        }
+    }
+    
+    public void ClearCard()
+    {
+        _holder?.QueueFree();
+        _holder = null;
+        if (_count == null) return;
+        _count.Visible = false;
+    }
+}

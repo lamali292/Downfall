@@ -1,7 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,15 +12,12 @@ public class StasisField : GuardianCardModel
 {
     public StasisField() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithBlock(6, 2);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await GuardianCmd.PutIntoStasis(this, ctx);
     }
 }

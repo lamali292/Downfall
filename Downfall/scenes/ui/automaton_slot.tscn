@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(140, 211)
+pivot_offset = Vector2(150, 211)
 
 [node name="SlotBackground" type="TextureRect" parent="VisualParent"]
 layout_mode = 1

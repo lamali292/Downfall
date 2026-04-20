@@ -1,7 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,15 +13,13 @@ public class Incinerate : GuardianCardModel
     protected override int GemSlots => 1;
     public Incinerate() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(8);
+        WithAccelerate(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await GuardianCmd.Accelerate(this);
     }
 }
