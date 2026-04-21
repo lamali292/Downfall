@@ -337,5 +337,11 @@
   "DOWNFALL-TEMPORARY_DEXTERITY_POWER.description": "",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.title": "Dexterity Down",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.description": "Gain X [gold]Dexterity[/gold]. At the end of your turn, lose X [gold]Dexterity[/gold]",
-  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold]."
+  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-EVASIVE_PROTOCOL_POWER.title": "Evasive Protocol",
+  "DOWNFALL-EVASIVE_PROTOCOL_POWER.description": "Reduce your debuffs by [blue]X[/blue] when you enter [gold]Defensive Mode[/gold].",
+  "DOWNFALL-EVASIVE_PROTOCOL_POWER.smartDescription": "Reduce your debuffs by [blue]{Amount}[/blue] when you enter [gold]Defensive Mode[/gold].",
+  "DOWNFALL-FLOATING_ORBS_POWER.title": "Floating Orbs",
+  "DOWNFALL-FLOATING_ORBS_POWER.description": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]X[/blue] damage to a random enemy.",
+  "DOWNFALL-FLOATING_ORBS_POWER.smartDescription": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]{Amount}[/blue] damage to a random enemy."
 }

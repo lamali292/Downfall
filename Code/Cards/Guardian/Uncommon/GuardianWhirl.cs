@@ -10,17 +10,14 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class GuardianWhirl : GuardianCardModel
 {
-    public GuardianWhirl() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public GuardianWhirl() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
+        WithDamage(4, 2);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay, Owner.Creature.Block >= 16 ? 4 : 2).Execute(ctx);
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

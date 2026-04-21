@@ -2,6 +2,8 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,15 +14,13 @@ public class EvasiveProtocol : GuardianCardModel
 {
     public EvasiveProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithBrace(6, 3);
+        WithPower<EvasiveProtocolPower>(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await GuardianCmd.Brace(this);
+        await CommonActions.ApplySelf<EvasiveProtocolPower>(this);
     }
 }

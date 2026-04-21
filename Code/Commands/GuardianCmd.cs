@@ -12,7 +12,9 @@ using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
@@ -41,6 +43,34 @@ public class GuardianCmd
             await EnterDefensiveMode(player);   
         else
             await LeaveDefensiveMode(player);
+    }
+    
+    public static async Task DebuffDown(Creature creature, int amount = 1)
+    {
+        // TODO: make it like sts1 with temporary powers
+        var debuffs = creature.Powers
+            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
+            .OrderByDescending(p => p is ITemporaryPower) 
+            .ToList();
+    
+        foreach (var powerModel in debuffs)
+        {
+            switch (powerModel.Amount)
+            {
+                case > 0:
+                {
+                    var reduction = Math.Min(amount, powerModel.Amount);
+                    await PowerCmd.ModifyAmount(powerModel, -reduction, creature, null);
+                    break;
+                }
+                case < 0:
+                {
+                    var increase = Math.Min(amount, Math.Abs(powerModel.Amount));
+                    await PowerCmd.ModifyAmount(powerModel, increase, creature, null);
+                    break;
+                }
+            }
+        }
     }
 
     public static async Task Brace(Player player, int amount)
