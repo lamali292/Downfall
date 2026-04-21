@@ -10,15 +10,15 @@ namespace Downfall.Code.Vfx.Guardian;
 [GlobalClass]
 public partial class NStasisSlot : Control
 {
-    
-    private Control? _visualParent;
+    private float _baseY;
     private MegaLabel? _count;
     private NCustomCardHolder? _holder;
-    public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + (Size * GetGlobalTransform().Scale / 2f);
-    private float _baseY;
+
+    private Control? _visualParent;
+    public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + Size * GetGlobalTransform().Scale / 2f;
 
     public static float CardScale => 0.25f;
-    
+
     public override void _Ready()
     {
         _visualParent = GetNode<Control>("%Visuals");
@@ -33,7 +33,7 @@ public partial class NStasisSlot : Control
     {
         ClearCard();
 
-        _holder = NCustomCardHolder.Create(cardNode, CardScale, CardScale*3.0f);
+        _holder = NCustomCardHolder.Create(cardNode, CardScale, CardScale * 3.0f);
         if (_holder == null) return null;
 
         _visualParent!.AddChild(_holder);
@@ -47,8 +47,8 @@ public partial class NStasisSlot : Control
 
         return _holder;
     }
-    
-    
+
+
     public void UpdateCounterDisplay(CardModel card)
     {
         if (_count == null) return;
@@ -63,7 +63,7 @@ public partial class NStasisSlot : Control
             _count.Visible = false;
         }
     }
-    
+
     public void ClearCard()
     {
         _holder?.QueueFree();

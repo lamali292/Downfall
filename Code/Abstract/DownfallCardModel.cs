@@ -2,7 +2,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.DynamicVars;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
@@ -32,8 +31,8 @@ public abstract class DownfallCardModel(
         _powerCache.Add(iconKey, power);
         return this;
     }
-    
-    
+
+
     protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? action = null)
         where T : CardModel
     {
@@ -45,7 +44,7 @@ public abstract class DownfallCardModel(
             return HoverTipFactory.FromCard(tip);
         }));
     }
-    
+
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
         WithTip(DownfallTip.Accelerate);
@@ -57,7 +56,7 @@ public abstract class DownfallCardModel(
         WithTip(DownfallTip.Brace);
         return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
-    
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
         foreach (var keyValuePair in _powerCache) description.AddObj(keyValuePair.Key, keyValuePair.Value);

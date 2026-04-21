@@ -30,10 +30,14 @@ public class EssenceRewardMessage : CustomRewardMessage
     }
 
     public override void Initialize(RunLocationTargetedMessageBuffer messageBuffer)
-        => messageBuffer.RegisterMessageHandler<EssenceRewardMessage>(HandleMessage);
+    {
+        messageBuffer.RegisterMessageHandler<EssenceRewardMessage>(HandleMessage);
+    }
 
     public override void Dispose(RunLocationTargetedMessageBuffer messageBuffer)
-        => messageBuffer.UnregisterMessageHandler<EssenceRewardMessage>(HandleMessage);
+    {
+        messageBuffer.UnregisterMessageHandler<EssenceRewardMessage>(HandleMessage);
+    }
 
     private static void HandleMessage(EssenceRewardMessage message, ulong senderId)
     {

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
@@ -22,10 +21,10 @@ public class IgnorePain : ChampCardModel
         WithTip(DownfallTip.Finisher);
         WithPower<IgnorePainPower>(1);
     }
-    
+
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<IgnorePainPower>(this);

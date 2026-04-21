@@ -20,7 +20,7 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
     protected virtual bool IsPositive => true;
     private int Sign => !IsPositive ? -1 : 1;
     protected virtual bool RemovedAfterOwnTurn => true;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<T>()

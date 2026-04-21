@@ -27,14 +27,16 @@ internal static class CustomRewardPatches
     {
         if (_RewardTypeSerializers.Keys.Contains(save.RewardType))
         {
-            BaseLibMain.Logger.Debug($"Found RewardType {save.RewardType} in registry from mod {_RewardTypeSerializers[save.RewardType].Method.GetType().Assembly}");
+            BaseLibMain.Logger.Debug(
+                $"Found RewardType {save.RewardType} in registry from mod {_RewardTypeSerializers[save.RewardType].Method.GetType().Assembly}");
 
             var method = _RewardTypeSerializers[save.RewardType];
             __result = method.Invoke(save, player);
             return false;
         }
 
-        BaseLibMain.Logger.Debug($"No CustomReward found for RewardType {save.RewardType}, proceeding to vanilla method");
+        BaseLibMain.Logger.Debug(
+            $"No CustomReward found for RewardType {save.RewardType}, proceeding to vanilla method");
         return true;
     }
 }

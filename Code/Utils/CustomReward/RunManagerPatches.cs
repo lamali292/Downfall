@@ -9,11 +9,14 @@ namespace BaseLib.Patches.Content;
 internal static class RunManagerPatches
 {
     /// <summary>
-    /// Potentially for future usage if we get the basegame messages to not automatically include mod messages
+    ///     Potentially for future usage if we get the basegame messages to not automatically include mod messages
     /// </summary>
     private static readonly List<Type> allCustomMessages = [..ReflectionHelper.GetSubtypesInMods<ICustomMessage>()];
+
     private static readonly List<Type> customMessageTypes = [..ReflectionHelper.GetSubtypesInMods<CustomMessage>()];
-    private static readonly List<Type> customTargetedMessageTypes = [..ReflectionHelper.GetSubtypesInMods<CustomTargetedMessage>()];
+
+    private static readonly List<Type> customTargetedMessageTypes =
+        [..ReflectionHelper.GetSubtypesInMods<CustomTargetedMessage>()];
 
     [HarmonyPatch(nameof(RunManager.InitializeShared))]
     [HarmonyPostfix]
@@ -25,14 +28,11 @@ internal static class RunManagerPatches
             if (dummyMessage == null)
             {
                 BaseLibMain.Logger.Error(
-                        $"CustomMessage instance creation for type {messageType.GetType()} from {messageType.Assembly} failed during Initialize");
+                    $"CustomMessage instance creation for type {messageType.GetType()} from {messageType.Assembly} failed during Initialize");
                 continue;
             }
 
-            if (dummyMessage is CustomMessage customMessage)
-            {
-                customMessage.Initialize(__instance.NetService);
-            }
+            if (dummyMessage is CustomMessage customMessage) customMessage.Initialize(__instance.NetService);
         }
 
 
@@ -42,14 +42,13 @@ internal static class RunManagerPatches
             if (dummyTargetedMessage == null)
             {
                 BaseLibMain.Logger.Error(
-                        $"CustomTargetedMessage instance creation for type {targetedMessageType.GetType()} from {targetedMessageType.Assembly} failed during Initialize");
+                    $"CustomTargetedMessage instance creation for type {targetedMessageType.GetType()} from {targetedMessageType.Assembly} failed during Initialize");
                 continue;
             }
+
             // Need to double check that all the targeted messages are sent to this one handler in the base game
             if (dummyTargetedMessage is CustomTargetedMessage targetedMessage)
-            {
                 targetedMessage.Initialize(__instance.RunLocationTargetedBuffer);
-            }
         }
     }
 
@@ -62,9 +61,10 @@ internal static class RunManagerPatches
             if (messageType.CreateInstance() is not CustomMessage dummyMessage)
             {
                 BaseLibMain.Logger.Error(
-                        $"CustomMessage instance creation for type {messageType.GetType()} from {messageType.Assembly} failed during Dispose");
+                    $"CustomMessage instance creation for type {messageType.GetType()} from {messageType.Assembly} failed during Dispose");
                 continue;
             }
+
             dummyMessage.Dispose(__instance.NetService);
         }
 
@@ -73,9 +73,10 @@ internal static class RunManagerPatches
             if (targetedMessageType.CreateInstance() is not CustomTargetedMessage dummyMessage)
             {
                 BaseLibMain.Logger.Error(
-                        $"CustomTargetedMessage instance creation for type {targetedMessageType.GetType()} from {targetedMessageType.Assembly} failed during Dispose");
+                    $"CustomTargetedMessage instance creation for type {targetedMessageType.GetType()} from {targetedMessageType.Assembly} failed during Dispose");
                 continue;
             }
+
             dummyMessage.Dispose(__instance.RunLocationTargetedBuffer);
         }
     }

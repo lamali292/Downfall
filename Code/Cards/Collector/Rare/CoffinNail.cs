@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,19 +17,19 @@ public class CoffinNail : CollectorCardModel
         WithDamage(6, 2);
         WithVar("Increase", 6, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+        bool causedByEthereal)
     {
         if (card != this) return;
         var power = await PowerCmd.Apply<CopyNextTurnPower>(Owner.Creature, 1, Owner.Creature, this);
         if (power == null) return;
         power.Card = this;
         power.OnAdd = c => c.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        
     }
 }

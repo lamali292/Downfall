@@ -1,9 +1,7 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.DynamicVars;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,7 +19,7 @@ public class Recover : GuardianCardModel
         WithBrace(3, 1);
         WithTip(DownfallTip.Stasis);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

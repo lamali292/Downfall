@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Models;
 
@@ -31,9 +30,11 @@ public static class CardDescriptionRegistry
             Sources[typeof(T)] = list = [];
         list.Add((point, source));
     }
-    
-    public static string GetJoined(CardModel card, DescriptionInjectionPoint point) =>
-        string.Join('\n', GetLines(card, point).Where(l => !string.IsNullOrEmpty(l)));
+
+    public static string GetJoined(CardModel card, DescriptionInjectionPoint point)
+    {
+        return string.Join('\n', GetLines(card, point).Where(l => !string.IsNullOrEmpty(l)));
+    }
 
     public static IEnumerable<string> GetLines(CardModel card, DescriptionInjectionPoint point)
     {

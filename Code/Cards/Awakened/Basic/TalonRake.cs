@@ -3,7 +3,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Awakened.Ancient;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,6 +21,11 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
         WithTip(DownfallTip.Conjure);
     }
 
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<TalonRend>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
@@ -32,10 +36,5 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
             .Execute(ctx);
 
         await AwakenedCmd.Conjure(Owner, CombatState);
-    }
-
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<TalonRend>();
     }
 }

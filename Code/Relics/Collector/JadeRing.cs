@@ -10,6 +10,7 @@ namespace Downfall.Code.Relics.Collector;
 public class JadeRing : CollectorRelicModel, IModifyCollectorDoomDamage
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+
     public int ModifyCollectorDoomDamage(Creature creature, int current)
     {
         return creature.Side == Owner.Creature.Side ? current : current + 6;

@@ -143,14 +143,8 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
         for (var i = 0; i < images.Count; i++)
         {
             var src = images[i];
-            if (src.GetFormat() != Image.Format.Rgba8)
-            {
-                src.Convert(Image.Format.Rgba8);
-            }
-            if (src.IsCompressed())
-            {
-                src.Decompress();
-            }
+            if (src.GetFormat() != Image.Format.Rgba8) src.Convert(Image.Format.Rgba8);
+            if (src.IsCompressed()) src.Decompress();
 
             if (src.GetWidth() != w || src.GetHeight() != h)
                 src.Resize(w, h);
@@ -158,6 +152,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
             var width = i == images.Count - 1 ? w - i * sliceW : sliceW;
             result.BlitRect(src, new Rect2I(i * sliceW, 0, width, h), new Vector2I(i * sliceW, 0));
         }
+
         _lastPortraitSource = _sourceCards.ToList();
         _cachedPortrait = ImageTexture.CreateFromImage(result);
         return _cachedPortrait;
@@ -183,7 +178,7 @@ public static class FunctionCardTitlePatch
     {
         if (__instance is not FunctionCard fc) return true;
 
-        var txt =  fc.GetDynamicTitle();
+        var txt = fc.GetDynamicTitle();
         if (!__instance.IsUpgraded)
             __result = txt;
         else if (__instance.MaxUpgradeLevel <= 1)

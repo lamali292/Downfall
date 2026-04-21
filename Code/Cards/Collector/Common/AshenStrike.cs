@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Collector.Token;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +17,7 @@ public class AshenStrike : CollectorCardModel
         WithDamage(10, 3);
         WithTip(typeof(Ember));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -7,10 +7,10 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 
 [HarmonyPatch(typeof(ModelDb), nameof(ModelDb.Init))]
-class MyModRewardEnumInit
+internal class MyModRewardEnumInit
 {
     [HarmonyPostfix]
-    static void RegisterCustomRewards()
+    private static void RegisterCustomRewards()
     {
         foreach (var t in ReflectionHelper.ModTypes)
         {

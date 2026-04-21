@@ -25,8 +25,6 @@ public static class CardTypeGenerator
     }
 }
 
-
-
 public static class CustomCardTypeRegistry
 {
     private static readonly Dictionary<CardType, CardTypeProperties> Properties = new();
@@ -35,35 +33,33 @@ public static class CustomCardTypeRegistry
     {
         return Properties[type].FramePath.Path;
     }
-    
+
     public static string GetBorderPath(CardType type)
     {
         return Properties[type].BorderPath.Path;
     }
-    
+
     public static void Register(CardType type, CardTypeProperties properties)
     {
         Properties[type] = properties;
     }
 }
 
-
-
-
-
 public record CardTypeProperties(CardBorderPath BorderPath, FramePath FramePath);
 
 public class CardBorderPath(string path)
 {
     public string Path { get; } = path;
-    
+
     public static implicit operator CardBorderPath(string text)
     {
         return new CardBorderPath(text);
     }
+
     public static implicit operator CardBorderPath(CardType keyword)
     {
-        return new CardBorderPath(ImageHelper.GetImagePath($"atlases/ui_atlas.sprites/card/card_portrait_border_{keyword.ToString().ToLowerInvariant()}_s.tres"));
+        return new CardBorderPath(ImageHelper.GetImagePath(
+            $"atlases/ui_atlas.sprites/card/card_portrait_border_{keyword.ToString().ToLowerInvariant()}_s.tres"));
     }
 }
 
@@ -75,6 +71,7 @@ public class FramePath(string path)
     {
         return new FramePath(text);
     }
+
     public static implicit operator FramePath(CardType keyword)
     {
         return new FramePath(
@@ -87,7 +84,7 @@ public class FramePath(string path)
 public static class PortraitBorderPathPatch
 {
     [HarmonyPrefix]
-    static bool Prefix(CardModel __instance, ref string __result)
+    private static bool Prefix(CardModel __instance, ref string __result)
     {
         var cardType = __instance.Type;
         if (cardType != CustomCardType.Gem) return true;
@@ -100,21 +97,24 @@ public static class PortraitBorderPathPatch
 public static class FramePathPatch
 {
     [HarmonyPrefix]
-    static bool Prefix(CardModel __instance, ref string __result)
+    private static bool Prefix(CardModel __instance, ref string __result)
     {
         var cardType = __instance.Type;
         if (cardType != CustomCardType.Gem) return true;
-       
-        var path =  CustomCardTypeRegistry.GetFramePath(cardType);
-        __result = __instance.Rarity != CardRarity.Ancient ? ImageHelper.GetImagePath(path) : ImageHelper.GetImagePath("atlases/card_atlas.sprites/beta.tres");
-        return false;
 
+        var path = CustomCardTypeRegistry.GetFramePath(cardType);
+        __result = __instance.Rarity != CardRarity.Ancient
+            ? ImageHelper.GetImagePath(path)
+            : ImageHelper.GetImagePath("atlases/card_atlas.sprites/beta.tres");
+        return false;
     }
 }
 
 [HarmonyPatch(typeof(CardTypeExtensions), nameof(CardTypeExtensions.ToLocString))]
 public static class LogErrorPatch
 {
+    private static readonly Dictionary<CardType, string> NameCache = new();
+
     [HarmonyPrefix]
     public static bool Prefix(CardType cardType, ref LocString __result)
     {
@@ -122,7 +122,7 @@ public static class LogErrorPatch
         __result = new LocString("gameplay_ui", GetInternalNameForCardType(cardType));
         return false;
     }
-    private static readonly Dictionary<CardType, string> NameCache = new();
+
     private static string GetInternalNameForCardType(CardType targetValue)
     {
         if (NameCache.TryGetValue(targetValue, out var cached)) return cached;
@@ -134,15 +134,16 @@ public static class LogErrorPatch
             {
                 if (field.FieldType != typeof(CardType)) continue;
                 if (!Equals(field.GetValue(null), targetValue)) continue;
-            
+
                 var attr = field.GetCustomAttribute<CustomEnumAttribute>();
-                var name = (attr?.Name ?? field.Name).ToUpperInvariant(); 
-                var result = t.GetPrefix() + name; 
-            
+                var name = (attr?.Name ?? field.Name).ToUpperInvariant();
+                var result = t.GetPrefix() + name;
+
                 NameCache[targetValue] = result; // Save it!
                 return result;
             }
         }
+
         return "UNKNOWN_CARDTYPE";
     }
 }

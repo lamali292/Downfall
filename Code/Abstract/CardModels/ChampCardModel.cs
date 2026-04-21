@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Extensions;
+﻿using Downfall.Code.Character;
+using Downfall.Code.Extensions;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,7 +11,7 @@ public abstract class ChampCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Champ>(cost, type, rarity, targetType)
+    : DownfallCardModel<Champ>(cost, type, rarity, targetType)
 {
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

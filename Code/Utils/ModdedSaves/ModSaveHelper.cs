@@ -1,23 +1,22 @@
 using System.Reflection;
 using System.Text.Json;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.Code.Utils.ModdedSaves;
 
-using System.IO;
-using System.Collections.Generic;
-using MegaCrit.Sts2.Core.Modding;
-
-
-
 [AttributeUsage(AttributeTargets.Field)]
 public class ModSaveAttribute : Attribute;
 
-
 public static class ModSaveHelper
 {
-    public static IEnumerable<Mod> GetActiveMods() => ModManager.GetLoadedMods();
+    private static readonly Dictionary<string, FieldInfo> SaveFieldCache = new();
+
+    public static IEnumerable<Mod> GetActiveMods()
+    {
+        return ModManager.GetLoadedMods();
+    }
 
     public static string GetModId(Mod mod)
     {
@@ -30,9 +29,7 @@ public static class ModSaveHelper
         var fileName = Path.GetFileName(vanillaPath);
         return Path.Combine(directory, "mods", modId, fileName).Replace("\\", "/");
     }
-    
-    private static readonly Dictionary<string, FieldInfo> SaveFieldCache = new();
-    
+
     private static FieldInfo? GetSaveField(Mod mod)
     {
         var modId = GetModId(mod);
@@ -51,9 +48,10 @@ public static class ModSaveHelper
         if (field == null) return null;
         var liveData = field.GetValue(null);
         if (liveData == null) return null;
-        return JsonSerializer.Serialize(liveData, field.FieldType, new JsonSerializerOptions {
+        return JsonSerializer.Serialize(liveData, field.FieldType, new JsonSerializerOptions
+        {
             WriteIndented = true,
-            IncludeFields = true 
+            IncludeFields = true
         });
     }
 
@@ -64,7 +62,8 @@ public static class ModSaveHelper
 
         try
         {
-            var loadedData = JsonSerializer.Deserialize(json, field.FieldType, new JsonSerializerOptions {
+            var loadedData = JsonSerializer.Deserialize(json, field.FieldType, new JsonSerializerOptions
+            {
                 IncludeFields = true
             });
 
@@ -78,33 +77,40 @@ public static class ModSaveHelper
     }
 }
 
-
 [HarmonyPatch(typeof(CloudSaveStore))]
 public static class ModdedSaveStorePatch
 {
-    private static bool _isInternal = false;
-    
+    private static bool _isInternal;
+
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.WriteFile), new[] { typeof(string), typeof(string) })]
-    public static void PostfixSyncString(CloudSaveStore __instance, string path) 
-        => ProcessTrigger(__instance, path);
-    
+    [HarmonyPatch(nameof(CloudSaveStore.WriteFile), typeof(string), typeof(string))]
+    public static void PostfixSyncString(CloudSaveStore __instance, string path)
+    {
+        ProcessTrigger(__instance, path);
+    }
+
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.WriteFile), new[] { typeof(string), typeof(byte[]) })]
-    public static void PostfixSyncBytes(CloudSaveStore __instance, string path) 
-        => ProcessTrigger(__instance, path);
-    
+    [HarmonyPatch(nameof(CloudSaveStore.WriteFile), typeof(string), typeof(byte[]))]
+    public static void PostfixSyncBytes(CloudSaveStore __instance, string path)
+    {
+        ProcessTrigger(__instance, path);
+    }
+
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.WriteFileAsync), new[] { typeof(string), typeof(string) })]
-    public static void PostfixAsyncString(CloudSaveStore __instance, string path) 
-        => ProcessTrigger(__instance, path);
-    
-    
+    [HarmonyPatch(nameof(CloudSaveStore.WriteFileAsync), typeof(string), typeof(string))]
+    public static void PostfixAsyncString(CloudSaveStore __instance, string path)
+    {
+        ProcessTrigger(__instance, path);
+    }
+
+
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.WriteFileAsync), new[] { typeof(string), typeof(byte[]) })]
-    public static void PostfixAsyncBytes(CloudSaveStore __instance, string path) 
-        => ProcessTrigger(__instance, path);
-    
+    [HarmonyPatch(nameof(CloudSaveStore.WriteFileAsync), typeof(string), typeof(byte[]))]
+    public static void PostfixAsyncBytes(CloudSaveStore __instance, string path)
+    {
+        ProcessTrigger(__instance, path);
+    }
+
     private static void ProcessTrigger(CloudSaveStore __instance, string path)
     {
         var isRunSave = path.EndsWith("current_run.save") || path.EndsWith("current_run_mp.save");
@@ -117,39 +123,34 @@ public static class ModdedSaveStorePatch
             {
                 var modId = ModSaveHelper.GetModId(mod);
                 var modPath = ModSaveHelper.GetModPath(path, modId);
-                var modData = ModSaveHelper.GetModDataToSave(mod); 
-                if (!string.IsNullOrEmpty(modData) && !modData.Equals("{}"))
-                {
-                    __instance.WriteFile(modPath, modData);
-                }
+                var modData = ModSaveHelper.GetModDataToSave(mod);
+                if (!string.IsNullOrEmpty(modData) && !modData.Equals("{}")) __instance.WriteFile(modPath, modData);
             }
         }
-        finally 
-        { 
-            _isInternal = false; 
+        finally
+        {
+            _isInternal = false;
         }
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.ReadFile), new[] { typeof(string) })]
+    [HarmonyPatch(nameof(CloudSaveStore.ReadFile), typeof(string))]
     public static void PostfixReadFile(CloudSaveStore __instance, string path, ref string __result)
     {
         if (IsInvalidRead(path, __result)) return;
         ProcessRead(__instance, path);
     }
-    
+
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(CloudSaveStore.ReadFileAsync), new[] { typeof(string) })]
-    public static async Task<string?> PostfixReadFileAsync(Task<string?> __result, CloudSaveStore __instance, string path)
+    [HarmonyPatch(nameof(CloudSaveStore.ReadFileAsync), typeof(string))]
+    public static async Task<string?> PostfixReadFileAsync(Task<string?> __result, CloudSaveStore __instance,
+        string path)
     {
         var content = await __result;
-        if (!IsInvalidRead(path, content))
-        {
-            ProcessRead(__instance, path);
-        }
+        if (!IsInvalidRead(path, content)) ProcessRead(__instance, path);
         return content;
     }
-    
+
     private static void ProcessRead(CloudSaveStore store, string vanillaPath)
     {
         foreach (var mod in ModSaveHelper.GetActiveMods())
@@ -158,19 +159,16 @@ public static class ModdedSaveStorePatch
 
             if (!store.FileExists(modPath)) continue;
             var modJson = store.ReadFile(modPath);
-            if (!string.IsNullOrEmpty(modJson))
-            {
-                ModSaveHelper.LoadDataIntoMod(mod, modJson);
-            }
+            if (!string.IsNullOrEmpty(modJson)) ModSaveHelper.LoadDataIntoMod(mod, modJson);
         }
     }
 
-    private static bool IsInvalidRead(string path, string? content) => 
-        string.IsNullOrEmpty(content) || 
-        (!path.EndsWith("current_run.save") && !path.EndsWith("current_run_mp.save"));
-    
+    private static bool IsInvalidRead(string path, string? content)
+    {
+        return string.IsNullOrEmpty(content) ||
+               (!path.EndsWith("current_run.save") && !path.EndsWith("current_run_mp.save"));
+    }
 }
-
 
 [HarmonyPatch(typeof(SaveManager), "EnumerateCloudSyncTasks")]
 public static class UniversalModSyncPatch
@@ -182,7 +180,7 @@ public static class UniversalModSyncPatch
         for (var i = 1; i <= 3; i++)
         {
             var profileModDir = UserDataPathProvider.GetProfileDir(i) + "/saves/mods";
-            
+
             // This is truly generic: it asks Steam what directories exist
             foreach (var modFolder in cloudStore.CloudStore.GetDirectoriesInDirectory(profileModDir))
             {
@@ -198,7 +196,7 @@ public static class UniversalModDeletePatch
 {
     public static void Postfix(CloudSaveStore __instance, string path)
     {
-        var isTargetFile = path.EndsWith("current_run.save") || 
+        var isTargetFile = path.EndsWith("current_run.save") ||
                            path.EndsWith("current_run_mp.save") ||
                            path.EndsWith(".save.backup");
         if (!isTargetFile) return;
@@ -208,10 +206,7 @@ public static class UniversalModDeletePatch
             var modId = ModSaveHelper.GetModId(mod);
             var modPath = ModSaveHelper.GetModPath(path, modId);
 
-            if (__instance.FileExists(modPath))
-            {
-                __instance.DeleteFile(modPath);
-            }
+            if (__instance.FileExists(modPath)) __instance.DeleteFile(modPath);
         }
     }
 }

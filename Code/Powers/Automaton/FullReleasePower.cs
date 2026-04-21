@@ -28,7 +28,7 @@ public class FullReleasePower : AutomatonPowerModel
         _sourceCards = sourceCards;
     }
 
-    
+
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player || Owner.CombatState == null) return;
@@ -60,7 +60,9 @@ public class FullReleasePower : AutomatonPowerModel
     {
         private FullReleasePower? _power;
 
-        public EffectsDynamicVar() : base("effects", 0) { }
+        public EffectsDynamicVar() : base("effects", 0)
+        {
+        }
 
         public override void SetOwner(AbstractModel model)
         {

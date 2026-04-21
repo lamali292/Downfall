@@ -1,13 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
-using Downfall.Code.Piles;
-using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Collector.Rare;
@@ -22,11 +18,10 @@ public class DragonsTrove : CollectorCardModel
         WithVar("Reserve", 1, 1);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CollectorCmd.DrawCollected(ctx, Owner, DynamicVars.Cards.IntValue);
         CollectorEnergy.Gain(Owner, DynamicVars["Reserve"].IntValue);
     }
-    
 }

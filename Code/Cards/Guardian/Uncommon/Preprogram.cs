@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -14,13 +13,14 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class Preprogram : GuardianCardModel
 {
-    public override int GemSlots => 1;
     public Preprogram() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(5, 3);
         WithTip(DownfallTip.Stasis);
     }
-    
+
+    public override int GemSlots => 1;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;

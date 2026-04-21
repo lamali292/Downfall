@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,16 +11,19 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class RollAttack : GuardianCardModel
 {
-    public override int GemSlots => 1;
     public RollAttack() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(16, 4);
         WithBrace(8);
     }
 
-    public override TargetType TargetType => !IsMutable ? TargetType.AnyEnemy :  GuardianModel.IsInMode<GuardianDefensiveMode>(Owner)
-        ? TargetType.AllEnemies
-        : TargetType.AnyEnemy;
+    public override int GemSlots => 1;
+
+    public override TargetType TargetType => !IsMutable
+        ? TargetType.AnyEnemy
+        : GuardianModel.IsInMode<GuardianDefensiveMode>(Owner)
+            ? TargetType.AllEnemies
+            : TargetType.AnyEnemy;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

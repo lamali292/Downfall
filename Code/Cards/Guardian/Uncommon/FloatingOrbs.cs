@@ -14,7 +14,7 @@ public class FloatingOrbs : GuardianCardModel
     {
         WithPower<FloatingOrbsPower>(3, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FloatingOrbsPower>(this);

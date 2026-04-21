@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -13,14 +12,14 @@ public abstract class ConstructedPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel
 {
-    private readonly List<DynamicVar> _newDynamicVars = [];
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
+    private readonly List<DynamicVar> _newDynamicVars = [];
     public override PowerType Type => powerType;
     public override PowerStackType StackType => stackType;
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
     public virtual bool ShouldRemoveDueToZero => true;
-    
+
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
@@ -38,7 +37,7 @@ public abstract class ConstructedPowerModel(
 
         return this;
     }
-    
+
     protected ConstructedPowerModel WithPower<T>(int i) where T : PowerModel
     {
         return WithVars(new PowerVar<T>(i));
@@ -76,7 +75,6 @@ public abstract class ConstructedPowerModel(
     }
 }
 
-
 [HarmonyPatch(nameof(PowerModel), nameof(PowerModel.ShouldRemoveDueToAmount))]
 public static class PowerModelMutableClonePatch
 {
@@ -87,6 +85,4 @@ public static class PowerModelMutableClonePatch
         __result = false;
         return false;
     }
-
 }
-

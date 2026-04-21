@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Collector;
 
-
 public class DoomedAttackPower : CollectorPowerModel
 {
     public override async Task AfterAttack(AttackCommand command)
@@ -17,6 +16,7 @@ public class DoomedAttackPower : CollectorPowerModel
             var receiver = commandResult.Receiver;
             await PowerCmd.Apply<CollectorDoomPower>(receiver, Amount, Owner, null);
         }
+
         await PowerCmd.Remove(this);
     }
 

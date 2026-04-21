@@ -1,8 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
-using Downfall.Code.Commands;
 using Downfall.Code.Core.Guardian;
-using Downfall.Code.Displays;
 using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,17 +16,17 @@ public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
-    {
-        if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
-        GuardianModel.AddMaxStasisSlots(player);
-        return Task.CompletedTask;
-    }
-
     public Task BeforeCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (card.Owner != Owner) return Task.CompletedTask;
         CardCmd.Upgrade(card);
+        return Task.CompletedTask;
+    }
+
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    {
+        if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
+        GuardianModel.AddMaxStasisSlots(player);
         return Task.CompletedTask;
     }
 }

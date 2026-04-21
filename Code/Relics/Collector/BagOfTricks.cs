@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Commands;
-using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -13,6 +12,7 @@ namespace Downfall.Code.Relics.Collector;
 public class BagOfTricks : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,

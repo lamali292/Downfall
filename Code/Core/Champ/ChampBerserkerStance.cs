@@ -7,6 +7,7 @@ namespace Downfall.Code.Core.Champ;
 
 public class ChampBerserkerStance : ChampStanceModel
 {
+    internal const int BaseFinisherAmount = 1;
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;
     public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_berserker.png";
@@ -16,8 +17,6 @@ public class ChampBerserkerStance : ChampStanceModel
         var amount = DownfallHook.ModifySkillBonus<VigorPower>(CombatState, this, 2);
         await PowerCmd.Apply<VigorPower>(Owner.Creature, amount, Owner.Creature, null);
     }
-
-    internal const int BaseFinisherAmount = 1;
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {

@@ -55,6 +55,7 @@ public static class AutomatonCmd
             var hand = NCombatRoom.Instance?.Ui.Hand;
             hand?.Remove(card);
         }
+
         if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
         await CardPileCmd.Add(card, pile, skipVisuals: isMe);
         if (isMe) AutomatonDisplay.Refresh(creature);

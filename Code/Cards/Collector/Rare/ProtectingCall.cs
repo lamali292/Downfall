@@ -2,7 +2,6 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Collector;
@@ -21,7 +20,7 @@ public class ProtectingCall : CollectorCardModel
         WithPower<ProtectingCallPower>(2, 1);
         WithTip(DownfallTip.Kindle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);

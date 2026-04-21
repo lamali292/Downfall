@@ -9,10 +9,10 @@ namespace Downfall.Code.Relics.Collector;
 public class TheContract : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 10);
         return Task.CompletedTask;
     }
-
 }

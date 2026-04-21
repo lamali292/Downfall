@@ -23,11 +23,10 @@ public class WanderBots : GuardianRelicModel
         GuardianModel.RemoveMaxStasisSlots(player);
         return Task.CompletedTask;
     }
-    
+
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
         if (side != Owner.Creature.Side) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
-
 }

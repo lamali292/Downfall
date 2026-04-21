@@ -6,8 +6,8 @@ namespace Downfall.Code.Saves;
 public static class DownfallSaveManager
 {
     [ModSave] public static DownfallRunData MyRunData = new();
-    
-    
+
+
     public static DownfallPlayerData GetPlayerData(Player player)
     {
         var netId = player.NetId;

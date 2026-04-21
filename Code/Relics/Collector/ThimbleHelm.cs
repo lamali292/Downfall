@@ -19,6 +19,7 @@ public class ThimbleHelm : CollectorRelicModel
 
 
     public override RelicRarity Rarity => RelicRarity.Rare;
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
@@ -28,6 +29,4 @@ public class ThimbleHelm : CollectorRelicModel
         await CollectorCmd.SummonTorchhead(choiceContext, Owner, 3, this);
         await PowerCmd.Apply<ThimbleHelmPower>(Owner.Creature, 1, Owner.Creature, null);
     }
-
-   
 }

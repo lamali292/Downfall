@@ -29,8 +29,6 @@ public readonly struct DownfallTip
     }
 
 
-
-
     public IHoverTip ToHoverTip()
     {
         var key = $"DOWNFALL-{_name.ToUpperInvariant()}";

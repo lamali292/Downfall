@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +15,7 @@ public class ArenaMastery : ChampCardModel
         WithPower<ArenaMasteryBerserkerPower>(1);
         WithPower<ArenaMasteryDefensivePower>(3, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArenaMasteryBerserkerPower>(this);

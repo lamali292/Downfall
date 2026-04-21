@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
@@ -19,16 +18,16 @@ public class ChargeCore : GuardianCardModel, ITickCard
         WithKeyword(DownfallKeywords.Volatile);
         WithDamage(10, 5);
     }
-    
+
+
+    public async Task OnTick(PlayerChoiceContext ctx)
+    {
+        await CardPileCmd.Draw(ctx, 1, Owner);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await GuardianCmd.PutIntoStasis(this, ctx, this);
-    }
-
-    
-    public async Task OnTick(PlayerChoiceContext ctx)
-    {
-        await CardPileCmd.Draw(ctx, 1, Owner);
     }
 }

@@ -12,7 +12,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
-
 namespace Downfall.Code.Cards.Guardian.Abstract;
 
 #pragma warning disable STS001
@@ -21,54 +20,60 @@ public class FragmentedGemCard() : GemCard<FragmentedGem>(CardRarity.Common);
 
 [Pool(typeof(GuardianCardPool))]
 public class Ruby() : GemCard<RubyGem>(CardRarity.Common);
+
 [Pool(typeof(GuardianCardPool))]
 public class Sapphire() : GemCard<SapphireGem>(CardRarity.Common);
+
 [Pool(typeof(GuardianCardPool))]
 public class Tourmaline() : GemCard<TourmalineGem>(CardRarity.Common);
 
 [Pool(typeof(GuardianCardPool))]
 public class Amber() : GemCard<AmberGem>(CardRarity.Uncommon);
+
 [Pool(typeof(GuardianCardPool))]
 public class Amethyst() : GemCard<AmethystGem>(CardRarity.Uncommon);
+
 [Pool(typeof(GuardianCardPool))]
 public class Aquamarine() : GemCard<AquamarineGem>(CardRarity.Uncommon);
+
 [Pool(typeof(GuardianCardPool))]
 public class Emerald() : GemCard<EmeraldGem>(CardRarity.Uncommon);
+
 [Pool(typeof(GuardianCardPool))]
 public class Garnet() : GemCard<GarnetGem>(CardRarity.Uncommon);
+
 [Pool(typeof(GuardianCardPool))]
 public class Opal() : GemCard<OpalGem>(CardRarity.Uncommon);
 
 [Pool(typeof(GuardianCardPool))]
 public class Citrine() : GemCard<CitrineGem>(CardRarity.Rare);
+
 [Pool(typeof(GuardianCardPool))]
 public class Onyx() : GemCard<OnyxGem>(CardRarity.Rare);
-
 
 #pragma warning restore STS001
 
 public abstract class GemCard<T> : GuardianCardModel, IGemCard
-where T : GemModel
+    where T : GemModel
 {
     protected GemCard(CardRarity rarity) : base(0, CustomCardType.Gem, rarity, TargetType.None)
     {
         _titleLocString = DownfallModelDb.Gem<T>().TitleLocString;
         WithKeyword(DownfallKeywords.Gem);
         foreach (var extraHoverTip in DownfallModelDb.Gem<T>().ExtraHoverTips)
-        {
-            WithTip(new TooltipSource(_=>extraHoverTip));
-        }
+            WithTip(new TooltipSource(_ => extraHoverTip));
     }
-    
-    
-    
+
+
     public override int MaxUpgradeLevel => 0;
-    protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => GemModel.OnPlay(ctx, cardPlay);
 
     public GemModel GemModel => DownfallModelDb.Gem<T>();
     public LocString GemDescription => DownfallModelDb.Gem<T>().Description;
 
+    protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return GemModel.OnPlay(ctx, cardPlay);
+    }
 }
 
 public interface IGemCard

@@ -16,31 +16,25 @@ public class CustomTarget
     [CustomEnum] public static TargetType Anyone;
 }
 
-
 [HarmonyPatch(typeof(NCardPlay), "ShowMultiCreatureTargetingVisuals")]
-class ShowMultiCreatureTargetingVisualsPatch
+internal class ShowMultiCreatureTargetingVisualsPatch
 {
     public static void Postfix(NCardPlay __instance)
     {
         if (__instance.Card == null || __instance.Card.TargetType != CustomTarget.Everyone) return;
         __instance.CardNode?.UpdateVisuals(
-            __instance.Card.Pile!.Type, 
+            __instance.Card.Pile!.Type,
             CardPreviewMode.MultiCreatureTargeting
         );
 
         var room = NCombatRoom.Instance;
         if (room == null) return;
-        foreach (var creatureNode in room.CreatureNodes)
-        {
-            creatureNode.ShowMultiselectReticle();
-        }
+        foreach (var creatureNode in room.CreatureNodes) creatureNode.ShowMultiselectReticle();
     }
 }
 
-
-
 [HarmonyPatch(typeof(NMouseCardPlay), "TargetSelection")]
-class TargetSelectionPatch
+internal class TargetSelectionPatch
 {
     // We use a Prefix to handle the logic for 'Anyone' and skip the vanilla method
     public static bool Prefix(NMouseCardPlay __instance, TargetMode targetMode, ref Task __result)
@@ -48,7 +42,6 @@ class TargetSelectionPatch
         if (__instance.Card == null || __instance.Card.TargetType != CustomTarget.Anyone) return true;
         __result = AnyoneTargetSelectionAsync(__instance, targetMode);
         return false;
-
     }
 
     private static async Task AnyoneTargetSelectionAsync(NMouseCardPlay __instance, TargetMode targetMode)
@@ -91,22 +84,18 @@ class TargetSelectionPatch
 }
 */
 
-
 [HarmonyPatch(typeof(ActionTargetExtensions), nameof(ActionTargetExtensions.IsSingleTarget))]
-class IsSingleTargetPatch
+internal class IsSingleTargetPatch
 {
     public static void Postfix(TargetType targetType, ref bool __result)
     {
         if (__result) return;
-        if (targetType == CustomTarget.Anyone)
-        {
-            __result = true;
-        }
+        if (targetType == CustomTarget.Anyone) __result = true;
     }
 }
 
 [HarmonyPatch(typeof(NTargetManager), nameof(NTargetManager.AllowedToTargetCreature))]
-class AllowedToTargetCreaturePatch
+internal class AllowedToTargetCreaturePatch
 {
     public static bool Prefix(NTargetManager __instance, Creature creature, ref bool __result)
     {
@@ -116,9 +105,8 @@ class AllowedToTargetCreaturePatch
     }
 }
 
-
 [HarmonyPatch(typeof(NCardPlay), nameof(NCardPlay.TryPlayCard))]
-class TryPlayCardPatch
+internal class TryPlayCardPatch
 {
     public static bool Prefix(NCardPlay __instance, Creature? target)
     {
@@ -129,12 +117,14 @@ class TryPlayCardPatch
             __instance.CancelPlayCard();
             return false;
         }
+
         if (!__instance.Holder.CardModel.CanPlayTargeting(target))
         {
             __instance.CannotPlayThisCardFtueCheck(__instance.Holder.CardModel);
             __instance.CancelPlayCard();
             return false;
         }
+
         __instance._isTryingToPlayCard = true;
         var success = card.TryManualPlay(target);
         __instance._isTryingToPlayCard = false;
@@ -147,6 +137,7 @@ class TryPlayCardPatch
                 var size = __instance.GetViewport().GetVisibleRect().Size;
                 __instance.Holder.SetTargetPosition(new Vector2(size.X / 2f, size.Y - __instance.Holder.Size.Y));
             }
+
             AccessTools.Method(typeof(NCardPlay), "Cleanup").Invoke(__instance, [true]);
             var instance = NCombatRoom.Instance;
             if (instance == null)
@@ -163,7 +154,7 @@ class TryPlayCardPatch
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.CanPlayTargeting))]
-class CanPlayTargetingPatch
+internal class CanPlayTargetingPatch
 {
     public static bool Prefix(CardModel __instance, Creature? target, ref bool __result)
     {
@@ -174,13 +165,12 @@ class CanPlayTargetingPatch
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.IsValidTarget))]
-class IsValidTargetPatch
+internal class IsValidTargetPatch
 {
     public static bool Prefix(CardModel __instance, Creature? target, ref bool __result)
     {
         if (__instance.TargetType != CustomTarget.Anyone) return true;
         __result = target is { IsAlive: true };
         return false;
-
     }
 }

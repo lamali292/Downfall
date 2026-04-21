@@ -1,4 +1,3 @@
-
 using System.Text.Json.Serialization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -6,10 +5,9 @@ namespace Downfall.Code.Core.Guardian;
 
 public class SerializableGem
 {
-    [JsonPropertyName("id")]
-    public string Id { get; set; } = "";
-    
-    
+    [JsonPropertyName("id")] public string Id { get; set; } = "";
+
+
     public static SerializableGem FromGem(GemModel gem)
     {
         return new SerializableGem
@@ -17,7 +15,7 @@ public class SerializableGem
             Id = gem.Id.ToString()
         };
     }
-    
+
     public GemModel ToGem()
     {
         return ModelDb.GetById<GemModel>(ModelId.Deserialize(Id));

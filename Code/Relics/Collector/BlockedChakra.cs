@@ -6,16 +6,20 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Downfall.Code.Relics.Collector;
 
 [Pool(typeof(CollectorRelicPool))]
 public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
 {
-
     public override RelicRarity Rarity => RelicRarity.Ancient;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
+
+    public bool PreventCollectedDraw(Player player)
+    {
+        if (player != Owner) return false;
+        return player.Creature.CombatState is { RoundNumber: <= 4 };
+    }
 
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
@@ -23,11 +27,5 @@ public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
             return;
         Flash();
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-    }
-
-    public bool PreventCollectedDraw(Player player)
-    {
-        if (player != Owner) return false;
-        return player.Creature.CombatState is { RoundNumber: <= 4 };
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace Downfall.Code.Vfx;
-
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Helpers;
 
+namespace Downfall.Code.Vfx;
 
 [GlobalClass]
 public partial class ScreenFlashEffect : CanvasLayer

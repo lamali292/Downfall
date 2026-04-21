@@ -12,15 +12,11 @@ namespace Downfall.Code.Powers.Collector;
 
 public class ShootingStarPower : CollectorPowerModel, IOnPyre, IHasSecondAmount
 {
-
     private int _usesThisTurn;
 
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public string GetSecondAmount()
     {
-        if (player.Creature != Owner) return Task.CompletedTask;
-        _usesThisTurn = 0;
-        InvokeDisplayAmountChanged();
-        return Task.CompletedTask;
+        return $"{Amount - _usesThisTurn}";
     }
 
     public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
@@ -34,8 +30,11 @@ public class ShootingStarPower : CollectorPowerModel, IOnPyre, IHasSecondAmount
         InvokeDisplayAmountChanged();
     }
 
-    public string GetSecondAmount()
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
-        return $"{Amount-_usesThisTurn}";
+        if (player.Creature != Owner) return Task.CompletedTask;
+        _usesThisTurn = 0;
+        InvokeDisplayAmountChanged();
+        return Task.CompletedTask;
     }
 }

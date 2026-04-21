@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Abstract;
-using Downfall.Code.Extensions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 

@@ -5,11 +5,10 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.Code.Patches;
 
-
 public interface IAdditionalOverlay
 {
-    Control? CreateAdditionalOverlay();
     string OverlayNodeName { get; }
+    Control? CreateAdditionalOverlay();
 }
 
 [HarmonyPatch(typeof(NCard), nameof(NCard.ReloadOverlay))]
@@ -21,7 +20,7 @@ public static class CreateOverlayPatch
         foreach (var child in __instance._overlayContainer.GetChildren())
         {
             if (!child.Name.ToString().StartsWith("Downfall")) continue;
-            child.Name = "DELETING_OLD_OVERLAY"; 
+            child.Name = "DELETING_OLD_OVERLAY";
             child.QueueFreeSafely();
         }
 
@@ -40,7 +39,6 @@ public interface IColoredPortrait
     float Saturation => 1f;
     float Value => 1f;
 }
-
 
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardReloadCollectiblePatch

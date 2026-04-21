@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -16,11 +15,10 @@ public class ScorchingRay : CollectorCardModel
     }
 
     protected override bool HasEnergyCostX => true;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay, amount).Execute(ctx);
     }
-    
 }

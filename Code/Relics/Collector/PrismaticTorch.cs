@@ -4,7 +4,6 @@ using Downfall.Code.Cards.Collector.Token;
 using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -19,7 +18,7 @@ namespace Downfall.Code.Relics.Collector;
 public class PrismaticTorch : CollectorRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<Ember>()];
 
     public override async Task BeforeHandDraw(
@@ -36,11 +35,11 @@ public class PrismaticTorch : CollectorRelicModel
     public override Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
         var state = Owner.Creature.CombatState;
-        if (card.Owner != Owner || 
-            card is not Ember || 
-            CombatManager.Instance.History.Entries.OfType<CardExhaustedEntry>().Any(e => 
+        if (card.Owner != Owner ||
+            card is not Ember ||
+            CombatManager.Instance.History.Entries.OfType<CardExhaustedEntry>().Any(e =>
                 e.HappenedThisTurn(state) && e.Card is Ember && e.Card != card)
-            ) return Task.CompletedTask;
+           ) return Task.CompletedTask;
         CollectorEnergy.Gain(Owner, 1);
         Flash();
         return Task.CompletedTask;

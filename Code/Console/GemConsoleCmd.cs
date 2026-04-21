@@ -15,7 +15,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
 
     public override string Args => "<hand-index:int> <gem-id:string>";
 
-    public override string Description => 
+    public override string Description =>
         "Add a gem to a card in hand by index (0 is leftmost). Example: gem 0 RUBY";
 
     public override bool IsNetworked => true;
@@ -24,10 +24,10 @@ public class GemConsoleCmd : AbstractConsoleCmd
     {
         if (!RunManager.Instance.IsInProgress)
             return new CmdResult(false, "A run is currently not in progress!");
-        
+
         if (issuingPlayer == null)
             return new CmdResult(false, "No player context available!");
-        
+
         if (args.Length < 2)
             return new CmdResult(false, "Usage: gem <hand-index> <gem-id>");
 
@@ -41,7 +41,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
             return new CmdResult(false, $"Invalid hand index {handIndex}. Valid range: 0-{count - 1}.");
 
         var card = pile.Cards[handIndex];
-        
+
         if (card is not GuardianCardModel guardianCard)
             return new CmdResult(false, $"Card at index {handIndex} is not a Guardian card!");
 
@@ -52,12 +52,14 @@ public class GemConsoleCmd : AbstractConsoleCmd
             return new CmdResult(false, $"Gem '{gemName}' not found.");
 
         if (guardianCard.Gems.Count >= guardianCard.GemSlots)
-            return new CmdResult(false, $"Card {guardianCard.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
+            return new CmdResult(false,
+                $"Card {guardianCard.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
 
         guardianCard.AddGem(gem);
         var a = NCard.FindOnTable(card);
         a?.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-        a?.ReloadOverlay();;
+        a?.ReloadOverlay();
+        ;
         return new CmdResult(true, $"Added gem '{gem.Id.Entry}' to '{card.Title}' at index {handIndex}.");
     }
 
@@ -67,12 +69,10 @@ public class GemConsoleCmd : AbstractConsoleCmd
         {
             var count = PileType.Hand.GetPile(player).Cards.Count;
             if (count > 0)
-            {
                 return CompleteArgument(
                     Enumerable.Range(0, count).Select(i => i.ToString()).ToList(),
                     Array.Empty<string>(),
                     args.FirstOrDefault() ?? "");
-            }
         }
 
         if (args.Length != 2)
@@ -82,8 +82,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
                 ArgumentContext = CmdName
             };
         var gemNames = DownfallModelDb.AllGems.Select(g => g.Id.Entry).ToList();
-            
-        return CompleteArgument(gemNames, [args[0]], args[1]);
 
+        return CompleteArgument(gemNames, [args[0]], args[1]);
     }
 }

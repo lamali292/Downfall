@@ -3,26 +3,26 @@ using Downfall.Code.Core.Collector;
 using Downfall.Code.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 
 namespace Downfall.Code.Nodes;
 
 [GlobalClass]
 public partial class NTopBarCollectorButton : NCustomTopBarButton
 {
-   
-
     public override string ScenePath => "res://Downfall/scenes/ui/top_bar_collector_button.tscn";
-    public override float  Width     => 80f;
+    public override float Width => 80f;
 
     public override Func<Player, bool> CanUse =>
         player => player.Character == ModelDb.Character<Collector>();
 
-    protected override int? GetCount() =>
-        Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+    protected override int? GetCount()
+    {
+        return Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+    }
 
-    
+
     protected override void OnRelease()
     {
         base.OnRelease();
@@ -35,5 +35,7 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
     }
 
     protected override bool IsOpen()
-        => NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+    {
+        return NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+    }
 }

@@ -8,8 +8,9 @@ namespace Downfall.Code.Nodes;
 [GlobalClass]
 public partial class NCollectorEnergyCounter : Control
 {
-    private Player? _player;
+    private Tween? _fadeTween;
     private Label? _label;
+    private Player? _player;
     private Control? _rotationLayers;
 
     public void Initialize(Player player)
@@ -22,7 +23,7 @@ public partial class NCollectorEnergyCounter : Control
     {
         _rotationLayers = GetNode<Control>("%RotationLayers");
         _label = GetNode<Label>("%Label");
-        
+
         Visible = false;
         Refresh();
     }
@@ -35,7 +36,7 @@ public partial class NCollectorEnergyCounter : Control
     public override void _Process(double delta)
     {
         if (_rotationLayers == null) return;
-        for (int i = 0; i < _rotationLayers.GetChildCount(); i++)
+        for (var i = 0; i < _rotationLayers.GetChildCount(); i++)
             _rotationLayers.GetChild<Control>(i).RotationDegrees += (float)delta * 30f * (i + 1);
     }
 
@@ -44,8 +45,6 @@ public partial class NCollectorEnergyCounter : Control
         if (player != _player) return;
         Refresh();
     }
-
-    private Tween? _fadeTween;
 
     private void Refresh()
     {
@@ -75,7 +74,7 @@ public partial class NCollectorEnergyCounter : Control
         if (amount == 0)
             _fadeTween.TweenCallback(Callable.From(() => Visible = false));
     }
-    
+
     public static NCollectorEnergyCounter Create(Player player)
     {
         var scene = ResourceLoader.Load<PackedScene>("res://Downfall/scenes/collector_energy.tscn");

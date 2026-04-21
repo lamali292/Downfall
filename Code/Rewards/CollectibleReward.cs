@@ -2,7 +2,6 @@
 using BaseLib.Patches.Content;
 using Downfall.Code.Core.Collector;
 using Downfall.Code.Extensions;
-using Downfall.Code.Nodes;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -18,11 +17,10 @@ namespace Downfall.Code.Rewards;
 
 public class CollectibleReward(CardModel card, Player player) : CustomReward(player)
 {
-    [CustomEnum]
-    public static RewardType CustomCardRewardType;
-    protected override RewardType RewardType => CustomCardRewardType;
+    [CustomEnum] public static RewardType CustomCardRewardType;
 
     private bool _wasTaken;
+    protected override RewardType RewardType => CustomCardRewardType;
 
     private static string RewardIcon => ImageHelper.GetImagePath("ui/reward_screen/reward_icon_special_card.png");
     protected override string IconPath => RewardIcon;
@@ -33,9 +31,9 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     {
         get
         {
-            var desc = Player.CanAffordEssence(3) ?
-                new LocString("gameplay_ui", "COLLECTIBLE_REWARD") :
-                new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
+            var desc = Player.CanAffordEssence(3)
+                ? new LocString("gameplay_ui", "COLLECTIBLE_REWARD")
+                : new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
             desc.Add("Card", card.Title);
             desc.Add("essence", 3);
             desc.Add("current", Player.GetEssence());
@@ -47,7 +45,13 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         [HoverTipFactory.FromCard(card)];
 
     public override bool IsPopulated => card != null;
-    public override Task Populate() => Task.CompletedTask;
+
+    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
+
+    public override Task Populate()
+    {
+        return Task.CompletedTask;
+    }
 
     protected override async Task<bool> OnSelect()
     {
@@ -72,11 +76,14 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         });
     }
 
-    public override SerializableReward ToSerializable() => new()
+    public override SerializableReward ToSerializable()
     {
-        RewardType = CustomCardRewardType,
-        SpecialCard = card.ToSerializable()
-    };
+        return new SerializableReward
+        {
+            RewardType = CustomCardRewardType,
+            SpecialCard = card.ToSerializable()
+        };
+    }
 
     public static CustomReward Deserialize(SerializableReward save, Player player)
     {
@@ -85,7 +92,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         return new CollectibleReward(cardModel, player);
     }
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
-
-    public override void MarkContentAsSeen() { }
+    public override void MarkContentAsSeen()
+    {
+    }
 }

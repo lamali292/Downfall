@@ -16,7 +16,7 @@ public class PolyBeam : GuardianCardModel
         WithDamage(2);
         WithVars(new RepeatVar(4).WithUpgrade(1));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);

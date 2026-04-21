@@ -1,11 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
-using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -23,7 +21,7 @@ public class CompilePackage : GuardianCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithTip(DownfallTip.Stasis);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner) || CombatState == null) return;
@@ -45,7 +43,7 @@ public class CompilePackage : GuardianCardModel
     {
         if (RunState == null) throw new InvalidOperationException();
         var card = CombatState!.CreateCard(cardModel, Owner);
-        if (IsUpgraded) 
+        if (IsUpgraded)
             card.UpgradeInternal();
         return card;
     }

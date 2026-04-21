@@ -1,6 +1,5 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Displays;
 using Downfall.Code.Events;
 using Downfall.Code.Interfaces;

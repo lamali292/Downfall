@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
@@ -20,17 +19,17 @@ public class FierceBash : GuardianCardModel, ITickCard
         WithTip(DownfallTip.Stasis);
         WithTip(DownfallTip.Tick);
     }
-    
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await GuardianCmd.PutIntoStasis(this, ctx);
-    }
-    
+
 
     public Task OnTick(PlayerChoiceContext ctx)
     {
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         return Task.CompletedTask;
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await GuardianCmd.PutIntoStasis(this, ctx);
     }
 }

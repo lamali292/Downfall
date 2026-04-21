@@ -11,15 +11,15 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class ReroutePower : GuardianPowerModel
 {
-    
     private CardModel? _cardSource;
+
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         _cardSource = cardSource;
         return Task.CompletedTask;
     }
-    
-    
+
+
     public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
         CardModel card, bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
@@ -27,15 +27,12 @@ public class ReroutePower : GuardianPowerModel
         if (_cardSource == card) return (pileType, position);
         var player = card.Owner;
         var pile = GuardianCmd.GetStasisPile(player);
-        if (pile == null || !GuardianCmd.CanPutIntoStasis(player))
-        {
-            return (pileType, position);
-        }
+        if (pile == null || !GuardianCmd.CanPutIntoStasis(player)) return (pileType, position);
         card.EnergyCost.AfterCardPlayedCleanup();
         GuardianCmd.SetStasisCounter(card);
         return (pile.Type, position);
     }
-    
+
     public override async Task AfterModifyingCardPlayResultPileOrPosition(
         CardModel card, PileType pileType, CardPilePosition position)
     {

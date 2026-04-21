@@ -29,16 +29,30 @@ internal static class PlayerExtensions
         return ChampModel.IsInStance<ChampBerserkerStance>(player) ||
                ChampModel.IsInStance<ChampUltimateStance>(player);
     }
-    
-    public static Creature? Torchhead(this Player player) => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
+
+    public static Creature? Torchhead(this Player player)
+    {
+        return player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
+    }
 
 
+    public static int GetEssence(this Player player)
+    {
+        return EssenceModel.GetEssence(player);
+    }
 
-    public static int GetEssence(this Player player) => EssenceModel.GetEssence(player);
+    public static bool CanAffordEssence(this Player player, int amount)
+    {
+        return EssenceModel.CanAfford(player, amount);
+    }
 
-    public static bool CanAffordEssence(this Player player, int amount) => EssenceModel.CanAfford(player, amount);
+    public static void AddEssence(this Player player, int amount)
+    {
+        EssenceModel.AddEssence(player, amount);
+    }
 
-    public static void AddEssence(this Player player, int amount) => EssenceModel.AddEssence(player, amount);
-
-    public static bool SpendEssence(this Player player, int amount) => EssenceModel.SpendEssence(player, amount);
+    public static bool SpendEssence(this Player player, int amount)
+    {
+        return EssenceModel.SpendEssence(player, amount);
+    }
 }

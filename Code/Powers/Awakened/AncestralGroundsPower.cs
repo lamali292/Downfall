@@ -14,7 +14,7 @@ public class AncestralGroundsPower : AwakenedPowerModel
         if (side != Owner.Side || Owner.Player == null)
             return;
         await PlayerCmd.GainEnergy(2, Owner.Player);
-        await DownfallCardCmd.GiveCard<Void>(Owner.Player, PileType.Draw, CardPilePosition.Top,animationTime: 0.2f);
+        await DownfallCardCmd.GiveCard<Void>(Owner.Player, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);
         await PowerCmd.Decrement(this);
     }
 }

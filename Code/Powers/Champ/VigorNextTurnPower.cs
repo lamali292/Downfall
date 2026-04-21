@@ -1,5 +1,4 @@
 ﻿using Downfall.Code.Abstract;
-using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,9 +9,10 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Powers.Champ;
 
-public class VigorNextTurnPower: ChampPowerModel
+public class VigorNextTurnPower : ChampPowerModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => ModelDb.Power<VigorPower>().HoverTips;
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Creature != Owner) return;

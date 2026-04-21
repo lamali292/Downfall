@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
 using Godot;
@@ -9,7 +8,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.Code.Cards.Collector.Token;
-
 
 public interface ICollectible
 {
@@ -23,43 +21,36 @@ public abstract class Collectible<T>(
     TargetType targetType,
     float h = 0.0f,
     float s = 1.0f,
-    float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible, IAdditionalOverlay, IColoredPortrait
+    float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible, IAdditionalOverlay,
+    IColoredPortrait
     where T : MonsterModel
 {
     public override bool HasBuiltInOverlay => false;
-    
+
     public override List<(string, string)> Localization =>
         new CardLoc(
             GetMonsterModel().Title.GetFormattedText(),
             ""
         );
-    
-    
+
+
     //public override string CustomPortraitPath => "collectible.png".CardImagePath<Character.Collector>();
     public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Character.Collector>();
 
-    public MonsterModel GetMonsterModel()
-    {
-        return ModelDb.Monster<T>();
-    }
 
-    public float HueShift => h;
-    public float Saturation => s;
-    public float Value => v;
-    
-    
     public Control? CreateAdditionalOverlay()
     {
         var monster = GetMonsterModel().ToMutable();
         var visuals = monster.CreateVisuals();
-        
+
         var container = new Control { Name = OverlayNodeName, MouseFilter = Control.MouseFilterEnum.Ignore };
         container.AddChild(visuals);
-        
-        visuals.Ready += () => {
+
+        visuals.Ready += () =>
+        {
             if (visuals.SpineBody != null)
                 monster.GenerateAnimator(visuals.SpineBody);
-                        
+
             foreach (var node in visuals.GetChildrenRecursive<Control>())
                 node.MouseFilter = Control.MouseFilterEnum.Ignore;
 
@@ -75,16 +66,24 @@ public abstract class Collectible<T>(
 
             var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
             visuals.Scale = Vector2.One * scale;
-                
+
             visuals.Position = new Vector2(
                 portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
                 portraitBottom - boundsSize.Y * scale * verticalPadding
             );
         };
-        
+
         return container;
     }
 
     public string OverlayNodeName => "DownfallMonsterOverlay";
-}
 
+    public MonsterModel GetMonsterModel()
+    {
+        return ModelDb.Monster<T>();
+    }
+
+    public float HueShift => h;
+    public float Saturation => s;
+    public float Value => v;
+}

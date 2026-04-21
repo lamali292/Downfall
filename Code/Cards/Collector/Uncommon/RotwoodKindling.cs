@@ -1,10 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Commands;
 using Downfall.Code.Powers.Collector;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -22,7 +19,8 @@ public class RotwoodKindling : CollectorCardModel
         WithPower<CollectorDoomPower>(4, 2);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+        bool causedByEthereal)
     {
         if (card != this || CombatState == null) return;
         await CommonActions.Apply<VulnerablePower>(CombatState.Enemies, this);

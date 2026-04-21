@@ -1,10 +1,7 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
-using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Uncommon;
 using Downfall.Code.Commands;
-using Downfall.Code.DynamicVars;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,13 +22,11 @@ public class SentryWave : GuardianCardModel
         WithTip(DownfallTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<WeakPower>(this, cardPlay);
-        if (IsUpgraded)
-        {
-            await GuardianCmd.Brace(this);
-        }
+        if (IsUpgraded) await GuardianCmd.Brace(this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var card = CombatState!.CreateCard(ModelDb.Card<SentryBlast>(), Owner);
         if (IsUpgraded) card.UpgradeInternal();

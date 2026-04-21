@@ -1,8 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.Automaton.Token;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Collector.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,10 +30,9 @@ public class Flash : CollectorCardModel
             return HoverTipFactory.FromCard(card);
         }));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        
         var trip = CombatState!.CreateCard<Trip>(cardPlay.Card.Owner);
         var blind = CombatState!.CreateCard<Blind>(cardPlay.Card.Owner);
         if (IsUpgraded)
@@ -43,10 +40,9 @@ public class Flash : CollectorCardModel
             trip.UpgradeInternal();
             blind.UpgradeInternal();
         }
+
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, [trip, blind], Owner);
         if (chosen == null) return;
         await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, true);
     }
-    
-
 }

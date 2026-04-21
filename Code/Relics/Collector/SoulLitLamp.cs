@@ -24,7 +24,7 @@ public class SoulLitLamp : CollectorRelicModel
         EssenceModel.AddEssence(Owner, 3);
         return Task.CompletedTask;
     }
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,

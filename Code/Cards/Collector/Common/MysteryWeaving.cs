@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -23,7 +22,7 @@ public class MysteryWeaving : CollectorCardModel
     {
         return -PileType.Hand.GetPile(card.Owner).Cards.Count(e => e != card);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = DynamicVars.CalculatedBlock.Calculate(Owner.Creature);

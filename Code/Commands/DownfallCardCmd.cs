@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using Downfall.Code.Events;
+﻿using Downfall.Code.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -71,9 +70,9 @@ public class DownfallCardCmd
         }
 
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
-        if (skipAnimation || pileType == PileType.Hand) return result.Select(e=>e.cardAdded);
+        if (skipAnimation || pileType == PileType.Hand) return result.Select(e => e.cardAdded);
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
-        return result.Select(e=>e.cardAdded);
+        return result.Select(e => e.cardAdded);
     }
 
     public static async Task AutoPlayFromDrawPile(
@@ -103,8 +102,8 @@ public class DownfallCardCmd
                 autoPlayType,
                 skipXCapture);
     }
-    
-    
+
+
     public static async Task AnimateCardFromRewardScreen(Vector2 targetPos, CardModel card, Player player)
     {
         var node = NCard.Create(card);
@@ -124,9 +123,10 @@ public class DownfallCardCmd
         if (fly != null)
             await fly.ToSignal(fly, Node.SignalName.TreeExited);
     }
-    
-    
-    public static async Task<CardPileAddResult> DrawFromCustomPile(PlayerChoiceContext ctx, Player player, PileType pileType)
+
+
+    public static async Task<CardPileAddResult> DrawFromCustomPile(PlayerChoiceContext ctx, Player player,
+        PileType pileType)
     {
         if (player.Creature.CombatState == null) return default;
         var pile = pileType.GetPile(player);
@@ -140,17 +140,16 @@ public class DownfallCardCmd
             var cardsToDraw = pile.Cards[0];
             result = await CardPileCmd.Add(cardsToDraw, PileType.Hand);
         }
+
         await DownfallHook.AfterCustomDraw(player.Creature.CombatState, ctx, player, pileType, result);
         return result;
     }
 
-    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(PlayerChoiceContext ctx, Player player, PileType pileType, int amount)
+    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(PlayerChoiceContext ctx,
+        Player player, PileType pileType, int amount)
     {
         var result = new List<CardPileAddResult>();
-        for (var i = 0; i < amount; i++)
-        {
-            result.Add(await DrawFromCustomPile(ctx, player, pileType));
-        }
+        for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
         return result;
     }
 }

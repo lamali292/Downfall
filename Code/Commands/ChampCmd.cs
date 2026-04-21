@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Champ.Basic;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Events;
@@ -19,27 +18,17 @@ public class ChampCmd
     public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
         if (!force && player.ChampStance() is ChampUltimateStance stance)
-        {
             stance.ResetCharges();
-        }
         else
-        {
             await ChampModel.SetStance<ChampBerserkerStance>(ctx, player);
-        }
     }
 
     public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
         if (!force && player.ChampStance() is ChampUltimateStance stance)
-        {
             stance.ResetCharges();
-        }
         else
-        {
             await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
-        }
-        
-        
     }
 
     public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)

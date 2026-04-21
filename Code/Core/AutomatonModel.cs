@@ -1,11 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.Code.Character;
 using Downfall.Code.Displays;
-using Downfall.Code.Vfx;
-using Godot;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -24,6 +20,4 @@ public class AutomatonModel() : CustomSingletonModel(true, true)
 
         return Task.CompletedTask;
     }
-
-   
 }

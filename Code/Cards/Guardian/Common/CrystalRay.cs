@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -21,11 +20,12 @@ public class CrystalRay : GuardianCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Aggregate(0m, (acc, g) => acc + g.Gems.Count);
+        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>()
+            .Aggregate(0m, (acc, g) => acc + g.Gems.Count);
         var gemCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemCard>().Count();
         return gemsInCards + gemCards;
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

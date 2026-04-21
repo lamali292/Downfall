@@ -53,12 +53,12 @@ public class Guardian : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<GuardianPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GuardianRelicPool>();
 
-  public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         var idleNormal = new AnimState("idle", true);
         var idleDefensive = new AnimState("defensive", true);
-        
-        
+
+
         var animator = new CreatureAnimator(idleNormal, controller);
         animator.AddAnyState("Idle", idleNormal, IsInMode<GuardianNormalMode>);
         animator.AddAnyState("Idle", idleDefensive, IsInMode<GuardianDefensiveMode>);

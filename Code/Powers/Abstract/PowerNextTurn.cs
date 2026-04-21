@@ -55,9 +55,7 @@ internal static class NPowerReloadPatch
         }
         catch
         {
-            
         }
-       
     }
 }
 

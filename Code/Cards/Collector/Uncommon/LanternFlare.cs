@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,5 +24,4 @@ public class LanternFlare : CollectorCardModel
         await MyCommonActions.Apply<CollectorDoomPower>(this, cardPlay);
         await MyCommonActions.Apply<ScorchedPower>(this, cardPlay);
     }
-    
 }

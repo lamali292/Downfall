@@ -6,5 +6,6 @@ namespace Downfall.Code.Events;
 
 public interface IOnChampStanceChange
 {
-    Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance, ChampStanceModel newStance);
+    Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance);
 }

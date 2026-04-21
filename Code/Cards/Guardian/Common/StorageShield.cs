@@ -14,7 +14,7 @@ public class StorageShield : GuardianCardModel
     {
         WithBlock(12, 4);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

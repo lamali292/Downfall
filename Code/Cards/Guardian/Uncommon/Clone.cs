@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -20,10 +19,9 @@ public class Clone : GuardianCardModel
         WithAccelerate(1);
         WithTip(DownfallTip.Stasis);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-     
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
         if (card == null) return;
@@ -33,4 +31,3 @@ public class Clone : GuardianCardModel
             await GuardianCmd.Accelerate(this);
     }
 }
-    

@@ -11,8 +11,7 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
 {
-
-    public ModeShiftPower() : base()
+    public ModeShiftPower()
     {
         WithVar("CurrentLimit", 20);
         WithVar("MaxLimit", 50);
@@ -23,7 +22,13 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
     public override bool ShouldRemoveDueToZero => false;
     public override bool AllowNegative => true;
 
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
+    public string GetSecondAmount()
+    {
+        return $"{DynamicVars["CurrentLimit"].BaseValue}";
+    }
+
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
+        DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || Owner.Player == null) return;
@@ -33,7 +38,7 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         if (m > 0) return;
         await Reset();
     }
-    
+
 
     public async Task Reset()
     {
@@ -42,12 +47,9 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         var a = Owner.GetPowerAmount<DefensiveModePower>();
         var g = a == 0 && CombatState.CurrentSide == CombatSide.Enemy ? 2 : 1;
         await PowerCmd.Apply<DefensiveModePower>(Owner, g, Owner, null);
-        DynamicVars["CurrentLimit"].BaseValue = Math.Min(DynamicVars["CurrentLimit"].BaseValue + DynamicVars["Increase"].BaseValue, DynamicVars["MaxLimit"].BaseValue);
+        DynamicVars["CurrentLimit"].BaseValue =
+            Math.Min(DynamicVars["CurrentLimit"].BaseValue + DynamicVars["Increase"].BaseValue,
+                DynamicVars["MaxLimit"].BaseValue);
         await PowerCmd.Apply(this, Owner, DynamicVars["CurrentLimit"].BaseValue, Owner, null);
-    }
-
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars["CurrentLimit"].BaseValue}";
     }
 }

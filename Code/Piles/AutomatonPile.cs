@@ -2,7 +2,6 @@
 using BaseLib.Patches.Content;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
@@ -22,7 +21,7 @@ public class AutomatonPile : CustomPile
         return false;
     }
 
-    
+
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);

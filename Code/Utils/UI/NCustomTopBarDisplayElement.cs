@@ -1,24 +1,34 @@
 ﻿using Godot;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
-using MegaCrit.Sts2.addons.mega_text;
 
 namespace Downfall.Code.Utils.UI;
 
 /// <summary>
-/// Abstract base for top bar elements that are display widgets — no press effect,
-/// just a hover wobble and an optional count badge. Subclasses supply scene path,
-/// player filter, icon node name, count label node name, and count source.
+///     Abstract base for top bar elements that are display widgets — no press effect,
+///     just a hover wobble and an optional count badge. Subclasses supply scene path,
+///     player filter, icon node name, count label node name, and count source.
 /// </summary>
 public abstract partial class NCustomTopBarDisplayElement : NClickableControl, ITopBarElement
 {
-    protected Player? Player;
+    private static NCustomTopBarDisplayElement? _instance;
+    private Tween? _bumpTween;
+    private MegaLabel? _countLabel;
+    private float _elapsedTime;
 
     private Control? _icon;
-    private MegaLabel? _countLabel;
-    private Tween? _bumpTween;
     private float _previousCount;
-    private float _elapsedTime;
+    protected Player? Player;
+
+
+    // ── Lifecycle ─────────────────────────────────────────────────────────────
+
+    /// <summary>Node path to the icon Control that wobbles on hover.</summary>
+    protected abstract string IconNodePath { get; }
+
+    /// <summary>Node path to the MegaLabel showing the count badge.</summary>
+    protected abstract string CountLabelNodePath { get; }
 
     // ── ITopBarElement ────────────────────────────────────────────────────────
 
@@ -32,15 +42,6 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
         _instance = this;
         RefreshCount();
     }
-    
-
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
-
-    /// <summary>Node path to the icon Control that wobbles on hover.</summary>
-    protected abstract string IconNodePath { get; }
-
-    /// <summary>Node path to the MegaLabel showing the count badge.</summary>
-    protected abstract string CountLabelNodePath { get; }
 
     public override void _Ready()
     {
@@ -59,7 +60,12 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
         if (_countLabel == null) return;
         var count = GetCount();
 
-        if (count == null) { _countLabel.Visible = false; return; }
+        if (count == null)
+        {
+            _countLabel.Visible = false;
+            return;
+        }
+
         _countLabel.Visible = true;
 
         if (count > _previousCount)
@@ -97,10 +103,12 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
         base.OnUnfocus();
         _icon!.Rotation = 0f;
     }
-    
-    private static NCustomTopBarDisplayElement? _instance;
-    public static void RefreshDisplay() => _instance?.RefreshCount();
-    
+
+    public static void RefreshDisplay()
+    {
+        _instance?.RefreshCount();
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();

@@ -6,49 +6,48 @@ namespace Downfall.Code.Nodes;
 [GlobalClass]
 public partial class NAutomatonSlot : Control
 {
-	private Control?         _visualParent;
-	private NCustomCardHolder? _holder;
-	
-	public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + (Size * GetGlobalTransform().Scale / 2f);
-	
-	private float _baseY;
+    private float _baseY;
+    private NCustomCardHolder? _holder;
+    private Control? _visualParent;
 
-	public float BobOffset
-	{
-		set
-		{
-			if (_visualParent != null)
-				_visualParent.Position = _visualParent.Position with { Y = _baseY + value };
-		}
-	}
+    public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + Size * GetGlobalTransform().Scale / 2f;
 
-	public override void _Ready()
-	{
-		_visualParent = GetNode<Control>("VisualParent");
-		_baseY = _visualParent.Position.Y;
-	}
+    public float BobOffset
+    {
+        set
+        {
+            if (_visualParent != null)
+                _visualParent.Position = _visualParent.Position with { Y = _baseY + value };
+        }
+    }
 
-	public NCustomCardHolder? SetCard(NCard cardNode)
-	{
-		ClearCard();
+    public override void _Ready()
+    {
+        _visualParent = GetNode<Control>("VisualParent");
+        _baseY = _visualParent.Position.Y;
+    }
 
-		_holder = NCustomCardHolder.Create(cardNode, 1.0f, 2.0f);
-		if (_holder == null) return null;
+    public NCustomCardHolder? SetCard(NCard cardNode)
+    {
+        ClearCard();
 
-		_visualParent!.AddChild(_holder);
+        _holder = NCustomCardHolder.Create(cardNode, 1.0f, 2.0f);
+        if (_holder == null) return null;
 
-		Callable.From(() =>
-		{
-			if (_holder == null || _visualParent == null) return;
-			_holder.Position = _visualParent.Size / 2f - _holder.Size / 2f;
-		}).CallDeferred();
+        _visualParent!.AddChild(_holder);
 
-		return _holder;
-	}
+        Callable.From(() =>
+        {
+            if (_holder == null || _visualParent == null) return;
+            _holder.Position = _visualParent.Size / 2f - _holder.Size / 2f;
+        }).CallDeferred();
 
-	public void ClearCard()
-	{
-		_holder?.QueueFree();
-		_holder = null;
-	}
+        return _holder;
+    }
+
+    public void ClearCard()
+    {
+        _holder?.QueueFree();
+        _holder = null;
+    }
 }

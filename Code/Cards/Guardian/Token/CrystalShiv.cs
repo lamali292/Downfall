@@ -14,7 +14,7 @@ public class CrystalShiv : GuardianCardModel
         WithDamage(3, 2);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

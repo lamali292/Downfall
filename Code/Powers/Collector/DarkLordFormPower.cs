@@ -20,6 +20,5 @@ public class DarkLordFormPower : CollectorPowerModel
             await CardCmd.AutoPlay(ctx, card, null);
             await CardPileCmd.RemoveFromCombat(card, true);
         }
-        
     }
 }

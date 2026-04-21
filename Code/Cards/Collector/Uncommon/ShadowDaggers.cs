@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Collector.Token;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,15 +20,17 @@ public class ShadowDaggers : CollectorCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    private static decimal Calc(CardModel card, Creature? creature) =>
-        CombatManager.Instance.History.CardPlaysStarted.Count(e => IsCollected(e.CardPlay.Card));
+    private static decimal Calc(CardModel card, Creature? creature)
+    {
+        return CombatManager.Instance.History.CardPlaysStarted.Count(e => IsCollected(e.CardPlay.Card));
+    }
 
     private static bool IsCollected(CardModel card)
     {
         return card is ICollectible;
     }
 
-   
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

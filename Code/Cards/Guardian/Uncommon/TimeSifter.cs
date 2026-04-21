@@ -15,6 +15,7 @@ public class TimeSifter : GuardianCardModel
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithPower<TimeSifterPower>(1);
     }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<TimeSifterPower>(this);

@@ -1,9 +1,7 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Commands;
-using Downfall.Code.DynamicVars;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,16 +19,16 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         WithKeyword(DownfallKeywords.Volatile);
         WithBrace(4, 2);
     }
-    
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await GuardianCmd.PutIntoStasis(this, ctx);
-    }
-    
+
 
     public async Task OnTick(PlayerChoiceContext ctx)
     {
         await GuardianCmd.Brace(this);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await GuardianCmd.PutIntoStasis(this, ctx);
     }
 }

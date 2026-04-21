@@ -29,22 +29,22 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     private Tween? _ownBumpTween;
 
     private Player? _player;
-    
+
     protected abstract override PileType Pile { get; }
     public abstract Func<Player, bool> CanUsePile { get; }
     public abstract string ScenePath { get; }
-    protected abstract HoverTip BuildHoverTip();
-    protected abstract LocString BuildEmptyPileMessage();
     protected abstract Vector2 HideOffset { get; }
 
     protected abstract Vector2 HoverTipOffset { get; }
-    
+    protected abstract HoverTip BuildHoverTip();
+    protected abstract LocString BuildEmptyPileMessage();
+
     public override void _Ready()
     {
         ConnectSignals();
         _emptyPileMessage = BuildEmptyPileMessage();
     }
-    
+
     protected override void SetAnimInOutPositions()
     {
         _showPosition = Position;
@@ -56,7 +56,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         _showPosition = Position;
         _hidePosition = Position + HideOffset;
     }
-    
+
     public override void Initialize(Player player)
     {
         _player = player;
@@ -85,7 +85,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         CurrentCountField.SetValue(this, count);
         label.SetTextAutoSize(count.ToString());
     }
-    
+
     protected override void OnRelease()
     {
         base.OnRelease();
@@ -112,7 +112,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
             NCardPileScreen.ShowScreen(pile, Hotkeys);
         }
     }
-    
+
     protected override void OnFocus()
     {
         NHoverTipSet.Remove(this);
@@ -155,13 +155,20 @@ internal static class CombatPileButtonRegistry
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             IEnumerable<Type> types;
-            try { types = assembly.GetTypes(); }
-            catch (ReflectionTypeLoadException ex) { types = ex.Types.Where(t => t != null)!; }
+            try
+            {
+                types = assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                types = ex.Types.Where(t => t != null)!;
+            }
 
             results.AddRange(types.Where(t =>
                 t is { IsClass: true, IsAbstract: false } &&
                 t.IsSubclassOf(typeof(NCustomCombatCardPile))));
         }
+
         return results;
     }
 
@@ -171,11 +178,12 @@ internal static class CombatPileButtonRegistry
         return (probe.ScenePath, probe.CanUsePile);
     }
 }
+
 [HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.Initialize))]
-class PatchCombatPilesContainer
+internal class PatchCombatPilesContainer
 {
     [HarmonyPostfix]
-    static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
+    private static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
     {
         foreach (var type in CombatPileButtonRegistry.Types)
         {
@@ -198,10 +206,10 @@ class PatchCombatPilesContainer
 }
 
 [HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.AnimIn))]
-class PatchCombatPilesAnimIn
+internal class PatchCombatPilesAnimIn
 {
     [HarmonyPostfix]
-    static void AnimInAll(NCombatPilesContainer __instance)
+    private static void AnimInAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
             btn.AnimIn();
@@ -209,10 +217,10 @@ class PatchCombatPilesAnimIn
 }
 
 [HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.AnimOut))]
-class PatchCombatPilesAnimOut
+internal class PatchCombatPilesAnimOut
 {
     [HarmonyPostfix]
-    static void AnimOutAll(NCombatPilesContainer __instance)
+    private static void AnimOutAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
             btn.AnimOut();

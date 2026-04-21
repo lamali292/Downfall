@@ -2,7 +2,6 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Extensions;
 using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,8 +24,10 @@ public class CursedWail : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CommonActions.Apply<TemporaryStrengthDownPower>(CombatState.Enemies, this);;
+        await CommonActions.Apply<TemporaryStrengthDownPower>(CombatState.Enemies, this);
+        ;
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
-        await PowerCmd.Apply<StrengthPower>(CombatState.Enemies.Where(e=>e.IsAfflicted()), amount, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(CombatState.Enemies.Where(e => e.IsAfflicted()), amount, Owner.Creature,
+            this);
     }
 }

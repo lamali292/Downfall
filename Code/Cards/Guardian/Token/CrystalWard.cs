@@ -14,7 +14,7 @@ public class CrystalWard : GuardianCardModel
         WithBlock(4, 2);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

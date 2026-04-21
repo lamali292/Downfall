@@ -1,9 +1,6 @@
 using BaseLib.Abstracts;
-using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
 using Downfall.Code.Extensions;
-using Downfall.Code.Nodes;
-using Godot;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
@@ -40,10 +37,14 @@ public class CollectibleRewardMessage : CustomRewardMessage
     }
 
     public override void Initialize(RunLocationTargetedMessageBuffer messageBuffer)
-        => messageBuffer.RegisterMessageHandler<CollectibleRewardMessage>(HandleMessage);
+    {
+        messageBuffer.RegisterMessageHandler<CollectibleRewardMessage>(HandleMessage);
+    }
 
     public override void Dispose(RunLocationTargetedMessageBuffer messageBuffer)
-        => messageBuffer.UnregisterMessageHandler<CollectibleRewardMessage>(HandleMessage);
+    {
+        messageBuffer.UnregisterMessageHandler<CollectibleRewardMessage>(HandleMessage);
+    }
 
     private static void HandleMessage(CollectibleRewardMessage message, ulong senderId)
     {

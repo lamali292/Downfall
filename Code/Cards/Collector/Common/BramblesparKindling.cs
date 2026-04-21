@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Collector.Token;
 using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -24,11 +23,12 @@ public class BramblesparKindling : CollectorCardModel
         }));
         WithKeyword(CardKeyword.Unplayable);
     }
-    
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+        bool causedByEthereal)
     {
         if (card != this) return;
-        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded : IsUpgraded);
+        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

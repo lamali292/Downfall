@@ -5,4 +5,3 @@ namespace Downfall.Code.Nodes.Base;
 
 [GlobalClass]
 public partial class NDownfallCardTrail : NCardTrail;
-

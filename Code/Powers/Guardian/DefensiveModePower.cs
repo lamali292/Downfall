@@ -17,8 +17,8 @@ public class DefensiveModePower : GuardianPowerModel
     {
         WithPower<ThornsPower>(3);
     }
-    
-    public override async Task  AfterApplied(Creature? applier, CardModel? cardSource)
+
+    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         if (Owner.Player == null) return;
         await GuardianCmd.EnterDefensiveMode(Owner.Player);
@@ -38,7 +38,8 @@ public class DefensiveModePower : GuardianPowerModel
         await PowerCmd.Apply<ThornsPower>(Owner, -DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }
 
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext choiceContext,
+        CombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Decrement(this);

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Collector;
 using Downfall.Code.Vfx;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,9 +19,8 @@ public class YouAreMine : CollectorCardModel
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
         WithPower<CollectorDoomPower>(6, 2);
-
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

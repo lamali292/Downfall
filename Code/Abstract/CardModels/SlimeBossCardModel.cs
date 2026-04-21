@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using Downfall.Code.Character;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Abstract.CardModels;
@@ -8,7 +9,7 @@ public abstract class SlimeBossCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.SlimeBoss>(cost, type, rarity, targetType)
+    : DownfallCardModel<SlimeBoss>(cost, type, rarity, targetType)
 {
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

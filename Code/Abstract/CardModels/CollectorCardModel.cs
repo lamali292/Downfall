@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Commands;
+﻿using Downfall.Code.Character;
+using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,12 +12,14 @@ public abstract class CollectorCardModel(
     CardType type,
     CardRarity rarity,
     TargetType targetType)
-    : DownfallCardModel<Character.Collector>(cost, type, rarity, targetType)
+    : DownfallCardModel<Collector>(cost, type, rarity, targetType)
 {
-    public virtual bool UsesCollectorEnergyOnly => false;
     private bool _hasPyre;
+    public virtual bool UsesCollectorEnergyOnly => false;
     protected CardModel? PyredCard { get; private set; }
-    
+
+    protected override bool IsPlayable => !_hasPyre || PyreCondition();
+
     protected CollectorCardModel WithPyre()
     {
         _hasPyre = true;
@@ -24,8 +27,6 @@ public abstract class CollectorCardModel(
         return this;
     }
 
-    protected override bool IsPlayable => !_hasPyre || PyreCondition();
-    
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -38,8 +39,12 @@ public abstract class CollectorCardModel(
             PyredCard = await CollectorCmd.Pyre(ctx, this);
             if (PyredCard == null) return;
         }
+
         await PlayEffect(ctx, cardPlay);
     }
-    
-    protected bool PyreCondition() => PileType.Hand.GetPile(Owner).Cards.Any(e => e != this);
+
+    protected bool PyreCondition()
+    {
+        return PileType.Hand.GetPile(Owner).Cards.Any(e => e != this);
+    }
 }

@@ -35,9 +35,10 @@ public static class StringExtensions
         return Path.Join(DownfallMainFile.ModId, "images", "powers", path);
     }
 
-    public static string CardImageAtlasPath<T>(this string path)where T : DownfallCharacterModel
+    public static string CardImageAtlasPath<T>(this string path) where T : DownfallCharacterModel
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "atlases", "card_atlas.sprites", ModelDb.Character<T>().CharId?.ToLower()+"_"+path);
+        return Path.Join(DownfallMainFile.ModId, "images", "atlases", "card_atlas.sprites",
+            ModelDb.Character<T>().CharId?.ToLower() + "_" + path);
     }
 
 
@@ -56,7 +57,6 @@ public static class StringExtensions
         return Path.Join(DownfallMainFile.ModId, "images", "ui", "restsite", path);
     }
 
-    
 
     public static string EnchantmentPath(this string path)
     {

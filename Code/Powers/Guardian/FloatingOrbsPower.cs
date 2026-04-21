@@ -12,7 +12,7 @@ public class FloatingOrbsPower : GuardianPowerModel
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player) return;
-        
+
         if (cardPlay.Resources.EnergySpent != 0 || cardPlay.Resources.StarsSpent != 0) return;
         var target = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;

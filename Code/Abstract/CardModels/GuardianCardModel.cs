@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.Code.Character;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
@@ -8,15 +8,19 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.Code.Abstract.CardModels;
 
 public abstract class GuardianCardModel
-    : DownfallCardModel<Character.Guardian>, IAdditionalOverlay
+    : DownfallCardModel<Guardian>, IAdditionalOverlay
 {
+    public static readonly JsonSavedField<CardModel, List<SerializableGem>> GemData =
+        JsonSavedField.Create<CardModel, List<SerializableGem>>("DOWNFALL_GEM");
+
+    private List<GemModel>? _cachedGems;
+
     protected GuardianCardModel(
         int cost,
         CardType type,
@@ -26,11 +30,6 @@ public abstract class GuardianCardModel
         // TODO : Wait for BaseLib to support this
         // WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
     }
-    
-    public static readonly JsonSavedField<CardModel, List<SerializableGem>> GemData = 
-        JsonSavedField.Create<CardModel, List<SerializableGem>>("DOWNFALL_GEM");
-  
-    private List<GemModel>? _cachedGems;
 
     public IReadOnlyList<GemModel> Gems
     {
@@ -43,70 +42,11 @@ public abstract class GuardianCardModel
         }
     }
 
-    private void UpdateGemData()
-    {
-        var serializedGems = _cachedGems?
-            .Select(SerializableGem.FromGem)
-            .ToList();
-        
-        GemData.Set(this, serializedGems);
-        NCard.FindOnTable(this)?.ReloadOverlay();
-    }
-
-    public void AddGem(GemModel gem)
-    {
-        if (Gems.Count >= GemSlots) return;
-        _cachedGems ??= Gems.ToList();
-        _cachedGems.Add(gem);
-        UpdateGemData();
-    }
-
-    public void AddGems(IEnumerable<GemModel> gems)
-    {
-        _cachedGems ??= Gems.ToList();
-    
-        foreach (var gem in gems)
-        {
-            if (_cachedGems.Count >= GemSlots) break;
-            _cachedGems.Add(gem);
-        }
-        NCard.FindOnTable(this)?.ReloadOverlay();
-        UpdateGemData();
-    }
-
-    public void RemoveGem(GemModel gem)
-    {
-        _cachedGems ??= Gems.ToList();
-        _cachedGems.Remove(gem);
-        UpdateGemData();
-    }
-
-    public void ClearGems()
-    {
-        _cachedGems = [];
-        UpdateGemData();
-    }
-    
-    
-    /*
-    protected override void DeepCloneFields()
-    {
-        base.DeepCloneFields();
-        if (_cachedGems != null)
-        {
-            _cachedGems = new List<GemModel>(_cachedGems);
-        }
-    }*/
-    
-    public static List<SerializableGem>? GetRawGemData(CardModel card) => GemData.Get(card);
-    public static void SetRawGemData(CardModel card, List<SerializableGem>? data) => GemData.Set(card, data);
-
     public virtual int GemSlots => 0;
-    
+
     public bool IsFull => Gems.Count >= GemSlots;
     public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
-    public bool CanAddGem(GemModel gem) => !IsFull;
-    
+
     public Control CreateAdditionalOverlay()
     {
         var parentContainer = new Control
@@ -115,13 +55,13 @@ public abstract class GuardianCardModel
             PivotOffset = new Vector2(150, 211),
             MouseFilter = Control.MouseFilterEnum.Ignore,
             Position = new Vector2(-150, -211),
-            Size = new Vector2(300, 422),
+            Size = new Vector2(300, 422)
         };
-        
+
         var vBox = new VBoxContainer
         {
             MouseFilter = Control.MouseFilterEnum.Ignore,
-            Position = new Vector2(240, 80),
+            Position = new Vector2(240, 80)
         };
         parentContainer.AddChild(vBox);
 
@@ -138,25 +78,97 @@ public abstract class GuardianCardModel
                 Texture = texture,
                 ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                CustomMinimumSize = new Vector2(60f, 60f), 
+                CustomMinimumSize = new Vector2(60f, 60f),
                 MouseFilter = Control.MouseFilterEnum.Ignore
             };
             vBox.AddChild(rect);
         }
+
         return parentContainer;
     }
 
     public string OverlayNodeName => "DownfallGemOverlay";
 
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay) => await Task.CompletedTask;
+    private void UpdateGemData()
+    {
+        var serializedGems = _cachedGems?
+            .Select(SerializableGem.FromGem)
+            .ToList();
+
+        GemData.Set(this, serializedGems);
+        NCard.FindOnTable(this)?.ReloadOverlay();
+    }
+
+    public void AddGem(GemModel gem)
+    {
+        if (Gems.Count >= GemSlots) return;
+        _cachedGems ??= Gems.ToList();
+        _cachedGems.Add(gem);
+        UpdateGemData();
+    }
+
+    public void AddGems(IEnumerable<GemModel> gems)
+    {
+        _cachedGems ??= Gems.ToList();
+
+        foreach (var gem in gems)
+        {
+            if (_cachedGems.Count >= GemSlots) break;
+            _cachedGems.Add(gem);
+        }
+
+        NCard.FindOnTable(this)?.ReloadOverlay();
+        UpdateGemData();
+    }
+
+    public void RemoveGem(GemModel gem)
+    {
+        _cachedGems ??= Gems.ToList();
+        _cachedGems.Remove(gem);
+        UpdateGemData();
+    }
+
+    public void ClearGems()
+    {
+        _cachedGems = [];
+        UpdateGemData();
+    }
+
+
+    /*
+    protected override void DeepCloneFields()
+    {
+        base.DeepCloneFields();
+        if (_cachedGems != null)
+        {
+            _cachedGems = new List<GemModel>(_cachedGems);
+        }
+    }*/
+
+    public static List<SerializableGem>? GetRawGemData(CardModel card)
+    {
+        return GemData.Get(card);
+    }
+
+    public static void SetRawGemData(CardModel card, List<SerializableGem>? data)
+    {
+        GemData.Set(card, data);
+    }
+
+    public bool CanAddGem(GemModel gem)
+    {
+        return !IsFull;
+    }
+
+    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await Task.CompletedTask;
+    }
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        foreach (var gem in Gems)
-        {
-            await gem.OnPlay(ctx, cardPlay);
-        }
+        foreach (var gem in Gems) await gem.OnPlay(ctx, cardPlay);
     }
 }
 

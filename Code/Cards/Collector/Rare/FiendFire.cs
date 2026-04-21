@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,7 +21,7 @@ public class FiendFire : CollectorCardModel
         WithTip(CardKeyword.Exhaust);
     }
 
-    
+
     protected override IEnumerable<string> ExtraRunAssetPaths => NGroundFireVfx.AssetPaths;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -33,19 +32,18 @@ public class FiendFire : CollectorCardModel
         foreach (var card2 in list)
             await CardCmd.Exhaust(ctx, card2);
         var scale = 0.8f;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(cardCount).FromCard(this).Targeting(cardPlay.Target).BeforeDamage((Func<Task>) (() =>
-        {
-            var child = NGroundFireVfx.Create(cardPlay.Target);
-            if (child == null)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(cardCount).FromCard(this)
+            .Targeting(cardPlay.Target).BeforeDamage((Func<Task>)(() =>
+            {
+                var child = NGroundFireVfx.Create(cardPlay.Target);
+                if (child == null)
+                    return Task.CompletedTask;
+                SfxCmd.Play("event:/sfx/characters/attack_fire");
+                child.Scale = Vector2.One * scale;
+                var instance = NCombatRoom.Instance;
+                instance?.CombatVfxContainer.AddChildSafely(child);
+                scale += 0.1f;
                 return Task.CompletedTask;
-            SfxCmd.Play("event:/sfx/characters/attack_fire");
-            child.Scale = Vector2.One * scale;
-            var instance = NCombatRoom.Instance;
-            instance?.CombatVfxContainer.AddChildSafely(child);
-            scale += 0.1f;
-            return Task.CompletedTask;
-        })).Execute(ctx);
+            })).Execute(ctx);
     }
-    
-
 }

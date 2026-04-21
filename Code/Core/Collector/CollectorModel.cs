@@ -20,16 +20,15 @@ namespace Downfall.Code.Core.Collector;
 
 public class CollectorModel() : CustomSingletonModel(true, false)
 {
-    public override bool ShouldReceiveCombatHooks => true;
     private readonly List<MonsterModel> _defeatedEnemies = [];
-    
+    public override bool ShouldReceiveCombatHooks => true;
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, CombatState combatState)
     {
         if (DownfallHook.PreventCollectedDraw(combatState, player)) return;
         await CollectorCmd.DrawCollected(ctx, player);
- 
     }
-    
+
     public override Task BeforeCombatStart()
     {
         _defeatedEnemies.Clear();
@@ -52,21 +51,19 @@ public class CollectorModel() : CustomSingletonModel(true, false)
                 combatState.AddCard(mutable, player);
                 pile.AddInternal(mutable);
                 pile.InvokeCardAddFinished();
-                
             }
-            
         }
 
         return Task.CompletedTask;
     }
 
-    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
+        float deathAnimLength)
     {
         if (creature is { IsEnemy: true, Monster: not null })
             _defeatedEnemies.Add(creature.Monster);
         return Task.CompletedTask;
     }
-
 
 
     public override Task AfterCombatEnd(CombatRoom room)
@@ -85,25 +82,21 @@ public class CollectorModel() : CustomSingletonModel(true, false)
         };
         foreach (var player in room.CombatState.Players.Where(p => p.Character is Character.Collector))
         {
-         
-            if (essenceAmount > 0)
-            {
-                room.AddExtraReward(player, new EssenceReward(essenceAmount, player));
-            }
+            if (essenceAmount > 0) room.AddExtraReward(player, new EssenceReward(essenceAmount, player));
             foreach (var cardModel in enemyCards)
                 room.AddExtraReward(player, new CollectibleReward(cardModel.ToMutable(), player));
         }
+
         return Task.CompletedTask;
     }
 }
 
 [HarmonyPatch(typeof(RunState), nameof(RunState.CreateForNewRun))]
-class PatchNewRun
+internal class PatchNewRun
 {
     [HarmonyPostfix]
-    static void GiveStartingEssence(RunState __result)
+    private static void GiveStartingEssence(RunState __result)
     {
-
         foreach (var player in __result.Players)
         {
             EssenceModel.ClearEssence(player);
@@ -111,6 +104,5 @@ class PatchNewRun
             if (player.Character is Character.Collector)
                 EssenceModel.AddEssence(player, 5);
         }
-            
     }
 }

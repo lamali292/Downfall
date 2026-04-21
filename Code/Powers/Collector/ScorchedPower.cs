@@ -12,5 +12,4 @@ public class ScorchedPower : CollectorPowerModel
         if (side != Owner.Side) return;
         await PowerCmd.Apply<CollectorDoomPower>(Owner, Amount, Applier, null);
     }
-    
 }

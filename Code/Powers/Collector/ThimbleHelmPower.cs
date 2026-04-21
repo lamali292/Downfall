@@ -10,8 +10,7 @@ namespace Downfall.Code.Powers.Collector;
 
 public class ThimbleHelmPower : CollectorPowerModel
 {
-    
-    public ThimbleHelmPower() : base()
+    public ThimbleHelmPower()
     {
         WithTip(StaticHoverTip.Block);
     }

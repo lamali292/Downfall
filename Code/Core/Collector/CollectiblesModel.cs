@@ -13,12 +13,14 @@ namespace Downfall.Code.Core.Collector;
 
 public static class CollectiblesModel
 {
-    public static List<CardModel> GetCollectibles(Player player) => 
-        DownfallSaveManager.GetPlayerData(player).CollectorDeck.Select(CardModel.FromSerializable).ToList();
+    public static List<CardModel> GetCollectibles(Player player)
+    {
+        return DownfallSaveManager.GetPlayerData(player).CollectorDeck.Select(CardModel.FromSerializable).ToList();
+    }
 
     /// <summary>
-    /// The only safe way to add a collectible.
-    /// Handles local state, network sync, and animation.
+    ///     The only safe way to add a collectible.
+    ///     Handles local state, network sync, and animation.
     /// </summary>
     public static void SyncAdd(Player player, CardModel card, int essenceCost)
     {
@@ -43,6 +45,8 @@ public static class CollectiblesModel
         NTopBarCollectorButton.RefreshButton();
     }
 
-    public static void ClearCollectibles(Player player) => 
+    public static void ClearCollectibles(Player player)
+    {
         DownfallSaveManager.GetPlayerData(player).CollectorDeck.Clear();
+    }
 }

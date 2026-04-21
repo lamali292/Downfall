@@ -1,23 +1,34 @@
 ﻿using Godot;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.TopBar;
-using MegaCrit.Sts2.addons.mega_text;
 
 namespace Downfall.Code.Utils.UI;
 
 /// <summary>
-/// Abstract base for top bar elements that are full buttons (press/hover/screen
-/// animations via <see cref="NTopBarButton"/>). Handles count badge and rocking
-/// animation; subclasses supply scene path, player filter, count source, and
-/// click behaviour.
+///     Abstract base for top bar elements that are full buttons (press/hover/screen
+///     animations via <see cref="NTopBarButton" />). Handles count badge and rocking
+///     animation; subclasses supply scene path, player filter, count source, and
+///     click behaviour.
 /// </summary>
 public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElement
 {
-    protected Player? Player;
+    private const float RockSpeed = 4f;
+    private const float RockDist = 0.12f;
+
+    private static NCustomTopBarButton? _instance;
+    private Tween? _bumpTween;
 
     private MegaLabel? _countLabel;
-    private Tween? _bumpTween;
+
+    // ── Rocking animation (while associated screen is open) ───────────────────
+
+    private float _elapsedTime;
     private float _previousCount;
+    private float _rockBaseRotation;
+    protected Player? Player;
+    public static Vector2 ButtonPosition => _instance?.GlobalPosition ?? Vector2.Zero;
+    public static Vector2 ButtonSize => _instance?.Size ?? Vector2.Zero;
 
     // ── ITopBarElement ────────────────────────────────────────────────────────
 
@@ -31,7 +42,7 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         _instance = this;
         RefreshCount();
     }
-    
+
     // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     public override void _Ready()
@@ -52,7 +63,12 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         if (_countLabel == null) return;
         var count = GetCount();
 
-        if (count == null) { _countLabel.Visible = false; return; }
+        if (count == null)
+        {
+            _countLabel.Visible = false;
+            return;
+        }
+
         _countLabel.Visible = true;
 
         if (count > _previousCount)
@@ -70,13 +86,6 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         _countLabel.SetTextAutoSize(count.Value.ToString());
     }
 
-    // ── Rocking animation (while associated screen is open) ───────────────────
-
-    private float _elapsedTime;
-    private float _rockBaseRotation;
-    private const float RockSpeed = 4f;
-    private const float RockDist = 0.12f;
-
     public override void _Process(double delta)
     {
         if (!IsScreenOpen) return;
@@ -84,16 +93,15 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         _icon.Rotation = _rockBaseRotation + RockDist * Mathf.Sin(_elapsedTime);
         _rockBaseRotation = (float)Mathf.Lerp(_rockBaseRotation, 0.0, delta);
     }
-    
-    private static NCustomTopBarButton? _instance;
-    public static Vector2 ButtonPosition => _instance?.GlobalPosition ?? Vector2.Zero;
-    public static Vector2 ButtonSize     => _instance?.Size ?? Vector2.Zero;
-    public static void RefreshButton()   => _instance?.RefreshCount();
+
+    public static void RefreshButton()
+    {
+        _instance?.RefreshCount();
+    }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         if (_instance == this) _instance = null;
     }
-
 }

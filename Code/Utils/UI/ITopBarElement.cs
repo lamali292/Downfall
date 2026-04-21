@@ -12,9 +12,9 @@ namespace Downfall.Code.Utils.UI;
 // ── Interface ─────────────────────────────────────────────────────────────────
 
 /// <summary>
-/// Implemented by any node that should be automatically added to the top bar.
-/// The patch discovers all concrete implementors via reflection — no manual
-/// registration required.
+///     Implemented by any node that should be automatically added to the top bar.
+///     The patch discovers all concrete implementors via reflection — no manual
+///     registration required.
 /// </summary>
 public interface ITopBarElement
 {
@@ -25,8 +25,8 @@ public interface ITopBarElement
     Func<Player, bool> CanUse { get; }
 
     /// <summary>
-    /// Width reserved in the top bar spacer for this element.
-    /// Typically matches the horizontal gap between elements (e.g. 80f).
+    ///     Width reserved in the top bar spacer for this element.
+    ///     Typically matches the horizontal gap between elements (e.g. 80f).
     /// </summary>
     float Width { get; }
 
@@ -48,13 +48,20 @@ internal static class TopBarElementRegistry
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             IEnumerable<Type> types;
-            try { types = assembly.GetTypes(); }
-            catch (ReflectionTypeLoadException ex) { types = ex.Types.Where(t => t != null)!; }
+            try
+            {
+                types = assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                types = ex.Types.Where(t => t != null)!;
+            }
 
             results.AddRange(types.Where(t =>
                 t is { IsClass: true, IsAbstract: false } &&
                 t.IsAssignableTo(typeof(ITopBarElement))));
         }
+
         return results;
     }
 
@@ -65,19 +72,18 @@ internal static class TopBarElementRegistry
     }
 }
 
-
 [HarmonyPatch(typeof(NTopBar), nameof(NTopBar.Initialize))]
-class PatchTopBarInitialize
+internal class PatchTopBarInitialize
 {
     [HarmonyPostfix]
-    static void AddRegisteredElements(NTopBar __instance, IRunState runState)
+    private static void AddRegisteredElements(NTopBar __instance, IRunState runState)
     {
         var localPlayer = LocalContext.GetMe(runState);
         if (localPlayer == null) return;
-        
+
         var rightContainer = __instance.GetNodeOrNull<HBoxContainer>("RightAlignedStuff");
         if (rightContainer == null) return;
-        
+
         foreach (var type in TopBarElementRegistry.Types)
         {
             var (scenePath, canUse, width) = TopBarElementRegistry.ReadMetadata(type);
@@ -88,14 +94,11 @@ class PatchTopBarInitialize
 
             var node = scene.Instantiate<Control>();
             node.CustomMinimumSize = new Vector2(width, 0);
-            node.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin; 
-            
+            node.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin;
+
             rightContainer.AddChild(node);
             rightContainer.MoveChild(node, 3);
-            if (node is ITopBarElement element)
-            {
-                element.Initialize(localPlayer);
-            }
+            if (node is ITopBarElement element) element.Initialize(localPlayer);
         }
     }
 }

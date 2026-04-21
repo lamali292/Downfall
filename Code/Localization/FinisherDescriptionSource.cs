@@ -34,7 +34,7 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
             locString.Add("strength", ChampBerserkerStance.BaseFinisherAmount);
             locString.Add("block", ChampDefensiveStance.BaseFinisherAmount);
         }
-        
+
         yield return locString.GetFormattedText();
     }
 }

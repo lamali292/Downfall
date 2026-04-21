@@ -1,13 +1,10 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Collector.Uncommon;
@@ -21,7 +18,7 @@ public class IllTakeThat : CollectorCardModel
         WithDamage(10, 3);
         WithTip(StaticHoverTip.Block);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -31,6 +28,7 @@ public class IllTakeThat : CollectorCardModel
             await CreatureCmd.LoseBlock(cardPlay.Target, stolenBlock);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, ValueProp.Move | ValueProp.Unpowered, cardPlay);
         }
+
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,12 +15,14 @@ public class Wildfire : CollectorCardModel
 {
     public Wildfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(0,4, DamageCalc, ValueProp.Move, 0,2);
+        WithCalculatedDamage(0, 4, DamageCalc, ValueProp.Move, 0, 2);
     }
 
-    private static decimal DamageCalc(CardModel card, Creature? creature) =>
-        creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
-    
+    private static decimal DamageCalc(CardModel card, Creature? creature)
+    {
+        return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

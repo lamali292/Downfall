@@ -7,13 +7,15 @@ namespace Downfall.Code.Powers.Collector;
 
 public class ProtectingCallPower : CollectorPowerModel
 {
-    public override bool ShouldPowerBeRemovedAfterOwnerDeath() => false;
+    public override bool ShouldPowerBeRemovedAfterOwnerDeath()
+    {
+        return false;
+    }
+
     public override async Task AfterAttack(AttackCommand command)
     {
-        if (command.Attacker == null || Owner.PetOwner ==  null || !Owner.IsAlive) return;
+        if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
-        { 
             await CreatureCmd.GainBlock(Owner.PetOwner.Creature, Amount, ValueProp.Unpowered, null);
-        }
     }
 }

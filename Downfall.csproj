@@ -108,20 +108,20 @@
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.7" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.7" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
 
-    
+
     <ItemGroup> <!--Allows access to originally private/protected members but may (unlikely to) cause errors.-->
-        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
+        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
     </ItemGroup>
-    
+
 
     <ItemGroup>
-        <Compile Include="Downfall\localization\eng\badges.json.cs" />
+        <Compile Include="Downfall\localization\eng\badges.json.cs"/>
         <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never"/>
         <Compile Remove="Downfall/**"/>
         <Compile Remove="shaders/**"/>
@@ -136,11 +136,11 @@
         <None Include="Downfall/**"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Remove="addons/mega_text/**" />
+        <Compile Remove="addons/mega_text/**"/>
     </ItemGroup>
     <ItemGroup>
         <Content Remove=".godot\**"/>
-        <Content Include="Downfall\animation\eye\the_watcher_eye.png.import" />
+        <Content Include="Downfall\animation\eye\the_watcher_eye.png.import"/>
         <None Remove=".godot\**"/>
 
         <Content Remove="Downfall\**\*.import"/>
@@ -184,7 +184,6 @@
     </Target>
 
 
-    
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Syncing Mod Files to Steam Mods Folder..." Importance="high"/>
 

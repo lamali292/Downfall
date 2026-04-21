@@ -11,20 +11,18 @@ namespace Downfall.Code.Powers.Collector;
 
 public class DeathmarkedPower() : CollectorPowerModel(PowerType.Debuff)
 {
-    
-    
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext ctx)
     {
         if (Amount <= 0) yield break;
-        
+
         yield return new HealthBarForecastSegment(
-            amount:    Amount,
-            color:     new Color("880000"),
-            direction: HealthBarForecastDirection.FromLeft,
-            order:     0
+            Amount,
+            new Color("880000"),
+            HealthBarForecastDirection.FromLeft,
+            0
         );
     }
-    
+
     public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != Owner.Side || Applier == null) return;

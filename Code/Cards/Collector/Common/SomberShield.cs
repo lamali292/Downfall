@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +16,7 @@ public class SomberShield : CollectorCardModel
         WithPyre();
         WithBlock(6, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
@@ -25,5 +24,4 @@ public class SomberShield : CollectorCardModel
         if (a == null || PyredCard == null) return;
         a.Card = PyredCard.CreateClone();
     }
-    
 }

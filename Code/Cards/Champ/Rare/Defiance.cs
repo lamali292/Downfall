@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Champ;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,15 +20,16 @@ public class Defiance : ChampCardModel
         WithKeywords(CardKeyword.Retain);
         WithCalculatedBlock(0, CalcBlock);
     }
-    
-    private static decimal CalcBlock(CardModel card, Creature? creature) => 
-        card.Owner.Creature.GetPowerAmount<CounterPower>();
-    
+
+    private static decimal CalcBlock(CardModel card, Creature? creature)
+    {
+        return card.Owner.Creature.GetPowerAmount<CounterPower>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var block = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
         await PowerCmd.Remove<CounterPower>(Owner.Creature);
     }
-    
 }

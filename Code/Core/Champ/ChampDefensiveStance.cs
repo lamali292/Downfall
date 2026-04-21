@@ -8,6 +8,7 @@ namespace Downfall.Code.Core.Champ;
 
 public class ChampDefensiveStance : ChampStanceModel
 {
+    internal const int BaseFinisherAmount = 6;
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;
     public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_defensive.png";
@@ -17,8 +18,6 @@ public class ChampDefensiveStance : ChampStanceModel
         var amount = DownfallHook.ModifySkillBonus<CounterPower>(CombatState, this, 2);
         await PowerCmd.Apply<CounterPower>(Owner.Creature, amount, Owner.Creature, null);
     }
-
-    internal const int BaseFinisherAmount = 6;
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {

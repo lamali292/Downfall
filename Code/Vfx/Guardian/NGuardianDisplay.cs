@@ -17,17 +17,17 @@ public partial class NGuardianDisplay : Control
     private const float SequencedCardScale = 1;
     private const string DisplayScenePath = "res://Downfall/scenes/ui/guardian_display.tscn";
     private const string StasisSlotScenePath = "res://Downfall/scenes/ui/stasis_slot.tscn";
-    
-    private Player? _trackedPlayer;
-    private int _currentMax = 3;
+    private readonly List<NCustomCardHolder> _cardHolders = [];
 
     private readonly List<NStasisSlot> _slots = [];
-    private readonly List<NCustomCardHolder> _cardHolders = [];
-    private bool _initialized;
     private float _bobTime;
+    private int _currentMax = 3;
+    private bool _initialized;
 
     private HBoxContainer? _slotContainer;
     private PackedScene? _stasisSlotScene;
+
+    private Player? _trackedPlayer;
 
     public static NGuardianDisplay Create(Player player)
     {
@@ -53,6 +53,7 @@ public partial class NGuardianDisplay : Control
             _slots.RemoveAt(_slots.Count - 1);
             lastSlot.QueueFree();
         }
+
         while (_slots.Count < count)
         {
             var slot = _stasisSlotScene.Instantiate<NStasisSlot>();
@@ -67,20 +68,17 @@ public partial class NGuardianDisplay : Control
         return clamped < _slots.Count ? _slots[clamped].CardAnchorGlobal : GlobalPosition;
     }
 
-    
+
     public void RefreshCounters()
     {
         if (_trackedPlayer == null) return;
-    
+
         var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
-    
-        for (var i = 0; i < _slots.Count && i < sequence.Count; i++)
-        {
-            _slots[i].UpdateCounterDisplay(sequence[i]);
-        }
+
+        for (var i = 0; i < _slots.Count && i < sequence.Count; i++) _slots[i].UpdateCounterDisplay(sequence[i]);
     }
 
-    
+
     public void Refresh()
     {
         if (_trackedPlayer == null) return;
@@ -89,17 +87,14 @@ public partial class NGuardianDisplay : Control
         _currentMax = GuardianCmd.GetMax(_trackedPlayer);
         RefreshCounters();
         _initialized = true;
-        
+
         EnsureSlotCount(_currentMax);
 
-        foreach (var h in _cardHolders.Where(h => h.CardModel != null))
-        {
-            FindOnTablePatch.Unregister(h.CardModel!);
-        }
+        foreach (var h in _cardHolders.Where(h => h.CardModel != null)) FindOnTablePatch.Unregister(h.CardModel!);
 
         _cardHolders.Clear();
         foreach (var slot in _slots) slot.ClearCard();
-        
+
         for (var i = 0; i < _slots.Count; i++)
         {
             var slot = _slots[i];
@@ -126,6 +121,7 @@ public partial class NGuardianDisplay : Control
             FindOnTablePatch.Register(sequence[i], cardNode);
             _cardHolders.Add(holder);
         }
+
         RefreshCounters();
     }
 
@@ -134,33 +130,30 @@ public partial class NGuardianDisplay : Control
         var list = _cardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!).ToList();
         return list;
     }
-    
-    
+
+
     public NCard? GetNCard(CardModel card)
     {
         var cardNode = _cardHolders.Find(h => h.CardModel == card)?.CardNode;
-    
+
         if (cardNode != null && IsInstanceValid(cardNode))
             return cardNode;
-    
+
         return null;
     }
-    
+
     public Vector2? GetTargetPosition(CardModel card)
     {
         if (_trackedPlayer == null) return GlobalPosition;
-    
+
         var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
         var existingIndex = sequence.IndexOf(card);
         if (existingIndex >= 0)
-        {
             return existingIndex < _slots.Count ? _slots[existingIndex].CardAnchorGlobal : GlobalPosition;
-        }
         var nextIndex = sequence.Count;
         if (nextIndex >= _currentMax)
             nextIndex = _currentMax - 1;
-    
+
         return nextIndex < _slots.Count ? _slots[nextIndex].CardAnchorGlobal : GlobalPosition;
     }
- 
 }

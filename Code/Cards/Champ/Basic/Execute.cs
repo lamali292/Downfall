@@ -2,7 +2,6 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Champ.Ancient;
 using Downfall.Code.Commands;
 using Downfall.Code.Extensions;
@@ -26,14 +25,14 @@ public class Execute : ChampCardModel, ITranscendenceCard
     protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
     protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Execution>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
         await ChampCmd.PlayFinisher(ctx, cardPlay);
-    }
-
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<Execution>();
     }
 }

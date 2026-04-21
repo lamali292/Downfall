@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +17,7 @@ public class Finalize : CollectorCardModel
         WithPower<CollectorDoomPower>(24, 4);
         WithPower<FinalizePower>(6, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<CollectorDoomPower>(this, cardPlay);

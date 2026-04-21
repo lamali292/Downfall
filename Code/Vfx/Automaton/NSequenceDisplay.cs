@@ -21,22 +21,22 @@ public partial class NSequenceDisplay : Control
 
     private const string DisplayScenePath = "res://Downfall/scenes/ui/automaton_display.tscn";
 
+    private readonly float[] _bobOffsets = new float[4];
+    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
+    private readonly List<NCustomCardHolder> _cardHolders = [];
+    private readonly float[] _lastBobOffsets = new float[4];
+
+    private readonly List<NAutomatonSlot> _slots = [];
+    private float _bobTime;
+    private CombatManager? _combatManager;
+    private int _currentMax = 3;
+    private bool _initialized;
+    private List<CardModel> _lastSequence = [];
+
     private Control? _previewContainer;
     private NCustomCardHolder? _previewHolder;
     private FunctionCard? _previewModel;
     private Player? _trackedPlayer;
-    private CombatManager? _combatManager;
-    private int _currentMax = 3;
-
-    private readonly List<NAutomatonSlot> _slots = [];
-    private readonly List<NCustomCardHolder> _cardHolders = [];
-    private List<CardModel> _lastSequence = [];
-    private bool _initialized;
-
-    private readonly float[] _bobOffsets = new float[4];
-    private readonly float[] _lastBobOffsets = new float[4];
-    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
-    private float _bobTime;
 
     public static NSequenceDisplay Create(Player player)
     {
@@ -75,10 +75,7 @@ public partial class NSequenceDisplay : Control
 
         _currentMax = AutomatonCmd.GetMax(_trackedPlayer);
 
-        foreach (var h in _cardHolders.Where(h => h.CardModel != null))
-        {
-            FindOnTablePatch.Unregister(h.CardModel!);
-        }
+        foreach (var h in _cardHolders.Where(h => h.CardModel != null)) FindOnTablePatch.Unregister(h.CardModel!);
 
         _cardHolders.Clear();
         foreach (var slot in _slots) slot.ClearCard();

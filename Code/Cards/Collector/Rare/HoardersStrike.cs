@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +16,7 @@ public class HoardersStrike : CollectorCardModel
         WithDamage(16, 4);
         WithTags(CardTag.Strike);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -26,5 +25,4 @@ public class HoardersStrike : CollectorCardModel
         var card = cards[0];
         await CardCmd.AutoPlay(ctx, card, cardPlay.Target);
     }
-    
 }

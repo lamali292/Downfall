@@ -10,7 +10,7 @@ public class BruisePower : DownfallPowerModel
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {
-        if (target != Owner || amount < 0 || !props.IsPoweredAttack() || cardSource == null)  return 0;
+        if (target != Owner || amount < 0 || !props.IsPoweredAttack() || cardSource == null) return 0;
         return Amount;
     }
 }

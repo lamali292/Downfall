@@ -1,10 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
-using Downfall.Code.Commands;
 using Downfall.Code.Core.Collector;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,8 +18,8 @@ public class EmeraldTorch : CollectorRelicModel
     {
         return ModelDb.Relic<PrismaticTorch>();
     }
-    
-    
+
+
     public override Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
@@ -33,5 +30,4 @@ public class EmeraldTorch : CollectorRelicModel
         Flash();
         return Task.CompletedTask;
     }
-
 }

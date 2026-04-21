@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Piles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +16,7 @@ public class GreenpyreLocus : CollectorCardModel
     {
         WithCards(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (Owner.Creature.CombatState == null) return;
@@ -28,7 +27,7 @@ public class GreenpyreLocus : CollectorCardModel
             .AllCards
             .GroupBy(c => c.Rarity)
             .ToDictionary(g => g.Key, g => g.ToList());
-        
+
         var weightedAttacks = new List<CardModel>();
         var seen = new HashSet<string>();
 
@@ -56,13 +55,13 @@ public class GreenpyreLocus : CollectorCardModel
         );
 
         if (chosenCard == null) return;
-            
+
         await CardPileCmd.AddGeneratedCardToCombat(
-                chosenCard,
-                PileType.Hand,
-                true
-            );
-        
+            chosenCard,
+            PileType.Hand,
+            true
+        );
+
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
             var copy = chosenCard.CreateClone();

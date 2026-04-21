@@ -1,11 +1,11 @@
 ﻿using Downfall.Code.Character;
 using Downfall.Code.Piles;
 using Downfall.Code.Utils.UI;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using Godot;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Nodes;
@@ -21,12 +21,16 @@ public partial class NCollectorPileButton : NCustomCombatCardPile
     public override Func<Player, bool> CanUsePile =>
         player => player.Character == ModelDb.Character<Collector>();
 
-    protected override LocString BuildEmptyPileMessage() =>
-        new("combat_messages", "OPEN_EMPTY_COLLECTED");
+    protected override LocString BuildEmptyPileMessage()
+    {
+        return new LocString("combat_messages", "OPEN_EMPTY_COLLECTED");
+    }
 
-    protected override HoverTip BuildHoverTip() => new(
-        new LocString("static_hover_tips", "DOWNFALL-COLLECTED_PILE.title"),
-        new LocString("static_hover_tips", "DOWNFALL-COLLECTED_PILE.description")
-    );
-    
+    protected override HoverTip BuildHoverTip()
+    {
+        return new HoverTip(
+            new LocString("static_hover_tips", "DOWNFALL-COLLECTED_PILE.title"),
+            new LocString("static_hover_tips", "DOWNFALL-COLLECTED_PILE.description")
+        );
+    }
 }

@@ -15,11 +15,9 @@ public class TimeCapacitor : GuardianCardModel
         WithCostUpgradeBy(-1);
         WithVar("StasisSlots", 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         GuardianModel.AddMaxStasisSlots(Owner, DynamicVars["StasisSlots"].IntValue);
     }
-
-    
 }

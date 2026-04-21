@@ -7,6 +7,6 @@ public static class CreatureExtensions
 {
     public static bool IsAfflicted(this Creature creature)
     {
-        return creature.HasPower<VulnerablePower>()  && creature.HasPower<WeakPower>();
+        return creature.HasPower<VulnerablePower>() && creature.HasPower<WeakPower>();
     }
 }

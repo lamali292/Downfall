@@ -2,7 +2,6 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Powers.Collector;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,14 +20,11 @@ public class Empower : CollectorCardModel
     }
 
     protected override bool HasEnergyCostX => true;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
         var a = await CommonActions.ApplySelf<EmpowerPower>(this, amount);
-        if (IsUpgraded && a is { } empowerPower)
-        {
-            empowerPower.SetTurns(DynamicVars["Turns"].BaseValue);
-        }
+        if (IsUpgraded && a is { } empowerPower) empowerPower.SetTurns(DynamicVars["Turns"].BaseValue);
     }
 }

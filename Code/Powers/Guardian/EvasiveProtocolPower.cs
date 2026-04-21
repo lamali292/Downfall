@@ -13,6 +13,4 @@ public class EvasiveProtocolPower : GuardianPowerModel, IOnGuardianModeChange
         if (player.Creature != Owner || newMode is not GuardianDefensiveMode) return;
         await GuardianCmd.DebuffDown(Owner, Amount);
     }
-
-   
 }

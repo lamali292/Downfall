@@ -24,7 +24,9 @@ namespace Downfall.Code.Core.Guardian;
 
 public class GuardianModel() : CustomSingletonModel(true, true)
 {
-    private static readonly SpireField<Player, GuardianModeModel> ActiveStance = new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+    private static readonly SpireField<Player, GuardianModeModel> ActiveStance =
+        new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+
     private static readonly SpireField<Player, int> StasisSlots = new(() => 0);
 
 
@@ -32,7 +34,6 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     {
         if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
         await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null, true);
-      
     }
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
@@ -41,7 +42,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         GuardianDisplay.Refresh(card.Owner);
         return Task.CompletedTask;
     }
-    
+
 
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
     {
@@ -53,14 +54,14 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     {
         return StasisSlots[player];
     }
-    
+
     public static void AddMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
         StasisSlots[player] += value;
         GuardianDisplay.Refresh(player);
     }
-    
+
     public static void RemoveMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
@@ -73,24 +74,21 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     {
         var stasisPile = GuardianPile.Stasis.GetPile(player);
         var cards = stasisPile.Cards.ToList(); // Copy to avoid modification during iteration
-    
-        foreach (var card in from card in cards let counter = GuardianCmd.GetStasisCounter(card) where counter > 0 select card)
+
+        foreach (var card in from card in cards
+                 let counter = GuardianCmd.GetStasisCounter(card)
+                 where counter > 0
+                 select card)
         {
             GuardianCmd.DecrementStasisCounter(card);
-            if (card is ITickCard tickCard)
-            {
-                await tickCard.OnTick(ctx);
-            }
+            if (card is ITickCard tickCard) await tickCard.OnTick(ctx);
             var newCounter = GuardianCmd.GetStasisCounter(card);
-            if (newCounter == 0)
-            {
-                await ReturnFromStasis(card, player, ctx);
-            }
+            if (newCounter == 0) await ReturnFromStasis(card, player, ctx);
         }
-    
+
         GuardianDisplay.Refresh(player);
     }
-    
+
     private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
     {
         var hand = PileType.Hand.GetPile(player);
@@ -99,6 +97,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             await CardCmd.Exhaust(ctx, card);
             return;
         }
+
         await CardPileCmd.Add(card, hand);
         card.EnergyCost.SetUntilPlayed(0);
     }
@@ -113,7 +112,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     {
         return ActiveStance[player] is T;
     }
-    
+
     public static async Task SetMode<T>(Player player) where T : GuardianModeModel
     {
         await SetMode(player, DownfallModelDb.GuardianMode<T>());
@@ -134,8 +133,8 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         TriggerStanceAnimation(player);
         await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, player, current!, ActiveStance[player]!);
     }
-    
-    
+
+
     private static void TriggerStanceAnimation(Player player)
     {
         Callable.From(() =>
@@ -157,7 +156,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         options.Add(new GemRestSiteOption(player));
         return true;
     }
-    
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -170,10 +169,8 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             StasisSlots.Set(player, 3);
             GuardianDisplay.Refresh(player);
         }
-          
-               
+
+
         return Task.CompletedTask;
     }
-
-   
 }

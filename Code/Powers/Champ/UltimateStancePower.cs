@@ -13,7 +13,8 @@ namespace Downfall.Code.Powers.Champ;
 
 public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single)
 {
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+        CardModel? cardSource)
     {
         if (power != this || amount <= 0 || Owner.Player == null || LocalContext.NetId == null) return;
         var ctx = new HookPlayerChoiceContext(

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Cards.Guardian.Token;
 using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
@@ -21,7 +20,7 @@ public class SentryBlast : GuardianCardModel
         WithTip(DownfallTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -30,6 +29,4 @@ public class SentryBlast : GuardianCardModel
         if (IsUpgraded) card.UpgradeInternal();
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }
-
-
 }

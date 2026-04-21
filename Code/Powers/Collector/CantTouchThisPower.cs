@@ -21,9 +21,6 @@ public class CantTouchThisPower : CollectorPowerModel
         */
         var list = command.Results.Where(r => r.Receiver == Owner).ToList();
         if (list.Count != 0 && list.All(r => r.WasFullyBlocked))
-        {
             await PowerCmd.Apply<CollectorDoomPower>(command.Attacker, Amount, Owner, null);
-        }
-        
     }
 }

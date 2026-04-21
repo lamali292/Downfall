@@ -15,7 +15,7 @@ public class StasisStrike : GuardianCardModel
         WithDamage(16, 4);
         WithVar("StasisSlots", 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Awakened.Token;
-using Downfall.Code.Cards.CardModels;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
 using MegaCrit.Sts2.Core.Commands;

@@ -12,14 +12,15 @@ namespace Downfall.Code.Core.Guardian;
 public abstract class GemModel : AbstractModel, ICustomModel
 {
     public override bool ShouldReceiveCombatHooks => true;
-    public abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay);
+
     private string IconName => Id.Entry
         .RemovePrefix()
         .ToLowerInvariant();
-    
+
     public string IconPath => $"{IconName}.png".GemPath();
     public LocString TitleLocString => new("gems", Id.Entry + ".title");
     public LocString Description => new("gems", Id.Entry + ".description");
-    
+
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
+    public abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay);
 }

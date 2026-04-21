@@ -6,15 +6,12 @@ namespace Downfall.Code.Saves;
 
 public class DownfallPlayerData : IPacketSerializable
 {
-    [JsonPropertyName("net_id")]
-    public ulong NetId { get; set; }
+    [JsonPropertyName("net_id")] public ulong NetId { get; set; }
 
-    [JsonPropertyName("collector_deck")]
-    public List<SerializableCard> CollectorDeck { get; private set; } = [];
+    [JsonPropertyName("collector_deck")] public List<SerializableCard> CollectorDeck { get; private set; } = [];
 
-    [JsonPropertyName("essence")]
-    public int Essence { get; set; }
-    
+    [JsonPropertyName("essence")] public int Essence { get; set; }
+
     public void Serialize(PacketWriter writer)
     {
         writer.WriteULong(NetId);

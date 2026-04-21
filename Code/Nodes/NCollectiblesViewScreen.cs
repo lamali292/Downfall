@@ -1,7 +1,4 @@
-﻿using Downfall.Code.Commands;
-using Downfall.Code.Core.Collector;
-using Downfall.Code.Piles;
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio.Debug;
@@ -22,9 +19,19 @@ namespace Downfall.Code.Nodes;
 [GlobalClass]
 public partial class NCollectiblesViewScreen : NCardsViewScreen
 {
+    private readonly List<SortingOrders> _sortingPriority;
+    private NCardViewSortButton? _alphabetSorter;
+    private Control? _bg;
+    private NCardViewSortButton? _costSorter;
+    private NCardViewSortButton? _obtainedSorter;
+
+    private Player? _player;
+    private NCardViewSortButton? _typeSorter;
+
     public NCollectiblesViewScreen()
     {
-        _sortingPriority = [
+        _sortingPriority =
+        [
             SortingOrders.Ascending,
             SortingOrders.TypeAscending,
             SortingOrders.CostAscending,
@@ -32,19 +39,11 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         ];
     }
 
-    private Player? _player;
-    private NCardViewSortButton? _obtainedSorter;
-    private NCardViewSortButton? _typeSorter;
-    private NCardViewSortButton? _costSorter;
-    private NCardViewSortButton? _alphabetSorter;
-    private Control? _bg;
-    private readonly List<SortingOrders> _sortingPriority;
-
     private static string ScenePath => "res://Downfall/scenes/screens/collectible_view_screen.tscn";
 
     public override NetScreenType ScreenType => NetScreenType.DeckView;
 
-   public static NCollectiblesViewScreen? ShowScreen(Player player, List<CardModel> cards)
+    public static NCollectiblesViewScreen? ShowScreen(Player player, List<CardModel> cards)
     {
         if (TestMode.IsOn || NCapstoneContainer.Instance == null)
             return null;
@@ -65,15 +64,18 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         _typeSorter = GetNode<NCardViewSortButton>("%CardTypeSorter");
         _costSorter = GetNode<NCardViewSortButton>("%CostSorter");
         _alphabetSorter = GetNode<NCardViewSortButton>("%AlphabeticalSorter");
-        _obtainedSorter.Connect(NClickableControl.SignalName.Released, Callable.From(new Action<NButton>(OnObtainedSort)));
+        _obtainedSorter.Connect(NClickableControl.SignalName.Released,
+            Callable.From(new Action<NButton>(OnObtainedSort)));
         _typeSorter.Connect(NClickableControl.SignalName.Released, Callable.From(new Action<NButton>(OnCardTypeSort)));
         _costSorter.Connect(NClickableControl.SignalName.Released, Callable.From(new Action<NButton>(OnCostSort)));
-        _alphabetSorter.Connect(NClickableControl.SignalName.Released, Callable.From(new Action<NButton>(OnAlphabetSort)));
+        _alphabetSorter.Connect(NClickableControl.SignalName.Released,
+            Callable.From(new Action<NButton>(OnAlphabetSort)));
         _obtainedSorter.SetLabel(new LocString("gameplay_ui", "SORT_OBTAINED").GetRawText());
         _typeSorter.SetLabel(new LocString("gameplay_ui", "SORT_TYPE").GetRawText());
         _costSorter.SetLabel(new LocString("gameplay_ui", "SORT_COST").GetRawText());
         _alphabetSorter.SetLabel(new LocString("gameplay_ui", "SORT_ALPHABET").GetRawText());
-        GetNode<MegaLabel>("%ViewUpgradesLabel").SetTextAutoSize(new LocString("gameplay_ui", "VIEW_UPGRADES").GetFormattedText());
+        GetNode<MegaLabel>("%ViewUpgradesLabel")
+            .SetTextAutoSize(new LocString("gameplay_ui", "VIEW_UPGRADES").GetFormattedText());
         var frameMaterial = (ShaderMaterial)_player.Character.CardPool.FrameMaterial;
         _bg.Material = frameMaterial;
         _obtainedSorter.SetHue(frameMaterial);
@@ -86,18 +88,22 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         for (var index = 0; index < controlArray.Length; ++index)
         {
             controlArray[index].FocusNeighborTop = controlArray[index].GetPath();
-            controlArray[index].FocusNeighborBottom = _grid.DefaultFocusedControl?.GetPath() ?? controlArray[index].GetPath();
-            controlArray[index].FocusNeighborLeft = index > 0 ? controlArray[index - 1].GetPath() : controlArray[index].GetPath();
-            controlArray[index].FocusNeighborRight = index < controlArray.Length - 1 ? controlArray[index + 1].GetPath() : controlArray[index].GetPath();
+            controlArray[index].FocusNeighborBottom =
+                _grid.DefaultFocusedControl?.GetPath() ?? controlArray[index].GetPath();
+            controlArray[index].FocusNeighborLeft =
+                index > 0 ? controlArray[index - 1].GetPath() : controlArray[index].GetPath();
+            controlArray[index].FocusNeighborRight = index < controlArray.Length - 1
+                ? controlArray[index + 1].GetPath()
+                : controlArray[index].GetPath();
         }
     }
-    
+
     public override void AfterCapstoneClosed()
     {
         base.AfterCapstoneClosed();
         NTopBarCollectorButton.RefreshButton();
     }
-    
+
     private void OnObtainedSort(NButton button)
     {
         if (_obtainedSorter == null) return;
@@ -112,7 +118,8 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         if (_typeSorter == null) return;
         _sortingPriority.Remove(SortingOrders.TypeAscending);
         _sortingPriority.Remove(SortingOrders.TypeDescending);
-        _sortingPriority.Insert(0, _typeSorter.IsDescending ? SortingOrders.TypeDescending : SortingOrders.TypeAscending);
+        _sortingPriority.Insert(0,
+            _typeSorter.IsDescending ? SortingOrders.TypeDescending : SortingOrders.TypeAscending);
         DisplayCards();
     }
 
@@ -121,7 +128,8 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         if (_costSorter == null) return;
         _sortingPriority.Remove(SortingOrders.CostAscending);
         _sortingPriority.Remove(SortingOrders.CostDescending);
-        _sortingPriority.Insert(0, _costSorter.IsDescending ? SortingOrders.CostDescending : SortingOrders.CostAscending);
+        _sortingPriority.Insert(0,
+            _costSorter.IsDescending ? SortingOrders.CostDescending : SortingOrders.CostAscending);
         DisplayCards();
     }
 
@@ -130,7 +138,8 @@ public partial class NCollectiblesViewScreen : NCardsViewScreen
         if (_alphabetSorter == null) return;
         _sortingPriority.Remove(SortingOrders.AlphabetAscending);
         _sortingPriority.Remove(SortingOrders.AlphabetDescending);
-        _sortingPriority.Insert(0, _alphabetSorter.IsDescending ? SortingOrders.AlphabetDescending : SortingOrders.AlphabetAscending);
+        _sortingPriority.Insert(0,
+            _alphabetSorter.IsDescending ? SortingOrders.AlphabetDescending : SortingOrders.AlphabetAscending);
         DisplayCards();
     }
 

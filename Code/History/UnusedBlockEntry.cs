@@ -7,10 +7,6 @@ namespace Downfall.Code.History;
 
 public class UnusedBlockEntry : CombatHistoryEntry
 {
-    public int Amount { get; }
-
-    public override string Description => $"{GetId(Actor)} didnt use {Amount} block";
-
     public UnusedBlockEntry(
         int amount,
         Creature creature,
@@ -21,6 +17,10 @@ public class UnusedBlockEntry : CombatHistoryEntry
     {
         Amount = amount;
     }
+
+    public int Amount { get; }
+
+    public override string Description => $"{GetId(Actor)} didnt use {Amount} block";
 
     private static string? GetId(Creature creature)
     {
@@ -36,7 +36,8 @@ internal static class ClearBlockPatch
     {
         var combatState = __instance.CombatState;
         if (combatState == null) return true;
-        var entry = new UnusedBlockEntry(__instance.Block, __instance, combatState.RoundNumber, __instance.Side, CombatManager.Instance.History);
+        var entry = new UnusedBlockEntry(__instance.Block, __instance, combatState.RoundNumber, __instance.Side,
+            CombatManager.Instance.History);
         CombatManager.Instance.History.Add(entry);
         return true;
     }

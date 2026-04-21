@@ -36,10 +36,7 @@ public static class ScryCmd
         );
 
         var cardModels = cardsToDiscard.ToList();
-        foreach (var cardModel in cardModels)
-        {
-            await CardCmd.Discard(choiceContext, cardModel);
-        }
+        foreach (var cardModel in cardModels) await CardCmd.Discard(choiceContext, cardModel);
 
         return new ScryResult(cardModels);
     }

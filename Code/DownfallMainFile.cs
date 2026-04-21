@@ -2,11 +2,9 @@ using System.Reflection;
 using BaseLib.Config;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Config;
-using Downfall.Code.Core.Guardian;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
 using Downfall.Code.Nodes;
-using Downfall.Code.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -32,13 +30,13 @@ public partial class DownfallMainFile : Node
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
-        
+
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
 
         //Smart.Default.AddExtensions(new PowerIconFormatter(), new FinisherFormatter());
-        
+
         NCustomCardHolder.InitPool();
         DownfallSubscriber.Subscribe();
     }
@@ -68,7 +66,6 @@ internal static class ModelDbInitIdsPatch
         DownfallMainFile.Logger.Info($"Powers: {powers}");
     }
 }
-
 
 [HarmonyPatch(typeof(Log), nameof(Log.Error))]
 public static class LogErrorPatch
