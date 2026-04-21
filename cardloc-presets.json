@@ -169,7 +169,8 @@
       "id": "relic",
       "markers": [
         "DownfallRelicModel",
-        "CollectorRelicModel"
+        "CollectorRelicModel",
+        "GuardianRelicModel"
       ],
       "fields": [
         {

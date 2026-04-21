@@ -19,7 +19,8 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
 
     protected virtual bool IsPositive => true;
     private int Sign => !IsPositive ? -1 : 1;
-
+    protected virtual bool RemovedAfterOwnTurn => true;
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<T>()
@@ -58,7 +59,7 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        if (side != Owner.Side)
+        if (side != Owner.Side == RemovedAfterOwnTurn)
             return;
 
         Flash();

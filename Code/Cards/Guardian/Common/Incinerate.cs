@@ -10,7 +10,7 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class Incinerate : GuardianCardModel
 {
-    protected override int GemSlots => 1;
+    public override int GemSlots => 1;
     public Incinerate() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(8);

@@ -15,7 +15,7 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class Suspension : GuardianCardModel
 {
-    protected override int GemSlots => 1;
+    public override int GemSlots => 1;
     public Suspension() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);

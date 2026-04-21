@@ -74,7 +74,7 @@
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Strength Down",
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.description": "Gain X [gold]Strength[/gold]. At the end of your turn, lose X [gold]Strength[/gold].",
   "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.smartDescription": "Lose {Amount} [gold]Strength[/gold] until the end of this turn.",
-  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain {Amount} [gold]Strength[/gold]. At the end of your turn, lose {Amount} [gold]Strength[/gold].",
+  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "DOWNFALL-MOONLIT_VISION_POWER.title": "Moonlit Vision",
   "DOWNFALL-MOONLIT_VISION_POWER.description": "The first X times you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",
   "DOWNFALL-MOONLIT_VISION_POWER.smartDescription": "The first {Amount:plural:time|{Amount} times} you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",
@@ -332,5 +332,10 @@
   "DOWNFALL-REROUTE_POWER.smartDescription": "Place the next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn into Stasis.",
   "DOWNFALL-TIME_SIFTER_POWER.title": "Time Sifter",
   "DOWNFALL-TIME_SIFTER_POWER.description": "At the start of your turn, [gold]Accelerate[/gold]. ",
-  "DOWNFALL-TIME_SIFTER_POWER.smartDescription": "At the start of your turn, [gold]Accelerate[/gold] {Amount:plural:| [blue]{Amount}[/blue] times}. "
+  "DOWNFALL-TIME_SIFTER_POWER.smartDescription": "At the start of your turn, [gold]Accelerate[/gold] {Amount:plural:| [blue]{Amount}[/blue] times}. ",
+  "DOWNFALL-TEMPORARY_DEXTERITY_POWER.title": "",
+  "DOWNFALL-TEMPORARY_DEXTERITY_POWER.description": "",
+  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.title": "Dexterity Down",
+  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.description": "Gain X [gold]Dexterity[/gold]. At the end of your turn, lose X [gold]Dexterity[/gold]",
+  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold]."
 }

@@ -14,7 +14,7 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class Preprogram : GuardianCardModel
 {
-    protected override int GemSlots => 1;
+    public override int GemSlots => 1;
     public Preprogram() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(5, 3);

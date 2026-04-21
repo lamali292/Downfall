@@ -34,13 +34,14 @@ public abstract class DownfallCardModel(
     }
     
     
-    protected ConstructedCardModel WithUpgradedCardTip<T>()
+    protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? action = null)
         where T : CardModel
     {
         return WithTip(new TooltipSource(card =>
         {
             var tip = ModelDb.GetById<T>(ModelDb.Card<T>().Id).ToMutable();
             if (card.IsUpgraded) tip.UpgradeInternal();
+            if (tip is T t) action?.Invoke(t, card);
             return HoverTipFactory.FromCard(tip);
         }));
     }
@@ -56,7 +57,7 @@ public abstract class DownfallCardModel(
         WithTip(DownfallTip.Brace);
         return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
-
+    
     protected override void AddExtraArgsToDescription(LocString description)
     {
         foreach (var keyValuePair in _powerCache) description.AddObj(keyValuePair.Key, keyValuePair.Value);

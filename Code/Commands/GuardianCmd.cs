@@ -4,6 +4,7 @@ using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Displays;
+using Downfall.Code.Events;
 using Downfall.Code.Extensions;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Piles;
@@ -93,7 +94,7 @@ public class GuardianCmd
 
     public static int GetMax(Player trackedPlayer)
     {
-        return 3;
+        return GuardianModel.GetMaxStasisSlots(trackedPlayer);
     }
 
     private static readonly LocString FullStasisText = new("combat_messages", "FULL_STASIS_SLOTS");
@@ -115,21 +116,33 @@ public class GuardianCmd
         PlayerChoiceContext ctx,
         AbstractModel? source = null)
     {
+        if (card.CombatState == null) return;
         var player = card.Owner;
         var pile = GetStasisPile(player);
         if (pile == null) return;
-        var isMe = LocalContext.IsMe(player);
         if (!CanPutIntoStasis(player)) return;
         card.EnergyCost.AfterCardPlayedCleanup();
+        source ??= card;
+        await DownfallHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
+        await CardPileCmd.Add(card, pile, source: source);
         SetStasisCounter(card);
-        if (isMe) await GuardianDisplay.AnimateCardToStasis(card, pile, player);
-        if (isMe && card.Pile?.Type == PileType.Hand)
+      
+        //if (isMe) await GuardianDisplay.AnimateCardToStasis(card, pile, player);
+        /*
+        if (card.Pile?.Type == PileType.Hand)
         {
+            
             var hand = NCombatRoom.Instance?.Ui.Hand;
             hand?.Remove(card);
+            
         }
-        source ??= card;
-        await CardPileCmd.Add(card, pile, source: source, skipVisuals: card.Pile?.Type is PileType.Hand or PileType.Play);
+        else if (card.Pile?.Type == PileType.Play)
+        {
+            card.RemoveFromCurrentPile();
+        }
+    
+     
+    */
     }
 
     private static int CalculateStasisCounter(CardModel card)
@@ -165,7 +178,7 @@ public class GuardianCmd
         var current = StasisCounter[card];
         if (current <= 0) return;
         StasisCounter[card] = current - 1;
-        GuardianDisplay.Refresh(card.Owner);
+        GuardianDisplay.RefreshCounters(card.Owner);
     }
 
    

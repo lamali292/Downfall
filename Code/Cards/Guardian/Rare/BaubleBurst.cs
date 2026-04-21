@@ -10,7 +10,7 @@ namespace Downfall.Code.Cards.Guardian.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class BaubleBurst : GuardianCardModel
 {
-    protected override int GemSlots => IsUpgraded ? 2 : 1;
+    public override int GemSlots => IsUpgraded ? 2 : 1;
     public BaubleBurst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
     }

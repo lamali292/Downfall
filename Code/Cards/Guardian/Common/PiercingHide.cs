@@ -2,6 +2,8 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Downfall;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -10,18 +12,18 @@ namespace Downfall.Code.Cards.Guardian.Common;
 [Pool(typeof(GuardianCardPool))]
 public class PiercingHide : GuardianCardModel
 {
-    protected override int GemSlots => 1;
+    public override int GemSlots => 1;
     public PiercingHide() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        WithBlock(7, 2);
+        WithPower<TemporaryThornsPower>(2, 1);
+        WithBrace(3, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<TemporaryThornsPower>(this);
+        await GuardianCmd.Brace(this);
     }
 }

@@ -31,6 +31,7 @@ public class ReroutePower : GuardianPowerModel
         {
             return (pileType, position);
         }
+        card.EnergyCost.AfterCardPlayedCleanup();
         GuardianCmd.SetStasisCounter(card);
         return (pile.Type, position);
     }

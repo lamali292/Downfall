@@ -7,4 +7,5 @@ public class TemporaryThornsPower : TemporaryPower<ThornsPower>
 {
     public override AbstractModel OriginModel => ModelDb.Power<ThornsPower>();
     protected override bool IsPositive => true;
+    protected override bool RemovedAfterOwnTurn => false;
 }

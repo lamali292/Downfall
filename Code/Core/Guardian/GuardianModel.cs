@@ -25,12 +25,14 @@ namespace Downfall.Code.Core.Guardian;
 public class GuardianModel() : CustomSingletonModel(true, true)
 {
     private static readonly SpireField<Player, GuardianModeModel> ActiveStance = new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+    private static readonly SpireField<Player, int> StasisSlots = new(() => 0);
 
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
         await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null, true);
+      
     }
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
@@ -44,6 +46,26 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
     {
         await StasisTickAll(player, ctx);
+        GuardianDisplay.Refresh(player);
+    }
+
+    public static int GetMaxStasisSlots(Player player)
+    {
+        return StasisSlots[player];
+    }
+    
+    public static void AddMaxStasisSlots(Player player, int value = 1)
+    {
+        if (value <= 0) return;
+        StasisSlots[player] += value;
+        GuardianDisplay.Refresh(player);
+    }
+    
+    public static void RemoveMaxStasisSlots(Player player, int value = 1)
+    {
+        if (value <= 0) return;
+        StasisSlots[player] -= value;
+        if (StasisSlots[player] < 0) StasisSlots[player] = 0;
         GuardianDisplay.Refresh(player);
     }
 
@@ -142,8 +164,14 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         var combatRoomNode = NCombatRoom.Instance;
         if (state == null || combatRoomNode == null) return Task.CompletedTask;
         foreach (var player in state.Players)
-            if (player.Character is Character.Guardian)
-                GuardianDisplay.SetupGuardianUi(combatRoomNode, player);
+        {
+            if (player.Character is not Character.Guardian) continue;
+            GuardianDisplay.SetupGuardianUi(combatRoomNode, player);
+            StasisSlots.Set(player, 3);
+            GuardianDisplay.Refresh(player);
+        }
+          
+               
         return Task.CompletedTask;
     }
 

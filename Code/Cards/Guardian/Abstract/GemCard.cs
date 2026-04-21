@@ -1,24 +1,16 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.CardModels;
-using Downfall.Code.Cards.Collector.Token;
 using Downfall.Code.Core;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.CustomEnums;
 using Downfall.Code.Gems;
 using Downfall.Code.Keywords;
-using Downfall.Code.Patches;
-using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 
 namespace Downfall.Code.Cards.Guardian.Abstract;
@@ -62,6 +54,10 @@ where T : GemModel
     {
         _titleLocString = DownfallModelDb.Gem<T>().TitleLocString;
         WithKeyword(DownfallKeywords.Gem);
+        foreach (var extraHoverTip in DownfallModelDb.Gem<T>().ExtraHoverTips)
+        {
+            WithTip(new TooltipSource(_=>extraHoverTip));
+        }
     }
     
     

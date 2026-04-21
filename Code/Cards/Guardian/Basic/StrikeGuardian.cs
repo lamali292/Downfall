@@ -13,16 +13,12 @@ public class StrikeGuardian : GuardianCardModel
 {
     public StrikeGuardian() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithDamage(6, 3);
+        WithTags(CardTag.Strike);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

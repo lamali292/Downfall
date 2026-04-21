@@ -138,7 +138,12 @@ public partial class NGuardianDisplay : Control
     
     public NCard? GetNCard(CardModel card)
     {
-        return _cardHolders.Find(h => h.CardModel == card)?.CardNode ?? null;
+        var cardNode = _cardHolders.Find(h => h.CardModel == card)?.CardNode;
+    
+        if (cardNode != null && IsInstanceValid(cardNode))
+            return cardNode;
+    
+        return null;
     }
     
     public Vector2? GetTargetPosition(CardModel card)

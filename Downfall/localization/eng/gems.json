@@ -1,7 +1,6 @@
 {
   "DOWNFALL-FRAGMENTED_GEM.description": "Gain a [gold]Crystal Shiv[/gold].",
   "DOWNFALL-FRAGMENTED_GEM.title": "Fragmented Gem",
-
   "DOWNFALL-RUBY_GEM.description": "Gain 2 Temporary [gold]Strength[/gold].",
   "DOWNFALL-RUBY_GEM.title": "Ruby",
   "DOWNFALL-SAPPHIRE_GEM.description": "[gold]Brace[/gold] 4.",
@@ -16,7 +15,7 @@
   "DOWNFALL-AQUAMARINE_GEM.title": "Aquamarine",
   "DOWNFALL-EMERALD_GEM.description": "Gain 2 Temporary [gold]Dexterity[/gold].",
   "DOWNFALL-EMERALD_GEM.title": "Emerald",
-  "DOWNFALL-GARNET_GEM.description": "Apply 1 [gold]Vulnerable[/gold] to all enemies.\n",
+  "DOWNFALL-GARNET_GEM.description": "Apply 1 [gold]Vulnerable[/gold] to all enemies.",
   "DOWNFALL-GARNET_GEM.title": "Garnet",
   "DOWNFALL-OPAL_GEM.description": "Draw a card.",
   "DOWNFALL-OPAL_GEM.title": "Opal",

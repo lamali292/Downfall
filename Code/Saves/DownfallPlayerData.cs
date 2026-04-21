@@ -10,7 +10,7 @@ public class DownfallPlayerData : IPacketSerializable
     public ulong NetId { get; set; }
 
     [JsonPropertyName("collector_deck")]
-    public List<SerializableCard> CollectorDeck { get; set; } = [];
+    public List<SerializableCard> CollectorDeck { get; private set; } = [];
 
     [JsonPropertyName("essence")]
     public int Essence { get; set; }

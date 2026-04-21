@@ -10,7 +10,7 @@ namespace Downfall.Code.Cards.Guardian.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class RefractedBeam : GuardianCardModel
 {
-    protected override int GemSlots => 1 + CurrentUpgradeLevel;
+    public override int GemSlots => 1 + CurrentUpgradeLevel;
     public override int MaxUpgradeLevel => 9999999;
 
     public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)

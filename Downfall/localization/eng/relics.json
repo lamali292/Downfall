@@ -241,7 +241,7 @@
   "DOWNFALL-TARR_BLOB.description": "Gain @SlE at the start of your turn. At the start of combat, lose 1 Slime slot.",
   "DOWNFALL-TARR_BLOB.flavor": "The bad kind of Slime.",
   "DOWNFALL-WANDER_BOTS.title": "Wander Bots",
-  "DOWNFALL-WANDER_BOTS.description": "At the start of each combat, lose 1 Stasis slot. Gain @GuE at the start of your turn.",
+  "DOWNFALL-WANDER_BOTS.description": "At the start of each combat, lose 1 Stasis slot. Gain {Energy:energyIcons()} at the start of your turn.",
   "DOWNFALL-WANDER_BOTS.flavor": "These drones find the most wonderful salvage, but require processing power to maintain.",
   "DOWNFALL-WHITE_RIBBON.title": "White Ribbon",
   "DOWNFALL-WHITE_RIBBON.description": "Whenever you play a card with a Chant effect, gain 3 Block, even if it is not active.",

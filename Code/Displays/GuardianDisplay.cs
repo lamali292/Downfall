@@ -3,6 +3,8 @@ using Downfall.Code.Vfx;
 using Downfall.Code.Vfx.Guardian;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -29,6 +31,12 @@ public class GuardianDisplay
 	{
 		Displays.GetValueOrDefault(creature)?.Refresh();
 	}
+	
+	public static void RefreshCounters(Player creature)
+	{
+		Displays.GetValueOrDefault(creature)?.RefreshCounters();
+	}
+
 
 
 	public static void Register(Player creature, NGuardianDisplay display)
@@ -67,7 +75,6 @@ public class GuardianDisplay
 		}
 
 		Register(player, display);
-		display.Refresh();
 	}
 	
 	public static async Task AnimateCardToStasis(CardModel card, GuardianPile pile, Player creature)
@@ -78,33 +85,38 @@ public class GuardianDisplay
 		var vfx = NCombatRoom.Instance?.CombatVfxContainer;
 		if (vfx == null) return;
 
-		var cardNode = NCard.FindOnTable(card);
-		if (cardNode == null) return;
+		// Find the original card's position, but DON'T move it
+		var originalCardNode = NCard.FindOnTable(card);
+		if (originalCardNode == null) return;
+    
+		var startPos = originalCardNode.GlobalPosition;
+
+		// Create a CLONE for animation
+		var cloneCard = NCard.Create(card);
+		if (cloneCard == null) return;
+    
+		vfx.AddChild(cloneCard);
+		cloneCard.GlobalPosition = startPos;
+		cloneCard.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
 
 		var slotIndex = pile.Cards.Count;
 		var targetPos = display.GetSlotGlobalPosition(slotIndex);
-
-		var originalGlobalPos = cardNode.GlobalPosition;
-		cardNode.GetParent()?.RemoveChild(cardNode);
-		vfx.AddChild(cardNode);
-		cardNode.GlobalPosition = originalGlobalPos;
-
-		var finalSizeHalf = (cardNode.Size * display.Scale) / 2f;
+		var finalSizeHalf = (cloneCard.Size * display.Scale) / 2f;
 		var centeredTarget = targetPos - finalSizeHalf;
 
-		var tween = cardNode.CreateTween().SetParallel();
-		tween.TweenProperty(cardNode, "global_position", centeredTarget, 0.4f)
+		var tween = cloneCard.CreateTween().SetParallel();
+		tween.TweenProperty(cloneCard, "global_position", centeredTarget, 0.4f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Cubic);
 
-		tween.TweenProperty(cardNode, "scale", display.Scale* NStasisSlot.CardScale, 0.4f)
+		tween.TweenProperty(cloneCard, "scale", display.Scale * NStasisSlot.CardScale, 0.4f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Cubic);
 
 		await display.ToSignal(tween, Tween.SignalName.Finished);
-
-		cardNode.QueueFree();
-		display.Refresh();
+    
+		// Free the CLONE
+		cloneCard.QueueFreeSafely();
 	}
 
 	

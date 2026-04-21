@@ -6,20 +6,25 @@ namespace Downfall.Code.Core;
 
 public static class DownfallModelDb
 {
-    public static T ChampStance<T>() where T : ChampStanceModel
+    public static T ChampStance<T>() where T : ChampStanceModel => ModelDb.Get<T>();
+    
+    public static T GuardianMode<T>() where T : GuardianModeModel => ModelDb.Get<T>();
+    
+    public static T Gem<T>() where T : GemModel => ModelDb.Get<T>();
+    
+    // Cached collections for iteration
+    private static IEnumerable<GemModel>? _allGems;
+    
+    public static IEnumerable<GemModel> AllGems
     {
-        return ModelDb.GetById<T>(ModelDb.GetId<T>());
-    }
-    
-    
-    public static T GuardianMode<T>() where T : GuardianModeModel
-    {
-        return ModelDb.GetById<T>(ModelDb.GetId<T>());
-    }
-    
-    
-    public static T Gem<T>() where T : GemModel
-    {
-        return ModelDb.GetById<T>(ModelDb.GetId<T>());
+        get
+        {
+            if (_allGems != null) return _allGems;
+            
+            return _allGems = ModelDb.AllAbstractModelSubtypes
+                .Where(t => t.IsSubclassOf(typeof(GemModel)))
+                .Select(t => (GemModel)ModelDb.Get(t))
+                .ToList();
+        }
     }
 }

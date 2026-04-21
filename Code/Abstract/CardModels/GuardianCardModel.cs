@@ -2,45 +2,91 @@
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
+using Downfall.Code.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.Code.Abstract.CardModels;
 
-public abstract class GuardianCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Character.Guardian>(cost, type, rarity, targetType), IAdditionalOverlay
+public abstract class GuardianCardModel
+    : DownfallCardModel<Character.Guardian>, IAdditionalOverlay
 {
-    private static readonly SavedSpireField<CardModel, string?> _gemData = new(() => null, "DOWNFALL-GEM");
+    protected GuardianCardModel(
+        int cost,
+        CardType type,
+        CardRarity rarity,
+        TargetType targetType) : base(cost, type, rarity, targetType)
+    {
+        // TODO : Wait for BaseLib to support this
+        // WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
+    }
+    
+    public static readonly JsonSavedField<CardModel, List<SerializableGem>> GemData = 
+        JsonSavedField.Create<CardModel, List<SerializableGem>>("DOWNFALL_GEM");
+  
     private List<GemModel>? _cachedGems;
 
-    public List<GemModel> Gems
+    public IReadOnlyList<GemModel> Gems
     {
         get
         {
-            _cachedGems ??= (_gemData.Get(this) ?? "")
-                .Split('|', StringSplitOptions.RemoveEmptyEntries)
-                .Select(ModelId.Deserialize)
-                .Select(ModelDb.GetById<GemModel>)
+            _cachedGems ??= (GemData.Get(this) ?? [])
+                .Select(sg => sg.ToGem())
                 .ToList();
             return _cachedGems;
         }
     }
-    
+
+    private void UpdateGemData()
+    {
+        var serializedGems = _cachedGems?
+            .Select(SerializableGem.FromGem)
+            .ToList();
+        
+        GemData.Set(this, serializedGems);
+        NCard.FindOnTable(this)?.ReloadOverlay();
+    }
+
     public void AddGem(GemModel gem)
     {
         if (Gems.Count >= GemSlots) return;
-        Gems.Add(gem);
-        var newData = string.Join("|", Gems.Select(g => g.Id.ToString()));
-        _gemData.Set(this, newData);
+        _cachedGems ??= Gems.ToList();
+        _cachedGems.Add(gem);
+        UpdateGemData();
     }
+
+    public void AddGems(IEnumerable<GemModel> gems)
+    {
+        _cachedGems ??= Gems.ToList();
+    
+        foreach (var gem in gems)
+        {
+            if (_cachedGems.Count >= GemSlots) break;
+            _cachedGems.Add(gem);
+        }
+        NCard.FindOnTable(this)?.ReloadOverlay();
+        UpdateGemData();
+    }
+
+    public void RemoveGem(GemModel gem)
+    {
+        _cachedGems ??= Gems.ToList();
+        _cachedGems.Remove(gem);
+        UpdateGemData();
+    }
+
+    public void ClearGems()
+    {
+        _cachedGems = [];
+        UpdateGemData();
+    }
+    
     
     /*
     protected override void DeepCloneFields()
@@ -52,10 +98,10 @@ public abstract class GuardianCardModel(
         }
     }*/
     
-    public static string GetRawGemData(CardModel card) => _gemData.Get(card)!;
-    public static void SetRawGemData(CardModel card, string data) => _gemData.Set(card, data);
-    
-    protected virtual int GemSlots => 0;
+    public static List<SerializableGem>? GetRawGemData(CardModel card) => GemData.Get(card);
+    public static void SetRawGemData(CardModel card, List<SerializableGem>? data) => GemData.Set(card, data);
+
+    public virtual int GemSlots => 0;
     
     public bool IsFull => Gems.Count >= GemSlots;
     public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
@@ -107,7 +153,10 @@ public abstract class GuardianCardModel(
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        Gems.ForEach(g => g.OnPlay(ctx, cardPlay));
+        foreach (var gem in Gems)
+        {
+            await gem.OnPlay(ctx, cardPlay);
+        }
     }
 }
 
@@ -119,10 +168,7 @@ public static class MutableCloneGemsPatch
     {
         if (__instance is not GuardianCardModel parent || __result is not GuardianCardModel clone) return;
         var data = GuardianCardModel.GetRawGemData(parent);
-        if (!string.IsNullOrEmpty(data))
-        {
-            GuardianCardModel.SetRawGemData(clone, data);
-            
-        }
+        if (data == null) return;
+        GuardianCardModel.SetRawGemData(clone, data);
     }
 }

@@ -1,9 +1,12 @@
 using System.Reflection;
 using BaseLib.Config;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Config;
+using Downfall.Code.Core.Guardian;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;
 using Downfall.Code.Nodes;
+using Downfall.Code.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -25,6 +28,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+        _ = GuardianCardModel.GemData;
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
