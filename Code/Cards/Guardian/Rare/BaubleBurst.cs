@@ -11,17 +11,17 @@ public class BaubleBurst : GuardianCardModel
 {
     public BaubleBurst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithDamage(10);
     }
 
     public override int GemSlots => IsUpgraded ? 2 : 1;
+    public override int GemReplayCount => 3;
 
-    // TODO: Implement
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

@@ -343,5 +343,21 @@
   "DOWNFALL-EVASIVE_PROTOCOL_POWER.smartDescription": "Reduce your debuffs by [blue]{Amount}[/blue] when you enter [gold]Defensive Mode[/gold].",
   "DOWNFALL-FLOATING_ORBS_POWER.title": "Floating Orbs",
   "DOWNFALL-FLOATING_ORBS_POWER.description": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]X[/blue] damage to a random enemy.",
-  "DOWNFALL-FLOATING_ORBS_POWER.smartDescription": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]{Amount}[/blue] damage to a random enemy."
+  "DOWNFALL-FLOATING_ORBS_POWER.smartDescription": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]{Amount}[/blue] damage to a random enemy.",
+  "DOWNFALL-SPIKER_PROTOCOL_POWER.title": "Spiker Protocol",
+  "DOWNFALL-SPIKER_PROTOCOL_POWER.description": "Gain [blue]X[/blue] [gold]Thorns[/gold] when you enter [gold]Defensive Mode[/gold].",
+  "DOWNFALL-SPIKER_PROTOCOL_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold] when you enter [gold]Defensive Mode[/gold].",
+  "DOWNFALL-ANCIENT_CONSTRUCT_POWER.title": "Ancient Construct",
+  "DOWNFALL-ANCIENT_CONSTRUCT_POWER.description": "Gain [blue]1[/blue] [gold]Artifact[/gold] at the start of your turn if you have no [gold]Artifact[/gold].",
+  "DOWNFALL-ANCIENT_CONSTRUCT_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Artifact[/gold] at the start of your turn if you have no [gold]Artifact[/gold].",
+  "DOWNFALL-CONSTRUCTION_FORM_POWER.title": "Construction Form",
+  "DOWNFALL-CONSTRUCTION_FORM_POWER.description": "At the start of each turn, if you have at least [blue]1[/blue] [gold]Buffer[/gold], gain [blue]1[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-CONSTRUCTION_FORM_POWER.smartDescription": "At the start of each turn, if you have at least [blue]{Amount}[/blue] [gold]Buffer[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-FUTURE_PLANS_POWER.title": "Future Plans",
+  "DOWNFALL-FUTURE_PLANS_POWER.description": "At the end of your turn, you may place [blue]1[/blue] card into [gold]Stasis[/gold].",
+  "DOWNFALL-FUTURE_PLANS_POWER.smartDescription": "At the end of your turn, you may place {Amount} {Amount:plural:card|cards} into [gold]Stasis[/gold].",
+  "DOWNFALL-FUTURE_PLANS_POWER.selectionScreenPrompt": "Select cards to put into Stasis.",
+  "DOWNFALL-GEM_FINDER_POWER.title": "Gem Finder",
+  "DOWNFALL-GEM_FINDER_POWER.description": "At the end of combat you may add a random [gold]Gem[/gold] to your Deck.",
+  "DOWNFALL-GEM_FINDER_POWER.smartDescription": "At the end of combat you may add {Amount:plural:a random [gold]Gem[/gold]|[blue]{Amount}[/blue] random [gold]Gems[/gold]} to your Deck."
 }

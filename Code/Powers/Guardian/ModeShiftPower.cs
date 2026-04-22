@@ -34,7 +34,9 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         if (target != Owner || Owner.Player == null) return;
         var a = result.UnblockedDamage;
         if (a <= 0) return;
-        var m = await PowerCmd.ModifyAmount(this, -a, dealer, null);
+        SetAmount(Amount - a, true);
+        var m = Amount;
+        //var m = await PowerCmd.ModifyAmount(this, -a, dealer, null);
         if (m > 0) return;
         await Reset();
     }
@@ -50,6 +52,6 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         DynamicVars["CurrentLimit"].BaseValue =
             Math.Min(DynamicVars["CurrentLimit"].BaseValue + DynamicVars["Increase"].BaseValue,
                 DynamicVars["MaxLimit"].BaseValue);
-        await PowerCmd.Apply(this, Owner, DynamicVars["CurrentLimit"].BaseValue, Owner, null);
+        SetAmount(Amount + DynamicVars["CurrentLimit"].IntValue, true);
     }
 }

@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,14 @@ public class ResilientPlate : GuardianCardModel
 {
     public ResilientPlate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
+        WithBrace(8);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await GuardianCmd.DebuffDown(Owner.Creature, 2);
+        await GuardianCmd.Brace(this);
     }
-
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

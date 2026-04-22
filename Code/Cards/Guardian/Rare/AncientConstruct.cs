@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Guardian.Rare;
 
@@ -11,15 +13,13 @@ public class AncientConstruct : GuardianCardModel
 {
     public AncientConstruct() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithPower<ArtifactPower>(1);
+        WithPower<AncientConstructPower>(1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<ArtifactPower>(this);
+        await CommonActions.ApplySelf<AncientConstructPower>(this);
     }
 }

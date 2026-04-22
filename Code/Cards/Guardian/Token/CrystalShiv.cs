@@ -13,6 +13,7 @@ public class CrystalShiv : GuardianCardModel
     {
         WithDamage(3, 2);
         WithKeyword(CardKeyword.Exhaust);
+        WithTags(CardTag.Shiv);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

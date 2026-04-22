@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Commands;
 using Downfall.Code.Core.Guardian;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +21,7 @@ public class WanderBots : GuardianRelicModel
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
-        GuardianModel.RemoveMaxStasisSlots(player);
+        GuardianCmd.RemoveMaxStasisSlots(player);
         return Task.CompletedTask;
     }
 

@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using Downfall.Code.Core.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,11 +15,12 @@ public class StasisStrike : GuardianCardModel
     {
         WithDamage(16, 4);
         WithVar("StasisSlots", 1);
+        WithTags(CardTag.Strike);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        GuardianModel.AddMaxStasisSlots(Owner, DynamicVars["StasisSlots"].IntValue);
+        GuardianCmd.AddMaxStasisSlots(Owner, DynamicVars["StasisSlots"].IntValue);
     }
 }

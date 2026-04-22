@@ -1,5 +1,6 @@
 using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Localization;
@@ -8,9 +9,13 @@ public class GemDescriptionSource : IExtraDescriptionSource
 {
     public IEnumerable<string> GetLines(CardModel card)
     {
-        if (card is not GuardianCardModel guardianCardMode) yield break;
-        foreach (var description in guardianCardMode.Gems.Select(gemModel => gemModel.Description))
+        if (card is not GuardianCardModel gc) yield break;
+        for (var i = 0; i < gc.GemSlots; i++)
         {
+            var description = i < gc.Gems.Count 
+                ? gc.Gems[i].Description 
+                : EmptyGemDescription;
+        
             card.DynamicVars.AddTo(description);
             var prefix = EnergyIconHelper.GetPrefix(card);
             description.Add("energyPrefix", prefix);
@@ -18,4 +23,5 @@ public class GemDescriptionSource : IExtraDescriptionSource
             yield return description.GetFormattedText();
         }
     }
+    private static LocString EmptyGemDescription => new("gems", "DOWNFALL-EMPTY_SLOT.description");
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
+using Downfall.Code.Commands;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Combat;
@@ -26,7 +27,7 @@ public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
-        GuardianModel.AddMaxStasisSlots(player);
+        GuardianCmd.AddMaxStasisSlots(player);
         return Task.CompletedTask;
     }
 }

@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +13,13 @@ public class SpikerProtocol : GuardianCardModel
 {
     public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<SpikerProtocolPower>(2, 1);
+        WithBrace(6, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<SpikerProtocolPower>(this);
+        await GuardianCmd.Brace(this);
     }
 }

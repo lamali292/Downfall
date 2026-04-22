@@ -21,14 +21,14 @@ public class RollAttack : GuardianCardModel
 
     public override TargetType TargetType => !IsMutable
         ? TargetType.AnyEnemy
-        : GuardianModel.IsInMode<GuardianDefensiveMode>(Owner)
+        : GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)
             ? TargetType.AllEnemies
             : TargetType.AnyEnemy;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (GuardianModel.IsInMode<GuardianDefensiveMode>(Owner)) return;
+        if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)) return;
         await GuardianCmd.Brace(this);
     }
 }

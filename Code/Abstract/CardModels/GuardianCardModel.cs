@@ -16,8 +16,8 @@ namespace Downfall.Code.Abstract.CardModels;
 public abstract class GuardianCardModel
     : DownfallCardModel<Guardian>, IAdditionalOverlay
 {
-    public static readonly JsonSavedField<CardModel, List<SerializableGem>> GemData =
-        JsonSavedField.Create<CardModel, List<SerializableGem>>("DOWNFALL_GEM");
+    public static readonly JsonSavedField<GuardianCardModel, List<SerializableGem>> GemData =
+        JsonSavedField.Create<GuardianCardModel, List<SerializableGem>>("DOWNFALL_GEM");
 
     private List<GemModel>? _cachedGems;
 
@@ -27,8 +27,7 @@ public abstract class GuardianCardModel
         CardRarity rarity,
         TargetType targetType) : base(cost, type, rarity, targetType)
     {
-        // TODO : Wait for BaseLib to support this
-        // WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
+        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
     }
 
     public IReadOnlyList<GemModel> Gems
@@ -43,7 +42,7 @@ public abstract class GuardianCardModel
     }
 
     public virtual int GemSlots => 0;
-
+    public virtual int GemReplayCount => 1;
     public bool IsFull => Gems.Count >= GemSlots;
     public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
 
@@ -145,12 +144,12 @@ public abstract class GuardianCardModel
         }
     }*/
 
-    public static List<SerializableGem>? GetRawGemData(CardModel card)
+    public static List<SerializableGem>? GetRawGemData(GuardianCardModel card)
     {
         return GemData.Get(card);
     }
 
-    public static void SetRawGemData(CardModel card, List<SerializableGem>? data)
+    public static void SetRawGemData(GuardianCardModel card, List<SerializableGem>? data)
     {
         GemData.Set(card, data);
     }
@@ -168,7 +167,8 @@ public abstract class GuardianCardModel
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        foreach (var gem in Gems) await gem.OnPlay(ctx, cardPlay);
+        foreach (var gem in Gems.SelectMany(gem => Enumerable.Repeat(gem, GemReplayCount)))
+            await gem.OnPlay(ctx, cardPlay);
     }
 }
 

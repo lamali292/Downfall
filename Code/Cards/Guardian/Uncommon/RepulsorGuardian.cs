@@ -1,6 +1,9 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Keywords;
+using Downfall.Code.Powers.Guardian;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +14,17 @@ public class RepulsorGuardian : GuardianCardModel
 {
     public RepulsorGuardian() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithTip(DownfallTip.Status);
+        WithTip(CardKeyword.Exhaust);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await PowerCmd.Apply<ExhaustStatusesPower>(Owner.Creature, 1, Owner.Creature, this);
     }
-
 
     protected override void OnUpgrade()
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }

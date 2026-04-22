@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Commands;
 using Downfall.Code.Displays;
@@ -24,12 +25,13 @@ namespace Downfall.Code.Core.Guardian;
 
 public class GuardianModel() : CustomSingletonModel(true, true)
 {
-    private static readonly SpireField<Player, GuardianModeModel> ActiveStance =
+    // SpireFields
+    internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
         new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+    internal static readonly SpireField<Player, int> StasisSlots = new(() => 0);
+    internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
-    private static readonly SpireField<Player, int> StasisSlots = new(() => 0);
-
-
+    // Hooks
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
         if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
@@ -43,118 +45,10 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         return Task.CompletedTask;
     }
 
-
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
     {
         await StasisTickAll(player, ctx);
         GuardianDisplay.Refresh(player);
-    }
-
-    public static int GetMaxStasisSlots(Player player)
-    {
-        return StasisSlots[player];
-    }
-
-    public static void AddMaxStasisSlots(Player player, int value = 1)
-    {
-        if (value <= 0) return;
-        StasisSlots[player] += value;
-        GuardianDisplay.Refresh(player);
-    }
-
-    public static void RemoveMaxStasisSlots(Player player, int value = 1)
-    {
-        if (value <= 0) return;
-        StasisSlots[player] -= value;
-        if (StasisSlots[player] < 0) StasisSlots[player] = 0;
-        GuardianDisplay.Refresh(player);
-    }
-
-    private static async Task StasisTickAll(Player player, PlayerChoiceContext ctx)
-    {
-        var stasisPile = GuardianPile.Stasis.GetPile(player);
-        var cards = stasisPile.Cards.ToList(); // Copy to avoid modification during iteration
-
-        foreach (var card in from card in cards
-                 let counter = GuardianCmd.GetStasisCounter(card)
-                 where counter > 0
-                 select card)
-        {
-            GuardianCmd.DecrementStasisCounter(card);
-            if (card is ITickCard tickCard) await tickCard.OnTick(ctx);
-            var newCounter = GuardianCmd.GetStasisCounter(card);
-            if (newCounter == 0) await ReturnFromStasis(card, player, ctx);
-        }
-
-        GuardianDisplay.Refresh(player);
-    }
-
-    private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
-    {
-        var hand = PileType.Hand.GetPile(player);
-        if (card.Keywords.Contains(DownfallKeywords.Volatile))
-        {
-            await CardCmd.Exhaust(ctx, card);
-            return;
-        }
-
-        await CardPileCmd.Add(card, hand);
-        card.EnergyCost.SetUntilPlayed(0);
-    }
-
-
-    public static GuardianModeModel GetModeModel(Player player)
-    {
-        return ActiveStance[player] ?? DownfallModelDb.GuardianMode<GuardianNormalMode>();
-    }
-
-    public static bool IsInMode<T>(Player player) where T : GuardianModeModel
-    {
-        return ActiveStance[player] is T;
-    }
-
-    public static async Task SetMode<T>(Player player) where T : GuardianModeModel
-    {
-        await SetMode(player, DownfallModelDb.GuardianMode<T>());
-    }
-
-    private static async Task SetMode(Player player, GuardianModeModel newCanonical)
-    {
-        var current = ActiveStance[player];
-        if (current?.GetType() == newCanonical.GetType()) return;
-
-        if (current != null)
-            await current.OnExit();
-
-        var mutable = newCanonical.ToMutable(player);
-        ActiveStance[player] = mutable;
-        await mutable.OnEnter();
-
-        TriggerStanceAnimation(player);
-        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, player, current!, ActiveStance[player]!);
-    }
-
-
-    private static void TriggerStanceAnimation(Player player)
-    {
-        Callable.From(() =>
-        {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            var animState = creatureNode?.SpineAnimation.GetAnimationState();
-            if (animState == null) return;
-            animState.GetCurrent(0).SetMixDuration(0.3f);
-            creatureNode?.SetAnimationTrigger("Idle");
-            animState.GetCurrent(0).SetMixDuration(0.3f);
-        }).CallDeferred();
-    }
-
-    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
-    {
-        if (player.Character is not Character.Guardian) return false;
-        var gems = PileType.Deck.GetPile(player).Cards.Where(e => e is IGemCard).ToList();
-        if (gems.Count == 0) return false;
-        options.Add(new GemRestSiteOption(player));
-        return true;
     }
 
     public override Task AfterRoomEntered(AbstractRoom room)
@@ -169,8 +63,64 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             StasisSlots.Set(player, 3);
             GuardianDisplay.Refresh(player);
         }
-
-
         return Task.CompletedTask;
+    }
+
+    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
+    {
+        if (player.Character is not Character.Guardian) return false;
+        var gems = PileType.Deck.GetPile(player).Cards.Where(e => e is IGemCard).ToList();
+        if (gems.Count == 0) return false;
+        options.Add(new GemRestSiteOption(player));
+        return true;
+    }
+
+    // Internal helpers
+    private static async Task StasisTickAll(Player player, PlayerChoiceContext ctx)
+    {
+        var cards = GuardianPile.Stasis.GetPile(player).Cards.ToList();
+        foreach (var card in cards.Where(c => StasisCounter[c] > 0))
+        {
+            StasisCounter[card]--;
+            if (card is ITickCard tickCard) await tickCard.OnTick(ctx);
+            if (StasisCounter[card] == 0) await ReturnFromStasis(card, player, ctx);
+        }
+        GuardianDisplay.Refresh(player);
+    }
+
+    private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
+    {
+        if (card.Keywords.Contains(DownfallKeywords.Volatile))
+        {
+            await CardCmd.Exhaust(ctx, card);
+            return;
+        }
+        await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
+        card.EnergyCost.SetUntilPlayed(0);
+    }
+
+    private static void TriggerModeAnimation(Player player)
+    {
+        Callable.From(() =>
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+            var animState = creatureNode?.SpineAnimation.GetAnimationState();
+            if (animState == null) return;
+            animState.GetCurrent(0).SetMixDuration(0.3f);
+            creatureNode?.SetAnimationTrigger("Idle");
+            animState.GetCurrent(0).SetMixDuration(0.3f);
+        }).CallDeferred();
+    }
+
+    internal static async Task SetMode(Player player, GuardianModeModel newCanonical)
+    {
+        var current = ActiveMode[player];
+        if (current?.GetType() == newCanonical.GetType()) return;
+        if (current != null) await current.OnExit();
+        var mutable = newCanonical.ToMutable(player);
+        ActiveMode[player] = mutable;
+        await mutable.OnEnter();
+        TriggerModeAnimation(player);
+        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, player, current!, ActiveMode[player]!);
     }
 }

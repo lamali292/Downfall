@@ -1,6 +1,9 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.Code.Abstract;
+using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Extensions;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -18,8 +21,12 @@ public abstract class GemModel : AbstractModel, ICustomModel
         .ToLowerInvariant();
 
     public string IconPath => $"{IconName}.png".GemPath();
+    public virtual Color GemColor => Colors.White;
+    public virtual CardRarity Rarity => CardRarity.Common;
     public LocString TitleLocString => new("gems", Id.Entry + ".title");
     public LocString Description => new("gems", Id.Entry + ".description");
+    public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
+        .Where(c => c.GemModel == this).Cast<CardModel>().First();
 
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
     public abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay);

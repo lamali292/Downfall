@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Guardian;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,14 @@ public class GemFinder : GuardianCardModel
 {
     public GemFinder() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Ethereal);
+        WithPower<GemFinderPower>(1);
     }
-
-    // TODO: Implement
+   
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<GemFinderPower>(this);
     }
 }

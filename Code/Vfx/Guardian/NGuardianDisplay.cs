@@ -84,7 +84,7 @@ public partial class NGuardianDisplay : Control
         if (_trackedPlayer == null) return;
 
         var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
-        _currentMax = GuardianCmd.GetMax(_trackedPlayer);
+        _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
         RefreshCounters();
         _initialized = true;
 

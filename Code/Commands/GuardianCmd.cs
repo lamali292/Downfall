@@ -1,7 +1,7 @@
 using BaseLib.Patches.Content;
-using BaseLib.Utils;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
+using Downfall.Code.Core;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Displays;
 using Downfall.Code.Events;
@@ -24,193 +24,148 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.Code.Commands;
 
-public class GuardianCmd
+public static class GuardianCmd
 {
     private static readonly LocString FullStasisText = new("combat_messages", "FULL_STASIS_SLOTS");
 
+    // Mode
+    public static Task EnterDefensiveMode(Player player) => 
+        GuardianModel.SetMode(player, DownfallModelDb.GuardianMode<GuardianDefensiveMode>());
+    
+    public static Task LeaveDefensiveMode(Player player) => 
+        GuardianModel.SetMode(player, DownfallModelDb.GuardianMode<GuardianNormalMode>());
+    
+    public static Task ChangeMode(Player player) =>
+        IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(player) : LeaveDefensiveMode(player);
 
-    private static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
+    public static GuardianModeModel GetMode(Player player) => 
+        GuardianModel.ActiveMode[player] ?? DownfallModelDb.GuardianMode<GuardianNormalMode>();
+    
+    public static bool IsInMode<T>(Player player) where T : GuardianModeModel => 
+        GuardianModel.ActiveMode[player] is T;
 
-    public static async Task LeaveDefensiveMode(Player player)
+    // Stasis
+    public static int GetStasisCount(Player player) => GetStasisPile(player)?.Cards.Count ?? 0;
+    public static IReadOnlyList<CardModel> GetStasisCards(Player player) => GetStasisPile(player)?.Cards ?? [];
+    public static GuardianPile? GetStasisPile(Player player) => 
+        CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis) as GuardianPile;
+
+    public static int GetMaxStasisSlots(Player player) => GuardianModel.StasisSlots[player];
+    public static void AddMaxStasisSlots(Player player, int value = 1)
     {
-        await GuardianModel.SetMode<GuardianNormalMode>(player);
+        if (value <= 0) return;
+        GuardianModel.StasisSlots[player] += value;
+        GuardianDisplay.Refresh(player);
     }
-
-    public static async Task EnterDefensiveMode(Player player)
+    public static void RemoveMaxStasisSlots(Player player, int value = 1)
     {
-        await GuardianModel.SetMode<GuardianDefensiveMode>(player);
-    }
-
-    public static async Task ChangeMode(Player player)
-    {
-        if (GuardianModel.IsInMode<GuardianNormalMode>(player))
-            await EnterDefensiveMode(player);
-        else
-            await LeaveDefensiveMode(player);
-    }
-
-    public static async Task DebuffDown(Creature creature, int amount = 1)
-    {
-        // TODO: make it like sts1 with temporary powers
-        var debuffs = creature.Powers
-            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-            .OrderByDescending(p => p is ITemporaryPower)
-            .ToList();
-
-        foreach (var powerModel in debuffs)
-            switch (powerModel.Amount)
-            {
-                case > 0:
-                {
-                    var reduction = Math.Min(amount, powerModel.Amount);
-                    await PowerCmd.ModifyAmount(powerModel, -reduction, creature, null);
-                    break;
-                }
-                case < 0:
-                {
-                    var increase = Math.Min(amount, Math.Abs(powerModel.Amount));
-                    await PowerCmd.ModifyAmount(powerModel, increase, creature, null);
-                    break;
-                }
-            }
-    }
-
-    public static async Task Brace(Player player, int amount)
-    {
-        var power = player.Creature.GetPower<ModeShiftPower>();
-        if (power == null) return;
-        var a = await PowerCmd.ModifyAmount(power, -amount, player.Creature, null);
-        if (a > 0) return;
-        await power.Reset();
-    }
-
-    public static async Task Brace(CardModel card)
-    {
-        await Brace(card.Owner, card.DynamicVars.Brace().IntValue);
-    }
-
-
-    public static async Task PutGemIn(CardModel gem, CardModel card)
-    {
-        if (card is not GuardianCardModel guardianCard) return;
-        if (gem is not IGemCard gemCard) return;
-        if (!guardianCard.CanAddGem(gemCard.GemModel)) return;
-
-        guardianCard.AddGem(gemCard.GemModel);
-        await CardPileCmd.RemoveFromDeck(gem, false);
-        await Cmd.Wait(0.5f);
-        if (LocalContext.IsMe(card.Owner))
-            NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(NCardSmithVfx.Create([
-                card
-            ])!);
-        await Cmd.Wait(0.5f);
-    }
-
-
-    public static int GetStasisCount(Player creature)
-    {
-        return GetStasisPile(creature)?.Cards.Count ?? 0;
-    }
-
-    public static IReadOnlyList<CardModel> GetStasisCards(Player creature)
-    {
-        return GetStasisPile(creature)?.Cards ?? [];
-    }
-
-    public static GuardianPile? GetStasisPile(Player creature)
-    {
-        return CustomPiles.GetCustomPile(creature.PlayerCombatState, GuardianPile.Stasis) as
-            GuardianPile;
-    }
-
-    public static int GetMax(Player trackedPlayer)
-    {
-        return GuardianModel.GetMaxStasisSlots(trackedPlayer);
+        if (value <= 0) return;
+        GuardianModel.StasisSlots[player] = Math.Max(0, GuardianModel.StasisSlots[player] - value);
+        GuardianDisplay.Refresh(player);
     }
 
     public static bool CanPutIntoStasis(Player player)
     {
         var pile = GetStasisPile(player);
         if (pile == null) return false;
-        var isMe = LocalContext.IsMe(player);
-        if (pile.Cards.Count < GetMax(player)) return true;
-        if (!isMe) return false;
-        var text = FullStasisText.GetFormattedText();
-        var child = NThoughtBubbleVfx.Create(text, player.Creature, 2.0);
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
+        if (pile.Cards.Count < GetMaxStasisSlots(player)) return true;
+        if (!LocalContext.IsMe(player)) return false;
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
+            NThoughtBubbleVfx.Create(FullStasisText.GetFormattedText(), player.Creature, 2.0));
         return false;
     }
 
-    public static async Task PutIntoStasis(CardModel card,
-        PlayerChoiceContext ctx,
-        AbstractModel? source = null)
+    public static async Task PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null)
     {
         if (card.CombatState == null) return;
         var player = card.Owner;
-        var pile = GetStasisPile(player);
-        if (pile == null) return;
         if (!CanPutIntoStasis(player)) return;
         card.EnergyCost.AfterCardPlayedCleanup();
         source ??= card;
         await DownfallHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
-        await CardPileCmd.Add(card, pile, source: source);
+        await CardPileCmd.Add(card, GetStasisPile(player)!, source: source);
         SetStasisCounter(card);
-
-        //if (isMe) await GuardianDisplay.AnimateCardToStasis(card, pile, player);
-        /*
-        if (card.Pile?.Type == PileType.Hand)
-        {
-
-            var hand = NCombatRoom.Instance?.Ui.Hand;
-            hand?.Remove(card);
-
-        }
-        else if (card.Pile?.Type == PileType.Play)
-        {
-            card.RemoveFromCurrentPile();
-        }
-
-
-    */
     }
 
-    private static int CalculateStasisCounter(CardModel card)
+    public static int GetStasisCounter(CardModel card) => GuardianModel.StasisCounter[card];
+    public static void SetStasisCounter(CardModel card)
     {
-        if (card is ICustomTickDuration customTickDuration) return customTickDuration.TickDuration;
-        var energyCost = card.EnergyCost.GetResolved();
-        var stasisCounter = energyCost + 1;
-        return stasisCounter;
+        GuardianModel.StasisCounter[card] = CalculateStasisCounter(card);
+        GuardianDisplay.Refresh(card.Owner);
+    }
+    public static void DecrementStasisCounter(CardModel card)
+    {
+        if (GuardianModel.StasisCounter[card] <= 0) return;
+        GuardianModel.StasisCounter[card]--;
+        GuardianDisplay.RefreshCounters(card.Owner);
     }
 
-    public static async Task Accelerate(Player owner, int amout = 1,
+    private static int CalculateStasisCounter(CardModel card) =>
+        card is ICustomTickDuration custom ? custom.TickDuration : card.EnergyCost.GetResolved() + 1;
+
+    // Gems
+    public static List<GemModel> GetAllCombatGems(Player player) =>
+        player.PlayerCombatState?.AllCards
+            .SelectMany(card => card switch
+            {
+                IGemCard gem => [gem.GemModel],
+                GuardianCardModel gc => gc.Gems,
+                _ => []
+            })
+            .ToList() ?? [];
+
+    public static async Task PutGemIn(CardModel gem, CardModel card)
+    {
+        if (card is not GuardianCardModel guardianCard) return;
+        if (gem is not IGemCard gemCard) return;
+        if (!guardianCard.CanAddGem(gemCard.GemModel)) return;
+        guardianCard.AddGem(gemCard.GemModel);
+        await CardPileCmd.RemoveFromDeck(gem, false);
+        await Cmd.Wait(0.5f);
+        if (LocalContext.IsMe(card.Owner))
+            NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(NCardSmithVfx.Create([card])!);
+        await Cmd.Wait(0.5f);
+    }
+
+    // Combat
+    public static async Task DebuffDown(Creature creature, int amount = 1)
+    {
+        foreach (var powerModel in creature.Powers
+            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
+            .OrderByDescending(p => p is ITemporaryPower)
+            .ToList())
+        {
+            switch (powerModel.Amount)
+            {
+                case > 0:
+                    await PowerCmd.ModifyAmount(powerModel, -Math.Min(amount, powerModel.Amount), creature, null);
+                    break;
+                case < 0:
+                    await PowerCmd.ModifyAmount(powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)), creature, null);
+                    break;
+            }
+        }
+    }
+
+    public static async Task Brace(Player player, int amount)
+    {
+        var power = player.Creature.GetPower<ModeShiftPower>();
+        if (power == null) return;
+        if (await PowerCmd.ModifyAmount(power, -amount, player.Creature, null) > 0) return;
+        await power.Reset();
+    }
+
+    public static Task Brace(CardModel card) => Brace(card.Owner, card.DynamicVars.Brace().IntValue);
+    
+    public static async Task Accelerate(Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
         throw new NotImplementedException();
     }
 
-    public static async Task Accelerate(CardModel card, AccelerateType accelerateType = AccelerateType.First)
-    {
-        await Accelerate(card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
-    }
+    public static Task Accelerate(CardModel card, AccelerateType accelerateType = AccelerateType.First) =>
+        Accelerate(card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
 
-    public static int GetStasisCounter(CardModel card)
-    {
-        return StasisCounter[card];
-    }
-
-    public static void SetStasisCounter(CardModel card)
-    {
-        StasisCounter[card] = CalculateStasisCounter(card);
-        GuardianDisplay.Refresh(card.Owner);
-    }
-
-    public static void DecrementStasisCounter(CardModel card)
-    {
-        var current = StasisCounter[card];
-        if (current <= 0) return;
-        StasisCounter[card] = current - 1;
-        GuardianDisplay.RefreshCounters(card.Owner);
-    }
 }
 
 public enum AccelerateType

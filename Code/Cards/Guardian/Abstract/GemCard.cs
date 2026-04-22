@@ -16,47 +16,47 @@ namespace Downfall.Code.Cards.Guardian.Abstract;
 
 #pragma warning disable STS001
 [Pool(typeof(GuardianCardPool))]
-public class FragmentedGemCard() : GemCard<FragmentedGem>(CardRarity.Common);
+public class FragmentedGemCard : GemCard<FragmentedGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Ruby() : GemCard<RubyGem>(CardRarity.Common);
+public class Ruby : GemCard<RubyGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Sapphire() : GemCard<SapphireGem>(CardRarity.Common);
+public class Sapphire : GemCard<SapphireGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Tourmaline() : GemCard<TourmalineGem>(CardRarity.Common);
+public class Tourmaline : GemCard<TourmalineGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Amber() : GemCard<AmberGem>(CardRarity.Uncommon);
+public class Amber : GemCard<AmberGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Amethyst() : GemCard<AmethystGem>(CardRarity.Uncommon);
+public class Amethyst : GemCard<AmethystGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Aquamarine() : GemCard<AquamarineGem>(CardRarity.Uncommon);
+public class Aquamarine : GemCard<AquamarineGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Emerald() : GemCard<EmeraldGem>(CardRarity.Uncommon);
+public class Emerald : GemCard<EmeraldGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Garnet() : GemCard<GarnetGem>(CardRarity.Uncommon);
+public class Garnet : GemCard<GarnetGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Opal() : GemCard<OpalGem>(CardRarity.Uncommon);
+public class Opal : GemCard<OpalGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Citrine() : GemCard<CitrineGem>(CardRarity.Rare);
+public class Citrine : GemCard<CitrineGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Onyx() : GemCard<OnyxGem>(CardRarity.Rare);
+public class Onyx : GemCard<OnyxGem>;
 
 #pragma warning restore STS001
 
 public abstract class GemCard<T> : GuardianCardModel, IGemCard
     where T : GemModel
 {
-    protected GemCard(CardRarity rarity) : base(0, CustomCardType.Gem, rarity, TargetType.None)
+    protected GemCard() : base(0, CustomCardType.Gem, CardRarity.None, TargetType.None)
     {
         _titleLocString = DownfallModelDb.Gem<T>().TitleLocString;
         WithKeyword(DownfallKeywords.Gem);
@@ -64,6 +64,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
             WithTip(new TooltipSource(_ => extraHoverTip));
     }
 
+    public override CardRarity Rarity => DownfallModelDb.Gem<T>().Rarity;
 
     public override int MaxUpgradeLevel => 0;
 

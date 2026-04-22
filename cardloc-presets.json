@@ -84,6 +84,11 @@
           "name": "smartDescription",
           "file": "powers.json",
           "optional": true
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "powers.json",
+          "optional": true
         }
       ]
     },
