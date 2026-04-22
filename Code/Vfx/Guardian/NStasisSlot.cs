@@ -17,10 +17,14 @@ public partial class NStasisSlot : Control
     private Control? _visualParent;
     public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + Size * GetGlobalTransform().Scale / 2f;
 
-    public static float CardScale => 0.25f;
+    private static float CardScale => 0.15f;
+    private static float BigCardScale => 0.75f;
 
     public override void _Ready()
     {
+        var anim = GetNode<AnimationPlayer>("AnimationPlayer");
+        anim.Play("idle");
+        anim.Seek((float)GD.RandRange(0, anim.CurrentAnimationLength), true);
         _visualParent = GetNode<Control>("%Visuals");
         _count = GetNode<MegaLabel>("%Count");
         //_cardHolder = GetNode<NCustomCardHolder>("%CardHolder");
@@ -33,7 +37,7 @@ public partial class NStasisSlot : Control
     {
         ClearCard();
 
-        _holder = NCustomCardHolder.Create(cardNode, CardScale, CardScale * 3.0f);
+        _holder = NCustomCardHolder.Create(cardNode, CardScale, BigCardScale);
         if (_holder == null) return null;
 
         _visualParent!.AddChild(_holder);

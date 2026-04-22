@@ -157,14 +157,55 @@ public static class GuardianCmd
 
     public static Task Brace(CardModel card) => Brace(card.Owner, card.DynamicVars.Brace().IntValue);
     
-    public static async Task Accelerate(Player player, int amount = 1,
+    public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        throw new NotImplementedException();
+        var cards = GetStasisCards(player).ToList(); // oldest first
+    
+        if (accelerateType == AccelerateType.First)
+        {
+            // Distribute amount across cards oldest-first
+            foreach (var card in cards)
+            {
+                if (amount <= 0) break;
+                var reduce = Math.Min(amount, GuardianModel.StasisCounter[card]);
+                amount -= reduce;
+                for (var i = 0; i < reduce; i++)
+                {
+                    GuardianModel.StasisCounter[card]--;
+                    GuardianDisplay.RefreshCounters(player);
+                    if (card is ITickCard tickCard)
+                        await tickCard.OnTick(ctx);
+                }
+
+                if (GuardianModel.StasisCounter[card] == 0)
+                    await GuardianModel.ReturnFromStasis(card, player, ctx); // see below
+            }
+        }
+        else 
+        {
+            foreach (var card in cards)
+            {
+                var reduce = Math.Min(amount, GuardianModel.StasisCounter[card]);
+
+                for (var i = 0; i < reduce; i++)
+                {
+                    GuardianModel.StasisCounter[card]--;
+                    if (card is not ITickCard tickCard) continue;
+                    GuardianDisplay.RefreshCounters(player);
+                    await tickCard.OnTick(ctx);
+                }
+
+                if (GuardianModel.StasisCounter[card] == 0)
+                    await GuardianModel.ReturnFromStasis(card, player, ctx);
+            }
+        }
+    
+        GuardianDisplay.Refresh(player);
     }
 
-    public static Task Accelerate(CardModel card, AccelerateType accelerateType = AccelerateType.First) =>
-        Accelerate(card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
+    public static Task Accelerate(PlayerChoiceContext ctx, CardModel card, AccelerateType accelerateType = AccelerateType.First) =>
+        Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
 
 }
 

@@ -1,4 +1,5 @@
-﻿using Downfall.Code.Character;
+﻿using BaseLib.Utils;
+using Downfall.Code.Character;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;
@@ -42,7 +43,7 @@ public abstract class GuardianCardModel
     }
 
     public virtual int GemSlots => 0;
-    public virtual int GemReplayCount => 1;
+    protected virtual int GemReplayCount => 1;
     public bool IsFull => Gems.Count >= GemSlots;
     public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
 

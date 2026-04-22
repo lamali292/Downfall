@@ -19,6 +19,6 @@ public class TemporalShield : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.Accelerate(this);
+        await GuardianCmd.Accelerate(ctx, this);
     }
 }

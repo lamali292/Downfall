@@ -15,7 +15,7 @@ public class BaubleBurst : GuardianCardModel
     }
 
     public override int GemSlots => IsUpgraded ? 2 : 1;
-    public override int GemReplayCount => 3;
+    protected override int GemReplayCount => 3;
 
 
 

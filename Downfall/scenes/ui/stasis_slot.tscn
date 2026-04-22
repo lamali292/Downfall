@@ -1,13 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://cno5ncb7dqixm"]
+[gd_scene load_steps=9 format=3 uid="uid://cno5ncb7dqixm"]
 
 [ext_resource type="Script" uid="uid://bre6s1lx3pjhq" path="res://Code/Vfx/Guardian/NStasisSlot.cs" id="1_5fpke"]
-[ext_resource type="Texture2D" uid="uid://78rinettnk6q" path="res://Downfall/images/ui/sequenceSlot.png" id="1_n1eba"]
+[ext_resource type="Texture2D" uid="uid://dn6g1ne4bdwsl" path="res://Downfall/images/ui/empty_orb.png" id="2_5fpke"]
 [ext_resource type="FontFile" uid="uid://bex5wighuifo2" path="res://fonts/kreon_regular.ttf" id="2_i2fes"]
 [ext_resource type="Script" uid="uid://b5d4qkfq60ffq" path="res://Code/Nodes/Base/NDownfallMegaLabel.cs" id="3_5fpke"]
 
 [sub_resource type="FontVariation" id="FontVariation_uouql"]
 base_font = ExtResource("2_i2fes")
 spacing_glyph = 1
+
+[sub_resource type="Animation" id="Animation_5fpke"]
+resource_name = "idle"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_uouql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5er7d"]
+_data = {
+&"RESET": SubResource("Animation_uouql"),
+&"idle": SubResource("Animation_5fpke")
+}
 
 [node name="StasisSlot" type="Control"]
 custom_minimum_size = Vector2(80, 110)
@@ -44,16 +82,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -115.0
-offset_right = 38.0
-offset_bottom = 115.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.265, 1.265)
-pivot_offset = Vector2(38, 115)
+scale = Vector2(0.535, 0.535)
+pivot_offset = Vector2(50, 50)
 mouse_filter = 2
-texture = ExtResource("1_n1eba")
+texture = ExtResource("2_5fpke")
 stretch_mode = 2
 
 [node name="Count" type="Label" parent="."]
@@ -91,3 +129,9 @@ theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = SubResource("FontVariation_uouql")
 theme_override_font_sizes/font_size = 28
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_5er7d")
+}

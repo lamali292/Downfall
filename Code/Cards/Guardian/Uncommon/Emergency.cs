@@ -18,6 +18,6 @@ public class Emergency : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Accelerate(this, AccelerateType.All);
+        await GuardianCmd.Accelerate(ctx, this, AccelerateType.All);
     }
 }

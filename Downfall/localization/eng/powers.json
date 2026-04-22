@@ -359,5 +359,17 @@
   "DOWNFALL-FUTURE_PLANS_POWER.selectionScreenPrompt": "Select cards to put into Stasis.",
   "DOWNFALL-GEM_FINDER_POWER.title": "Gem Finder",
   "DOWNFALL-GEM_FINDER_POWER.description": "At the end of combat you may add a random [gold]Gem[/gold] to your Deck.",
-  "DOWNFALL-GEM_FINDER_POWER.smartDescription": "At the end of combat you may add {Amount:plural:a random [gold]Gem[/gold]|[blue]{Amount}[/blue] random [gold]Gems[/gold]} to your Deck."
+  "DOWNFALL-GEM_FINDER_POWER.smartDescription": "At the end of combat you may add {Amount:plural:a random [gold]Gem[/gold]|[blue]{Amount}[/blue] random [gold]Gems[/gold]} to your Deck.",
+  "DOWNFALL-STUNNED_POWER.title": "Stunned",
+  "DOWNFALL-STUNNED_POWER.description": "Skip your next turn.",
+  "DOWNFALL-STUNNED_POWER.smartDescription": "Skip your next turn.",
+  "DOWNFALL-REVENGE_PROTOCOL_POWER.title": "Revenge Protocol",
+  "DOWNFALL-REVENGE_PROTOCOL_POWER.description": "Whenever you enter [gold]Defensive Mode[/gold], gain [blue]X[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-REVENGE_PROTOCOL_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-BRACING_POWER.title": "Bracing",
+  "DOWNFALL-BRACING_POWER.description": "At the start of your turn, [gold]Brace[/gold] [blue]X[/blue].",
+  "DOWNFALL-BRACING_POWER.smartDescription": "At the start of your turn, [gold]Brace[/gold] [blue]{Amount}[/blue].",
+  "DOWNFALL-STASIS_ENGINE_POWER.title": "Stasis Engine",
+  "DOWNFALL-STASIS_ENGINE_POWER.description": "Gain {energyPrefix:energyIcons(1)} and draw [blue]1[/blue] card whenever you play the [blue]3rd[/blue] 0-cost card in a single turn.",
+  "DOWNFALL-STASIS_ENGINE_POWER.smartDescription": "Gain {Amount:energyIcons()} and draw [blue]{Amount}[/blue] {Amount:plural:card|cards} whenever you play the [blue]3rd[/blue] 0-cost card in a single turn."
 }

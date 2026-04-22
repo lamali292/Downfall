@@ -88,7 +88,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         GuardianDisplay.Refresh(player);
     }
 
-    private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
+    internal static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
     {
         if (card.Keywords.Contains(DownfallKeywords.Volatile))
         {

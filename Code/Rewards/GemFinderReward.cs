@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
-using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Cards.Guardian.Rare;
 using Downfall.Code.Core;
 using Downfall.Code.Core.Guardian;
@@ -8,12 +7,10 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
-using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -36,7 +33,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
             .ToDictionary(g => g.Key, g => g.ToList());
 
         var seen = new HashSet<string>();
-        var rng = player.PlayerRng.Rewards;
+        var rng = Player.PlayerRng.Rewards;
         while (Gems.Count < count)
         {
             var roll = rng.NextInt(100);
@@ -68,7 +65,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         var selectedCards = (await _currentlyShownScreen.CardsSelected()).ToList();
         if (selectedCards.Count == 0)
         {
-            RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new GemRewardMessage
+            RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CardsAddedMessage
             {
                 Cards = [],
                 Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
@@ -80,12 +77,12 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         var mutable = selectedCards.Select(e => e.ToMutable()).ToList();
         foreach (var cardModel in mutable)
         {
-            player.RunState.AddCard(cardModel, player);
+            Player.RunState.AddCard(cardModel, Player);
         }
         var result = await CardPileCmd.Add(mutable, PileType.Deck);
         CardCmd.PreviewCardPileAdd(result);
         var cardsAdded = result.Select(e => e.cardAdded.ToSerializable()).ToList();
-        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new GemRewardMessage
+        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CardsAddedMessage
         {
             Cards = cardsAdded,
             Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,

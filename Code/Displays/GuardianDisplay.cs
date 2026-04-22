@@ -74,6 +74,7 @@ public class GuardianDisplay
         Register(player, display);
     }
 
+    /*
     public static async Task AnimateCardToStasis(CardModel card, GuardianPile pile, Player creature)
     {
         var display = Displays.GetValueOrDefault(creature);
@@ -115,4 +116,5 @@ public class GuardianDisplay
         // Free the CLONE
         cloneCard.QueueFreeSafely();
     }
+    */
 }

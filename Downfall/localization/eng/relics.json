@@ -13,7 +13,7 @@
   "DOWNFALL-PLATINUM_CORE.description": "The first 3 Functions you create each combat cost 0 until played.",
   "DOWNFALL-PLATINUM_CORE.flavor": "Changelog: Improved user experience.",
   "DOWNFALL-BRONZE_GEAR.title": "Bronze Gear",
-  "DOWNFALL-BRONZE_GEAR.description": "At the start of each combat, gain {{C|Gear Up}}. Guardian starts the run with a random common Gem.",
+  "DOWNFALL-BRONZE_GEAR.description": "At the start of each combat, gain [gold]Gear Up[/gold]. Guardian starts the run with a random common [gold]Gem[/gold].",
   "DOWNFALL-BRONZE_GEAR.flavor": "Protection where you need it most.",
   "DOWNFALL-EMERALD_TORCH.title": "Emerald Torch",
   "DOWNFALL-EMERALD_TORCH.description": "Start each combat with [blue]1[/blue] [gold]Reserve[/gold].",

@@ -29,7 +29,7 @@ public class GemCannon : GuardianCardModel
         var gems = GuardianCmd.GetAllCombatGems(Owner).ToList();
         if (LocalContext.IsMe(Owner))
         {
-            var from = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.VfxSpawnPosition + new Vector2(0, -100) ?? Vector2.Zero;
+            var from = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.VfxSpawnPosition ?? Vector2.Zero;
             var target = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target)?.VfxSpawnPosition ?? Vector2.Zero;
 
             for (var i = 0; i < gems.Count; i++)

@@ -17,6 +17,6 @@ public class AmberGem : GemModel
     
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Accelerate(cardPlay.Card.Owner);
+        await GuardianCmd.Accelerate(ctx, cardPlay.Card.Owner);
     }
 }

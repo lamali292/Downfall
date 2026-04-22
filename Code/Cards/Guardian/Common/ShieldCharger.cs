@@ -24,7 +24,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
     public async Task OnTick(PlayerChoiceContext ctx)
     {
         await GuardianCmd.Brace(this);
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+        await CommonActions.CardBlock(this, null);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

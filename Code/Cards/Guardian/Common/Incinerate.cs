@@ -21,6 +21,6 @@ public class Incinerate : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await GuardianCmd.Accelerate(this);
+        await GuardianCmd.Accelerate(ctx, this);
     }
 }

@@ -20,6 +20,6 @@ public class TimeBomb : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await GuardianCmd.Accelerate(this, AccelerateType.All);
+        await GuardianCmd.Accelerate(ctx, this, AccelerateType.All);
     }
 }

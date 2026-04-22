@@ -1,6 +1,7 @@
 using System.Reflection;
 using BaseLib.Config;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Config;
 using Downfall.Code.Events;
 using Downfall.Code.Localization;

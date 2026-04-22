@@ -1,6 +1,4 @@
 using BaseLib.Abstracts;
-using Downfall.Code.Commands;
-using Downfall.Code.Core.Guardian;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +14,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Downfall.Code.Rewards;
 
-public class GemRewardMessage : CustomRewardMessage
+public class CardsAddedMessage : CustomRewardMessage
 {
     public List<SerializableCard> Cards { get; init; } = [];
     public override LogLevel LogLevel => LogLevel.Debug;
@@ -43,15 +41,15 @@ public class GemRewardMessage : CustomRewardMessage
 
     public override void Initialize(RunLocationTargetedMessageBuffer messageBuffer)
     {
-        messageBuffer.RegisterMessageHandler<GemRewardMessage>(HandleMessage);
+        messageBuffer.RegisterMessageHandler<CardsAddedMessage>(HandleMessage);
     }
 
     public override void Dispose(RunLocationTargetedMessageBuffer messageBuffer)
     {
-        messageBuffer.UnregisterMessageHandler<GemRewardMessage>(HandleMessage);
+        messageBuffer.UnregisterMessageHandler<CardsAddedMessage>(HandleMessage);
     }
 
-    private static void HandleMessage(GemRewardMessage message, ulong senderId)
+    private static void HandleMessage(CardsAddedMessage message, ulong senderId)
     {
         if (message.wasSkipped || message.Cards.Count == 0) return;
         var player = RunManager.Instance.State?.GetPlayer(senderId);

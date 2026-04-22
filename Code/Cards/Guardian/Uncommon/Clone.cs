@@ -28,6 +28,6 @@ public class Clone : GuardianCardModel
         var clone = card.CreateClone();
         await GuardianCmd.PutIntoStasis(clone, ctx, this);
         if (IsUpgraded)
-            await GuardianCmd.Accelerate(this);
+            await GuardianCmd.Accelerate(ctx, this);
     }
 }

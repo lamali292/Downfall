@@ -8,9 +8,9 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class TimeSifterPower : GuardianPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, CombatState combatState)
     {
         if (player.Creature != Owner) return;
-        await GuardianCmd.Accelerate(player, Amount);
+        await GuardianCmd.Accelerate(ctx, player, Amount);
     }
 }
