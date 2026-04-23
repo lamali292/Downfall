@@ -1,4 +1,5 @@
 using Downfall.Code.Core.Hexaghost;
+using Downfall.Code.Events;
 using Downfall.Code.Powers.Hexaghost;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +21,8 @@ public class InfernoGhostflame : GhostflameModel
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);
-        var intensity = Owner.Creature.GetPowerAmount<IntensityPower>();
+        if (Owner.Creature.CombatState == null) return;
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
         await CreatureCmd.Damage(ctx, target, (4 + intensity) * ignited, ValueProp.Move | ValueProp.Unpowered, null, null);
         if (ignited >= 6)
             await PowerCmd.Apply<IntensityPower>(Owner.Creature, 1, Owner.Creature, null);

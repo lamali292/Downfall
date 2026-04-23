@@ -2,6 +2,8 @@
 using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Core.Guardian;
+using Downfall.Code.Core.Hexaghost;
+using Downfall.Code.Ghostflames;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -158,5 +160,11 @@ public static class DownfallHook
         AbstractModel source)
     {
         return Dispatch<IBeforeCardEntersStasis>(cs, ctx, m => m.BeforeCardEntersStasis(ctx, card, source));
+    }
+
+    public static int ModifyGhostflameEffectAdditive(CombatState cs, PlayerChoiceContext ctx, Player owner, GhostflameModel bolsteringGhostflame)
+    {
+        return Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
+            (m, current) => m.ModifyGhostflameEffectAdditive(ctx, owner, bolsteringGhostflame));
     }
 }

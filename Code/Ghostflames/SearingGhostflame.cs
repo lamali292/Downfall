@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Core.Hexaghost;
+using Downfall.Code.Events;
 using Downfall.Code.Powers.Hexaghost;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +18,8 @@ public class SearingGhostflame : GhostflameModel
         var target = CombatState.HittableEnemies
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
-        var intensity = Owner.Creature.GetPowerAmount<IntensityPower>();
+        if (Owner.Creature.CombatState == null) return;
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
         await CommonActions.Apply<SoulBurnPower>(target, null, 3 + intensity);
         await CommonActions.Apply<SoulBurnPower>(target, null, 3 + intensity);
     }

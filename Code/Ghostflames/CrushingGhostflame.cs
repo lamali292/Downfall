@@ -1,4 +1,5 @@
 using Downfall.Code.Core.Hexaghost;
+using Downfall.Code.Events;
 using Downfall.Code.Powers.Hexaghost;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,8 @@ public class CrushingGhostflame : GhostflameModel
         var target = CombatState.HittableEnemies
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
-        var intensity = Owner.Creature.GetPowerAmount<IntensityPower>();
+        if (Owner.Creature.CombatState == null) return;
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
         await CreatureCmd.Damage(ctx, target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
         await CreatureCmd.Damage(ctx, target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
     }

@@ -1,5 +1,5 @@
 using Downfall.Code.Core.Hexaghost;
-using Downfall.Code.Powers.Hexaghost;
+using Downfall.Code.Events;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +14,8 @@ public class BolsteringGhostflame : GhostflameModel
     protected override int IgnitionRequirement => 1;
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        var intensity = Owner.Creature.GetPowerAmount<IntensityPower>();
+        if (Owner.Creature.CombatState == null) return;
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
         await CreatureCmd.GainBlock(Owner.Creature,4 + intensity, ValueProp.Move | ValueProp.Unpowered, null);
         await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, null);
     }
