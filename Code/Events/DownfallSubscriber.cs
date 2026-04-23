@@ -1,4 +1,5 @@
 ﻿using Downfall.Code.Core.Champ;
+using Downfall.Code.Core.Hexaghost;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -19,6 +20,11 @@ public static class DownfallSubscriber
             var stance = ChampModel.GetStanceModel(player);
             if (stance is not ChampNoStance)
                 yield return stance;
+            if (player.Character is not Character.Hexaghost) continue;
+            foreach (var ghostflame in HexaghostModel.Wheel[player] ?? [])
+            {
+                yield return ghostflame;
+            }
         }
     }
 }

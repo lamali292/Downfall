@@ -67,7 +67,8 @@
         "DownfallPowerModel",
         "TemporaryPower",
         "ChampPowerModel",
-        "CollectorPowerModel"
+        "CollectorPowerModel",
+        "HexaghostPowerModel"
       ],
       "fields": [
         {

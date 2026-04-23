@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://jjig6l1pumrf"]
+
+[ext_resource type="Texture2D" uid="uid://g6us0dgnefba" path="res://Downfall/vfx/smoke_vfx_flat.png" id="1_aukxg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5spxg"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fuvct"]
+_data = [Vector2(0, 0), 0.0, 2.32029, 0, 0, Vector2(0.497052, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.96676, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aa5yv"]
+width = 128
+curve = SubResource("Curve_fuvct")
+
+[sub_resource type="Curve" id="Curve_aiakt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.729591), 3.3025, 3.3025, 0, 0, Vector2(0.245873, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.740322), -0.873548, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vf1u"]
+width = 128
+curve = SubResource("Curve_aiakt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffqhc"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 128.0
+emission_ring_radius = 128.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_1vf1u")
+alpha_curve = SubResource("CurveTexture_aa5yv")
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aukxg"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_5spxg"]
+_data = [Vector2(0, 0), 0.0, 1.26287, 0, 0, Vector2(0.396816, 1), 0.0, 0.0, 0, 0, Vector2(0.599646, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.93307, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_34x5a"]
+width = 128
+curve = SubResource("Curve_5spxg")
+
+[sub_resource type="Curve" id="Curve_ffqhc"]
+_data = [Vector2(0, 0.811143), 0.0, 2.2437, 0, 0, Vector2(0.158608, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.791828), -0.408964, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j5sxe"]
+width = 128
+curve = SubResource("Curve_ffqhc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ve84u"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 128.0
+emission_ring_radius = 128.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.02
+scale_curve = SubResource("CurveTexture_j5sxe")
+color = Color(0.88, 0.88, 0.88, 1)
+alpha_curve = SubResource("CurveTexture_34x5a")
+anim_offset_max = 1.0
+
+[node name="Smoke" type="Node2D"]
+
+[node name="OutsideSmoke" type="GPUParticles2D" parent="."]
+modulate = Color(0.1625, 0.247083, 0.25, 0.752941)
+material = SubResource("CanvasItemMaterial_5spxg")
+position = Vector2(0, -66)
+amount = 32
+texture = ExtResource("1_aukxg")
+lifetime = 2.5
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ffqhc")
+
+[node name="InsideSmoke" type="GPUParticles2D" parent="."]
+modulate = Color(0.32, 0.4, 0.4, 0.752941)
+material = SubResource("CanvasItemMaterial_aukxg")
+position = Vector2(0, -66)
+amount = 96
+texture = ExtResource("1_aukxg")
+lifetime = 3.0
+preprocess = 1.5
+speed_scale = 0.8
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ve84u")

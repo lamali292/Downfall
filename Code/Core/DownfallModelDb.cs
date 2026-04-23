@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Core.Champ;
 using Downfall.Code.Core.Guardian;
+using Downfall.Code.Core.Hexaghost;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Core;
@@ -33,6 +34,11 @@ public static class DownfallModelDb
     }
 
     public static T Gem<T>() where T : GemModel
+    {
+        return ModelDb.Get<T>();
+    }
+    
+    public static T Ghostflame<T>() where T : GhostflameModel
     {
         return ModelDb.Get<T>();
     }

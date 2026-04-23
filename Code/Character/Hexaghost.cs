@@ -2,6 +2,8 @@
 using Downfall.Code.Cards.Hexaghost.Basic;
 using Downfall.Code.Relics.Hexaghost;
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 
@@ -27,12 +29,12 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<StrikeHexaghost>(),
+        ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<Sear>(),
-        ModelDb.Card<Float>(),
         ModelDb.Card<Kindle>()
     ];
 
@@ -41,6 +43,7 @@ public class Hexaghost : DownfallCharacterModel
     [
         ModelDb.Relic<SpiritBrand>()
     ];
+    
 
     public override float AttackAnimDelay => 0.15f;
 

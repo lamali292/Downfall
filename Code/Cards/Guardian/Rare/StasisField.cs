@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Commands;
+using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,6 +14,7 @@ public class StasisField : GuardianCardModel
     public StasisField() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(6, 2);
+        WithTip(DownfallTip.Stasis);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,16 @@ public class PhantomFireball : HexaghostCardModel
 {
     public PhantomFireball() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(4, 2);
+        WithTip(typeof(SoulBurnPower));
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (cardPlay.Target == null || cardPlay.Target.IsDead || !cardPlay.Target.HasPower<SoulBurnPower>()) return;
+        var power = cardPlay.Target.GetPower<SoulBurnPower>();
+        if (power == null) return;
+        await power.Detonate(Owner.Creature, IsUpgraded);
     }
 }

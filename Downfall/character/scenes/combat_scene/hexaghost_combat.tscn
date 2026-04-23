@@ -1,32 +1,32 @@
 [gd_scene load_steps=3 format=3 uid="uid://cujs28vntpas4"]
 
-[ext_resource type="Texture2D" uid="uid://y24wbjfl7nmv" path="res://Downfall/character/visuals/core.png" id="1_37uak"]
-[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_qxg1r"]
+[ext_resource type="Script" uid="uid://d2lanx7ajharx" path="res://Code/Vfx/Hexaghost/NHexaghostCreatureVisuals.cs" id="1_qxg1r"]
+[ext_resource type="PackedScene" uid="uid://bnb63phrlkqlx" path="res://Downfall/character/scenes/visuals/hexaghost2.tscn" id="2_qxg1r"]
 
 [node name="HexaghostCombat" type="Node2D"]
 script = ExtResource("1_qxg1r")
 
-[node name="Visuals" type="TextureRect" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
 unique_name_in_owner = true
-offset_left = -228.0
-offset_top = -555.0
-offset_right = 284.0
-offset_bottom = -43.0
-texture = ExtResource("1_37uak")
+position = Vector2(2, -216)
+
+[node name="Hexaghost" parent="Visuals" instance=ExtResource("2_qxg1r")]
+unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -153.0
-offset_top = -435.0
-offset_right = 197.0
+offset_left = -150.0
+offset_top = -400.0
+offset_right = 150.0
+pivot_offset = Vector2(154, 176)
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(3, -181)
+position = Vector2(6, -214)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-2, -362)
+position = Vector2(3, -362)

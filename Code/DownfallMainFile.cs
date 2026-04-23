@@ -1,17 +1,20 @@
 using System.Reflection;
 using BaseLib.Config;
-using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Config;
 using Downfall.Code.Events;
+using Downfall.Code.Keywords;
 using Downfall.Code.Localization;
 using Downfall.Code.Nodes;
+using Downfall.Code.Patches;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using static Downfall.Code.Abstract.CardModels.GuardianCardModel;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.Code;
@@ -27,7 +30,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
-        _ = GuardianCardModel.GemData;
+        _ = GemData;
         CardDescriptionRegistry.RegisterAll();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
@@ -65,6 +68,7 @@ internal static class ModelDbInitIdsPatch
 
         var powers = ModelDb.AllPowers.Count(p => p.GetType().Assembly == modAssembly);
         DownfallMainFile.Logger.Info($"Powers: {powers}");
+        CardKeywordSubRegistry.Register(CardKeyword.Ethereal, DownfallKeywords.Afterlife);
     }
 }
 

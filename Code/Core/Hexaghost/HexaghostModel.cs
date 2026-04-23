@@ -1,0 +1,72 @@
+using BaseLib.Abstracts;
+using BaseLib.Utils;
+using Downfall.Code.Core.Hexaghost.Ghostflames;
+using Downfall.Code.Ghostflames;
+using Downfall.Code.Keywords;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
+
+namespace Downfall.Code.Core.Hexaghost;
+
+
+public class HexaghostModel() : CustomSingletonModel(true, true)
+{
+    internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
+
+    private static GhostflameModel[] StartingWheel(Player player)
+    {
+        return
+        [
+            DownfallModelDb.Ghostflame<SearingGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<CrushingGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<BolsteringGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<SearingGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<CrushingGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<InfernoGhostflame>().ToMutable(player),
+        ];
+    }
+
+    public static void ResetWheel(Player player)
+    {
+        Wheel[player] = StartingWheel(player);
+        CurrentIndex[player] = 0;
+    }
+
+    internal static readonly SpireField<Player, int> CurrentIndex = new(() => 0);
+
+
+
+    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        if (side != CombatSide.Player) return;
+        foreach (var player in RunManager.Instance.State?.Players ?? [])
+        {
+            if (player.Character is not Character.Hexaghost) continue;
+            if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
+                await HexaghostCmd.Advance(player, choiceContext);
+        }
+    }
+    
+    public override async Task AfterRoomEntered(AbstractRoom room)
+    {
+        if (room is not CombatRoom) return;
+        foreach (var player in RunManager.Instance.State?.Players ?? [])
+        {
+            if (player.Character is not Character.Hexaghost) continue;
+            await HexaghostCmd.ResetWheel(player);
+            HexaghostVisualsBridge.Refresh(player);
+        }
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    {
+        var advance = cardPlay.Card.Keywords.Contains(DownfallKeywords.Advance);
+        if (advance) await HexaghostCmd.Advance(cardPlay.Card.Owner, context);
+        var retract = cardPlay.Card.Keywords.Contains(DownfallKeywords.Retract);
+        if (retract) await HexaghostCmd.Retract(cardPlay.Card.Owner, context);
+    }
+}

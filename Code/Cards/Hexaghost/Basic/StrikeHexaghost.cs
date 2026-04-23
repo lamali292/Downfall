@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Core.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,12 @@ public class StrikeHexaghost : HexaghostCardModel
 {
     public StrikeHexaghost() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+     WithDamage(6, 3);
+     WithTags(CardTag.Strike);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

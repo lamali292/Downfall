@@ -337,7 +337,7 @@
   "DOWNFALL-TEMPORARY_DEXTERITY_POWER.description": "",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.title": "Dexterity Down",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.description": "Gain X [gold]Dexterity[/gold]. At the end of your turn, lose X [gold]Dexterity[/gold]",
-  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Dexterity[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Dexterity[/gold].",
   "DOWNFALL-EVASIVE_PROTOCOL_POWER.title": "Evasive Protocol",
   "DOWNFALL-EVASIVE_PROTOCOL_POWER.description": "Reduce your debuffs by [blue]X[/blue] when you enter [gold]Defensive Mode[/gold].",
   "DOWNFALL-EVASIVE_PROTOCOL_POWER.smartDescription": "Reduce your debuffs by [blue]{Amount}[/blue] when you enter [gold]Defensive Mode[/gold].",
@@ -371,5 +371,14 @@
   "DOWNFALL-BRACING_POWER.smartDescription": "At the start of your turn, [gold]Brace[/gold] [blue]{Amount}[/blue].",
   "DOWNFALL-STASIS_ENGINE_POWER.title": "Stasis Engine",
   "DOWNFALL-STASIS_ENGINE_POWER.description": "Gain {energyPrefix:energyIcons(1)} and draw [blue]1[/blue] card whenever you play the [blue]3rd[/blue] 0-cost card in a single turn.",
-  "DOWNFALL-STASIS_ENGINE_POWER.smartDescription": "Gain {Amount:energyIcons()} and draw [blue]{Amount}[/blue] {Amount:plural:card|cards} whenever you play the [blue]3rd[/blue] 0-cost card in a single turn."
+  "DOWNFALL-STASIS_ENGINE_POWER.smartDescription": "Gain {Amount:energyIcons()} and draw [blue]{Amount}[/blue] {Amount:plural:card|cards} whenever you play the [blue]3rd[/blue] 0-cost card in a single turn.",
+  "DOWNFALL-SOUL_BURN_POWER.title": "Soulburn",
+  "DOWNFALL-SOUL_BURN_POWER.description": "In [blue]3[/blue] turns, loses [blue]X[/blue] HP, then [gold]Soulburn[/gold] is removed.",
+  "DOWNFALL-SOUL_BURN_POWER.smartDescription": "In [blue]{Turns}[/blue] {Turns:plural:turn|turns}, loses [blue]{Amount}[/blue] HP, then [gold]Soulburn[/gold] is removed.",
+  "DOWNFALL-TEMPORARY_INTENSITY_POWER.title": "Outflare",
+  "DOWNFALL-TEMPORARY_INTENSITY_POWER.description": "Gain [blue]X[/blue] [gold]Intensity[/gold]. At the end of your turn, lose [blue]X[/blue] [gold]Intensity[/gold]",
+  "DOWNFALL-TEMPORARY_INTENSITY_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Intensity[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Intensity[/gold].",
+  "DOWNFALL-INTENSITY_POWER.title": "Intensity",
+  "DOWNFALL-INTENSITY_POWER.description": "Increase the effect of [gold]Ghostflames[/gold] by [blue]X[/blue].",
+  "DOWNFALL-INTENSITY_POWER.smartDescription": "Increase the effect of [gold]Ghostflames[/gold] by [blue]{Amount}[/blue]."
 }
