@@ -8,7 +8,7 @@ namespace Downfall.Code.Powers.Hexaghost;
 
 public class IntensityPower : HexaghostPowerModel, IModifyGhostflameEffectAdditive
 {
-    public int ModifyGhostflameEffectAdditive(PlayerChoiceContext ctx, Player owner, GhostflameModel bolsteringGhostflame)
+    public int ModifyGhostflameEffectAdditive(Player owner, GhostflameModel bolsteringGhostflame)
     {
         return Amount;
     }

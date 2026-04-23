@@ -13,23 +13,23 @@ namespace Downfall.Code.Ghostflames;
 public class CrushingGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 2;
-    public override async Task OnIgnite(PlayerChoiceContext ctx)
+    public override async Task OnIgnite()
     {
         var target = CombatState.HittableEnemies
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
-        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
-        await CreatureCmd.Damage(ctx, target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
-        await CreatureCmd.Damage(ctx, target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
     }
     
     public override NFire.FireColor FireColor => NFire.FireColor.Pink;
     
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill) return;
         if (TryProgress())
-            await Ignite(ctx);
+            await Ignite();
     }
 }

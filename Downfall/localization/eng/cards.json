@@ -137,7 +137,7 @@
   "DOWNFALL-BURNING_QUESTION.title": "Burning Question",
   "DOWNFALL-BURNING_STUDY.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "DOWNFALL-BURNING_STUDY.title": "Burning Study",
-  "DOWNFALL-BURNING_TOUCH.description": "Apply {burny:diff()} [gold]Soulburn[/gold], twice if the enemy\nhas [gold]Soulburn[/gold].",
+  "DOWNFALL-BURNING_TOUCH.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold], twice if the enemy\nhas [gold]Soulburn[/gold].",
   "DOWNFALL-BURNING_TOUCH.title": "Burning Touch",
   "DOWNFALL-BURN_OUT.description": "Deal {Damage:diff()} damage to a random enemy for ALL of your [gold]Status[/gold] cards, then [gold]Exhaust[/gold] them,",
   "DOWNFALL-BURN_OUT.title": "Burn Out",
@@ -1541,5 +1541,7 @@
   "DOWNFALL-OUTFLARE.title": "Outflare",
   "DOWNFALL-OUTFLARE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn.",
   "DOWNFALL-FLEETING_FLASH.title": "Fleeting Flare",
-  "DOWNFALL-FLEETING_FLASH.description": "[gold]Ignite the current Ghostflame[/gold], then [gold]Extinguish it[/gold]."
+  "DOWNFALL-FLEETING_FLASH.description": "[gold]Ignite the current Ghostflame[/gold], then [gold]Extinguish it[/gold].",
+  "DOWNFALL-FLASHBANG.title": "Flashbang",
+  "DOWNFALL-FLASHBANG.description": "Deal {Damage:diff()} damage.\nIf the current Ghostflame is [gold]Ignited[/gold], target enemy loses {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn."
 }

@@ -38,17 +38,22 @@ public static class HexaghostCmd
         DownfallMainFile.Logger.Info($"Hexaghost moved to {index}");
         HexaghostVisualsBridge.Refresh(player);
     }
+    
+    public static async Task<bool> IsIgnited(Player player)
+    {
+        return GetCurrentFlame(player).IsIgnited;
+    }
 
-    public static async Task Ignite(Player player, PlayerChoiceContext ctx)
+    public static async Task Ignite(Player player)
     {
         var flame = GetCurrentFlame(player);
         if (flame.IsIgnited) return;
         flame.IsIgnited = true;
         HexaghostVisualsBridge.Refresh(player);
-        await flame.OnIgnite(ctx);
+        await flame.OnIgnite();
     }
 
-    public static async Task Extinguish(Player player, PlayerChoiceContext ctx)
+    public static async Task Extinguish(Player player)
     {
         GetCurrentFlame(player).Extinguish();
         HexaghostVisualsBridge.Refresh(player);

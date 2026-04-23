@@ -13,13 +13,13 @@ public class SearingGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 2;
 
-    public override async Task OnIgnite(PlayerChoiceContext ctx)
+    public override async Task OnIgnite()
     {
         var target = CombatState.HittableEnemies
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
-        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, ctx, Owner, this);
+        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
         await CommonActions.Apply<SoulBurnPower>(target, null, 3 + intensity);
         await CommonActions.Apply<SoulBurnPower>(target, null, 3 + intensity);
     }
@@ -27,10 +27,10 @@ public class SearingGhostflame : GhostflameModel
     public override NFire.FireColor FireColor => NFire.FireColor.Green;
 
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Attack) return;
         if (TryProgress())
-            await Ignite(ctx);
+            await Ignite();
     }
 }

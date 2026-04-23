@@ -18,8 +18,8 @@ public class FleetingFlare : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await HexaghostCmd.Ignite(Owner, ctx);
-        await HexaghostCmd.Extinguish(Owner, ctx);
+        await HexaghostCmd.Ignite(Owner);
+        await HexaghostCmd.Extinguish(Owner);
     }
     
 }

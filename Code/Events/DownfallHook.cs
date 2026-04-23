@@ -162,9 +162,9 @@ public static class DownfallHook
         return Dispatch<IBeforeCardEntersStasis>(cs, ctx, m => m.BeforeCardEntersStasis(ctx, card, source));
     }
 
-    public static int ModifyGhostflameEffectAdditive(CombatState cs, PlayerChoiceContext ctx, Player owner, GhostflameModel bolsteringGhostflame)
+    public static int ModifyGhostflameEffectAdditive(CombatState cs, Player owner, GhostflameModel bolsteringGhostflame)
     {
         return Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
-            (m, current) => m.ModifyGhostflameEffectAdditive(ctx, owner, bolsteringGhostflame));
+            (m, current) => m.ModifyGhostflameEffectAdditive(owner, bolsteringGhostflame));
     }
 }

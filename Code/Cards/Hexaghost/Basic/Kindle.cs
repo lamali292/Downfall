@@ -19,6 +19,6 @@ public class Kindle : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await HexaghostCmd.Ignite(Owner, ctx);
+        await HexaghostCmd.Ignite(Owner);
     }
 }

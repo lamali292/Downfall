@@ -6,5 +6,5 @@ namespace Downfall.Code.Events;
 
 public interface IModifyGhostflameEffectAdditive
 {
-    int ModifyGhostflameEffectAdditive(PlayerChoiceContext ctx, Player owner, GhostflameModel bolsteringGhostflame);
+    int ModifyGhostflameEffectAdditive(Player owner, GhostflameModel bolsteringGhostflame);
 }

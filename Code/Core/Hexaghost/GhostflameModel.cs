@@ -37,15 +37,15 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     }
     
     
-    public abstract Task OnIgnite(PlayerChoiceContext ctx);
+    public abstract Task OnIgnite();
 
 
-    protected async Task Ignite(PlayerChoiceContext ctx)
+    protected async Task Ignite()
     {
         if (IsIgnited) return;
         IsIgnited = true;
         HexaghostVisualsBridge.Refresh(Owner);
-        await OnIgnite(ctx);
+        await OnIgnite();
     }
     public abstract NFire.FireColor FireColor { get; }
     private Player? _owner;
