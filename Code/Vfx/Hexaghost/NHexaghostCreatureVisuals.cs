@@ -17,7 +17,7 @@ public partial class NHexaghostCreatureVisuals : NCreatureVisuals
     
     
     public void SetAllLarge(bool instant = false)
-    {
+    { 
         Visuals.SetAllLarge(instant);
     }
 
