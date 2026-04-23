@@ -477,8 +477,8 @@
   "DOWNFALL-FLASH_STRIKE.title": "Flash Strike",
   "DOWNFALL-FLEETING_EMBERS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd {Cards:diff()} [gold]Embers[/gold] into your hand.",
   "DOWNFALL-FLEETING_EMBERS.title": "Fleeting Embers",
-  "DOWNFALL-FLEETING_FLASH.description": "[gold]Ignite the current Ghostflame[/gold], then [gold]Extinguish it[/gold].",
-  "DOWNFALL-FLEETING_FLASH.title": "Fleeting Flash",
+  "DOWNFALL-FLEETING_FLARE.description": "[gold]Ignite[/gold] the current Ghostflame, then [gold]Extinguish[/gold] it.",
+  "DOWNFALL-FLEETING_FLARE.title": "Fleeting Flare",
   "DOWNFALL-FLEX.description": "",
   "DOWNFALL-FLEX.title": "Flex",
   "DOWNFALL-FLIP_OUT.description": "Deal {Damage:diff()} damage.\nWhenever you would gain Block this turn, instead deal that much damage to ALL enemies.",
@@ -615,7 +615,7 @@
   "DOWNFALL-HEADBUTT.title": "Headbutt",
   "DOWNFALL-HEAT_CRUSH.description": "Deal {Damage:diff()} damage.\nDamage is increased by enemy's [gold]Soulburn[/gold].",
   "DOWNFALL-HEAT_CRUSH.title": "Heat Crush",
-  "DOWNFALL-HEAT_METAL.description": "Deal {Damage:diff()} damage.\nApply {burny:diff()} [gold]Soulburn[/gold].\nApply {HeatMetalPower:diff()} Vulnerable.",
+  "DOWNFALL-HEAT_METAL.description": "Deal {Damage:diff()} damage.\nApply {SoulBurnPower:diff()} [gold]Soulburn[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "DOWNFALL-HEAT_METAL.title": "Heat Metal",
   "DOWNFALL-HEAT_SHIELD.description": "Gain Block equal to [gold]Soulburn on the enemy[/gold], then delay its *Soulburn by 1 turn.{IfUpgraded:show:| Exhaust.}",
   "DOWNFALL-HEAT_SHIELD.title": "Heat Shield",
@@ -1539,5 +1539,7 @@
   "DOWNFALL-GEAR_UP.description": "[gold]Brace[/gold] {Brace:diff()}.",
   "DOWNFALL-SPECTRAL_GRACE.selectionScreenPrompt": "Select cards to Discard.",
   "DOWNFALL-OUTFLARE.title": "Outflare",
-  "DOWNFALL-OUTFLARE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn."
+  "DOWNFALL-OUTFLARE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn.",
+  "DOWNFALL-FLEETING_FLASH.title": "Fleeting Flare",
+  "DOWNFALL-FLEETING_FLASH.description": "[gold]Ignite the current Ghostflame[/gold], then [gold]Extinguish it[/gold]."
 }

@@ -145,10 +145,10 @@
 
         <Content Remove="Downfall\**\*.import"/>
         <None Remove="Downfall\**\*.import"/>
+      
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Code\Potions\"/>
         <Folder Include="Downfall\character\scenes\card_trail\"/>
         <Folder Include="Downfall\character\scenes\icon\"/>
         <Folder Include="Downfall\character\scenes\merchant\"/>
