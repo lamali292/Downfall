@@ -1,25 +1,34 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class RainOfEmbers : HexaghostCardModel
 {
-    public RainOfEmbers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public RainOfEmbers() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithDamage(6, 3);
+        WithPower<WeakPower>(1);
     }
 
-    // TODO: Implement
+    protected override bool HasEnergyCostX => true;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var x = ResolveEnergyXValue();
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        for (var i = 0; i < x; i++)
+        {
+            await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        }
+        
     }
 
-
-    protected override void OnUpgrade()
-    {
-    }
+    
 }

@@ -15,20 +15,6 @@ public partial class NHexaghostCreatureVisuals : NCreatureVisuals
         Visuals = GetNode<NHexaghostVisuals>("%Hexaghost");
     }
     
-    
-    public void SetAllLarge(bool instant = false)
-    { 
-        Visuals?.SetAllLarge(instant);
-    }
-
-    public void SetAllSmall(bool instant = false)
-    {
-        Visuals?.SetAllSmall(instant);
-    }
-
-    public void SetFireSize(int index, NFire.FireSize size, bool instant = false)
-        => Visuals?.SetFireSize(index, size, instant);
-
 
     public void OnAnimationTrigger(string trigger)
     {

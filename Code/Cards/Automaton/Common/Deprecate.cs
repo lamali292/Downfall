@@ -23,7 +23,6 @@ public class Deprecate : AutomatonCardModel, IEncodable
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await MyCommonActions.Apply<WeakPower>(ctx, this);
+        await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
 }

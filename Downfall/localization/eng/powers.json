@@ -380,5 +380,8 @@
   "DOWNFALL-TEMPORARY_INTENSITY_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Intensity[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Intensity[/gold].",
   "DOWNFALL-INTENSITY_POWER.title": "Intensity",
   "DOWNFALL-INTENSITY_POWER.description": "Increase the effect of [gold]Ghostflames[/gold] by [blue]X[/blue].",
-  "DOWNFALL-INTENSITY_POWER.smartDescription": "Increase the effect of [gold]Ghostflames[/gold] by [blue]{Amount}[/blue]."
+  "DOWNFALL-INTENSITY_POWER.smartDescription": "Increase the effect of [gold]Ghostflames[/gold] by [blue]{Amount}[/blue].",
+  "DOWNFALL-DEVILS_DANCE_POWER.title": "Devil's Dance",
+  "DOWNFALL-DEVILS_DANCE_POWER.description": "The first time you [gold]Advance[/gold] or Retract each turn, draw a card.",
+  "DOWNFALL-DEVILS_DANCE_POWER.smartDescription": "The first {Amount:plural:time|{Amount} times} you [gold]Advance[/gold] or [gold]Retract[/gold] each turn, draw a card."
 }

@@ -22,6 +22,6 @@ public class Psalm : AwakenedCardModel
     {
         if (CombatState == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.Apply<WeakPower>(ctx, this);
+        await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
 }

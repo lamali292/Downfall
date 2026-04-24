@@ -25,7 +25,6 @@ public class Displace : HexaghostCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue);
         var card = await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this);
-        var result = await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
-        CardCmd.PreviewCardPileAdd(result);
+        await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
 }

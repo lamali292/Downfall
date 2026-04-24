@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Keywords;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +13,12 @@ public class OpposingAction : HexaghostCardModel
 {
     public OpposingAction() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithEnergy(2, 1);
+        WithKeywords(DownfallKeywords.Retract, CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 }

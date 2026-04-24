@@ -160,4 +160,14 @@ public static class DownfallHook
         return Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
             (m, current) => m.ModifyGhostflameEffectAdditive(owner, bolsteringGhostflame));
     }
+
+    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+    {
+        return Dispatch<IWheelMoved>(cs, ctx, m => m.AfterWheelRetract(ctx, player, ghostflame, ghostflameIndex, silent));
+    }
+
+    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+    {
+        return Dispatch<IWheelMoved>(cs, ctx, m => m.AfterWheelAdvance(ctx, player, ghostflame, ghostflameIndex, silent));
+    }
 }

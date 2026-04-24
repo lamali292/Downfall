@@ -29,8 +29,8 @@ public class GhostLash : HexaghostCardModel
         await AfterlifeEffect(ctx, cardPlay);
     }
 
-    protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay = null)
+    protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

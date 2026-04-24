@@ -24,17 +24,6 @@ public partial class NFire : Node2D
         _orange = GetNode<Node2D>("%fire_orange");
     }
 
-    public void SetColor(FireColor color)
-    {
-        _currentColor = color;
-        if (_red != null) _red.Visible = color == FireColor.Red;
-        if (_green != null) _green.Visible = color == FireColor.Green;
-        if (_blue != null) _blue.Visible = color == FireColor.Blue;
-        if (_yellow != null) _yellow.Visible = color == FireColor.Yellow;
-        if (_pink != null) _pink.Visible = color == FireColor.Pink;
-        if (_orange != null) _orange.Visible = color == FireColor.Orange;
-    }
-
     private Node2D? GetColorNode(FireColor color) => color switch
     {
         FireColor.Red => _red,
@@ -53,23 +42,26 @@ public partial class NFire : Node2D
 
     public FireSize CurrentSize { get; private set; } = FireSize.Small;
 
-    public void SetSize(FireSize size, bool instant = false)
+    public void SetState(FireColor color, FireSize size, bool instant = false)
     {
-        var target = size == FireSize.Large ? LargeScale : SmallScale;
+        _currentColor = color;
         CurrentSize = size;
 
-        var colorNode = GetColorNode(_currentColor);
-        if (colorNode == null || _green == null) return;
-        var isAlreadyGreen = _currentColor == FireColor.Green;
+        var target = size == FireSize.Large ? LargeScale : SmallScale;
+        var showNode = (size == FireSize.Large && color != FireColor.Green) ? _green : GetColorNode(color);
+        var hideNodes = Enum.GetValues<FireColor>()
+            .Select(GetColorNode)
+            .Where(n => n != null && n != showNode)
+            .ToList();
+
+        if (showNode == null) return;
 
         if (instant)
         {
             Scale = new Vector2(target, target);
-            if (isAlreadyGreen) return;
-            _green.Visible = size == FireSize.Large;
-            _green.Modulate = new Color(1, 1, 1);
-            colorNode.Visible = size == FireSize.Small;
-            colorNode.Modulate = new Color(1, 1, 1);
+            showNode.Visible = true;
+            showNode.Modulate = new Color(1, 1, 1);
+            foreach (var n in hideNodes) { n!.Visible = false; n.Modulate = new Color(1, 1, 1, 1); }
         }
         else
         {
@@ -78,17 +70,15 @@ public partial class NFire : Node2D
                 .SetTrans(Tween.TransitionType.Sine)
                 .SetEase(Tween.EaseType.Out);
 
-            if (isAlreadyGreen) return;
-            var showNode = size == FireSize.Large ? _green : colorNode;
-            var hideNode = size == FireSize.Large ? colorNode : _green;
-
-            showNode.Modulate = new Color(1, 1, 1, 0);
+            showNode.Modulate = new Color(1, 1, 1, showNode.Visible ? 1 : 0);
             showNode.Visible = true;
-            hideNode.Visible = true;
-
             tween.TweenProperty(showNode, "modulate:a", 1f, 0.3f);
-            tween.TweenProperty(hideNode, "modulate:a", 0f, 0.3f);
-            tween.Chain().TweenCallback(Callable.From(() => hideNode.Visible = false));
+
+            foreach (var n in hideNodes.Where(n => n!.Visible))
+            {
+                tween.TweenProperty(n, "modulate:a", 0f, 0.3f);
+                tween.Chain().TweenCallback(Callable.From(() => n!.Visible = false));
+            }
         }
     }
 

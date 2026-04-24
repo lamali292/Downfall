@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Common;
+namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class Hexaguard : HexaghostCardModel
 {
-    public Hexaguard() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Hexaguard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
