@@ -31,8 +31,8 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         foreach (var combatStateEnemy in CombatState.Enemies)
-            await CommonActions.Apply<WeakPower>(combatStateEnemy, this);
+            await CommonActions.Apply<WeakPower>(ctx,combatStateEnemy, this);
     }
 }

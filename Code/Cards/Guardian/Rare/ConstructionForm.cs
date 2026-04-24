@@ -21,7 +21,7 @@ public class ConstructionForm : GuardianCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<BufferPower>(this);
-        await CommonActions.ApplySelf<ConstructionFormPower>(this);
+        await CommonActions.ApplySelf<BufferPower>(ctx, this);
+        await CommonActions.ApplySelf<ConstructionFormPower>(ctx, this);
     }
 }

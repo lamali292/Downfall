@@ -19,7 +19,7 @@ public class DownfallCardCmd
     public static async Task Insert(CardModel card, Player player)
     {
         var copy = player.Creature.CombatState!.CreateCard(card, player);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, true, CardPilePosition.Random);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, player, CardPilePosition.Random);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result);
     }
@@ -30,7 +30,7 @@ public class DownfallCardCmd
             .Select(card => player.Creature.CombatState!.CreateCard(card, player))
             .ToList();
 
-        var results = await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, true, CardPilePosition.Random);
+        var results = await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, player, CardPilePosition.Random);
         CardCmd.PreviewCardPileAdd(results);
     }
 
@@ -44,7 +44,7 @@ public class DownfallCardCmd
     {
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         if (upgraded) card.UpgradeInternal();
-        var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, true, position);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, player, position);
         if (!result.success || skipAnimation || pileType == PileType.Hand) return result.cardAdded;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
         return result.cardAdded;
@@ -69,7 +69,7 @@ public class DownfallCardCmd
             cardInstances.Add(card);
         }
 
-        var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, true, position);
+        var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, player, position);
         if (skipAnimation || pileType == PileType.Hand) return result.Select(e => e.cardAdded);
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
         return result.Select(e => e.cardAdded);

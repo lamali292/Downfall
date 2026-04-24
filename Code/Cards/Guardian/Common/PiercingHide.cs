@@ -23,7 +23,7 @@ public class PiercingHide : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryThornsPower>(this);
-        await GuardianCmd.Brace(this);
+        await CommonActions.ApplySelf<TemporaryThornsPower>(ctx, this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

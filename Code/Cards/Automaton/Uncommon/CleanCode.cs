@@ -14,14 +14,14 @@ public class CleanCode : AutomatonCardModel
 {
     public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(typeof(RemoveErrorsPower));
+        WithPower<RemoveErrorsPower>(3);
         WithTip(DownfallTip.Encode);
         WithTip(DownfallTip.Compile);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<RemoveErrorsPower>(Owner.Creature, 3, Owner.Creature, this);
+        await CommonActions.ApplySelf<RemoveErrorsPower>(ctx, this);
     }
 
     protected override void OnUpgrade()

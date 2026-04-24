@@ -28,7 +28,7 @@ public class RippedDoll : AwakenedRelicModel
 
     */
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 2)
             return;

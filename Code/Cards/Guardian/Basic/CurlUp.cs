@@ -43,6 +43,6 @@ public class CurlUp : GuardianCardModel
             await GuardianCmd.PutIntoStasis(card, ctx, this);
         }
 
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

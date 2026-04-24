@@ -42,7 +42,7 @@ public class FindAndReplace : AutomatonCardModel
 
         // Insert Dazed at exact index
         var dazed = Owner.Creature.CombatState!.CreateCard<Dazed>(Owner);
-        var dazedResult = await CardPileCmd.AddGeneratedCardToCombat(dazed, sourcePile.Type, false,
+        var dazedResult = await CardPileCmd.AddGeneratedCardToCombat(dazed, sourcePile.Type, Owner,
             index == 0 ? CardPilePosition.Top : CardPilePosition.Bottom);
         // Move to hand
         var result = await CardPileCmd.Add(selected, PileType.Hand);

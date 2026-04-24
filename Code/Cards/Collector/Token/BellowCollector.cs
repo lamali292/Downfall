@@ -35,6 +35,6 @@ public class BellowCollector : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         var unusedBlock = Calc(this, cardPlay.Target);
-        await CommonActions.Apply<CollectorDoomPower>(cardPlay.Target, this, unusedBlock);
+        await CommonActions.Apply<CollectorDoomPower>(ctx,cardPlay.Target, this, unusedBlock);
     }
 }

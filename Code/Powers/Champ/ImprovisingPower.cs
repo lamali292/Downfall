@@ -12,6 +12,6 @@ public class ImprovisingPower : ChampPowerModel, IOnChampStanceChange
         ChampStanceModel newStance)
     {
         if (player.Creature != Owner || newStance is ChampNoStance) return;
-        for (var i = 0; i < Amount; i++) await newStance.SkillBonus();
+        for (var i = 0; i < Amount; i++) await newStance.SkillBonus(ctx);
     }
 }

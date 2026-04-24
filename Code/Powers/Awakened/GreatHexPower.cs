@@ -8,9 +8,9 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class GreatHexPower() : AwakenedPowerModel(PowerType.Debuff)
 {
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         if (Owner.Side != side) return;
-        await PowerCmd.Apply<ManaburnPower>(Owner, Amount, Applier, null);
+        await PowerCmd.Apply<ManaburnPower>(ctx, Owner, Amount, Applier, null);
     }
 }

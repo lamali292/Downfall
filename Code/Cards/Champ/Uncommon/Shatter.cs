@@ -26,7 +26,7 @@ public class Shatter : ChampCardModel
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
         if ((!Owner.ShouldDefensiveComboTrigger() && !Owner.ShouldBerserkerComboTrigger()) ||
             cardPlay.Target == null) return;
-        await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
-        await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
+        await CommonActions.Apply<VulnerablePower>(ctx,cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx,cardPlay.Target, this);
     }
 }

@@ -17,7 +17,7 @@ public class OnyxGem : GemModel
         foreach (var creaturePower in cardPlay.Card.Owner.Creature.Powers.Where(x => x.Type == PowerType.Debuff))
         {
             var owner = cardPlay.Card.Owner;
-            await PowerCmd.ModifyAmount(creaturePower, -1, owner.Creature, null);
+            await PowerCmd.ModifyAmount(ctx, creaturePower, -1, owner.Creature, null);
         }
     }
 }

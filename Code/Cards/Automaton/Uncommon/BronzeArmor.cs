@@ -39,8 +39,6 @@ public class BronzeArmor : AutomatonCardModel, IEncodable,
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<ArtifactPower>(Owner.Creature, DynamicVars.Power<ArtifactPower>().BaseValue,
-            Owner.Creature,
-            this);
+        await CommonActions.ApplySelf<ArtifactPower>(ctx, this);
     }
 }

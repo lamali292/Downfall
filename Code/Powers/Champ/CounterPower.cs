@@ -25,7 +25,7 @@ public class CounterPower : ChampPowerModel
         return new CardHoverTip(card);
     }
 
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
+    public override async Task AfterDamageReceived(PlayerChoiceContext ctx, Creature target,
         DamageResult damageResult, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
@@ -40,7 +40,7 @@ public class CounterPower : ChampPowerModel
             cards.Add(card);
         }
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
-        await PowerCmd.ModifyAmount(this, -Amount, Owner, null);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
+        await PowerCmd.ModifyAmount(ctx, this, -Amount, Owner, null);
     }
 }

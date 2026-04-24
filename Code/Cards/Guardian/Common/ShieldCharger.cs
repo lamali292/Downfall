@@ -23,7 +23,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
 
     public async Task OnTick(PlayerChoiceContext ctx)
     {
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
         await CommonActions.CardBlock(this, null);
     }
 

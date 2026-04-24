@@ -27,8 +27,8 @@ public class SoulLitLamp : CollectorRelicModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player != Owner) return;
         await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);

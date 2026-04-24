@@ -19,7 +19,7 @@ public class IronFortress : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DexterityPower>(this);
-        await CommonActions.ApplySelf<MetallicizePower>(this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
+        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
     }
 }

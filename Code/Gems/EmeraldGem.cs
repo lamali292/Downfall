@@ -18,6 +18,6 @@ public class EmeraldGem : GemModel
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner.Creature;
-        await PowerCmd.Apply<TemporaryDexterityUpPower>(owner, 2, owner, null);
+        await PowerCmd.Apply<TemporaryDexterityUpPower>(ctx, owner, 2, owner, null);
     }
 }

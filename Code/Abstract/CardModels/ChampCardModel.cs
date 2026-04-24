@@ -21,6 +21,6 @@ public abstract class ChampCardModel(
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        if (Keywords.Contains(DownfallKeywords.TriggerSkillBonus)) await Owner.ChampStance().SkillBonus();
+        if (Keywords.Contains(DownfallKeywords.TriggerSkillBonus)) await Owner.ChampStance().SkillBonus(ctx);
     }
 }

@@ -10,7 +10,7 @@ namespace Downfall.Code.Powers.Collector;
 
 public class DarkLordFormPower : CollectorPowerModel
 {
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         for (var i = 0; i < Amount; i++)

@@ -3,6 +3,7 @@ using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -21,11 +22,11 @@ public class Ceremony : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
-
+    
     // Fervent Worship stuff
-    public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (card != this) return Task.CompletedTask;
         var a = Owner.Creature.GetPowerAmount<FerventWorshipPower>();
@@ -34,9 +35,8 @@ public class Ceremony : AwakenedCardModel
         BaseReplayCount += a;
         return Task.CompletedTask;
     }
-
-
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+    
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (power is not FerventWorshipPower || power.Owner != Owner.Creature) return Task.CompletedTask;

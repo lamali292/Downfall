@@ -21,7 +21,7 @@ public class Billow : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var power = await CommonActions.ApplySelf<CopyNextTurnPower>(this, 1);
+        var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this, 1);
         if (power == null) return;
         var card = CombatState!.CreateCard(ModelDb.Card<BellowCollector>(), Owner);
         power.Card = card;

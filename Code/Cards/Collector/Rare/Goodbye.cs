@@ -23,6 +23,6 @@ public class Goodbye : CollectorCardModel
         var powerAmount = cardPlay.Target.GetPowerAmount<CollectorDoomPower>();
         if (powerAmount <= 0)
             return;
-        await PowerCmd.Apply<CollectorDoomPower>(cardPlay.Target, powerAmount, Owner.Creature, this);
+        await PowerCmd.Apply<CollectorDoomPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
     }
 }

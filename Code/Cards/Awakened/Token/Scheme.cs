@@ -17,6 +17,6 @@ public class Scheme : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SchemePower>(this);
+        await CommonActions.ApplySelf<SchemePower>(ctx, this);
     }
 }

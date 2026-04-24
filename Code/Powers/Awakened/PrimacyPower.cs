@@ -26,7 +26,7 @@ public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
         return $"{Math.Max(Amount - StrengthGainsThisTurn, 0)}";
     }
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (power is not StrengthPower || Owner.Player == null || power.Owner != Owner || amount <= 0 ||
@@ -37,10 +37,6 @@ public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
 
         if (StrengthGainsThisTurn > Amount) return;
         Flash();
-        var ctx = new HookPlayerChoiceContext(
-            Owner.Player,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
         await CardPileCmd.Draw(ctx, Owner.Player);
     }
 

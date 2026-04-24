@@ -19,6 +19,6 @@ public class GarnetGem : GemModel
     {
         var owner = cardPlay.Card.Owner;
         if (owner.Creature.CombatState == null) return;
-        await PowerCmd.Apply<VulnerablePower>(owner.Creature.CombatState.Enemies, 1, owner.Creature, null);
+        await PowerCmd.Apply<VulnerablePower>(ctx, owner.Creature.CombatState.Enemies, 1, owner.Creature, null);
     }
 }

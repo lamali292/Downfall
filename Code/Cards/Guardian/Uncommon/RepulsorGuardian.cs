@@ -16,11 +16,12 @@ public class RepulsorGuardian : GuardianCardModel
     {
         WithTip(DownfallTip.Status);
         WithTip(CardKeyword.Exhaust);
+        WithPower<ExhaustStatusesPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ExhaustStatusesPower>(Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.ApplySelf<ExhaustStatusesPower>(ctx, this);
     }
 
     protected override void OnUpgrade()

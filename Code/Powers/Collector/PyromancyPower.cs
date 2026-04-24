@@ -8,7 +8,7 @@ namespace Downfall.Code.Powers.Collector;
 
 public class PyromancyPower : CollectorPowerModel
 {
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return Task.CompletedTask;
         CollectorEnergy.Gain(player, Amount);

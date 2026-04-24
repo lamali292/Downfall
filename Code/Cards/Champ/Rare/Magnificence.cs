@@ -17,6 +17,6 @@ public class Magnificence : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<MagnificencePower>(this);
+        await CommonActions.ApplySelf<MagnificencePower>(ctx, this);
     }
 }

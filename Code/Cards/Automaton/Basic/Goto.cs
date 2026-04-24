@@ -29,6 +29,7 @@ public class Goto : AutomatonCardModel, ICompilable, IEncodable
     {
         if (!forGameplay) return;
         await PowerCmd.Apply<DrawCardsNextTurnPower>(
+            ctx,
             Owner.Creature,
             DynamicVars["Compile"].BaseValue,
             Owner.Creature,

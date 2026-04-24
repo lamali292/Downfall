@@ -20,7 +20,6 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     public Blockchain() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<BlurPower>(1);
-        WithVar("BlurCompilePower", 1);
         WithTip(DownfallTip.Encode);
         WithTip(new TooltipSource(card =>
             card.IsUpgraded ? DownfallTip.Compile.ToHoverTip() : null!));
@@ -32,13 +31,12 @@ public class Blockchain : AutomatonCardModel, IEncodable,
         bool forGameplay)
     {
         if (IsUpgraded)
-            await PowerCmd.Apply<BlurPower>(Owner.Creature, DynamicVars["BlurCompilePower"].BaseValue, Owner.Creature,
-                this);
+            await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
 
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<BlurPower>(Owner.Creature, DynamicVars.Power<BlurPower>().BaseValue, Owner.Creature, this);
+        await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
 }

@@ -20,7 +20,7 @@ public class Parry : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<CounterPower>(this);
-        await CommonActions.ApplySelf<ParryingPower>(this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
+        await CommonActions.ApplySelf<ParryingPower>(ctx, this);
     }
 }

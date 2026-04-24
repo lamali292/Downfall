@@ -22,7 +22,7 @@ public class EclipseEmbrace : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<EclipseEmbracePower>(this);
+        await CommonActions.ApplySelf<EclipseEmbracePower>(ctx, this);
     }
 
 

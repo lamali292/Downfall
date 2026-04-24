@@ -31,10 +31,7 @@ public class Mutator : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
-            Owner.Creature,
-            this);
-
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         var statuses = PileType.Hand
             .GetPile(Owner)
             .Cards

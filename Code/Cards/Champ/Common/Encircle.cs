@@ -20,6 +20,6 @@ public class Encircle : ChampCardModel
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var a = attack.Results.Count();
-        await CommonActions.ApplySelf<GloryPower>(this, a);
+        await CommonActions.ApplySelf<GloryPower>(ctx, this, a);
     }
 }

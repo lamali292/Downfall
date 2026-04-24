@@ -14,11 +14,12 @@ public class SentientForm : AutomatonCardModel
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithKeywords(CardKeyword.Ethereal);
+        WithPower<SentientFormPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SentientFormPower>(Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
     }
 
     protected override void OnUpgrade()

@@ -26,7 +26,7 @@ public class HeatMetal : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.Apply<SoulBurnPower>(this, cardPlay);
-        await MyCommonActions.Apply<VulnerablePower>(this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

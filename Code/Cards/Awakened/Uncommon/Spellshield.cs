@@ -19,6 +19,6 @@ public class Spellshield : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SpellshieldPower>(this);
+        await CommonActions.ApplySelf<SpellshieldPower>(ctx, this);
     }
 }

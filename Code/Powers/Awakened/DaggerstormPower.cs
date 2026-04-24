@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -10,7 +11,7 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class DaggerstormPower : AwakenedPowerModel
 {
-    public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (card.Owner.Creature != Owner || LocalContext.NetId == null) return;
         var ctx = new HookPlayerChoiceContext(

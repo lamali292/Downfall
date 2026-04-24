@@ -18,6 +18,6 @@ public class TimeSifter : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<TimeSifterPower>(this);
+        await CommonActions.ApplySelf<TimeSifterPower>(ctx, this);
     }
 }

@@ -24,7 +24,7 @@ public class Empower : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
-        var a = await CommonActions.ApplySelf<EmpowerPower>(this, amount);
+        var a = await CommonActions.ApplySelf<EmpowerPower>(ctx, this, amount);
         if (IsUpgraded && a is { } empowerPower) empowerPower.SetTurns(DynamicVars["Turns"].BaseValue);
     }
 }

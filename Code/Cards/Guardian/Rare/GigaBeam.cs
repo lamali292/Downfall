@@ -34,7 +34,7 @@ public class GigaBeam : GuardianCardModel
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(BeforeDamageAction)
             .Execute(ctx);
-        await CommonActions.ApplySelf<StunnedPower>(this);
+        await CommonActions.ApplySelf<StunnedPower>(ctx, this);
 
     }
     

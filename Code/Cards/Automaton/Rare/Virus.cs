@@ -45,6 +45,6 @@ public class Virus : AutomatonCardModel
             return beam;
         }).ToList();
 
-        await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, Owner);
     }
 }

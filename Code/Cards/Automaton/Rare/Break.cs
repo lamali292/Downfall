@@ -44,7 +44,7 @@ public class Break : AutomatonCardModel, IEncodable,
             combatState.CreateCard<Burn>(Owner),
             combatState.CreateCard<Void>(Owner)
         ];
-        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, Owner);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

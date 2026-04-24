@@ -3,6 +3,7 @@ using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Powers.Awakened;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -26,7 +27,7 @@ public class PlumeJab : AwakenedCardModel
     }
 
     // Razor Sharp stuff. 
-    public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (card != this) return Task.CompletedTask;
         var a = Owner.Creature.GetPowerAmount<RazorSharpPower>();
@@ -36,7 +37,7 @@ public class PlumeJab : AwakenedCardModel
     }
 
 
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (power is RazorSharpPower && power.Owner == Owner.Creature) DynamicVars.Repeat.UpgradeValueBy(amount);

@@ -25,6 +25,6 @@ public class StashAway : CollectorCardModel
         var x = ResolveEnergyXValue();
         for (var i = 0; i < x; i++)
             await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(this, x);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this, x);
     }
 }

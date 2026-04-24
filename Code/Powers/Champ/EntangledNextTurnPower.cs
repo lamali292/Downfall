@@ -13,10 +13,10 @@ public class EntangledNextTurnPower() : ChampPowerModel(PowerType.Debuff, PowerS
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<EntangledPower>()];
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
-        await PowerCmd.Apply<EntangledPower>(Owner, Amount, Applier, null);
+        await PowerCmd.Apply<EntangledPower>(ctx, Owner, Amount, Applier, null);
     }
 }

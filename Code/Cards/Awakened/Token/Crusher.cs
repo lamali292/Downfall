@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -21,7 +22,7 @@ public class Crusher : AwakenedCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (card.Owner != Owner) return Task.CompletedTask;
         EnergyCost.AddUntilPlayed(-1);

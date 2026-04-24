@@ -50,6 +50,6 @@ public class TripleStrike : ChampCardModel
             cardInstances.Add(card);
         }
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, PileType.Hand, Owner);
     }
 }

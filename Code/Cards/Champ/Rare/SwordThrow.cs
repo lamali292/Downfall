@@ -27,6 +27,6 @@ public class SwordThrow : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.Repeat.IntValue).Execute(ctx);
         if (Owner.ShouldBerserkerComboTrigger()) return;
-        await CommonActions.ApplySelf<EntangledNextTurnPower>(this);
+        await CommonActions.ApplySelf<EntangledNextTurnPower>(ctx, this);
     }
 }

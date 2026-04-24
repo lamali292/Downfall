@@ -24,7 +24,7 @@ public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
         return Task.CompletedTask;
     }
 
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
         GuardianCmd.AddMaxStasisSlots(player);

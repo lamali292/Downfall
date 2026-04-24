@@ -20,6 +20,6 @@ public class Bonfire : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(this);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
 }

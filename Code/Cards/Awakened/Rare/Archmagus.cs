@@ -16,7 +16,7 @@ public class Archmagus : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ArchmagusPower>(this, 1);
+        await CommonActions.ApplySelf<ArchmagusPower>(ctx, this, 1);
     }
 
     protected override void OnUpgrade()

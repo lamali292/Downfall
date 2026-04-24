@@ -24,8 +24,8 @@ public class DarkLordForm : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
-            await CommonActions.ApplySelf<DarkLordFormPlusPower>(this, 1);
+            await CommonActions.ApplySelf<DarkLordFormPlusPower>(ctx, this, 1);
         else
-            await CommonActions.ApplySelf<DarkLordFormPower>(this, 1);
+            await CommonActions.ApplySelf<DarkLordFormPower>(ctx, this, 1);
     }
 }

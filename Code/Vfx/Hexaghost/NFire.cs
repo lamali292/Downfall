@@ -5,12 +5,12 @@ namespace Downfall.Code.Vfx.Hexaghost;
 [GlobalClass]
 public partial class NFire : Node2D
 {
-    private Node2D _red;
-    private Node2D _green;
-    private Node2D _blue;
-    private Node2D _yellow;
-    private Node2D _pink;
-    private Node2D _orange;
+    private Node2D? _red;
+    private Node2D? _green;
+    private Node2D? _blue;
+    private Node2D? _yellow;
+    private Node2D? _pink;
+    private Node2D? _orange;
 
     private FireColor _currentColor = FireColor.Red;
 
@@ -27,15 +27,15 @@ public partial class NFire : Node2D
     public void SetColor(FireColor color)
     {
         _currentColor = color;
-        _red.Visible = color == FireColor.Red;
-        _green.Visible = color == FireColor.Green;
-        _blue.Visible = color == FireColor.Blue;
-        _yellow.Visible = color == FireColor.Yellow;
-        _pink.Visible = color == FireColor.Pink;
-        _orange.Visible = color == FireColor.Orange;
+        if (_red != null) _red.Visible = color == FireColor.Red;
+        if (_green != null) _green.Visible = color == FireColor.Green;
+        if (_blue != null) _blue.Visible = color == FireColor.Blue;
+        if (_yellow != null) _yellow.Visible = color == FireColor.Yellow;
+        if (_pink != null) _pink.Visible = color == FireColor.Pink;
+        if (_orange != null) _orange.Visible = color == FireColor.Orange;
     }
 
-    private Node2D GetColorNode(FireColor color) => color switch
+    private Node2D? GetColorNode(FireColor color) => color switch
     {
         FireColor.Red => _red,
         FireColor.Green => _green,
@@ -59,6 +59,7 @@ public partial class NFire : Node2D
         CurrentSize = size;
 
         var colorNode = GetColorNode(_currentColor);
+        if (colorNode == null || _green == null) return;
         var isAlreadyGreen = _currentColor == FireColor.Green;
 
         if (instant)
@@ -72,7 +73,7 @@ public partial class NFire : Node2D
         }
         else
         {
-            var tween = CreateTween().SetParallel(true);
+            var tween = CreateTween().SetParallel();
             tween.TweenProperty(this, "scale", new Vector2(target, target), 0.3f)
                 .SetTrans(Tween.TransitionType.Sine)
                 .SetEase(Tween.EaseType.Out);

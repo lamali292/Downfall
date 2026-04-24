@@ -21,11 +21,11 @@ public class ForLoop : AutomatonCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         if (IsUpgraded)
             x += 1;
-        await PowerCmd.Apply<MergePower>(Owner.Creature, x, Owner.Creature, this);
+        await PowerCmd.Apply<MergePower>(ctx, Owner.Creature, x, Owner.Creature, this);
     }
 }

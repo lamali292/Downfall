@@ -19,7 +19,7 @@ public class StanceDance : ChampCardModel
     {
         await ChampCmd.SelectStanceToEnter(ctx, Owner);
         var stance = Owner.ChampStance();
-        await stance.SkillBonus();
-        if (IsUpgraded) await stance.SkillBonus();
+        await stance.SkillBonus(ctx);
+        if (IsUpgraded) await stance.SkillBonus(ctx);
     }
 }

@@ -21,8 +21,8 @@ public class Siphon : AwakenedCardModel, IChantable
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this, 2);
-        await CommonActions.Apply<TemporaryStrengthDownPower>(cardPlay.Target, this, 2);
+        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this, 2);
+        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx,cardPlay.Target, this, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

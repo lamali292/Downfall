@@ -7,9 +7,9 @@ namespace Downfall.Code.Powers.Collector;
 
 public class ScorchedPower : CollectorPowerModel
 {
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != Owner.Side) return;
-        await PowerCmd.Apply<CollectorDoomPower>(Owner, Amount, Applier, null);
+        await PowerCmd.Apply<CollectorDoomPower>(ctx, Owner, Amount, Applier, null);
     }
 }

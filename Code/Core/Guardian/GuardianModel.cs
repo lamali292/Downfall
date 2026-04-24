@@ -32,10 +32,10 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
     // Hooks
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Character is not Character.Guardian || combatState.RoundNumber > 1) return;
-        await PowerCmd.Apply<ModeShiftPower>(player.Creature, 20, player.Creature, null, true);
+        await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
     }
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
@@ -45,7 +45,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         return Task.CompletedTask;
     }
 
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, CombatState combatState)
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         await StasisTickAll(player, ctx);
         GuardianDisplay.Refresh(player);
@@ -112,7 +112,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         }).CallDeferred();
     }
 
-    internal static async Task SetMode(Player player, GuardianModeModel newCanonical)
+    internal static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
     {
         var current = ActiveMode[player];
         if (current?.GetType() == newCanonical.GetType()) return;
@@ -121,6 +121,6 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
         TriggerModeAnimation(player);
-        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, player, current!, ActiveMode[player]!);
+        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!, ActiveMode[player]!);
     }
 }

@@ -22,6 +22,6 @@ public class RazorSharp : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);
-        await CommonActions.ApplySelf<RazorSharpPower>(this);
+        await CommonActions.ApplySelf<RazorSharpPower>(ctx, this);
     }
 }

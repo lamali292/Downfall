@@ -23,7 +23,7 @@ public class CollectorModel() : CustomSingletonModel(true, false)
     private readonly List<MonsterModel> _defeatedEnemies = [];
     public override bool ShouldReceiveCombatHooks => true;
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (DownfallHook.PreventCollectedDraw(combatState, player)) return;
         await CollectorCmd.DrawCollected(ctx, player);

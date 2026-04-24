@@ -43,6 +43,6 @@ public class Flash : CollectorCardModel
 
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, [trip, blind], Owner);
         if (chosen == null) return;
-        await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
     }
 }

@@ -17,6 +17,6 @@ public class Primacy : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PrimacyPower>(this);
+        await CommonActions.ApplySelf<PrimacyPower>(ctx, this);
     }
 }

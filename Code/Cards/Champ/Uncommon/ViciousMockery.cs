@@ -20,8 +20,8 @@ public class ViciousMockery : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CommonActions.ApplySelf<VigorPower>(this);
-        await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
-        await Owner.ChampStance().SkillBonus();
+        await CommonActions.ApplySelf<VigorPower>(ctx, this);
+        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
+        await Owner.ChampStance().SkillBonus(ctx);
     }
 }

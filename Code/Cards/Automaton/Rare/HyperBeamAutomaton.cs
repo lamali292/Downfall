@@ -48,7 +48,7 @@ public class HyperBeamAutomaton : AutomatonCardModel
             CombatState.CreateCard<Void>(Owner),
             CombatState.CreateCard<Void>(Owner)
         ];
-        var result = await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Draw, true, CardPilePosition.Top);
+        var result = await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Draw, Owner, CardPilePosition.Top);
         CardCmd.PreviewCardPileAdd(result, 0.2f, CardPreviewStyle.MessyLayout);
     }
 

@@ -24,12 +24,12 @@ public class ChampionsCrown : ChampRelicModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
         var card = combatState.CreateCard<Inspiration>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         Flash();
     }
 }

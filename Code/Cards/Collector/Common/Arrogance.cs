@@ -19,6 +19,6 @@ public class Arrogance : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<DoomedAttackPower>(this);
+        await CommonActions.ApplySelf<DoomedAttackPower>(ctx, this);
     }
 }

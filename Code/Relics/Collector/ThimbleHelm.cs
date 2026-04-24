@@ -22,11 +22,11 @@ public class ThimbleHelm : CollectorRelicModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player != Owner) return;
-        await CollectorCmd.SummonTorchhead(choiceContext, Owner, 3, this);
-        await PowerCmd.Apply<ThimbleHelmPower>(Owner.Creature, 1, Owner.Creature, null);
+        await CollectorCmd.SummonTorchhead(ctx, Owner, 3, this);
+        await PowerCmd.Apply<ThimbleHelmPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
     }
 }

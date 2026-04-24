@@ -52,7 +52,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
         _sourceCards = sourceCards;
     }
 
-    public IEnumerable<DynamicVarSet> getDynamicVars()
+    public IEnumerable<DynamicVarSet> GetDynamicVars()
     {
         return _sourceCards.Select(t => t.DynamicVars
         );
@@ -108,7 +108,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
     {
         if (Type == CardType.Power)
         {
-            var power = await PowerCmd.Apply<FullReleasePower>(
+            var power = await PowerCmd.Apply<FullReleasePower>(ctx,
                 Owner.Creature, 1, Owner.Creature, this);
             power?.SetSourceCards(_sourceCards);
         }

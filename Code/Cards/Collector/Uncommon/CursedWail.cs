@@ -24,10 +24,10 @@ public class CursedWail : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CommonActions.Apply<TemporaryStrengthDownPower>(CombatState.Enemies, this);
+        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx,CombatState.Enemies, this);
         ;
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
-        await PowerCmd.Apply<StrengthPower>(CombatState.Enemies.Where(e => e.IsAfflicted()), amount, Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.Enemies.Where(e => e.IsAfflicted()), amount, Owner.Creature,
             this);
     }
 }

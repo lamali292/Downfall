@@ -11,7 +11,7 @@ namespace Downfall.Code.Powers.Champ;
 
 public class StrikeOfGeniusPlusPower : ChampPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         var pool = ModelDb.CardPool<ChampCardPool>()
@@ -27,6 +27,6 @@ public class StrikeOfGeniusPlusPower : ChampPowerModel
             c.AddKeyword(CardKeyword.Exhaust);
         }
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
     }
 }

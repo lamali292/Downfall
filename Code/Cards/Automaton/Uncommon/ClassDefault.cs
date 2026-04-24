@@ -15,12 +15,12 @@ public class ClassDefault : AutomatonCardModel
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(DownfallTip.Encode);
-        WithTip(typeof(ClassDefaultPower));
+        WithPower<ClassDefaultPower>(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ClassDefaultPower>(Owner.Creature, 2, Owner.Creature, this);
+        await CommonActions.ApplySelf<ClassDefaultPower>(ctx, this);
     }
 
     protected override void OnUpgrade()

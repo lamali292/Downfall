@@ -2,6 +2,7 @@
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
+using Downfall.Code.Commands;
 using Downfall.Code.Interfaces;
 using Downfall.Code.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +23,6 @@ public class Invalidate : AutomatonCardModel, IEncodable
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this);
     }
 }

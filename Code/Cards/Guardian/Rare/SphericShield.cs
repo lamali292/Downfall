@@ -21,6 +21,6 @@ public class SphericShield : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.EnterDefensiveMode(Owner);
+        await GuardianCmd.EnterDefensiveMode(ctx, Owner);
     }
 }

@@ -23,8 +23,8 @@ public class AncestralGrounds : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         if (IsUpgraded)
-            await CommonActions.ApplySelf<AncestralGroundsUpgradedPower>(this, 2);
+            await CommonActions.ApplySelf<AncestralGroundsUpgradedPower>(ctx, this, 2);
         else
-            await CommonActions.ApplySelf<AncestralGroundsPower>(this, 2);
+            await CommonActions.ApplySelf<AncestralGroundsPower>(ctx, this, 2);
     }
 }

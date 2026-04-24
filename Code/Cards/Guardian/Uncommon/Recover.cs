@@ -23,7 +23,7 @@ public class Recover : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var cards = PileType.Discard.GetPile(Owner).Cards;
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);

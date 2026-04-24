@@ -20,11 +20,11 @@ public class Orbwalk : GuardianCardModel, ITickCard
 
     public async Task OnTick(PlayerChoiceContext ctx)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this, 1);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

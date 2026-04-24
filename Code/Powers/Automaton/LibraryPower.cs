@@ -10,7 +10,7 @@ namespace Downfall.Code.Powers.Automaton;
 
 public class LibraryPower : AutomatonPowerModel
 {
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var rng = Owner.CombatState!.RunState.Rng.CombatCardSelection;
@@ -26,6 +26,6 @@ public class LibraryPower : AutomatonPowerModel
                 return card;
             });
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
     }
 }

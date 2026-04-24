@@ -21,7 +21,7 @@ public class IgnorePainPower : ChampPowerModel
         return target != Owner ? amount : 0;
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Decrement(this);

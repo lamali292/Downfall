@@ -37,7 +37,7 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         return $"{DynamicVars["Turns"].BaseValue}";
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side)
             return;
@@ -52,7 +52,7 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         if (keepOne)
         {
-            await PowerCmd.SetAmount<SoulBurnPower>(Owner, 1, applier, null);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, 1-Amount, applier, null);
         }
         else
         {

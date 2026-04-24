@@ -18,6 +18,6 @@ public class FuturePlans : GuardianCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FuturePlansPower>(this);
+        await CommonActions.ApplySelf<FuturePlansPower>(ctx, this);
     }
 }

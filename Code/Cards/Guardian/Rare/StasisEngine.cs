@@ -20,7 +20,7 @@ public class StasisEngine : GuardianCardModel
    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StasisEnginePower>(this);
+        await CommonActions.ApplySelf<StasisEnginePower>(ctx, this);
     }
     
 }

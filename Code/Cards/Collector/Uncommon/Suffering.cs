@@ -17,6 +17,6 @@ public class Suffering : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SufferingPower>(this);
+        await CommonActions.ApplySelf<SufferingPower>(ctx, this);
     }
 }

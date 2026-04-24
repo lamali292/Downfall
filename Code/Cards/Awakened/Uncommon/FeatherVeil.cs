@@ -20,6 +20,6 @@ public class FeatherVeil : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<StrengthPower>(this, -DynamicVars.Strength.BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this, -DynamicVars.Strength.BaseValue);
     }
 }

@@ -66,7 +66,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
         SetNextSpell(rng);
     }
 
-    private void AddBaseSpells(Player owner, CombatState state)
+    private void AddBaseSpells(Player owner, ICombatState state)
     {
         Type[] baseTypes =
         [
@@ -78,7 +78,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
             CreateAndAddSpell(owner, state, type);
     }
 
-    private void CreateAndAddSpell(Player owner, CombatState state, Type type)
+    private void CreateAndAddSpell(Player owner, ICombatState state, Type type)
     {
         var id = ModelDb.GetId(type);
         var model = ModelDb.GetById<CardModel>(id);

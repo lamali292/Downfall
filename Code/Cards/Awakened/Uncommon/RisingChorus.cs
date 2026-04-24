@@ -19,7 +19,7 @@ public class RisingChorus : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<RisingChorusPower>(this, 1);
+        await CommonActions.ApplySelf<RisingChorusPower>(ctx, this, 1);
     }
 
 

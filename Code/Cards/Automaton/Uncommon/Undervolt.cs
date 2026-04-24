@@ -25,13 +25,13 @@ public class Undervolt : AutomatonCardModel
     {
         var combatState = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(combatState);
-        await PowerCmd.Apply<StrengthPower>(combatState.Enemies, -DynamicVars.Power<StrengthPower>().BaseValue,
+        await PowerCmd.Apply<StrengthPower>(ctx, combatState.Enemies, -DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
         List<CardModel> burns =
         [
             combatState.CreateCard<Burn>(Owner),
             combatState.CreateCard<Burn>(Owner)
         ];
-        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, Owner);
     }
 }

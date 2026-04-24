@@ -19,7 +19,7 @@ public class BerserkersShout : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<VigorPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(ctx, this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 }

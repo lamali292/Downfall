@@ -8,11 +8,11 @@ namespace Downfall.Code.Powers.Champ;
 
 public class GloryPower : ChampPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         if (Amount < 10) return;
-        await PowerCmd.Apply<UltimateStancePower>(Owner, 1, Owner, null);
-        await PowerCmd.ModifyAmount(this, -10, Owner, null);
+        await PowerCmd.Apply<UltimateStancePower>(ctx, Owner, 1, Owner, null);
+        await PowerCmd.ModifyAmount(ctx, this, -10, Owner, null);
     }
 }

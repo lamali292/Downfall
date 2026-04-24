@@ -21,7 +21,7 @@ public class Flashbang : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!await HexaghostCmd.IsIgnited(Owner)) return;
-        await MyCommonActions.Apply<TemporaryStrengthDownPower>(this, cardPlay);
+        if (!HexaghostCmd.IsIgnited(Owner)) return;
+        await MyCommonActions.Apply<TemporaryStrengthDownPower>(ctx, this, cardPlay);
     }
 }

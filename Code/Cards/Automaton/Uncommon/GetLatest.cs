@@ -32,7 +32,7 @@ public class GetLatest : AutomatonCardModel
         var card = Owner.Creature.CombatState!.CreateCard(random, Owner);
         card.EnergyCost.SetThisTurnOrUntilPlayed(0);
 
-        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result);
     }

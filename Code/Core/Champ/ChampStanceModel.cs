@@ -17,7 +17,7 @@ public abstract class ChampStanceModel : AbstractModel
     public int Charges { get; private set; }
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
-    protected CombatState CombatState => Owner.Creature.CombatState ??
+    protected ICombatState CombatState => Owner.Creature.CombatState ??
                                          throw new InvalidOperationException("Combat state not initialized");
 
     public ChampStanceModel ToMutable(Player player)
@@ -46,7 +46,7 @@ public abstract class ChampStanceModel : AbstractModel
     }
 
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (Owner != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Skill ||
             Owner.Creature.CombatState == null) return;
@@ -58,10 +58,11 @@ public abstract class ChampStanceModel : AbstractModel
         }
 
         ChampModel.RefreshDisplay(Owner);
-        await SkillBonus();
+        await SkillBonus(ctx);
     }
+    
 
-    public virtual Task SkillBonus()
+    public virtual Task SkillBonus(PlayerChoiceContext ctx)
     {
         return Task.CompletedTask;
     }

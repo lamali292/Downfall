@@ -26,7 +26,7 @@ public class BringItOn : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<CounterPower>(this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

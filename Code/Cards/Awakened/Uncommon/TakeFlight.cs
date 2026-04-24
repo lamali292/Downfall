@@ -21,7 +21,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<BlurPower>(this, 1);
+        await CommonActions.ApplySelf<BlurPower>(ctx, this, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

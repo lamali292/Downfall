@@ -20,8 +20,8 @@ public class RevengeProtocol : GuardianCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<RevengeProtocolPower>(this);
-        await CommonActions.ApplySelf<BracingPower>(this);
+        await CommonActions.ApplySelf<RevengeProtocolPower>(ctx, this);
+        await CommonActions.ApplySelf<BracingPower>(ctx, this);
     }
     
     

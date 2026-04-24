@@ -33,6 +33,6 @@ public class BrainDrain : CollectorCardModel
         var card = Owner.Creature.CombatState!.CreateCard(collectible, Owner);
         if (IsUpgraded)
             CardCmd.Upgrade(card);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }

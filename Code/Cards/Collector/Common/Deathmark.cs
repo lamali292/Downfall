@@ -21,6 +21,6 @@ public class Deathmark : CollectorCardModel
         if (cardPlay.Target == null) return;
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var damage = 2 * attack.Results.Sum(e => e.UnblockedDamage);
-        await PowerCmd.Apply<DeathmarkedPower>(cardPlay.Target, damage, Owner.Creature, this);
+        await PowerCmd.Apply<DeathmarkedPower>(ctx, cardPlay.Target, damage, Owner.Creature, this);
     }
 }

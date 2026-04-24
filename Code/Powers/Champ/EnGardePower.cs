@@ -11,12 +11,12 @@ namespace Downfall.Code.Powers.Champ;
 
 public class EnGardePower : ChampPowerModel
 {
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
+    public override async Task AfterDamageReceived(PlayerChoiceContext ctx, Creature target,
         DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || !result.WasBlockBroken) return;
-        await PowerCmd.Apply<BlockNextTurnPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<BlockNextTurnPower>(ctx, Owner, Amount, Owner, null);
     }
 
 

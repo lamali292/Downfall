@@ -17,6 +17,6 @@ public class SapphireGem : GemModel
     
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Brace(cardPlay.Card.Owner, 4);
+        await GuardianCmd.Brace(ctx, cardPlay.Card.Owner, 4);
     }
 }

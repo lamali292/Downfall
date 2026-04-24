@@ -32,7 +32,7 @@ public class CopyNextTurnPower : CollectorPowerModel
         return HoverTipFactory.Static(StaticHoverTip.None);
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner || Card == null) return;
         await CardPileCmd.Add(Card, PileType.Hand);

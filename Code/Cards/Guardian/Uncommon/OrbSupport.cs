@@ -23,6 +23,6 @@ public class OrbSupport : GuardianCardModel
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblocked = attack.Results.Sum(e => e.UnblockedDamage);
-        await GuardianCmd.Brace(Owner, unblocked);
+        await GuardianCmd.Brace(ctx, Owner, unblocked);
     }
 }

@@ -25,7 +25,6 @@ public class DelayedGuard : AutomatonCardModel, IEncodable
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<BlockNextTurnPower>(Owner.Creature, DynamicVars.Power<BlockNextTurnPower>().BaseValue,
-            Owner.Creature, this);
+        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this);
     }
 }

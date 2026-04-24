@@ -17,6 +17,6 @@ public class GutsAndGlory : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<GloryPower>(this);
+        await CommonActions.ApplySelf<GloryPower>(ctx, this);
     }
 }

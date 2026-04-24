@@ -48,7 +48,7 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
         }
     }
 
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (power is StrengthPower && power.Owner == Owner) InvokeDisplayAmountChanged();

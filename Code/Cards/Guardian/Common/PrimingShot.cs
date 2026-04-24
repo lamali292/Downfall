@@ -21,6 +21,6 @@ public class PrimingShot : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

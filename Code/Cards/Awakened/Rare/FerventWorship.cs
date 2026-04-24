@@ -22,7 +22,7 @@ public class FerventWorship : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FerventWorshipPower>(this, 1);
+        await CommonActions.ApplySelf<FerventWorshipPower>(ctx, this, 1);
     }
 
     protected override void OnUpgrade()

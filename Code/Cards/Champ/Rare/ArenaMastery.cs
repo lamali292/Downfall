@@ -18,7 +18,7 @@ public class ArenaMastery : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ArenaMasteryBerserkerPower>(this);
-        await CommonActions.ApplySelf<ArenaMasteryDefensivePower>(this);
+        await CommonActions.ApplySelf<ArenaMasteryBerserkerPower>(ctx, this);
+        await CommonActions.ApplySelf<ArenaMasteryDefensivePower>(ctx, this);
     }
 }

@@ -29,14 +29,14 @@ public static class GuardianCmd
     private static readonly LocString FullStasisText = new("combat_messages", "FULL_STASIS_SLOTS");
 
     // Mode
-    public static Task EnterDefensiveMode(Player player) => 
-        GuardianModel.SetMode(player, DownfallModelDb.GuardianMode<GuardianDefensiveMode>());
+    public static Task EnterDefensiveMode(PlayerChoiceContext ctx, Player player) => 
+        GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianDefensiveMode>());
     
-    public static Task LeaveDefensiveMode(Player player) => 
-        GuardianModel.SetMode(player, DownfallModelDb.GuardianMode<GuardianNormalMode>());
+    public static Task LeaveDefensiveMode(PlayerChoiceContext ctx, Player player) => 
+        GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianNormalMode>());
     
-    public static Task ChangeMode(Player player) =>
-        IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(player) : LeaveDefensiveMode(player);
+    public static Task ChangeMode(PlayerChoiceContext ctx, Player player) =>
+        IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(ctx, player) : LeaveDefensiveMode(ctx, player);
 
     public static GuardianModeModel GetMode(Player player) => 
         GuardianModel.ActiveMode[player] ?? DownfallModelDb.GuardianMode<GuardianNormalMode>();
@@ -128,7 +128,7 @@ public static class GuardianCmd
     }
 
     // Combat
-    public static async Task DebuffDown(Creature creature, int amount = 1)
+    public static async Task DebuffDown(PlayerChoiceContext ctx, Creature creature, int amount = 1)
     {
         foreach (var powerModel in creature.Powers
             .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
@@ -138,24 +138,24 @@ public static class GuardianCmd
             switch (powerModel.Amount)
             {
                 case > 0:
-                    await PowerCmd.ModifyAmount(powerModel, -Math.Min(amount, powerModel.Amount), creature, null);
+                    await PowerCmd.ModifyAmount(ctx, powerModel, -Math.Min(amount, powerModel.Amount), creature, null);
                     break;
                 case < 0:
-                    await PowerCmd.ModifyAmount(powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)), creature, null);
+                    await PowerCmd.ModifyAmount(ctx, powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)), creature, null);
                     break;
             }
         }
     }
 
-    public static async Task Brace(Player player, int amount)
+    public static async Task Brace(PlayerChoiceContext ctx, Player player, int amount)
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
         if (power == null) return;
-        if (await PowerCmd.ModifyAmount(power, -amount, player.Creature, null) > 0) return;
-        await power.Reset();
+        if (await PowerCmd.ModifyAmount(ctx, power, -amount, player.Creature, null) > 0) return;
+        await power.Reset(ctx);
     }
 
-    public static Task Brace(CardModel card) => Brace(card.Owner, card.DynamicVars.Brace().IntValue);
+    public static Task Brace(PlayerChoiceContext ctx, CardModel card) => Brace(ctx, card.Owner, card.DynamicVars.Brace().IntValue);
     
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)

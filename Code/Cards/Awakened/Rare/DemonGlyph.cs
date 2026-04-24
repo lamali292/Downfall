@@ -27,14 +27,14 @@ public class DemonGlyph : AwakenedCardModel
         if (AwakenedModel.IsAwakened(Owner))
         {
             var count = DynamicVars.Power<DemonGlyphPower>().BaseValue;
-            await CommonActions.ApplySelf<StrengthPower>(this, 1 + count);
-            await CommonActions.ApplySelf<DexterityPower>(this, 1 + count);
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1 + count);
+            await CommonActions.ApplySelf<DexterityPower>(ctx, this, 1 + count);
         }
         else
         {
-            await CommonActions.ApplySelf<StrengthPower>(this, 1);
-            await CommonActions.ApplySelf<DexterityPower>(this, 1);
-            await CommonActions.ApplySelf<DemonGlyphPower>(this);
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1);
+            await CommonActions.ApplySelf<DexterityPower>(ctx, this, 1);
+            await CommonActions.ApplySelf<DemonGlyphPower>(ctx, this);
         }
     }
 }

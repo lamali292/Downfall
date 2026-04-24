@@ -27,8 +27,8 @@ public class YouAreMine : CollectorCardModel
         var vfx = DoomCurseEffect.Create(cardPlay.Target);
         if (vfx != null)
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
-        await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
-        await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
-        await CommonActions.Apply<CollectorDoomPower>(cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this);
     }
 }

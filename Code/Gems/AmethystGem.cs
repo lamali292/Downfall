@@ -19,6 +19,6 @@ public class AmethystGem : GemModel
     {
         var owner = cardPlay.Card.Owner;
         if (owner.Creature.CombatState == null) return;
-        await PowerCmd.Apply<TemporaryStrengthDownPower>(owner.Creature.CombatState.Enemies, 2, owner.Creature, null);
+        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, owner.Creature.CombatState.Enemies, 2, owner.Creature, null);
     }
 }

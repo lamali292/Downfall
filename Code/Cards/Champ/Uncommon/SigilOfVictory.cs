@@ -21,6 +21,6 @@ public class SigilOfVictory : ChampCardModel
     {
         var a = ChampModel.GetStanceModel(Owner);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
-            await a.SkillBonus();
+            await a.SkillBonus(ctx);
     }
 }

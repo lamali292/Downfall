@@ -18,8 +18,8 @@ public class ResilientPlate : GuardianCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.DebuffDown(Owner.Creature, 2);
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.DebuffDown(ctx, Owner.Creature, 2);
+        await GuardianCmd.Brace(ctx, this);
     }
     
 }

@@ -19,6 +19,6 @@ public class EnGarde : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<EnGardePower>(this);
+        await CommonActions.ApplySelf<EnGardePower>(ctx, this);
     }
 }

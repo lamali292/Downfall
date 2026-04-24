@@ -18,6 +18,6 @@ public class StorageShield : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.DebuffDown(Owner.Creature);
+        await GuardianCmd.DebuffDown(ctx, Owner.Creature);
     }
 }

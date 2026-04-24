@@ -24,8 +24,8 @@ public class ItMattersNot : CollectorCardModel
         if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
         var a = CombatState.Enemies.Where(e => e.HasPower<WeakPower>());
-        await PowerCmd.Apply<WeakPower>(a, 1, Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(ctx, a, 1, Owner.Creature, this);
         var b = CombatState.Enemies.Where(e => e.HasPower<VulnerablePower>());
-        await PowerCmd.Apply<VulnerablePower>(b, 1, Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(ctx, b, 1, Owner.Creature, this);
     }
 }

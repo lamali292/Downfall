@@ -24,7 +24,6 @@ public class ItsAFeature : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ItsAFeaturePower>(Owner.Creature, DynamicVars.Power<ItsAFeaturePower>().BaseValue,
-            Owner.Creature, this);
+        await CommonActions.ApplySelf<ItsAFeaturePower>(ctx, this);
     }
 }

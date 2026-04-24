@@ -29,6 +29,6 @@ public class RollAttack : GuardianCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)) return;
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

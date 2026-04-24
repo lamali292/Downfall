@@ -9,7 +9,7 @@ namespace Downfall.Code.Powers.Automaton;
 
 public class InfiniteBeamsUpgradedPower : AutomatonPowerModel
 {
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var beams = Enumerable.Range(0, Amount)
@@ -21,6 +21,6 @@ public class InfiniteBeamsUpgradedPower : AutomatonPowerModel
             })
             .ToList();
 
-        await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, Owner.Player);
     }
 }

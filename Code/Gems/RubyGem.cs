@@ -18,6 +18,6 @@ public class RubyGem : GemModel
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;
-        await PowerCmd.Apply<TemporaryStrengthUpPower>(owner.Creature, 2, owner.Creature, null);
+        await PowerCmd.Apply<TemporaryStrengthUpPower>(ctx, owner.Creature, 2, owner.Creature, null);
     }
 }

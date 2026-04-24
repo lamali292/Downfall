@@ -30,6 +30,6 @@ public class Soulforge : CollectorCardModel
             cards.Add(copy);
         }
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
     }
 }

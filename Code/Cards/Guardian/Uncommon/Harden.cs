@@ -17,6 +17,6 @@ public class Harden : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PlatedArmorPower>(this);
+        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
     }
 }

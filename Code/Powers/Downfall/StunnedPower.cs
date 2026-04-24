@@ -10,7 +10,7 @@ namespace Downfall.Code.Powers.Downfall;
 public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
  
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         /*
         if (player.Creature != Owner) return;

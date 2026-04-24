@@ -19,6 +19,6 @@ public class GearUp : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-       await GuardianCmd.Brace(this);
+       await GuardianCmd.Brace(ctx, this);
     }
 }

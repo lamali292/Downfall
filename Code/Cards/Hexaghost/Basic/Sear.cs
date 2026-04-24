@@ -26,6 +26,6 @@ public class Sear : HexaghostCardModel
 
     protected override  async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay = null)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

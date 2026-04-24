@@ -22,6 +22,6 @@ public class Lariat : ChampCardModel
     {
         var amount = ResolveEnergyXValue();
         for (var i = 0; i < amount; i++) await CommonActions.CardBlock(this, cardPlay);
-        for (var i = 0; i < amount; i++) await Owner.ChampStance().SkillBonus();
+        for (var i = 0; i < amount; i++) await Owner.ChampStance().SkillBonus(ctx);
     }
 }

@@ -23,6 +23,6 @@ public class DarkIncantation : AwakenedCardModel
     {
         var a = cardPlay.Card.Owner.GetRelic<Akabeko>();
         if (cardPlay.Target == null) return;
-        await CommonActions.Apply<RitualPower>(cardPlay.Target, this);
+        await CommonActions.Apply<RitualPower>(ctx,cardPlay.Target, this);
     }
 }

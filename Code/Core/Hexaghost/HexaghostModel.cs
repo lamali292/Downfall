@@ -40,14 +40,14 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
 
 
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.State?.Players ?? [])
         {
             if (player.Character is not Character.Hexaghost) continue;
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
-                await HexaghostCmd.Advance(player, choiceContext);
+                await HexaghostCmd.Advance(ctx, player);
         }
     }
     
@@ -62,11 +62,11 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         }
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var advance = cardPlay.Card.Keywords.Contains(DownfallKeywords.Advance);
-        if (advance) await HexaghostCmd.Advance(cardPlay.Card.Owner, context);
+        if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner);
         var retract = cardPlay.Card.Keywords.Contains(DownfallKeywords.Retract);
-        if (retract) await HexaghostCmd.Retract(cardPlay.Card.Owner, context);
+        if (retract) await HexaghostCmd.Retract(ctx, cardPlay.Card.Owner);
     }
 }

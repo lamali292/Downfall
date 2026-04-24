@@ -24,8 +24,8 @@ public class InflictAgony : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!cardPlay.Target.IsAfflicted())
         {
-            await CommonActions.Apply<WeakPower>(cardPlay.Target, this);
-            await CommonActions.Apply<VulnerablePower>(cardPlay.Target, this);
+            await CommonActions.Apply<WeakPower>(ctx,cardPlay.Target, this);
+            await CommonActions.Apply<VulnerablePower>(ctx,cardPlay.Target, this);
         }
     }
 }

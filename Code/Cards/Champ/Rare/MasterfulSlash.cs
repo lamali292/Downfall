@@ -20,6 +20,6 @@ public class MasterfulSlash : ChampCardModel
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblocked = attack.Results.Sum(r => r.UnblockedDamage);
-        await CommonActions.ApplySelf<VigorNextTurnPower>(this, unblocked);
+        await CommonActions.ApplySelf<VigorNextTurnPower>(ctx, this, unblocked);
     }
 }

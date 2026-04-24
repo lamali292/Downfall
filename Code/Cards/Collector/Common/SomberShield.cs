@@ -15,12 +15,13 @@ public class SomberShield : CollectorCardModel
     {
         WithPyre();
         WithBlock(6, 3);
+        WithPower<CopyNextTurnPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var a = await PowerCmd.Apply<CopyNextTurnPower>(Owner.Creature, 1, Owner.Creature, this);
+        var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
         if (a == null || PyredCard == null) return;
         a.Card = PyredCard.CreateClone();
     }

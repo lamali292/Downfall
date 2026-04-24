@@ -17,6 +17,6 @@ public class FeelMyPain : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FeelMyPainPower>(this);
+        await CommonActions.ApplySelf<FeelMyPainPower>(ctx, this);
     }
 }

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.Debug;
 
 namespace Downfall.Code.Patches;
 
+/*
 /// <summary>
 /// Improves dev console autocomplete to use <see cref="string.Contains(string, StringComparison)"/>
 /// instead of <see cref="string.StartsWith(string, StringComparison)"/> when no custom predicate is set,
@@ -78,4 +79,4 @@ public static class UpdateGhostTextPatch
 
         return codes;
     }
-}
+}*/

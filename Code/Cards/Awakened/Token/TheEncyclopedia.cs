@@ -33,6 +33,6 @@ public class TheEncyclopedia : AwakenedCardModel
             new CardSelectorPrefs(SelectionScreenPrompt, 2, 2))).ToList();
 
         foreach (var cardModel in card) cardModel.EnergyCost.UpgradeBy(-2);
-        await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, Owner);
     }
 }

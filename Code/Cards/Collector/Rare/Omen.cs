@@ -18,6 +18,6 @@ public class Omen : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<OmenPower>(this);
+        await CommonActions.ApplySelf<OmenPower>(ctx, this);
     }
 }

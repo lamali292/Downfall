@@ -24,6 +24,6 @@ public class ProtectingCall : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
-        await CommonActions.Apply<ProtectingCallPower>(torchhead, this);
+        await CommonActions.Apply<ProtectingCallPower>(ctx,torchhead, this);
     }
 }

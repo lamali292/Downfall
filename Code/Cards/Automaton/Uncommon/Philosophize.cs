@@ -29,13 +29,13 @@ public class Philosophize : AutomatonCardModel,
     {
         var state = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(state);
-        await PowerCmd.Apply<StrengthPower>(state.Enemies, DynamicVars["EnemyStrength"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(ctx, state.HittableEnemies, DynamicVars["EnemyStrength"].BaseValue, Owner.Creature,
             this);
     }
 
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

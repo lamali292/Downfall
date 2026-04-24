@@ -23,8 +23,8 @@ public class PrismaticTorch : CollectorRelicModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
         await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);

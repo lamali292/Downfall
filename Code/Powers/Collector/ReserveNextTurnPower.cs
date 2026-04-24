@@ -9,7 +9,7 @@ namespace Downfall.Code.Powers.Collector;
 
 public class ReserveNextTurnPower : CollectorPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         CollectorEnergy.Gain(player, Amount);
         await PowerCmd.Remove(this);

@@ -8,8 +8,8 @@ namespace Downfall.Code.Powers.Champ;
 
 public class MagnificencePower : ChampPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        await PowerCmd.Apply<GloryPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<GloryPower>(ctx, Owner, Amount, Owner, null);
     }
 }

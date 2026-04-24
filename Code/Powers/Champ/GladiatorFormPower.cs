@@ -26,9 +26,9 @@ public class GladiatorFormPower : ChampPowerModel
         var vigorFromVigor   = Amount * vigorSpent   / 3;
         var counterFromCounter = Amount * counterSpent / 3;
         if (vigorFromVigor > 0)
-            await PowerCmd.Apply<VigorPower>(Owner, vigorFromVigor, Owner, null);
+            await PowerCmd.Apply<VigorPower>(ctx,Owner, vigorFromVigor, Owner, null);
         if (counterFromCounter > 0)
-            await PowerCmd.Apply<CounterPower>(Owner, counterFromCounter, Owner, null);
+            await PowerCmd.Apply<CounterPower>(ctx,Owner, counterFromCounter, Owner, null);
         if (counterFromCounter > 0 || vigorFromVigor > 0)
             Flash();
     }

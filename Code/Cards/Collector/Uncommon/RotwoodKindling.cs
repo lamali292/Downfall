@@ -19,11 +19,11 @@ public class RotwoodKindling : CollectorCardModel
         WithPower<CollectorDoomPower>(4, 2);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this || CombatState == null) return;
-        await CommonActions.Apply<VulnerablePower>(CombatState.Enemies, this);
-        await CommonActions.Apply<CollectorDoomPower>(CombatState.Enemies, this);
+        await CommonActions.Apply<VulnerablePower>(ctx, CombatState.Enemies, this);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, CombatState.Enemies, this);
     }
 }

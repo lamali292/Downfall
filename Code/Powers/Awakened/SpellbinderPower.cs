@@ -11,7 +11,7 @@ public class SpellbinderPower : AwakenedPowerModel
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (player != Owner.Player) return;
         for (var i = 0; i < Amount; i++) await AwakenedCmd.Conjure(player, combatState);

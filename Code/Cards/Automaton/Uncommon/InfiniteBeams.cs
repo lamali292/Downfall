@@ -27,8 +27,8 @@ public class InfiniteBeams : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
-            await PowerCmd.Apply<InfiniteBeamsUpgradedPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<InfiniteBeamsUpgradedPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
         else
-            await PowerCmd.Apply<InfiniteBeamsPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<InfiniteBeamsPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
     }
 }

@@ -33,6 +33,6 @@ public class ShieldThrow : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
         if (Owner.ShouldDefensiveComboTrigger()) return;
-        await CommonActions.ApplySelf<NoBlockNextTurnPower>(this);
+        await CommonActions.ApplySelf<NoBlockNextTurnPower>(ctx, this);
     }
 }

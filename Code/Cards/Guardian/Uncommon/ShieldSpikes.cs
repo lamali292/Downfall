@@ -24,9 +24,9 @@ public class ShieldSpikes : GuardianCardModel
         await CommonActions.CardBlock(this, cardPlay);
         if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner))
         {
-            await CommonActions.ApplySelf<ThornsPower>(this);
+            await CommonActions.ApplySelf<ThornsPower>(ctx, this);
         }
-        await GuardianCmd.Brace(this);
+        await GuardianCmd.Brace(ctx, this);
         
     }
 }

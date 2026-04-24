@@ -15,10 +15,10 @@ public class ConstructionFormPower : GuardianPowerModel
         WithTip(typeof(StrengthPower));
     }
     
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         if (Owner.GetPowerAmount<BufferPower>() < Amount) return;
-        await PowerCmd.Apply<StrengthPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
     }
 }

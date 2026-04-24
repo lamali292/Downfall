@@ -1,12 +1,13 @@
 ﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Collector;
 
 public class CantTouchThisPower : CollectorPowerModel
 {
-    public override async Task AfterAttack(AttackCommand command)
+    public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (command.Attacker == null) return;
         /*
@@ -15,12 +16,12 @@ public class CantTouchThisPower : CollectorPowerModel
             if (commandResult.Receiver != Owner) continue;
             if (commandResult.WasFullyBlocked)
             {
-                await PowerCmd.Apply<CollectorDoomPower>(command.Attacker, Amount, Owner, null);
+                await PowerCmd.Apply<CollectorDoomPower>(ctx,command.Attacker, Amount, Owner, null);
             }
         }
         */
         var list = command.Results.Where(r => r.Receiver == Owner).ToList();
         if (list.Count != 0 && list.All(r => r.WasFullyBlocked))
-            await PowerCmd.Apply<CollectorDoomPower>(command.Attacker, Amount, Owner, null);
+            await PowerCmd.Apply<CollectorDoomPower>(ctx, command.Attacker, Amount, Owner, null);
     }
 }

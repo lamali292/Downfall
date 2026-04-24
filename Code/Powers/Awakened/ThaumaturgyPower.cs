@@ -14,7 +14,7 @@ public class ThaumaturgyPower : AwakenedPowerModel
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await DownfallCardCmd.GiveCard<Ceremony>(player, PileType.Hand, animationTime: 0.1f);

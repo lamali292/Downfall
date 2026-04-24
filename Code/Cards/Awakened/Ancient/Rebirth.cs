@@ -17,6 +17,6 @@ public class Rebirth : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<AwakeningPower>(this);
+        await CommonActions.ApplySelf<AwakeningPower>(ctx, this);
     }
 }

@@ -19,6 +19,6 @@ public class ChainLash : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.ApplySelf<ChainLashPower>(this);
+        await CommonActions.ApplySelf<ChainLashPower>(ctx, this);
     }
 }

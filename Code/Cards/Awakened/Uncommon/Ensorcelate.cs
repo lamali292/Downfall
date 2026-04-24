@@ -18,6 +18,6 @@ public class Ensorcelate : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
-        await CommonActions.ApplySelf<EnsorcelatePower>(this, 1);
+        await CommonActions.ApplySelf<EnsorcelatePower>(ctx, this, 1);
     }
 }

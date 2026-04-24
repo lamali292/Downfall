@@ -20,7 +20,7 @@ public class Finalize : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<CollectorDoomPower>(this, cardPlay);
-        await MyCommonActions.Apply<FinalizePower>(this, cardPlay);
+        await MyCommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<FinalizePower>(ctx, this, cardPlay);
     }
 }

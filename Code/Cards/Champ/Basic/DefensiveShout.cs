@@ -19,7 +19,7 @@ public class DefensiveShout : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<CounterPower>(this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
         await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
 }

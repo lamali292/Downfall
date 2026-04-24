@@ -17,6 +17,6 @@ public class Daggerstorm : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DaggerstormPower>(this);
+        await CommonActions.ApplySelf<DaggerstormPower>(ctx, this);
     }
 }

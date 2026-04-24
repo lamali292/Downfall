@@ -38,7 +38,7 @@ internal static class ClearBlockPatch
         if (combatState == null) return true;
         var entry = new UnusedBlockEntry(__instance.Block, __instance, combatState.RoundNumber, __instance.Side,
             CombatManager.Instance.History);
-        CombatManager.Instance.History.Add(entry);
+        CombatManager.Instance.History.Add(combatState, entry);
         return true;
     }
 }

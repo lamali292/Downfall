@@ -17,6 +17,6 @@ public class HoneBlade : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<HoneBladePower>(this);
+        await CommonActions.ApplySelf<HoneBladePower>(ctx, this);
     }
 }

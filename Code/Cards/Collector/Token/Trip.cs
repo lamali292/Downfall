@@ -20,6 +20,6 @@ public class Trip : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VulnerablePower>(this, cardPlay);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

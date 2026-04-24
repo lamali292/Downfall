@@ -96,13 +96,13 @@ public static class AutomatonCmd
         }
 
         await DownfallHook.OnCompile(ctx, combatState, snapshot, functionCard, cardPlay);
-        await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, creature);
         //if (result.success)
         //    CardCmd.PreviewCardPileAdd(result, 0.7f);
     }
 
     private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<AutomatonCardModel> snapshot,
-        CombatState combatState)
+        ICombatState combatState)
     {
         FunctionCard functionCard;
         if (snapshot.Any(c => c is FullRelease))

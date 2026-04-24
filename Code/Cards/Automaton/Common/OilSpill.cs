@@ -42,7 +42,6 @@ public class OilSpill : AutomatonCardModel, IEncodable,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, DynamicVars.Power<PoisonPower>().IntValue, Owner.Creature,
-            this);
+        await MyCommonActions.Apply<PoisonPower>(ctx, this);
     }
 }

@@ -25,7 +25,7 @@ public class BronzeGear : GuardianRelicModel
         return ModelDb.Relic<GuardianGear>();
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
         await DownfallCardCmd.GiveCard<GearUp>(player, PileType.Hand);

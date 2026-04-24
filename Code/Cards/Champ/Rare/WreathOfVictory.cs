@@ -19,7 +19,7 @@ public class WreathOfVictory : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<VigorPower>(this);
-        await CommonActions.ApplySelf<CounterPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(ctx, this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
     }
 }

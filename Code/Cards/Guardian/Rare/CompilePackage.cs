@@ -35,7 +35,7 @@ public class CompilePackage : GuardianCardModel
             .ToList();
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, a, Owner);
         if (card == null) return;
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }
 

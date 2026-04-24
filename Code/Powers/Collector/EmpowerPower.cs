@@ -29,12 +29,12 @@ public class EmpowerPower : CollectorPowerModel, IHasSecondAmount
         InvokeDisplayAmountChanged();
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         DynamicVars["Turns"].UpgradeValueBy(-1);
         InvokeDisplayAmountChanged();
-        await PowerCmd.Apply<StrengthPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
         if (DynamicVars["Turns"].BaseValue <= 0) await PowerCmd.Remove(this);
     }
 }

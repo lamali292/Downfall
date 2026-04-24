@@ -45,6 +45,6 @@ public class RealityRift : AwakenedCardModel
 
         if (card == null)
             return;
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }

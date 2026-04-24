@@ -17,10 +17,10 @@ public class Ember : CollectorCardModel
         WithPower<StrengthPower>(1, 1);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

@@ -21,11 +21,11 @@ public class SunbloomKindling : CollectorCardModel
         WithTip(typeof(Ember));
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
     }
 }

@@ -22,6 +22,6 @@ public class AphoticFount : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-        await CommonActions.ApplySelf<AphoticFountPower>(this);
+        await CommonActions.ApplySelf<AphoticFountPower>(ctx, this);
     }
 }

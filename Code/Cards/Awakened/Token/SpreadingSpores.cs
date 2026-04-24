@@ -21,9 +21,9 @@ public class SpreadingSpores : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ThornsPower>(this);
+        await CommonActions.ApplySelf<ThornsPower>(ctx, this);
         var card = CreateClone();
-        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, true, CardPilePosition.Random);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Owner, CardPilePosition.Random);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, 0.1f, CardPreviewStyle.MessyLayout);
     }

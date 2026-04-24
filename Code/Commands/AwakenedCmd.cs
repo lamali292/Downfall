@@ -49,7 +49,7 @@ public static class AwakenedCmd
 
     public static async Task<CardModel?> Conjure(
         Player player,
-        CombatState state)
+        ICombatState state)
     {
         if (!CanConjure(player)) return null;
         var spellbook = GetSpellbook(player);

@@ -19,7 +19,7 @@ public class FuelTheFire : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(this);
-        if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this, 1);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
+        if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, 1);
     }
 }

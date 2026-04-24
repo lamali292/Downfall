@@ -19,6 +19,6 @@ public class ClarionCall : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.ApplySelf<ClarionCallPower>(this, 1);
+        await CommonActions.ApplySelf<ClarionCallPower>(ctx, this, 1);
     }
 }

@@ -23,8 +23,8 @@ public class Intensify : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await AwakenedCmd.Conjure(Owner, CombatState);
-        await CommonActions.ApplySelf<IntensifyPower>(this);
-        await CommonActions.ApplySelf<BurnoutPower>(this);
+        await CommonActions.ApplySelf<IntensifyPower>(ctx, this);
+        await CommonActions.ApplySelf<BurnoutPower>(ctx, this);
     }
 
 

@@ -30,8 +30,8 @@ public class RopeADope : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<EnergyNextTurnPower>(this);
-        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

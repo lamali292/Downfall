@@ -18,6 +18,6 @@ public class Overload : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
-        await GuardianCmd.DebuffDown(Owner.Creature);
+        await GuardianCmd.DebuffDown(ctx, Owner.Creature);
     }
 }

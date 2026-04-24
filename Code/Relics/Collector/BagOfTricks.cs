@@ -15,11 +15,11 @@ public class BagOfTricks : CollectorRelicModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
-        await CollectorCmd.DrawCollected(choiceContext, player, 2);
+        await CollectorCmd.DrawCollected(ctx, player, 2);
         Flash();
     }
 }

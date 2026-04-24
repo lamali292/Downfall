@@ -22,7 +22,7 @@ public class MiniCurse : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<WeakPower>(this, cardPlay);
-        await MyCommonActions.Apply<VulnerablePower>(this, cardPlay);
+        await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

@@ -27,7 +27,7 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         return $"{DynamicVars["CurrentLimit"].BaseValue}";
     }
 
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
+    public override async Task AfterDamageReceived(PlayerChoiceContext ctx, Creature target,
         DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
@@ -38,17 +38,17 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         var m = Amount;
         //var m = await PowerCmd.ModifyAmount(this, -a, dealer, null);
         if (m > 0) return;
-        await Reset();
+        await Reset(ctx);
     }
 
 
-    public async Task Reset()
+    public async Task Reset(PlayerChoiceContext ctx)
     {
         if (Owner.Player == null) return;
         await CreatureCmd.GainBlock(Owner, DynamicVars.Block, null);
         var a = Owner.GetPowerAmount<DefensiveModePower>();
         var g = a == 0 && CombatState.CurrentSide == CombatSide.Enemy ? 2 : 1;
-        await PowerCmd.Apply<DefensiveModePower>(Owner, g, Owner, null);
+        await PowerCmd.Apply<DefensiveModePower>(ctx, Owner, g, Owner, null);
         DynamicVars["CurrentLimit"].BaseValue =
             Math.Min(DynamicVars["CurrentLimit"].BaseValue + DynamicVars["Increase"].BaseValue,
                 DynamicVars["MaxLimit"].BaseValue);

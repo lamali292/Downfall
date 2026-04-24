@@ -26,6 +26,6 @@ public class ThunderWave : AutomatonCardModel
             .TargetingAllOpponents(cardPlay.Card.CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<BufferPower>(this, DynamicVars.Power<BufferPower>().BaseValue);
+        await CommonActions.ApplySelf<BufferPower>(ctx, this, DynamicVars.Power<BufferPower>().BaseValue);
     }
 }

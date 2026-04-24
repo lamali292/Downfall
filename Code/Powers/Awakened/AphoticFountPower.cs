@@ -9,10 +9,10 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class AphoticFountPower : AwakenedPowerModel
 {
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player) return;
         if (cardPlay.Card is not Cryostasis) return;
-        await PowerCmd.Apply<PlatedArmorPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<PlatedArmorPower>(ctx, Owner, Amount, Owner, null);
     }
 }

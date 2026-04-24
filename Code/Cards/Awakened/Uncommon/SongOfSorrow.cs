@@ -19,6 +19,6 @@ public class SongOfSorrow : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SongOfSorrowPower>(this);
+        await CommonActions.ApplySelf<SongOfSorrowPower>(ctx, this);
     }
 }

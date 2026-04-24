@@ -23,7 +23,7 @@ public class DancingMasterPower : ChampPowerModel, IOnFinisher
     }
 
 
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player.Creature != Owner) return Task.CompletedTask;
         _usesThisTurn = false;

@@ -1,6 +1,7 @@
 ﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Collector;
 
@@ -11,14 +12,14 @@ public class BindingCallPower : CollectorPowerModel
         return false;
     }
 
-    public override async Task AfterAttack(AttackCommand command)
+    public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
         {
             var target = Owner.PetOwner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (target != null)
-                await PowerCmd.Apply<CollectorDoomPower>(target, Amount, Owner, null);
+                await PowerCmd.Apply<CollectorDoomPower>(ctx, target, Amount, Owner, null);
         }
     }
 }

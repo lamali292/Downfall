@@ -17,6 +17,6 @@ public class Improvising : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ImprovisingPower>(this);
+        await CommonActions.ApplySelf<ImprovisingPower>(ctx, this);
     }
 }

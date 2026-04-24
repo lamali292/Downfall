@@ -13,11 +13,11 @@ public class RagingCallPower : CollectorPowerModel
         return false;
     }
 
-    public override async Task AfterAttack(AttackCommand command)
+    public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
-            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount,
+            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount,
                 ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
     }
 }

@@ -29,7 +29,7 @@ public class Boost : AutomatonCardModel, IEncodable,
         CompileContext compileContext,
         bool forGameplay)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

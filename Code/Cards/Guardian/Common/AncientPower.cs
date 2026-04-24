@@ -20,7 +20,7 @@ public class AncientPower : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this);
-        await CommonActions.ApplySelf<TemporaryDexterityUpPower>(this);
+        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);
+        await CommonActions.ApplySelf<TemporaryDexterityUpPower>(ctx, this);
     }
 }

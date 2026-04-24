@@ -9,7 +9,7 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class AncestralGroundsUpgradedPower : AwakenedPowerModel
 {
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null)
             return;

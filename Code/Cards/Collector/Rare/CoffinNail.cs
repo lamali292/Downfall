@@ -16,6 +16,7 @@ public class CoffinNail : CollectorCardModel
     {
         WithDamage(6, 2);
         WithVar("Increase", 6, 2);
+        WithPower<CopyNextTurnPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -23,11 +24,12 @@ public class CoffinNail : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this) return;
-        var power = await PowerCmd.Apply<CopyNextTurnPower>(Owner.Creature, 1, Owner.Creature, this);
+       
+        var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
         if (power == null) return;
         power.Card = this;
         power.OnAdd = c => c.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);

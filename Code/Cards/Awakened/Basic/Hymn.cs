@@ -16,7 +16,7 @@ public class Hymn : AwakenedCardModel
     {
         WithBlock(3, 3);
         WithTip(typeof(Ceremony));
-        WithTip(typeof(DrainedPower));
+        WithPower<DrainedPower>(1);
     }
 
 
@@ -27,7 +27,7 @@ public class Hymn : AwakenedCardModel
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
 
         var card = CombatState.CreateCard<Ceremony>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
-        await CommonActions.ApplySelf<DrainedPower>(this, 1);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+        await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }

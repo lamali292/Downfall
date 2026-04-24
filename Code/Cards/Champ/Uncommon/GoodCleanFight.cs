@@ -22,7 +22,7 @@ public class GoodCleanFight : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.ShouldBerserkerComboTrigger()) await CommonActions.ApplySelf<StrengthPower>(this);
-        if (Owner.ShouldDefensiveComboTrigger()) await CommonActions.ApplySelf<DexterityPower>(this);
+        if (Owner.ShouldBerserkerComboTrigger()) await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        if (Owner.ShouldDefensiveComboTrigger()) await CommonActions.ApplySelf<DexterityPower>(ctx, this);
     }
 }

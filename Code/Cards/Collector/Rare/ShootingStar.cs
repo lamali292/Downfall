@@ -18,6 +18,6 @@ public class ShootingStar : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ShootingStarPower>(this);
+        await CommonActions.ApplySelf<ShootingStarPower>(ctx, this);
     }
 }

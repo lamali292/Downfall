@@ -1,7 +1,9 @@
 ﻿using Downfall.Code.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -42,10 +44,10 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
             return;
         }
 
-        await PowerCmd.Apply<T>(target, Sign * amount, applier, cardSource, true);
+        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), target, Sign * amount, applier, cardSource, true);
     }
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (amount == Amount || power != this)
@@ -54,16 +56,16 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
         if (_shouldIgnoreNextInstance)
             _shouldIgnoreNextInstance = false;
         else
-            await PowerCmd.Apply<T>(Owner, Sign * amount, applier, cardSource, true);
+            await PowerCmd.Apply<T>(ctx, Owner, Sign * amount, applier, cardSource, true);
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != Owner.Side == RemovedAfterOwnTurn)
             return;
 
         Flash();
         await PowerCmd.Remove(this);
-        await PowerCmd.Apply<T>(Owner, -Sign * Amount, Owner, null);
+        await PowerCmd.Apply<T>(ctx, Owner, -Sign * Amount, Owner, null);
     }
 }

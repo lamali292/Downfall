@@ -17,7 +17,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
         WithKeywords(CardKeyword.Retain);
     }
 
-    public Task OnDrained(Player player, int amount)
+    public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         if (player == Owner) EnergyCost.AddUntilPlayed(-amount);
         return Task.CompletedTask;

@@ -19,6 +19,6 @@ public class AdrenalArmor : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(this);
+        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);
     }
 }

@@ -27,8 +27,8 @@ public class StrikeOfGenius : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
-            await CommonActions.ApplySelf<StrikeOfGeniusPlusPower>(this, 1);
+            await CommonActions.ApplySelf<StrikeOfGeniusPlusPower>(ctx, this, 1);
         else
-            await CommonActions.ApplySelf<StrikeOfGeniusPower>(this, 1);
+            await CommonActions.ApplySelf<StrikeOfGeniusPower>(ctx, this, 1);
     }
 }

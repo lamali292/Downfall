@@ -18,6 +18,6 @@ public class GladiatorForm : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<GladiatorFormPower>(this);
+        await CommonActions.ApplySelf<GladiatorFormPower>(ctx, this);
     }
 }

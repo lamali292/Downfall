@@ -21,6 +21,6 @@ public class Reroute : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.ApplySelf<ReroutePower>(this);
+        await CommonActions.ApplySelf<ReroutePower>(ctx, this);
     }
 }

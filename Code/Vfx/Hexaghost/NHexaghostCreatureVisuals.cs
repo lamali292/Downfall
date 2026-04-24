@@ -7,7 +7,7 @@ namespace Downfall.Code.Vfx.Hexaghost;
 [GlobalClass]
 public partial class NHexaghostCreatureVisuals : NCreatureVisuals
 {
-    public NHexaghostVisuals Visuals;
+    public NHexaghostVisuals? Visuals;
     
     public override void _Ready()
     {
@@ -18,21 +18,21 @@ public partial class NHexaghostCreatureVisuals : NCreatureVisuals
     
     public void SetAllLarge(bool instant = false)
     { 
-        Visuals.SetAllLarge(instant);
+        Visuals?.SetAllLarge(instant);
     }
 
     public void SetAllSmall(bool instant = false)
     {
-        Visuals.SetAllSmall(instant);
+        Visuals?.SetAllSmall(instant);
     }
 
     public void SetFireSize(int index, NFire.FireSize size, bool instant = false)
-        => Visuals.SetFireSize(index, size, instant);
+        => Visuals?.SetFireSize(index, size, instant);
 
 
     public void OnAnimationTrigger(string trigger)
     {
-        Visuals.OnAnimationTrigger(trigger);
+        Visuals?.OnAnimationTrigger(trigger);
     }
 }
 

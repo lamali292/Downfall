@@ -28,7 +28,7 @@ public class Fortify : AutomatonCardModel, IEncodable,
         CompileContext compileContext,
         bool forGameplay)
     {
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

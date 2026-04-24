@@ -22,12 +22,12 @@ public class VoidArmor : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        //await CommonActions.Apply<StrengthPower>(cardPlay.Target, this, 1);
+        //await CommonActions.Apply<StrengthPower>(ctx,cardPlay.Target, this, 1);
         if (CombatState == null) return;
         foreach (var creature in CombatState.Creatures)
             await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
 
-        await PowerCmd.Apply<BlurPower>(CombatState.Creatures, DynamicVars.Power<BlurPower>().IntValue, Owner.Creature,
+        await PowerCmd.Apply<BlurPower>(ctx, CombatState.Creatures, DynamicVars.Power<BlurPower>().IntValue, Owner.Creature,
             this);
     }
 }

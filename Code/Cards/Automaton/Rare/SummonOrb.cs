@@ -18,6 +18,6 @@ public class SummonOrb : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SummonOrbPower>(this, DynamicVars.Power<SummonOrbPower>().BaseValue);
+        await CommonActions.ApplySelf<SummonOrbPower>(ctx, this, DynamicVars.Power<SummonOrbPower>().BaseValue);
     }
 }

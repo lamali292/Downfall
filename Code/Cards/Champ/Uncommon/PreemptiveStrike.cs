@@ -32,7 +32,7 @@ public class PreemptiveStrike : ChampCardModel
         if (Owner.ShouldDefensiveComboTrigger()) return;
         var a = -Owner.Creature.GetPowerAmount<CounterPower>() / 2;
         if (a >= 0) return;
-        await CommonActions.ApplySelf<CounterPower>(this, a);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this, a);
     }
 
 

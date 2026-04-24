@@ -13,11 +13,12 @@ public class Library : AutomatonCardModel
 {
     public Library() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithPower<LibraryPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<LibraryPower>(Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.ApplySelf<LibraryPower>(ctx, this);
     }
 
     protected override void OnUpgrade()

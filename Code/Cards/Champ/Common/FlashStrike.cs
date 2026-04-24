@@ -25,7 +25,7 @@ public class FlashStrike : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
         if (!Owner.ShouldDefensiveComboTrigger()) return;
-        await CommonActions.ApplySelf<CounterPower>(this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
         await CommonActions.CardBlock(this, cardPlay);
     }
 }

@@ -21,8 +21,8 @@ public class BurningTouch : HexaghostCardModel
     {
         if (cardPlay.Target == null) return;
         var cond = cardPlay.Target.HasPower<SoulBurnPower>();
-        await MyCommonActions.Apply<SoulBurnPower>(this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         if (!cond) return;
-        await MyCommonActions.Apply<SoulBurnPower>(this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

@@ -23,6 +23,6 @@ public class Huddle : ChampCardModel
         if (CombatState == null) return;
         foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature)
                      .Where(c => c is { IsAlive: true, IsPlayer: true }))
-            await CommonActions.Apply<VigorPower>(creature, this);
+            await CommonActions.Apply<VigorPower>(ctx,creature, this);
     }
 }

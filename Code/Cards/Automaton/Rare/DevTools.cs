@@ -36,7 +36,7 @@ public class DevTools : AutomatonCardModel
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
         if (chosen == null) return;
 
-        var result = await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, true);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result);
     }

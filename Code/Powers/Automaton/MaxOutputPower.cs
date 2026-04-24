@@ -10,7 +10,7 @@ namespace Downfall.Code.Powers.Automaton;
 
 public class MaxOutputPower : AutomatonPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (Owner.Player != player || Owner.Player == null) return;
 

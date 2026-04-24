@@ -24,6 +24,6 @@ public class SetATrap : ChampCardModel
         if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
         if (!Owner.ShouldDefensiveComboTrigger()) return;
-        await CommonActions.Apply<WeakPower>(CombatState.HittableEnemies, this);
+        await CommonActions.Apply<WeakPower>(ctx,CombatState.HittableEnemies, this);
     }
 }

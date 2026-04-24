@@ -19,7 +19,7 @@ public class CantTouchThis : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DexterityPower>(this);
-        await CommonActions.ApplySelf<CantTouchThisPower>(this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
+        await CommonActions.ApplySelf<CantTouchThisPower>(ctx, this);
     }
 }

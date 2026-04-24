@@ -19,6 +19,6 @@ public class DoubleTrouble : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<DoubleTroublePower>(this);
+        await CommonActions.ApplySelf<DoubleTroublePower>(ctx, this);
     }
 }

@@ -214,5 +214,17 @@
         }
       ]
     }
+  ],
+  "pinnedColors": [
+    {
+      "tag": "gold"
+    },
+    {
+      "tag": "blue"
+    },
+    {
+      "hex": "#E087A4",
+      "label": "#E087A4"
+    }
   ]
 }

@@ -18,10 +18,10 @@ public class DarkwillowKindling : CollectorCardModel
         WithPower<ReserveNextTurnPower>(2);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(this);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
 }

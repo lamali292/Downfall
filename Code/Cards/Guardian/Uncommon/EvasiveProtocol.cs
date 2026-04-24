@@ -19,7 +19,7 @@ public class EvasiveProtocol : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Brace(this);
-        await CommonActions.ApplySelf<EvasiveProtocolPower>(this);
+        await GuardianCmd.Brace(ctx, this);
+        await CommonActions.ApplySelf<EvasiveProtocolPower>(ctx, this);
     }
 }

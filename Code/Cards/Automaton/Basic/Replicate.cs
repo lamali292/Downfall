@@ -32,7 +32,7 @@ public class Replicate : AutomatonCardModel, IEncodable
     {
         var combatState = Owner.Creature.CombatState!;
         var copiedCard = combatState.CloneCard(cardPlay.Card);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, true);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, Owner);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result, 0.4f);
     }

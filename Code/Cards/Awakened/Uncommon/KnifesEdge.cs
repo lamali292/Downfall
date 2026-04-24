@@ -19,7 +19,7 @@ public class KnifesEdge : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this, DynamicVars.Strength.BaseValue);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Discard, 2);
     }
 }

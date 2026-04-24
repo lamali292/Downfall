@@ -17,8 +17,8 @@ public class BloodiedPreeningPower : AwakenedPowerModel
 
     public override async Task BeforeHandDraw(
         Player player,
-        PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await DownfallCardCmd.GiveCards<PlumeJab>(player, PileType.Hand, Amount, animationTime: 0.1f);

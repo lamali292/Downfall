@@ -20,6 +20,6 @@ public class GemFinder : GuardianCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<GemFinderPower>(this);
+        await CommonActions.ApplySelf<GemFinderPower>(ctx, this);
     }
 }

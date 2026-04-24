@@ -20,7 +20,7 @@ public class SingularityShield : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<BlockNextTurnPower>(this, DynamicVars.Block.BaseValue);
-        await CommonActions.ApplySelf<DrainedPower>(this, 1);
+        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, DynamicVars.Block.BaseValue);
+        await CommonActions.ApplySelf<DrainedPower>(ctx, this, 1);
     }
 }

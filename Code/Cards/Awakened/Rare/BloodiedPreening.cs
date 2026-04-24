@@ -21,8 +21,8 @@ public class BloodiedPreening : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this, -2);
-        await CommonActions.ApplySelf<BloodiedPreeningPower>(this, 1);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this, -2);
+        await CommonActions.ApplySelf<BloodiedPreeningPower>(ctx, this, 1);
     }
 
     protected override void OnUpgrade()

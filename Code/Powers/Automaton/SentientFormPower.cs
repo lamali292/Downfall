@@ -18,7 +18,7 @@ public class SentientFormPower : AutomatonPowerModel
     {
         if (card.Owner.Creature != Owner || card is not FunctionCard functionCard) return;
         await Cmd.Wait(0.25f);
-        foreach (var varSet in functionCard.getDynamicVars())
+        foreach (var varSet in functionCard.GetDynamicVars())
             foreach (var dynVar in varSet.Values)
                 dynVar.UpgradeValueBy(Amount);
 

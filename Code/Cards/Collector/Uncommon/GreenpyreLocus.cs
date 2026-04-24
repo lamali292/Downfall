@@ -59,7 +59,7 @@ public class GreenpyreLocus : CollectorCardModel
         await CardPileCmd.AddGeneratedCardToCombat(
             chosenCard,
             PileType.Hand,
-            true
+            Owner
         );
 
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)

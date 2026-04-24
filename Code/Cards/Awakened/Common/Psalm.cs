@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +22,6 @@ public class Psalm : AwakenedCardModel
     {
         if (CombatState == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await PowerCmd.Apply<WeakPower>(CombatState.Enemies, DynamicVars.Weak.BaseValue, Owner.Creature, this);
+        await MyCommonActions.Apply<WeakPower>(ctx, this);
     }
 }

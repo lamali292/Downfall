@@ -13,19 +13,19 @@ public class ChampUltimateStance : ChampStanceModel
     public override bool HasFinisher => true;
     public override string ChargeIconPath => "res://Downfall/images/ui/stance_charge_ultimate.png";
 
-    public override async Task SkillBonus()
+    public override async Task SkillBonus(PlayerChoiceContext ctx)
     {
         var vigor = DownfallHook.ModifySkillBonus<VigorPower>(CombatState, this, 2);
-        await PowerCmd.Apply<VigorPower>(Owner.Creature, vigor, Owner.Creature, null);
+        await PowerCmd.Apply<VigorPower>(ctx, Owner.Creature, vigor, Owner.Creature, null);
 
         var counter = DownfallHook.ModifySkillBonus<CounterPower>(CombatState, this, 2);
-        await PowerCmd.Apply<CounterPower>(Owner.Creature, counter, Owner.Creature, null);
+        await PowerCmd.Apply<CounterPower>(ctx, Owner.Creature, counter, Owner.Creature, null);
     }
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
         var strength = DownfallHook.ModifyFinisherBonus(CombatState, this, ChampBerserkerStance.BaseFinisherAmount);
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, strength, Owner.Creature, null);
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, strength, Owner.Creature, null);
 
         var block = DownfallHook.ModifyFinisherBonus(CombatState, this, ChampDefensiveStance.BaseFinisherAmount);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Unpowered, null);

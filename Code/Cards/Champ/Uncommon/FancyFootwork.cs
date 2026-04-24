@@ -19,6 +19,6 @@ public class FancyFootwork : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.EnterDifferentStance(ctx, Owner);
-        await CommonActions.ApplySelf<FancyFootworkPower>(this);
+        await CommonActions.ApplySelf<FancyFootworkPower>(ctx, this);
     }
 }

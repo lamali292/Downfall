@@ -20,7 +20,7 @@ public class BobAndWeave : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<VigorPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(ctx, this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 }

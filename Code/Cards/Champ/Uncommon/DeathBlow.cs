@@ -20,6 +20,6 @@ public class DeathBlow : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
-        await CommonActions.ApplySelf<VigorPower>(this);
+        await CommonActions.ApplySelf<VigorPower>(ctx, this);
     }
 }

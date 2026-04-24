@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Automaton;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +18,7 @@ public class Overheat : AutomatonCardModel
         WithDamage(18, 4);
         WithTip(DownfallTip.Compile);
         WithTip(DownfallTip.Encode);
+        WithPower<RemoveErrorsPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -25,6 +27,6 @@ public class Overheat : AutomatonCardModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<RemoveErrorsPower>(Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.ApplySelf<RemoveErrorsPower>(ctx, this);
     }
 }

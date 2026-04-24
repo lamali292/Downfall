@@ -47,7 +47,7 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        return await Summon<TorchheadMonsterModel>(summoner, hp, source);
+        return await Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
     }
 
 
@@ -66,6 +66,7 @@ public class CollectorCmd
     }
 
     private static async Task<Creature> Summon<T>(
+        PlayerChoiceContext ctx,
         Player summoner,
         int hp,
         AbstractModel? source) where T : MonsterModel
@@ -102,7 +103,7 @@ public class CollectorCmd
                     .SetDelay(0.1);
             }
 
-            await PowerCmd.Apply<DieForYouPower>(existing, 1M, null, null);
+            await PowerCmd.Apply<DieForYouPower>(ctx, existing, 1M, null, null);
             node?.TrackBlockStatus(summoner.Creature);
             node?.ToggleIsInteractable(true);
         }

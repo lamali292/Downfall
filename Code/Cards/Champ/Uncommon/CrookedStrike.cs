@@ -32,7 +32,7 @@ public class CrookedStrike : ChampCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         // Todo: Not consuming Vigor power needs a lot of annoying patching.
         if (a > 0)
-            await PowerCmd.Apply<VigorPower>(Owner.Creature, a, Owner.Creature, this, true);
+            await PowerCmd.Apply<VigorPower>(ctx, Owner.Creature, a, Owner.Creature, this, true);
 
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }

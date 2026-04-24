@@ -17,6 +17,7 @@ public class MergeConflict : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithDamage(14);
         WithTip(DownfallTip.Encode);
+        WithPower<MergePower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -25,7 +26,7 @@ public class MergeConflict : AutomatonCardModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await PowerCmd.Apply<MergePower>(Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.ApplySelf<MergePower>(ctx, this);
     }
 
     protected override void OnUpgrade()

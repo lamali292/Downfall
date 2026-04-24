@@ -19,6 +19,6 @@ public class ProtectiveAura : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<ProtectiveAuraPower>(this);
+        await CommonActions.ApplySelf<ProtectiveAuraPower>(ctx, this);
     }
 }

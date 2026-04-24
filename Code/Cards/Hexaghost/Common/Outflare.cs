@@ -20,6 +20,6 @@ public class Outflare : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryIntensityPower>(this);
+        await CommonActions.ApplySelf<TemporaryIntensityPower>(ctx, this);
     }
 }

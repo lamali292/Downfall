@@ -30,7 +30,7 @@ public class BugBarrage : AutomatonCardModel
             await CardPileCmd.AddGeneratedCardsToCombat(
                 [wound1, wound2],
                 PileType.Hand,
-                true
+                Owner
             )
         );
         var hand = PileType.Hand.GetPile(Owner);

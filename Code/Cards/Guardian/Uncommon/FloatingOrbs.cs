@@ -17,6 +17,6 @@ public class FloatingOrbs : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FloatingOrbsPower>(this);
+        await CommonActions.ApplySelf<FloatingOrbsPower>(ctx, this);
     }
 }

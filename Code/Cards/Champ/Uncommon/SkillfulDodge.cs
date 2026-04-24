@@ -24,7 +24,7 @@ public class SkillfulDodge : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<CounterPower>(this);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this);
         if (!Owner.ShouldDefensiveComboTrigger()) return;
         DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         DynamicVars.Power<CounterPower>().UpgradeValueBy(DynamicVars["Increase"].IntValue);

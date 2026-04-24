@@ -19,6 +19,6 @@ public class Pyromancy : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PyromancyPower>(this);
+        await CommonActions.ApplySelf<PyromancyPower>(ctx, this);
     }
 }

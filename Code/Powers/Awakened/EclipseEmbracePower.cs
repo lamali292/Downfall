@@ -9,11 +9,11 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class EclipseEmbracePower : AwakenedPowerModel
 {
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card.Owner != Owner.Player || card is not Void) return;
         await PlayerCmd.GainEnergy(Amount, Owner.Player);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner, Amount, Owner, null);
     }
 }

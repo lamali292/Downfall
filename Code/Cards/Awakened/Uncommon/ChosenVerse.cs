@@ -21,7 +21,7 @@ public class ChosenVerse : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var power = await CommonActions.ApplySelf<ChosenVersePower>(this, 2);
+        var power = await CommonActions.ApplySelf<ChosenVersePower>(ctx, this, 2);
         if (power == null) return;
         power.SetBlock(DynamicVars.Power<ChosenVersePower>().IntValue);
         power.CardPlay = cardPlay;

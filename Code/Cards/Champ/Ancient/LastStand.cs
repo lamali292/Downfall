@@ -22,7 +22,7 @@ public class LastStand : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await PowerCmd.Remove<WeakPower>(Owner.Creature);
         await PowerCmd.Remove<VulnerablePower>(Owner.Creature);
         await PowerCmd.Remove<FrailPower>(Owner.Creature);

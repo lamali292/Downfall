@@ -16,12 +16,13 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     {
         WithDamage(4, 3);
         WithTip(DownfallTip.Chant);
+        WithPower<DrawCardsNextTurnPower>(1);
     }
 
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(this, 1);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

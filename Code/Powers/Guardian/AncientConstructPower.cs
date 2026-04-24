@@ -9,12 +9,12 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class AncientConstructPower : GuardianPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         if (Owner.GetPowerAmount<ArtifactPower>() == 0)
         {
-            await PowerCmd.Apply<ArtifactPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<ArtifactPower>(ctx, Owner, Amount, Owner, null);
         }
     }
 }

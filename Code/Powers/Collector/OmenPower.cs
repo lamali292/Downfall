@@ -9,9 +9,9 @@ namespace Downfall.Code.Powers.Collector;
 
 public class OmenPower : CollectorPowerModel
 {
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card is not ICollectible) return;
-        await PowerCmd.Apply<StrengthPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
     }
 }

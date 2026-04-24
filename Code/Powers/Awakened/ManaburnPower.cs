@@ -12,14 +12,9 @@ namespace Downfall.Code.Powers.Awakened;
 
 public class ManaburnPower() : AwakenedPowerModel(PowerType.Debuff), IOnDrained
 {
-    public async Task OnDrained(Player player, int amount)
+    public async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         if (Applier != player.Creature || LocalContext.NetId == null) return;
-
-        var ctx = new HookPlayerChoiceContext(
-            player,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
         await CreatureCmd.Damage(ctx,
             Owner, Amount * amount,
             ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, player.Creature);
