@@ -23,8 +23,7 @@ public static class CreateOverlayPatch
             child.Name = "DELETING_OLD_OVERLAY";
             child.QueueFreeSafely();
         }
-
-        // 2. ONLY ADD IF THE MODEL WANTS IT
+        
         if (__instance.Model is not IAdditionalOverlay additional) return;
         var customNode = additional.CreateAdditionalOverlay();
         if (customNode == null) return;
