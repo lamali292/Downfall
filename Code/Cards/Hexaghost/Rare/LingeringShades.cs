@@ -16,6 +16,7 @@ public class LingeringShades : HexaghostCardModel
         WithKeyword(DownfallKeywords.Retract);
         WithPower<SoulBurnPower>(14, 4);
     }
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
