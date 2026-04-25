@@ -14,7 +14,7 @@ public class SpectersWail : HexaghostCardModel
         WithAfterlife();
         WithDamage(4, 6);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2).WithAttackerFx("vfx/vfx_spooky_scream").Execute(ctx);

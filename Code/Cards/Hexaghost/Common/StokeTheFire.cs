@@ -16,17 +16,16 @@ public class StokeTheFire : HexaghostCardModel
     {
         WithBlock(7, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var ignitedCount = HexaghostCmd.GetIgnitedCount(Owner);
         if (ignitedCount == 0 || CombatState == null || Owner.PlayerCombatState == null) return;
-        var randomHandCards = Owner.PlayerCombatState.Hand.Cards.TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
+        var randomHandCards =
+            Owner.PlayerCombatState.Hand.Cards.TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
         foreach (var card in randomHandCards)
-        {
             if (card != this && card.IsUpgradable)
                 CardCmd.Upgrade(card);
-        }
     }
 }

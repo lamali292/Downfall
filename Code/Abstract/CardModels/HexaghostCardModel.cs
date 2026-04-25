@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.Code.Abstract.CardModels;
 
@@ -31,8 +30,11 @@ public abstract class HexaghostCardModel(
         await PlayEffect(ctx, cardPlay);
     }
 
-    protected virtual Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay) => Task.CompletedTask;
-    
+    protected virtual Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
+
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this || CombatState == null || !card.Keywords.Contains(DownfallKeywords.Afterlife)) return;

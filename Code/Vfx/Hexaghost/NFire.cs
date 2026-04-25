@@ -5,14 +5,34 @@ namespace Downfall.Code.Vfx.Hexaghost;
 [GlobalClass]
 public partial class NFire : Node2D
 {
-    private Node2D? _red;
-    private Node2D? _green;
+    public enum FireColor
+    {
+        Red,
+        Green,
+        Blue,
+        Yellow,
+        Pink,
+        Orange
+    }
+
+    public enum FireSize
+    {
+        Large,
+        Small
+    }
+
+    private const float LargeScale = 0.5f;
+    private const float SmallScale = 0.25f;
     private Node2D? _blue;
-    private Node2D? _yellow;
-    private Node2D? _pink;
-    private Node2D? _orange;
 
     private FireColor _currentColor = FireColor.Red;
+    private Node2D? _green;
+    private Node2D? _orange;
+    private Node2D? _pink;
+    private Node2D? _red;
+    private Node2D? _yellow;
+
+    public FireSize CurrentSize { get; private set; } = FireSize.Small;
 
     public override void _Ready()
     {
@@ -24,23 +44,19 @@ public partial class NFire : Node2D
         _orange = GetNode<Node2D>("%fire_orange");
     }
 
-    private Node2D? GetColorNode(FireColor color) => color switch
+    private Node2D? GetColorNode(FireColor color)
     {
-        FireColor.Red => _red,
-        FireColor.Green => _green,
-        FireColor.Blue => _blue,
-        FireColor.Yellow => _yellow,
-        FireColor.Pink => _pink,
-        FireColor.Orange => _orange,
-        _ => _red
-    };
-
-    public enum FireSize { Large, Small }
-
-    private const float LargeScale = 0.5f;
-    private const float SmallScale = 0.25f;
-
-    public FireSize CurrentSize { get; private set; } = FireSize.Small;
+        return color switch
+        {
+            FireColor.Red => _red,
+            FireColor.Green => _green,
+            FireColor.Blue => _blue,
+            FireColor.Yellow => _yellow,
+            FireColor.Pink => _pink,
+            FireColor.Orange => _orange,
+            _ => _red
+        };
+    }
 
     public void SetState(FireColor color, FireSize size, bool instant = false)
     {
@@ -48,7 +64,7 @@ public partial class NFire : Node2D
         CurrentSize = size;
 
         var target = size == FireSize.Large ? LargeScale : SmallScale;
-        var showNode = (size == FireSize.Large && color != FireColor.Green) ? _green : GetColorNode(color);
+        var showNode = size == FireSize.Large && color != FireColor.Green ? _green : GetColorNode(color);
         var hideNodes = Enum.GetValues<FireColor>()
             .Select(GetColorNode)
             .Where(n => n != null && n != showNode)
@@ -61,7 +77,11 @@ public partial class NFire : Node2D
             Scale = new Vector2(target, target);
             showNode.Visible = true;
             showNode.Modulate = new Color(1, 1, 1);
-            foreach (var n in hideNodes) { n!.Visible = false; n.Modulate = new Color(1, 1, 1, 1); }
+            foreach (var n in hideNodes)
+            {
+                n!.Visible = false;
+                n.Modulate = new Color(1, 1, 1);
+            }
         }
         else
         {
@@ -81,6 +101,4 @@ public partial class NFire : Node2D
             }
         }
     }
-
-    public enum FireColor { Red, Green, Blue, Yellow, Pink, Orange }
 }

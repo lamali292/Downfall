@@ -43,7 +43,7 @@ public class Guardian : DownfallCharacterModel
 
     protected override IEnumerable<string> ExtraAssetPaths =>
         DownfallModelDb.AllGems.Select(g => g.IconPath);
-    
+
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<BronzeGear>()
@@ -57,8 +57,7 @@ public class Guardian : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<GuardianPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GuardianRelicPool>();
 
-    
-    
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         var idleNormal = new AnimState("idle", true);

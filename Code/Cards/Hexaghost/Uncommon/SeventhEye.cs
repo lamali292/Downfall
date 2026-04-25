@@ -17,18 +17,15 @@ public class SeventhEye : HexaghostCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (Owner.PlayerCombatState == null) return;
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var card = (await CardSelectCmd.FromSimpleGrid(ctx, Owner.PlayerCombatState.DrawPile.Cards, Owner, prefs)).FirstOrDefault();
-        if (card != null)
-        {
-            await CardPileCmd.Add(card, PileType.Hand);
-        }
+        var card = (await CardSelectCmd.FromSimpleGrid(ctx, Owner.PlayerCombatState.DrawPile.Cards, Owner, prefs))
+            .FirstOrDefault();
+        if (card != null) await CardPileCmd.Add(card, PileType.Hand);
         await HexaghostCmd.MoveToRandom(ctx, Owner, true);
         await HexaghostCmd.ReplaceCurrentWithRandom(Owner);
     }
-    
 }

@@ -7,15 +7,17 @@ namespace Downfall.Code.Localization;
 
 public class GemDescriptionSource : IExtraDescriptionSource
 {
+    private static LocString EmptyGemDescription => new("gems", "DOWNFALL-EMPTY_SLOT.description");
+
     public IEnumerable<string> GetLines(CardModel card)
     {
         if (card is not GuardianCardModel gc) yield break;
         for (var i = 0; i < gc.GemSlots; i++)
         {
-            var description = i < gc.Gems.Count 
-                ? gc.Gems[i].Description 
+            var description = i < gc.Gems.Count
+                ? gc.Gems[i].Description
                 : EmptyGemDescription;
-        
+
             card.DynamicVars.AddTo(description);
             var prefix = EnergyIconHelper.GetPrefix(card);
             description.Add("energyPrefix", prefix);
@@ -23,5 +25,4 @@ public class GemDescriptionSource : IExtraDescriptionSource
             yield return description.GetFormattedText();
         }
     }
-    private static LocString EmptyGemDescription => new("gems", "DOWNFALL-EMPTY_SLOT.description");
 }

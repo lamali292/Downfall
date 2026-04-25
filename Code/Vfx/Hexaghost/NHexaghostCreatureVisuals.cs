@@ -8,13 +8,13 @@ namespace Downfall.Code.Vfx.Hexaghost;
 public partial class NHexaghostCreatureVisuals : NCreatureVisuals
 {
     public NHexaghostVisuals? Visuals;
-    
+
     public override void _Ready()
     {
         base._Ready();
         Visuals = GetNode<NHexaghostVisuals>("%Hexaghost");
     }
-    
+
 
     public void OnAnimationTrigger(string trigger)
     {
@@ -25,7 +25,7 @@ public partial class NHexaghostCreatureVisuals : NCreatureVisuals
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
 public static class HexaghostAnimationPatch
 {
-    static void Postfix(NCreature __instance, string trigger)
+    private static void Postfix(NCreature __instance, string trigger)
     {
         if (__instance.Visuals is NHexaghostCreatureVisuals hexVisuals)
             hexVisuals.OnAnimationTrigger(trigger);
@@ -35,7 +35,7 @@ public static class HexaghostAnimationPatch
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
 public static class HexaghostDeathAnimPatch
 {
-    static void Postfix(NCreature __instance)
+    private static void Postfix(NCreature __instance)
     {
         if (__instance.Visuals is NHexaghostCreatureVisuals hexVisuals)
             hexVisuals.OnAnimationTrigger("Dead");

@@ -1,8 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.Guardian.Abstract;
-using Downfall.Code.Commands;
 using Downfall.Code.Displays;
 using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
@@ -28,6 +26,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
     // SpireFields
     internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
         new(DownfallModelDb.GuardianMode<GuardianNormalMode>);
+
     internal static readonly SpireField<Player, int> StasisSlots = new(() => 0);
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
@@ -63,6 +62,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             StasisSlots.Set(player, 3);
             GuardianDisplay.Refresh(player);
         }
+
         return Task.CompletedTask;
     }
 
@@ -85,6 +85,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             if (card is ITickCard tickCard) await tickCard.OnTick(ctx);
             if (StasisCounter[card] == 0) await ReturnFromStasis(card, player, ctx);
         }
+
         GuardianDisplay.Refresh(player);
     }
 
@@ -95,6 +96,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             await CardCmd.Exhaust(ctx, card);
             return;
         }
+
         await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
         card.EnergyCost.SetUntilPlayed(0);
     }
@@ -121,6 +123,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
         TriggerModeAnimation(player);
-        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!, ActiveMode[player]!);
+        await DownfallHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
+            ActiveMode[player]!);
     }
 }

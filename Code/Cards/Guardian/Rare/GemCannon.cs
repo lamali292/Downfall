@@ -1,9 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Cards.Guardian.Abstract;
 using Downfall.Code.Commands;
-using Downfall.Code.Core.Guardian;
 using Downfall.Code.Vfx.Guardian;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,7 +21,7 @@ public class GemCannon : GuardianCardModel
         WithDamage(16, 4);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var gems = GuardianCmd.GetAllCombatGems(Owner).ToList();
@@ -38,10 +36,10 @@ public class GemCannon : GuardianCardModel
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(effect);
             }
         }
-    
-        await Cmd.Wait(0.3f); 
+
+        await Cmd.Wait(0.3f);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    
+
         foreach (var gem in gems)
             await gem.OnPlay(ctx, cardPlay);
     }

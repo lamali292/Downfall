@@ -24,7 +24,7 @@ public class Ceremony : AwakenedCardModel
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
-    
+
     // Fervent Worship stuff
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
@@ -35,8 +35,9 @@ public class Ceremony : AwakenedCardModel
         BaseReplayCount += a;
         return Task.CompletedTask;
     }
-    
-    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
+
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
+        Creature? applier,
         CardModel? cardSource)
     {
         if (power is not FerventWorshipPower || power.Owner != Owner.Creature) return Task.CompletedTask;

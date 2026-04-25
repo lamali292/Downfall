@@ -18,8 +18,7 @@ public class DeathmarkedPower() : CollectorPowerModel(PowerType.Debuff)
         yield return new HealthBarForecastSegment(
             Amount,
             new Color("880000"),
-            HealthBarForecastDirection.FromLeft,
-            0
+            HealthBarForecastDirection.FromLeft
         );
     }
 

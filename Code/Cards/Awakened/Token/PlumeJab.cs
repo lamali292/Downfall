@@ -37,7 +37,8 @@ public class PlumeJab : AwakenedCardModel
     }
 
 
-    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
+        Creature? applier,
         CardModel? cardSource)
     {
         if (power is RazorSharpPower && power.Owner == Owner.Creature) DynamicVars.Repeat.UpgradeValueBy(amount);

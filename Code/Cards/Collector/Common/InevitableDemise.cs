@@ -20,6 +20,6 @@ public class InevitableDemise : CollectorCardModel
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<DemisePower>(ctx,cardPlay.Target, this);
+        await CommonActions.Apply<DemisePower>(ctx, cardPlay.Target, this);
     }
 }

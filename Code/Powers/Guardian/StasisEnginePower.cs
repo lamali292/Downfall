@@ -10,12 +10,18 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class StasisEnginePower : GuardianPowerModel, IHasSecondAmount
 {
-    
     private int _triggers;
-    
+
+
+    public string GetSecondAmount()
+    {
+        return $"{_triggers}/3";
+    }
+
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (_triggers >= 3 || cardPlay.Card.Owner != Owner.Player || cardPlay.Resources.EnergySpent != 0 || cardPlay.Resources.StarsSpent != 0) return;
+        if (_triggers >= 3 || cardPlay.Card.Owner != Owner.Player || cardPlay.Resources.EnergySpent != 0 ||
+            cardPlay.Resources.StarsSpent != 0) return;
         _triggers++;
         InvokeDisplayAmountChanged();
         if (_triggers >= 3)
@@ -31,11 +37,5 @@ public class StasisEnginePower : GuardianPowerModel, IHasSecondAmount
         _triggers = 0;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
-    }
-
-
-    public string GetSecondAmount()
-    {
-       return $"{_triggers}/3";
     }
 }

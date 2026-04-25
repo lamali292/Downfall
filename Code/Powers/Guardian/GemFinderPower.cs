@@ -10,7 +10,7 @@ public class GemFinderPower : GuardianPowerModel
     {
         var player = Owner.Player;
         if (player == null) return Task.CompletedTask;
-        var specialCardReward = new GemFinderReward(Amount,player);
+        var specialCardReward = new GemFinderReward(Amount, player);
         room.AddExtraReward(player, specialCardReward);
         return Task.CompletedTask;
     }

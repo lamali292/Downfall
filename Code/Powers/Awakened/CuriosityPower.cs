@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Downfall.Code.Powers.Awakened;
 
 public class CuriosityPower : AwakenedPowerModel
-{ 
+{
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (Owner.Player != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Power) return;

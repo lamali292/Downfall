@@ -20,6 +20,6 @@ public class Artifice : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CommonActions.Apply<ManaburnPower>(ctx,cardPlay.Target, this);
+        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this);
     }
 }

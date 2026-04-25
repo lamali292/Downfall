@@ -119,7 +119,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
         var tip = NHoverTipSet.CreateAndShow(this, BuildHoverTip());
         if (tip != null) tip.GlobalPosition = GlobalPosition + HoverTipOffset;
-        
+
 
         _ownBumpTween?.Kill();
         _ownBumpTween = CreateTween();

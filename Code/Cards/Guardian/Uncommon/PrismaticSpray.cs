@@ -19,12 +19,14 @@ public class PrismaticSpray : GuardianCardModel
         WithTip(DownfallKeywords.Gem);
     }
 
-    
+    public override int GemSlots => 3;
+
+
     private static decimal CalcDamage(CardModel card, Creature? arg2)
     {
         return card is GuardianCardModel gc ? gc.Gems.Count : 0;
     }
-    public override int GemSlots => 3;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -14,11 +14,12 @@ public class AmethystGem : GemModel
 
     public override Color GemColor => new(0xA500C9FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;
         if (owner.Creature.CombatState == null) return;
-        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, owner.Creature.CombatState.Enemies, 2, owner.Creature, null);
+        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, owner.Creature.CombatState.Enemies, 2, owner.Creature,
+            null);
     }
 }

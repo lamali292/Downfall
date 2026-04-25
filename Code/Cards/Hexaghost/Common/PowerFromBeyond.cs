@@ -17,7 +17,7 @@ public class PowerFromBeyond : HexaghostCardModel
         WithEnergy(2, 1);
         WithPower<EnergyNextTurnPower>(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);

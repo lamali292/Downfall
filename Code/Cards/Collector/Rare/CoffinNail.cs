@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Powers.Collector;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -28,7 +27,7 @@ public class CoffinNail : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-       
+
         var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
         if (power == null) return;
         power.Card = this;

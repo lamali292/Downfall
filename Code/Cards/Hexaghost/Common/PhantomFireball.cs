@@ -15,7 +15,7 @@ public class PhantomFireball : HexaghostCardModel
         WithDamage(4, 2);
         WithTip(typeof(SoulBurnPower));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

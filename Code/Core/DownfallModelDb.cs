@@ -10,6 +10,8 @@ public static class DownfallModelDb
     // Cached collections for iteration
     private static IEnumerable<GemModel>? _allGems;
 
+    private static IEnumerable<GhostflameModel>? _allGhostflames;
+
     public static IEnumerable<GemModel> AllGems
     {
         get
@@ -22,8 +24,6 @@ public static class DownfallModelDb
                 .ToList();
         }
     }
-    
-    private static IEnumerable<GhostflameModel>? _allGhostflames;
 
     public static IEnumerable<GhostflameModel> AllGhostflames
     {
@@ -52,7 +52,7 @@ public static class DownfallModelDb
     {
         return ModelDb.Get<T>();
     }
-    
+
     public static T Ghostflame<T>() where T : GhostflameModel
     {
         return ModelDb.Get<T>();

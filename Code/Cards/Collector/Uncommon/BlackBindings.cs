@@ -28,8 +28,8 @@ public class BlackBindings : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CommonActions.Apply<WeakPower>(ctx,cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
         var amount = DamageCalc(cardPlay.Target) * DynamicVars.Power<CollectorDoomPower>().BaseValue;
-        await CommonActions.Apply<CollectorDoomPower>(ctx,cardPlay.Target, this, amount);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this, amount);
     }
 }

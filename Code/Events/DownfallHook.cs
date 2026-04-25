@@ -3,7 +3,6 @@ using Downfall.Code.Cards.Automaton.Token;
 using Downfall.Code.Core.Champ;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Core.Hexaghost;
-using Downfall.Code.Ghostflames;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -92,7 +91,8 @@ public static class DownfallHook
     }
 
 
-    public static Task OnGuardianModeChange(ICombatState cs, PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    public static Task OnGuardianModeChange(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {
         return Dispatch<IOnGuardianModeChange>(cs, m => m.OnGuardianModeChange(ctx, player, oldMode, newMode));
@@ -155,20 +155,25 @@ public static class DownfallHook
         return Dispatch<IBeforeCardEntersStasis>(cs, ctx, m => m.BeforeCardEntersStasis(ctx, card, source));
     }
 
-    public static int ModifyGhostflameEffectAdditive(ICombatState cs, Player owner, GhostflameModel bolsteringGhostflame)
+    public static int ModifyGhostflameEffectAdditive(ICombatState cs, Player owner,
+        GhostflameModel bolsteringGhostflame)
     {
         return Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
             (m, current) => m.ModifyGhostflameEffectAdditive(owner, bolsteringGhostflame));
     }
 
-    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel ghostflame, int ghostflameIndex, bool silent)
     {
-        return Dispatch<IWheelMoved>(cs, ctx, m => m.AfterWheelRetract(ctx, player, ghostflame, ghostflameIndex, silent));
+        return Dispatch<IWheelMoved>(cs, ctx,
+            m => m.AfterWheelRetract(ctx, player, ghostflame, ghostflameIndex, silent));
     }
 
-    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel ghostflame, int ghostflameIndex, bool silent)
     {
-        return Dispatch<IWheelMoved>(cs, ctx, m => m.AfterWheelAdvance(ctx, player, ghostflame, ghostflameIndex, silent));
+        return Dispatch<IWheelMoved>(cs, ctx,
+            m => m.AfterWheelAdvance(ctx, player, ghostflame, ghostflameIndex, silent));
     }
 
     public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)

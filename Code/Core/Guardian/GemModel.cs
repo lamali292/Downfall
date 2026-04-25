@@ -25,6 +25,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public virtual CardRarity Rarity => CardRarity.Common;
     public LocString TitleLocString => new("gems", Id.Entry + ".title");
     public LocString Description => new("gems", Id.Entry + ".description");
+
     public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
         .Where(c => c.GemModel == this).Cast<CardModel>().First();
 

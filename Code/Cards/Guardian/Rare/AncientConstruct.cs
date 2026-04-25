@@ -16,7 +16,7 @@ public class AncientConstruct : GuardianCardModel
         WithPower<ArtifactPower>(1);
         WithPower<AncientConstructPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArtifactPower>(ctx, this);

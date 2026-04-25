@@ -14,11 +14,10 @@ public class GearUp : GuardianCardModel
     {
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithBrace(10, 5);
-
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-       await GuardianCmd.Brace(ctx, this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

@@ -24,7 +24,7 @@ public class GigaBeam : GuardianCardModel
         WithVar("StrengthEffect", 2, 2);
         WithPower<StunnedPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -35,9 +35,8 @@ public class GigaBeam : GuardianCardModel
             .BeforeDamage(BeforeDamageAction)
             .Execute(ctx);
         await CommonActions.ApplySelf<StunnedPower>(ctx, this);
-
     }
-    
+
     private async Task BeforeDamageAction()
     {
         var enemies = CombatState?.Enemies.Where(e => e.IsAlive).ToList();
@@ -55,7 +54,7 @@ public class GigaBeam : GuardianCardModel
                          .OfType<NHyperbeamImpactVfx>())
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
     }
-    
+
     public override decimal ModifyDamageAdditive(
         Creature? target,
         decimal amount,
@@ -63,6 +62,8 @@ public class GigaBeam : GuardianCardModel
         Creature? dealer,
         CardModel? cardSource)
     {
-        return cardSource != this || !props.IsPoweredAttack() ? 0M : dealer?.GetPowerAmount<StrengthPower>() * (DynamicVars["StrengthEffect"].IntValue - 1) ?? 0;
+        return cardSource != this || !props.IsPoweredAttack()
+            ? 0M
+            : dealer?.GetPowerAmount<StrengthPower>() * (DynamicVars["StrengthEffect"].IntValue - 1) ?? 0;
     }
 }

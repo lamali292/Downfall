@@ -14,10 +14,9 @@ public class ShadowGuise : HexaghostCardModel
         WithBlock(4, 2);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
-    
 }

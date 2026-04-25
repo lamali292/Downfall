@@ -16,7 +16,7 @@ public class Spook : HexaghostCardModel
         WithPower<WeakPower>(1, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);

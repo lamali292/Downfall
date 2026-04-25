@@ -12,10 +12,11 @@ using MegaCrit.Sts2.Core.Runs;
 
 namespace Downfall.Code.Core.Hexaghost;
 
-
 public class HexaghostModel() : CustomSingletonModel(true, true)
 {
     internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
+
+    internal static readonly SpireField<Player, int> CurrentIndex = new(() => 0);
 
     private static GhostflameModel[] StartingWheel(Player player)
     {
@@ -26,7 +27,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
             DownfallModelDb.Ghostflame<BolsteringGhostflame>().ToMutable(player),
             DownfallModelDb.Ghostflame<SearingGhostflame>().ToMutable(player),
             DownfallModelDb.Ghostflame<CrushingGhostflame>().ToMutable(player),
-            DownfallModelDb.Ghostflame<InfernoGhostflame>().ToMutable(player),
+            DownfallModelDb.Ghostflame<InfernoGhostflame>().ToMutable(player)
         ];
     }
 
@@ -35,9 +36,6 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         Wheel[player] = StartingWheel(player);
         CurrentIndex[player] = 0;
     }
-
-    internal static readonly SpireField<Player, int> CurrentIndex = new(() => 0);
-
 
 
     public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
@@ -50,7 +48,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
                 await HexaghostCmd.Advance(ctx, player, true);
         }
     }
-    
+
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is not CombatRoom) return;

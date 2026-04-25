@@ -1,10 +1,8 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
 using Downfall.Code.Abstract;
-using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Keywords;
 using Downfall.Code.Localization;
-using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -136,11 +134,9 @@ public static class GetCardTextPatch
     }
 }
 
-
 [HarmonyPatch]
 public static class SetCardContextPatch
 {
-    
     private static MethodBase TargetMethod()
     {
         return AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
@@ -151,12 +147,16 @@ public static class SetCardContextPatch
         ]);
     }
 
-    
+
     public static void Prefix(CardModel __instance)
-        => GetCardTextPatch.CurrentCard = __instance;
+    {
+        GetCardTextPatch.CurrentCard = __instance;
+    }
 
     public static void Finalizer()
-        => GetCardTextPatch.CurrentCard = null;
+    {
+        GetCardTextPatch.CurrentCard = null;
+    }
 }
 
 [HarmonyPatch(typeof(CardKeywordExtensions), nameof(CardKeywordExtensions.GetCardText))]
@@ -164,11 +164,8 @@ public static class CardKeywordColorPatch
 {
     public static void Postfix(CardKeyword keyword, ref string __result)
     {
-        string ? color = null;
-        if (keyword == DownfallKeywords.Afterlife)
-        {
-            color = "#e087a4";
-        }
+        string? color = null;
+        if (keyword == DownfallKeywords.Afterlife) color = "#e087a4";
         if (color == null) return;
         __result = __result.Replace("[gold]", $"[color={color}]")
             .Replace("[/gold]", "[/color]");

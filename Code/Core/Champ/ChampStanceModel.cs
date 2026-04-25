@@ -18,7 +18,7 @@ public abstract class ChampStanceModel : AbstractModel
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     protected ICombatState CombatState => Owner.Creature.CombatState ??
-                                         throw new InvalidOperationException("Combat state not initialized");
+                                          throw new InvalidOperationException("Combat state not initialized");
 
     public ChampStanceModel ToMutable(Player player)
     {
@@ -60,7 +60,7 @@ public abstract class ChampStanceModel : AbstractModel
         ChampModel.RefreshDisplay(Owner);
         await SkillBonus(ctx);
     }
-    
+
 
     public virtual Task SkillBonus(PlayerChoiceContext ctx)
     {

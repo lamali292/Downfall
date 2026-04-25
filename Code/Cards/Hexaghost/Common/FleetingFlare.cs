@@ -14,12 +14,11 @@ public class FleetingFlare : HexaghostCardModel
     {
         WithBlock(8, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await HexaghostCmd.Ignite(ctx, Owner);
         await HexaghostCmd.Extinguish(Owner);
     }
-    
 }

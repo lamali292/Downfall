@@ -15,6 +15,8 @@ public class SearingGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 2;
 
+    public override NFire.FireColor FireColor => NFire.FireColor.Green;
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         var target = CombatState.HittableEnemies
@@ -22,16 +24,15 @@ public class SearingGhostflame : GhostflameModel
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
         var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
-        await CommonActions.Apply<SoulBurnPower>(ctx,target, null, 3 + intensity);
-        await CommonActions.Apply<SoulBurnPower>(ctx,target, null, 3 + intensity);
+        await CommonActions.Apply<SoulBurnPower>(ctx, target, null, 3 + intensity);
+        await CommonActions.Apply<SoulBurnPower>(ctx, target, null, 3 + intensity);
     }
-
-    public override NFire.FireColor FireColor => NFire.FireColor.Green;
 
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Attack || LocalContext.NetId == null) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Attack ||
+            LocalContext.NetId == null) return;
         var ctx = new HookPlayerChoiceContext(
             Owner,
             LocalContext.NetId.Value,

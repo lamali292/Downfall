@@ -12,33 +12,28 @@ namespace Downfall.Code.Powers.Hexaghost;
 public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmount
 {
     private int UsesThisTurn { get; set; }
-    
-    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+
+    public string GetSecondAmount()
     {
-        if (silent) return;
-        if (UsesThisTurn <= Amount)
-        {
-            await CardPileCmd.Draw(ctx, player);
-        }
-        UsesThisTurn++;
-        if (UsesThisTurn <= Amount)
-        {
-            InvokeDisplayAmountChanged();
-        }
+        return $"{UsesThisTurn}";
     }
 
-    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
     {
         if (silent) return;
-        if (UsesThisTurn <= Amount)
-        {
-            await CardPileCmd.Draw(ctx, player);
-        }
+        if (UsesThisTurn <= Amount) await CardPileCmd.Draw(ctx, player);
         UsesThisTurn++;
-        if (UsesThisTurn <= Amount)
-        {
-            InvokeDisplayAmountChanged();
-        }
+        if (UsesThisTurn <= Amount) InvokeDisplayAmountChanged();
+    }
+
+    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+    {
+        if (silent) return;
+        if (UsesThisTurn <= Amount) await CardPileCmd.Draw(ctx, player);
+        UsesThisTurn++;
+        if (UsesThisTurn <= Amount) InvokeDisplayAmountChanged();
     }
 
 
@@ -48,10 +43,5 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         UsesThisTurn = 0;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
-    }
-
-    public string GetSecondAmount()
-    {
-        return $"{UsesThisTurn}";
     }
 }

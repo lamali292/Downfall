@@ -2,7 +2,6 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Core.Hexaghost;
 using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Powers.Hexaghost;
 

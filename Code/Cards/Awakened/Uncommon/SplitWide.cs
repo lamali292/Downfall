@@ -22,6 +22,6 @@ public class SplitWide : AwakenedCardModel
     {
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<SplitWidePower>(ctx,cardPlay.Target, this);
+        await CommonActions.Apply<SplitWidePower>(ctx, cardPlay.Target, this);
     }
 }

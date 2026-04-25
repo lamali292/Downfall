@@ -19,18 +19,15 @@ public class PrismaticBarrier : GuardianCardModel
         WithTip(DownfallKeywords.Gem);
     }
 
+    public override int GemSlots => 3;
+
     private static decimal CalcBlock(CardModel card, Creature? arg2)
     {
         return card is GuardianCardModel gc ? gc.Gems.Count : 0;
     }
 
-    public override int GemSlots => 3;
-
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
-
-
-    
 }

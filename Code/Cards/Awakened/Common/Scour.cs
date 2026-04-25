@@ -21,7 +21,8 @@ public class Scour : AwakenedCardModel
     {
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<ManaburnPower>(ctx,cardPlay.Target, this, DynamicVars.Power<ManaburnPower>().BaseValue);
+        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this,
+            DynamicVars.Power<ManaburnPower>().BaseValue);
     }
 
     protected override void OnUpgrade()

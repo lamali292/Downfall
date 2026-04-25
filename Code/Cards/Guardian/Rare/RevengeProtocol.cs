@@ -17,12 +17,10 @@ public class RevengeProtocol : GuardianCardModel
         WithPower<RevengeProtocolPower>(2, 1);
         WithTip(typeof(StrengthPower));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RevengeProtocolPower>(ctx, this);
         await CommonActions.ApplySelf<BracingPower>(ctx, this);
     }
-    
-    
 }

@@ -1,6 +1,5 @@
 using Downfall.Code.Core.Hexaghost;
 using Downfall.Code.Events;
-using Downfall.Code.Powers.Hexaghost;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -15,6 +14,9 @@ namespace Downfall.Code.Ghostflames;
 public class CrushingGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 2;
+
+    public override NFire.FireColor FireColor => NFire.FireColor.Pink;
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         var target = CombatState.HittableEnemies
@@ -22,15 +24,16 @@ public class CrushingGhostflame : GhostflameModel
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
         var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity, ValueProp.Move | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity,
+            ValueProp.Move | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, 3 + intensity,
+            ValueProp.Move | ValueProp.Unpowered, null, null);
     }
-    
-    public override NFire.FireColor FireColor => NFire.FireColor.Pink;
-    
+
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill || LocalContext.NetId == null) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Skill ||
+            LocalContext.NetId == null) return;
         var ctx = new HookPlayerChoiceContext(
             Owner,
             LocalContext.NetId.Value,

@@ -18,15 +18,11 @@ public class ShieldSpikes : GuardianCardModel
         WithPower<ThornsPower>(3, 1);
         WithBrace(8);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner))
-        {
-            await CommonActions.ApplySelf<ThornsPower>(ctx, this);
-        }
+        if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)) await CommonActions.ApplySelf<ThornsPower>(ctx, this);
         await GuardianCmd.Brace(ctx, this);
-        
     }
 }

@@ -30,7 +30,8 @@ public class DownfallCardCmd
             .Select(card => player.Creature.CombatState!.CreateCard(card, player))
             .ToList();
 
-        var results = await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, player, CardPilePosition.Random);
+        var results =
+            await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, player, CardPilePosition.Random);
         CardCmd.PreviewCardPileAdd(results);
     }
 

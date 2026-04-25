@@ -18,11 +18,7 @@ public class FuturePlansPower : GuardianPowerModel
         {
             var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, Amount);
             var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, this);
-            foreach (var card in cards)
-            {
-                await GuardianCmd.PutIntoStasis(card, ctx, this);
-            }
-           
+            foreach (var card in cards) await GuardianCmd.PutIntoStasis(card, ctx, this);
         }
     }
 }

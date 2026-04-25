@@ -2,7 +2,6 @@
 using BaseLib.Abstracts;
 using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -96,7 +95,6 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
             "vfx/vfx_rock_shatter"
         ];
     }
-    
 }
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]

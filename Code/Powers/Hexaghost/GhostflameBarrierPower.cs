@@ -12,7 +12,7 @@ public class GhostflameBarrierPower : HexaghostPowerModel
     {
         if (command.Attacker == null) return;
         var list = command.Results.Where(r => r.Receiver == Owner).ToList();
-        if (list.Count == 0 ) return;
+        if (list.Count == 0) return;
         await PowerCmd.Apply<SoulBurnPower>(ctx, command.Attacker, Amount, Owner, null);
     }
 

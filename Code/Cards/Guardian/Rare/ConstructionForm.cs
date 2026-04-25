@@ -18,7 +18,7 @@ public class ConstructionForm : GuardianCardModel
         WithTip(typeof(StrengthPower));
         WithPower<ConstructionFormPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BufferPower>(ctx, this);

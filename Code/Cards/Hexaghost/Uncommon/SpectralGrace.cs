@@ -16,12 +16,12 @@ public class SpectralGrace : HexaghostCardModel
         WithDamage(12, 4);
         WithCards(2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue);
-        var cards = await CardSelectCmd.FromHandForDiscard(ctx, Owner, prefs, null,this);
+        var cards = await CardSelectCmd.FromHandForDiscard(ctx, Owner, prefs, null, this);
         await CardCmd.Discard(ctx, cards);
     }
 }

@@ -20,7 +20,7 @@ public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
         if (player != Owner) return false;
         return player.Creature.CombatState is { RoundNumber: <= 4 };
     }
-    
+
     public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side)

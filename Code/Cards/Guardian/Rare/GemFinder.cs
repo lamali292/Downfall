@@ -16,8 +16,8 @@ public class GemFinder : GuardianCardModel
         WithKeyword(CardKeyword.Ethereal);
         WithPower<GemFinderPower>(1);
     }
-   
-    
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GemFinderPower>(ctx, this);

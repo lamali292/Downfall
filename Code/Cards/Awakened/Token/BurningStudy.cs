@@ -33,6 +33,6 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
         ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         foreach (var combatStateEnemy in CombatState.Enemies)
-            await CommonActions.Apply<WeakPower>(ctx,combatStateEnemy, this);
+            await CommonActions.Apply<WeakPower>(ctx, combatStateEnemy, this);
     }
 }

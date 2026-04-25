@@ -10,7 +10,7 @@ public class OpalGem : GemModel
 {
     public override Color GemColor => new(0xC7C7C7FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;

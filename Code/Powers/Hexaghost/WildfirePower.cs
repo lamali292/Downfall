@@ -10,7 +10,8 @@ namespace Downfall.Code.Powers.Hexaghost;
 
 public class WildfirePower : HexaghostPowerModel
 {
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
+        decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (applier != Owner || power.Type != PowerType.Debuff || power.Amount != amount) return;

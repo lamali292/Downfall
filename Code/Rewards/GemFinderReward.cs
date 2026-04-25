@@ -21,11 +21,30 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 {
     [CustomEnum] public static RewardType GemFinderRewardType;
 
-    private List<GemModel> Gems { get; set; } = [];
-    
-    protected override string IconPath => Gems.Count > 0 ? Gems.First().IconPath  : 
-        DownfallModelDb.AllGems.ElementAt(Random.Shared.Next(DownfallModelDb.AllGems.Count())).IconPath;
-    
+
+    private NSimpleCardSelectScreen? _currentlyShownScreen;
+
+    private List<GemModel> Gems { get; } = [];
+
+    protected override string IconPath => Gems.Count > 0
+        ? Gems.First().IconPath
+        : DownfallModelDb.AllGems.ElementAt(Random.Shared.Next(DownfallModelDb.AllGems.Count())).IconPath;
+
+    protected override RewardType RewardType => GemFinderRewardType;
+
+    public override LocString Description
+    {
+        get
+        {
+            var desc = new LocString("gameplay_ui", "COMBAT_REWARD_ADD_GEMS");
+            desc.Add("Amount", count);
+            return desc;
+        }
+    }
+
+    public override bool IsPopulated => Gems.Count > 0;
+    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
+
     public override Task Populate()
     {
         var gemsByRarity = DownfallModelDb.AllGems
@@ -48,12 +67,9 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
             Gems.Add(candidate);
         }
+
         return Task.CompletedTask;
     }
-    
-    
-    
-    private NSimpleCardSelectScreen? _currentlyShownScreen;
 
     protected override async Task<bool> OnSelect()
     {
@@ -75,10 +91,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         }
 
         var mutable = selectedCards.Select(e => e.ToMutable()).ToList();
-        foreach (var cardModel in mutable)
-        {
-            Player.RunState.AddCard(cardModel, Player);
-        }
+        foreach (var cardModel in mutable) Player.RunState.AddCard(cardModel, Player);
         var result = await CardPileCmd.Add(mutable, PileType.Deck);
         CardCmd.PreviewCardPileAdd(result);
         var cardsAdded = result.Select(e => e.cardAdded.ToSerializable()).ToList();
@@ -96,14 +109,13 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     public override void MarkContentAsSeen()
     {
-        
     }
 
     private static CustomReward Deserialize(SerializableReward save, Player player1)
     {
         return new GemFinderReward(save.GoldAmount, player1);
     }
-    
+
     public override SerializableReward ToSerializable()
     {
         return new SerializableReward
@@ -112,20 +124,4 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
             GoldAmount = count
         };
     }
-
-    protected override RewardType RewardType => GemFinderRewardType;
-    public override LocString Description
-    {
-        get
-        {
-            var desc = new LocString("gameplay_ui", "COMBAT_REWARD_ADD_GEMS");
-            desc.Add("Amount", count);
-            return desc;
-        }
-    }
-
-    public override bool IsPopulated  => Gems.Count > 0;
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
-
-    
 }

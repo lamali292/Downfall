@@ -15,7 +15,7 @@ public class FuturePlans : GuardianCardModel
         WithPower<FuturePlansPower>(1);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FuturePlansPower>(ctx, this);

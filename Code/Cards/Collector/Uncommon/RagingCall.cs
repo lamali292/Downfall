@@ -24,6 +24,6 @@ public class RagingCall : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
-        await CommonActions.Apply<RagingCallPower>(ctx,torchhead, this);
+        await CommonActions.Apply<RagingCallPower>(ctx, torchhead, this);
     }
 }

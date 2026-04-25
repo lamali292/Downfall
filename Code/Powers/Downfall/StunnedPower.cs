@@ -9,7 +9,6 @@ namespace Downfall.Code.Powers.Downfall;
 
 public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
- 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         /*
@@ -27,5 +26,4 @@ public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackTyp
         await PowerCmd.Remove(this);
         PlayerCmd.EndTurn(player, false);
     }
-    
 }

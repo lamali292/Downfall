@@ -14,6 +14,7 @@ public class FragmentedGem : GemModel
 
     public override Color GemColor => new(0xCE1AB2FF);
     public override CardRarity Rarity => CardRarity.Common;
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<CrystalShiv>(cardPlay.Card.Owner, PileType.Hand);

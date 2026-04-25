@@ -14,7 +14,7 @@ public class SapphireGem : GemModel
 
     public override Color GemColor => new(0x0624BEFF);
     public override CardRarity Rarity => CardRarity.Common;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Brace(ctx, cardPlay.Card.Owner, 4);

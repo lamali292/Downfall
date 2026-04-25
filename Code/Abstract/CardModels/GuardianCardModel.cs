@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Downfall.Code.Character;
+﻿using Downfall.Code.Character;
 using Downfall.Code.Core.Guardian;
 using Downfall.Code.Extensions;
 using Downfall.Code.Patches;

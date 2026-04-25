@@ -24,6 +24,6 @@ public class BindingCall : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
-        await CommonActions.Apply<BindingCallPower>(ctx,torchhead, this);
+        await CommonActions.Apply<BindingCallPower>(ctx, torchhead, this);
     }
 }

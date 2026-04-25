@@ -17,7 +17,7 @@ public class NightmareGuise : HexaghostCardModel
         WithDamage(4, 2);
         WithAfterlife();
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

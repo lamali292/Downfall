@@ -14,7 +14,7 @@ public class DevilsDance : HexaghostCardModel
     {
         WithPower<DevilsDancePower>(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DevilsDancePower>(ctx, this);

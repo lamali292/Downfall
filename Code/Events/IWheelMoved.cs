@@ -6,6 +6,9 @@ namespace Downfall.Code.Events;
 
 public interface IWheelMoved
 {
-    Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent);
-    Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex, bool silent);
+    Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex,
+        bool silent);
+
+    Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame, int ghostflameIndex,
+        bool silent);
 }

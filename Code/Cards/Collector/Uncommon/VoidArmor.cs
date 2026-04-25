@@ -27,7 +27,8 @@ public class VoidArmor : CollectorCardModel
         foreach (var creature in CombatState.Creatures)
             await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
 
-        await PowerCmd.Apply<BlurPower>(ctx, CombatState.Creatures, DynamicVars.Power<BlurPower>().IntValue, Owner.Creature,
+        await PowerCmd.Apply<BlurPower>(ctx, CombatState.Creatures, DynamicVars.Power<BlurPower>().IntValue,
+            Owner.Creature,
             this);
     }
 }

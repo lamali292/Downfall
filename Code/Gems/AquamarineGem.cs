@@ -14,7 +14,7 @@ public class AquamarineGem : GemModel
 
     public override Color GemColor => new(0x06A5BEFF);
     public override CardRarity Rarity => CardRarity.Uncommon;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<CrystalWard>(cardPlay.Card.Owner, PileType.Hand);

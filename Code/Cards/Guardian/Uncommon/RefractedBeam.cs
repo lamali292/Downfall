@@ -19,10 +19,9 @@ public class RefractedBeam : GuardianCardModel
 
     public override int GemSlots => 1 + CurrentUpgradeLevel;
     public override int MaxUpgradeLevel => 9999999;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }
-    
 }

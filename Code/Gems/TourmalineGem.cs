@@ -14,7 +14,7 @@ public class TourmalineGem : GemModel
 
     public override Color GemColor => new(0x06BE7BFF);
     public override CardRarity Rarity => CardRarity.Common;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;

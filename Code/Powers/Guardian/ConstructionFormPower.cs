@@ -9,12 +9,11 @@ namespace Downfall.Code.Powers.Guardian;
 
 public class ConstructionFormPower : GuardianPowerModel
 {
-
     public ConstructionFormPower()
     {
         WithTip(typeof(StrengthPower));
     }
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;

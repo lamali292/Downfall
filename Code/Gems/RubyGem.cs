@@ -14,7 +14,7 @@ public class RubyGem : GemModel
 
     public override Color GemColor => new(0xC52000FF);
     public override CardRarity Rarity => CardRarity.Common;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;

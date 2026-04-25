@@ -13,8 +13,6 @@ public class AncientConstructPower : GuardianPowerModel
     {
         if (player.Creature != Owner) return;
         if (Owner.GetPowerAmount<ArtifactPower>() == 0)
-        {
             await PowerCmd.Apply<ArtifactPower>(ctx, Owner, Amount, Owner, null);
-        }
     }
 }

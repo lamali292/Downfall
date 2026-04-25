@@ -22,7 +22,7 @@ public class Siphon : AwakenedCardModel, IChantable
     {
         if (cardPlay.Target == null) return;
         await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this, 2);
-        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx,cardPlay.Target, this, 2);
+        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, cardPlay.Target, this, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

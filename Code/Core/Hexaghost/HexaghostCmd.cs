@@ -1,8 +1,5 @@
 using Downfall.Code.Core.Hexaghost.Ghostflames;
 using Downfall.Code.Events;
-using Downfall.Code.History;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -10,18 +7,33 @@ namespace Downfall.Code.Core.Hexaghost;
 
 public static class HexaghostCmd
 {
-    public static GhostflameModel[] GetWheel(Player player) => HexaghostModel.Wheel[player] ?? [];
-    public static int GetCurrentIndex(Player player) => HexaghostModel.CurrentIndex[player];
-    public static GhostflameModel GetCurrentFlame(Player player) => GetWheel(player)[GetCurrentIndex(player)];
-    
+    public static GhostflameModel[] GetWheel(Player player)
+    {
+        return HexaghostModel.Wheel[player] ?? [];
+    }
+
+    public static int GetCurrentIndex(Player player)
+    {
+        return HexaghostModel.CurrentIndex[player];
+    }
+
+    public static GhostflameModel GetCurrentFlame(Player player)
+    {
+        return GetWheel(player)[GetCurrentIndex(player)];
+    }
+
 
     public static T? GetFlameOfType<T>(Player player) where T : GhostflameModel
-        => GetWheel(player).OfType<T>().FirstOrDefault();
+    {
+        return GetWheel(player).OfType<T>().FirstOrDefault();
+    }
 
     public static int GetIgnitedCount(Player player)
-        => GetWheel(player).Count(f => f.IsIgnited);
+    {
+        return GetWheel(player).Count(f => f.IsIgnited);
+    }
 
-    
+
     private static int GetPreviousIndex(Player player)
     {
         var wheel = GetWheel(player);
@@ -33,17 +45,19 @@ public static class HexaghostCmd
         var wheel = GetWheel(player);
         return (GetCurrentIndex(player) + 1) % wheel.Length;
     }
-    
+
     public static async Task Advance(PlayerChoiceContext ctx, Player player, bool silent = false)
     {
         await MoveTo(player, GetNextIndex(player), ctx);
-        await DownfallHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player), GetCurrentIndex(player), silent);
+        await DownfallHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
+            GetCurrentIndex(player), silent);
     }
-    
+
     public static async Task Retract(PlayerChoiceContext ctx, Player player, bool silent = false)
     {
         await MoveTo(player, GetPreviousIndex(player), ctx);
-        await DownfallHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player), GetCurrentIndex(player), silent);
+        await DownfallHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
+            GetCurrentIndex(player), silent);
     }
 
     public static async Task MoveToRandom(PlayerChoiceContext ctx, Player player, bool silent = false)
@@ -55,7 +69,7 @@ public static class HexaghostCmd
         var randomIndex = rng.NextItem(candidates);
         await MoveTo(player, randomIndex, ctx, silent);
     }
-    
+
     public static Task ReplaceCurrentWithRandom(Player player)
     {
         var wheel = GetWheel(player);
@@ -81,17 +95,17 @@ public static class HexaghostCmd
         HexaghostVisualsBridge.Refresh(player);
         return Task.CompletedTask;
     }
-    
+
     public static bool IsIgnited(Player player)
     {
         return GetCurrentFlame(player).IsIgnited;
     }
-    
+
     public static bool IsPreviousIgnited(Player player)
     {
         return GetWheel(player)[GetPreviousIndex(player)].IsIgnited;
     }
-    
+
     public static bool IsNextIgnited(Player player)
     {
         return GetWheel(player)[GetNextIndex(player)].IsIgnited;
@@ -122,6 +136,4 @@ public static class HexaghostCmd
         HexaghostVisualsBridge.Refresh(player);
         return Task.CompletedTask;
     }
-
-  
 }

@@ -20,8 +20,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         yield return new HealthBarForecastSegment(
             Amount,
             new Color("880088"),
-            HealthBarForecastDirection.FromRight,
-            0
+            HealthBarForecastDirection.FromRight
         );
     }
 

@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
-
 [Pool(typeof(HexaghostCardPool))]
 public class GhostflameBarrier : HexaghostCardModel
 {
@@ -17,11 +16,10 @@ public class GhostflameBarrier : HexaghostCardModel
         WithTip(typeof(SoulBurnPower));
         WithPower<GhostflameBarrierPower>(5, 7);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-      await CommonActions.CardBlock(this, cardPlay);
-      await CommonActions.ApplySelf<GhostflameBarrierPower>(ctx, this);
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<GhostflameBarrierPower>(ctx, this);
     }
-
 }

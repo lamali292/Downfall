@@ -16,7 +16,7 @@ public class Firestarter : HexaghostCardModel
         WithDamage(5, 2);
         WithPower<SoulBurnPower>(5, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

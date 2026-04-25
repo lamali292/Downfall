@@ -16,7 +16,7 @@ public class SpikerProtocol : GuardianCardModel
         WithPower<SpikerProtocolPower>(2, 1);
         WithBrace(6, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpikerProtocolPower>(ctx, this);

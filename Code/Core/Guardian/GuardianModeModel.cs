@@ -11,7 +11,7 @@ public abstract class GuardianModeModel : AbstractModel
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     protected ICombatState CombatState => Owner.Creature.CombatState ??
-                                         throw new InvalidOperationException("Combat state not initialized");
+                                          throw new InvalidOperationException("Combat state not initialized");
 
     public GuardianModeModel ToMutable(Player player)
     {

@@ -29,34 +29,59 @@ public static class GuardianCmd
     private static readonly LocString FullStasisText = new("combat_messages", "FULL_STASIS_SLOTS");
 
     // Mode
-    public static Task EnterDefensiveMode(PlayerChoiceContext ctx, Player player) => 
-        GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianDefensiveMode>());
-    
-    public static Task LeaveDefensiveMode(PlayerChoiceContext ctx, Player player) => 
-        GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianNormalMode>());
-    
-    public static Task ChangeMode(PlayerChoiceContext ctx, Player player) =>
-        IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(ctx, player) : LeaveDefensiveMode(ctx, player);
+    public static Task EnterDefensiveMode(PlayerChoiceContext ctx, Player player)
+    {
+        return GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianDefensiveMode>());
+    }
 
-    public static GuardianModeModel GetMode(Player player) => 
-        GuardianModel.ActiveMode[player] ?? DownfallModelDb.GuardianMode<GuardianNormalMode>();
-    
-    public static bool IsInMode<T>(Player player) where T : GuardianModeModel => 
-        GuardianModel.ActiveMode[player] is T;
+    public static Task LeaveDefensiveMode(PlayerChoiceContext ctx, Player player)
+    {
+        return GuardianModel.SetMode(ctx, player, DownfallModelDb.GuardianMode<GuardianNormalMode>());
+    }
+
+    public static Task ChangeMode(PlayerChoiceContext ctx, Player player)
+    {
+        return IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(ctx, player) : LeaveDefensiveMode(ctx, player);
+    }
+
+    public static GuardianModeModel GetMode(Player player)
+    {
+        return GuardianModel.ActiveMode[player] ?? DownfallModelDb.GuardianMode<GuardianNormalMode>();
+    }
+
+    public static bool IsInMode<T>(Player player) where T : GuardianModeModel
+    {
+        return GuardianModel.ActiveMode[player] is T;
+    }
 
     // Stasis
-    public static int GetStasisCount(Player player) => GetStasisPile(player)?.Cards.Count ?? 0;
-    public static IReadOnlyList<CardModel> GetStasisCards(Player player) => GetStasisPile(player)?.Cards ?? [];
-    public static GuardianPile? GetStasisPile(Player player) => 
-        CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis) as GuardianPile;
+    public static int GetStasisCount(Player player)
+    {
+        return GetStasisPile(player)?.Cards.Count ?? 0;
+    }
 
-    public static int GetMaxStasisSlots(Player player) => GuardianModel.StasisSlots[player];
+    public static IReadOnlyList<CardModel> GetStasisCards(Player player)
+    {
+        return GetStasisPile(player)?.Cards ?? [];
+    }
+
+    public static GuardianPile? GetStasisPile(Player player)
+    {
+        return CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis) as GuardianPile;
+    }
+
+    public static int GetMaxStasisSlots(Player player)
+    {
+        return GuardianModel.StasisSlots[player];
+    }
+
     public static void AddMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
         GuardianModel.StasisSlots[player] += value;
         GuardianDisplay.Refresh(player);
     }
+
     public static void RemoveMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
@@ -87,12 +112,17 @@ public static class GuardianCmd
         SetStasisCounter(card);
     }
 
-    public static int GetStasisCounter(CardModel card) => GuardianModel.StasisCounter[card];
+    public static int GetStasisCounter(CardModel card)
+    {
+        return GuardianModel.StasisCounter[card];
+    }
+
     public static void SetStasisCounter(CardModel card)
     {
         GuardianModel.StasisCounter[card] = CalculateStasisCounter(card);
         GuardianDisplay.Refresh(card.Owner);
     }
+
     public static void DecrementStasisCounter(CardModel card)
     {
         if (GuardianModel.StasisCounter[card] <= 0) return;
@@ -100,12 +130,15 @@ public static class GuardianCmd
         GuardianDisplay.RefreshCounters(card.Owner);
     }
 
-    private static int CalculateStasisCounter(CardModel card) =>
-        card is ICustomTickDuration custom ? custom.TickDuration : card.EnergyCost.GetResolved() + 1;
+    private static int CalculateStasisCounter(CardModel card)
+    {
+        return card is ICustomTickDuration custom ? custom.TickDuration : card.EnergyCost.GetResolved() + 1;
+    }
 
     // Gems
-    public static List<GemModel> GetAllCombatGems(Player player) =>
-        player.PlayerCombatState?.AllCards
+    public static List<GemModel> GetAllCombatGems(Player player)
+    {
+        return player.PlayerCombatState?.AllCards
             .SelectMany(card => card switch
             {
                 IGemCard gem => [gem.GemModel],
@@ -113,6 +146,7 @@ public static class GuardianCmd
                 _ => []
             })
             .ToList() ?? [];
+    }
 
     public static async Task PutGemIn(CardModel gem, CardModel card)
     {
@@ -131,20 +165,19 @@ public static class GuardianCmd
     public static async Task DebuffDown(PlayerChoiceContext ctx, Creature creature, int amount = 1)
     {
         foreach (var powerModel in creature.Powers
-            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-            .OrderByDescending(p => p is ITemporaryPower)
-            .ToList())
-        {
+                     .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
+                     .OrderByDescending(p => p is ITemporaryPower)
+                     .ToList())
             switch (powerModel.Amount)
             {
                 case > 0:
                     await PowerCmd.ModifyAmount(ctx, powerModel, -Math.Min(amount, powerModel.Amount), creature, null);
                     break;
                 case < 0:
-                    await PowerCmd.ModifyAmount(ctx, powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)), creature, null);
+                    await PowerCmd.ModifyAmount(ctx, powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)),
+                        creature, null);
                     break;
             }
-        }
     }
 
     public static async Task Brace(PlayerChoiceContext ctx, Player player, int amount)
@@ -155,15 +188,17 @@ public static class GuardianCmd
         await power.Reset(ctx);
     }
 
-    public static Task Brace(PlayerChoiceContext ctx, CardModel card) => Brace(ctx, card.Owner, card.DynamicVars.Brace().IntValue);
-    
+    public static Task Brace(PlayerChoiceContext ctx, CardModel card)
+    {
+        return Brace(ctx, card.Owner, card.DynamicVars.Brace().IntValue);
+    }
+
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
         var cards = GetStasisCards(player).ToList(); // oldest first
-    
+
         if (accelerateType == AccelerateType.First)
-        {
             // Distribute amount across cards oldest-first
             foreach (var card in cards)
             {
@@ -181,9 +216,7 @@ public static class GuardianCmd
                 if (GuardianModel.StasisCounter[card] == 0)
                     await GuardianModel.ReturnFromStasis(card, player, ctx); // see below
             }
-        }
-        else 
-        {
+        else
             foreach (var card in cards)
             {
                 var reduce = Math.Min(amount, GuardianModel.StasisCounter[card]);
@@ -199,14 +232,15 @@ public static class GuardianCmd
                 if (GuardianModel.StasisCounter[card] == 0)
                     await GuardianModel.ReturnFromStasis(card, player, ctx);
             }
-        }
-    
+
         GuardianDisplay.Refresh(player);
     }
 
-    public static Task Accelerate(PlayerChoiceContext ctx, CardModel card, AccelerateType accelerateType = AccelerateType.First) =>
-        Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
-
+    public static Task Accelerate(PlayerChoiceContext ctx, CardModel card,
+        AccelerateType accelerateType = AccelerateType.First)
+    {
+        return Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
+    }
 }
 
 public enum AccelerateType

@@ -29,7 +29,8 @@ public class Philosophize : AutomatonCardModel,
     {
         var state = Owner.Creature.CombatState;
         ArgumentNullException.ThrowIfNull(state);
-        await PowerCmd.Apply<StrengthPower>(ctx, state.HittableEnemies, DynamicVars["EnemyStrength"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(ctx, state.HittableEnemies, DynamicVars["EnemyStrength"].BaseValue,
+            Owner.Creature,
             this);
     }
 

@@ -16,6 +16,5 @@ public class Float : HexaghostCardModel
     // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-     
     }
 }

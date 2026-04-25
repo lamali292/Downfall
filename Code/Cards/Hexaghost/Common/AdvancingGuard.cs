@@ -15,7 +15,7 @@ public class AdvancingGuard : HexaghostCardModel
         WithKeyword(DownfallKeywords.Advance);
         WithBlock(8, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

@@ -55,7 +55,7 @@ public class CardsAddedMessage : CustomRewardMessage
         var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
         var cards = message.Cards.Select(CardModel.FromSerializable);
-        
+
         CardPileCmd.Add(cards, PileType.Deck);
         if (LocalContext.IsMe(player)) return;
         var container = NRun.Instance?.GlobalUi.MultiplayerPlayerContainer;
@@ -64,8 +64,6 @@ public class CardsAddedMessage : CustomRewardMessage
             .FirstOrDefault(s => s.Player == player);
         if (stateNode == null) return;
         foreach (var cardModel in message.Cards.Select(CardModel.FromSerializable))
-        {
             _ = TaskHelper.RunSafely(stateNode.AnimateCardObtained(cardModel));
-        }
     }
 }

@@ -11,7 +11,8 @@ namespace Downfall.Code.Powers.Champ;
 
 public class StrikeOfGeniusPlusPower : ChampPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+        ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         var pool = ModelDb.CardPool<ChampCardPool>()

@@ -14,10 +14,9 @@ public class ExtraCrispy : HexaghostCardModel
     {
         WithPower<ExtraCrispyPower>(6, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ExtraCrispyPower>(ctx, this);
     }
-    
 }

@@ -17,7 +17,7 @@ public class WhisperFromBeyond : HexaghostCardModel
         WithDamage(10, 4);
         WithPower<SoulBurnPower>(10, 4);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

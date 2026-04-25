@@ -1,10 +1,3 @@
-using System.Reflection.Emit;
-using Godot;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.DevConsole;
-using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
-using MegaCrit.Sts2.Core.Nodes.Debug;
-
 namespace Downfall.Code.Patches;
 
 /*
@@ -33,7 +26,7 @@ public static class BetterConsoleAutocompletePatch
     [HarmonyPostfix]
     public static void SortByRelevance(ref CompletionResult __result, string partialArg)
     {
-        
+
         if (string.IsNullOrWhiteSpace(partialArg)) return;
         __result.Candidates = __result.Candidates
             .OrderBy(e =>

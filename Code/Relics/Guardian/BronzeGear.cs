@@ -33,7 +33,8 @@ public class BronzeGear : GuardianRelicModel
 
     public override async Task AfterObtained()
     {
-        var card = DownfallModelDb.AllGems.Where(e => e.Rarity == CardRarity.Common).TakeRandom(1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault()?.ToCard.ToMutable();
+        var card = DownfallModelDb.AllGems.Where(e => e.Rarity == CardRarity.Common)
+            .TakeRandom(1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault()?.ToCard.ToMutable();
         if (card == null) return;
         Owner.RunState.AddCard(card, Owner);
         var addResult = await CardPileCmd.Add(card, PileType.Deck);

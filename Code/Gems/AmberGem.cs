@@ -14,7 +14,7 @@ public class AmberGem : GemModel
 
     public override Color GemColor => new(0xD0D100FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
-    
+
     public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Accelerate(ctx, cardPlay.Card.Owner);

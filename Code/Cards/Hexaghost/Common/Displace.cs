@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Hexaghost.Common;
 
-
 [Pool(typeof(HexaghostCardPool))]
 public class Displace : HexaghostCardModel
 {
@@ -18,7 +17,7 @@ public class Displace : HexaghostCardModel
         WithDamage(6, 2);
         WithCards(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

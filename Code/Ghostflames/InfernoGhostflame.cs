@@ -15,6 +15,8 @@ namespace Downfall.Code.Ghostflames;
 public class InfernoGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 3;
+    public override NFire.FireColor FireColor => NFire.FireColor.Red;
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         var target = CombatState.HittableEnemies
@@ -23,11 +25,12 @@ public class InfernoGhostflame : GhostflameModel
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);
         if (Owner.Creature.CombatState == null) return;
         var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, (4 + intensity) * ignited, ValueProp.Move | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, (4 + intensity) * ignited,
+            ValueProp.Move | ValueProp.Unpowered, null, null);
         if (ignited >= 6)
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
     }
-    public override NFire.FireColor FireColor => NFire.FireColor.Red;
+
     public override async Task AfterEnergySpent(CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,9 +20,10 @@ public class GhostLash : HexaghostCardModel
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
-        return PileType.Hand.GetPile(card.Owner).Cards.Count(e => e != card && e.Keywords.Contains(CardKeyword.Ethereal));
+        return PileType.Hand.GetPile(card.Owner).Cards
+            .Count(e => e != card && e.Keywords.Contains(CardKeyword.Ethereal));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);

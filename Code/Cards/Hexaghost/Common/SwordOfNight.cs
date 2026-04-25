@@ -18,14 +18,12 @@ public class SwordOfNight : HexaghostCardModel
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
         foreach (var cardModel in result.Discarded.Where(card => card.Keywords.Contains(CardKeyword.Ethereal)))
-        {
             await CardCmd.Exhaust(ctx, cardModel);
-        }
     }
 }
