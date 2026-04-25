@@ -22,6 +22,6 @@ public class PhantomFireball : HexaghostCardModel
         if (cardPlay.Target == null || cardPlay.Target.IsDead || !cardPlay.Target.HasPower<SoulBurnPower>()) return;
         var power = cardPlay.Target.GetPower<SoulBurnPower>();
         if (power == null) return;
-        await power.Detonate(Owner.Creature, IsUpgraded);
+        await power.Detonate(ctx, Owner.Creature, IsUpgraded);
     }
 }

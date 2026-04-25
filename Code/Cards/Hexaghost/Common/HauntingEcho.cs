@@ -22,7 +22,7 @@ public class HauntingEcho : HexaghostCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!HexaghostCmd.IsIgnited(Owner)) return;
-        await HexaghostCmd.Ignite(ctx, Owner);
+        await HexaghostCmd.Ignite(ctx, Owner, true);
     }
     
 }

@@ -1,8 +1,12 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
+using Downfall.Code.Powers.Hexaghost;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
@@ -11,15 +15,17 @@ public class RadiantReverb : HexaghostCardModel
 {
     public RadiantReverb() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithDamage(18, 6);
+        WithPower<IntensityPower>(2, 1);
+        WithKeywords(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var power = cardPlay.Target?.GetPower<SoulBurnPower>();
+        if (power == null) return;
+        await PowerCmd.Remove(power);
+        await CommonActions.ApplySelf<IntensityPower>(ctx, this);
     }
 }

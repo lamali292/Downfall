@@ -97,14 +97,12 @@ public static class HexaghostCmd
         return GetWheel(player)[GetNextIndex(player)].IsIgnited;
     }
 
-    public static async Task Ignite(PlayerChoiceContext ctx, Player player)
+    public static async Task Ignite(PlayerChoiceContext ctx, Player player, bool force = false)
     {
         var flame = GetCurrentFlame(player);
-        if (!flame.IsIgnited)
-        {
-            flame.IsIgnited = true;
-            HexaghostVisualsBridge.Refresh(player);
-        }
+        if (flame.IsIgnited && !force) return;
+        flame.IsIgnited = true;
+        HexaghostVisualsBridge.Refresh(player);
         await flame.OnIgnite(ctx);
     }
 

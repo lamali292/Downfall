@@ -170,4 +170,9 @@ public static class DownfallHook
     {
         return Dispatch<IWheelMoved>(cs, ctx, m => m.AfterWheelAdvance(ctx, player, ghostflame, ghostflameIndex, silent));
     }
+
+    public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
+    {
+        return Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));
+    }
 }

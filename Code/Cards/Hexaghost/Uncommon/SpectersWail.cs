@@ -1,8 +1,6 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
-using Downfall.Code.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,12 +17,12 @@ public class SpectersWail : HexaghostCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 2).WithAttackerFx("vfx/vfx_spooky_scream").Execute(ctx);
     }
 
 
     protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).WithAttackerFx("vfx/vfx_spooky_scream").Execute(ctx);
     }
 }
