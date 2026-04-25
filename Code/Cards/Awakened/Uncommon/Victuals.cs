@@ -14,7 +14,7 @@ public class Victuals : AwakenedCardModel, IChantable
 {
     public Victuals() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVar("Energy", 2, 1);
+        WithEnergy(2, 1);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallTip.Chant);
     }

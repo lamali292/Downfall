@@ -19,7 +19,4 @@ public class Medusa : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

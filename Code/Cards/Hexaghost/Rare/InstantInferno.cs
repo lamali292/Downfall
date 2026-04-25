@@ -19,7 +19,4 @@ public class InstantInferno : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class RainOfGoop : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

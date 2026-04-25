@@ -19,7 +19,4 @@ public class SpearTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

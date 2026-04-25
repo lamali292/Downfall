@@ -19,7 +19,4 @@ public class IronFang : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

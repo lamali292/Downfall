@@ -19,7 +19,4 @@ public class BlunderGuard : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

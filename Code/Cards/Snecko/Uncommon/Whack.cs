@@ -19,7 +19,4 @@ public class Whack : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

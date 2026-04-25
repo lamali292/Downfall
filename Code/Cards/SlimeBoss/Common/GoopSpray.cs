@@ -19,7 +19,4 @@ public class GoopSpray : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

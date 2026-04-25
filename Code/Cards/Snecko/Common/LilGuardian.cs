@@ -19,7 +19,4 @@ public class LilGuardian : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

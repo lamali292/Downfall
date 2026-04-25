@@ -19,7 +19,4 @@ public class GlitteringGambit : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

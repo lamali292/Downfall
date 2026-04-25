@@ -19,7 +19,4 @@ public class ExoticForm : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

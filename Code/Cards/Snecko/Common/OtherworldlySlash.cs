@@ -19,7 +19,4 @@ public class OtherworldlySlash : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

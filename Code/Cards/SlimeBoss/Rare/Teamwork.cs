@@ -19,7 +19,4 @@ public class Teamwork : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

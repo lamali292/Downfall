@@ -19,7 +19,4 @@ public class RollThrough : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

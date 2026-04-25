@@ -19,7 +19,4 @@ public class ThrowingCards : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

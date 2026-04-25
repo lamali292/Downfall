@@ -401,5 +401,8 @@
   "DOWNFALL-LIVING_BOMB_POWER.smartDescription": "The next time this creature's [gold]Soulburn[/gold] is detonated, it effects ALL enemies.",
   "DOWNFALL-POLTERGEIST_POWER.title": "Poltergeist",
   "DOWNFALL-POLTERGEIST_POWER.description": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses [blue]X[/blue] HP.",
-  "DOWNFALL-POLTERGEIST_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses [blue]{Amount}[/blue] HP."
+  "DOWNFALL-POLTERGEIST_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses [blue]{Amount}[/blue] HP.",
+  "DOWNFALL-NIGHTMARE_VISION_POWER.title": "Nightmare Vision",
+  "DOWNFALL-NIGHTMARE_VISION_POWER.description": "Whenever an [gold]Ethereal[/gold] card [gold]Exhausts[/gold], gain [blue]X[/blue] [gold]Block[/gold].",
+  "DOWNFALL-NIGHTMARE_VISION_POWER.smartDescription": "Whenever an [gold]Ethereal[/gold] card [gold]Exhausts[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold]."
 }

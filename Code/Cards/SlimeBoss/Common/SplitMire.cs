@@ -19,7 +19,4 @@ public class SplitMire : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

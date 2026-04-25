@@ -19,7 +19,4 @@ public class JustDesserts : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

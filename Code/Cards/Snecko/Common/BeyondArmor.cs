@@ -19,7 +19,4 @@ public class BeyondArmor : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

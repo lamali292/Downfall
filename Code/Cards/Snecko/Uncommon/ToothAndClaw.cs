@@ -19,7 +19,4 @@ public class ToothAndClaw : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

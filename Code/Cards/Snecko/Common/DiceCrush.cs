@@ -19,7 +19,4 @@ public class DiceCrush : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

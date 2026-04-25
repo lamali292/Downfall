@@ -19,7 +19,4 @@ public class TongueLash : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

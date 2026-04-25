@@ -19,7 +19,4 @@ public class WideSting : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

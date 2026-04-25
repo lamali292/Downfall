@@ -19,7 +19,4 @@ public class LeadByExample : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

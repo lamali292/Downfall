@@ -19,7 +19,4 @@ public class SerpentsNest : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

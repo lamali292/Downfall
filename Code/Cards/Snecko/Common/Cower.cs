@@ -19,7 +19,4 @@ public class Cower : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

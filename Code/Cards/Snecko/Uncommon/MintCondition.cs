@@ -19,7 +19,4 @@ public class MintCondition : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

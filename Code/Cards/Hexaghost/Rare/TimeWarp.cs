@@ -19,7 +19,4 @@ public class TimeWarp : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

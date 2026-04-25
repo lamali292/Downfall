@@ -19,7 +19,4 @@ public class Recollect : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

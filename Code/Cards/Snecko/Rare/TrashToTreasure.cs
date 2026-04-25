@@ -19,7 +19,4 @@ public class TrashToTreasure : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

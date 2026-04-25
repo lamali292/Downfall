@@ -19,7 +19,4 @@ public class PowerShot : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

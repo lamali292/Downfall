@@ -19,7 +19,4 @@ public class MegaLick : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

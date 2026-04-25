@@ -19,7 +19,4 @@ public class Grow : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

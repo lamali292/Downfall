@@ -19,7 +19,4 @@ public class ViciousTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

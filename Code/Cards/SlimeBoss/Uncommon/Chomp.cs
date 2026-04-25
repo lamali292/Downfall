@@ -19,7 +19,4 @@ public class Chomp : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -23,7 +23,4 @@ public class RiposteStrike : ChampCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

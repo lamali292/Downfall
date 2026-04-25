@@ -19,7 +19,4 @@ public class VolcanoVisage : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

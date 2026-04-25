@@ -19,7 +19,4 @@ public class SerpentineSleuth : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

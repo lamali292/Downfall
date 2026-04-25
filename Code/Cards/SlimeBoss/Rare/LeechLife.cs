@@ -19,7 +19,4 @@ public class LeechLife : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

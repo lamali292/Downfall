@@ -19,7 +19,4 @@ public class SlimeSpikes : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

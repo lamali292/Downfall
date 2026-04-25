@@ -19,7 +19,4 @@ public class Overwhelming : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

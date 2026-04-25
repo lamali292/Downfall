@@ -19,7 +19,4 @@ public class RainOfDice : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

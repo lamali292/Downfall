@@ -19,7 +19,4 @@ public class Mesmerize : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

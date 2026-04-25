@@ -19,7 +19,4 @@ public class PrepareCrush : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

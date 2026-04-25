@@ -19,7 +19,4 @@ public class UnlimitedPower : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class Behold : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class Shift : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

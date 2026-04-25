@@ -19,7 +19,4 @@ public class DuplicatedForm : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

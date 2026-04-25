@@ -19,7 +19,4 @@ public class StrikeFromBeyond : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

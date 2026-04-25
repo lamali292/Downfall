@@ -19,7 +19,4 @@ public class DefensiveFlair : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

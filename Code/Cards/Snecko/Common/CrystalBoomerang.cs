@@ -19,7 +19,4 @@ public class CrystalBoomerang : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

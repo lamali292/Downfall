@@ -19,7 +19,4 @@ public class SoulRoll : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

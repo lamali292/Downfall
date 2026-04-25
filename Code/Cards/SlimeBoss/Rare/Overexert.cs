@@ -19,7 +19,4 @@ public class Overexert : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

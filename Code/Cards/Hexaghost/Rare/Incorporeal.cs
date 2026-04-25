@@ -19,7 +19,4 @@ public class Incorporeal : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

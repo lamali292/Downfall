@@ -19,7 +19,4 @@ public class CorrosiveSpit : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

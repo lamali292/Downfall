@@ -19,7 +19,4 @@ public class NibbleAndLick : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

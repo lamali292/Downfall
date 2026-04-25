@@ -19,7 +19,4 @@ public class MassRepurpose : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

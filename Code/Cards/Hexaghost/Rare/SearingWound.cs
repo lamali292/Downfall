@@ -19,7 +19,4 @@ public class SearingWound : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

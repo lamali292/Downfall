@@ -19,7 +19,4 @@ public class FinalStrike : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

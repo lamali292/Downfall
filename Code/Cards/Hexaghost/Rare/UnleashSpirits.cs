@@ -19,7 +19,4 @@ public class UnleashSpirits : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class SneakyTeakwoodMatch : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

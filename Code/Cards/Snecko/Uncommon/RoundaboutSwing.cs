@@ -19,7 +19,4 @@ public class RoundaboutSwing : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

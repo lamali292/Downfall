@@ -19,7 +19,4 @@ public class DivideConquer : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

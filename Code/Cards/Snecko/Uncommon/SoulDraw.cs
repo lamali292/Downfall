@@ -19,7 +19,4 @@ public class SoulDraw : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

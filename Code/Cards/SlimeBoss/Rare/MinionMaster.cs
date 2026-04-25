@@ -19,7 +19,4 @@ public class MinionMaster : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

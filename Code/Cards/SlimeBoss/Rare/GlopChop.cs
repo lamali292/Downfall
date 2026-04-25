@@ -19,7 +19,4 @@ public class GlopChop : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

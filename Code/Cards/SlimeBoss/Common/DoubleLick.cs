@@ -19,7 +19,4 @@ public class DoubleLick : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class ConsultPlaybook : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

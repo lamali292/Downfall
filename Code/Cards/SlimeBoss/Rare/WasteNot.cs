@@ -19,7 +19,4 @@ public class WasteNot : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -14,6 +14,7 @@ public class ReceiveTribute : CollectorCardModel
     {
         WithPyre();
         WithKeyword(CardKeyword.Exhaust);
+        WithCards(2, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

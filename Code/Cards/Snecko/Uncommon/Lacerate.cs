@@ -19,7 +19,4 @@ public class Lacerate : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

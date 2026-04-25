@@ -19,7 +19,4 @@ public class SaveForLater : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

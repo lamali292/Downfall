@@ -19,7 +19,4 @@ public class TailWhip : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

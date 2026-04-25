@@ -19,7 +19,4 @@ public class SamplingLick : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class EtherStep : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

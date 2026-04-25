@@ -19,7 +19,4 @@ public class RiskySword : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

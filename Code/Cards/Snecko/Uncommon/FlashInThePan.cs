@@ -19,7 +19,4 @@ public class FlashInThePan : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

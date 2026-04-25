@@ -19,7 +19,4 @@ public class Doomsday : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

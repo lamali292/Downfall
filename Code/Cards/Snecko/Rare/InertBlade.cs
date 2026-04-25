@@ -19,7 +19,4 @@ public class InertBlade : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

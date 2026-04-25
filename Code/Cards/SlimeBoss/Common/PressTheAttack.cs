@@ -19,7 +19,4 @@ public class PressTheAttack : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

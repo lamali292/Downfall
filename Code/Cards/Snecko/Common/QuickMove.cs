@@ -19,7 +19,4 @@ public class QuickMove : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

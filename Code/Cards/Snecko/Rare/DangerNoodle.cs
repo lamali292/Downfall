@@ -19,7 +19,4 @@ public class DangerNoodle : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

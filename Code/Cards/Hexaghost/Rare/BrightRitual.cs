@@ -19,7 +19,4 @@ public class BrightRitual : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

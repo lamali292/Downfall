@@ -19,7 +19,4 @@ public class TrashCan : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

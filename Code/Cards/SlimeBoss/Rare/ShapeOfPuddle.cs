@@ -19,7 +19,4 @@ public class ShapeOfPuddle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

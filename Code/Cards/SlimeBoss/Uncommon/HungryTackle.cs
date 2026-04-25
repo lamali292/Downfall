@@ -19,7 +19,4 @@ public class HungryTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

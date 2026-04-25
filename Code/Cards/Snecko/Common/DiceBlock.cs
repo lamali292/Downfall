@@ -19,7 +19,4 @@ public class DiceBlock : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class LuckyBreak : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

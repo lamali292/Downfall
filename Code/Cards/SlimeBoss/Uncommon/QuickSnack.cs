@@ -19,7 +19,4 @@ public class QuickSnack : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

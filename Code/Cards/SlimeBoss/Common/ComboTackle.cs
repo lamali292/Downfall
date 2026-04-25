@@ -19,7 +19,4 @@ public class ComboTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

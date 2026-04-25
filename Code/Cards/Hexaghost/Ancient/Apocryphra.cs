@@ -19,7 +19,4 @@ public class Apocryphra : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

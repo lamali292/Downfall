@@ -19,7 +19,4 @@ public class PileOn : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

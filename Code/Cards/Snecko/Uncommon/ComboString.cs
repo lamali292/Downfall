@@ -19,7 +19,4 @@ public class ComboString : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

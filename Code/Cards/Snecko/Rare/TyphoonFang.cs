@@ -19,7 +19,4 @@ public class TyphoonFang : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

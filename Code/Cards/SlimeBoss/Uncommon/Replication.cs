@@ -19,7 +19,4 @@ public class Replication : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

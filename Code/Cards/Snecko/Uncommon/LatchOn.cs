@@ -19,7 +19,4 @@ public class LatchOn : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

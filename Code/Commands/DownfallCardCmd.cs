@@ -1,5 +1,6 @@
 ﻿using Downfall.Code.Events;
 using Godot;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -152,5 +153,23 @@ public class DownfallCardCmd
         var result = new List<CardPileAddResult>();
         for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
         return result;
+    }
+    
+    public static async Task SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card,PileType fromPile, PileType toPile)
+    {
+        var cards = fromPile.GetPile(card.Owner).Cards.ToList();
+        if (cards.Count == 0) return;
+        var want = card.DynamicVars.Cards.IntValue;
+        IEnumerable<CardModel> newCard;
+        if (cards.Count <= want)
+        {
+            newCard = cards;
+        }
+        else
+        {
+            var prefs = new CardSelectorPrefs(card.SelectionScreenPrompt, want, want);
+            newCard = await CardSelectCmd.FromSimpleGrid(ctx, cards, card.Owner, prefs);
+        }
+        await CardPileCmd.Add(newCard, toPile);
     }
 }

@@ -19,7 +19,4 @@ public class EerieExpedition : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

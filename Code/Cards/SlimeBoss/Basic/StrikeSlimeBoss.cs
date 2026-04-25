@@ -19,7 +19,4 @@ public class StrikeSlimeBoss : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

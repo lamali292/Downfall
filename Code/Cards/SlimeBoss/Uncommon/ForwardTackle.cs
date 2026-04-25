@@ -19,7 +19,4 @@ public class ForwardTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

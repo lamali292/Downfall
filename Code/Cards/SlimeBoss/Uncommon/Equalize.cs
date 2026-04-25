@@ -19,7 +19,4 @@ public class Equalize : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

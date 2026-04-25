@@ -19,7 +19,4 @@ public class Serpentscale : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

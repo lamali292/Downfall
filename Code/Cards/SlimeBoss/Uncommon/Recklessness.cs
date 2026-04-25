@@ -19,7 +19,4 @@ public class Recklessness : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

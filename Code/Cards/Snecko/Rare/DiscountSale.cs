@@ -19,7 +19,4 @@ public class DiscountSale : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

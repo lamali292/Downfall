@@ -19,7 +19,4 @@ public class IntoShadow : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

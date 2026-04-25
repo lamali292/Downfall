@@ -19,7 +19,4 @@ public class LeechingStrike : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

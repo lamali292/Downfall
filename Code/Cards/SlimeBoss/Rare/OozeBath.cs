@@ -19,7 +19,4 @@ public class OozeBath : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

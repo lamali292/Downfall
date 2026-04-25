@@ -19,7 +19,4 @@ public class SlimeBrawl : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

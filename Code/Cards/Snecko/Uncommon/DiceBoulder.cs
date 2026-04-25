@@ -19,7 +19,4 @@ public class DiceBoulder : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

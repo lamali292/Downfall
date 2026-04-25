@@ -19,7 +19,4 @@ public class Jackpot : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

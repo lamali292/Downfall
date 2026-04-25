@@ -19,7 +19,4 @@ public class LaserEyes : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

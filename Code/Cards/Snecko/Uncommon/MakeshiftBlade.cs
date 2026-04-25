@@ -19,7 +19,4 @@ public class MakeshiftBlade : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

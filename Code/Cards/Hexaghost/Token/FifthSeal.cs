@@ -19,7 +19,4 @@ public class FifthSeal : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

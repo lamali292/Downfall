@@ -19,7 +19,4 @@ public class Gluttony : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

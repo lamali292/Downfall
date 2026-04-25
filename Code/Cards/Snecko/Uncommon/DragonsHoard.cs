@@ -19,7 +19,4 @@ public class DragonsHoard : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

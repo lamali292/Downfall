@@ -14,7 +14,7 @@ public class Minniegun : AwakenedCardModel
     public Minniegun() : base(2, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVar("Repeat", 5, 1);
+        WithRepeat(5, 1);
         WithTip(typeof(Void));
     }
 

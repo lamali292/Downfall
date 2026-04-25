@@ -19,7 +19,4 @@ public class QueenOfPentacles : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

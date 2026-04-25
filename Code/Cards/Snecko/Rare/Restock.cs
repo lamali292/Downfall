@@ -19,7 +19,4 @@ public class Restock : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

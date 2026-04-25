@@ -17,7 +17,7 @@ public class Repair : AutomatonCardModel, IEncodable, ICompilable
     public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(4);
-        WithVar("Heal", 7, 3);
+        WithHeal(7, 3);
         WithTip(DownfallTip.Encode);
         WithTip(DownfallTip.Compile);
     }

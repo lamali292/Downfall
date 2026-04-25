@@ -19,7 +19,4 @@ public class FlameTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

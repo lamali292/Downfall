@@ -19,7 +19,4 @@ public class BroilingFlames : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

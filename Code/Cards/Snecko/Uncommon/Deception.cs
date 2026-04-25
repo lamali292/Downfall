@@ -19,7 +19,4 @@ public class Deception : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

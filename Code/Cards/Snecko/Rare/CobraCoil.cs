@@ -19,7 +19,4 @@ public class CobraCoil : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

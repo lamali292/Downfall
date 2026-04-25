@@ -19,7 +19,4 @@ public class FormOfWall : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

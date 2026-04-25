@@ -19,7 +19,4 @@ public class MarkedCard : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

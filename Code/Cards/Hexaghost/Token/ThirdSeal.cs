@@ -19,7 +19,4 @@ public class ThirdSeal : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

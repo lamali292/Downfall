@@ -19,7 +19,4 @@ public class Belittle : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

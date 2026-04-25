@@ -19,7 +19,4 @@ public class ForkedFlame : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

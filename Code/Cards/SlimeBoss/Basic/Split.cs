@@ -19,7 +19,4 @@ public class Split : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

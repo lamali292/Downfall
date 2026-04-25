@@ -19,7 +19,4 @@ public class FirstSeal : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

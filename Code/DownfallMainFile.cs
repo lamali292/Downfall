@@ -71,6 +71,7 @@ internal static class ModelDbInitIdsPatch
     }
 }
 
+/*
 [HarmonyPatch(typeof(Log), nameof(Log.Error))]
 public static class LogErrorPatch
 {
@@ -79,4 +80,4 @@ public static class LogErrorPatch
     {
         return !text.StartsWith("Localization formatting error!");
     }
-}
+}*/

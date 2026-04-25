@@ -19,7 +19,4 @@ public class GildedShield : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

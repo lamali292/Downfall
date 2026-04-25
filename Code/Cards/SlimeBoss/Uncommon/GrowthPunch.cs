@@ -19,7 +19,4 @@ public class GrowthPunch : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

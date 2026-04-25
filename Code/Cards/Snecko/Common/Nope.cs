@@ -19,7 +19,4 @@ public class Nope : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

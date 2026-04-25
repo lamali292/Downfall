@@ -19,7 +19,4 @@ public class Tsunami : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

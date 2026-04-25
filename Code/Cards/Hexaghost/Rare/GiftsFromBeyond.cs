@@ -19,7 +19,4 @@ public class GiftsFromBeyond : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

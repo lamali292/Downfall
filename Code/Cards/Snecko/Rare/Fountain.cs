@@ -19,7 +19,4 @@ public class Fountain : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

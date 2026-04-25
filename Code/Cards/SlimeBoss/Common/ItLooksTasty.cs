@@ -19,7 +19,4 @@ public class ItLooksTasty : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

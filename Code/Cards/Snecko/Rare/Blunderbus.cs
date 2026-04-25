@@ -19,7 +19,4 @@ public class Blunderbus : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class SlitherThrough : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

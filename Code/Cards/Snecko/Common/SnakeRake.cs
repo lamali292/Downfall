@@ -19,7 +19,4 @@ public class SnakeRake : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

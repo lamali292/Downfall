@@ -19,7 +19,4 @@ public class MassFeed : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

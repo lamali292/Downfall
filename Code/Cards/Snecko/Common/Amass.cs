@@ -19,7 +19,4 @@ public class Amass : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

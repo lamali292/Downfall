@@ -19,7 +19,4 @@ public class GhostShield : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

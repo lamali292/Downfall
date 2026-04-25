@@ -19,7 +19,4 @@ public class Reformation : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

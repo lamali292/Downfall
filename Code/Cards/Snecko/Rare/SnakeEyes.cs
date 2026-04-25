@@ -19,7 +19,4 @@ public class SnakeEyes : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

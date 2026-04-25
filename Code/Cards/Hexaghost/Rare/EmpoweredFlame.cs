@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,15 +12,11 @@ public class EmpoweredFlame : HexaghostCardModel
 {
     public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<IntensityPower>(2, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<IntensityPower>(ctx, this);
     }
 }

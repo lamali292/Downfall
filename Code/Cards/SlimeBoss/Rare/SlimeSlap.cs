@@ -19,7 +19,4 @@ public class SlimeSlap : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

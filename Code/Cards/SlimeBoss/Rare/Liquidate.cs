@@ -19,7 +19,4 @@ public class Liquidate : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

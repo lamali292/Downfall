@@ -19,7 +19,4 @@ public class PerpetualSerpent : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

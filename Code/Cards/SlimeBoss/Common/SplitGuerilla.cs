@@ -19,7 +19,4 @@ public class SplitGuerilla : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

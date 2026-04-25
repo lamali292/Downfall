@@ -19,7 +19,4 @@ public class GoopArmor : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

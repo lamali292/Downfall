@@ -19,7 +19,4 @@ public class OpeningTackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

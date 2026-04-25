@@ -19,7 +19,4 @@ public class Tackle : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

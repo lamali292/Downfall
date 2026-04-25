@@ -19,7 +19,4 @@ public class InfernalForm : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class BurningQuestion : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

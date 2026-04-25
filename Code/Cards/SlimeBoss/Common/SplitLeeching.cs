@@ -19,7 +19,4 @@ public class SplitLeeching : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

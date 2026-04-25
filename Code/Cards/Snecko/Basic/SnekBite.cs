@@ -19,7 +19,4 @@ public class SnekBite : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

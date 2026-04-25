@@ -19,7 +19,4 @@ public class LevelUp : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

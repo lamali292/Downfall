@@ -19,7 +19,4 @@ public class MudShield : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

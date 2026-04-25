@@ -19,7 +19,4 @@ public class RallyTheTroops : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

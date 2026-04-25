@@ -19,7 +19,4 @@ public class DefendSnecko : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

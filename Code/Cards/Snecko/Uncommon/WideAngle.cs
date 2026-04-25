@@ -19,7 +19,4 @@ public class WideAngle : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

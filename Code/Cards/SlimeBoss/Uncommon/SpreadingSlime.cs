@@ -19,7 +19,4 @@ public class SpreadingSlime : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class Recycling : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

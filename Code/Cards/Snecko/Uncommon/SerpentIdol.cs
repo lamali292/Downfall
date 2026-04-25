@@ -19,7 +19,4 @@ public class SerpentIdol : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

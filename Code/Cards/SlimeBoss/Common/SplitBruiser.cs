@@ -19,7 +19,4 @@ public class SplitBruiser : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

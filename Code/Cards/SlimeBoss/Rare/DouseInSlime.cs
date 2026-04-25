@@ -19,7 +19,4 @@ public class DouseInSlime : SlimeBossCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

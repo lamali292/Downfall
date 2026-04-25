@@ -19,7 +19,4 @@ public class TimeOfNeed : HexaghostCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }

@@ -19,7 +19,4 @@ public class CheapStock : SneckoCardModel
     }
 
 
-    protected override void OnUpgrade()
-    {
-    }
 }
