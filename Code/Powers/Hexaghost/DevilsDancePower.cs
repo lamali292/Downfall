@@ -2,6 +2,7 @@
 using Downfall.Code.Core.Hexaghost;
 using Downfall.Code.Events;
 using Downfall.Code.Interfaces;
+using Downfall.Code.Patches;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;

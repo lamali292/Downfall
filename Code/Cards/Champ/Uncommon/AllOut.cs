@@ -16,7 +16,7 @@ public class AllOut : ChampCardModel
     public AllOut() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithVars(new RepeatVar(2).WithUpgrade(1));
+        WithRepeat(2, 1);
         WithTags(DownfallTag.Finisher);
     }
 

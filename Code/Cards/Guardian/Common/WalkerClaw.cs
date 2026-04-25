@@ -14,7 +14,7 @@ public class WalkerClaw : GuardianCardModel
     public WalkerClaw() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5);
-        WithVar(new RepeatVar(4).WithUpgrade(1));
+        WithRepeat(4, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

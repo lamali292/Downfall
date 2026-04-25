@@ -14,7 +14,7 @@ public class RefractedBeam : GuardianCardModel
     public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(4);
-        WithVar(new RepeatVar(4).WithUpgrade(1));
+        WithRepeat(4, 1);
     }
 
     public override int GemSlots => 1 + CurrentUpgradeLevel;

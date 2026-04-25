@@ -18,7 +18,7 @@ public class Iterate : AutomatonCardModel, IEncodable
     public Iterate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithVars(new RepeatVar(3).WithUpgrade(1));
+        WithRepeat(3, 1);
         WithTip(DownfallTip.Encode);
     }
 

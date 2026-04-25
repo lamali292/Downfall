@@ -392,5 +392,8 @@
   "DOWNFALL-GHOSTFLAME_BARRIER_POWER.smartDescription": "Whenever you are attacked this turn, apply {Amount} [gold]Soulburn[/gold] back.",
   "DOWNFALL-EXTRA_CRISPY_POWER.title": "Extra Crispy",
   "DOWNFALL-EXTRA_CRISPY_POWER.description": "Whenever [gold]Soulburn[/gold] detonates, the enemy loses [blue]X[/blue] HP and gains [blue]X[/blue] [gold]Soulburn[/gold].",
-  "DOWNFALL-EXTRA_CRISPY_POWER.smartDescription": "Whenever [gold]Soulburn[/gold] detonates, the enemy loses [blue]{Amount}[/blue] HP and gains [blue]{Amount}[/blue] [gold]Soulburn[/gold]."
+  "DOWNFALL-EXTRA_CRISPY_POWER.smartDescription": "Whenever [gold]Soulburn[/gold] detonates, the enemy loses [blue]{Amount}[/blue] HP and gains [blue]{Amount}[/blue] [gold]Soulburn[/gold].",
+  "DOWNFALL-HOT_STREAK_POWER.title": "Hot Streak",
+  "DOWNFALL-HOT_STREAK_POWER.description": "At the end of your turn, apply [blue]X[/blue] [gold]Soulburn[/gold] to enemies that already have [gold]Soulburn[/gold].",
+  "DOWNFALL-HOT_STREAK_POWER.smartDescription": "At the end of your turn, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to enemies that already have [gold]Soulburn[/gold]."
 }

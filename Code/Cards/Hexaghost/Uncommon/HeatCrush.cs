@@ -1,8 +1,12 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
@@ -11,15 +15,16 @@ public class HeatCrush : HexaghostCardModel
 {
     public HeatCrush() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithCalculatedDamage(12, Calc, ValueProp.Move, 6);
     }
 
-    // TODO: Implement
+    private static decimal Calc(CardModel card, Creature? creature)
+    {
+        return creature?.GetPowerAmount<SoulBurnPower>() ?? 0;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

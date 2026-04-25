@@ -14,7 +14,7 @@ public class Reversal : HexaghostCardModel
     public Reversal() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
-        WithVar(new RepeatVar(2));
+        WithRepeat(2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -48,14 +48,14 @@ public static class HexaghostCmd
 
     public static async Task Advance(PlayerChoiceContext ctx, Player player, bool silent = false)
     {
-        await MoveTo(player, GetNextIndex(player), ctx);
+        await MoveTo(player, GetNextIndex(player));
         await DownfallHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
 
     public static async Task Retract(PlayerChoiceContext ctx, Player player, bool silent = false)
     {
-        await MoveTo(player, GetPreviousIndex(player), ctx);
+        await MoveTo(player, GetPreviousIndex(player));
         await DownfallHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
@@ -67,7 +67,7 @@ public static class HexaghostCmd
         var rng = player.RunState.Rng.Niche;
         var candidates = Enumerable.Range(0, wheel.Length).Where(i => i != current).ToArray();
         var randomIndex = rng.NextItem(candidates);
-        await MoveTo(player, randomIndex, ctx, silent);
+        await MoveTo(player, randomIndex, silent);
     }
 
     public static Task ReplaceCurrentWithRandom(Player player)
@@ -87,7 +87,7 @@ public static class HexaghostCmd
     }
 
 
-    private static Task MoveTo(Player player, int index, PlayerChoiceContext? ctx, bool silent = false)
+    private static Task MoveTo(Player player, int index, bool silent = false)
     {
         HexaghostModel.CurrentIndex[player] = index;
         GetCurrentFlame(player).Extinguish();
@@ -111,15 +111,26 @@ public static class HexaghostCmd
         return GetWheel(player)[GetNextIndex(player)].IsIgnited;
     }
 
-    public static async Task Ignite(PlayerChoiceContext ctx, Player player, bool force = false)
+    public static Task IgnitePrevious(PlayerChoiceContext ctx, Player player)
+        => IgniteAt(ctx, player, GetPreviousIndex(player));
+
+    public static Task IgniteNext(PlayerChoiceContext ctx, Player player)
+        => IgniteAt(ctx, player, GetNextIndex(player));
+    
+    public static Task Ignite(PlayerChoiceContext ctx, Player player)
+        => IgniteAt(ctx, player, GetCurrentIndex(player));
+    
+    private static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
     {
-        var flame = GetCurrentFlame(player);
-        if (flame.IsIgnited && !force) return;
-        flame.IsIgnited = true;
-        HexaghostVisualsBridge.Refresh(player);
+        var flame = GetWheel(player)[index];
+        if (!flame.IsIgnited)
+        {
+            flame.IsIgnited = true;
+            HexaghostVisualsBridge.Refresh(player);
+        }
         await flame.OnIgnite(ctx);
     }
-
+    
     public static Task Extinguish(Player player, bool silent = false)
     {
         GetCurrentFlame(player).Extinguish();

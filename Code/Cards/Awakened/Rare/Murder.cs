@@ -13,7 +13,7 @@ public class Murder : AwakenedCardModel
     public Murder() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
     {
         WithDamage(4);
-        WithVars(new RepeatVar(4));
+        WithRepeat(4);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

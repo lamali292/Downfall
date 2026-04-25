@@ -16,7 +16,7 @@ public class Devastate : ChampCardModel
     public Devastate() : base(5, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithVars(new RepeatVar(3));
+        WithRepeat(3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
