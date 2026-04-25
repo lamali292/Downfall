@@ -23,14 +23,13 @@ public class BadOmen : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeywords(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SelectGhostflame(ctx, Owner);
     }
-    
-    public static async Task SelectGhostflame(PlayerChoiceContext ctx, Player owner)
+
+    private static async Task SelectGhostflame(PlayerChoiceContext ctx, Player owner)
     {
         var choices = DownfallModelDb.AllGhostflames
             .Select(f => BadOmenChoice.Create(f, owner))
@@ -52,7 +51,7 @@ public class BadOmenChoice : HexaghostCardModel
     }
     
     
-    public GhostflameModel? GhostflameModel { get; set; }
+    public GhostflameModel? GhostflameModel { get; private set; }
 
     public static BadOmenChoice Create(GhostflameModel flame, Player owner)
     {

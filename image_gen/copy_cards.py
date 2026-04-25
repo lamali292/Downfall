@@ -1,5 +1,5 @@
 from PIL import Image
-import os, hashlib, json, string
+import os, hashlib, json, string, sys
 
 # ============================================================
 # CONFIG
@@ -44,6 +44,7 @@ def write_if_changed(path, data: bytes):
         with open(path, "rb") as f:
             if f.read() == data:
                 return False
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "wb") as f:
         f.write(data)
     return True
@@ -83,53 +84,143 @@ def write_tres(path, atlas_res_path, x, y, w, h, uid_name):
     )
     write_if_changed(path, content.encode())
 
-def clean_dir(folder, extensions):
-    os.makedirs(folder, exist_ok=True)
-    for f in os.listdir(folder):
-        if any(f.endswith(ext) for ext in extensions):
-            os.remove(os.path.join(folder, f))
+def tres_name_for(char_id, stem):
+    return f"{char_id}_{stem}" if char_id and char_id != "." else stem
 
-# ── Cache check ───────────────────────────────────────────────
+# ── Fixed-size grid positioning ───────────────────────────────
 
-def collect_input_hashes():
-    hashes = {}
-    for input_dir in INPUT_DIRS:
-        full = os.path.join(SCRIPT_DIR, input_dir)
-        if not os.path.exists(full):
+def cols_for(card_w):
+    return MAX_ATLAS // (card_w + PADDING)
+
+def rows_per_atlas(card_h):
+    return MAX_ATLAS // (card_h + PADDING)
+
+def slot_to_atlas_and_xy(slot, card_w, card_h):
+    cols = cols_for(card_w)
+    rows = rows_per_atlas(card_h)
+    slots_per_atlas = cols * rows
+    atlas_idx = slot // slots_per_atlas
+    local_slot = slot % slots_per_atlas
+    col = local_slot % cols
+    row = local_slot // cols
+    x = col * (card_w + PADDING)
+    y = row * (card_h + PADDING)
+    return atlas_idx, x, y
+
+# ── Pack a group ──────────────────────────────────────────────
+
+def pack_group(group_id, entries, atlas_base, type_prefix, card_size, group_cache, force_repack):
+    """
+    entries:     list of (stem, resized_image, src_hash)
+                 stem is already the final .tres name (includes char prefix)
+    group_cache: dict stem -> {hash, slot, atlas_idx}
+    Returns updated group_cache.
+    """
+    card_w, card_h = card_size
+
+    if force_repack:
+        group_cache = {}
+
+    entry_map = {stem: (resized, src_hash) for stem, resized, src_hash in entries}
+
+    # Assign slots — keep existing positions, append new at end
+    next_slot = max((v["slot"] for v in group_cache.values()), default=-1) + 1
+    slot_map = {}
+    dirty_stems = set()
+
+    for stem, cached in group_cache.items():
+        if stem in entry_map:
+            slot_map[stem] = cached["slot"]
+            _, src_hash = entry_map[stem]
+            if cached["hash"] != src_hash:
+                dirty_stems.add(stem)
+
+    for stem in entry_map:
+        if stem not in slot_map:
+            slot_map[stem] = next_slot
+            next_slot += 1
+            dirty_stems.add(stem)
+
+    removed = set(group_cache) - set(entry_map)
+
+    if not dirty_stems and not removed and not force_repack:
+        print(f"  {group_id}: nothing changed, skipping.")
+        return group_cache
+
+    # Build canvases
+    max_slot = max(slot_map.values(), default=0)
+    cols = cols_for(card_w)
+    rows = rows_per_atlas(card_h)
+    slots_per_atlas = cols * rows
+    atlas_count = (max_slot // slots_per_atlas) + 1
+    canvases = [Image.new("RGB", (MAX_ATLAS, MAX_ATLAS), (0, 0, 0)) for _ in range(atlas_count)]
+
+    for stem, slot in slot_map.items():
+        resized, _ = entry_map[stem]
+        atlas_idx, x, y = slot_to_atlas_and_xy(slot, card_w, card_h)
+        canvases[atlas_idx].paste(resized, (x, y))
+
+    # Write atlas PNGs cropped to used height
+    atlas_res_paths = []
+    for idx, canvas in enumerate(canvases):
+        used_h = 0
+        for stem, slot in slot_map.items():
+            aidx, _, y = slot_to_atlas_and_xy(slot, card_w, card_h)
+            if aidx == idx:
+                used_h = max(used_h, y + card_h)
+        cropped = canvas.crop((0, 0, MAX_ATLAS, used_h))
+        filename = f"{atlas_base}_{group_id}_{idx}.png"
+        res_path = f"{ATLAS_RES_BASE}/{filename}"
+        atlas_res_paths.append(res_path)
+        changed = save_image_if_changed(cropped, os.path.join(OUT_ATLASES, filename))
+        if changed:
+            print(f"  wrote atlas: {filename}")
+
+    # Write .tres only for dirty or atlas-page-changed stems
+    tres_written = 0
+    for stem, slot in slot_map.items():
+        atlas_idx, x, y = slot_to_atlas_and_xy(slot, card_w, card_h)
+        cached = group_cache.get(stem, {})
+        if stem not in dirty_stems and cached.get("atlas_idx") == atlas_idx:
             continue
-        for root, _, files in os.walk(full):
-            for file in sorted(files):
-                if file.lower().endswith(".png"):
-                    path = os.path.join(root, file)
-                    hashes[path] = file_hash(path)
-    return hashes
+        write_tres(
+            os.path.join(OUT_TRES, f"{stem}.tres"),
+            atlas_res_paths[atlas_idx],
+            x, y, card_w, card_h,
+            f"{type_prefix}_{stem}"
+        )
+        tres_written += 1
+
+    # Remove .tres for deleted cards
+    for stem in removed:
+        tres_path = os.path.join(OUT_TRES, f"{stem}.tres")
+        if os.path.exists(tres_path):
+            os.remove(tres_path)
+            print(f"  removed: {stem}.tres")
+
+    print(f"  {group_id}: {len(entry_map)} cards, {atlas_count} atlas page(s), {tres_written} .tres updated")
+
+    # Build updated cache
+    new_cache = {}
+    for stem, slot in slot_map.items():
+        atlas_idx, _, _ = slot_to_atlas_and_xy(slot, card_w, card_h)
+        _, src_hash = entry_map[stem]
+        new_cache[stem] = {"hash": src_hash, "slot": slot, "atlas_idx": atlas_idx}
+
+    return new_cache
+
+# ── Main ──────────────────────────────────────────────────────
+
+force_repack = "--repack" in sys.argv
 
 cache = load_cache()
-current_hashes = collect_input_hashes()
-
-existing = [
-    f for f in (os.listdir(OUT_ATLASES) if os.path.exists(OUT_ATLASES) else [])
-    if (f.startswith(NORMAL_BASE) or f.startswith(ANCIENT_BASE)) and f.endswith(".png")
-]
-
-if existing and cache.get("input_hashes") == current_hashes:
-    print("Nothing changed, skipping.")
-    exit(0)
-
-# ── Prepare output dirs ───────────────────────────────────────
-
-clean_dir(OUT_TRES, [".tres"])
+os.makedirs(OUT_TRES, exist_ok=True)
 os.makedirs(OUT_ATLASES, exist_ok=True)
 
-for f in os.listdir(OUT_ATLASES):
-    if (f.startswith(NORMAL_BASE) or f.startswith(ANCIENT_BASE)) and f.endswith(".png"):
-        os.remove(os.path.join(OUT_ATLASES, f))
-
-# ── Collect — first source wins ───────────────────────────────
-
+# Collect all cards
 seen = set()
-normal_entries = []
-ancient_entries = []
+normal_groups   = {}  # char_id -> [(stem, resized, hash)]
+ancient_entries = []  # [(stem, resized, hash)] — shared atlas, stem includes char prefix
 
 for input_dir in INPUT_DIRS:
     full = os.path.join(SCRIPT_DIR, input_dir)
@@ -137,6 +228,7 @@ for input_dir in INPUT_DIRS:
         continue
     for root, _, files in os.walk(full):
         rel_folder = os.path.relpath(root, full)
+        char_id = rel_folder.lower() if rel_folder != "." else "_"
         for file in sorted(files):
             if not file.lower().endswith(".png"):
                 continue
@@ -148,105 +240,39 @@ for input_dir in INPUT_DIRS:
 
             path = os.path.join(root, file)
             img = Image.open(path).convert("RGBA")
-            src = os.path.relpath(path)
+            src_hash = file_hash(path)
 
             if is_ancient(img):
                 resized = flatten_alpha(img.resize(ANCIENT_SIZE, Image.LANCZOS))
-                ancient_entries.append((stem, rel_folder, resized))
-                print(f"ancient [{input_dir}]: {src}")
+                ancient_entries.append((tres_name_for(char_id, stem), resized, src_hash))
+                print(f"ancient [{input_dir}]: {os.path.relpath(path)}")
             else:
                 resized = flatten_alpha(img.resize(NORMAL_SIZE, Image.LANCZOS))
-                normal_entries.append((stem, rel_folder, resized))
-                print(f"normal  [{input_dir}]: {src}")
+                normal_groups.setdefault(char_id, []).append((stem, resized, src_hash))
+                print(f"normal  [{input_dir}]: {os.path.relpath(path)}")
 
-# ── Packer ────────────────────────────────────────────────────
+print()
 
-class StripPacker:
-    def __init__(self, max_size):
-        self.max_size = max_size
-        self.x = 0
-        self.y = 0
-        self.row_h = 0
+# Pack normal cards — per character
+normal_cache = cache.get("normal", {})
+for char_id, entries in normal_groups.items():
+    prefixed = [(tres_name_for(char_id, stem), resized, src_hash) for stem, resized, src_hash in entries]
+    normal_cache[char_id] = pack_group(
+        char_id, prefixed, NORMAL_BASE, "card",
+        NORMAL_SIZE, normal_cache.get(char_id, {}), force_repack
+    )
 
-    def try_pack(self, w, h):
-        if self.x + w <= self.max_size:
-            pos = (self.x, self.y)
-            self.x += w + PADDING
-            self.row_h = max(self.row_h, h)
-            return pos
-        new_y = self.y + self.row_h + PADDING
-        if new_y + h > self.max_size:
-            return None
-        self.y, self.x, self.row_h = new_y, w + PADDING, h
-        return (0, new_y)
+# Pack ancient cards — single shared atlas
+ancient_cache = cache.get("ancient", {})
+cache["ancient"] = {"shared": pack_group(
+    "shared", ancient_entries, ANCIENT_BASE, "ancient",
+    ANCIENT_SIZE, ancient_cache.get("shared", {}), force_repack
+)}
 
-    def canvas_height(self):
-        return self.y + self.row_h
-
-def pack_entries(entries, atlas_base, type_prefix):
-    atlases = []
-    placements = []
-
-    def new_atlas():
-        packer = StripPacker(MAX_ATLAS)
-        canvas = Image.new("RGB", (MAX_ATLAS, MAX_ATLAS), (0, 0, 0))
-        atlases.append((packer, canvas))
-        return len(atlases) - 1
-
-    new_atlas()
-
-    for stem, rel_folder, resized in entries:
-        w, h = resized.size
-        placed = False
-        for idx, (packer, canvas) in enumerate(atlases):
-            pos = packer.try_pack(w, h)
-            if pos:
-                canvas.paste(resized, pos)
-                placements.append((idx, pos[0], pos[1]))
-                placed = True
-                break
-        if not placed:
-            idx = new_atlas()
-            packer, canvas = atlases[idx]
-            pos = packer.try_pack(w, h)
-            canvas.paste(resized, pos)
-            placements.append((idx, pos[0], pos[1]))
-
-    atlas_res_paths = []
-    for idx, (packer, canvas) in enumerate(atlases):
-        used_h = packer.canvas_height()
-        cropped = canvas.crop((0, 0, MAX_ATLAS, used_h))
-        filename = f"{atlas_base}_{idx}.png"
-        res_path = f"{ATLAS_RES_BASE}/{filename}"
-        atlas_res_paths.append(res_path)
-        save_image_if_changed(cropped, os.path.join(OUT_ATLASES, filename))
-        print(f"wrote: {filename} ({MAX_ATLAS}x{used_h})")
-
-    for i, (stem, rel_folder, resized) in enumerate(entries):
-        atlas_idx, x, y = placements[i]
-        w, h = resized.size
-        
-        # Match C# fix: lower_char_id + "_" + stem
-        char_id = rel_folder.lower() if rel_folder != "." else ""
-        tres_name = f"{char_id}_{stem}" if char_id else stem
-        
-        write_tres(
-            os.path.join(OUT_TRES, f"{tres_name}.tres"),
-            atlas_res_paths[atlas_idx],
-            x, y, w, h,
-            f"{type_prefix}_{tres_name}"
-        )
-
-    return len(atlases)
-
-# ── Run ───────────────────────────────────────────────────────
-
-n_normal  = pack_entries(normal_entries,  NORMAL_BASE,  "card")
-n_ancient = pack_entries(ancient_entries, ANCIENT_BASE, "ancient")
-
-cache["input_hashes"] = current_hashes
+cache["normal"] = normal_cache
 save_cache(cache)
 
-print(f"\nNormal:  {len(normal_entries)} cards in {n_normal} atlas page(s)")
-print(f"Ancient: {len(ancient_entries)} cards in {n_ancient} atlas page(s)")
+total_normal = sum(len(v) for v in normal_groups.values())
+print(f"\nNormal:  {total_normal} cards across {len(normal_groups)} character(s)")
+print(f"Ancient: {len(ancient_entries)} cards in shared atlas")
 print("Done.")

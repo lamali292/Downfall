@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class BurningQuestion : HexaghostCardModel
+public class NightmareVision : HexaghostCardModel
 {
-    public BurningQuestion() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public NightmareVision() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
     }
 

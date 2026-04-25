@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Rewind : HexaghostCardModel
+public class EmpoweredFlame : HexaghostCardModel
 {
-    public Rewind() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
     }
 

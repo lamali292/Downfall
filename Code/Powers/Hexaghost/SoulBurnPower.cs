@@ -6,6 +6,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -13,7 +14,7 @@ namespace Downfall.Code.Powers.Hexaghost;
 
 public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
 {
-    public SoulBurnPower()
+    public SoulBurnPower() : base(PowerType.Debuff)
     {
         WithVar("Turns", 3);
     }
@@ -49,13 +50,23 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
     public async Task Detonate(PlayerChoiceContext ctx, Creature? applier = null, bool keepOne = false)
     {
         if (Owner.CombatState == null) return;
-        await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered,
-            null, null);
+        var combatState = Owner.CombatState;
+        var owner = Owner;
+        var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
+        if (targetAll)
+        {
+            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        }
+        else
+        {
+            await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        }
+     
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);
         else
             await PowerCmd.Remove(this);
-        await DownfallHook.AfterSoulburnDetonate(Owner.CombatState, ctx, Owner);
+        await DownfallHook.AfterSoulburnDetonate(combatState, ctx, owner);
         await Cmd.CustomScaledWait(0.1f, 0.25f);
     }
 }

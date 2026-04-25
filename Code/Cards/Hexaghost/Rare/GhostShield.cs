@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Poltergeist : HexaghostCardModel
+public class GhostShield : HexaghostCardModel
 {
-    public Poltergeist() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public GhostShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
     }
 

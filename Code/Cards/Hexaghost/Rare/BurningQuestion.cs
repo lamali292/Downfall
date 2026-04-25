@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class InfernalForm : HexaghostCardModel
+public class BurningQuestion : HexaghostCardModel
 {
-    public InfernalForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public BurningQuestion() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
     }
 

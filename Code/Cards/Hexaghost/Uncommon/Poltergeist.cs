@@ -1,25 +1,22 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Powers.Hexaghost;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Downfall.Code.Cards.Hexaghost.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class EerieExpedition : HexaghostCardModel
+public class Poltergeist : HexaghostCardModel
 {
-    public EerieExpedition() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<PoltergeistPower>(4, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-    }
-
-
-    protected override void OnUpgrade()
-    {
+        await CommonActions.ApplySelf<PoltergeistPower>(ctx, this);
     }
 }

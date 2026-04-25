@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+namespace Downfall.Code.Cards.Hexaghost.Ancient;
 
 [Pool(typeof(HexaghostCardPool))]
-public class GhostShield : HexaghostCardModel
+public class Apocryphra : HexaghostCardModel
 {
-    public GhostShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Apocryphra() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AllEnemies)
     {
     }
 

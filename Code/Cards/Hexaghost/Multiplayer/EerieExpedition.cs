@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+namespace Downfall.Code.Cards.Hexaghost.Multiplayer;
 
 [Pool(typeof(HexaghostCardPool))]
-public class TimeOfNeed : HexaghostCardModel
+public class EerieExpedition : HexaghostCardModel
 {
-    public TimeOfNeed() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public EerieExpedition() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

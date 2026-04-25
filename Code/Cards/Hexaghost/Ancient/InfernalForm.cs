@@ -4,12 +4,12 @@ using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.Code.Cards.Hexaghost.Uncommon;
+namespace Downfall.Code.Cards.Hexaghost.Ancient;
 
 [Pool(typeof(HexaghostCardPool))]
-public class EmpoweredFlame : HexaghostCardModel
+public class InfernalForm : HexaghostCardModel
 {
-    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
     {
     }
 

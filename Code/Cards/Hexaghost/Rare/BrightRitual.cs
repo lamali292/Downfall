@@ -1,0 +1,25 @@
+using BaseLib.Utils;
+using Downfall.Code.Abstract;
+using Downfall.Code.Abstract.CardModels;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Downfall.Code.Cards.Hexaghost.Rare;
+
+[Pool(typeof(HexaghostCardPool))]
+public class BrightRitual : HexaghostCardModel
+{
+    public BrightRitual() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+    }
+
+    // TODO: Implement
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+    }
+
+
+    protected override void OnUpgrade()
+    {
+    }
+}
