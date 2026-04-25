@@ -4,6 +4,7 @@ using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -20,11 +21,20 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     public bool IsIgnited { get; set; }
     private int IgnitionProgress { get; set; }
     protected abstract int IgnitionRequirement { get; }
-    public LocString Title => new("hexaghost", Id.Entry + ".title");
-    public LocString Description => new("hexaghost", Id.Entry + ".description");
+    public LocString Title => new("ghostflames", Id.Entry + ".title");
+    public LocString Description => new("ghostflames", Id.Entry + ".description");
     public abstract NFire.FireColor FireColor { get; }
     protected ICombatState CombatState => Owner.Creature.CombatState!;
-
+    public HoverTip HoverTip
+    {
+        get
+        {
+            var tip = new HoverTip(Title, Description);
+            tip.SetCanonicalModel(CanonicalInstance);
+            return tip;
+        }
+    }
+    
     protected Player Owner
     {
         get

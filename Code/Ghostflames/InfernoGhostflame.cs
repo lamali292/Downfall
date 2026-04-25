@@ -27,7 +27,7 @@ public class InfernoGhostflame : GhostflameModel
         var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, (4 + intensity) * ignited,
             ValueProp.Move | ValueProp.Unpowered, null, null);
-        if (ignited >= 6)
+        if (ignited >= HexaghostCmd.GetWheel(Owner).Length)
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
     }
 

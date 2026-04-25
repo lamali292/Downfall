@@ -114,7 +114,6 @@ public class ChampCmd
     }
 }
 
-// Todo: rename or make dynamic title
 [Pool(typeof(TokenCardPool))]
 public class StanceDanceBerserker() : ChampCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
 {

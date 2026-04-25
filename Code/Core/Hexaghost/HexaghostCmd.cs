@@ -147,4 +147,11 @@ public static class HexaghostCmd
         HexaghostVisualsBridge.Refresh(player);
         return Task.CompletedTask;
     }
+
+    public static void SetCurrentGhostflame(Player player, GhostflameModel ghostflame)
+    {
+        ghostflame.AssertCanonical();
+        GetWheel(player)[GetCurrentIndex(player)] = ghostflame.ToMutable(player);
+        HexaghostVisualsBridge.Refresh(player);
+    }
 }

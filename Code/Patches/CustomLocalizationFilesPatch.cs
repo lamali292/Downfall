@@ -7,7 +7,7 @@ namespace Downfall.Code.Patches;
 [HarmonyPatch(typeof(LocManager), "ListLocalizationFiles")]
 public static class ListLocalizationFilesPatch
 {
-    private static readonly string[] ExtraTables = ["encode.json", "downfall.json", "gems.json"];
+    private static readonly string[] ExtraTables = ["encode.json", "downfall.json", "gems.json", "ghostflames.json"];
 
     public static void Postfix(ref IEnumerable<string> __result)
     {
