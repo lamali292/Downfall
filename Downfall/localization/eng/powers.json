@@ -404,5 +404,11 @@
   "DOWNFALL-POLTERGEIST_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses [blue]{Amount}[/blue] HP.",
   "DOWNFALL-NIGHTMARE_VISION_POWER.title": "Nightmare Vision",
   "DOWNFALL-NIGHTMARE_VISION_POWER.description": "Whenever an [gold]Ethereal[/gold] card [gold]Exhausts[/gold], gain [blue]X[/blue] [gold]Block[/gold].",
-  "DOWNFALL-NIGHTMARE_VISION_POWER.smartDescription": "Whenever an [gold]Ethereal[/gold] card [gold]Exhausts[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "DOWNFALL-NIGHTMARE_VISION_POWER.smartDescription": "Whenever an [gold]Ethereal[/gold] card [gold]Exhausts[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "DOWNFALL-DOOMSDAY_POWER.title": "Doomsday",
+  "DOWNFALL-DOOMSDAY_POWER.description": "The next time you [gold]Ignite[/gold] ALL Ghostflames, gain an additional turn.",
+  "DOWNFALL-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Ignite[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",
+  "DOWNFALL-DOOMS_ARRIVAL_POWER.title": "Doom's Arrival",
+  "DOWNFALL-DOOMS_ARRIVAL_POWER.description": "At the end of your turn, immediatly start another turn.",
+  "DOWNFALL-DOOMS_ARRIVAL_POWER.smartDescription": "At the end of your turn, immediatly start another {Amount:plural:turn|[blue]{Amount}[/blue] turns}."
 }

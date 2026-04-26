@@ -16,6 +16,7 @@ public class BitShift : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,10 +29,5 @@ public class BitShift : AutomatonCardModel
         if (card == null) return;
         card.AddKeyword(CardKeyword.Retain);
         await AutomatonCmd.MoveFromSequenceToHand(card, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Retain);
     }
 }

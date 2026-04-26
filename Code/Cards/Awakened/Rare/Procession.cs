@@ -14,7 +14,7 @@ public class Procession : AwakenedCardModel
 {
     public Procession() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
 
@@ -25,11 +25,5 @@ public class Procession : AwakenedCardModel
         await CardCmd.AutoPlay(ctx, card, null);
         await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Draw, card.EnergyCost.GetResolved(),
             CardPilePosition.Random);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

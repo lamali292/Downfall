@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
@@ -20,7 +21,7 @@ public class Separator : AutomatonCardModel, IEncodable
     public Separator() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
-        WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move));
+        WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move).WithUpgrade(2));
         WithTip(DownfallTip.Encode);
     }
 
@@ -53,10 +54,5 @@ public class Separator : AutomatonCardModel, IEncodable
         doubled.SetOwner(this);
         loc.Add(doubled);
         return loc;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["ExtraDamage"].UpgradeValueBy(2);
     }
 }

@@ -12,17 +12,12 @@ public class Batch : AutomatonCardModel
 {
     public Batch() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await AutomatonCmd.CompileFunctionCard(Owner, choiceContext, cardPlay);
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

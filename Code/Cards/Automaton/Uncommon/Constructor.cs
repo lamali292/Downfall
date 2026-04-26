@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using Downfall.Code.Cards.CardModels;
@@ -19,7 +20,7 @@ public class Constructor : AutomatonCardModel, IEncodable
     public Constructor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(5, 2);
-        WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move));
+        WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));
         WithTip(DownfallTip.Encode);
     }
 
@@ -42,10 +43,5 @@ public class Constructor : AutomatonCardModel, IEncodable
         doubled.SetOwner(this);
         loc.Add(doubled);
         return loc;
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["ExtraBlock"].UpgradeValueBy(2);
     }
 }

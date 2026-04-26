@@ -14,6 +14,7 @@ public class Allocate : AutomatonCardModel
     public Allocate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(DownfallTip.Status);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -22,10 +23,5 @@ public class Allocate : AutomatonCardModel
             .Count(c => c.Type == CardType.Status);
         if (statusCount > 0)
             await PlayerCmd.GainEnergy(statusCount, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

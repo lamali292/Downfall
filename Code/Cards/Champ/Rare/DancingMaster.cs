@@ -16,17 +16,12 @@ public class DancingMaster : ChampCardModel
         WithTip(DownfallTip.Finisher);
         WithEnergyTip();
         WithPower<DancingMasterPower>(1);
+        WithCostUpgradeBy(-1);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DancingMasterPower>(ctx, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

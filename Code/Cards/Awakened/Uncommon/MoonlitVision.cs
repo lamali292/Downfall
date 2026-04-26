@@ -13,16 +13,12 @@ public class MoonlitVision : AwakenedCardModel
     public MoonlitVision() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithEnergyTip();
+        WithCostUpgradeBy(-1);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoonlitVisionPower>(ctx, this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

@@ -17,6 +17,7 @@ public class PreemptiveStrike : ChampCardModel
     {
         WithCalculatedDamage(0, CalcDamage);
         WithTags(CardTag.Strike);
+        WithCostUpgradeBy(-1);
     }
 
     protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
@@ -33,11 +34,5 @@ public class PreemptiveStrike : ChampCardModel
         var a = -Owner.Creature.GetPowerAmount<CounterPower>() / 2;
         if (a >= 0) return;
         await CommonActions.ApplySelf<CounterPower>(ctx, this, a);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

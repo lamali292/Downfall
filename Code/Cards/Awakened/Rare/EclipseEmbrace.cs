@@ -17,6 +17,7 @@ public class EclipseEmbrace : AwakenedCardModel
         WithTip(typeof(Void));
         WithPower<EclipseEmbracePower>(1);
         WithEnergyTip();
+        WithCostUpgradeBy(-1);
     }
 
 
@@ -24,10 +25,5 @@ public class EclipseEmbrace : AwakenedCardModel
     {
         await CommonActions.ApplySelf<EclipseEmbracePower>(ctx, this);
     }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
-    }
+    
 }

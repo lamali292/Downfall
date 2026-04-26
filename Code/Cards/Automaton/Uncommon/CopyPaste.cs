@@ -14,7 +14,7 @@ public class CopyPaste : AutomatonCardModel
 {
     public CopyPaste() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(DownfallTip.Encode);
     }
 
@@ -30,10 +30,5 @@ public class CopyPaste : AutomatonCardModel
             model.SkipEncode = true;
             await CardCmd.AutoPlay(ctx, model, null);
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

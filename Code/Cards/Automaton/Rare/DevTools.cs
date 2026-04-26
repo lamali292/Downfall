@@ -20,6 +20,7 @@ public class DevTools : AutomatonCardModel
         WithTip(typeof(Batch));
         WithTip(typeof(Decompile));
         WithTip(typeof(ByteShift));
+        WithCostUpgradeBy(-1);
     }
 
 
@@ -39,10 +40,5 @@ public class DevTools : AutomatonCardModel
         var result = await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

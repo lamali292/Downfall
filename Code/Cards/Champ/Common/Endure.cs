@@ -17,7 +17,7 @@ public class Endure : ChampCardModel
 {
     public Endure() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCalculatedBlock(7, 1, BlockCalc);
+        WithCalculatedBlock(7, 1, BlockCalc, ValueProp.Move, 3);
         WithTip(typeof(StrengthPower));
         WithIcon<StrengthPower>();
     }
@@ -32,11 +32,5 @@ public class Endure : ChampCardModel
         await ChampCmd.EnterDefensiveStance(ctx, Owner);
         var block = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.CalculationBase.UpgradeValueBy(3);
     }
 }

@@ -22,16 +22,12 @@ public class BuggyMess : AutomatonCardModel, IEncodable
         WithTip(DownfallTip.Encode);
         WithTip(typeof(Dazed));
         WithEnergyTip();
+        WithCostUpgradeBy(-1);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await DownfallCardCmd.Insert(ModelDb.Card<Dazed>(), Owner);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

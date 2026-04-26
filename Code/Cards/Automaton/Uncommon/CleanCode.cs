@@ -16,15 +16,11 @@ public class CleanCode : AutomatonCardModel
         WithPower<RemoveErrorsPower>(3);
         WithTip(DownfallTip.Encode);
         WithTip(DownfallTip.Compile);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RemoveErrorsPower>(ctx, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Innate);
     }
 }

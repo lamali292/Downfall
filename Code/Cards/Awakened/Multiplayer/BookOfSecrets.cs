@@ -13,7 +13,7 @@ public class BookOfSecrets : AwakenedCardModel
     public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(DownfallTip.Conjure);
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithBlock(6);
     }
 
@@ -38,10 +38,5 @@ public class BookOfSecrets : AwakenedCardModel
             if (result.success)
                 CardCmd.PreviewCardPileAdd(result, 0.1f);
         }*/
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

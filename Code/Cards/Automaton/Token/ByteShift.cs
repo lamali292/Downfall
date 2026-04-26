@@ -15,6 +15,7 @@ public class ByteShift : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -26,10 +27,5 @@ public class ByteShift : AutomatonCardModel
         foreach (var cardModel in choices) cardModel.AddKeyword(CardKeyword.Retain);
 
         await AutomatonCmd.MoveFromSequenceToHand(choices, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Retain);
     }
 }

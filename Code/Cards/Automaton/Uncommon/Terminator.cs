@@ -18,6 +18,7 @@ public class Terminator : AutomatonCardModel,
     {
         WithTip(DownfallTip.Encode);
         WithTip(DownfallTip.Compile);
+        WithCostUpgradeBy(-1);
     }
 
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,
@@ -32,11 +33,5 @@ public class Terminator : AutomatonCardModel,
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         return Task.CompletedTask;
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

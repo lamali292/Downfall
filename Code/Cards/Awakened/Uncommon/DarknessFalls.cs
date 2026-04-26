@@ -18,6 +18,7 @@ public class DarknessFalls : AwakenedCardModel
         WithTip(DownfallTip.Drained);
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
         WithTip(typeof(StrengthPower));
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
 
@@ -25,11 +26,5 @@ public class DarknessFalls : AwakenedCardModel
     {
         await CommonActions.ApplySelf<DarknessFallsPower>(ctx, this, 4);
         await CommonActions.ApplySelf<DarkblessedPower>(ctx, this, 1);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Innate);
     }
 }

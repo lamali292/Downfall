@@ -16,6 +16,7 @@ public class BloodiedPreening : AwakenedCardModel
     {
         WithTip(typeof(StrengthPower));
         WithTip(typeof(PlumeJab));
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
 
@@ -23,10 +24,5 @@ public class BloodiedPreening : AwakenedCardModel
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this, -2);
         await CommonActions.ApplySelf<BloodiedPreeningPower>(ctx, this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Innate);
     }
 }

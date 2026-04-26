@@ -12,17 +12,12 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithKeywords(CardKeyword.Ethereal);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<SentientFormPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

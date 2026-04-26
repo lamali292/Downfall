@@ -15,6 +15,7 @@ public class Debug : AutomatonCardModel
     public Debug() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithCostUpgradeBy(0);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,10 +29,5 @@ public class Debug : AutomatonCardModel
             card.SuppressCompileError = true;
         AutomatonDisplay.Refresh(Owner);
         await Task.CompletedTask;
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(0);
     }
 }

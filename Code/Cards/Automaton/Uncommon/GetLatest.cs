@@ -17,6 +17,7 @@ public class GetLatest : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(DownfallTip.Encode);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -35,10 +36,5 @@ public class GetLatest : AutomatonCardModel
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         if (result.success)
             CardCmd.PreviewCardPileAdd(result);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

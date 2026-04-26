@@ -16,7 +16,7 @@ public class WindUp : ChampCardModel
 {
     public WindUp() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -38,11 +38,5 @@ public class WindUp : ChampCardModel
 
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

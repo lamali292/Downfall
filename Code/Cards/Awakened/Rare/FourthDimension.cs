@@ -14,6 +14,7 @@ public class FourthDimension : AwakenedCardModel
     public FourthDimension() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithCostUpgradeBy(-1);
     }
 
 
@@ -28,10 +29,5 @@ public class FourthDimension : AwakenedCardModel
             CardPilePosition.Random);
         await CardCmd.Exhaust(ctx, card);
         CardCmd.PreviewCardPileAdd(a, 0.1f, CardPreviewStyle.MessyLayout);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

@@ -13,18 +13,12 @@ public class RisingChorus : AwakenedCardModel
 {
     public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithKeywords(CardKeyword.Ethereal);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithTip(DownfallTip.Chant);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RisingChorusPower>(ctx, this, 1);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

@@ -341,7 +341,7 @@
   "DOWNFALL-DIVIDER.title": "Divider",
   "DOWNFALL-DIVIDE_CONQUER.description": "",
   "DOWNFALL-DIVIDE_CONQUER.title": "Divide Conquer",
-  "DOWNFALL-DOOMSDAY.description": "The next time {IfUpgraded:show:at least|all} {DoomsdayPower:diff()} Ghostflames are [gold]Ignited[/gold], take an extra turn.",
+  "DOWNFALL-DOOMSDAY.description": "The next time all 6 Ghostflames are [gold]Ignited[/gold], take an extra turn after ending your turn.",
   "DOWNFALL-DOOMSDAY.title": "Doomsday",
   "DOWNFALL-DOUBLE_LICK.description": "",
   "DOWNFALL-DOUBLE_LICK.title": "Double Lick",
@@ -751,7 +751,7 @@
   "DOWNFALL-LIBRARY.title": "Library",
   "DOWNFALL-LIL_GUARDIAN.description": "Gain {Block:diff()} Block. Whenever you play a card that costs 2 or more, play this from your hand.",
   "DOWNFALL-LIL_GUARDIAN.title": "Lil' Guardian",
-  "DOWNFALL-LINGERING_SHADES.description": "[gold]Retract[/gold].\nApply {burny:diff()} [gold]Soulburn[/gold]. Return all Ethereal cards in your discard pile to your hand.",
+  "DOWNFALL-LINGERING_SHADES.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold]. \nReturn all [gold]Ethereal[/gold] cards from the Discard Pile to your Hand.",
   "DOWNFALL-LINGERING_SHADES.title": "Lingering Shades",
   "DOWNFALL-LIQUIDATE.description": "",
   "DOWNFALL-LIQUIDATE.title": "Liquidate",
@@ -1577,5 +1577,6 @@
   "DOWNFALL-BROILING_FLAMES.description": "",
   "DOWNFALL-APOCRYPHRA.title": "Apocryphra",
   "DOWNFALL-APOCRYPHRA.description": "",
-  "DOWNFALL-REWIND.selectionScreenPrompt": "Select cards from Discard Pile to put into your hand."
+  "DOWNFALL-REWIND.selectionScreenPrompt": "Select cards from Discard Pile to put into your hand.",
+  "DOWNFALL-MUTATOR.selectionScreenPrompt": "Pick a [gold]Status[/gold] to transform into this."
 }

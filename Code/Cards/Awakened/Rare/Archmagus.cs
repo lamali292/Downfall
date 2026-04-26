@@ -12,15 +12,11 @@ public class Archmagus : AwakenedCardModel
 {
     public Archmagus() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArchmagusPower>(ctx, this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

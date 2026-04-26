@@ -18,16 +18,10 @@ public class HyperBeamAutomaton : AutomatonCardModel
 {
     public HyperBeamAutomaton() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(25);
+        WithDamage(25, 10);
         WithKeywords(CardKeyword.Retain);
         WithTip(typeof(Void));
     }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(10);
-    }
-
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

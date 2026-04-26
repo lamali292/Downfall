@@ -17,6 +17,7 @@ public class CheapShot : ChampCardModel
         WithDamage(5);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Stun);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -31,10 +32,5 @@ public class CheapShot : ChampCardModel
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
             await CreatureCmd.Stun(cardPlay.Target);
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

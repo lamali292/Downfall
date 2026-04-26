@@ -15,6 +15,7 @@ public class ArenaPreparation : ChampCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithCards(2);
+        WithCostUpgradeBy(-1);
     }
 
 
@@ -31,11 +32,5 @@ public class ArenaPreparation : ChampCardModel
             .ToList();
         foreach (var cardModel in a) CardCmd.ApplyKeyword(cardModel, CardKeyword.Ethereal);
         var result = await CardPileCmd.AddGeneratedCardsToCombat(a, PileType.Hand, Owner);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

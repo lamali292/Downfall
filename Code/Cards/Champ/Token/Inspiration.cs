@@ -12,18 +12,12 @@ public class Inspiration : ChampCardModel
 {
     public Inspiration() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithKeywords(CardKeyword.Retain);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.EnterDifferentStance(ctx, Owner);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

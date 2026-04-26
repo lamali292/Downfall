@@ -25,6 +25,7 @@ public class CultistStrike : AutomatonCardModel,
         WithTip(DownfallTip.Compile);
         WithDamage(6);
         WithVar("Increase", 1);
+        WithCostUpgradeBy(-1);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
@@ -55,10 +56,5 @@ public class CultistStrike : AutomatonCardModel,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

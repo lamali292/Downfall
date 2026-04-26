@@ -32,6 +32,11 @@ public static class HexaghostCmd
     {
         return GetWheel(player).Count(f => f.IsIgnited);
     }
+    
+    public static bool AllIgnited(Player player)
+    {
+        return GetWheel(player).All(f => f.IsIgnited);
+    }
 
 
     private static int GetPreviousIndex(Player player)
@@ -129,6 +134,11 @@ public static class HexaghostCmd
             HexaghostVisualsBridge.Refresh(player);
         }
         await flame.OnIgnite(ctx);
+        await DownfallHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
+        if (AllIgnited(player))
+        {
+            await DownfallHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
+        }
     }
     
     public static Task Extinguish(Player player, bool silent = false)

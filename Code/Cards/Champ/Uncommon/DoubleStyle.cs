@@ -14,6 +14,7 @@ public class DoubleStyle : ChampCardModel
     {
         WithPower<DefensiveStylePower>(1);
         WithPower<BerserkerStylePower>(1);
+        WithCostUpgradeBy(-1);
     }
 
 
@@ -21,11 +22,5 @@ public class DoubleStyle : ChampCardModel
     {
         await CommonActions.ApplySelf<DefensiveStylePower>(ctx, this);
         await CommonActions.ApplySelf<BerserkerStylePower>(ctx, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

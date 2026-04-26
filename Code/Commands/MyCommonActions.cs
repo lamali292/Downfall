@@ -10,12 +10,6 @@ public static class MyCommonActions
 {
     public static async Task Apply<T>(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay) where T : PowerModel
     {
-        if (cardPlay?.Target is null && card.TargetType == TargetType.AnyEnemy)
-        {
-            await ApplyToRandomEnemy<T>(ctx, card);
-            return;
-        }
-
         switch (card)
         {
             case { TargetType: TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer }:

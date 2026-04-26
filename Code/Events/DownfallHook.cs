@@ -185,4 +185,14 @@ public static class DownfallHook
     {
         return Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner));
     }
+
+    public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    {
+        return Dispatch<IAfterGhostwheelIgnited>(cs, ctx, m => m.AfterGhostwheelIgnited(ctx, player, flame, index));
+    }
+
+    public static Task AfterGhostwheelAllIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    {
+        return Dispatch<IAfterGhostwheelAllIgnited>(cs, ctx, m => m.AfterGhostwheelAllIgnited(ctx, player, flame, index));
+    }
 }

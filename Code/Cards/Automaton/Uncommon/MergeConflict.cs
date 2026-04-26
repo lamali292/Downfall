@@ -14,7 +14,7 @@ public class MergeConflict : AutomatonCardModel
 {
     public MergeConflict() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithDamage(14);
         WithTip(DownfallTip.Encode);
         WithPower<MergePower>(1);
@@ -27,10 +27,5 @@ public class MergeConflict : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await CommonActions.ApplySelf<MergePower>(ctx, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

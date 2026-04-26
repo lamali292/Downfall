@@ -17,6 +17,7 @@ public class Intensify : AwakenedCardModel
         WithPower<IntensifyPower>(1);
         WithPower<BurnoutPower>(1);
         WithTip(DownfallTip.Conjure);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -25,11 +26,5 @@ public class Intensify : AwakenedCardModel
         await AwakenedCmd.Conjure(Owner, CombatState);
         await CommonActions.ApplySelf<IntensifyPower>(ctx, this);
         await CommonActions.ApplySelf<BurnoutPower>(ctx, this);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Retain);
     }
 }

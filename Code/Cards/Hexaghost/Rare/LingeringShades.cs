@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
+using Downfall.Code.Commands;
 using Downfall.Code.Keywords;
 using Downfall.Code.Powers.Hexaghost;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,6 +21,11 @@ public class LingeringShades : HexaghostCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        if (Owner.PlayerCombatState == null) return;
+        await CardPileCmd.Add(
+            Owner.PlayerCombatState.DiscardPile.Cards.Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),
+            PileType.Hand);
     }
 
 

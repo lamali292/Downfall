@@ -15,7 +15,7 @@ public class Turbo : AutomatonCardModel
     public Turbo() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithEnergyTip();
-        WithEnergy(2);
+        WithEnergy(2, 1);
         WithTip(typeof(Void));
     }
 
@@ -23,10 +23,5 @@ public class Turbo : AutomatonCardModel
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Discard);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

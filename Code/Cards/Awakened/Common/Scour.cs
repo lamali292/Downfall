@@ -13,21 +13,14 @@ public class Scour : AwakenedCardModel
 {
     public Scour() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(7);
-        WithPower<ManaburnPower>(3);
+        WithDamage(7, 2);
+        WithPower<ManaburnPower>(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this,
-            DynamicVars.Power<ManaburnPower>().BaseValue);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars.Power<ManaburnPower>().UpgradeValueBy(1);
+        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this);
     }
 }

@@ -14,16 +14,12 @@ public class DarkEcho : AwakenedCardModel
     public DarkEcho() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(typeof(StrengthPower));
-        WithTip(typeof(DarkEchoPower));
+        WithPower<DarkEchoPower>(1);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DarkEchoPower>(ctx, this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
+        await CommonActions.ApplySelf<DarkEchoPower>(ctx, this);
     }
 }

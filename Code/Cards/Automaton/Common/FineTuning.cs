@@ -14,6 +14,7 @@ public class FineTuning : AutomatonCardModel
     public FineTuning() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -26,11 +27,5 @@ public class FineTuning : AutomatonCardModel
 
         AutomatonDisplay.Refresh(Owner);
         return Task.CompletedTask;
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        AddKeyword(CardKeyword.Retain);
     }
 }

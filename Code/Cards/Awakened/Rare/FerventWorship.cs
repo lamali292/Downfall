@@ -17,16 +17,12 @@ public class FerventWorship : AwakenedCardModel
         WithEnergyTip();
         WithTip(typeof(Ceremony));
         WithTip(StaticHoverTip.ReplayStatic);
+        WithCostUpgradeBy(-1);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FerventWorshipPower>(ctx, this, 1);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

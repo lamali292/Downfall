@@ -13,9 +13,9 @@ public class RecklessStrike : ChampCardModel
 {
     public RecklessStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(6);
+        WithDamage(6, 3);
         WithPower<StrengthPower>(1);
-        WithKeywords(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTags(CardTag.Strike);
     }
 
@@ -24,12 +24,5 @@ public class RecklessStrike : ChampCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await ChampCmd.EnterBerserkerStance(ctx, Owner);
-    }
-
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

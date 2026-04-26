@@ -16,6 +16,7 @@ public class SpaghettiCode : AutomatonCardModel
     public SpaghettiCode() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -40,10 +41,5 @@ public class SpaghettiCode : AutomatonCardModel
             if (AutomatonCmd.GetSequenceCount(Owner) < countBefore + 1)
                 return;
         }
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }
