@@ -134,13 +134,13 @@ public static class HexaghostCmd
         if (!flame.IsIgnited)
             flame.IsIgnited = true;
         HexaghostVisualsBridge.Refresh(player);
-        await flame.OnIgnite(ctx); ;
+        await flame.OnIgnite(ctx);
         await DownfallHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
         if (AllIgnited(player))
         {
             await DownfallHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
-            foreach (var f in GetWheel(player))
+            foreach (var f in GetWheel(player).Where(f => !f.IsActive))
                 f.Extinguish();
             HexaghostVisualsBridge.Refresh(player);
         }
@@ -168,13 +168,12 @@ public static class HexaghostCmd
         return Task.CompletedTask;
     }
 
-    public static Task ResetWheel(Player player)
+    public static Task<int> ResetWheel(Player player)
     {
-        foreach (var flame in GetWheel(player))
-            flame.Extinguish();
+        var a = GetWheel(player).Count(flame => flame.Extinguish());
         HexaghostModel.ResetWheel(player);
         HexaghostVisualsBridge.Refresh(player);
-        return Task.CompletedTask;
+        return Task.FromResult(a);
     }
 
     public static void SetCurrentGhostflame(Player player, GhostflameModel ghostflame)

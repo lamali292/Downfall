@@ -134,6 +134,14 @@ public partial class NHexaghostVisuals : Node2D
 
         SetFirePosition(currentIndex);
     }
+    
+    public void RefreshCurrentIntent(GhostflameModel[] wheel, int currentIndex, Player player)
+    {
+        _intents[currentIndex]!.UpdateIntent(wheel[currentIndex].Intent, [], player.Creature);
+    }
+    
+    
+    
     public void OnAnimationTrigger(string trigger)
     {
         if (_playback == null) return;

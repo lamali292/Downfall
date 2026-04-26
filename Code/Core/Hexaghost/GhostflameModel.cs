@@ -24,7 +24,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
     public abstract AbstractIntent Intent { get; }
-    protected bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
+    public bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
     public bool IsIgnited { get; set; }
     private int IgnitionProgress { get; set; }
     protected abstract int IgnitionRequirement { get; }
@@ -80,10 +80,12 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         return IgnitionProgress >= IgnitionRequirement;
     }
 
-    public void Extinguish()
+    public bool Extinguish()
     {
+        if (!IsIgnited)  return false;
         IsIgnited = false;
         IgnitionProgress = 0;
+        return true;
     }
 
 

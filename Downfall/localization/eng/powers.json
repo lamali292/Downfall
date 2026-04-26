@@ -422,5 +422,8 @@
   "DOWNFALL-UNFETTERED_FORM_POWER.title": "Unfettered Form",
   "DOWNFALL-UNFETTERED_FORM_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] an additional time.",
   "DOWNFALL-UNFETTERED_FORM_PLUS_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
-  "DOWNFALL-UNFETTERED_FORM_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] {Amount:plural:an additional time|{Amount} additional times}."
+  "DOWNFALL-UNFETTERED_FORM_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
+  "DOWNFALL-VOLCANO_VISAGE_POWER.title": "Volcano Visage",
+  "DOWNFALL-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]X[/blue] [gold]Soulburn[/gold] to ALL enemies.",
+  "DOWNFALL-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to ALL enemies."
 }

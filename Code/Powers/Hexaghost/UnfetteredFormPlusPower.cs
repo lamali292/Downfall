@@ -1,10 +1,11 @@
 ﻿using Downfall.Code.Abstract;
 using Downfall.Code.Core.Hexaghost;
+using Downfall.Code.Events;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Downfall.Code.Powers.Hexaghost;
 
-public class UnfetteredFormPlusPower : HexaghostPowerModel
+public class UnfetteredFormPlusPower : HexaghostPowerModel, IModifyGhostflameRepeatAdditive
 {
     public int ModifyGhostflameRepeatAdditive(Player owner,GhostflameRepeatType repeatType, GhostflameModel bolsteringGhostflame)
     {

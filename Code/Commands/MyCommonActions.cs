@@ -1,4 +1,6 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,6 +32,7 @@ public static class MyCommonActions
         if (card.CombatState == null) return;
         await CommonActions.Apply<T>(ctx, card.CombatState.HittableEnemies, card);
     }
+    
 
     public static async Task ApplyToRandomEnemy<T>(PlayerChoiceContext ctx, CardModel card) where T : PowerModel
     {
