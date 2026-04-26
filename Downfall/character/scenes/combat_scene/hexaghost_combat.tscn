@@ -17,10 +17,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -150.0
-offset_top = -400.0
-offset_right = 150.0
-pivot_offset = Vector2(154, 176)
+offset_left = -118.0
+offset_top = -357.0
+offset_right = 120.0
+pivot_offset = Vector2(-181, -110)
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

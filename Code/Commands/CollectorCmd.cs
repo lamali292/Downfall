@@ -83,7 +83,6 @@ public class CollectorCmd
             await CreatureCmd.GainMaxHp(existing, hp);
             return existing;
         }
-
         if (isReviving)
         {
             summoner.PlayerCombatState.AddPetInternal(existing!);

@@ -1,5 +1,8 @@
 using Downfall.Code.Core.Hexaghost;
 using Godot;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Vfx.Hexaghost;
 
@@ -17,8 +20,9 @@ public partial class NHexaghostVisuals : Node2D
 
     private Tween? _positionTween;
     private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
-    private IEnumerable<NFire> ValidFires => AllFires.OfType<NFire>();
-
+    private NIntent?[] _intents = [];
+    private Node2D?[] _hitboxAnchors = [];
+    
     public override void _Ready()
     {
         _fireNode = GetNode<Control>("fire");
@@ -33,6 +37,53 @@ public partial class NHexaghostVisuals : Node2D
         var animTree = GetNode<AnimationTree>("%AnimationTree");
         animTree.Active = true;
         _playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/playback");
+        _intents = AllFires.Select((fire, i) =>
+        {
+            if (fire == null) return null;
+            var intent = NIntent.Create(i * 0.3f);
+            intent.MouseFilter = Control.MouseFilterEnum.Ignore;
+            AddChild(intent);
+            return intent;
+        }).ToArray();
+        
+        _hitboxAnchors = AllFires.Select((fire, i) =>
+        {
+            if (fire == null) return null;
+            var anchor = new Node2D();
+            AddChild(anchor);
+
+            var hitbox = new Control();
+            hitbox.CustomMinimumSize = new Vector2(80, 80);
+            hitbox.Position = -hitbox.CustomMinimumSize / 2f;
+            hitbox.MouseFilter = Control.MouseFilterEnum.Stop;
+            anchor.AddChild(hitbox);
+
+            hitbox.Connect(Control.SignalName.MouseEntered, Callable.From(() =>
+            {
+                var flame = _currentWheel?.ElementAtOrDefault(i);
+                if (flame == null) return;
+                NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)
+                    ?.ShowHoverTips([flame.HoverTip]);
+            }));
+            hitbox.Connect(Control.SignalName.MouseExited, Callable.From(() =>
+            {
+                NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.HideHoverTips();
+            }));
+            return anchor;
+        }).ToArray();
+    }
+    
+
+    public override void _Process(double delta)
+    {
+        for (var i = 0; i < _intents.Length; i++)
+        {
+            var fire = AllFires[i];
+            if (fire == null) continue;
+            var worldPos = fire.GlobalPosition + Vector2.Up * 130f + Vector2.Left * 25f;
+            if (_intents[i] != null) _intents[i]!.GlobalPosition = worldPos;
+            if (_hitboxAnchors[i] != null) _hitboxAnchors[i]!.GlobalPosition = fire.GlobalPosition;
+        }
     }
 
     private void SetFirePosition(int fireIndex, float duration = 0.5f)
@@ -55,13 +106,34 @@ public partial class NHexaghostVisuals : Node2D
                 .SetEase(Tween.EaseType.InOut);
     }
 
-    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex)
+    private Tween? _intentTween;
+    private GhostflameModel[]? _currentWheel;
+    private Player? _player;
+    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex, Player player)
     {
+        _currentWheel = wheel;
+        _player = player;
         for (var i = 0; i < wheel.Length; i++)
+        {
             AllFires[i]?.SetState(wheel[i].FireColor, wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
+            if (_intents[i] == null) continue;
+            _intents[i]!.UpdateIntent(wheel[i].Intent, [], player.Creature);
+        }
+
+        _intentTween?.Kill();
+        _intentTween = CreateTween().SetParallel();
+        for (var i = 0; i < _intents.Length; i++)
+        {
+            if (_intents[i] == null) continue;
+            var targetAlpha = i == currentIndex ? 1f : 0f;
+            _intents[i]!.Visible = true; 
+            _intentTween.TweenProperty(_intents[i], "modulate:a", targetAlpha, 0.3f)
+                .SetTrans(Tween.TransitionType.Sine)
+                .SetEase(Tween.EaseType.InOut);
+        }
+
         SetFirePosition(currentIndex);
     }
-
     public void OnAnimationTrigger(string trigger)
     {
         if (_playback == null) return;
@@ -75,5 +147,11 @@ public partial class NHexaghostVisuals : Node2D
             _ => "idle"
         };
         _playback.Travel(state);
+    }
+    
+    public Vector2 GetFlameWorldPosition(int index)
+    {
+        var fire = AllFires[index];
+        return fire?.GlobalPosition ?? GlobalPosition;
     }
 }

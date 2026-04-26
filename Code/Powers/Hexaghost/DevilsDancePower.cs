@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Powers.Hexaghost;
 
@@ -19,7 +20,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         return $"{UsesThisTurn}";
     }
 
-    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame,
+    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, CardModel? source, GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (silent) return;
@@ -28,7 +29,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         if (UsesThisTurn <= Amount) InvokeDisplayAmountChanged();
     }
 
-    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, GhostflameModel ghostflame,
+    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, CardModel? source, GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (silent) return;

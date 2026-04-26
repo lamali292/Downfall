@@ -410,5 +410,17 @@
   "DOWNFALL-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Ignite[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",
   "DOWNFALL-DOOMS_ARRIVAL_POWER.title": "Doom's Arrival",
   "DOWNFALL-DOOMS_ARRIVAL_POWER.description": "At the end of your turn, immediatly start another turn.",
-  "DOWNFALL-DOOMS_ARRIVAL_POWER.smartDescription": "At the end of your turn, immediatly start another {Amount:plural:turn|[blue]{Amount}[/blue] turns}."
+  "DOWNFALL-DOOMS_ARRIVAL_POWER.smartDescription": "At the end of your turn, immediatly start another {Amount:plural:turn|[blue]{Amount}[/blue] turns}.",
+  "DOWNFALL-INTO_SHADOW_POWER.title": "Into Shadow",
+  "DOWNFALL-INTO_SHADOW_POWER.description": "Whenever you [gold]Retract[/gold], your next card is free to play and [gold]Exhausts.[/gold]",
+  "DOWNFALL-INTO_SHADOW_POWER.smartDescription": "Whenever you [gold]Retract[/gold], your next {Amount:plural:card is|{Amount} cards are} free to play and [gold]Exhausts[/gold].",
+  "DOWNFALL-GIFTS_FROM_BEYOND_POWER.title": "Gifts from Beyond",
+  "DOWNFALL-GIFTS_FROM_BEYOND_POWER.description": "At the start of your turn, add a random [gold]Afterlife[/gold] card to your hand.",
+  "DOWNFALL-GIFTS_FROM_BEYOND_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a|{Amount}} random [gold]Afterlife[/gold] {Amount:plural:card|cards} to your hand.",
+  "DOWNFALL-UNFETTERED_FORM_PLUS_POWER.title": "Unfettered Form+",
+  "DOWNFALL-UNFETTERED_FORM_PLUS_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] an additional time.",
+  "DOWNFALL-UNFETTERED_FORM_POWER.title": "Unfettered Form",
+  "DOWNFALL-UNFETTERED_FORM_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] an additional time.",
+  "DOWNFALL-UNFETTERED_FORM_PLUS_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
+  "DOWNFALL-UNFETTERED_FORM_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] {Amount:plural:an additional time|{Amount} additional times}."
 }

@@ -3,6 +3,7 @@ using Downfall.Code.Abstract;
 using Downfall.Code.Abstract.CardModels;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.Code.Cards.Hexaghost.Rare;
 
@@ -11,12 +12,19 @@ public class GhostShield : HexaghostCardModel
 {
     public GhostShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithAfterlife();
+        WithBlock(7, 3);
+        WithPower<BlurPower>(1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await AfterlifeEffect(ctx, cardPlay);
     }
 
-
+    protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<BlurPower>(ctx, this);
+    }
 }

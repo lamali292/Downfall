@@ -18,7 +18,7 @@ public class DevourFlame : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!HexaghostCmd.IsPreviousIgnited(Owner)) return;
-        await HexaghostCmd.Retract(ctx, Owner);
+        await HexaghostCmd.Retract(ctx, Owner, this);
         await CommonActions.CardBlock(this, cardPlay);
     }
 }

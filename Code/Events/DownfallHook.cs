@@ -156,24 +156,30 @@ public static class DownfallHook
     }
 
     public static int ModifyGhostflameEffectAdditive(ICombatState cs, Player owner,
-        GhostflameModel bolsteringGhostflame)
+        GhostflameModel ghostflameModel)
     {
         return Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
-            (m, current) => m.ModifyGhostflameEffectAdditive(owner, bolsteringGhostflame));
+            (m, current) => current + m.ModifyGhostflameEffectAdditive(owner, ghostflameModel));
+    }
+    
+    public static int ModifyGhostflameRepeatAdditive(ICombatState cs, Player owner, GhostflameRepeatType repeatType, GhostflameModel ghostflameModel)
+    {
+        return Aggregate<IModifyGhostflameRepeatAdditive, int>(cs, 0,
+            (m, current) => current + m.ModifyGhostflameRepeatAdditive(owner, repeatType, ghostflameModel));
     }
 
-    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player,
+    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player, CardModel? source,
         GhostflameModel ghostflame, int ghostflameIndex, bool silent)
     {
         return Dispatch<IWheelMoved>(cs, ctx,
-            m => m.AfterWheelRetract(ctx, player, ghostflame, ghostflameIndex, silent));
+            m => m.AfterWheelRetract(ctx, player, source, ghostflame, ghostflameIndex, silent));
     }
 
-    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player,
+    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, CardModel? source,
         GhostflameModel ghostflame, int ghostflameIndex, bool silent)
     {
         return Dispatch<IWheelMoved>(cs, ctx,
-            m => m.AfterWheelAdvance(ctx, player, ghostflame, ghostflameIndex, silent));
+            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent));
     }
 
     public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
@@ -195,4 +201,6 @@ public static class DownfallHook
     {
         return Dispatch<IAfterGhostwheelAllIgnited>(cs, ctx, m => m.AfterGhostwheelAllIgnited(ctx, player, flame, index));
     }
+
+ 
 }

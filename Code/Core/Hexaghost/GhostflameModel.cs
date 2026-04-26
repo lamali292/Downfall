@@ -1,12 +1,19 @@
 using BaseLib.Abstracts;
 using Downfall.Code.Core.Hexaghost.Ghostflames;
+using Downfall.Code.Events;
 using Downfall.Code.Vfx.Hexaghost;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.Code.Core.Hexaghost;
 
@@ -16,7 +23,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     private GhostflameModel _canonicalInstance;
     private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
-
+    public abstract AbstractIntent Intent { get; }
     protected bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
     public bool IsIgnited { get; set; }
     private int IgnitionProgress { get; set; }
@@ -34,6 +41,11 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
             return tip;
         }
     }
+    
+    protected int Intensity => DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState!, Owner, this);
+    protected int Repeat(GhostflameRepeatType repeatType) => DownfallHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
+
+    private int FlameIndex => Array.IndexOf(HexaghostCmd.GetWheel(Owner), this);
     
     protected Player Owner
     {
@@ -79,12 +91,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
 
     protected async Task Ignite(PlayerChoiceContext ctx)
-    {
-        if (IsIgnited) return;
-        IsIgnited = true;
-        HexaghostVisualsBridge.Refresh(Owner);
-        await OnIgnite(ctx);
-    }
+        => await HexaghostCmd.Ignite(ctx, Owner);
 
     public GhostflameModel ToMutable(Player player)
     {
@@ -94,4 +101,22 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         mutable.Owner = player;
         return mutable;
     }
+
+    protected void SpawnVfx(Creature target)
+    {
+        var visuals = HexaghostVisualsBridge.GetVisuals(Owner);
+        var from = visuals?.GetFlameWorldPosition(FlameIndex)
+                   ?? Owner.Creature.GetCreatureNode()?.VfxSpawnPosition
+                   ?? Vector2.Zero;
+        var to = target.GetCreatureNode()?.VfxSpawnPosition ?? Vector2.Zero;
+        var fireball = NFireballEffect.Create(from, to);
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(fireball);
+    }
+}
+
+public enum GhostflameRepeatType
+{
+    Soulburn,
+    Damage,
+    Block
 }

@@ -18,6 +18,6 @@ public static class HexaghostVisualsBridge
         if (visuals == null) return;
         var wheel = HexaghostCmd.GetWheel(player);
         var index = HexaghostCmd.GetCurrentIndex(player);
-        visuals.RefreshWheel(wheel, index);
+        visuals.RefreshWheel(wheel, index, player);
     }
 }

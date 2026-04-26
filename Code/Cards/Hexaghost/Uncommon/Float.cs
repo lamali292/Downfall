@@ -30,6 +30,6 @@ public class Float : HexaghostCardModel
             .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState));
         if (a >= DynamicVars["CardsPlayed"].IntValue)  return;
         await CommonActions.Draw(this, ctx);
-        await HexaghostCmd.Advance(ctx, Owner);
+        await HexaghostCmd.Advance(ctx, Owner, this);
     }
 }

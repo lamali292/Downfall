@@ -19,7 +19,7 @@ public class DownfallKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Advance;
 
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Retract;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]

@@ -39,9 +39,9 @@ public class FlareFlick : HexaghostCardModel
             var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (chosen is not FlareFlickChoice {Keyword : var keyword } ) return;
             if (keyword == DownfallKeywords.Advance)
-                await HexaghostCmd.Advance(ctx, Owner);
+                await HexaghostCmd.Advance(ctx, Owner, this);
             else if (keyword == DownfallKeywords.Retract)
-                await HexaghostCmd.Retract(ctx, Owner);
+                await HexaghostCmd.Retract(ctx, Owner, this);
         }
     }
 }

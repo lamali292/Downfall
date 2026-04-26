@@ -1,5 +1,6 @@
 using Downfall.Code.Core.Hexaghost;
 using Downfall.Code.Events;
+using Downfall.Code.Ghostflames.Intents;
 using Downfall.Code.Vfx.Hexaghost;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -7,12 +8,14 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.Code.Ghostflames;
 
 public class BolsteringGhostflame : GhostflameModel
 {
+    public override AbstractIntent Intent => new BolsteringIntent();
     protected override int IgnitionRequirement => 1;
 
     public override NFire.FireColor FireColor => NFire.FireColor.Blue;
@@ -20,8 +23,15 @@ public class BolsteringGhostflame : GhostflameModel
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (Owner.Creature.CombatState == null) return;
-        var intensity = DownfallHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState, Owner, this);
-        await CreatureCmd.GainBlock(Owner.Creature, 4 + intensity, ValueProp.Move | ValueProp.Unpowered, null);
+        
+        SfxCmd.Play("event:/sfx/characters/attack_fire");
+        
+        var repeat = Repeat(GhostflameRepeatType.Block);
+        for (var i = 0; i < repeat; i++)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, 4 + Intensity, ValueProp.Move | ValueProp.Unpowered, null);
+        }
+        
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
     }
 

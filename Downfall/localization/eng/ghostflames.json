@@ -4,7 +4,7 @@
   "DOWNFALL-CRUSHING_GHOSTFLAME.title" : "Crushing Ghostflame",
   "DOWNFALL-CRUSHING_GHOSTFLAME.description" : "Ignites by playing 2 Skills while on it. \nDeals 3 damage to a random enemy twice.",
   "DOWNFALL-INFERNO_GHOSTFLAME.title" : "Inferno Ghostflame",
-  "DOWNFALL-INFERNO_GHOSTFLAME.description" : "Ignites by spending 3 Energy while on it.\nDeals 4 damage to a random enemy for each ignited Ghostflame. If all Ghostflames are Ignited, gain 2 [gold]Intensity[/gold].",
+  "DOWNFALL-INFERNO_GHOSTFLAME.description" : "Ignites by spending 3 Energy while on it.\nDeals 4 damage to a random enemy for each ignited Ghostflame.\nIf all Ghostflames are Ignited, gain 2 [gold]Intensity[/gold].",
   "DOWNFALL-SEARING_GHOSTFLAME.title" : "Searing Ghostflame",
   "DOWNFALL-SEARING_GHOSTFLAME.description" : "Ignites by playing 2 Attacks while on it.\nApplies 3 [gold]Soulburn[/gold] to a random enemy twice. "
 }

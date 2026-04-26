@@ -31,7 +31,7 @@ public class NaughtySpirit : HexaghostCardModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.ResultPile != PileType.Hand || this != cardPlay.Card) return;
-        await HexaghostCmd.Retract(ctx, Owner);
+        await HexaghostCmd.Retract(ctx, Owner, this);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

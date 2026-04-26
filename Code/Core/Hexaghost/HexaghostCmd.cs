@@ -1,7 +1,9 @@
 using Downfall.Code.Core.Hexaghost.Ghostflames;
 using Downfall.Code.Events;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.Code.Core.Hexaghost;
 
@@ -51,17 +53,17 @@ public static class HexaghostCmd
         return (GetCurrentIndex(player) + 1) % wheel.Length;
     }
 
-    public static async Task Advance(PlayerChoiceContext ctx, Player player, bool silent = false)
+    public static async Task Advance(PlayerChoiceContext ctx, Player player, CardModel? source, bool silent = false)
     {
         await MoveTo(player, GetNextIndex(player));
-        await DownfallHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
+        await DownfallHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
 
-    public static async Task Retract(PlayerChoiceContext ctx, Player player, bool silent = false)
+    public static async Task Retract(PlayerChoiceContext ctx, Player player, CardModel? source, bool silent = false)
     {
         await MoveTo(player, GetPreviousIndex(player));
-        await DownfallHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, GetCurrentFlame(player),
+        await DownfallHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
 
@@ -125,20 +127,37 @@ public static class HexaghostCmd
     public static Task Ignite(PlayerChoiceContext ctx, Player player)
         => IgniteAt(ctx, player, GetCurrentIndex(player));
     
-    private static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
+    public static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
     {
+        await Cmd.Wait(0.05f);
         var flame = GetWheel(player)[index];
         if (!flame.IsIgnited)
-        {
             flame.IsIgnited = true;
-            HexaghostVisualsBridge.Refresh(player);
-        }
-        await flame.OnIgnite(ctx);
+        HexaghostVisualsBridge.Refresh(player);
+        await flame.OnIgnite(ctx); ;
         await DownfallHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
+        await Cmd.Wait(0.05f);
         if (AllIgnited(player))
         {
             await DownfallHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
+            foreach (var f in GetWheel(player))
+                f.Extinguish();
+            HexaghostVisualsBridge.Refresh(player);
         }
+    }
+    
+    
+ 
+    
+    public static async Task IgniteAll(PlayerChoiceContext ctx, Player player)
+    {
+        var wheel = GetWheel(player);
+        var start = GetCurrentIndex(player);
+        for (var i = 0; i < wheel.Length; i++)
+        {
+            await IgniteAt(ctx, player, (start + i) % wheel.Length);
+        }
+            
     }
     
     public static Task Extinguish(Player player, bool silent = false)
