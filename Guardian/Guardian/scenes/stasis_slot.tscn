@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://cno5ncb7dqixm"]
+
+[ext_resource type="Script" uid="uid://06i0g4lgihq7" path="res://GuardianCode/Vfx/NStasisSlot.cs" id="1_5fpke"]
+[ext_resource type="Texture2D" uid="uid://bwh7bh467av5h" path="res://images/orbs/empty_orb.png" id="2_5fpke"]
+[ext_resource type="FontFile" uid="uid://clypo64htko7l" path="res://fonts/kreon_regular.ttf" id="2_i2fes"]
+[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="3_5fpke"]
+
+[sub_resource type="FontVariation" id="FontVariation_uouql"]
+base_font = ExtResource("2_i2fes")
+spacing_glyph = 1
+
+[sub_resource type="Animation" id="Animation_uouql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5fpke"]
+resource_name = "idle"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5er7d"]
+_data = {
+&"RESET": SubResource("Animation_uouql"),
+&"idle": SubResource("Animation_5fpke")
+}
+
+[node name="StasisSlot" type="Control"]
+custom_minimum_size = Vector2(80, 110)
+layout_mode = 3
+anchor_left = -0.078
+anchor_top = -0.19500001
+anchor_right = 0.078
+anchor_bottom = 0.19500001
+offset_left = 109.76001
+offset_top = 155.6
+offset_right = -109.76001
+offset_bottom = -155.6
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(40, 55)
+mouse_filter = 2
+script = ExtResource("1_5fpke")
+
+[node name="Visuals" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 1120)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Visuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.535, 0.535)
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+texture = ExtResource("2_5fpke")
+stretch_mode = 2
+
+[node name="Count" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(33, 37)
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1254902)
+theme_override_colors/font_outline_color = Color(0.09803922, 0.16078432, 0.1882353, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_uouql")
+theme_override_font_sizes/font_size = 28
+text = "99"
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("3_5fpke")
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1254902)
+theme_override_colors/font_outline_color = Color(0.09803922, 0.16078432, 0.1882353, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_uouql")
+theme_override_font_sizes/font_size = 28
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_5er7d")
+}

@@ -1,0 +1,8 @@
+﻿{
+  "HEXAGHOST-ADVANCE.description": "Move to the next Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] it.",
+  "HEXAGHOST-ADVANCE.title": "Advance",
+  "HEXAGHOST-RETRACT.description": "Move to the previous Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] it.",
+  "HEXAGHOST-RETRACT.title": "Retract",
+  "HEXAGHOST-AFTERLIFE.description": "The purple effect will also trigger when this card is [gold]Exhausted[/gold].",
+  "HEXAGHOST-AFTERLIFE.title": "Afterlife"
+}

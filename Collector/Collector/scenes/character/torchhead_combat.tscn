@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2byfdlrfwq4u"]
+
+[ext_resource type="Script" uid="uid://gv2idwo3pn0b" path="res://CollectorCode/Vfx/NTorchheadCreatureVisuals.cs" id="1_8l8vf"]
+[ext_resource type="PackedScene" uid="uid://clfk0oxupwkj" path="res://Collector/scenes/character/torchhead.tscn" id="2_arvdp"]
+
+[node name="TorchheadCombat" type="Node2D"]
+script = ExtResource("1_8l8vf")
+
+[node name="Visuals" parent="." instance=ExtResource("2_arvdp")]
+unique_name_in_owner = true
+position = Vector2(0, -19.19)
+scale = Vector2(-1, 1)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -186.0
+offset_right = 51.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -78)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -146)

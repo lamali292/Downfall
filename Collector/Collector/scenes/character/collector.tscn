@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://da814ygbtb6qy"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://c8si2ub1412jo" path="res://Collector/scenes/character/collector.spatlas" id="1_lf1jc"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dyf2504s62x65" path="res://Collector/scenes/character/collector.spskel" id="2_l45cq"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_teaa0"]
+atlas_res = ExtResource("1_lf1jc")
+skeleton_file_res = ExtResource("2_l45cq")
+
+[node name="Collector" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_teaa0")
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0

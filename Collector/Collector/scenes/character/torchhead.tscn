@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://clfk0oxupwkj"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://n4x50p3ua12r" path="res://Collector/scenes/character/torchhead.spatlas" id="1_tmplb"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cen0gpddf1jgg" path="res://Collector/scenes/character/torchhead.spskel" id="2_dqsgj"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_nce1o"]
+atlas_res = ExtResource("1_tmplb")
+skeleton_file_res = ExtResource("2_dqsgj")
+
+[node name="Torchhead" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_nce1o")
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0

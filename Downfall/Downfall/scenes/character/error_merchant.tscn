@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1o0sdn255167"]
+
+[ext_resource type="Script" uid="uid://b2ww8leotjikm" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_8i1j1"]
+[ext_resource type="Texture2D" uid="uid://ujrmldqkucgg" path="res://images/monsters/error.png" id="2_widb6"]
+
+[node name="DownfallMerchant" type="Node2D"]
+script = ExtResource("1_8i1j1")
+
+[node name="SpineSprite" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_widb6")

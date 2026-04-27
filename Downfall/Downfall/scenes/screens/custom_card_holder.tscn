@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt8rcssrtdn1p"]
+
+[ext_resource type="Script" uid="uid://bpojtwsmffjyp" path="res://DownfallCode/Nodes/NCustomCardHolder.cs" id="1_maxn8"]
+[ext_resource type="Script" uid="uid://mpyf2phw1xgx" path="res://src/Core/Nodes/Cards/Holders/NCardHolderHitbox.cs" id="2_yvj56"]
+
+[node name="GridCardHolder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+mouse_filter = 2
+script = ExtResource("1_maxn8")
+
+[node name="Hitbox" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+pivot_offset = Vector2(150, 211)
+script = ExtResource("2_yvj56")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cskkr2d8cv3jd"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://c61bv2l48cg43" path="res://Guardian/scenes/character/guardian2.spatlas" id="1_0t7wh"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://8lwvxsp8j6lv" path="res://Guardian/scenes/character/guardian2.spskel" id="2_0t7wh"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_h1uyr"]
+atlas_res = ExtResource("1_0t7wh")
+skeleton_file_res = ExtResource("2_0t7wh")
+
+[node name="Guardian2" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_h1uyr")
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(0, 150)
+scale = Vector2(-1, 1)
