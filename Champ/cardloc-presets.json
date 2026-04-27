@@ -1,0 +1,185 @@
+{
+  "localizationBase": "Champ/localization/eng",
+  "projectId": "Champ",
+  "presets": [
+    {
+      "id": "card",
+      "markers": [
+        "ChampCardModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "cards.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "markers": [
+        "TemporaryPower",
+        "ChampPowerModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "smartDescription",
+          "file": "powers.json",
+          "optional": true
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "powers.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "character",
+      "markers": [
+        "DownfallCharacterModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "titleObject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounSubject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounPossessive",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "pronounObject",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "possessiveAdjective",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "goldMonologue",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "eventDeathPrevention",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "cardsModifierTitle",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "cardsModifierDescription",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "banter.dead.endTurnPing",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "banter.alive.endTurnPing",
+          "file": "characters.json",
+          "optional": false
+        },
+        {
+          "name": "aromaPrinciple",
+          "file": "characters.json",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "id": "relic",
+      "markers": [
+        "ChampRelicModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "flavor",
+          "file": "relics.json",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "id": "enchantment",
+      "markers": [
+        "DownfallEnchantmentModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "enchantments.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "enchantments.json",
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "pinnedColors": [
+    {
+      "tag": "gold"
+    },
+    {
+      "tag": "blue"
+    }
+  ]
+}

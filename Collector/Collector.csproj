@@ -141,6 +141,10 @@
     <ItemGroup>
       <ProjectReference Include="..\Downfall\Downfall.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="cardloc-presets.json" />
+    </ItemGroup>
     
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">

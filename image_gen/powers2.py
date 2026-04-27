@@ -105,7 +105,7 @@ for sub in INPUT_SUBDIRS:
 for char_id in sorted(char_ids):
     # Special case: downfall powers go into DownfallLib
     if char_id == "downfall":
-        char_proj = "DownfallLib"
+        char_proj = "Downfall"
     else:
         char_proj = next((e for e in os.listdir(PARENT)
                           if e.lower() == char_id
