@@ -70,7 +70,7 @@ public partial class DoomCurseEffect : Node2D
 
     public override void _Ready()
     {
-        _stakeTex ??= PreloadManager.Cache.GetAsset<Texture2D>("res://Downfall/images/vfx/stake.png");
+        _stakeTex ??= PreloadManager.Cache.GetAsset<Texture2D>("res://Collector/images/vfx/stake.png");
         _additiveMat ??= new CanvasItemMaterial { BlendMode = CanvasItemMaterial.BlendModeEnum.Add };
 
         _cts = new CancellationTokenSource();
