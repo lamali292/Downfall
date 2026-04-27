@@ -1,0 +1,26 @@
+using BaseLib.Utils;
+using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Powers;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Guardian.GuardianCode.Cards.Rare;
+
+[Pool(typeof(GuardianCardPool))]
+public class ConstructionForm : GuardianCardModel
+{
+    public ConstructionForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    {
+        WithPower<BufferPower>(2);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        WithTip(typeof(StrengthPower));
+        WithPower<ConstructionFormPower>(1);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.ApplySelf<BufferPower>(ctx, this);
+        await CommonActions.ApplySelf<ConstructionFormPower>(ctx, this);
+    }
+}

@@ -1,0 +1,28 @@
+using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Powers;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Awakened.AwakenedCode.Cards.Rare;
+
+[Pool(typeof(AwakenedCardPool))]
+public class Intensify : AwakenedCardModel
+{
+    public Intensify() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithPower<IntensifyPower>(1);
+        WithPower<BurnoutPower>(1);
+        WithTip(AwakenedTip.Conjure);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        ArgumentNullException.ThrowIfNull(CombatState);
+        await AwakenedCmd.Conjure(Owner, CombatState);
+        await CommonActions.ApplySelf<IntensifyPower>(ctx, this);
+        await CommonActions.ApplySelf<BurnoutPower>(ctx, this);
+    }
+}

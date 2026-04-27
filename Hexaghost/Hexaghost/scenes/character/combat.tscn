@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cujs28vntpas4"]
+
+[ext_resource type="Script" uid="uid://cu5yt6gvjycoi" path="res://HexaghostCode/Vfx/NHexaghostCreatureVisuals.cs" id="1_qxg1r"]
+[ext_resource type="PackedScene" uid="uid://bnb63phrlkqlx" path="res://Hexaghost/scenes/character/hexaghost2.tscn" id="2_qxg1r"]
+
+[node name="HexaghostCombat" type="Node2D"]
+script = ExtResource("1_qxg1r")
+
+[node name="Visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -216)
+
+[node name="Hexaghost" parent="Visuals" instance=ExtResource("2_qxg1r")]
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -118.0
+offset_top = -357.0
+offset_right = 120.0
+pivot_offset = Vector2(-181, -110)
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, -214)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, -362)

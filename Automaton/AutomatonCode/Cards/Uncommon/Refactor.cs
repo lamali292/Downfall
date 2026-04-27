@@ -1,0 +1,35 @@
+﻿using Automaton.AutomatonCode.Core;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Automaton.AutomatonCode.Cards.Uncommon;
+
+[Pool(typeof(AutomatonCardPool))]
+public class Refactor : AutomatonCardModel
+{
+    public Refactor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(4, 2);
+        WithVar("Scry", 4);
+        WithTip(CardKeyword.Exhaust);
+        WithTip(DownfallTip.Scry);
+        WithTip(DownfallTip.Status);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
+
+        var statuses = result.Discarded.Where(c => c.Type == CardType.Status).ToList();
+        foreach (var status in statuses)
+            await CardCmd.Exhaust(ctx, status);
+
+        if (statuses.Count > 0)
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue * statuses.Count,
+                DynamicVars.Block.Props, cardPlay);
+    }
+}

@@ -1,0 +1,65 @@
+﻿using Automaton.AutomatonCode.Core;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
+
+namespace Automaton.AutomatonCode.Cards.Rare;
+
+[Pool(typeof(AutomatonCardPool))]
+public class HyperBeamAutomaton : AutomatonCardModel
+{
+    public HyperBeamAutomaton() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    {
+        WithDamage(25, 10);
+        WithKeywords(CardKeyword.Retain);
+        WithTip(typeof(Void));
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        ArgumentNullException.ThrowIfNull(CombatState);
+        var hyperbeam = this;
+        await DamageCmd.Attack(hyperbeam.DynamicVars.Damage.BaseValue)
+            .FromCard(hyperbeam)
+            .TargetingAllOpponents(hyperbeam.CombatState)
+            .WithAttackerAnim("Cast", 0.5f)
+            .BeforeDamage(BeforeDamageAction)
+            .Execute(ctx);
+
+        List<CardModel> burns =
+        [
+            CombatState.CreateCard<Void>(Owner),
+            CombatState.CreateCard<Void>(Owner),
+            CombatState.CreateCard<Void>(Owner),
+            CombatState.CreateCard<Void>(Owner),
+            CombatState.CreateCard<Void>(Owner)
+        ];
+        var result = await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Draw, Owner, CardPilePosition.Top);
+        CardCmd.PreviewCardPileAdd(result, 0.2f, CardPreviewStyle.MessyLayout);
+    }
+
+    private async Task BeforeDamageAction()
+    {
+        var enemies = CombatState?.Enemies.Where(e => e.IsAlive).ToList();
+
+        if (enemies != null)
+        {
+            var vfx = NHyperbeamVfx.Create(Owner.Creature, enemies.Last());
+            if (vfx != null) NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
+        }
+
+        await Cmd.Wait(0.5f);
+        if (enemies != null)
+            foreach (var impact in enemies
+                         .Select(enemy => NHyperbeamImpactVfx.Create(Owner.Creature, enemy))
+                         .OfType<NHyperbeamImpactVfx>())
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
+    }
+}

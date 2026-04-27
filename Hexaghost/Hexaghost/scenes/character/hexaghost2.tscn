@@ -1,0 +1,680 @@
+[gd_scene load_steps=39 format=3 uid="uid://bnb63phrlkqlx"]
+
+[ext_resource type="Script" uid="uid://bpchfaiqvtt4c" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="1_sll4x"]
+[ext_resource type="Texture2D" uid="uid://0obcqgs6fyx2" path="res://images/vfx/shared_use/smoke_vfx_flat.png" id="2_vvcwg"]
+[ext_resource type="Texture2D" uid="uid://bqg5r3lf2kh8b" path="res://Hexaghost/images/character/hexaghost_core.png" id="3_sll4x"]
+[ext_resource type="PackedScene" uid="uid://ctpcbynpmtfuc" path="res://Hexaghost/scenes/vfx/fire.tscn" id="4_s5e12"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mul2j"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_o1pco"]
+_data = [Vector2(0, 0), 0.0, 2.32029, 0, 0, Vector2(0.09037901, 0.4175884), -1.4199685, -1.4199685, 0, 0, Vector2(1, 0), -0.20876457, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aa5yv"]
+width = 128
+curve = SubResource("Curve_o1pco")
+
+[sub_resource type="Curve" id="Curve_fgopd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.729591), 3.3025, 3.3025, 0, 0, Vector2(0.245873, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.740322), -0.873548, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vf1u"]
+width = 128
+curve = SubResource("Curve_fgopd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mul2j"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 180.0
+emission_ring_radius = 180.0
+emission_ring_inner_radius = 155.91
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+radial_velocity_min = 99.99998
+radial_velocity_max = 299.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_1vf1u")
+alpha_curve = SubResource("CurveTexture_aa5yv")
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4hq55"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 180.0
+emission_ring_radius = 180.0
+emission_ring_inner_radius = 127.6
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_1vf1u")
+alpha_curve = SubResource("CurveTexture_aa5yv")
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7y477"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_pj6rm"]
+_data = [Vector2(0, 0), 0.0, 1.26287, 0, 0, Vector2(0.396816, 1), 0.0, 0.0, 0, 0, Vector2(0.599646, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.93307, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_34x5a"]
+width = 128
+curve = SubResource("Curve_pj6rm")
+
+[sub_resource type="Curve" id="Curve_pe7m8"]
+_data = [Vector2(0, 0.811143), 0.0, 2.2437, 0, 0, Vector2(0.158608, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.791828), -0.408964, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j5sxe"]
+width = 128
+curve = SubResource("Curve_pe7m8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2jop"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 170.0
+emission_ring_radius = 170.0
+emission_ring_inner_radius = 155.91
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = -0.049999908
+orbit_velocity_max = 0.1000001
+gravity = Vector3(0, 0, 0)
+scale_max = 1.02
+scale_curve = SubResource("CurveTexture_j5sxe")
+color = Color(0.88, 0.88, 0.88, 1)
+alpha_curve = SubResource("CurveTexture_34x5a")
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g41ke"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 100.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = -0.19999991
+orbit_velocity_max = 0.2000001
+gravity = Vector3(0, 0, 0)
+scale_max = 1.02
+scale_curve = SubResource("CurveTexture_j5sxe")
+color = Color(0.88, 0.88, 0.88, 1)
+alpha_curve = SubResource("CurveTexture_34x5a")
+anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_mul2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-253, -257.825)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/OutsideSmoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/InsideSmoke:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/InsideSmoke2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fire:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Control/HurtSmoke:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4hq55"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.004522843, -14.0492325, 0.1, 310.62836, 0.23828673, -0.36666667, 13.176937, 0, 0),
+"times": PackedFloat32Array(0, 0.36666667)
+}
+
+[sub_resource type="Animation" id="Animation_o1pco"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/OutsideSmoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/InsideSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/InsideSmoke2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 0.93333334, 1),
+"transitions": PackedFloat32Array(6.964403, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.645, 129.97), Vector2(4.645, 115.57), Vector2(4.645, 129.97)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6333333, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7766715171374766, 2.5970499269675624, 5.005604294719737]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("fire:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.100000024, 0.281112, 0, 0),
+"times": PackedFloat32Array(0, 0.6666667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, -0.0031347023, -0.100000024, 0.4872608, 0, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_fgopd"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 1, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -0.6496923, -0.027541295, 0, 0, 0, 0, -0.0013130996, -0.19999999, -0.0043713665, 0.23333335, 0.0043713655),
+"times": PackedFloat32Array(0, 0.23333333, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.033333335, -46.46229, -55.69916, -0.06666667, -17.960575, 0.06666667, 17.960575, 0, -0.4, -0.27795815, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.5)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/HurtSmoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g41ke"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-253, -257.825), Vector2(-256.975, -263), Vector2(-253, -249.795)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.08726646259971647, 0.08726646259971647, 0.0]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fire:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/OutsideSmoke:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/InsideSmoke:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/InsideSmoke2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mul2j"]
+_data = {
+&"RESET": SubResource("Animation_mul2j"),
+&"attack": SubResource("Animation_4hq55"),
+&"death": SubResource("Animation_o1pco"),
+&"hurt": SubResource("Animation_fgopd"),
+&"idle": SubResource("Animation_g41ke")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hq55"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mul2j"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1pco"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fgopd"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4hq55"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7y477"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pe7m8"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e2jop"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mul2j"]
+switch_mode = 2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o1pco"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pj6rm"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eau1d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgopd"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mul2j"]
+states/End/position = Vector2(628, 153)
+states/Start/position = Vector2(186, 153)
+states/attack/node = SubResource("AnimationNodeAnimation_4hq55")
+states/attack/position = Vector2(327, 64)
+states/death/node = SubResource("AnimationNodeAnimation_mul2j")
+states/death/position = Vector2(470, 153)
+states/hurt/node = SubResource("AnimationNodeAnimation_o1pco")
+states/hurt/position = Vector2(327, 278)
+states/idle/node = SubResource("AnimationNodeAnimation_fgopd")
+states/idle/position = Vector2(327, 153)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_4hq55"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_7y477"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_pe7m8"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_e2jop"), "death", "End", SubResource("AnimationNodeStateMachineTransition_mul2j"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_o1pco"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_pj6rm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_eau1d"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_fgopd")]
+
+[node name="Hexaghost" type="Node2D"]
+script = ExtResource("1_sll4x")
+
+[node name="Center" type="Marker2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 150)
+mouse_filter = 2
+
+[node name="HurtSmoke" type="GPUParticles2D" parent="Control"]
+modulate = Color(0.305195, 0.19470002, 0.33, 0.7529412)
+material = SubResource("CanvasItemMaterial_mul2j")
+emitting = false
+amount = 10
+texture = ExtResource("2_vvcwg")
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_mul2j")
+
+[node name="OutsideSmoke" type="GPUParticles2D" parent="Control"]
+modulate = Color(0.305195, 0.19470002, 0.33, 0.7529412)
+material = SubResource("CanvasItemMaterial_mul2j")
+amount = 90
+texture = ExtResource("2_vvcwg")
+lifetime = 2.5
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_4hq55")
+
+[node name="InsideSmoke" type="GPUParticles2D" parent="Control"]
+modulate = Color(0.5, 0.34, 0.49466667, 0.7529412)
+material = SubResource("CanvasItemMaterial_7y477")
+amount = 90
+texture = ExtResource("2_vvcwg")
+lifetime = 3.0
+preprocess = 1.5
+speed_scale = 0.8
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_e2jop")
+
+[node name="InsideSmoke2" type="GPUParticles2D" parent="Control"]
+modulate = Color(0.88, 0.5808, 0.87002665, 0.7529412)
+material = SubResource("CanvasItemMaterial_7y477")
+amount = 90
+texture = ExtResource("2_vvcwg")
+lifetime = 3.0
+preprocess = 1.5
+speed_scale = 0.8
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_g41ke")
+
+[node name="Visuals" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = -253.0
+offset_top = -257.825
+offset_right = 259.0
+offset_bottom = 254.17499
+scale = Vector2(1.125, 1.125)
+pivot_offset = Vector2(256, 255)
+texture = ExtResource("3_sll4x")
+expand_mode = 1
+
+[node name="fire" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_vertical = 2
+pivot_offset = Vector2(150, 150)
+
+[node name="fire1" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(60, 0)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire2" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(240, 0)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire3" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(330, 150)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire4" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(240, 300)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire5" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(60, 300)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire6" parent="fire" instance=ExtResource("4_s5e12")]
+unique_name_in_owner = true
+position = Vector2(-30, 150)
+scale = Vector2(0.25, 0.25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_mul2j")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_mul2j")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,0 +1,18 @@
+﻿using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Events;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Awakened.AwakenedCode.Powers;
+
+public class DemonGlyphPower : AwakenedPowerModel, IOnAwaken
+{
+    public async Task OnAwaken(PlayerChoiceContext ctx, Player player)
+    {
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<DexterityPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Remove(this);
+    }
+}

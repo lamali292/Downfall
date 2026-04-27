@@ -1,0 +1,45 @@
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Interfaces;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Automaton.AutomatonCode.Cards.Uncommon;
+
+[Pool(typeof(AutomatonCardPool))]
+public class InfiniteLoop : AutomatonCardModel,
+    IEncodable, ICompilable
+{
+    public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithDamage(6);
+        WithVar("Increase", 2, 2);
+        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonTip.Compile);
+    }
+
+    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
+        CompileContext compileContext, bool forGameplay)
+    {
+        if (!forGameplay) return;
+
+        var copy = CreateClone();
+        copy.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        copy.DynamicVars.FinalizeUpgrade();
+
+        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
+        if (result.success)
+            CardCmd.PreviewCardPileAdd(result);
+    }
+
+    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(ctx);
+    }
+}

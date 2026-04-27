@@ -1,0 +1,21 @@
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
+
+namespace Hexaghost.HexaghostCode.Cards.Token;
+
+[Pool(typeof(TokenCardPool))]
+public class SecondSeal : HexaghostCardModel
+{
+    public SecondSeal() : base(2, CardType.Power, CardRarity.Token, TargetType.None)
+    {
+    }
+
+    // TODO: Implement
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+    }
+
+
+}

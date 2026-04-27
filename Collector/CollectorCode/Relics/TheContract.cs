@@ -1,0 +1,17 @@
+using BaseLib.Utils;
+using Collector.CollectorCode.Core;
+using MegaCrit.Sts2.Core.Entities.Relics;
+
+namespace Collector.CollectorCode.Relics;
+
+[Pool(typeof(CollectorRelicPool))]
+public class TheContract : CollectorRelicModel
+{
+    public override RelicRarity Rarity => RelicRarity.Shop;
+
+    public override Task AfterObtained()
+    {
+        EssenceModel.AddEssence(Owner, 10);
+        return Task.CompletedTask;
+    }
+}

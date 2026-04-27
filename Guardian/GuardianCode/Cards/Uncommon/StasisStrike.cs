@@ -1,0 +1,23 @@
+using BaseLib.Utils;
+using Guardian.GuardianCode.Core;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Guardian.GuardianCode.Cards.Uncommon;
+
+[Pool(typeof(GuardianCardPool))]
+public class StasisStrike : GuardianCardModel
+{
+    public StasisStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithDamage(16, 4);
+        WithVar("StasisSlots", 1);
+        WithTags(CardTag.Strike);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        GuardianCmd.AddMaxStasisSlots(Owner, DynamicVars["StasisSlots"].IntValue);
+    }
+}
