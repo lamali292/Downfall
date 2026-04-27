@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Downfall/images/atlases/
+/Downfall/images/powers/

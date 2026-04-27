@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Automaton/images/atlases/
+/Automaton/images/powers/

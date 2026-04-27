@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Awakened/images/atlases/
+/Awakened/images/powers/

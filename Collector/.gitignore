@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Collector/images/powers/
+/Collector/images/atlases/

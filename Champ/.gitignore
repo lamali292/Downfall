@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Champ/images/atlases/
+/Champ/images/powers/

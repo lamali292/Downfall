@@ -10,3 +10,6 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+/Hexaghost/images/atlases/
+/Hexaghost/images/powers/
+/Hexaghost/images/relics/
