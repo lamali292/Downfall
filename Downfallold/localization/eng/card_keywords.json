@@ -1,0 +1,16 @@
+﻿{
+  "DOWNFALL-TRIGGERSKILLBONUS.title": "Skill Bonus",
+  "DOWNFALL-TRIGGERSKILLBONUS.description": "If you are in Stance, trigger its Skill Bonus.",
+  "DOWNFALL-PYRE.description": "Requires exhausting a card in hand in addition to paying its energy cost.",
+  "DOWNFALL-PYRE.title": "Pyre",
+  "DOWNFALL-GEM.description": "Gems can be placed into [gold]Sockets[/gold] in cards at a Rest Site.",
+  "DOWNFALL-GEM.title": "Gem",
+  "DOWNFALL-VOLATILE.description": "When this card leaves [gold]Stasis[/gold], it [gold]Exhausts[/gold].",
+  "DOWNFALL-VOLATILE.title": "Volatile",
+  "DOWNFALL-ADVANCE.description": "Move to the next Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] it.",
+  "DOWNFALL-ADVANCE.title": "Advance",
+  "DOWNFALL-RETRACT.description": "Move to the previous Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] it.",
+  "DOWNFALL-RETRACT.title": "Retract",
+  "DOWNFALL-AFTERLIFE.description": "The purple effect will also trigger when this card is [gold]Exhausted[/gold].",
+  "DOWNFALL-AFTERLIFE.title": "Afterlife"
+}

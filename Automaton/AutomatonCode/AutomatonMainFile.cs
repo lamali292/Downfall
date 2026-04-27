@@ -1,0 +1,27 @@
+using Automaton.AutomatonCode.Cards;
+using Automaton.AutomatonCode.Localization;
+using Downfall.DownfallCode.Localization;
+using Downfall.DownfallCode.Patches;
+using Godot;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Modding;
+
+namespace Automaton.AutomatonCode;
+
+[ModInitializer(nameof(Initialize))]
+public partial class AutomatonMainFile : Node
+{
+    public const string ModId = "Automaton"; //At the moment, this is used only for the Logger and harmony names.
+
+    public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
+        new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
+
+    public static void Initialize()
+    {
+        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText, new EncodeDescriptionSource());
+        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileDescriptionSource());
+        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileErrorDescriptionSource());
+        Harmony harmony = new(ModId);
+        harmony.PatchAll();
+    }
+}

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1m2ljf746ha"]
+
+[ext_resource type="Script" uid="uid://bkldvlxlrhexb" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_ity66"]
+[ext_resource type="PackedScene" uid="uid://cskkr2d8cv3jd" path="res://Downfall/character/scenes/visuals/guardian2.tscn" id="2_87lj2"]
+[ext_resource type="PackedScene" uid="uid://cptinssb32jcf" path="res://Downfall/scenes/ui/guardian_display_test.tscn" id="3_fve8n"]
+
+[node name="GuardianCombat" type="Node2D"]
+script = ExtResource("1_ity66")
+
+[node name="Visuals" parent="." instance=ExtResource("2_87lj2")]
+unique_name_in_owner = true
+position = Vector2(0, 100)
+scale = Vector2(-0.6, 0.6)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -145.0
+offset_top = -354.0
+offset_right = 143.0
+offset_bottom = 11.0
+mouse_filter = 2
+
+[node name="GuardianDisplay" parent="Bounds" instance=ExtResource("3_fve8n")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = -120.0
+offset_bottom = -120.0
+grow_vertical = 1
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -264)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -362)

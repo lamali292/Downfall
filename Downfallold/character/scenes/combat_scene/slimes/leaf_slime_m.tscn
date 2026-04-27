@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkeni3jpvjmms"]
+
+[ext_resource type="Script" uid="uid://cno5t2x1a0j0b" path="res://Code/Nodes/DNCreatureVisuals.cs" id="1_11ned"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bighcyss2jo7q" path="res://Downfall/animation/leaf_slime_m/leaf_slime_m_skel_data.tres" id="2_11ned"]
+
+[node name="LeafSlimeS" type="Node2D"]
+script = ExtResource("1_11ned")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_11ned")
+preview_skin = "Default"
+preview_animation = "idle_loop"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+position = Vector2(-4, -26)
+scale = Vector2(0.273444, 0.273444)
+
+[node name="SpitTarget" type="SpineBoneNode" parent="Visuals"]
+bone_mode = 1
+bone_name = "spit_target"
+show_behind_parent = true
+position = Vector2(-3297.78, -237.778)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -139.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -52)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -164)

@@ -1,0 +1,8 @@
+﻿{
+  "CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finisher[/gold]",
+  "CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: Gain {strength} {:icon(StrengthPower)}.",
+  "CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: Gain {block} [gold]Block[/gold].",
+  "CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: Gain {strength} {:icon(StrengthPower)} and {block} [gold]Block[/gold].",
+  "CHAMP_GLADIATOR_STANCE.finisher": "{:finisher()}: Gladiator",
+  "TRIGGER_SKILL_BONUS.title": "Trigger [gold]Stance Skill Bonus[/gold]."
+}

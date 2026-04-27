@@ -1,0 +1,219 @@
+[gd_scene load_steps=17 format=3 uid="uid://blc14hgd3twys"]
+
+[ext_resource type="Script" uid="uid://dprq2wglfoj72" path="res://Code/Nodes/NCollectiblesViewScreen.cs" id="1_hma5v"]
+[ext_resource type="PackedScene" uid="uid://cso1enqajc1tc" path="res://Downfall/scenes/screens/card_grid.tscn" id="2_bfdbe"]
+[ext_resource type="Texture2D" uid="uid://qdh2svf2vf30" path="res://Downfall/scenes/screens/color_tab_bar.png" id="3_1o7jv"]
+[ext_resource type="PackedScene" uid="uid://bl4mbjqjfffa4" path="res://Downfall/scenes/screens/back_button.tscn" id="3_tdl62"]
+[ext_resource type="PackedScene" uid="uid://bn0465ywtx5b1" path="res://Downfall/scenes/screens/deck_view_sort_button.tscn" id="4_1o7jv"]
+[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://Downfall/themes/kreon_regular_shared.tres" id="4_b6hcr"]
+[ext_resource type="FontVariation" uid="uid://bg85h22rkxs6g" path="res://Downfall/themes/kreon_bold_shared.tres" id="5_jrpv8"]
+[ext_resource type="Script" uid="uid://bw1w8bjc07h0i" path="res://Code/Nodes/Base/NDownfallMegaRichTextLabel.cs" id="6_1i3qj"]
+[ext_resource type="PackedScene" uid="uid://bw8f1jtcj63xv" path="res://Downfall/scenes/screens/tickbox.tscn" id="7_cjypk"]
+[ext_resource type="Shader" uid="uid://dpumy2ugymrcc" path="res://Downfall/shaders/hsv.gdshader" id="8_lj46y"]
+[ext_resource type="Script" uid="uid://wd060adiegdx" path="res://Code/Nodes/Base/NDownfallUpgradePreviewTickbox.cs" id="9_1o7jv"]
+[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://Downfall/themes/kreon_bold_glyph_space_one.tres" id="9_08f3c"]
+[ext_resource type="Script" uid="uid://b5d4qkfq60ffq" path="res://Code/Nodes/Base/NDownfallMegaLabel.cs" id="10_espuj"]
+[ext_resource type="Texture2D" uid="uid://c83ntiejbn6ia" path="res://Downfall/scenes/screens/placeholder_controller_icon.png" id="11_1o7jv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wequ5"]
+resource_local_to_scene = true
+shader = ExtResource("8_lj46y")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffwqd"]
+resource_local_to_scene = true
+shader = ExtResource("8_lj46y")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[node name="DeckViewScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hma5v")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CardGrid" parent="." instance=ExtResource("2_bfdbe")]
+layout_mode = 1
+offset_top = 2.0
+offset_bottom = 2.0
+
+[node name="ScrollContainer" parent="CardGrid" index="0"]
+offset_left = 175.0
+offset_right = -175.0
+
+[node name="SortingOptions" type="Control" parent="CardGrid/ScrollContainer" index="0"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 56.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = 152.0
+grow_horizontal = 2
+
+[node name="SortingBg" type="TextureRect" parent="CardGrid/ScrollContainer/SortingOptions"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1o7jv")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardGrid/ScrollContainer/SortingOptions"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ObtainedSorter" parent="CardGrid/ScrollContainer/SortingOptions/HBoxContainer" instance=ExtResource("4_1o7jv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+
+[node name="CardTypeSorter" parent="CardGrid/ScrollContainer/SortingOptions/HBoxContainer" instance=ExtResource("4_1o7jv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+
+[node name="CostSorter" parent="CardGrid/ScrollContainer/SortingOptions/HBoxContainer" instance=ExtResource("4_1o7jv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+
+[node name="AlphabeticalSorter" parent="CardGrid/ScrollContainer/SortingOptions/HBoxContainer" instance=ExtResource("4_1o7jv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+
+[node name="BackButton" parent="." instance=ExtResource("3_tdl62")]
+layout_mode = 1
+
+[node name="BottomText" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -57.0
+offset_right = 62.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="BottomText"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.752941)
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomText"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 6
+
+[node name="BottomLabel" type="RichTextLabel" parent="BottomText/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_separation = -3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("4_b6hcr")
+theme_override_fonts/bold_font = ExtResource("5_jrpv8")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+text = "[center]Info text.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("6_1i3qj")
+AutoSizeEnabled = false
+MinFontSize = 22
+MaxFontSize = 22
+
+[node name="ViewUpgrades" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -76.0
+offset_right = 278.0
+offset_bottom = -12.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(0, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewUpgrades"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="Upgrades" type="HBoxContainer" parent="ViewUpgrades/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("9_1o7jv")
+
+[node name="ControllerIcon" type="TextureRect" parent="ViewUpgrades/MarginContainer/Upgrades"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_wequ5")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_1o7jv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TickboxVisuals" parent="ViewUpgrades/MarginContainer/Upgrades" instance=ExtResource("7_cjypk")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ffwqd")
+layout_mode = 2
+
+[node name="ViewUpgradesLabel" type="Label" parent="ViewUpgrades/MarginContainer/Upgrades"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("9_08f3c")
+theme_override_font_sizes/font_size = 27
+text = "View Upgrades"
+vertical_alignment = 1
+script = ExtResource("10_espuj")
+AutoSizeEnabled = false
+MinFontSize = 28
+MaxFontSize = 28
+
+[editable path="CardGrid"]

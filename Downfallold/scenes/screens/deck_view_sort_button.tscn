@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://bn0465ywtx5b1"]
+
+[ext_resource type="Script" uid="uid://dwwk7bm5athob" path="res://Code/Nodes/Base/NDownfallCardViewSortButton.cs" id="1_0w17a"]
+[ext_resource type="Texture2D" uid="uid://qdh2svf2vf30" path="res://Downfall/scenes/screens/color_tab_bar.png" id="2_ea8bd"]
+[ext_resource type="Shader" uid="uid://dpumy2ugymrcc" path="res://Downfall/shaders/hsv.gdshader" id="2_mhnvn"]
+[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://Downfall/themes/kreon_bold_glyph_space_one.tres" id="3_c5y2a"]
+[ext_resource type="Texture2D" path="res://Downfall/scenes/screens/sort_descending.tres" id="4_ea8bd"]
+[ext_resource type="Script" uid="uid://b5d4qkfq60ffq" path="res://Code/Nodes/Base/NDownfallMegaLabel.cs" id="5_fq83q"]
+[ext_resource type="PackedScene" uid="uid://bgy88bk44xxvk" path="res://Downfall/scenes/watcher/selection_reticle.tscn" id="7_1isex"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhmoo"]
+resource_local_to_scene = true
+shader = ExtResource("2_mhnvn")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.8
+shader_parameter/v = 0.8
+
+[node name="LibrarySortButton" type="Control"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 42.0
+focus_mode = 2
+script = ExtResource("1_0w17a")
+
+[node name="ButtonImage" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.728822, 0.728822, 0.728822, 1)
+material = SubResource("ShaderMaterial_yhmoo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1)
+pivot_offset = Vector2(122, 21)
+mouse_filter = 2
+texture = ExtResource("2_ea8bd")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_c5y2a")
+theme_override_font_sizes/font_size = 22
+text = "SORTER_NAME"
+vertical_alignment = 1
+script = ExtResource("5_fq83q")
+AutoSizeEnabled = false
+
+[node name="Image" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.937255, 0.784314, 0.317647, 1)
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_ea8bd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SelectionReticle" parent="." instance=ExtResource("7_1isex")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 4.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
