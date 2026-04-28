@@ -16,7 +16,7 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 public class InfernoGhostflame : GhostflameModel
 {
     protected override int IgnitionRequirement => 3;
-    public override NFire.FireColor FireColor => NFire.FireColor.Red;
+    public override FireColor FireColor => FireColor.Red;
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 4 + Intensity,
         () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) + Repeat(GhostflameRepeatType.Damage)

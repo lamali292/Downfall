@@ -28,6 +28,4 @@ public class SearingWound : HexaghostCardModel
                 Owner.Creature, this);
         }
     }
-
-
 }

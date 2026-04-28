@@ -174,7 +174,7 @@
   "CHAMP-TAUNT.title": "Taunt",
   "CHAMP-TECHNICAL_JIG.description": "Whenever you enter a [gold]Stance[/gold], gain {TechnicalJigPower:diff()} [gold]Block[/gold]. ",
   "CHAMP-TECHNICAL_JIG.title": "Technical Jig",
-  "CHAMP-TORNADO_PUNCH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Defensive Combo[/gold]:\nGain {Block:diff()} Block for each enemy hit.",
+  "CHAMP-TORNADO_PUNCH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Defensive Combo[/gold]:\nGain {Block:diff()} [gold]Block[/gold] for each enemy hit.",
   "CHAMP-TORNADO_PUNCH.title": "Tornado Punch",
   "CHAMP-TRIPLE_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {Cards:diff()} [gold]Strike{IfUpgraded:show:+|} Echoes[/gold]. They cost 0 and trigger [gold]Skill Bonuses[/gold].",
   "CHAMP-TRIPLE_STRIKE.title": "Triple Strike",

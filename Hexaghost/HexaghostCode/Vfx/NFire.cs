@@ -5,15 +5,6 @@ namespace Hexaghost.HexaghostCode.Vfx;
 [GlobalClass]
 public partial class NFire : Node2D
 {
-	public enum FireColor
-	{
-		Red,
-		Green,
-		Blue,
-		Yellow,
-		Pink,
-		Orange
-	}
 
 	public enum FireSize
 	{
@@ -101,4 +92,28 @@ public partial class NFire : Node2D
 			}
 		}
 	}
+}
+
+
+public enum FireColor
+{
+	Red,
+	Green,
+	Blue,
+	Yellow,
+	Pink,
+	Orange
+}
+public static class FireColorExtensions
+{
+	public static Color ToColor(this FireColor fireColor) => fireColor switch
+	{
+		FireColor.Red    => new Color(0xFF971BFF),
+		FireColor.Green  => new Color(0x97FF5FFF),
+		FireColor.Blue   => new Color(0x70FFFFFF),
+		FireColor.Yellow => new Color(1f, 0.9f, 0.1f),
+		FireColor.Pink   => new Color(0xFF72FFFF),
+		FireColor.Orange => new Color(1f, 0.5f, 0.1f),
+		_                => Colors.White
+	};
 }

@@ -202,5 +202,7 @@
   "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a debuff to an enemy that doesn't already have it, gain {WildfirePower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.\nTransform Attacks and Skills into the opposite type{IfUpgraded:show: and Upgrade them|}.",
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
-  "HEXAGHOST-WORTHY_SACRIFICE.selectionScreenPrompt": "Select cards to Exhaust and Transform into the opposite type."
+  "HEXAGHOST-WORTHY_SACRIFICE.selectionScreenPrompt": "Select cards to Exhaust and Transform into the opposite type.",
+  "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",
+  "HEXAGHOST-TEMPORAL_LEAP.description": "Gain {Block:diff()} [gold]Block[/gold]. \nDraw {Cards:diff()} {Cards:plural:card|cards}."
 }

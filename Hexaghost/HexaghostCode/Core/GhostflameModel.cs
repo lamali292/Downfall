@@ -1,5 +1,5 @@
+using System.Numerics;
 using BaseLib.Abstracts;
-using Godot;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Vector2 = Godot.Vector2;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -28,7 +29,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     protected abstract int IgnitionRequirement { get; }
     public LocString Title => new("ghostflames", Id.Entry + ".title");
     public LocString Description => new("ghostflames", Id.Entry + ".description");
-    public abstract NFire.FireColor FireColor { get; }
+    public abstract FireColor FireColor { get; }
     protected ICombatState CombatState => Owner.Creature.CombatState!;
     public HoverTip HoverTip
     {
@@ -105,11 +106,11 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     protected void SpawnVfx(Creature target)
     {
         var visuals = HexaghostVisualsBridge.GetVisuals(Owner);
-        var from = visuals?.GetFlameWorldPosition(FlameIndex)
+        var from = visuals?.GetFlameWorldPosition(FlameIndex) + 30 * Vector2.Up
                    ?? Owner.Creature.GetCreatureNode()?.VfxSpawnPosition
                    ?? Vector2.Zero;
         var to = target.GetCreatureNode()?.VfxSpawnPosition ?? Vector2.Zero;
-        var fireball = NFireballEffect.Create(from, to);
+        var fireball = NFireballEffect.Create(from, to, FireColor.ToColor());
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(fireball);
     }
 }

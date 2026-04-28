@@ -21,7 +21,7 @@ public class CrushingGhostflame : GhostflameModel
     
     protected override int IgnitionRequirement => 2;
 
-    public override NFire.FireColor FireColor => NFire.FireColor.Pink;
+    public override FireColor FireColor => FireColor.Pink;
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {

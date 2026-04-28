@@ -17,7 +17,7 @@ public class BolsteringGhostflame : GhostflameModel
     public override AbstractIntent Intent => new BolsteringIntent();
     protected override int IgnitionRequirement => 1;
 
-    public override NFire.FireColor FireColor => NFire.FireColor.Blue;
+    public override FireColor FireColor => FireColor.Blue;
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {

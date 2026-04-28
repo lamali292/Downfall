@@ -7,69 +7,133 @@ namespace Hexaghost.HexaghostCode.Vfx;
 public partial class NFireballEffect : Node2D
 {
     private Vector2 _from;
+    private Vector2 _control;
     private Vector2 _target;
-    private Sprite2D? _sprite;
-    private CpuParticles2D? _trail;
+    private FireballTrail? _trail;
+    private CpuParticles2D? _fire;
+    private CpuParticles2D? _sparks;
+    private Color _color;
 
-    public static NFireballEffect Create(Vector2 from, Vector2 target)
+    private float _duration = 0.5f;
+    private float _elapsed = 0f;
+    private bool _arrived = false;
+
+    public static NFireballEffect Create(Vector2 from, Vector2 target, Color fireColor)
     {
         var effect = new NFireballEffect();
         effect._from = from;
+        effect._color = fireColor;
         effect._target = target + new Vector2(
             (float)GD.RandRange(-20f, 20f),
             (float)GD.RandRange(-20f, 20f)
         );
+        effect._control = from.Lerp(effect._target, 0.5f) + Vector2.Up * 300f;
         return effect;
     }
 
     public override void _Ready()
     {
         GlobalPosition = _from;
+        
+        var gradient = new Gradient();
+        gradient.SetColor(0, _color with { A = 1f });
+        gradient.SetColor(1, _color with { A = 0f });
 
-        _sprite = new Sprite2D();
-        _sprite.Texture = PreloadManager.Cache.GetTexture2D(
-            "res://images/vfx/common/common_glow_speck.png");
-        AddChild(_sprite);
+        var scaleCurve = new Curve();
+        scaleCurve.AddPoint(new Vector2(0f, 1f));
+        scaleCurve.AddPoint(new Vector2(1f, 0f));
 
-        /*
-        _trail = new CpuParticles2D();
-        _trail.Emitting = true;
-        _trail.Amount = 20;
-        _trail.Lifetime = 0.2f;
-        _trail.Spread = 30f;
-        _trail.InitialVelocityMin = 20f;
-        _trail.InitialVelocityMax = 60f;
-        _trail.Color = new Color(1f, 0.4f, 0f);
+        var fireMaterial = new CanvasItemMaterial();
+        fireMaterial.BlendMode = CanvasItemMaterial.BlendModeEnum.Add;
+        fireMaterial.ParticlesAnimation = true;
+        fireMaterial.ParticlesAnimHFrames = 4;
+        fireMaterial.ParticlesAnimVFrames = 1;
+        fireMaterial.ParticlesAnimLoop = false;
+        
+        _fire = new CpuParticles2D();
+        _fire.Material = fireMaterial;
+        _fire.AnimOffsetMax = 1f; 
+        _fire.Amount = 10;
+        _fire.Lifetime = 0.3f;
+        _fire.SpeedScale = 2f;
+        _fire.LocalCoords = false;
+        _fire.EmissionShape = CpuParticles2D.EmissionShapeEnum.Sphere;
+        _fire.EmissionSphereRadius = 4f;
+        _fire.Direction = Vector2.Zero;
+        _fire.Spread = 180f;
+        _fire.Gravity = Vector2.Zero;
+        _fire.InitialVelocityMin = 20f;
+        _fire.InitialVelocityMax = 60f;
+        _fire.ScaleAmountMin = 0.3f;
+        _fire.ScaleAmountMax = 0.6f;
+        _fire.ScaleAmountCurve = scaleCurve;
+        _fire.ColorRamp = gradient;
+        _fire.Texture = PreloadManager.Cache.GetTexture2D(
+            "res://images/vfx/vfx_constant_fire/fire_texture_2.png");
+        AddChild(_fire);
+
+        _sparks = new CpuParticles2D();
+        _sparks.Amount = 10;
+        _sparks.Lifetime = 0.4f;
+        _sparks.SpeedScale = 2f;
+        _sparks.LocalCoords = false;
+        _sparks.Direction = Vector2.Zero;
+        _sparks.Spread = 180f;
+        _sparks.Gravity = Vector2.Zero;
+        _sparks.InitialVelocityMin = 40f;
+        _sparks.InitialVelocityMax = 100f;
+        _sparks.ScaleAmountMin = 0.05f;
+        _sparks.ScaleAmountMax = 0.15f;
+        _sparks.ColorRamp = gradient;
+        _sparks.Texture = PreloadManager.Cache.GetTexture2D(
+            "res://images/vfx/vfx_constant_fire/fire_spark.png");
+        AddChild(_sparks);
+
+        _trail = new FireballTrail();
+        _trail.Parent = this;
+        _trail.Color = _color;
         AddChild(_trail);
-        */
-        var tween = CreateTween();
         
-        var mid = _from.Lerp(_target, 0.5f) + Vector2.Up * 100f;
-        tween.TweenProperty(this, "global_position", mid, 0.25f)
-            .SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.Out);
-        tween.TweenProperty(this, "global_position", _target, 0.25f)
-            .SetTrans(Tween.TransitionType.Quad)
-            .SetEase(Tween.EaseType.In);
+    }
 
-        
-        tween.Parallel().TweenProperty(_sprite, "scale", new Vector2(1.5f, 0.5f), 0.1f)
-            .SetDelay(0.4f);
-        
-        var spinTween = CreateTween();
-        spinTween.TweenProperty(_sprite, "rotation", Mathf.Tau, 0.5f);
+    
+    public override void _Process(double delta)
+    {
+        if (_arrived) return;
 
-        tween.TweenCallback(Callable.From(OnArrival));
-        tween.TweenCallback(Callable.From(QueueFree));
+        _elapsed += (float)delta;
+        var t = Mathf.Clamp(_elapsed / _duration, 0f, 1f);
+        var et = Mathf.SmoothStep(0f, 1f, t);
+
+        GlobalPosition = _from.Lerp(_control, et).Lerp(_control.Lerp(_target, et), et);
+
+        if (t < 1f)
+        {
+            var dir = (_control.Lerp(_target, et) - _from.Lerp(_control, et)).Normalized();
+
+            // Point particles backwards so they trail behind
+            if (_fire != null)
+            {
+                _fire.Direction = -dir;
+                _fire.Spread = 30f;
+            }
+
+            if (_sparks == null) return;
+            _sparks.Direction = -dir;
+            _sparks.Spread = 20f;
+        }
+        else
+        {
+            OnArrival();
+        }
     }
 
     private void OnArrival()
     {
-      
-        var container = NCombatRoom.Instance?.CombatVfxContainer;
-        if (container == null) return;
-        //VfxCmd.PlayVfx(GlobalPosition, NFireBurstVfx.scenePath, container);
-        //VfxCmd.PlayVfx(GlobalPosition, NFireBurningVfx.scenePath, container);
+        _arrived = true;
         if (_trail != null) _trail.Emitting = false;
+        if (_fire != null) _fire.Emitting = false;
+        if (_sparks != null) _sparks.Emitting = false;
+        GetTree().CreateTimer(0.4f).Timeout += QueueFree;
     }
 }
