@@ -12,10 +12,13 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class WanderBots : GuardianRelicModel
 {
+
+    public WanderBots()
+    {
+        WithEnergy(1);
+    }
+    
     public override RelicRarity Rarity => RelicRarity.Ancient;
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
-
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;

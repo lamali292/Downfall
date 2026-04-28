@@ -16,10 +16,14 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class PrismaticTorch : CollectorRelicModel
 {
+    public PrismaticTorch()
+    {
+        WithTip(typeof(Ember));
+    }
+     
+    
     public override RelicRarity Rarity => RelicRarity.Starter;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<Ember>()];
-
+    
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,

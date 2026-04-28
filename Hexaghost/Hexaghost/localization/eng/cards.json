@@ -27,7 +27,7 @@
   "HEXAGHOST-CATCH_UP.title": "Catch Up",
   "HEXAGHOST-CAUTERIZE.title": "Cauterize",
   "HEXAGHOST-CAUTERIZE.description": "Deal {Damage:diff()} damage.\nApply [gold]Soulburn[/gold] equal to damage dealt.",
-  "HEXAGHOST-CHARGED_BARRAGE.description": "Apply {burny:diff()} [gold]Soulburn [/gold]for each [gold]Ignited[/gold] Ghostflame.",
+  "HEXAGHOST-CHARGED_BARRAGE.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn [/gold]for each [gold]Ignited[/gold] Ghostflame.",
   "HEXAGHOST-CHARGED_BARRAGE.title": "Charged Barrage",
   "HEXAGHOST-DEFEND_HEXAGHOST.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "HEXAGHOST-DEFEND_HEXAGHOST.title": "Defend",

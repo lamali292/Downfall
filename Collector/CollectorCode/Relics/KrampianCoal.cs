@@ -14,10 +14,13 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class KrampianCoal : CollectorRelicModel, IAfterCustomDraw
 {
+    public KrampianCoal()
+    {
+        WithTip(typeof(LuckyWick));
+    }
+     
     public override RelicRarity Rarity => RelicRarity.Shop;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<LuckyWick>()];
-
+    
     public async Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result)
     {
         if (player != Owner || pile != CollectorPile.Collected || result.success) return;

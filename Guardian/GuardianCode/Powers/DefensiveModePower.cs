@@ -26,8 +26,10 @@ public class DefensiveModePower : GuardianPowerModel
             Owner.Player,
             LocalContext.NetId.Value,
             GameActionType.Combat);
-        await GuardianCmd.EnterDefensiveMode(ctx, Owner.Player);
-        await PowerCmd.Apply<ThornsPower>(ctx, Owner, DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
+        var task =  GuardianCmd.EnterDefensiveMode(ctx, Owner.Player);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
+        var task2 = PowerCmd.Apply<ThornsPower>(ctx, Owner, DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(task2);
     }
 
     public override bool ShouldClearBlock(Creature creature)

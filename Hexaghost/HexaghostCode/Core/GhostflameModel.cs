@@ -19,7 +19,7 @@ namespace Hexaghost.HexaghostCode.Core;
 // GhostflameModel.cs
 public abstract class GhostflameModel : AbstractModel, ICustomModel
 {
-    private GhostflameModel _canonicalInstance;
+    private GhostflameModel? _canonicalInstance;
     private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
     public abstract AbstractIntent Intent { get; }
@@ -64,7 +64,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     private GhostflameModel CanonicalInstance
     {
-        get => !IsMutable ? this : _canonicalInstance;
+        get => !IsMutable ? this : _canonicalInstance!;
         set
         {
             AssertMutable();

@@ -25,7 +25,8 @@ public class DrainedPower : AwakenedPowerModel
             player,
             LocalContext.NetId.Value,
             GameActionType.Combat);
-        await AwakenedHook.OnDrained(Owner.CombatState, ctx, Owner.Player, Amount);
+        var task =  AwakenedHook.OnDrained(Owner.CombatState, ctx, Owner.Player, Amount);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
         await PowerCmd.Remove(this);
     }
 }

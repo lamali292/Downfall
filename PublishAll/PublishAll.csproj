@@ -15,7 +15,10 @@
         <ProjectReference Include="../Guardian/Guardian.csproj"/>
         <ProjectReference Include="../SlimeBoss/SlimeBoss.csproj"/>
     </ItemGroup>
-
+    
+    <PropertyGroup>
+        <NoWarn>$(NoWarn);STS002</NoWarn>
+    </PropertyGroup>
     <Target Name="PublishAll" AfterTargets="Publish">
         <MSBuild Projects="@(ProjectReference)"
                  Targets="Publish"

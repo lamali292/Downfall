@@ -63,13 +63,16 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
+        var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);
+        if (!retract) return;
         if (LocalContext.NetId == null) return;
         var ctx = new HookPlayerChoiceContext(
             cardPlay.Card.Owner,
             LocalContext.NetId.Value,
             Combat);
-        var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);
-        if (retract) await HexaghostCmd.Retract(ctx, cardPlay.Card.Owner, cardPlay.Card);
+      
+        var task = HexaghostCmd.Retract(ctx, cardPlay.Card.Owner, cardPlay.Card);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
         //var advance = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Advance);
         //if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner);
     }

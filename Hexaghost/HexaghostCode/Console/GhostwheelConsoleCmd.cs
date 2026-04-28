@@ -1,8 +1,6 @@
 ﻿using Hexaghost.HexaghostCode.Core;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -23,10 +21,8 @@ public class GhostwheelIgniteCmd : AbstractConsoleCmd
             return new CmdResult(false, "No run in progress.");
         if (issuingPlayer == null)
             return new CmdResult(false, "No player context.");
-        if (LocalContext.NetId == null)
-            return new CmdResult(false, "No net context.");
 
-        var ctx = new HookPlayerChoiceContext(issuingPlayer, LocalContext.NetId.Value, GameActionType.Combat);
+        var ctx = new BlockingPlayerChoiceContext();
         var wheel = HexaghostCmd.GetWheel(issuingPlayer);
 
         if (args.Length == 0)
@@ -68,14 +64,12 @@ public class GhostwheelAdvanceCmd : AbstractConsoleCmd
             return new CmdResult(false, "No run in progress.");
         if (issuingPlayer == null)
             return new CmdResult(false, "No player context.");
-        if (LocalContext.NetId == null)
-            return new CmdResult(false, "No net context.");
 
         var steps = 1;
         if (args.Length > 0 && !int.TryParse(args[0], out steps))
             return new CmdResult(false, $"Invalid steps value '{args[0]}'.");
 
-        var ctx = new HookPlayerChoiceContext(issuingPlayer, LocalContext.NetId.Value, GameActionType.Combat);
+        var ctx = new BlockingPlayerChoiceContext();
         TaskHelper.RunSafely(AdvanceMultiple(ctx, issuingPlayer, steps));
 
         var index = HexaghostCmd.GetCurrentIndex(issuingPlayer);
@@ -83,7 +77,7 @@ public class GhostwheelAdvanceCmd : AbstractConsoleCmd
         return new CmdResult(true, $"Advanced {steps} step(s). Now at index {index} ({flame.GetType().Name}).");
     }
 
-    private static async Task AdvanceMultiple(HookPlayerChoiceContext ctx, Player player, int steps)
+    private static async Task AdvanceMultiple(PlayerChoiceContext ctx, Player player, int steps)
     {
         for (var i = 0; i < steps; i++)
             await HexaghostCmd.Advance(ctx, player, null);
@@ -103,14 +97,12 @@ public class GhostwheelRetractCmd : AbstractConsoleCmd
             return new CmdResult(false, "No run in progress.");
         if (issuingPlayer == null)
             return new CmdResult(false, "No player context.");
-        if (LocalContext.NetId == null)
-            return new CmdResult(false, "No net context.");
 
         var steps = 1;
         if (args.Length > 0 && !int.TryParse(args[0], out steps))
             return new CmdResult(false, $"Invalid steps value '{args[0]}'.");
 
-        var ctx = new HookPlayerChoiceContext(issuingPlayer, LocalContext.NetId.Value, GameActionType.Combat);
+        var ctx = new BlockingPlayerChoiceContext();
         TaskHelper.RunSafely(RetractMultiple(ctx, issuingPlayer, steps));
 
         var index = HexaghostCmd.GetCurrentIndex(issuingPlayer);
@@ -118,7 +110,7 @@ public class GhostwheelRetractCmd : AbstractConsoleCmd
         return new CmdResult(true, $"Retracted {steps} step(s). Now at index {index} ({flame.GetType().Name}).");
     }
 
-    private static async Task RetractMultiple(HookPlayerChoiceContext ctx, Player player, int steps)
+    private static async Task RetractMultiple(PlayerChoiceContext ctx, Player player, int steps)
     {
         for (var i = 0; i < steps; i++)
             await HexaghostCmd.Retract(ctx, player, null);

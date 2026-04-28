@@ -12,9 +12,14 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
 {
-    public override RelicRarity Rarity => RelicRarity.Ancient;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
 
+    public BlockedChakra()
+    {
+        WithEnergy(1);
+    }
+    
+    public override RelicRarity Rarity => RelicRarity.Ancient;
+    
     public bool PreventCollectedDraw(Player player)
     {
         if (player != Owner) return false;

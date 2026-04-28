@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.DownfallCode.Abstract;
 
 public class PowerTooltipSource(Func<PowerModel, IHoverTip> tip) : AbstractTooltipSource<PowerModel>(tip);
+public class RelicTooltipSource(Func<RelicModel, IHoverTip> tip) : AbstractTooltipSource<RelicModel>(tip);
 
 public class AbstractTooltipSource<T>(Func<T, IHoverTip> tip)
     where T : AbstractModel

@@ -1,0 +1,61 @@
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+
+namespace Downfall.DownfallCode.Abstract;
+
+public abstract class ConstructedRelicModel : CustomRelicModel
+{
+
+    private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
+    private readonly List<DynamicVar> _newDynamicVars = [];
+    protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
+    protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
+    
+    protected ConstructedRelicModel WithVars(params DynamicVar[] vars)
+    {
+        foreach (var dynVar in vars)
+        {
+            _newDynamicVars.Add(dynVar);
+            var type = dynVar.GetType();
+            if (!type.IsGenericType) continue;
+
+            foreach (var arg in type.GetGenericArguments())
+            {
+                if (!arg.IsAssignableTo(typeof(PowerModel))) continue;
+                WithTip(arg);
+            }
+        }
+
+        return this;
+    }
+
+    protected ConstructedRelicModel WithEnergy(int i)
+    {
+        return WithVars(new EnergyVar(i));
+    }
+    
+    protected ConstructedRelicModel WithPower<T>(int i) where T : PowerModel
+    {
+        return WithVars(new PowerVar<T>(i));
+    }
+
+    protected ConstructedRelicModel WithVar(string name, int baseVal)
+    {
+        _newDynamicVars.Add(new DynamicVar(name, baseVal));
+        return this;
+    }
+    
+    protected ConstructedRelicModel WithTip(AbstractTooltipSource<RelicModel> tipSource)
+    {
+        _hoverTips.Add(tipSource);
+        return this;
+    }
+
+    protected ConstructedRelicModel WithEnergyTip()
+    {
+        _hoverTips.Add(new RelicTooltipSource(HoverTipFactory.ForEnergy));
+        return this;
+    }
+}

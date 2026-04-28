@@ -4,7 +4,7 @@ using Downfall.DownfallCode.Extensions;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class DownfallRelicModel<T> : CustomRelicModel
+public abstract class DownfallRelicModel<T> : ConstructedRelicModel
     where T : DownfallCharacterModel
 {
     private string IconName => Id.Entry

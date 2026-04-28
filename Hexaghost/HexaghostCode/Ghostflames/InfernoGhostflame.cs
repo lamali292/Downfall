@@ -46,11 +46,12 @@ public class InfernoGhostflame : GhostflameModel
     public override async Task AfterEnergySpent(CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;
+        if (!TryProgress()) return;
         var ctx = new HookPlayerChoiceContext(
             Owner,
             LocalContext.NetId.Value,
             GameActionType.Combat);
-        if (TryProgress())
-            await Ignite(ctx);
+        var task = Ignite(ctx);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
     }
 }

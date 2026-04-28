@@ -14,10 +14,14 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class SoulLitLamp : CollectorRelicModel
 {
+    public SoulLitLamp()
+    {
+        WithTip(typeof(Ember));
+    }
+     
+    
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromCard<Ember>()];
-
+    
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 3);

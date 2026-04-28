@@ -14,9 +14,11 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class ThimbleHelm : CollectorRelicModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [CollectorTip.Kindle.ToHoverTip()];
-
-
+    public ThimbleHelm()
+    {
+        WithTip(CollectorTip.Kindle);
+    }
+    
     public override RelicRarity Rarity => RelicRarity.Rare;
 
     public override async Task BeforeHandDraw(

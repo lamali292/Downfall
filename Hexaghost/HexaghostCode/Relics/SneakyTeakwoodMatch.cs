@@ -15,13 +15,14 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
 {
+    public SneakyTeakwoodMatch()
+    {
+        WithTip(HexaghostKeyword.Advance);
+        WithTip(HexaghostKeyword.Retract);
+    }
+    
+    
     public override RelicRarity Rarity => RelicRarity.Rare;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(HexaghostKeyword.Advance), 
-        HoverTipFactory.FromKeyword(HexaghostKeyword.Retract)
-    ];
 
     public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
