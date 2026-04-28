@@ -1,0 +1,24 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <IsPublishAll>true</IsPublishAll>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../Snecko/Snecko.csproj"/>
+        <ProjectReference Include="../Automaton/Automaton.csproj"/>
+        <ProjectReference Include="../Champ/Champ.csproj"/>
+        <ProjectReference Include="../Collector/Collector.csproj"/>
+        <ProjectReference Include="../Awakened/Awakened.csproj"/>
+        <ProjectReference Include="../Gremlins/Gremlins.csproj"/>
+        <ProjectReference Include="../Hexaghost/Hexaghost.csproj"/>
+        <ProjectReference Include="../Guardian/Guardian.csproj"/>
+        <ProjectReference Include="../SlimeBoss/SlimeBoss.csproj"/>
+    </ItemGroup>
+
+    <Target Name="PublishAll" AfterTargets="Publish">
+        <MSBuild Projects="@(ProjectReference)"
+                 Targets="Publish"
+                 Properties="Configuration=$(Configuration)"/>
+    </Target>
+</Project>

@@ -14,7 +14,7 @@ public class SlimeBoss : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x195E19FF);
     public override string CharId => "SlimeBoss";
-    public override string? ModId => SlimeBossMainFile.ModId;
+    public override string ModId => SlimeBossMainFile.ModId;
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;

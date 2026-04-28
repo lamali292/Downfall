@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gremlins", "Gremlins\Gremli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downfall", "Downfall\Downfall.csproj", "{034500D8-B226-4D20-B63E-E66EEAAF8CB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishAll", "PublishAll\PublishAll.csproj", "{F83B14DD-E791-479E-A0C6-41CF9381594D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,5 +95,11 @@ Global
 		{034500D8-B226-4D20-B63E-E66EEAAF8CB9}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{034500D8-B226-4D20-B63E-E66EEAAF8CB9}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{034500D8-B226-4D20-B63E-E66EEAAF8CB9}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{F83B14DD-E791-479E-A0C6-41CF9381594D}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

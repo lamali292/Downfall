@@ -1,4 +1,6 @@
+using System.Reflection;
 using Godot;
+using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 
@@ -15,7 +17,8 @@ public partial class SlimeBossMainFile : Node
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
-
+        var assembly = Assembly.GetExecutingAssembly();
+        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
     }
 }

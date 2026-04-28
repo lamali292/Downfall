@@ -1,0 +1,31 @@
+<Project>
+    <PropertyGroup>
+        <!--ModOutputFolder Condition="'$(ModOutputFolder)' == ''">$(MSBuildProjectName)</ModOutputFolder-->
+        <ModOutputFolder Condition="'$(ModOutputFolder)' == ''">Downfall</ModOutputFolder>
+    </PropertyGroup>
+
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent"
+            Condition="Exists('$(MSBuildProjectName).json')">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(MSBuildProjectName).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+        <ItemGroup>
+            <BaseLibFiles Include="packages/alchyr.sts2.baselib/**/lib/**/BaseLib.dll;packages/alchyr.sts2.baselib/**/Content/BaseLib.pck;packages/alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+    </Target>
+
+    <Target Name="GodotPublish" AfterTargets="Publish"
+            Condition="Exists('$(MSBuildProjectName).json') and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(ModOutputFolder)/$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue"/>
+    </Target>
+
+    <Target Name="GodotPublishSkipped" AfterTargets="Publish"
+            Condition="Exists('$(MSBuildProjectName).json') and ('$(GodotPath)' == '' or !Exists('$(GodotPath)'))">
+        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>
+    </Target>
+</Project>
