@@ -14,6 +14,6 @@ public class CompileErrorDescriptionSource : IExtraDescriptionSource
         var loc = ICompilableError.BuildErrorLocString((AutomatonCardModel)card);
         if (loc == null) yield break;
         yield return
-            $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
+            $"[gold]{new LocString("static_hover_tips", "AUTOMATON-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
     }
 }

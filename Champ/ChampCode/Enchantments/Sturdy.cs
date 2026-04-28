@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Champ.ChampCode.Enchantments;
 
-public class Sturdy : DownfallEnchantmentModel
+public class Sturdy : DownfallEnchantmentModel<Core.Champ>
 {
     public override bool CanEnchant(CardModel card)
     {

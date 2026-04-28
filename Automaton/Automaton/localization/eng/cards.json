@@ -142,7 +142,7 @@
   "AUTOMATON-REPLICATE.title": "Replicate",
   "AUTOMATON-REPULSOR.description": "When you draw the first [gold]Status[/gold] or [gold]Curse[/gold] card each turn, [gold]Exhaust[/gold] it and draw a card.",
   "AUTOMATON-REPULSOR.title": "Repulsor",
-  "AUTOMATON-RETURN.description": "Put a card from your discard pile on top of your draw pile.\nNext turn, gain {EnergyNextTurnPower:energyIcons()}.",
+  "AUTOMATON-RETURN.description": "Put a card from your discard pile on top of your draw pile.\nNext turn, gain {Energy:energyIcons()}.",
   "AUTOMATON-RETURN.title": "Return",
   "AUTOMATON-ROBO_CHOP.description": "Deal {Damage:diff()} damage.\nNext turn, draw {DrawCardsNextTurnPower:diff()} additional {DrawCardsNextTurnPower:plural:card|cards}.",
   "AUTOMATON-ROBO_CHOP.title": "Robo-Chop",

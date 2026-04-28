@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c01c5fc3gfe4p"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cf8p6tmrkpcrx" path="res://Champ/scenes/character/champ.spatlas" id="1_swlh0"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cemvd11auppqw" path="res://Champ/scenes/character/champ.spskel" id="2_j1kbm"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_xbnni"]
+atlas_res = ExtResource("1_swlh0")
+skeleton_file_res = ExtResource("2_j1kbm")
+
+[node name="Champ" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_xbnni")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

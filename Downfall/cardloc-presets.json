@@ -1,0 +1,107 @@
+{
+  "localizationBase": "Downfall/localization/eng",
+  "projectId": "Downfall",
+  "presets": [
+    {
+      "id": "card",
+      "markers": [
+        "DownfallCardModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "cards.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "markers": [
+        "DownfallPowerModel",
+        "TemporaryPower"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "powers.json",
+          "optional": false
+        },
+        {
+          "name": "smartDescription",
+          "file": "powers.json",
+          "optional": true
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "powers.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "relic",
+      "markers": [
+        "DownfallRelicModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "relics.json",
+          "optional": false
+        },
+        {
+          "name": "flavor",
+          "file": "relics.json",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "id": "enchantment",
+      "markers": [
+        "DownfallEnchantmentModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "enchantments.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "enchantments.json",
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "pinnedColors": [
+    {
+      "tag": "gold"
+    },
+    {
+      "tag": "blue"
+    }
+  ]
+}

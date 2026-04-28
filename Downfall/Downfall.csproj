@@ -79,7 +79,7 @@
     <PropertyGroup>
         <!-- Diasble architecture mismatch warning; mods are ideally built for all platforms (MSIL)
              while your local StS2 version will be for your specific platform. -->
-        <NoWarn>$(NoWarn);MSB3270</NoWarn>
+        <NoWarn>$(NoWarn);MSB3270;CS1998;CS0436</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -147,6 +147,10 @@
         <None Include="Downfall.json"/>
         <None Include="project.godot"/>
         <None Include="Downfall/**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="cardloc-presets.json" />
     </ItemGroup>
     
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">

@@ -7,7 +7,7 @@ namespace Downfall.DownfallCode.Vfx;
 public partial class NHemokinesisParticle : Sprite2D
 {
     private static readonly Texture2D SparkTex =
-        ResourceLoader.Load<Texture2D>("res://Downfall/vfx/glow_spark.png");
+        ResourceLoader.Load<Texture2D>("res://Downfall/images/vfx/glow_spark.png");
 
     private Vector2 _lastPos; // Used for "Sweep" hit detection
     private bool _lockedOn;

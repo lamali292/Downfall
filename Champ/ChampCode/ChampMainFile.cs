@@ -1,9 +1,11 @@
+using System.Reflection;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Godot;
+using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 
@@ -23,7 +25,8 @@ public partial class ChampMainFile : Node
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText, new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
         Harmony harmony = new(ModId);
-
+        var assembly = Assembly.GetExecutingAssembly();
+        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
     }
 }

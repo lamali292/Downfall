@@ -1,0 +1,13 @@
+﻿{
+  "AUTOMATON-ENCODE.title": "Encode",
+  "AUTOMATON-ENCODE.description": "Encode a card.\nWhen 3 cards are Encoded, their effects (other than Encode) are merged into a Function that costs [blue]1[/blue]",
+  "AUTOMATON-COMPILE.title": "Compile",
+  "AUTOMATON-COMPILE_ERROR.title": "Compile Error",
+  "AUTOMATON-COMPILE.description": "An effect that triggers when this card is merged into a Function.\nCan be negative effect, which is referred to as an 'Error'.",
+  "AUTOMATON-STATUS.title": "Status",
+  "AUTOMATON-STATUS.description": "Status cards are removed at the end of combat.",
+  "AUTOMATON-CYCLE.title": "Cycle",
+  "AUTOMATON-CYCLE.description": "Discard a card, drawing a new card to replace it.",
+  "AUTOMATON-INSERT.title": "Insert",
+  "AUTOMATON-INSERT.description": "Shuffle a card into you draw pile."
+}

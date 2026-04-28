@@ -14,6 +14,6 @@ public class CompileDescriptionSource : IExtraDescriptionSource
         var loc = ICompilable.BuildCompileLocString((AutomatonCardModel)card);
         if (loc == null) yield break;
         yield return
-            $"[gold]{new LocString("static_hover_tips", "DOWNFALL-COMPILE.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
+            $"[gold]{new LocString("static_hover_tips", "AUTOMATON-COMPILE.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
     }
 }

@@ -14,6 +14,7 @@ public class Automaton : DownfallCharacterModel
 {
     private static readonly Color Color = new(0xD4C99DFF);
     public override string CharId => "Automaton";
+    public override string ModId => AutomatonMainFile.ModId;
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;

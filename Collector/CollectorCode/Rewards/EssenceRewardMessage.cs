@@ -60,7 +60,7 @@ public class EssenceRewardMessage : CustomRewardMessage
         await stateNode.WaitUntilNextTweenTime();
 
         var node = new TextureRect();
-        node.Texture = ResourceLoader.Load<Texture2D>("res://Downfall/images/ui/collector/esse.png");
+        node.Texture = ResourceLoader.Load<Texture2D>("res://Collector/images/ui/esse.png");
         node.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
         node.CustomMinimumSize = new Vector2(32, 32);
 

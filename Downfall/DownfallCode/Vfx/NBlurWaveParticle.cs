@@ -5,7 +5,7 @@ namespace Downfall.DownfallCode.Vfx;
 public partial class NBlurWaveParticle : Sprite2D
 {
     private static readonly Texture2D ParticleTexture =
-        ResourceLoader.Load<Texture2D>("res://Downfall/vfx/blur_wave.png");
+        ResourceLoader.Load<Texture2D>("res://Downfall/images/vfx/blur_wave.png");
 
     private readonly Random _rng = new();
     private float _flipper = 90.0f;

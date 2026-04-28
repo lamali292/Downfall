@@ -1,5 +1,6 @@
 ﻿using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Relics;
+using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -14,6 +15,7 @@ public class Champ : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x5E594FFF);
     public override string CharId => "Champ";
+    public override string ModId => ChampMainFile.ModId;
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;

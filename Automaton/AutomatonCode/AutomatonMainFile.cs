@@ -1,8 +1,10 @@
+using System.Reflection;
 using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Godot;
+using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 
@@ -22,6 +24,8 @@ public partial class AutomatonMainFile : Node
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileDescriptionSource());
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText, new CompileErrorDescriptionSource());
         Harmony harmony = new(ModId);
+        var assembly = Assembly.GetExecutingAssembly();
+        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
     }
 }

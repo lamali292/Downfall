@@ -30,9 +30,10 @@ public static class StringExtensions
     }
 
 
-    public static string EnchantmentPath(this string path)
+    public static string EnchantmentPath<T>(this string path) where T : DownfallCharacterModel
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "enchantments", path);
+        var modId = ModelDb.Character<T>().ModId;
+        return Path.Join(modId, "images", "enchantments", path);
     }
 
 

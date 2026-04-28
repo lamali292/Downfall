@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://yxjampn3b1xv"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://b06uggarrraq5" path="res://Automaton/scenes/character/automaton.spatlas" id="1_ifd2i"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cckpb0u0x7n7h" path="res://Automaton/scenes/character/automaton.spskel" id="2_pavcy"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_1ov3j"]
+atlas_res = ExtResource("1_ifd2i")
+skeleton_file_res = ExtResource("2_pavcy")
+
+[node name="Automaton" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_1ov3j")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

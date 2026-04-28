@@ -2,6 +2,7 @@
 
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Stance;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -11,7 +12,7 @@ namespace Champ.ChampCode.Vfx;
 
 public partial class NChampStanceDisplay : Control
 {
-    private const string InactiveChargePath = "res://Downfall/images/ui/stance_charge_inactive.png";
+    private const string InactiveChargePath = "res://Champ/images/ui/stance_charge_inactive.png";
     private const int ChargeIconSize = 70;
     private const int Separation = 6;
     private const int IconCount = 3;

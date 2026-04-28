@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Champ.ChampCode.Enchantments;
 
-public class Crowned : DownfallEnchantmentModel
+public class Crowned : DownfallEnchantmentModel<Core.Champ>
 {
     protected override void OnEnchant()
     {

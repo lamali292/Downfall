@@ -34,5 +34,8 @@
   "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "Whenever you draw a Function, increase all numbers on it by {Amount} except for cost.",
   "AUTOMATON-SUMMON_ORB_POWER.title": "Summon Orb",
   "AUTOMATON-SUMMON_ORB_POWER.description": "Whenever you create or play a Function, gain X [gold]Block[/gold] and deal X damage to a random enemy.",
-  "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "Whenever you create or play a Function, gain {Amount} [gold]Block[/gold] and deal {Amount} damage to a random enemy."
+  "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "Whenever you create or play a Function, gain {Amount} [gold]Block[/gold] and deal {Amount} damage to a random enemy.",
+  "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Repulse",
+  "AUTOMATON-EXHAUST_STATUSES_POWER.description": "When you draw the first X [gold]Status[/gold] or [gold]Curse[/gold] cards each turn, [gold]Exhaust[/gold] them and draw a card.",
+  "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "When you draw the first {Amount:plural:|{Amount} }[gold]Status[/gold] or [gold]Curse[/gold] {Amount:plural:card|cards} each turn, [gold]Exhaust[/gold] {Amount:plural:it|them} and draw a card."
 }

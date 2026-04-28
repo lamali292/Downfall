@@ -17,16 +17,14 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
         DownfallMainFile.Logger.Info($"Creating {GetType().Name}");
     }
 
-    public virtual string? ModId => null;
-    public virtual string? CharId => null;
+    public abstract string ModId { get; }
+    public abstract string? CharId { get; }
     protected virtual Color EnergyOutlineColor => new(0, 0, 0);
     protected virtual Color EnergyBurstColor => new(1, 1, 1);
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
     public virtual Color CardColor => new(1, 1, 1);
-
-
-    private string? _id => CharId?.ToSnakeCase();
+    
     public override string CustomCharacterSelectBg =>
         $"res://{ModId}/scenes/character/selection_screen.tscn";
 

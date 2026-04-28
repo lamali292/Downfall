@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Champ.ChampCode.Extensions;

@@ -27,7 +27,7 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
         if (side != Owner.Side) return;
         var damageAmount = Owner.GetPowerAmount<StrengthPower>() + 4;
         if (damageAmount <= 0) return;
-        SfxPlayer.PlaySfx("res://Downfall/audio/awakened_one_3.ogg");
+        SfxPlayer.PlaySfx("res://Awakened/audio/awakened_one_3.ogg");
         for (var i = 0; i < Amount; i++)
         {
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Owner);

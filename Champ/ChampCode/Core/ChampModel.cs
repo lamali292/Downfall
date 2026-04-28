@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Champ.ChampCode.Events;
+using Champ.ChampCode.Stance;
 using Champ.ChampCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;

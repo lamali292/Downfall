@@ -3,6 +3,7 @@ using Champ.ChampCode.Cards;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;

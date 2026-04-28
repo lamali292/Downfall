@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;

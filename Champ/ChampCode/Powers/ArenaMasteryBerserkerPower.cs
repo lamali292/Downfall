@@ -1,5 +1,6 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
+using Champ.ChampCode.Stance;
 
 namespace Champ.ChampCode.Powers;
 

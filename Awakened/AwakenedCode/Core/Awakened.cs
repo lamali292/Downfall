@@ -15,6 +15,7 @@ public class Awakened : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x12FAF0FF);
     public override string CharId => "Awakened";
+    public override string ModId => AwakenedMainFile.ModId;
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;

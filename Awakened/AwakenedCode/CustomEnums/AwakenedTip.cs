@@ -21,7 +21,7 @@ public readonly struct AwakenedTip
 
     public IHoverTip ToHoverTip()
     {
-        var key = $"DOWNFALL-{_name.ToUpperInvariant()}";
+        var key = $"AWAKENED-{_name.ToUpperInvariant()}";
         return new HoverTip(
             new LocString("static_hover_tips", $"{key}.title"),
             LocManager.Instance.SmartFormat(

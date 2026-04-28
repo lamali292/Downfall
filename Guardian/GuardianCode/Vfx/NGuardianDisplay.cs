@@ -15,8 +15,8 @@ namespace Guardian.GuardianCode.Vfx;
 public partial class NGuardianDisplay : Control
 {
     private const float SequencedCardScale = 1;
-    private const string DisplayScenePath = "res://Downfall/scenes/ui/guardian_display.tscn";
-    private const string StasisSlotScenePath = "res://Downfall/scenes/ui/stasis_slot.tscn";
+    private const string DisplayScenePath = "res://Guardian/scenes/guardian_display.tscn";
+    private const string StasisSlotScenePath = "res://Guardian/scenes/stasis_slot.tscn";
     private readonly List<NCustomCardHolder> _cardHolders = [];
 
     private readonly List<NStasisSlot> _slots = [];

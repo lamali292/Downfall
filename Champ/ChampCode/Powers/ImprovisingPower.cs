@@ -1,5 +1,6 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 

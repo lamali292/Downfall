@@ -77,7 +77,7 @@
     <PropertyGroup>
         <!-- Diasble architecture mismatch warning; mods are ideally built for all platforms (MSIL)
              while your local StS2 version will be for your specific platform. -->
-        <NoWarn>$(NoWarn);MSB3270;CS1998</NoWarn>
+        <NoWarn>$(NoWarn);MSB3270;CS1998;CS0436</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

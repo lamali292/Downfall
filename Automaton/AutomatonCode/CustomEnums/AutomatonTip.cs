@@ -9,7 +9,6 @@ public readonly struct  AutomatonTip
     public static readonly AutomatonTip Encode = new(nameof(Encode));
     public static readonly AutomatonTip Compile = new(nameof(Compile));
     public static readonly AutomatonTip Cycle = new(nameof(Cycle));
-    public static readonly AutomatonTip Status = new(nameof(Status));
     public static readonly AutomatonTip Insert = new(nameof(Insert));
     
     
@@ -23,7 +22,7 @@ public readonly struct  AutomatonTip
 
     public IHoverTip ToHoverTip()
     {
-        var key = $"DOWNFALL-{_name.ToUpperInvariant()}";
+        var key = $"AUTOMATON-{_name.ToUpperInvariant()}";
         return new HoverTip(
             new LocString("static_hover_tips", $"{key}.title"),
             LocManager.Instance.SmartFormat(

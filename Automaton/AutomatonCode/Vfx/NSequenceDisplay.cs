@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
@@ -19,7 +22,7 @@ public partial class NSequenceDisplay : Control
 {
     private const float SequencedCardScale = 0.28f;
 
-    private const string DisplayScenePath = "res://Downfall/scenes/ui/automaton_display.tscn";
+    private const string DisplayScenePath = "res://Automaton/scenes/ui/automaton_display.tscn";
 
     private readonly float[] _bobOffsets = new float[4];
     private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];

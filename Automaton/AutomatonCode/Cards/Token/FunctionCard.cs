@@ -164,7 +164,7 @@ public static class OverlayPathPatch
     {
         if (__instance is not FunctionCard) return true;
 
-        __result = "res://Downfall/scenes/cards/overlays/function_card.tscn";
+        __result = "res://Automaton/scenes/ui/function_card.tscn";
         return false;
     }
 }

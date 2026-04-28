@@ -1,5 +1,6 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

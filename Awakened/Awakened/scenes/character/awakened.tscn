@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ev1xo2lik1bs"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://drrvpnjohk1sw" path="res://Awakened/scenes/character/awakened.spatlas" id="1_nccbw"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bn8os6hb2ta8j" path="res://Awakened/scenes/character/awakened.spskel" id="2_ay631"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_kdtgo"]
+atlas_res = ExtResource("1_nccbw")
+skeleton_file_res = ExtResource("2_ay631")
+
+[node name="Awakened" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_kdtgo")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

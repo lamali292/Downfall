@@ -14,7 +14,7 @@ public class FinisherFormatter : IFormatter
 
     public bool TryEvaluateFormat(IFormattingInfo formattingInfo)
     {
-        formattingInfo.Write("[img]res://Downfall/images/ui/finisher.png[/img]");
+        formattingInfo.Write("[img]res://Champ/images/ui/finisher.png[/img]");
         return true;
     }
 }

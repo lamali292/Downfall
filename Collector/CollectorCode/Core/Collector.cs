@@ -78,14 +78,10 @@ public class CollectorCardPool : DownfallCardPool<Collector>;
 public class CollectibleCardPool : CustomCardPoolModel
 {
     private static readonly Color Color = new("C6C1FF");
-    private static Collector Character => ModelDb.Character<Collector>();
     public override string Title => "Collectible";
 
-    public override string BigEnergyIconPath =>
-        $"res://Downfall/character/energy_counters/icon/{Character.CharId.ToSnakeCase()}_energy_icon.png";
-
-    public override string TextEnergyIconPath =>
-        $"res://Downfall/character/energy_counters/text/text_{Character.CharId.ToSnakeCase()}_energy_icon.png";
+    public override string BigEnergyIconPath => ModelDb.CardPool<CollectorCardPool>().BigEnergyIconPath;
+    public override string TextEnergyIconPath => ModelDb.CardPool<CollectorCardPool>().TextEnergyIconPath;
 
     public override float H => Color.H;
     public override float S => Color.S;

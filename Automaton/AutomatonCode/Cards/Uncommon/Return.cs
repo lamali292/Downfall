@@ -14,6 +14,7 @@ public class Return : AutomatonCardModel
     public Return() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<EnergyNextTurnPower>(1, 2);
+        WithEnergy(1, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
