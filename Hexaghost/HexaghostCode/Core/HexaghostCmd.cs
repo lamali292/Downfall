@@ -52,14 +52,14 @@ public static class HexaghostCmd
         return (GetCurrentIndex(player) + 1) % wheel.Length;
     }
 
-    public static async Task Advance(PlayerChoiceContext ctx, Player player, CardModel? source, bool silent = false)
+    public static async Task Advance(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
     {
         await MoveTo(player, GetNextIndex(player));
         await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
 
-    public static async Task Retract(PlayerChoiceContext ctx, Player player, CardModel? source, bool silent = false)
+    public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
     {
         await MoveTo(player, GetPreviousIndex(player));
         await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),

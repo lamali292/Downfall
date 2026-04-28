@@ -61,3 +61,7 @@ public abstract class HexaghostPowerModel(
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hexaghost>(powerType, powerStackType);
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 public class HexaghostCardPool : DownfallCardPool<Hexaghost>;
+public class HexaghostChoiceCardPool : DownfallCardPool<Hexaghost>
+{
+    public override bool IsShared => true;
+}

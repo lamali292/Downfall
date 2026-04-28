@@ -10,6 +10,7 @@ public class StrikeSlimeBoss : SlimeBossCardModel
 {
     public StrikeSlimeBoss() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithTags(CardTag.Strike);
     }
 
     // TODO: Implement

@@ -39,7 +39,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
     }
 
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
+    public override async Task AfterTurnEndLate(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.State?.Players ?? [])

@@ -10,12 +10,13 @@ public class ForkedFlame : HexaghostCardModel
 {
     public ForkedFlame() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithDamage(4, 4);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await HexaghostCmd.IgnitePrevious(ctx, Owner);
+        await HexaghostCmd.IgniteNext(ctx, Owner);
     }
-
-
 }

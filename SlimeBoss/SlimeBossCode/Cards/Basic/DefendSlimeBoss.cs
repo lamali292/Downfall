@@ -10,6 +10,7 @@ public class DefendSlimeBoss : SlimeBossCardModel
 {
     public DefendSlimeBoss() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
+        WithTags(CardTag.Defend);
     }
 
     // TODO: Implement

@@ -52,5 +52,14 @@
   "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to ALL enemies.",
   "HEXAGHOST-WILDFIRE_POWER.title": "Wildfire",
   "HEXAGHOST-WILDFIRE_POWER.description": "Whenever you apply a debuff to an enemy that doesn't already have it, gain [blue]X[/blue] [gold]Block[/gold].",
-  "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Whenever you apply a debuff to an enemy that doesn't already have it, gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Whenever you apply a debuff to an enemy that doesn't already have it, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-HERE_AND_NOW_POWER.title": "Here and Now",
+  "HEXAGHOST-HERE_AND_NOW_POWER.description": "At the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
+  "HEXAGHOST-MORE_ENERGY_POWER.title": "More Energy",
+  "HEXAGHOST-MORE_ENERGY_POWER.description": "At the start of your turn, gain {energyPrefix:energyIcons(1)} .",
+  "HEXAGHOST-MORE_ENERGY_POWER.smartDescription": "At the start of your turn, gain {Amount:energyIcons()} .",
+  "HEXAGHOST-HERE_AND_NOW_POWER.smartDescription": "At the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
+  "HEXAGHOST-RADIANT_FLAME_POWER.title": "Radiant Flame",
+  "HEXAGHOST-RADIANT_FLAME_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]X[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-RADIANT_FLAME_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]{Amount}[/blue] [gold]Block[/gold]."
 }

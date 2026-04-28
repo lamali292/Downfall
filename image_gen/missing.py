@@ -47,10 +47,13 @@ def collect_images(base, placeholder_hash, is_power_type):
 
 # Auto-discover characters
 characters = {}
-for entry in os.listdir(PARENT):
-    if entry.endswith("Code") and os.path.isdir(os.path.join(PARENT, entry)):
-        char_id = entry[:-4].lower()
-        characters[char_id] = os.path.join(PARENT, entry)
+for project in os.listdir(PARENT):
+    project_path = os.path.join(PARENT, project)
+    if not os.path.isdir(project_path): continue
+    for entry in os.listdir(project_path):
+        if entry.endswith("Code") and os.path.isdir(os.path.join(project_path, entry)):
+            char_id = entry[:-4].lower()
+            characters[char_id] = os.path.join(project_path, entry)
 
 for char_id, code_dir in sorted(characters.items()):
     print(f"\n=== {char_id.upper()} ===")

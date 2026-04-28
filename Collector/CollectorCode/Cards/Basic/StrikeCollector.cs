@@ -10,6 +10,7 @@ public class StrikeCollector : CollectorCardModel
 {
     public StrikeCollector() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithTags(CardTag.Strike);
         WithDamage(6, 3);
     }
 

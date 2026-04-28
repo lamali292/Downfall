@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Powers;
 using Hexaghost.HexaghostCode.Vfx;
@@ -44,8 +45,10 @@ public class SearingGhostflame : GhostflameModel
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Attack ||
+        if (!IsActive || cardPlay.Card.Owner != Owner ||
             LocalContext.NetId == null) return;
+        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
+        if (!(cardPlay.Card.Type == CardType.Attack || shouldCount)) return;
         var ctx = new HookPlayerChoiceContext(
             Owner,
             LocalContext.NetId.Value,

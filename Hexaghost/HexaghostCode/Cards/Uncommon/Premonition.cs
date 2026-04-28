@@ -57,7 +57,7 @@ public class Premonition : HexaghostCardModel
 }
 
 
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(HexaghostChoiceCardPool))]
 public class PremonitionChoice : HexaghostCardModel
 {
 

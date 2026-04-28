@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hexaghost.HexaghostCode.Events;
 
-public interface IAfterGhostwheelIgnited
+public interface IAfterGhostflameIgnited
 {
-    Task AfterGhostwheelIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index);
+    Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index);
 }

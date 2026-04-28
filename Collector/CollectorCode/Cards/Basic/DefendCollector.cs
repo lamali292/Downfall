@@ -10,6 +10,7 @@ public class DefendCollector : CollectorCardModel
 {
     public DefendCollector() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
+        WithTags(CardTag.Defend);
         WithBlock(5, 3);
     }
 

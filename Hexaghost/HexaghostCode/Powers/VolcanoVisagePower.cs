@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class VolcanoVisagePower : HexaghostPowerModel, IAfterGhostwheelIgnited
+public class VolcanoVisagePower : HexaghostPowerModel, IAfterGhostflameIgnited
 {
     public VolcanoVisagePower()
     {
@@ -15,7 +15,7 @@ public class VolcanoVisagePower : HexaghostPowerModel, IAfterGhostwheelIgnited
     }
     
     
-    public async Task AfterGhostwheelIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Apply<SoulBurnPower>(ctx, CombatState.HittableEnemies, Amount, Owner, null);

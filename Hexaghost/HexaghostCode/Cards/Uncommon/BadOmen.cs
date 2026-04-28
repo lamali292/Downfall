@@ -36,7 +36,7 @@ public class BadOmen : HexaghostCardModel
 }
 
 
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(HexaghostChoiceCardPool))]
 public class BadOmenChoice : HexaghostCardModel
 {
 

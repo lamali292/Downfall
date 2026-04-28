@@ -13,7 +13,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
 {
     protected override object InitInternalData() => new Data();
 
-    public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, CardModel? source, GhostflameModel ghostflame,
+    public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
         int ghostflameIndex, bool silent) => Task.CompletedTask;
 
     private int FreeCards
@@ -34,7 +34,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
     
     
     
-    public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, CardModel? source, GhostflameModel ghostflame,
+    public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (Owner != player.Creature) return Task.CompletedTask;

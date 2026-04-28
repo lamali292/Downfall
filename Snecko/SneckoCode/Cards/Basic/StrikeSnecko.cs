@@ -10,6 +10,7 @@ public class StrikeSnecko : SneckoCardModel
 {
     public StrikeSnecko() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithTags(CardTag.Strike);
     }
 
     // TODO: Implement

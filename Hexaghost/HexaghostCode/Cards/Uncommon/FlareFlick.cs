@@ -45,17 +45,17 @@ public class FlareFlick : HexaghostCardModel
 }
 
   
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(HexaghostChoiceCardPool))]
 public class FlareFlickChoice : HexaghostCardModel
 {
 
     public FlareFlickChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithTips(c => c is FlareFlickChoice { Keyword: { } keyword } ? [HoverTipFactory.FromKeyword(keyword)] : []);
+        WithTips(c => c is FlareFlickChoice { Keyword: var keyword } ? [HoverTipFactory.FromKeyword(keyword)] : []);
     }
 
 
-    public CardKeyword Keyword { get; set; }
+    public CardKeyword Keyword { get; private set; }
 
     public static FlareFlickChoice Create(CardKeyword flame, Player owner)
     {
