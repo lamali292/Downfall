@@ -37,6 +37,7 @@
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(IsWindows)' == 'true'">
         <GodotPath Condition="'$(GodotPath)' == ''">C:\Users\lamal\Desktop\Programmieren\sts2mods\MegaDot\MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">D:/SteamLibrary/steamapps</SteamLibraryPath>
+        <AssetSourcePath Condition="'$(AssetSourcePath)' == ''">C:\Users\lamal\Desktop\Programmieren\sts2mods\Slay the Spire 2</AssetSourcePath>
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
         <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
         <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
@@ -80,6 +81,50 @@
     <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
     </ItemGroup>
+
+    <UsingTask TaskName="CreateSymlink" TaskFactory="RoslynCodeTaskFactory"
+               AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <LinkPath ParameterType="System.String" Required="true"/>
+            <TargetPath ParameterType="System.String" Required="true"/>
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO"/>
+            <Using Namespace="System.Runtime.InteropServices"/>
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+    static extern int CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);
+
+    if (!Directory.Exists(TargetPath))
+        Log.LogMessage(MessageImportance.High, $"NO SOURCE: {TargetPath}");
+    else if (!Directory.Exists(LinkPath) && !File.Exists(LinkPath))
+    {
+        int ok = CreateSymbolicLink(LinkPath, TargetPath, 3);
+        if (ok != 0)
+            Log.LogMessage(MessageImportance.High, $"LINKED: {LinkPath} -> {TargetPath}");
+        else
+            Log.LogError($"FAILED (error {Marshal.GetLastWin32Error()}): {LinkPath}");
+    }
+]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <PropertyGroup Condition="'$(IsPublishAll)' != 'true'">
+        <AssetSourcePath Condition="'$(AssetSourcePath)' == ''">$(MSBuildThisFileDirectory)Slay the Spire 2</AssetSourcePath>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
+        <SymlinkFolders Include="images;fonts;localization;materials;models;scenes;animations;banks;debug_audio;shaders;themes;addons"/>
+    </ItemGroup>
+
+    <Target Name="CreateAssetSymlinks" BeforeTargets="Build"
+            Condition="'$(IsPublishAll)' != 'true' and '$(AssetSourcePath)' != '' and Exists('$(AssetSourcePath)')">
+        <CreateSymlink
+                LinkPath="$(MSBuildProjectDirectory)\%(SymlinkFolders.Identity)"
+                TargetPath="$(AssetSourcePath)\%(SymlinkFolders.Identity)"/>
+    </Target>
 
     <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
         <None Include=".gitignore"/>

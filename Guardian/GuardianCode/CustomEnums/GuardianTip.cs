@@ -8,5 +8,6 @@ public class GuardianTip(string name) : CustomStaticTip(name)
     public static readonly GuardianTip Stasis = new(nameof(Stasis));
     public static readonly GuardianTip Brace = new(nameof(Brace));
     public static readonly GuardianTip Tick = new(nameof(Tick));
+    public static readonly GuardianTip Polish = new(nameof(Polish));
 }
 

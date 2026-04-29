@@ -150,5 +150,7 @@
   "GUARDIAN-PACKAGE_ORBWALKER.title": "Package: Orbwalker",
   "GUARDIAN-PACKAGE_SENTRY.title": "Package: Sentry",
   "GUARDIAN-PACKAGE_SHAPES.title": "Package: Shapes",
-  "GUARDIAN-PACKAGE_SPHERIC.title": "Package: Spheric"
+  "GUARDIAN-PACKAGE_SPHERIC.title": "Package: Spheric",
+  "GUARDIAN-DELAY_FIELD.title": "Delay Field",
+  "GUARDIAN-DELAY_FIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Polish[/gold] {Polish:diff()}."
 }

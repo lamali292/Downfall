@@ -1,6 +1,7 @@
 using BaseLib.Patches.Content;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
+using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
@@ -16,6 +17,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -238,6 +240,43 @@ public static class GuardianCmd
         AccelerateType accelerateType = AccelerateType.First)
     {
         return Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
+    }
+
+    public static async Task Polish(PlayerChoiceContext ctx, CardModel card)
+    {
+        var amount = card.DynamicVars.Polish().IntValue;
+        await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
+        await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
+        await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
+        foreach (var power in card.Owner.Creature.Powers.Where( e => e is ITemporaryPower))
+        {
+            var a = (ITemporaryPower)power;
+            await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
+            await PowerCmd.ModifyAmount(ctx, a.InternallyAppliedPower, amount, card.Owner.Creature, card);
+        }
+    }
+
+    
+    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, int amount)
+    {
+        await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
+        await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
+        await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
+        foreach (var power in card.Owner.Creature.Powers.Where( e => e is ITemporaryPower))
+        {
+            var a = (ITemporaryPower)power;
+            await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
+            await PowerCmd.ModifyAmount(ctx, a.InternallyAppliedPower, amount, card.Owner.Creature, card);
+        }
+    }
+
+    private static async Task DecrementPower<T>(PlayerChoiceContext ctx, Creature ownerCreature, int amount = 1,  CardModel? source = null)
+    where T : PowerModel
+    {
+        var a = ownerCreature.GetPower<T>();
+        if (a is not { Amount: > 0 }) return;
+        var mod = Math.Min(a.Amount, amount);
+        await PowerCmd.ModifyAmount(ctx, a, -mod, ownerCreature, source);
     }
 }
 

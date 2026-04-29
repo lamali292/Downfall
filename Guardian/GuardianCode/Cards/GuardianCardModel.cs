@@ -46,6 +46,12 @@ public abstract class GuardianCardModel
         return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
     
+    protected ConstructedCardModel WithPolish(int baseVal, int upgradeVal = 0)
+    {
+        WithTip(GuardianTip.Polish);
+        return WithVars(new PolishVar(baseVal).WithUpgrade(upgradeVal));
+    }
+    
     public IReadOnlyList<GemModel> Gems
     {
         get
