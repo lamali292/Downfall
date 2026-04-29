@@ -1,5 +1,6 @@
 using System.Numerics;
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
@@ -72,10 +73,19 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         }
     }
 
+
+    public void UpdateVisuals()
+    {
+        
+        if (!IsActive) return;
+        StatusBarHelper.SetStatus(Owner, IgnitionProgress, IgnitionRequirement, FireColor.ToColor());
+    }
+    
     protected bool TryProgress()
     {
         if (IsIgnited) return false;
         IgnitionProgress++;
+        UpdateVisuals();
         return IgnitionProgress >= IgnitionRequirement;
     }
 
@@ -84,6 +94,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         if (!IsIgnited)  return false;
         IsIgnited = false;
         IgnitionProgress = 0;
+        UpdateVisuals();
         return true;
     }
 
@@ -91,8 +102,17 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     public abstract Task OnIgnite(PlayerChoiceContext ctx);
 
 
+    public void SetIgniteProgress()
+    {
+        IgnitionProgress = IgnitionRequirement;
+        UpdateVisuals();
+    }
+    
     protected async Task Ignite(PlayerChoiceContext ctx)
-        => await HexaghostCmd.Ignite(ctx, Owner);
+    {
+        await HexaghostCmd.Ignite(ctx, Owner);
+    }
+        
 
     public GhostflameModel ToMutable(Player player)
     {

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Ghostflames;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -60,6 +61,6 @@ public class BadOmenChoice : HexaghostCardModel
     public override string CustomPortraitPath => ModelDb.Card<BadOmen>().CustomPortraitPath;
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        description.Add("Ghostflame", GhostflameModel!.Title);
+        description.Add("Ghostflame", GhostflameModel?.Title ?? HexaghostModelDb.Ghostflame<InfernoGhostflame>().Title);
     }
 }

@@ -67,7 +67,7 @@ public class PremonitionChoice : HexaghostCardModel
     }
 
     public override CardType Type => MyType;
-    private CardType MyType { get; set; }
+    private CardType MyType { get; set; } = CardType.Skill;
 
 
     public static PremonitionChoice Create(CardType cardType, Player owner)

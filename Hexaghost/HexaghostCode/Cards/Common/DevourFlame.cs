@@ -13,6 +13,8 @@ public class DevourFlame : HexaghostCardModel
         WithBlock(9, 3);
     }
 
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsPreviousIgnited(Owner);
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!HexaghostCmd.IsPreviousIgnited(Owner)) return;

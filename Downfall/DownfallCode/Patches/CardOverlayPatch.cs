@@ -50,7 +50,7 @@ public static class NCardReloadCollectiblePatch
         if (portrait == null) return;
 
         var shaderMaterial = new ShaderMaterial();
-        shaderMaterial.Shader = ResourceLoader.Load<Shader>("res://Downfall/shaders/hsv.gdshader");
+        shaderMaterial.Shader = ResourceLoader.Load<Shader>("res://shaders/hsv.gdshader");
         shaderMaterial.SetShaderParameter("h", collectible.HueShift);
         shaderMaterial.SetShaderParameter("s", collectible.Saturation);
         shaderMaterial.SetShaderParameter("v", collectible.Value);

@@ -12,7 +12,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class LingeringShades : HexaghostCardModel
 {
-    public LingeringShades() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public LingeringShades() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(HexaghostKeyword.Retract);
         WithPower<SoulBurnPower>(14, 4);

@@ -26,10 +26,11 @@ public class BolsteringGhostflame : GhostflameModel
         
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         
-        var repeat = Repeat(GhostflameRepeatType.Block);
+        var repeat = 1 + Repeat(GhostflameRepeatType.Block);
+        var block = Intensity;
         for (var i = 0; i < repeat; i++)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, 4 + Intensity, ValueProp.Move | ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner.Creature, 4 + block, ValueProp.Move | ValueProp.Unpowered, null);
         }
         
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 1, Owner.Creature, null);

@@ -41,6 +41,7 @@ public partial class NHexaghostVisuals : Node2D
         {
             if (fire == null) return null;
             var intent = NIntent.Create(i * 0.3f);
+            intent.Visible = false;
             intent.MouseFilter = Control.MouseFilterEnum.Ignore;
             AddChild(intent);
             return intent;

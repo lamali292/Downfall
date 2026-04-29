@@ -11,11 +11,12 @@ public class WildfireHexaghost : HexaghostCardModel
 {
     public WildfireHexaghost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<WildfirePower>(5, 7);
+        WithPower<WildfirePower>(5, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<WildfirePower>(ctx, this);
     }
+    
 }

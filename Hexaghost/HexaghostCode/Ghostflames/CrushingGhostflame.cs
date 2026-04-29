@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
 
@@ -34,11 +35,13 @@ public class CrushingGhostflame : GhostflameModel
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
         
-        var attack = new AttackCommand(3 + Intensity)
+        var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
+        var damage = 3 + Intensity;
+        for (var i = 0; i < hitCount; i++)
         {
-            Attacker = Owner.Creature
-        };
-        await attack.WithHitCount(2 + Repeat(GhostflameRepeatType.Damage)).Targeting(target).Execute(ctx);
+            if (!target.IsHittable) continue;
+            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
+        }
     }
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)

@@ -8,7 +8,7 @@ namespace Hexaghost.HexaghostCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class ShadowGuise : HexaghostCardModel
 {
-    public ShadowGuise() : base(2, CardType.Power, CardRarity.Token, TargetType.None)
+    public ShadowGuise() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithBlock(4, 2);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);

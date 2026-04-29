@@ -27,20 +27,21 @@ public class FlareFlick : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await HexaghostCmd.Ignite(ctx, Owner);
-        if (IsUpgraded)
-        {
-            var choices = new[] { HexaghostKeyword.Advance, HexaghostKeyword.Retract }
+        if (!IsUpgraded || !cardPlay.Target.IsAlive) return;
+        
+        var choices = new[] { HexaghostKeyword.Retract, HexaghostKeyword.Advance }
                 .Select(f => FlareFlickChoice.Create(f, Owner))
                 .ToList();
-            var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-            if (chosen is not FlareFlickChoice {Keyword : var keyword } ) return;
-            if (keyword == HexaghostKeyword.Advance)
-                await HexaghostCmd.Advance(ctx, Owner, this);
-            else if (keyword == HexaghostKeyword.Retract)
-                await HexaghostCmd.Retract(ctx, Owner, this);
-        }
+        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
+        if (chosen is not FlareFlickChoice {Keyword : var keyword } ) return;
+        if (keyword == HexaghostKeyword.Advance)
+            await HexaghostCmd.Advance(ctx, Owner, this);
+        else if (keyword == HexaghostKeyword.Retract)
+            await HexaghostCmd.Retract(ctx, Owner, this);
+        
     }
 }
 
@@ -55,7 +56,7 @@ public class FlareFlickChoice : HexaghostCardModel
     }
 
 
-    public CardKeyword Keyword { get; private set; }
+    public CardKeyword Keyword { get; private set; } = CardKeyword.Exhaust;
 
     public static FlareFlickChoice Create(CardKeyword flame, Player owner)
     {

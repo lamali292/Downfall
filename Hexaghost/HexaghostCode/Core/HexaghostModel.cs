@@ -58,6 +58,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
             if (player.Character is not Hexaghost) continue;
             await HexaghostCmd.ResetWheel(player);
             HexaghostVisualsBridge.Refresh(player);
+            HexaghostCmd.GetCurrentFlame(player).UpdateVisuals();
         }
     }
 

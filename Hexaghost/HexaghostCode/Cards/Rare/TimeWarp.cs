@@ -16,7 +16,8 @@ public class TimeWarp : HexaghostCardModel, IWheelMoved
     public TimeWarp() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithKeywords(HexaghostKeyword.Advance, HexaghostKeyword.Retract);
+        WithTip(HexaghostKeyword.Advance);
+        WithTip(HexaghostKeyword.Retract);
     }
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

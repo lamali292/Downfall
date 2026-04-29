@@ -1,10 +1,10 @@
 ﻿{
   "HEXAGHOST-BOLSTERING_GHOSTFLAME.title" : "Bolstering Ghostflame",
-  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description" : "Ignites by playing a Power while on it. \nYou gain 4 [gold]Block[/gold] and 1 [gold]Strength[/gold].",
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description" : "[gold]Ignites[/gold] by playing [blue]1[/blue] [gold]Power[/gold] while on it. \nYou gain [blue]4[/blue] [gold]Block[/gold] and [blue]1[/blue] [gold]Strength[/gold].",
   "HEXAGHOST-CRUSHING_GHOSTFLAME.title" : "Crushing Ghostflame",
-  "HEXAGHOST-CRUSHING_GHOSTFLAME.description" : "Ignites by playing 2 Skills while on it. \nDeals 3 damage to a random enemy twice.",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.description" : "[gold]Ignites[/gold] by playing [blue]2[/blue] [gold]Skills[/gold] while on it. \nDeals [blue]3[/blue] damage to a random enemy twice.",
   "HEXAGHOST-INFERNO_GHOSTFLAME.title" : "Inferno Ghostflame",
-  "HEXAGHOST-INFERNO_GHOSTFLAME.description" : "Ignites by spending 3 Energy while on it.\nDeals 4 damage to a random enemy for each ignited Ghostflame.\nIf all Ghostflames are Ignited, gain 2 [gold]Intensity[/gold].",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.description" : "[gold]Ignites[/gold] by spending [blue]3[/blue] [gold]Energy[/gold] while on it.\nDeals [blue]4[/blue] damage to a random enemy for each ignited Ghostflame.\nIf all Ghostflames are [gold]Ignited[/gold], gain [blue]2[/blue] [gold]Intensity[/gold].",
   "HEXAGHOST-SEARING_GHOSTFLAME.title" : "Searing Ghostflame",
-  "HEXAGHOST-SEARING_GHOSTFLAME.description" : "Ignites by playing 2 Attacks while on it.\nApplies 3 [gold]Soulburn[/gold] to a random enemy twice. "
+  "HEXAGHOST-SEARING_GHOSTFLAME.description" : "[gold]Ignites[/gold] by playing [blue]2[/blue] [gold]Attacks[/gold] while on it.\nApplies [blue]3[/blue] [gold]Soulburn[/gold] to a random enemy twice. "
 }

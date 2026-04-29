@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
 
@@ -32,13 +33,13 @@ public class InfernoGhostflame : GhostflameModel
         
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
-        
-        var attack = new AttackCommand(4 + Intensity)
+        var hitCount = ignited + Repeat(GhostflameRepeatType.Damage);
+        var damage = 4 + Intensity;
+        for (var i = 0; i < hitCount; i++)
         {
-            Attacker = Owner.Creature
-        };
-        await attack.WithHitCount(ignited + Repeat(GhostflameRepeatType.Damage)).Targeting(target).Execute(ctx);
-        
+            if (!target.IsHittable) continue;
+            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
+        }
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
     }

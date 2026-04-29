@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Patches;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Collector.CollectorCode.Cards.Token;
@@ -45,8 +46,14 @@ public abstract class Collectible<T>(
         var container = new Control { Name = OverlayNodeName, MouseFilter = Control.MouseFilterEnum.Ignore };
         container.AddChild(visuals);
 
-        visuals.Ready += () =>
-        {
+        visuals.Ready += () => S(visuals, monster);
+
+        return container;
+    }
+
+    public void S(NCreatureVisuals visuals, MonsterModel monster)
+    {
+       
             if (visuals.SpineBody != null)
                 monster.GenerateAnimator(visuals.SpineBody);
 
@@ -59,8 +66,8 @@ public abstract class Collectible<T>(
             const float portraitW = 250f;
             const float portraitH = 190f;
             const float portraitCenterX = 0f;
-            const float portraitBottom = 22f;
-            const float fitScale = 0.8f;
+            const float portraitBottom = 0; //22f;
+            const float fitScale = 0.6f;
             const float verticalPadding = (1.0f - fitScale) / 2.0f;
 
             var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
@@ -70,9 +77,7 @@ public abstract class Collectible<T>(
                 portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
                 portraitBottom - boundsSize.Y * scale * verticalPadding
             );
-        };
-
-        return container;
+        
     }
 
     public string OverlayNodeName => "DownfallMonsterOverlay";

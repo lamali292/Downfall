@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3htc2pekuwxf"]
+
+[ext_resource type="PackedScene" uid="uid://b5a7dbb8x74jt" path="res://Downfall/scenes/combat/status_part.tscn" id="1_r8gl6"]
+
+[node name="StatusParts" type="HBoxContainer"]
+offset_right = 176.0
+offset_bottom = 16.0
+theme_override_constants/separation = 1
+
+[node name="StatusPart" parent="." instance=ExtResource("1_r8gl6")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart2" parent="." instance=ExtResource("1_r8gl6")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart3" parent="." instance=ExtResource("1_r8gl6")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart4" parent="." instance=ExtResource("1_r8gl6")]
+layout_mode = 2
+size_flags_horizontal = 3

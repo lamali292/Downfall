@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -57,6 +58,7 @@ public static class HexaghostCmd
         await MoveTo(player, GetNextIndex(player));
         await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
+        
     }
 
     public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
@@ -96,7 +98,9 @@ public static class HexaghostCmd
     private static Task MoveTo(Player player, int index, bool silent = false)
     {
         HexaghostModel.CurrentIndex[player] = index;
-        GetCurrentFlame(player).Extinguish();
+        var flame = GetCurrentFlame(player);
+        flame.Extinguish();
+        flame.UpdateVisuals();
         if (silent) return Task.CompletedTask;
         HexaghostVisualsBridge.Refresh(player);
         return Task.CompletedTask;
@@ -132,6 +136,8 @@ public static class HexaghostCmd
         var flame = GetWheel(player)[index];
         if (!flame.IsIgnited)
             flame.IsIgnited = true;
+        
+        flame.SetIgniteProgress();
         HexaghostVisualsBridge.Refresh(player);
         await flame.OnIgnite(ctx);
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);

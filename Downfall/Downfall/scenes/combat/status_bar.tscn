@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctaghwq8q41or"]
+
+[ext_resource type="Script" uid="uid://bwxcbilk2eqgd" path="res://DownfallCode/Vfx/NStatusBar.cs" id="1_dcr38"]
+[ext_resource type="PackedScene" uid="uid://b5a7dbb8x74jt" path="res://Downfall/scenes/combat/status_part.tscn" id="2_lssm8"]
+[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://themes/kreon_bold_glyph_space_one.tres" id="7_jxsns"]
+[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="8_6uqsx"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dcr38")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="HpBarContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -130.0
+offset_right = 120.0
+offset_bottom = 16.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HpBarContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="StatusPart1" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart2" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart3" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart4" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart5" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HpBarContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_colors/font_outline_color = Color(0.564706, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("7_jxsns")
+theme_override_font_sizes/font_size = 24
+text = "88/88"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_6uqsx")
+AutoSizeEnabled = false

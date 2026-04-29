@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -9,8 +10,8 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Powers.Abstract;
 
-public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
-    where T : PowerModel
+public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPower
+    where TP : PowerModel
 {
     private bool _shouldIgnoreNextInstance;
 
@@ -23,48 +24,43 @@ public abstract class TemporaryPower<T> : DownfallPowerModel, ITemporaryPower
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<T>()
+        HoverTipFactory.FromPower<TP>()
     ];
 
     public abstract AbstractModel OriginModel { get; }
-    public PowerModel InternallyAppliedPower => ModelDb.Power<T>();
+    public PowerModel InternallyAppliedPower => ModelDb.Power<TP>();
 
-    public void IgnoreNextInstance()
-    {
-        _shouldIgnoreNextInstance = true;
-    }
+    public void IgnoreNextInstance() => _shouldIgnoreNextInstance = true;
 
     public override async Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
     {
-        if (_shouldIgnoreNextInstance)
-        {
-            _shouldIgnoreNextInstance = false;
-            return;
-        }
-
-        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), target, Sign * amount, applier, cardSource, true);
+        if (_shouldIgnoreNextInstance) { _shouldIgnoreNextInstance = false; return; }
+        await PowerCmd.Apply<TP>(new ThrowingPlayerChoiceContext(), target, Sign * amount, applier, cardSource, true);
     }
 
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
-        Creature? applier,
-        CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
-        if (amount == Amount || power != this)
-            return;
-
-        if (_shouldIgnoreNextInstance)
-            _shouldIgnoreNextInstance = false;
-        else
-            await PowerCmd.Apply<T>(ctx, Owner, Sign * amount, applier, cardSource, true);
+        if (amount == Amount || power != this) return;
+        if (_shouldIgnoreNextInstance) _shouldIgnoreNextInstance = false;
+        else await PowerCmd.Apply<TP>(ctx, Owner, Sign * amount, applier, cardSource, true);
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
-        if (side != Owner.Side == RemovedAfterOwnTurn)
-            return;
-
+        if (side != Owner.Side == RemovedAfterOwnTurn) return;
         Flash();
         await PowerCmd.Remove(this);
-        await PowerCmd.Apply<T>(ctx, Owner, -Sign * Amount, Owner, null);
+        await PowerCmd.Apply<TP>(ctx, Owner, -Sign * Amount, Owner, null);
     }
+}
+
+public abstract class TemporaryPower<TP> : TemporaryPowerBase<TP>
+    where TP : PowerModel;
+
+public abstract class TemporaryPower<TP, TC> : TemporaryPowerBase<TP>
+    where TP : PowerModel
+    where TC : DownfallCharacterModel
+{
+    public override string CustomPackedIconPath => $"{IconName}.tres".PowerImagePath<TC>();
+    public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<TC>();
 }

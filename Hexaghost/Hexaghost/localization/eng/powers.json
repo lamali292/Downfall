@@ -45,8 +45,8 @@
   "HEXAGHOST-UNFETTERED_FORM_PLUS_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] an additional time.",
   "HEXAGHOST-UNFETTERED_FORM_PLUS_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
   "HEXAGHOST-UNFETTERED_FORM_POWER.title": "Unfettered Form",
-  "HEXAGHOST-UNFETTERED_FORM_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] an additional time.",
-  "HEXAGHOST-UNFETTERED_FORM_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
+  "HEXAGHOST-UNFETTERED_FORM_POWER.description": "Ghostflames deal damage and apply [gold]Soulburn[/gold] an additional time.",
+  "HEXAGHOST-UNFETTERED_FORM_POWER.smartDescription": "Ghostflames deal damage and apply [gold]Soulburn[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "Volcano Visage",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]X[/blue] [gold]Soulburn[/gold] to ALL enemies.",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to ALL enemies.",
@@ -61,5 +61,11 @@
   "HEXAGHOST-HERE_AND_NOW_POWER.smartDescription": "At the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
   "HEXAGHOST-RADIANT_FLAME_POWER.title": "Radiant Flame",
   "HEXAGHOST-RADIANT_FLAME_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]X[/blue] [gold]Block[/gold].",
-  "HEXAGHOST-RADIANT_FLAME_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "HEXAGHOST-RADIANT_FLAME_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-INFERNAL_FORM_POWER.title": "Infernal Form",
+  "HEXAGHOST-INFERNAL_FORM_POWER.description": "At the start of your turn, gain [blue]X[/blue] [gold]Intensity[/gold].",
+  "HEXAGHOST-INFERNAL_FORM_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] [gold]Intensity[/gold].",
+  "HEXAGHOST-BROILING_FLAMES_POWER.title": "Broiling Flames",
+  "HEXAGHOST-BROILING_FLAMES_POWER.description": "Whenever another player deals attack damage to this enemy, it gains [blue]X[/blue] [gold]Soulburn[/gold]..",
+  "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "Whenever another player deals attack damage to this enemy, it gains [blue]{Amount}[/blue] [gold]Soulburn[/gold]."
 }
