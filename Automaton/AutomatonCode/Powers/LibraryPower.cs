@@ -4,13 +4,14 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Powers;
 
 public class LibraryPower : AutomatonPowerModel
 {
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var rng = Owner.CombatState!.RunState.Rng.CombatCardSelection;

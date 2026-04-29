@@ -37,7 +37,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
     }
 
 
-    public override Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    public override Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (side != Owner.Side) return Task.CompletedTask;
         UsesThisTurn = 0;

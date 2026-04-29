@@ -9,13 +9,13 @@ namespace Collector.CollectorCode.Powers;
 
 public class FeelMyPainPower : CollectorPowerModel
 {
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner) return;
         var target = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (target != null)
-            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, Amount,
+            await CreatureCmd.Damage(ctx, target, Amount,
                 ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
     }
 }

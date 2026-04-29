@@ -13,30 +13,20 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class SongOfSorrowPower : AwakenedPowerModel
 {
-    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
+    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
     {
         if (card is not Void || card.Owner != Owner.Player || LocalContext.NetId == null)
             return;
-
-     
-
         Flash();
-
         var currentEnemies = CombatState.Enemies.ToList();
-        var ctx = new HookPlayerChoiceContext(
-            card.Owner,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
         foreach (var enemy in currentEnemies)
             if (enemy is { IsHittable: true, IsAlive: true })
             {
-                var task = CreatureCmd.Damage(ctx,
+                await CreatureCmd.Damage(ctx,
                     enemy,
                     Amount,
                     ValueProp.Unblockable | ValueProp.Unpowered,
                     Owner);
-
-                await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
             }
                 
     }

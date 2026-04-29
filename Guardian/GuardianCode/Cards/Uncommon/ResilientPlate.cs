@@ -12,11 +12,12 @@ public class ResilientPlate : GuardianCardModel
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithBrace(8);
+        WithPolish(2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.DebuffDown(ctx, Owner.Creature, 2);
         await GuardianCmd.Brace(ctx, this);
+        await GuardianCmd.Polish(ctx, this);
     }
 }

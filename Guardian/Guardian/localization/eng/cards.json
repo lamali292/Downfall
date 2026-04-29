@@ -65,7 +65,7 @@
   "GUARDIAN-ORBWALK.title": "Orbwalk",
   "GUARDIAN-ORB_SUPPORT.description": "Deal {Damage:diff()} damage. \n[gold]Brace[/gold] for unblocked damage dealt.",
   "GUARDIAN-ORB_SUPPORT.title": "Orb Support",
-  "GUARDIAN-OVERLOAD.description": "Draw {Cards:diff()} cards.\nReduce each of your debuffs by 1. ",
+  "GUARDIAN-OVERLOAD.description": "Draw {Cards:diff()} cards.\n[gold]Polish[/gold] {Polish:diff()}.",
   "GUARDIAN-OVERLOAD.title": "Overload",
   "GUARDIAN-PIERCING_HIDE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryThornsPower:diff()} [gold]Thorns[/gold] this turn.\n[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-PIERCING_HIDE.title": "Piercing Hide",
@@ -89,7 +89,7 @@
   "GUARDIAN-REPULSOR_GUARDIAN.title": "Repulsor Guardian",
   "GUARDIAN-REROUTE.description": "Deal {Damage:diff()} damage.\nPlace the next card you play this turn into [gold]Stasis[/gold].",
   "GUARDIAN-REROUTE.title": "Reroute",
-  "GUARDIAN-RESILIENT_PLATE.description": "Reduce each of your debuffs by 2.\n[gold]Brace[/gold] {Brace:diff()}.",
+  "GUARDIAN-RESILIENT_PLATE.description": "[gold]Brace[/gold] {Brace:diff()}.\n[gold]Polish[/gold] {Polish:diff()}.",
   "GUARDIAN-RESILIENT_PLATE.title": "Resilient Plate",
   "GUARDIAN-REVENGE_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], gain {RevengeProtocolPower:diff()} [gold]Strength[/gold].\nAt the start of your turn, [gold]Brace [/gold]{BracingPower:diff()}.",
   "GUARDIAN-REVENGE_PROTOCOL.title": "Revenge Protocol",
@@ -152,5 +152,7 @@
   "GUARDIAN-PACKAGE_SHAPES.title": "Package: Shapes",
   "GUARDIAN-PACKAGE_SPHERIC.title": "Package: Spheric",
   "GUARDIAN-DELAY_FIELD.title": "Delay Field",
-  "GUARDIAN-DELAY_FIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Polish[/gold] {Polish:diff()}."
+  "GUARDIAN-DELAY_FIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Polish[/gold] {Polish:diff()}.",
+  "GUARDIAN-SHARP_HIDE.title": "Sharp Hide",
+  "GUARDIAN-SHARP_HIDE.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAt the start of your turn, gain {SharpHidePower:diff()} temp. [gold]Thorns[/gold]."
 }

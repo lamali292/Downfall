@@ -19,7 +19,7 @@ public abstract class CustomStaticTip
 
     public IHoverTip ToHoverTip()
     {
-        var key = $"{_prefix}-{_name.ToUpperInvariant()}";
+        var key = $"{_prefix}{_name.ToUpperInvariant()}";
         return new HoverTip(
             new LocString("static_hover_tips", $"{key}.title"),
             LocManager.Instance.SmartFormat(

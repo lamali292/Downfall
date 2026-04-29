@@ -44,5 +44,8 @@
   "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "Gain {Amount:energyIcons()} and draw [blue]{Amount}[/blue] {Amount:plural:card|cards} whenever you play the [blue]3rd[/blue] 0-cost card in a single turn.",
   "GUARDIAN-TIME_SIFTER_POWER.title": "Time Sifter",
   "GUARDIAN-TIME_SIFTER_POWER.description": "At the start of your turn, [gold]Accelerate[/gold]. ",
-  "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "At the start of your turn, [gold]Accelerate[/gold] {Amount:plural:| [blue]{Amount}[/blue] times}. "
+  "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "At the start of your turn, [gold]Accelerate[/gold] {Amount:plural:| [blue]{Amount}[/blue] times}. ",
+  "GUARDIAN-SHARP_HIDE_POWER.title": "Sharp Hide",
+  "GUARDIAN-SHARP_HIDE_POWER.description": "At the start of your turn, gain [blue]X[/blue] temp. [gold]Thorns[/gold].",
+  "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] temp. [gold]Thorns[/gold]."
 }

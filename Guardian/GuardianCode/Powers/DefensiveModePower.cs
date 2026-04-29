@@ -19,32 +19,21 @@ public class DefensiveModePower : GuardianPowerModel
         WithPower<ThornsPower>(3);
     }
 
-    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
+    protected override async Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
     {
-        if (Owner.Player == null || LocalContext.NetId == null) return;
-        var ctx = new HookPlayerChoiceContext(
-            Owner.Player,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
-        var task =  GuardianCmd.EnterDefensiveMode(ctx, Owner.Player);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
-        var task2 = PowerCmd.Apply<ThornsPower>(ctx, Owner, DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task2);
+        if (Owner.Player == null) return;
+        await GuardianCmd.EnterDefensiveMode(ctx, Owner.Player);
+        await PowerCmd.Apply<ThornsPower>(ctx, Owner, DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }
-
+ 
     public override bool ShouldClearBlock(Creature creature)
     {
         return creature != Owner;
     }
-
-
-    public override async Task AfterRemoved(Creature oldOwner)
+    
+    protected override async Task AfterRemoved(PlayerChoiceContext ctx, Creature oldOwner)
     {
-        if (oldOwner.Player == null || LocalContext.NetId == null) return;
-        var ctx = new HookPlayerChoiceContext(
-            oldOwner.Player,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
+        if (oldOwner.Player == null) return;
         await GuardianCmd.LeaveDefensiveMode(ctx, oldOwner.Player);
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, -DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }

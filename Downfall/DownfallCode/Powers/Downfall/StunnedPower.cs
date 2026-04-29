@@ -21,7 +21,7 @@ public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackTyp
         return Task.CompletedTask;
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side) return;
         await PowerCmd.Remove(this);

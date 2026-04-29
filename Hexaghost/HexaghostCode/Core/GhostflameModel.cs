@@ -1,10 +1,14 @@
 using System.Numerics;
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -133,6 +137,30 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         var fireball = NFireballEffect.Create(from, to, FireColor.ToColor());
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(fireball);
     }
+    
+    
+    
+    private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
+    {
+        if (LocalContext.NetId == null) return;
+        var ctx = new HookPlayerChoiceContext(
+            Owner,
+            LocalContext.NetId.Value,
+            GameActionType.Combat);
+        await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
+    }
+    
+    public sealed override Task BeforeCardPlayed(CardPlay cardPlay)
+        => ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
+
+    protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => Task.CompletedTask;
+    
+    public sealed override Task AfterEnergySpent(CardModel card, int amount)
+        => ExecuteWithContext(ctx => AfterEnergySpent(ctx, card, amount));
+    
+    protected virtual Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
+        => Task.CompletedTask;
 }
 
 public enum GhostflameRepeatType

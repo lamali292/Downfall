@@ -16,17 +16,12 @@ public class DrainedPower : AwakenedPowerModel
         WithEnergyTip();
     }
 
-    public override async Task AfterEnergyReset(Player player)
+    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
     {
         if (player != Owner.Player || Owner.CombatState == null || LocalContext.NetId == null)
             return;
         await PlayerCmd.LoseEnergy(Amount, player);
-        var ctx = new HookPlayerChoiceContext(
-            player,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
-        var task =  AwakenedHook.OnDrained(Owner.CombatState, ctx, Owner.Player, Amount);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
+        await AwakenedHook.OnDrained(Owner.CombatState, ctx, Owner.Player, Amount);
         await PowerCmd.Remove(this);
     }
 }

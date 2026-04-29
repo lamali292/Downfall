@@ -8,7 +8,7 @@ namespace Downfall.DownfallCode.Powers.Downfall;
 
 public class MetallicizePower : DownfallPowerModel
 {
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (side != Owner.Side) return;
         Flash();

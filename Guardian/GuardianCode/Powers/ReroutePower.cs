@@ -12,7 +12,7 @@ public class ReroutePower : GuardianPowerModel
 {
     private CardModel? _cardSource;
 
-    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    protected override Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
     {
         _cardSource = cardSource;
         return Task.CompletedTask;

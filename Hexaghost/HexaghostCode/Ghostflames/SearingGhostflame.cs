@@ -43,18 +43,13 @@ public class SearingGhostflame : GhostflameModel
     }
 
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!IsActive || cardPlay.Card.Owner != Owner ||
             LocalContext.NetId == null) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (!(cardPlay.Card.Type == CardType.Attack || shouldCount)) return;
         if (!TryProgress()) return;
-        var ctx = new HookPlayerChoiceContext(
-            Owner,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
-        var task = Ignite(ctx);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
+        await Ignite(ctx);
     }
 }

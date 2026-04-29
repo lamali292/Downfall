@@ -44,15 +44,10 @@ public class InfernoGhostflame : GhostflameModel
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
     }
 
-    public override async Task AfterEnergySpent(CardModel card, int amount)
+    protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;
         if (!TryProgress()) return;
-        var ctx = new HookPlayerChoiceContext(
-            Owner,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
-        var task = Ignite(ctx);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
+        await Ignite(ctx);
     }
 }

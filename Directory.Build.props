@@ -16,6 +16,11 @@
         <NoWarn>$(NoWarn);MSB3270;CS1998;CS0436</NoWarn>
     </PropertyGroup>
 
+
+    <PropertyGroup>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
+    </PropertyGroup>
+    
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(Configuration)' == 'Debug'">
         <Optimize>false</Optimize>
         <DebugType>portable</DebugType>
@@ -73,7 +78,12 @@
         <Reference Include="SmartFormat">
             <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
         </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
+
+        <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
+            <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.9" PrivateAssets="All" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
     </ItemGroup>

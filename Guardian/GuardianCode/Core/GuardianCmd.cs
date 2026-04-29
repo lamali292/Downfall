@@ -248,11 +248,17 @@ public static class GuardianCmd
         await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
         await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
         await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
-        foreach (var power in card.Owner.Creature.Powers.Where( e => e is ITemporaryPower))
+        var tempPowers = card.Owner.Creature.Powers.Where(e => e is ITemporaryPower).ToList();
+        foreach (var power in tempPowers)
         {
-            var a = (ITemporaryPower)power;
+            var temporaryPower = (ITemporaryPower)power;
+            var internalTemporaryPower = card.Owner.Creature.GetPower(temporaryPower.InternallyAppliedPower.Id);
+            if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff ) continue;
             await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
-            await PowerCmd.ModifyAmount(ctx, a.InternallyAppliedPower, amount, card.Owner.Creature, card);
+            if (internalTemporaryPower == null)
+                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), card.Owner.Creature, amount, card.Owner.Creature, card, true);
+            else
+                await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, card.Owner.Creature, card, true);
         }
     }
 

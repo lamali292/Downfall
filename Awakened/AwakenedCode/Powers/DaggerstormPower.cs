@@ -12,13 +12,9 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class DaggerstormPower : AwakenedPowerModel
 {
-    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
+    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
     {
-        if (card.Owner.Creature != Owner || LocalContext.NetId == null) return;
-        var ctx = new HookPlayerChoiceContext(
-            card.Owner,
-            LocalContext.NetId.Value,
-            GameActionType.Combat);
+        if (card.Owner.Creature != Owner) return;
         var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.Enemies);
         if (enemy == null) return;
         await CreatureCmd.Damage(ctx, enemy, Amount, ValueProp.Unpowered, Owner, null);

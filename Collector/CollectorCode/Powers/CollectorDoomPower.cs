@@ -24,12 +24,12 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         );
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.CombatState == null) return;
 
         var damage = CollectorHook.ModifyCollectorDoomDamage(Owner.CombatState, Owner, Amount);
-        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner, damage,
+        var results = await CreatureCmd.Damage(ctx, Owner, damage,
             ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
         if (results.Any(r => r.WasTargetKilled)) SfxCmd.Play("event:/sfx/ui/relics/relic_prayer_bowl", 3);

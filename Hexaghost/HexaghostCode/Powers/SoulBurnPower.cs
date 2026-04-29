@@ -37,14 +37,14 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         );
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side)
             return;
         DynamicVars["Turns"].UpgradeValueBy(-1);
         InvokeDisplayAmountChanged();
         if (DynamicVars["Turns"].BaseValue > 0) return;
-        await Detonate(new ThrowingPlayerChoiceContext(), Applier);
+        await Detonate(ctx, Applier);
     }
 
     public async Task Detonate(PlayerChoiceContext ctx, Creature? applier = null, bool keepOne = false)

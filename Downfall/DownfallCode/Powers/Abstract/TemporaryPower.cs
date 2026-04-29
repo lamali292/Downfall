@@ -32,7 +32,7 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
 
     public void IgnoreNextInstance() => _shouldIgnoreNextInstance = true;
 
-    public override async Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task BeforeApplied( Creature target, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (_shouldIgnoreNextInstance) { _shouldIgnoreNextInstance = false; return; }
         await PowerCmd.Apply<TP>(new ThrowingPlayerChoiceContext(), target, Sign * amount, applier, cardSource, true);

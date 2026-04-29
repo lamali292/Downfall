@@ -1,16 +1,23 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
 public abstract class ConstructedPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel
+    PowerStackType stackType = PowerStackType.Counter) : HookedPowerModel
 {
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
     private readonly List<DynamicVar> _newDynamicVars = [];
@@ -19,7 +26,8 @@ public abstract class ConstructedPowerModel(
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
     public virtual bool ShouldRemoveDueToZero => true;
-
+    
+    
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
