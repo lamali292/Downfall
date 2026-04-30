@@ -47,6 +47,24 @@ public class Citrine : GemCard<CitrineGem>;
 [Pool(typeof(GuardianCardPool))]
 public class Onyx : GemCard<OnyxGem>;
 
+[Pool(typeof(GuardianCardPool))]
+public class Rutile : GemCard<RutileGem>
+{
+    protected override bool IsPlayable => false;
+}
+
+[Pool(typeof(GuardianCardPool))]
+public class Diamond : GemCard<DiamondGem>
+{
+    protected override bool IsPlayable => false;
+}
+
+[Pool(typeof(GuardianCardPool))]
+public class Bismuth : GemCard<BismuthGem>
+{
+    protected override bool IsPlayable => false;
+}
+
 #pragma warning restore STS001
 
 public abstract class GemCard<T> : GuardianCardModel, IGemCard

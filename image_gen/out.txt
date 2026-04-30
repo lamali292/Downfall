@@ -1,0 +1,102 @@
+[1/7] Loading placeholder cache...
+  [cache] Not found, starting fresh: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\.placeholders.json
+  0 placeholder entries loaded.
+
+[1/7] Discovering characters...
+  Found 10 character(s): automaton, awakened, champ, collector, downfall, gremlins, guardian, hexaghost, slimeboss, snecko
+    automaton -> Automaton\AutomatonCode
+    awakened -> Awakened\AwakenedCode
+    champ -> Champ\ChampCode
+    collector -> Collector\CollectorCode
+    downfall -> Downfall\DownfallCode
+    gremlins -> Gremlins\GremlinsCode
+    guardian -> Guardian\GuardianCode
+    hexaghost -> Hexaghost\HexaghostCode
+    slimeboss -> SlimeBoss\SlimeBossCode
+    snecko -> Snecko\SneckoCode
+
+[2/7] Indexing card images...
+    [images] cards: 854 PNGs indexed.
+    [images] cards_beta: 15 PNGs indexed.
+    [images] cards_missing: 32 PNGs indexed.
+  Total unique image keys: 901
+
+[3/7] Indexing power images...
+    [images] powers: 385 PNGs indexed.
+    [skip] Directory not found: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\powers_beta
+    [images] powers_missing: 22 PNGs indexed.
+  Total unique image keys: 407
+
+[4/7] Collecting card code...
+    [automaton] 84 cards .cs files found. (prefix: AUTOMATON-)
+    [awakened] 105 cards .cs files found. (prefix: AWAKENED-)
+    [champ] 91 cards .cs files found. (prefix: CHAMP-)
+    [collector] 87 cards .cs files found. (prefix: COLLECTOR-)
+    [skip] No Cards folder for downfall: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\..\Downfall\DownfallCode\Cards
+    [gremlins] 80 cards .cs files found. (prefix: GREMLINS-)
+    [guardian] 71 cards .cs files found. (prefix: GUARDIAN-)
+    [hexaghost] 91 cards .cs files found. (prefix: HEXAGHOST-)
+    [slimeboss] 76 cards .cs files found. (prefix: SLIMEBOSS-)
+    [snecko] 77 cards .cs files found. (prefix: SNECKO-)
+  Total: 762 cards entries across 9 characters.
+
+[5/7] Collecting power code...
+    [automaton] 13 powers .cs files found. (prefix: AUTOMATON-)
+    [awakened] 35 powers .cs files found. (prefix: AWAKENED-)
+    [champ] 25 powers .cs files found. (prefix: CHAMP-)
+    [collector] 24 powers .cs files found. (prefix: COLLECTOR-)
+    [downfall] 8 powers .cs files found. (prefix: DOWNFALL-)
+    [skip] No Powers folder for gremlins: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\..\Gremlins\GremlinsCode\Powers
+    [guardian] 16 powers .cs files found. (prefix: GUARDIAN-)
+    [hexaghost] 23 powers .cs files found. (prefix: HEXAGHOST-)
+    [skip] No Powers folder for slimeboss: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\..\SlimeBoss\SlimeBossCode\Powers
+    [skip] No Powers folder for snecko: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\..\Snecko\SneckoCode\Powers
+  Total: 144 powers entries across 7 characters.
+
+[6/7] Loading localization...
+    [automaton] 175 keys from Automaton\Automaton\localization\eng\cards.json
+    [awakened] 212 keys from Awakened\Awakened\localization\eng\cards.json
+    [champ] 192 keys from Champ\Champ\localization\eng\cards.json
+    [collector] 171 keys from Collector\Collector\localization\eng\cards.json
+    [downfall] 1234 keys from Downfall\localization\eng\cards.json
+    [gremlins] 158 keys from Gremlins\Gremlins\localization\eng\cards.json
+    [guardian] 156 keys from Guardian\Guardian\localization\eng\cards.json
+    [hexaghost] 212 keys from Hexaghost\Hexaghost\localization\eng\cards.json
+    [slimeboss] 150 keys from SlimeBoss\SlimeBoss\localization\eng\cards.json
+    [snecko] 152 keys from Snecko\Snecko\localization\eng\cards.json
+  Total merged localization keys: 2812
+    [automaton] 39 keys from Automaton\Automaton\localization\eng\powers.json
+    [awakened] 105 keys from Awakened\Awakened\localization\eng\powers.json
+    [champ] 75 keys from Champ\Champ\localization\eng\powers.json
+    [collector] 72 keys from Collector\Collector\localization\eng\powers.json
+    [downfall] 24 keys from Downfall\Downfall\localization\eng\powers.json
+    [gremlins] 839 keys from Gremlins\localization\eng\powers.json
+    [guardian] 49 keys from Guardian\Guardian\localization\eng\powers.json
+    [hexaghost] 69 keys from Hexaghost\Hexaghost\localization\eng\powers.json
+    [slimeboss] 839 keys from SlimeBoss\localization\eng\powers.json
+    [snecko] 839 keys from Snecko\localization\eng\powers.json
+  Total merged localization keys: 1272
+
+Building card rows...
+  38 rows to sync (715 FINAL skipped).
+  [warn] 1 entries with no localization data:
+    - COLLECTOR-MONSTER_CARDS
+Building power rows...
+  0 rows to sync (8 FINAL skipped).
+
+[7/7] Connecting to Google Sheets...
+  Connected.
+  [cache] Loaded: C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\.sheets_cache.json
+
+Syncing sheets...
+Traceback (most recent call last):
+  File "C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\sheets.py", line 335, in <module>
+    sync_sheet(sh, cache, "\u26a0 Needs Work (Cards)",  all_card_work,  COL_TAB_MISSING)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lamal\Desktop\Programmieren\sts2mods\Downfall\image_gen\sheets.py", line 280, in sync_sheet
+    print(f"  [{name}] No changes, skipping.")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u26a0' in position 3: character maps to <undefined>

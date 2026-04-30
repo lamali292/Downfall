@@ -245,6 +245,12 @@ public static class GuardianCmd
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card)
     {
         var amount = card.DynamicVars.Polish().IntValue;
+        await Polish(ctx, card, amount);
+    }
+
+    
+    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, int amount)
+    {
         await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
         await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
         await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
@@ -259,20 +265,6 @@ public static class GuardianCmd
                 await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), card.Owner.Creature, amount, card.Owner.Creature, card, true);
             else
                 await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, card.Owner.Creature, card, true);
-        }
-    }
-
-    
-    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, int amount)
-    {
-        await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
-        await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
-        await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
-        foreach (var power in card.Owner.Creature.Powers.Where( e => e is ITemporaryPower))
-        {
-            var a = (ITemporaryPower)power;
-            await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
-            await PowerCmd.ModifyAmount(ctx, a.InternallyAppliedPower, amount, card.Owner.Creature, card);
         }
     }
 

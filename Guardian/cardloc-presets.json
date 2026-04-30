@@ -5,15 +5,7 @@
     {
       "id": "card",
       "markers": [
-        "AutomatonCardModel",
-        "AwakenedCardModel",
-        "ChampCardModel",
-        "CollectorCardModel",
-        "GuardianCardModel",
-        "GremlinsCardModel",
-        "HexaghostCardModel",
-        "SlimeBossCardModel",
-        "SneckoCardModel"
+        "GuardianCardModel"
       ],
       "fields": [
         {
@@ -36,14 +28,8 @@
     {
       "id": "power",
       "markers": [
-        "AutomatonPowerModel",
-        "AwakenedPowerModel",
         "GuardianPowerModel",
-        "DownfallPowerModel",
-        "TemporaryPower",
-        "ChampPowerModel",
-        "CollectorPowerModel",
-        "HexaghostPowerModel"
+        "DownfallPowerModel"
       ],
       "fields": [
         {
@@ -150,7 +136,6 @@
       "id": "relic",
       "markers": [
         "DownfallRelicModel",
-        "CollectorRelicModel",
         "GuardianRelicModel"
       ],
       "fields": [
@@ -188,14 +173,25 @@
           "optional": false
         }
       ]
-    }
-  ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
     },
     {
-      "tag": "blue"
+      "id": "gem",
+      "markers": [
+        "GemModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "gems.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "gems.json",
+          "optional": false
+        }
+      ]
     }
-  ]
+  ],
+  "pinnedColors": []
 }

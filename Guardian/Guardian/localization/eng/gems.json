@@ -22,6 +22,12 @@
   "GUARDIAN-OPAL_GEM.title": "Opal",
   "GUARDIAN-CITRINE_GEM.description": "Gain 1 {energyPrefix:energyIcons(1)}",
   "GUARDIAN-CITRINE_GEM.title": "Citrine",
-  "GUARDIAN-ONYX_GEM.description": "Reduce each of your Debuffs by 1.",
-  "GUARDIAN-ONYX_GEM.title": "Onyx"
+  "GUARDIAN-ONYX_GEM.description": "[gold]Polish[/gold] 1.",
+  "GUARDIAN-ONYX_GEM.title": "Onyx",
+  "GUARDIAN-BISMUTH_GEM.title": "Bismuth",
+  "GUARDIAN-BISMUTH_GEM.description": "Gain 1 [gold]Artifact[/gold].\nThe Socketed card costs 1 more.",
+  "GUARDIAN-DIAMOND_GEM.title": "Diamond.",
+  "GUARDIAN-DIAMOND_GEM.description": "The Socketed card has [gold]Replay[/gold] once per combat.",
+  "GUARDIAN-RUTILE_GEM.title": "Rutile",
+  "GUARDIAN-RUTILE_GEM.description": "Apply 1 [gold]Weak[/gold] to all enemies."
 }

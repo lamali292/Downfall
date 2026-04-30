@@ -154,5 +154,9 @@
   "GUARDIAN-DELAY_FIELD.title": "Delay Field",
   "GUARDIAN-DELAY_FIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Polish[/gold] {Polish:diff()}.",
   "GUARDIAN-SHARP_HIDE.title": "Sharp Hide",
-  "GUARDIAN-SHARP_HIDE.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAt the start of your turn, gain {SharpHidePower:diff()} temp. [gold]Thorns[/gold]."
+  "GUARDIAN-SHARP_HIDE.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAt the start of your turn, gain {SharpHidePower:diff()} temp. [gold]Thorns[/gold].",
+  "GUARDIAN-RECHARGE.title": "Recharge",
+  "GUARDIAN-RECHARGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Brace[/gold] {Brace:diff()}.",
+  "GUARDIAN-SERRATE.title": "Serrate",
+  "GUARDIAN-SERRATE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals additional damage equal to {ExtraDamage:diff()} times your [gold]Thorns[/gold]."
 }
