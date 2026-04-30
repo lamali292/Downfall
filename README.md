@@ -1,3 +1,6 @@
+## Outdated - Jusk ask me when you want to contribute. Setup is quite complicated.
+
+
 # Downfall — Slay the Spire 2
 
 # Dependency
