@@ -1,4 +1,4 @@
-## Outdated - Jusk ask me when you want to contribute. Setup is quite complicated.
+
 
 
 # Downfall — Slay the Spire 2
@@ -6,6 +6,8 @@
 # Dependency
 This mod requires BaseLib-StS2 for better mod compatibility and future update support.
 
+
+## Outdated Setup - Jusk ask me when you want to contribute. Setup is quite complicated.
 ## Setup
 
 ### 1. Download the Repository
