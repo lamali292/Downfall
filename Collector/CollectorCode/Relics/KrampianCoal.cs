@@ -7,7 +7,6 @@ using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -18,9 +17,9 @@ public class KrampianCoal : CollectorRelicModel, IAfterCustomDraw
     {
         WithTip(typeof(LuckyWick));
     }
-     
+
     public override RelicRarity Rarity => RelicRarity.Shop;
-    
+
     public async Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result)
     {
         if (player != Owner || pile != CollectorPile.Collected || result.success) return;

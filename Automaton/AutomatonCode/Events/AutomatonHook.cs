@@ -10,19 +10,15 @@ namespace Automaton.AutomatonCode.Events;
 
 public static class AutomatonHook
 {
- 
-
     public static Task OnCompile(PlayerChoiceContext ctx, ICombatState cs,
         List<AutomatonCardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
     {
         return DownfallHook.Dispatch<IOnCompile>(cs, ctx, m => m.OnCompile(ctx, snapshot, functionCard, cardPlay));
     }
-    
+
 
     public static Task OnCardEncoded(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         return DownfallHook.Dispatch<IOnEncode>(cs, ctx, m => m.OnCardEncoded(ctx, card, cardPlay));
     }
-    
- 
 }

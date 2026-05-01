@@ -18,7 +18,8 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         return $"{UsesThisTurn}";
     }
 
-    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
+    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (silent) return;
@@ -27,7 +28,8 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         if (UsesThisTurn <= Amount) InvokeDisplayAmountChanged();
     }
 
-    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
+    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (silent) return;

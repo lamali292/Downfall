@@ -18,8 +18,10 @@ public class Serrate : GuardianCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
-        => card.Owner.Creature.GetPowerAmount<ThornsPower>();
-    
+    {
+        return card.Owner.Creature.GetPowerAmount<ThornsPower>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

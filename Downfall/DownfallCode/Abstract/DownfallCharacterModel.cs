@@ -24,7 +24,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
     public virtual Color CardColor => new(1, 1, 1);
-    
+
     public override string CustomCharacterSelectBg =>
         $"res://{ModId}/scenes/character/selection_screen.tscn";
 
@@ -78,6 +78,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
+    public override string CharacterSelectSfx => "event:/sfx/characters/ironclad/ironclad_select";
 
     private string EnergyCounterPaths(int i)
     {

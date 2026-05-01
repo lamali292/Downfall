@@ -10,8 +10,6 @@ namespace Champ.ChampCode.Events;
 
 public static class ChampHook
 {
-   
-
     public static Task OnFinisher(ICombatState cs, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return DownfallHook.Dispatch<IOnFinisher>(cs, ctx, m => m.OnFinisher(ctx, cardPlay));
@@ -22,9 +20,10 @@ public static class ChampHook
         ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        return DownfallHook.Dispatch<IOnChampStanceChange>(cs, ctx, m => m.OnChampStanceChange(ctx, player, oldStance, newStance));
+        return DownfallHook.Dispatch<IOnChampStanceChange>(cs, ctx,
+            m => m.OnChampStanceChange(ctx, player, oldStance, newStance));
     }
-    
+
 
     public static int ModifySkillBonus<TPower>(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel
@@ -38,7 +37,7 @@ public static class ChampHook
         return DownfallHook.Aggregate<IModifyCounterStrikeCount, int>(cs, baseAmount,
             (m, current) => m.ModifyCounterStrikeCount(player, current));
     }
-    
+
     public static bool IgnoreChargeCap(ICombatState cs, Player player)
     {
         return DownfallHook.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
@@ -49,8 +48,4 @@ public static class ChampHook
         return DownfallHook.Aggregate<IModifyFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyFinisherBonus(stanceModel, current));
     }
-
-    
-
- 
 }

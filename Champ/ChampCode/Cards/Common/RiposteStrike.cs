@@ -20,6 +20,4 @@ public class RiposteStrike : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
     }
-
-
 }

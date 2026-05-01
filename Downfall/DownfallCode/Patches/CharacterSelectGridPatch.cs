@@ -161,22 +161,23 @@ internal static class CustomRunOnSubmenuOpenedPatch
     [HarmonyTranspiler]
     private static IEnumerable<CodeInstruction> FixGetChild(IEnumerable<CodeInstruction> instructions)
     {
-        var list = instructions.ToList();
-        for (var i = 0; i < list.Count - 2; i++)
-        {
-            if (list[i].opcode != OpCodes.Ldc_I4_0 ||
-                list[i + 1].opcode != OpCodes.Ldc_I4_0 ||
-                list[i + 2].opcode != OpCodes.Callvirt ||
-                list[i + 2].operand is not MethodInfo { Name: nameof(Node.GetChild), IsGenericMethod: true } m ||
-                m.GetGenericArguments()[0] != typeof(NCharacterSelectButton)) continue;
-            list[i] = new CodeInstruction(OpCodes.Call,
-                AccessTools.Method(typeof(CustomRunOnSubmenuOpenedPatch), nameof(GetFirstCharButton)));
-            list.RemoveAt(i + 2);
-            list.RemoveAt(i + 1);
-            break;
-        }
-
-        return list;
+        var getChildMethods = typeof(Node).GetMethods(BindingFlags.Public | BindingFlags.Instance)
+            .Where(m => m.Name == "GetChild" &&
+                        m.IsGenericMethodDefinition &&
+                        m.GetParameters().Length == 2 &&
+                        m.GetParameters()[0].ParameterType == typeof(int) &&
+                        m.GetParameters()[1].ParameterType == typeof(bool))
+            .ToArray();
+        var getChildMethod = getChildMethods[0].MakeGenericMethod(typeof(NCharacterSelectButton));
+        return new CodeMatcher(instructions)
+            .MatchStartForward(
+                new CodeMatch(OpCodes.Ldc_I4_0),
+                new CodeMatch(OpCodes.Ldc_I4_0),
+                new CodeMatch(OpCodes.Callvirt, getChildMethod))
+            .RemoveInstructions(3)
+            .Insert(new CodeInstruction(OpCodes.Call,
+                AccessTools.Method(typeof(CustomRunOnSubmenuOpenedPatch), nameof(GetFirstCharButton))))
+            .InstructionEnumeration();
     }
 
     private static NCharacterSelectButton GetFirstCharButton(Control container)

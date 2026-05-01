@@ -5,6 +5,5 @@ namespace Champ.ChampCode.CustomEnums;
 
 public class ChampKeyword
 {
-    [CustomEnum] 
-    public static CardKeyword TriggerSkillBonus;
+    [CustomEnum] public static CardKeyword TriggerSkillBonus;
 }

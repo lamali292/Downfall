@@ -12,8 +12,10 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class Libra : HexaghostRelicModel, IGhostflameConditionOverwrites
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
+
     public bool GhostflameConditionOverwrites(Player player, GhostflameModel ghostflame, CardPlay cardPlay)
     {
-        return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame && cardPlay.Card.IsBasicStrikeOrDefend;
+        return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame &&
+               cardPlay.Card.IsBasicStrikeOrDefend;
     }
 }

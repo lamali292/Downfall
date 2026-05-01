@@ -14,9 +14,14 @@ public static class DynamicVarsExtension
     {
         return (AccelerateVar)vard._vars[nameof(Accelerate)];
     }
-    
+
     public static PolishVar Polish(this DynamicVarSet vard)
     {
         return (PolishVar)vard._vars[nameof(Polish)];
+    }
+
+    public static GemVar Gem(this DynamicVarSet vard)
+    {
+        return (GemVar)vard._vars[nameof(Gem)];
     }
 }

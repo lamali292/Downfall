@@ -6,6 +6,9 @@
   "version": "v0.0.0",
   "has_pck": true,
   "has_dll": true,
-  "dependencies": ["BaseLib", "Downfall"],
+  "dependencies": [
+    "BaseLib",
+    "Downfall"
+  ],
   "affects_gameplay": true
 }

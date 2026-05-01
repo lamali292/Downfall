@@ -13,7 +13,7 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class MarkOfTheEther : HexaghostRelicModel, IAfterGhostflameIgnited
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
+
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player != Owner) return;

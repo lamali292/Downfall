@@ -9,5 +9,4 @@ public class BolsteringIntent : CustomIntent
 {
     public override IntentType IntentType => IntentType.Debuff;
     protected override string IntentSpritePath => ModelDb.Power<StrengthPower>().PackedIconPath;
-    
 }

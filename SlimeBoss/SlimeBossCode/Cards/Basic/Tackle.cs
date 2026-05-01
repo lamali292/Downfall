@@ -16,6 +16,4 @@ public class Tackle : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

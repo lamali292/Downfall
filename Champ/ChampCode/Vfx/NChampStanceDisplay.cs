@@ -1,6 +1,5 @@
 ﻿// NChampStanceDisplay.cs
 
-using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Godot;

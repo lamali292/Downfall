@@ -9,8 +9,6 @@ namespace Collector.CollectorCode.Events;
 
 public static class CollectorHook
 {
-    
-
     public static int ModifyCollectorDoomDamage(ICombatState cs, Creature creature, int baseAmount)
     {
         return DownfallHook.Aggregate<IModifyCollectorDoomDamage, int>(cs, baseAmount,
@@ -31,7 +29,4 @@ public static class CollectorHook
     {
         return DownfallHook.Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));
     }
-
-  
- 
 }

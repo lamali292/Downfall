@@ -16,6 +16,4 @@ public class CobraCoil : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

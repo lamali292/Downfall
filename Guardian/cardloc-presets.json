@@ -189,9 +189,28 @@
           "name": "description",
           "file": "gems.json",
           "optional": false
+        },
+        {
+          "name": "smartDescription",
+          "file": "gems.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "ghostflame",
+      "markers": [
+        "GhostflameModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "ghostflames.json",
+          "optional": false
         }
       ]
     }
   ],
-  "pinnedColors": []
+  "pinnedColors": [],
+  "customTags": []
 }

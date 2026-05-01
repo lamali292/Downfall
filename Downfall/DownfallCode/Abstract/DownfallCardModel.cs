@@ -30,12 +30,11 @@ public abstract class DownfallCardModel(
         _powerCache.Add(iconKey, power);
         return this;
     }
-    
+
     protected ConstructedCardModel WithRepeat(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
     }
-       
 
 
     protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? action = null)

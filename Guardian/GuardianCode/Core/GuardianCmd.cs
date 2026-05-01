@@ -1,7 +1,6 @@
 using BaseLib.Patches.Content;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
-using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
@@ -152,8 +151,10 @@ public static class GuardianCmd
     {
         if (card is not GuardianCardModel guardianCard) return;
         if (gem is not IGemCard gemCard) return;
-        if (!guardianCard.CanAddGem(gemCard.GemModel)) return;
-        guardianCard.AddGem(gemCard.GemModel);
+        var gemModel = gemCard.GemModel.ToMutable();
+        card.AssertMutable();
+        if (!guardianCard.CanAddGem(gemModel)) return;
+        guardianCard.AddGem(gemModel);
         await CardPileCmd.RemoveFromDeck(gem, false);
         await Cmd.Wait(0.5f);
         if (LocalContext.IsMe(card.Owner))
@@ -180,7 +181,7 @@ public static class GuardianCmd
             }
     }
 
-    public static async Task Brace(PlayerChoiceContext ctx, Player player, int amount)
+    public static async Task Brace(PlayerChoiceContext ctx, Player player, decimal amount)
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
         if (power == null) return;
@@ -248,8 +249,8 @@ public static class GuardianCmd
         await Polish(ctx, card, amount);
     }
 
-    
-    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, int amount)
+
+    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, decimal amount)
     {
         await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
         await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
@@ -259,17 +260,19 @@ public static class GuardianCmd
         {
             var temporaryPower = (ITemporaryPower)power;
             var internalTemporaryPower = card.Owner.Creature.GetPower(temporaryPower.InternallyAppliedPower.Id);
-            if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff ) continue;
+            if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff) continue;
             await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
             if (internalTemporaryPower == null)
-                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), card.Owner.Creature, amount, card.Owner.Creature, card, true);
+                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), card.Owner.Creature,
+                    amount, card.Owner.Creature, card, true);
             else
                 await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, card.Owner.Creature, card, true);
         }
     }
 
-    private static async Task DecrementPower<T>(PlayerChoiceContext ctx, Creature ownerCreature, int amount = 1,  CardModel? source = null)
-    where T : PowerModel
+    private static async Task DecrementPower<T>(PlayerChoiceContext ctx, Creature ownerCreature, decimal amount = 1,
+        CardModel? source = null)
+        where T : PowerModel
     {
         var a = ownerCreature.GetPower<T>();
         if (a is not { Amount: > 0 }) return;

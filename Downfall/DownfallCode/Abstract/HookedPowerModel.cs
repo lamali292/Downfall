@@ -11,7 +11,6 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class HookedPowerModel : CustomPowerModel
 {
-    
     private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
         if (LocalContext.NetId == null)
@@ -24,34 +23,54 @@ public abstract class HookedPowerModel : CustomPowerModel
             GameActionType.Combat);
         await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
     }
+
     public sealed override Task AfterApplied(Creature? applier, CardModel? cardSource)
-        => ExecuteWithContext(ctx => AfterApplied(ctx, applier, cardSource));
+    {
+        return ExecuteWithContext(ctx => AfterApplied(ctx, applier, cardSource));
+    }
 
     protected virtual Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
-        => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 
     public sealed override Task AfterRemoved(Creature oldOwner)
-        => ExecuteWithContext(ctx => AfterRemoved(ctx, oldOwner));
+    {
+        return ExecuteWithContext(ctx => AfterRemoved(ctx, oldOwner));
+    }
 
     protected virtual Task AfterRemoved(PlayerChoiceContext ctx, Creature oldOwner)
-        => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 
     public sealed override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
-        => ExecuteWithContext(ctx => AfterCardGeneratedForCombat(ctx, card, player));
+    {
+        return ExecuteWithContext(ctx => AfterCardGeneratedForCombat(ctx, card, player));
+    }
 
     protected virtual Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
-        => Task.CompletedTask;
-    
+    {
+        return Task.CompletedTask;
+    }
+
     public sealed override Task AfterEnergyReset(Player player)
-        => ExecuteWithContext(ctx => AfterEnergyReset(ctx, player));
+    {
+        return ExecuteWithContext(ctx => AfterEnergyReset(ctx, player));
+    }
 
     protected virtual Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
-        => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 
     public sealed override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
-        => ExecuteWithContext(ctx => AfterSideTurnStart(ctx, side, combatState));
+    {
+        return ExecuteWithContext(ctx => AfterSideTurnStart(ctx, side, combatState));
+    }
 
     protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
-        => Task.CompletedTask;
-
+    {
+        return Task.CompletedTask;
+    }
 }

@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -19,10 +18,13 @@ public class FlareFlick : HexaghostCardModel
     {
         WithKeyword(HexaghostKeyword.Advance, UpgradeType.Remove);
         WithDamage(10, 4);
-        WithTips(c => c.IsUpgraded ? [
-            HoverTipFactory.FromKeyword(HexaghostKeyword.Advance), 
-            HoverTipFactory.FromKeyword(HexaghostKeyword.Retract)
-        ] : []);
+        WithTips(c => c.IsUpgraded
+            ?
+            [
+                HoverTipFactory.FromKeyword(HexaghostKeyword.Advance),
+                HoverTipFactory.FromKeyword(HexaghostKeyword.Retract)
+            ]
+            : []);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -31,25 +33,22 @@ public class FlareFlick : HexaghostCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await HexaghostCmd.Ignite(ctx, Owner);
         if (!IsUpgraded || !cardPlay.Target.IsAlive) return;
-        
+
         var choices = new[] { HexaghostKeyword.Retract, HexaghostKeyword.Advance }
-                .Select(f => FlareFlickChoice.Create(f, Owner))
-                .ToList();
+            .Select(f => FlareFlickChoice.Create(f, Owner))
+            .ToList();
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-        if (chosen is not FlareFlickChoice {Keyword : var keyword } ) return;
+        if (chosen is not FlareFlickChoice { Keyword : var keyword }) return;
         if (keyword == HexaghostKeyword.Advance)
             await HexaghostCmd.Advance(ctx, Owner, this);
         else if (keyword == HexaghostKeyword.Retract)
             await HexaghostCmd.Retract(ctx, Owner, this);
-        
     }
 }
 
-  
 [Pool(typeof(HexaghostChoiceCardPool))]
 public class FlareFlickChoice : HexaghostCardModel
 {
-
     public FlareFlickChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithTips(c => c is FlareFlickChoice { Keyword: var keyword } ? [HoverTipFactory.FromKeyword(keyword)] : []);
@@ -58,18 +57,18 @@ public class FlareFlickChoice : HexaghostCardModel
 
     public CardKeyword Keyword { get; private set; } = CardKeyword.Exhaust;
 
+
+    public override string CustomPortraitPath => ModelDb.Card<FlareFlick>().CustomPortraitPath;
+
     public static FlareFlickChoice Create(CardKeyword flame, Player owner)
     {
         var card = owner.Creature.CombatState!.CreateCard<FlareFlickChoice>(owner);
         card.Keyword = flame;
         return card;
     }
-    
-    
-    
-    public override string CustomPortraitPath => ModelDb.Card<FlareFlick>().CustomPortraitPath;
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        description.Add("Keyword",Keyword.GetTitle() );
+        description.Add("Keyword", Keyword.GetTitle());
     }
 }

@@ -15,15 +15,15 @@ public class GhostShield : HexaghostCardModel
         WithBlock(7, 3);
         WithPower<BlurPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
+        await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
 
     protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
 }

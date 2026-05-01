@@ -16,6 +16,4 @@ public class ShapeOfPuddle : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

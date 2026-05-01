@@ -16,21 +16,8 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    public override RelicModel GetUpgradeReplacement()
-    {
-        return ModelDb.Relic<MarkOfTheEther>();
-    }
-    
-    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
-    {
-        if (side != Owner.Creature.Side ) return Task.CompletedTask;
-        Status = RelicStatus.Active;
-        UsedThisTurn = false;
-        return Task.CompletedTask;
-    }
-    
     private bool UsedThisTurn { get; set; }
-    
+
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player != Owner || UsedThisTurn) return;
@@ -38,5 +25,18 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
         Flash();
         Status = RelicStatus.Normal;
         await CreatureCmd.GainBlock(Owner.Creature, 4, ValueProp.Move | ValueProp.Unpowered, null, true);
+    }
+
+    public override RelicModel GetUpgradeReplacement()
+    {
+        return ModelDb.Relic<MarkOfTheEther>();
+    }
+
+    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    {
+        if (side != Owner.Creature.Side) return Task.CompletedTask;
+        Status = RelicStatus.Active;
+        UsedThisTurn = false;
+        return Task.CompletedTask;
     }
 }

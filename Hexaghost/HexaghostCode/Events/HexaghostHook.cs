@@ -1,6 +1,5 @@
 ﻿using Downfall.DownfallCode.Events;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Ghostflames;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -12,16 +11,15 @@ namespace Hexaghost.HexaghostCode.Events;
 
 public static class HexaghostHook
 {
-    
-
     public static int ModifyGhostflameEffectAdditive(ICombatState cs, Player owner,
         GhostflameModel ghostflameModel)
     {
         return DownfallHook.Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
             (m, current) => current + m.ModifyGhostflameEffectAdditive(owner, ghostflameModel));
     }
-    
-    public static int ModifyGhostflameRepeatAdditive(ICombatState cs, Player owner, GhostflameRepeatType repeatType, GhostflameModel ghostflameModel)
+
+    public static int ModifyGhostflameRepeatAdditive(ICombatState cs, Player owner, GhostflameRepeatType repeatType,
+        GhostflameModel ghostflameModel)
     {
         return DownfallHook.Aggregate<IModifyGhostflameRepeatAdditive, int>(cs, 0,
             (m, current) => current + m.ModifyGhostflameRepeatAdditive(owner, repeatType, ghostflameModel));
@@ -48,22 +46,28 @@ public static class HexaghostHook
 
     public static Task<bool> ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
     {
-        return Task.FromResult(DownfallHook.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
+        return Task.FromResult(
+            DownfallHook.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
     }
 
-    public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel flame, int index)
     {
-        return DownfallHook.Dispatch<IAfterGhostflameIgnited>(cs, ctx, m => m.AfterGhostflameIgnited(ctx, player, flame, index));
+        return DownfallHook.Dispatch<IAfterGhostflameIgnited>(cs, ctx,
+            m => m.AfterGhostflameIgnited(ctx, player, flame, index));
     }
 
-    public static Task AfterGhostwheelAllIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    public static Task AfterGhostwheelAllIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel flame, int index)
     {
-        return DownfallHook.Dispatch<IAfterGhostwheelAllIgnited>(cs, ctx, m => m.AfterGhostwheelAllIgnited(ctx, player, flame, index));
+        return DownfallHook.Dispatch<IAfterGhostwheelAllIgnited>(cs, ctx,
+            m => m.AfterGhostwheelAllIgnited(ctx, player, flame, index));
     }
-    
-    public static bool GhostflameConditionOverwrites(ICombatState cs, Player player, GhostflameModel ghostflame, CardPlay cardPlay)
+
+    public static bool GhostflameConditionOverwrites(ICombatState cs, Player player, GhostflameModel ghostflame,
+        CardPlay cardPlay)
     {
-        return DownfallHook.Any<IGhostflameConditionOverwrites>(cs, m => m.GhostflameConditionOverwrites(player, ghostflame, cardPlay));
+        return DownfallHook.Any<IGhostflameConditionOverwrites>(cs,
+            m => m.GhostflameConditionOverwrites(player, ghostflame, cardPlay));
     }
 }
-

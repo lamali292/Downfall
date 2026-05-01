@@ -19,24 +19,26 @@ public class TimeWarp : HexaghostCardModel, IWheelMoved
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
     }
-    
+
+
+    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+    {
+        if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
+        await CardPileCmd.Add(this, PileType.Hand);
+    }
+
+    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+    {
+        if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
+        await CardPileCmd.Add(this, PileType.Hand);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
-    }
-
-
-    public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
-    {
-        if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
-        await CardPileCmd.Add(this, PileType.Hand);
-    }
-
-    public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
-    {
-        if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
-        await CardPileCmd.Add(this, PileType.Hand);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

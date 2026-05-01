@@ -3,10 +3,8 @@ using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
@@ -20,7 +18,7 @@ public class CrushingGhostflame : GhostflameModel
         () => 3 + Intensity,
         () => 2 + Repeat(GhostflameRepeatType.Damage)
     );
-    
+
     protected override int IgnitionRequirement => 2;
 
     public override FireColor FireColor => FireColor.Pink;
@@ -31,10 +29,10 @@ public class CrushingGhostflame : GhostflameModel
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
-        
+
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
-        
+
         var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
         var damage = 3 + Intensity;
         for (var i = 0; i < hitCount; i++)
@@ -53,7 +51,4 @@ public class CrushingGhostflame : GhostflameModel
         if (!TryProgress()) return;
         await Ignite(ctx);
     }
-    
 }
-
-

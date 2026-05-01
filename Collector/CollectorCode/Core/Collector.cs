@@ -67,13 +67,16 @@ public class Collector : DownfallCharacterModel
 }
 
 public class CollectorRelicPool : DownfallRelicPool<Collector>;
+
 public abstract class CollectorRelicModel : DownfallRelicModel<Collector>;
+
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Collector>(powerType, powerStackType);
-public class CollectorPotionPool : DownfallPotionPool<Collector>;
-public class CollectorCardPool : DownfallCardPool<Collector>;
 
+public class CollectorPotionPool : DownfallPotionPool<Collector>;
+
+public class CollectorCardPool : DownfallCardPool<Collector>;
 
 public class CollectibleCardPool : CustomCardPoolModel
 {

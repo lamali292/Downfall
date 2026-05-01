@@ -13,5 +13,4 @@ public class InfernalFormPower : HexaghostPowerModel
         if (player.Creature != Owner) return;
         await PowerCmd.Apply<IntensityPower>(ctx, Owner, Amount, Owner, null);
     }
-    
 }

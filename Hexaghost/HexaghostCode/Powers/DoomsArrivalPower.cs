@@ -6,7 +6,11 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class DoomsArrivalPower : HexaghostPowerModel
 {
-    public override bool ShouldTakeExtraTurn(Player player) => player.Creature == Owner;
+    public override bool ShouldTakeExtraTurn(Player player)
+    {
+        return player.Creature == Owner;
+    }
+
     public override async Task AfterTakingExtraTurn(Player player)
     {
         Flash();

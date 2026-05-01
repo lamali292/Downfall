@@ -71,13 +71,13 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
             cardPlay.Card.Owner,
             LocalContext.NetId.Value,
             Combat);
-      
+
         var task = HexaghostCmd.Retract(ctx, cardPlay.Card.Owner, cardPlay.Card);
         await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
         //var advance = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Advance);
         //if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner);
     }
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         //var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);

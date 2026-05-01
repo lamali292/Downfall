@@ -10,7 +10,7 @@ public abstract class DownfallCardPool<T> : CustomCardPoolModel
     private static T Character => ModelDb.Character<T>();
     public override string Title => Character.CharId!;
     private static string ModId => Character.ModId!;
-    
+
     public override string BigEnergyIconPath =>
         $"res://{ModId}/images/character/energy_icon.png";
 

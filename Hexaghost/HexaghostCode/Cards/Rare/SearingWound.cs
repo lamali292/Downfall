@@ -16,7 +16,7 @@ public class SearingWound : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -24,7 +24,7 @@ public class SearingWound : HexaghostCardModel
         {
             var amount = enemy.GetPowerAmount<SoulBurnPower>();
             await CreatureCmd.Damage(ctx, enemy, amount,
-                ValueProp.Move | ValueProp.Unpowered | ValueProp.Unblockable, 
+                ValueProp.Move | ValueProp.Unpowered | ValueProp.Unblockable,
                 Owner.Creature, this);
         }
     }

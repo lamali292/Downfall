@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -25,7 +26,7 @@ public class EmeraldTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
-        CollectorEnergy.Gain(player, 1);
+        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
         Flash();
         return Task.CompletedTask;
     }

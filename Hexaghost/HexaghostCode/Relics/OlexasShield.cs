@@ -12,6 +12,7 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class OlexasShield : HexaghostRelicModel, IGhostflameConditionOverwrites
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+
     public bool GhostflameConditionOverwrites(Player player, GhostflameModel ghostflame, CardPlay cardPlay)
     {
         return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame &&

@@ -16,6 +16,4 @@ public class CrystalBoomerang : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

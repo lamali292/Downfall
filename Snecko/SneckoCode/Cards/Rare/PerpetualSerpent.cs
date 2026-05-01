@@ -16,6 +16,4 @@ public class PerpetualSerpent : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

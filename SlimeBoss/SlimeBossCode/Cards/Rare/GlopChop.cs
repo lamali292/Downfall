@@ -16,6 +16,4 @@ public class GlopChop : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

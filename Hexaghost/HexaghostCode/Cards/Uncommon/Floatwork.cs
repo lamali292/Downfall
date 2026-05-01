@@ -16,7 +16,7 @@ public class Floatwork : HexaghostCardModel
         WithPower<DexterityPower>(1);
         WithPower<MetallicizePower>(2, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);

@@ -182,12 +182,18 @@
       "tag": "blue"
     },
     {
-      "hex": "#E087A4",
-      "label": "#E087A4"
+      "tag": "afterlife"
     },
     {
       "hex": "#00B888",
       "label": "#00B888"
+    }
+  ],
+  "customTags": [
+    {
+      "tag": "afterlife",
+      "label": "Afterlife",
+      "color": "#E087A4"
     }
   ]
 }

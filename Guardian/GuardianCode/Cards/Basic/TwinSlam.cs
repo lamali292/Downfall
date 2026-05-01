@@ -15,8 +15,7 @@ public class TwinSlam : GuardianCardModel
         WithDamage(7);
         WithUpgradedCardTip<SecondSlam>((c, g) =>
         {
-            if (g is GuardianCardModel other)
-                c.AddGems(other.Gems);
+            if (g is GuardianCardModel other) c.AddGems(other.Gems.Select(e => e.CreateClone()));
         });
     }
 
@@ -26,11 +25,10 @@ public class TwinSlam : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card =
-            await DownfallCardCmd.GiveCard<SecondSlam>(Owner, PileType.Hand, upgraded: IsUpgraded) as GuardianCardModel;
-        if (card == null) return;
-        card.AddGems(Gems);
+        if (await DownfallCardCmd.GiveCard<SecondSlam>(Owner, PileType.Hand, upgraded: IsUpgraded) is not
+            GuardianCardModel card) return;
+        var gemClones = Gems.Select(originalGem => originalGem.CreateClone()).ToList();
+        card.AddGems(gemClones);
         NCard.FindOnTable(card)?.ReloadOverlay();
-        ;
     }
 }

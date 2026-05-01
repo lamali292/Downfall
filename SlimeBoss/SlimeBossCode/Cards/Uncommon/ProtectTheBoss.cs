@@ -16,6 +16,4 @@ public class ProtectTheBoss : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

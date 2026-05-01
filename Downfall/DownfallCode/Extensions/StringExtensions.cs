@@ -19,14 +19,15 @@ public static class StringExtensions
     public static string CardImageAtlasPath<T>(this string path) where T : DownfallCharacterModel
     {
         var character = ModelDb.Character<T>();
-        var modId     = character.ModId;
+        var modId = character.ModId;
         return Path.Join(modId, "images", "atlases", "card_atlas.sprites", path);
     }
 
-    
-    public static string RestSitePath(this string path)
+
+    public static string RestSitePath<T>(this string path) where T : DownfallCharacterModel
     {
-        return Path.Join(DownfallMainFile.ModId, "images", "ui", "restsite", path);
+        var modId = ModelDb.Character<T>().ModId;
+        return Path.Join(modId, "images", "ui", "restsite", path);
     }
 
 
@@ -54,6 +55,7 @@ public static class StringExtensions
         var modId = ModelDb.Character<T>().ModId;
         return Path.Join(modId, "images", "relics", path);
     }
+
     public static string TresRelicImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         var modId = ModelDb.Character<T>().ModId;

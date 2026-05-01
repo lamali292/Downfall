@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -19,7 +18,7 @@ public class BadOmen : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SelectGhostflame(ctx, Owner);
@@ -31,23 +30,24 @@ public class BadOmen : HexaghostCardModel
             .Select(f => BadOmenChoice.Create(f, owner))
             .ToList();
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, owner);
-        if (chosen is not BadOmenChoice {GhostflameModel : {} ghostflame} ) return;
+        if (chosen is not BadOmenChoice { GhostflameModel : { } ghostflame }) return;
         HexaghostCmd.SetCurrentGhostflame(owner, ghostflame);
     }
 }
 
-
 [Pool(typeof(HexaghostChoiceCardPool))]
 public class BadOmenChoice : HexaghostCardModel
 {
-
     public BadOmenChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithTips(c => c is BadOmenChoice { GhostflameModel: { } ghostflameModel } ? [ghostflameModel.HoverTip] : []);
     }
-    
-    
+
+
     public GhostflameModel? GhostflameModel { get; private set; }
+
+
+    public override string CustomPortraitPath => ModelDb.Card<BadOmen>().CustomPortraitPath;
 
     public static BadOmenChoice Create(GhostflameModel flame, Player owner)
     {
@@ -55,10 +55,7 @@ public class BadOmenChoice : HexaghostCardModel
         card.GhostflameModel = flame;
         return card;
     }
-    
-    
-    
-    public override string CustomPortraitPath => ModelDb.Card<BadOmen>().CustomPortraitPath;
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
         description.Add("Ghostflame", GhostflameModel?.Title ?? HexaghostModelDb.Ghostflame<InfernoGhostflame>().Title);

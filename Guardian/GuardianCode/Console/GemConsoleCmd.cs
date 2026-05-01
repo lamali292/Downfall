@@ -46,7 +46,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
             return new CmdResult(false, $"Card at index {handIndex} is not a Guardian card!");
 
         var gemName = args[1].ToUpperInvariant();
-        var gem = GuardianModelDb.AllGems.FirstOrDefault(g => g.Id.Entry == gemName);
+        var gem = GuardianModelDb.AllGems.FirstOrDefault(g => g.Id.Entry == gemName)?.ToMutable();
 
         if (gem == null)
             return new CmdResult(false, $"Gem '{gemName}' not found.");
@@ -56,6 +56,8 @@ public class GemConsoleCmd : AbstractConsoleCmd
                 $"Card {guardianCard.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
 
         guardianCard.AddGem(gem);
+        GuardianMainFile.Logger.Info($"Added gem to card: {guardianCard.Title} ({guardianCard.GetHashCode()})");
+        GuardianMainFile.Logger.Info($"Gem's card reference: {gem.Card?.Title} ({gem.Card?.GetHashCode()})");
         var a = NCard.FindOnTable(card);
         a?.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
         a?.ReloadOverlay();

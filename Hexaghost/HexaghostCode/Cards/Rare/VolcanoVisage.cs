@@ -13,11 +13,9 @@ public class VolcanoVisage : HexaghostCardModel
     {
         WithPower<VolcanoVisagePower>(5, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<VolcanoVisagePower>(ctx, this);
     }
-
-
 }

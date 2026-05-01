@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -34,7 +33,7 @@ public static class HexaghostCmd
     {
         return GetWheel(player).Count(f => f.IsIgnited);
     }
-    
+
     public static bool AllIgnited(Player player)
     {
         return GetWheel(player).All(f => f.IsIgnited);
@@ -56,15 +55,16 @@ public static class HexaghostCmd
     public static async Task Advance(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
     {
         await MoveTo(player, GetNextIndex(player));
-        await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
+        await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source,
+            GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
-        
     }
 
     public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
     {
         await MoveTo(player, GetPreviousIndex(player));
-        await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source, GetCurrentFlame(player),
+        await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source,
+            GetCurrentFlame(player),
             GetCurrentIndex(player), silent);
     }
 
@@ -122,21 +122,27 @@ public static class HexaghostCmd
     }
 
     public static Task IgnitePrevious(PlayerChoiceContext ctx, Player player)
-        => IgniteAt(ctx, player, GetPreviousIndex(player));
+    {
+        return IgniteAt(ctx, player, GetPreviousIndex(player));
+    }
 
     public static Task IgniteNext(PlayerChoiceContext ctx, Player player)
-        => IgniteAt(ctx, player, GetNextIndex(player));
-    
+    {
+        return IgniteAt(ctx, player, GetNextIndex(player));
+    }
+
     public static Task Ignite(PlayerChoiceContext ctx, Player player)
-        => IgniteAt(ctx, player, GetCurrentIndex(player));
-    
+    {
+        return IgniteAt(ctx, player, GetCurrentIndex(player));
+    }
+
     public static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
     {
         await Cmd.Wait(0.05f);
         var flame = GetWheel(player)[index];
         if (!flame.IsIgnited)
             flame.IsIgnited = true;
-        
+
         flame.SetIgniteProgress();
         HexaghostVisualsBridge.Refresh(player);
         await flame.OnIgnite(ctx);
@@ -150,21 +156,15 @@ public static class HexaghostCmd
             HexaghostVisualsBridge.Refresh(player);
         }
     }
-    
-    
- 
-    
+
+
     public static async Task IgniteAll(PlayerChoiceContext ctx, Player player)
     {
         var wheel = GetWheel(player);
         var start = GetCurrentIndex(player);
-        for (var i = 0; i < wheel.Length; i++)
-        {
-            await IgniteAt(ctx, player, (start + i) % wheel.Length);
-        }
-            
+        for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, (start + i) % wheel.Length);
     }
-    
+
     public static Task Extinguish(Player player, bool silent = false)
     {
         GetCurrentFlame(player).Extinguish();

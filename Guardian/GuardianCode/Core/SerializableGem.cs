@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Guardian.GuardianCode.Cards;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Core;
@@ -16,8 +17,11 @@ public class SerializableGem
         };
     }
 
-    public GemModel ToGem()
+    public GemModel ToGem(GuardianCardModel? owner = null)
     {
-        return ModelDb.GetById<GemModel>(ModelId.Deserialize(Id));
+        var gem = ModelDb.GetById<GemModel>(ModelId.Deserialize(Id));
+        if (owner != null)
+            gem.SetCard(owner);
+        return gem;
     }
 }

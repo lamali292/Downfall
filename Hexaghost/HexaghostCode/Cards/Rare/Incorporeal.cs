@@ -20,12 +20,10 @@ public class Incorporeal : HexaghostCardModel
         WithPower<IntangiblePower>(1);
         WithKeywords(CardKeyword.Exhaust, HexaghostKeyword.Retract);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(Owner.Creature).Execute(ctx);
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);
     }
-
-
 }

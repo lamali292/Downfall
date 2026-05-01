@@ -13,7 +13,7 @@ public class NightmareVision : HexaghostCardModel
     {
         WithPower<NightmareVisionPower>(4, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<NightmareVisionPower>(ctx, this);

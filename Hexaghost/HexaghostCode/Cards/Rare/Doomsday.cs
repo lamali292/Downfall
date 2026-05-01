@@ -14,11 +14,9 @@ public class Doomsday : HexaghostCardModel
         WithPower<DoomsdayPower>(1);
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DoomsdayPower>(ctx, this);
     }
-
-
 }

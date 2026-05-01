@@ -5,6 +5,7 @@ namespace Guardian.GuardianCode.Core;
 public static class GuardianModelDb
 {
     private static IEnumerable<GemModel>? _allGems;
+
     public static IEnumerable<GemModel> AllGems
     {
         get
@@ -17,7 +18,7 @@ public static class GuardianModelDb
                 .ToList();
         }
     }
-    
+
     public static T GuardianMode<T>() where T : GuardianModeModel
     {
         return ModelDb.Get<T>();
@@ -27,5 +28,4 @@ public static class GuardianModelDb
     {
         return ModelDb.Get<T>();
     }
-
 }

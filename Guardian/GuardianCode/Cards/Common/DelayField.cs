@@ -13,7 +13,7 @@ public class DelayField : GuardianCardModel
         WithBlock(12, 4);
         WithPolish(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

@@ -8,12 +8,12 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class CustomStaticTip
 {
-    private readonly string _prefix;
     private readonly string _name;
+    private readonly string _prefix;
 
     protected CustomStaticTip(string name)
     {
-        _prefix = GetType().GetPrefix(); 
+        _prefix = GetType().GetPrefix();
         _name = name;
     }
 
@@ -30,13 +30,22 @@ public abstract class CustomStaticTip
     }
 
     public static implicit operator TooltipSource(CustomStaticTip tip)
-        => new(_ => tip.ToHoverTip());
+    {
+        return new TooltipSource(_ => tip.ToHoverTip());
+    }
 
-    public AbstractTooltipSource<T> AsAbstract<T>() where T : AbstractModel => new(_ => ToHoverTip());
-    
+    public AbstractTooltipSource<T> AsAbstract<T>() where T : AbstractModel
+    {
+        return new AbstractTooltipSource<T>(_ => ToHoverTip());
+    }
+
     public static implicit operator AbstractTooltipSource<PowerModel>(CustomStaticTip tip)
-        => tip.AsAbstract<PowerModel>();
+    {
+        return tip.AsAbstract<PowerModel>();
+    }
 
     public static implicit operator AbstractTooltipSource<RelicModel>(CustomStaticTip tip)
-        => tip.AsAbstract<RelicModel>();
+    {
+        return tip.AsAbstract<RelicModel>();
+    }
 }

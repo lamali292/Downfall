@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hexaghost.HexaghostCode.Relics;
 
@@ -20,20 +19,12 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
     }
-    
-    
+
+
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
-    {
-        if (side != Owner.Creature.Side ) return Task.CompletedTask;
-        Status = RelicStatus.Active;
-        UsedThisTurn = false;
-        return Task.CompletedTask;
-    }
-    
     private bool UsedThisTurn { get; set; }
-    
+
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player != Owner || UsedThisTurn) return;
@@ -44,10 +35,18 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
             .Select(f => FlareFlickChoice.Create(f, Owner))
             .ToList();
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-        if (chosen is not FlareFlickChoice {Keyword : var keyword } ) return;
+        if (chosen is not FlareFlickChoice { Keyword : var keyword }) return;
         if (keyword == HexaghostKeyword.Advance)
             await HexaghostCmd.Advance(ctx, Owner, this);
         else if (keyword == HexaghostKeyword.Retract)
             await HexaghostCmd.Retract(ctx, Owner, this);
+    }
+
+    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    {
+        if (side != Owner.Creature.Side) return Task.CompletedTask;
+        Status = RelicStatus.Active;
+        UsedThisTurn = false;
+        return Task.CompletedTask;
     }
 }

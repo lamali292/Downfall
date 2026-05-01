@@ -55,12 +55,17 @@ public class Hexaghost : DownfallCharacterModel
 }
 
 public class HexaghostRelicPool : DownfallRelicPool<Hexaghost>;
+
 public abstract class HexaghostRelicModel : DownfallRelicModel<Hexaghost>;
+
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hexaghost>(powerType, powerStackType);
+
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
+
 public class HexaghostCardPool : DownfallCardPool<Hexaghost>;
+
 public class HexaghostChoiceCardPool : DownfallCardPool<Hexaghost>
 {
     public override bool IsShared => true;

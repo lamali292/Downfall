@@ -16,6 +16,4 @@ public class ComboTackle : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

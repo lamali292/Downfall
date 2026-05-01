@@ -82,9 +82,13 @@ public class Snecko : DownfallCharacterModel
 }
 
 public class SneckoRelicPool : DownfallRelicPool<Snecko>;
+
 public abstract class SneckoRelicModel : DownfallRelicModel<Snecko>;
+
 public abstract class SneckoPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Snecko>(powerType, powerStackType);
+
 public class SneckoPotionPool : DownfallPotionPool<Snecko>;
+
 public class SneckoCardPool : DownfallCardPool<Snecko>;

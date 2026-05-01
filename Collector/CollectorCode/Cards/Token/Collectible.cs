@@ -51,35 +51,6 @@ public abstract class Collectible<T>(
         return container;
     }
 
-    public void S(NCreatureVisuals visuals, MonsterModel monster)
-    {
-       
-            if (visuals.SpineBody != null)
-                monster.GenerateAnimator(visuals.SpineBody);
-
-            foreach (var node in visuals.GetChildrenRecursive<Control>())
-                node.MouseFilter = Control.MouseFilterEnum.Ignore;
-
-            // --- YOUR CUSTOM VALUES ---
-            var boundsSize = visuals.Bounds.Size;
-            var boundsPos = visuals.Bounds.Position;
-            const float portraitW = 250f;
-            const float portraitH = 190f;
-            const float portraitCenterX = 0f;
-            const float portraitBottom = 0; //22f;
-            const float fitScale = 0.6f;
-            const float verticalPadding = (1.0f - fitScale) / 2.0f;
-
-            var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
-            visuals.Scale = Vector2.One * scale;
-
-            visuals.Position = new Vector2(
-                portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
-                portraitBottom - boundsSize.Y * scale * verticalPadding
-            );
-        
-    }
-
     public string OverlayNodeName => "DownfallMonsterOverlay";
 
     public MonsterModel GetMonsterModel()
@@ -90,4 +61,31 @@ public abstract class Collectible<T>(
     public float HueShift => h;
     public float Saturation => s;
     public float Value => v;
+
+    public void S(NCreatureVisuals visuals, MonsterModel monster)
+    {
+        if (visuals.SpineBody != null)
+            monster.GenerateAnimator(visuals.SpineBody);
+
+        foreach (var node in visuals.GetChildrenRecursive<Control>())
+            node.MouseFilter = Control.MouseFilterEnum.Ignore;
+
+        // --- YOUR CUSTOM VALUES ---
+        var boundsSize = visuals.Bounds.Size;
+        var boundsPos = visuals.Bounds.Position;
+        const float portraitW = 250f;
+        const float portraitH = 190f;
+        const float portraitCenterX = 0f;
+        const float portraitBottom = 0; //22f;
+        const float fitScale = 0.6f;
+        const float verticalPadding = (1.0f - fitScale) / 2.0f;
+
+        var scale = Math.Min(portraitW / boundsSize.X, portraitH / boundsSize.Y) * fitScale;
+        visuals.Scale = Vector2.One * scale;
+
+        visuals.Position = new Vector2(
+            portraitCenterX - (boundsPos.X + boundsSize.X * 0.5f) * scale,
+            portraitBottom - boundsSize.Y * scale * verticalPadding
+        );
+    }
 }

@@ -20,7 +20,7 @@ public static class HexaghostVisualsBridge
         var index = HexaghostCmd.GetCurrentIndex(player);
         visuals.RefreshWheel(wheel, index, player);
     }
-    
+
     public static void RefreshCurrentIntent(Player player)
     {
         var visuals = GetVisuals(player);

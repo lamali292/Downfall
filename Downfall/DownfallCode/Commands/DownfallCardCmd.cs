@@ -54,7 +54,7 @@ public class DownfallCardCmd
 
     public static async Task<IEnumerable<CardModel>> GiveCards<T>(Player player,
         PileType pileType,
-        int count,
+        decimal count,
         CardPilePosition position = CardPilePosition.Bottom,
         bool upgraded = false,
         float animationTime = 0.6f,
@@ -154,8 +154,9 @@ public class DownfallCardCmd
         for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
         return result;
     }
-    
-    public static async Task SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card,PileType fromPile, PileType toPile)
+
+    public static async Task SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
+        PileType toPile)
     {
         var cards = fromPile.GetPile(card.Owner).Cards.ToList();
         if (cards.Count == 0) return;
@@ -170,6 +171,7 @@ public class DownfallCardCmd
             var prefs = new CardSelectorPrefs(card.SelectionScreenPrompt, want, want);
             newCard = await CardSelectCmd.FromSimpleGrid(ctx, cards, card.Owner, prefs);
         }
+
         await CardPileCmd.Add(newCard, toPile);
     }
 }

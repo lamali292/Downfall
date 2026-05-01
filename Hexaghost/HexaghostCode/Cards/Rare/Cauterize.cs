@@ -14,12 +14,12 @@ public class Cauterize : HexaghostCardModel
         WithDamage(6, 2);
         WithTip(typeof(SoulBurnPower));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-           var attack = await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
-           var amount = attack.Results.Sum(e => e.TotalDamage);
-           await CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Target, this, amount);
+        var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var amount = attack.Results.Sum(e => e.TotalDamage);
+        await CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Target, this, amount);
     }
 }

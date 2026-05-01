@@ -8,7 +8,8 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class NightmareVisionPower : HexaghostPowerModel
 {
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+        bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner || !causedByEthereal) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);

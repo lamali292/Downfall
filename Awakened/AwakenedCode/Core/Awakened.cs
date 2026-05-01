@@ -85,9 +85,13 @@ public class Awakened : DownfallCharacterModel
 }
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;
+
 public abstract class AwakenedRelicModel : DownfallRelicModel<Awakened>;
+
 public abstract class AwakenedPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Awakened>(powerType, powerStackType);
+
 public class AwakenedPotionPool : DownfallPotionPool<Awakened>;
+
 public class AwakenedCardPool : DownfallCardPool<Awakened>;

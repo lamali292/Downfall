@@ -6,8 +6,6 @@ using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 
 namespace Hexaghost.HexaghostCode.Ghostflames.Intents;
 
-
-
 public class MultiStatusIntent<T>(Func<int> amount, int repeat) : CustomIntent
     where T : PowerModel
 {

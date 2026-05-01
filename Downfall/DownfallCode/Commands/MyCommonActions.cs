@@ -30,7 +30,7 @@ public static class MyCommonActions
         if (card.CombatState == null) return;
         await CommonActions.Apply<T>(ctx, card.CombatState.HittableEnemies, card);
     }
-    
+
 
     public static async Task ApplyToRandomEnemy<T>(PlayerChoiceContext ctx, CardModel card) where T : PowerModel
     {

@@ -5,8 +5,10 @@ using Downfall.DownfallCode.Nodes;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
 
@@ -15,8 +17,8 @@ public partial class DownfallMainFile : Node
 {
     public const string ModId = "Downfall"; //At the moment, this is used only for the Logger and harmony names.
 
-    public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
-        new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
+    public static Logger Logger { get; } =
+        new(ModId, LogType.Generic);
 
     public static void Initialize()
     {

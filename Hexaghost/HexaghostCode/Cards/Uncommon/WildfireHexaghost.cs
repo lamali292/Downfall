@@ -18,5 +18,4 @@ public class WildfireHexaghost : HexaghostCardModel
     {
         await CommonActions.ApplySelf<WildfirePower>(ctx, this);
     }
-    
 }

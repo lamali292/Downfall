@@ -16,11 +16,9 @@ public class Rewind : HexaghostCardModel
         WithCards(1, 1);
         WithKeyword(HexaghostKeyword.Retract);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.SelectCardToMovePiles(ctx, this, PileType.Discard, PileType.Hand);
     }
-
-  
 }

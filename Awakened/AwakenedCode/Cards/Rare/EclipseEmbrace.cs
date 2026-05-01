@@ -24,5 +24,4 @@ public class EclipseEmbrace : AwakenedCardModel
     {
         await CommonActions.ApplySelf<EclipseEmbracePower>(ctx, this);
     }
-    
 }

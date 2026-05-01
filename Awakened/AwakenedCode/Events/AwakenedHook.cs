@@ -9,7 +9,6 @@ namespace Awakened.AwakenedCode.Events;
 
 public static class AwakenedHook
 {
-   
     public static Task OnDrained(ICombatState cs, PlayerChoiceContext ctx, Player player, int amount)
     {
         return DownfallHook.Dispatch<IOnDrained>(cs, ctx, m => m.OnDrained(ctx, player, amount));
@@ -20,12 +19,9 @@ public static class AwakenedHook
     {
         return DownfallHook.Dispatch<IOnChant>(cs, ctx, m => m.OnCardChanted(card, ctx, cardPlay));
     }
-    
+
     public static Task OnAwaken(ICombatState cs, PlayerChoiceContext ctx, Player player)
     {
         return DownfallHook.Dispatch<IOnAwaken>(cs, ctx, m => m.OnAwaken(ctx, player));
     }
-
-
- 
 }

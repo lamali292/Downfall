@@ -20,7 +20,7 @@
     <PropertyGroup>
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
-    
+
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(Configuration)' == 'Debug'">
         <Optimize>false</Optimize>
         <DebugType>portable</DebugType>

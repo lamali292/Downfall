@@ -11,36 +11,49 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmount
 {
-    protected override object InitInternalData() => new Data();
-
-    public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent) => Task.CompletedTask;
-
     private int FreeCards
     {
         get => GetInternalData<Data>().FreeCards;
-        set {
+        set
+        {
             GetInternalData<Data>().FreeCards = value;
             if (Amount > 1) InvokeDisplayAmountChanged();
         }
     }
-    
+
     private CardModel? CardSource
     {
         get => GetInternalData<Data>().Source;
         set => GetInternalData<Data>().Source = value;
     }
 
-    
-    
-    
-    public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
+    public string GetSecondAmount()
+    {
+        return Amount > 1 && FreeCards > 0 ? $"{FreeCards}" : string.Empty;
+    }
+
+    public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+    {
+        return Task.CompletedTask;
+    }
+
+
+    public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
         if (Owner != player.Creature) return Task.CompletedTask;
-        FreeCards+=Amount;
+        FreeCards += Amount;
         return Task.CompletedTask;
     }
+
+    protected override object InitInternalData()
+    {
+        return new Data();
+    }
+
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
@@ -70,7 +83,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
         if (CardSource != cardPlay.Card) return;
         await CardCmd.Exhaust(ctx, cardPlay.Card);
     }
-    
+
 
     private bool ShouldSkip(CardModel card)
     {
@@ -84,10 +97,5 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
     {
         public int FreeCards;
         public CardModel? Source;
-    }
-
-    public string GetSecondAmount()
-    {
-        return Amount > 1 && FreeCards > 0 ? $"{FreeCards}" : string.Empty;
     }
 }

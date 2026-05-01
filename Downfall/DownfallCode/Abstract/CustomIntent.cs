@@ -34,13 +34,13 @@ public abstract class CustomIntent : AbstractIntent, ICustomModel
 }
 
 [HarmonyPatch(typeof(NIntent), nameof(NIntent.UpdateVisuals))]
-static class CustomIntentLabelPatch
+internal static class CustomIntentLabelPatch
 {
-    static void Postfix(NIntent __instance)
+    private static void Postfix(NIntent __instance)
     {
         if (__instance._intent is not CustomIntent custom)
             return;
-        
+
         __instance._valueLabel.Text = custom.GetIntentLabel(__instance._targets, __instance._owner)
             .GetFormattedText();
     }

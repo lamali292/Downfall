@@ -23,7 +23,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 
     public override string OptionId => "DOWNFALL-GEM";
 
-    public override string CustomIconPath => "rest_site_option_gem.png".RestSitePath();
+    public override string CustomIconPath => "rest_site_option_gem.png".RestSitePath<Core.Guardian>();
 
     public override async Task<bool> OnSelect()
     {

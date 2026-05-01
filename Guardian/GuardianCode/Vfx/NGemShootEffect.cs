@@ -1,6 +1,5 @@
 using Godot;
 using Guardian.GuardianCode.Core;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Commands;
 
 namespace Guardian.GuardianCode.Vfx;
@@ -30,7 +29,7 @@ public partial class NGemShootEffect : Node2D
     {
         if (_gem == null) return;
         _sprite = new Sprite2D();
-        _sprite.Texture = PreloadManager.Cache.GetAsset<Texture2D>(_gem.IconPath);
+        _sprite.Texture = _gem.Icon;
         _sprite.Scale = new Vector2(0.5f, 0.5f);
         AddChild(_sprite);
 

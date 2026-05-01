@@ -1,22 +1,21 @@
 ﻿using Godot;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Hexaghost.HexaghostCode.Vfx;
 
 public partial class NFireballEffect : Node2D
 {
-    private Vector2 _from;
-    private Vector2 _control;
-    private Vector2 _target;
-    private FireballTrail? _trail;
-    private CpuParticles2D? _fire;
-    private CpuParticles2D? _sparks;
+    private bool _arrived;
     private Color _color;
+    private Vector2 _control;
 
     private float _duration = 0.5f;
-    private float _elapsed = 0f;
-    private bool _arrived = false;
+    private float _elapsed;
+    private CpuParticles2D? _fire;
+    private Vector2 _from;
+    private CpuParticles2D? _sparks;
+    private Vector2 _target;
+    private FireballTrail? _trail;
 
     public static NFireballEffect Create(Vector2 from, Vector2 target, Color fireColor)
     {
@@ -34,7 +33,7 @@ public partial class NFireballEffect : Node2D
     public override void _Ready()
     {
         GlobalPosition = _from;
-        
+
         var gradient = new Gradient();
         gradient.SetColor(0, _color with { A = 1f });
         gradient.SetColor(1, _color with { A = 0f });
@@ -49,10 +48,10 @@ public partial class NFireballEffect : Node2D
         fireMaterial.ParticlesAnimHFrames = 4;
         fireMaterial.ParticlesAnimVFrames = 1;
         fireMaterial.ParticlesAnimLoop = false;
-        
+
         _fire = new CpuParticles2D();
         _fire.Material = fireMaterial;
-        _fire.AnimOffsetMax = 1f; 
+        _fire.AnimOffsetMax = 1f;
         _fire.Amount = 10;
         _fire.Lifetime = 0.3f;
         _fire.SpeedScale = 2f;
@@ -93,10 +92,9 @@ public partial class NFireballEffect : Node2D
         _trail.Parent = this;
         _trail.Color = _color;
         AddChild(_trail);
-        
     }
 
-    
+
     public override void _Process(double delta)
     {
         if (_arrived) return;

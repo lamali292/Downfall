@@ -107,7 +107,7 @@
   "GUARDIAN-SHIELD_SPIKES.title": "Shield Spikes",
   "GUARDIAN-SPEED_BOOST.description": "[gold]Accelerate[/gold] {Accelerate:diff()} times. ",
   "GUARDIAN-SPEED_BOOST.title": "Speed Boost",
-  "GUARDIAN-SPHERIC_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nEnter [gold]Defensive Mode[/gold].",
+  "GUARDIAN-SPHERIC_SHIELD.description": "[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-SPHERIC_SHIELD.title": "Spheric Shield",
   "GUARDIAN-SPIKER_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], gain {SpikerProtocolPower:diff()} Thorns.\n[gold]Brace [/gold]{Brace:diff()}.",
   "GUARDIAN-SPIKER_PROTOCOL.title": "Spiker Protocol",
@@ -158,5 +158,7 @@
   "GUARDIAN-RECHARGE.title": "Recharge",
   "GUARDIAN-RECHARGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-SERRATE.title": "Serrate",
-  "GUARDIAN-SERRATE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals additional damage equal to {ExtraDamage:diff()} times your [gold]Thorns[/gold]."
+  "GUARDIAN-SERRATE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals additional damage equal to {ExtraDamage:diff()} times your [gold]Thorns[/gold].",
+  "GUARDIAN-TEMPORAL_REFRACTION.title": "Temporal Refraction",
+  "GUARDIAN-TEMPORAL_REFRACTION.description": "Double the first [gold]Gem[/gold] effect you activate each turn."
 }

@@ -10,4 +10,3 @@ public class GuardianTip(string name) : CustomStaticTip(name)
     public static readonly GuardianTip Tick = new(nameof(Tick));
     public static readonly GuardianTip Polish = new(nameof(Polish));
 }
-

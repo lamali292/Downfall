@@ -16,14 +16,14 @@ public class UnfetteredForm : HexaghostCardModel
             ? HoverTipFactory.FromPower<UnfetteredFormPlusPower>()
             : HoverTipFactory.FromPower<UnfetteredFormPower>()));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await CommonActions.ApplySelf<UnfetteredFormPlusPower>(ctx, this, 1);
         else
             await CommonActions.ApplySelf<UnfetteredFormPower>(ctx, this, 1);
-        
+
         HexaghostVisualsBridge.RefreshCurrentIntent(Owner);
     }
 }

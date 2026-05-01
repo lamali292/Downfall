@@ -123,9 +123,13 @@ public class Champ : DownfallCharacterModel
 }
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;
+
 public abstract class ChampRelicModel : DownfallRelicModel<Champ>;
+
 public abstract class ChampPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Champ>(powerType, powerStackType);
+
 public class ChampPotionPool : DownfallPotionPool<Champ>;
+
 public class ChampCardPool : DownfallCardPool<Champ>;

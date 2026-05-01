@@ -11,7 +11,8 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class GiftsFromBeyondPower : HexaghostPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+        ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         var cards = player.Character.CardPool

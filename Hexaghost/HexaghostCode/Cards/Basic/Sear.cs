@@ -20,6 +20,11 @@ public class Sear : HexaghostCardModel, ITranscendenceCard
         WithPower<SoulBurnPower>(5, 2);
     }
 
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Apocryphra>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -29,10 +34,5 @@ public class Sear : HexaghostCardModel, ITranscendenceCard
     protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
-    }
-
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<Apocryphra>();
     }
 }

@@ -6,7 +6,7 @@ public static class HexaghostModelDb
 {
     private static IEnumerable<GhostflameModel>? _allGhostflames;
 
-  
+
     public static IEnumerable<GhostflameModel> AllGhostflames
     {
         get
@@ -19,7 +19,7 @@ public static class HexaghostModelDb
                 .ToList();
         }
     }
-    
+
     public static T Ghostflame<T>() where T : GhostflameModel
     {
         return ModelDb.Get<T>();

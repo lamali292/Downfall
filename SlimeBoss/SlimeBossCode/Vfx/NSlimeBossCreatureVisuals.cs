@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace SlimeBoss.SlimeBossCode.Vfx;
 
 [GlobalClass]
-public partial class NSlimeBossCreatureVisuals: NCreatureVisuals
+public partial class NSlimeBossCreatureVisuals : NCreatureVisuals
 {
     public override void _Ready()
     {

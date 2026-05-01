@@ -50,8 +50,7 @@ public static class CardDescriptionPatch
 
         var joinMethod = typeof(string)
             .GetMethods()
-            .First(m => m.Name == nameof(string.Join)
-                        && m.IsGenericMethod
+            .First(m => m is { Name: nameof(string.Join), IsGenericMethod: true }
                         && m.GetParameters().Length == 2
                         && m.GetParameters()[0].ParameterType == typeof(char));
 
@@ -157,4 +156,3 @@ public static class SetCardContextPatch
         GetCardTextPatch.CurrentCard = null;
     }
 }
-

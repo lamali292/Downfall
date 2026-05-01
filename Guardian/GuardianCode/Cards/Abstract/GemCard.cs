@@ -50,19 +50,37 @@ public class Onyx : GemCard<OnyxGem>;
 [Pool(typeof(GuardianCardPool))]
 public class Rutile : GemCard<RutileGem>
 {
+    public Rutile()
+    {
+        WithKeyword(CardKeyword.Unplayable);
+    }
+
     protected override bool IsPlayable => false;
+    protected override int CanonicalEnergyCost => -1;
 }
 
 [Pool(typeof(GuardianCardPool))]
 public class Diamond : GemCard<DiamondGem>
 {
+    public Diamond()
+    {
+        WithKeyword(CardKeyword.Unplayable);
+    }
+
     protected override bool IsPlayable => false;
+    protected override int CanonicalEnergyCost => -1;
 }
 
 [Pool(typeof(GuardianCardPool))]
 public class Bismuth : GemCard<BismuthGem>
 {
+    public Bismuth()
+    {
+        WithKeyword(CardKeyword.Unplayable);
+    }
+
     protected override bool IsPlayable => false;
+    protected override int CanonicalEnergyCost => -1;
 }
 
 #pragma warning restore STS001
@@ -70,9 +88,11 @@ public class Bismuth : GemCard<BismuthGem>
 public abstract class GemCard<T> : GuardianCardModel, IGemCard
     where T : GemModel
 {
+    private GemModel? _mutableGem;
+
     protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.None)
     {
-        _titleLocString = GuardianModelDb.Gem<T>().TitleLocString;
+        _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);
         foreach (var extraHoverTip in GuardianModelDb.Gem<T>().ExtraHoverTips)
             WithTip(new TooltipSource(_ => extraHoverTip));
@@ -82,7 +102,17 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
 
     public override int MaxUpgradeLevel => 0;
 
-    public GemModel GemModel => GuardianModelDb.Gem<T>();
+    public GemModel GemModel
+    {
+        get
+        {
+            if (_mutableGem != null) return _mutableGem;
+            _mutableGem = GuardianModelDb.Gem<T>().ToMutable();
+            _mutableGem.SetCard(this);
+            return _mutableGem;
+        }
+    }
+
     public LocString GemDescription => GuardianModelDb.Gem<T>().Description;
 
     protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -7,9 +7,11 @@ namespace Hexaghost.HexaghostCode.Events;
 
 public interface IWheelMoved
 {
-    Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame, int ghostflameIndex,
+    Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
+        int ghostflameIndex,
         bool silent);
 
-    Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame, int ghostflameIndex,
+    Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
+        int ghostflameIndex,
         bool silent);
 }

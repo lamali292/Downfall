@@ -15,7 +15,7 @@ public class HereAndNow : HexaghostCardModel
         WithPower<MoreEnergyPower>(1);
         WithPower<HereAndNowPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoreEnergyPower>(ctx, this);

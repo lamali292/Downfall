@@ -9,6 +9,7 @@ namespace Hexaghost.HexaghostCode.Vfx;
 [GlobalClass]
 public partial class NHexaghostVisuals : Node2D
 {
+    private GhostflameModel[]? _currentWheel;
     private NFire? _fire1;
     private NFire? _fire2;
     private NFire? _fire3;
@@ -16,13 +17,16 @@ public partial class NHexaghostVisuals : Node2D
     private NFire? _fire5;
     private NFire? _fire6;
     private Control? _fireNode;
+    private Node2D?[] _hitboxAnchors = [];
+    private NIntent?[] _intents = [];
+
+    private Tween? _intentTween;
     private AnimationNodeStateMachinePlayback? _playback;
+    private Player? _player;
 
     private Tween? _positionTween;
     private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
-    private NIntent?[] _intents = [];
-    private Node2D?[] _hitboxAnchors = [];
-    
+
     public override void _Ready()
     {
         _fireNode = GetNode<Control>("fire");
@@ -46,7 +50,7 @@ public partial class NHexaghostVisuals : Node2D
             AddChild(intent);
             return intent;
         }).ToArray();
-        
+
         _hitboxAnchors = AllFires.Select((fire, i) =>
         {
             if (fire == null) return null;
@@ -66,14 +70,12 @@ public partial class NHexaghostVisuals : Node2D
                 NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)
                     ?.ShowHoverTips([flame.HoverTip]);
             }));
-            hitbox.Connect(Control.SignalName.MouseExited, Callable.From(() =>
-            {
-                NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.HideHoverTips();
-            }));
+            hitbox.Connect(Control.SignalName.MouseExited,
+                Callable.From(() => { NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.HideHoverTips(); }));
             return anchor;
         }).ToArray();
     }
-    
+
 
     public override void _Process(double delta)
     {
@@ -107,9 +109,6 @@ public partial class NHexaghostVisuals : Node2D
                 .SetEase(Tween.EaseType.InOut);
     }
 
-    private Tween? _intentTween;
-    private GhostflameModel[]? _currentWheel;
-    private Player? _player;
     public void RefreshWheel(GhostflameModel[] wheel, int currentIndex, Player player)
     {
         _currentWheel = wheel;
@@ -127,7 +126,7 @@ public partial class NHexaghostVisuals : Node2D
         {
             if (_intents[i] == null) continue;
             var targetAlpha = i == currentIndex ? 1f : 0f;
-            _intents[i]!.Visible = true; 
+            _intents[i]!.Visible = true;
             _intentTween.TweenProperty(_intents[i], "modulate:a", targetAlpha, 0.3f)
                 .SetTrans(Tween.TransitionType.Sine)
                 .SetEase(Tween.EaseType.InOut);
@@ -135,14 +134,13 @@ public partial class NHexaghostVisuals : Node2D
 
         SetFirePosition(currentIndex);
     }
-    
+
     public void RefreshCurrentIntent(GhostflameModel[] wheel, int currentIndex, Player player)
     {
         _intents[currentIndex]!.UpdateIntent(wheel[currentIndex].Intent, [], player.Creature);
     }
-    
-    
-    
+
+
     public void OnAnimationTrigger(string trigger)
     {
         if (_playback == null) return;
@@ -157,7 +155,7 @@ public partial class NHexaghostVisuals : Node2D
         };
         _playback.Travel(state);
     }
-    
+
     public Vector2 GetFlameWorldPosition(int index)
     {
         var fire = AllFires[index];

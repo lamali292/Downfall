@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -18,10 +17,10 @@ public class SoulLitLamp : CollectorRelicModel
     {
         WithTip(typeof(Ember));
     }
-     
-    
+
+
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-    
+
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 3);

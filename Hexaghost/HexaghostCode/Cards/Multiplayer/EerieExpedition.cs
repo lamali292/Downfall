@@ -11,10 +11,6 @@ namespace Hexaghost.HexaghostCode.Cards.Multiplayer;
 [Pool(typeof(HexaghostCardPool))]
 public class EerieExpedition : HexaghostCardModel
 {
-    
-    
-    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-    
     public EerieExpedition() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
         WithKeyword(CardKeyword.Exhaust);
@@ -22,19 +18,22 @@ public class EerieExpedition : HexaghostCardModel
         WithCostUpgradeBy(-1);
     }
 
+
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        var cards = Owner.Character.CardPool.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+        var cards = Owner.Character.CardPool
+            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife)).ToList();
         foreach (var player in CombatState.Players)
         {
-            var card = CardFactory.GetDistinctForCombat(Owner, cards, 1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+            var card = CardFactory.GetDistinctForCombat(Owner, cards, 1, Owner.RunState.Rng.CombatCardGeneration)
+                .FirstOrDefault();
             if (card == null) continue;
             card.SetToFreeThisTurn();
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
-
-
 }

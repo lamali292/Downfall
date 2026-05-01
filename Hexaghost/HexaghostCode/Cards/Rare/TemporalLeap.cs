@@ -1,11 +1,8 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
-using Hexaghost.HexaghostCode.Powers;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -18,7 +15,7 @@ public class TemporalLeap : HexaghostCardModel
         WithBlock(10, 2);
         WithCards(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

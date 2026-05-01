@@ -17,7 +17,7 @@ public class TurnItUp : HexaghostCardModel
         WithPower<TemporaryIntensityPower>(2, 1);
         WithKeyword(CardKeyword.Retain);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);

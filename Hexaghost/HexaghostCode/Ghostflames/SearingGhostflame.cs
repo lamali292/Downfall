@@ -7,7 +7,6 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
@@ -19,27 +18,26 @@ public class SearingGhostflame : GhostflameModel
     protected override int IgnitionRequirement => 2;
 
     public override FireColor FireColor => FireColor.Green;
+
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
         () => 3 + Intensity,
         2 + Repeat(GhostflameRepeatType.Soulburn)
     );
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         var target = CombatState.HittableEnemies
             .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
-        
+
         var intensity = Intensity;
         var repeat = 2 + Repeat(GhostflameRepeatType.Soulburn);
-        
+
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
-        
-        for (var i = 0; i < repeat; i++)
-        {
-            await CommonActions.Apply<SoulBurnPower>(ctx, target, null, 3 + intensity);
-        }
+
+        for (var i = 0; i < repeat; i++) await CommonActions.Apply<SoulBurnPower>(ctx, target, null, 3 + intensity);
     }
 
 

@@ -7,12 +7,11 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class ConstructedRelicModel : CustomRelicModel
 {
-
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<DynamicVar> _newDynamicVars = [];
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
-    
+
     protected ConstructedRelicModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
@@ -35,7 +34,7 @@ public abstract class ConstructedRelicModel : CustomRelicModel
     {
         return WithVars(new EnergyVar(i));
     }
-    
+
     protected ConstructedRelicModel WithPower<T>(int i) where T : PowerModel
     {
         return WithVars(new PowerVar<T>(i));
@@ -46,7 +45,7 @@ public abstract class ConstructedRelicModel : CustomRelicModel
         _newDynamicVars.Add(new DynamicVar(name, baseVal));
         return this;
     }
-    
+
     protected ConstructedRelicModel WithTip(AbstractTooltipSource<RelicModel> tipSource)
     {
         _hoverTips.Add(tipSource);

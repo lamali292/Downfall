@@ -17,11 +17,11 @@ public class EtherStep : HexaghostCardModel
         WithCards(1, 1);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-       await AfterlifeEffect(ctx, cardPlay);
-        
+        await AfterlifeEffect(ctx, cardPlay);
+
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1, 1);
         var exhausted = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
         if (exhausted != null) await CardCmd.Exhaust(ctx, exhausted);

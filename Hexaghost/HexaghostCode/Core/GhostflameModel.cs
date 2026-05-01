@@ -1,6 +1,4 @@
-using System.Numerics;
 using BaseLib.Abstracts;
-using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
@@ -36,6 +34,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     public LocString Description => new("ghostflames", Id.Entry + ".description");
     public abstract FireColor FireColor { get; }
     protected ICombatState CombatState => Owner.Creature.CombatState!;
+
     public HoverTip HoverTip
     {
         get
@@ -45,12 +44,11 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
             return tip;
         }
     }
-    
+
     protected int Intensity => HexaghostHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState!, Owner, this);
-    protected int Repeat(GhostflameRepeatType repeatType) => HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
 
     private int FlameIndex => Array.IndexOf(HexaghostCmd.GetWheel(Owner), this);
-    
+
     protected Player Owner
     {
         get
@@ -77,14 +75,18 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         }
     }
 
+    protected int Repeat(GhostflameRepeatType repeatType)
+    {
+        return HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
+    }
+
 
     public void UpdateVisuals()
     {
-        
         if (!IsActive) return;
         StatusBarHelper.SetStatus(Owner, IgnitionProgress, IgnitionRequirement, FireColor.ToColor());
     }
-    
+
     protected bool TryProgress()
     {
         if (IsIgnited) return false;
@@ -95,7 +97,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     public bool Extinguish()
     {
-        if (!IsIgnited)  return false;
+        if (!IsIgnited) return false;
         IsIgnited = false;
         IgnitionProgress = 0;
         UpdateVisuals();
@@ -111,12 +113,12 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         IgnitionProgress = IgnitionRequirement;
         UpdateVisuals();
     }
-    
+
     protected async Task Ignite(PlayerChoiceContext ctx)
     {
         await HexaghostCmd.Ignite(ctx, Owner);
     }
-        
+
 
     public GhostflameModel ToMutable(Player player)
     {
@@ -137,9 +139,8 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         var fireball = NFireballEffect.Create(from, to, FireColor.ToColor());
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(fireball);
     }
-    
-    
-    
+
+
     private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
         if (LocalContext.NetId == null) return;
@@ -149,18 +150,26 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
             GameActionType.Combat);
         await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
     }
-    
+
     public sealed override Task BeforeCardPlayed(CardPlay cardPlay)
-        => ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
+    {
+        return ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
+    }
 
     protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => Task.CompletedTask;
-    
+    {
+        return Task.CompletedTask;
+    }
+
     public sealed override Task AfterEnergySpent(CardModel card, int amount)
-        => ExecuteWithContext(ctx => AfterEnergySpent(ctx, card, amount));
-    
+    {
+        return ExecuteWithContext(ctx => AfterEnergySpent(ctx, card, amount));
+    }
+
     protected virtual Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
-        => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 }
 
 public enum GhostflameRepeatType

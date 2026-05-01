@@ -17,8 +17,9 @@ public class FlamesFromBeyond : HexaghostCardModel
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    { await AfterlifeEffect(ctx, cardPlay);
-       await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+    {
+        await AfterlifeEffect(ctx, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 
 

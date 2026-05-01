@@ -81,9 +81,13 @@ public class Automaton : DownfallCharacterModel
 }
 
 public class AutomatonCardPool : DownfallCardPool<Automaton>;
+
 public class AutomatonPotionPool : DownfallPotionPool<Automaton>;
+
 public abstract class AutomatonPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Automaton>(powerType, powerStackType);
+
 public abstract class AutomatonRelicModel : DownfallRelicModel<Automaton>;
+
 public class AutomatonRelicPool : DownfallRelicPool<Automaton>;

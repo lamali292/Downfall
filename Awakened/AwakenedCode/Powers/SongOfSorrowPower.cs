@@ -1,8 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -21,13 +19,10 @@ public class SongOfSorrowPower : AwakenedPowerModel
         var currentEnemies = CombatState.Enemies.ToList();
         foreach (var enemy in currentEnemies)
             if (enemy is { IsHittable: true, IsAlive: true })
-            {
                 await CreatureCmd.Damage(ctx,
                     enemy,
                     Amount,
                     ValueProp.Unblockable | ValueProp.Unpowered,
                     Owner);
-            }
-                
     }
 }

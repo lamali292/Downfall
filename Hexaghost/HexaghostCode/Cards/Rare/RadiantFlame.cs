@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,11 +15,9 @@ public class RadiantFlame : HexaghostCardModel
         WithPower<RadiantFlamePower>(2, 1);
         WithTip(StaticHoverTip.Block);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RadiantFlamePower>(ctx, this);
     }
-
-
 }

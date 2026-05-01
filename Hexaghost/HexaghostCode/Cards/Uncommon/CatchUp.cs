@@ -13,7 +13,7 @@ public class CatchUp : HexaghostCardModel
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithVar("IgniteCount", 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         for (var i = 0; i < DynamicVars["IgniteCount"].IntValue; i++)

@@ -17,7 +17,7 @@ public class LingeringShades : HexaghostCardModel
         WithKeyword(HexaghostKeyword.Retract);
         WithPower<SoulBurnPower>(14, 4);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
@@ -26,6 +26,4 @@ public class LingeringShades : HexaghostCardModel
             Owner.PlayerCombatState.DiscardPile.Cards.Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),
             PileType.Hand);
     }
-
-
 }

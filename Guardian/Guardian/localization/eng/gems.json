@@ -8,7 +8,7 @@
   "GUARDIAN-SAPPHIRE_GEM.title": "Sapphire",
   "GUARDIAN-TOURMALINE_GEM.description": "Gain 4 Temporary [gold]Thorns[/gold].",
   "GUARDIAN-TOURMALINE_GEM.title": "Tourmaline",
-  "GUARDIAN-AMBER_GEM.description": "[gold]Accelerate[/gold].",
+  "GUARDIAN-AMBER_GEM.description": "[gold]Accelerate.[/gold]",
   "GUARDIAN-AMBER_GEM.title": "Amber",
   "GUARDIAN-AMETHYST_GEM.description": "All enemies lose 2 [gold]Strength[/gold] this turn.",
   "GUARDIAN-AMETHYST_GEM.title": "Amethyst",
@@ -26,8 +26,10 @@
   "GUARDIAN-ONYX_GEM.title": "Onyx",
   "GUARDIAN-BISMUTH_GEM.title": "Bismuth",
   "GUARDIAN-BISMUTH_GEM.description": "Gain 1 [gold]Artifact[/gold].\nThe Socketed card costs 1 more.",
-  "GUARDIAN-DIAMOND_GEM.title": "Diamond.",
+  "GUARDIAN-DIAMOND_GEM.title": "Diamond",
   "GUARDIAN-DIAMOND_GEM.description": "The Socketed card has [gold]Replay[/gold] once per combat.",
   "GUARDIAN-RUTILE_GEM.title": "Rutile",
-  "GUARDIAN-RUTILE_GEM.description": "Apply 1 [gold]Weak[/gold] to all enemies."
+  "GUARDIAN-RUTILE_GEM.description": "Apply 1 [gold]Weak[/gold] to all enemies.",
+  "GUARDIAN-AMBER_GEM.smartDescription": "[gold]Accelerate[/gold]{Gem:plural:| {Gem:diff()}}.",
+  "GUARDIAN-AMETHYST_GEM.smartDescription": "All enemies lose {Gem} Strength this turn."
 }

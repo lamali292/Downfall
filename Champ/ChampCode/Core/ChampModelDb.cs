@@ -8,5 +8,4 @@ public class ChampModelDb
     {
         return ModelDb.Get<T>();
     }
-
 }

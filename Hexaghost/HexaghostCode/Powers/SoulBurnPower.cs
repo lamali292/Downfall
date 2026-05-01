@@ -54,14 +54,12 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         var owner = Owner;
         var targetAll = await HexaghostHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
         if (targetAll)
-        {
-            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        }
+            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         else
-        {
-            await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        }
-     
+            await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);
         else

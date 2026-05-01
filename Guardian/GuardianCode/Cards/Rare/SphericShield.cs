@@ -8,16 +8,16 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class SphericShield : GuardianCardModel
 {
-    public SphericShield() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SphericShield() : base(4, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(10, 4);
+        WithBrace(40);
         WithKeyword(CardKeyword.Exhaust);
+        WithCostUpgradeBy(-1);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.EnterDefensiveMode(ctx, Owner);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

@@ -11,10 +11,10 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class SoulStone : HexaghostRelicModel
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
     private int _exhausted;
     private bool _isActivating;
-    
+    public override RelicRarity Rarity => RelicRarity.Rare;
+
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
     public override int DisplayAmount => _isActivating ? 4 : _exhausted;
 

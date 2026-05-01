@@ -82,9 +82,13 @@ public class SlimeBoss : DownfallCharacterModel
 }
 
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
+
 public abstract class SlimeBossRelicModel : DownfallRelicModel<SlimeBoss>;
+
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType);
+
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
+
 public class SlimeBossCardPool : DownfallCardPool<SlimeBoss>;

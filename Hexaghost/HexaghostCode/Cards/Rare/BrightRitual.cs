@@ -16,13 +16,11 @@ public class BrightRitual : HexaghostCardModel
         WithEnergy(1);
         WithCards(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = await HexaghostCmd.ResetWheel(Owner);
-        await PlayerCmd.GainEnergy(amount*DynamicVars.Energy.BaseValue, Owner);
-        await CardPileCmd.Draw(ctx, amount*DynamicVars.Cards.BaseValue, Owner);
+        await PlayerCmd.GainEnergy(amount * DynamicVars.Energy.BaseValue, Owner);
+        await CardPileCmd.Draw(ctx, amount * DynamicVars.Cards.BaseValue, Owner);
     }
-
-
 }

@@ -4,17 +4,17 @@ namespace Hexaghost.HexaghostCode.Vfx;
 
 public partial class FireballTrail : Line2D
 {
-    public Node2D? Parent { get; set; }
-    public Color Color { get; set; }
+    private const float MinSpawnDist = 8f;
+    private const float MaxSpawnDist = 48f;
+
+    private readonly List<float> _pointAge = [];
+    private Vector2? _lastPointPosition;
 
     // Tune these to taste
     private float _pointDuration = 0.3f;
-    private const float MinSpawnDist = 8f;
-    private const float MaxSpawnDist = 48f;
-    
-    private readonly List<float> _pointAge = [];
-    private Vector2? _lastPointPosition;
     public bool Emitting = true;
+    public Node2D? Parent { get; set; }
+    public Color Color { get; set; }
 
     public override void _Ready()
     {
@@ -31,7 +31,7 @@ public partial class FireballTrail : Line2D
 
         // Taper from wide at head to thin at tail
         var widthCurve = new Curve();
-        widthCurve.AddPoint(new Vector2(0f, 0f));   // tail: thin
+        widthCurve.AddPoint(new Vector2(0f, 0f)); // tail: thin
         widthCurve.AddPoint(new Vector2(0.5f, 1f)); // middle: wide
         widthCurve.AddPoint(new Vector2(1f, 0.6f)); // head: medium
         WidthCurve = widthCurve;
@@ -41,9 +41,9 @@ public partial class FireballTrail : Line2D
     {
         GlobalPosition = Vector2.Zero;
         GlobalRotation = 0f;
-        
+
         var dt = (float)delta;
-        
+
         // Age and remove old points
         for (var i = 0; i < GetPointCount(); i++)
         {
@@ -85,7 +85,7 @@ public partial class FireballTrail : Line2D
         AddPoint(pos + pointWobble);
         _lastPointPosition = pos;
     }
-    
+
     private static Vector2 GetWobble(Vector2 pos, Vector2 lastPos)
     {
         var dir = (pos - lastPos).Normalized();

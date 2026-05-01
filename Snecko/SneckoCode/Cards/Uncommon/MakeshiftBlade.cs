@@ -16,6 +16,4 @@ public class MakeshiftBlade : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-
 }

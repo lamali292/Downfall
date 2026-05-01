@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,6 +20,6 @@ public class DragonsTrove : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CollectorCmd.DrawCollected(ctx, Owner, DynamicVars.Cards.IntValue);
-        CollectorEnergy.Gain(Owner, DynamicVars["Reserve"].IntValue);
+        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, DynamicVars["Reserve"].IntValue);
     }
 }

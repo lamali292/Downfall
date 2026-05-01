@@ -12,17 +12,3 @@ public abstract class DownfallPotionPool<T> : CustomPotionPoolModel
     public override string EnergyColorName => Character.CharId!;
     public override Color LabOutlineColor => Character.LabOutlineColor;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

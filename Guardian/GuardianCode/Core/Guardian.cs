@@ -77,9 +77,13 @@ public class Guardian : DownfallCharacterModel
 }
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;
+
 public abstract class GuardianRelicModel : DownfallRelicModel<Guardian>;
+
 public abstract class GuardianPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Guardian>(powerType, powerStackType);
+
 public class GuardianPotionPool : DownfallPotionPool<Guardian>;
+
 public class GuardianCardPool : DownfallCardPool<Guardian>;

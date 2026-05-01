@@ -10,7 +10,7 @@ public class HexaghostKeyword
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Advance;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Afterlife;
 }

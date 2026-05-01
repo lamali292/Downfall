@@ -41,7 +41,7 @@ public static class DownfallHook
     {
         return combatState.IterateHookListeners().OfType<T>().Any(predicate);
     }
-    
+
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)
     {

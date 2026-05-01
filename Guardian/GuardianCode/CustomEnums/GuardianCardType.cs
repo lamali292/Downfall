@@ -15,7 +15,6 @@ public class GuardianCardType
     [CustomEnum] public static CardType Gem;
 }
 
-
 [HarmonyPatch(typeof(ModelDb), "Init")]
 public static class CardTypeGenerator
 {

@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace Snecko.SneckoCode.Vfx;
 
 [GlobalClass]
-public partial class NSneckoCreatureVisuals: NCreatureVisuals
+public partial class NSneckoCreatureVisuals : NCreatureVisuals
 {
     public override void _Ready()
     {

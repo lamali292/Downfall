@@ -14,7 +14,7 @@ public class Hexaguard : HexaghostCardModel
         WithBlock(6, 3);
         WithCards(2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);

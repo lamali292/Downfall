@@ -14,15 +14,15 @@ public class HauntedHand : HexaghostCardModel
         WithBlock(5, 3);
         WithTip(CardKeyword.Ethereal);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-       await CommonActions.CardBlock(this, cardPlay);
-       
-       while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
-       {
-           var drawn = await CardPileCmd.Draw(ctx, Owner);
-           if (drawn == null || !drawn.Keywords.Contains(CardKeyword.Ethereal)) return;
-       }
+        await CommonActions.CardBlock(this, cardPlay);
+
+        while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
+        {
+            var drawn = await CardPileCmd.Draw(ctx, Owner);
+            if (drawn == null || !drawn.Keywords.Contains(CardKeyword.Ethereal)) return;
+        }
     }
 }

@@ -37,8 +37,11 @@ public class WorthySacrifice : HexaghostCardModel
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c.Type == to);
 
-        var newCards = CardFactory.GetDistinctForCombat(Owner, pool, count, Owner.RunState.Rng.CombatCardGeneration).ToList();
-        if (IsUpgraded) foreach (var card in newCards) card.UpgradeInternal();
+        var newCards = CardFactory.GetDistinctForCombat(Owner, pool, count, Owner.RunState.Rng.CombatCardGeneration)
+            .ToList();
+        if (IsUpgraded)
+            foreach (var card in newCards)
+                card.UpgradeInternal();
         await CardPileCmd.AddGeneratedCardsToCombat(newCards, PileType.Hand, Owner);
     }
 }

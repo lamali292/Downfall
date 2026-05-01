@@ -12,11 +12,6 @@ public class SecondSlam : GuardianCardModel
     {
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithDamage(7);
-        WithUpgradedCardTip<TwinSlam>((c, g) =>
-        {
-            if (g is GuardianCardModel other)
-                c.AddGems(other.Gems);
-        });
     }
 
     public override int GemSlots => IsUpgraded ? 2 : 1;

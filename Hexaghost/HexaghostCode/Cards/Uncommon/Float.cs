@@ -18,14 +18,16 @@ public class Float : HexaghostCardModel
     }
 
     protected override bool ShouldGlowGoldInternal => CombatManager.Instance.History.Entries
-        .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState)) < DynamicVars["CardsPlayed"].IntValue;
+                                                          .OfType<CardPlayFinishedEntry>()
+                                                          .Count(e => e.HappenedThisTurn(CombatState)) <
+                                                      DynamicVars["CardsPlayed"].IntValue;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var a = CombatManager.Instance.History.Entries
             .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState));
-        if (a >= DynamicVars["CardsPlayed"].IntValue)  return;
+        if (a >= DynamicVars["CardsPlayed"].IntValue) return;
         await CommonActions.Draw(this, ctx);
         await HexaghostCmd.Advance(ctx, Owner, this);
     }

@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -19,7 +18,7 @@ public class Premonition : HexaghostCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (Owner.PlayerCombatState == null || CombatState == null) return;
@@ -29,7 +28,6 @@ public class Premonition : HexaghostCardModel
             .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);
-
     }
 
     private async Task<CardType?> GetCardType(PlayerChoiceContext ctx)
@@ -47,7 +45,7 @@ public class Premonition : HexaghostCardModel
             case > 1:
             {
                 var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-                if (chosen is PremonitionChoice {Type : var cardType } ) return cardType;
+                if (chosen is PremonitionChoice { Type : var cardType }) return cardType;
                 return null;
             }
             default:
@@ -56,18 +54,18 @@ public class Premonition : HexaghostCardModel
     }
 }
 
-
 [Pool(typeof(HexaghostChoiceCardPool))]
 public class PremonitionChoice : HexaghostCardModel
 {
-
     public PremonitionChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-      
     }
 
     public override CardType Type => MyType;
     private CardType MyType { get; set; } = CardType.Skill;
+
+
+    public override string CustomPortraitPath => ModelDb.Card<Premonition>().CustomPortraitPath;
 
 
     public static PremonitionChoice Create(CardType cardType, Player owner)
@@ -76,9 +74,7 @@ public class PremonitionChoice : HexaghostCardModel
         card.MyType = cardType;
         return card;
     }
-    
-    
-    public override string CustomPortraitPath => ModelDb.Card<Premonition>().CustomPortraitPath;
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
         description.Add("Type", MyType.ToLocString());

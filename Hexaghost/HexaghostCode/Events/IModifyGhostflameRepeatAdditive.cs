@@ -5,5 +5,6 @@ namespace Hexaghost.HexaghostCode.Events;
 
 public interface IModifyGhostflameRepeatAdditive
 {
-    int ModifyGhostflameRepeatAdditive(Player owner, GhostflameRepeatType repeatType, GhostflameModel bolsteringGhostflame);
+    int ModifyGhostflameRepeatAdditive(Player owner, GhostflameRepeatType repeatType,
+        GhostflameModel bolsteringGhostflame);
 }

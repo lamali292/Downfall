@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -8,7 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Relics;
@@ -20,10 +20,10 @@ public class PrismaticTorch : CollectorRelicModel
     {
         WithTip(typeof(Ember));
     }
-     
-    
+
+
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,
@@ -31,7 +31,7 @@ public class PrismaticTorch : CollectorRelicModel
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
         await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
-        CollectorEnergy.Gain(player, 1);
+        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
         Flash();
     }
 
@@ -43,7 +43,7 @@ public class PrismaticTorch : CollectorRelicModel
             CombatManager.Instance.History.Entries.OfType<CardExhaustedEntry>().Any(e =>
                 e.HappenedThisTurn(state) && e.Card is Ember && e.Card != card)
            ) return Task.CompletedTask;
-        CollectorEnergy.Gain(Owner, 1);
+        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
         Flash();
         return Task.CompletedTask;
     }

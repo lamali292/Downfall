@@ -30,15 +30,24 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
     public abstract AbstractModel OriginModel { get; }
     public PowerModel InternallyAppliedPower => ModelDb.Power<TP>();
 
-    public void IgnoreNextInstance() => _shouldIgnoreNextInstance = true;
-
-    public override async Task BeforeApplied( Creature target, decimal amount, Creature? applier, CardModel? cardSource)
+    public void IgnoreNextInstance()
     {
-        if (_shouldIgnoreNextInstance) { _shouldIgnoreNextInstance = false; return; }
+        _shouldIgnoreNextInstance = true;
+    }
+
+    public override async Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        if (_shouldIgnoreNextInstance)
+        {
+            _shouldIgnoreNextInstance = false;
+            return;
+        }
+
         await PowerCmd.Apply<TP>(new ThrowingPlayerChoiceContext(), target, Sign * amount, applier, cardSource, true);
     }
 
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
+        Creature? applier, CardModel? cardSource)
     {
         if (amount == Amount || power != this) return;
         if (_shouldIgnoreNextInstance) _shouldIgnoreNextInstance = false;

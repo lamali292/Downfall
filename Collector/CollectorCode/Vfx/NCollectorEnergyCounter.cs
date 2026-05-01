@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -11,12 +12,17 @@ public partial class NCollectorEnergyCounter : Control
     private Tween? _fadeTween;
     private Label? _label;
     private Player? _player;
+    private CollectorEnergy? _resource;
     private Control? _rotationLayers;
 
     public void Initialize(Player player)
     {
         _player = player;
-        CollectorEnergy.Changed += OnEnergyChanged;
+
+        _resource = CardResourceRegistry.Get<CollectorEnergy>();
+
+        if (_resource != null)
+            _resource.Changed += OnEnergyChanged;
     }
 
     public override void _Ready()
@@ -30,7 +36,8 @@ public partial class NCollectorEnergyCounter : Control
 
     public override void _ExitTree()
     {
-        CollectorEnergy.Changed -= OnEnergyChanged;
+        if (_resource != null)
+            _resource.Changed -= OnEnergyChanged;
     }
 
     public override void _Process(double delta)
@@ -48,8 +55,8 @@ public partial class NCollectorEnergyCounter : Control
 
     private void Refresh()
     {
-        if (_player == null || _label == null) return;
-        var amount = CollectorEnergy.Get(_player);
+        if (_player == null || _label == null || _resource == null) return;
+        var amount = _resource.Get(_player);
 
         _label.Text = amount.ToString();
         _label.AddThemeColorOverride("font_color",

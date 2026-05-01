@@ -20,7 +20,7 @@ public class BurningQuestion : HexaghostCardModel
         WithPower<MetallicizePower>(6, 2);
         WithPower<RoyaltiesPower>(30, 5);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         CardModel[] choices =
@@ -31,9 +31,7 @@ public class BurningQuestion : HexaghostCardModel
         ];
         if (IsUpgraded)
             foreach (var cardModel in choices)
-            {
                 cardModel.UpgradeInternal();
-            }
 
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
         if (chosen is not BurningQuestionChoiceBase choice) return;
@@ -45,42 +43,46 @@ public class BurningQuestion : HexaghostCardModel
 public abstract class BurningQuestionChoiceBase()
     : HexaghostCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
-    public abstract Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay);
-
     public override string CustomPortraitPath => ModelDb.Card<BurningQuestion>().CustomPortraitPath;
+    public abstract Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }
 
 public class BurningQuestionChoice1 : BurningQuestionChoiceBase
 {
-
     public BurningQuestionChoice1()
     {
         WithPower<IntensityPower>(3, 1);
     }
-    
+
     public static BurningQuestionChoice1 Create(Player owner)
-        => owner.Creature.CombatState!.CreateCard<BurningQuestionChoice1>(owner);
+    {
+        return owner.Creature.CombatState!.CreateCard<BurningQuestionChoice1>(owner);
+    }
 
     public override Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay)
-            => CommonActions.ApplySelf<IntensityPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<IntensityPower>(ctx, this);
+    }
 }
-
 
 public class BurningQuestionChoice2 : BurningQuestionChoiceBase
 {
-    
     public BurningQuestionChoice2()
     {
         WithPower<MetallicizePower>(6, 2);
     }
-    public static BurningQuestionChoice2 Create(Player owner)
-        => owner.Creature.CombatState!.CreateCard<BurningQuestionChoice2>(owner);
-    
-    
-    public override Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<MetallicizePower>(ctx, this);
-}
 
+    public static BurningQuestionChoice2 Create(Player owner)
+    {
+        return owner.Creature.CombatState!.CreateCard<BurningQuestionChoice2>(owner);
+    }
+
+
+    public override Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+    }
+}
 
 public class BurningQuestionChoice3 : BurningQuestionChoiceBase
 {
@@ -88,9 +90,14 @@ public class BurningQuestionChoice3 : BurningQuestionChoiceBase
     {
         WithPower<RoyaltiesPower>(30, 5);
     }
+
     public static BurningQuestionChoice3 Create(Player owner)
-        => owner.Creature.CombatState!.CreateCard<BurningQuestionChoice3>(owner);
+    {
+        return owner.Creature.CombatState!.CreateCard<BurningQuestionChoice3>(owner);
+    }
 
     public override Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<RoyaltiesPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<RoyaltiesPower>(ctx, this);
+    }
 }

@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Helpers;
 
 namespace Downfall.DownfallCode.CustomEnums;
 
-
 public static class CustomCardTypeRegistry
 {
     private static readonly Dictionary<CardType, CardTypeProperties> Properties = new();
@@ -58,4 +57,3 @@ public class FramePath(string path)
         );
     }
 }
-

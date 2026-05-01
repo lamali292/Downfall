@@ -3,7 +3,6 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Relics;
@@ -12,7 +11,7 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class RedCandle : HexaghostRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {

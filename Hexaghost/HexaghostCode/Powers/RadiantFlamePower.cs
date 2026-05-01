@@ -10,6 +10,7 @@ namespace Hexaghost.HexaghostCode.Powers;
 public class RadiantFlamePower : HexaghostPowerModel, IAfterGhostflameIgnited
 {
     public Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
-        =>CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
-    
+    {
+        return CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+    }
 }
