@@ -160,5 +160,10 @@
   "GUARDIAN-SERRATE.title": "Serrate",
   "GUARDIAN-SERRATE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals additional damage equal to {ExtraDamage:diff()} times your [gold]Thorns[/gold].",
   "GUARDIAN-TEMPORAL_REFRACTION.title": "Temporal Refraction",
-  "GUARDIAN-TEMPORAL_REFRACTION.description": "Double the first [gold]Gem[/gold] effect you activate each turn."
+  "GUARDIAN-TEMPORAL_REFRACTION.description": "Double the first [gold]Gem[/gold] effect you activate each turn.",
+  "GUARDIAN-BRILLIANT_SCALES.title": "Brilliant Scales",
+  "GUARDIAN-BRILLIANT_SCALES.description": "Now and at the start of every other turn,",
+  "GUARDIAN-GEM_CARD.description": "",
+  "GUARDIAN-ROCK_SLIDE.title": "RockSlide",
+  "GUARDIAN-ROCK_SLIDE.description": "Deal {Damage:diff()} damage.\nPresocketed with a common, uncommon, and rare [gold]Gem[/gold]."
 }

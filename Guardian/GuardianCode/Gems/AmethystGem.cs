@@ -20,10 +20,10 @@ public class AmethystGem : GemModel
     public override Color GemColor => new(0xA500C9FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, CombatState.Enemies, effect, cardPlay.Card.Owner.Creature,
+        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, CombatState.Enemies, effect, Player.Creature,
             null);
     }
 }

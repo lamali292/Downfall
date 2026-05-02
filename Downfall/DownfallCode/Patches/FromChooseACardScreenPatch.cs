@@ -21,7 +21,7 @@ public static class FromChooseACardScreenPatch
         return (List<CodeInstruction>)new InstructionPatcher(instructions)
             .Match(new InstructionMatcher()
                 .opcode(OpCodes.Ldstr) // "Only works with less than 3 cards"
-                .opcode(OpCodes.Ldstr) // "cards"
+                .opcode(OpCodes.Ldstr) // "can rds"
                 .opcode(OpCodes.Newobj) // new ArgumentException
                 .opcode(OpCodes.Throw))
             .ReplaceLastMatch([

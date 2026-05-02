@@ -39,6 +39,6 @@ public class GemCannon : GuardianCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
 
         foreach (var gem in gems)
-            await gem.OnPlay(ctx, cardPlay);
+            await gem.OnPlayWrapper(ctx, cardPlay);
     }
 }

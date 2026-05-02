@@ -48,16 +48,7 @@ public class Citrine : GemCard<CitrineGem>;
 public class Onyx : GemCard<OnyxGem>;
 
 [Pool(typeof(GuardianCardPool))]
-public class Rutile : GemCard<RutileGem>
-{
-    public Rutile()
-    {
-        WithKeyword(CardKeyword.Unplayable);
-    }
-
-    protected override bool IsPlayable => false;
-    protected override int CanonicalEnergyCost => -1;
-}
+public class Rutile : GemCard<RutileGem>;
 
 [Pool(typeof(GuardianCardPool))]
 public class Diamond : GemCard<DiamondGem>
@@ -102,29 +93,29 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
 
     public override int MaxUpgradeLevel => 0;
 
+    public GemModel CanonicalGemModel => GuardianModelDb.Gem<T>();
+    
     public GemModel GemModel
     {
         get
         {
             if (_mutableGem != null) return _mutableGem;
             _mutableGem = GuardianModelDb.Gem<T>().ToMutable();
-            _mutableGem.SetCard(this);
+            _mutableGem.Card = this;
             return _mutableGem;
         }
     }
-
-    public LocString GemDescription => GuardianModelDb.Gem<T>().Description;
-
-    protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        return GemModel.OnPlay(ctx, cardPlay);
+        return GemModel.OnPlayWrapper(ctx, cardPlay);
     }
 }
 
 public interface IGemCard
 {
-    LocString GemDescription { get; }
     GemModel GemModel { get; }
+    GemModel CanonicalGemModel { get; }
 }
 
 [HarmonyPatch(typeof(CardModel), "get_Description")]
@@ -133,7 +124,7 @@ public static class GemCardTitlePatch
     private static bool Prefix(CardModel __instance, ref LocString __result)
     {
         if (__instance is not IGemCard gem) return true;
-        __result = gem.GemDescription;
+        __result = new LocString("cards", "GUARDIAN-GEM_CARD.description");
         return false;
     }
 }

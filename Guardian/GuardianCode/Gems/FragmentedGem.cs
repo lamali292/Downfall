@@ -19,9 +19,9 @@ public class FragmentedGem : GemModel
     public override Color GemColor => new(0xCE1AB2FF);
     public override CardRarity Rarity => CardRarity.Common;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await DownfallCardCmd.GiveCards<CrystalShiv>(cardPlay.Card.Owner, PileType.Hand, effect);
+        await DownfallCardCmd.GiveCards<CrystalShiv>(Player, PileType.Hand, effect);
     }
 }

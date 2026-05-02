@@ -1,11 +1,14 @@
 ﻿using Downfall.DownfallCode.Events;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Events;
+
+using Alias = IAfterGemPlayed;
 
 public static class GuardianHook
 {
@@ -30,5 +33,11 @@ public static class GuardianHook
     {
         return DownfallHook.Aggregate<IModifyGemEffect, decimal>(cs, baseValue,
             (m, val) => m.ModifyGemEffect(gem, val, card));
+    }
+
+    public static Task AfterGemPlayed(ICombatState cs, PlayerChoiceContext ctx, GemModel gemModel, CardPlay? cardPlay)
+    {
+        return DownfallHook.Dispatch<Alias>(cs, ctx,
+            m => m.AfterGemPlayed(ctx, gemModel, cardPlay));
     }
 }

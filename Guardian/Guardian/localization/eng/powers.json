@@ -50,5 +50,8 @@
   "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] temp. [gold]Thorns[/gold].",
   "GUARDIAN-TEMPORAL_REFRACTION_POWER.title": "Temporal Refraction",
   "GUARDIAN-TEMPORAL_REFRACTION_POWER.description": "Double the [gold]Gem[/gold] effect you activate each turn.",
-  "GUARDIAN-TEMPORAL_REFRACTION_POWER.smartDescription": "Double the first {Amount:plural:[gold]Gem[/gold] effect|[blue]{Amount}[/blue] [gold]Gem[/gold] effects} you activate each turn."
+  "GUARDIAN-TEMPORAL_REFRACTION_POWER.smartDescription": "Double the first {Amount:plural:[gold]Gem[/gold] effect|[blue]{Amount}[/blue] [gold]Gem[/gold] effects} you activate each turn.",
+  "GUARDIAN-BRILLIANT_SCALES_POWER.title": "Brilliant Scales",
+  "GUARDIAN-BRILLIANT_SCALES_POWER.description": "At the start of every turn, play [gold]Gems[/gold] of this.",
+  "GUARDIAN-BRILLIANT_SCALES_POWER.smartDescription": "At the start of every turn,\n{effects}"
 }

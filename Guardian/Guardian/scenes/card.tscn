@@ -1,0 +1,696 @@
+[gd_scene load_steps=49 format=3 uid="uid://b4leyybbk50vd"]
+
+[ext_resource type="Script" uid="uid://25r0evybyc66" path="res://src/Core/Nodes/Cards/NCard.cs" id="1_trsor"]
+[ext_resource type="Texture2D" uid="uid://cslfj7h" path="res://images/atlases/ui_atlas.sprites/card/card_frame_attack_s.tres" id="2_0637f"]
+[ext_resource type="Shader" uid="uid://bikvsfwlbp43n" path="res://shaders/card_ripple.gdshader" id="3_qd1np"]
+[ext_resource type="Texture2D" uid="uid://chxf48vfn1ivh" path="res://images/packed/card_template/card_frame_sdf.exr" id="4_115jn"]
+[ext_resource type="Script" uid="uid://chqgs2yb0k8qx" path="res://src/Core/Nodes/Cards/NCardHighlight.cs" id="5_umpoy"]
+[ext_resource type="Material" uid="uid://bijk0xe60at0d" path="res://shaders/overlay_blend.tres" id="6_6jxlh"]
+[ext_resource type="Texture2D" uid="uid://cdiaa3n" path="res://images/atlases/card_atlas.sprites/beta.tres" id="6_umpoy"]
+[ext_resource type="Texture2D" uid="uid://ds8lq43wgq2jy" path="res://images/packed/common_ui/locked_card.png" id="7_fhrw7"]
+[ext_resource type="Material" uid="uid://bfbsbl4t3kkur" path="res://materials/cards/frames/card_frame_red_mat.tres" id="8_gh0el"]
+[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="9_8q0el"]
+[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="10_0goxf"]
+[ext_resource type="Material" uid="uid://d2pb6adjuojnh" path="res://materials/cards/banners/card_banner_common_mat.tres" id="11_avm2s"]
+[ext_resource type="Texture2D" uid="uid://0o70qg" path="res://images/atlases/ui_atlas.sprites/card/card_portrait_border_attack_s.tres" id="12_hkxrf"]
+[ext_resource type="Texture2D" uid="uid://qmqejd" path="res://images/atlases/ui_atlas.sprites/card/card_banner.tres" id="13_42lgp"]
+[ext_resource type="Texture2D" uid="uid://cqa11p5t0ffdo" path="res://Guardian/images/gems/ruby_gem.png" id="14_6jxlh"]
+[ext_resource type="Texture2D" uid="uid://bssd8ar" path="res://images/atlases/ui_atlas.sprites/card/ancient_banner.tres" id="14_88rwc"]
+[ext_resource type="Texture2D" uid="uid://6y8t4" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_0.tres" id="15_f2arp"]
+[ext_resource type="Texture2D" uid="uid://ddc7rc3kcmau2" path="res://Guardian/images/gems/sapphire_gem.png" id="15_fhrw7"]
+[ext_resource type="Texture2D" uid="uid://b2axy3" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_1.tres" id="16_8o26e"]
+[ext_resource type="Texture2D" uid="uid://bcaissuggbfm0" path="res://Guardian/images/gems/emptysocket.png" id="16_gh0el"]
+[ext_resource type="Texture2D" uid="uid://cwkn42" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_2.tres" id="17_hj16l"]
+[ext_resource type="Texture2D" uid="uid://druea1" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_3.tres" id="18_unuk7"]
+[ext_resource type="Texture2D" uid="uid://em43f0" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_4.tres" id="19_i8qo5"]
+[ext_resource type="Texture2D" uid="uid://fifsky" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_5.tres" id="20_rrpw1"]
+[ext_resource type="Texture2D" uid="uid://gdpipx" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_6.tres" id="21_28im0"]
+[ext_resource type="Texture2D" uid="uid://g7y7uw" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_7.tres" id="22_f013p"]
+[ext_resource type="Texture2D" uid="uid://h3aw0v" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_8.tres" id="23_i14ia"]
+[ext_resource type="Texture2D" uid="uid://ixkm5u" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_9.tres" id="24_5lpxg"]
+[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="25_d2xta"]
+[ext_resource type="Texture2D" uid="uid://bnyc46tq4jfbg" path="res://images/ui/cards/card_portrait_border_plaque2.png" id="26_tmtps"]
+[ext_resource type="FontVariation" uid="uid://bg85h22rkxs6g" path="res://themes/kreon_bold_shared.tres" id="27_hruln"]
+[ext_resource type="Texture2D" uid="uid://g1g8kd" path="res://images/atlases/ui_atlas.sprites/card/energy_ironclad.tres" id="28_ym56i"]
+[ext_resource type="Texture2D" uid="uid://o5lbua" path="res://images/atlases/ui_atlas.sprites/card/card_unplayable_icon.tres" id="29_8g2u3"]
+[ext_resource type="Texture2D" uid="uid://wwlp2akfrqsp" path="res://images/ui/combat/energy_star.png" id="30_81myb"]
+[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="31_aprtp"]
+[ext_resource type="Texture2D" uid="uid://hfvemc" path="res://images/atlases/ui_atlas.sprites/card/card_enchant_s.tres" id="32_gkjfn"]
+[ext_resource type="Texture2D" uid="uid://bapstexgysxtc" path="res://images/enchantments/slither.png" id="33_31b2s"]
+[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://themes/kreon_bold_glyph_space_one.tres" id="34_fhupc"]
+[ext_resource type="Shader" uid="uid://dm6w56nj2deyj" path="res://shaders/enchantment_tab_appear.gdshader" id="35_sn0cx"]
+[ext_resource type="PackedScene" uid="uid://cimeloj78lsfl" path="res://scenes/vfx/card_sparkles_vfx.tscn" id="36_hd5ca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ivyc"]
+resource_local_to_scene = true
+shader = ExtResource("3_qd1np")
+shader_parameter/ease = 0.005
+shader_parameter/modulo_width = 0.02
+shader_parameter/width = 0.0
+shader_parameter/ripple_speed = 0.03
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57v1r"]
+region = Rect2(3, 1160, 406, 568)
+margin = Rect2(3, 5, 4, 6)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy17p"]
+region = Rect2(415, 582, 341, 264)
+margin = Rect2(4, 3, 7, 4)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bc7ph"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rlg0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_f2arp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8o26e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hj16l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_unuk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_i8qo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rrpw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_28im0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_f013p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_i14ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5lpxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="FontVariation" id="FontVariation_2eadq"]
+base_font = ExtResource("9_8q0el")
+spacing_glyph = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ots2x"]
+shader = ExtResource("31_aprtp")
+shader_parameter/h = 0.25
+shader_parameter/s = 0.4
+shader_parameter/v = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sh66y"]
+shader = ExtResource("35_sn0cx")
+shader_parameter/progress = 0.91
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_trsor")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CardContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Shadow" type="TextureRect" parent="CardContainer"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 0
+offset_left = -138.0
+offset_top = -199.0
+offset_right = 162.0
+offset_bottom = 223.0
+pivot_offset = Vector2(150, 211)
+mouse_filter = 2
+texture = ExtResource("2_0637f")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Highlight" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 0.957, 0.988, 0.98)
+material = SubResource("ShaderMaterial_7ivyc")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -381.0
+offset_top = -475.0
+offset_right = 378.0
+offset_bottom = 476.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 211)
+mouse_filter = 2
+texture = ExtResource("4_115jn")
+expand_mode = 4
+stretch_mode = 5
+script = ExtResource("5_umpoy")
+
+[node name="PortraitCanvasGroup" type="CanvasGroup" parent="CardContainer"]
+unique_name_in_owner = true
+fit_margin = 1.0
+clear_margin = 1.0
+
+[node name="Portrait" type="TextureRect" parent="CardContainer/PortraitCanvasGroup"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -168.0
+offset_right = 125.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(125, 95)
+mouse_filter = 2
+texture = ExtResource("6_umpoy")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="AncientPortrait" type="TextureRect" parent="CardContainer/PortraitCanvasGroup"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -215.0
+offset_right = 445.0
+offset_bottom = 627.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+expand_mode = 1
+
+[node name="AncientHighlight" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.752941)
+material = ExtResource("6_6jxlh")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -220.0
+offset_right = 154.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 211)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57v1r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AncientBorder" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -223.0
+offset_right = 152.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 211)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AncientTextBg" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.66)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -20.0
+offset_right = 132.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_wy17p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lock" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bc7ph")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -175.0
+offset_right = 125.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(125, 95)
+mouse_filter = 2
+texture = ExtResource("7_fhrw7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+material = ExtResource("8_gh0el")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 211)
+mouse_filter = 2
+texture = ExtResource("2_0637f")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -122.0
+offset_top = 37.0
+offset_right = 121.0
+offset_bottom = 173.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_separation = -3
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("9_8q0el")
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 21
+theme_override_font_sizes/bold_italics_font_size = 21
+theme_override_font_sizes/italics_font_size = 21
+theme_override_font_sizes/mono_font_size = 21
+bbcode_enabled = true
+text = "[center]If you can read this, there is a bug.[/center]"
+scroll_active = false
+vertical_alignment = 1
+script = ExtResource("10_0goxf")
+MinFontSize = 12
+MaxFontSize = 21
+
+[node name="PortraitBorder" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+material = ExtResource("11_avm2s")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -164.0
+offset_right = 137.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(137, 105)
+mouse_filter = 2
+texture = ExtResource("12_hkxrf")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="OverlayContainer" type="Control" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DownfallGemOverlay" type="Control" parent="CardContainer/OverlayContainer"]
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+pivot_offset = Vector2(150, 211)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 160.0
+offset_right = 32.0
+offset_bottom = 288.0
+
+[node name="Slot_1" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("14_6jxlh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_2" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("15_fhrw7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_3" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("16_gh0el")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleBanner" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+material = ExtResource("11_avm2s")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -207.0
+offset_right = 164.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_42lgp")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="AncientBanner" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -207.0
+offset_right = 164.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_88rwc")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Fire" type="AnimatedSprite2D" parent="CardContainer/AncientBanner"]
+position = Vector2(164, -10)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_1rlg0")
+autoplay = "default"
+frame_progress = 0.32831573
+
+[node name="TitleLabel" type="Label" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -105.0
+offset_top = -204.0
+offset_right = 105.0
+offset_bottom = -150.0
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.301961, 0.294118, 0.25098, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = SubResource("FontVariation_2eadq")
+theme_override_font_sizes/font_size = 26
+text = "Broken Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_d2xta")
+MaxFontSize = 26
+
+[node name="TypePlaque" type="NinePatchRect" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = 1.0
+offset_right = 30.5
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_tmtps")
+patch_margin_left = 13
+patch_margin_right = 12
+
+[node name="TypeLabel" type="Label" parent="CardContainer/TypePlaque"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -14.0
+offset_right = 22.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.752941)
+theme_override_fonts/font = ExtResource("27_hruln")
+theme_override_font_sizes/font_size = 16
+text = "Attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_d2xta")
+AutoSizeEnabled = false
+MinFontSize = 10
+MaxFontSize = 16
+
+[node name="EnergyIcon" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -227.0
+offset_right = -102.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = ExtResource("28_ym56i")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="EnergyLabel" type="Label" parent="CardContainer/EnergyIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -26.0
+offset_right = 23.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(23, 28)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.1225, 0.35, 0.137667, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("27_hruln")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_d2xta")
+MinFontSize = 22
+MaxFontSize = 32
+
+[node name="UnplayableEnergyIcon" type="TextureRect" parent="CardContainer/EnergyIcon"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 56.0
+texture = ExtResource("29_8g2u3")
+expand_mode = 1
+
+[node name="StarIcon" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -189.0
+offset_right = -128.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(29, 29)
+mouse_filter = 2
+texture = ExtResource("30_81myb")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="StarLabel" type="Label" parent="CardContainer/StarIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -20.0
+offset_right = 14.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.1008, 0.3668, 0.42, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("27_hruln")
+theme_override_font_sizes/font_size = 22
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_d2xta")
+MinFontSize = 16
+MaxFontSize = 22
+
+[node name="UnplayableStarIcon" type="TextureRect" parent="CardContainer/StarIcon"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 53.0
+offset_bottom = 53.0
+texture = ExtResource("29_8g2u3")
+expand_mode = 1
+
+[node name="Enchantment" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ots2x")
+layout_mode = 0
+offset_left = -166.0
+offset_top = -116.0
+offset_right = -94.0
+offset_bottom = -62.0
+mouse_filter = 2
+texture = ExtResource("32_gkjfn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="CardContainer/Enchantment"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 9.0
+offset_right = 49.0
+offset_bottom = 44.0
+texture = ExtResource("33_31b2s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CardContainer/Enchantment"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 27.0
+offset_right = 66.0
+offset_bottom = 53.0
+pivot_offset = Vector2(20, 13)
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_colors/font_outline_color = Color(0.0341, 0.05687, 0.11, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("34_fhupc")
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_d2xta")
+AutoSizeEnabled = false
+
+[node name="EnchantmentVfxOverride" type="TextureRect" parent="CardContainer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_sh66y")
+layout_mode = 0
+offset_left = -202.0
+offset_top = -142.0
+offset_right = -58.0
+offset_bottom = -34.0
+
+[node name="CardSparkles" parent="CardContainer" instance=ExtResource("36_hd5ca")]
+visible = false

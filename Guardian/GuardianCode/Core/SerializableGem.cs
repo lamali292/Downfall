@@ -21,7 +21,7 @@ public class SerializableGem
     {
         var gem = ModelDb.GetById<GemModel>(ModelId.Deserialize(Id));
         if (owner != null)
-            gem.SetCard(owner);
+            gem.Card = owner;
         return gem;
     }
 }

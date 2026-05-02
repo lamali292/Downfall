@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
@@ -20,19 +21,21 @@ public class BismuthGem : GemModel
     public override CardRarity Rarity => CardRarity.Rare;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<ArtifactPower>(ctx, Owner.Creature, effect, Owner.Creature, null);
+        await PowerCmd.Apply<ArtifactPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
 
     protected override void OnAdded(CardModel card)
     {
+        if (card is IGemCard) return;
         card.EnergyCost.UpgradeBy(1);
+        card.EnergyCost.FinalizeUpgrade();
     }
 
     protected override void OnRemoved(CardModel card)
     {
-        card.EnergyCost.UpgradeBy(-1);
+        //card.EnergyCost.UpgradeBy(-1);
     }
 }

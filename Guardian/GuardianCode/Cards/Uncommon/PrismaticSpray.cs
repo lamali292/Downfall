@@ -23,7 +23,7 @@ public class PrismaticSpray : GuardianCardModel
 
     private static decimal CalcDamage(CardModel card, Creature? arg2)
     {
-        return card is GuardianCardModel gc ? gc.Gems.Count : 0;
+        return card is GuardianCardModel gc ? gc.GemCount : 0;
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

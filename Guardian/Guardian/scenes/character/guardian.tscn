@@ -13,5 +13,4 @@ preview_skin = "Default"
 preview_animation = "idle"
 preview_frame = false
 preview_time = 0.0
-position = Vector2(0, 150)
 scale = Vector2(-1, 1)

@@ -19,10 +19,9 @@ public class TourmalineGem : GemModel
     public override Color GemColor => new(0x06BE7BFF);
     public override CardRarity Rarity => CardRarity.Common;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        var owner = cardPlay.Card.Owner;
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<TemporaryThornsPower>(ctx, owner.Creature, effect, owner.Creature, null);
+        await PowerCmd.Apply<TemporaryThornsPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
 }

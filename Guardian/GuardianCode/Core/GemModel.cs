@@ -2,12 +2,16 @@ using System.Text;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
+using Guardian.GuardianCode.Cards.Basic;
+using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -21,33 +25,58 @@ public abstract class GemModel : AbstractModel, ICustomModel
 {
     private GemModel _canonicalInstance = null!;
 
-    private CardModel? _card;
+    private GuardianCardModel? _card;
+    public int SocketIndex => _card?.Gems.IndexOf(this) ?? -1;
+    private PowerModel? _power;
     private DynamicVarSet? _dynamicVars;
 
     protected ICombatState CombatState =>
-        Card.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
+        Card.CombatState ?? Power.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
 
-    protected Player Owner => Card.Owner;
+    protected Player Player => Card.Owner;
     public override bool ShouldReceiveCombatHooks => true;
 
     private string IconName => Id.Entry
         .RemovePrefix()
         .ToLowerInvariant();
 
-    public CardModel Card
+    
+    public PowerModel Power
+    {
+        get
+        {
+            AssertMutable();
+            return _power ?? throw new InvalidOperationException($"Gem {Id} has no Power attached to it!");
+        }
+        set
+        {
+            if (value == _power) throw new Exception($"Power already initialized for {Id}");
+            AssertMutable();
+            value.AssertMutable();
+            _power = value;
+        }
+    }
+    
+    
+    public GuardianCardModel Card
     {
         get
         {
             AssertMutable();
             return _card ?? throw new InvalidOperationException($"Gem {Id} has no Card attached to it!");
         }
-        private set
+        set
         {
+            if (value == _card) throw new Exception($"Card already initialized for {Id}");
+            var previousCard = _card;
             AssertMutable();
             value.AssertMutable();
             _card = value;
+            OnAdded(_card);
+            if (previousCard != null) OnRemoved(previousCard);
         }
     }
+    
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
 
@@ -90,7 +119,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     }
 
 
-    public LocString SmartDescription =>
+    private LocString SmartDescription =>
         !HasSmartDescription ? Description : new LocString("gems", SmartDescriptionLocKey);
 
     private bool HasSmartDescription => LocString.Exists("gems", SmartDescriptionLocKey);
@@ -103,19 +132,23 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public abstract Color GemColor { get; }
     public abstract CardRarity Rarity { get; }
     public LocString Title => new("gems", Id.Entry + ".title");
-    public LocString Description => new("gems", Id.Entry + ".description");
-    protected virtual string SmartDescriptionLocKey => Id.Entry + ".smartDescription";
+    private LocString Description => new("gems", Id.Entry + ".description");
+    private bool HasDescriptionExtra => LocString.Exists("gems", Id.Entry + ".descriptionExtra");
+    private LocString DescriptionExtra => new("gems", Id.Entry + ".descriptionExtra");
+    private string SmartDescriptionLocKey => Id.Entry + ".smartDescription";
 
 
+    
     public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
-        .Where(c => c.GemModel == this).Cast<CardModel>().First();
+        .Where(c => c.CanonicalGemModel.GetType() == GetType()).Cast<CardModel>().First();
 
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
 
-    public string GetFormattedText()
+    public string GetFormattedText(bool cardText = false)
     {
         var stringBuilder = new StringBuilder();
         var isSmart = HasSmartDescription && IsMutable;
+        string formatted;
         if (isSmart)
         {
             var locString = SmartDescription;
@@ -128,14 +161,25 @@ public abstract class GemModel : AbstractModel, ICustomModel
             }
 
             DynamicVars.AddTo(locString);
-            stringBuilder.Append(locString.GetFormattedText());
+            formatted = locString.GetFormattedText();
         }
         else
         {
             var description = Description;
             AddDumbVariablesToDescription(description);
-            stringBuilder.Append(description.GetFormattedText());
+            formatted = description.GetFormattedText();
+         
         }
+
+        var isEmpty = formatted.Equals("");
+        if (!isEmpty)
+            stringBuilder.Append(formatted);
+        if (cardText || !HasDescriptionExtra) return stringBuilder.ToString();
+        if (!isEmpty)
+        {
+            stringBuilder.Append("\n");
+        }
+        stringBuilder.Append(DescriptionExtra.GetFormattedText());
 
         return stringBuilder.ToString();
     }
@@ -168,36 +212,24 @@ public abstract class GemModel : AbstractModel, ICustomModel
     private void AddDumbVariablesToDescription(LocString description)
     {
         description.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
-        description.Add("energyPrefix", EnergyIconHelper.GetPrefix(Card));
+        description.Add("energyPrefix", EnergyIconHelper.GetPrefix(ModelDb.Card<StrikeGuardian>()));
     }
 
-
-    internal void SetCard(CardModel card)
+    public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        if (card == _card) throw new Exception("Card already initialized");
-        var previousCard = _card;
-        Card = card;
-        OnAdded(card);
-        if (previousCard != null) OnRemoved(previousCard);
+        await OnPlay(ctx, cardPlay);
+        await GuardianHook.AfterGemPlayed(CombatState, ctx, this,  cardPlay);
     }
 
-    public abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay);
+
+    protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
 
 
     public virtual int ModifyPlayCount(int originalPlayCount)
     {
         return originalPlayCount;
     }
-
-
-    public GemModel CloneForNewCard(CardModel card)
-    {
-        var a = CreateClone();
-        a.SetCard(card);
-        return a;
-    }
-
-
+    
     public GemModel CreateClone()
     {
         AssertMutable();

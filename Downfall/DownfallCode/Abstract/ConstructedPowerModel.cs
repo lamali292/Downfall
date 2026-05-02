@@ -12,11 +12,14 @@ public abstract class ConstructedPowerModel(
     PowerStackType stackType = PowerStackType.Counter) : HookedPowerModel
 {
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
+    private readonly List<Func<PowerModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
+
     private readonly List<DynamicVar> _newDynamicVars = [];
     public override PowerType Type => powerType;
     public override PowerStackType StackType => stackType;
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
+        .Concat(_multiHoverTips.SelectMany(e => e.Invoke(this)));
     public virtual bool ShouldRemoveDueToZero => true;
 
 
@@ -65,6 +68,13 @@ public abstract class ConstructedPowerModel(
     protected ConstructedPowerModel WithTip(AbstractTooltipSource<PowerModel> tipSource)
     {
         _hoverTips.Add(tipSource);
+        return this;
+    }
+    
+    protected ConstructedPowerModel WithTips(
+        Func<PowerModel, IEnumerable<IHoverTip>> multiTipSource)
+    {
+        _multiHoverTips.Add(multiTipSource);
         return this;
     }
 

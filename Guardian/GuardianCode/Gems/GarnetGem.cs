@@ -19,7 +19,7 @@ public class GarnetGem : GemModel
     public override Color GemColor => new(0x5D0109FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<VulnerablePower>(ctx, CombatState.Enemies, effect, Card.Owner.Creature, null);

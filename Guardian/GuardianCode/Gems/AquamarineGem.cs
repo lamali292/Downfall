@@ -20,9 +20,9 @@ public class AquamarineGem : GemModel
     public override CardRarity Rarity => CardRarity.Uncommon;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await DownfallCardCmd.GiveCards<CrystalWard>(cardPlay.Card.Owner, PileType.Hand, effect);
+        await DownfallCardCmd.GiveCards<CrystalWard>(Player, PileType.Hand, effect);
     }
 }

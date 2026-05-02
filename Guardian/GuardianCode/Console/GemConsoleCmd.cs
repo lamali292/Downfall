@@ -51,7 +51,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
         if (gem == null)
             return new CmdResult(false, $"Gem '{gemName}' not found.");
 
-        if (guardianCard.Gems.Count >= guardianCard.GemSlots)
+        if (guardianCard.GemCount >= guardianCard.GemSlots)
             return new CmdResult(false,
                 $"Card {guardianCard.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
 

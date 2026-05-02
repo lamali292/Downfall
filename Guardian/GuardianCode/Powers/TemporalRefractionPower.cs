@@ -1,5 +1,6 @@
 ﻿using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Cards;
+using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Events;
 using MegaCrit.Sts2.Core.Combat;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHasSecondAmount
+public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHasSecondAmount, IAfterGemPlayed
 {
     private int UsedAmount { get; set; }
 
@@ -21,22 +22,12 @@ public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHa
 
     public decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel card)
     {
-        return Owner == card.Owner.Creature && UsedAmount < Amount ? baseValue * 2 : baseValue;
+        return Owner == card.Owner.Creature && UsedAmount < Amount && model.SocketIndex < Amount ? baseValue * 2 : baseValue;
     }
-
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    
+    public Task AfterGemPlayed(PlayerChoiceContext ctx, GemModel gemModel, CardPlay? cardPlay)
     {
-        UsedAmount = 0;
-        InvokeDisplayAmountChanged();
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (Owner != cardPlay.Card.Owner.Creature || UsedAmount >= Amount || cardPlay.Card is not GuardianCardModel
-            {
-                Gems.Count: > 0
-            }) return Task.CompletedTask;
+        if (Owner != gemModel.Card.Owner.Creature || UsedAmount >= Amount) return Task.CompletedTask;
         UsedAmount++;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;

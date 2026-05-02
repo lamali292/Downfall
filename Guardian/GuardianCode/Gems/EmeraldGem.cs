@@ -19,9 +19,9 @@ public class EmeraldGem : GemModel
     public override Color GemColor => new(0x319028FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        var owner = cardPlay.Card.Owner.Creature;
+        var owner = Player.Creature;
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<TemporaryDexterityUpPower>(ctx, owner, effect, owner, null);
     }

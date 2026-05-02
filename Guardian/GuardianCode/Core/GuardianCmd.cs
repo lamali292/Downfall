@@ -151,7 +151,7 @@ public static class GuardianCmd
     {
         if (card is not GuardianCardModel guardianCard) return;
         if (gem is not IGemCard gemCard) return;
-        var gemModel = gemCard.GemModel.ToMutable();
+        var gemModel = gemCard.GemModel;
         card.AssertMutable();
         if (!guardianCard.CanAddGem(gemModel)) return;
         guardianCard.AddGem(gemModel);
@@ -185,7 +185,8 @@ public static class GuardianCmd
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
         if (power == null) return;
-        if (await PowerCmd.ModifyAmount(ctx, power, -amount, player.Creature, null) > 0) return;
+        power.SetAmount((int)(power.Amount - amount), true);
+        if (power.Amount > 0) return;
         await power.Reset(ctx);
     }
 

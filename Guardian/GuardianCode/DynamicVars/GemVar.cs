@@ -29,4 +29,9 @@ public class GemVar : DynamicVar
             originalDamage1 = GuardianHook.ModifyGemEffect(card.CombatState, gem, BaseValue, card);
         PreviewValue = originalDamage1;
     }
+
+    public override string ToString()
+    {
+        return $"{PreviewValue}";
+    }
 }
