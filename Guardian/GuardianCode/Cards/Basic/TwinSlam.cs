@@ -1,14 +1,17 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Guardian.GuardianCode.Cards.Ancient;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Guardian.GuardianCode.Cards.Basic;
 
 [Pool(typeof(GuardianCardPool))]
-public class TwinSlam : GuardianCardModel
+public class TwinSlam : GuardianCardModel, ITranscendenceCard
 {
     public TwinSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -30,5 +33,10 @@ public class TwinSlam : GuardianCardModel
         var gemClones = Gems.Select(originalGem => originalGem.CreateClone()).ToList();
         card.AddGems(gemClones);
         NCard.FindOnTable(card)?.ReloadOverlay();
+    }
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<BaubleBurst>();
     }
 }

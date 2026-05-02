@@ -11,15 +11,15 @@
 [ext_resource type="Material" uid="uid://bfbsbl4t3kkur" path="res://materials/cards/frames/card_frame_red_mat.tres" id="8_gh0el"]
 [ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="9_8q0el"]
 [ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="10_0goxf"]
+[ext_resource type="Texture2D" uid="uid://dhdtenedvnse8" path="res://Guardian/images/gems/ah.png" id="10_umpoy"]
 [ext_resource type="Material" uid="uid://d2pb6adjuojnh" path="res://materials/cards/banners/card_banner_common_mat.tres" id="11_avm2s"]
 [ext_resource type="Texture2D" uid="uid://0o70qg" path="res://images/atlases/ui_atlas.sprites/card/card_portrait_border_attack_s.tres" id="12_hkxrf"]
 [ext_resource type="Texture2D" uid="uid://qmqejd" path="res://images/atlases/ui_atlas.sprites/card/card_banner.tres" id="13_42lgp"]
-[ext_resource type="Texture2D" uid="uid://cqa11p5t0ffdo" path="res://Guardian/images/gems/ruby_gem.png" id="14_6jxlh"]
+[ext_resource type="Texture2D" uid="uid://brvgn7b6lf8od" path="res://Guardian/images/gems/ruby.png" id="14_6jxlh"]
 [ext_resource type="Texture2D" uid="uid://bssd8ar" path="res://images/atlases/ui_atlas.sprites/card/ancient_banner.tres" id="14_88rwc"]
 [ext_resource type="Texture2D" uid="uid://6y8t4" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_0.tres" id="15_f2arp"]
-[ext_resource type="Texture2D" uid="uid://ddc7rc3kcmau2" path="res://Guardian/images/gems/sapphire_gem.png" id="15_fhrw7"]
+[ext_resource type="Texture2D" uid="uid://cr8ncn0gq5xmb" path="res://Guardian/images/gems/diamond.png" id="15_fhrw7"]
 [ext_resource type="Texture2D" uid="uid://b2axy3" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_1.tres" id="16_8o26e"]
-[ext_resource type="Texture2D" uid="uid://bcaissuggbfm0" path="res://Guardian/images/gems/emptysocket.png" id="16_gh0el"]
 [ext_resource type="Texture2D" uid="uid://cwkn42" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_2.tres" id="17_hj16l"]
 [ext_resource type="Texture2D" uid="uid://druea1" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_3.tres" id="18_unuk7"]
 [ext_resource type="Texture2D" uid="uid://em43f0" path="res://images/atlases/compressed.sprites/card_template/ancient_flame/ancient_card_flame_4.tres" id="19_i8qo5"]
@@ -309,6 +309,16 @@ texture = ExtResource("2_0637f")
 expand_mode = 4
 stretch_mode = 5
 
+[node name="Frame2" type="TextureRect" parent="CardContainer"]
+material = ExtResource("8_gh0el")
+layout_mode = 0
+offset_left = -150.0
+offset_top = -235.0
+offset_right = 150.0
+offset_bottom = -185.0
+texture = ExtResource("10_umpoy")
+expand_mode = 1
+
 [node name="DescriptionLabel" type="RichTextLabel" parent="CardContainer"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -369,39 +379,53 @@ mouse_filter = 2
 
 [node name="DownfallGemOverlay" type="Control" parent="CardContainer/OverlayContainer"]
 anchors_preset = 0
-offset_left = -150.0
-offset_top = -211.0
-offset_right = 150.0
-offset_bottom = 211.0
-pivot_offset = Vector2(150, 211)
+offset_left = -129.0
+offset_top = -208.0
+offset_right = -129.0
+offset_bottom = -208.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
+[node name="VBoxContainer" type="HBoxContainer" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
 layout_mode = 0
-offset_left = -8.0
-offset_top = 160.0
-offset_right = 32.0
-offset_bottom = 288.0
+offset_left = 25.0
+offset_top = -20.0
+offset_right = 118.0
+offset_bottom = 10.0
+theme_override_constants/separation = -3
 
-[node name="Slot_1" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("14_6jxlh")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot_2" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
+[node name="Slot_3" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 23.925
+offset_top = -18.94
+offset_right = 53.925026
+offset_bottom = 11.059999
+scale = Vector2(1.058, 0.978)
 texture = ExtResource("15_fhrw7")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="Slot_3" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay/VBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("16_gh0el")
+[node name="Slot_4" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 53.000008
+offset_top = -19.0
+offset_right = 83.00004
+offset_bottom = 11.0
+scale = Vector2(1.058, 0.978)
+texture = ExtResource("14_6jxlh")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 4
+
+[node name="Slot_5" type="TextureRect" parent="CardContainer/OverlayContainer/DownfallGemOverlay"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 82.0
+offset_top = -20.0
+offset_right = 112.0
+offset_bottom = 10.0
+texture = ExtResource("15_fhrw7")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="TitleBanner" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
@@ -425,7 +449,6 @@ stretch_mode = 6
 
 [node name="AncientBanner" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -640,6 +663,7 @@ expand_mode = 1
 
 [node name="Enchantment" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_ots2x")
 layout_mode = 0
 offset_left = -166.0

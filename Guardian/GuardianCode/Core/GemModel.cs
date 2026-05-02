@@ -31,7 +31,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     private DynamicVarSet? _dynamicVars;
 
     protected ICombatState CombatState =>
-        Card.CombatState ?? Power.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
+        Card.CombatState ??  _power?.CombatState  ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
 
     protected Player Player => Card.Owner;
     public override bool ShouldReceiveCombatHooks => true;

@@ -5,15 +5,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Guardian.GuardianCode.Cards.Rare;
+namespace Guardian.GuardianCode.Cards.Ancient;
 
 [Pool(typeof(GuardianCardPool))]
 public class AncientConstruct : GuardianCardModel
 {
-    public AncientConstruct() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public AncientConstruct() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
     {
         WithPower<ArtifactPower>(1);
         WithPower<AncientConstructPower>(1);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

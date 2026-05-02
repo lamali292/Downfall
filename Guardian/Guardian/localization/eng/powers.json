@@ -53,5 +53,11 @@
   "GUARDIAN-TEMPORAL_REFRACTION_POWER.smartDescription": "Double the first {Amount:plural:[gold]Gem[/gold] effect|[blue]{Amount}[/blue] [gold]Gem[/gold] effects} you activate each turn.",
   "GUARDIAN-BRILLIANT_SCALES_POWER.title": "Brilliant Scales",
   "GUARDIAN-BRILLIANT_SCALES_POWER.description": "At the start of every turn, play [gold]Gems[/gold] of this.",
-  "GUARDIAN-BRILLIANT_SCALES_POWER.smartDescription": "At the start of every turn,\n{effects}"
+  "GUARDIAN-BRILLIANT_SCALES_POWER.smartDescription": "At the start of every turn,\n{effects}",
+  "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "Bronze Brambles",
+  "GUARDIAN-BRONZE_BRAMBLES_POWER.description": "Whenever you are debuffed, also gain [gold]Thorns[/gold].",
+  "GUARDIAN-BRONZE_BRAMBLES_POWER.smartDescription": "Whenever you are debuffed, also gain [blue]{Amount}[/blue] [gold]Thorns[/gold].",
+  "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "Maximum Overdrive",
+  "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.description": "Whenever a card ticks down in [gold]Stasis[/gold], gain [blue]1[/blue] temp. [gold]Strength[/gold].",
+  "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "Whenever a card ticks down in Stasis, gain [blue]{Amount}[/blue] temp. [gold]Strength.[/gold]"
 }

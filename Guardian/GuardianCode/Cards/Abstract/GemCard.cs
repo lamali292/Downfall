@@ -106,6 +106,14 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
         }
     }
     
+    protected override void AfterCloned()
+    {
+        base.AfterCloned();
+        if (_mutableGem == null) return;
+        _mutableGem = _mutableGem.CreateClone();
+        _mutableGem.Card = this;
+    }
+    
     protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         return GemModel.OnPlayWrapper(ctx, cardPlay);

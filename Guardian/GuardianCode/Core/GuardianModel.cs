@@ -46,7 +46,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
 
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        await StasisTickAll(player, ctx);
+        await GuardianCmd.TickAll(player, ctx);
         GuardianDisplay.Refresh(player);
     }
 
@@ -75,30 +75,17 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         return true;
     }
 
-    // Internal helpers
-    private static async Task StasisTickAll(Player player, PlayerChoiceContext ctx)
+    internal static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
     {
-        var cards = GuardianPile.Stasis.GetPile(player).Cards.ToList();
-        foreach (var card in cards.Where(c => StasisCounter[c] > 0))
-        {
-            StasisCounter[card]--;
-            if (card is ITickCard tickCard) await tickCard.OnTick(ctx);
-            if (StasisCounter[card] == 0) await ReturnFromStasis(card, player, ctx);
-        }
-
-        GuardianDisplay.Refresh(player);
-    }
-
-    internal static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
-    {
-        if (card.Keywords.Contains(GuardianKeyword.Volatile))
-        {
-            await CardCmd.Exhaust(ctx, card);
-            return;
-        }
-
-        await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
-        card.EnergyCost.SetUntilPlayed(0);
+        var current = ActiveMode[player];
+        if (current?.GetType() == newCanonical.GetType()) return;
+        if (current != null) await current.OnExit();
+        var mutable = newCanonical.ToMutable(player);
+        ActiveMode[player] = mutable;
+        await mutable.OnEnter();
+        TriggerModeAnimation(player);
+        await GuardianHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
+            ActiveMode[player]!);
     }
 
     private static void TriggerModeAnimation(Player player)
@@ -112,18 +99,5 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             creatureNode?.SetAnimationTrigger("Idle");
             animState.GetCurrent(0).SetMixDuration(0.3f);
         }).CallDeferred();
-    }
-
-    internal static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
-    {
-        var current = ActiveMode[player];
-        if (current?.GetType() == newCanonical.GetType()) return;
-        if (current != null) await current.OnExit();
-        var mutable = newCanonical.ToMutable(player);
-        ActiveMode[player] = mutable;
-        await mutable.OnEnter();
-        TriggerModeAnimation(player);
-        await GuardianHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
-            ActiveMode[player]!);
     }
 }

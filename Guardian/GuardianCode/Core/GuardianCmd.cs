@@ -1,6 +1,7 @@
 using BaseLib.Patches.Content;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
@@ -9,6 +10,7 @@ using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -88,27 +90,28 @@ public static class GuardianCmd
         GuardianDisplay.Refresh(player);
     }
 
-    public static bool CanPutIntoStasis(Player player)
+    public static bool CanPutIntoStasis(Player player, bool silent = false)
     {
         var pile = GetStasisPile(player);
         if (pile == null) return false;
         if (pile.Cards.Count < GetMaxStasisSlots(player)) return true;
-        if (!LocalContext.IsMe(player)) return false;
+        if (silent || !LocalContext.IsMe(player)) return false;
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
             NThoughtBubbleVfx.Create(FullStasisText.GetFormattedText(), player.Creature, 2.0));
         return false;
     }
 
-    public static async Task PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null)
+    public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null, bool silent = false)
     {
-        if (card.CombatState == null) return;
+        if (card.CombatState == null) return false;
         var player = card.Owner;
-        if (!CanPutIntoStasis(player)) return;
+        if (!CanPutIntoStasis(player, silent)) return false;
         card.EnergyCost.AfterCardPlayedCleanup();
         source ??= card;
         await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
         await CardPileCmd.Add(card, GetStasisPile(player)!, source: source);
         SetStasisCounter(card);
+        return true;
     }
 
     public static int GetStasisCounter(CardModel card)
@@ -132,6 +135,44 @@ public static class GuardianCmd
     private static int CalculateStasisCounter(CardModel card)
     {
         return card is ICustomTickDuration custom ? custom.TickDuration : card.EnergyCost.GetResolved() + 1;
+    }
+
+    private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
+    {
+        if (card.Keywords.Contains(GuardianKeyword.Volatile))
+        {
+            await CardCmd.Exhaust(ctx, card);
+            return;
+        }
+        await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
+        card.EnergyCost.SetUntilPlayed(0);
+    }
+
+    private static async Task TickCard(CardModel card, Player player, PlayerChoiceContext ctx)
+    {
+        if (GuardianModel.StasisCounter[card] <= 0) return;
+        var combatState = player.Creature.CombatState;
+        if (combatState == null) return;
+        
+        GuardianModel.StasisCounter[card]--;
+        GuardianDisplay.RefreshCounters(player);
+        if (card is ITickCard tickCard)
+            await tickCard.OnTick(ctx);
+        await GuardianHook.AfterCardTick(combatState, ctx, card, player);
+        
+        if (GuardianModel.StasisCounter[card] == 0)
+            await ReturnFromStasis(card, player, ctx);
+        
+        
+    }
+    
+  
+
+    public static async Task TickAll(Player player, PlayerChoiceContext ctx)
+    {
+        foreach (var card in GetStasisCards(player).ToList())
+            await TickCard(card, player, ctx);
+        GuardianDisplay.Refresh(player);
     }
 
     // Gems
@@ -198,42 +239,23 @@ public static class GuardianCmd
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        var cards = GetStasisCards(player).ToList(); // oldest first
+        var cards = GetStasisCards(player).ToList();
 
-        if (accelerateType == AccelerateType.First)
-            // Distribute amount across cards oldest-first
-            foreach (var card in cards)
+        foreach (var card in cards)
+        {
+            var ticks = accelerateType == AccelerateType.First
+                ? Math.Min(amount, GuardianModel.StasisCounter[card])
+                : amount;
+
+            for (var i = 0; i < ticks; i++)
+                await TickCard(card, player, ctx);
+
+            if (accelerateType == AccelerateType.First)
             {
+                amount -= ticks;
                 if (amount <= 0) break;
-                var reduce = Math.Min(amount, GuardianModel.StasisCounter[card]);
-                amount -= reduce;
-                for (var i = 0; i < reduce; i++)
-                {
-                    GuardianModel.StasisCounter[card]--;
-                    GuardianDisplay.RefreshCounters(player);
-                    if (card is ITickCard tickCard)
-                        await tickCard.OnTick(ctx);
-                }
-
-                if (GuardianModel.StasisCounter[card] == 0)
-                    await GuardianModel.ReturnFromStasis(card, player, ctx); // see below
             }
-        else
-            foreach (var card in cards)
-            {
-                var reduce = Math.Min(amount, GuardianModel.StasisCounter[card]);
-
-                for (var i = 0; i < reduce; i++)
-                {
-                    GuardianModel.StasisCounter[card]--;
-                    if (card is not ITickCard tickCard) continue;
-                    GuardianDisplay.RefreshCounters(player);
-                    await tickCard.OnTick(ctx);
-                }
-
-                if (GuardianModel.StasisCounter[card] == 0)
-                    await GuardianModel.ReturnFromStasis(card, player, ctx);
-            }
+        }
 
         GuardianDisplay.Refresh(player);
     }
@@ -249,7 +271,6 @@ public static class GuardianCmd
         var amount = card.DynamicVars.Polish().IntValue;
         await Polish(ctx, card, amount);
     }
-
 
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card, decimal amount)
     {
