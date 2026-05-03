@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Cards.Token;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -28,8 +29,11 @@ public class ChampionsCrown : ChampRelicModel
         ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
-        var card = combatState.CreateCard<Inspiration>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         Flash();
+        await ChampCmd.EnterDifferentStance(ctx, player);
+        var stance = Owner.ChampStance();
+        await stance.SkillBonus(ctx);
+        await stance.SkillBonus(ctx);
+
     }
 }

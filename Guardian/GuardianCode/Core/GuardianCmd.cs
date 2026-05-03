@@ -96,8 +96,7 @@ public static class GuardianCmd
         if (pile == null) return false;
         if (pile.Cards.Count < GetMaxStasisSlots(player)) return true;
         if (silent || !LocalContext.IsMe(player)) return false;
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-            NThoughtBubbleVfx.Create(FullStasisText.GetFormattedText(), player.Creature, 2.0));
+        ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
         return false;
     }
 
@@ -109,8 +108,9 @@ public static class GuardianCmd
         card.EnergyCost.AfterCardPlayedCleanup();
         source ??= card;
         await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
-        await CardPileCmd.Add(card, GetStasisPile(player)!, source: source);
+        await CardPileCmd.Add(card, GetStasisPile(player)!, source: source, skipVisuals: silent);
         SetStasisCounter(card);
+        await GuardianHook.AfterCardEntersStasis(card.CombatState, ctx, card, source);
         return true;
     }
 
@@ -123,13 +123,6 @@ public static class GuardianCmd
     {
         GuardianModel.StasisCounter[card] = CalculateStasisCounter(card);
         GuardianDisplay.Refresh(card.Owner);
-    }
-
-    public static void DecrementStasisCounter(CardModel card)
-    {
-        if (GuardianModel.StasisCounter[card] <= 0) return;
-        GuardianModel.StasisCounter[card]--;
-        GuardianDisplay.RefreshCounters(card.Owner);
     }
 
     private static int CalculateStasisCounter(CardModel card)
@@ -226,7 +219,8 @@ public static class GuardianCmd
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
         if (power == null) return;
-        power.SetAmount((int)(power.Amount - amount), true);
+        var modifiedAmount = GuardianHook.ModifyBraceAmount(power.CombatState, player, amount);
+        power.SetAmount((int)(power.Amount - modifiedAmount), true);
         if (power.Amount > 0) return;
         await power.Reset(ctx);
     }
@@ -250,13 +244,19 @@ public static class GuardianCmd
             for (var i = 0; i < ticks; i++)
                 await TickCard(card, player, ctx);
 
-            if (accelerateType == AccelerateType.First)
-            {
-                amount -= ticks;
-                if (amount <= 0) break;
-            }
+            if (accelerateType != AccelerateType.First) continue;
+            amount -= ticks;
+            if (amount <= 0) break;
         }
 
+        GuardianDisplay.Refresh(player);
+    }
+    
+    public static async Task Accelerate(PlayerChoiceContext ctx, CardModel card, Player player, int amount = 1)
+    {
+        var ticks = Math.Min(amount, GuardianModel.StasisCounter[card]);
+        for (var i = 0; i < ticks; i++)
+            await TickCard(card, player, ctx);
         GuardianDisplay.Refresh(player);
     }
 
@@ -265,6 +265,7 @@ public static class GuardianCmd
     {
         return Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
     }
+    
 
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card)
     {

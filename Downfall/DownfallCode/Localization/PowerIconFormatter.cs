@@ -11,7 +11,7 @@ public class PowerIconFormatter : IFormatter
     public string Name
     {
         get => "icon";
-        set => throw new NotImplementedException();
+        set => throw new Exception();
     }
 
     public bool CanAutoDetect { get; set; }

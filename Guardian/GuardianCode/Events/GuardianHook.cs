@@ -27,6 +27,13 @@ public static class GuardianHook
         return DownfallHook.Dispatch<IBeforeCardEntersStasis>(cs, ctx,
             m => m.BeforeCardEntersStasis(ctx, card, source));
     }
+    
+    public static Task AfterCardEntersStasis(ICombatState cs, PlayerChoiceContext ctx, CardModel card,
+        AbstractModel source)
+    {
+        return DownfallHook.Dispatch<IAfterCardEntersStasis>(cs, ctx,
+            m => m.AfterCardEntersStasis(ctx, card, source));
+    }
 
 
     public static decimal ModifyGemEffect(ICombatState cs, GemModel gem, decimal baseValue, CardModel card)
@@ -45,5 +52,11 @@ public static class GuardianHook
     {
         return DownfallHook.Dispatch<IAfterCardTick>(cs, ctx,
             m => m.AfterCardTick(ctx, card, player));
+    }
+
+    public static decimal ModifyBraceAmount(ICombatState cs, Player player, decimal amount)
+    {
+        return DownfallHook.Aggregate<IModifyBraceAmount, decimal>(cs, amount,
+            (m, val) => m.ModifyBraceAmount(player, amount));
     }
 }

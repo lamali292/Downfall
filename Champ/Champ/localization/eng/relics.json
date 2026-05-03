@@ -33,6 +33,6 @@
   "CHAMP-SPECTRES_HAND.description": "Whenever you enter a Stance, gain an Echo of a basic Strike or Defend. It costs 0.",
   "CHAMP-SPECTRES_HAND.flavor": "Some victories stay with you.",
   "CHAMP-VICTORIOUS_CROWN.title": "Victorious Crown",
-  "CHAMP-VICTORIOUS_CROWN.description": "Replaces {{R|Champion's Crown}}. The first time you play a Finisher each turn, draw 2 cards and enter a random Stance.",
+  "CHAMP-VICTORIOUS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], and then trigger that [gold]Stance's Skill Bonus [/gold]twice.\nThe first time you play a [gold]Finisher[/gold] each turn, draw 2 cards and enter a random [gold]Stance[/gold].",
   "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! You are the greatest winner."
 }

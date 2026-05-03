@@ -13,7 +13,7 @@ public class BronzeBramblesPower : GuardianPowerModel
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
-        if (power.Owner != Owner || power.Type != PowerType.Debuff || amount <= 0) return;
+        if (power.Owner != Owner || applier == Owner || power.Type != PowerType.Debuff || amount <= 0) return;
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, Amount, applier, null);
     }
 }

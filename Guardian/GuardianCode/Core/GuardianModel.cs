@@ -44,12 +44,15 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         return Task.CompletedTask;
     }
 
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
-        await GuardianCmd.TickAll(player, ctx);
-        GuardianDisplay.Refresh(player);
+        foreach (var player in combatState.Players)
+        {
+            await GuardianCmd.TickAll(player, ctx);
+            GuardianDisplay.Refresh(player);
+        }
     }
-
+    
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

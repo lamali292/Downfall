@@ -85,7 +85,7 @@ public static class LogErrorPatch
                 var name = (attr?.Name ?? field.Name).ToUpperInvariant();
                 var result = t.GetPrefix() + name;
 
-                NameCache[targetValue] = result; // Save it!
+                NameCache[targetValue] = result;
                 return result;
             }
         }
