@@ -10,10 +10,19 @@ public class DiceCrush : SneckoCardModel
 {
     public DiceCrush() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithOverflow();
+        WithDamage(18, 4);
+        WithCards(2);
     }
 
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
+    protected override async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.Draw(this, ctx);
     }
 }

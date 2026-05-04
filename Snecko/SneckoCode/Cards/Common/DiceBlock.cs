@@ -10,10 +10,17 @@ public class DiceBlock : SneckoCardModel
 {
     public DiceBlock() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        WithOverflow();
+        WithBlock(5, 2);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
+    }
+
+    protected override async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }

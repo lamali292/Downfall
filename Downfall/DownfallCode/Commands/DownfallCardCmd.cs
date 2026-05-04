@@ -155,11 +155,11 @@ public class DownfallCardCmd
         return result;
     }
 
-    public static async Task SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
+    public static async Task<CardPileAddResult> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
         PileType toPile)
     {
         var cards = fromPile.GetPile(card.Owner).Cards.ToList();
-        if (cards.Count == 0) return;
+        if (cards.Count == 0) return default;
         var want = card.DynamicVars.Cards.IntValue;
         IEnumerable<CardModel> newCard;
         if (cards.Count <= want)
@@ -172,6 +172,6 @@ public class DownfallCardCmd
             newCard = await CardSelectCmd.FromSimpleGrid(ctx, cards, card.Owner, prefs);
         }
 
-        await CardPileCmd.Add(newCard, toPile);
+        return (await CardPileCmd.Add(newCard, toPile)).FirstOrDefault();
     }
 }
