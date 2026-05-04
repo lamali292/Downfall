@@ -13,6 +13,7 @@ public class CollectorPile() : CustomPile(Collected)
 {
     [CustomEnum] public static PileType Collected;
 
+    
     public override bool CardShouldBeVisible(CardModel card)
     {
         return false;

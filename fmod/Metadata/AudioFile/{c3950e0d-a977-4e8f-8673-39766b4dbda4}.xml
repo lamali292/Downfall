@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{c3950e0d-a977-4e8f-8673-39766b4dbda4}">
+		<property name="assetPath">
+			<value>STS_VO_GremlinFat_1c.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.5263718820861678</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4d7e34f6-ed90-4df0-8147-c756aa0ae0bb}</destination>
+		</relationship>
+	</object>
+</objects>

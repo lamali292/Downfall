@@ -8,6 +8,7 @@ script = ExtResource("1_o1y6q")
 
 [node name="Visuals" parent="." instance=ExtResource("1_iqfof")]
 preview_animation = "IdleUltimate"
+preview_frame = true
 unique_name_in_owner = true
 position = Vector2(0, -19)
 

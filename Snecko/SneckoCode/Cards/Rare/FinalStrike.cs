@@ -10,6 +10,10 @@ public class FinalStrike : SneckoCardModel
 {
     public FinalStrike() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithGift(new Gift
+        {
+           IsStrike = true
+        });
     }
 
     // TODO: Implement

@@ -10,6 +10,12 @@ public class Medusa : SneckoCardModel
 {
     public Medusa() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Common,
+            IsDebuff = true
+        });
     }
 
     // TODO: Implement

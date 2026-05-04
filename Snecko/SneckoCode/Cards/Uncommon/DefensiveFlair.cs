@@ -10,6 +10,10 @@ public class DefensiveFlair : SneckoCardModel
 {
     public DefensiveFlair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Uncommon,
+        });
     }
 
     // TODO: Implement

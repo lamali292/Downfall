@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{db34742d-2ec5-4e94-8653-fd6358e88b83}">
+		<property name="assetPath">
+			<value>STS_VO_GremlinNob_1a_v3.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.8557142857142859</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4d7e34f6-ed90-4df0-8147-c756aa0ae0bb}</destination>
+		</relationship>
+	</object>
+</objects>

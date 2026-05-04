@@ -13,7 +13,7 @@
   "AWAKENED-ARTIFICE.title": "Artifice",
   "AWAKENED-AWAKENED_CARD_MODEL.description": "",
   "AWAKENED-AWAKENED_CARD_MODEL.title": "Awakened Card Model",
-  "AWAKENED-AWAKENED_FORM.description": "Gain {CuriosityPower:diff()} [gold]Curiosity[/gold].\nGain {RitualPower:diff()} [gold]Ritual[/gold].",
+  "AWAKENED-AWAKENED_FORM.description": "{IfUpgraded:show:Awaken immediately.\n|}Gain {CuriosityPower:diff()} [gold]Curiosity[/gold].\nGain {RitualPower:diff()} [gold]Ritual[/gold].",
   "AWAKENED-AWAKENED_FORM.title": "Awakened Form",
   "AWAKENED-BLOODIED_PREENING.description": "Lose 2 [gold]Strength[/gold]. \nAt the start of your turn, gain a [gold]Plume Jab[/gold].",
   "AWAKENED-BLOODIED_PREENING.title": "Bloodied Preening",

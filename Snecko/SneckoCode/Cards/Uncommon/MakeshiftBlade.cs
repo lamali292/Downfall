@@ -10,6 +10,10 @@ public class MakeshiftBlade : SneckoCardModel
 {
     public MakeshiftBlade() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithGift(new Gift
+        {
+            IsDebuff =  true
+        });
     }
 
     // TODO: Implement

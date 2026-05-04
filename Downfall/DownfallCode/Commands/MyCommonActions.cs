@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -44,5 +45,10 @@ public static class MyCommonActions
     {
         if (cardPlay.Target is null) return;
         await CommonActions.Apply<T>(ctx, cardPlay.Target, card);
+    }
+
+    public static async Task CardCalculatedBlock(CardModel card, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(card, card.DynamicVars.CalculatedBlock, cardPlay);
     }
 }

@@ -47,7 +47,7 @@ public class InfernoGhostflame : GhostflameModel
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;
-        if (!TryProgress()) return;
+        if (!TryProgress(amount)) return;
         await Ignite(ctx);
     }
 }

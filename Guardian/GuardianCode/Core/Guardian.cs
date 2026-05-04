@@ -23,7 +23,7 @@ public class Guardian : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 80;
     public override int StartingGold => 99;
 
     public override IEnumerable<CardModel> StartingDeck =>
@@ -57,6 +57,7 @@ public class Guardian : DownfallCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GuardianRelicPool>();
 
 
+    /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         var idleNormal = new AnimState("idle", true);
@@ -74,6 +75,7 @@ public class Guardian : DownfallCharacterModel
                    && GuardianCmd.IsInMode<T>(player);
         }
     }
+    */
 }
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;

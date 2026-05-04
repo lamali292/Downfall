@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,6 +26,6 @@ public class HeatShield : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, DynamicVars.CalculatedBlock, cardPlay);
+        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
     }
 }

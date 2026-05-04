@@ -10,6 +10,10 @@ public class QueenOfPentacles : SneckoCardModel
 {
     public QueenOfPentacles() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithGift(new Gift
+        {
+            IsDebuff = true
+        });
     }
 
     // TODO: Implement

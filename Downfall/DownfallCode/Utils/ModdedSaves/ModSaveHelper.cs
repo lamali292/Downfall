@@ -1,7 +1,10 @@
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Downfall.DownfallCode.Saves;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.DownfallCode.Utils.ModdedSaves;
@@ -42,31 +45,40 @@ public static class ModSaveHelper
         return field;
     }
 
+ 
+    public class ModelIdJsonConverter : JsonConverter<ModelId>
+    {
+        public override ModelId Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            => ModelId.Deserialize(reader.GetString()!);
+
+        public override void Write(Utf8JsonWriter writer, ModelId value, JsonSerializerOptions options)
+            => writer.WriteStringValue(value.ToString());
+    }
+
+    private static readonly JsonSerializerOptions ModJsonOptions = new()
+    {
+        WriteIndented = true,
+        Converters = { new ModelIdJsonConverter() }
+    };
+    
     public static string? GetModDataToSave(Mod mod)
     {
         var field = GetSaveField(mod);
         if (field == null) return null;
         var liveData = field.GetValue(null);
         if (liveData == null) return null;
-        return JsonSerializer.Serialize(liveData, field.FieldType, new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            IncludeFields = true
-        });
+        var json = JsonSerializer.Serialize(liveData, field.FieldType, ModJsonOptions);
+        return json;
     }
 
+    
     public static void LoadDataIntoMod(Mod mod, string json)
     {
         var field = GetSaveField(mod);
         if (field == null) return;
-
         try
         {
-            var loadedData = JsonSerializer.Deserialize(json, field.FieldType, new JsonSerializerOptions
-            {
-                IncludeFields = true
-            });
-
+            var loadedData = JsonSerializer.Deserialize(json, field.FieldType, ModJsonOptions);
             if (loadedData == null) return;
             field.SetValue(null, loadedData);
         }

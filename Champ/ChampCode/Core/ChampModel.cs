@@ -83,6 +83,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
     }
 
 
+    /*
     private static void TriggerStanceAnimation(Player player)
     {
         Callable.From(() =>
@@ -101,6 +102,25 @@ public class ChampModel() : CustomSingletonModel(true, true)
             if (trigger == null) return;
             creatureNode?.SetAnimationTrigger(trigger);
             animState.GetCurrent(0).SetMixDuration(0.3f);
+        }).CallDeferred();
+    }*/
+    
+    private static void TriggerStanceAnimation(Player player)
+    {
+        Callable.From(() =>
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+            if (creatureNode?.Visuals is not NChampCreatureVisuals champVisuals) return;
+
+            champVisuals.CurrentStance = ActiveStance[player] switch
+            {
+                ChampBerserkerStance => NChampCreatureVisuals.Stance.Berserker,
+                ChampDefensiveStance => NChampCreatureVisuals.Stance.Defensive,
+                ChampUltimateStance => NChampCreatureVisuals.Stance.Ultimate,
+                _                    => NChampCreatureVisuals.Stance.Normal
+            };
+
+            champVisuals.OnAnimationTrigger("Idle");
         }).CallDeferred();
     }
 

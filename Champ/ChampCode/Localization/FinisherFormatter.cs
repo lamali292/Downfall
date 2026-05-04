@@ -7,7 +7,7 @@ public class FinisherFormatter : IFormatter
     public string Name
     {
         get => "finisher";
-        set => throw new NotImplementedException();
+        set => throw new Exception();
     }
 
     public bool CanAutoDetect { get; set; }

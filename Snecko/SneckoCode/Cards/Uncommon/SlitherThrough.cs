@@ -10,6 +10,10 @@ public class SlitherThrough : SneckoCardModel
 {
     public SlitherThrough() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Uncommon,
+        });
     }
 
     // TODO: Implement

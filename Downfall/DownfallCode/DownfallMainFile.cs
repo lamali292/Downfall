@@ -2,12 +2,15 @@ using System.Reflection;
 using BaseLib.Config;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.Nodes;
+using Downfall.DownfallCode.Saves;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
@@ -24,13 +27,16 @@ public partial class DownfallMainFile : Node
     {
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);
-
+        
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
 
         NCustomCardHolder.InitPool();
+        DownfallAudiomanager.LoadFModBank(ModId);
     }
+
+    
 }
 
 [HarmonyPatch(typeof(ModelDb), "InitIds")]
@@ -43,7 +49,6 @@ internal static class ModelDbInitIdsPatch
         var characters = ModelDb.AllCharacters
             .Where(c => c.GetType().Assembly == modAssembly)
             .ToList();
-
         foreach (var character in characters.OrderBy(c => c.Id.Entry))
         {
             var charName = character.GetType().Name;
@@ -58,7 +63,7 @@ internal static class ModelDbInitIdsPatch
     }
 }
 
-/*
+
 [HarmonyPatch(typeof(Log), nameof(Log.Error))]
 public static class LogErrorPatch
 {
@@ -67,4 +72,4 @@ public static class LogErrorPatch
     {
         return !text.StartsWith("Localization formatting error!");
     }
-}*/
+}

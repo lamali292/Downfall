@@ -9,6 +9,7 @@ using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
+using Guardian.GuardianCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -96,11 +97,10 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         Callable.From(() =>
         {
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            var animState = creatureNode?.SpineAnimation.GetAnimationState();
-            if (animState == null) return;
-            animState.GetCurrent(0).SetMixDuration(0.3f);
-            creatureNode?.SetAnimationTrigger("Idle");
-            animState.GetCurrent(0).SetMixDuration(0.3f);
+            if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
+
+            guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
+            guardianVisuals.OnAnimationTrigger("Idle");
         }).CallDeferred();
     }
 }

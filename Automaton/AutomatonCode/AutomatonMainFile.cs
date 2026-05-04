@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -32,5 +33,6 @@ public partial class AutomatonMainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
+        DownfallAudiomanager.LoadFModBank(ModId);
     }
 }

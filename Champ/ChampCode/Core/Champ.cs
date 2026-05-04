@@ -24,7 +24,7 @@ public class Champ : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 80;
     public override int StartingGold => 99;
 
     public override IEnumerable<CardModel> StartingDeck =>
@@ -55,6 +55,7 @@ public class Champ : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ChampPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
 
+    /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         var idleNone = new AnimState("Idle", true);
@@ -120,6 +121,7 @@ public class Champ : DownfallCharacterModel
                    && ChampModel.IsInStance<T>(player);
         }
     }
+    */
 }
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;

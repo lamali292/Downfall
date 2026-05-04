@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ab194ebf-16e7-4a17-a244-bc5d833d173b}">
+		<property name="assetPath">
+			<value>SOTE_SFX_BossOrbIgnite2_v2.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.0086167800453514</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4d7e34f6-ed90-4df0-8147-c756aa0ae0bb}</destination>
+		</relationship>
+	</object>
+</objects>

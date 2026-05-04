@@ -1,6 +1,7 @@
 using System.Reflection;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using Guardian.GuardianCode.Cards;
@@ -31,5 +32,6 @@ public partial class GuardianMainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
+        DownfallAudiomanager.LoadFModBank(ModId);
     }
 }

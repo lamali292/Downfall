@@ -14,16 +14,12 @@ public class CrookedStrike : ChampCardModel
 {
     public CrookedStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithTags(ChampTag.Finisher);
         WithDamage(6, 3);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
         WithTags(CardTag.Strike);
     }
 
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         decimal a = Owner.Creature.GetPowerAmount<VigorPower>();

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{dbf736aa-538e-4da4-bcf0-eb8ea40b0745}">
+		<property name="name">
+			<value>SlimeBoss</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6f609647-1ab1-460f-a7a8-35e97b683f84}</destination>
+		</relationship>
+	</object>
+</objects>

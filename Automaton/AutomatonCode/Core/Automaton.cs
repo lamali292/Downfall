@@ -23,7 +23,7 @@ public class Automaton : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 70;
     public override int StartingGold => 99;
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

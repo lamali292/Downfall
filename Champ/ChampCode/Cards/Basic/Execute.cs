@@ -16,13 +16,9 @@ public class Execute : ChampCardModel, ITranscendenceCard
     public Execute() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-
+    
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<Execution>();

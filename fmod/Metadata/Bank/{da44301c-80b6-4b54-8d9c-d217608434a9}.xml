@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{da44301c-80b6-4b54-8d9c-d217608434a9}">
+		<property name="name">
+			<value>Hexaghost</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6f609647-1ab1-460f-a7a8-35e97b683f84}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{fb4641c7-8632-4f19-951b-855b2f19f3e6}">
+		<property name="assetPath">
+			<value>STS_VO_GremlinCalm_1a.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.87621315192743765</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4d7e34f6-ed90-4df0-8147-c756aa0ae0bb}</destination>
+		</relationship>
+	</object>
+</objects>

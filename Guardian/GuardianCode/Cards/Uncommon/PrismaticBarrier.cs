@@ -1,6 +1,8 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,6 +29,6 @@ public class PrismaticBarrier : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
+        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
     }
 }

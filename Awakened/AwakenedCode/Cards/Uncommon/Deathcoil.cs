@@ -1,9 +1,11 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;

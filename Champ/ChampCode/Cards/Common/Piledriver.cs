@@ -16,12 +16,9 @@ public class Piledriver : ChampCardModel
         WithDamage(8, 4);
         WithPower<VulnerablePower>(2);
         WithPower<WeakPower>(2);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
     }
 
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

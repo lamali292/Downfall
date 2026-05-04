@@ -10,6 +10,10 @@ public class DangerNoodle : SneckoCardModel
 {
     public DangerNoodle() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithGift(new Gift
+        {
+            MinCost = 3
+        });
     }
 
     // TODO: Implement

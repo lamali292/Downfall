@@ -87,10 +87,10 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         StatusBarHelper.SetStatus(Owner, IgnitionProgress, IgnitionRequirement, FireColor.ToColor());
     }
 
-    protected bool TryProgress()
+    protected bool TryProgress(int amount = 1)
     {
         if (IsIgnited) return false;
-        IgnitionProgress++;
+        IgnitionProgress+=amount;
         UpdateVisuals();
         return IgnitionProgress >= IgnitionRequirement;
     }

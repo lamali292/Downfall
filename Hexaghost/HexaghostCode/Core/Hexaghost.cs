@@ -21,7 +21,7 @@ public class Hexaghost : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 66;
     public override int StartingGold => 99;
 
     public override IEnumerable<CardModel> StartingDeck =>

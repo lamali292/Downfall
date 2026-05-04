@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -24,7 +25,6 @@ public class MysteryWeaving : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var amount = DynamicVars.CalculatedBlock.Calculate(Owner.Creature);
-        await CreatureCmd.GainBlock(Owner.Creature, amount, DynamicVars.CalculatedBlock.Props, cardPlay);
+        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
     }
 }

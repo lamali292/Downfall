@@ -1,0 +1,123 @@
+﻿using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Runs;
+
+namespace Snecko.SneckoCode.Core;
+
+public static class SneckoCmd
+{
+    public static Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card)
+    {
+        var amount = card.DynamicVars["Muddle"].IntValue;
+        return MuddleHandCards(ctx, card, amount);
+    }
+
+    private static async Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, int amount)
+    {
+        // Todo: change prompt
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, amount);
+        var cards = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, c => c != card && CanMuddle(c), card);
+        foreach (var cardModel in cards)
+        {
+            Muddle(cardModel);
+        }
+    }
+
+    private static void Muddle(CardModel card)
+    {
+        card.EnergyCost.SetThisCombat(NextEnergyCost(card));
+        NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
+    }
+    
+    private static int NextEnergyCost(CardModel card)
+    {
+        var rng = card.Owner.RunState.Rng.CombatEnergyCosts;
+        var current = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        int next;
+        do { next = rng.NextInt(4); } while (next == current);
+        return next;
+    }
+
+    private static bool CanMuddle(CardModel card)
+    {
+        return !card.Keywords.Contains(CardKeyword.Unplayable) && !card.EnergyCost.CostsX;
+    }
+
+    public static bool OverflowActive(Player player, bool cardInHand = false) =>
+        player.PlayerCombatState is { Hand.Cards.Count: var count } && count > (cardInHand ? 5 : 4);
+
+
+    public static bool IsOffclass(CardModel card, CardModel other) =>
+        other.Pool != card.Pool;
+
+    public static bool IsDebuff(CardModel card)
+    {
+        return card.DynamicVars.Values.Any(IsDebuffPowerVar);
+    }
+
+    private static bool IsDebuffPowerVar(DynamicVar v)
+    {
+        var t = v.GetType();
+        if (!t.IsGenericType || t.GetGenericTypeDefinition() != typeof(PowerVar<>))
+            return false;
+        
+        var method = typeof(ModelDb).GetMethod("Power")?.MakeGenericMethod(t.GetGenericArguments()[0]);
+        var power = method?.Invoke(null, null) as PowerModel;
+        return power?.Type == PowerType.Debuff && v.BaseValue > 0;
+    }
+
+    public static async Task GetGift(Player player, Gift gift, int amount = 3)
+    {
+        var sneckoCards = SneckoModel.GetSneckoCards(player);
+        var cards = sneckoCards.Where(gift.Matches)
+            .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration).Select(e=>e.ToMutable()).ToList();
+        foreach (var cardChoice in cards)
+        {
+            player.RunState.AddCard(cardChoice, player);
+            if (gift.IsUpgraded)
+            {
+                cardChoice.UpgradeInternal();
+            }
+        }
+
+        var card = await CardSelectCmd.FromChooseACardScreen(new BlockingPlayerChoiceContext(), cards, player);
+        if  (card == null) return;
+        var a = await CardPileCmd.Add(card, PileType.Deck);
+        CardCmd.PreviewCardPileAdd(a, 0);
+    }
+
+}
+
+
+
+
+public readonly struct Gift
+{
+    public CardRarity? Rarity { get; init; }
+    public CardType? Type { get; init; }
+    public bool IsDebuff { get; init; }
+    public bool IsStrike { get; init; }
+    public int? MinCost { get; init; }
+    public int? Gold { get; init; }
+    public bool IsUpgraded { get; init; }
+
+    public bool Matches(CardModel card)
+    {
+        if (Rarity.HasValue && card.Rarity != Rarity.Value) return false;
+        if (Type.HasValue && card.Type != Type.Value) return false;
+        if (IsDebuff && !SneckoCmd.IsDebuff(card)) return false;
+        if (IsStrike && !card.Tags.Contains(CardTag.Strike)) return false;
+        return !MinCost.HasValue || card.EnergyCost.Canonical >= MinCost.Value;
+    }
+}

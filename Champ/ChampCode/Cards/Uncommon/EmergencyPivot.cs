@@ -14,12 +14,8 @@ public class EmergencyPivot : ChampCardModel
     {
         WithKeywords(CardKeyword.Retain);
         WithBlock(10, 4);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

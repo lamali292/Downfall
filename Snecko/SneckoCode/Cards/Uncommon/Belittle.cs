@@ -10,6 +10,11 @@ public class Belittle : SneckoCardModel
 {
     public Belittle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Uncommon,
+            IsDebuff = true,
+        });
     }
 
     // TODO: Implement

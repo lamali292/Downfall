@@ -23,22 +23,18 @@ public class GemCannon : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var gems = GuardianCmd.GetAllCombatGems(Owner).ToList();
-        if (LocalContext.IsMe(Owner))
-        {
-            var from = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.VfxSpawnPosition ?? Vector2.Zero;
-            var target = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target)?.VfxSpawnPosition ?? Vector2.Zero;
-
-            for (var i = 0; i < gems.Count; i++)
-            {
-                var effect = NGemShootEffect.Create(gems[i], i, from, target, gems.Count);
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(effect);
-            }
-        }
-
-        await Cmd.Wait(0.3f);
+        var from = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.VfxSpawnPosition ?? Vector2.Zero;
+        var target = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target)?.VfxSpawnPosition ?? Vector2.Zero;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-
+        for (var i = 0; i < gems.Count; i++)
+        {
+            var effect = NGemShootEffect.Create(gems[i], i, from, target, gems.Count);
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(effect);
+        }
         foreach (var gem in gems)
+        {
+            await Cmd.Wait(0.2f);
             await gem.OnPlayWrapper(ctx, cardPlay);
+        }
     }
 }

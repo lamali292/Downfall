@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Cards.Basic;
+using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
@@ -87,7 +88,7 @@ public class ChampCmd
             await ChampHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 
-        if (skipClear || m is ChampUltimateStance) return;
+        if (skipClear || m is ChampUltimateStance || cardPlay.Card.Enchantment is Signature) return;
         await ClearStance(ctx, player);
     }
 

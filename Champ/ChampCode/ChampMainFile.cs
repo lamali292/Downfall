@@ -4,6 +4,7 @@ using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -32,5 +33,6 @@ public partial class ChampMainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
+        DownfallAudiomanager.LoadFModBank(ModId);
     }
 }

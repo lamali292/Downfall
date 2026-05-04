@@ -13,18 +13,14 @@ public class RopeADope : ChampCardModel
 {
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
         WithBlock(8, 2);
         WithPower<EnergyNextTurnPower>(1, 1);
         WithEnergy(1, 1);
         WithPower<DrawCardsNextTurnPower>(2);
         WithCards(1);
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

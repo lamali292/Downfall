@@ -10,6 +10,11 @@ public class SerpentineSleuth : SneckoCardModel
 {
     public SerpentineSleuth() : base(4, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Rare,
+            Type = CardType.Power
+        });
     }
 
     // TODO: Implement

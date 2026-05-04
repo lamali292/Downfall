@@ -7,7 +7,6 @@ namespace Guardian.GuardianCode.Vfx;
 public partial class NGemShootEffect : Node2D
 {
     private Vector2 _from;
-
     private GemModel? _gem;
     private int _hitNo;
     private Sprite2D? _sprite;
@@ -41,21 +40,28 @@ public partial class NGemShootEffect : Node2D
         );
 
         var delay = _hitNo * 0.2f;
-        var tween = CreateTween();
+        var tween = CreateTween().SetParallel();
 
         tween.TweenProperty(this, "global_position", spread, 0.3f)
             .SetDelay(delay)
             .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.Out);
+
+        tween.Chain();
         tween.TweenProperty(this, "global_position", _target, 0.3f)
             .SetTrans(Tween.TransitionType.Quad)
             .SetEase(Tween.EaseType.In);
-        var rotateTween = CreateTween();
-        rotateTween.TweenProperty(_sprite, "rotation", Mathf.Tau * 3f, 0.6f + delay)
-            .SetDelay(delay);
-        tween.Parallel().TweenProperty(_sprite, "scale", new Vector2(0.7f, 0.35f), 0.3f);
-        tween.TweenCallback(Callable.From(PlayHitSound));
-        tween.TweenCallback(Callable.From(QueueFree));
+        tween.TweenProperty(_sprite, "scale", new Vector2(0.7f, 0.35f), 0.3f); // parallel with flight to target
+
+        tween.Chain();
+        tween.TweenCallback(Callable.From(OnLanded)); // fires immediately when it reaches target
+    }
+
+    private void OnLanded()
+    {
+        Visible = false;
+        PlayHitSound();
+        QueueFree();
     }
 
     private void PlayHitSound()

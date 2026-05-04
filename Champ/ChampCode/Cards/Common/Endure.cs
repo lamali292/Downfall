@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -28,7 +29,6 @@ public class Endure : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.EnterDefensiveStance(ctx, Owner);
-        var block = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
-        await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
+        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
     }
 }

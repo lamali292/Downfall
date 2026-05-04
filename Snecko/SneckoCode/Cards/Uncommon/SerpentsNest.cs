@@ -10,6 +10,11 @@ public class SerpentsNest : SneckoCardModel
 {
     public SerpentsNest() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Uncommon,
+            Type = CardType.Power,
+        });
     }
 
     // TODO: Implement

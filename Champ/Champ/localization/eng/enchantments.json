@@ -2,5 +2,7 @@
   "CHAMP-STURDY.title": "Sturdy",
   "CHAMP-STURDY.description": "This card's [gold]Block[/gold] is doubled.",
   "CHAMP-CROWNED.title": "Crowned",
-  "CHAMP-CROWNED.description": "This card is free to play."
+  "CHAMP-CROWNED.description": "This card is free to play.",
+  "CHAMP-SIGNATURE.title": "Signature",
+  "CHAMP-SIGNATURE.description": "Free to play, requires no Stance to be played, does not exit Stance upon use."
 }

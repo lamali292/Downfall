@@ -10,6 +10,12 @@ public class GlitteringGambit : SneckoCardModel
 {
     public GlitteringGambit() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Rare,
+            IsUpgraded = true,
+            Gold = 150
+        });
     }
 
     // TODO: Implement

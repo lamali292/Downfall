@@ -23,7 +23,7 @@ public class CollectorModel() : CustomSingletonModel(true, false)
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (CollectorHook.PreventCollectedDraw(combatState, player)) return;
+        if (CollectorHook.PreventCollectedDraw(combatState, player) || player.Character is not Collector) return;
         await CollectorCmd.DrawCollected(ctx, player);
     }
 

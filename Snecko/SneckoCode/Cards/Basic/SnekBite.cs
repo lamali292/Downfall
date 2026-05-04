@@ -10,10 +10,13 @@ public class SnekBite : SneckoCardModel
 {
     public SnekBite() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithDamage(8, 2);
+        WithMuddle(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await SneckoCmd.MuddleHandCards(ctx, this);
     }
 }

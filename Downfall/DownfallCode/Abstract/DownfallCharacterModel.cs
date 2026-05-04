@@ -10,8 +10,6 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
-    public static readonly ConditionalWeakTable<MegaSprite, Player> ControllerToPlayer = new();
-
     public DownfallCharacterModel()
     {
         DownfallMainFile.Logger.Info($"Creating {GetType().Name}");
@@ -93,19 +91,5 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
             "vfx/vfx_attack_blunt", "vfx/vfx_heavy_blunt", "vfx/vfx_attack_slash", "vfx/vfx_bloody_impact",
             "vfx/vfx_rock_shatter"
         ];
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
-internal static class NCreatureReadyPatch
-{
-    [HarmonyPostfix]
-    public static void CapturePlayerForAnimator(NCreature __instance)
-    {
-        if (__instance.Entity.Player?.Character is DownfallCharacterModel
-            && __instance.Visuals.SpineBody != null)
-            DownfallCharacterModel.ControllerToPlayer.AddOrUpdate(
-                __instance.Visuals.SpineBody,
-                __instance.Entity.Player);
     }
 }

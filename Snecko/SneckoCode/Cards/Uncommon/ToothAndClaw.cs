@@ -10,6 +10,10 @@ public class ToothAndClaw : SneckoCardModel
 {
     public ToothAndClaw() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Uncommon,
+        });
     }
 
     // TODO: Implement

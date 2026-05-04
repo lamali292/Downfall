@@ -11,10 +11,11 @@ public class StrikeSnecko : SneckoCardModel
     public StrikeSnecko() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithTags(CardTag.Strike);
+        WithDamage(6, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

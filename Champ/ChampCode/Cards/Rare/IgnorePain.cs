@@ -15,13 +15,9 @@ public class IgnorePain : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
         WithPower<IgnorePainPower>(1);
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

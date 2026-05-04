@@ -13,12 +13,8 @@ public class SteelEdge : ChampCardModel
     public SteelEdge() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
     protected override bool HasEnergyCostX => true;
 

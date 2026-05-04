@@ -10,6 +10,10 @@ public class ExoticForm : SneckoCardModel
 {
     public ExoticForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Rare,
+        });
     }
 
     // TODO: Implement

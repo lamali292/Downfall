@@ -10,6 +10,11 @@ public class SnakeEyes : SneckoCardModel
 {
     public SnakeEyes() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithGift(new Gift
+        {
+            Rarity = CardRarity.Rare,
+            Type = CardType.Skill
+        });
     }
 
     // TODO: Implement

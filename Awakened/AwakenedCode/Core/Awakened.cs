@@ -24,7 +24,7 @@ public class Awakened : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 72;
+    public override int StartingHp => 70;
     public override int StartingGold => 99;
 
     public override IEnumerable<CardModel> StartingDeck =>
@@ -56,6 +56,7 @@ public class Awakened : DownfallCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
 
 
+    /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         var idleState = new AnimState("Idle_1", true);
@@ -82,6 +83,7 @@ public class Awakened : DownfallCharacterModel
                     .FirstOrDefault(p => p.Character == this));
         }
     }
+    */
 }
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;

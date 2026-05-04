@@ -3,12 +3,15 @@ using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Powers;
+using Awakened.AwakenedCode.Vfx;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Random;
 
 namespace Awakened.AwakenedCode.Core;
@@ -23,17 +26,16 @@ public static class AwakenedCmd
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {
-        /*
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        if (creatureNode == null) return;
-
-        creatureNode.SetAnimationTrigger("Idle");
-        var current = creatureNode.SpineAnimation.GetAnimationState()?.GetCurrent(0);
-        current?.SetMixDuration(0.5f);
-        */
+        Callable.From(() =>
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+            if (creatureNode?.Visuals is not NAwakenedCreatureVisuals awakenedVisuals) return;
+            awakenedVisuals.IsAwakened = true;
+            awakenedVisuals.OnAnimationTrigger("Idle");
+        }).CallDeferred();
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }
-
+    
     public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         if (card is not IChantable chantable) return;

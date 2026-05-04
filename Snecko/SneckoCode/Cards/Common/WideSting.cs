@@ -10,6 +10,10 @@ public class WideSting : SneckoCardModel
 {
     public WideSting() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithGift(new Gift()
+        {
+            Rarity = CardRarity.Common,
+        });
     }
 
     // TODO: Implement

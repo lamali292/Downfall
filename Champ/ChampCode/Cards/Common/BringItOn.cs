@@ -15,12 +15,9 @@ public class BringItOn : ChampCardModel
     {
         WithBlock(6, 2);
         WithPower<CounterPower>(6, 2);
-        WithTags(ChampTag.Finisher);
+        WithFinisher();
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

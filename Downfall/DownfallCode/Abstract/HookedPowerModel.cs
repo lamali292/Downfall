@@ -16,6 +16,7 @@ public abstract class HookedPowerModel : CustomPowerModel
         if (LocalContext.NetId == null)
             throw new InvalidOperationException(
                 $"Cannot execute power hook '{GetType().Name}': LocalContext.NetId is null.");
+        if (Owner.IsDead) return; 
         var ctx = new HookPlayerChoiceContext(
             this,
             LocalContext.NetId.Value,

@@ -13,12 +13,8 @@ public class Execution : ChampCardModel
     public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithTags(ChampTag.Finisher);
-        WithTip(ChampTip.Finisher);
+        WithFinisher();
     }
-
-    protected override bool ShouldGlowRedInternal => Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => Owner.ChampStance().HasFinisher;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
