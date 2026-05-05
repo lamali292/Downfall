@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -10,10 +11,14 @@ public class DragonsHoard : SneckoCardModel
 {
     public DragonsHoard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<StrengthPower>(3);
+        WithPower<DexterityPower>(3);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
     }
 }

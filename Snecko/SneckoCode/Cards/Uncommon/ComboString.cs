@@ -1,6 +1,10 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -14,10 +18,17 @@ public class ComboString : SneckoCardModel
         {
             Rarity = CardRarity.Uncommon,
         });
+        WithCalculatedDamage(0, 7, CalcDamage, ValueProp.Move, 0,2);
     }
 
-    // TODO: Implement
+    private static decimal CalcDamage(CardModel card, Creature? creature) =>
+        CombatManager.Instance.History
+            .CardPlaysFinished.Count(e => 
+                e.HappenedThisTurn(card.CombatState) && 
+                SneckoCmd.IsOffclass(card, e.CardPlay.Card));
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

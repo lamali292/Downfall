@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -10,10 +11,13 @@ public class BlunderGuard : SneckoCardModel
 {
     public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<BlunderGuardPower>(6, 2);
+        WithPower<BlunderGuardTwoPower>(2, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.ApplySelf<BlunderGuardPower>(ctx, this);
+        await CommonActions.ApplySelf<BlunderGuardTwoPower>(ctx, this);
     }
 }

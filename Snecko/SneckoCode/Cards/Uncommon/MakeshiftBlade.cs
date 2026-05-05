@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 
@@ -14,10 +15,17 @@ public class MakeshiftBlade : SneckoCardModel
         {
             IsDebuff =  true
         });
+        WithDamage(9, 4);
+        WithCards(3);
+        WithVar("Debuffs", 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (cardPlay.Target?.Powers.Count(e => e is { Type: PowerType.Debuff, Amount: > 0 }) >= DynamicVars["Debuffs"].IntValue)
+        {
+            await CommonActions.Draw(this, ctx);
+        }
     }
 }

@@ -1,7 +1,9 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -16,10 +18,13 @@ public class Medusa : SneckoCardModel
             Rarity = CardRarity.Common,
             IsDebuff = true
         });
+        WithDamage(7, 2);
+        WithPower<VenomPower>(2, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await MyCommonActions.Apply<VenomPower>(ctx, this, cardPlay);
     }
 }

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -17,35 +18,45 @@ namespace Snecko.SneckoCode.Core;
 
 public static class SneckoCmd
 {
-    public static Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card)
+    public static Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, bool lowerOnly = false)
     {
         var amount = card.DynamicVars["Muddle"].IntValue;
-        return MuddleHandCards(ctx, card, amount);
+        return MuddleHandCards(ctx, card, amount, lowerOnly);
     }
 
-    private static async Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, int amount)
+    public static LocString MuddleSelectionPrompt => new LocString("card_selection", "TO_MUDDLE");
+    
+    private static async Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, int amount, bool lowerOnly = false)
     {
         // Todo: change prompt
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, amount);
+        var prefs = new CardSelectorPrefs(MuddleSelectionPrompt, amount);
         var cards = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, c => c != card && CanMuddle(c), card);
+        Muddle(cards, lowerOnly);
+        
+    }
+    
+    public static void Muddle(IEnumerable<CardModel> cards, bool lowerOnly = false)
+    {
         foreach (var cardModel in cards)
         {
-            Muddle(cardModel);
+            Muddle(cardModel, lowerOnly);
         }
     }
 
-    private static void Muddle(CardModel card)
+    public static void Muddle(CardModel card, bool lowerOnly = false)
     {
-        card.EnergyCost.SetThisCombat(NextEnergyCost(card));
+        card.EnergyCost.SetThisTurn(NextEnergyCost(card, lowerOnly));
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
     }
     
-    private static int NextEnergyCost(CardModel card)
+    private static int NextEnergyCost(CardModel card, bool lowerOnly = false)
     {
+        var current = card.EnergyCost.GetResolved();
+        if (current == 0 && lowerOnly) return 0;
+        var max = lowerOnly ? current : 4;
         var rng = card.Owner.RunState.Rng.CombatEnergyCosts;
-        var current = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         int next;
-        do { next = rng.NextInt(4); } while (next == current);
+        do { next = rng.NextInt(max); } while (next == current);
         return next;
     }
 
@@ -60,10 +71,12 @@ public static class SneckoCmd
 
     public static bool IsOffclass(CardModel card, CardModel other) =>
         other.Pool != card.Pool;
+    public static bool IsOffclass(Player player, CardModel other) =>
+        other.Pool != player.Character.CardPool;
 
     public static bool IsDebuff(CardModel card)
     {
-        return card.DynamicVars.Values.Any(IsDebuffPowerVar);
+        return card.DynamicVars.Values.Any(IsDebuffPowerVar) && card.TargetType is not (TargetType.Self or TargetType.None);
     }
 
     private static bool IsDebuffPowerVar(DynamicVar v)

@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -8,16 +9,21 @@ namespace Snecko.SneckoCode.Cards.Common;
 [Pool(typeof(SneckoCardPool))]
 public class WideSting : SneckoCardModel
 {
-    public WideSting() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public WideSting() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithGift(new Gift()
         {
             Rarity = CardRarity.Common,
         });
+        WithDamage(7, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        foreach (var card in Owner.PlayerCombatState?.Hand.Cards.Where(e =>  e.IsUpgradable && SneckoCmd.IsOffclass(this, e)) ?? [])
+        {
+            CardCmd.Upgrade(card);
+        }
     }
 }

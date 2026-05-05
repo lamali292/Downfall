@@ -10,10 +10,15 @@ public class DiceBoulder : SneckoCardModel
 {
     public DiceBoulder() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithBlock(7, 1);
+        WithVar("BlockIncrease", 4, 1);
+        WithEnergy(1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
+        DynamicVars.Block.UpgradeValueBy(DynamicVars["BlockIncrease"].BaseValue);
+        EnergyCost.UpgradeBy(DynamicVars.Energy.IntValue);
     }
 }

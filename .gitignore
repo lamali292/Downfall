@@ -46,7 +46,7 @@ image_gen/service_account.json
 **/.ipynb_checkpoints/
 *.ipynb
 
-
+*/src
 */images
 */fonts
 */localization

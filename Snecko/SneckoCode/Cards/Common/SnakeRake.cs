@@ -10,10 +10,14 @@ public class SnakeRake : SneckoCardModel
 {
     public SnakeRake() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithDamage(7, 2);
+        WithCards(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var cards = await CommonActions.Draw(this, ctx);
+        SneckoCmd.Muddle(cards);
     }
 }

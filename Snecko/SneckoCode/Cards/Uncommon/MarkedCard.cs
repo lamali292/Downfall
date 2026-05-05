@@ -10,10 +10,12 @@ public class MarkedCard : SneckoCardModel
 {
     public MarkedCard() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
+        WithMuddle(1, 1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await SneckoCmd.MuddleHandCards(ctx, this, true);
     }
 }
