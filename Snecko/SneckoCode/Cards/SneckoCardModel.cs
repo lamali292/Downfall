@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.DynamicVars;
+using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Cards;
 
@@ -33,6 +34,7 @@ public abstract class SneckoCardModel(
         if (Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner))
         {
             await OverflowEffect(ctx, cardPlay);
+            await SneckoHook.AfterOverflowEffect(CombatState!, ctx, cardPlay, this);
         }   
     }
 

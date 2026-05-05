@@ -155,11 +155,11 @@ public class DownfallCardCmd
         return result;
     }
 
-    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
+    public static async Task<IEnumerable<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
         PileType toPile)
     {
         var cards = fromPile.GetPile(card.Owner).Cards.ToList();
-        if (cards.Count == 0) return default;
+        if (cards.Count == 0) return [];
         var want = card.DynamicVars.Cards.IntValue;
         IEnumerable<CardModel> newCard;
         if (cards.Count <= want)

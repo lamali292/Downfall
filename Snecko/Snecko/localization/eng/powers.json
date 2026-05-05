@@ -19,5 +19,14 @@
   "SNECKO-OVERWHELMING_POWER.smartDescription": "The first time you play an [gold]Offclass[/gold] card each turn, draw {Amount:plural:a card|{Amount} cards}.",
   "SNECKO-SERPENTS_NEST_POWER.title": "Serpent's Nest",
   "SNECKO-SERPENTS_NEST_POWER.description": "Whenever you play a Power, deal [blue]X[/blue] damage to ALL enemies.",
-  "SNECKO-SERPENTS_NEST_POWER.smartDescription": "Whenever you play a Power, deal [blue]{Amount}[/blue] damage to ALL enemies."
+  "SNECKO-SERPENTS_NEST_POWER.smartDescription": "Whenever you play a Power, deal [blue]{Amount}[/blue] damage to ALL enemies.",
+  "SNECKO-TRASH_CAN_POWER.title": "Trash Can",
+  "SNECKO-TRASH_CAN_POWER.description": "At the end of your turn, you may [gold]Exhaust[/gold] a card.",
+  "SNECKO-TRASH_CAN_POWER.smartDescription": "At the end of your turn, you may [gold]Exhaust[/gold] {Amount:plural:a card|up to {} cards}.",
+  "SNECKO-TSUNAMI_POWER.title": "Tsunami",
+  "SNECKO-TSUNAMI_POWER.description": "Overflow effects also grant [gold]Block[/gold].",
+  "SNECKO-TSUNAMI_POWER.smartDescription": "Overflow effects also grant [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "SNECKO-UNENDING_SUPPLY_POWER.title": "Unending Supply",
+  "SNECKO-UNENDING_SUPPLY_POWER.description": "At the start of each turn, gain an Echo of a random [gold]Offclass[/gold] card.",
+  "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "At the start of each turn, gain {Amount:plural:an Echo of a|Echos of [blue]{}[/blue]} random [gold]Offclass[/gold] card."
 }

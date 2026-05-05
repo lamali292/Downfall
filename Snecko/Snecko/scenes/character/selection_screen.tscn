@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://3r285pusa74i" path="res://Snecko/images/character/selection_screen.png" id="1_4vel8"]
 
-
 [node name="WatcherBg" type="Control"]
 layout_mode = 3
 anchors_preset = 8

@@ -5,7 +5,7 @@ ROOT   = os.path.dirname(os.path.abspath(__file__))
 PARENT = os.path.join(ROOT, "..")
 
 CARD_SUBDIRS  = ["cards", "cards_beta", "cards_missing"]
-POWER_SUBDIRS = ["powers", "powers_missing"]
+POWER_SUBDIRS = ["powers", "powers_beta", "powers_missing"]
 
 def to_snake(name):
     return re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
@@ -92,13 +92,11 @@ for char_id, code_dir in sorted(characters.items()):
                 print(f"  card placeholder: {snake}")
             placeholders[os.path.relpath(dest, ROOT)] = MISSING_CARD_HASH
 
-    # Powers — collect .cs files from subfolders only (skip Powers/ root itself)
+    # Powers — collect .cs files from anywhere under Powers/ (files live directly in it)
     powers = {}
     if os.path.exists(power_base):
         for root, dirs, files in os.walk(power_base):
             dirs[:] = [d for d in dirs if d != "Abstract"]
-            if os.path.abspath(root) == os.path.abspath(power_base):
-                continue  # skip files sitting directly in Powers/
             for file in files:
                 if file.endswith(".cs"):
                     name = os.path.splitext(file)[0]

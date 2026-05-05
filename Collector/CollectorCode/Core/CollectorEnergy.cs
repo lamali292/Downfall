@@ -60,12 +60,12 @@ public class CollectorEnergy : CardResource
 
     public override bool ShouldHandleSpending(CardModel card)
     {
-        return card is CollectorCardModel;
+        return true;
     }
 
     public override bool ShouldHandleResourceCheck(CardModel card)
     {
-        return card is CollectorCardModel;
+        return true;
     }
 
     public override bool UsesResourceExclusively(CardModel card)

@@ -47,6 +47,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
 
     public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
+        if (side != CombatSide.Player) return;
         foreach (var player in combatState.Players)
         {
             await GuardianCmd.TickAll(player, ctx);

@@ -17,7 +17,12 @@ public class CrystalBoomerang : SneckoCardModel
     
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = (await DownfallCardCmd.SelectCardToMovePiles(ctx, this, PileType.Discard, PileType.Hand)).ToList().FirstOrDefault();
+        var result = new CardPileAddResult();
+        foreach (var pile in await DownfallCardCmd.SelectCardToMovePiles(ctx, this, PileType.Discard, PileType.Hand))
+        {
+            result = pile;
+            break;
+        }
         if (!result.success) return;
         if (!SneckoCmd.IsOffclass(this, result.cardAdded)) return;
         await CommonActions.CardBlock(this, cardPlay);

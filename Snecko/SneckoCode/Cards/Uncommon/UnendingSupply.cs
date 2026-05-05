@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -10,10 +11,12 @@ public class UnendingSupply : SneckoCardModel
 {
     public UnendingSupply() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithPower<UnendingSupplyPower>(1);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.ApplySelf<UnendingSupplyPower>(ctx, this);
     }
 }
