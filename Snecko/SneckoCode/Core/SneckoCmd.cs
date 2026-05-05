@@ -7,12 +7,14 @@ using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Runs;
+using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Core;
 
@@ -24,29 +26,28 @@ public static class SneckoCmd
         return MuddleHandCards(ctx, card, amount, lowerOnly);
     }
 
-    public static LocString MuddleSelectionPrompt => new LocString("card_selection", "TO_MUDDLE");
+    private static LocString MuddleSelectionPrompt => new("card_selection", "TO_MUDDLE");
     
     private static async Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, int amount, bool lowerOnly = false)
     {
-        // Todo: change prompt
         var prefs = new CardSelectorPrefs(MuddleSelectionPrompt, amount);
         var cards = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, c => c != card && CanMuddle(c), card);
-        Muddle(cards, lowerOnly);
-        
+        await Muddle(ctx, cards, card, lowerOnly);
     }
     
-    public static void Muddle(IEnumerable<CardModel> cards, bool lowerOnly = false)
+    public static async Task Muddle(PlayerChoiceContext ctx, IEnumerable<CardModel> cards, AbstractModel? source, bool lowerOnly = false)
     {
         foreach (var cardModel in cards)
         {
-            Muddle(cardModel, lowerOnly);
+            await Muddle(ctx, cardModel, source, lowerOnly);
         }
     }
 
-    public static void Muddle(CardModel card, bool lowerOnly = false)
+    public static async Task Muddle(PlayerChoiceContext ctx, CardModel card, AbstractModel? source = null, bool lowerOnly = false)
     {
         card.EnergyCost.SetThisTurn(NextEnergyCost(card, lowerOnly));
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
+        await SneckoHook.AfterCardMuddled(card.CombatState!, ctx, card, source);
     }
     
     private static int NextEnergyCost(CardModel card, bool lowerOnly = false)
@@ -92,7 +93,8 @@ public static class SneckoCmd
 
     public static async Task GetGift(Player player, Gift gift, int amount = 3)
     {
-        var sneckoCards = SneckoModel.GetSneckoCards(player);
+        var sneckoCards =  CardFactory.FilterForPlayerCount(player.RunState,
+            CardFactory.FilterForCombat(SneckoModel.GetSneckoCards(player)));
         var cards = sneckoCards.Where(gift.Matches)
             .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration).Select(e=>e.ToMutable()).ToList();
         foreach (var cardChoice in cards)

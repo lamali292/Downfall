@@ -19,7 +19,7 @@ public class GildedShield : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        SneckoCmd.Muddle(this);
+        await SneckoCmd.Muddle(ctx, this);
         await CardPileCmd.Add(this, PileType.Hand);
     }
 }

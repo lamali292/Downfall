@@ -5,7 +5,7 @@
   "SNECKO-BEHOLD.title": "Behold!",
   "SNECKO-BELITTLE.description": "Enemy loses {ExtraDamage:diff()} HP for each unique debuff they have.\n[gold]Gift[/gold]: Uncommon Debuff.",
   "SNECKO-BELITTLE.title": "Belittle",
-  "SNECKO-BEYOND_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} random [gold]Offclass[/gold] {Cards:plural:card:cards}.\n[gold]Gift[/gold]: Common.",
+  "SNECKO-BEYOND_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} random [gold]Offclass[/gold] {Cards:plural:card|cards}.\n[gold]Gift[/gold]: Common.",
   "SNECKO-BEYOND_ARMOR.title": "Beyond Armor",
   "SNECKO-BLUNDERBUS.description": "Deal {Damage:diff()} damage to ALL enemies.\nRepeat for every 3+ cost card in hand.",
   "SNECKO-BLUNDERBUS.title": "Blunderbus",
@@ -99,7 +99,7 @@
   "SNECKO-RESTOCK.title": "Restock",
   "SNECKO-RISKY_SWORD.description": "Deal {Damage:diff()} Damage.\nWhen [gold]Muddled[/gold], increase this card's damage by {DamageIncrease:diff()} for this combat.",
   "SNECKO-RISKY_SWORD.title": "Risky Sword",
-  "SNECKO-ROUNDABOUT_SWING.description": "Deal {Damage:diff()} damage.\nPut a card in hand on top of your draw pile.\nDraw {RoundaboutSwingPower:diff()} additional cards next turn.",
+  "SNECKO-ROUNDABOUT_SWING.description": "Deal {Damage:diff()} damage.\nPut a card on top of your draw pile.\nDraw {DrawCardsNextTurnPower:diff()} additional cards next turn.",
   "SNECKO-ROUNDABOUT_SWING.title": "Roundabout Swing",
   "SNECKO-SAVE_FOR_LATER.description": "Deal {Damage:diff()} damage.\n[gold]Retain[/gold] {SaveForLaterPower:diff()} {SaveForLaterPower:plural:card|cards} at the end of your turn.",
   "SNECKO-SAVE_FOR_LATER.title": "Save For Later",
@@ -109,7 +109,7 @@
   "SNECKO-SERPENTSCALE.title": "Serpentscale",
   "SNECKO-SERPENTS_NEST.description": "Whenever you play a Power, deal {SerpentsNestPower:diff()} damage to ALL enemies.\n[gold]Gift[/gold]: Uncommon Power.",
   "SNECKO-SERPENTS_NEST.title": "Serpent's Nest",
-  "SNECKO-SERPENT_IDOL.description": "Choose 1 of {SerpentIdolPower:diff()} random [gold]Offclass cards to gain[/gold]. It costs 0 this turn.\nExhaust.",
+  "SNECKO-SERPENT_IDOL.description": "Choose 1 of {Cards:diff()} random [gold]Offclass [/gold]cards to gain.\nIt free to play this turn.",
   "SNECKO-SERPENT_IDOL.title": "Serpent Idol",
   "SNECKO-SHIFT.description": "",
   "SNECKO-SHIFT.title": "Shift",
@@ -155,5 +155,6 @@
   "SNECKO-HOLE_UP.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {WeakPower:diff()} [gold]Weak[/gold].",
   "SNECKO-CRYSTAL_BOOMERANG.selectionScreenPrompt": "Select card to put into your hand.",
   "SNECKO-VIPER_ESSENCE.title": "Viper Essence",
-  "SNECKO-VIPER_ESSENCE.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold]."
+  "SNECKO-VIPER_ESSENCE.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "SNECKO-ROUNDABOUT_SWING.selectionScreenPrompt": "Put on top of draw pile."
 }

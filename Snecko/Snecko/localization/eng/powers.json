@@ -16,5 +16,8 @@
   "SNECKO-CHEAP_STOCK_POWER.smartDescription": "At the start of your turn, [gold]Muddle[/gold] the{Amount:plural:| [blue]{Amount}[/blue]} highest cost {Amount:plural:card|cards} in your hand.",
   "SNECKO-OVERWHELMING_POWER.title": "Overwhelming",
   "SNECKO-OVERWHELMING_POWER.description": "The first time you play an [gold]Offclass[/gold] card each turn, draw a card.",
-  "SNECKO-OVERWHELMING_POWER.smartDescription": "The first time you play an [gold]Offclass[/gold] card each turn, draw {Amount:plural:a card|{Amount} cards}."
+  "SNECKO-OVERWHELMING_POWER.smartDescription": "The first time you play an [gold]Offclass[/gold] card each turn, draw {Amount:plural:a card|{Amount} cards}.",
+  "SNECKO-SERPENTS_NEST_POWER.title": "Serpent's Nest",
+  "SNECKO-SERPENTS_NEST_POWER.description": "Whenever you play a Power, deal [blue]X[/blue] damage to ALL enemies.",
+  "SNECKO-SERPENTS_NEST_POWER.smartDescription": "Whenever you play a Power, deal [blue]{Amount}[/blue] damage to ALL enemies."
 }

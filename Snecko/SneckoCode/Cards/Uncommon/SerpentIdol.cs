@@ -1,6 +1,13 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -10,10 +17,22 @@ public class SerpentIdol : SneckoCardModel
 {
     public SerpentIdol() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithCostUpgradeBy(-1);
+        WithCards(3);
+        WithKeyword(CardKeyword.Exhaust);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var mutableCards = CardFactory.GetDistinctForCombat(Owner, 
+            SneckoModel.GetSneckoCards(Owner), 
+            DynamicVars.Cards.IntValue,
+            Owner.RunState.Rng.CombatCardGeneration).ToList();
+
+        var selectedCard = await CardSelectCmd.FromChooseACardScreen(ctx, mutableCards, Owner);
+        if (selectedCard == null) return;
+
+        selectedCard.SetToFreeThisTurn();
+        await CardPileCmd.Add(selectedCard, PileType.Hand);
     }
 }

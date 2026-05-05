@@ -16,7 +16,7 @@ public class CheapStockPower : SneckoPowerModel
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var cards = Owner.Player.PlayerCombatState?.Hand.Cards.OrderByDescending(e => e.EnergyCost.GetResolved()).Take(Amount) ?? [];
-        SneckoCmd.Muddle(cards);
+        await SneckoCmd.Muddle(ctx, cards, this);
     }
     
 }

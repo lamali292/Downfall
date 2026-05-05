@@ -4,6 +4,9 @@ from collections import defaultdict
 ROOT   = os.path.dirname(os.path.abspath(__file__))
 PARENT = os.path.join(ROOT, "..")
 
+CARD_SUBDIRS  = ["cards", "cards_beta", "cards_missing"]
+POWER_SUBDIRS = ["powers", "powers_missing"]
+
 def to_snake(name):
     return re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
 
@@ -57,23 +60,28 @@ for project in os.listdir(PARENT):
 
 for char_id, code_dir in sorted(characters.items()):
     print(f"\n=== {char_id.upper()} ===")
-    
+
     card_base  = os.path.join(code_dir, "Cards")
     power_base = os.path.join(code_dir, "Powers")
-    img_dir    = os.path.join(ROOT, "cards", char_id)
-    pow_dir    = os.path.join(ROOT, "powers", char_id)
 
-    # Cards
+    # Cards — collect .cs files from subfolders only (skip Cards/ root itself)
     cards = {}
     if os.path.exists(card_base):
         for root, dirs, files in os.walk(card_base):
             dirs[:] = [d for d in dirs if d != "Abstract"]
+            if os.path.abspath(root) == os.path.abspath(card_base):
+                continue  # skip files sitting directly in Cards/
             for file in files:
                 if file.endswith(".cs"):
                     name = os.path.splitext(file)[0]
                     cards[normalize(name)] = to_snake(name)
 
-    card_images = collect_images(img_dir, MISSING_CARD_HASH, False)
+    # Check all card image dirs for existing images
+    card_images = set()
+    for sub in CARD_SUBDIRS:
+        d = os.path.join(ROOT, sub, char_id)
+        card_images |= collect_images(d, MISSING_CARD_HASH, False)
+
     for norm, snake in sorted(cards.items()):
         if norm not in card_images:
             dest_dir = os.path.join(ROOT, "cards_missing", char_id)
@@ -84,17 +92,24 @@ for char_id, code_dir in sorted(characters.items()):
                 print(f"  card placeholder: {snake}")
             placeholders[os.path.relpath(dest, ROOT)] = MISSING_CARD_HASH
 
-    # Powers
+    # Powers — collect .cs files from subfolders only (skip Powers/ root itself)
     powers = {}
     if os.path.exists(power_base):
         for root, dirs, files in os.walk(power_base):
             dirs[:] = [d for d in dirs if d != "Abstract"]
+            if os.path.abspath(root) == os.path.abspath(power_base):
+                continue  # skip files sitting directly in Powers/
             for file in files:
                 if file.endswith(".cs"):
                     name = os.path.splitext(file)[0]
                     powers[normalize(name, True)] = re.sub(r'_power$', '', to_snake(name))
 
-    pow_images = collect_images(pow_dir, MISSING_POWER_HASH, True)
+    # Check all power image dirs for existing images
+    pow_images = set()
+    for sub in POWER_SUBDIRS:
+        d = os.path.join(ROOT, sub, char_id)
+        pow_images |= collect_images(d, MISSING_POWER_HASH, True)
+
     for norm, snake in sorted(powers.items()):
         if norm not in pow_images:
             dest_dir = os.path.join(ROOT, "powers_missing", char_id)

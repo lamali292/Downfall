@@ -155,7 +155,7 @@ public class DownfallCardCmd
         return result;
     }
 
-    public static async Task<CardPileAddResult> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
+    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
         PileType toPile)
     {
         var cards = fromPile.GetPile(card.Owner).Cards.ToList();
@@ -172,6 +172,15 @@ public class DownfallCardCmd
             newCard = await CardSelectCmd.FromSimpleGrid(ctx, cards, card.Owner, prefs);
         }
 
-        return (await CardPileCmd.Add(newCard, toPile)).FirstOrDefault();
+        return await CardPileCmd.Add(newCard, toPile);
+    }
+    
+    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMoveFromHand(PlayerChoiceContext ctx, CardModel card,
+        PileType toPile, Func<CardModel, bool>? filter)
+    {
+        var want = card.DynamicVars.Cards.IntValue;
+        var prefs = new CardSelectorPrefs(card.SelectionScreenPrompt, want, want);
+        var newCard = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, filter, card);
+        return await CardPileCmd.Add(newCard, toPile);
     }
 }
