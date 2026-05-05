@@ -14,10 +14,15 @@ public class SlitherThrough : SneckoCardModel
         {
             Rarity = CardRarity.Uncommon,
         });
+        WithDamage(14, 4);
+        WithEnergy(1);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        Owner.PlayerCombatState?.Hand.Cards
+            .Where(e => SneckoCmd.IsOffclass(this, e))
+            .ToList().ForEach(e => e.EnergyCost.AddThisTurn(-1));
     }
 }

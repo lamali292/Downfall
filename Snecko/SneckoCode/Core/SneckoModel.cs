@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Cards;
 
@@ -23,12 +25,11 @@ public class SneckoModel(): CustomSingletonModel(true, true)
         }
         
     }
-    
-   
-    public override async Task AfterActEntered()
+
+    public override Task AfterActEntered()
     {
         var state = RunManager.Instance.State;
-        if (state is not { CurrentActIndex: 0 }) return;
+        if (state is not { CurrentActIndex: 0 }) return Task.CompletedTask;
         foreach (var snecko in state.Players.Where(e => e.Character is Snecko))
         {
             var a = ModelDb.AllCharacterCardPools
@@ -37,6 +38,7 @@ public class SneckoModel(): CustomSingletonModel(true, true)
             SetSneckoPools(snecko, a);
         }
 
+        return Task.CompletedTask;
     }
     
   

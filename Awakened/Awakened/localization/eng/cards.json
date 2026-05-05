@@ -169,7 +169,7 @@
   "AWAKENED-SIPHON.title": "Siphon",
   "AWAKENED-SKYWARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} card.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Power played this combat.",
   "AWAKENED-SKYWARD.title": "Skyward",
-  "AWAKENED-SLUDGE_BOMB.description": "Requires and erases and [gold]Exhausted Void[/gold].\nDeal {Damage:diff()} to ALL enemies.",
+  "AWAKENED-SLUDGE_BOMB.description": "Requires and erases an [gold]Exhausted Void[/gold].\nDeal {Damage:diff()} to ALL enemies.",
   "AWAKENED-SLUDGE_BOMB.title": "Sludge Bomb",
   "AWAKENED-SONG_OF_SORROW.description": "Whenever you create a [gold]Void[/gold], ALL enemies lose {SongOfSorrowPower:diff()} HP.",
   "AWAKENED-SONG_OF_SORROW.title": "Song of Sorrow",

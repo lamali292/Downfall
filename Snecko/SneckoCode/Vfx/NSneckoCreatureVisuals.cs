@@ -63,7 +63,6 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals
 				_animState?.AddAnimation(IdleAnim)
 					.SetMixDuration(ToIdleMix);
 				break;
-
 			case "Dead":
 				break;
 		}
@@ -77,7 +76,7 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals
 
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class ChampAnimationPatch
+public static class SneckoAnimationPatch
 {
 	private static void Postfix(NCreature __instance, string trigger)
 	{
@@ -87,7 +86,7 @@ public static class ChampAnimationPatch
 }
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class ChampDeathAnimPatch
+public static class SneckoDeathAnimPatch
 {
 	private static void Postfix(NCreature __instance)
 	{
