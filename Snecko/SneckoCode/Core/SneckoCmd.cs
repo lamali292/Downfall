@@ -110,6 +110,12 @@ public static class SneckoCmd
         if  (card == null) return;
         var a = await CardPileCmd.Add(card, PileType.Deck);
         CardCmd.PreviewCardPileAdd(a, 0);
+
+        if (gift.Gold is > 0)
+        {
+            await PlayerCmd.GainGold(gift.Gold.Value, player);
+        }
+        
     }
 
 }

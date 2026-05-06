@@ -31,7 +31,7 @@ public abstract class SneckoCardModel(
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        if (Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner))
+        if (Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner) && !cardPlay.IsAutoPlay)
         {
             await OverflowEffect(ctx, cardPlay);
             await SneckoHook.AfterOverflowEffect(CombatState!, ctx, cardPlay, this);

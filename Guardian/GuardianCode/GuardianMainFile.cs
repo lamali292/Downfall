@@ -17,7 +17,7 @@ namespace Guardian.GuardianCode;
 [ModInitializer(nameof(Initialize))]
 public partial class GuardianMainFile : Node
 {
-    public const string ModId = "Guardian"; //At the moment, this is used only for the Logger and harmony names.
+    public const string ModId = "Guardian";
 
     public static Logger Logger { get; } =
         new(ModId, LogType.Generic);

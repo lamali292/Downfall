@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -6,7 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace Champ.ChampCode.Vfx;
 
 [GlobalClass]
-public partial class NChampCreatureVisuals : NCreatureVisuals
+public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
 	public enum Stance { Normal, Berserker, Defensive, Ultimate }
 
@@ -92,24 +93,4 @@ public partial class NChampCreatureVisuals : NCreatureVisuals
 		Stance.Defensive => "HitDefensive",
 		_                => "Hit"
 	};
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class ChampAnimationPatch
-{
-	private static void Postfix(NCreature __instance, string trigger)
-	{
-		if (__instance.Visuals is NChampCreatureVisuals champVisuals)
-			champVisuals.OnAnimationTrigger(trigger);
-	}
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class ChampDeathAnimPatch
-{
-	private static void Postfix(NCreature __instance)
-	{
-		if (__instance.Visuals is NChampCreatureVisuals champVisuals)
-			champVisuals.OnAnimationTrigger("Dead");
-	}
 }

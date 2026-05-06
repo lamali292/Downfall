@@ -1,7 +1,9 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -15,10 +17,12 @@ public class SnakeEyes : SneckoCardModel
             Rarity = CardRarity.Rare,
             Type = CardType.Skill
         });
+        WithPower<SnakeEyesPower>(1, 1);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.ApplySelf<SnakeEyesPower>(ctx, this);
     }
 }

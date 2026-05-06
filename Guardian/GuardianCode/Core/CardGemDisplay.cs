@@ -2,6 +2,7 @@
 using Godot;
 using Guardian.GuardianCode.Cards;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -9,19 +10,19 @@ namespace Guardian.GuardianCode.Core;
 
 public partial class CardGemDisplay : Control
 {
-    private static readonly AddedNode<NCard, CardGemDisplay> Node = new(UpdateVisuals);
-
     public static void Update(CardModel card)
     {
         var ncard = NCard.FindOnTable(card);
         if (ncard != null)
-            UpdateVisuals(ncard, Node.Get(ncard));
+            UpdateFromNCard(ncard);
     }
 
     public static void UpdateFromNCard(NCard ncard)
     {
-        UpdateVisuals(ncard, Node.Get(ncard));
+        var display = ncard.GetNodeOrNull<CardGemDisplay>("CardGemDisplay");
+        UpdateVisuals(ncard, display);
     }
+
 
     private static CardGemDisplay UpdateVisuals(NCard card)
     {
@@ -84,6 +85,19 @@ public partial class CardGemDisplay : Control
         }
     
         return display;
+    }
+}
+
+[HarmonyPatch(typeof(NCard), nameof(NCard._Ready))]
+public static class NCardReadyPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(NCard __instance)
+    {
+        if (__instance.GetNodeOrNull<CardGemDisplay>("CardGemDisplay") != null) return;
+        var display = new CardGemDisplay { Name = "CardGemDisplay", MouseFilter = Control.MouseFilterEnum.Ignore };
+        __instance.AddChildSafely(display);
+        CardGemDisplay.UpdateFromNCard(__instance);
     }
 }
 

@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -5,7 +6,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace Hexaghost.HexaghostCode.Vfx;
 
 [GlobalClass]
-public partial class NHexaghostCreatureVisuals : NCreatureVisuals
+public partial class NHexaghostCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     public NHexaghostVisuals? Visuals;
 
@@ -15,29 +16,10 @@ public partial class NHexaghostCreatureVisuals : NCreatureVisuals
         Visuals = GetNode<NHexaghostVisuals>("%Hexaghost");
     }
 
+    
 
     public void OnAnimationTrigger(string trigger)
     {
         Visuals?.OnAnimationTrigger(trigger);
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class HexaghostAnimationPatch
-{
-    private static void Postfix(NCreature __instance, string trigger)
-    {
-        if (__instance.Visuals is NHexaghostCreatureVisuals hexVisuals)
-            hexVisuals.OnAnimationTrigger(trigger);
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class HexaghostDeathAnimPatch
-{
-    private static void Postfix(NCreature __instance)
-    {
-        if (__instance.Visuals is NHexaghostCreatureVisuals hexVisuals)
-            hexVisuals.OnAnimationTrigger("Dead");
     }
 }

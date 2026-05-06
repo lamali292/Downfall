@@ -23,7 +23,7 @@ public class CrystalBoomerang : SneckoCardModel
             result = pile;
             break;
         }
-        if (!result.success) return;
+        if (!result.success || result.cardAdded == null) return;
         if (!SneckoCmd.IsOffclass(this, result.cardAdded)) return;
         await CommonActions.CardBlock(this, cardPlay);
     }

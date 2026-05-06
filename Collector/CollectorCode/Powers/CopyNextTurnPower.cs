@@ -29,7 +29,6 @@ public class CopyNextTurnPower : CollectorPowerModel
     private static IHoverTip Tip(PowerModel arg)
     {
         if (arg is CopyNextTurnPower { Card: not null } power) return new CardHoverTip(power.Card);
-        ;
         return HoverTipFactory.Static(StaticHoverTip.None);
     }
 

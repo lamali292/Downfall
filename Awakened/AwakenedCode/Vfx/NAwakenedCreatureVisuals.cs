@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -6,7 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace Awakened.AwakenedCode.Vfx;
 
 [GlobalClass]
-public partial class NAwakenedCreatureVisuals : NCreatureVisuals
+public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix  = 0.35f;
@@ -68,24 +69,4 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals
 
     private string IdleAnim   => IsAwakened ? "Idle_2"   : "Idle_1";
     private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class AwakenedAnimationPatch
-{
-    private static void Postfix(NCreature __instance, string trigger)
-    {
-        if (__instance.Visuals is NAwakenedCreatureVisuals awakenedVisuals)
-            awakenedVisuals.OnAnimationTrigger(trigger);
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class AwakenedDeathAnimPatch
-{
-    private static void Postfix(NCreature __instance)
-    {
-        if (__instance.Visuals is NAwakenedCreatureVisuals awakenedVisuals)
-            awakenedVisuals.OnAnimationTrigger("Dead");
-    }
 }

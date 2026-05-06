@@ -4,6 +4,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -42,7 +43,7 @@ public abstract class DownfallCardModel(
     {
         return WithTip(new TooltipSource(card =>
         {
-            var tip = ModelDb.GetById<T>(ModelDb.Card<T>().Id).ToMutable();
+            var tip = ModelDb.Card<T>().ToMutable();
             if (card.IsUpgraded) tip.UpgradeInternal();
             if (tip is T t) action?.Invoke(t, card);
             return HoverTipFactory.FromCard(tip);

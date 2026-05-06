@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Cards.Ancient;
 using Guardian.GuardianCode.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -33,6 +34,7 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard
         var gemClones = Gems.Select(originalGem => originalGem.CreateClone()).ToList();
         card.AddGems(gemClones);
         NCard.FindOnTable(card)?.ReloadOverlay();
+       
     }
 
     public CardModel GetTranscendenceTransformedCard()

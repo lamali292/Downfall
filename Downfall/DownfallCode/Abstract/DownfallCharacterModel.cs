@@ -76,7 +76,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
-    public override string CharacterSelectSfx => "event:/selection/selection_gremlins"; //"event:/sfx/characters/ironclad/ironclad_select";
+    public override string CharacterSelectSfx => "event:/sfx/characters/ironclad/ironclad_select";//"event:/selection/selection_gremlins"; //"event:/sfx/characters/ironclad/ironclad_select";
 
     private string EnergyCounterPaths(int i)
     {

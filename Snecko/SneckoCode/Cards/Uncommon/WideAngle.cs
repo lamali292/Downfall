@@ -8,12 +8,14 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class WideAngle : SneckoCardModel
 {
-    public WideAngle() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public WideAngle() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
+        WithKeyword(CardKeyword.Retain);
+        WithDamage(18, 6);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

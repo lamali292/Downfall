@@ -8,12 +8,15 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class Blunderbus : SneckoCardModel
 {
-    public Blunderbus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public Blunderbus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
+        WithDamage(8, 3);
     }
 
-    // TODO: Implement
+    private int ThreeCostInHand => Owner.PlayerCombatState?.Hand.Cards.Count(e => e.EnergyCost.GetResolved() >= 3) ?? 0;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay, 1+ThreeCostInHand).Execute(ctx);
     }
 }
