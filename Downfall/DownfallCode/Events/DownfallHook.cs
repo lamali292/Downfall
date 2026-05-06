@@ -1,5 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -24,6 +26,22 @@ public static class DownfallHook
             ctx.PushModel(abstractModel);
             await action(model);
             ctx.PopModel(abstractModel);
+        }
+    }
+    
+    public static async Task DispatchHookCtx<T>(ICombatState combatState, Func<T, PlayerChoiceContext, Task> action)
+        where T : class
+    {
+        var netId = LocalContext.NetId;
+        if (!netId.HasValue) return;
+
+        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        {
+            var abstractModel = (AbstractModel)(object)model;
+            var hookCtx = new HookPlayerChoiceContext(abstractModel, netId.Value, combatState, GameActionType.Combat);
+            var task = action(model, hookCtx);
+            await hookCtx.AssignTaskAndWaitForPauseOrCompletion(task);
+            abstractModel.InvokeExecutionFinished();
         }
     }
 

@@ -39,7 +39,7 @@ public abstract class SneckoCardModel(
         if (Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner) && !cardPlay.IsAutoPlay)
         {
             await OverflowEffect(ctx, cardPlay);
-            await SneckoHook.AfterOverflowEffect(CombatState!, ctx, cardPlay, this);
+            await SneckoHook.AfterOverflowEffect(CombatState!, cardPlay, this);
         }
     }
 

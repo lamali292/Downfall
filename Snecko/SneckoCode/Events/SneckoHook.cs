@@ -13,8 +13,8 @@ public static class SneckoHook
         return DownfallHook.Dispatch<IAfterCardMuddled>(cs, ctx, m => m.AfterCardMuddled(ctx, card, source));
     }
 
-    public static Task AfterOverflowEffect(ICombatState cs, PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
+    public static Task AfterOverflowEffect(ICombatState cs, CardPlay cardPlay, CardModel card)
     {
-        return DownfallHook.Dispatch<IAfterOverflowEffect>(cs, ctx, m => m.AfterOverflowEffect(ctx, cardPlay, card));
+        return DownfallHook.DispatchHookCtx<IAfterOverflowEffect>(cs, (m, ctx) => m.AfterOverflowEffect(ctx, cardPlay, card));
     }
 }

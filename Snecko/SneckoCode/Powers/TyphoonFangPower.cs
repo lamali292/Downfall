@@ -1,6 +1,8 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,16 +29,37 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
     private CardModel? Dupe { get; set; }
     private CardModel? Source { get; set; }
 
+    private bool _shouldTrigger;
+    private CardPlay? _pendingCardPlay;
+
     public async Task AfterOverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {
-        if (card.Owner.Creature != Owner || Source == cardPlay.Card || Source == card || Dupe == null ||
-            cardPlay.IsAutoPlay) return;
-        var enemy = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
-        if (enemy == null) return;
-        Flash();
-        await CardCmd.AutoPlay(ctx, Dupe, enemy);
-    }
+        if (card.Owner.Creature != Owner 
+            || Source == cardPlay.Card 
+            || Source == card 
+            || Dupe == null 
+            || cardPlay.IsAutoPlay) return;
 
+        var enemy = CombatState.HittableEnemies
+            .TakeRandom(1, CombatState.RunState.Rng.CombatTargets)
+            .FirstOrDefault();
+
+        var freshDupe = Source?.CreateDupe();
+        Dupe = freshDupe;
+        if (enemy == null || freshDupe == null || LocalContext.NetId == null) return;
+
+        await  CardCmd.AutoPlay(ctx, freshDupe, enemy);
+    }
+    
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (!_shouldTrigger || _pendingCardPlay != cardPlay || Dupe == null) return;
+        _shouldTrigger = false;
+        _pendingCardPlay = null;
+
+      
+    }
+    
     public void SetCard(CardModel card)
     {
         Dupe = card.CreateDupe();
