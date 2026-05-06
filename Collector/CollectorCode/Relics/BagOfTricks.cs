@@ -8,10 +8,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class BagOfTricks : CollectorRelicModel
+public class BagOfTricks() : CollectorRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,

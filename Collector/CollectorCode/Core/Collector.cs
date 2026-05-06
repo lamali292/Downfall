@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Core;
@@ -68,7 +69,7 @@ public class Collector : DownfallCharacterModel
 
 public class CollectorRelicPool : DownfallRelicPool<Collector>;
 
-public abstract class CollectorRelicModel : DownfallRelicModel<Collector>;
+public abstract class CollectorRelicModel(RelicRarity rarity) : DownfallRelicModel<Collector>(rarity);
 
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -11,10 +11,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
+public class CryoChamber() : GuardianRelicModel(RelicRarity.Rare), IBeforeCardEntersStasis
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
-
+    
     public Task BeforeCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (card.Owner != Owner) return Task.CompletedTask;

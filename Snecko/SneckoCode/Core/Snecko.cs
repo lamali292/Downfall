@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Cards.Basic;
 using Snecko.SneckoCode.Relics;
@@ -83,7 +84,7 @@ public class Snecko : DownfallCharacterModel
 
 public class SneckoRelicPool : DownfallRelicPool<Snecko>;
 
-public abstract class SneckoRelicModel : DownfallRelicModel<Snecko>;
+public abstract class SneckoRelicModel(RelicRarity rarity) : DownfallRelicModel<Snecko>(rarity);
 
 public abstract class SneckoPowerModel(
     PowerType powerType = PowerType.Buff,

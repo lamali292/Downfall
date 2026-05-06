@@ -24,7 +24,7 @@
   "SNECKO-SNAKE_CHARMERS_FLUTE.description": "Muddled cards can't cost 3.",
   "SNECKO-SNAKE_CHARMERS_FLUTE.flavor": "Sssssss...",
   "SNECKO-SNECKO_SOUL.title": "Snecko Soul",
-  "SNECKO-SNECKO_SOUL.description": "At the start of each combat, add {{C|Soul Roll}} to your hand.",
+  "SNECKO-SNECKO_SOUL.description": "At the start of each combat, add [gold]Soul Roll[/gold] to your hand.",
   "SNECKO-SNECKO_SOUL.flavor": "0...3...2...2...1",
   "SNECKO-SUPER_SNECKO_SOUL.title": "Super Snecko Soul",
   "SNECKO-SUPER_SNECKO_SOUL.description": "Replaces {{R|Snecko Soul}}. At the start of each combat and every other turn, gain a {{C|Soul Roll}}. On other turns, draws an additional card at the start of your turn and Muddles it.",

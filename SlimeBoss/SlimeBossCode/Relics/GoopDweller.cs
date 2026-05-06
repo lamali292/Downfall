@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class GoopDweller : SlimeBossRelicModel
+public class GoopDweller() : SlimeBossRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-    // TODO
+        // TODO
 }

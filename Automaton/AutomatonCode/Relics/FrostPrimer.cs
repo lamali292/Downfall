@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class FrostPrimer : AutomatonRelicModel
+public class FrostPrimer() : AutomatonRelicModel(RelicRarity.Rare)
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
     // TODO
 }

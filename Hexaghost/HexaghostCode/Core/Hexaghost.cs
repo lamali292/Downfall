@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Core;
@@ -56,7 +57,7 @@ public class Hexaghost : DownfallCharacterModel
 
 public class HexaghostRelicPool : DownfallRelicPool<Hexaghost>;
 
-public abstract class HexaghostRelicModel : DownfallRelicModel<Hexaghost>;
+public abstract class HexaghostRelicModel(RelicRarity rarity) : DownfallRelicModel<Hexaghost>(rarity);
 
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,

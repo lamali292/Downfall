@@ -10,10 +10,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class MarkOfTheEther : HexaghostRelicModel, IAfterGhostflameIgnited
+public class MarkOfTheEther() : HexaghostRelicModel(RelicRarity.Starter), IAfterGhostflameIgnited
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
+    
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player != Owner) return;

@@ -5,10 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class TheContract : CollectorRelicModel
+public class TheContract() : CollectorRelicModel(RelicRarity.Shop)
 {
-    public override RelicRarity Rarity => RelicRarity.Shop;
-
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 10);

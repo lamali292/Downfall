@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
 using SlimeBoss.SlimeBossCode.Relics;
@@ -83,7 +84,7 @@ public class SlimeBoss : DownfallCharacterModel
 
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
 
-public abstract class SlimeBossRelicModel : DownfallRelicModel<SlimeBoss>;
+public abstract class SlimeBossRelicModel(RelicRarity rarity) : DownfallRelicModel<SlimeBoss>(rarity);
 
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,

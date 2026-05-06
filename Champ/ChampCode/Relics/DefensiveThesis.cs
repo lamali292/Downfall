@@ -7,10 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class DefensiveThesis : ChampRelicModel, IModifyFinisherBonus
+public class DefensiveThesis() : ChampRelicModel(RelicRarity.Uncommon), IModifyFinisherBonus
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-
     public int ModifyFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
     {
         return stanceModel.Owner == Owner && stanceModel is ChampDefensiveStance ? baseAmount + 3 : baseAmount;

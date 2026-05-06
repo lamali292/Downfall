@@ -9,10 +9,9 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class OlexasShield : HexaghostRelicModel, IGhostflameConditionOverwrites
+public class OlexasShield() : HexaghostRelicModel(RelicRarity.Uncommon), IGhostflameConditionOverwrites
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-
+    
     public bool GhostflameConditionOverwrites(Player player, GhostflameModel ghostflame, CardPlay cardPlay)
     {
         return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame &&

@@ -6,10 +6,9 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class HeartOfGoo : SlimeBossRelicModel
+public class HeartOfGoo() : SlimeBossRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
+    
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<BlackHeartOfGoo>();

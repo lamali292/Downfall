@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class BlackHeartOfGoo : SlimeBossRelicModel
+public class BlackHeartOfGoo() : SlimeBossRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-    // TODO
+        // TODO
 }

@@ -14,10 +14,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class BronzeGear : GuardianRelicModel
+public class BronzeGear() : GuardianRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
+    
 
     public override RelicModel GetUpgradeReplacement()
     {

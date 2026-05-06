@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Core;
@@ -123,7 +124,7 @@ public class Champ : DownfallCharacterModel
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;
 
-public abstract class ChampRelicModel : DownfallRelicModel<Champ>;
+public abstract class ChampRelicModel(RelicRarity rarity) : DownfallRelicModel<Champ>(rarity);
 
 public abstract class ChampPowerModel(
     PowerType powerType = PowerType.Buff,

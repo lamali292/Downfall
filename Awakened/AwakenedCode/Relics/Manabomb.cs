@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class Manabomb : AwakenedRelicModel
+public class Manabomb() : AwakenedRelicModel(RelicRarity.Shop)
 {
-    public override RelicRarity Rarity => RelicRarity.Shop;
     // TODO
 }

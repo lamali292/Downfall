@@ -1,17 +1,19 @@
 ﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class ConstructedRelicModel : CustomRelicModel
+public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicModel
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<DynamicVar> _newDynamicVars = [];
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
-
+    public sealed override RelicRarity Rarity => rarity;
+    
     protected ConstructedRelicModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)

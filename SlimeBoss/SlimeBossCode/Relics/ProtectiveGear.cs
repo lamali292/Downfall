@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class ProtectiveGear : SlimeBossRelicModel
+public class ProtectiveGear() : SlimeBossRelicModel(RelicRarity.Shop)
 {
-    public override RelicRarity Rarity => RelicRarity.Shop;
-    // TODO
+        // TODO
 }

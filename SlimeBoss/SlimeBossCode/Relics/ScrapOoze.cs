@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class ScrapOoze : SlimeBossRelicModel
+public class ScrapOoze() : SlimeBossRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-    public override RelicRarity Rarity => RelicRarity.Event;
-}
+    }

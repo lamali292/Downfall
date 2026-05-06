@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class RareBoosterBox : SneckoRelicModel
+public class RareBoosterBox() : SneckoRelicModel(RelicRarity.Shop)
 {
-    public override RelicRarity Rarity => RelicRarity.Shop;
-    // TODO
+        // TODO
 }

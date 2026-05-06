@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class PlatinumCore : AutomatonRelicModel
+public class PlatinumCore() : AutomatonRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
     // TODO
 }

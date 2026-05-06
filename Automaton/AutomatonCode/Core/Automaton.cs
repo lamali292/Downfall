@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Core;
@@ -88,6 +89,6 @@ public abstract class AutomatonPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Automaton>(powerType, powerStackType);
 
-public abstract class AutomatonRelicModel : DownfallRelicModel<Automaton>;
+public abstract class AutomatonRelicModel(RelicRarity rarity) : DownfallRelicModel<Automaton>(rarity);
 
 public class AutomatonRelicPool : DownfallRelicPool<Automaton>;

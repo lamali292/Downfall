@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class ShreddedDoll : AwakenedRelicModel
+public class ShreddedDoll() : AwakenedRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
     // TODO
 }

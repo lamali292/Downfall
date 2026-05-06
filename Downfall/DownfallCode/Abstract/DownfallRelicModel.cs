@@ -1,9 +1,10 @@
 ﻿using BaseLib.Extensions;
 using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class DownfallRelicModel<T> : ConstructedRelicModel
+public abstract class DownfallRelicModel<T>(RelicRarity rarity) : ConstructedRelicModel(rarity)
     where T : DownfallCharacterModel
 {
     private string IconName => Id.Entry

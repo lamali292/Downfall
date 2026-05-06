@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class TarrBlob : SlimeBossRelicModel
+public class TarrBlob() : SlimeBossRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    public override RelicRarity Rarity => RelicRarity.Ancient;
-}
+    }

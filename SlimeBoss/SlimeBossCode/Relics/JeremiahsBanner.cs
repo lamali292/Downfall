@@ -5,8 +5,7 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class JeremiahsBanner : SlimeBossRelicModel
+public class JeremiahsBanner() : SlimeBossRelicModel(RelicRarity.Uncommon)
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-    // TODO
+        // TODO
 }

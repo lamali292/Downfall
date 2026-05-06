@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class ProtectiveGoggles : AutomatonRelicModel
+public class ProtectiveGoggles() : AutomatonRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
     // TODO
 }

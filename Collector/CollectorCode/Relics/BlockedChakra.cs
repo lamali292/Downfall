@@ -11,12 +11,10 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
 {
-    public BlockedChakra()
+    public BlockedChakra() : base(RelicRarity.Ancient)
     {
         WithEnergy(1);
     }
-
-    public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public bool PreventCollectedDraw(Player player)
     {

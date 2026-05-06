@@ -10,10 +10,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class JarOfTobsco : HexaghostRelicModel
+public class JarOfTobsco() : HexaghostRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-
+    
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {

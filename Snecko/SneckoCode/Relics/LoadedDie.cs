@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class LoadedDie : SneckoRelicModel
+public class LoadedDie() : SneckoRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-    // TODO
+        // TODO
 }

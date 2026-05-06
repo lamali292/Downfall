@@ -11,10 +11,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class DolphinsStyleGuide : ChampRelicModel
+public class DolphinsStyleGuide() : ChampRelicModel(RelicRarity.Uncommon)
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-
     public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         var creature = Owner.Creature;

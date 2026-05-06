@@ -5,9 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class TheBrokenSeal : HexaghostRelicModel
+public class TheBrokenSeal() : HexaghostRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-    public override RelicRarity Rarity => RelicRarity.Event;
-    // TODO
+        // TODO
 }

@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class MysticalOctahedron : SneckoRelicModel
+public class MysticalOctahedron() : SneckoRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-    public override RelicRarity Rarity => RelicRarity.Event;
-}
+    }

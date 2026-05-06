@@ -13,12 +13,10 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class KrampianCoal : CollectorRelicModel, IAfterCustomDraw
 {
-    public KrampianCoal()
+    public KrampianCoal() : base(RelicRarity.Shop)
     {
         WithTip(typeof(LuckyWick));
     }
-
-    public override RelicRarity Rarity => RelicRarity.Shop;
 
     public async Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result)
     {

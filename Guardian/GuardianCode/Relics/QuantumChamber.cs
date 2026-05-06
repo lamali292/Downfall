@@ -10,11 +10,10 @@ using MegaCrit.Sts2.Core.Models;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class QuantumChamber : GuardianRelicModel, IAfterCardEntersStasis
+public class QuantumChamber() : GuardianRelicModel(RelicRarity.Rare), IAfterCardEntersStasis
 {
     private bool _usedThisTurn;
-    public override RelicRarity Rarity => RelicRarity.Rare;
-
+    
     public async Task AfterCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (_usedThisTurn || card.Owner != Owner) return;

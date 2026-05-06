@@ -10,10 +10,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class EmeraldTorch : CollectorRelicModel
+public class EmeraldTorch() : CollectorRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<PrismaticTorch>();

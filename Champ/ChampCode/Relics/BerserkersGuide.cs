@@ -10,10 +10,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class BerserkersGuide : ChampRelicModel
+public class BerserkersGuide() : ChampRelicModel(RelicRarity.Common)
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner) return;

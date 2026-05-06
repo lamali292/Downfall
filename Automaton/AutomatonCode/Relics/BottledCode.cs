@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class BottledCode : AutomatonRelicModel
+public class BottledCode() : AutomatonRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-    public override RelicRarity Rarity => RelicRarity.Event;
 }

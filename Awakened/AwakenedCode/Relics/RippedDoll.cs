@@ -7,9 +7,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class RippedDoll : AwakenedRelicModel
+public class RippedDoll() : AwakenedRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
     /*
      * TODO: needs to call update methods
     public override int DisplayAmount

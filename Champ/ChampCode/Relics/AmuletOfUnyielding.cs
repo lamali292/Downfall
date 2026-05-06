@@ -10,10 +10,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class AmuletOfUnyielding : ChampRelicModel
+public class AmuletOfUnyielding() : ChampRelicModel(RelicRarity.Ancient)
 {
-    public override RelicRarity Rarity => RelicRarity.Ancient;
-
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
         CardModel? cardSource)

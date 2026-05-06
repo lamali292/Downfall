@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class SleevedAce : SneckoRelicModel
+public class SleevedAce() : SneckoRelicModel(RelicRarity.Uncommon)
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-    // TODO
+        // TODO
 }

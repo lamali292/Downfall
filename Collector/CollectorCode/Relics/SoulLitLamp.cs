@@ -13,13 +13,10 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class SoulLitLamp : CollectorRelicModel
 {
-    public SoulLitLamp()
+    public SoulLitLamp() : base(RelicRarity.Uncommon)
     {
         WithTip(typeof(Ember));
     }
-
-
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
 
     public override Task AfterObtained()
     {

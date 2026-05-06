@@ -8,10 +8,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class RedCandle : HexaghostRelicModel
+public class RedCandle() : HexaghostRelicModel(RelicRarity.Rare)
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
-
+    
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {

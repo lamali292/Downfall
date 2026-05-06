@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class WhiteRibbon : AwakenedRelicModel
+public class WhiteRibbon() : AwakenedRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    public override RelicRarity Rarity => RelicRarity.Ancient;
 }

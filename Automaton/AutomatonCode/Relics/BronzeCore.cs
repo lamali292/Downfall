@@ -6,10 +6,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class BronzeCore : AutomatonRelicModel
+public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<PlatinumCore>();

@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class DonusWashers : AutomatonRelicModel
+public class DonusWashers() : AutomatonRelicModel(RelicRarity.Shop)
 {
-    public override RelicRarity Rarity => RelicRarity.Shop;
     // TODO
 }

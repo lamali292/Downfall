@@ -125,7 +125,7 @@
   "SNECKO-SOUL_DRAW.title": "Soul Draw",
   "SNECKO-SOUL_EXCHANGE.description": "[gold]Muddle[/gold] your hand.",
   "SNECKO-SOUL_EXCHANGE.title": "Soul Exchange",
-  "SNECKO-SOUL_ROLL.description": "Retain.\nGain {Block:diff()} Block.\n[gold]Muddle a card[/gold].\nExhaust.",
+  "SNECKO-SOUL_ROLL.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Muddle[/gold] a card.",
   "SNECKO-SOUL_ROLL.title": "Soul Roll",
   "SNECKO-STRIKE_SNECKO.description": "Deal {Damage:diff()} damage.",
   "SNECKO-STRIKE_SNECKO.title": "Strike",

@@ -13,12 +13,10 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class ThimbleHelm : CollectorRelicModel
 {
-    public ThimbleHelm()
+    public ThimbleHelm() : base(RelicRarity.Rare)
     {
         WithTip(CollectorTip.Kindle);
     }
-
-    public override RelicRarity Rarity => RelicRarity.Rare;
 
     public override async Task BeforeHandDraw(
         Player player,

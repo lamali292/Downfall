@@ -13,12 +13,10 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class PowerArmor : ChampRelicModel
+public class PowerArmor() : ChampRelicModel(RelicRarity.Shop)
 {
     private const int Cap = 10;
-
-    public override RelicRarity Rarity => RelicRarity.Shop;
-
+    
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,

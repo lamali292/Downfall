@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class PaperCrow : AwakenedRelicModel
+public class PaperCrow() : AwakenedRelicModel(RelicRarity.Uncommon)
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
     // TODO
 }

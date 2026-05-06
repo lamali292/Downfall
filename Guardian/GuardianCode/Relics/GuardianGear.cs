@@ -13,10 +13,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class GuardianGear : GuardianRelicModel, IOnGuardianModeChange
+public class GuardianGear() : GuardianRelicModel(RelicRarity.Starter), IOnGuardianModeChange
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
+    
     public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {

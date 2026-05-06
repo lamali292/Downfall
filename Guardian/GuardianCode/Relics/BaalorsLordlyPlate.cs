@@ -7,10 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class BaalorsLordlyPlate : GuardianRelicModel, IModifyBraceAmount
+public class BaalorsLordlyPlate() : GuardianRelicModel(RelicRarity.Common), IModifyBraceAmount
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-
+    
     public decimal ModifyBraceAmount(Player player, decimal amount)
     {
         return player == Owner ? amount + 1 : amount;

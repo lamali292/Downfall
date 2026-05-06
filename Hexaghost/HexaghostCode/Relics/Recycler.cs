@@ -10,11 +10,10 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class Recycler : HexaghostRelicModel
+public class Recycler() : HexaghostRelicModel(RelicRarity.Uncommon)
 {
     private bool _usedThisCombat;
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
-
+    
     private bool UsedThisCombat
     {
         get => _usedThisCombat;

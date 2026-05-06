@@ -12,10 +12,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class PilotsCodex : GuardianRelicModel
+public class PilotsCodex() : GuardianRelicModel(RelicRarity.Rare)
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
-
+    
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;

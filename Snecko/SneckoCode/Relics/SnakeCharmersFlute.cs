@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class SnakeCharmersFlute : SneckoRelicModel
+public class SnakeCharmersFlute() : SneckoRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    public override RelicRarity Rarity => RelicRarity.Ancient;
-}
+    }

@@ -5,8 +5,7 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class LuckyHorseshoe : SneckoRelicModel
+public class LuckyHorseshoe() : SneckoRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    public override RelicRarity Rarity => RelicRarity.Ancient;
-}
+    }

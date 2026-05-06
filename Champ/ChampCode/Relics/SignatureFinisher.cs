@@ -9,10 +9,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class SignatureFinisher : ChampRelicModel
+public class SignatureFinisher() : ChampRelicModel(RelicRarity.Rare)
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
-
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);

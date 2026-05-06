@@ -4,6 +4,7 @@ using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Core;
@@ -78,7 +79,7 @@ public class Guardian : DownfallCharacterModel
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;
 
-public abstract class GuardianRelicModel : DownfallRelicModel<Guardian>;
+public abstract class GuardianRelicModel(RelicRarity rarity) : DownfallRelicModel<Guardian>(rarity);
 
 public abstract class GuardianPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class DessicatedHand : AwakenedRelicModel
+public class DessicatedHand() : AwakenedRelicModel(RelicRarity.Uncommon)
 {
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
     // TODO
 }

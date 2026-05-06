@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Core;
@@ -85,7 +86,7 @@ public class Awakened : DownfallCharacterModel
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;
 
-public abstract class AwakenedRelicModel : DownfallRelicModel<Awakened>;
+public abstract class AwakenedRelicModel(RelicRarity rarity) : DownfallRelicModel<Awakened>(rarity);
 
 public abstract class AwakenedPowerModel(
     PowerType powerType = PowerType.Buff,

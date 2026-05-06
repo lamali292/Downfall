@@ -12,10 +12,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class VictoriousCrown : ChampRelicModel, IOnFinisher
+public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinisher
 {
     private bool _usedThisTurn;
-    public override RelicRarity Rarity => RelicRarity.Starter;
 
     public async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

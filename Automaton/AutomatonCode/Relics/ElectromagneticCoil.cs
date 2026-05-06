@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class ElectromagneticCoil : AutomatonRelicModel
+public class ElectromagneticCoil() : AutomatonRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    public override RelicRarity Rarity => RelicRarity.Ancient;
 }

@@ -10,10 +10,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class ChampionsCrown : ChampRelicModel
+public class ChampionsCrown() : ChampRelicModel(RelicRarity.Starter)
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
-
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<VictoriousCrown>();
