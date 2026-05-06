@@ -2,10 +2,8 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Godot;
 using Guardian.GuardianCode.Cards.Abstract;
-using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
-using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
@@ -54,7 +52,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
             GuardianDisplay.Refresh(player);
         }
     }
-    
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

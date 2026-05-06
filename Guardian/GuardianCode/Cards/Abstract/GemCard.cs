@@ -94,7 +94,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
     public override int MaxUpgradeLevel => 0;
 
     public GemModel CanonicalGemModel => GuardianModelDb.Gem<T>();
-    
+
     public GemModel GemModel
     {
         get
@@ -105,7 +105,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
             return _mutableGem;
         }
     }
-    
+
     protected override void AfterCloned()
     {
         base.AfterCloned();
@@ -113,7 +113,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
         _mutableGem = _mutableGem.CreateClone();
         _mutableGem.Card = this;
     }
-    
+
     protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         return GemModel.OnPlayWrapper(ctx, cardPlay);

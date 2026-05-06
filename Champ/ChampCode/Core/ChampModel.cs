@@ -104,7 +104,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
             animState.GetCurrent(0).SetMixDuration(0.3f);
         }).CallDeferred();
     }*/
-    
+
     private static void TriggerStanceAnimation(Player player)
     {
         Callable.From(() =>
@@ -117,7 +117,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
                 ChampBerserkerStance => NChampCreatureVisuals.Stance.Berserker,
                 ChampDefensiveStance => NChampCreatureVisuals.Stance.Defensive,
                 ChampUltimateStance => NChampCreatureVisuals.Stance.Ultimate,
-                _                    => NChampCreatureVisuals.Stance.Normal
+                _ => NChampCreatureVisuals.Stance.Normal
             };
 
             champVisuals.OnAnimationTrigger("Idle");

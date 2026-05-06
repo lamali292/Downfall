@@ -13,20 +13,20 @@ public class FinalStrike : SneckoCardModel
     {
         WithGift(new Gift
         {
-           IsStrike = true
+            IsStrike = true
         });
         WithTags(CardTag.Strike);
         WithDamage(6, 3);
     }
-    
+
     private int UniqueStrikesPlayed => CombatManager.Instance.History.CardPlaysFinished
         .Select(e => e.CardPlay.Card)
         .Where(e => e.Owner == Owner && e.Tags.Contains(CardTag.Strike))
         .DistinctBy(c => c.Id)
         .Count();
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 1+UniqueStrikesPlayed).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 1 + UniqueStrikesPlayed).Execute(ctx);
     }
 }

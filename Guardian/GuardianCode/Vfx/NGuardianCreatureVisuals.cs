@@ -9,14 +9,16 @@ namespace Guardian.GuardianCode.Vfx;
 public partial class NGuardianCreatureVisuals : NCreatureVisuals
 {
     private const float DefaultMix = 0.2f;
-    private const float ToIdleMix  = 0.35f;
-    private const float AttackMix  = 0.1f;
-    private const float HitMix     = 0.05f;
-
-    private MegaSprite?         _sprite;
+    private const float ToIdleMix = 0.35f;
+    private const float AttackMix = 0.1f;
+    private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
 
+    private MegaSprite? _sprite;
+
     public bool IsDefensive { get; set; }
+
+    private string IdleAnim => IsDefensive ? "defensive" : "idle";
 
     public override void _Ready()
     {
@@ -41,14 +43,14 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals
         {
             case "Idle":
                 _animState?.SetAnimation(IdleAnim)
-                          ?.SetMixDuration(DefaultMix);
+                    ?.SetMixDuration(DefaultMix);
                 break;
 
             case "Hit":
                 _animState?.SetAnimation("Hit", false)
-                          ?.SetMixDuration(HitMix);
+                    ?.SetMixDuration(HitMix);
                 _animState?.AddAnimation(IdleAnim)
-                          .SetMixDuration(ToIdleMix);
+                    .SetMixDuration(ToIdleMix);
                 break;
             case "Cast":
             case "Attack":
@@ -56,8 +58,6 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals
                 break;
         }
     }
-
-    private string IdleAnim => IsDefensive ? "defensive" : "idle";
 }
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]

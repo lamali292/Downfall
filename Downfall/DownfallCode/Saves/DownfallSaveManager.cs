@@ -1,8 +1,5 @@
-using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
 using Downfall.DownfallCode.Utils.ModdedSaves;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Saves;
 

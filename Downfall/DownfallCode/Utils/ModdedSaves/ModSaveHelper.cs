@@ -1,7 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Downfall.DownfallCode.Saves;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -15,6 +14,12 @@ public class ModSaveAttribute : Attribute;
 public static class ModSaveHelper
 {
     private static readonly Dictionary<string, FieldInfo> SaveFieldCache = new();
+
+    private static readonly JsonSerializerOptions ModJsonOptions = new()
+    {
+        WriteIndented = true,
+        Converters = { new ModelIdJsonConverter() }
+    };
 
     public static IEnumerable<Mod> GetActiveMods()
     {
@@ -45,22 +50,6 @@ public static class ModSaveHelper
         return field;
     }
 
- 
-    public class ModelIdJsonConverter : JsonConverter<ModelId>
-    {
-        public override ModelId Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            => ModelId.Deserialize(reader.GetString()!);
-
-        public override void Write(Utf8JsonWriter writer, ModelId value, JsonSerializerOptions options)
-            => writer.WriteStringValue(value.ToString());
-    }
-
-    private static readonly JsonSerializerOptions ModJsonOptions = new()
-    {
-        WriteIndented = true,
-        Converters = { new ModelIdJsonConverter() }
-    };
-    
     public static string? GetModDataToSave(Mod mod)
     {
         var field = GetSaveField(mod);
@@ -71,7 +60,7 @@ public static class ModSaveHelper
         return json;
     }
 
-    
+
     public static void LoadDataIntoMod(Mod mod, string json)
     {
         var field = GetSaveField(mod);
@@ -85,6 +74,20 @@ public static class ModSaveHelper
         catch (Exception ex)
         {
             DownfallMainFile.Logger.Error($"Load error for {mod.manifest?.id}: {ex.Message}");
+        }
+    }
+
+
+    public class ModelIdJsonConverter : JsonConverter<ModelId>
+    {
+        public override ModelId Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            return ModelId.Deserialize(reader.GetString()!);
+        }
+
+        public override void Write(Utf8JsonWriter writer, ModelId value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString());
         }
     }
 }

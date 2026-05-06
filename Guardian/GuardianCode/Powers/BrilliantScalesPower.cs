@@ -1,9 +1,7 @@
-﻿using Downfall.DownfallCode.Interfaces;
-using Godot;
+﻿using Godot;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using HarmonyLib;
-using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,35 +14,35 @@ namespace Guardian.GuardianCode.Powers;
 
 public class BrilliantScalesPower : GuardianPowerModel
 {
-    public override bool IsInstanced => true;
     private GuardianCardModel? _sourceCard;
-    private IReadOnlyList<GemModel> Gems => _sourceCard?.Gems ?? [];
-    public event Action? GemsChanged;
+
     public BrilliantScalesPower() : base(PowerType.Buff, PowerStackType.Single)
     {
         WithTips(power => ((BrilliantScalesPower)power).Gems?
             .SelectMany(gem => gem.HoverTips) ?? []);
         WithVars(new BrilliantScalesDynamicVar());
     }
-    
+
+    public override bool IsInstanced => true;
+    private IReadOnlyList<GemModel> Gems => _sourceCard?.Gems ?? [];
+    public event Action? GemsChanged;
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (_sourceCard == null) return;
         if (Owner != player.Creature) return;
         foreach (var gem in _sourceCard.Gems)
-            await gem.OnPlayWrapper(ctx, null); }
+            await gem.OnPlayWrapper(ctx, null);
+    }
 
     public void SetCard(GuardianCardModel cardModel)
     {
         _sourceCard = cardModel;
-        foreach (var sourceCardGem in _sourceCard.Gems)
-        {
-            sourceCardGem.Power = this;
-        }
+        foreach (var sourceCardGem in _sourceCard.Gems) sourceCardGem.Power = this;
         GemsChanged?.Invoke();
     }
 
-    
+
     private class BrilliantScalesDynamicVar : DynamicVar
     {
         private BrilliantScalesPower? _power;
@@ -68,7 +66,7 @@ public class BrilliantScalesPower : GuardianPowerModel
             return lines.Count > 0 ? string.Join("\n", lines) : "";
         }
     }
-    
+
     // Patch — subscribe in _Ready, build icons when gems actually arrive
     [HarmonyPatch(typeof(NPower))]
     internal static class BrilliantScalesGemPatch
@@ -103,29 +101,27 @@ public class BrilliantScalesPower : GuardianPowerModel
             {
                 1 => [0f],
                 2 => [-45f, 135f],
-                _ => [0f, 120f, -120f],
+                _ => [0f, 120f, -120f]
             };
             var shaderMaterial = (ShaderMaterial)icon.Material;
             for (var i = 0; i < gems.Count; i++)
             {
                 var rect = new TextureRect
                 {
-                    Name        = $"gem_slot_{i}",
-                    Texture     = gems[i].Icon,
-                    Material     = shaderMaterial,   
-                    OffsetLeft  = 10f,
-                    OffsetTop   = -2f,
+                    Name = $"gem_slot_{i}",
+                    Texture = gems[i].Icon,
+                    Material = shaderMaterial,
+                    OffsetLeft = 10f,
+                    OffsetTop = -2f,
                     OffsetRight = 30f,
                     OffsetBottom = 18f,
                     PivotOffset = new Vector2(10f, 22f),
-                    Rotation    = Mathf.DegToRad(rotations[i]),
-                    ExpandMode  = TextureRect.ExpandModeEnum.IgnoreSize,
-                    StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                    Rotation = Mathf.DegToRad(rotations[i]),
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    StretchMode = TextureRect.StretchModeEnum.KeepAspect
                 };
                 icon.AddChild(rect);
             }
         }
     }
-    
 }
-

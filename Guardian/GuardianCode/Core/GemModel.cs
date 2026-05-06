@@ -26,12 +26,12 @@ public abstract class GemModel : AbstractModel, ICustomModel
     private GemModel _canonicalInstance = null!;
 
     private GuardianCardModel? _card;
-    public int SocketIndex => _card?.Gems.IndexOf(this) ?? -1;
-    private PowerModel? _power;
     private DynamicVarSet? _dynamicVars;
+    private PowerModel? _power;
+    public int SocketIndex => _card?.Gems.IndexOf(this) ?? -1;
 
     protected ICombatState CombatState =>
-        Card.CombatState ??  _power?.CombatState  ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
+        Card.CombatState ?? _power?.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
 
     protected Player Player => Card.Owner;
     public override bool ShouldReceiveCombatHooks => true;
@@ -40,7 +40,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
         .RemovePrefix()
         .ToLowerInvariant();
 
-    
+
     public PowerModel Power
     {
         get
@@ -56,8 +56,8 @@ public abstract class GemModel : AbstractModel, ICustomModel
             _power = value;
         }
     }
-    
-    
+
+
     public GuardianCardModel Card
     {
         get
@@ -76,7 +76,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
             if (previousCard != null) OnRemoved(previousCard);
         }
     }
-    
+
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
 
@@ -138,7 +138,6 @@ public abstract class GemModel : AbstractModel, ICustomModel
     private string SmartDescriptionLocKey => Id.Entry + ".smartDescription";
 
 
-    
     public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
         .Where(c => c.CanonicalGemModel.GetType() == GetType()).Cast<CardModel>().First();
 
@@ -168,17 +167,13 @@ public abstract class GemModel : AbstractModel, ICustomModel
             var description = Description;
             AddDumbVariablesToDescription(description);
             formatted = description.GetFormattedText();
-         
         }
 
         var isEmpty = formatted.Equals("");
         if (!isEmpty)
             stringBuilder.Append(formatted);
         if (cardText || !HasDescriptionExtra) return stringBuilder.ToString();
-        if (!isEmpty)
-        {
-            stringBuilder.Append("\n");
-        }
+        if (!isEmpty) stringBuilder.Append("\n");
         stringBuilder.Append(DescriptionExtra.GetFormattedText());
 
         return stringBuilder.ToString();
@@ -218,7 +213,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         await OnPlay(ctx, cardPlay);
-        await GuardianHook.AfterGemPlayed(CombatState, ctx, this,  cardPlay);
+        await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
 
@@ -229,7 +224,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     {
         return originalPlayCount;
     }
-    
+
     public GemModel CreateClone()
     {
         AssertMutable();

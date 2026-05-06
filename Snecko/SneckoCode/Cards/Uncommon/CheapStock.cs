@@ -16,7 +16,7 @@ public class CheapStock : SneckoCardModel
         WithPower<CheapStockPower>(1, 1);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

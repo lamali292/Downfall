@@ -35,7 +35,7 @@ public static class AwakenedCmd
         }).CallDeferred();
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }
-    
+
     public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         if (card is not IChantable chantable) return;

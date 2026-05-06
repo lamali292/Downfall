@@ -17,7 +17,7 @@ public class TailWhip : SneckoCardModel
         WithPower<WeakPower>(1, 1);
         WithPower<VulnerablePower>(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

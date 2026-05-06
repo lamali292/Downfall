@@ -14,7 +14,7 @@ public class DiceBoulder : SneckoCardModel
         WithVar("BlockIncrease", 4, 1);
         WithEnergy(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

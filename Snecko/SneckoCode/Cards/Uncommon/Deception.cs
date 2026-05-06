@@ -16,7 +16,7 @@ public class Deception : SneckoCardModel
         WithTip(typeof(Shockwave));
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

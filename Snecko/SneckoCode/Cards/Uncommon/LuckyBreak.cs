@@ -18,7 +18,7 @@ public class LuckyBreak : SneckoCardModel
 
     private int TwoCostInHand => Owner.PlayerCombatState?.Hand.Cards
         .Count(e => e.EnergyCost.GetResolved() >= 2) ?? 0;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

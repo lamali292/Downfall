@@ -17,7 +17,7 @@ public class Behold : SneckoCardModel
         WithCards(2);
         WithTip(typeof(Shiv));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

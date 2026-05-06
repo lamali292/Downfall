@@ -14,7 +14,7 @@ namespace Champ.ChampCode.Relics;
 public class DolphinsStyleGuide : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-    
+
     public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
     {
         var creature = Owner.Creature;

@@ -10,7 +10,8 @@ namespace Guardian.GuardianCode.Powers;
 
 public class BronzeBramblesPower : GuardianPowerModel
 {
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
+        Creature? applier,
         CardModel? cardSource)
     {
         if (power.Owner != Owner || applier == Owner || power.Type != PowerType.Debuff || amount <= 0) return;

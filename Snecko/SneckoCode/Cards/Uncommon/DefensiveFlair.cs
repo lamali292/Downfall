@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -16,13 +15,15 @@ public class DefensiveFlair : SneckoCardModel
     {
         WithGift(new Gift
         {
-            Rarity = CardRarity.Uncommon,
+            Rarity = CardRarity.Uncommon
         });
         WithCalculatedBlock(8, 2, CalcBlock, ValueProp.Move, 1, 1);
     }
 
-    private static decimal CalcBlock(CardModel card, Creature? creature) =>
-        card.Owner.PlayerCombatState?.Hand.Cards.Count(e => SneckoCmd.IsOffclass(card, e)) ?? 0;
+    private static decimal CalcBlock(CardModel card, Creature? creature)
+    {
+        return card.Owner.PlayerCombatState?.Hand.Cards.Count(e => SneckoCmd.IsOffclass(card, e)) ?? 0;
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

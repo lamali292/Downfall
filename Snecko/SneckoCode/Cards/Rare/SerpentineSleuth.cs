@@ -21,7 +21,7 @@ public class SerpentineSleuth : SneckoCardModel
         WithEnergy(1, 1);
         WithKeyword(CardKeyword.Ethereal);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

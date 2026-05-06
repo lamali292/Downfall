@@ -13,7 +13,7 @@ public class MarkedCard : SneckoCardModel
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
         WithMuddle(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SneckoCmd.MuddleHandCards(ctx, this, true);

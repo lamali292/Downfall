@@ -16,17 +16,19 @@ public class ComboString : SneckoCardModel
     {
         WithGift(new Gift
         {
-            Rarity = CardRarity.Uncommon,
+            Rarity = CardRarity.Uncommon
         });
-        WithCalculatedDamage(0, 7, CalcDamage, ValueProp.Move, 0,2);
+        WithCalculatedDamage(0, 7, CalcDamage, ValueProp.Move, 0, 2);
     }
 
-    private static decimal CalcDamage(CardModel card, Creature? creature) =>
-        CombatManager.Instance.History
-            .CardPlaysFinished.Count(e => 
-                e.HappenedThisTurn(card.CombatState) && 
+    private static decimal CalcDamage(CardModel card, Creature? creature)
+    {
+        return CombatManager.Instance.History
+            .CardPlaysFinished.Count(e =>
+                e.HappenedThisTurn(card.CombatState) &&
                 SneckoCmd.IsOffclass(card, e.CardPlay.Card));
-    
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

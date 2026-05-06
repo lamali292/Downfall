@@ -1,7 +1,4 @@
-using BaseLib.Abstracts;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -19,11 +16,11 @@ public class BeyondArmor : SneckoCardModel
         WithCards(2);
         WithGift(new Gift
         {
-            Rarity = CardRarity.Common,
+            Rarity = CardRarity.Common
         });
     }
 
-  
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

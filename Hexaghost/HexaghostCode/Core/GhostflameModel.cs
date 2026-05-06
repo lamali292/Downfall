@@ -90,7 +90,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     protected bool TryProgress(int amount = 1)
     {
         if (IsIgnited) return false;
-        IgnitionProgress+=amount;
+        IgnitionProgress += amount;
         UpdateVisuals();
         return IgnitionProgress >= IgnitionRequirement;
     }

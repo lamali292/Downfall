@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Godot;
+﻿using Godot;
 using Guardian.GuardianCode.Cards;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
@@ -31,7 +30,7 @@ public partial class CardGemDisplay : Control
 
     private static CardGemDisplay UpdateVisuals(NCard card, CardGemDisplay? display)
     {
-        if (card.Model is not (GuardianCardModel guardianCard)
+        if (card.Model is not GuardianCardModel guardianCard
             || guardianCard.GemSlots == 0)
         {
             if (display != null) display.Visible = false;
@@ -41,13 +40,13 @@ public partial class CardGemDisplay : Control
                 MouseFilter = MouseFilterEnum.Ignore
             };
         }
-    
+
         var vBox = display?.GetNodeOrNull<VBoxContainer>("GemSlots");
         if (display == null || vBox == null)
         {
-            display ??= new CardGemDisplay()
+            display ??= new CardGemDisplay
             {
-                MouseFilter = MouseFilterEnum.Ignore,
+                MouseFilter = MouseFilterEnum.Ignore
             };
             vBox = new VBoxContainer
             {
@@ -57,22 +56,22 @@ public partial class CardGemDisplay : Control
             };
             display.AddChild(vBox);
         }
-    
+
         display.Visible = true;
-    
+
         var currentGems = guardianCard.Gems;
-    
+
         foreach (var child in vBox.GetChildren())
         {
             vBox.RemoveChild(child);
             child.QueueFree();
         }
-    
+
         for (var i = 0; i < guardianCard.GemSlots; i++)
         {
             var isFilled = i < currentGems.Count;
             var texture = isFilled ? currentGems[i].Icon : GemModel.EmptyIcon;
-    
+
             vBox.AddChild(new TextureRect
             {
                 Name = $"Slot_{i}",
@@ -83,7 +82,7 @@ public partial class CardGemDisplay : Control
                 MouseFilter = MouseFilterEnum.Ignore
             });
         }
-    
+
         return display;
     }
 }

@@ -17,7 +17,7 @@ public class MudShield : SneckoCardModel
         WithTip(StaticHoverTip.Block);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MudShieldPower>(ctx, this);

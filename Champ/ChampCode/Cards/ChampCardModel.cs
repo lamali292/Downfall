@@ -15,6 +15,12 @@ public abstract class ChampCardModel(
     TargetType targetType)
     : DownfallCardModel<Core.Champ>(cost, type, rarity, targetType)
 {
+    protected override bool ShouldGlowRedInternal =>
+        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
+
+    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
+                                          Enchantment is Signature;
+
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -26,9 +32,6 @@ public abstract class ChampCardModel(
         WithTip(ChampTip.Finisher);
         return this;
     }
-    
-    protected override bool ShouldGlowRedInternal => Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
-    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher || Enchantment is Signature;
 
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,7 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +17,7 @@ public class CrookedStrike : ChampCardModel
         WithTags(CardTag.Strike);
     }
 
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         decimal a = Owner.Creature.GetPowerAmount<VigorPower>();

@@ -12,11 +12,12 @@ namespace Champ.ChampCode.Relics;
 public class SignatureFinisher : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Signature>(), 1, prefs)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Signature>(), 1, prefs))
+            .FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Signature>(card, 1);
         CardCmd.Preview(card);

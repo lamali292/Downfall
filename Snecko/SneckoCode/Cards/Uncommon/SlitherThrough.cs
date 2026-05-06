@@ -12,12 +12,12 @@ public class SlitherThrough : SneckoCardModel
     {
         WithGift(new Gift
         {
-            Rarity = CardRarity.Uncommon,
+            Rarity = CardRarity.Uncommon
         });
         WithDamage(14, 4);
         WithEnergy(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

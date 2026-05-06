@@ -9,6 +9,4 @@ public class LoadedDie : SneckoRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
     // TODO
-    
-    
 }

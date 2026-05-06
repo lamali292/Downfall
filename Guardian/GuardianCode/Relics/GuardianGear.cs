@@ -16,18 +16,19 @@ namespace Guardian.GuardianCode.Relics;
 public class GuardianGear : GuardianRelicModel, IOnGuardianModeChange
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-    {
-        if (player != Owner || combatState.RoundNumber > 1) return;
-        await DownfallCardCmd.GiveCard<GearUp>(player, PileType.Hand);
-    }
 
-    public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode, GuardianModeModel newMode)
+    public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+        GuardianModeModel newMode)
     {
         if (player != Owner || newMode is not GuardianDefensiveMode) return;
         Flash();
         await PlayerCmd.GainEnergy(1, player);
         await CardPileCmd.Draw(ctx, 2, player);
+    }
+
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    {
+        if (player != Owner || combatState.RoundNumber > 1) return;
+        await DownfallCardCmd.GiveCard<GearUp>(player, PileType.Hand);
     }
 }

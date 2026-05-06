@@ -1,8 +1,5 @@
 ﻿using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Audio;
-using MegaCrit.Sts2.Core.Nodes;
-using System.Collections.Generic;
 
 namespace Downfall.DownfallCode.Utils;
 
@@ -36,7 +33,7 @@ public static class DownfallAudiomanager
 
         GD.Print($"[DownfallAudio] Reloaded {pathsToReload.Count} bank files.");
     }
-    
+
     public static void EnsureBanksLoaded()
     {
         if (_fmodServer == null || _bankPaths.Count == 0) return;
@@ -66,13 +63,13 @@ public static class DownfallAudiomanager
         }
 
         var descriptions = bank.Call("get_description_list").AsGodotArray();
-        
+
         // After banks load, check bus existence
         var sfxBus = _fmodServer.Call("get_bus", "bus:/master/sfx").Obj as GodotObject;
         var masterBus = _fmodServer.Call("get_bus", "bus:/master").Obj as GodotObject;
         GD.Print($"[DownfallAudio] bus:/master/sfx exists: {sfxBus != null}");
         GD.Print($"[DownfallAudio] bus:/master exists: {masterBus != null}");
-        
+
         if (sfxBus != null)
         {
             var vol = sfxBus.Get("volume");
@@ -87,6 +84,7 @@ public static class DownfallAudiomanager
             var muted = masterBus.Get("mute");
             GD.Print($"[DownfallAudio] master bus — volume: {vol} | muted: {muted}");
         }
+
         var desc = _fmodServer.Call("get_event", "event:/selection/selection_gremlins").Obj as GodotObject;
         if (desc != null)
         {
@@ -101,15 +99,15 @@ public static class DownfallAudiomanager
                     var groupName = channelGroup.Call("get_name");
                     GD.Print($"[DownfallAudio] channel group name: {groupName}");
                 }
-        
+
                 // Also check the bus this event description targets
                 var userProps = desc.Call("get_user_property_count");
                 GD.Print($"[DownfallAudio] user property count: {userProps}");
-        
+
                 inst.Call("release");
             }
         }
-        
+
         _bankPaths.Add(path);
         GD.Print($"[DownfallAudio] Loaded: {path} ({descriptions.Count} events)");
     }
@@ -146,7 +144,7 @@ internal static class LogResourceStatsPatch
     }
 }
 
-[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), 
+[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot),
     new[] { typeof(string), typeof(System.Collections.Generic.Dictionary<string, float>), typeof(float) })]
 internal static class PlayOneShotEnsurePatch
 {

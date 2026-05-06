@@ -25,7 +25,7 @@ public class ExoticFormPower : SneckoPowerModel, IHasSecondAmount
             InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
-    
+
 
     public override async Task BeforeFlush(PlayerChoiceContext ctx, Player player)
     {
@@ -33,10 +33,8 @@ public class ExoticFormPower : SneckoPowerModel, IHasSecondAmount
 
         var uniqueColorCount = _uniqueColorsThisTurn.Count;
         if (uniqueColorCount > 0)
-        {
-            await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount * uniqueColorCount, 
+            await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount * uniqueColorCount,
                 Owner, null);
-        }
         _uniqueColorsThisTurn.Clear();
         InvokeDisplayAmountChanged();
     }

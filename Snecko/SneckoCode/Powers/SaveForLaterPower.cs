@@ -25,5 +25,8 @@ public class SaveForLaterPower : SneckoPowerModel
         await PowerCmd.Remove(this);
     }
 
-    private bool RetainFilter(CardModel card) => !card.ShouldRetainThisTurn;
+    private bool RetainFilter(CardModel card)
+    {
+        return !card.ShouldRetainThisTurn;
+    }
 }

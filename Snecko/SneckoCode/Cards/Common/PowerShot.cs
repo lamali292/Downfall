@@ -13,7 +13,7 @@ public class PowerShot : SneckoCardModel
     {
         WithDamage(5, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -21,7 +21,8 @@ public class PowerShot : SneckoCardModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Power || Pile?.Type != PileType.Discard) return;
+        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Type != CardType.Power ||
+            Pile?.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 }

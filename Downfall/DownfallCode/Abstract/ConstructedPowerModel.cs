@@ -18,8 +18,10 @@ public abstract class ConstructedPowerModel(
     public override PowerType Type => powerType;
     public override PowerStackType StackType => stackType;
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
         .Concat(_multiHoverTips.SelectMany(e => e.Invoke(this)));
+
     public virtual bool ShouldRemoveDueToZero => true;
 
 
@@ -70,7 +72,7 @@ public abstract class ConstructedPowerModel(
         _hoverTips.Add(tipSource);
         return this;
     }
-    
+
     protected ConstructedPowerModel WithTips(
         Func<PowerModel, IEnumerable<IHoverTip>> multiTipSource)
     {

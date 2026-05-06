@@ -14,7 +14,7 @@ public class Overwhelming : SneckoCardModel
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<OverwhelmingPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<OverwhelmingPower>(ctx, this);

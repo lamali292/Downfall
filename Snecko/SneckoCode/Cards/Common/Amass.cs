@@ -17,9 +17,11 @@ public class Amass : SneckoCardModel
         WithCalculatedBlock(12, Calc, ValueProp.Move, 4);
     }
 
-    private static decimal Calc(CardModel card, Creature? creature) => 
-        card.Owner.PlayerCombatState?.Hand.Cards.Sum(e => e.EnergyCost.GetResolved()) ?? 0;
-    
+    private static decimal Calc(CardModel card, Creature? creature)
+    {
+        return card.Owner.PlayerCombatState?.Hand.Cards.Sum(e => e.EnergyCost.GetResolved()) ?? 0;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.CardCalculatedBlock(this, cardPlay);

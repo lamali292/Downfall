@@ -14,7 +14,7 @@ public class MintCondition : SneckoCardModel
         WithPower<StrengthPower>(3, 1);
         WithOverflow();
     }
-    
+
 
     protected override async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

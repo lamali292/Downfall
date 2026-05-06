@@ -27,7 +27,7 @@ public static class GuardianHook
         return DownfallHook.Dispatch<IBeforeCardEntersStasis>(cs, ctx,
             m => m.BeforeCardEntersStasis(ctx, card, source));
     }
-    
+
     public static Task AfterCardEntersStasis(ICombatState cs, PlayerChoiceContext ctx, CardModel card,
         AbstractModel source)
     {
@@ -47,7 +47,7 @@ public static class GuardianHook
         return DownfallHook.Dispatch<Alias>(cs, ctx,
             m => m.AfterGemPlayed(ctx, gemModel, cardPlay));
     }
-    
+
     public static Task AfterCardTick(ICombatState cs, PlayerChoiceContext ctx, CardModel card, Player player)
     {
         return DownfallHook.Dispatch<IAfterCardTick>(cs, ctx,

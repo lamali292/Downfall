@@ -155,7 +155,8 @@ public class DownfallCardCmd
         return result;
     }
 
-    public static async Task<IEnumerable<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx, CardModel card, PileType fromPile,
+    public static async Task<IEnumerable<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx,
+        CardModel card, PileType fromPile,
         PileType toPile)
     {
         var cards = fromPile.GetPile(card.Owner).Cards.ToList();
@@ -174,8 +175,9 @@ public class DownfallCardCmd
 
         return await CardPileCmd.Add(newCard, toPile);
     }
-    
-    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMoveFromHand(PlayerChoiceContext ctx, CardModel card,
+
+    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMoveFromHand(PlayerChoiceContext ctx,
+        CardModel card,
         PileType toPile, Func<CardModel, bool>? filter)
     {
         var want = card.DynamicVars.Cards.IntValue;

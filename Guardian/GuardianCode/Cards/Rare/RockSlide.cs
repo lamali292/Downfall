@@ -18,7 +18,7 @@ public class RockSlide : GuardianCardModel
     }
 
     public override int GemSlots => 3;
-    
+
     public override void AfterCreated()
     {
         var combatState = CombatManager.Instance.DebugOnlyGetState();
@@ -41,7 +41,7 @@ public class RockSlide : GuardianCardModel
             .First()
             .ToMutable());
     }
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

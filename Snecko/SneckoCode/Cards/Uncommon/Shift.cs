@@ -14,7 +14,7 @@ public class Shift : SneckoCardModel
         WithCards(3, 1);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);

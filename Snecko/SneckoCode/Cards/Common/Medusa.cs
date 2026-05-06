@@ -12,7 +12,6 @@ public class Medusa : SneckoCardModel
 {
     public Medusa() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        
         WithGift(new Gift
         {
             Rarity = CardRarity.Common,
@@ -21,7 +20,7 @@ public class Medusa : SneckoCardModel
         WithDamage(7, 2);
         WithPower<VenomPower>(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

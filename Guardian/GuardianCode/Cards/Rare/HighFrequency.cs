@@ -1,11 +1,8 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
-using Guardian.GuardianCode.CustomEnums;
-using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Cards.Rare;
@@ -30,13 +27,9 @@ public class HighFrequency : GuardianCardModel
         {
             var a = card.CreateClone();
             await CardPileCmd.Add(a, PileType.Play);
-            if (!await GuardianCmd.PutIntoStasis(a, ctx, this, true))
-            {
-                break;
-            }
+            if (!await GuardianCmd.PutIntoStasis(a, ctx, this, true)) break;
         }
-        
+
         await CardCmd.Exhaust(ctx, card);
-        
     }
 }

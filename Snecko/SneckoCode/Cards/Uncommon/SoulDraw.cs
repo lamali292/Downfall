@@ -16,11 +16,11 @@ public class SoulDraw : SneckoCardModel
         WithCards(2);
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var mutableCards = CardFactory.GetDistinctForCombat(Owner, 
-            SneckoModel.GetSneckoCards(Owner), 
+        var mutableCards = CardFactory.GetDistinctForCombat(Owner,
+            SneckoModel.GetSneckoCards(Owner),
             DynamicVars.Cards.IntValue,
             Owner.RunState.Rng.CombatCardGeneration).ToList();
         mutableCards.ForEach(card => card.AddKeyword(CardKeyword.Retain));

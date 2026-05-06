@@ -15,7 +15,7 @@ public class SoulExchange : SneckoCardModel
         WithCostUpgradeBy(-1);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var playerCombatState = Owner.PlayerCombatState;

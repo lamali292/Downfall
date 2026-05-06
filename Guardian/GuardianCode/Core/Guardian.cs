@@ -2,8 +2,6 @@
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;

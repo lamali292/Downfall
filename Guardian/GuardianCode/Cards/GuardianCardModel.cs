@@ -1,9 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
@@ -11,7 +9,6 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Guardian.GuardianCode.Cards;
 
@@ -49,7 +46,7 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 
     public virtual int GemSlots => 0;
     protected virtual int GemReplayCount => 1;
-    
+
     public void AddGem(GemModel gem)
     {
         if (IsFull) return;

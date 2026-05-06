@@ -14,14 +14,15 @@ public class FlashInThePan : SneckoCardModel
     {
         WithBlock(13, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cards = Owner.PlayerCombatState?.Hand.Cards ?? [];
         var amount = cards.Count;
         if (amount == 0) return;
-        await CardCmd.Discard(ctx, cards);;
+        await CardCmd.Discard(ctx, cards);
+        ;
         await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner.Creature, amount, Owner.Creature, this);
     }
 }

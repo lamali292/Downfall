@@ -13,19 +13,17 @@ public class MakeshiftBlade : SneckoCardModel
     {
         WithGift(new Gift
         {
-            IsDebuff =  true
+            IsDebuff = true
         });
         WithDamage(9, 4);
         WithCards(3);
         WithVar("Debuffs", 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (cardPlay.Target?.Powers.Count(e => e is { Type: PowerType.Debuff, Amount: > 0 }) >= DynamicVars["Debuffs"].IntValue)
-        {
-            await CommonActions.Draw(this, ctx);
-        }
+        if (cardPlay.Target?.Powers.Count(e => e is { Type: PowerType.Debuff, Amount: > 0 }) >=
+            DynamicVars["Debuffs"].IntValue) await CommonActions.Draw(this, ctx);
     }
 }

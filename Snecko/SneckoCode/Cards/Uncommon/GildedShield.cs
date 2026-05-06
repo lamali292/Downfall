@@ -15,7 +15,7 @@ public class GildedShield : SneckoCardModel
         WithBlock(8, 3);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

@@ -16,7 +16,8 @@ public class BottledBlackHole : GuardianRelicModel
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Temporal>(), 1, prefs)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Temporal>(), 1, prefs))
+            .FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Temporal>(card, 1);
         CardCmd.Preview(card);

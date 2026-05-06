@@ -13,7 +13,7 @@ public class WideAngle : SneckoCardModel
         WithKeyword(CardKeyword.Retain);
         WithDamage(18, 6);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

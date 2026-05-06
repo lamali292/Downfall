@@ -16,8 +16,9 @@ public class QueenOfPentaclesPower : SneckoPowerModel
         WithTip(StaticHoverTip.Block);
     }
 
-    
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
+
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
+        decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (applier != Owner || power.Type != PowerType.Debuff || power.Owner == Owner || amount <= 0) return;

@@ -16,7 +16,7 @@ public class Restock : SneckoCardModel
         WithCards(6);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var playerState = Owner.PlayerCombatState;

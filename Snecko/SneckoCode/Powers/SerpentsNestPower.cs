@@ -8,7 +8,6 @@ namespace Snecko.SneckoCode.Powers;
 
 public class SerpentsNestPower : SneckoPowerModel
 {
-    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Power) return;

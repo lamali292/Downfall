@@ -13,7 +13,7 @@ namespace Champ.ChampCode.Relics;
 public class BerserkersGuide : ChampRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner) return;

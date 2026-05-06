@@ -15,7 +15,7 @@ public class LatchOn : SneckoCardModel
         WithDamage(7, 3);
         WithTip(typeof(ViperEssence));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -1,10 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using Godot;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -76,7 +71,9 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
-    public override string CharacterSelectSfx => "event:/sfx/characters/ironclad/ironclad_select";//"event:/selection/selection_gremlins"; //"event:/sfx/characters/ironclad/ironclad_select";
+
+    public override string CharacterSelectSfx =>
+        "event:/sfx/characters/ironclad/ironclad_select"; //"event:/selection/selection_gremlins"; //"event:/sfx/characters/ironclad/ironclad_select";
 
     private string EnergyCounterPaths(int i)
     {

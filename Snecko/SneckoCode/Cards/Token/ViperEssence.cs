@@ -15,6 +15,8 @@ public class ViperEssence : SneckoCardModel
         WithPower<StrengthPower>(1, 1);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay) =>
-        CommonActions.ApplySelf<StrengthPower>(ctx, this);
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<StrengthPower>(ctx, this);
+    }
 }

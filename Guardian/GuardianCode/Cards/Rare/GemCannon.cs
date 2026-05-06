@@ -3,7 +3,6 @@ using Godot;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -31,6 +30,7 @@ public class GemCannon : GuardianCardModel
             var effect = NGemShootEffect.Create(gems[i], i, from, target, gems.Count);
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(effect);
         }
+
         foreach (var gem in gems)
         {
             await Cmd.Wait(0.2f);

@@ -17,7 +17,7 @@ public class Lacerate : SneckoCardModel
         WithUpgradedCardTip<Deathbringer>();
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<VenomPower>(ctx, this, cardPlay);

@@ -15,25 +15,39 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
 {
     private static readonly Vector2 Slot1Offset = new(-250, 100);
     private static readonly Vector2 Slot2Offset = new(250, 100);
-
-    private NCreatureVisuals? _visuals1;
-    private NCreatureVisuals? _visuals2;
-    private Action<string> _trigger1 = _ => { };
-    private Action<string> _trigger2 = _ => { };
+    private bool _animating;
 
     private Rect2 _bounds1;
     private Rect2 _bounds2;
 
     private TaskCompletionSource<int>? _selectionTcs;
-    private bool _animating;
+    private Action<string> _trigger1 = _ => { };
+    private Action<string> _trigger2 = _ => { };
+
+    private NCreatureVisuals? _visuals1;
+    private NCreatureVisuals? _visuals2;
 
     public Control? DefaultFocusedControl => null;
     public NetScreenType ScreenType => NetScreenType.None;
     public bool UseSharedBackstop => true;
-    public void AfterOverlayOpened() { }
-    public void AfterOverlayClosed() { }
-    public void AfterOverlayShown() { Visible = true; }
-    public void AfterOverlayHidden() { Visible = false; }
+
+    public void AfterOverlayOpened()
+    {
+    }
+
+    public void AfterOverlayClosed()
+    {
+    }
+
+    public void AfterOverlayShown()
+    {
+        Visible = true;
+    }
+
+    public void AfterOverlayHidden()
+    {
+        Visible = false;
+    }
 
     public override void _Ready()
     {
@@ -76,7 +90,7 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
                 : new Vector2(-1f, 1f);
     }
 
- 
+
     // Used for multiplayer-synced flow — returns 0 or 1
     public async Task<int> SelectOne(CharacterModel left, CharacterModel right)
     {
@@ -88,13 +102,13 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
 
         var screenCenter = GetViewportRect().Size / 2f;
 
-        _visuals1 = TrySpawnVisuals(left,  screenCenter + Slot1Offset, false);
+        _visuals1 = TrySpawnVisuals(left, screenCenter + Slot1Offset, false);
         _visuals2 = TrySpawnVisuals(right, screenCenter + Slot2Offset, true);
 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
-        _trigger1 = _visuals1 != null ? BuildTrigger(left,  _visuals1) : _ => { };
+        _trigger1 = _visuals1 != null ? BuildTrigger(left, _visuals1) : _ => { };
         _trigger2 = _visuals2 != null ? BuildTrigger(right, _visuals2) : _ => { };
 
         _trigger1("Idle");
@@ -113,11 +127,17 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
         _animating = true;
         var winnerVisuals = chosen == 0 ? _visuals1 : _visuals2;
         var winnerTrigger = chosen == 0 ? _trigger1 : _trigger2;
-        var loserTrigger  = chosen == 0 ? _trigger2 : _trigger1;
-        var winnerChar    = chosen == 0 ? left : right;
+        var loserTrigger = chosen == 0 ? _trigger2 : _trigger1;
+        var winnerChar = chosen == 0 ? left : right;
 
-        try { SfxCmd.Play(winnerChar.AttackSfx); }
-        catch (Exception e) { GD.PrintErr($"SFX failed: {e.Message}"); }
+        try
+        {
+            SfxCmd.Play(winnerChar.AttackSfx);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"SFX failed: {e.Message}");
+        }
 
         winnerTrigger("Attack");
         loserTrigger("Hit");
@@ -132,7 +152,10 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
                     waitTime = Math.Max(track.GetAnimation().GetDuration(), 1f);
             }
         }
-        catch (Exception e) { GD.PrintErr($"Failed to get anim length: {e.Message}"); }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to get anim length: {e.Message}");
+        }
 
         await Cmd.Wait(waitTime);
         return chosen;
@@ -169,8 +192,14 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
                 return trigger =>
                 {
                     if (!IsInstanceValid(visuals)) return;
-                    try { animated.OnAnimationTrigger(trigger); }
-                    catch (Exception e) { GD.PrintErr($"OnAnimationTrigger {trigger} failed: {e.Message}"); }
+                    try
+                    {
+                        animated.OnAnimationTrigger(trigger);
+                    }
+                    catch (Exception e)
+                    {
+                        GD.PrintErr($"OnAnimationTrigger {trigger} failed: {e.Message}");
+                    }
                 };
 
             case { HasSpineAnimation: true, SpineBody: not null }:
@@ -191,8 +220,14 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
                 return trigger =>
                 {
                     if (!IsInstanceValid(visuals) || visuals.SpineBody == null) return;
-                    try { animator.SetTrigger(trigger); }
-                    catch (Exception e) { GD.PrintErr($"Trigger {trigger} failed: {e.Message}"); }
+                    try
+                    {
+                        animator.SetTrigger(trigger);
+                    }
+                    catch (Exception e)
+                    {
+                        GD.PrintErr($"Trigger {trigger} failed: {e.Message}");
+                    }
                 };
             }
 
@@ -202,15 +237,21 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
                     if (!IsInstanceValid(visuals)) return;
                     var animName = trigger switch
                     {
-                        "Idle"   => "idle",
+                        "Idle" => "idle",
                         "Attack" => "attack",
-                        "Cast"   => "cast",
-                        "Hit"    => "hurt",
-                        "Dead"   => "die",
-                        _        => trigger.ToLowerInvariant()
+                        "Cast" => "cast",
+                        "Hit" => "hurt",
+                        "Dead" => "die",
+                        _ => trigger.ToLowerInvariant()
                     };
-                    try { CustomAnimation.PlayCustomAnimation(visuals, animName, trigger); }
-                    catch (Exception e) { GD.PrintErr($"Custom animation {trigger} failed: {e.Message}"); }
+                    try
+                    {
+                        CustomAnimation.PlayCustomAnimation(visuals, animName, trigger);
+                    }
+                    catch (Exception e)
+                    {
+                        GD.PrintErr($"Custom animation {trigger} failed: {e.Message}");
+                    }
                 };
         }
     }

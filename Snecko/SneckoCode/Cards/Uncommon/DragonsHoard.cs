@@ -16,7 +16,7 @@ public class DragonsHoard : SneckoCardModel
         WithPower<DexterityPower>(3);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

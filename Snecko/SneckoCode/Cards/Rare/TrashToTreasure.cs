@@ -16,7 +16,7 @@ public class TrashToTreasure : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

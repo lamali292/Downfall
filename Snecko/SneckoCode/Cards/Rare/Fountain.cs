@@ -14,7 +14,7 @@ public class Fountain : SneckoCardModel
     {
         WithPower<FountainPower>(4, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

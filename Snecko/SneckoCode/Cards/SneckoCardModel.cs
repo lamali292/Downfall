@@ -17,12 +17,17 @@ public abstract class SneckoCardModel(
     TargetType targetType)
     : DownfallCardModel<Core.Snecko>(cost, type, rarity, targetType)
 {
+    protected override bool ShouldGlowGoldInternal =>
+        Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner, true);
+
+    public Gift? Gift { get; private set; }
+
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
     }
-    
-    
+
+
     protected virtual async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -35,9 +40,8 @@ public abstract class SneckoCardModel(
         {
             await OverflowEffect(ctx, cardPlay);
             await SneckoHook.AfterOverflowEffect(CombatState!, ctx, cardPlay, this);
-        }   
+        }
     }
-
 
 
     protected ConstructedCardModel WithMuddle(decimal val, decimal upgrade = 0)
@@ -47,20 +51,16 @@ public abstract class SneckoCardModel(
         return this;
     }
 
-    protected override bool ShouldGlowGoldInternal => Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner, true);
-
     protected ConstructedCardModel WithOverflow()
     {
         WithKeyword(SneckoKeywords.Overflow);
         return this;
     }
-    
-    public Gift? Gift { get; private set; }
+
     protected ConstructedCardModel WithGift(Gift gift)
     {
         if (Gift != null) throw new InvalidOperationException("Gift already set");
         Gift = gift;
         return this;
     }
-
 }

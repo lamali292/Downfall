@@ -17,16 +17,16 @@ public class RiskySword : SneckoCardModel, IAfterCardMuddled
         WithVar("DamageIncrease", 8, 2);
         WithTip(SneckoKeywords.Muddle);
     }
-    
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
 
     public Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card != this) return Task.CompletedTask;
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["DamageIncrease"].BaseValue);
         return Task.CompletedTask;
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

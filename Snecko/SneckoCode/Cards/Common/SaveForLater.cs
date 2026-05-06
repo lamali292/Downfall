@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Powers;
 
@@ -15,7 +14,7 @@ public class SaveForLater : SneckoCardModel
         WithPower<SaveForLaterPower>(1, 1);
         WithDamage(8, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

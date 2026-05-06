@@ -15,10 +15,11 @@ public class FountainPower : SneckoPowerModel, IAfterOverflowEffect
     {
         WithTip(SneckoKeywords.Overflow);
     }
-    
+
     public async Task AfterOverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {
-        var randomEnemy = CombatState.HittableEnemies.TakeRandom(1, card.Owner.RunState.Rng.CombatTargets).FirstOrDefault();
+        var randomEnemy = CombatState.HittableEnemies.TakeRandom(1, card.Owner.RunState.Rng.CombatTargets)
+            .FirstOrDefault();
         if (randomEnemy == null) return;
         await PowerCmd.Apply<VenomPower>(ctx, randomEnemy, Amount, Owner, null);
         Flash();

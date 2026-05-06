@@ -22,13 +22,16 @@ public class GemDescriptionSource : IExtraDescriptionSource
                     text = "-";
                 yield return $"❮ {text} ❯";
             }
-            
+
             else
+            {
                 yield return EmptyGemDescription.GetFormattedText();
+            }
+
         if (card is not IGemCard gemCard) yield break;
         if (card.IsMutable)
             yield return gemCard.GemModel.GetFormattedText();
-        else 
+        else
             yield return gemCard.CanonicalGemModel.GetFormattedText();
     }
 }

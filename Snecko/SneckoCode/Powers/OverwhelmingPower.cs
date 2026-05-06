@@ -9,10 +9,8 @@ namespace Snecko.SneckoCode.Powers;
 
 public class OverwhelmingPower : SneckoPowerModel
 {
-
-
     private bool _usedThisTurn;
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || _usedThisTurn || Owner.Player == null ||

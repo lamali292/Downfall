@@ -14,12 +14,12 @@ public class ExoticForm : SneckoCardModel
     {
         WithGift(new Gift
         {
-            Rarity = CardRarity.Rare,
+            Rarity = CardRarity.Rare
         });
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<ExoticFormPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

@@ -14,12 +14,12 @@ public class BrilliantScales : GuardianCardModel
         WithPower<BrilliantScalesPower>(1);
     }
 
+
+    public override int GemSlots => IsUpgraded ? 3 : 2;
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var power = await CommonActions.ApplySelf<BrilliantScalesPower>(ctx, this);
         power?.SetCard(this);
     }
-
-
-    public override int GemSlots => IsUpgraded ? 3 : 2;
 }

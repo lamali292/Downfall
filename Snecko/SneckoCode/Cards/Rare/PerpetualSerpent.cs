@@ -15,7 +15,7 @@ public class PerpetualSerpent : SneckoCardModel
         WithEnergy(2);
         WithOverflow();
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

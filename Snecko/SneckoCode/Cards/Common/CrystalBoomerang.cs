@@ -14,7 +14,7 @@ public class CrystalBoomerang : SneckoCardModel
         WithBlock(5, 3);
         WithCards(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = new CardPileAddResult();
@@ -23,6 +23,7 @@ public class CrystalBoomerang : SneckoCardModel
             result = pile;
             break;
         }
+
         if (!result.success || result.cardAdded == null) return;
         if (!SneckoCmd.IsOffclass(this, result.cardAdded)) return;
         await CommonActions.CardBlock(this, cardPlay);

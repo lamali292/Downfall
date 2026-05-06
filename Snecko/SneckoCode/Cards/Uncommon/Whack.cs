@@ -16,7 +16,7 @@ public class Whack : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradedCardTip<Fisticuffs>();
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

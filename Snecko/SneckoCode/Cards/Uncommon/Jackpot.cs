@@ -14,7 +14,7 @@ public class Jackpot : SneckoCardModel
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
         WithEnergy(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

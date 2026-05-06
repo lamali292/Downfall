@@ -12,7 +12,7 @@ public class DownfallPlayerData : IPacketSerializable
     [JsonPropertyName("collector_deck")] public List<SerializableCard> CollectorDeck { get; set; } = [];
 
     [JsonPropertyName("essence")] public int Essence { get; set; }
-    
+
     [JsonPropertyName("snecko_pools")] public List<ModelId> SneckoPools { get; set; } = [];
 
 

@@ -10,6 +10,7 @@ namespace Guardian.GuardianCode.Relics;
 public class PickOfRhapsody : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
+
     public override Task AfterCombatEnd(CombatRoom room)
     {
         if (room.RoomType != RoomType.Elite) return Task.CompletedTask;

@@ -20,7 +20,6 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Guardian.GuardianCode.Core;
@@ -100,7 +99,8 @@ public static class GuardianCmd
         return false;
     }
 
-    public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null, bool silent = false)
+    public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null,
+        bool silent = false)
     {
         if (card.CombatState == null) return false;
         var player = card.Owner;
@@ -137,6 +137,7 @@ public static class GuardianCmd
             await CardCmd.Exhaust(ctx, card);
             return;
         }
+
         await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
         card.EnergyCost.SetUntilPlayed(0);
     }
@@ -146,20 +147,17 @@ public static class GuardianCmd
         if (GuardianModel.StasisCounter[card] <= 0) return;
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
-        
+
         GuardianModel.StasisCounter[card]--;
         GuardianDisplay.RefreshCounters(player);
         if (card is ITickCard tickCard)
             await tickCard.OnTick(ctx);
         await GuardianHook.AfterCardTick(combatState, ctx, card, player);
-        
+
         if (GuardianModel.StasisCounter[card] == 0)
             await ReturnFromStasis(card, player, ctx);
-        
-        
     }
-    
-  
+
 
     public static async Task TickAll(Player player, PlayerChoiceContext ctx)
     {
@@ -251,7 +249,7 @@ public static class GuardianCmd
 
         GuardianDisplay.Refresh(player);
     }
-    
+
     public static async Task Accelerate(PlayerChoiceContext ctx, CardModel card, Player player, int amount = 1)
     {
         var ticks = Math.Min(amount, GuardianModel.StasisCounter[card]);
@@ -265,7 +263,7 @@ public static class GuardianCmd
     {
         return Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
     }
-    
+
 
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card)
     {

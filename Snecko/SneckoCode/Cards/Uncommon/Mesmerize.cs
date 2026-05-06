@@ -1,10 +1,7 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
 
@@ -23,7 +20,7 @@ public class Mesmerize : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.HittableEnemies, 
+        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.HittableEnemies,
             -DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
         await SneckoCmd.MuddleHandCards(ctx, this);
     }

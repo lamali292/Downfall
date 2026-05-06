@@ -15,7 +15,7 @@ public class BlunderGuard : SneckoCardModel
         WithPower<BlunderGuardPower>(6, 2);
         WithPower<BlunderGuardTwoPower>(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

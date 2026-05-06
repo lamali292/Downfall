@@ -16,7 +16,7 @@ public class Cower : SneckoCardModel
         WithUpgradedCardTip<HoleUp>();
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

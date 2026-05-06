@@ -14,7 +14,7 @@ public class UnendingSupply : SneckoCardModel
         WithPower<UnendingSupplyPower>(1);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<UnendingSupplyPower>(ctx, this);

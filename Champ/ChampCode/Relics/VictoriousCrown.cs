@@ -14,14 +14,24 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class VictoriousCrown : ChampRelicModel, IOnFinisher
 {
+    private bool _usedThisTurn;
     public override RelicRarity Rarity => RelicRarity.Starter;
-    
+
+    public async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var player = cardPlay.Card.Owner;
+        if (_usedThisTurn || player != Owner) return;
+        await CardPileCmd.Draw(ctx, 2, player);
+        await ChampCmd.EnterDifferentStance(ctx, player);
+        _usedThisTurn = true;
+    }
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner ) return;
+        if (player != Owner) return;
         _usedThisTurn = false;
         if (combatState.RoundNumber > 1) return;
         Flash();
@@ -30,17 +40,4 @@ public class VictoriousCrown : ChampRelicModel, IOnFinisher
         await stance.SkillBonus(ctx);
         await stance.SkillBonus(ctx);
     }
-
-    private bool _usedThisTurn;
-    
-    public async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var player = cardPlay.Card.Owner;
-        if (_usedThisTurn || player!= Owner) return;
-        await CardPileCmd.Draw(ctx, 2, player);
-        await ChampCmd.EnterDifferentStance(ctx, player);
-        _usedThisTurn = true;
-    }
-    
-    
 }

@@ -10,7 +10,8 @@ namespace Snecko.SneckoCode.Powers;
 
 public class VenomPower : SneckoPowerModel
 {
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
+        Creature? applier,
         CardModel? cardSource)
     {
         if (power == this || power.Owner != Owner || power.Type != PowerType.Debuff || amount <= 0) return;

@@ -13,7 +13,7 @@ public class SnekBite : SneckoCardModel
         WithDamage(8, 2);
         WithMuddle(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

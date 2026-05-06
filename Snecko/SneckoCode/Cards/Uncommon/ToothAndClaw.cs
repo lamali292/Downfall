@@ -14,18 +14,18 @@ public class ToothAndClaw : SneckoCardModel
     {
         WithGift(new Gift
         {
-            Rarity = CardRarity.Uncommon,
+            Rarity = CardRarity.Uncommon
         });
         WithDamage(4, 2);
         WithUpgradedCardTip<Shiv>();
     }
-    
+
     private int UniqueColorsInHand => Owner.PlayerCombatState?
         .Hand.Cards
         .Select(e => e.Pool)
         .Distinct()
         .Count() ?? 0;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

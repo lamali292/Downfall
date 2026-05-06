@@ -8,7 +8,6 @@ public interface IAnimatedVisuals
     void OnAnimationTrigger(string trigger);
 }
 
-
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
 public static class HexaghostAnimationPatch
 {

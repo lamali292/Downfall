@@ -10,7 +10,9 @@ namespace Guardian.GuardianCode.Relics;
 public class BaalorsLordlyPlate : GuardianRelicModel, IModifyBraceAmount
 {
     public override RelicRarity Rarity => RelicRarity.Common;
-  
+
     public decimal ModifyBraceAmount(Player player, decimal amount)
-            =>  player == Owner ? amount + 1 : amount;
+    {
+        return player == Owner ? amount + 1 : amount;
+    }
 }

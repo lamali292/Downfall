@@ -10,9 +10,9 @@ namespace Champ.ChampCode.Relics;
 public class DefensiveThesis : ChampRelicModel, IModifyFinisherBonus
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-    
+
     public int ModifyFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
     {
-       return stanceModel.Owner == Owner && stanceModel is ChampDefensiveStance ?  baseAmount + 3 : baseAmount;
+        return stanceModel.Owner == Owner && stanceModel is ChampDefensiveStance ? baseAmount + 3 : baseAmount;
     }
 }

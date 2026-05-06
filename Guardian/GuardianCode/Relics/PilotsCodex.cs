@@ -15,7 +15,7 @@ namespace Guardian.GuardianCode.Relics;
 public class PilotsCodex : GuardianRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;

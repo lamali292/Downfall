@@ -13,9 +13,8 @@ public class DiscountSale : SneckoCardModel
         WithCards(2);
         WithMuddle(1, 1);
         WithKeyword(CardKeyword.Exhaust);
-
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);

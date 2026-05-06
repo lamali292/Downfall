@@ -17,7 +17,7 @@ public class Belittle : SneckoCardModel
         WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon,
-            IsDebuff = true,
+            IsDebuff = true
         });
         WithCalculatedDamage(0, 9, CalcDamage, ValueProp.Unblockable | ValueProp.Move | ValueProp.Unpowered, 0, 3);
     }
@@ -26,7 +26,7 @@ public class Belittle : SneckoCardModel
     {
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

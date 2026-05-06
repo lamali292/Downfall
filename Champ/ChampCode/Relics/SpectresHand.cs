@@ -16,20 +16,16 @@ namespace Champ.ChampCode.Relics;
 public class SpectresHand : ChampRelicModel, IOnChampStanceChange
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
         if (player != Owner || newStance is ChampNoStance || oldStance == newStance) return;
         CardModel card;
         if (player.RunState.Rng.CombatCardGeneration.NextBool())
-        {
             card = await DownfallCardCmd.GiveCard<StrikeChamp>(player, PileType.Hand);
-        }
         else
-        {
             card = await DownfallCardCmd.GiveCard<DefendChamp>(player, PileType.Hand);
-        }
         card.AddKeyword(CardKeyword.Exhaust);
         card.AddKeyword(CardKeyword.Ethereal);
         card.SetToFreeThisTurn();

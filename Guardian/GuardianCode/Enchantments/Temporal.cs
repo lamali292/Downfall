@@ -8,12 +8,12 @@ namespace Guardian.GuardianCode.Enchantments;
 
 public class Temporal : DownfallEnchantmentModel<Core.Guardian>
 {
-   public override async Task BeforeHandDrawLate(
-      Player player,
-      PlayerChoiceContext ctx,
-      ICombatState combatState)
-   {
-      if (player != Card.Owner || combatState.RoundNumber > 1) return;
-      await GuardianCmd.PutIntoStasis(Card, ctx, null, true);
-   }
+    public override async Task BeforeHandDrawLate(
+        Player player,
+        PlayerChoiceContext ctx,
+        ICombatState combatState)
+    {
+        if (player != Card.Owner || combatState.RoundNumber > 1) return;
+        await GuardianCmd.PutIntoStasis(Card, ctx, null, true);
+    }
 }

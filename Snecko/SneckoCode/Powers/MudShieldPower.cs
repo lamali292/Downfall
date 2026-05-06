@@ -16,8 +16,8 @@ public class MudShieldPower : SneckoPowerModel, IAfterCardMuddled
         WithTip(StaticHoverTip.Block);
         WithTip(SneckoKeywords.Muddle);
     }
-    
-    
+
+
     public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card.Owner.Creature != Owner) return;

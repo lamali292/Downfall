@@ -15,7 +15,7 @@ public class SerpentsNest : SneckoCardModel
         WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon,
-            Type = CardType.Power,
+            Type = CardType.Power
         });
         WithPower<SerpentsNestPower>(7, 3);
     }

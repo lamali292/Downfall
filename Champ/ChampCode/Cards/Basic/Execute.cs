@@ -2,8 +2,6 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Champ.ChampCode.Cards.Ancient;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -18,7 +16,7 @@ public class Execute : ChampCardModel, ITranscendenceCard
         WithDamage(6, 3);
         WithFinisher();
     }
-    
+
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<Execution>();

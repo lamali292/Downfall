@@ -7,7 +7,6 @@ using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
@@ -42,7 +41,8 @@ public class DiamondGem : GemModel
         if (owner == null) return originalPlayCount;
         var combatState = owner.Creature.CombatState;
         if (combatState == null) return originalPlayCount;
-        return originalPlayCount + (int)GuardianHook.ModifyGemEffect(combatState, this, DynamicVars.Gem().BaseValue, Card);
+        return originalPlayCount +
+               (int)GuardianHook.ModifyGemEffect(combatState, this, DynamicVars.Gem().BaseValue, Card);
     }
 
 
@@ -53,7 +53,7 @@ public class DiamondGem : GemModel
         UsedThisCombat = true;
         return Task.CompletedTask;
     }
-    
+
     protected override void OnAdded(CardModel card)
     {
         if (card is IGemCard) return;

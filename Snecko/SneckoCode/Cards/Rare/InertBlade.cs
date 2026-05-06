@@ -17,7 +17,7 @@ public class InertBlade : SneckoCardModel
         WithPower<StrengthPower>(3, 1);
         WithEnergy(1, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cost = EnergyCost.GetResolved();
