@@ -13,7 +13,6 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class CryoChamber() : GuardianRelicModel(RelicRarity.Rare), IBeforeCardEntersStasis
 {
-    
     public Task BeforeCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (card.Owner != Owner) return Task.CompletedTask;

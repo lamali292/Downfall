@@ -13,7 +13,7 @@ namespace Guardian.GuardianCode.Relics;
 public class QuantumChamber() : GuardianRelicModel(RelicRarity.Rare), IAfterCardEntersStasis
 {
     private bool _usedThisTurn;
-    
+
     public async Task AfterCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (_usedThisTurn || card.Owner != Owner) return;

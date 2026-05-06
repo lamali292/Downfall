@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class SlimedTail() : SlimeBossRelicModel(RelicRarity.Rare)
 {
-        // TODO
+    // TODO
 }

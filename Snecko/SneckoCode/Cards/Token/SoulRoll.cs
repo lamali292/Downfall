@@ -15,7 +15,7 @@ public class SoulRoll : SneckoCardModel
         WithBlock(3, 3);
         WithMuddle(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

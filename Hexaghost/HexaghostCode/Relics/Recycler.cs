@@ -13,7 +13,7 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class Recycler() : HexaghostRelicModel(RelicRarity.Uncommon)
 {
     private bool _usedThisCombat;
-    
+
     private bool UsedThisCombat
     {
         get => _usedThisCombat;

@@ -16,8 +16,7 @@ public class Nope : SneckoCardModel
     {
         WithBlock(7, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

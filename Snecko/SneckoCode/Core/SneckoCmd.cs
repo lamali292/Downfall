@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -50,15 +49,18 @@ public static class SneckoCmd
     {
         var current = card.EnergyCost.GetResolved();
         if (current == 0 && lowerOnly) return 0;
-        var max = lowerOnly ? current : 4;
+        const int normalMax = 4;
+        var max = lowerOnly ? Math.Min(normalMax, current) : normalMax;
         var rng = card.Owner.RunState.Rng.CombatEnergyCosts;
-        int next;
-        do
-        {
-            next = rng.NextInt(max);
-        } while (next == current);
 
-        return next;
+        var valid = Enumerable.Range(0, max)
+            .Where(cost => cost != current && SneckoHook.ShouldAllowMuddleCost(card.CombatState!, card, cost))
+            .ToList();
+        
+        if (valid.Count == 0)
+            valid = Enumerable.Range(0, max).ToList();
+
+        return valid[rng.NextInt(valid.Count)];
     }
 
     private static bool CanMuddle(CardModel card)
@@ -101,8 +103,7 @@ public static class SneckoCmd
 
     public static async Task GetGift(Player player, Gift gift, int amount = 3)
     {
-        var sneckoCards = CardFactory.FilterForPlayerCount(player.RunState,
-            CardFactory.FilterForCombat(SneckoModel.GetSneckoCards(player)));
+        var sneckoCards = SneckoModel.GetRewardSneckoCards(player);
         var cards = sneckoCards.Where(gift.Matches)
             .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration).Select(e => e.ToMutable()).ToList();
         foreach (var cardChoice in cards)

@@ -2,7 +2,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 
@@ -14,10 +13,7 @@ public class UnendingSupplyPower : SneckoPowerModel
         ICombatState combatState)
     {
         if (Owner != player.Creature) return;
-        var mutableCards = CardFactory.GetDistinctForCombat(player,
-            SneckoModel.GetSneckoCards(player),
-            Amount,
-            player.RunState.Rng.CombatCardGeneration).ToList();
+        var mutableCards = SneckoModel.GetCombatSneckoCards(player, Amount).ToList();
         foreach (var card in mutableCards)
         {
             card.AddKeyword(CardKeyword.Ethereal);

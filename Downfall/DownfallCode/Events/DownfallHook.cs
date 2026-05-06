@@ -28,7 +28,7 @@ public static class DownfallHook
             ctx.PopModel(abstractModel);
         }
     }
-    
+
     public static async Task DispatchHookCtx<T>(ICombatState combatState, Func<T, PlayerChoiceContext, Task> action)
         where T : class
     {
@@ -58,6 +58,12 @@ public static class DownfallHook
         where T : class
     {
         return combatState.IterateHookListeners().OfType<T>().Any(predicate);
+    }
+    
+    public static bool All<T>(ICombatState combatState, Func<T, bool> predicate)
+        where T : class
+    {
+        return combatState.IterateHookListeners().OfType<T>().All(predicate);
     }
 
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,

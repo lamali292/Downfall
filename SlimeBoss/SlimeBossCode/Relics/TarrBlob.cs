@@ -8,4 +8,4 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 public class TarrBlob() : SlimeBossRelicModel(RelicRarity.Ancient)
 {
     // TODO - Boss relic
-    }
+}

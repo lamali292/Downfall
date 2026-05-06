@@ -15,7 +15,6 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class GuardianGear() : GuardianRelicModel(RelicRarity.Starter), IOnGuardianModeChange
 {
-    
     public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {

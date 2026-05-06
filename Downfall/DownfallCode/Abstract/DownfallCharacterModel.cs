@@ -64,7 +64,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     public override string CustomTrailPath => $"res://{ModId}/scenes/character/card_trail.tscn";
     public override string CustomRestSiteAnimPath => "res://Downfall/scenes/character/error_rest_site.tscn";
-    public override string CustomMerchantAnimPath => "res://Downfall/scenes/character/error_merchant.tscn";
+    public override string CustomMerchantAnimPath => $"res://{ModId}/scenes/character/merchant.tscn";
 
 
     public override string CustomAttackSfx => "event:/sfx/characters/ironclad/ironclad_attack";

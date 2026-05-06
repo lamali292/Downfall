@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class SlimySkull() : SlimeBossRelicModel(RelicRarity.Common)
 {
-        // TODO
+    // TODO
 }

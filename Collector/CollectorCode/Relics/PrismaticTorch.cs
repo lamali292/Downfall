@@ -20,7 +20,7 @@ public class PrismaticTorch : CollectorRelicModel
     {
         WithTip(typeof(Ember));
     }
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,

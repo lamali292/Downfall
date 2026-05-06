@@ -16,7 +16,7 @@ namespace Champ.ChampCode.Relics;
 public class PowerArmor() : ChampRelicModel(RelicRarity.Shop)
 {
     private const int Cap = 10;
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext ctx,

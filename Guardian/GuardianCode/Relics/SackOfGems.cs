@@ -7,5 +7,5 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class SackOfGems() : GuardianRelicModel(RelicRarity.Shop)
 {
-        // TODO
+    // TODO
 }

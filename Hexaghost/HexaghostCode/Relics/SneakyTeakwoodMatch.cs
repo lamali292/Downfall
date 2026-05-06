@@ -21,7 +21,6 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
     }
 
 
-    
     private bool UsedThisTurn { get; set; }
 
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)

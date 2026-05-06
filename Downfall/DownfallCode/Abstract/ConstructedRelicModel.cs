@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -12,8 +13,8 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
     private readonly List<DynamicVar> _newDynamicVars = [];
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
     protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
-    public sealed override RelicRarity Rarity => rarity;
-    
+    public override RelicRarity Rarity => rarity;
+
     protected ConstructedRelicModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)
@@ -29,6 +30,13 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
             }
         }
 
+        return this;
+    }
+
+    protected ConstructedRelicModel WithBlock(int i)
+    {
+        WithTip(StaticHoverTip.Block);
+        WithVars(new BlockVar(i, ValueProp.Unpowered));
         return this;
     }
 

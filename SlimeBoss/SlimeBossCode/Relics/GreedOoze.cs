@@ -8,4 +8,4 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 public class GreedOoze() : SlimeBossRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-    }
+}

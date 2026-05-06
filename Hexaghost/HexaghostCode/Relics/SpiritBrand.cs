@@ -14,7 +14,6 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGhostflameIgnited
 {
-    
     private bool UsedThisTurn { get; set; }
 
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)

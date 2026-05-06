@@ -12,8 +12,6 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class JarOfTobsco() : HexaghostRelicModel(RelicRarity.Common)
 {
-    
-
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;

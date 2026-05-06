@@ -7,3 +7,7 @@ dotnet_diagnostic.STS002.severity = warning
 
 # STS003: Custom Model usage
 dotnet_diagnostic.STS003.severity = warning
+
+
+indent_style = space
+indent_size = 4

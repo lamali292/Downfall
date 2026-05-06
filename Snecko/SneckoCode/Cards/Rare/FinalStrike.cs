@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Rare;
@@ -17,16 +19,18 @@ public class FinalStrike : SneckoCardModel
         });
         WithTags(CardTag.Strike);
         WithDamage(6, 3);
+        WithCalculatedVar("UniqueStrikesPlayed", 0, UniqueStrikesPlayed);
     }
 
-    private int UniqueStrikesPlayed => CombatManager.Instance.History.CardPlaysFinished
+    private static decimal UniqueStrikesPlayed(CardModel card, Creature? creature)  => CombatManager.Instance.History.CardPlaysFinished
         .Select(e => e.CardPlay.Card)
-        .Where(e => e.Owner == Owner && e.Tags.Contains(CardTag.Strike))
+        .Where(e => e.Owner == card.Owner && e.Tags.Contains(CardTag.Strike))
         .DistinctBy(c => c.Id)
-        .Count();
-
+        .Count() + 1;
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 1 + UniqueStrikesPlayed).Execute(ctx);
+        var repeat = (int) UniqueStrikesPlayed(this, null);
+        await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
 }

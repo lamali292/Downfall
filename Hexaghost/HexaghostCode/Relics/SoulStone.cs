@@ -13,7 +13,7 @@ public class SoulStone() : HexaghostRelicModel(RelicRarity.Rare)
 {
     private int _exhausted;
     private bool _isActivating;
-    
+
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
     public override int DisplayAmount => _isActivating ? 4 : _exhausted;
 

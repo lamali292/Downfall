@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://kakrsn62gqcq"]
+
+[ext_resource type="Script" uid="uid://3bgbb0mx3lib" path="res://CollectorCode/Vfx/NCollectorMerchantCharacter.cs" id="1_itnq2"]
+[ext_resource type="PackedScene" uid="uid://da814ygbtb6qy" path="res://Collector/scenes/character/collector.tscn" id="1_vkos4"]
+[ext_resource type="Shader" uid="uid://b3mjsdna22bkv" path="res://shaders/vfx/fire/fire_shader_1.tres" id="2_pms8p"]
+[ext_resource type="Texture2D" uid="uid://bid56elmy6fr6" path="res://images/vfx/tileable_noise_4.png" id="3_itnq2"]
+[ext_resource type="Texture2D" uid="uid://dtaovewempx07" path="res://images/vfx/tileable_noise_1.png" id="4_mdb4y"]
+[ext_resource type="Texture2D" uid="uid://8u0ij0tgmrfb" path="res://images/vfx/tileable_noise_2.png" id="5_2goet"]
+[ext_resource type="Texture2D" uid="uid://dhrgww7uebqa7" path="res://images/vfx/environment/fire/fire_shape_1.png" id="6_xg3x0"]
+[ext_resource type="Texture2D" uid="uid://ctia3rua3hmm8" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="7_wafat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_peulf"]
+shader = ExtResource("2_pms8p")
+shader_parameter/ColorParameter = Color(0.8, 1, 0, 1)
+shader_parameter/Smooth_Step = Vector2(0.81, 0.9)
+shader_parameter/Noise_Intensity_1 = 0.935
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.0
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.69)
+shader_parameter/NoiseTexture1 = ExtResource("4_mdb4y")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("5_2goet")
+shader_parameter/Noise_Intensity_2 = 1.055
+shader_parameter/top_gradient = ExtResource("7_wafat")
+shader_parameter/MaskNoiseIntensity = 0.1
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("3_itnq2")
+shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyhow"]
+shader = ExtResource("2_pms8p")
+shader_parameter/ColorParameter = Color(0.9411765, 1, 0.4, 1)
+shader_parameter/Smooth_Step = Vector2(0.925, 0.99)
+shader_parameter/Noise_Intensity_1 = 1.055
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.3
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.2)
+shader_parameter/NoiseTexture1 = ExtResource("4_mdb4y")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("5_2goet")
+shader_parameter/Noise_Intensity_2 = 0.985
+shader_parameter/top_gradient = ExtResource("7_wafat")
+shader_parameter/MaskNoiseIntensity = 0.09
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("3_itnq2")
+shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwr5l"]
+shader = ExtResource("2_pms8p")
+shader_parameter/ColorParameter = Color(0.8, 1, 0, 1)
+shader_parameter/Smooth_Step = Vector2(0.81, 0.9)
+shader_parameter/Noise_Intensity_1 = 0.935
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.6
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.69)
+shader_parameter/NoiseTexture1 = ExtResource("4_mdb4y")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("5_2goet")
+shader_parameter/Noise_Intensity_2 = 1.055
+shader_parameter/top_gradient = ExtResource("7_wafat")
+shader_parameter/MaskNoiseIntensity = 0.1
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("3_itnq2")
+shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvglx"]
+shader = ExtResource("2_pms8p")
+shader_parameter/ColorParameter = Color(0.9411765, 1, 0.4, 1)
+shader_parameter/Smooth_Step = Vector2(0.925, 0.99)
+shader_parameter/Noise_Intensity_1 = 1.055
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.8
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.2)
+shader_parameter/NoiseTexture1 = ExtResource("4_mdb4y")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("5_2goet")
+shader_parameter/Noise_Intensity_2 = 0.985
+shader_parameter/top_gradient = ExtResource("7_wafat")
+shader_parameter/MaskNoiseIntensity = 0.09
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("3_itnq2")
+shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
+
+[node name="Merchant" type="Node2D"]
+script = ExtResource("1_itnq2")
+
+[node name="Collector" parent="." instance=ExtResource("1_vkos4")]
+scale = Vector2(1.3507653, 1.3507653)
+
+[node name="RightEye" type="Control" parent="Collector"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.87252
+offset_top = -287.24457
+offset_right = 48.87252
+offset_bottom = -207.24457
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 60)
+
+[node name="eye_fire_r" type="ColorRect" parent="Collector/RightEye"]
+material = SubResource("ShaderMaterial_peulf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Collector/RightEye"]
+material = SubResource("ShaderMaterial_uyhow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftEye" type="Control" parent="Collector"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.143531
+offset_top = -279.84134
+offset_right = 28.143532
+offset_bottom = -199.84134
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 60)
+
+[node name="eye_fire_l" type="ColorRect" parent="Collector/LeftEye"]
+material = SubResource("ShaderMaterial_kwr5l")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Collector/LeftEye"]
+material = SubResource("ShaderMaterial_lvglx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

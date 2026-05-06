@@ -8,5 +8,5 @@ namespace Hexaghost.HexaghostCode.Relics;
 public class TheBrokenSeal() : HexaghostRelicModel(RelicRarity.Event)
 {
     // TODO - Event relic
-        // TODO
+    // TODO
 }

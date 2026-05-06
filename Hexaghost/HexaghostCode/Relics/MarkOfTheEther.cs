@@ -12,7 +12,6 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class MarkOfTheEther() : HexaghostRelicModel(RelicRarity.Starter), IAfterGhostflameIgnited
 {
-    
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         if (player != Owner) return;

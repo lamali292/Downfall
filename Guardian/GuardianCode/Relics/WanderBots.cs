@@ -16,7 +16,7 @@ public class WanderBots : GuardianRelicModel
         WithEnergy(1);
     }
 
-    
+
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;

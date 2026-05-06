@@ -4,7 +4,6 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -19,7 +18,6 @@ public class SpectresHand() : ChampRelicModel(RelicRarity.Rare), IOnChampStanceC
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        
         if (player != Owner || newStance is ChampNoStance || oldStance == newStance) return;
         CardModel card;
         if (player.RunState.Rng.CombatCardGeneration.NextBool())

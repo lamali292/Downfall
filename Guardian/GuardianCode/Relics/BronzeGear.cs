@@ -16,13 +16,12 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class BronzeGear() : GuardianRelicModel(RelicRarity.Starter)
 {
-    
-
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<GuardianGear>();
     }
-
+  
+    public override bool HasUponPickupEffect => true;
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || combatState.RoundNumber > 1) return;
