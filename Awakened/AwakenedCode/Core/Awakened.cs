@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -54,6 +55,10 @@ public class Awakened : DownfallCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
 
 
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Awakened/audio/chant_activatev2.ogg", 1, 0.1f, 1, 10)
+    );
+    
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {

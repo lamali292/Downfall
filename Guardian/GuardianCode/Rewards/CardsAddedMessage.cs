@@ -1,12 +1,12 @@
-using Downfall.DownfallCode.Utils.CustomReward;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using MegaCrit.Sts2.Core.Multiplayer.Transport;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Multiplayer;
 using MegaCrit.Sts2.Core.Runs;
@@ -14,22 +14,29 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Guardian.GuardianCode.Rewards;
 
-public class CardsAddedMessage : CustomRewardMessage
+public class CardsAddedMessage : ICustomMessage
 {
+    public bool WasSkipped { get; set; }
     public List<SerializableCard> Cards { get; init; } = [];
-    public override LogLevel LogLevel => LogLevel.Debug;
+    public ulong SenderId { get; set; }
 
-    public override void Serialize(PacketWriter writer)
+    public bool ShouldBroadcast => false;
+    public NetTransferMode Mode => NetTransferMode.Reliable;
+    public LogLevel LogLevel => LogLevel.Debug;
+
+    public void Serialize(PacketWriter writer)
     {
-        writer.WriteBool(wasSkipped);
+        writer.WriteBool(WasSkipped);
+        writer.WriteULong(SenderId);
         writer.WriteInt(Cards.Count);
         foreach (var card in Cards)
             card.Serialize(writer);
     }
 
-    public override void Deserialize(PacketReader reader)
+    public void Deserialize(PacketReader reader)
     {
-        wasSkipped = reader.ReadBool();
+        WasSkipped = reader.ReadBool();
+        SenderId = reader.ReadULong();
         var count = reader.ReadInt();
         for (var i = 0; i < count; i++)
         {
@@ -39,22 +46,12 @@ public class CardsAddedMessage : CustomRewardMessage
         }
     }
 
-    public override void Initialize(RunLocationTargetedMessageBuffer messageBuffer)
+    public void HandleMessage()
     {
-        messageBuffer.RegisterMessageHandler<CardsAddedMessage>(HandleMessage);
-    }
-
-    public override void Dispose(RunLocationTargetedMessageBuffer messageBuffer)
-    {
-        messageBuffer.UnregisterMessageHandler<CardsAddedMessage>(HandleMessage);
-    }
-
-    private static void HandleMessage(CardsAddedMessage message, ulong senderId)
-    {
-        if (message.wasSkipped || message.Cards.Count == 0) return;
-        var player = RunManager.Instance.State?.GetPlayer(senderId);
+        if (WasSkipped || Cards.Count == 0) return;
+        var player = RunManager.Instance.State?.GetPlayer(SenderId);
         if (player == null) return;
-        var cards = message.Cards.Select(CardModel.FromSerializable);
+        var cards = Cards.Select(CardModel.FromSerializable);
 
         CardPileCmd.Add(cards, PileType.Deck);
         if (LocalContext.IsMe(player)) return;
@@ -63,7 +60,7 @@ public class CardsAddedMessage : CustomRewardMessage
             .OfType<NMultiplayerPlayerState>()
             .FirstOrDefault(s => s.Player == player);
         if (stateNode == null) return;
-        foreach (var cardModel in message.Cards.Select(CardModel.FromSerializable))
+        foreach (var cardModel in Cards.Select(CardModel.FromSerializable))
             _ = TaskHelper.RunSafely(stateNode.AnimateCardObtained(cardModel));
     }
 }

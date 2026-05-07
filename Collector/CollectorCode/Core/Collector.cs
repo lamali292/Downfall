@@ -2,6 +2,7 @@
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -47,6 +48,10 @@ public class Collector : DownfallCharacterModel
     [
         ModelDb.Relic<EmeraldTorch>()
     ];
+    
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Collector/audio/character_select/STS_SFX_CollectorSummon_v2.ogg", 1, 0.1f, 1, 7)
+    );
 
     public override float AttackAnimDelay => 0.15f;
 

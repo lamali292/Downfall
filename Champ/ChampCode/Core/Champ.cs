@@ -1,6 +1,7 @@
 ﻿using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -40,6 +41,7 @@ public class Champ : DownfallCharacterModel
     ];
 
 
+    
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<ChampionsCrown>()
@@ -53,6 +55,11 @@ public class Champ : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ChampPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
 
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Champ/audio/character_select/STS_VO_TheChamp_3a.ogg", 1, 0.1f, 1, 10), 
+        new ModSoundEntry("res://Champ/audio/character_select/STS_VO_TheChamp_3b.ogg", 1, 0.1f, 1, 10)
+    );
+    
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {

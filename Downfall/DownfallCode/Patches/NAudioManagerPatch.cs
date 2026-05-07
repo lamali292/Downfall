@@ -1,8 +1,8 @@
-﻿using Godot;
+﻿using BaseLib.Audio;
+using Downfall.DownfallCode.Utils.Sound;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Nodes.Audio;
-using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Patches;
@@ -11,26 +11,35 @@ namespace Downfall.DownfallCode.Patches;
     typeof(Dictionary<string, float>), typeof(float))]
 internal class NAudioManagerPatch
 {
-    private static bool Prefix(string path, Dictionary<string, float> parameters, float volume,
-        NAudioManager __instance)
+    private static bool Prefix(string path)
     {
         if (TestMode.IsOn) return true;
         if (!path.StartsWith("res://")) return true;
-        var audioStream = GD.Load<AudioStream>(path);
-        if (audioStream is null) return true;
 
-        var settings = SaveManager.Instance.SettingsSave;
-        // Todo check if this is right sound before release
-        AudioStreamPlayer2D audioPlayer = new()
+        // Check for ModSoundEffect override first
+        if (SfxOverridePatch.GetOverride(path) is { } effect)
         {
-            Bus = "SFX",
-            VolumeDb = 1,
-            VolumeLinear = settings.VolumeSfx * settings.VolumeMaster,
-            Stream = GD.Load<AudioStream>(path)
-        };
-        __instance.GetTree().Root.AddChild(audioPlayer);
-        audioPlayer.Finished += audioPlayer.QueueFree;
-        audioPlayer.Play();
+            effect.Play();
+            return false;
+        }
+
+        // Plain res:// sound — play via ModAudio
+        ModAudio.PlaySoundGlobal(new ModSound(path));
+        return false;
+    }
+}
+
+[HarmonyPatch(typeof(SfxCmd), nameof(SfxCmd.Play), typeof(string), typeof(float))]
+internal static class SfxOverridePatch
+{
+    private static readonly Dictionary<string, ModSoundEffect> Overrides = new();
+    public static ModSoundEffect? GetOverride(string path) => Overrides.GetValueOrDefault(path);
+    public static void Register(string path, ModSoundEffect effect) => Overrides[path] = effect;
+
+    private static bool Prefix(string sfx)
+    {
+        if (Overrides.GetValueOrDefault(sfx) is not { } effect) return true;
+        effect.Play();
         return false;
     }
 }

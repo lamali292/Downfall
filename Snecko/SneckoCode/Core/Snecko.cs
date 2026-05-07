@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -40,6 +41,10 @@ public class Snecko : DownfallCharacterModel
         ModelDb.Card<SnekBite>(),
         ModelDb.Card<TailWhip>()
     ];
+    
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Snecko/audio/character_select/STS_SFX_SneckoGlareWave_v1.ogg", 1, 0.3f, 1, 8)
+    );
 
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Relics;
@@ -39,6 +40,12 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<Kindle>()
     ];
 
+    
+    
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Hexaghost/audio/character_select/SOTE_SFX_BossOrbIgnite1_v2.ogg", 1, 0.1f, 1, 5), 
+        new ModSoundEntry("res://Hexaghost/audio/character_select/SOTE_SFX_BossOrbIgnite2_v2.ogg", 1, 0.1f, 1, 5)
+    );
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [

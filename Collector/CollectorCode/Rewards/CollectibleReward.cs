@@ -1,7 +1,7 @@
-﻿using BaseLib.Patches.Content;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
-using Downfall.DownfallCode.Utils.CustomReward;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -26,6 +26,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     protected override string IconPath => RewardIcon;
 
     public override int RewardsSetIndex => 9;
+ 
 
     public override LocString Description
     {
@@ -46,7 +47,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public override bool IsPopulated => card != null;
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
 
     public override Task Populate()
     {
@@ -67,12 +68,12 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         Player.RunState.CurrentMapPointHistoryEntry?
             .GetEntry(LocalContext.NetId.Value)
             .CardChoices.Add(new CardChoiceHistoryEntry(card, false));
-        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CollectibleRewardMessage
+        CustomMessageWrapper.Send(new CollectibleRewardMessage
         {
-            wasSkipped = true,
-            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
+            WasSkipped = true,
             Card = card.ToSerializable(),
-            EssenceCost = 0
+            EssenceCost = 0,
+            SenderId = LocalContext.NetId.Value
         });
     }
 
@@ -81,7 +82,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         return new SerializableReward
         {
             RewardType = CustomCardRewardType,
-            SpecialCard = card.ToSerializable()
+            SpecialCard = card?.ToSerializable()
         };
     }
 

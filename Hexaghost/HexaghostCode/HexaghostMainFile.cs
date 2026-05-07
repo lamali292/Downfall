@@ -29,7 +29,7 @@ public partial class HexaghostMainFile : Node
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         Harmony harmony = new(ModId);
         harmony.PatchAll();
-        DownfallAudiomanager.LoadFModBank(ModId);
+       
     }
 }
 

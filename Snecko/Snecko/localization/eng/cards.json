@@ -39,7 +39,7 @@
   "SNECKO-DISCOUNT_SALE.title": "Discount Sale",
   "SNECKO-DRAGONS_HOARD.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].",
   "SNECKO-DRAGONS_HOARD.title": "Dragon's Hoard",
-  "SNECKO-EXOTIC_FORM.description": "At the end of your turn, gain 1 [gold]Strength[/gold] for each unique color played.",
+  "SNECKO-EXOTIC_FORM.description": "At the end of your turn, gain 1 [gold]Strength[/gold] for each unique color played.{InCombat:cond:| [gold]Gift[/gold]: Rare.}",
   "SNECKO-EXOTIC_FORM.title": "Exotic Form",
   "SNECKO-FINAL_STRIKE.description": "Deal {Damage:diff()} damage.\nRepeat for each unique Strike played this combat.\n{InCombat:cond:(Hits {UniqueStrikesPlayed:diff()} {UniqueStrikesPlayed:plural:time|times})|[gold]Gift[/gold]: Strike.}",
   "SNECKO-FINAL_STRIKE.title": "Final Strike",

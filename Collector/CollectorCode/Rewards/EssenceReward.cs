@@ -1,7 +1,8 @@
-﻿using BaseLib.Patches.Content;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using Collector.CollectorCode.Extensions;
-using Downfall.DownfallCode.Utils.CustomReward;
 using Godot;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Rewards;
@@ -15,8 +16,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
     [CustomEnum] public static RewardType EssenceRewardType;
 
     protected override RewardType RewardType => EssenceRewardType;
-
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Serializer;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => Serializer;
 
     private static string RewardIcon => "res://Collector/images/ui/esse.png";
     protected override string IconPath => RewardIcon;
@@ -59,11 +59,11 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
     protected override async Task<bool> OnSelect()
     {
         Player.AddEssence(Amount);
-        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new EssenceRewardMessage
+        CustomMessageWrapper.Send(new EssenceRewardMessage
         {
-            wasSkipped = false,
-            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
-            Amount = Amount
+            WasSkipped = false,
+            Amount = Amount,
+            SenderId = LocalContext.NetId!.Value
         });
         return true;
     }
@@ -71,4 +71,5 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
     public override void MarkContentAsSeen()
     {
     }
+
 }

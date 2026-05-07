@@ -1,5 +1,11 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
+using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -72,8 +78,11 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
 
-    public override string CharacterSelectSfx =>
-        "event:/sfx/characters/ironclad/ironclad_select"; //"event:/selection/selection_gremlins"; //"event:/sfx/characters/ironclad/ironclad_select";
+    public override string CharacterSelectSfx => $"res://{ModId}/audio/character_select.ogg"; 
+         
+    
+
+    public virtual ModSoundEffect? CharacterSelectSfxEntry => null;
 
     private string EnergyCounterPaths(int i)
     {

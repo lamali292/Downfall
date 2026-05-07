@@ -1,7 +1,9 @@
 using System.Reflection;
 using BaseLib.Config;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.Nodes;
+using Downfall.DownfallCode.Patches;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -31,6 +33,7 @@ public partial class DownfallMainFile : Node
 
         NCustomCardHolder.InitPool();
         //DownfallAudiomanager.LoadFModBank(ModId);
+       
     }
 }
 
@@ -55,6 +58,12 @@ internal static class ModelDbInitIdsPatch
 
         var powers = ModelDb.AllPowers.Count(p => p.GetType().Assembly == modAssembly);
         DownfallMainFile.Logger.Info($"Powers: {powers}");
+        
+        foreach (var character in ModelDb.AllCharacters.OfType<DownfallCharacterModel>())
+        {
+            if (character.CharacterSelectSfxEntry is { } effect)
+                SfxOverridePatch.Register(character.CharacterSelectSfx, effect);
+        }
     }
 }
 

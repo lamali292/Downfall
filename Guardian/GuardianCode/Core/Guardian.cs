@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
@@ -38,6 +39,11 @@ public class Guardian : DownfallCharacterModel
         ModelDb.Card<CurlUp>(),
         ModelDb.Card<TwinSlam>()
     ];
+    
+    public override ModSoundEffect CharacterSelectSfxEntry => new(
+        new ModSoundEntry("res://Guardian/audio/character_select/STS_SFX_Guardian3Destroy_v2.ogg", 1, 0.1f, 1, 7) 
+    );
+
 
     protected override IEnumerable<string> ExtraAssetPaths =>
         GuardianModelDb.AllGems.Select(g => g.IconPath);

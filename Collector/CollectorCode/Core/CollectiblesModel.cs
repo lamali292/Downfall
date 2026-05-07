@@ -1,9 +1,11 @@
-﻿using Collector.CollectorCode.Extensions;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Rewards;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Saves;
-using Downfall.DownfallCode.Utils.CustomReward;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -30,12 +32,12 @@ public static class CollectiblesModel
         var target = NTopBarCollectorButton.ButtonPosition + NTopBarCollectorButton.ButtonSize * 0.5f;
         _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(target, card, player));
 
-        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CollectibleRewardMessage
+        CustomMessageWrapper.Send(new CollectibleRewardMessage
         {
-            wasSkipped = false,
-            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
+            WasSkipped = false,
             Card = card.ToSerializable(),
-            EssenceCost = essenceCost
+            EssenceCost = essenceCost,
+            SenderId = LocalContext.NetId!.Value
         });
     }
 

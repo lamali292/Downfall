@@ -23,6 +23,6 @@ public partial class SlimeBossMainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
-        DownfallAudiomanager.LoadFModBank(ModId);
+       
     }
 }

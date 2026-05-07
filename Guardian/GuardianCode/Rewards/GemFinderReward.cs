@@ -1,9 +1,10 @@
+using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Utils.CustomReward;
 using Guardian.GuardianCode.Cards.Rare;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
@@ -42,8 +43,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
     }
 
     public override bool IsPopulated => Gems.Count > 0;
-    public override SerializableCustomReward<CustomReward> SerializeMethod => Deserialize;
-
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
     public override Task Populate()
     {
         var gemsByRarity = GuardianModelDb.AllGems
@@ -80,11 +80,11 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         var selectedCards = (await _currentlyShownScreen.CardsSelected()).ToList();
         if (selectedCards.Count == 0)
         {
-            RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CardsAddedMessage
+            CustomMessageWrapper.Send(new CardsAddedMessage
             {
+                WasSkipped = true,
                 Cards = [],
-                Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
-                wasSkipped = true
+                SenderId = LocalContext.NetId!.Value
             });
             return true;
         }
@@ -94,11 +94,11 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         var result = await CardPileCmd.Add(mutable, PileType.Deck);
         CardCmd.PreviewCardPileAdd(result);
         var cardsAdded = result.Select(e => e.cardAdded.ToSerializable()).ToList();
-        RunManager.Instance.RewardSynchronizer.GameService()?.SendMessage(new CardsAddedMessage
+        CustomMessageWrapper.Send(new CardsAddedMessage
         {
+            WasSkipped = false,
             Cards = cardsAdded,
-            Location = RunManager.Instance.RewardSynchronizer.MessageBuffer()!.CurrentLocation,
-            wasSkipped = false
+            SenderId = LocalContext.NetId!.Value
         });
         if (_currentlyShownScreen == null) return true;
         NOverlayStack.Instance?.Remove(_currentlyShownScreen);
@@ -123,4 +123,6 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
             GoldAmount = count
         };
     }
+
+
 }
