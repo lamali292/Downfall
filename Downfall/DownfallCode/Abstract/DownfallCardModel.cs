@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -37,11 +38,18 @@ public abstract class DownfallCardModel(
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
     }
 
-    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade)
+    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade = 0)
     {
         WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
         return this;
     }
+    
+    protected ConstructedCardModel WithEnemyDamage(int baseValue, int upgrade = 0)
+    {
+        WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));
+        return this;
+    }
+
 
     protected override void AddExtraArgsToDescription(LocString description)
     {

@@ -72,7 +72,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 				break;
 
 			case "Dead":
-				// TODO: add Death animation if one exists in the skeleton
+				// TODO: add Death animation
 				break;
 		}
 	}

@@ -45,13 +45,7 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals
                 _animState?.SetAnimation(IdleAnim)
                     ?.SetMixDuration(DefaultMix);
                 break;
-
             case "Hit":
-                _animState?.SetAnimation("Hit", false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
-                break;
             case "Cast":
             case "Attack":
             case "Dead":
