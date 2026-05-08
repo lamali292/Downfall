@@ -14,7 +14,7 @@ public class Lacerate : SneckoCardModel
     public Lacerate() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithPower<VenomPower>(4);
-        WithUpgradedCardTip<Deathbringer>();
+        WithUpgradingCardTip<Deathbringer>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

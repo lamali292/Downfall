@@ -1,8 +1,9 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Collector.CollectorCode.CustomEnums;
 
-public class CollectorTip(string name) : CustomStaticTip(name)
+public class CollectorTip
 {
-    public static readonly CollectorTip Kindle = new(nameof(Kindle));
+    [CustomEnum] public static StaticHoverTip Kindle;
 }

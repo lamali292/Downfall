@@ -24,7 +24,7 @@ public class CopyNextTurnPower : CollectorPowerModel
     }
 
 
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     private static IHoverTip Tip(PowerModel arg)
     {

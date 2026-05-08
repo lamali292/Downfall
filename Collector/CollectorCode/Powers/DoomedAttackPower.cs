@@ -11,10 +11,9 @@ public class DoomedAttackPower : CollectorPowerModel
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (command.Attacker != Owner) return;
-        foreach (var commandResult in command.Results)
+        foreach (var result in command.Results.SelectMany(r => r))
         {
-            var receiver = commandResult.Receiver;
-            await PowerCmd.Apply<CollectorDoomPower>(ctx, receiver, Amount, Owner, null);
+            await PowerCmd.Apply<CollectorDoomPower>(ctx, result.Receiver, Amount, Owner, null);
         }
 
         await PowerCmd.Remove(this);

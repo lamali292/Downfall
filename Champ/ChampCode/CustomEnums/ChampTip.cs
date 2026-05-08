@@ -1,8 +1,9 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.CustomEnums;
 
-public class ChampTip(string name) : CustomStaticTip(name)
+public static class ChampTip
 {
-    public static readonly ChampTip Finisher = new(nameof(Finisher));
+    [CustomEnum] public static StaticHoverTip Finisher;
 }

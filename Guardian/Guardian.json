@@ -3,12 +3,13 @@
   "name": "Guardian",
   "author": "lamali",
   "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
-  "version": "v0.0.0",
+  "version": "0.0.0",
   "has_pck": true,
   "has_dll": true,
+  "min_game_version": "0.105.0",
   "dependencies": [
-    "BaseLib",
-    "Downfall"
+    {"id": "BaseLib", "min_version": "0.0.0"},
+    {"id": "Downfall", "min_version": "0.0.0"}
   ],
   "affects_gameplay": true
 }

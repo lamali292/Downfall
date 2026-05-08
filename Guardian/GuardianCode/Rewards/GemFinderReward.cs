@@ -44,7 +44,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     public override bool IsPopulated => Gems.Count > 0;
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
-    public override Task Populate()
+    public override void Populate()
     {
         var gemsByRarity = GuardianModelDb.AllGems
             .GroupBy(g => g.Rarity)
@@ -66,8 +66,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
             Gems.Add(candidate);
         }
-
-        return Task.CompletedTask;
+        
     }
 
     protected override async Task<bool> OnSelect()
@@ -83,8 +82,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
             CustomMessageWrapper.Send(new CardsAddedMessage
             {
                 WasSkipped = true,
-                Cards = [],
-                SenderId = LocalContext.NetId!.Value
+                Cards = []
             });
             return true;
         }
@@ -97,8 +95,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         CustomMessageWrapper.Send(new CardsAddedMessage
         {
             WasSkipped = false,
-            Cards = cardsAdded,
-            SenderId = LocalContext.NetId!.Value
+            Cards = cardsAdded
         });
         if (_currentlyShownScreen == null) return true;
         NOverlayStack.Instance?.Remove(_currentlyShownScreen);

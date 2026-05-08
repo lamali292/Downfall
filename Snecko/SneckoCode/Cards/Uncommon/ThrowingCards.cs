@@ -14,7 +14,7 @@ public class ThrowingCards : SneckoCardModel
     public ThrowingCards() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradedCardTip<Ftl>();
+        WithUpgradingCardTip<Ftl>();
         WithEnergy(1);
     }
 

@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Downfall.DownfallCode.Powers.Downfall;
+namespace Downfall.DownfallCode.Powers;
 
 public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
 {

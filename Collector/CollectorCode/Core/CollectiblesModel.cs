@@ -37,7 +37,6 @@ public static class CollectiblesModel
             WasSkipped = false,
             Card = card.ToSerializable(),
             EssenceCost = essenceCost,
-            SenderId = LocalContext.NetId!.Value
         });
     }
 

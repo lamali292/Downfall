@@ -27,7 +27,7 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
         );
     }
 
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     private CardModel? Dupe { get; set; }
     private CardModel? Source { get; set; }

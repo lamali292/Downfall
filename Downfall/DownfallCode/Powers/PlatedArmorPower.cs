@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Downfall.DownfallCode.Powers.Downfall;
+namespace Downfall.DownfallCode.Powers;
 
 public class PlatedArmorPower : DownfallPowerModel
 {

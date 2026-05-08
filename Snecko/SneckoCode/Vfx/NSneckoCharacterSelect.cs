@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -20,6 +21,7 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
     private Rect2 _bounds1;
     private Rect2 _bounds2;
 
+    private int _controllerIndex = 0;
     private TaskCompletionSource<int>? _selectionTcs;
     private Action<string> _trigger1 = _ => { };
     private Action<string> _trigger2 = _ => { };
@@ -31,23 +33,10 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
     public NetScreenType ScreenType => NetScreenType.None;
     public bool UseSharedBackstop => true;
 
-    public void AfterOverlayOpened()
-    {
-    }
-
-    public void AfterOverlayClosed()
-    {
-    }
-
-    public void AfterOverlayShown()
-    {
-        Visible = true;
-    }
-
-    public void AfterOverlayHidden()
-    {
-        Visible = false;
-    }
+    public void AfterOverlayOpened() { }
+    public void AfterOverlayClosed() { }
+    public void AfterOverlayShown() { Visible = true; }
+    public void AfterOverlayHidden() { Visible = false; }
 
     public override void _Ready()
     {
@@ -58,10 +47,25 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
     public override void _Input(InputEvent @event)
     {
         if (_animating) return;
+
+        // Controller navigation
+        if (@event.IsActionPressed(MegaInput.left) || @event.IsActionPressed(MegaInput.right))
+        {
+            _controllerIndex = _controllerIndex == 0 ? 1 : 0;
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        if (@event.IsActionPressed(MegaInput.select))
+        {
+            GetViewport().SetInputAsHandled();
+            _selectionTcs?.TrySetResult(_controllerIndex);
+            return;
+        }
+
+        // Mouse
         if (@event is not InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } mb) return;
-
         var mousePos = mb.GlobalPosition;
-
         if (_bounds1 != default && _bounds1.HasPoint(mousePos))
         {
             GetViewport().SetInputAsHandled();
@@ -79,19 +83,16 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
         if (_animating) return;
         var mousePos = GetGlobalMousePosition();
 
+        bool hover1 = (_bounds1 != default && _bounds1.HasPoint(mousePos)) || _controllerIndex == 0;
+        bool hover2 = (_bounds2 != default && _bounds2.HasPoint(mousePos)) || _controllerIndex == 1;
+
         if (_visuals1 != null)
-            _visuals1.Scale = _bounds1 != default && _bounds1.HasPoint(mousePos)
-                ? new Vector2(1.1f, 1.1f)
-                : new Vector2(1f, 1f);
+            _visuals1.Scale = hover1 ? new Vector2(1.1f, 1.1f) : new Vector2(1f, 1f);
 
         if (_visuals2 != null)
-            _visuals2.Scale = _bounds2 != default && _bounds2.HasPoint(mousePos)
-                ? new Vector2(-1.1f, 1.1f)
-                : new Vector2(-1f, 1f);
+            _visuals2.Scale = hover2 ? new Vector2(-1.1f, 1.1f) : new Vector2(-1f, 1f);
     }
 
-
-    // Used for multiplayer-synced flow — returns 0 or 1
     public async Task<int> SelectOne(CharacterModel left, CharacterModel right)
     {
         _visuals1?.QueueFree();
@@ -99,6 +100,7 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
         _bounds1 = default;
         _bounds2 = default;
         _animating = false;
+        _controllerIndex = 0;
 
         var screenCenter = GetViewportRect().Size / 2f;
 

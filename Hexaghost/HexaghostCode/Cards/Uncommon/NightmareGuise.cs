@@ -12,7 +12,7 @@ public class NightmareGuise : HexaghostCardModel
 {
     public NightmareGuise() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithUpgradedCardTip<ShadowGuise>();
+        WithUpgradingCardTip<ShadowGuise>();
         WithBlock(4, 2);
         WithAfterlife();
     }

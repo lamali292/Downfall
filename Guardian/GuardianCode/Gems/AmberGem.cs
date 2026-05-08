@@ -13,7 +13,7 @@ namespace Guardian.GuardianCode.Gems;
 
 public class AmberGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [GuardianTip.Accelerate.ToHoverTip()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(GuardianTip.Accelerate)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override Color GemColor => new(0xD0D100FF);
     public override CardRarity Rarity => CardRarity.Uncommon;

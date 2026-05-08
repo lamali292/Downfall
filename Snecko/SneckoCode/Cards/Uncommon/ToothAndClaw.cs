@@ -17,7 +17,7 @@ public class ToothAndClaw : SneckoCardModel
             Rarity = CardRarity.Uncommon
         });
         WithDamage(4, 2);
-        WithUpgradedCardTip<Shiv>();
+        WithUpgradingCardTip<Shiv>();
     }
 
     private int UniqueColorsInHand => Owner.PlayerCombatState?

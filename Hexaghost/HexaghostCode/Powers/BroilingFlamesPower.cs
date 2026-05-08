@@ -9,7 +9,7 @@ public class BroilingFlamesPower : HexaghostPowerModel
 {
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
-        if (command.Results.All(e => e.Receiver != Owner)) return;
+        if (command.Results.SelectMany(r => r).All(e => e.Receiver != Owner)) return;
         await PowerCmd.Apply<SoulBurnPower>(ctx, Owner, Amount, command.Attacker, null);
     }
 }

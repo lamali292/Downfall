@@ -20,7 +20,7 @@ public class CantTouchThisPower : CollectorPowerModel
             }
         }
         */
-        var list = command.Results.Where(r => r.Receiver == Owner).ToList();
+        var list = command.Results.SelectMany(r => r).Where(r => r.Receiver == Owner).ToList();
         if (list.Count != 0 && list.All(r => r.WasFullyBlocked))
             await PowerCmd.Apply<CollectorDoomPower>(ctx, command.Attacker, Amount, Owner, null);
     }

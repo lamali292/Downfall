@@ -18,7 +18,7 @@ public class SentryWave : GuardianCardModel
     {
         WithPower<WeakPower>(1);
         WithBrace(0, 2);
-        WithUpgradedCardTip<SentryBlast>();
+        WithUpgradingCardTip<SentryBlast>();
         WithTip(GuardianTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }

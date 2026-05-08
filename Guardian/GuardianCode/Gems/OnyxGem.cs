@@ -13,7 +13,7 @@ namespace Guardian.GuardianCode.Gems;
 
 public class OnyxGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [GuardianTip.Polish.ToHoverTip()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(GuardianTip.Polish)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override Color GemColor => new(0x616161FF);
     public override CardRarity Rarity => CardRarity.Rare;

@@ -20,7 +20,8 @@ public class FullReleasePower : AutomatonPowerModel
     }
 
     public override bool ShouldReceiveCombatHooks => true;
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+
 
     public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
     {

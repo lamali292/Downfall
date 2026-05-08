@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Powers.Downfall;
+﻿using Downfall.DownfallCode.Powers;
+
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Events;
 using MegaCrit.Sts2.Core.Commands;

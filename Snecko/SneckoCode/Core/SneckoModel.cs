@@ -17,6 +17,7 @@ public class SneckoModel() : CustomSingletonModel(true, true)
             card is SneckoCardModel { Gift: { } gift }) await SneckoCmd.GetGift(card.Owner, gift);
     }
 
+    
 
     private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
     {

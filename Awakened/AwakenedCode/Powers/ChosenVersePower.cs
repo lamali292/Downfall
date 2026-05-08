@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Awakened.AwakenedCode.Powers;
@@ -14,7 +15,7 @@ public class ChosenVersePower : AwakenedPowerModel
         WithBlock(4);
     }
 
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     public void SetBlock(int block)
     {

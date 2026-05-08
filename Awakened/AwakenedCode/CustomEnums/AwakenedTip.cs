@@ -1,10 +1,11 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Awakened.AwakenedCode.CustomEnums;
 
-public class AwakenedTip(string name) : CustomStaticTip(name)
+public static class AwakenedTip
 {
-    public static readonly AwakenedTip Conjure = new(nameof(Conjure));
-    public static readonly AwakenedTip Chant = new(nameof(Chant));
-    public static readonly AwakenedTip Drained = new(nameof(Drained));
+    [CustomEnum] public static StaticHoverTip Conjure;
+    [CustomEnum] public static StaticHoverTip Chant;
+    [CustomEnum] public static StaticHoverTip Drained;
 }

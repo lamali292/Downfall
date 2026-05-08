@@ -12,7 +12,7 @@ public class NightmareStrike : HexaghostCardModel
 {
     public NightmareStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithUpgradedCardTip<ShadowStrike>();
+        WithUpgradingCardTip<ShadowStrike>();
         WithDamage(5, 2);
         WithAfterlife();
     }

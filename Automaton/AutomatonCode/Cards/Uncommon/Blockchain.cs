@@ -5,6 +5,7 @@ using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
@@ -17,8 +18,7 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     {
         WithPower<BlurPower>(1);
         WithTip(AutomatonTip.Encode);
-        WithTip(new TooltipSource(card =>
-            card.IsUpgraded ? AutomatonTip.Compile.ToHoverTip() : null!));
+        WithTips(card => card.IsUpgraded ? [HoverTipFactory.Static(AutomatonTip.Compile)] : []);
     }
 
 
@@ -35,4 +35,7 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     {
         await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
+    
+    
+    
 }

@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.DownfallCode.Powers.Downfall;
+namespace Downfall.DownfallCode.Powers;
 
 public class EntangledPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
 {

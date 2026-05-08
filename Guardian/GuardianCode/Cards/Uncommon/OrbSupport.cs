@@ -16,11 +16,11 @@ public class OrbSupport : GuardianCardModel
         WithTip(GuardianTip.Brace);
     }
 
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var unblocked = attack.Results.Sum(e => e.UnblockedDamage);
+        var unblocked = attack.Results.SelectMany(r => r).Sum(x => x.UnblockedDamage);
         await GuardianCmd.Brace(ctx, Owner, unblocked);
     }
 }

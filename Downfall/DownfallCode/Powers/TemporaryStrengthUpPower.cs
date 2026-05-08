@@ -2,10 +2,10 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.DownfallCode.Powers.Downfall;
+namespace Downfall.DownfallCode.Powers;
 
-public class TemporaryStrengthDownPower : TemporaryPower<StrengthPower>
+public class TemporaryStrengthUpPower : TemporaryPower<StrengthPower>
 {
     public override AbstractModel OriginModel => ModelDb.Power<StrengthPower>();
-    protected override bool IsPositive => false;
+    protected override bool IsPositive => true;
 }

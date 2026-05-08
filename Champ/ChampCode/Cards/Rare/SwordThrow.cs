@@ -2,7 +2,8 @@ using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
-using Downfall.DownfallCode.Powers.Downfall;
+using Downfall.DownfallCode.Powers;
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 

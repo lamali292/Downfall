@@ -398,4 +398,4 @@ public class TestSubjectCard()
     : Collectible<TestSubject>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
 
 [Pool(typeof(CollectibleCardPool))]
-public class DoormakerCard() : Collectible<Doormaker>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);
+public class DoormakerCard() : Collectible<Aeonglass>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f);

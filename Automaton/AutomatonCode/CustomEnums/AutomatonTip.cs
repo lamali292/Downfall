@@ -1,11 +1,12 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.CustomEnums;
 
-public class AutomatonTip(string name) : CustomStaticTip(name)
+public static class AutomatonTip
 {
-    public static readonly AutomatonTip Encode = new(nameof(Encode));
-    public static readonly AutomatonTip Compile = new(nameof(Compile));
-    public static readonly AutomatonTip Cycle = new(nameof(Cycle));
-    public static readonly AutomatonTip Insert = new(nameof(Insert));
+    [CustomEnum] public static StaticHoverTip Encode;
+    [CustomEnum] public static StaticHoverTip Compile;
+    [CustomEnum] public static StaticHoverTip Cycle;
+    [CustomEnum] public static StaticHoverTip Insert;
 }

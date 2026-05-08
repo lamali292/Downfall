@@ -1,12 +1,13 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Guardian.GuardianCode.CustomEnums;
 
-public class GuardianTip(string name) : CustomStaticTip(name)
+public static class GuardianTip
 {
-    public static readonly GuardianTip Accelerate = new(nameof(Accelerate));
-    public static readonly GuardianTip Stasis = new(nameof(Stasis));
-    public static readonly GuardianTip Brace = new(nameof(Brace));
-    public static readonly GuardianTip Tick = new(nameof(Tick));
-    public static readonly GuardianTip Polish = new(nameof(Polish));
+    [CustomEnum] public static StaticHoverTip Accelerate;
+    [CustomEnum] public static StaticHoverTip Stasis;
+    [CustomEnum] public static StaticHoverTip Brace;
+    [CustomEnum] public static StaticHoverTip Tick;
+    [CustomEnum] public static StaticHoverTip Polish;
 }

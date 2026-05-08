@@ -22,5 +22,8 @@
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Thorns Down",
   "DOWNFALL-TEMPORARY_THORNS_POWER.description": "Gain [blue]X[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]X[/blue] [gold]Thorns[/gold].",
-  "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Thorns[/gold]."
+  "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold]. At the end of your turn, lose [blue]{Amount}[/blue] [gold]Thorns[/gold].",
+  "DOWNFALL-TEMP_HP_POWER.title": "Temp HP",
+  "DOWNFALL-TEMP_HP_POWER.description": "Until end of combat, prevents damage to HP.",
+  "DOWNFALL-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents damage to HP."
 }

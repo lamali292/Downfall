@@ -22,7 +22,7 @@ public class ClobberStrike : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
-        var unblockedDamage = attackCommand.Results.Sum(r => r.UnblockedDamage);
+        var unblockedDamage = attackCommand.Results.SelectMany(r => r).Sum(x => x.UnblockedDamage);
         await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
     }
 }

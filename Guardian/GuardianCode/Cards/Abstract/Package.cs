@@ -45,9 +45,9 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard
     protected Package(int cost) : base(cost, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradedCardTip<T1>();
-        WithUpgradedCardTip<T2>();
-        WithUpgradedCardTip<T3>();
+        WithUpgradingCardTip<T1>();
+        WithUpgradingCardTip<T2>();
+        WithUpgradingCardTip<T3>();
     }
 
     protected override void AddExtraArgsToDescription(LocString description)

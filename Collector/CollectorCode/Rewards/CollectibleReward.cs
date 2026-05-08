@@ -49,11 +49,11 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
 
-    public override Task Populate()
+    public override void Populate()
     {
-        return Task.CompletedTask;
+        
     }
-
+    
     protected override async Task<bool> OnSelect()
     {
         if (!Player.CanAffordEssence(3)) return false;
@@ -72,8 +72,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
         {
             WasSkipped = true,
             Card = card.ToSerializable(),
-            EssenceCost = 0,
-            SenderId = LocalContext.NetId.Value
+            EssenceCost = 0
         });
     }
 

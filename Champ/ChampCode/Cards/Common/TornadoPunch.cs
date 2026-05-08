@@ -19,7 +19,7 @@ public class TornadoPunch : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = result.Results.Count(r => r.TotalDamage > 0);
+        var a = result.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue * a, ValueProp.Move, cardPlay);
     }
 }

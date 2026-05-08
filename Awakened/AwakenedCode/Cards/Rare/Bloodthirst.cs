@@ -26,7 +26,7 @@ public class Bloodthirst : AwakenedCardModel
         if (cardPlay.Target == null) return;
         var shouldTriggerFatal = cardPlay.Target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
         var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!shouldTriggerFatal || !attackCommand.Results.Any(r => r.WasTargetKilled))
+        if (!shouldTriggerFatal || !attackCommand.Results.Any(r => r.Any(g => g.WasTargetKilled)))
             return;
         var potion = ModelDb.Potion<PowerPotion>().ToMutable();
         await PotionCmd.TryToProcure(potion, Owner);

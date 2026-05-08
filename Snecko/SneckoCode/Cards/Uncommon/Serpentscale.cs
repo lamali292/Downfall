@@ -1,5 +1,6 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Powers.Downfall;
+using Downfall.DownfallCode.Powers;
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;

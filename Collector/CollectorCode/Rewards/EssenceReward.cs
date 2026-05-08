@@ -50,10 +50,9 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
         };
     }
 
-    public override Task Populate()
+    public override void Populate()
     {
         Amount = amount;
-        return Task.CompletedTask;
     }
 
     protected override async Task<bool> OnSelect()
@@ -62,8 +61,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
         CustomMessageWrapper.Send(new EssenceRewardMessage
         {
             WasSkipped = false,
-            Amount = Amount,
-            SenderId = LocalContext.NetId!.Value
+            Amount = Amount
         });
         return true;
     }

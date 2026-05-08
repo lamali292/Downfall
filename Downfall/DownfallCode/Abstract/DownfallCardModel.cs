@@ -2,6 +2,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -36,19 +37,11 @@ public abstract class DownfallCardModel(
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
     }
 
-
-    protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? action = null)
-        where T : CardModel
+    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade)
     {
-        return WithTip(new TooltipSource(card =>
-        {
-            var tip = ModelDb.Card<T>().ToMutable();
-            if (card.IsUpgraded) tip.UpgradeInternal();
-            if (tip is T t) action?.Invoke(t, card);
-            return HoverTipFactory.FromCard(tip);
-        }));
+        WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
+        return this;
     }
-
 
     protected override void AddExtraArgsToDescription(LocString description)
     {

@@ -16,7 +16,7 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard
     public TwinSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithUpgradedCardTip<SecondSlam>((c, g) =>
+        WithUpgradingCardTip<SecondSlam>((c, g) =>
         {
             if (g is GuardianCardModel other) c.AddGems(other.Gems.Select(e => e.CreateClone()));
         });

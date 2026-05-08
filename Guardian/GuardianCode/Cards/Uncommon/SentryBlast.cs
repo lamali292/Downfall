@@ -14,7 +14,7 @@ public class SentryBlast : GuardianCardModel
     public SentryBlast() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithUpgradedCardTip<SentryWave>();
+        WithUpgradingCardTip<SentryWave>();
         WithTip(GuardianTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }

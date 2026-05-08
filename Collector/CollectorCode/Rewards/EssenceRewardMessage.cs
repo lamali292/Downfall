@@ -16,7 +16,6 @@ public class EssenceRewardMessage : ICustomMessage
 {
     public bool WasSkipped { get; set; }
     public int Amount { get; set; }
-    public ulong SenderId { get; set; }
 
     public bool ShouldBroadcast => false;
     public NetTransferMode Mode => NetTransferMode.Reliable;
@@ -26,20 +25,18 @@ public class EssenceRewardMessage : ICustomMessage
     {
         writer.WriteBool(WasSkipped);
         writer.WriteInt(Amount);
-        writer.WriteULong(SenderId);
     }
 
     public void Deserialize(PacketReader reader)
     {
         WasSkipped = reader.ReadBool();
         Amount = reader.ReadInt();
-        SenderId = reader.ReadULong();
     }
 
-    public void HandleMessage()
+    public void HandleMessage(ulong senderId)
     {
         if (WasSkipped) return;
-        var player = RunManager.Instance.State?.GetPlayer(SenderId);
+        var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
         player.AddEssence(Amount);
         if (LocalContext.IsMe(player)) return;

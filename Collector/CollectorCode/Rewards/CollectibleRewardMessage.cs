@@ -20,7 +20,6 @@ public class CollectibleRewardMessage : ICustomMessage
     public bool WasSkipped { get; set; }
     public SerializableCard? Card { get; set; }
     public int EssenceCost { get; set; }
-    public ulong SenderId { get; set; }
 
     public bool ShouldBroadcast => false;
     public NetTransferMode Mode => NetTransferMode.Reliable;
@@ -30,7 +29,6 @@ public class CollectibleRewardMessage : ICustomMessage
     {
         writer.WriteBool(WasSkipped);
         writer.WriteInt(EssenceCost);
-        writer.WriteULong(SenderId);
         Card!.Serialize(writer);
     }
 
@@ -38,16 +36,15 @@ public class CollectibleRewardMessage : ICustomMessage
     {
         WasSkipped = reader.ReadBool();
         EssenceCost = reader.ReadInt();
-        SenderId = reader.ReadULong();
         var card = new SerializableCard();
         card.Deserialize(reader);
         Card = card;
     }
 
-    public void HandleMessage()
+    public void HandleMessage(ulong senderId)
     {
         if (WasSkipped || Card == null) return;
-        var player = RunManager.Instance.State?.GetPlayer(SenderId);
+        var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
 
         player.SpendEssence(EssenceCost);

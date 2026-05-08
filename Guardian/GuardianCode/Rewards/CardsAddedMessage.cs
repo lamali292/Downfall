@@ -18,7 +18,6 @@ public class CardsAddedMessage : ICustomMessage
 {
     public bool WasSkipped { get; set; }
     public List<SerializableCard> Cards { get; init; } = [];
-    public ulong SenderId { get; set; }
 
     public bool ShouldBroadcast => false;
     public NetTransferMode Mode => NetTransferMode.Reliable;
@@ -27,7 +26,6 @@ public class CardsAddedMessage : ICustomMessage
     public void Serialize(PacketWriter writer)
     {
         writer.WriteBool(WasSkipped);
-        writer.WriteULong(SenderId);
         writer.WriteInt(Cards.Count);
         foreach (var card in Cards)
             card.Serialize(writer);
@@ -36,7 +34,6 @@ public class CardsAddedMessage : ICustomMessage
     public void Deserialize(PacketReader reader)
     {
         WasSkipped = reader.ReadBool();
-        SenderId = reader.ReadULong();
         var count = reader.ReadInt();
         for (var i = 0; i < count; i++)
         {
@@ -46,10 +43,10 @@ public class CardsAddedMessage : ICustomMessage
         }
     }
 
-    public void HandleMessage()
+    public void HandleMessage(ulong senderId)
     {
         if (WasSkipped || Cards.Count == 0) return;
-        var player = RunManager.Instance.State?.GetPlayer(SenderId);
+        var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
         var cards = Cards.Select(CardModel.FromSerializable);
 

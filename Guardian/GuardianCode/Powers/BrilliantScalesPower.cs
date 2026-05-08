@@ -23,7 +23,7 @@ public class BrilliantScalesPower : GuardianPowerModel
         WithVars(new BrilliantScalesDynamicVar());
     }
 
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     private IReadOnlyList<GemModel> Gems => _sourceCard?.Gems ?? [];
     public event Action? GemsChanged;
 

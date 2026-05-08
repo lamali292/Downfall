@@ -13,7 +13,7 @@ public class Cower : SneckoCardModel
     public Cower() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(14, 4);
-        WithUpgradedCardTip<HoleUp>();
+        WithUpgradingCardTip<HoleUp>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

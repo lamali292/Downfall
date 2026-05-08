@@ -2,7 +2,7 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.DownfallCode.Powers.Downfall;
+namespace Downfall.DownfallCode.Powers;
 
 public class TemporaryDexterityUpPower : TemporaryPower<DexterityPower>
 {
