@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BaseLib.Utils;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -24,6 +25,17 @@ public abstract class ConstructedPowerModel(
 
     public virtual bool ShouldRemoveDueToZero => true;
 
+    
+    protected ConstructedPowerModel WithUpgradedCardTip<T>(Action<T, PowerModel>? modifyTipCard = null) where T : CardModel
+    {
+        return WithTip(new PowerTooltipSource(power =>
+        {
+            var mutable = ModelDb.Card<T>().ToMutable();
+            mutable.UpgradeInternal();
+            if (mutable is T obj2) modifyTipCard?.Invoke(obj2, power);
+            return HoverTipFactory.FromCard(mutable);
+        }));
+    }
 
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {
@@ -43,24 +55,24 @@ public abstract class ConstructedPowerModel(
         return this;
     }
 
-    protected ConstructedPowerModel WithPower<T>(int i) where T : PowerModel
+    protected ConstructedPowerModel WithPower<T>(decimal i) where T : PowerModel
     {
         return WithVars(new PowerVar<T>(i));
     }
 
-    protected ConstructedPowerModel WithVar(string name, int baseVal)
+    protected ConstructedPowerModel WithVar(string name, decimal baseVal)
     {
         _newDynamicVars.Add(new DynamicVar(name, baseVal));
         return this;
     }
 
-    protected ConstructedPowerModel WithBlock(int baseVal)
+    protected ConstructedPowerModel WithBlock(decimal baseVal)
     {
         _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
         return this;
     }
 
-    protected ConstructedPowerModel WithDamage(int baseVal)
+    protected ConstructedPowerModel WithDamage(decimal baseVal)
     {
         _newDynamicVars.Add(new DamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
         return this;

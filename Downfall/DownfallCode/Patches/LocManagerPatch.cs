@@ -11,6 +11,11 @@ public static class LocManagerPatch
     [HarmonyPostfix]
     private static void AddCustomFormatters()
     {
-        Smart.Default.AddExtensions(new PowerIconFormatter(), new PreviewPluralFormatter(), new PreviewValueFormatter());
+        Smart.Default.AddExtensions(
+            new PowerIconFormatter(), 
+            new PreviewPluralFormatter(), 
+            new PreviewValueFormatter(),
+            new PlusIfUpgradedFormatter()
+            );
     }
 }

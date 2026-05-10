@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Interfaces;
+﻿using System.Runtime.CompilerServices;
+using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
@@ -46,4 +47,32 @@ internal static class TwoAmountPowers
         var fontSize = amount2Label.GetThemeFontSize(ThemeConstants.Label.FontSize);
         amount2Label.Position = amount1Label.Position + new Vector2(0, -(fontSize + 2));
     }
+    [HarmonyPatch(nameof(NPower.SubscribeToModelEvents))]
+    [HarmonyPostfix]
+    private static void Subscribe(NPower __instance)
+    {
+        if (__instance._model is IHasSecondAmount power)
+            SecondAmountRegistry.Register(power, __instance.RefreshAmount);
+    }
+
+    [HarmonyPatch(nameof(NPower.UnsubscribeFromModelEvents))]
+    [HarmonyPostfix]
+    private static void Unsubscribe(NPower __instance)
+    {
+        if (__instance._model is IHasSecondAmount power)
+            SecondAmountRegistry.Unregister(power);
+    }
 }
+
+internal static class SecondAmountRegistry
+{
+    internal static readonly ConditionalWeakTable<IHasSecondAmount, Action> RefreshActions = new();
+
+    internal static void Register(IHasSecondAmount power, Action refresh)
+        => RefreshActions.AddOrUpdate(power, refresh);
+
+    internal static void Unregister(IHasSecondAmount power)
+        => RefreshActions.Remove(power);
+}
+
+

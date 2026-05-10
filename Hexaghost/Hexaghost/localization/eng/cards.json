@@ -190,7 +190,7 @@
   "HEXAGHOST-TIME_OF_NEED.title": "Time of Need",
   "HEXAGHOST-TIME_WARP.description": "Deal {Damage:diff()} damage.\nWhenever you [gold]Advance[/gold] or [gold]Retract[/gold], return this from the discard pile.",
   "HEXAGHOST-TIME_WARP.title": "Time Warp",
-  "HEXAGHOST-TURN_IT_UP.description": "Gain {TemporaryStrengthUpPower:diff()} [gold]Strength[/gold] this turn.\nGain {TemporaryDexterityUpPower:diff()} [gold]Dexterity[/gold] this turn.\nGain {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn.",
+  "HEXAGHOST-TURN_IT_UP.description": "Gain {TemporaryStrengthUpPower:diff()} [gold]Strength, [/gold]{TemporaryDexterityUpPower:diff()} [gold]Dexterity[/gold] and {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn.",
   "HEXAGHOST-TURN_IT_UP.title": "Turn It Up",
   "HEXAGHOST-UNFETTERED_FORM.title": "Unfettered Form",
   "HEXAGHOST-UNFETTERED_FORM.description": "Ghostflames deal damage{IfUpgraded:show:,| and} apply [gold]Soulburn[/gold]{IfUpgraded:show:, and grant [gold]Block[/gold]|} an additional time.",

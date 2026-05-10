@@ -31,8 +31,6 @@ public class AddExtraHpBarPatch
     public static void SetCreatureBoundsPostfix(NCreatureStateDisplay __instance, Control bounds)
     {
         var extraBar = __instance.GetNodeOrNull<NStatusBar>("ExtraStatusBar");
-        if (extraBar == null) return;
-
-        extraBar.UpdateLayoutForCreatureBounds(bounds);
+        extraBar?.UpdateLayoutForCreatureBounds(bounds);
     }
 }

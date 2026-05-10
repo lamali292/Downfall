@@ -1,16 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
-using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
-using BaseLib.Utils;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -35,6 +31,11 @@ public abstract class DownfallCardModel(
         return this;
     }
 
+    protected ConstructedCardModel WithGold(int baseVal, int upgradeVal = 0)
+    {
+        return WithVar(new GoldVar(baseVal).WithUpgrade(upgradeVal));
+    }
+    
     protected ConstructedCardModel WithRepeat(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));

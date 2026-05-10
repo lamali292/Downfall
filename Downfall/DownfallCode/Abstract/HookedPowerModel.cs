@@ -87,4 +87,14 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
+    
+    public sealed override Task AfterModifyingHpLostAfterOsty()
+    {
+        return ExecuteWithContext(AfterModifyingHpLostAfterOsty);
+    }
+    
+    protected virtual Task AfterModifyingHpLostAfterOsty(PlayerChoiceContext ctx)
+    {
+        return Task.CompletedTask;
+    }
 }
