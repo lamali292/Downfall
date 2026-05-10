@@ -21,8 +21,6 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
 
     private MegaLabel? _countLabel;
 
-    // ── Rocking animation (while associated screen is open) ───────────────────
-
     private float _elapsedTime;
     private float _previousCount;
     private float _rockBaseRotation;
@@ -30,7 +28,6 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
     public static Vector2 ButtonPosition => _instance?.GlobalPosition ?? Vector2.Zero;
     public static Vector2 ButtonSize => _instance?.Size ?? Vector2.Zero;
 
-    // ── ITopBarElement ────────────────────────────────────────────────────────
 
     public abstract string ScenePath { get; }
     public abstract float Width { get; }
@@ -43,7 +40,6 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         RefreshCount();
     }
 
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     public override void _Ready()
     {
@@ -53,12 +49,11 @@ public abstract partial class NCustomTopBarButton : NTopBarButton, ITopBarElemen
         _countLabel = GetNodeOrNull<MegaLabel>("DeckCardCount");
     }
 
-    // ── Count badge ───────────────────────────────────────────────────────────
 
     /// <summary>Returns the value to show on the badge, or null to hide it.</summary>
     protected abstract int? GetCount();
 
-    public void RefreshCount()
+    private void RefreshCount()
     {
         if (_countLabel == null) return;
         var count = GetCount();

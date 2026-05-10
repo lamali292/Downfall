@@ -1,11 +1,13 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -71,6 +73,17 @@ public abstract class HookedPowerModel : CustomPowerModel
     }
 
     protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
+    {
+        return Task.CompletedTask;
+    }
+    
+    
+    public sealed override Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
+    {
+        return ExecuteWithContext(ctx => AfterBlockGained(ctx, creature, amount, props, cardSource));
+    }
+    
+    protected virtual Task AfterBlockGained(PlayerChoiceContext ctx, Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
     {
         return Task.CompletedTask;
     }

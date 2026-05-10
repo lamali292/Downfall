@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
+using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.DynamicVars;
@@ -7,6 +8,7 @@ using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -63,6 +65,7 @@ public abstract class DownfallCardModel(
         return (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(SelectionScreenPrompt, count), filter,
             this)).FirstOrDefault();
     }
+
 }
 
 public abstract class DownfallCardModel<T>(

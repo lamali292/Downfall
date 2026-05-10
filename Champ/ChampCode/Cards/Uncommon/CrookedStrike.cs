@@ -1,8 +1,11 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Cards.Uncommon;
@@ -20,12 +23,20 @@ public class CrookedStrike : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        decimal a = Owner.Creature.GetPowerAmount<VigorPower>();
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        // Todo: Not consuming Vigor power needs a lot of annoying patching.
-        if (a > 0)
-            await PowerCmd.Apply<VigorPower>(ctx, Owner.Creature, a, Owner.Creature, this, true);
-
         await ChampCmd.PlayFinisher(ctx, cardPlay);
+    }
+}
+
+[HarmonyPatch(typeof(VigorPower), nameof(VigorPower.AfterAttack))]
+public static class VigorPowerAfterAttackPatch
+{
+    static bool Prefix(VigorPower __instance, PlayerChoiceContext choiceContext, AttackCommand command, ref Task __result)
+    {
+        if (command.ModelSource is not CardModel card) return true;
+        if (card is not CrookedStrike) return true;
+        __instance.GetInternalData<VigorPower.Data>().commandToModify = null;
+        __result = Task.CompletedTask;
+        return false;
     }
 }
