@@ -22,7 +22,7 @@ public class Dejection : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var selected = await SelectFromHand(ctx);
+        var selected = (await DownfallCardCmd.SelectFromHand(ctx, this)).FirstOrDefault();
         if (selected == null) return;
         await CardCmd.Exhaust(ctx, selected);
         if (selected is ISpell) await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);

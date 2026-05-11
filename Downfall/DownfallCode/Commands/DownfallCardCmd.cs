@@ -185,4 +185,13 @@ public class DownfallCardCmd
         var newCard = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, filter, card);
         return await CardPileCmd.Add(newCard, toPile);
     }
+    
+    
+    
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, CardModel card, int count = 1,
+        Func<CardModel, bool>? filter = null)
+    {
+        return await CardSelectCmd.FromHand(ctx, card.Owner, new CardSelectorPrefs(card.SelectionScreenPrompt, count), filter,
+            card);
+    }
 }

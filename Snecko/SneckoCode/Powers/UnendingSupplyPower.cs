@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -16,8 +17,7 @@ public class UnendingSupplyPower : SneckoPowerModel
         var mutableCards = SneckoModel.GetCombatSneckoCards(player, Amount).ToList();
         foreach (var card in mutableCards)
         {
-            card.AddKeyword(CardKeyword.Ethereal);
-            card.AddKeyword(CardKeyword.Exhaust);
+            card.ToEcho();
         }
 
         await CardPileCmd.Add(mutableCards, PileType.Hand);

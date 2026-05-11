@@ -21,6 +21,10 @@ public class DownfallCmd
     public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card, decimal tempHp)
         => PowerCmd.Apply<TempHpPower>(ctx, card.Owner.Creature, tempHp, card.Owner.Creature,
             card);
+    
+    public static Task GainTempHp(PlayerChoiceContext ctx, Creature creature, decimal tempHp)
+        => PowerCmd.Apply<TempHpPower>(ctx, creature, tempHp, creature,
+            null);
 
 
     public static int GetTempHpAmount(Creature creature)

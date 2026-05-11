@@ -14,7 +14,7 @@ public class FullReleasePower : AutomatonPowerModel
 {
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
 
-    public FullReleasePower() : base(PowerType.Buff, PowerStackType.None)
+    public FullReleasePower() : base(PowerType.Buff, PowerStackType.Single)
     {
         WithVars(new EffectsDynamicVar());
     }

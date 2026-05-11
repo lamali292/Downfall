@@ -4,6 +4,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -24,8 +25,7 @@ public class SpectresHand() : ChampRelicModel(RelicRarity.Rare), IOnChampStanceC
             card = await DownfallCardCmd.GiveCard<StrikeChamp>(player, PileType.Hand);
         else
             card = await DownfallCardCmd.GiveCard<DefendChamp>(player, PileType.Hand);
-        card.AddKeyword(CardKeyword.Exhaust);
-        card.AddKeyword(CardKeyword.Ethereal);
+        card.ToEcho();
         card.SetToFreeThisTurn();
     }
 }

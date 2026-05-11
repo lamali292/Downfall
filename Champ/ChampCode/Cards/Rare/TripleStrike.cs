@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,12 +24,11 @@ public class TripleStrike : ChampCardModel
 
     private static IHoverTip StrikeTip(CardModel card)
     {
-        var strike = ModelDb.GetById<StrikeChamp>(ModelDb.Card<StrikeChamp>().Id).ToMutable();
+        var strike = ModelDb.Card<StrikeChamp>().ToMutable();
         if (card.IsUpgraded) strike.UpgradeInternal();
         strike.EnergyCost.SetThisCombat(0);
         strike.AddKeyword(ChampKeyword.TriggerSkillBonus);
-        strike.AddKeyword(CardKeyword.Ethereal);
-        strike.AddKeyword(CardKeyword.Exhaust);
+        strike.ToEcho();
         return HoverTipFactory.FromCard(strike);
     }
 
@@ -42,8 +42,7 @@ public class TripleStrike : ChampCardModel
         {
             var card = CombatState.CreateCard(model, Owner);
             card.AddKeyword(ChampKeyword.TriggerSkillBonus);
-            card.AddKeyword(CardKeyword.Ethereal);
-            card.AddKeyword(CardKeyword.Exhaust);
+            card.ToEcho();
             if (IsUpgraded) card.UpgradeInternal();
             card.EnergyCost.SetThisCombat(0);
             cardInstances.Add(card);

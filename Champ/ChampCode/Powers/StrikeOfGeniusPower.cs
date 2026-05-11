@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,8 +24,7 @@ public class StrikeOfGeniusPower : ChampPowerModel
         foreach (var c in cards)
         {
             c.EnergyCost.SetUntilPlayed(0);
-            c.AddKeyword(CardKeyword.Ethereal);
-            c.AddKeyword(CardKeyword.Exhaust);
+            c.ToEcho();
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);

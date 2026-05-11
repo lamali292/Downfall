@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -94,6 +95,16 @@ public abstract class HookedPowerModel : CustomPowerModel
     }
     
     protected virtual Task AfterModifyingHpLostAfterOsty(PlayerChoiceContext ctx)
+    {
+        return Task.CompletedTask;
+    }
+    
+    public sealed override Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel? cardSource, CardPlay? cardPlay)
+    {
+        return ExecuteWithContext(ctx => AfterModifyingBlockAmount(ctx, modifiedAmount, cardSource, cardPlay));
+    }
+    
+    protected virtual Task AfterModifyingBlockAmount(PlayerChoiceContext ctx, decimal modifiedAmount, CardModel? cardSource, CardPlay? cardPlay)
     {
         return Task.CompletedTask;
     }

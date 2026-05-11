@@ -1,0 +1,5 @@
+﻿{
+  "DOWNFALL-ECHO.title": "Echo",
+  "DOWNFALL-ECHO.description": "Echoes are copies of cards with Ethereal and Exhaust.\nEchoes cannot be Echoed.",
+  "DOWNFALL-ECHO.card_title": "Echo: {card}"
+}

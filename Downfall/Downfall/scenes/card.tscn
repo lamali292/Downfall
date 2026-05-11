@@ -131,7 +131,6 @@ anchors_preset = 0
 mouse_filter = 2
 
 [node name="Shadow" type="TextureRect" parent="CardContainer"]
-visible = false
 modulate = Color(0, 0, 0, 0.25098)
 layout_mode = 0
 offset_left = -138.0
@@ -146,7 +145,6 @@ stretch_mode = 5
 
 [node name="Highlight" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 modulate = Color(0, 0.957, 0.988, 0.98)
 material = SubResource("ShaderMaterial_7ivyc")
 layout_mode = 1
@@ -234,6 +232,7 @@ stretch_mode = 5
 
 [node name="AncientBorder" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -254,6 +253,7 @@ stretch_mode = 5
 
 [node name="AncientTextBg" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0, 0, 0, 0.66)
 layout_mode = 1
 anchors_preset = 8
@@ -296,7 +296,6 @@ stretch_mode = 5
 
 [node name="Frame" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("8_x5rhq")
 layout_mode = 1
 anchors_preset = 8
@@ -318,7 +317,6 @@ stretch_mode = 5
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = -122.0
 offset_top = 37.0
@@ -346,7 +344,6 @@ MaxFontSize = 21
 
 [node name="PortraitBorder" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("11_5rt13")
 layout_mode = 1
 anchors_preset = 8
@@ -378,7 +375,6 @@ mouse_filter = 2
 
 [node name="TitleBanner" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
-visible = false
 material = ExtResource("11_5rt13")
 layout_mode = 1
 anchors_preset = 8
@@ -399,6 +395,7 @@ stretch_mode = 6
 
 [node name="AncientBanner" type="TextureRect" parent="CardContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -59,14 +59,6 @@ public abstract class DownfallCardModel(
         foreach (var keyValuePair in _powerCache) description.AddObj(keyValuePair.Key, keyValuePair.Value);
     }
 
-
-    protected async Task<CardModel?> SelectFromHand(PlayerChoiceContext ctx, int count = 1,
-        Func<CardModel, bool>? filter = null)
-    {
-        return (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(SelectionScreenPrompt, count), filter,
-            this)).FirstOrDefault();
-    }
-
 }
 
 public abstract class DownfallCardModel<T>(

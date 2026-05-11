@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,8 +19,7 @@ public class ProfaneStrike : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = await SelectFromHand(ctx);
-        if (card == null) return;
+        var card = await DownfallCardCmd.SelectFromHand(ctx, this);
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
 }
