@@ -15,6 +15,7 @@ public class Restock : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithCards(6);
         WithTip(SneckoKeywords.Muddle);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

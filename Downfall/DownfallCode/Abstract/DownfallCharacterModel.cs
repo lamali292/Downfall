@@ -35,8 +35,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     public override string CustomIconTexturePath =>
         $"res://{ModId}/images/character/character_icon.png";
-
-
+    
     public override CustomEnergyCounter? CustomEnergyCounter =>
         new CustomEnergyCounter(EnergyCounterPaths, EnergyOutlineColor, EnergyBurstColor);
 
