@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Interfaces;
 using Godot;

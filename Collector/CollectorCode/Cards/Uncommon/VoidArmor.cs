@@ -1,8 +1,7 @@
-using Baselib.Abstracts;
 using BaseLib.Extensions;
+using BaseLib.Patches.Features;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

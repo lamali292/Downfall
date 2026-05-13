@@ -1,4 +1,5 @@
-﻿using Collector.CollectorCode.Core;
+﻿using BaseLib.Abstracts;
+using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;

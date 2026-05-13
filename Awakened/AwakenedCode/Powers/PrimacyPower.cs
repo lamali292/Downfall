@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
