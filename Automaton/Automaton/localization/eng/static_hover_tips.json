@@ -9,5 +9,5 @@
   "AUTOMATON-CYCLE.title": "Cycle",
   "AUTOMATON-CYCLE.description": "Discard a card, drawing a new card to replace it.",
   "AUTOMATON-INSERT.title": "Insert",
-  "AUTOMATON-INSERT.description": "Shuffle a card into you draw pile."
+  "AUTOMATON-INSERT.description": "Shuffle a card into you Draw Pile."
 }

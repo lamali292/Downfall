@@ -15,7 +15,7 @@
   "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "Reduce your debuffs by [blue]X[/blue] when you enter [gold]Defensive Mode[/gold].",
   "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "Reduce your debuffs by [blue]{Amount}[/blue] when you enter [gold]Defensive Mode[/gold].",
   "GUARDIAN-EXHAUST_STATUSES_POWER.title": "Repulse",
-  "GUARDIAN-EXHAUST_STATUSES_POWER.description": "When you draw the first X [gold]Status[/gold] or [gold]Curse[/gold] cards each turn, [gold]Exhaust[/gold] them and draw a card.",
+  "GUARDIAN-EXHAUST_STATUSES_POWER.description": "When you draw the first [gold]Status[/gold] or [gold]Curse[/gold] cards each turn, [gold]Exhaust[/gold] them and draw a card.",
   "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "When you draw the first {Amount:plural:|{Amount} }[gold]Status[/gold] or [gold]Curse[/gold] {Amount:plural:card|cards} each turn, [gold]Exhaust[/gold] {Amount:plural:it|them} and draw a card.",
   "GUARDIAN-FLOATING_ORBS_POWER.title": "Floating Orbs",
   "GUARDIAN-FLOATING_ORBS_POWER.description": "Whenever you play a [gold]0-Cost[/gold] card, deal [blue]X[/blue] damage to a random enemy.",

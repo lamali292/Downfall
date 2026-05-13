@@ -103,13 +103,22 @@ public static class AutomatonCmd
     private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<AutomatonCardModel> snapshot,
         ICombatState combatState)
     {
-        FunctionCard functionCard;
+        var functionCard = combatState.CreateCard<FunctionCard>(cardPlay.Card.Owner);
         if (snapshot.Any(c => c is FullRelease))
-            functionCard = combatState.CreateCard<FunctionPowerCard>(cardPlay.Card.Owner);
+        {
+            functionCard.SetCardType(CardType.Power);
+            functionCard.SetTargetType(TargetType.None);
+        }
         else if (snapshot.Any(c => c.TargetType == TargetType.AnyEnemy || c.Type == CardType.Attack))
-            functionCard = combatState.CreateCard<FunctionAttackCard>(cardPlay.Card.Owner);
+        {
+            functionCard.SetCardType(CardType.Attack);
+            functionCard.SetTargetType(TargetType.AnyEnemy);
+        }
         else
-            functionCard = combatState.CreateCard<FunctionSkillCard>(cardPlay.Card.Owner);
+        {
+            functionCard.SetCardType(CardType.Skill);
+            functionCard.SetTargetType(TargetType.Self);
+        }
         functionCard.SetSourceCards(snapshot);
         return functionCard;
     }

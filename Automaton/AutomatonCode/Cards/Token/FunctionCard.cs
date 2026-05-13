@@ -18,23 +18,15 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Token;
 
-#pragma warning disable STS001
 [Pool(typeof(TokenCardPool))]
-public sealed class FunctionAttackCard() : FunctionCard(CardType.Attack, TargetType.AnyEnemy);
-
-[Pool(typeof(TokenCardPool))]
-public sealed class FunctionSkillCard() : FunctionCard(CardType.Skill, TargetType.Self);
-
-[Pool(typeof(TokenCardPool))]
-public sealed class FunctionPowerCard() : FunctionCard(CardType.Power, TargetType.None);
-#pragma warning restore STS001
-
-public abstract class FunctionCard(CardType type, TargetType targetType) : AutomatonCardModel(1, type,
-    CardRarity.Token, targetType)
+public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
+    CardRarity.Token, TargetType.AnyEnemy)
 {
     private ImageTexture? _cachedPortrait;
     private IReadOnlyList<AutomatonCardModel> _lastPortraitSource = [];
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
+    private CardType _cardType;
+    private TargetType _targetType;
 
     public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
     //public override string CustomPortraitPath => "function_card.png".CardImagePath<Character.Automaton>();
@@ -43,7 +35,7 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
     public override bool CanBeGeneratedByModifiers => false;
     public override int MaxUpgradeLevel => 0;
 
-    public override bool HasBuiltInOverlay => true;
+    public override bool HasBuiltInOverlay => false;
 
     public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
     {
@@ -155,8 +147,22 @@ public abstract class FunctionCard(CardType type, TargetType targetType) : Autom
         _cachedPortrait = ImageTexture.CreateFromImage(result);
         return _cachedPortrait;
     }
+
+
+    public override CardType Type => _cardType;
+    public void SetCardType(CardType cardType)
+    {
+        _cardType =  cardType;
+    }
+
+    public override TargetType TargetType => _targetType;
+    public void SetTargetType(TargetType targetType)
+    {
+        _targetType =  targetType;
+    }
 }
 
+/*
 [HarmonyPatch(typeof(CardModel), "get_OverlayPath")]
 public static class OverlayPathPatch
 {
@@ -167,7 +173,7 @@ public static class OverlayPathPatch
         __result = "res://Automaton/scenes/ui/function_card.tscn";
         return false;
     }
-}
+}*/
 
 [HarmonyPatch(typeof(CardModel), "get_Title")]
 public static class FunctionCardTitlePatch

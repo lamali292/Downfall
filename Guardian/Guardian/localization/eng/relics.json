@@ -27,7 +27,7 @@
   "GUARDIAN-QUANTUM_CHAMBER.description": "The first time you put a card into [gold]Stasis[/gold] each turn, [gold]Accelerate[/gold] it.",
   "GUARDIAN-QUANTUM_CHAMBER.flavor": "You get the chicken by hatching the egg, not by smashing it.",
   "GUARDIAN-SACK_OF_GEMS.title": "Sack of Gems",
-  "GUARDIAN-SACK_OF_GEMS.description": "Upon pickup, you may choose up to 5 random Gems to add to your deck.",
+  "GUARDIAN-SACK_OF_GEMS.description": "Upon pickup, you may choose up to 5 random Gems to add to your Deck.",
   "GUARDIAN-SACK_OF_GEMS.flavor": "Ooh... shiny!",
   "GUARDIAN-WANDER_BOTS.title": "Wander Bots",
   "GUARDIAN-WANDER_BOTS.description": "At the start of each combat, lose 1 Stasis slot. Gain {Energy:energyIcons()} at the start of your turn.",

@@ -2,5 +2,5 @@
   "SNECKO-MUDDLE.title": "Muddle",
   "SNECKO-MUDDLE.description": "Muddling a card changes its cost this turn to between 0 and 3 at random.",
   "SNECKO-OVERFLOW.title": "Overflow",
-  "SNECKO-OVERFLOW.description": "Overflow effects activate if you have more than 5 cards in hand."
+  "SNECKO-OVERFLOW.description": "Overflow effects activate if you have more than 5 cards in Hand."
 }

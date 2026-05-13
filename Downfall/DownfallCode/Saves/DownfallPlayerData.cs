@@ -39,9 +39,9 @@ public class DownfallPlayerData : IPacketSerializable
 public class GremlinSaveData : IPacketSerializable
 {
     // Order in this list encodes rotation — index 0 = active
-    [JsonPropertyName("model_id")] public ModelId ModelId { get; set; }
-    [JsonPropertyName("hp")]       public int Hp { get; set; }
-    [JsonPropertyName("max_hp")]   public int MaxHp { get; set; }
+    [JsonPropertyName("model_id")] public required ModelId ModelId { get; set; }
+    [JsonPropertyName("hp")]       public required int Hp { get; set; }
+    [JsonPropertyName("max_hp")]   public required int MaxHp { get; set; }
 
     public void Serialize(PacketWriter writer)
     {

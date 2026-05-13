@@ -118,13 +118,22 @@ public partial class NSequenceDisplay : Control
 
         var snapshot = sequence.OfType<AutomatonCardModel>().ToList();
 
-        FunctionCard? previewCanonical;
+        var previewCanonical = ModelDb.Card<FunctionCard>();
         if (snapshot.Any(c => c is FullRelease))
-            previewCanonical = ModelDb.Card<FunctionPowerCard>();
+        {
+            previewCanonical.SetCardType(CardType.Power);
+            previewCanonical.SetTargetType(TargetType.None);
+        }
         else if (snapshot.Any(c => c.Type == CardType.Attack))
-            previewCanonical = ModelDb.Card<FunctionAttackCard>();
+        {
+            previewCanonical.SetCardType(CardType.Attack);
+            previewCanonical.SetTargetType(TargetType.AnyEnemy);
+        }
         else
-            previewCanonical = ModelDb.Card<FunctionSkillCard>();
+        {
+            previewCanonical.SetCardType(CardType.Skill);
+            previewCanonical.SetTargetType(TargetType.Self);
+        }
 
         _previewModel = previewCanonical.ToMutable() as FunctionCard;
         if (_previewModel == null) return;
