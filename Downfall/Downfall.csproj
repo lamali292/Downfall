@@ -6,6 +6,7 @@
     <ItemGroup>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
         <Compile Remove="Downfall/**"/>
+        <Content Include="local.props" />
         <EmbeddedResource Remove="Downfall/**"/>
         <None Include="Downfall.json"/>
         <None Include="Downfall/**"/>

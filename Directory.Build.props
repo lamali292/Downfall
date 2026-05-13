@@ -32,6 +32,8 @@
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+    
     <!-- OS Detection -->
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true'">
         <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
@@ -39,10 +41,7 @@
         <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(IsWindows)' == 'true'">
-        <GodotPath Condition="'$(GodotPath)' == ''">C:\Users\lamal\Desktop\Programmieren\sts2mods\MegaDot\MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">D:/SteamLibrary/steamapps</SteamLibraryPath>
-        <AssetSourcePath Condition="'$(AssetSourcePath)' == ''">C:\Users\lamal\Desktop\Programmieren\sts2mods\Slay the Spire 2</AssetSourcePath>
+    <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(IsWindows)' == 'true'">        
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
         <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
         <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
