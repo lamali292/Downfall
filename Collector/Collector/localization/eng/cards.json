@@ -81,7 +81,7 @@
   "COLLECTOR-GREENPYRE_LOCUS.title": "Greenpyre Locus",
   "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nGain an [gold]Ember[/gold].",
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
-  "COLLECTOR-HOARD.description": "[gold]Pyre[/gold].\nDraw {HoardPower:diff()} cards.\nThis turn, they Retain.",
+  "COLLECTOR-HOARD.description": "Draw {Cards:diff()} cards.\nThis turn, they [gold]Retain[/gold].",
   "COLLECTOR-HOARD.title": "Hoard",
   "COLLECTOR-HOARDERS_STRIKE.description": "Deal {Damage:diff()} damage.\nPlay the top card of your Collected pile.",
   "COLLECTOR-HOARDERS_STRIKE.title": "Hoarder's Strike",

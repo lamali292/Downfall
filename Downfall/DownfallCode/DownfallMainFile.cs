@@ -2,6 +2,7 @@ using System.Reflection;
 using BaseLib.Config;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
+using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -33,7 +34,6 @@ public partial class DownfallMainFile : Node
 
         NCustomCardHolder.InitPool();
         //DownfallAudiomanager.LoadFModBank(ModId);
-       
     }
 }
 

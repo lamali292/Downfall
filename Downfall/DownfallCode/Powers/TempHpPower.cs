@@ -9,6 +9,7 @@ namespace Downfall.DownfallCode.Powers;
 
 public class TempHpPower : DownfallPowerModel
 {
+    private decimal _absorbed;
     
     public override decimal ModifyHpLostBeforeOsty(
         Creature target,
@@ -18,9 +19,14 @@ public class TempHpPower : DownfallPowerModel
         CardModel? cardSource)
     {
         if (target != Owner) return amount;
-        var absorbed = Math.Min(Amount, (int)amount);
-        Amount -= absorbed;
-        return amount - absorbed;
+        _absorbed = Math.Min(Amount, (int)amount);
+        return amount - _absorbed;
+    }
+
+
+    public override  Task AfterModifyingHpLostBeforeOsty()
+    {
+        return PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -_absorbed,  null,  null, true);
     }
 
     public override async Task AfterDamageReceived(PlayerChoiceContext ctx, Creature target, DamageResult result, ValueProp props,

@@ -1,3 +1,4 @@
+using Baselib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
@@ -12,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class VoidArmor : CollectorCardModel
 {
-    public VoidArmor() : base(1, CardType.Skill, CardRarity.Uncommon, CustomTarget.Everyone)
+    public VoidArmor() : base(1, CardType.Skill, CardRarity.Uncommon, CustomTargetType.Everyone)
     {
         WithBlock(10, 3);
         WithPower<BlurPower>(1);
