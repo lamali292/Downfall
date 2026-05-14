@@ -14,6 +14,7 @@ loc_editor_settings.json
 .gitattributes
 *.TMP
 *.dll
+*.kra
 *.import
 !Downfall/character/visuals/*.import
 local.props
