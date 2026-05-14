@@ -1,64 +1,65 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Godot;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Extensions;
 
-//Mostly utilities to get asset paths.
 public static class StringExtensions
 {
-    public static string DownfallPowerImagePath(this string path)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "atlases", "power_atlas.sprites", path);
-    }
+    private static string ModId<T>() where T : DownfallCharacterModel =>
+        ModelDb.Character<T>().ModId;
 
-    public static string DownfallBigPowerImagePath(this string path)
-    {
-        return Path.Join(DownfallMainFile.ModId, "images", "powers", path);
-    }
+    private static string ImgPath(string modId, string subfolder, string file) =>
+        Path.Join(modId, "images", subfolder, file);
 
-    public static string CardImageAtlasPath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var character = ModelDb.Character<T>();
-        var modId = character.ModId;
-        return Path.Join(modId, "images", "atlases", "card_atlas.sprites", path);
-    }
+    private static string WithFallback(string path, string fallback) =>
+        ResourceLoader.Exists(path) ? path : fallback;
+
+    private static string FallbackImg(string subfolder, string file) =>
+        ImgPath(DownfallMainFile.ModId, subfolder, file);
 
 
-    public static string RestSitePath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "ui", "restsite", path);
-    }
+    public static string CardImageAtlasPath<T>(this string path) where T : DownfallCharacterModel =>
+        WithFallback(
+            ImgPath(ModId<T>(), "atlases/card_atlas.sprites", path),
+            FallbackImg("atlases/card_atlas.sprites", "todo.tres"));
 
+    public static string RestSitePath<T>(this string path) where T : DownfallCharacterModel =>
+        ImgPath(ModId<T>(), "ui/restsite", path);
 
-    public static string EnchantmentPath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "enchantments", path);
-    }
+    public static string EnchantmentPath<T>(this string path) where T : DownfallCharacterModel =>
+        ImgPath(ModId<T>(), "enchantments", path);
 
+    public static string DownfallPowerImagePath(this string path) =>
+        WithFallback(
+            FallbackImg("atlases/power_atlas.sprites", path),
+            FallbackImg("atlases/power_atlas.sprites", "todo_power.tres"));
 
-    public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "atlases", "power_atlas.sprites", path);
-    }
+    public static string DownfallBigPowerImagePath(this string path) =>
+        WithFallback(
+            FallbackImg("powers", path),
+            FallbackImg("powers", "todo_power.png"));
 
-    public static string BigPowerImagePath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "powers", path);
-    }
+    public static string PowerImagePath<T>(this string path) where T : DownfallCharacterModel =>
+        WithFallback(
+            ImgPath(ModId<T>(), "atlases/power_atlas.sprites", path),
+            FallbackImg("atlases/power_atlas.sprites", "todo_power.tres"));
 
-    public static string BigRelicImagePath<T>(this string path) where T : DownfallCharacterModel
-    {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "relics", path);
-    }
+    public static string BigPowerImagePath<T>(this string path) where T : DownfallCharacterModel =>
+        WithFallback(
+            ImgPath(ModId<T>(), "powers", path),
+            FallbackImg("powers", "todo_power.png"));
+
+    public static string BigRelicImagePath<T>(this string path) where T : DownfallCharacterModel =>
+        WithFallback(
+            ImgPath(ModId<T>(), "relics", path),
+            FallbackImg("relics", "todo.png"));
 
     public static string TresRelicImagePath<T>(this string path) where T : DownfallCharacterModel
     {
-        var modId = ModelDb.Character<T>().ModId;
-        return Path.Join(modId, "images", "atlases", "relic_atlas.sprites", path);
+        var fallbackFile = path.Contains("outline") ? "todo_outline.tres" : "todo.tres";
+        return WithFallback(
+            ImgPath(ModId<T>(), "atlases/relic_atlas.sprites", path),
+            FallbackImg("atlases/relic_atlas.sprites", fallbackFile));
     }
 }

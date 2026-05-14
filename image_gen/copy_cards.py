@@ -86,8 +86,11 @@ def pack(group_id, entries, out_dir, res_base, atlas_base, sprites_folder, card_
 
     atlas_res_paths = []
     for idx, canvas in enumerate(canvases):
-        used_h = max((slot_to_pos(slot, w, h)[2] + h for stem, slot in slot_map.items() if slot_to_pos(slot, w, h)[0] == idx), default=h)
-        cropped = canvas.crop((0, 0, MAX_ATLAS, used_h))
+        slots_on_atlas = [(slot_to_pos(slot, w, h)[1], slot_to_pos(slot, w, h)[2])
+                  for stem, slot in slot_map.items() if slot_to_pos(slot, w, h)[0] == idx]
+        used_w = max((x + w for x, _ in slots_on_atlas), default=w)
+        used_h = max((y + h for _, y in slots_on_atlas), default=h)
+        cropped = canvas.crop((0, 0, used_w, used_h))
         fname = f"{atlas_base}_{idx}.png"
         atlas_res_paths.append(f"{res_base}/{fname}")
         if save_image_if_changed(cropped, os.path.join(out_dir, fname)):
