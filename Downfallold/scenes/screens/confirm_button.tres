@@ -1,8 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://yefjak"]
-
-[ext_resource type="Texture2D" uid="uid://bh56iuq6bp2mc" path="res://Downfall/scenes/screens/ui_atlas_1.png" id="1"]
-
-[resource]
-atlas = ExtResource("1")
-region = Rect2(371, 693, 257, 132)
-margin = Rect2(43, 25, 43, 70)

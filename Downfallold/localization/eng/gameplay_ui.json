@@ -1,7 +1,0 @@
-﻿{
-  "COMBAT_REWARD_ESSENCE": "Gain {essence} Essence.",
-  "COLLECTIBLE_REWARD": "Spend {essence} Essence to obtain {Card}.",
-  "COLLECTIBLE_REWARD_CANT_AFFORD": "Need {essence} Essence to obtain {Card}.",
-  "DOWNFALL-GEM": "Gem",
-  "COMBAT_REWARD_ADD_GEMS": "Add {Amount:plural:a Gem|{Amount} Gems} to your deck."
-}
