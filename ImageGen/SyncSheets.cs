@@ -29,12 +29,9 @@ public class SyncSheets
     private readonly string _cacheFile;
     private readonly string _imagesDir;
     private readonly string _parent;
-    private readonly string _placeholdersFile;
 
     private readonly string _scriptDir;
     private readonly string _serviceAccount;
-
-    private Dictionary<string, string> _placeholders = new();
 
     public SyncSheets(string scriptDir)
     {
@@ -42,33 +39,28 @@ public class SyncSheets
         _imagesDir = Path.Join(scriptDir, "images");
         _parent = Path.GetFullPath(Path.Join(scriptDir, ".."));
         _serviceAccount = Path.Join(scriptDir, "service_account.json");
-        _placeholdersFile = Path.Join(scriptDir, ".placeholders.json");
         _cacheFile = Path.Join(scriptDir, ".sheets_cache.json");
     }
 
     public void Run()
     {
-        Console.WriteLine("[1/7] Loading placeholder cache...");
-        _placeholders = LoadDict(_placeholdersFile);
-        Console.WriteLine($"  {_placeholders.Count} entries loaded.");
-
-        Console.WriteLine("\n[2/7] Discovering characters...");
+        Console.WriteLine("[1/7] Discovering characters...");
         var characters = DiscoverCharacters();
         Console.WriteLine($"  Found {characters.Count}: {string.Join(", ", characters.Keys.Order())}");
 
-        Console.WriteLine("\n[3/7] Indexing card images...");
-        var cardImgs = IndexImages(["cards", "cards_beta", "cards_missing"], false);
+        Console.WriteLine("\n[2/7] Indexing card images...");
+        var cardImgs = IndexImages(["cards", "cards_beta"], false);
 
-        Console.WriteLine("\n[4/7] Indexing power images...");
-        var powerImgs = IndexImages(["powers", "powers_beta", "powers_missing"], true);
+        Console.WriteLine("\n[3/7] Indexing power images...");
+        var powerImgs = IndexImages(["powers", "powers_beta"], true);
 
-        Console.WriteLine("\n[5/7] Collecting card code...");
+        Console.WriteLine("\n[4/7] Collecting card code...");
         var cardsCode = CollectCode(characters, "Cards", false);
 
-        Console.WriteLine("\n[6/7] Collecting power code...");
+        Console.WriteLine("\n[5/7] Collecting power code...");
         var powersCode = CollectCode(characters, "Powers", true);
 
-        Console.WriteLine("\n[7/7] Loading localization...");
+        Console.WriteLine("\n[6/7] Loading localization...");
         var cardLoc = LoadLoc(characters, "cards.json");
         var powerLoc = LoadLoc(characters, "powers.json");
 
@@ -76,7 +68,7 @@ public class SyncSheets
         var cardRows = BuildRows(cardsCode, cardImgs, cardLoc, false);
         var powerRows = BuildRows(powersCode, powerImgs, powerLoc, true);
 
-        Console.WriteLine("\nConnecting to Google Sheets...");
+        Console.WriteLine("\n[7/7] Connecting to Google Sheets...");
         if (!File.Exists(_serviceAccount))
         {
             Console.WriteLine($"  [skip] service_account.json not found at {_serviceAccount}");
@@ -136,9 +128,7 @@ public class SyncSheets
                 var stem = Path.GetFileNameWithoutExtension(abs);
                 var norm = Normalize(stem, isPower);
 
-                var status = "final";
-                if (subdirName.Contains("beta")) status = "placeholder";
-                if (subdirName.Contains("missing") || IsPlaceholder(relFromImagesDir, abs)) status = "missing";
+                var status = subdirName.Contains("beta") ? "placeholder" : "final";
 
                 if (index.TryGetValue(norm, out var existing))
                 {
@@ -388,22 +378,9 @@ public class SyncSheets
         return s.Replace('\n', ' ').Trim();
     }
 
-    private static string FileHash(string path)
-    {
-        if (!File.Exists(path)) return "";
-        using var md5 = MD5.Create();
-        using var fs = File.OpenRead(path);
-        return Convert.ToHexString(md5.ComputeHash(fs)).ToLower();
-    }
-
     private static string RowsHash(List<List<string>> rows)
     {
         return Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(rows)))).ToLower();
-    }
-
-    private bool IsPlaceholder(string relPath, string absPath)
-    {
-        return _placeholders.TryGetValue(relPath, out var h) && h == FileHash(absPath);
     }
 
     private static Dictionary<string, string> LoadDict(string path)

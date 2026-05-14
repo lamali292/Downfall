@@ -41,10 +41,15 @@ public class PackPowers(string scriptDir, bool force)
 
         // Collect input files — subdirs in priority order, first-seen filename wins
         var seen = new HashSet<string>();
-        var inputFiles = (from sub in InputSubdirs 
-            select Path.Join(ImagesDir, sub, charId) into d 
-            where Directory.Exists(d) from file in Directory.EnumerateFiles(d, "*.png")
-            .Order() where seen.Add(Path.GetFileName(file)) select file).ToList();
+        var inputFiles = new List<string>();
+        foreach (var sub in InputSubdirs)
+        {
+            var d = Path.Join(ImagesDir, sub, charId);
+            if (!Directory.Exists(d)) continue;
+            foreach (var file in Directory.EnumerateFiles(d, "*.png").Order())
+                if (seen.Add(Path.GetFileName(file)))
+                    inputFiles.Add(file);
+        }
 
         if (inputFiles.Count == 0)
         {
