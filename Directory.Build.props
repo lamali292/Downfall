@@ -125,7 +125,7 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
-        <SymlinkFolders Include="images;fonts;localization;materials;models;scenes;animations;banks;debug_audio;shaders;themes;addons"/>
+        <SymlinkFolders Include="src;images;fonts;localization;materials;models;scenes;animations;banks;debug_audio;shaders;themes;addons"/>
     </ItemGroup>
 
     <Target Name="CreateAssetSymlinks" BeforeTargets="Build"
