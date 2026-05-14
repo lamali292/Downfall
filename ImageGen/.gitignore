@@ -1,0 +1,7 @@
+/obj/
+/bin/
+/.cards_cache.json
+/.powers_cache.json
+/.relics_cache.json
+/.sheets_cache.json
+/service_account.json
