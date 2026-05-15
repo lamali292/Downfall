@@ -98,7 +98,8 @@ public static class SneckoPoolSelection
             var card2 = CharacterCard.Create(right);
             //CardSelectCmd.FromChooseACardScreen()
             
-            NChooseACardSelectionScreen screen = NChooseACardSelectionScreen.ShowScreen([card1, card2], false);
+            var screen = NChooseACardSelectionScreen.ShowScreen([card1, card2], false);
+            if (screen == null) return 0;
             var result = (await screen.CardsSelected()).ToList();
             return (result.Contains(card1)) ? 0 : 1;
             //return await selectScene.SelectOne(left, right);

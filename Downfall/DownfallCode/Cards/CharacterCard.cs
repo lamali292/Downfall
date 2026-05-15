@@ -3,11 +3,13 @@ using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Pooling;
 using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.DownfallCode.Cards;
@@ -37,49 +39,6 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
     }
     
     protected override bool IsPlayable => false;
-    
-    public ImageTexture? GetCompositePortrait()
-    {
-        if (RandomCommonCard == null ||  RandomRareCard == null || RandomUncommonCard == null) return null;
-        List<CardModel> cards = [RandomCommonCard, RandomUncommonCard, RandomRareCard];
-        var images = cards
-            .Select(c => {
-                try
-                {
-                    var img = c.Portrait.GetImage();
-                    if (img.IsCompressed()) img.Decompress();
-                    if (img.GetFormat() != Image.Format.Rgba8) img.Convert(Image.Format.Rgba8);
-                    return img;
-                }
-                catch { return null; }
-            })
-            .Where(img => img != null)
-            .Cast<Image>()
-            .ToList();
-        if (images.Count == 0) return null;
-
-        var w = images[0].GetWidth();
-        var h = images[0].GetHeight();
-        var sliceW = w / images.Count;
-
-        // Use Rgba8 as the standard
-        var result = Image.CreateEmpty(w, h, false, Image.Format.Rgba8);
-
-        for (var i = 0; i < images.Count; i++)
-        {
-            var src = images[i];
-            if (src.IsCompressed()) src.Decompress();
-            if (src.GetFormat() != Image.Format.Rgba8) src.Convert(Image.Format.Rgba8);
-            if (src.GetWidth() != w || src.GetHeight() != h)
-                src.Resize(w, h);
-
-            var width = i == images.Count - 1 ? w - i * sliceW : sliceW;
-            result.BlitRect(src, new Rect2I(i * sliceW, 0, width, h), new Vector2I(i * sliceW, 0));
-        }
-        
-        return ImageTexture.CreateFromImage(result);
-    }
-    
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Title), MethodType.Getter)]
@@ -110,20 +69,47 @@ public static class CardModelDescriptionPatch
 }
 
 
+[HarmonyPatch(typeof(NCard), nameof(NCard.Create))]
+public static class NCardCreatePatch
+{
+    private static bool Prefix(CardModel card, ModelVisibility visibility, ref NCard? __result)
+    {
+        if (card is not CharacterCard) return true;
+        var scene = ResourceLoader.Load<PackedScene>(NCard._scenePath);
+        var ncard = scene.Instantiate<NCard>();
+        ncard.Model = card;
+        ncard.Visibility = visibility;
+        __result = ncard;
+        return false; 
+    }
+}
+
+[HarmonyPatch(typeof(NodePool), nameof(NodePool.Free), typeof(IPoolable))]
+public static class NodePoolFreePatch
+{
+    private static bool Prefix(IPoolable poolable)
+    {
+        if (poolable is not NCard { Model: CharacterCard } ncard) return true;
+        ncard.QueueFree(); 
+        return false;
+    }
+}
+
 
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
 {
     private static void Postfix(NCard __instance)
     {
-        if (__instance.Model is not CharacterCard fc) return;
-
         var portrait = __instance.GetNode<Control>("%Portrait");
         if (portrait == null) return;
-
+        
         foreach (var child in portrait.GetChildren().Where(c => c.Name.ToString().StartsWith("_composite_")))
             child.QueueFree();
 
+        if (__instance.Model is not CharacterCard fc) return;
+
+ 
         List<CardModel?> cards = [fc.RandomCommonCard, fc.RandomUncommonCard, fc.RandomRareCard];
         var textures = cards.Select(c => c?.Portrait).Where(t => t != null).Cast<Texture2D>().ToList();
         if (textures.Count == 0) return;
