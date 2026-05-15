@@ -199,7 +199,7 @@
   "AWAKENED-THAUMATURGY.title": "Thaumaturgy",
   "AWAKENED-THE_ENCYCLOPEDIA.description": "Choose 2 of {Cards:diff()} random cards to add into your Hand.\nThey cost 2 less.",
   "AWAKENED-THE_ENCYCLOPEDIA.title": "The Encyclopedia",
-  "AWAKENED-THE_TOWER.description": "Deal {CalculationBase:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff()} damage for each card created this combat.",
+  "AWAKENED-THE_TOWER.description": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff()} additional damage for each card created this combat.",
   "AWAKENED-THE_TOWER.title": "The Tower",
   "AWAKENED-THUNDERBOLT.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-THUNDERBOLT.title": "Thunderbolt",

@@ -1,10 +1,10 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -18,10 +18,11 @@ public class ComboString : SneckoCardModel
         {
             Rarity = CardRarity.Uncommon
         });
-        WithCalculatedDamage(0, 7, CalcDamage, ValueProp.Move, 0, 2);
+        WithDamage(7, 2);
+        WithCalculatedVar("Repeat", 0, CalcDamage);
     }
 
-    private static decimal CalcDamage(CardModel card, Creature? creature)
+    private static decimal CalcDamage(CardModel card, Creature? _)
     {
         return CombatManager.Instance.History
             .CardPlaysFinished.Count(e =>
@@ -31,6 +32,7 @@ public class ComboString : SneckoCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var repeat = (int)DynamicVars["Repeat"].Calculate(null);
+        await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
 }

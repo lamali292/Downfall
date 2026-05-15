@@ -6,7 +6,7 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Cards.Token;
 
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(SneckoCardPool))]
 public class SoulRoll : SneckoCardModel
 {
     public SoulRoll() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)

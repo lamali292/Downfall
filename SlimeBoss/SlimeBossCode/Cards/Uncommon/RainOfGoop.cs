@@ -1,19 +1,26 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class RainOfGoop : SlimeBossCardModel
 {
-    public RainOfGoop() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public RainOfGoop() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
+        WithPower<GoopPower>(4);
+        WithRepeat(3, 1);
     }
 
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var repeat = DynamicVars.Repeat.BaseValue;
+        for (var i = 0; i < repeat; i++)
+            await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
     }
 }

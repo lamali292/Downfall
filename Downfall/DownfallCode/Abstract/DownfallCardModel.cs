@@ -47,6 +47,13 @@ public abstract class DownfallCardModel(
         return this;
     }
     
+        
+    protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
+    {
+        WithVar(new DamageVar("SelfDamage", baseVal, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
+        return this;
+    }
+    
     protected ConstructedCardModel WithEnemyDamage(int baseValue, int upgrade = 0)
     {
         WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));

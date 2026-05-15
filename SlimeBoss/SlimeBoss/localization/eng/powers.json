@@ -1,0 +1,8 @@
+{
+  "SLIMEBOSS-GOOP_POWER.title": "Goop",
+  "SLIMEBOSS-GOOP_POWER.description": "Your next attack deals additional damage and triggers [gold]Consume[/gold] effects.",
+  "SLIMEBOSS-GOOP_POWER.smartDescription": "{IsApplierYou:Your next attack|The next attack of [orange]{ApplierName}[/orange]} deals [blue]{Amount}[/blue] additional damage and triggers [gold]Consume[/gold] effects.",
+  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "Doused in Slime",
+  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "The next time you attack this enemy, your [gold]Goop[/gold] wil not be removed.",
+  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} {IsApplierYou:you attack|[orange]{ApplierName}[/orange] attacks} this enemy, {IsApplierYou:your|their} [gold]Goop[/gold] wil not be removed."
+}

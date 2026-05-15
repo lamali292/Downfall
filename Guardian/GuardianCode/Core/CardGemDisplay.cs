@@ -23,12 +23,7 @@ public partial class CardGemDisplay : Control
     }
 
 
-    private static CardGemDisplay UpdateVisuals(NCard card)
-    {
-        return UpdateVisuals(card, null);
-    }
-
-    private static CardGemDisplay UpdateVisuals(NCard card, CardGemDisplay? display)
+    private static CardGemDisplay UpdateVisuals(NCard card, CardGemDisplay? display = null)
     {
         if (card.Model is not GuardianCardModel guardianCard
             || guardianCard.GemSlots == 0)

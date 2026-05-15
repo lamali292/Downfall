@@ -1,7 +1,10 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Basic;
 
@@ -10,10 +13,14 @@ public class Tackle : SlimeBossCardModel
 {
     public Tackle() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithDamage(13, 4);
+        WithSelfDamage(3);
+        WithTags(SlimeBossTag.Tackle);
     }
 
-    // TODO: Implement
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
+        await MyCommonActions.SelfDamage(ctx, this);
     }
 }

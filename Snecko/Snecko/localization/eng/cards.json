@@ -15,7 +15,7 @@
   "SNECKO-CHEAP_STOCK.title": "Cheap Stock",
   "SNECKO-COBRA_COIL.description": "Deal {Damage:diff()} damage.\nEnemy takes {SneckoConstrictPower:diff()} damage at the end of each of its turns.{InCombat:cond:|\n[gold]Gift[/gold]: Rare Attack.}",
   "SNECKO-COBRA_COIL.title": "Cobra Coil",
-  "SNECKO-COMBO_STRING.description": "Deal {ExtraDamage:diff()} damage for each [gold]Offclass[/gold] card played this turn.{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon.}",
+  "SNECKO-COMBO_STRING.description": "Deal {Damage:diff()} damage for each [gold]Offclass[/gold] card played this turn.{InCombat:cond:\n(Deal {Damage:diff()} damage{Repeat:cond:=1?| {Repeat} times})|\n[gold]Gift[/gold]: Uncommon.}",
   "SNECKO-COMBO_STRING.title": "Combo String",
   "SNECKO-COWER.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Hole Up[/gold]{IfUpgraded:show:[gold]+[/gold]|} to your Hand.",
   "SNECKO-COWER.title": "Cower",

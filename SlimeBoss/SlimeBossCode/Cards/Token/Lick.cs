@@ -1,0 +1,23 @@
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using SlimeBoss.SlimeBossCode.Powers;
+
+namespace SlimeBoss.SlimeBossCode.Cards.Token;
+
+[Pool(typeof(TokenCardPool))]
+public class Lick : SlimeBossCardModel
+{
+    public Lick() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
+    {
+        WithPower<GoopPower>(4, 2);
+        WithKeywords(CardKeyword.Exhaust);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
+    }
+}

@@ -1,6 +1,11 @@
 ﻿using BaseLib.Patches.Features;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -23,14 +28,16 @@ public static class MyCommonActions
     /// <returns>
     /// A list of all applied power instances, or an empty list if no valid targets were found.
     /// </returns>
-    public static async Task<IReadOnlyList<T>> Apply<T>(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay) where T : PowerModel
+    public static async Task<IReadOnlyList<T>> Apply<T>(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay)
+        where T : PowerModel
     {
-        
+
         if (CustomTargetType.IsCustomSingleTargetType(card.TargetType))
         {
             if (cardPlay is null) return [];
-            return  await ApplyToTargetedCreature<T>(ctx, card, cardPlay) is { } a ? [a] : [];
+            return await ApplyToTargetedCreature<T>(ctx, card, cardPlay) is { } a ? [a] : [];
         }
+
         if (CustomTargetType.IsCustomMultiTargetType(card.TargetType) && card.CombatState != null)
             return await ApplyToFilteredCreatures<T>(ctx, card);
         switch (card)
@@ -43,9 +50,10 @@ public static class MyCommonActions
             case { TargetType: TargetType.RandomEnemy, CombatState: not null }:
                 return await ApplyToRandomEnemy<T>(ctx, card) is { } b ? [b] : [];
         }
+
         return [];
     }
-    
+
     /// <summary>
     /// Applies a power of type <typeparamref name="T"/> to all currently hittable enemies.
     /// </summary>
@@ -55,7 +63,8 @@ public static class MyCommonActions
     /// <returns>
     /// A list of all applied power instances, or an empty list if there is no active combat state.
     /// </returns>
-    public static async Task<IReadOnlyList<T>> ApplyToAllEnemies<T>(PlayerChoiceContext ctx, CardModel card) where T : PowerModel
+    public static async Task<IReadOnlyList<T>> ApplyToAllEnemies<T>(PlayerChoiceContext ctx, CardModel card)
+        where T : PowerModel
     {
         if (card.CombatState == null) return [];
         return await CommonActions.Apply<T>(ctx, card.CombatState.HittableEnemies, card);
@@ -75,11 +84,12 @@ public static class MyCommonActions
         var enemy = card.CombatState?.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets)
             .FirstOrDefault();
         if (enemy == null) return null;
-        return await CommonActions.Apply<T>(ctx,enemy, card);
+        return await CommonActions.Apply<T>(ctx, enemy, card);
     }
 
-    
-    private static async Task<IReadOnlyList<T>> ApplyToFilteredCreatures<T>(PlayerChoiceContext ctx, CardModel card) where T : PowerModel
+
+    private static async Task<IReadOnlyList<T>> ApplyToFilteredCreatures<T>(PlayerChoiceContext ctx, CardModel card)
+        where T : PowerModel
     {
         if (card.CombatState == null) return [];
         var targets = card.CombatState.HittableEnemies
@@ -88,7 +98,7 @@ public static class MyCommonActions
             .ToList();
         return await CommonActions.Apply<T>(ctx, targets, card);
     }
-    
+
 
     private static async Task<T?> ApplyToTargetedCreature<T>(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
         where T : PowerModel
@@ -101,4 +111,12 @@ public static class MyCommonActions
     {
         await CommonActions.CardBlock(card, card.DynamicVars.CalculatedBlock, cardPlay);
     }
+
+    public static Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, CardModel card)
+    {
+        return CreatureCmd.Damage(ctx, card.Owner.Creature, card.DynamicVars.SelfDamage(), card);
+    }
+    
+   
+
 }

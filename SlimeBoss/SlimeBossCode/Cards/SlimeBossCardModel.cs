@@ -1,6 +1,10 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace SlimeBoss.SlimeBossCode.Cards;
 
@@ -15,6 +19,7 @@ public abstract class SlimeBossCardModel(
     {
         await Task.CompletedTask;
     }
+
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

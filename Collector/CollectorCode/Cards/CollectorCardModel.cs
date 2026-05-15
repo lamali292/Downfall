@@ -43,7 +43,7 @@ public abstract class CollectorCardModel(
         await PlayEffect(ctx, cardPlay);
     }
 
-    protected bool PyreCondition()
+    private bool PyreCondition()
     {
         return PileType.Hand.GetPile(Owner).Cards.Any(e => e != this);
     }

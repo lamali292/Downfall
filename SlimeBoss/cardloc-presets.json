@@ -5,15 +5,7 @@
     {
       "id": "card",
       "markers": [
-        "AutomatonCardModel",
-        "AwakenedCardModel",
-        "ChampCardModel",
-        "CollectorCardModel",
-        "GuardianCardModel",
-        "GremlinsCardModel",
-        "HexaghostCardModel",
-        "SlimeBossCardModel",
-        "SneckoCardModel"
+        "SlimeBossCardModel"
       ],
       "fields": [
         {
@@ -36,14 +28,9 @@
     {
       "id": "power",
       "markers": [
-        "AutomatonPowerModel",
-        "AwakenedPowerModel",
-        "GuardianPowerModel",
         "DownfallPowerModel",
         "TemporaryPower",
-        "ChampPowerModel",
-        "CollectorPowerModel",
-        "HexaghostPowerModel"
+        "SlimeBossPowerModel"
       ],
       "fields": [
         {
@@ -190,20 +177,6 @@
       ]
     }
   ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
-    },
-    {
-      "tag": "blue"
-    },
-    {
-      "hex": "#E087A4",
-      "label": "#E087A4"
-    },
-    {
-      "hex": "#00B888",
-      "label": "#00B888"
-    }
-  ]
+  "pinnedColors": [],
+  "customTags": []
 }

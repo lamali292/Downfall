@@ -38,7 +38,7 @@ public abstract class Collectible<T>(
     public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Core.Collector>();
 
 
-    public Control? CreateAdditionalOverlay()
+    public Control CreateAdditionalOverlay()
     {
         var monster = GetMonsterModel().ToMutable();
         var visuals = monster.CreateVisuals();

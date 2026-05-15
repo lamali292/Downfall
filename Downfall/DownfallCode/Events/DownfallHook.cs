@@ -66,6 +66,39 @@ public static class DownfallHook
         return combatState.IterateHookListeners().OfType<T>().All(predicate);
     }
 
+    public static TW Modify<T, TW>(
+        ICombatState combatState,
+        TW originalAmount,
+        Func<T, TW, TW> amountModifier,
+        out IEnumerable<T> modifiers)
+        where T : class
+        where TW : IEquatable<TW>
+    {
+        var amount = originalAmount;
+        var abstractModelList = new List<T>();
+        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        {
+            var previous = amount;
+            amount = amountModifier.Invoke(model, amount);
+            if (!previous.Equals(amount))
+                abstractModelList.Add(model);
+        }
+        modifiers = abstractModelList;
+        return amount;
+    }
+
+    public static async Task AfterModifying<T>(ICombatState cs, IEnumerable<T> modifiers, Func<T, Task> action)
+        where T : class
+    {
+        var modifierSet = new HashSet<T>(modifiers);
+        foreach (var iterateHookListener in cs.IterateHookListeners().OfType<T>())
+        {
+            if (!modifierSet.Contains(iterateHookListener)) continue;
+            await action(iterateHookListener);
+            if (iterateHookListener is AbstractModel model)
+                model.InvokeExecutionFinished();
+        }
+    }
     
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)

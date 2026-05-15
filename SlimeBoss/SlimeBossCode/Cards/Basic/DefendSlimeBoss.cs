@@ -11,10 +11,11 @@ public class DefendSlimeBoss : SlimeBossCardModel
     public DefendSlimeBoss() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithTags(CardTag.Defend);
+        WithBlock(5, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }

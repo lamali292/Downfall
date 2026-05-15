@@ -21,7 +21,7 @@ public class BookOfSecrets : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        // TODO - i only create multiplayer desyncs here.
+        // TODO - i only create multiplayer desyncs here. need to look into this again. is easy but too lazy right now
         /*if (CombatState == null) return;
         var spell = AwakenedCmd.GetSpellbook(Owner);
         var nextSpell = spell?.NextSpell;
