@@ -28,8 +28,8 @@ public class PackRelics(string scriptDir, bool force)
     protected override JsonObject ProcessCharacter(string charId, string charProj, JsonObject charCache)
     {
         var inputDir = Path.Join(ImagesDir, "relics", charId);
-        var outAtlases = Path.Join(Parent, charProj, charProj, "images", "atlases");
-        var outRelics = Path.Join(Parent, charProj, charProj, "images", "relics");
+        var outAtlases = Path.Join(Parent, charProj, "images", "atlases");
+        var outRelics = Path.Join(Parent, charProj, "images", "relics");
         var outTres = Path.Join(outAtlases, "relic_atlas.sprites");
         var resBase = $"res://{charProj}/images/atlases";
         var atlasRes = $"{resBase}/relic_atlas.png";

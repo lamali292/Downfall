@@ -1,0 +1,23 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
+        <Compile Remove="SlimeBoss/**"/>
+        <EmbeddedResource Remove="SlimeBoss/**"/>
+        <None Include="SlimeBoss.json"/>
+        <None Include="SlimeBoss/**"/>
+        <None Include="SlimeBossCode/**"/>
+        <Content Include="cardloc-presets.json"/>
+        <Compile Include="SlimeBossCode/**/*.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+</Project>

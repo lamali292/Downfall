@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexaghost", "Hexaghost\Hexaghost.csproj", "{3E04C00D-BCCC-4657-A995-B8B616D4B7D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexaghost", "Hexaghost.csproj", "{3E04C00D-BCCC-4657-A995-B8B616D4B7D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collector", "Collector\Collector.csproj", "{15170DF4-A167-4CE4-BF9A-2D0ABBBCE088}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collector", "Collector.csproj", "{15170DF4-A167-4CE4-BF9A-2D0ABBBCE088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian", "Guardian\Guardian.csproj", "{D2CA7C68-A71F-4158-9E1A-B3841C86802A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian", "Guardian.csproj", "{D2CA7C68-A71F-4158-9E1A-B3841C86802A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton", "Automaton\Automaton.csproj", "{EDFA3DCE-A1A8-4C55-9DC2-18FFC6A550F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton", "Automaton.csproj", "{EDFA3DCE-A1A8-4C55-9DC2-18FFC6A550F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awakened", "Awakened\Awakened.csproj", "{256949FE-8441-4B60-9694-B5F700150CC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awakened", "Awakened.csproj", "{256949FE-8441-4B60-9694-B5F700150CC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snecko", "Snecko\Snecko.csproj", "{BFFF0C15-ADE9-4B04-AB10-9D1499F3869F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snecko", "Snecko.csproj", "{BFFF0C15-ADE9-4B04-AB10-9D1499F3869F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Champ", "Champ\Champ.csproj", "{3ACDC53B-4459-41E4-9C34-9605071B3D79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Champ", "Champ.csproj", "{3ACDC53B-4459-41E4-9C34-9605071B3D79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeBoss", "SlimeBoss\SlimeBoss.csproj", "{170B8DB9-5622-4146-8DA9-E5377FD2AC8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeBoss", "SlimeBoss.csproj", "{170B8DB9-5622-4146-8DA9-E5377FD2AC8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gremlins", "Gremlins\Gremlins.csproj", "{7F31A704-58B4-4A70-A3F9-4AB5A3832892}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gremlins", "Gremlins.csproj", "{7F31A704-58B4-4A70-A3F9-4AB5A3832892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downfall", "Downfall\Downfall.csproj", "{034500D8-B226-4D20-B63E-E66EEAAF8CB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downfall", "Downfall.csproj", "{034500D8-B226-4D20-B63E-E66EEAAF8CB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishAll", "PublishAll\PublishAll.csproj", "{F83B14DD-E791-479E-A0C6-41CF9381594D}"
 EndProject

@@ -28,8 +28,8 @@ public class PackPowers(string scriptDir, bool force)
 
     protected override JsonObject ProcessCharacter(string charId, string charProj, JsonObject charCache)
     {
-        var outAtlases = Path.Join(Parent, charProj, charProj, "images", "atlases");
-        var outPowers = Path.Join(Parent, charProj, charProj, "images", "powers");
+        var outAtlases = Path.Join(Parent, charProj, "images", "atlases");
+        var outPowers = Path.Join(Parent, charProj, "images", "powers");
         var outTres = Path.Join(outAtlases, "power_atlas.sprites");
         var outTresSprite = Path.Join(outAtlases, "power_sprite_atlas.sprites");
         var resBase = $"res://{charProj}/images/atlases";

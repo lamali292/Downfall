@@ -1,0 +1,26 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Downfall/localization/**/*.json"/>
+        <Compile Remove="Downfall/**"/>
+        <Content Include="local.props" />
+        <Content Include="local.props.example" />
+        <EmbeddedResource Remove="Downfall/**"/>
+        <None Include="Downfall.json"/>
+        <None Include="Downfall/**"/>
+        <None Include="DownfallCode/**"/>
+        <Compile Include="DownfallCode/**/*.cs"/>
+        <Content Include="cardloc-presets.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="Directory.Build.props"/>
+        <None Include="Directory.Build.targets"/>
+    </ItemGroup>
+</Project>

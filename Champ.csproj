@@ -1,0 +1,23 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Champ/localization/**/*.json"/>
+        <Compile Remove="Champ/**"/>
+        <EmbeddedResource Remove="Champ/**"/>
+        <None Include="Champ.json"/>
+        <None Include="Champ/**"/>
+        <None Include="ChampCode/**"/>
+        <Content Include="cardloc-presets.json"/>
+        <Compile Include="ChampCode/**/*.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+</Project>

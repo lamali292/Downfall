@@ -22,7 +22,7 @@ public class PackCards(string scriptDir, bool force)
 
     protected override JsonObject ProcessCharacter(string charId, string charProj, JsonObject charCache)
     {
-        var outDir = Path.Join(Parent, charProj, charProj, "images", "atlases");
+        var outDir = Path.Join(Parent, charProj, "images", "atlases");
         var resBase = $"res://{charProj}/images/atlases";
         Directory.CreateDirectory(outDir);
 

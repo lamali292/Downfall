@@ -1,0 +1,23 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Awakened/localization/**/*.json"/>
+        <Compile Remove="Awakened/**"/>
+        <EmbeddedResource Remove="Awakened/**"/>
+        <None Include="Awakened.json"/>
+        <None Include="Awakened/**"/>
+        <None Include="AwakenedCode/**"/>
+        <Content Include="cardloc-presets.json"/>
+        <Compile Include="AwakenedCode/**/*.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+</Project>

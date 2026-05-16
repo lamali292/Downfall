@@ -5,17 +5,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../Snecko/Snecko.csproj"/>
-        <ProjectReference Include="../Automaton/Automaton.csproj"/>
-        <ProjectReference Include="../Champ/Champ.csproj"/>
-        <ProjectReference Include="../Collector/Collector.csproj"/>
-        <ProjectReference Include="../Awakened/Awakened.csproj"/>
-        <ProjectReference Include="../Gremlins/Gremlins.csproj"/>
-        <ProjectReference Include="../Hexaghost/Hexaghost.csproj"/>
-        <ProjectReference Include="../Guardian/Guardian.csproj"/>
-        <ProjectReference Include="../SlimeBoss/SlimeBoss.csproj"/>
+        <ProjectReference Include="../Snecko.csproj"/>
+        <ProjectReference Include="../Automaton.csproj"/>
+        <ProjectReference Include="../Champ.csproj"/>
+        <ProjectReference Include="../Collector.csproj"/>
+        <ProjectReference Include="../Awakened.csproj"/>
+        <ProjectReference Include="../Gremlins.csproj"/>
+        <ProjectReference Include="../Hexaghost.csproj"/>
+        <ProjectReference Include="../Guardian.csproj"/>
+        <ProjectReference Include="../SlimeBoss.csproj"/>
     </ItemGroup>
 
+
+  
+    
     <PropertyGroup>
         <NoWarn>$(NoWarn);STS002</NoWarn>
     </PropertyGroup>
