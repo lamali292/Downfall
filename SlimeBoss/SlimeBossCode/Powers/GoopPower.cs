@@ -53,8 +53,12 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         var internalData = GetInternalData<Data>();
-        if (command != internalData.CommandToModify)
+        if (command != internalData.CommandToModify || command.Results.SelectMany(a => a).All(e => e.Receiver != Owner))
+        {
+            internalData.CommandToModify = null;
             return;
+        }
+        
         var amount = Amount;
         var creature = Owner;
         var removeAmount = -internalData.AmountWhenAttackStarted;
@@ -80,4 +84,5 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
     {
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
+
 }

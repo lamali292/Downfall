@@ -8,7 +8,7 @@ namespace Champ.ChampCode.Cards.Common;
 [Pool(typeof(ChampCardPool))]
 public class RiposteStrike : ChampCardModel
 {
-    public RiposteStrike() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public RiposteStrike() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(0);
         WithKeywords(CardKeyword.Ethereal);

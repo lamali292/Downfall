@@ -3,8 +3,7 @@ using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
+using SlimeBoss.SlimeBossCode.DynamicVars;
 
 namespace SlimeBoss.SlimeBossCode.Cards;
 
@@ -24,5 +23,11 @@ public abstract class SlimeBossCardModel(
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
+    }
+    
+    protected ConstructedCardModel WithSlurp(decimal baseVal, decimal upgradedVal = 0)
+    {
+        WithVar(new SlurpVar(baseVal).WithUpgrade(upgradedVal));
+        return this;
     }
 }

@@ -7,4 +7,5 @@ public class SlimeBossTag
 {
     [CustomEnum] public static CardTag Lick;
     [CustomEnum] public static CardTag Tackle;
+ 
 }
