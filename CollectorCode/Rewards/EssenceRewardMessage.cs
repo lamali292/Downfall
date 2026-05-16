@@ -36,7 +36,7 @@ public class EssenceRewardMessage : ICustomMessage
     public void HandleMessage(ulong senderId)
     {
         if (WasSkipped) return;
-        var player = RunManager.Instance.State?.GetPlayer(senderId);
+        var player = RunManager.Instance.DebugOnlyGetState()?.GetPlayer(senderId);
         if (player == null) return;
         player.AddEssence(Amount);
         if (LocalContext.IsMe(player)) return;

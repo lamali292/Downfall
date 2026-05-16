@@ -28,7 +28,7 @@ public class UnusedBlockEntry : CombatHistoryEntry
     }
 }
 
-[HarmonyPatch(typeof(Creature), nameof(Creature.ClearBlock))]
+[HarmonyPatch(typeof(Creature), "ClearBlock")]
 internal static class ClearBlockPatch
 {
     [HarmonyPrefix]

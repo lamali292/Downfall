@@ -22,8 +22,4 @@
         <None Include="Directory.Build.props"/>
         <None Include="Directory.Build.targets"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
-    </ItemGroup>
 </Project>

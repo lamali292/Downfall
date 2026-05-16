@@ -66,6 +66,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
         var countLabel = GetNode<MegaLabel>("CountContainer/Count");
 
+        
         pile.CardAddFinished += () =>
         {
             if (!IsInstanceValid(countLabel)) return;

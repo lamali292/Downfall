@@ -109,7 +109,7 @@
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
+    <ItemGroup>
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
             <Private>false</Private>
@@ -117,7 +117,6 @@
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
             <Private>false</Private>
-            <Publicize>True</Publicize>
         </Reference>
         <Reference Include="SmartFormat">
             <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
@@ -133,13 +132,17 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
+    <ItemGroup>
+        <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
+    </ItemGroup>
+    
+    <ItemGroup>
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
     </ItemGroup>
+    
+    
 
- 
-
-    <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
+    <ItemGroup>
         <None Include=".gitignore"/>
         <None Include="project.godot"/>
     </ItemGroup>
