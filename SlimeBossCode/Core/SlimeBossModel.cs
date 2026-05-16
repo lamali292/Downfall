@@ -25,6 +25,7 @@ public class SlimeBossModel() : CustomSingletonModel(true, true)
     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
+        if (player.Character is not SlimeBoss) return;
         var slimeModel = AllCustomModifier.OfType<SlimeModel>().TakeRandom(1, combatState.RunState.Rng.Niche).FirstOrDefault();
         if (slimeModel == null) return;
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
