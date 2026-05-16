@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg7"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx6qg2"]
 
 [ext_resource type="Texture2D" uid="uid://dlj15a75ph7xc" path="res://Champ/images/character/transition.png" id="1_1gsyn"]
 

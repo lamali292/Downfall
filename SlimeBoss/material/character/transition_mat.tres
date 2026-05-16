@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg7"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg9"]
 
 [ext_resource type="Texture2D" uid="uid://jvldwl2cyrvu" path="res://images/ui/transitions/ironclad_transition.png" id="1_nofof"]
 

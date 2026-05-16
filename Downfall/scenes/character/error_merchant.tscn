@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1o0sdn255167"]
+[gd_scene load_steps=3 format=3 uid="uid://b1o0sdn255168"]
 
 [ext_resource type="Script" uid="uid://b2ww8leotjikm" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_8i1j1"]
 [ext_resource type="Texture2D" uid="uid://ujrmldqkucgg" path="res://images/monsters/error.png" id="2_widb6"]
