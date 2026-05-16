@@ -1,5 +1,5 @@
 {
-  "localizationBase": "Downfall/localization/eng",
+  "localizationBase": "../Downfall/localization/eng",
   "projectId": "Downfall",
   "presets": [
     {
@@ -96,12 +96,6 @@
       ]
     }
   ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
-    },
-    {
-      "tag": "blue"
-    }
-  ]
+  "pinnedColors": [],
+  "customTags": []
 }

@@ -1,5 +1,5 @@
 {
-  "localizationBase": "Collector/localization/eng",
+  "localizationBase": "../Collector/localization/eng",
   "projectId": "Collector",
   "presets": [
     {

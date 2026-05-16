@@ -1,5 +1,5 @@
 {
-  "localizationBase": "SlimeBoss/localization/eng",
+  "localizationBase": "../SlimeBoss/localization/eng",
   "projectId": "Slimeboss",
   "presets": [
     {

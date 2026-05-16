@@ -1,5 +1,5 @@
 {
-  "localizationBase": "Automaton/localization/eng",
+  "localizationBase": "../Automaton/localization/eng",
   "projectId": "Automaton",
   "presets": [
     {

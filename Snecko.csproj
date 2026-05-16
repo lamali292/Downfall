@@ -13,11 +13,14 @@
         <None Include="Snecko.json"/>
         <None Include="Snecko/**"/>
         <None Include="SneckoCode/**"/>
-        <Content Include="cardloc-presets.json"/>
         <Compile Include="SneckoCode/**/*.cs"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
     </ItemGroup>
 </Project>

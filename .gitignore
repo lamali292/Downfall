@@ -19,8 +19,6 @@ loc_editor_settings.json
 local.props
 bin/*
 !bin/windows/
-!bin/spine_godot_extension.gdextension
-!bin/spine_godot_extension.gdextension.uid
 bin/windows/*
 !bin/windows/libspine_godot.windows.editor.x86_64.dll
 !bin/windows/libspine_godot.windows.template_debug.x86_64.dll

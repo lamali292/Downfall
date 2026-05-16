@@ -1,5 +1,5 @@
 {
-  "localizationBase": "Awakened/localization/eng",
+  "localizationBase": "../Awakened/localization/eng",
   "projectId": "Awakened",
   "presets": [
     {

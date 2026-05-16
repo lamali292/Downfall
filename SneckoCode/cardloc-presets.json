@@ -1,5 +1,5 @@
 {
-  "localizationBase": "Snecko/localization/eng",
+  "localizationBase": "../Snecko/localization/eng",
   "projectId": "Snecko",
   "presets": [
     {
