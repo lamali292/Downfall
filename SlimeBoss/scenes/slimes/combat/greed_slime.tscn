@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxv46in2qdp2w"]
+
+[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_q4a16"]
+[ext_resource type="PackedScene" uid="uid://bcd2bvsm4t147" path="res://SlimeBoss/scenes/slimes/visuals/greed.tscn" id="2_q4a16"]
+
+[node name="GreedSlime" type="Node2D"]
+script = ExtResource("1_q4a16")
+
+[node name="Visuals" parent="." instance=ExtResource("2_q4a16")]
+unique_name_in_owner = true
+position = Vector2(2, -2)
+scale = Vector2(-1, 1)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -91.0
+offset_right = 52.163933
+offset_bottom = 3.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -46)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -31)

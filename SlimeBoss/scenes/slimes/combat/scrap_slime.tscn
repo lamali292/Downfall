@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cexu2fvgt2v8i"]
+
+[ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_sjy6b"]
+[ext_resource type="PackedScene" uid="uid://bvbnq88g6lgia" path="res://SlimeBoss/scenes/slimes/visuals/scrap.tscn" id="2_sjy6b"]
+[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="3_pkvbw"]
+
+[node name="ScrapSlime" type="Node2D"]
+script = ExtResource("1_sjy6b")
+
+[node name="Visuals" parent="." instance=ExtResource("2_sjy6b")]
+unique_name_in_owner = true
+position = Vector2(2, -20)
+scale = Vector2(-1, 1)
+script = ExtResource("3_pkvbw")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -91.0
+offset_right = 52.163933
+offset_bottom = 3.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -46)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -31)

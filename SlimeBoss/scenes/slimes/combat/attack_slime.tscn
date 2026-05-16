@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgwuggxbj13d5"]
+
+[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_nik5s"]
+[ext_resource type="PackedScene" uid="uid://rpyj70svwhgw" path="res://SlimeBoss/scenes/slimes/visuals/attack.tscn" id="2_yem24"]
+
+[node name="AttackSlime" type="Node2D"]
+script = ExtResource("1_nik5s")
+
+[node name="Visuals" parent="." instance=ExtResource("2_yem24")]
+unique_name_in_owner = true
+position = Vector2(1, -17)
+scale = Vector2(-1, 1)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -91.0
+offset_right = 52.163933
+offset_bottom = 3.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -46)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -31)

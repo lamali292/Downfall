@@ -13,7 +13,7 @@
   "HEXAGHOST-BRIGHT_RITUAL.title": "Bright Ritual",
   "HEXAGHOST-BROILING_FLAMES.title": "Broiling Flames",
   "HEXAGHOST-BROILING_FLAMES.description": "This turn, whenever another player deals attack damage to this enemy, it gains {BroilingFlamesPower:diff()} [gold]Soulburn[/gold].",
-  "HEXAGHOST-BURNING_QUESTION.description": "Choose one: \nGain {IntensityPower:diff()} [gold]Intensity[/gold].\nGain {MetallicizePower:diff()} [gold]Metallicize[/gold].\nGain {RoyaltiesPower:diff()} [gold]Gold[/gold] at the end of combat.\n",
+  "HEXAGHOST-BURNING_QUESTION.description": "Choose one: \nGain {IntensityPower:diff()} [gold]Intensity[/gold].\nGain {MetallicizePower:diff()} [gold]Metallicize[/gold].\nGain {RoyaltiesPower:diff()} [gold]Gold[/gold] at the end of combat.",
   "HEXAGHOST-BURNING_QUESTION.title": "Burning Question",
   "HEXAGHOST-BURNING_QUESTION_CHOICE1.description": "Gain {IntensityPower:diff()} [gold]Intensity[/gold].",
   "HEXAGHOST-BURNING_QUESTION_CHOICE1.title": "Burning Question",

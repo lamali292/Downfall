@@ -51,71 +51,15 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        return await Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
+        return await DownfallCmd.Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
     }
 
 
     public static Creature? Torchhead(Player summoner)
     {
-        return GainPet<TorchheadMonsterModel>(summoner);
+        return DownfallCmd.GainPet<TorchheadMonsterModel>(summoner);
     }
 
 
-    private static Creature? GainPet<T>(Player summoner) where T : MonsterModel
-    {
-        var combatState = summoner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
-        return combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
-    }
 
-    private static async Task<Creature> Summon<T>(
-        PlayerChoiceContext ctx,
-        Player summoner,
-        int hp,
-        AbstractModel? source) where T : MonsterModel
-    {
-        var combatState = summoner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
-        var existing = combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
-
-        var isReviving = existing is { IsAlive: false };
-
-        if (existing is { IsAlive: true })
-        {
-            await CreatureCmd.GainMaxHp(existing, hp);
-            return existing;
-        }
-
-        if (isReviving)
-        {
-            summoner.PlayerCombatState.AddPetInternal(existing!);
-        }
-        else
-        {
-            existing = await PlayerCmd.AddPet<T>(summoner);
-            var node = NCombatRoom.Instance?.GetCreatureNode(existing);
-            var playerNode = NCombatRoom.Instance?.GetCreatureNode(summoner.Creature);
-
-            if (node != null && source is CardModel && playerNode != null)
-            {
-                node.Position = playerNode.Position + new Vector2(250f, -75f);
-                node.Modulate = Colors.Transparent;
-                node.CreateTween()
-                    .TweenProperty(node, "modulate", Colors.White, 0.35)
-                    .SetDelay(0.1);
-            }
-
-            await PowerCmd.Apply<DieForYouPower>(ctx, existing, 1M, null, null);
-            node?.TrackBlockStatus(summoner.Creature);
-            node?.ToggleIsInteractable(true);
-        }
-
-        ArgumentNullException.ThrowIfNull(existing);
-        await CreatureCmd.SetMaxHp(existing, hp);
-        await CreatureCmd.Heal(existing, hp, isReviving);
-
-        return existing;
-    }
 }

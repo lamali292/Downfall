@@ -9,13 +9,16 @@ public static class StringExtensions
     private static string ModId<T>() where T : DownfallCharacterModel =>
         ModelDb.Character<T>().ModId;
 
-    private static string ImgPath(string modId, string subfolder, string file) =>
+    public static string ImgPath(string modId, string subfolder, string file) =>
         Path.Join(modId, "images", subfolder, file);
+    
+    public static string ScenePath(string modId, string subfolder, string file) =>
+        Path.Join(modId, "scenes", subfolder, file);
 
-    private static string WithFallback(string path, string fallback) =>
+    public static string WithFallback(string path, string fallback) =>
         ResourceLoader.Exists(path) ? path : fallback;
 
-    private static string FallbackImg(string subfolder, string file) =>
+    public static string FallbackImg(string subfolder, string file) =>
         ImgPath(DownfallMainFile.ModId, subfolder, file);
 
 

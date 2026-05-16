@@ -175,6 +175,19 @@
           "optional": false
         }
       ]
+    },
+    {
+      "id": "slime",
+      "markers": [
+        "SlimeModel"
+      ],
+      "fields": [
+        {
+          "name": "name",
+          "file": "monsters.json",
+          "optional": false
+        }
+      ]
     }
   ],
   "pinnedColors": [],

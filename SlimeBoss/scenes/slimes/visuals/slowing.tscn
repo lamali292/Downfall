@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxud3e3s8pf4o"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dqxk0ln2rgcf8" path="res://SlimeBoss/scenes/slimes/visuals/slowing.spatlas" id="1_4772p"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://nmnq8tx6a06l" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_4ea0b"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_4ea0b"]
+atlas_res = ExtResource("1_4772p")
+skeleton_file_res = ExtResource("2_4ea0b")
+
+[node name="Slowing" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_4ea0b")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

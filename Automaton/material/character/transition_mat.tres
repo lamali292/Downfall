@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg7"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx3qg0"]
 
 [ext_resource type="Texture2D" uid="uid://bpjt8ldbqg2xq" path="res://Automaton/images/character/transition.png" id="1_1gsyn"]
 

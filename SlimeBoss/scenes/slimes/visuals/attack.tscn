@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://rpyj70svwhgw"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cgv38dwe02gvd" path="res://SlimeBoss/scenes/slimes/visuals/attack.spatlas" id="1_c7jt6"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://nmnq8tx6a06l" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_bhsfm"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_bhsfm"]
+atlas_res = ExtResource("1_c7jt6")
+skeleton_file_res = ExtResource("2_bhsfm")
+
+[node name="Attack" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_bhsfm")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

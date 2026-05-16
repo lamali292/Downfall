@@ -1,9 +1,9 @@
 {
-  "SLIMEBOSS-CHOMP.description": "Deal {Damage:diff()} damage.\nReduce the cost of a random \"Tackle\" in your Hand to 0 this {IfUpgraded:show:combat.|turn.}",
+  "SLIMEBOSS-CHOMP.description": "Deal {Damage:diff()} damage.\nA random Tackle in your Hand is free to play this {IfUpgraded:show:combat|turn}.",
   "SLIMEBOSS-CHOMP.title": "Chomp",
-  "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\nAdd a random Tackle into your Hand. It's free to play this turn.",
+  "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\nAdd a random Tackle into your Hand.\nIt's free to play this turn.",
   "SLIMEBOSS-COMBO_TACKLE.title": "Combo Tackle",
-  "SLIMEBOSS-CONSULT_PLAYBOOK.description": "",
+  "SLIMEBOSS-CONSULT_PLAYBOOK.description": "Gain {Cards:diff()} random Tackle cards.\nThey cost {Energy:diff()} less {energyPrefix:energyIcons(1)} this combat.",
   "SLIMEBOSS-CONSULT_PLAYBOOK.title": "Consult Playbook",
   "SLIMEBOSS-CORROSIVE_SPIT.description": "Apply {GoopPower:diff()} [gold]Goop[/gold].",
   "SLIMEBOSS-CORROSIVE_SPIT.title": "Corrosive Spit",
