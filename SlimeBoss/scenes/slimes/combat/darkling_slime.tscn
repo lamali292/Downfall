@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=3 format=3 uid="uid://ced5s8qfnc74u"]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_ipaxr"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/darkling.tscn" id="2_ipaxr"]
@@ -8,8 +8,8 @@ script = ExtResource("1_ipaxr")
 
 [node name="Visuals" parent="." instance=ExtResource("2_ipaxr")]
 unique_name_in_owner = true
-position = Vector2(4, -15)
-scale = Vector2(-1, 1)
+position = Vector2(3, -7.000001)
+scale = Vector2(-0.6, 0.6)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

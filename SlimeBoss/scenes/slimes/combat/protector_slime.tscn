@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cie84r5v73rcq"]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_o6c0o"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_o6c0o"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/cultist.tscn" id="2_o6c0o"]
 
 [node name="CultistSlime" type="Node2D"]

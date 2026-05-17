@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=3 format=3 uid="uid://41l26etydcot"]
 
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/slime_boss.tscn" id="1_2vsmi"]
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeBossCreatureVisuals.cs" id="1_5ghei"]
@@ -8,20 +8,22 @@ script = ExtResource("1_5ghei")
 
 [node name="Visuals" parent="." instance=ExtResource("1_2vsmi")]
 unique_name_in_owner = true
+position = Vector2(4, -24)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -170.0
-offset_top = -305.0
-offset_right = 155.0
+offset_left = -166.0
+offset_top = -329.0
+offset_right = 159.0
+offset_bottom = -24.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(3, -181)
+position = Vector2(7, -205)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-2, -362)
+position = Vector2(8, -285)

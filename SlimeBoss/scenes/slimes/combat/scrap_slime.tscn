@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4h6d7o6ih0xk"]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_script"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_script"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/scrap.tscn" id="2_visual_scene"]
 
 [node name="ScrapSlime" type="Node2D"]
