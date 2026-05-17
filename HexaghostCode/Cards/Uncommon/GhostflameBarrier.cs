@@ -13,7 +13,7 @@ public class GhostflameBarrier : HexaghostCardModel
     {
         WithBlock(12, 4);
         WithTip(typeof(SoulBurnPower));
-        WithPower<GhostflameBarrierPower>(5, 7);
+        WithPower<GhostflameBarrierPower>(5, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
