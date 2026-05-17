@@ -31,7 +31,7 @@ public abstract class DownfallCardModel(
     protected ConstructedCardModel WithPower<T>(int baseVal, int upgrade, bool showTooltip)
         where T : PowerModel
     {
-        WithVar(new PowerVar<T>(baseVal).WithUpgrade(upgrade));
+        WithVar(new DynamicVar(typeof(T).Name, baseVal).WithUpgrade(upgrade));
         if (showTooltip)
             WithTip(typeof(T));
         return this;
