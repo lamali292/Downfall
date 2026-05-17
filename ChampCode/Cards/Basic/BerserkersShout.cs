@@ -12,7 +12,6 @@ public class BerserkersShout : ChampCardModel
     public BerserkersShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithPower<VigorPower>(2, 2);
-        WithIcon<VigorPower>();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

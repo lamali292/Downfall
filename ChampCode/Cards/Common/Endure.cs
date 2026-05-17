@@ -15,9 +15,9 @@ public class Endure : ChampCardModel
 {
     public Endure() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCalculatedBlock(7, 1, BlockCalc, ValueProp.Move, 3);
+        WithCalculatedBlock(7, BlockCalc, ValueProp.Move, 3);
         WithTip(typeof(StrengthPower));
-        WithIcon<StrengthPower>();
+        WithTip(typeof(DexterityPower));
     }
 
     private static decimal BlockCalc(CardModel card, Creature? creature)
