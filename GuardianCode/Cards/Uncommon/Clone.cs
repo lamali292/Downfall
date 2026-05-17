@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -24,6 +25,7 @@ public class Clone : GuardianCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
         if (card == null) return;
         var clone = card.CreateClone();
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner);
         await GuardianCmd.PutIntoStasis(clone, ctx, this);
         if (IsUpgraded)
             await GuardianCmd.Accelerate(ctx, this);
