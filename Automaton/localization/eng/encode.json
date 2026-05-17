@@ -3,7 +3,7 @@
   "AUTOMATON-GOTO.compile": "Next turn, draw {Compile:diff()} {Compile:plural:card|cards}.",
   "AUTOMATON-GOTO.functionPrefix": "running",
   "AUTOMATON-GOTO.functionName": "Sprint",
-  "AUTOMATON-REPLICATE.encode": "Deal {Damage:diff()}.",
+  "AUTOMATON-REPLICATE.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-REPLICATE.functionPrefix": "copying",
   "AUTOMATON-REPLICATE.functionName": "Copy",
   "AUTOMATON-STRIKE_AUTOMATON.encode": "Deal {Damage:diff()} damage.",

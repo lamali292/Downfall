@@ -1,0 +1,21 @@
+﻿using Downfall.DownfallCode.Interfaces;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+
+namespace Downfall.DownfallCode.Patches;
+
+[HarmonyPatch(typeof(NCard), nameof(NCard.UpdateTypePlaque))]
+public static class NCardUpdateTypePlaquePatch
+{
+    public static void Postfix(NCard __instance)
+    {
+        var model = __instance.Model;
+        if (model is not ICustomTypePlaque customPlaque) return;
+        var originalText = model.Type.ToLocString().GetFormattedText();
+        var overrideText = customPlaque.GetTypePlaqueName(originalText);
+        if (string.IsNullOrEmpty(overrideText)) return;
+        __instance._typeLabel.SetTextAutoSize(overrideText);
+        Godot.Callable.From(__instance.UpdateTypePlaqueSizeAndPosition).CallDeferred();
+    }
+}

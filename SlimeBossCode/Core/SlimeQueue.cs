@@ -92,7 +92,7 @@ public static class SlimeQueue
             {
                 slimeNode.Visuals.Position = targetVisualLocalOffset;
                 slimeNode.UpdateBounds(slimeNode.Visuals);
-                currentVisualPos = targetVisualLocalOffset; // Update our starting reference
+                currentVisualPos = targetVisualLocalOffset;
             }
 
             if (slimeNode.HasMeta("layout_tween"))

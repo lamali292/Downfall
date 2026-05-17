@@ -6,7 +6,7 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
-    public DownfallCharacterModel()
+    protected DownfallCharacterModel()
     {
         DownfallMainFile.Logger.Info($"Creating {GetType().Name}");
     }
