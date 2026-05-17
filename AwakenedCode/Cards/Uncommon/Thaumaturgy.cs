@@ -1,3 +1,4 @@
+using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
@@ -13,7 +14,8 @@ public class Thaumaturgy : AwakenedCardModel
     public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithPower<DexterityPower>(1, 1);
-        WithPower<ThaumaturgyPower>(2);
+        WithPower<ThaumaturgyPower>(2, false);
+        WithTip(typeof(Ceremony));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

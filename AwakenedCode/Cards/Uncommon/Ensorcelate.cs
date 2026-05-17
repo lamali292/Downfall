@@ -12,6 +12,7 @@ public class Ensorcelate : AwakenedCardModel
     public Ensorcelate() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(10, 3);
+        WithEnergyTip();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

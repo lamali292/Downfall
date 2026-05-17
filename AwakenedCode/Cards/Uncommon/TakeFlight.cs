@@ -15,7 +15,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
     {
         WithBlock(12, 3);
         WithTip(AwakenedTip.Chant);
-        WithPower<BlurPower>(1);
+        WithPower<BlurPower>(1, false);
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

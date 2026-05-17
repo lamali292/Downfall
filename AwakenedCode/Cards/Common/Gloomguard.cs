@@ -13,9 +13,12 @@ public class Gloomguard : AwakenedCardModel
     public Gloomguard() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(8, 3);
+        WithEnergyTip();
     }
 
     public override bool ShouldReceiveCombatHooks => true;
+    protected override bool ShouldGlowGoldInternal => HasVoidInHand();
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

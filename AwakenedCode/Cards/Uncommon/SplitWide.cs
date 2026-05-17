@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
@@ -12,7 +13,8 @@ public class SplitWide : AwakenedCardModel
     public SplitWide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithPower<SplitWidePower>(1, 1);
+        WithPower<SplitWidePower>(1, 1, false);
+        WithTip(typeof(StrengthPower));
         WithKeywords(CardKeyword.Exhaust);
     }
 

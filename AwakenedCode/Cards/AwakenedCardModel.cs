@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.Powers;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -51,5 +52,12 @@ public abstract class AwakenedCardModel(
         await PlayEffect(ctx, cardPlay);
         if (this is IChantable chantable && (WasLastCardPlayedPower || chantable.HasChanted))
             await AwakenedCmd.Chant(ctx, this, cardPlay);
+    }
+
+    protected AwakenedCardModel WithDrained(int baseVal, int upgrade = 0)
+    {
+        WithPower<DrainedPower>(baseVal, upgrade, false);
+        WithEnergyTip();
+        return this;
     }
 }

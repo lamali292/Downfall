@@ -15,7 +15,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     {
         WithDamage(4, 3);
         WithTip(AwakenedTip.Chant);
-        WithPower<DrawCardsNextTurnPower>(1);
+        WithPower<DrawCardsNextTurnPower>(1, false);
     }
 
 

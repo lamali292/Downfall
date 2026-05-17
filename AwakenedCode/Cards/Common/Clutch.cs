@@ -12,9 +12,10 @@ public class Clutch : AwakenedCardModel
     public Clutch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(8, 3);
+        WithEnergyTip();
     }
 
-    protected override bool ShouldGlowRedInternal => Has0CostInDraw;
+    protected override bool ShouldGlowGoldInternal => Has0CostInDraw;
 
     private bool Has0CostInDraw
     {

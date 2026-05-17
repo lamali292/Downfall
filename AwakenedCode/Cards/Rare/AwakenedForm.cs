@@ -1,8 +1,10 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Cards.Rare;
@@ -14,6 +16,7 @@ public class AwakenedForm : AwakenedCardModel
     {
         WithPower<CuriosityPower>(1);
         WithPower<RitualPower>(1);
+        WithTips(card => card.IsUpgraded ? [HoverTipFactory.Static(AwakenedTip.Awaken)] : []);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

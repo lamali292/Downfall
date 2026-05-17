@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -9,8 +10,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class ManaburnPower() : AwakenedPowerModel(PowerType.Debuff), IOnDrained
+public class ManaburnPower : AwakenedPowerModel, IOnDrained
 {
+    public ManaburnPower(): base(PowerType.Debuff)
+    {
+        WithTip(AwakenedTip.Drained);
+    }
+
     public async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         if (Applier != player.Creature || LocalContext.NetId == null) return;

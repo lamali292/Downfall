@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
@@ -13,7 +14,9 @@ public class MirePit : AwakenedCardModel
     public MirePit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<TemporaryStrengthDownPower>(6, 2);
+        WithPower<TemporaryStrengthDownPower>(6, 2, false);
+        WithTip(typeof(StrengthPower));
+        WithDrained(1);
     }
 
 
@@ -23,6 +26,6 @@ public class MirePit : AwakenedCardModel
         foreach (var combatStateEnemy in CombatState.Enemies)
             await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, combatStateEnemy, this);
 
-        await CommonActions.ApplySelf<DrainedPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }

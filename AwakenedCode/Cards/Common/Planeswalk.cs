@@ -14,6 +14,7 @@ public class Planeswalk : AwakenedCardModel
     public Planeswalk() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithEnergy(2, 1);
+        WithTip(typeof(Void));
     }
 
 

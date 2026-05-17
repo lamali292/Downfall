@@ -1,10 +1,10 @@
 {
   "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Ancestral Grounds",
-  "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your Draw Pile.",
-  "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your Draw Pile.",
+  "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
+  "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
   "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Ancestral Grounds+",
   "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your Draw pile.",
-  "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your Draw Pile.",
+  "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "At the start of your next {Amount:plural:turn|{Amount} turns}, gain {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
   "AWAKENED-APHOTIC_FOUNT_POWER.title": "Aphotic Fount",
   "AWAKENED-APHOTIC_FOUNT_POWER.description": "Whenever you play Cryostasis, gain [gold]Plated Armor[/gold].",
   "AWAKENED-APHOTIC_FOUNT_POWER.smartDescription": "Whenever you play Cryostasis, gain [blue]{Amount}[/blue] [gold]Plated Armor[/gold].",
