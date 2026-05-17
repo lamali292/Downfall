@@ -12,6 +12,8 @@ public class SludgeBomb : AwakenedCardModel
 {
     public SludgeBomb() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
+        WithTip(CardKeyword.Exhaust);
+        WithTip(typeof(Void));
         WithDamage(18, 4);
     }
 

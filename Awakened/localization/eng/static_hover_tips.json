@@ -1,6 +1,8 @@
 ﻿{
+  "AWAKENED-AWAKEN.title": "Awaken",
+  "AWAKENED-AWAKEN.description": "If you play 7 Power cards in the combat, [gold]Awaken[/gold].\nWhen you are [gold]Awakened[/gold], [gold]Upgrade[/gold] ALL [gold]Conjured[/gold] Spell cards for the rest of the combat.",
   "AWAKENED-CONJURE.title": "Conjure",
-  "AWAKENED-CONJURE.description": "Create the next card from you Spellbook in your Hand.",
+  "AWAKENED-CONJURE.description": "Create the next card from you Spellbook in your [gold]Hand[/gold].",
   "AWAKENED-CHANT.title": "Chant",
   "AWAKENED-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card.",
   "AWAKENED-DRAINED.title": "Drained",

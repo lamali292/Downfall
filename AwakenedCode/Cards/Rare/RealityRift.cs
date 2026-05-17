@@ -1,12 +1,14 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Awakened.AwakenedCode.Cards.Rare;
 
@@ -16,6 +18,7 @@ public class RealityRift : AwakenedCardModel
     public RealityRift() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(Void));
     }
 
 
@@ -35,6 +38,8 @@ public class RealityRift : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);
+
         var list = CardFactory
             .GetDistinctForCombat(Owner, AnotherDimensionCards, 3, Owner.RunState.Rng.CombatCardGeneration).ToList();
         if (IsUpgraded)

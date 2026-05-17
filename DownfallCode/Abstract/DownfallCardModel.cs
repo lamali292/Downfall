@@ -28,6 +28,20 @@ public abstract class DownfallCardModel(
         return this;
     }
 
+    protected ConstructedCardModel WithPower<T>(int baseVal, int upgrade, bool showTooltip)
+        where T : PowerModel
+    {
+        WithVar(new DynamicVar(typeof(T).Name, baseVal).WithUpgrade(upgrade));
+        if (showTooltip)
+            WithTip(typeof(T));
+        return this;
+    }
+    protected ConstructedCardModel WithPower<T>(int baseVal, bool showTooltip)
+        where T : PowerModel
+    {
+        return WithPower<T>(baseVal, 0, showTooltip);
+    }
+
     protected ConstructedCardModel WithGold(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new GoldVar(baseVal).WithUpgrade(upgradeVal));
@@ -44,6 +58,10 @@ public abstract class DownfallCardModel(
         return this;
     }
 
+    protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)
+    {
+        return WithVar(new HpLossVar(baseVal).WithUpgrade(upgrade));
+    }
 
     protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
     {

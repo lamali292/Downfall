@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
@@ -14,6 +15,7 @@ public class Siphon : AwakenedCardModel, IChantable
     public Siphon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9, 2);
+        WithPower<StrengthPower>(2);
         WithTip(AwakenedTip.Chant);
     }
 

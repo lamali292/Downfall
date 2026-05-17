@@ -13,6 +13,7 @@ public class SingularityShield : AwakenedCardModel
     public SingularityShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(8, 2);
+        WithDrained(1);
     }
 
 
@@ -20,6 +21,6 @@ public class SingularityShield : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, DynamicVars.Block.BaseValue);
-        await CommonActions.ApplySelf<DrainedPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }

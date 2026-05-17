@@ -1,3 +1,4 @@
+using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
@@ -12,8 +13,9 @@ public class StormRuler : AwakenedCardModel
 {
     public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<StormRulerPower>(6, 3);
+        WithPower<StormRulerPower>(6, 3, false);
         WithTip(AwakenedTip.Conjure);
+        WithTip(typeof(Thunderbolt));
     }
 
 

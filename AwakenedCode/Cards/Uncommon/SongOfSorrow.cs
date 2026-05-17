@@ -12,7 +12,7 @@ public class SongOfSorrow : AwakenedCardModel
 {
     public SongOfSorrow() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<SongOfSorrowPower>(7, 3);
+        WithPower<SongOfSorrowPower>(7, 3, false);
         WithTip(typeof(Void));
     }
 

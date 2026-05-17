@@ -12,8 +12,9 @@ public class Spellshield : AwakenedCardModel
 {
     public Spellshield() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
-        WithPower<SpellshieldPower>(2, 1);
+        WithTip(CardKeyword.Retain);
+        WithTip(StaticHoverTip.Block);
+        WithPower<SpellshieldPower>(2, 1, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

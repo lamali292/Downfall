@@ -15,7 +15,7 @@ public class Hymn : AwakenedCardModel
     {
         WithBlock(3, 3);
         WithTip(typeof(Ceremony));
-        WithPower<DrainedPower>(1);
+        WithDrained(1);
     }
 
 

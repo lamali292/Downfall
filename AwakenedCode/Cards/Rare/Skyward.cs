@@ -15,6 +15,7 @@ public class Skyward : AwakenedCardModel
     {
         WithBlock(18, 6);
         WithCards(1);
+        WithEnergyTip();
     }
 
     private int PowersPlayedThisCombat => CombatManager.Instance.History.Entries

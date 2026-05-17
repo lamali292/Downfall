@@ -12,7 +12,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class Inscribe : AwakenedCardModel
 {
-    public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

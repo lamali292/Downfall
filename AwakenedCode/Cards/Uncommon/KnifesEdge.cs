@@ -14,6 +14,7 @@ public class KnifesEdge : AwakenedCardModel
     public KnifesEdge() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(2, 1);
+        WithTip(typeof(Void));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

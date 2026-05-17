@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
     {
         WithBlock(13, 4);
         WithKeywords(CardKeyword.Retain);
+        WithTip(AwakenedTip.Drained);
     }
 
     public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)

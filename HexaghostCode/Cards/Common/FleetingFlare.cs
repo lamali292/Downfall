@@ -11,6 +11,7 @@ public class FleetingFlare : HexaghostCardModel
     public FleetingFlare() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(8, 3);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

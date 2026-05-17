@@ -13,6 +13,7 @@ public class Eventide : AwakenedCardModel
     public Eventide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithDamage(8, 2);
+        WithTip(typeof(Void));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

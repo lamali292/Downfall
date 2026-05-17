@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,8 @@ public class ClarionCall : AwakenedCardModel
     public ClarionCall() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(8, 3);
-        WithPower<ClarionCallPower>(1);
+        WithPower<ClarionCallPower>(1, false);
+        WithTip(AwakenedTip.Drained);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
