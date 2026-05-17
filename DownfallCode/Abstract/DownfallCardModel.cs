@@ -58,6 +58,10 @@ public abstract class DownfallCardModel(
         return this;
     }
 
+    protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)
+    {
+        return WithVar(new HpLossVar(baseVal).WithUpgrade(upgrade));
+    }
 
     protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
     {
