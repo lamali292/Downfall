@@ -6,6 +6,7 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 public class TorchheadSlime : SlimeModel
 {
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-        => SetupAnimationState(controller, "idle" , hitName: "hit");
- 
+    {
+        return SetupAnimationState(controller, "idle", hitName: "hit");
+    }
 }

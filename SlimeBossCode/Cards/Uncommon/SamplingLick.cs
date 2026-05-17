@@ -20,7 +20,7 @@ public class SamplingLick : SlimeBossCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithCards(0, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);

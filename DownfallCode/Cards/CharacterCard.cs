@@ -19,11 +19,12 @@ namespace Downfall.DownfallCode.Cards;
 public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.None)
 #pragma warning restore
 {
-
     internal CharacterModel? CharacterModel;
+    public CardModel? RandomCommonCard;
     public CardModel? RandomRareCard;
     public CardModel? RandomUncommonCard;
-    public CardModel? RandomCommonCard;
+
+    protected override bool IsPlayable => false;
 
     public static CharacterCard Create(CharacterModel characterModel)
     {
@@ -31,14 +32,15 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         if (a is not CharacterCard characterCard) throw new Exception("CharacterCard model is not a CharacterCard");
         characterCard.CharacterModel = characterModel;
         characterCard._pool = characterModel.CardPool;
-        characterCard.RandomCommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Common).TakeRandom(1, Rng.Chaotic).FirstOrDefault();
-        characterCard.RandomUncommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Uncommon).TakeRandom(1, Rng.Chaotic).FirstOrDefault();
-        characterCard.RandomRareCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Rare).TakeRandom(1, Rng.Chaotic).FirstOrDefault();
+        characterCard.RandomCommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Common)
+            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
+        characterCard.RandomUncommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Uncommon)
+            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
+        characterCard.RandomRareCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Rare)
+            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }
-    
-    protected override bool IsPlayable => false;
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Title), MethodType.Getter)]
@@ -48,10 +50,8 @@ public static class CardModelTitlePatch
     public static void Postfix(CardModel __instance, ref string __result)
     {
         if (__instance is CharacterCard { CharacterModel: not null } characterCard)
-        {
             __result = new LocString("characters", characterCard.CharacterModel.CharacterSelectTitle)
                 .GetFormattedText();
-        }
     }
 }
 
@@ -62,12 +62,9 @@ public static class CardModelDescriptionPatch
     public static void Postfix(CardModel __instance, ref LocString __result)
     {
         if (__instance is CharacterCard { CharacterModel: not null } characterCard)
-        {
             __result = new LocString("characters", characterCard.CharacterModel.CharacterSelectDesc);
-        }
     }
 }
-
 
 [HarmonyPatch(typeof(NCard), nameof(NCard.Create))]
 public static class NCardCreatePatch
@@ -80,7 +77,7 @@ public static class NCardCreatePatch
         ncard.Model = card;
         ncard.Visibility = visibility;
         __result = ncard;
-        return false; 
+        return false;
     }
 }
 
@@ -90,11 +87,10 @@ public static class NodePoolFreePatch
     private static bool Prefix(IPoolable poolable)
     {
         if (poolable is not NCard { Model: CharacterCard } ncard) return true;
-        ncard.QueueFree(); 
+        ncard.QueueFree();
         return false;
     }
 }
-
 
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
@@ -103,13 +99,13 @@ public static class NCardPortraitPatch
     {
         var portrait = __instance.GetNode<Control>("%Portrait");
         if (portrait == null) return;
-        
+
         foreach (var child in portrait.GetChildren().Where(c => c.Name.ToString().StartsWith("_composite_")))
             child.QueueFree();
 
         if (__instance.Model is not CharacterCard fc) return;
 
- 
+
         List<CardModel?> cards = [fc.RandomCommonCard, fc.RandomUncommonCard, fc.RandomRareCard];
         var textures = cards.Select(c => c?.Portrait).Where(t => t != null).Cast<Texture2D>().ToList();
         if (textures.Count == 0) return;
@@ -126,7 +122,7 @@ public static class NCardPortraitPatch
                 Atlas = src,
                 Region = new Rect2(i * sliceW, 0, sliceW, h)
             };
-            
+
             portrait.AddChild(new TextureRect
             {
                 Name = $"_composite_{i}",
@@ -138,7 +134,7 @@ public static class NCardPortraitPatch
                 OffsetLeft = 0, OffsetRight = 0, OffsetTop = 0, OffsetBottom = 0,
                 ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                 StretchMode = TextureRect.StretchModeEnum.Scale,
-                MouseFilter = Control.MouseFilterEnum.Ignore,
+                MouseFilter = Control.MouseFilterEnum.Ignore
             });
         }
     }

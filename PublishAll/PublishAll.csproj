@@ -17,8 +17,6 @@
     </ItemGroup>
 
 
-  
-    
     <PropertyGroup>
         <NoWarn>$(NoWarn);STS002</NoWarn>
     </PropertyGroup>

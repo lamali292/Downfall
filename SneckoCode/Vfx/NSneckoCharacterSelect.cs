@@ -21,7 +21,7 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
     private Rect2 _bounds1;
     private Rect2 _bounds2;
 
-    private int _controllerIndex = 0;
+    private int _controllerIndex;
     private TaskCompletionSource<int>? _selectionTcs;
     private Action<string> _trigger1 = _ => { };
     private Action<string> _trigger2 = _ => { };
@@ -33,10 +33,23 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
     public NetScreenType ScreenType => NetScreenType.None;
     public bool UseSharedBackstop => true;
 
-    public void AfterOverlayOpened() { }
-    public void AfterOverlayClosed() { }
-    public void AfterOverlayShown() { Visible = true; }
-    public void AfterOverlayHidden() { Visible = false; }
+    public void AfterOverlayOpened()
+    {
+    }
+
+    public void AfterOverlayClosed()
+    {
+    }
+
+    public void AfterOverlayShown()
+    {
+        Visible = true;
+    }
+
+    public void AfterOverlayHidden()
+    {
+        Visible = false;
+    }
 
     public override void _Ready()
     {
@@ -83,8 +96,8 @@ public partial class NSneckoCharacterSelect : Control, IOverlayScreen
         if (_animating) return;
         var mousePos = GetGlobalMousePosition();
 
-        bool hover1 = (_bounds1 != default && _bounds1.HasPoint(mousePos)) || _controllerIndex == 0;
-        bool hover2 = (_bounds2 != default && _bounds2.HasPoint(mousePos)) || _controllerIndex == 1;
+        var hover1 = (_bounds1 != default && _bounds1.HasPoint(mousePos)) || _controllerIndex == 0;
+        var hover2 = (_bounds2 != default && _bounds2.HasPoint(mousePos)) || _controllerIndex == 1;
 
         if (_visuals1 != null)
             _visuals1.Scale = hover1 ? new Vector2(1.1f, 1.1f) : new Vector2(1f, 1f);

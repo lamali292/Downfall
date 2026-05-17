@@ -4,7 +4,6 @@ using Guardian.GuardianCode.Cards.Rare;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
@@ -12,7 +11,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Guardian.GuardianCode.Rewards;
@@ -44,6 +42,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     public override bool IsPopulated => Gems.Count > 0;
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
+
     public override void Populate()
     {
         var gemsByRarity = GuardianModelDb.AllGems
@@ -66,7 +65,6 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
             Gems.Add(candidate);
         }
-        
     }
 
     protected override async Task<bool> OnSelect()
@@ -120,6 +118,4 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
             GoldAmount = count
         };
     }
-
-
 }

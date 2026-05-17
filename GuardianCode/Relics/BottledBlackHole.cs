@@ -11,8 +11,8 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class BottledBlackHole() : GuardianRelicModel(RelicRarity.Uncommon)
 {
-      
     public override bool HasUponPickupEffect => true;
+
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);

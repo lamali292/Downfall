@@ -6,8 +6,11 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class CardModelExtensions
 {
-    public static CardModel CreateEcho(this CardModel card) => card.CreateClone().ToEcho();
-    
+    public static CardModel CreateEcho(this CardModel card)
+    {
+        return card.CreateClone().ToEcho();
+    }
+
     public static CardModel ToEcho(this CardModel card)
     {
         if (card.IsEcho())
@@ -17,7 +20,7 @@ public static class CardModelExtensions
         card.AddKeyword(DownfallKeyword.Echo);
         return card;
     }
-    
+
     public static bool IsEcho(this CardModel card)
     {
         return card.Keywords.Contains(DownfallKeyword.Echo);

@@ -16,11 +16,10 @@ public class DouseInSlime : SlimeBossCardModel
         WithCostUpgradeBy(-1);
         WithPower<DouseInSlimePower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await MyCommonActions.Apply<DouseInSlimePower>(ctx, this, cardPlay);
     }
-    
 }

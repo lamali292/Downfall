@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -77,34 +76,38 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
-    
-    
-    public sealed override Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
+
+
+    public sealed override Task AfterBlockGained(Creature creature, decimal amount, ValueProp props,
+        CardModel? cardSource)
     {
         return ExecuteWithContext(ctx => AfterBlockGained(ctx, creature, amount, props, cardSource));
     }
-    
-    protected virtual Task AfterBlockGained(PlayerChoiceContext ctx, Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
+
+    protected virtual Task AfterBlockGained(PlayerChoiceContext ctx, Creature creature, decimal amount, ValueProp props,
+        CardModel? cardSource)
     {
         return Task.CompletedTask;
     }
-    
+
     public sealed override Task AfterModifyingHpLostAfterOsty()
     {
         return ExecuteWithContext(AfterModifyingHpLostAfterOsty);
     }
-    
+
     protected virtual Task AfterModifyingHpLostAfterOsty(PlayerChoiceContext ctx)
     {
         return Task.CompletedTask;
     }
-    
-    public sealed override Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel? cardSource, CardPlay? cardPlay)
+
+    public sealed override Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         return ExecuteWithContext(ctx => AfterModifyingBlockAmount(ctx, modifiedAmount, cardSource, cardPlay));
     }
-    
-    protected virtual Task AfterModifyingBlockAmount(PlayerChoiceContext ctx, decimal modifiedAmount, CardModel? cardSource, CardPlay? cardPlay)
+
+    protected virtual Task AfterModifyingBlockAmount(PlayerChoiceContext ctx, decimal modifiedAmount,
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return Task.CompletedTask;
     }
@@ -113,7 +116,7 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
     }
-    
+
     protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return Task.CompletedTask;

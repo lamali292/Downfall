@@ -6,7 +6,12 @@ namespace Downfall.DownfallCode.Localization;
 
 public class PlusIfUpgradedFormatter : IFormatter
 {
-    public string Name { get => "plus"; set => throw new NotSupportedException(); }
+    public string Name
+    {
+        get => "plus";
+        set => throw new NotSupportedException();
+    }
+
     public bool CanAutoDetect { get; set; }
 
     public bool TryEvaluateFormat(IFormattingInfo formattingInfo)
@@ -25,8 +30,10 @@ public class PlusIfUpgradedFormatter : IFormatter
                 formattingInfo.Write("[green]+[/green]");
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(formattingInfo), $"Unexpected value: {currentValue.upgradeDisplay}");
+                throw new ArgumentOutOfRangeException(nameof(formattingInfo),
+                    $"Unexpected value: {currentValue.upgradeDisplay}");
         }
+
         return true;
     }
 }

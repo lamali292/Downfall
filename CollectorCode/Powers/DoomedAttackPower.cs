@@ -12,9 +12,7 @@ public class DoomedAttackPower : CollectorPowerModel
     {
         if (command.Attacker != Owner) return;
         foreach (var result in command.Results.SelectMany(r => r))
-        {
             await PowerCmd.Apply<CollectorDoomPower>(ctx, result.Receiver, Amount, Owner, null);
-        }
 
         await PowerCmd.Remove(this);
     }

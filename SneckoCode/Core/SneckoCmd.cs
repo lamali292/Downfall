@@ -56,7 +56,7 @@ public static class SneckoCmd
         var valid = Enumerable.Range(0, max)
             .Where(cost => cost != current && SneckoHook.ShouldAllowMuddleCost(card.CombatState!, card, cost))
             .ToList();
-        
+
         if (valid.Count == 0)
             valid = Enumerable.Range(0, max).ToList();
 

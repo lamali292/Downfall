@@ -1,6 +1,5 @@
 ﻿using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Powers;
-
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;

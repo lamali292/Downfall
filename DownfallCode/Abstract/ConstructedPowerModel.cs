@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -25,8 +24,9 @@ public abstract class ConstructedPowerModel(
 
     public virtual bool ShouldRemoveDueToZero => true;
 
-    
-    protected ConstructedPowerModel WithUpgradedCardTip<T>(Action<T, PowerModel>? modifyTipCard = null) where T : CardModel
+
+    protected ConstructedPowerModel WithUpgradedCardTip<T>(Action<T, PowerModel>? modifyTipCard = null)
+        where T : CardModel
     {
         return WithTip(new PowerTooltipSource(power =>
         {

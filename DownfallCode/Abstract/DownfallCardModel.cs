@@ -3,10 +3,7 @@ using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Extensions;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -35,7 +32,7 @@ public abstract class DownfallCardModel(
     {
         return WithVar(new GoldVar(baseVal).WithUpgrade(upgradeVal));
     }
-    
+
     protected ConstructedCardModel WithRepeat(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
@@ -46,14 +43,14 @@ public abstract class DownfallCardModel(
         WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
         return this;
     }
-    
-        
+
+
     protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
     {
         WithVar(new DamageVar("SelfDamage", baseVal, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
         return this;
     }
-    
+
     protected ConstructedCardModel WithEnemyDamage(int baseValue, int upgrade = 0)
     {
         WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));
@@ -65,7 +62,6 @@ public abstract class DownfallCardModel(
     {
         foreach (var keyValuePair in _powerCache) description.AddObj(keyValuePair.Key, keyValuePair.Value);
     }
-
 }
 
 public abstract class DownfallCardModel<T>(

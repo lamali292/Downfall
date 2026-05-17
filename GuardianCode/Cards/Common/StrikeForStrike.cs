@@ -1,14 +1,8 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.DynamicVars;
 using Guardian.GuardianCode.Core;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Guardian.GuardianCode.Cards.Common;
 

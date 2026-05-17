@@ -16,7 +16,7 @@ public class RainOfGoop : SlimeBossCardModel
         WithRepeat(3, 1);
     }
 
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = DynamicVars.Repeat.BaseValue;

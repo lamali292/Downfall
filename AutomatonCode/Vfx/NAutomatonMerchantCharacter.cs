@@ -6,5 +6,8 @@ namespace Automaton.AutomatonCode.Vfx;
 [GlobalClass]
 public partial class NAutomatonMerchantCharacter : NMerchantCharacter
 {
-    public override void _Ready() => PlayAnimation("idle", true);
+    public override void _Ready()
+    {
+        PlayAnimation("idle", true);
+    }
 }

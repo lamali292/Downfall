@@ -35,7 +35,4 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     {
         await CommonActions.ApplySelf<BlurPower>(ctx, this);
     }
-    
-    
-    
 }

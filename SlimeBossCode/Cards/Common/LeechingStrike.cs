@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -20,13 +19,13 @@ public class LeechingStrike : SlimeBossCardModel, IHasConsumeEffect
         WithTags(CardTag.Strike);
     }
 
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
+    {
+        await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Move | ValueProp.Unpowered, null);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    public async Task ConsumeEffect(PlayerChoiceContext ctx,  Creature creature, AttackCommand command, int amount)
-    {
-        await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Move | ValueProp.Unpowered, null);
     }
 }

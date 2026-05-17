@@ -58,7 +58,7 @@ public class Awakened : DownfallCharacterModel
     public override ModSoundEffect CharacterSelectSfxEntry => new(
         new ModSoundEntry("res://Awakened/audio/chant_activatev2.ogg", 1, 0.1f, 1, 10)
     );
-    
+
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {

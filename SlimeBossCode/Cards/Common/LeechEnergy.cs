@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -19,15 +18,15 @@ public class LeechEnergy : SlimeBossCardModel, IHasConsumeEffect
         WithEnergy(1);
         WithCards(1);
     }
-    
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
 
-    public async Task ConsumeEffect(PlayerChoiceContext ctx,  Creature creature, AttackCommand command, int amount)
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await CommonActions.Draw(this, ctx);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

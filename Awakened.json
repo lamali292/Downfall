@@ -8,8 +8,14 @@
   "has_dll": true,
   "min_game_version": "0.105.0",
   "dependencies": [
-    {"id": "BaseLib", "min_version": "0.0.0"},
-    {"id": "Downfall", "min_version": "0.0.0"}
+    {
+      "id": "BaseLib",
+      "min_version": "0.0.0"
+    },
+    {
+      "id": "Downfall",
+      "min_version": "0.0.0"
+    }
   ],
   "affects_gameplay": true
 }

@@ -6,6 +6,7 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 public class GreedSlime : SlimeModel
 {
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-        => SetupAnimationState(controller, "idle" , hitName: "damage");
- 
+    {
+        return SetupAnimationState(controller, "idle", hitName: "damage");
+    }
 }

@@ -42,10 +42,12 @@ public class DownfallCardCmd
         bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
-        bool skipAnimation = false) where T : CardModel
+        bool skipAnimation = false, 
+        Func<CardModel, Task>? action = null) where T : CardModel
     {
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         if (upgraded) card.UpgradeInternal();
+        if (action != null) await action(card);
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, player, position);
         if (!result.success || skipAnimation || pileType == PileType.Hand) return result.cardAdded;
         CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
@@ -59,7 +61,8 @@ public class DownfallCardCmd
         bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
-        bool skipAnimation = false) where T : CardModel
+        bool skipAnimation = false,
+        Func<CardModel, Task>? action = null) where T : CardModel
     {
         if (count <= 0) return [];
         var cardInstances = new List<CardModel>();
@@ -68,6 +71,7 @@ public class DownfallCardCmd
         {
             var card = player.Creature.CombatState!.CreateCard(model, player);
             if (upgraded) card.UpgradeInternal();
+            if (action != null) await action(card);
             cardInstances.Add(card);
         }
 
@@ -185,13 +189,14 @@ public class DownfallCardCmd
         var newCard = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, filter, card);
         return await CardPileCmd.Add(newCard, toPile);
     }
-    
-    
-    
-    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, CardModel card, int count = 1,
+
+
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, CardModel card,
+        int count = 1,
         Func<CardModel, bool>? filter = null)
     {
-        return await CardSelectCmd.FromHand(ctx, card.Owner, new CardSelectorPrefs(card.SelectionScreenPrompt, count), filter,
+        return await CardSelectCmd.FromHand(ctx, card.Owner, new CardSelectorPrefs(card.SelectionScreenPrompt, count),
+            filter,
             card);
     }
 }

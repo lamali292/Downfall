@@ -15,8 +15,8 @@ public class Planeswalk : AwakenedCardModel
     {
         WithEnergy(2, 1);
     }
-    
-    
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

@@ -6,5 +6,8 @@ namespace Awakened.AwakenedCode.Vfx;
 [GlobalClass]
 public partial class NAwakenedMerchantCharacter : NMerchantCharacter
 {
-    public override void _Ready() => PlayAnimation("Idle_1", true);
+    public override void _Ready()
+    {
+        PlayAnimation("Idle_1", true);
+    }
 }

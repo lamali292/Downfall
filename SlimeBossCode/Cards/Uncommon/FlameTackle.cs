@@ -18,10 +18,10 @@ public class FlameTackle : SlimeBossCardModel
         WithTags(SlimeBossTag.Tackle);
         WithPower<FlameTacklePower>(5, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);
         await CommonActions.ApplySelf<FlameTacklePower>(ctx, this);
     }

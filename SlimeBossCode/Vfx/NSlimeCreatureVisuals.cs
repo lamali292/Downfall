@@ -1,10 +1,5 @@
-﻿using BaseLib.Patches.Content;
-using BaseLib.Patches.Features;
-using Godot;
+﻿using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Slimes;
@@ -12,7 +7,7 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Vfx;
 
 [GlobalClass]
-public partial class NSlimeCreatureVisuals  : NCreatureVisuals
+public partial class NSlimeCreatureVisuals : NCreatureVisuals
 {
     public override void _Ready()
     {
@@ -27,7 +22,6 @@ public partial class NSlimeCreatureVisuals  : NCreatureVisuals
             GetCurrentBody().Material = premultMat;
     }
 }
-
 
 public static class MySlimeDeathIsolationPatches
 {
@@ -55,7 +49,7 @@ public static class MySlimeDeathIsolationPatches
                 return true;
             DyingSlimes.Remove(__instance);
             __result = 0f;
-            return false; 
+            return false;
         }
     }
 }

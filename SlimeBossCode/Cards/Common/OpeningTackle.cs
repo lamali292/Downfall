@@ -21,15 +21,15 @@ public class OpeningTackle : SlimeBossCardModel, IHasConsumeEffect
         WithTags(SlimeBossTag.Tackle);
         WithPower<VulnerablePower>(2, 1);
     }
-    
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
-        await MyCommonActions.SelfDamage(ctx, this);
-    }
 
-    public async Task ConsumeEffect(PlayerChoiceContext ctx,  Creature creature, AttackCommand command, int amount)
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, creature, this);
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await MyCommonActions.SelfDamage(ctx, this);
     }
 }

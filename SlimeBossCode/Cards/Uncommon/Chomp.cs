@@ -14,7 +14,7 @@ public class Chomp : SlimeBossCardModel
     {
         WithDamage(8, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -22,12 +22,8 @@ public class Chomp : SlimeBossCardModel
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
         if (card == null) return;
         if (IsUpgraded)
-        {
             card.SetToFreeThisCombat();
-        }
         else
-        {
             card.SetToFreeThisTurn();
-        }
     }
 }

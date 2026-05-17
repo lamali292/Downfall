@@ -10,12 +10,13 @@ namespace Snecko.SneckoCode.Relics;
 [Pool(typeof(SneckoRelicPool))]
 public class SnakeCharmersFlute : SneckoRelicModel, IShouldAllowMuddleCost
 {
-
     public SnakeCharmersFlute() : base(RelicRarity.Ancient)
     {
         WithTip(SneckoKeywords.Muddle);
     }
 
-    public bool ShouldAllowMuddleCost(CardModel card, int cost) =>
-        cost != 3 || card.Owner != Owner;
+    public bool ShouldAllowMuddleCost(CardModel card, int cost)
+    {
+        return cost != 3 || card.Owner != Owner;
+    }
 }

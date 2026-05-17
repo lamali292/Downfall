@@ -13,7 +13,7 @@ public class DefendSlimeBoss : SlimeBossCardModel
         WithTags(CardTag.Defend);
         WithBlock(5, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

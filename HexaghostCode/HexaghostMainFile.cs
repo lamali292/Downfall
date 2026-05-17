@@ -1,6 +1,5 @@
 using System.Reflection;
 using Downfall.DownfallCode.Patches;
-using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -29,7 +28,6 @@ public partial class HexaghostMainFile : Node
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         Harmony harmony = new(ModId);
         harmony.PatchAll();
-       
     }
 }
 

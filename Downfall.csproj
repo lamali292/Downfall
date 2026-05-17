@@ -9,8 +9,8 @@
     <ItemGroup>
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
         <Compile Remove="Downfall/**"/>
-        <Content Include="local.props" />
-        <Content Include="local.props.example" />
+        <Content Include="local.props"/>
+        <Content Include="local.props.example"/>
         <EmbeddedResource Remove="Downfall/**"/>
         <None Include="Downfall.json"/>
         <None Include="Downfall/**"/>

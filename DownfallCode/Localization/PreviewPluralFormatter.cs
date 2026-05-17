@@ -11,7 +11,7 @@ public class PreviewPluralFormatter : IFormatter
     public bool TryEvaluateFormat(IFormattingInfo formattingInfo)
     {
         if (formattingInfo.CurrentValue is not DynamicVar var) return false;
-        
+
         var pluralWords = formattingInfo.Format?.Split('|');
         if (pluralWords == null || pluralWords.Count < 2) return false;
 

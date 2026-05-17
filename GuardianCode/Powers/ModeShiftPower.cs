@@ -1,5 +1,4 @@
 using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;

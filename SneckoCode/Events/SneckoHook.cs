@@ -18,10 +18,9 @@ public static class SneckoHook
         return DownfallHook.DispatchHookCtx<IAfterOverflowEffect>(cs,
             (m, ctx) => m.AfterOverflowEffect(ctx, cardPlay, card));
     }
-    
+
     public static bool ShouldAllowMuddleCost(ICombatState cs, CardModel card, int cost)
     {
         return DownfallHook.All<IShouldAllowMuddleCost>(cs, m => m.ShouldAllowMuddleCost(card, cost));
     }
 }
-

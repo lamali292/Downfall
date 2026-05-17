@@ -15,7 +15,7 @@ public class CorrosiveSpit : SlimeBossCardModel
         WithPower<GoopPower>(6);
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);

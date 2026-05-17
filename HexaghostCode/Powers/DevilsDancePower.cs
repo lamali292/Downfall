@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Combat;

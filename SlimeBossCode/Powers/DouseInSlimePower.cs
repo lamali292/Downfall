@@ -19,7 +19,12 @@ public class DouseInSlimePower : SlimeBossPowerModel, IAddDumbVariablesToPowerDe
     }
 
     public int ModifyGoopConsume(int amount, Creature creature, Creature? applier)
-        => Applier == applier && Owner == creature ? 0 : amount;
+    {
+        return Applier == applier && Owner == creature ? 0 : amount;
+    }
+
     public Task AfterModifyingGoopConsume(Creature creature, Creature? applier)
-        => PowerCmd.Decrement(this);
+    {
+        return PowerCmd.Decrement(this);
+    }
 }

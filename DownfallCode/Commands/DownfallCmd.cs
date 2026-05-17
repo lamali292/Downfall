@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -18,24 +17,30 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCmd
 {
-
     public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card)
-        => GainTempHp( ctx, card, card.DynamicVars["TempHP"].BaseValue);
-    
+    {
+        return GainTempHp(ctx, card, card.DynamicVars["TempHP"].BaseValue);
+    }
+
     public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card, decimal tempHp)
-        => PowerCmd.Apply<TempHpPower>(ctx, card.Owner.Creature, tempHp, card.Owner.Creature,
+    {
+        return PowerCmd.Apply<TempHpPower>(ctx, card.Owner.Creature, tempHp, card.Owner.Creature,
             card);
-    
+    }
+
     public static Task GainTempHp(PlayerChoiceContext ctx, Creature creature, decimal tempHp)
-        => PowerCmd.Apply<TempHpPower>(ctx, creature, tempHp, creature,
+    {
+        return PowerCmd.Apply<TempHpPower>(ctx, creature, tempHp, creature,
             null);
+    }
 
 
     public static int GetTempHpAmount(Creature creature)
-        => creature.GetPowerAmount<TempHpPower>();
+    {
+        return creature.GetPowerAmount<TempHpPower>();
+    }
 
-    
-    
+
     public static async Task EnemyAttackPlayer(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {
         var monster = cardPlay.Target?.Monster;
@@ -46,7 +51,7 @@ public class DownfallCmd
         await Cmd.Wait(0.5f);
 
         var enemyDamage = card.DynamicVars.EnemyDamage();
-    var attack = DamageCmd.Attack(enemyDamage.BaseValue);
+        var attack = DamageCmd.Attack(enemyDamage.BaseValue);
         attack.Attacker = attacker;
         attack._attackerAnimName = "Attack";
         attack._sourceType = AttackCommand.SourceType.Monster;
@@ -56,12 +61,11 @@ public class DownfallCmd
             .Execute(ctx);
     }
 
-    
-    
+
     public static async Task Steal<T>(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
         where T : PowerModel
     {
-        switch  (card.TargetType)
+        switch (card.TargetType)
         {
             case TargetType.AnyEnemy:
                 if (cardPlay.Target == null) return;
@@ -73,7 +77,8 @@ public class DownfallCmd
                 break;
             case TargetType.RandomEnemy:
                 if (card.CombatState == null) return;
-                await Steal<T>(ctx, card.CombatState.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets), card);
+                await Steal<T>(ctx,
+                    card.CombatState.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets), card);
                 break;
         }
     }
@@ -81,18 +86,20 @@ public class DownfallCmd
 
     public static Task Steal<T>(PlayerChoiceContext ctx, Creature targets, CardModel card)
         where T : PowerModel
-        => Steal<T>(ctx, [targets], card);
-    
+    {
+        return Steal<T>(ctx, [targets], card);
+    }
+
     public static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
-    where T : PowerModel
+        where T : PowerModel
     {
         var a = card.DynamicVars.Power<T>().BaseValue;
-        var player =  card.Owner.Creature;
+        var player = card.Owner.Creature;
         await PowerCmd.Apply<T>(ctx, targets, -a, player, card);
         await PowerCmd.Apply<T>(ctx, player, a, player, card);
     }
-    
-    
+
+
     public static Creature? GainPet<T>(Player summoner) where T : MonsterModel
     {
         var combatState = summoner.Creature.CombatState;

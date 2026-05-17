@@ -1,9 +1,6 @@
 ﻿using Downfall.DownfallCode.Cards;
 using Godot;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions;
@@ -97,11 +94,11 @@ public static class SneckoPoolSelection
             var card1 = CharacterCard.Create(left);
             var card2 = CharacterCard.Create(right);
             //CardSelectCmd.FromChooseACardScreen()
-            
+
             var screen = NChooseACardSelectionScreen.ShowScreen([card1, card2], false);
             if (screen == null) return 0;
             var result = (await screen.CardsSelected()).ToList();
-            return (result.Contains(card1)) ? 0 : 1;
+            return result.Contains(card1) ? 0 : 1;
             //return await selectScene.SelectOne(left, right);
         }
         catch (Exception e)

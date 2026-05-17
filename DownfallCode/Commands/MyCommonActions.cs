@@ -2,10 +2,8 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -15,23 +13,22 @@ namespace Downfall.DownfallCode.Commands;
 public static class MyCommonActions
 {
     /// <summary>
-    /// Applies a power of type <typeparamref name="T"/> to the appropriate creature(s) based on
-    /// the card's <see cref="TargetType"/>, handling both vanilla and custom target types.
+    ///     Applies a power of type <typeparamref name="T" /> to the appropriate creature(s) based on
+    ///     the card's <see cref="TargetType" />, handling both vanilla and custom target types.
     /// </summary>
-    /// <typeparam name="T">The <see cref="PowerModel"/> type to apply.</typeparam>
+    /// <typeparam name="T">The <see cref="PowerModel" /> type to apply.</typeparam>
     /// <param name="ctx">The player choice context for the current action.</param>
     /// <param name="card">The card being played, used to determine targeting behaviour.</param>
     /// <param name="cardPlay">
-    /// The card play instance carrying the selected target for single-target cards.
-    /// May be <see langword="null"/> for untargeted cards.
+    ///     The card play instance carrying the selected target for single-target cards.
+    ///     May be <see langword="null" /> for untargeted cards.
     /// </param>
     /// <returns>
-    /// A list of all applied power instances, or an empty list if no valid targets were found.
+    ///     A list of all applied power instances, or an empty list if no valid targets were found.
     /// </returns>
     public static async Task<IReadOnlyList<T>> Apply<T>(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay)
         where T : PowerModel
     {
-
         if (CustomTargetType.IsCustomSingleTargetType(card.TargetType))
         {
             if (cardPlay is null) return [];
@@ -55,13 +52,13 @@ public static class MyCommonActions
     }
 
     /// <summary>
-    /// Applies a power of type <typeparamref name="T"/> to all currently hittable enemies.
+    ///     Applies a power of type <typeparamref name="T" /> to all currently hittable enemies.
     /// </summary>
-    /// <typeparam name="T">The <see cref="PowerModel"/> type to apply.</typeparam>
+    /// <typeparam name="T">The <see cref="PowerModel" /> type to apply.</typeparam>
     /// <param name="ctx">The player choice context for the current action.</param>
-    /// <param name="card">The card being played; its <see cref="CardModel.CombatState"/> is used to retrieve enemies.</param>
+    /// <param name="card">The card being played; its <see cref="CardModel.CombatState" /> is used to retrieve enemies.</param>
     /// <returns>
-    /// A list of all applied power instances, or an empty list if there is no active combat state.
+    ///     A list of all applied power instances, or an empty list if there is no active combat state.
     /// </returns>
     public static async Task<IReadOnlyList<T>> ApplyToAllEnemies<T>(PlayerChoiceContext ctx, CardModel card)
         where T : PowerModel
@@ -71,13 +68,13 @@ public static class MyCommonActions
     }
 
     /// <summary>
-    /// Applies a power of type <typeparamref name="T"/> to a single randomly selected hittable enemy.
+    ///     Applies a power of type <typeparamref name="T" /> to a single randomly selected hittable enemy.
     /// </summary>
-    /// <typeparam name="T">The <see cref="PowerModel"/> type to apply.</typeparam>
+    /// <typeparam name="T">The <see cref="PowerModel" /> type to apply.</typeparam>
     /// <param name="ctx">The player choice context for the current action.</param>
-    /// <param name="card">The card being played; its <see cref="CardModel.CombatState"/> is used to retrieve enemies.</param>
+    /// <param name="card">The card being played; its <see cref="CardModel.CombatState" /> is used to retrieve enemies.</param>
     /// <returns>
-    /// The applied power instance, or <see langword="null"/> if no hittable enemies are available.
+    ///     The applied power instance, or <see langword="null" /> if no hittable enemies are available.
     /// </returns>
     public static async Task<T?> ApplyToRandomEnemy<T>(PlayerChoiceContext ctx, CardModel card) where T : PowerModel
     {
@@ -116,7 +113,4 @@ public static class MyCommonActions
     {
         return CreatureCmd.Damage(ctx, card.Owner.Creature, card.DynamicVars.SelfDamage(), card);
     }
-    
-   
-
 }

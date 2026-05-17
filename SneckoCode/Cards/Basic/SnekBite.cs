@@ -17,11 +17,14 @@ public class SnekBite : SneckoCardModel, ITranscendenceCard
         WithMuddle(1, 1);
     }
 
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<AncientOne>();
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await SneckoCmd.MuddleHandCards(ctx, this);
     }
-
-    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<AncientOne>();
 }

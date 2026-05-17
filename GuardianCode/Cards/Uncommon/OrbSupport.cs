@@ -16,7 +16,7 @@ public class OrbSupport : GuardianCardModel
         WithTip(GuardianTip.Brace);
     }
 
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

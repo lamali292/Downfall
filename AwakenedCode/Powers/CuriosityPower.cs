@@ -14,12 +14,13 @@ public class CuriosityPower : AwakenedPowerModel
     {
         if (Owner.Player != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Power)
             return;
-        
+
         if (_isFirstTriggered)
         {
             _isFirstTriggered = false;
             return;
         }
+
         await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
     }
 }

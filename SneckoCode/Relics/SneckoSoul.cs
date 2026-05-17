@@ -24,6 +24,7 @@ public class SneckoSoul : SneckoRelicModel
         if (player != Owner || combatState.RoundNumber > 1) return;
         await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
     }
+    
 
     public override RelicModel GetUpgradeReplacement()
     {

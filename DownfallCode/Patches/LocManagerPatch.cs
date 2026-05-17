@@ -12,10 +12,10 @@ public static class LocManagerPatch
     private static void AddCustomFormatters()
     {
         Smart.Default.AddExtensions(
-            new PowerIconFormatter(), 
-            new PreviewPluralFormatter(), 
+            new PowerIconFormatter(),
+            new PreviewPluralFormatter(),
             new PreviewValueFormatter(),
             new PlusIfUpgradedFormatter()
-            );
+        );
     }
 }

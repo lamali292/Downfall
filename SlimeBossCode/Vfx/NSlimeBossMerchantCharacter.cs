@@ -6,5 +6,8 @@ namespace SlimeBoss.SlimeBossCode.Vfx;
 [GlobalClass]
 public partial class NSlimeBossMerchantCharacter : NMerchantCharacter
 {
-    public override void _Ready() => PlayAnimation("idle", true);
+    public override void _Ready()
+    {
+        PlayAnimation("idle", true);
+    }
 }

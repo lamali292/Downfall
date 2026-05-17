@@ -3,7 +3,6 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

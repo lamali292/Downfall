@@ -23,9 +23,9 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     CardRarity.Token, TargetType.AnyEnemy)
 {
     private ImageTexture? _cachedPortrait;
+    private CardType _cardType;
     private IReadOnlyList<AutomatonCardModel> _lastPortraitSource = [];
     private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
-    private CardType _cardType;
     private TargetType _targetType;
 
     public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
@@ -36,6 +36,11 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override int MaxUpgradeLevel => 0;
 
     public override bool HasBuiltInOverlay => false;
+
+
+    public override CardType Type => _cardType;
+
+    public override TargetType TargetType => _targetType;
 
     public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
     {
@@ -148,17 +153,14 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
         return _cachedPortrait;
     }
 
-
-    public override CardType Type => _cardType;
     public void SetCardType(CardType cardType)
     {
-        _cardType =  cardType;
+        _cardType = cardType;
     }
 
-    public override TargetType TargetType => _targetType;
     public void SetTargetType(TargetType targetType)
     {
-        _targetType =  targetType;
+        _targetType = targetType;
     }
 }
 

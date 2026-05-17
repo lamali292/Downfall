@@ -7,8 +7,8 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class TheContract() : CollectorRelicModel(RelicRarity.Shop)
 {
-      
     public override bool HasUponPickupEffect => true;
+
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 10);

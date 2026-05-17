@@ -13,7 +13,7 @@ public class AncientTwo : SneckoCardModel
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithCards(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);

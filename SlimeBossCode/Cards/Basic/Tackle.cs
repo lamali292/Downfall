@@ -19,7 +19,7 @@ public class Tackle : SlimeBossCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);
     }
 }

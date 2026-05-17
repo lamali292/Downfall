@@ -21,6 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
+        <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
     </ItemGroup>
 </Project>

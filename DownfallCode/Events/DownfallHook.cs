@@ -59,7 +59,7 @@ public static class DownfallHook
     {
         return combatState.IterateHookListeners().OfType<T>().Any(predicate);
     }
-    
+
     public static bool All<T>(ICombatState combatState, Func<T, bool> predicate)
         where T : class
     {
@@ -83,6 +83,7 @@ public static class DownfallHook
             if (!previous.Equals(amount))
                 abstractModelList.Add(model);
         }
+
         modifiers = abstractModelList;
         return amount;
     }
@@ -99,7 +100,7 @@ public static class DownfallHook
                 model.InvokeExecutionFinished();
         }
     }
-    
+
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)
     {

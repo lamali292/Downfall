@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -31,7 +30,8 @@ public class CrookedStrike : ChampCardModel
 [HarmonyPatch(typeof(VigorPower), nameof(VigorPower.AfterAttack))]
 public static class VigorPowerAfterAttackPatch
 {
-    static bool Prefix(VigorPower __instance, PlayerChoiceContext choiceContext, AttackCommand command, ref Task __result)
+    private static bool Prefix(VigorPower __instance, PlayerChoiceContext choiceContext, AttackCommand command,
+        ref Task __result)
     {
         if (command.ModelSource is not CardModel card) return true;
         if (card is not CrookedStrike) return true;

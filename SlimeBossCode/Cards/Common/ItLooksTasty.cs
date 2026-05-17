@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -19,14 +18,14 @@ public class ItLooksTasty : SlimeBossCardModel, IHasConsumeEffect
         WithDamage(8, 2);
         WithUpgradingCardTip<Lick>();
     }
-    
+
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
+    {
+        await DownfallCardCmd.GiveCard<Lick>(Owner, PileType.Hand, upgraded: IsUpgraded);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    public async Task ConsumeEffect(PlayerChoiceContext ctx,  Creature creature, AttackCommand command, int amount)
-    {
-        await DownfallCardCmd.GiveCard<Lick>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

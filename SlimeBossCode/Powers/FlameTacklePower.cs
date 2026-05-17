@@ -10,5 +10,10 @@ public class FlameTacklePower : SlimeBossPowerModel
 {
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
-     => dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) && props.IsPoweredAttack() ? Amount : 0;
+    {
+        return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
+               props.IsPoweredAttack()
+            ? Amount
+            : 0;
+    }
 }

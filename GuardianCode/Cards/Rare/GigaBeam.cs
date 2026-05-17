@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
-
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

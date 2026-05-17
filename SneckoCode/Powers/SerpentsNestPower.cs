@@ -8,16 +8,16 @@ namespace Snecko.SneckoCode.Powers;
 
 public class SerpentsNestPower : SneckoPowerModel
 {
-
     private bool _shouldIgnore = true;
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (_shouldIgnore)
         {
-            _shouldIgnore =  false;
+            _shouldIgnore = false;
             return;
         }
+
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Power) return;
         await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount, ValueProp.Unpowered, Owner);
     }

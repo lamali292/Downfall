@@ -13,14 +13,14 @@ public class OozeBathPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescri
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
+    }
+
     protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side) return;
         await PowerCmd.Apply<GoopPower>(ctx, Owner, Amount, Applier, null);
-    }
-    
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
 }

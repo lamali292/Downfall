@@ -20,17 +20,17 @@ public static class SlimeBossCmd
         var licks = card.Owner.PlayerCombatState?.ExhaustPile.Cards
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList() ?? [];
-    
+
         var unburied = licks.Where(e => !e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();
         var buried = licks.Where(e => e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();
-    
+
         var cards = unburied
             .TakeRandom(Math.Min(amount, unburied.Count), card.Owner.RunState.Rng.CombatCardSelection)
             .ToList();
-    
+
         if (cards.Count < amount)
             cards.AddRange(buried.TakeRandom(amount - cards.Count, card.Owner.RunState.Rng.CombatCardSelection));
-    
+
         await CardPileCmd.Add(cards, PileType.Hand);
     }
 }

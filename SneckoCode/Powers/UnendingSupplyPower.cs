@@ -15,10 +15,7 @@ public class UnendingSupplyPower : SneckoPowerModel
     {
         if (Owner != player.Creature) return;
         var mutableCards = SneckoModel.GetCombatSneckoCards(player, Amount).ToList();
-        foreach (var card in mutableCards)
-        {
-            card.ToEcho();
-        }
+        foreach (var card in mutableCards) card.ToEcho();
 
         await CardPileCmd.Add(mutableCards, PileType.Hand);
     }

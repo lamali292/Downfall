@@ -18,8 +18,9 @@ public class SoulLitLamp : CollectorRelicModel
         WithTip(typeof(Ember));
     }
 
-      
+
     public override bool HasUponPickupEffect => true;
+
     public override Task AfterObtained()
     {
         EssenceModel.AddEssence(Owner, 3);

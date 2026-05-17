@@ -6,5 +6,8 @@ namespace Snecko.SneckoCode.Vfx;
 [GlobalClass]
 public partial class NSneckoMerchantCharacter : NMerchantCharacter
 {
-    public override void _Ready() => PlayAnimation("Idle", true);
+    public override void _Ready()
+    {
+        PlayAnimation("Idle", true);
+    }
 }

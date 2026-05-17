@@ -33,8 +33,16 @@ internal class NAudioManagerPatch
 internal static class SfxOverridePatch
 {
     private static readonly Dictionary<string, ModSoundEffect> Overrides = new();
-    public static ModSoundEffect? GetOverride(string path) => Overrides.GetValueOrDefault(path);
-    public static void Register(string path, ModSoundEffect effect) => Overrides[path] = effect;
+
+    public static ModSoundEffect? GetOverride(string path)
+    {
+        return Overrides.GetValueOrDefault(path);
+    }
+
+    public static void Register(string path, ModSoundEffect effect)
+    {
+        Overrides[path] = effect;
+    }
 
     private static bool Prefix(string sfx)
     {

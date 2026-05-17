@@ -16,10 +16,10 @@ public class ForwardTackle : SlimeBossCardModel
         WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this,  cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);
         await SlimeBossCmd.Command(ctx, this);
     }

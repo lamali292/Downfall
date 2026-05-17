@@ -22,15 +22,18 @@ public class FinalStrike : SneckoCardModel
         WithCalculatedVar("UniqueStrikesPlayed", 0, UniqueStrikesPlayed);
     }
 
-    private static decimal UniqueStrikesPlayed(CardModel card, Creature? creature)  => CombatManager.Instance.History.CardPlaysFinished
-        .Select(e => e.CardPlay.Card)
-        .Where(e => e.Owner == card.Owner && e.Tags.Contains(CardTag.Strike))
-        .DistinctBy(c => c.Id)
-        .Count() + 1;
-    
+    private static decimal UniqueStrikesPlayed(CardModel card, Creature? creature)
+    {
+        return CombatManager.Instance.History.CardPlaysFinished
+            .Select(e => e.CardPlay.Card)
+            .Where(e => e.Owner == card.Owner && e.Tags.Contains(CardTag.Strike))
+            .DistinctBy(c => c.Id)
+            .Count() + 1;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var repeat = (int) UniqueStrikesPlayed(this, null);
+        var repeat = (int)UniqueStrikesPlayed(this, null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
 }

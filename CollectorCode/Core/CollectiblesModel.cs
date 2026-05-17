@@ -1,15 +1,12 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Patches.Content;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Rewards;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Saves;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Core;
 
@@ -36,7 +33,7 @@ public static class CollectiblesModel
         {
             WasSkipped = false,
             Card = card.ToSerializable(),
-            EssenceCost = essenceCost,
+            EssenceCost = essenceCost
         });
     }
 

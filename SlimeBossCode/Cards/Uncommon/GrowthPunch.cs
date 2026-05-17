@@ -15,13 +15,13 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
     {
     }
 
-    // TODO: Implement
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-    }
-
     public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
         throw new NotImplementedException();
+    }
+
+    // TODO: Implement
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
     }
 }

@@ -15,8 +15,7 @@ public class DownfallPlayerData : IPacketSerializable
 
     [JsonPropertyName("snecko_pools")] public List<ModelId> SneckoPools { get; set; } = [];
 
-    [JsonPropertyName("gremlin_stats")]
-    public List<GremlinSaveData> GremlinStats { get; set; } = [];
+    [JsonPropertyName("gremlin_stats")] public List<GremlinSaveData> GremlinStats { get; set; } = [];
 
     public void Serialize(PacketWriter writer)
     {
@@ -35,13 +34,12 @@ public class DownfallPlayerData : IPacketSerializable
     }
 }
 
-
 public class GremlinSaveData : IPacketSerializable
 {
     // Order in this list encodes rotation — index 0 = active
     [JsonPropertyName("model_id")] public required ModelId ModelId { get; set; }
-    [JsonPropertyName("hp")]       public required int Hp { get; set; }
-    [JsonPropertyName("max_hp")]   public required int MaxHp { get; set; }
+    [JsonPropertyName("hp")] public required int Hp { get; set; }
+    [JsonPropertyName("max_hp")] public required int MaxHp { get; set; }
 
     public void Serialize(PacketWriter writer)
     {
@@ -53,7 +51,7 @@ public class GremlinSaveData : IPacketSerializable
     public void Deserialize(PacketReader reader)
     {
         ModelId = reader.ReadFullModelId();
-        Hp      = reader.ReadInt();
-        MaxHp   = reader.ReadInt();
+        Hp = reader.ReadInt();
+        MaxHp = reader.ReadInt();
     }
 }

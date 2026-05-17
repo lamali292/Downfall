@@ -15,7 +15,7 @@ public class OozeBath : SlimeBossCardModel
         WithPower<OozeBathPower>(6, 3);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<OozeBathPower>(ctx, this, cardPlay);

@@ -2,11 +2,9 @@
 using BaseLib.Patches.Content;
 using Collector.CollectorCode.Extensions;
 using Godot;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Rewards;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Collector.CollectorCode.Rewards;
@@ -69,5 +67,4 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
     public override void MarkContentAsSeen()
     {
     }
-
 }

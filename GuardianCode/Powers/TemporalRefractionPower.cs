@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;

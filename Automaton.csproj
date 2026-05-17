@@ -5,7 +5,7 @@
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <AdditionalFiles Include="Automaton/localization/**/*.json"/>
         <Compile Remove="Automaton/**"/>

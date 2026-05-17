@@ -17,8 +17,17 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-    
-    protected override object InitInternalData() => new Data();
+
+
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
+    }
+
+    protected override object InitInternalData()
+    {
+        return new Data();
+    }
 
     public override Task BeforeAttack(AttackCommand command)
     {
@@ -26,7 +35,7 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
             return Task.CompletedTask;
         var internalData = GetInternalData<Data>();
         if (internalData.CommandToModify != null ||
-            command.ModelSource != null && command.ModelSource is not CardModel || 
+            (command.ModelSource != null && command.ModelSource is not CardModel) ||
             !command.DamageProps.IsPoweredAttack())
             return Task.CompletedTask;
         internalData.CommandToModify = command;
@@ -44,10 +53,12 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         if (Owner != target || dealer != Applier || !props.IsPoweredAttack())
             return 0M;
         var internalData = GetInternalData<Data>();
-        return internalData.CommandToModify != null && cardSource != null && 
-            cardSource != internalData.CommandToModify.ModelSource ||
-            internalData.CommandToModify != null &&
-            internalData.CommandToModify.Attacker != dealer ? 0M : Amount;
+        return (internalData.CommandToModify != null && cardSource != null &&
+                cardSource != internalData.CommandToModify.ModelSource) ||
+               (internalData.CommandToModify != null &&
+                internalData.CommandToModify.Attacker != dealer)
+            ? 0M
+            : Amount;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
@@ -58,31 +69,22 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
             internalData.CommandToModify = null;
             return;
         }
-        
+
         var amount = Amount;
         var creature = Owner;
         var removeAmount = -internalData.AmountWhenAttackStarted;
         var newAmount = SlimeBossHook.ModifyGoopConsume(CombatState, removeAmount, out var consumes, creature, Applier);
         await SlimeBossHook.AfterModifyingGoopConsume(CombatState, consumes, creature, Applier);
-        await PowerCmd.ModifyAmount(ctx, this, newAmount, null,  null);
+        await PowerCmd.ModifyAmount(ctx, this, newAmount, null, null);
         internalData.CommandToModify = null;
         if (command.ModelSource is IHasConsumeEffect slimeBossCardModel)
-        {
             await slimeBossCardModel.ConsumeEffect(ctx, creature, command, amount);
-        }
         await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, command, amount);
     }
 
     private class Data
     {
-        public AttackCommand? CommandToModify;
         public int AmountWhenAttackStarted;
+        public AttackCommand? CommandToModify;
     }
-    
-    
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
-    }
-
 }

@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.History;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
@@ -26,7 +25,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     protected override string IconPath => RewardIcon;
 
     public override int RewardsSetIndex => 9;
- 
+
 
     public override LocString Description
     {
@@ -51,9 +50,8 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
 
     public override void Populate()
     {
-        
     }
-    
+
     protected override async Task<bool> OnSelect()
     {
         if (!Player.CanAffordEssence(3)) return false;

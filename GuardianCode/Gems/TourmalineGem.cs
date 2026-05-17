@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Powers;
-
 using Godot;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.DynamicVars;

@@ -19,7 +19,7 @@ public class DoubleLick : SlimeBossCardModel
         WithCards(0, 1);
         WithTags(SlimeBossTag.Lick);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = DynamicVars.Repeat.BaseValue;

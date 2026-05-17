@@ -11,8 +11,8 @@ namespace Snecko.SneckoCode.Relics;
 [Pool(typeof(SneckoRelicPool))]
 public class SealOfApproval() : SneckoRelicModel(RelicRarity.Common)
 {
-      
     public override bool HasUponPickupEffect => true;
+
     public override async Task AfterObtained()
     {
         var cards = SneckoModel.GetRewardSneckoCards(Owner).Where(c => c.Rarity == CardRarity.Uncommon).TakeRandom(5,

@@ -16,7 +16,7 @@ public class GoopSpray : SlimeBossCardModel
         WithPower<GoopPower>(5, 3);
         WithPower<WeakPower>(1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);

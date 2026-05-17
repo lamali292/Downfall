@@ -11,8 +11,8 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class SignatureFinisher() : ChampRelicModel(RelicRarity.Rare)
 {
-      
     public override bool HasUponPickupEffect => true;
+
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);

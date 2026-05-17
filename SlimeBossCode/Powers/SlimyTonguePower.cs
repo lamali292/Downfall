@@ -8,5 +8,7 @@ public class SlimyTonguePower : SlimeBossPowerModel
 {
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
-     => power is  GoopPower && giver == Owner ? amount + Amount : amount;
+    {
+        return power is GoopPower && giver == Owner ? amount + Amount : amount;
+    }
 }

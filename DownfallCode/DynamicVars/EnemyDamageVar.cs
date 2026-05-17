@@ -7,10 +7,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.DynamicVars;
 
-public class EnemyDamageVar: DynamicVar
+public class EnemyDamageVar : DynamicVar
 {
-    public ValueProp Props { get; set; }
-
     public EnemyDamageVar(decimal damage, ValueProp props)
         : base("EnemyDamage", damage)
     {
@@ -23,6 +21,8 @@ public class EnemyDamageVar: DynamicVar
         Props = props;
     }
 
+    public ValueProp Props { get; set; }
+
     public override void UpdateCardPreview(
         CardModel card,
         CardPreviewMode previewMode,
@@ -31,7 +31,8 @@ public class EnemyDamageVar: DynamicVar
     {
         var originalDamage1 = BaseValue;
         if (runGlobalHooks)
-            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, target, BaseValue, Props, card, ModifyDamageHookType.All, previewMode, out _);
+            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, target, BaseValue, Props,
+                card, ModifyDamageHookType.All, previewMode, out _);
         PreviewValue = originalDamage1;
     }
 }

@@ -5,7 +5,8 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class HexSlime : SlimeModel
 {
-
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-        => SetupAnimationState(controller, "idle" , hitName: "damage");
+    {
+        return SetupAnimationState(controller, "idle", hitName: "damage");
+    }
 }

@@ -24,7 +24,7 @@ public abstract class SlimeBossCardModel(
     {
         await PlayEffect(ctx, cardPlay);
     }
-    
+
     protected ConstructedCardModel WithSlurp(decimal baseVal, decimal upgradedVal = 0)
     {
         WithVar(new SlurpVar(baseVal).WithUpgrade(upgradedVal));

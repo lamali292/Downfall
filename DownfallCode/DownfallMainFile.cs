@@ -2,8 +2,6 @@ using System.Reflection;
 using BaseLib.Config;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
-using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -12,7 +10,6 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
@@ -60,12 +57,10 @@ internal static class ModelDbInitIdsPatch
 
         var powers = ModelDb.AllPowers.Count(p => p.GetType().Assembly == modAssembly);
         DownfallMainFile.Logger.Info($"Powers: {powers}");
-        
+
         foreach (var character in ModelDb.AllCharacters.OfType<DownfallCharacterModel>())
-        {
             if (character.CharacterSelectSfxEntry is { } effect)
                 SfxOverridePatch.Register(character.CharacterSelectSfx, effect);
-        }
     }
 }
 

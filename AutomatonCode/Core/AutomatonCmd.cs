@@ -119,6 +119,7 @@ public static class AutomatonCmd
             functionCard.SetCardType(CardType.Skill);
             functionCard.SetTargetType(TargetType.Self);
         }
+
         functionCard.SetSourceCards(snapshot);
         return functionCard;
     }

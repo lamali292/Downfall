@@ -16,7 +16,7 @@ public class Schlurp : SlimeBossCardModel
         WithCards(1, 1);
         WithPower<GoopPower>(7);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);

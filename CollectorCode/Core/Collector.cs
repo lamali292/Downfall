@@ -48,7 +48,7 @@ public class Collector : DownfallCharacterModel
     [
         ModelDb.Relic<EmeraldTorch>()
     ];
-    
+
     public override ModSoundEffect CharacterSelectSfxEntry => new(
         new ModSoundEntry("res://Collector/audio/character_select/STS_SFX_CollectorSummon_v2.ogg", 1, 0.1f, 1, 7)
     );
