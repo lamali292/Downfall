@@ -21,7 +21,7 @@
   "SLIMEBOSS-SCRAP_OOZE.description": "At the start of combat, spawn Scrap Ooze (can be revived if Absorbed. At Rest Sites, you can donate a card to the Scrap Ooze, modifying its +1 damage for Uncommons +2 damage for Rares -1 damage for Commons -2 damage for {{QueryLink|Cards|type:Curse|Curses}}",
   "SLIMEBOSS-SCRAP_OOZE.flavor": "",
   "SLIMEBOSS-SLIMED_TAIL.title": "Slimed Tail",
-  "SLIMEBOSS-SLIMED_TAIL.description": "Whenever you Split, gain 3 Block.",
+  "SLIMEBOSS-SLIMED_TAIL.description": "Whenever you Split, gain 3 [gold]Block[/gold].",
   "SLIMEBOSS-SLIMED_TAIL.flavor": "A fake tail to trick enemies during combat, completely covered in slime.",
   "SLIMEBOSS-SLIMY_SKULL.title": "Slimy Skull",
   "SLIMEBOSS-SLIMY_SKULL.description": "Whenever you apply Goop, apply an additional 1 Goop.",
