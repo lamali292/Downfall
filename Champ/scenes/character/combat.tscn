@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://4mnryhpwm56n"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="PackedScene" uid="uid://c01c5fc3gfe4p" path="res://Champ/scenes/character/champ.tscn" id="1_iqfof"]
-[ext_resource type="Script" uid="uid://bfqdfyxdecq5a" path="res://ChampCode/Vfx/NChampCreatureVisuals.cs" id="1_o1y6q"]
+[ext_resource type="PackedScene" path="res://Champ/scenes/character/champ.tscn" id="1_iqfof"]
+[ext_resource type="Script" path="res://ChampCode/Vfx/NChampCreatureVisuals.cs" id="1_o1y6q"]
 
 [node name="ChampCombat" type="Node2D"]
 script = ExtResource("1_o1y6q")

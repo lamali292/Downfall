@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvexwqvr5dhom"]
+[gd_scene load_steps=3 format=3 uid="uid://cie84r5v73rcq"]
 
 [ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_o6c0o"]
-[ext_resource type="PackedScene" uid="uid://druaiynv1uk55" path="res://SlimeBoss/scenes/slimes/visuals/protector.tscn" id="2_o6c0o"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/cultist.tscn" id="2_o6c0o"]
 
-[node name="ProtectorSlime" type="Node2D"]
+[node name="CultistSlime" type="Node2D"]
 script = ExtResource("1_o6c0o")
 
 [node name="Visuals" parent="." instance=ExtResource("2_o6c0o")]
 unique_name_in_owner = true
+position = Vector2(1, -8)
 scale = Vector2(-1, 1)
 
 [node name="Bounds" type="Control" parent="."]

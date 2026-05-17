@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk2lrxdqssxdw"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://dp7meqb1h34it" path="res://Champ/images/character/selection_screen.png" id="1_xmdth"]
+[ext_resource type="Texture2D" path="res://Champ/images/character/selection_screen.png" id="1_xmdth"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3

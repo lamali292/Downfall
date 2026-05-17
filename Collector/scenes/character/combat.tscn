@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://buy0md4lt7yl7"]
+[gd_scene load_steps=13 format=3 ]
 
 [ext_resource type="Script" path="res://CollectorCode/Vfx/NCollectorCreatureVisuals.cs" id="1_ebnpl"]
-[ext_resource type="PackedScene" uid="uid://da814ygbtb6qy" path="res://Collector/scenes/character/collector.tscn" id="1_orqfj"]
-[ext_resource type="Shader" uid="uid://b3mjsdna22bkv" path="res://shaders/vfx/fire/fire_shader_1.tres" id="3_6l0f0"]
-[ext_resource type="Texture2D" uid="uid://bid56elmy6fr6" path="res://images/vfx/tileable_noise_4.png" id="4_jexqy"]
-[ext_resource type="Texture2D" uid="uid://dtaovewempx07" path="res://images/vfx/tileable_noise_1.png" id="5_vakqx"]
-[ext_resource type="Texture2D" uid="uid://8u0ij0tgmrfb" path="res://images/vfx/tileable_noise_2.png" id="6_1rjt3"]
-[ext_resource type="Texture2D" uid="uid://dhrgww7uebqa7" path="res://images/vfx/environment/fire/fire_shape_1.png" id="7_cr8jc"]
-[ext_resource type="Texture2D" uid="uid://ctia3rua3hmm8" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="8_se3lt"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/collector.tscn" id="1_orqfj"]
+[ext_resource type="Shader" path="res://shaders/vfx/fire/fire_shader_1.tres" id="3_6l0f0"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_4.png" id="4_jexqy"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_1.png" id="5_vakqx"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_2.png" id="6_1rjt3"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/fire_shape_1.png" id="7_cr8jc"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="8_se3lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qs3l2"]
 shader = ExtResource("3_6l0f0")

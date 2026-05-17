@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl413f3k4kcwu"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_dvpfa"]
-[ext_resource type="PackedScene" uid="uid://bv3sh8t5a5hqw" path="res://SlimeBoss/scenes/slimes/visuals/cultist.tscn" id="2_dvpfa"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_dvpfa"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/cultist.tscn" id="2_dvpfa"]
 
 [node name="CultistSlime" type="Node2D"]
 script = ExtResource("1_dvpfa")

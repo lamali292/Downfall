@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg9"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://jvldwl2cyrvu" path="res://images/ui/transitions/ironclad_transition.png" id="1_nofof"]
+[ext_resource type="Texture2D" path="res://images/ui/transitions/ironclad_transition.png" id="1_nofof"]
 
 [sub_resource type="Shader" id="Shader_spnx5"]
 code = "shader_type canvas_item;

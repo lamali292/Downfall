@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://l66o1q5wbo5"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://dfj4q02po60e4" path="res://Collector/images/character/character_icon.png" id="1_bcmbk"]
+[ext_resource type="Texture2D" path="res://Collector/images/character/character_icon.png" id="1_bcmbk"]
 
 [node name="WatcherIcon" type="TextureRect"]
 anchors_preset = 15

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cug4lh5n0gi4"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Script" uid="uid://dh4d0sqk21k6" path="res://src/Core/Nodes/Combat/NEnergyCounter.cs" id="1_7d3th"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NEnergyCounter.cs" id="1_7d3th"]
 
 [node name="IroncladEnergyCounter" type="Control"]
 layout_mode = 3

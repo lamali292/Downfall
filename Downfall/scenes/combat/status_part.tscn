@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5a7dbb8x74jt"]
+[gd_scene load_steps=6 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://bydu5n4y1b5o" path="res://images/ui/combat/health_bar_bg.png" id="1_1tyh8"]
-[ext_resource type="Texture2D" uid="uid://ta0irxtri5jj" path="res://images/ui/combat/health_bar.png" id="1_p85at"]
-[ext_resource type="Script" uid="uid://4dp5xbp0mppe" path="res://DownfallCode/Vfx/NStatusPart.cs" id="1_t78mt"]
-[ext_resource type="Texture2D" uid="uid://g08m1dy2l4bh" path="res://images/ui/combat/health_bar_fill.png" id="2_1tyh8"]
-[ext_resource type="Texture2D" uid="uid://dg2dkaqkccg86" path="res://images/ui/combat/health_bar_stroke.png" id="2_t78mt"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar_bg.png" id="1_1tyh8"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar.png" id="1_p85at"]
+[ext_resource type="Script" path="res://DownfallCode/Vfx/NStatusPart.cs" id="1_t78mt"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar_fill.png" id="2_1tyh8"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar_stroke.png" id="2_t78mt"]
 
 [node name="StatusPart" type="Control"]
 layout_mode = 3

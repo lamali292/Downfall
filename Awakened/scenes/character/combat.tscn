@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clvfiabamedm2"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="PackedScene" uid="uid://ev1xo2lik1bs" path="res://Awakened/scenes/character/awakened.tscn" id="1_qyr5i"]
-[ext_resource type="Script" uid="uid://p2paxeblrie8" path="res://AwakenedCode/Vfx/NAwakenedCreatureVisuals.cs" id="2_a8i81"]
+[ext_resource type="PackedScene" path="res://Awakened/scenes/character/awakened.tscn" id="1_qyr5i"]
+[ext_resource type="Script" path="res://AwakenedCode/Vfx/NAwakenedCreatureVisuals.cs" id="2_a8i81"]
 
 [node name="AwakenedCombat" type="Node2D"]
 script = ExtResource("2_a8i81")

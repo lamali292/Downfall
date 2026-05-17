@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ub7edbc3nuhu"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://5tepj2g6w8v" path="res://Hexaghost/images/character/selection_screen.png" id="1_a5s42"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/selection_screen.png" id="1_a5s42"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3

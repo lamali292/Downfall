@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cknldnryhtvhy"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://b26mvfxr3rog6" path="res://SlimeBoss/images/character/character_icon.png" id="1_55p5p"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/character/character_icon.png" id="1_55p5p"]
 
 [node name="WatcherIcon" type="TextureRect"]
 anchors_preset = 15

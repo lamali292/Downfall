@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpa5ds22pd264"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="PackedScene" uid="uid://cskkr2d8cv3jd" path="res://Guardian/scenes/character/guardian.tscn" id="1_6iq6a"]
-[ext_resource type="Script" uid="uid://crd3bho7f4npr" path="res://GuardianCode/Vfx/NGuardianMerchantCharacter.cs" id="1_15ttq"]
+[ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="1_6iq6a"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianMerchantCharacter.cs" id="1_15ttq"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_15ttq")

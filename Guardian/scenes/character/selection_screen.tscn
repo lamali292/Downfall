@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyirmnsb4bosj"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://41nluf2qwcbm" path="res://Guardian/images/character/selection_screen.png" id="1_om3no"]
+[ext_resource type="Texture2D" path="res://Guardian/images/character/selection_screen.png" id="1_om3no"]
 
 
 [node name="WatcherBg" type="Control"]

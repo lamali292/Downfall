@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnk2ahct1ovj"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_i1xgs"]
-[ext_resource type="PackedScene" uid="uid://vcf2vrlvy748" path="res://SlimeBoss/scenes/slimes/visuals/champ.tscn" id="2_i1xgs"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_i1xgs"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/champ.tscn" id="2_i1xgs"]
 
 [node name="ChampSlime" type="Node2D"]
 script = ExtResource("1_i1xgs")

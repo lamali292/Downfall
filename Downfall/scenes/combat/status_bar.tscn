@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctaghwq8q41or"]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="Script" uid="uid://bwxcbilk2eqgd" path="res://DownfallCode/Vfx/NStatusBar.cs" id="1_dcr38"]
-[ext_resource type="PackedScene" uid="uid://b5a7dbb8x74jt" path="res://Downfall/scenes/combat/status_part.tscn" id="2_lssm8"]
-[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://themes/kreon_bold_glyph_space_one.tres" id="7_jxsns"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="8_6uqsx"]
+[ext_resource type="Script" path="res://DownfallCode/Vfx/NStatusBar.cs" id="1_dcr38"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/combat/status_part.tscn" id="2_lssm8"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="7_jxsns"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="8_6uqsx"]
 
 [node name="HealthBar" type="Control"]
 layout_mode = 3

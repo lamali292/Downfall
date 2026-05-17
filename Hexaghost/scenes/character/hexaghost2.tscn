@@ -1,9 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://bnb63phrlkqlx"]
+[gd_scene load_steps=39 format=3 ]
 
-[ext_resource type="Script" uid="uid://bpchfaiqvtt4c" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="1_sll4x"]
-[ext_resource type="Texture2D" uid="uid://0obcqgs6fyx2" path="res://images/vfx/shared_use/smoke_vfx_flat.png" id="2_vvcwg"]
-[ext_resource type="Texture2D" uid="uid://bqg5r3lf2kh8b" path="res://Hexaghost/images/character/hexaghost_core.png" id="3_sll4x"]
-[ext_resource type="PackedScene" uid="uid://ctpcbynpmtfuc" path="res://Hexaghost/scenes/vfx/fire.tscn" id="4_s5e12"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="1_sll4x"]
+[ext_resource type="Texture2D" path="res://images/vfx/shared_use/smoke_vfx_flat.png" id="2_vvcwg"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/hexaghost_core.png" id="3_sll4x"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/vfx/fire.tscn" id="4_s5e12"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mul2j"]
 particles_animation = true

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cocglac7kpep0"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://tjkib3cpdgxp" path="res://AutomatonCode/Vfx/NAutomatonMerchantCharacter.cs" id="1_j2063"]
-[ext_resource type="PackedScene" uid="uid://yxjampn3b1xv" path="res://Automaton/scenes/character/automaton.tscn" id="2_ssl3a"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NAutomatonMerchantCharacter.cs" id="1_j2063"]
+[ext_resource type="PackedScene" path="res://Automaton/scenes/character/automaton.tscn" id="2_ssl3a"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_j2063")

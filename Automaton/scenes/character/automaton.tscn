@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxjampn3b1xv"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://b06uggarrraq5" path="res://Automaton/scenes/character/automaton.spatlas" id="1_ifd2i"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://cckpb0u0x7n7h" path="res://Automaton/scenes/character/automaton.spskel" id="2_pavcy"]
+[ext_resource type="SpineAtlasResource" path="res://Automaton/scenes/character/automaton.spatlas" id="1_ifd2i"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Automaton/scenes/character/automaton.spskel" id="2_pavcy"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_1ov3j"]
 atlas_res = ExtResource("1_ifd2i")

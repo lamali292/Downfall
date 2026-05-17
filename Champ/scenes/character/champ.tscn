@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c01c5fc3gfe4p"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://cf8p6tmrkpcrx" path="res://Champ/scenes/character/champ.spatlas" id="1_swlh0"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://cemvd11auppqw" path="res://Champ/scenes/character/champ.spskel" id="2_j1kbm"]
+[ext_resource type="SpineAtlasResource" path="res://Champ/scenes/character/champ.spatlas" id="1_swlh0"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Champ/scenes/character/champ.spskel" id="2_j1kbm"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_xbnni"]
 atlas_res = ExtResource("1_swlh0")

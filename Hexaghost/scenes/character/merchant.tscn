@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3bcidga8h5tm"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="PackedScene" uid="uid://bnb63phrlkqlx" path="res://Hexaghost/scenes/character/hexaghost2.tscn" id="1_xhr6f"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost2.tscn" id="1_xhr6f"]
 [ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostMerchantCharacter.cs" id="1_ytoje"]
 
 [node name="Merchant" type="Node2D"]

@@ -139,11 +139,4 @@
     <ItemGroup>
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
     </ItemGroup>
-    
-    
-
-    <ItemGroup>
-        <None Include=".gitignore"/>
-        <None Include="project.godot"/>
-    </ItemGroup>
 </Project>

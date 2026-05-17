@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dus873clvbdg5"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://domed7dognbqk" path="res://AutomatonCode/Vfx/NAutomatonSlot.cs" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://78rinettnk6q" path="res://Automaton/images/ui/sequenceSlot.png" id="2_tex"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NAutomatonSlot.cs" id="1_script"]
+[ext_resource type="Texture2D" path="res://Automaton/images/ui/sequenceSlot.png" id="2_tex"]
 
 
 [node name="AutomatonSlot" type="Control"]

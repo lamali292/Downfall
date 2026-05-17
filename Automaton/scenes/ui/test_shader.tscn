@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://n3yiulfroyr4"]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="Shader" uid="uid://bxnd2m6qb6aj1" path="res://Automaton/shader/function_card.gdshader" id="1_x8unp"]
-[ext_resource type="Texture2D" uid="uid://b6yryuf4syvy8" path="res://images/atlases/ui_atlas_0.png" id="2_x8unp"]
+[ext_resource type="Shader" path="res://Automaton/shader/function_card.gdshader" id="1_x8unp"]
+[ext_resource type="Texture2D" path="res://images/atlases/ui_atlas_0.png" id="2_x8unp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x8unp"]
 shader = ExtResource("1_x8unp")

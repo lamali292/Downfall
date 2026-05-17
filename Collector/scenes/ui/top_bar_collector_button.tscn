@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvmne1bv4tl3r"]
+[gd_scene load_steps=12 format=3 ]
 
-[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="1_3utpw"]
-[ext_resource type="Script" uid="uid://copifypni0eja" path="res://CollectorCode/Vfx/NTopBarCollectorButton.cs" id="1_18ey2"]
-[ext_resource type="Texture2D" uid="uid://iwfoyvot33tq" path="res://Collector/scenes/ui/ui_atlas.png" id="3_4g4ec"]
-[ext_resource type="FontFile" uid="uid://clypo64htko7l" path="res://fonts/kreon_regular.ttf" id="4_cgdsd"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="5_w05x3"]
-[ext_resource type="Texture2D" uid="uid://b5x513mavmk5v" path="res://images/ui/placeholder_controller_icon.png" id="6_athp8"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="1_3utpw"]
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NTopBarCollectorButton.cs" id="1_18ey2"]
+[ext_resource type="Texture2D" path="res://Collector/scenes/ui/ui_atlas.png" id="3_4g4ec"]
+[ext_resource type="FontFile" path="res://fonts/kreon_regular.ttf" id="4_cgdsd"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_w05x3"]
+[ext_resource type="Texture2D" path="res://images/ui/placeholder_controller_icon.png" id="6_athp8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnyyu"]
 shader = ExtResource("1_3utpw")

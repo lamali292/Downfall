@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq5apoxbgw06h"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://vohqr0ukdf0l" path="res://SneckoCode/Vfx/NSneckoMerchantCharacter.cs" id="1_42ufr"]
-[ext_resource type="PackedScene" uid="uid://brr7b4dtxctqm" path="res://Snecko/scenes/character/snecko.tscn" id="1_mpw0i"]
+[ext_resource type="Script" path="res://SneckoCode/Vfx/NSneckoMerchantCharacter.cs" id="1_42ufr"]
+[ext_resource type="PackedScene" path="res://Snecko/scenes/character/snecko.tscn" id="1_mpw0i"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_42ufr")

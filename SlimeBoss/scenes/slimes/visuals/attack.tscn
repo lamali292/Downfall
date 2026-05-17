@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://rpyj70svwhgw"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://cgv38dwe02gvd" path="res://SlimeBoss/scenes/slimes/visuals/attack.spatlas" id="1_c7jt6"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://nmnq8tx6a06l" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_bhsfm"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/attack.spatlas" id="1_c7jt6"]
+[ext_resource type="SpineSkeletonFileResource"  path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_bhsfm"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_bhsfm"]
 atlas_res = ExtResource("1_c7jt6")

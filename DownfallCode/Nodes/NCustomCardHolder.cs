@@ -115,9 +115,4 @@ public partial class NCustomCardHolder : NCardHolder, IPoolable
 
         _isPreviewingUpgrade = showUpgradePreview;
     }
-
-    private new void SetCard(NCard node)
-    {
-        base.SetCard(node);
-    }
 }

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://btvp11lo4did3"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://c1812faiovthv" path="res://AutomatonCode/Vfx/NAutomatonCreatureVisuals.cs" id="1_0l65l"]
-[ext_resource type="PackedScene" uid="uid://yxjampn3b1xv" path="res://Automaton/scenes/character/automaton.tscn" id="1_tul5f"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NAutomatonCreatureVisuals.cs" id="1_0l65l"]
+[ext_resource type="PackedScene" path="res://Automaton/scenes/character/automaton.tscn" id="1_tul5f"]
 
 [node name="AutomatonCombat" type="Node2D"]
 script = ExtResource("1_0l65l")

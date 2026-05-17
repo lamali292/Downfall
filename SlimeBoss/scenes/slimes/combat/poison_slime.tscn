@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw3xkjlnus1j"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_khak3"]
-[ext_resource type="PackedScene" uid="uid://dokf5ivf8n8xo" path="res://SlimeBoss/scenes/slimes/visuals/poison.tscn" id="2_khak3"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_khak3"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/poison.tscn" id="2_khak3"]
 
 [node name="PoisonSlime" type="Node2D"]
 script = ExtResource("1_khak3")

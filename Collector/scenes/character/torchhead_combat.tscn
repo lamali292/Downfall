@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2byfdlrfwq4u"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://gv2idwo3pn0b" path="res://CollectorCode/Vfx/NTorchheadCreatureVisuals.cs" id="1_8l8vf"]
-[ext_resource type="PackedScene" uid="uid://clfk0oxupwkj" path="res://Collector/scenes/character/torchhead.tscn" id="2_arvdp"]
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NTorchheadCreatureVisuals.cs" id="1_8l8vf"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/torchhead.tscn" id="2_arvdp"]
 
 [node name="TorchheadCombat" type="Node2D"]
 script = ExtResource("1_8l8vf")

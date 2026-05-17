@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dspwjyhhhqgj7"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://c7e336ouwofqy" path="res://AwakenedCode/Vfx/NAwakenedMerchantCharacter.cs" id="1_h8ax2"]
-[ext_resource type="PackedScene" uid="uid://ev1xo2lik1bs" path="res://Awakened/scenes/character/awakened.tscn" id="2_nxpmx"]
+[ext_resource type="Script" path="res://AwakenedCode/Vfx/NAwakenedMerchantCharacter.cs" id="1_h8ax2"]
+[ext_resource type="PackedScene" path="res://Awakened/scenes/character/awakened.tscn" id="2_nxpmx"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_h8ax2")

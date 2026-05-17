@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cuhsxeswx1qg6"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://b83t6fdvgeu1q" path="res://Hexaghost/images/character/transition.png" id="1_5jglv"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/transition.png" id="1_5jglv"]
 
 [sub_resource type="Shader" id="Shader_spnx5"]
 code = "shader_type canvas_item;

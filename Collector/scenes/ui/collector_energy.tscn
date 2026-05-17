@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://blmpmymgrw47j"]
+[gd_scene load_steps=10 format=3 ]
 
-[ext_resource type="Script" uid="uid://lhgaar4kcxjv" path="res://CollectorCode/Vfx/NCollectorEnergyCounter.cs" id="1_dnfak"]
-[ext_resource type="Texture2D" uid="uid://yote5xhewsuf" path="res://Collector/images/ui/collector_energy_layer1.png" id="2_e2yny"]
-[ext_resource type="FontFile" uid="uid://dc8ocd36hqnbe" path="res://fonts/kreon_bold.ttf" id="2_evxyu"]
-[ext_resource type="Texture2D" uid="uid://b71662kaj6qo6" path="res://Collector/images/ui/collector_energy_layer2.png" id="3_vjviq"]
-[ext_resource type="Texture2D" uid="uid://bej7npfa2ltug" path="res://Collector/images/ui/collector_energy_layer3.png" id="4_vjviq"]
-[ext_resource type="Texture2D" uid="uid://c4g4mwvuttrgb" path="res://Collector/images/ui/collector_energy_layer4.png" id="5_ahd4u"]
-[ext_resource type="Texture2D" uid="uid://yu672g2p8x7k" path="res://Collector/images/ui/collector_energy_layer5.png" id="6_wgqhr"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="8_wgqhr"]
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NCollectorEnergyCounter.cs" id="1_dnfak"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer1.png" id="2_e2yny"]
+[ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="2_evxyu"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer2.png" id="3_vjviq"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer3.png" id="4_vjviq"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer4.png" id="5_ahd4u"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer5.png" id="6_wgqhr"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="8_wgqhr"]
 
 
 [sub_resource type="FontVariation" id="FontVariation_e2yny"]

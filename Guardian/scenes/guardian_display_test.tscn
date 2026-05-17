@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cptinssb32jcf"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://bbi536v6yjtw7" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_a1waa"]
-[ext_resource type="PackedScene" uid="uid://cno5ncb7dqixm" path="res://Guardian/scenes/stasis_slot.tscn" id="2_f34uv"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_a1waa"]
+[ext_resource type="PackedScene" path="res://Guardian/scenes/stasis_slot.tscn" id="2_f34uv"]
 
 [node name="GuardianDisplay" type="Control"]
 layout_mode = 3

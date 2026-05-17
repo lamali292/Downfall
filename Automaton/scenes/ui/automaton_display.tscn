@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2lpe2kflph1t"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://bwrqi2jckrypa" path="res://AutomatonCode/Vfx/NSequenceDisplay.cs" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://dus873clvbdg5" path="res://Automaton/scenes/ui/automaton_slot.tscn" id="2_slot"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NSequenceDisplay.cs" id="1_script"]
+[ext_resource type="PackedScene" path="res://Automaton/scenes/ui/automaton_slot.tscn" id="2_slot"]
 
 [node name="AutomatonDisplay" type="Control"]
 layout_mode = 3

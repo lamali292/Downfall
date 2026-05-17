@@ -11,6 +11,7 @@
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
         <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
             <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
@@ -20,29 +21,20 @@
 
     <Target Name="GodotImport" BeforeTargets="GodotPublish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)')">
-        <!-- Delete stale shadow-copy DLLs that block extension loading -->
-        <Exec Command="del /F /Q &quot;$(MSBuildProjectDirectory)\addons\fmod\libs\windows\~*.dll&quot; 2&gt;nul"
-              IgnoreExitCode="true" Condition="'$(IsWindows)' == 'true'"/>
-        <Exec Command="del /F /Q &quot;$(MSBuildProjectDirectory)\addons\sentry\bin\windows\x86_64\~*.dll&quot; 2&gt;nul"
-              IgnoreExitCode="true" Condition="'$(IsWindows)' == 'true'"/>
-        <Exec Command="del /F /Q &quot;$(MSBuildProjectDirectory)\addons\spine\windows\~*.dll&quot; 2&gt;nul"
-              IgnoreExitCode="true" Condition="'$(IsWindows)' == 'true'"/>
-        <Exec Command="del /F /Q &quot;$(MSBuildProjectDirectory)\bin\windows\~*.dll&quot; 2&gt;nul"
-              IgnoreExitCode="true" Condition="'$(IsWindows)' == 'true'"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit"
-              IgnoreExitCode="true"
-              StandardOutputImportance="low"
-              StandardErrorImportance="low"
-              WorkingDirectory="$(MSBuildProjectDirectory)"/>
+        <!-- Added Configuration and GodotTargetConfiguration dynamically -->
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration);GodotTargetConfiguration=Export$(Configuration)"
+              IgnoreExitCode="true"/>
     </Target>
 
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="Exists('$(MSBuildProjectName).json') and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --script pack_mod.gd -- &quot;$(ModAssetFolder)&quot; &quot;$(ModsPath)$(ModOutputFolder)/$(MSBuildProjectName).pck&quot; --quit"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              IgnoreExitCode="true"/>
+        <Message Text="--- RUNNING CUSTOM MOD PACKER FOR: '$(ModAssetFolder)' ---" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s pack_mod.gd -- &quot;$(ModAssetFolder)&quot; &quot;$(ModsPath)$(ModOutputFolder)\$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration);GodotTargetConfiguration=Export$(Configuration)"
+              IgnoreExitCode="false"/>
     </Target>
-    
+
     <Target Name="GodotPublishSkipped" AfterTargets="Publish"
             Condition="Exists('$(MSBuildProjectName).json') and ('$(GodotPath)' == '' or !Exists('$(GodotPath)'))">
         <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>

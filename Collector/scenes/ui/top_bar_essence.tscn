@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx02vqq4v4ykw"]
+[gd_scene load_steps=7 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://iwfoyvot33tq" path="res://Collector/scenes/ui/ui_atlas.png" id="1_mlet0"]
-[ext_resource type="Script" uid="uid://cwc87cbmkiku0" path="res://CollectorCode/Vfx/NTopBarEssenceDisplay.cs" id="1_uqjwe"]
-[ext_resource type="FontFile" uid="uid://clypo64htko7l" path="res://fonts/kreon_regular.ttf" id="2_mnmp3"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="3_uqjwe"]
+[ext_resource type="Texture2D" path="res://Collector/scenes/ui/ui_atlas.png" id="1_mlet0"]
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NTopBarEssenceDisplay.cs" id="1_uqjwe"]
+[ext_resource type="FontFile" path="res://fonts/kreon_regular.ttf" id="2_mnmp3"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_uqjwe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7iw17"]
 atlas = ExtResource("1_mlet0")

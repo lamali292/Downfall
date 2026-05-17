@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm82eo4wev101"]
+[gd_scene load_steps=10 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://42rsaa5xfsqd" path="res://Collector/scenes/ui/collector_pile.png" id="1_dwnt3"]
-[ext_resource type="Script" uid="uid://ceghjt142whng" path="res://CollectorCode/Vfx/NCollectorPileButton.cs" id="1_goiht"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="1_vw2vt"]
-[ext_resource type="Texture2D" uid="uid://ce37xptc8x4au" path="res://images/packed/combat_ui/pile_button_count.png" id="2_1smap"]
-[ext_resource type="FontFile" uid="uid://dc8ocd36hqnbe" path="res://fonts/kreon_bold.ttf" id="3_b0jd8"]
-[ext_resource type="Texture2D" uid="uid://b5x513mavmk5v" path="res://images/ui/placeholder_controller_icon.png" id="5_5rr11"]
-[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="5_6cqe1"]
+[ext_resource type="Texture2D" path="res://Collector/scenes/ui/collector_pile.png" id="1_dwnt3"]
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NCollectorPileButton.cs" id="1_goiht"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="1_vw2vt"]
+[ext_resource type="Texture2D" path="res://images/packed/combat_ui/pile_button_count.png" id="2_1smap"]
+[ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="3_b0jd8"]
+[ext_resource type="Texture2D" path="res://images/ui/placeholder_controller_icon.png" id="5_5rr11"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="5_6cqe1"]
 
 [sub_resource type="FontVariation" id="FontVariation_5rr11"]
 base_font = ExtResource("3_b0jd8")

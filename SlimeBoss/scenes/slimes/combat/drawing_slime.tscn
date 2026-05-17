@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://brrcu30lhjqxf"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_kx7yp"]
-[ext_resource type="PackedScene" uid="uid://b3xpypu1svovb" path="res://SlimeBoss/scenes/slimes/visuals/drawing.tscn" id="2_kx7yp"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_kx7yp"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/drawing.tscn" id="2_kx7yp"]
 
 [node name="DrawingSlime" type="Node2D"]
 script = ExtResource("1_kx7yp")

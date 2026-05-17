@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bilvl77mwjcpv"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://cm0e721t8r1ea" path="res://Automaton/images/character/character_icon.png" id="1_rbi3q"]
+[ext_resource type="Texture2D" path="res://Automaton/images/character/character_icon.png" id="1_rbi3q"]
 
 [node name="WatcherIcon" type="TextureRect"]
 anchors_preset = 15

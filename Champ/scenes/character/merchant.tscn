@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgd8hjhy4p17v"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://8orsxt7ppsfw" path="res://ChampCode/Vfx/NChampMerchantCharacter.cs" id="1_4dwfy"]
-[ext_resource type="PackedScene" uid="uid://c01c5fc3gfe4p" path="res://Champ/scenes/character/champ.tscn" id="2_f17ie"]
+[ext_resource type="Script" path="res://ChampCode/Vfx/NChampMerchantCharacter.cs" id="1_4dwfy"]
+[ext_resource type="PackedScene" path="res://Champ/scenes/character/champ.tscn" id="2_f17ie"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_4dwfy")

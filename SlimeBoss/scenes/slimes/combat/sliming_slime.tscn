@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccfmcadpsnbi6"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://6pbf5afcaf1u" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_sajeu"]
-[ext_resource type="PackedScene" uid="uid://cptko1bgc66aw" path="res://SlimeBoss/scenes/slimes/visuals/sliming.tscn" id="2_sajeu"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_sajeu"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/sliming.tscn" id="2_sajeu"]
 
 [node name="SlimingSlime" type="Node2D"]
 script = ExtResource("1_sajeu")

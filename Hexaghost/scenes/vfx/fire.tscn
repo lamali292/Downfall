@@ -1,11 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctpcbynpmtfuc"]
+[gd_scene load_steps=34 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://bxa6vlqeby20" path="res://images/vfx/light.png" id="1_2iqbb"]
-[ext_resource type="Texture2D" uid="uid://c67idrcto5vwj" path="res://images/vfx/vfx_constant_fire/fire_texture_2.png" id="1_a50js"]
-[ext_resource type="Script" uid="uid://dxj2a2wh3x1d7" path="res://HexaghostCode/Vfx/NFire.cs" id="1_yijhw"]
-[ext_resource type="Texture2D" uid="uid://cdvuntnhy8ca8" path="res://images/vfx/vfx_constant_fire/fire_spark.png" id="2_b5fa0"]
-[ext_resource type="Script" uid="uid://8tp7h0nkic6u" path="res://scenes/backgrounds/little_light_script.gd" id="2_wg7um"]
-[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
+[ext_resource type="Texture2D" path="res://images/vfx/light.png" id="1_2iqbb"]
+[ext_resource type="Texture2D" path="res://images/vfx/vfx_constant_fire/fire_texture_2.png" id="1_a50js"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NFire.cs" id="1_yijhw"]
+[ext_resource type="Texture2D" path="res://images/vfx/vfx_constant_fire/fire_spark.png" id="2_b5fa0"]
+[ext_resource type="Script" path="res://scenes/backgrounds/little_light_script.gd" id="2_wg7um"]
+[ext_resource type="Material" path="res://themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
 
 [sub_resource type="Curve" id="Curve_2je0m"]
 _data = [Vector2(0, 0.417635), 0.0, 0.0, 0, 0, Vector2(0.502521, 0.507939), 0.0, 0.0, 0, 0, Vector2(1, 0.423164), 0.0, 0.0, 0, 0]

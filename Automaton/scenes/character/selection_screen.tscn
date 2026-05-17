@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw8laa06peku"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://c2675yppi85d5" path="res://Automaton/images/character/selection_screen.png" id="1_ax6rk"]
+[ext_resource type="Texture2D" path="res://Automaton/images/character/selection_screen.png" id="1_ax6rk"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3

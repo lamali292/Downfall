@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp5jlyq4rdaqn"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="Script" uid="uid://bdiscdyjuatqs" path="res://AutomatonCode/Vfx/NFunctionCardOverlay.cs" id="2_57ivt"]
-[ext_resource type="Shader" uid="uid://bxnd2m6qb6aj1" path="res://Automaton/shader/function_card.gdshader" id="2_shader"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NFunctionCardOverlay.cs" id="2_57ivt"]
+[ext_resource type="Shader" path="res://Automaton/shader/function_card.gdshader" id="2_shader"]
 
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_57ivt"]

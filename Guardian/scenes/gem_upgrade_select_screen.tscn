@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cca0ld7voymid"]
+[gd_scene load_steps=9 format=3 ]
 
 [ext_resource type="Script" path="res://GuardianCode/Vfx/NGemUpgradeSelectScreen.cs" id="1_am2p6"]
-[ext_resource type="PackedScene" uid="uid://cso1enqajc0tc" path="res://scenes/cards/card_grid.tscn" id="2_aytyu"]
-[ext_resource type="PackedScene" uid="uid://bl4mbjqjfffa3" path="res://scenes/ui/back_button.tscn" id="3_ed6ns"]
-[ext_resource type="PackedScene" uid="uid://bl460ab2i4mkx" path="res://scenes/ui/confirm_button.tscn" id="4_320a2"]
-[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="5_ppaf3"]
-[ext_resource type="FontVariation" uid="uid://bg85h22rkxs6g" path="res://themes/kreon_bold_shared.tres" id="6_354e7"]
-[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="7_bnjft"]
-[ext_resource type="PackedScene" uid="uid://rxgwkwxf1dsr" path="res://scenes/combat/peek_button.tscn" id="8_242c7"]
+[ext_resource type="PackedScene" path="res://scenes/cards/card_grid.tscn" id="2_aytyu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/back_button.tscn" id="3_ed6ns"]
+[ext_resource type="PackedScene" path="res://scenes/ui/confirm_button.tscn" id="4_320a2"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="5_ppaf3"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_shared.tres" id="6_354e7"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="7_bnjft"]
+[ext_resource type="PackedScene" path="res://scenes/combat/peek_button.tscn" id="8_242c7"]
 
 [node name="DeckCardSelectScreen" type="Control"]
 layout_mode = 3

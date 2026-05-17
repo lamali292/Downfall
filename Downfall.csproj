@@ -21,5 +21,9 @@
     <ItemGroup>
         <None Include="Directory.Build.props"/>
         <None Include="Directory.Build.targets"/>
+        <None Include="export_presets.cfg"/>
+        <None Include="project.godot"/>
+        <None Include=".gitignore"/>
+        <None Include="pack_mod.gd"/>
     </ItemGroup>
 </Project>

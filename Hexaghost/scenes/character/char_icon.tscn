@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtl7g0k16v3eb"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://b0yxvl5w2nt4u" path="res://Hexaghost/images/character/character_icon.png" id="1_0b3qi"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/character_icon.png" id="1_0b3qi"]
 
 [node name="WatcherIcon" type="TextureRect"]
 anchors_preset = 15
