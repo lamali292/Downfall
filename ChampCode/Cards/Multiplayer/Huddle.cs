@@ -9,7 +9,7 @@ namespace Champ.ChampCode.Cards.Multiplayer;
 [Pool(typeof(ChampCardPool))]
 public class Huddle : ChampCardModel
 {
-    public Huddle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
+    public Huddle() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
         WithPower<VigorPower>(6, 2);
     }
