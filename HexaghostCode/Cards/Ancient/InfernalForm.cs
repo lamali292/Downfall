@@ -11,7 +11,7 @@ public class InfernalForm : HexaghostCardModel
 {
     public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
     {
-        WithPower<InfernalFormPower>(2, 3);
+        WithPower<InfernalFormPower>(2, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
