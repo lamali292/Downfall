@@ -14,6 +14,7 @@ public class Gloomguard : AwakenedCardModel
     {
         WithBlock(8, 3);
         WithEnergyTip();
+        WithTip(typeof(Void));
     }
 
     public override bool ShouldReceiveCombatHooks => true;
