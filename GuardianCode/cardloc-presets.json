@@ -194,11 +194,6 @@
           "name": "smartDescription",
           "file": "gems.json",
           "optional": true
-        },
-        {
-          "name": "descriptionExtra",
-          "file": "gems.json",
-          "optional": true
         }
       ]
     },

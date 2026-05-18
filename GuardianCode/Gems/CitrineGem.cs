@@ -13,8 +13,8 @@ namespace Guardian.GuardianCode.Gems;
 
 public class CitrineGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => IsMutable ? [HoverTipFactory.ForEnergy(Card)] : [];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Energy)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
     public override Color GemColor => new(0xA55B08FF);
     public override CardRarity Rarity => CardRarity.Rare;
 

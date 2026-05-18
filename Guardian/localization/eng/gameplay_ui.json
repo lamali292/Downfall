@@ -1,4 +1,4 @@
 ﻿{
   "GUARDIAN-GEM": "Gem",
-  "COMBAT_REWARD_ADD_GEMS": "Add {Amount:plural:a Gem|{Amount} Gems} to your Deck."
+  "COMBAT_REWARD_ADD_GEMS": "Add {Amount:plural:a [gold]Gem[/gold]|{Amount} [gold]Gems[/gold]} to your [gold]Deck[/gold]."
 }

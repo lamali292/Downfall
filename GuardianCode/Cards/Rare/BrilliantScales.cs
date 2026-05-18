@@ -11,7 +11,7 @@ public class BrilliantScales : GuardianCardModel
 {
     public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<BrilliantScalesPower>(1);
+        WithPower<BrilliantScalesPower>(1, false);
     }
 
 

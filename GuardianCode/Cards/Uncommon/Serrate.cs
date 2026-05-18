@@ -12,9 +12,10 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class Serrate : GuardianCardModel
 {
-    public Serrate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Serrate() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(15, 3, Calc, ValueProp.Move, 5, 1);
+        WithTip(typeof(ThornsPower));
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

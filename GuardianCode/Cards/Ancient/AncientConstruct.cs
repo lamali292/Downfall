@@ -13,7 +13,7 @@ public class AncientConstruct : GuardianCardModel
     public AncientConstruct() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
     {
         WithPower<ArtifactPower>(1);
-        WithPower<AncientConstructPower>(1);
+        WithPower<AncientConstructPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

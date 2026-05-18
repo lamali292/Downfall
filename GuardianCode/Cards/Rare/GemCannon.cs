@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Godot;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,7 @@ public class GemCannon : GuardianCardModel
     {
         WithDamage(16, 4);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(GuardianKeyword.Gem);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

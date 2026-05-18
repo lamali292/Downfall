@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,10 +13,11 @@ public class RefractedBeam : GuardianCardModel
     {
         WithDamage(4);
         WithRepeat(4, 1);
+        WithTip(GuardianKeyword.Gem);
     }
 
     public override int GemSlots => 1 + CurrentUpgradeLevel;
-    public override int MaxUpgradeLevel => 9999999;
+    public override int MaxUpgradeLevel => int.MaxValue;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

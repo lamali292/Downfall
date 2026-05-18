@@ -1,12 +1,20 @@
 ﻿{
-  "GUARDIAN-BRACE.title": "Brace",
-  "GUARDIAN-BRACE.description": "Reduce the HP loss required to trigger [gold]Mode Shift[/gold].",
   "GUARDIAN-ACCELERATE.title": "Accelerate",
   "GUARDIAN-ACCELERATE.description": "Reduce the turn counter of the right-most card in [gold]Stasis[/gold].",
-  "GUARDIAN-STASIS.title": "Stasis",
-  "GUARDIAN-STASIS.description": "A card in Stasis stays there for amount of turns equal to its cost plus 1. When it exits, it is returned to your Hand and is free until played.",
-  "GUARDIAN-TICK.title": "Tick",
-  "GUARDIAN-TICK.description": "Tick effects activate whenever this card's [gold]Stasis[/gold] counter is reduced.",
+  "GUARDIAN-AGGRAVATE.title": "Aggravate",
+  "GUARDIAN-AGGRAVATE.description": "At the start of each combat, increase the energy cost of this card by {energyPrefix:energyIcons(1)}.",
+  "GUARDIAN-BRACE.title": "Brace",
+  "GUARDIAN-BRACE.description": "Reduce the HP loss required to trigger [gold]Mode Shift[/gold].",
+  "GUARDIAN-DEFENSIVE_MODE.title": "Defensive Mode",
+  "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Stance[/gold].\nWhile in Defensive Mode you have [blue]3[/blue] [gold]Thorns[/gold] and your [gold]Block[/gold] does not expire.",
+  "GUARDIAN-PACKAGE.title": "Package",
+  "GUARDIAN-PACKAGE.description": "A package has three cards inspired by a chosen Construct of the Spire.",
   "GUARDIAN-POLISH.title": "Polish",
-  "GUARDIAN-POLISH.description": "Reduce your [gold]Weak[/gold], [gold]Frail[/gold], and [gold]Vulnerable[/gold] by X. Convert X stacks of temporary buffs into permanent buffs."
+  "GUARDIAN-POLISH.description": "Reduce your [gold]Weak[/gold], [gold]Frail[/gold], and [gold]Vulnerable[/gold] by X each.\nConvert X stacks of temporary buffs into permanent buffs.",
+  "GUARDIAN-SOCKET.title": "Socket",
+  "GUARDIAN-SOCKET.description": "[gold]Gems[/gold] can be placed into this Socket at a Rest Site.",
+  "GUARDIAN-STASIS.title": "Stasis",
+  "GUARDIAN-STASIS.description": "A card in [gold]Stasis[/gold] stays there for amount of turns equal to its cost plus [blue]1[/blue].\nWhen it exits, it is returned to your [gold]Hand[/gold] and is free until played.",
+  "GUARDIAN-TICK.title": "Tick",
+  "GUARDIAN-TICK.description": "Tick effects activate whenever this card's [gold]Stasis[/gold] counter is reduced."
 }

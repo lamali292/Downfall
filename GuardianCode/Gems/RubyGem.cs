@@ -9,12 +9,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Gems;
 
 public class RubyGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<TemporaryStrengthUpPower>()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<StrengthPower>()];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(2)];
     public override Color GemColor => new(0xC52000FF);
     public override CardRarity Rarity => CardRarity.Common;

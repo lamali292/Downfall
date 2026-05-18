@@ -68,12 +68,10 @@ public abstract class GemModel : AbstractModel, ICustomModel
         set
         {
             if (value == _card) throw new Exception($"Card already initialized for {Id}");
-            var previousCard = _card;
             AssertMutable();
             value.AssertMutable();
             _card = value;
             OnAdded(_card);
-            if (previousCard != null) OnRemoved(previousCard);
         }
     }
 
@@ -110,19 +108,12 @@ public abstract class GemModel : AbstractModel, ICustomModel
         {
             var hoverTips = new List<IHoverTip>();
 
-            var isSmart = HasSmartDescription && IsMutable;
             var a = GetFormattedText();
-            hoverTips.Add(ToHoverTip(a, isSmart));
+            hoverTips.Add(ToHoverTip(a));
             hoverTips.AddRange(ExtraHoverTips);
             return hoverTips;
         }
     }
-
-
-    private LocString SmartDescription =>
-        !HasSmartDescription ? Description : new LocString("gems", SmartDescriptionLocKey);
-
-    private bool HasSmartDescription => LocString.Exists("gems", SmartDescriptionLocKey);
 
 
     public string IconPath => $"{IconName}.png".GemPath();
@@ -133,9 +124,6 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public abstract CardRarity Rarity { get; }
     public LocString Title => new("gems", Id.Entry + ".title");
     private LocString Description => new("gems", Id.Entry + ".description");
-    private bool HasDescriptionExtra => LocString.Exists("gems", Id.Entry + ".descriptionExtra");
-    private LocString DescriptionExtra => new("gems", Id.Entry + ".descriptionExtra");
-    private string SmartDescriptionLocKey => Id.Entry + ".smartDescription";
 
 
     public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
@@ -146,11 +134,11 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public string GetFormattedText(bool cardText = false)
     {
         var stringBuilder = new StringBuilder();
-        var isSmart = HasSmartDescription && IsMutable;
+        var isSmart = IsMutable;
         string formatted;
         if (isSmart)
         {
-            var locString = SmartDescription;
+            var locString = Description;
             locString.Add("CardName", Card.Title);
             AddDumbVariablesToDescription(locString);
             foreach (var dynamicVar in DynamicVars.Values)
@@ -166,16 +154,13 @@ public abstract class GemModel : AbstractModel, ICustomModel
         {
             var description = Description;
             AddDumbVariablesToDescription(description);
+            DynamicVars.AddTo(description);
             formatted = description.GetFormattedText();
         }
 
         var isEmpty = formatted.Equals("");
         if (!isEmpty)
             stringBuilder.Append(formatted);
-        if (cardText || !HasDescriptionExtra) return stringBuilder.ToString();
-        if (!isEmpty) stringBuilder.Append("\n");
-        stringBuilder.Append(DescriptionExtra.GetFormattedText());
-
         return stringBuilder.ToString();
     }
 
@@ -189,7 +174,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
     }
 
 
-    private HoverTip ToHoverTip(string description, bool isSmart)
+    private HoverTip ToHoverTip(string description)
     {
         var a = new HoverTip
         {
@@ -199,7 +184,7 @@ public abstract class GemModel : AbstractModel, ICustomModel
             Title = Title.GetFormattedText(),
             Description = description,
             Icon = Icon,
-            IsSmart = isSmart
+            IsSmart = true
         };
         return a;
     }
@@ -236,7 +221,4 @@ public abstract class GemModel : AbstractModel, ICustomModel
     {
     }
 
-    protected virtual void OnRemoved(CardModel card)
-    {
-    }
 }

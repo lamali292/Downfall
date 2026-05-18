@@ -18,6 +18,7 @@ public class CompilePackage : GuardianCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip(GuardianTip.Stasis);
+        WithTip(GuardianTip.Package);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

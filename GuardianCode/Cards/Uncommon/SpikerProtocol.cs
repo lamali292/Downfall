@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,8 +12,9 @@ public class SpikerProtocol : GuardianCardModel
 {
     public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<SpikerProtocolPower>(2, 1);
+        WithPower<SpikerProtocolPower>(2, 1, false);
         WithBrace(6, 3);
+        WithTip(GuardianTip.DefensiveMode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

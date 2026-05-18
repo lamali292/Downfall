@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,9 +13,11 @@ public class RollAttack : GuardianCardModel
     {
         WithDamage(16, 4);
         WithBrace(8);
+        WithTip(GuardianTip.DefensiveMode);
     }
 
     public override int GemSlots => 1;
+    protected override bool ShouldGlowGoldInternal => GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner);
 
     public override TargetType TargetType => !IsMutable
         ? TargetType.AnyEnemy

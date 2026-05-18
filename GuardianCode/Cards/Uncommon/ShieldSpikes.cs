@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -14,6 +15,7 @@ public class ShieldSpikes : GuardianCardModel
         WithBlock(12, 4);
         WithPower<ThornsPower>(3, 1);
         WithBrace(8);
+        WithTip(GuardianTip.DefensiveMode);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
