@@ -1,7 +1,7 @@
 {
   "DOWNFALL-ENTANGLED_POWER.title": "Entangled",
-  "DOWNFALL-ENTANGLED_POWER.description": "You cannot play [gold]Attacks[/gold] this turn.",
-  "DOWNFALL-ENTANGLED_POWER.smartDescription": "You cannot play [gold]Attacks[/gold] this turn.",
+  "DOWNFALL-ENTANGLED_POWER.description": "You cannot play Attacks this turn.",
+  "DOWNFALL-ENTANGLED_POWER.smartDescription": "You cannot play Attacks this turn.",
   "DOWNFALL-METALLICIZE_POWER.description": "At the end of your turn, gain [gold]Block[/gold].",
   "DOWNFALL-METALLICIZE_POWER.smartDescription": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "DOWNFALL-METALLICIZE_POWER.title": "Metallicize",

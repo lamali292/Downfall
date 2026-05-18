@@ -18,7 +18,7 @@
   "COLLECTOR-KRAMPIAN_COAL.description": "When you would draw from an empty Collected pile, add a [gold]Lucky Wick[/gold] to your [gold]Hand[/gold].",
   "COLLECTOR-KRAMPIAN_COAL.flavor": "\"Intriguing! But why only specific chimneys?\" - Ranwid",
   "COLLECTOR-PRISMATIC_TORCH.title": "Prismatic Torch",
-  "COLLECTOR-PRISMATIC_TORCH.description": "Replaces [aqua]Emerald Torch[/aqua]. At the start of each combat, add an [gold]Ember[/gold] into your Hand and gain [blue]1[/blue] [gold]Reserve[/gold]. The first time you [gold]Exhaust[/gold] an [gold]Ember[/gold] each turn, gain [blue]1[/blue] [gold]Reserve[/gold].",
+  "COLLECTOR-PRISMATIC_TORCH.description": "Replaces [aqua]Emerald Torch[/aqua]. At the start of each combat, add an [gold]Ember[/gold] into your [gold]Hand[/gold] and gain [blue]1[/blue] [gold]Reserve[/gold]. The first time you [gold]Exhaust[/gold] an [gold]Ember[/gold] each turn, gain [blue]1[/blue] [gold]Reserve[/gold].",
   "COLLECTOR-PRISMATIC_TORCH.flavor": "The ever-changing flames reflect fortune's favor.",
   "COLLECTOR-SOUL_LIT_LAMP.title": "Soul-lit Lamp",
   "COLLECTOR-SOUL_LIT_LAMP.description": "Upon pickup, gain [blue]3[/blue] [gold]Essence[/gold]. At the start of combat, add an [gold]Ember[/gold] into your [gold]Hand[/gold].",

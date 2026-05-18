@@ -6,5 +6,5 @@
   "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Inferno Ghostflame",
   "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Ignites[/gold] by spending [blue]3[/blue] [gold]Energy[/gold] while on it.\nDeals [blue]4[/blue] damage to a random enemy for each ignited Ghostflame.\nIf all Ghostflames are [gold]Ignited[/gold], gain [blue]2[/blue] [gold]Intensity[/gold].",
   "HEXAGHOST-SEARING_GHOSTFLAME.title": "Searing Ghostflame",
-  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] [gold]Attacks[/gold] while on it.\nApplies [blue]3[/blue] [gold]Soulburn[/gold] to a random enemy twice. "
+  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] Attacks while on it.\nApplies [blue]3[/blue] [gold]Soulburn[/gold] to a random enemy twice. "
 }

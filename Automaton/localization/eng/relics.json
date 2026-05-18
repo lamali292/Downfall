@@ -24,12 +24,12 @@
   "AUTOMATON-MALLET.description": "At the start of each combat, add 2 copies of {{C|Fine Tuning|Fine Tuning+}} to your [gold]Hand[/gold].",
   "AUTOMATON-MALLET.flavor": "That's it! I'm gettin me mallet!",
   "AUTOMATON-PLATINUM_CORE.title": "Platinum Core",
-  "AUTOMATON-PLATINUM_CORE.description": "The first 3 Functions you create each combat cost 0 until played.",
+  "AUTOMATON-PLATINUM_CORE.description": "The first 3 Functions you create each combat cost 0{energyPrefix:energyIcons(1)} until played.",
   "AUTOMATON-PLATINUM_CORE.flavor": "Changelog: Improved user experience.",
   "AUTOMATON-PROTECTIVE_GOGGLES.title": "Protective Goggles",
   "AUTOMATON-PROTECTIVE_GOGGLES.description": "If you end your turn with no Encoded cards, gain 4 [gold]Block[/gold].",
   "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Look closely.",
   "AUTOMATON-SILVER_BULLET.title": "Silver Bullet",
-  "AUTOMATON-SILVER_BULLET.description": "At the start of each combat, add a copy of {{C|Piercing Shot}} to your [gold]Hand[/gold]. It costs 0 {energyPrefix:energyIcons(1)}.",
+  "AUTOMATON-SILVER_BULLET.description": "At the start of each combat, add a copy of {{C|Piercing Shot}} to your [gold]Hand[/gold]. It costs 0{energyPrefix:energyIcons(1)}.",
   "AUTOMATON-SILVER_BULLET.flavor": "Spirewolves are long gone."
 }
