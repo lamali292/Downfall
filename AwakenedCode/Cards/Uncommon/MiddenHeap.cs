@@ -24,7 +24,7 @@ public class MiddenHeap : AwakenedCardModel
             .Concat(PileType.Hand.GetPile(Owner).Cards).Where(c => c.Type is CardType.Status or CardType.Curse)
             .ToList();
         var selected = await CardSelectCmd.FromSimpleGrid(ctx, cardsToSelect, Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, 2));
+            new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue));
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 }
