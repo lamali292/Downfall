@@ -1,0 +1,37 @@
+using BaseLib.Patches.Features;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Hermit.HermitCode.Cards.Curse;
+
+/// <summary>
+///     Apply 1 Vulnerable to EVERYONE (all enemies AND player). Retain.
+/// </summary>
+[Pool(typeof(CurseCardPool))]
+public sealed class MementoCard : HermitCardModel
+{
+    public MementoCard() : base(0, CardType.Curse, CardRarity.Curse, CustomTargetType.Everyone)
+    {
+        WithPower<VulnerablePower>(1);
+        WithKeyword(CardKeyword.Retain);
+    }
+
+    public override int MaxUpgradeLevel => 0;
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
+    }
+}
+
+/* transform_cards.py changes:
+ *   namespace → Hermit.HermitCode.Cards.Curse
+ *   CanonicalKeywords removed → WithKeyword(...) in constructor
+ *   constructor: WithPower<VulnerablePower>(1, 0), WithKeyword(CardKeyword.Retain)
+ */

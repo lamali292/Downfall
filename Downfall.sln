@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishAll", "PublishAll\Pu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGen", "ImageGen\ImageGen.csproj", "{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermit", "Hermit.csproj", "{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,5 +111,11 @@ Global
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

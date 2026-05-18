@@ -1,0 +1,22 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Hermit/localization/**/*.json"/>
+        <Compile Remove="Hermit/**"/>
+        <EmbeddedResource Remove="Hermit/**"/>
+        <None Include="Hermit.json"/>
+        <None Include="Hermit/**"/>
+        <None Include="HermitCode/**"/>
+        <Compile Include="HermitCode/**/*.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+</Project>

@@ -10,10 +10,10 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public class SlimeBossModel() : CustomSingletonModel(true, true)
 {
-    private static IEnumerable<CustomMonsterModel>? _allCustomModifier;
+    private static IEnumerable<CustomMonsterModel>? _cllCustomMonsterModel;
 
-    private static IEnumerable<CustomMonsterModel> AllCustomModifier =>
-        _allCustomModifier ??= ModelDb.AllAbstractModelSubtypes
+    private static IEnumerable<CustomMonsterModel> AllCustomMonsterModel =>
+        _cllCustomMonsterModel ??= ModelDb.AllAbstractModelSubtypes
             .Where(t => t.IsSubclassOf(typeof(MonsterModel)))
             .Select(t => (MonsterModel)ModelDb.Get(t))
             .OfType<CustomMonsterModel>()
@@ -23,7 +23,7 @@ public class SlimeBossModel() : CustomSingletonModel(true, true)
         ICombatState combatState)
     {
         if (player.Character is not SlimeBoss) return;
-        var slimeModel = AllCustomModifier.OfType<SlimeModel>().TakeRandom(1, combatState.RunState.Rng.Niche)
+        var slimeModel = AllCustomMonsterModel.OfType<SlimeModel>().TakeRandom(1, combatState.RunState.Rng.Niche)
             .FirstOrDefault();
         if (slimeModel == null) return;
         await SlimeQueue.AddSlime(player, slimeModel);

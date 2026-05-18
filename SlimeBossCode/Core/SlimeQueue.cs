@@ -28,8 +28,9 @@ public static class SlimeQueue
         {
             var oldest = slimes[0];
             slimes.RemoveAt(0);
-            if (oldest.IsAlive)
-                await CreatureCmd.Kill(oldest);
+            if (!oldest.IsAlive) continue;
+            await CreatureCmd.Kill(oldest);
+            player.PlayerCombatState?._pets.Remove(oldest);
         }
 
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);

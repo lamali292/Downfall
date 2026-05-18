@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvvtpgtwi1t2g"]
+
+[ext_resource type="Script" uid="uid://dafl5sjv3xtf5" path="res://HermitCode/Vfx/NHermitCreatureVisuals.cs" id="1_8y0f8"]
+[ext_resource type="PackedScene" uid="uid://4dfhitrnqi5a" path="res://Hermit/scenes/character/hermit.tscn" id="2_8y0f8"]
+
+[node name="GuardianCombat" type="Node2D"]
+script = ExtResource("1_8y0f8")
+
+[node name="Visuals" parent="." instance=ExtResource("2_8y0f8")]
+unique_name_in_owner = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -99.0
+offset_top = -337.0
+offset_right = 143.0
+offset_bottom = 11.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(20, -206)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(30, -274)

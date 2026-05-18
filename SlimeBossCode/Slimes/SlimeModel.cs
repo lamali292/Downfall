@@ -1,5 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using SlimeBoss.SlimeBossCode.Extensions;
 
@@ -15,10 +17,14 @@ public abstract class SlimeModel : CustomMonsterModel
 
     public override bool HasDeathSfx => false;
 
+    protected Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
+
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
         var initialState = new MoveState("NOTHING_MOVE", _ => Task.CompletedTask);
         initialState.FollowUpState = initialState;
         return new MonsterMoveStateMachine([initialState], initialState);
     }
+
+    public abstract Task Command(PlayerChoiceContext ctx);
 }

@@ -1,0 +1,51 @@
+using BaseLib.Abstracts;
+using BaseLib.Utils;
+using Hermit.HermitCode.Cards.Ancient;
+using HermitMod.Utility;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace Hermit.HermitCode.Cards.Basic;
+
+public sealed class Snapshot : HermitCardModel, ITranscendenceCard, IHasDeadOnEffect
+{
+    
+
+    public Snapshot() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    {
+        WithDamage(6, 2);
+    }
+
+   
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<OneFlash>();
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        HermitSfx.PlayGun1();
+
+        _result = await CommonActions.CardAttack(this, play)
+            .WithHermitGunHitFx()
+            .Execute(ctx);
+    }
+    private AttackCommand? _result;
+
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        if (_result == null) return;
+        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.UnblockedDamage);
+        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
+        _result = null;
+    }
+}
+

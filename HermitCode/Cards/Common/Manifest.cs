@@ -1,0 +1,27 @@
+using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
+
+namespace Hermit.HermitCode.Cards.Common;
+
+public sealed class Manifest : HermitCardModel
+{
+    private const int BlockAmount = 16;
+    private const int UpgradedBlockAmount = 20;
+
+    public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.None)
+    {
+        WithBlock(16, 4);
+        WithTip(typeof(Decay));
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.CardBlock(this, play);
+        await DownfallCardCmd.GiveCard<Decay>(Owner, PileType.Hand);
+    }
+}

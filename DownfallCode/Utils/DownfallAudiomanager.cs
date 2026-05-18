@@ -1,6 +1,4 @@
-﻿
-
-//namespace Downfall.DownfallCode.Utils;
+﻿//namespace Downfall.DownfallCode.Utils;
 
 /*
 public static class DownfallAudiomanager
@@ -154,3 +152,4 @@ internal static class PlayOneShotEnsurePatch
         DownfallAudiomanager.EnsureBanksLoaded();
     }
 }*/
+

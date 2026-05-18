@@ -30,4 +30,10 @@ public abstract class SlimeBossCardModel(
         WithVar(new SlurpVar(baseVal).WithUpgrade(upgradedVal));
         return this;
     }
+
+    protected ConstructedCardModel WithCommand(decimal baseVal, decimal upgradedVal = 0)
+    {
+        WithVar(new CommandVar(baseVal).WithUpgrade(upgradedVal));
+        return this;
+    }
 }

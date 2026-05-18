@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://41l26etydcot"]
+[gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/slime_boss.tscn" id="1_2vsmi"]
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeBossCreatureVisuals.cs" id="1_5ghei"]

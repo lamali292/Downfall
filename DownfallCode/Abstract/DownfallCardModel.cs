@@ -37,6 +37,7 @@ public abstract class DownfallCardModel(
             WithTip(typeof(T));
         return this;
     }
+
     protected ConstructedCardModel WithPower<T>(int baseVal, bool showTooltip)
         where T : PowerModel
     {

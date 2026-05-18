@@ -23,7 +23,7 @@
   "SLIMEBOSS-FLAME_TACKLE.title": "Flame Tackle",
   "SLIMEBOSS-FORM_OF_WALL.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {GoopPower:diff()} [gold]Goop[/gold] to all enemies intending to attack.",
   "SLIMEBOSS-FORM_OF_WALL.title": "Form of Wall",
-  "SLIMEBOSS-FORWARD_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\n[gold]Command {IfUpgraded:show:three times[/gold].|twice.}",
+  "SLIMEBOSS-FORWARD_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\n[gold]Command[/gold] {IfUpgraded:show:three times.|twice.}",
   "SLIMEBOSS-FORWARD_TACKLE.title": "Forward Tackle",
   "SLIMEBOSS-GLOP_CHOP.description": "",
   "SLIMEBOSS-GLOP_CHOP.title": "Glop Chop",
