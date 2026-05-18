@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +19,7 @@ public abstract class DownfallCardModel(
     TargetType targetType)
     : ConstructedCardModel(cost, type, rarity, targetType)
 {
-    private readonly ConditionalWeakTable<string, PowerModel> _powerCache = new();
+    private readonly ConditionalWeakTable<string, PowerModel> _powerCache = [];
 
     protected ConstructedCardModel WithIcon<T>(string iconKey = "Power")
         where T : PowerModel
@@ -73,6 +74,40 @@ public abstract class DownfallCardModel(
     {
         WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));
         return this;
+    }
+
+    protected ConstructedCardModel WithTip(TooltipSource tooltipSource, UpgradeType upgradeType)
+    {
+        switch (upgradeType)
+        {
+            case UpgradeType.Add:
+                WithTips(c => c.IsUpgraded ? [tooltipSource.Tip(c)] : []);
+                break;
+            case UpgradeType.Remove:
+                WithTips(c => !c.IsUpgraded ? [] : [tooltipSource.Tip(c)]);
+                break;
+            case UpgradeType.None:
+                WithTip(tooltipSource);
+                break;
+        }
+        return this;
+    }
+    protected ConstructedCardModel WithTip(TooltipSource tooltipSource, int baseVal, int upgrade)
+    {
+        if (baseVal == 0)
+        {
+            if (upgrade == 0)
+                return this;
+            else
+                return WithTip(tooltipSource, UpgradeType.Add);
+        }
+        else
+        {
+            if (baseVal + upgrade == 0)
+                return WithTip(tooltipSource, UpgradeType.Remove);
+            else
+                return WithTip(tooltipSource, UpgradeType.None);
+        }
     }
 
 
