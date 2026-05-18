@@ -1,4 +1,14 @@
 ﻿{
+  "CHAMP-BERSERKER.title": "Berserker",
+  "CHAMP-BERSERKER.description": "[blue]Stance[/blue]. [blue]Skill Bonus[/blue]: Gain 2 [gold]Vigor[/gold].\n[blue]Finisher[/blue] Effect: Gain 1 [gold]Strength[/gold].",
+  "CHAMP-COMBO.title": "Combo",
+  "CHAMP-COMBO.description": "Extra effect when played in the listed [blue]Stance[/blue].",
+  "CHAMP-DEFENSIVE.title": "Defensive",
+  "CHAMP-DEFENSIVE.description": "[blue]Stance[/blue]. [blue]Skill Bonus[/blue]: Gain 2 [gold]Counter[/gold].\n[blue]Finisher[/blue] Effect: Gain 6 [gold]Block[/gold].",
   "CHAMP-FINISHER.title": "Finisher",
-  "CHAMP-FINISHER.description": "Requires a Stance.\nAfter playing a Finisher, exit your [gold]Stance[/gold] and trigger its Finisher bonus."
+  "CHAMP-FINISHER.description": "Requires a [blue]Stance[/blue].\nAfter playing a Finisher, exit your Stance and trigger its Finisher bonus.\n[blue]Berserker[/blue] Finisher: Gain 1 [gold]Strength[/gold].\n[blue]Defensive[/blue] Finisher: Gain 6 [gold]Block[/gold].",
+  "CHAMP-STANCE.title": "Stance",
+  "CHAMP-STANCE.description": "You may have only one Stance at a time.",
+  "CHAMP-ULTIMATE.title": "Ultimate",
+  "CHAMP-ULTIMATE.description": "[blue]Stance[/blue]. Counts as both [blue]Defensive[/blue] and [blue]Berserker[/blue] Stances.\nIf you leave this Stance in this turn, immediately re-enter it.\nAt the end of your turn, exit this Stance."
 }
