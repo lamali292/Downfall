@@ -75,6 +75,11 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         {
             await defensiveCombo.DefensiveComboEffect(ctx, cardPlay);
         }
+
+        if (Tags.Contains(ChampTag.Finisher))
+        {
+            await FinisherEffect(ctx, cardPlay);
+        }
     }
 
     protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
