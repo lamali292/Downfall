@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Abstract;
 using HarmonyLib;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
+using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -39,11 +40,14 @@ public abstract class HermitCardModel
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
+        if (Keywords.Contains(HermitKeywords.Concentrate))
+            await CommonActions.ApplySelf<ConcentrationPower>(ctx, this, 1);
         await PlayEffect(ctx, cardPlay);
         if (this is IHasDeadOnEffect && PatchDeadOnCapture.LastWasDeadOn)
         {
             await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
         }
+
     }
 }
 

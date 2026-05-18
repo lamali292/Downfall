@@ -1,7 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Cards.Basic;
-using HermitMod.Utility;
+using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -34,7 +34,6 @@ public sealed class HighCaliber : HermitCardModel
         await DownfallCardCmd.GiveCard<StrikeHermit>(Owner, PileType.Hand, upgraded: IsUpgraded, action: card =>
         {
             CardCmd.Enchant<Sharp>(card, DynamicVars["SharpAmount"].BaseValue);
-            return Task.CompletedTask;
         });
     }
 }

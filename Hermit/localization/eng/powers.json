@@ -1,6 +1,6 @@
 {
-  "HERMIT-CONCENTRATION_POWER.description": "The next [gold]Dead On[/gold] Attack or Skill you play this turn triggers its effect regardless of position.",
-  "HERMIT-CONCENTRATION_POWER.smartDescription": "The next [blue]{Amount}[/blue] [gold]Dead On[/gold] Attack(s) or Skill(s) you play this turn trigger their effects regardless of position.",
+  "HERMIT-CONCENTRATION_POWER.description": "The next [gold]Dead On[/gold] card you play this turn triggers its effect regardless of position.",
+  "HERMIT-CONCENTRATION_POWER.smartDescription": "The next [blue]{Amount}[/blue] [gold]Dead On[/gold] {Amount:plural:card|cards} you play this turn {Amount:plural:triggers its|trigger their} effects regardless of position.",
   "HERMIT-CONCENTRATION_POWER.title": "Concentration",
   "HERMIT-CHEAT_POWER.description": "Your next card will trigger its [gold]Dead On[/gold] effect. No matter if it has [gold]Dead On[/gold] or not, this power will be consumed after a card is played.",
   "HERMIT-CHEAT_POWER.smartDescription": "Your next card will trigger its [gold]Dead On[/gold] effect. No matter if it has [gold]Dead On[/gold] or not, this power will be consumed after a card is played.",
@@ -23,9 +23,6 @@
   "HERMIT-ADAPT_POWER.description": "At the start of your turn, [gold]Exhaust[/gold] up to [blue]1[/blue] card to gain [blue]8[/blue] Block each.",
   "HERMIT-ADAPT_POWER.smartDescription": "At the start of your turn, [gold]Exhaust[/gold] up to [blue]{Amount}[/blue] cards to gain [blue]8[/blue] Block each.",
   "HERMIT-ADAPT_POWER.title": "Adapt",
-  "HERMIT-BIG_SHOT_POWER.description": "Whenever you trigger a [gold]Dead On[/gold] effect, gain [blue]1[/blue] [gold]Vigor[/gold].",
-  "HERMIT-BIG_SHOT_POWER.smartDescription": "Whenever you trigger a [gold]Dead On[/gold] effect, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
-  "HERMIT-BIG_SHOT_POWER.title": "Smoking Barrel",
   "HERMIT-BRUISE_POWER.description": "This turn, target takes more attack damage.",
   "HERMIT-BRUISE_POWER.smartDescription": "This turn, target takes [blue]{Amount}[/blue] more attack damage.",
   "HERMIT-BRUISE_POWER.title": "Bruised",
@@ -68,5 +65,8 @@
   "HERMIT-COALESCENCE_POWER.selectionScreenPrompt": "Choose cards to Retain.",
   "HERMIT-REPRIEVE_POWER.description": "Take an extra turn after this one.",
   "HERMIT-REPRIEVE_POWER.smartDescription": "Take [blue]{Amount}[/blue] extra turns after this one.",
-  "HERMIT-REPRIEVE_POWER.title": "Reprieve"
+  "HERMIT-REPRIEVE_POWER.title": "Reprieve",
+  "HERMIT-SMOKING_BARREL_POWER.description": "Whenever you trigger a [gold]Dead On[/gold] effect, gain [blue]1[/blue] [gold]Vigor[/gold].",
+  "HERMIT-SMOKING_BARREL_POWER.smartDescription": "Whenever you trigger a [gold]Dead On[/gold] effect, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
+  "HERMIT-SMOKING_BARREL_POWER.title": "Smoking Barrel"
 }

@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
-using HermitMod.Utility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,21 +28,16 @@ public sealed class Ricochet : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         ArgumentNullException.ThrowIfNull(play.Target);
-
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-
         var extraHitCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(play.Target);
-
         HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play)
             .WithHermitGunHitFx()
             .Execute(ctx);
-
         for (var i = 0; i < extraHitCount; i++)
         {
             var enemies = CombatState?.HittableEnemies.ToList();
             if (enemies == null || enemies.Count == 0) break;
-
             HermitSfx.PlayGun3();
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
@@ -55,11 +49,3 @@ public sealed class Ricochet : HermitCardModel
 
    
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(7, 2)
- *   DamageCmd.Attack chain → CommonActions.CardAttack
- */

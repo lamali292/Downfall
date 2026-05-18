@@ -18,10 +18,7 @@ public sealed class EyeOfTheStorm : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ConcentrationPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
-
         var gain = Owner.PlayerCombatState!.MaxEnergy - Owner.PlayerCombatState.Energy;
-        if (gain > 0)
-            await PlayerCmd.GainEnergy(gain, Owner);
+        await PlayerCmd.GainEnergy(gain, Owner);
     }
 }

@@ -7,9 +7,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     Whenever you draw or Exhaust a Curse card, gain 4(6) Block.
-/// </summary>
 public sealed class ShadowCloakPower : HermitPowerModel
 {
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)

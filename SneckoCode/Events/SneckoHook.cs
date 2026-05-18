@@ -15,7 +15,7 @@ public static class SneckoHook
 
     public static Task AfterOverflowEffect(ICombatState cs, CardPlay cardPlay, CardModel card)
     {
-        return DownfallHook.DispatchHookCtx<IAfterOverflowEffect>(cs,
+        return DownfallHook.DispatchWithContext<IAfterOverflowEffect>(cs,
             (m, ctx) => m.AfterOverflowEffect(ctx, cardPlay, card));
     }
 

@@ -1,7 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Hermit.HermitCode.Cards.Ancient;
-using HermitMod.Utility;
+using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;

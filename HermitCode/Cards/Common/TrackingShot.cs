@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Hermit.HermitCode.CustomEnums;
-using Hermit.HermitCode.Powers;
-using HermitMod.Utility;
+using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,8 +18,6 @@ public sealed class TrackingShot : HermitCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        await PowerCmd.Apply<ConcentrationPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
-
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
 
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
