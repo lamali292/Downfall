@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,6 +14,7 @@ public class StasisStrike : GuardianCardModel
         WithDamage(16, 4);
         WithVar("StasisSlots", 1);
         WithTags(CardTag.Strike);
+        WithTip(GuardianTip.Stasis);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

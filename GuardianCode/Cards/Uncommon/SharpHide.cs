@@ -13,7 +13,8 @@ public class SharpHide : GuardianCardModel
     public SharpHide() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithPower<DexterityPower>(1);
-        WithPower<SharpHidePower>(2, 2);
+        WithPower<SharpHidePower>(2, 2, false);
+        WithTip(typeof(ThornsPower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

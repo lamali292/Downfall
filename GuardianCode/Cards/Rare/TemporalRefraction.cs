@@ -13,7 +13,7 @@ public class TemporalRefraction : GuardianCardModel
     public TemporalRefraction() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithCostUpgradeBy(-1);
-        WithPower<TemporalRefractionPower>(1);
+        WithPower<TemporalRefractionPower>(1, false);
         WithTip(GuardianKeyword.Gem);
     }
 

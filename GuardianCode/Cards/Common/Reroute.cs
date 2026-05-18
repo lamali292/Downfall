@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,7 +13,8 @@ public class Reroute : GuardianCardModel
     public Reroute() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithPower<ReroutePower>(1);
+        WithPower<ReroutePower>(1, false);
+        WithTip(GuardianTip.Stasis);
     }
 
     public override int GemSlots => 1;

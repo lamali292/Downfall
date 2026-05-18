@@ -13,6 +13,7 @@ public class StrikeForStrike : GuardianCardModel
     {
         WithDamage(13, 4);
         WithEnemyDamage(3);
+        WithTags(CardTag.Strike);
     }
 
     public override int GemSlots => 1;

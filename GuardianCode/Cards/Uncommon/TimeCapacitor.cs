@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,6 +13,7 @@ public class TimeCapacitor : GuardianCardModel
     {
         WithCostUpgradeBy(-1);
         WithVar("StasisSlots", 1);
+        WithTip(GuardianTip.Stasis);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

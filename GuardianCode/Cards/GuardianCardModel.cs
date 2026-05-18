@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
+using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -24,6 +25,15 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     {
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
+        if (GemSlots > 0)
+        {
+            WithTip(GuardianTip.Socket);
+            WithTip(GuardianKeyword.Gem);
+        }
+        if (this is ITickCard)
+        {
+            WithTip(GuardianTip.Tick);
+        }
     }
 
     public IReadOnlyList<GemModel> Gems
@@ -81,13 +91,13 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
-        WithTip(GuardianTip.Accelerate);
+        WithTip(GuardianTip.Accelerate, baseVal, upgradeVal);
         return WithVars(new AccelerateVar(baseVal).WithUpgrade(upgradeVal));
     }
 
     protected ConstructedCardModel WithBrace(int baseVal, int upgradeVal = 0)
     {
-        WithTip(GuardianTip.Brace);
+        WithTip(GuardianTip.Brace, baseVal, upgradeVal);
         return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
 

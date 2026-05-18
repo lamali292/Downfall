@@ -12,7 +12,7 @@ public class VentSteam : GuardianCardModel
 {
     public VentSteam() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<VulnerablePower>(2, 3);
+        WithPower<VulnerablePower>(2, 1);
     }
 
     public override int GemSlots => 2;

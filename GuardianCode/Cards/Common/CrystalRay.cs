@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,13 +15,13 @@ public class CrystalRay : GuardianCardModel
 {
     public CrystalRay() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithTip(GuardianKeyword.Gem);
         WithCalculatedDamage(12, 2, Calc, ValueProp.Move, 4, 1);
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>()
-            .Aggregate(0m, (acc, g) => acc + g.GemCount);
+        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Sum(g => g.GemCount);
         var gemCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemCard>().Count();
         return gemsInCards + gemCards;
     }

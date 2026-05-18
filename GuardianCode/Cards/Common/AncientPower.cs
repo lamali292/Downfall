@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -11,8 +12,10 @@ public class AncientPower : GuardianCardModel
 {
     public AncientPower() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPower<TemporaryStrengthUpPower>(3, 1);
-        WithPower<TemporaryDexterityUpPower>(3, 1);
+        WithPower<TemporaryStrengthUpPower>(3, 1, false);
+        WithPower<TemporaryDexterityUpPower>(3, 1, false);
+        WithTip(typeof(StrengthPower));
+        WithTip(typeof(DexterityPower));
     }
 
     public override int GemSlots => 1;
