@@ -1,5 +1,5 @@
 {
-  "SLIMEBOSS-CHOMP.description": "Deal {Damage:diff()} damage.\nA random Tackle in your Hand is free to play this {IfUpgraded:show:combat|turn}.",
+  "SLIMEBOSS-CHOMP.description": "Deal {Damage:diff()} damage.\nA random Tackle in your [gold]Hand[/gold] is free to play this {IfUpgraded:show:combat|turn}.",
   "SLIMEBOSS-CHOMP.title": "Chomp",
   "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\nAdd a random Tackle into your [gold]Hand[/gold].\nIt's free to play this turn.",
   "SLIMEBOSS-COMBO_TACKLE.title": "Combo Tackle",

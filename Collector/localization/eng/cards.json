@@ -25,7 +25,7 @@
   "COLLECTOR-BURNING_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards:plural:a card|{Cards:diff()} cards}.",
   "COLLECTOR-CANT_TOUCH_THIS.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nWhen you fully block an attack, apply {CantTouchThisPower:diff()} [gold]Doom[/gold] to the attacker.",
   "COLLECTOR-CANT_TOUCH_THIS.title": "Can't Touch This",
-  "COLLECTOR-COFFIN_NAIL.description": "Deal {Damage:diff()} damage.\nWhen [gold]Exhausted[/gold], return it to your Hand next turn with {Increase:diff()} more damage.",
+  "COLLECTOR-COFFIN_NAIL.description": "Deal {Damage:diff()} damage.\nWhen [gold]Exhausted[/gold], return it to your [gold]Hand[/gold] next turn with {Increase:diff()} more damage.",
   "COLLECTOR-COFFIN_NAIL.title": "Coffin Nail",
   "COLLECTOR-COLLECTIBLE.description": "",
   "COLLECTOR-COLLECTIBLE.title": "Collectible",

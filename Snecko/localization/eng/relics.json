@@ -3,7 +3,7 @@
   "SNECKO-LOADED_DIE.description": "Whenever a card is [gold]Muddled[/gold], gain [blue]{Block:diff()}[/blue] [gold]Block[/gold].",
   "SNECKO-LOADED_DIE.flavor": "Cheese-stuffed.",
   "SNECKO-LUCKY_HORSESHOE.title": "Lucky Horseshoe",
-  "SNECKO-LUCKY_HORSESHOE.description": "Upon pickup, choose 1 of 3 Characters. Choose 3 Upgraded Uncommon cards and 2 Rare cards to add to your Deck. All combats drop an additional card reward of the chosen character's cards.",
+  "SNECKO-LUCKY_HORSESHOE.description": "Upon pickup, choose 1 of 3 Characters. Choose 3 Upgraded Uncommon cards and 2 Rare cards to add to your [gold]Deck[/gold]. All combats drop an additional card reward of the chosen character's cards.",
   "SNECKO-LUCKY_HORSESHOE.flavor": "Make your own luck.",
   "SNECKO-MYSTICAL_OCTAHEDRON.title": "Mystical Octahedron",
   "SNECKO-MYSTICAL_OCTAHEDRON.description": "Upon pickup, choose a card that has an Overflow effect. Whenever you play it, gain 4 Block and activate its Overflow effect, even if you don't have more than 5 cards in [gold]Hand[/gold].",
