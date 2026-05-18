@@ -12,8 +12,8 @@ public class DoubleStyle : ChampCardModel
 {
     public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<DefensiveStylePower>(1, 2, false);
-        WithPower<BerserkerStylePower>(1, 2, false);
+        WithPower<DefensiveStylePower>(1, 1, false);
+        WithPower<BerserkerStylePower>(1, 1, false);
         WithTip(typeof(VigorPower));
         WithTip(typeof(CounterPower));
     }
