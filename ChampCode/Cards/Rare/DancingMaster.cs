@@ -13,8 +13,8 @@ public class DancingMaster : ChampCardModel
     public DancingMaster() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithTip(ChampTip.Finisher);
-        WithEnergyTip();
-        WithPower<DancingMasterPower>(1);
+        WithEnergy(1);
+        WithPower<DancingMasterPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

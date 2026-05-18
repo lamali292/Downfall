@@ -11,7 +11,7 @@ public class GutsAndGlory : ChampCardModel
 {
     public GutsAndGlory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<GloryPower>(5, 3);
+        WithGlory(5, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

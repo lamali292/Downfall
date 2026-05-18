@@ -20,6 +20,5 @@ public class BringItOn : ChampCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<CounterPower>(ctx, this);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

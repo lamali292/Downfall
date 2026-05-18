@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,6 +13,7 @@ public class Lariat : ChampCardModel
     public Lariat() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(5, 2);
+        WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
 

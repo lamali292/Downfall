@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
+using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,6 +20,8 @@ public class TripleStrike : ChampCardModel
         WithTags(CardTag.Strike);
         WithDamage(6, 3);
         WithTip(new TooltipSource(StrikeTip));
+        WithTip(DownfallKeyword.Echo);
+        WithTip(ChampKeyword.TriggerSkillBonus);
         WithCards(2);
     }
 

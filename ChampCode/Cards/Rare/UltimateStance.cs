@@ -11,7 +11,7 @@ public class UltimateStance : ChampCardModel
 {
     public UltimateStance() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<GloryPower>(10);
+        WithGlory(10);
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }

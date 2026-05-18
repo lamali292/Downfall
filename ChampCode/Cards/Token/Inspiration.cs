@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -13,6 +14,7 @@ public class Inspiration : ChampCardModel
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithKeywords(CardKeyword.Retain);
+        WithTip(ChampTip.Stance);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,13 +1,13 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Champ.ChampCode.Cards.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class Crownarang : ChampCardModel
+public class Crownarang : ChampCardModel, IBerserkerComboCard
 {
     public Crownarang() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -15,12 +15,14 @@ public class Crownarang : ChampCardModel
         WithCards(2, 1);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.ShouldBerserkerComboTrigger();
-
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!Owner.ShouldBerserkerComboTrigger()) return;
+    }
+
+    public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
         await CommonActions.Draw(this, ctx);
     }
+
 }

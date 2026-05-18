@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -12,7 +13,8 @@ public class AdrenalArmor : ChampCardModel
     public AdrenalArmor() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        WithPower<TemporaryStrengthUpPower>(2, 1);
+        WithPower<TemporaryStrengthUpPower>(2, 1, false);
+        WithTip(typeof(StrengthPower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

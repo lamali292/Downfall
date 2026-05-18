@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,9 @@ public class KillingSpree : ChampCardModel
 {
     public KillingSpree() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<KillingSpreePower>(1);
+        WithPower<KillingSpreePower>(1, false);
+        WithTip(ChampKeyword.TriggerSkillBonus);
+        WithTip(ChampTip.Stance);
         WithVar("Skill", 3, 2);
     }
 

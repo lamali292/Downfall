@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -13,7 +14,8 @@ public class StrikeOfGenius : ChampCardModel
 {
     public StrikeOfGenius() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithTip(new TooltipSource(HoverTip));
+        WithEnergyTip();
+        WithTip(DownfallKeyword.Echo);
     }
 
     private static IHoverTip HoverTip(CardModel card)

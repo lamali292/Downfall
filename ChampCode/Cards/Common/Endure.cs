@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -18,6 +19,7 @@ public class Endure : ChampCardModel
         WithCalculatedBlock(7, BlockCalc, ValueProp.Move, 3);
         WithTip(typeof(StrengthPower));
         WithTip(typeof(DexterityPower));
+        WithTip(ChampTip.Defensive);
     }
 
     private static decimal BlockCalc(CardModel card, Creature? creature)

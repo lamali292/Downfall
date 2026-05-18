@@ -1,8 +1,8 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -15,8 +15,8 @@ public class SwordThrow : ChampCardModel
     {
         WithDamage(9, 4);
         WithRepeat(2);
-        WithPower<EntangledNextTurnPower>(1);
-        WithTip(typeof(EntangledPower));
+        WithPower<EntangledNextTurnPower>(1, false);
+        WithTip(ChampTip.Berserker);
     }
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();

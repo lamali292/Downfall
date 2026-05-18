@@ -14,7 +14,7 @@ public class IgnorePain : ChampCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
         WithFinisher();
-        WithPower<IgnorePainPower>(1);
+        WithPower<IgnorePainPower>(1, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

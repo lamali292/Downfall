@@ -13,6 +13,7 @@ public class RapidStrikes : ChampCardModel
     {
         WithDamage(4, 2);
         WithTags(CardTag.Strike);
+        WithEnergyTip();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

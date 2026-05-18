@@ -12,7 +12,7 @@ public class Encircle : ChampCardModel
     public Encircle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(5, 3);
-        WithPower<GloryPower>(1);
+        WithGlory(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

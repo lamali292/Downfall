@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -10,6 +11,8 @@ public class SigilOfVictory : ChampCardModel
 {
     public SigilOfVictory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithTip(ChampKeyword.TriggerSkillBonus);
+        WithTip(ChampTip.Stance);
         WithRepeat(3, 1);
     }
 
