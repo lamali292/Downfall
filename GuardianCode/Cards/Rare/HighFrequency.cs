@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +14,7 @@ public class HighFrequency : GuardianCardModel
     public HighFrequency() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(GuardianTip.Stasis);
         WithCostUpgradeBy(-1);
     }
 
@@ -23,11 +25,11 @@ public class HighFrequency : GuardianCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, c => c != this, this)).FirstOrDefault();
         if (card == null) return;
 
-        while (true)
+        while (GuardianCmd.CanPutIntoStasis(Owner, true))
         {
             var a = card.CreateClone();
             await CardPileCmd.Add(a, PileType.Play);
-            if (!await GuardianCmd.PutIntoStasis(a, ctx, this, true)) break;
+            await GuardianCmd.PutIntoStasis(a, ctx, this, true);
         }
 
         await CardCmd.Exhaust(ctx, card);

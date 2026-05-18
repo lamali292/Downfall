@@ -11,7 +11,8 @@ public class FloatingOrbs : GuardianCardModel
 {
     public FloatingOrbs() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<FloatingOrbsPower>(3, 1);
+        WithPower<FloatingOrbsPower>(3, 1, false);
+        WithEnergyTip();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

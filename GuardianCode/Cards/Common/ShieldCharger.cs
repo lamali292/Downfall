@@ -14,6 +14,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
     {
         WithBlock(10, 2);
         WithKeyword(GuardianKeyword.Volatile);
+        WithTip(GuardianTip.Stasis);
         WithBrace(4, 2);
     }
 

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +14,8 @@ public class GemFinder : GuardianCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Ethereal);
-        WithPower<GemFinderPower>(1);
+        WithPower<GemFinderPower>(1, false);
+        WithTip(GuardianKeyword.Gem);
     }
 
 

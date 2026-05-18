@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -12,7 +13,8 @@ public class ChargeUp : GuardianCardModel
     public ChargeUp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        WithPower<TemporaryStrengthUpPower>(2, 1);
+        WithPower<TemporaryStrengthUpPower>(2, 1, false);
+        WithTip(typeof(StrengthPower));
     }
 
     public override int GemSlots => 1;

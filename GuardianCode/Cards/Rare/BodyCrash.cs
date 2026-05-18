@@ -13,7 +13,7 @@ public class BodyCrash : GuardianCardModel
     public BodyCrash() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithBlock(5, 3);
-        WithCalculatedDamage(0, 1, Calc);
+        WithCalculatedDamage(0, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

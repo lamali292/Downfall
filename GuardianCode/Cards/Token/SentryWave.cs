@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Cards.Uncommon;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -28,8 +29,9 @@ public class SentryWave : GuardianCardModel
         await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         if (IsUpgraded) await GuardianCmd.Brace(ctx, this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
-        var card = CombatState!.CreateCard(ModelDb.Card<SentryBlast>(), Owner);
-        if (IsUpgraded) card.UpgradeInternal();
+        var card = CombatState!.CreateCard<SentryBlast>(Owner);
+        if (IsUpgraded) CardCmd.Upgrade(card);
+        await CardPileCmd.Add(card, PileType.Hand);
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }
 }

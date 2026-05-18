@@ -21,9 +21,7 @@ public class RockSlide : GuardianCardModel
 
     public override void AfterCreated()
     {
-        var combatState = CombatManager.Instance.DebugOnlyGetState();
-        if (combatState == null) return;
-        var rng = combatState.RunState.Rng.Niche;
+        var rng = Owner.RunState.Rng.Niche;
 
         AddGem(GuardianModelDb.AllGems
             .Where(e => e.Rarity == CardRarity.Common)

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +14,7 @@ public class Suspension : GuardianCardModel
     public Suspension() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);
+        WithTip(GuardianTip.Stasis);
     }
 
     public override int GemSlots => 1;

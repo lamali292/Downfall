@@ -14,7 +14,7 @@ public class Clone : GuardianCardModel
     public Clone() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithAccelerate(1);
+        WithAccelerate(0, 1);
         WithTip(GuardianTip.Stasis);
     }
 
