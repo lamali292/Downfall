@@ -63,7 +63,7 @@
   "AUTOMATON-DEV_TOOLS.title": "Dev Tools",
   "AUTOMATON-DIGITAL_CARNAGE.description": "[gold]Compile Error[/gold] - \nFunction is [gold]Ethereal[/gold].",
   "AUTOMATON-DIGITAL_CARNAGE.title": "Digital Carnage",
-  "AUTOMATON-FIND_AND_REPLACE.description": "[gold]Fetch[/gold] a card from you draw or [gold]Discard Pile[/gold].\nAdd a [gold]Dazed[/gold] where it was.",
+  "AUTOMATON-FIND_AND_REPLACE.description": "Select a card from your [gold]Draw[/gold] or [gold]Discard Pile[/gold] to add to your [gold]Hand[/gold].\nAdd a [gold]Dazed[/gold] where it was.",
   "AUTOMATON-FIND_AND_REPLACE.title": "Find and [gold]Replace[/gold]",
   "AUTOMATON-FINE_TUNING.description": "Increase all numbers of Encoded cards by 1 except cost.",
   "AUTOMATON-FINE_TUNING.title": "Fine Tuning",
@@ -170,7 +170,7 @@
   "AUTOMATON-TURBO.title": "Turbo",
   "AUTOMATON-UNDERVOLT.description": "All enemies lose {StrengthPower:diff()} [gold]Strength[/gold].\nGain 2 [gold]Burns[/gold].",
   "AUTOMATON-UNDERVOLT.title": "Undervolt",
-  "AUTOMATON-VIRUS.description": "Deal {Damage:diff()} damage.\nDiscard your Hand and gain a [gold]Minor Beam[/gold]{IfUpgraded:show:+|} for each card discarded.",
+  "AUTOMATON-VIRUS.description": "Deal {Damage:diff()} damage.\nDiscard your [gold]Hand[/gold] and gain a [gold]Minor Beam[/gold]{IfUpgraded:show:+|} for each card discarded.",
   "AUTOMATON-VIRUS.title": "Virus",
   "AUTOMATON-WILD_STRIKE.description": "Deal {Damage:diff()} damage.\n[gold]Insert[/gold] a [gold]Wound[/gold].",
   "AUTOMATON-WILD_STRIKE.title": "Wild Strike"
