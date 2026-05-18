@@ -8,10 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Deal 19 damage to ALL enemies. Apply 5 Bruise to ALL enemies.
-///     Upgrade: 23 damage. 6 Bruise.
-/// </summary>
 public sealed class NoHoldsBarred : HermitCardModel
 {
     public NoHoldsBarred() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
@@ -32,12 +28,3 @@ public sealed class NoHoldsBarred : HermitCardModel
         await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   CanonicalVars removed → With* calls in constructor
- *   AdditionalHoverTips/ExtraHoverTips removed (covered by WithPower)
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(19, 4), WithPower<BruisePower>(5, 1)
- */

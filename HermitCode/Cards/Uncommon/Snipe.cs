@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +17,7 @@ public sealed class Snipe : HermitCardModel
     public Snipe() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithTips(e => IsUpgraded ? [HoverTipFactory.FromPower<ConcentrationPower>()] : []);
+        WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
         WithPower<ConcentrationPower>(0, 1, false);
         WithPower<SnipePower>(1, false);
     }

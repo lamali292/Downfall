@@ -7,10 +7,6 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Deal 20 damage. If Fatal, permanently reduce this card's cost by 1. Exhaust.
-///     Upgrade: 28 damage.
-/// </summary>
 public sealed class GoldenBullet : HermitCardModel
 {
     private int _currentCost = 3;
@@ -45,7 +41,6 @@ public sealed class GoldenBullet : HermitCardModel
         if (shouldTriggerFatal && attackCommand.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))
         {
             BuffFromPlay();
-            // Sync to the deck version so the reduction persists after combat
             (DeckVersion as GoldenBullet)?.BuffFromPlay();
         }
     }
@@ -66,14 +61,3 @@ public sealed class GoldenBullet : HermitCardModel
         EnergyCost.SetCustomBaseCost(CurrentCost);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   CanonicalVars removed → With* calls in constructor
- *   AdditionalHoverTips/ExtraHoverTips removed (covered by WithPower)
- *   CanonicalKeywords removed → WithKeyword(...) in constructor
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(18, 6), WithKeyword(CardKeyword.Exhaust)
- *   DamageCmd.Attack chain → CommonActions.CardAttack
- */

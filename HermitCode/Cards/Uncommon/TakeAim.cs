@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,7 @@ public sealed class TakeAim : HermitCardModel
     public TakeAim() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
+        WithTip(HermitKeywords.Concentrate);
         WithPower<TakeAimPower>(1, false);
     }
 

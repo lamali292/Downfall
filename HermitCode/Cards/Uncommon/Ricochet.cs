@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using Hermit.HermitCode.CustomEnums;
+using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
 using HermitMod.Utility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,10 +13,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Deal 7 damage. Repeat on a random enemy for each Dead On effect this turn.
-///     Upgrade: 9 damage.
-/// </summary>
 public sealed class Ricochet : HermitCardModel
 {
     public Ricochet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -24,6 +22,9 @@ public sealed class Ricochet : HermitCardModel
         WithTip(HermitKeywords.DeadOn);
     }
 
+    private static decimal CountDeadOnEffects(CardModel card, Creature? _)
+        => CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e =>
+            e.HappenedThisTurn(card.CombatState) && e.Actor == card.Owner.Creature);
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -52,10 +53,7 @@ public sealed class Ricochet : HermitCardModel
         }
     }
 
-    private static decimal CountDeadOnEffects(CardModel card, Creature? _)
-    {
-        return DeadOnCounter.GetCounter(card.Owner);
-    }
+   
 }
 
 /* transform_cards.py changes:

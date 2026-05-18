@@ -14,7 +14,7 @@ public sealed class TrackingShot : HermitCardModel
     {
         WithDamage(4, 2);
         WithRepeat(2);
-        WithTip(HermitTip.Concentrate);
+        WithKeyword(HermitKeywords.Concentrate);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)

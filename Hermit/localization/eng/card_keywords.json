@@ -6,5 +6,7 @@
   "HERMIT-DEFEND.title": "Defend",
   "HERMIT-DEFEND.description": "Cards containing “Defend”.",
   "HERMIT-STRIKE.title": "Strike",
-  "HERMIT-STRIKE.description": "Cards containing “Strike”."
+  "HERMIT-STRIKE.description": "Cards containing “Strike”.",
+  "HERMIT-CONCENTRATE.title": "Concentrate",
+  "HERMIT-CONCENTRATE.description": "The next [gold]Dead On[/gold] card played this turn triggers its effect regardless of position."
 }

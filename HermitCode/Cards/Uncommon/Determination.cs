@@ -20,10 +20,3 @@ public sealed class Determination : HermitCardModel
         await CommonActions.ApplySelf<DeterminationPower>(ctx, this);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithKeyword(CardKeyword.Innate, UpgradeType.Add)
- */

@@ -51,7 +51,7 @@
   "HERMIT-OVERWHELMING_POWER_POWER.smartDescription": "Lose [blue]{Amount}[/blue] HP if you end your turn with 0 {energyPrefix:energyIcons(1)}.",
   "HERMIT-OVERWHELMING_POWER_POWER.title": "Overwhelming Power",
   "HERMIT-MAINTENANCE_STRIKE_POWER.description": "Your [gold]Strikes[/gold] deal additional damage.",
-  "HERMIT-MAINTENANCE_STRIKE_POWER.smartDescription": "Your [gold]Strikes[/gold] deal [blue]{Amount}[/blue] more damage.",
+  "HERMIT-MAINTENANCE_STRIKE_POWER.smartDescription": "Your [gold]Strikes[/gold] deal [blue]{Amount}[/blue] additional damage.",
   "HERMIT-MAINTENANCE_STRIKE_POWER.title": "Maintenance",
   "HERMIT-DETERMINATION_POWER.description": "Whenever a debuff is applied to you, gain [blue]1[/blue] [gold]Strength[/gold].",
   "HERMIT-DETERMINATION_POWER.smartDescription": "Whenever a debuff is applied to you, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",

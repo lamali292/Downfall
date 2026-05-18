@@ -6,17 +6,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     Your Strikes deal X more damage.
-/// </summary>
 public sealed class MaintenanceStrikePower : HermitPowerModel
 {
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
-    {
-        if (dealer != Owner) return 0m;
-        if (cardSource == null) return 0m;
-        if (!cardSource.Tags.Contains(CardTag.Strike)) return 0m;
-        return !props.HasFlag(ValueProp.Move) ? 0m : Amount;
-    }
+        => dealer == Owner &&
+           cardSource != null &&
+           cardSource.Tags.Contains(CardTag.Strike) &&
+           props.HasFlag(ValueProp.Move) ?  Amount : 0;
+    
 }
