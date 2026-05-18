@@ -1,14 +1,17 @@
 ﻿using Godot;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Guardian.GuardianCode.Gems;
 
@@ -18,6 +21,11 @@ public class DiamondGem : GemModel
     public override Color GemColor => new(0x97CADBFF);
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override CardRarity Rarity => CardRarity.Rare;
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.Static(StaticHoverTip.ReplayStatic),
+        HoverTipFactory.Static(StaticHoverTip.Energy),
+        HoverTipFactory.Static(GuardianTip.Aggravate)
+    ];
 
     private bool UsedThisCombat
     {
@@ -57,7 +65,10 @@ public class DiamondGem : GemModel
     protected override void OnAdded(CardModel card)
     {
         if (card is IGemCard) return;
-        card.EnergyCost.UpgradeBy(1);
-        card.EnergyCost.FinalizeUpgrade();
+        if (card.IsInCombat)
+        {
+            card.EnergyCost.UpgradeBy(1);
+            card.EnergyCost.FinalizeUpgrade();
+        }
     }
 }

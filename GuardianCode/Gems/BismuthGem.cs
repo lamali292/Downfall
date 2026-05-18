@@ -1,6 +1,7 @@
 ﻿using Godot;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
@@ -16,7 +17,11 @@ namespace Guardian.GuardianCode.Gems;
 
 public class BismuthGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ArtifactPower>()];
+    public override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<ArtifactPower>(),
+        HoverTipFactory.Static(StaticHoverTip.Energy), 
+        HoverTipFactory.Static(GuardianTip.Aggravate)
+    ];
     public override Color GemColor => new(0xD8786AFF);
     public override CardRarity Rarity => CardRarity.Rare;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
@@ -30,12 +35,10 @@ public class BismuthGem : GemModel
     protected override void OnAdded(CardModel card)
     {
         if (card is IGemCard) return;
-        card.EnergyCost.UpgradeBy(1);
-        card.EnergyCost.FinalizeUpgrade();
-    }
-
-    protected override void OnRemoved(CardModel card)
-    {
-        //card.EnergyCost.UpgradeBy(-1);
+        if (card.IsInCombat)
+        {
+            card.EnergyCost.UpgradeBy(1);
+            card.EnergyCost.FinalizeUpgrade();
+        }
     }
 }
