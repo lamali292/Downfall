@@ -13,10 +13,11 @@ public class AllOut : ChampCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithRepeat(2, 1);
-        WithTags(ChampTag.Finisher);
+        WithFinisher();
+        WithTip(ChampTip.Stance);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true, DynamicVars.Repeat.IntValue);
     }

@@ -12,7 +12,7 @@ public class EnGarde : ChampCardModel
     public EnGarde() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 3);
-        WithPower<EnGardePower>(7, 3);
+        WithPower<EnGardePower>(7, 3, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

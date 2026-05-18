@@ -17,6 +17,7 @@ public class Defiance : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain);
+        WithTip(typeof(CounterPower));
         WithCalculatedBlock(0, CalcBlock);
     }
 

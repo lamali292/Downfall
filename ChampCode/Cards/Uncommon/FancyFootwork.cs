@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +12,9 @@ public class FancyFootwork : ChampCardModel
 {
     public FancyFootwork() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FancyFootworkPower>(10, 5);
+        WithPower<FancyFootworkPower>(10, 5, false);
+        WithTip(ChampTip.Stance);
+        WithTip(ChampTip.Finisher);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

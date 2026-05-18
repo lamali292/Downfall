@@ -11,7 +11,7 @@ public class GladiatorForm : ChampCardModel
 {
     public GladiatorForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<GladiatorFormPower>(1);
+        WithPower<GladiatorFormPower>(1, false);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

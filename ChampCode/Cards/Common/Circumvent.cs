@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Champ.ChampCode.Cards.Common;
 
 [Pool(typeof(ChampCardPool))]
-public class Circumvent : ChampCardModel
+public class Circumvent : ChampCardModel, IDefensiveComboCard
 {
     public Circumvent() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -17,13 +18,14 @@ public class Circumvent : ChampCardModel
         WithCards(2);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
-
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.Draw(this, ctx);
-        if (Owner.ShouldDefensiveComboTrigger()) return;
+    }
+
+    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, DynamicVars.Cards.IntValue);
         var cards = await CardSelectCmd.FromHandForDiscard(ctx, Owner, prefs, null, this);
         await CardCmd.Discard(ctx, cards);

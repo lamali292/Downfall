@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,7 @@ public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
     {
         WithDamage(6, 2);
         WithTags(CardTag.Strike);
+        WithTip(ChampTip.Stance);
     }
 
 

@@ -11,7 +11,8 @@ public class Magnificence : ChampCardModel
 {
     public Magnificence() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<MagnificencePower>(3, 1);
+        WithPower<MagnificencePower>(3, 1, false);
+        WithTip(typeof(GloryPower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

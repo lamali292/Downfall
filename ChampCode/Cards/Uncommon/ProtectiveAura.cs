@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,8 +13,9 @@ public class ProtectiveAura : ChampCardModel
 {
     public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<ProtectiveAuraPower>(4, 2);
+        WithPower<ProtectiveAuraPower>(4, 2, false);
         WithTip(StaticHoverTip.Block);
+        WithTip(ChampTip.Stance);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

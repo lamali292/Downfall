@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Champ.ChampCode.Cards.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class SetATrap : ChampCardModel
+public class SetATrap : ChampCardModel, IDefensiveComboCard
 {
     public SetATrap() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
@@ -16,13 +17,14 @@ public class SetATrap : ChampCardModel
         WithPower<WeakPower>(2, 1);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
-
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
-        if (!Owner.ShouldDefensiveComboTrigger()) return;
+    }
+
+    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (CombatState == null) return;
         await CommonActions.Apply<WeakPower>(ctx, CombatState.HittableEnemies, this);
     }
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +14,8 @@ public class ShowOff : ChampCardModel
     public ShowOff() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithCards(3, 1);
+        WithTip(ChampKeyword.TriggerSkillBonus);
+        WithTip(ChampTip.Stance);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

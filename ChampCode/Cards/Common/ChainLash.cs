@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,7 +13,8 @@ public class ChainLash : ChampCardModel
     public ChainLash() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(3, 2);
-        WithPower<ChainLashPower>(2, 3);
+        WithPower<ChainLashPower>(2, 1, false);
+        WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

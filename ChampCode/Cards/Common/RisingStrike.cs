@@ -15,6 +15,7 @@ public class RisingStrike : ChampCardModel
         WithKeywords(CardKeyword.Retain);
         WithDamage(8, 3);
         WithTags(CardTag.Strike);
+        WithTip(ChampTip.Finisher);
     }
 
     private bool WasLastCardPlayedFinisher => CombatManager.Instance.History.CardPlaysStarted

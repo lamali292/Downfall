@@ -12,7 +12,7 @@ public class GutPunch : ChampCardModel
     public GutPunch() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithPower<GloryPower>(3, 1);
+        WithGlory(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

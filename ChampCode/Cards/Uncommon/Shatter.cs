@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,8 @@ public class Shatter : ChampCardModel
         WithDamage(14, 2);
         WithPower<VulnerablePower>(1, 1);
         WithPower<WeakPower>(1, 1);
+        WithTip(ChampTip.Stance);
+        WithTip(ChampTip.Combo);
     }
 
     protected override bool ShouldGlowGoldInternal =>

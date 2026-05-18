@@ -11,7 +11,7 @@ public class HoneBlade : ChampCardModel
 {
     public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<HoneBladePower>(3, 1);
+        WithPower<HoneBladePower>(3, 1, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

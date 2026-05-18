@@ -13,9 +13,9 @@ public class RopeADope : ChampCardModel
     {
         WithFinisher();
         WithBlock(8, 2);
-        WithPower<EnergyNextTurnPower>(1, 1);
-        WithEnergy(1, 1);
-        WithPower<DrawCardsNextTurnPower>(2);
+        WithPower<EnergyNextTurnPower>(1, 1, false);
+        WithPower<DrawCardsNextTurnPower>(2, false);
+        WithEnergyTip();
         WithCards(1);
     }
 
@@ -24,6 +24,5 @@ public class RopeADope : ChampCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

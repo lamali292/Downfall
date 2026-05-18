@@ -16,6 +16,7 @@ public class CrookedStrike : ChampCardModel
     {
         WithDamage(6, 3);
         WithFinisher();
+        WithTip(typeof(VigorPower));
         WithTags(CardTag.Strike);
     }
 
@@ -23,7 +24,6 @@ public class CrookedStrike : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }
 

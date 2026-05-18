@@ -13,6 +13,7 @@ public class ArenaPreparation : ChampCardModel
     public ArenaPreparation() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Retain);
         WithCards(2);
         WithCostUpgradeBy(-1);
     }

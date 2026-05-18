@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,10 +17,12 @@ public class PreemptiveStrike : ChampCardModel
     {
         WithCalculatedDamage(0, CalcDamage);
         WithTags(CardTag.Strike);
+        WithTip(ChampTip.Defensive);
+        WithTip(typeof(CounterPower));
         WithCostUpgradeBy(-1);
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.ShouldDefensiveComboTrigger();
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 
     private static decimal CalcDamage(CardModel arg1, Creature? arg2)
     {

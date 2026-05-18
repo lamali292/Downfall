@@ -15,6 +15,8 @@ public class Devastate : ChampCardModel
     {
         WithDamage(6, 3);
         WithRepeat(3);
+        WithEnergyTip();
+        WithTip(ChampTip.Finisher);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

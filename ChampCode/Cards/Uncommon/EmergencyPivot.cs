@@ -18,6 +18,5 @@ public class EmergencyPivot : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }
