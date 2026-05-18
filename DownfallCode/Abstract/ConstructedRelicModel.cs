@@ -10,9 +10,12 @@ namespace Downfall.DownfallCode.Abstract;
 public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicModel
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
+    private readonly List<Func<RelicModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
+
     private readonly List<DynamicVar> _newDynamicVars = [];
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
-    protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this));
+    protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
+        .Concat(_multiHoverTips.SelectMany<Func<RelicModel, IEnumerable<IHoverTip>>, IHoverTip>(mt => mt(this)));
     public override RelicRarity Rarity => rarity;
 
     protected ConstructedRelicModel WithVars(params DynamicVar[] vars)
@@ -61,6 +64,14 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
         _hoverTips.Add(tipSource);
         return this;
     }
+    
+    protected ConstructedRelicModel WithTips(
+        Func<RelicModel, IEnumerable<IHoverTip>> multiTipSource)
+    {
+        this._multiHoverTips.Add(multiTipSource);
+        return this;
+    }
+
 
     protected ConstructedRelicModel WithEnergyTip()
     {

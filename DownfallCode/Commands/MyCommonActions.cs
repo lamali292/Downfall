@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Commands;
@@ -115,23 +114,25 @@ public static class MyCommonActions
     {
         return CreatureCmd.Damage(ctx, card.Owner.Creature, card.DynamicVars.SelfDamage(), card);
     }
+
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, CardModel card, Creature target)
     {
-        await CreatureCmd.Damage(ctx, target, card.DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, card.Owner.Creature, card);
+        await CreatureCmd.Damage(ctx, target, card.DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered, card.Owner.Creature, card);
     }
+
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, CardModel card, IEnumerable<Creature> targets)
     {
-        await CreatureCmd.Damage(ctx, targets, card.DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, card.Owner.Creature, card);
+        await CreatureCmd.Damage(ctx, targets, card.DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered, card.Owner.Creature, card);
     }
+
     public static async Task LoseHp(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay)
     {
         switch (card)
         {
             case { TargetType: TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer or TargetType.Self }:
-                if (cardPlay?.Target is not null)
-                {
-                    await LoseHpToTarget(ctx, card, cardPlay.Target);
-                }
+                if (cardPlay?.Target is not null) await LoseHpToTarget(ctx, card, cardPlay.Target);
                 break;
             case { TargetType: TargetType.AllEnemies, CombatState: not null }:
                 var enemies = card.CombatState.HittableEnemies.ToList();
@@ -140,10 +141,7 @@ public static class MyCommonActions
             case { TargetType: TargetType.RandomEnemy, CombatState: not null }:
                 var enemy = card.CombatState?.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets)
                     .FirstOrDefault();
-                if (enemy != null)
-                {
-                    await LoseHpToTarget(ctx, card, enemy);
-                }
+                if (enemy != null) await LoseHpToTarget(ctx, card, enemy);
                 break;
             default:
                 throw new InvalidOperationException($"Unsupported TargetType {card.TargetType} for LoseHp action.");

@@ -15,6 +15,7 @@ public class ForwardTackle : SlimeBossCardModel
         WithDamage(18, 4);
         WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
+        WithCommand(2, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

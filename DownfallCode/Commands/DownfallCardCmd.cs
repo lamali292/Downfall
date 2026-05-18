@@ -42,7 +42,7 @@ public class DownfallCardCmd
         bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
-        bool skipAnimation = false, 
+        bool skipAnimation = false,
         Func<CardModel, Task>? action = null) where T : CardModel
     {
         var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);

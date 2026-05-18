@@ -12,7 +12,7 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class ManaburnPower : AwakenedPowerModel, IOnDrained
 {
-    public ManaburnPower(): base(PowerType.Debuff)
+    public ManaburnPower() : base(PowerType.Debuff)
     {
         WithTip(AwakenedTip.Drained);
     }

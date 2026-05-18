@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ced5s8qfnc74u"]
+[gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_ipaxr"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/darkling.tscn" id="2_ipaxr"]
