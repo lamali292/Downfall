@@ -21,7 +21,7 @@ public class FourthDimension : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = (await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(SelectionScreenPrompt, 1), context: ctx, player: Owner, filter: null, source: this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(SelectionScreenPrompt, 1), null, this)).FirstOrDefault();
         if (card == null) return;
         var clone1 = card.CreateClone();
         var clone2 = card.CreateClone();
