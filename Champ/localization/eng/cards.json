@@ -141,7 +141,7 @@
   "CHAMP-RIPOSTE_STRIKE.title": "Riposte Strike",
   "CHAMP-RISING_STRIKE.description": "Deal {Damage:diff()} damage.\nIf the last card played was a [gold]Finisher[/gold], deal {Damage:diff()} damage again. ",
   "CHAMP-RISING_STRIKE.title": "Rising Strike",
-  "CHAMP-ROPE_A_DOPE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {EnergyNextTurnPower:energyIcons()} and draw {DrawCardsNextTurnPower:diff()} cards.",
+  "CHAMP-ROPE_A_DOPE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {Energy:energyIcons()} and draw {DrawCardsNextTurnPower:diff()} cards.",
   "CHAMP-ROPE_A_DOPE.title": "Rope-a-dope",
   "CHAMP-SET_A_TRAP.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Defensive Combo[/gold]:\nApply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "CHAMP-SET_A_TRAP.title": "Set A Trap",

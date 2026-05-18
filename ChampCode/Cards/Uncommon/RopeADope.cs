@@ -13,16 +13,14 @@ public class RopeADope : ChampCardModel
     {
         WithFinisher();
         WithBlock(8, 2);
-        WithPower<EnergyNextTurnPower>(1, 1, false);
+        WithEnergy(1, 1);
         WithPower<DrawCardsNextTurnPower>(2, false);
-        WithEnergyTip();
-        WithCards(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
     }
 }
