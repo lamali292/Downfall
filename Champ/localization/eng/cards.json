@@ -131,7 +131,7 @@
   "CHAMP-PROTECTIVE_AURA.title": "Protective Aura",
   "CHAMP-PROTECTIVE_AURA.description": "Whenever you end your turn while in no [gold]Stance[/gold], gain {ProtectiveAuraPower:diff()} [gold]Block[/gold].",
   "CHAMP-PROTECTIVE_AURA.selectionScreenPrompt": "",
-  "CHAMP-RAPID_STRIKES.description": "Deal {Damage:diff()} damage twice.\nA random \"Strike\" card in your Hand costs 0 {energyPrefix:energyIcons(1)} this turn.",
+  "CHAMP-RAPID_STRIKES.description": "Deal {Damage:diff()} damage twice.\nA random \"Strike\" card in your [gold]Hand[/gold] costs 0 {energyPrefix:energyIcons(1)} this turn.",
   "CHAMP-RAPID_STRIKES.title": "Rapid Strikes",
   "CHAMP-RECKLESS_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nEnter [gold]Berserker[/gold].",
   "CHAMP-RECKLESS_STRIKE.title": "Reckless Strike",
