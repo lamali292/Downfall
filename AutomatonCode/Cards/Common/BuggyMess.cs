@@ -17,9 +17,8 @@ public class BuggyMess : AutomatonCardModel, IEncodable
     public BuggyMess() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithEnergy(1);
-        WithTip(AutomatonTip.Encode);
         WithTip(typeof(Dazed));
-        WithEnergyTip();
+        WithTip(AutomatonTip.Insert);
         WithCostUpgradeBy(-1);
     }
 

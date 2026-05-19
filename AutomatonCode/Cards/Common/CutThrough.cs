@@ -19,8 +19,6 @@ public class CutThrough : AutomatonCardModel, ICompilable,
     {
         WithDamage(5, 2);
         WithVar("Scry", 2, 1);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithTip(DownfallTip.Scry);
     }
 

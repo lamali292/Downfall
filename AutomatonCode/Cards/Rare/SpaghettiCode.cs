@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,6 +15,7 @@ public class SpaghettiCode : AutomatonCardModel
     public SpaghettiCode() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(AutomatonTip.Encode);
         WithCostUpgradeBy(-1);
     }
 

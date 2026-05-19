@@ -17,6 +17,7 @@ public class GetLatest : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
         WithCostUpgradeBy(-1);
+        WithEnergyTip();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

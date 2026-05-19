@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,6 +15,7 @@ public class BitShift : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
+        WithTip(AutomatonTip.Encode);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

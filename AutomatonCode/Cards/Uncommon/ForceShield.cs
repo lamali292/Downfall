@@ -12,15 +12,14 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class ForceShield : AutomatonCardModel, IOnCompile
+public class ForceShield : AutomatonCardModel
 {
     private int _functionsCreated;
 
     public ForceShield() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 4);
-        WithTip(AutomatonTip.Encode);
-        WithTip(typeof(MergePower));
+        WithEnergyTip();
     }
 
     public override bool ShouldReceiveCombatHooks => true;

@@ -13,7 +13,7 @@ public class ItsAFeature : AutomatonCardModel
 {
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<ItsAFeaturePower>(3, 1);
+        WithPower<ItsAFeaturePower>(3, 1, false);
         WithTip(DownfallTip.Status);
         WithTip(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Block);

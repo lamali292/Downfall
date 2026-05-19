@@ -1,8 +1,10 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -13,6 +15,7 @@ public class ShipIt : AutomatonCardModel
     {
         WithDamage(5, 2);
         WithTip(CardKeyword.Exhaust);
+        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

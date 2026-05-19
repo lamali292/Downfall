@@ -14,7 +14,6 @@ public class MinorBeam : AutomatonCardModel, IEncodable
     public MinorBeam() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithTip(AutomatonTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

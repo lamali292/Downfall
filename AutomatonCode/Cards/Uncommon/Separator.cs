@@ -19,7 +19,6 @@ public class Separator : AutomatonCardModel, IEncodable
     {
         WithDamage(6, 2);
         WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move).WithUpgrade(2));
-        WithTip(AutomatonTip.Encode);
     }
 
 

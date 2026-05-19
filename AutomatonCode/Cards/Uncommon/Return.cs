@@ -13,7 +13,6 @@ public class Return : AutomatonCardModel
 {
     public Return() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<EnergyNextTurnPower>(1, 2);
         WithEnergy(1, 2);
     }
 
@@ -36,6 +35,6 @@ public class Return : AutomatonCardModel
 
         foreach (var card in selected)
             await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
-        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
@@ -15,6 +17,8 @@ public class Mutator : AutomatonCardModel
     {
         WithPower<StrengthPower>(2);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithTip(StaticHoverTip.Transform);
+        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

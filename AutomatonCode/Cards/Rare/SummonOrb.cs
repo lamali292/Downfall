@@ -4,6 +4,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -12,7 +13,8 @@ public class SummonOrb : AutomatonCardModel
 {
     public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<SummonOrbPower>(3, 1);
+        WithPower<SummonOrbPower>(3, 1, false);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

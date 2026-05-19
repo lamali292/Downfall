@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,6 +14,7 @@ public class BurnOut : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

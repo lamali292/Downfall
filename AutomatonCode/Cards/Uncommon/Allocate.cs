@@ -14,6 +14,7 @@ public class Allocate : AutomatonCardModel
     {
         WithTip(DownfallTip.Status);
         WithCostUpgradeBy(-1);
+        WithEnergyTip();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

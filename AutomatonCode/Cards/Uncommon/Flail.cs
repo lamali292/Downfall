@@ -16,7 +16,6 @@ public class Flail : AutomatonCardModel
         WithDamage(7, 1);
         WithPower<ArtifactPower>(1, 1);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

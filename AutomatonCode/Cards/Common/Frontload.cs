@@ -15,8 +15,6 @@ public class Frontload : AutomatonCardModel, ICompilable, IEncodable
     public Frontload() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(8, 3);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithTip(CardKeyword.Retain);
     }
 

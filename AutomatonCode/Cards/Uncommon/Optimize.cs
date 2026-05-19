@@ -13,7 +13,7 @@ public class Optimize : AutomatonCardModel
     public Optimize() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(AutomatonTip.Encode);
-        WithPower<OptimizePower>(3, 2);
+        WithPower<OptimizePower>(3, 2, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
