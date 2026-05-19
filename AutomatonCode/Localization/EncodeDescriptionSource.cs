@@ -13,6 +13,7 @@ public class EncodeDescriptionSource : IExtraDescriptionSource
         var encode = encodable.EncodeLocString;
         if (encode == null) yield break;
         var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();
-        yield return $"{encode.GetFormattedText()}\n[gold]{title}[/gold].";
+        var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
+        yield return $"{encode.GetFormattedText()}\n[gold]{title}[/gold]{period}";
     }
 }

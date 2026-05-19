@@ -15,8 +15,8 @@ public class AwakenedForm : AwakenedCardModel
     public AwakenedForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
         WithPower<CuriosityPower>(1);
-        WithPower<RitualPower>(1);
-        WithTips(card => card.IsUpgraded ? [HoverTipFactory.Static(AwakenedTip.Awaken)] : []);
+        WithPower<RitualPower>(1, 1);
+        WithTip(AwakenedTip.Awaken, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -10,7 +10,7 @@ public class Divider : HexaghostCardModel
 {
     public Divider() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 5);
+        WithDamage(3, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

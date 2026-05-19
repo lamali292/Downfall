@@ -11,7 +11,7 @@ public class SpectersWail : HexaghostCardModel
     public SpectersWail() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithAfterlife();
-        WithDamage(4, 6);
+        WithDamage(4, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
