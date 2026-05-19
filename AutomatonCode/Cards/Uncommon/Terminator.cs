@@ -5,6 +5,7 @@ using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -15,6 +16,7 @@ public class Terminator : AutomatonCardModel,
     public Terminator() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
+        WithTip(StaticHoverTip.ReplayStatic);
     }
 
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay, CompileContext compileContext,

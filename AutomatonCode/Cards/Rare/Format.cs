@@ -16,6 +16,8 @@ public class Format : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
+        WithTip(typeof(Fragment));
+        WithEnergy(1);
     }
 
     protected override bool HasEnergyCostX => true;

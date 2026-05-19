@@ -14,15 +14,16 @@ public class MaxOutput : AutomatonCardModel
 {
     public MaxOutput() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
+        WithCards(3);
         WithTip(AutomatonTip.Insert);
         WithTip(typeof(Dazed));
-        WithPower<MaxOutputPower>(1);
+        WithPower<MaxOutputPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CardPileCmd.Draw(ctx, 3, cardPlay.Card.Owner);
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, cardPlay.Card.Owner);
         await CommonActions.ApplySelf<MaxOutputPower>(ctx, this);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,7 +12,9 @@ public class Library : AutomatonCardModel
 {
     public Library() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
     {
-        WithPower<LibraryPower>(1);
+        WithPower<LibraryPower>(1, false);
+        WithTip(AutomatonTip.Encode);
+        WithEnergyTip();
         WithCostUpgradeBy(-1);
     }
 
