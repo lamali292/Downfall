@@ -59,15 +59,18 @@ public class ChampCmd
                 await EnterBerserkerStance(ctx, owner);
                 break;
             default:
-            {
-                var rng = owner.Creature.CombatState!.RunState.Rng.CombatCardSelection;
-                if (rng.NextBool())
-                    await EnterDefensiveStance(ctx, owner);
-                else
-                    await EnterBerserkerStance(ctx, owner);
+                await EnterRandomStance(ctx, owner);
                 break;
-            }
         }
+    }
+
+    public static async Task EnterRandomStance(PlayerChoiceContext ctx, Player owner)
+    {
+        var rng = owner.Creature.CombatState!.RunState.Rng.CombatCardSelection;
+        if (rng.NextBool())
+            await EnterDefensiveStance(ctx, owner);
+        else
+            await EnterBerserkerStance(ctx, owner);
     }
 
     public static async Task ClearStance(PlayerChoiceContext ctx, Player player)
