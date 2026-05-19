@@ -17,8 +17,6 @@ public class InfiniteLoop : AutomatonCardModel,
     {
         WithDamage(6);
         WithVar("Increase", 2, 2);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

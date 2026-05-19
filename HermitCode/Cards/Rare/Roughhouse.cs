@@ -13,9 +13,7 @@ public class Roughhouse : HermitCardModel, IHasDeadOnEffect
         WithDamage(24, 6);
         WithBlock(20, 4);
     }
-
-   
-
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
@@ -28,13 +26,3 @@ public class Roughhouse : HermitCardModel, IHasDeadOnEffect
         await CommonActions.CardBlock(this, play);
     }
 }
-
-/* transform_cards.py changes:
- *   primary constructor → explicit constructor + base(...)
- *   namespace → Hermit.HermitCode.Cards.Rare
- *   usings updated
- *   CanonicalVars removed → With* calls in constructor
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(24, 6), WithBlock(20, 4)
- *   DamageCmd.Attack chain → CommonActions.CardAttack
- */

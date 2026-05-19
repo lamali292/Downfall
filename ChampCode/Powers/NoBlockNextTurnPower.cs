@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -9,13 +10,13 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Powers;
 
-public class NoBlockNextTurnPower() : ChampPowerModel(PowerType.Debuff, PowerStackType.Single)
+public class NoBlockNextTurnPower : ChampPowerModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<NoBlockPower>(),
-        HoverTipFactory.Static(StaticHoverTip.Block)
-    ];
+    public NoBlockNextTurnPower() : base(PowerType.Debuff, PowerStackType.Single)
+    {
+        WithTip(typeof(NoBlockPower));
+        WithTip(StaticHoverTip.Block);
+    }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {

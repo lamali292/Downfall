@@ -15,7 +15,6 @@ public class Iterate : AutomatonCardModel, IEncodable
     {
         WithDamage(2);
         WithRepeat(3, 1);
-        WithTip(AutomatonTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

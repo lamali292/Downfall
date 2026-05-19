@@ -19,7 +19,7 @@ public abstract class ConstructedPowerModel(
     public override PowerStackType StackType => stackType;
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
+    protected sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
         .Concat(_multiHoverTips.SelectMany(e => e.Invoke(this)));
 
     public virtual bool ShouldRemoveDueToZero => true;

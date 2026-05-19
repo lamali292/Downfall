@@ -15,7 +15,6 @@ public class BranchBlock : AutomatonCardModel, IEncodable
     {
         WithBlock(6, 2);
         WithKeywords(CardKeyword.Retain);
-        WithTip(AutomatonTip.Encode);
     }
 
 

@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,15 +8,25 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace Automaton.AutomatonCode.Cards;
 
-public abstract class AutomatonCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Core.Automaton>(cost, type, rarity, targetType)
+public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
 {
     public bool SkipEncode { get; set; }
     public bool SuppressCompileError { get; set; }
+
+    public AutomatonCardModel(
+        int cost,
+        CardType type,
+        CardRarity rarity,
+        TargetType targetType
+    ) : base(cost, type, rarity, targetType)
+    {
+        if (this is IEncodable)
+            WithTip(AutomatonTip.Encode);
+        if (this is ICompilable)
+            WithTip(AutomatonTip.Compile);
+        if (this is ICompilableError)
+            WithTip(AutomatonTip.CompileError);
+    }
 
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

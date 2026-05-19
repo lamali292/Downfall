@@ -1,19 +1,14 @@
-using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Hermit.HermitCode.Cards.Ancient;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Basic;
 
-public sealed class Snapshot : HermitCardModel, ITranscendenceCard, IHasDeadOnEffect
+public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
 {
     
 
@@ -23,11 +18,12 @@ public sealed class Snapshot : HermitCardModel, ITranscendenceCard, IHasDeadOnEf
     }
 
    
-
+/*
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<OneFlash>();
     }
+*/
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {

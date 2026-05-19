@@ -14,7 +14,7 @@ public class PiercingShot : AutomatonCardModel, IEncodable
     public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(6, 2);
-        WithTip(AutomatonTip.Encode);
+        
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

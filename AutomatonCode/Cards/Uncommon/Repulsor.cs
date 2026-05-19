@@ -14,7 +14,7 @@ public class Repulsor : AutomatonCardModel
     {
         WithTip(DownfallTip.Status);
         WithTip(CardKeyword.Exhaust);
-        WithPower<ExhaustStatusesPower>(1);
+        WithPower<ExhaustStatusesPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

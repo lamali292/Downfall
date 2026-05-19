@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +18,7 @@ public class StickyShield : AutomatonCardModel
         WithBlock(11, 3);
         WithKeywords(CardKeyword.Retain);
         WithTip(typeof(Slimed));
+        WithTip(AutomatonTip.Insert);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)

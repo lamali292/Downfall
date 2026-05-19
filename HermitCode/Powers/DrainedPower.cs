@@ -3,23 +3,20 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     At the start of your turn, lose 1 energy.
-/// </summary>
-public sealed class DrainedPower() : HermitPowerModel(PowerType.Debuff)
+public sealed class DrainedPower: HermitPowerModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
-
+    public DrainedPower() : base(PowerType.Debuff)
+    {
+        WithEnergyTip();
+    }
+    
     protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
     {
-        if (player == Owner.Player)
-        {
-            await PlayerCmd.LoseEnergy(Amount, player);
-            await PowerCmd.Remove(this);
-        }
+        if (player != Owner.Player) return;
+        await PlayerCmd.LoseEnergy(Amount, player);
+        await PowerCmd.Remove(this);
     }
 }

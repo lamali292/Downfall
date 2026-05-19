@@ -9,10 +9,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Deal 10 damage. Double this card's damage and increase its cost by 1.
-///     Upgrade: 12 damage.
-/// </summary>
 public sealed class Desperado : HermitCardModel
 {
     public Desperado() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)

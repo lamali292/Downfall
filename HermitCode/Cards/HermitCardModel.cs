@@ -15,8 +15,6 @@ namespace Hermit.HermitCode.Cards;
 public abstract class HermitCardModel
     : DownfallCardModel<Core.Hermit>
 {
-  
-
     protected HermitCardModel(
         int cost,
         CardType type,

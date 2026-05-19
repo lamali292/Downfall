@@ -119,6 +119,22 @@ public static class DownfallHook
     {
         return combatState.IterateHookListeners().OfType<THook>().All(predicate);
     }
+    
+    public static bool Any<THook>(ICombatState combatState, Func<THook, bool> predicate, out IEnumerable<THook> matches)
+        where THook : class
+    {
+        var list = combatState.IterateHookListeners().OfType<THook>().Where(predicate).ToList();
+        matches = list;
+        return list.Count > 0;
+    }
+
+    public static bool All<THook>(ICombatState combatState, Func<THook, bool> predicate, out IEnumerable<THook> nonMatches)
+        where THook : class
+    {
+        var list = combatState.IterateHookListeners().OfType<THook>().Where(m => !predicate(m)).ToList();
+        nonMatches = list;
+        return list.Count == 0;
+    }
 
     /// <summary>
     /// Passes a value through all hook listeners of type <typeparamref name="THook"/>,

@@ -15,7 +15,6 @@ public class Fragment : AutomatonCardModel, IEncodable
     {
         WithDamage(4, 1);
         WithBlock(4, 1);
-        WithTip(AutomatonTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

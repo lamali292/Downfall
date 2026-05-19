@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Displays;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,6 +13,7 @@ public class FineTuning : AutomatonCardModel
     public FineTuning() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(AutomatonTip.Encode);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

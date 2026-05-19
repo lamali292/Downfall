@@ -9,9 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Curse;
 
-/// <summary>
-///     Apply 1 Vulnerable to EVERYONE (all enemies AND player). Retain.
-/// </summary>
+
 [Pool(typeof(CurseCardPool))]
 public sealed class MementoCard : HermitCardModel
 {
@@ -29,9 +27,3 @@ public sealed class MementoCard : HermitCardModel
         await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Curse
- *   CanonicalKeywords removed → WithKeyword(...) in constructor
- *   constructor: WithPower<VulnerablePower>(1, 0), WithKeyword(CardKeyword.Retain)
- */

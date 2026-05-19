@@ -8,13 +8,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     At the start of your turn, you can Exhaust a card to gain 8 Block.
-///     Stacks increase block gained (8 per stack).
-/// </summary>
 public sealed class AdaptPower : HermitPowerModel
 {
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
         ICombatState combatState)
     {
         if (side != CombatSide.Player) return;
@@ -24,7 +20,7 @@ public sealed class AdaptPower : HermitPowerModel
         if (!hand.Cards.Any()) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, Amount);
         var selected = await CardSelectCmd.FromHand(
-            choiceContext,
+            ctx,
             Owner.Player,
             prefs,
             null,
@@ -32,7 +28,7 @@ public sealed class AdaptPower : HermitPowerModel
         );
         foreach (var card in selected)
         {
-            await CardCmd.Exhaust(choiceContext, card);
+            await CardCmd.Exhaust(ctx, card);
             await CreatureCmd.GainBlock(Owner, 8, ValueProp.Unpowered, null);
         }
         

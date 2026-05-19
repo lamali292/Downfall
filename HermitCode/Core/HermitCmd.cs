@@ -34,8 +34,7 @@ public static class HermitCmd
         await HermitHook.AfterModifyingDeadOnCount(combatState, ctx, card, modifiers);
         
         if (card is not IHasDeadOnEffect cardModel) return;
-        for (var i = 0; i <  modify; i++)
-            await cardModel.DeadOnEffect(ctx, cardPlay);
+        for (var i = 0; i < modify; i++) await cardModel.DeadOnEffect(ctx, cardPlay);
         var entry = new DeadOnEntry(cardPlay, card.Owner.Creature, combatState.RoundNumber,  card.Owner.Creature.Side,
             CombatManager.Instance.History);
         CombatManager.Instance.History.Add(combatState, entry);

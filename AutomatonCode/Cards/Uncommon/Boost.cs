@@ -18,8 +18,6 @@ public class Boost : AutomatonCardModel, IEncodable,
     {
         WithBlock(6);
         WithPower<StrengthPower>(1, 1);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
 

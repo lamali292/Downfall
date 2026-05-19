@@ -19,7 +19,7 @@ public class Constructor : AutomatonCardModel, IEncodable
     {
         WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));
-        WithTip(AutomatonTip.Encode);
+        
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
