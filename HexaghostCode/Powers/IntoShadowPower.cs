@@ -70,7 +70,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
         return true;
     }
 
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
+    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (ShouldSkip(cardPlay.Card) || !cardPlay.IsLastInSeries) return Task.CompletedTask;
         FreeCards--;

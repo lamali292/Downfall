@@ -3,6 +3,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -20,11 +21,3 @@ public sealed class ShadowCloak : HermitCardModel
         await CommonActions.ApplySelf<ShadowCloakPower>(ctx, this);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   OnUpgrade: migrated lines stripped, remainder kept
- *   constructor: WithPower<ShadowCloakPower>(4m, 0)
- *   PowerCmd.Apply self → CommonActions.ApplySelf
- */

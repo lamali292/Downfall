@@ -5,10 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Choose a card in your hand. It costs 0 this turn. Discard the rest of your hand.
-///     Upgrade: Cost reduced from 1 to 0.
-/// </summary>
 public sealed class LoneWolf : HermitCardModel
 {
     public LoneWolf() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
@@ -21,7 +17,7 @@ public sealed class LoneWolf : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var handPile = PileType.Hand.GetPile(Owner);
         if (handPile.Cards.Count == 0) return;
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var chosen = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (chosen == null) return;
         chosen.SetToFreeThisTurn();
@@ -29,10 +25,3 @@ public sealed class LoneWolf : HermitCardModel
         await CardPileCmd.Add(toDiscard, PileType.Discard);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   OnUpgrade: migrated lines stripped, remainder kept
- *   constructor: WithCostUpgradeBy(-1)
- */

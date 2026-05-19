@@ -194,7 +194,7 @@
   "HEXAGHOST-TURN_IT_UP.title": "Turn It Up",
   "HEXAGHOST-UNFETTERED_FORM.title": "Unfettered Form",
   "HEXAGHOST-UNFETTERED_FORM.description": "Ghostflames deal damage{IfUpgraded:show:,| and} apply [gold]Soulburn[/gold]{IfUpgraded:show:, and grant [gold]Block[/gold]|} an additional time.",
-  "HEXAGHOST-UNLEASH_SPIRITS.description": "Deal {Damage:diff()} damage to a random enemy. \nRepeat for each card [gold]Exhausted[/gold] last turn.{InCombat:\n(Hits {Repeat} {Repeat:plural:time|times})|}",
+  "HEXAGHOST-UNLEASH_SPIRITS.description": "Deal {Damage:diff()} damage to a random enemy. \nRepeat for each card [gold]Exhausted[/gold] last turn.{InCombat:cond:\n(Hits {Repeat} {Repeat:plural:time|times})|}",
   "HEXAGHOST-UNLEASH_SPIRITS.title": "Unleash Spirits",
   "HEXAGHOST-UNLIMITED_POWER.description": "Ignite all Ghostflames in order.",
   "HEXAGHOST-UNLIMITED_POWER.title": "Unlimited Power",

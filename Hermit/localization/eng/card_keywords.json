@@ -1,10 +1,12 @@
 {
   "HERMIT-BOUNTY.title": "Bounty",
-  "HERMIT-BOUNTY.description": "Normal Enemy: 15 gold. Elite Enemy: 40 gold. Boss: 100 gold.",
+  "HERMIT-BOUNTY.description": "Normal Enemy: [blue]15[/blue] gold.\nElite Enemy: [blue]40[/blue] gold.\nBoss: [blue]100[/blue] gold.",
   "HERMIT-DEADON.title": "Dead On",
   "HERMIT-DEADON.description": "Dead On cards have a bonus effect when in the middle of your hand.",
   "HERMIT-DEFEND.title": "Defend",
   "HERMIT-DEFEND.description": "Cards containing “Defend”.",
   "HERMIT-STRIKE.title": "Strike",
-  "HERMIT-STRIKE.description": "Cards containing “Strike”."
+  "HERMIT-STRIKE.description": "Cards containing “Strike”.",
+  "HERMIT-CONCENTRATE.title": "Concentrate",
+  "HERMIT-CONCENTRATE.description": "The next [gold]Dead On[/gold] card played this turn triggers its effect regardless of position."
 }

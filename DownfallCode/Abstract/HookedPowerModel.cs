@@ -112,7 +112,7 @@ public abstract class HookedPowerModel : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
+    public sealed override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         return ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
     }

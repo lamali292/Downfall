@@ -1,6 +1,6 @@
 using BaseLib.Utils;
 using Hermit.HermitCode.Powers;
-using HermitMod.Utility;
+using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

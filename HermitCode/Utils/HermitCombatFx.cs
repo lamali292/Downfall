@@ -5,15 +5,15 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
-namespace HermitMod.Utility;
+namespace Hermit.HermitCode.Utils;
 
 public static class HermitCombatFx
 {
-    public const string GunHitVfx = "vfx/vfx_attack_blunt";
-    public const string FireHitVfx = "vfx/vfx_fire_burst";
-    public const string BluntHitVfx = "vfx/vfx_attack_blunt";
-    public const string ShortFuseHitVfx = "vfx/vfx_coin_explosion_small";
-    public const string SlashHitVfx = "vfx/vfx_attack_slash";
+    private const string GunHitVfx = "vfx/vfx_attack_blunt";
+    private const string FireHitVfx = "vfx/vfx_fire_burst";
+    private const string BluntHitVfx = "vfx/vfx_attack_blunt";
+    private const string ShortFuseHitVfx = "vfx/vfx_coin_explosion_small";
+    private const string SlashHitVfx = "vfx/vfx_attack_slash";
 
     public static void GroundFireOnTarget(Creature target)
     {
