@@ -48,7 +48,7 @@
   "AWAKENED-DRAINED_POWER.description": "Gain less {energyPrefix:energyIcons(1)} next turn.",
   "AWAKENED-DRAINED_POWER.smartDescription": "Gain [blue]{Amount}[/blue] less {energyPrefix:energyIcons(1)} next turn.",
   "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "Eclipse Embrace",
-  "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "Whenever you Exhaust a [gold]Void[/gold], gain {energyPrefix:energyIcons(1)} and draw a card next turn.",
+  "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "Whenever you [gold]Exhaust[/gold] a [gold]Void[/gold], gain {energyPrefix:energyIcons(1)} and draw a card next turn.",
   "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a [gold]Void[/gold], gain {Amount:energyIcons()} and draw {Amount:plural:a card|[blue]{Amount}[/blue] cards} next turn.",
   "AWAKENED-ENSORCELATE_POWER.title": "Ensorcelate",
   "AWAKENED-ENSORCELATE_POWER.description": "The next [gold]Power[/gold] is free to play.",

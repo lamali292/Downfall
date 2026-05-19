@@ -25,6 +25,7 @@
   "GUARDIAN-FRAGMENTED_GEM.description": "Gain a [gold]Crystal Shiv[/gold].",
   "GUARDIAN-GARNET_GEM.description": "Apply {Gem:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "GUARDIAN-ONYX_GEM.description": "[gold]Polish[/gold] {Gem:diff()}.",
+  "GUARDIAN-OPAL_GEM.description": "Draw {Gem:diff()} card.",
   "GUARDIAN-RUBY_GEM.description": "Gain {Gem:diff()} [gold]Strength[/gold] this turn.",
   "GUARDIAN-RUTILE_GEM.description": "Apply {Gem:diff()} [gold]Weak[/gold] to ALL enemies.",
   "GUARDIAN-SAPPHIRE_GEM.description": "[gold]Brace[/gold] {Gem:diff()}.",

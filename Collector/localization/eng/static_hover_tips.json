@@ -1,6 +1,6 @@
 ﻿{
   "COLLECTOR-COLLECTED_PILE.title": "Collected Pile",
-  "COLLECTOR-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of each turn.",
+  "COLLECTOR-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of your turn.",
   "COLLECTOR-KINDLE.title": "Kindle",
   "COLLECTOR-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat."
 }

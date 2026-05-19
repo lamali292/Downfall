@@ -131,7 +131,10 @@ public static class MyCommonActions
     {
         switch (card)
         {
-            case { TargetType: TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer or TargetType.Self }:
+            case { TargetType: TargetType.Self }:
+                await LoseHpToTarget(ctx, card, card.Owner.Creature);
+                break;
+            case { TargetType: TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer }:
                 if (cardPlay?.Target is not null) await LoseHpToTarget(ctx, card, cardPlay.Target);
                 break;
             case { TargetType: TargetType.AllEnemies, CombatState: not null }:

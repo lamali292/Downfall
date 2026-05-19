@@ -13,7 +13,9 @@ public class CompileErrorDescriptionSource : IExtraDescriptionSource
         if (card is not ICompilableError || ((AutomatonCardModel)card).SuppressCompileError) yield break;
         var loc = ICompilableError.BuildErrorLocString((AutomatonCardModel)card);
         if (loc == null) yield break;
+        var compileErrorTitle = new LocString("static_hover_tips", "AUTOMATON-COMPILE_ERROR.title").GetFormattedText();
+        var colon = new LocString("card_keywords", "COLON").GetFormattedText();
         yield return
-            $"[gold]{new LocString("static_hover_tips", "AUTOMATON-COMPILE_ERROR.title").GetFormattedText()}[/gold] - {loc.GetFormattedText()}";
+            $"[gold]{compileErrorTitle}[/gold]{colon}{loc.GetFormattedText()}";
     }
 }

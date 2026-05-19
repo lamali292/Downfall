@@ -30,9 +30,7 @@ public class InfiniteLoop : AutomatonCardModel,
         copy.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         copy.DynamicVars.FinalizeUpgrade();
 
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
+        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

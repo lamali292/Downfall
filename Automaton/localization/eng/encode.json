@@ -12,7 +12,7 @@
   "AUTOMATON-BRANCH_BLOCK.encode": "Gain {Block:diff()} [gold]Block[/gold].",
   "AUTOMATON-BRANCH_BLOCK.functionPrefix": "forked",
   "AUTOMATON-BRANCH_BLOCK.functionName": "Branch",
-  "AUTOMATON-BRANCH_ATTACK.encode": "Deal {Damage:diff()}.",
+  "AUTOMATON-BRANCH_ATTACK.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-BRANCH_ATTACK.functionPrefix": "forked",
   "AUTOMATON-BRANCH_ATTACK.functionName": "Branch",
   "AUTOMATON-BUGGY_MESS.encode": "[gold]Insert[/gold] a [gold]Dazed[/gold].\nGain {Energy:energyIcons()}.",
