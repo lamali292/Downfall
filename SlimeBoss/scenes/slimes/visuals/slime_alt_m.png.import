@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkafdo35g1ig2"
-path="res://.godot/imported/sneak.png-796778100ce588a9582dd6eace265bcc.ctex"
+uid="uid://dcf6eghryrwbx"
+path="res://.godot/imported/slime_alt_m.png-360e59436be47f7c8cc55ca9d6090742.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/sneak.png"
-dest_files=["res://.godot/imported/sneak.png-796778100ce588a9582dd6eace265bcc.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/slime_alt_m.png"
+dest_files=["res://.godot/imported/slime_alt_m.png-360e59436be47f7c8cc55ca9d6090742.ctex"]
 
 [params]
 

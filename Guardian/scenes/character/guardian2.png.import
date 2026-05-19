@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhjvd75xc7lu4"
-path="res://.godot/imported/guardian.png-42ec3fcb80475bd20636473366fb86ac.ctex"
+uid="uid://c0ls0uv8x0ixo"
+path="res://.godot/imported/guardian2.png-7d01dbec0b9e839a43b0d23c26076654.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/guardian.png"
-dest_files=["res://.godot/imported/guardian.png-42ec3fcb80475bd20636473366fb86ac.ctex"]
+source_file="res://Guardian/scenes/character/guardian2.png"
+dest_files=["res://.godot/imported/guardian2.png-7d01dbec0b9e839a43b0d23c26076654.ctex"]
 
 [params]
 

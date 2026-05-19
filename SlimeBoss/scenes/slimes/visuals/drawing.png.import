@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc53r6hso50p8"
-path="res://.godot/imported/collector.png-3b1fe5931f2d034aa0b543a63df6c3e7.ctex"
+uid="uid://c841yhwjtpl84"
+path="res://.godot/imported/drawing.png-6c5b2c52e12b0e12d36f143d08037bc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/collector.png"
-dest_files=["res://.godot/imported/collector.png-3b1fe5931f2d034aa0b543a63df6c3e7.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/drawing.png"
+dest_files=["res://.godot/imported/drawing.png-6c5b2c52e12b0e12d36f143d08037bc3.ctex"]
 
 [params]
 

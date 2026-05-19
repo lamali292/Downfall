@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b80g2lrdvsi2"
-path="res://.godot/imported/wizard.png-5fabaa48bf2570e0df2bc7a4c9d3dd8d.ctex"
+uid="uid://t2uggfsdtnv3"
+path="res://.godot/imported/bronze.png-44d7189aa62a65e2ac329310ce12f7d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/wizard.png"
-dest_files=["res://.godot/imported/wizard.png-5fabaa48bf2570e0df2bc7a4c9d3dd8d.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/bronze.png"
+dest_files=["res://.godot/imported/bronze.png-44d7189aa62a65e2ac329310ce12f7d4.ctex"]
 
 [params]
 

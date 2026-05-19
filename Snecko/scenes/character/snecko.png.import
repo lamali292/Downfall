@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdehyp6njq8do"
-path="res://.godot/imported/nob.png-f1d81cef4198aa8d3eed2f83ba63069d.ctex"
+uid="uid://cpnttphd4x4hv"
+path="res://.godot/imported/snecko.png-ca48c3e52a35e6d7f0b817a8c7c54e26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/nob.png"
-dest_files=["res://.godot/imported/nob.png-f1d81cef4198aa8d3eed2f83ba63069d.ctex"]
+source_file="res://Snecko/scenes/character/snecko.png"
+dest_files=["res://.godot/imported/snecko.png-ca48c3e52a35e6d7f0b817a8c7c54e26.ctex"]
 
 [params]
 

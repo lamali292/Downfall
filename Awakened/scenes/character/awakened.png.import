@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnmv0o3o2kdf8"
-path="res://.godot/imported/fat.png-0d30c84b1af3f7ef7bd450a5c67bc310.ctex"
+uid="uid://dfwpfme4cfci4"
+path="res://.godot/imported/awakened.png-0b34f839bc71710f3664d454a0049416.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/fat.png"
-dest_files=["res://.godot/imported/fat.png-0d30c84b1af3f7ef7bd450a5c67bc310.ctex"]
+source_file="res://Awakened/scenes/character/awakened.png"
+dest_files=["res://.godot/imported/awakened.png-0b34f839bc71710f3664d454a0049416.ctex"]
 
 [params]
 

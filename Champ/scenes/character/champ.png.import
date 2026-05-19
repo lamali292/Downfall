@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkt8lr3t8esa5"
-path="res://.godot/imported/snecko.png-197e3da6a4715ffca1d9947d19fc1cee.ctex"
+uid="uid://d4fb4s5hoqiei"
+path="res://.godot/imported/champ.png-1d6b0bb01e17d003e6e1d144822de9ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/snecko.png"
-dest_files=["res://.godot/imported/snecko.png-197e3da6a4715ffca1d9947d19fc1cee.ctex"]
+source_file="res://Champ/scenes/character/champ.png"
+dest_files=["res://.godot/imported/champ.png-1d6b0bb01e17d003e6e1d144822de9ed.ctex"]
 
 [params]
 

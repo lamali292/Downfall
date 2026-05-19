@@ -52,4 +52,6 @@ bin/windows/*
 !ImageGen/images
 
 *.import
-!Snecko/scenes/character/snecko.png.import
+!*/scenes/character/*.png.import
+!*/scenes/slimes/visuals/*.png.import
+!*/scenes/gremlins/*/*.png.import

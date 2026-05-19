@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4c73jct0rcy4"
-path="res://.godot/imported/automaton.png-1fe4cab60a509fb6c35466104f46a511.ctex"
+uid="uid://b0c7l6nvlfah6"
+path="res://.godot/imported/slime_alt_s.png-3cfdfa14e32176114d09e479257c1977.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/automaton.png"
-dest_files=["res://.godot/imported/automaton.png-1fe4cab60a509fb6c35466104f46a511.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.png"
+dest_files=["res://.godot/imported/slime_alt_s.png-3cfdfa14e32176114d09e479257c1977.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y24wbjfl7nmv"
-path="res://.godot/imported/core.png-807f9e9d5d56ddae341359009828e65c.ctex"
+uid="uid://de7i5foifqete"
+path="res://.godot/imported/hex.png-dcb54203c1abcd67f9c6acc5c03eb872.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/core.png"
-dest_files=["res://.godot/imported/core.png-807f9e9d5d56ddae341359009828e65c.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/hex.png"
+dest_files=["res://.godot/imported/hex.png-dcb54203c1abcd67f9c6acc5c03eb872.ctex"]
 
 [params]
 
@@ -31,7 +31,7 @@ process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
 process/channel_remap/alpha=3
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

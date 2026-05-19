@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8od8spwxht4a"
-path="res://.godot/imported/angry.png-1721b18c322294dc34797da8c6b1a500.ctex"
+uid="uid://he7sjw7yr8i5"
+path="res://.godot/imported/greed.png-7b6f18bb8ea980ca2545bbdc3089fea6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Downfall/character/visuals/angry.png"
-dest_files=["res://.godot/imported/angry.png-1721b18c322294dc34797da8c6b1a500.ctex"]
+source_file="res://SlimeBoss/scenes/slimes/visuals/greed.png"
+dest_files=["res://.godot/imported/greed.png-7b6f18bb8ea980ca2545bbdc3089fea6.ctex"]
 
 [params]
 
