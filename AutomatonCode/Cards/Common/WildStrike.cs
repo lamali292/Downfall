@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,6 +17,7 @@ public class WildStrike : AutomatonCardModel
     {
         WithDamage(12, 5);
         WithTip(typeof(Wound));
+        WithTip(AutomatonTip.Insert);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

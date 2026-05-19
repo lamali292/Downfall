@@ -19,8 +19,6 @@ public class CultistStrike : AutomatonCardModel,
 {
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithDamage(6);
         WithVar("Increase", 1);
         WithCostUpgradeBy(-1);

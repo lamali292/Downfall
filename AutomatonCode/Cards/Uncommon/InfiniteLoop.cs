@@ -17,8 +17,6 @@ public class InfiniteLoop : AutomatonCardModel,
     {
         WithDamage(6);
         WithVar("Increase", 2, 2);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
@@ -30,9 +28,7 @@ public class InfiniteLoop : AutomatonCardModel,
         copy.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         copy.DynamicVars.FinalizeUpgrade();
 
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
+        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

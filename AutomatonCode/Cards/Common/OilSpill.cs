@@ -21,8 +21,6 @@ public class OilSpill : AutomatonCardModel, IEncodable,
     {
         WithDamage(4, 1);
         WithPower<PoisonPower>(4, 1);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithTip(typeof(Slimed));
     }
 

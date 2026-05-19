@@ -17,8 +17,6 @@ public class DigitalCarnage : AutomatonCardModel,
     {
         WithDamage(15, 5);
         WithTip(CardKeyword.Ethereal);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
     public Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

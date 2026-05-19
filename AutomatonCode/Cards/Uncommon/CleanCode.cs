@@ -12,9 +12,9 @@ public class CleanCode : AutomatonCardModel
 {
     public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<RemoveErrorsPower>(3);
+        WithPower<RemoveErrorsPower>(3, false);
         WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
+        WithTip(AutomatonTip.CompileError);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 

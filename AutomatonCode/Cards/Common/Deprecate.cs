@@ -15,7 +15,6 @@ public class Deprecate : AutomatonCardModel, IEncodable
     public Deprecate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1, 1);
-        WithTip(AutomatonTip.Encode);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

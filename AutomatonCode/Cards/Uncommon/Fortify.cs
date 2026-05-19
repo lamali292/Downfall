@@ -18,8 +18,6 @@ public class Fortify : AutomatonCardModel, IEncodable,
     {
         WithDamage(8);
         WithPower<DexterityPower>(2, 1);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
     public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

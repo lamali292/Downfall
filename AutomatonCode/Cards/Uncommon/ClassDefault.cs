@@ -13,7 +13,7 @@ public class ClassDefault : AutomatonCardModel
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(AutomatonTip.Encode);
-        WithPower<ClassDefaultPower>(2);
+        WithPower<ClassDefaultPower>(2, false);
         WithCostUpgradeBy(-1);
     }
 

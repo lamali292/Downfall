@@ -16,8 +16,6 @@ public class Repair : AutomatonCardModel, IEncodable, ICompilable
     {
         WithBlock(4);
         WithHeal(7, 3);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
 

@@ -17,8 +17,6 @@ public class NullPointer : AutomatonCardModel,
     {
         WithDamage(12, 3);
         WithBlock(12, 3);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithTip(CardKeyword.Unplayable);
     }
 

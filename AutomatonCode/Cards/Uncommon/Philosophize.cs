@@ -18,8 +18,6 @@ public class Philosophize : AutomatonCardModel,
     {
         WithPower<StrengthPower>(1);
         WithPower<StrengthPower>("EnemyStrength", 2, -1);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
     }
 
     public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,

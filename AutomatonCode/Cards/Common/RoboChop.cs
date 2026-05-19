@@ -13,7 +13,7 @@ public class RoboChop : AutomatonCardModel
     public RoboChop() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 1);
-        WithPower<DrawCardsNextTurnPower>(1, 1);
+        WithPower<DrawCardsNextTurnPower>(1, 1, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

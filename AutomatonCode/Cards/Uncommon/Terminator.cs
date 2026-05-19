@@ -14,8 +14,6 @@ public class Terminator : AutomatonCardModel,
 {
     public Terminator() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.Compile);
         WithCostUpgradeBy(-1);
     }
 
