@@ -208,7 +208,7 @@
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
   "HEXAGHOST-WORTHY_SACRIFICE.selectionScreenPrompt": "Select cards to Exhaust and Transform into the opposite type.",
   "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",
-  "HEXAGHOST-TEMPORAL_LEAP.description": "Gain {Block:diff()} [gold]Block[/gold]. \nDraw {Cards:diff()} {Cards:plural:card|cards}.",
+  "HEXAGHOST-TEMPORAL_LEAP.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "HEXAGHOST-RADIANT_FLAME.title": "Radiant Flame",
   "HEXAGHOST-RADIANT_FLAME.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain {RadiantFlamePower:diff()} [gold]Block[/gold]."
 }

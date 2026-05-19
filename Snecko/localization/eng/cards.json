@@ -143,7 +143,7 @@
   "SNECKO-TSUNAMI.title": "Tsunami",
   "SNECKO-TYPHOON_FANG.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]:\nThis turn, whenever you [gold]Overflow[/gold], play a copy of this card.",
   "SNECKO-TYPHOON_FANG.title": "Typhoon Fang",
-  "SNECKO-UNENDING_SUPPLY.description": "At the start of each turn, gain an [gold]Echo[/gold] of a random [gold]Offclass[/gold] card.",
+  "SNECKO-UNENDING_SUPPLY.description": "At the start of your turn, gain an [gold]Echo[/gold] of a random [gold]Offclass[/gold] card.",
   "SNECKO-UNENDING_SUPPLY.title": "Unending Supply",
   "SNECKO-WHACK.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Fisticuffs{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].",
   "SNECKO-WHACK.title": "Whack!",
