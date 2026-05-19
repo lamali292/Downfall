@@ -46,7 +46,11 @@ public class Hermit : DownfallCharacterModel
     ];
 
     public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Snecko/audio/character_select/STS_SFX_SneckoGlareWave_v1.ogg", 1, 0.3f, 1, 8)
+        new ModSoundEntry("res://Hermit/audio/hermit_gun.ogg", 10, 0.3f, 1, 8),
+        new ModSoundEntry("res://Hermit/audio/hermit_gun2.ogg", 3, 0.3f, 1, 8),
+        new ModSoundEntry("res://Hermit/audio/hermit_gun3.ogg", 1, 0.3f, 1, 8),
+        new ModSoundEntry("res://Hermit/audio/hermit_reload.ogg", 6, 0.3f, 1, 8),
+        new ModSoundEntry("res://Hermit/audio/hermit_spin.ogg", 4, 0.3f, 1, 8)
     );
 
 

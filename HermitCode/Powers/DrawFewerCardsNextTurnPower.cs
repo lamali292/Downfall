@@ -7,21 +7,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     Draw 1 fewer card next turn.
-/// </summary>
 public sealed class DrawFewerCardsNextTurnPower() : HermitPowerModel(PowerType.Debuff)
 {
     public override decimal ModifyHandDraw(Player player, decimal count)
     {
         if (player != Owner.Player || AmountOnTurnStart == 0) return count;
-
         return Math.Max(0m, count - Amount);
     }
 
     protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
     {
-        if (side == Owner.Side && AmountOnTurnStart != 0)
-            await PowerCmd.Remove(this);
+        if (side != Owner.Side || AmountOnTurnStart == 0) return;
+        await PowerCmd.Remove(this);
     }
 }

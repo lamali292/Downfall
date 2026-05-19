@@ -1,4 +1,6 @@
+using Downfall.DownfallCode.Events;
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -18,7 +20,12 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff)
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        if (side == Owner.Side || Owner.HasPower<HorrorPower>())  return;
+        if (HermitHook.ShouldPreventBruiseRemoval(CombatState, this, out var preventers))
+        {
+            await HermitHook.AfterPreventedBruiseRemoval(CombatState, this, preventers);
+            return;
+        }
         await PowerCmd.Remove(this);
     }
 }
+
