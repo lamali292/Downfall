@@ -4,11 +4,14 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Core;
@@ -105,15 +108,40 @@ public static class SneckoCmd
     {
         var sneckoCards = SneckoModel.GetRewardSneckoCards(player);
         var cards = sneckoCards.Where(gift.Matches)
-            .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration).Select(e => e.ToMutable()).ToList();
+            .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration)
+            .Select(e => e.ToMutable())
+            .ToList();
         foreach (var cardChoice in cards)
         {
             player.RunState.AddCard(cardChoice, player);
             if (gift.IsUpgraded) cardChoice.UpgradeInternal();
         }
+        var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
+        CardModel? card;
 
-        var card = await CardSelectCmd.FromChooseACardScreen(new BlockingPlayerChoiceContext(), cards, player);
+        if (CardSelectCmd.ShouldSelectLocalCard(player))
+        {
+            await Cmd.Wait(1);
+            var screen = NChooseACardSelectionScreen.ShowScreen(cards, true);
+            if (screen == null)
+            {
+                RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(
+                    player, choiceId, PlayerChoiceResult.FromIndex(null));
+                return;
+            }
+            card = (await screen.CardsSelected()).FirstOrDefault();
+            RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(
+                player, choiceId, PlayerChoiceResult.FromIndex(card != null ? new int?(cards.IndexOf(card)) : null));
+        }
+        else
+        {
+            var index = (await RunManager.Instance.PlayerChoiceSynchronizer
+                .WaitForRemoteChoice(player, choiceId)).AsIndex();
+            card = index < 0 ? null : cards[index];
+        }
+
         if (card == null) return;
+
         var a = await CardPileCmd.Add(card, PileType.Deck);
         CardCmd.PreviewCardPileAdd(a, 0);
 

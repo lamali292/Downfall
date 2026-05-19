@@ -1,15 +1,9 @@
-using System.Runtime.CompilerServices;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Utils;
-using HarmonyLib;
 using Hermit.HermitCode.Cards.Basic;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -30,7 +24,7 @@ public sealed class TakeCover : HermitCardModel
     }
 
     private static void WithPreviewModifiers(DefendHermit defend, CardModel cardModel)
-         => WithModifiers(defend, cardModel.IsMutable ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
+         => WithModifiers(defend, cardModel is { IsMutable: true, _owner: not null } ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
     
     private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
         =>  WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);

@@ -17,6 +17,7 @@ public static class ForceUpgradeHelper
             box.Value = card._currentUpgradeLevel + 1;
             card.UpgradeInternal();
             card.FinalizeUpgradeInternal();
+            box.Value = card._currentUpgradeLevel;
         }
     }
 

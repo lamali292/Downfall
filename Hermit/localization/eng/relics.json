@@ -1,7 +1,7 @@
 {
   "HERMIT-OLD_LOCKET.title": "Old Locket",
   "HERMIT-OLD_LOCKET.flavor": "There's a faded picture inside.",
-  "HERMIT-OLD_LOCKET.description": "At the start of each combat, add a [gold]Memento[/gold] into your hand.",
+  "HERMIT-OLD_LOCKET.description": "At the start of each combat, add a [gold]Memento[/gold] into your Hand.",
   "HERMIT-RYE_STALK.title": "Rye Stalk",
   "HERMIT-RYE_STALK.flavor": "Still in mint condition, despite being chewed on for so long.",
   "HERMIT-RYE_STALK.description": "Whenever you lose HP during enemy turn, draw [blue]1[/blue] card.",

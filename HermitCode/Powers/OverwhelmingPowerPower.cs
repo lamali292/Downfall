@@ -7,21 +7,16 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     Lose X HP if you end your turn with unspent Energy.
-/// </summary>
+
 public sealed class OverwhelmingPowerPower() : HermitPowerModel(PowerType.Debuff)
 {
-    public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeTurnEndEarly(PlayerChoiceContext ctx, CombatSide side)
     {
         if (side != CombatSide.Player) return;
-
-        // Only lose HP if ending turn with 0 energy
         var player = Owner.Player;
         if (player?.PlayerCombatState?.Energy != 0) return;
-
         Flash();
-        await CreatureCmd.Damage(choiceContext, Owner, Amount,
+        await CreatureCmd.Damage(ctx, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
     }
 }

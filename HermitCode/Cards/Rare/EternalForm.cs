@@ -8,8 +8,6 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class EternalForm : HermitCardModel
 {
-    private const int EternalAmount = 4;
-
     public EternalForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<EternalPower>(1);

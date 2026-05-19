@@ -6,10 +6,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-/// <summary>
-///     Apply 1 Weak and 1 Vulnerable to an enemy.
-///     Upgrade: Retain.
-/// </summary>
+
 public sealed class Glare : HermitCardModel
 {
     public Glare() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
@@ -26,10 +23,3 @@ public sealed class Glare : HermitCardModel
         await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Common
- *   usings updated
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithPower<WeakPower>(1m, 0), WithPower<VulnerablePower>(1m, 0), WithKeyword(CardKeyword.Retain, UpgradeType.Add)
- */

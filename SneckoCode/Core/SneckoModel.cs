@@ -1,8 +1,11 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Saves;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Cards;
@@ -14,7 +17,8 @@ public class SneckoModel() : CustomSingletonModel(true, true)
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
-            card is SneckoCardModel { Gift: { } gift }) await SneckoCmd.GetGift(card.Owner, gift);
+            card is SneckoCardModel { Gift: { } gift })
+            await  SneckoCmd.GetGift(card.Owner, gift);
     }
 
 
