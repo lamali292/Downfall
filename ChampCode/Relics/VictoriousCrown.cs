@@ -15,15 +15,26 @@ namespace Champ.ChampCode.Relics;
 public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinisher
 {
     private bool _usedThisTurn;
+    private CardPlay? _triggeringCardPlay = null;
 
     public async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;
         if (_usedThisTurn || player != Owner) return;
+        Flash();
         await CardPileCmd.Draw(ctx, 2, player);
-        await ChampCmd.EnterDifferentStance(ctx, player);
+        _triggeringCardPlay = cardPlay;
         _usedThisTurn = true;
     }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (cardPlay.Card.Owner != Owner || _triggeringCardPlay != cardPlay) return;
+        await ChampCmd.EnterRandomStance(choiceContext, Owner);
+        _triggeringCardPlay = null;
+        Status = RelicStatus.Normal;
+    }
+
 
     public override async Task BeforeHandDraw(
         Player player,
@@ -32,6 +43,7 @@ public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinish
     {
         if (player != Owner) return;
         _usedThisTurn = false;
+        Status = RelicStatus.Active;
         if (combatState.RoundNumber > 1) return;
         Flash();
         await ChampCmd.EnterDifferentStance(ctx, player);
