@@ -7,12 +7,18 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.DownfallCode.Powers.Abstract;
 
 public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPower
     where TP : PowerModel
 {
+    protected TemporaryPowerBase()
+    {
+        WithTip(typeof(TP));
+    }
+    
     private bool _shouldIgnoreNextInstance;
 
     public override PowerType Type => !IsPositive ? PowerType.Debuff : PowerType.Buff;
@@ -21,11 +27,7 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
     protected virtual bool IsPositive => true;
     private int Sign => !IsPositive ? -1 : 1;
     protected virtual bool RemovedAfterOwnTurn => true;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<TP>()
-    ];
+    
 
     public abstract AbstractModel OriginModel { get; }
     public PowerModel InternallyAppliedPower => ModelDb.Power<TP>();

@@ -7,13 +7,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     At the start of your turn, lose 1 energy.
-/// </summary>
-public sealed class DrainedPower() : HermitPowerModel(PowerType.Debuff)
+public sealed class DrainedPower: HermitPowerModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
-
+    public DrainedPower() : base(PowerType.Debuff)
+    {
+        WithEnergyTip();
+    }
+    
     protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
     {
         if (player == Owner.Player)

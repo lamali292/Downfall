@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -11,8 +12,11 @@ namespace Champ.ChampCode.Powers;
 
 public class VigorNextTurnPower : ChampPowerModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => ModelDb.Power<VigorPower>().HoverTips;
-
+    public VigorNextTurnPower()
+    {
+        WithTip(typeof(VigorPower));
+    }
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;

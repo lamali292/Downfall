@@ -9,11 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     At the end of your turn, Retain up to X cards.
-///     Wears off at end of turn.
-///     Uses the same pattern as WellLaidPlansPower from the base game.
-/// </summary>
+
 public sealed class CoalescencePower : HermitPowerModel
 {
     private static bool RetainFilter(CardModel card)
@@ -21,21 +17,19 @@ public sealed class CoalescencePower : HermitPowerModel
         return !card.ShouldRetainThisTurn;
     }
 
-    public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
+    public override async Task BeforeFlushLate(PlayerChoiceContext ctx, Player player)
     {
         if (player != Owner.Player || player.Creature.CombatState == null) return;
         if (!Hook.ShouldFlush(player.Creature.CombatState, player)) return;
-
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, Amount);
         var selected = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(SelectionScreenPrompt, 0, Amount),
-            context: choiceContext,
-            player: Owner.Player,
-            filter: RetainFilter,
-            source: this
+            ctx,
+            Owner.Player,
+            prefs,
+            RetainFilter,
+            this
         )).ToList();
-
         if (selected.Count == 0) return;
-
         foreach (var card in selected) card.GiveSingleTurnRetain();
     }
 

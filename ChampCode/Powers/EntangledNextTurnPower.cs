@@ -9,10 +9,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Powers;
 
-public class EntangledNextTurnPower() : ChampPowerModel(PowerType.Debuff, PowerStackType.Single)
+public class EntangledNextTurnPower : ChampPowerModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<EntangledPower>()];
-
+    public EntangledNextTurnPower() : base(PowerType.Debuff, PowerStackType.Single)
+    {
+        WithTip(typeof(EntangledPower));
+    }
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;

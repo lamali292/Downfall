@@ -18,7 +18,7 @@ public class SneckoModel() : CustomSingletonModel(true, true)
     {
         if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
             card is SneckoCardModel { Gift: { } gift })
-            await  SneckoCmd.GetGift(card.Owner, gift);
+            await SneckoCmd.GetGift(card.Owner, gift);
     }
 
 
