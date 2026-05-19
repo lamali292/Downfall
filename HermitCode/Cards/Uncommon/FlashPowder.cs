@@ -14,6 +14,7 @@ public sealed class FlashPowder : HermitCardModel
         WithBlock(5);
         WithKeyword(CardKeyword.Exhaust);
         WithPower<StrengthPower>(-1);
+        WithVar("StrengthLoss", 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)

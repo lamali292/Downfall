@@ -161,5 +161,5 @@
   "HERMIT-VIRTUE.description": "Reduce each of your stackable debuffs by {Reduce:diff()}.",
   "HERMIT-LONE_WOLF.selectionScreenPrompt": "Discard everything except this card.",
   "HERMIT-SMOKING_BARREL.title": "Smoking Barrel",
-  "HERMIT-SMOKING_BARREL.description": "Whenever you trigger a [gold]Dead On[/gold] effect, gain {BigShotPower:diff()} [gold]Vigor[/gold]."
+  "HERMIT-SMOKING_BARREL.description": "Whenever you trigger a [gold]Dead On[/gold] effect, gain {SmokingBarrelPower:diff()} [gold]Vigor[/gold]."
 }

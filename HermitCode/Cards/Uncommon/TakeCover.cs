@@ -30,7 +30,7 @@ public sealed class TakeCover : HermitCardModel
     }
 
     private static void WithPreviewModifiers(DefendHermit defend, CardModel cardModel)
-         => WithModifiers(defend, cardModel.Owner.PlayerCombatState?.Energy ?? 0);
+         => WithModifiers(defend, cardModel.IsMutable ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
     
     private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
         =>  WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);
