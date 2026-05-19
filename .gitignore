@@ -15,7 +15,6 @@ loc_editor_settings.json
 *.TMP
 *.dll
 *.kra
-*.import
 local.props
 bin/*
 !bin/windows/
@@ -51,3 +50,6 @@ bin/windows/*
 /themes
 /addons
 !ImageGen/images
+
+*.import
+!Snecko/scenes/character/snecko.png.import
