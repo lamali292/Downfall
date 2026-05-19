@@ -1,5 +1,5 @@
 using BaseLib.Utils;
-using HermitMod.Utility;
+using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,10 +8,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Deal 14 damage. Costs 1 less per Strike or Defend played this turn.
-///     Cost reduction is simplified - uses AfterCardPlayed to track.
-/// </summary>
 public sealed class ShortFuse : HermitCardModel
 {
     public ShortFuse() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -52,13 +48,3 @@ public sealed class ShortFuse : HermitCardModel
         EnergyCost.AddThisTurn(-amount);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   CanonicalVars removed → With* calls in constructor
- *   AdditionalHoverTips/ExtraHoverTips removed (covered by WithPower)
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(18, 4)
- *   DamageCmd.Attack chain → CommonActions.CardAttack
- */

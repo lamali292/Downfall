@@ -24,12 +24,15 @@ public static class HermitCmd
             return cardIndex == handSize / 2 - 1 || cardIndex == handSize / 2;
         return cardIndex == handSize / 2;
     }
-
+    
+    
     public static async Task TriggerDeadOnEffect(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         var combatState = card.CombatState!;
+        
         var modify = HermitHook.ModifyDeadOnCount(combatState, 1, card, out var modifiers);
         await HermitHook.AfterModifyingDeadOnCount(combatState, ctx, card, modifiers);
+        
         if (card is not IHasDeadOnEffect cardModel) return;
         for (var i = 0; i <  modify; i++)
             await cardModel.DeadOnEffect(ctx, cardPlay);

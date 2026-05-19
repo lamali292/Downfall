@@ -4,10 +4,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Draw cards until total cost drawn is 3 or more.
-///     Upgrade: Until total cost is 4 or more.
-/// </summary>
 public sealed class LuckOfTheDraw : HermitCardModel
 {
     public LuckOfTheDraw() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
@@ -22,20 +18,14 @@ public sealed class LuckOfTheDraw : HermitCardModel
 
         var threshold = DynamicVars["Threshold"].IntValue;
         var totalCost = 0;
-        while (totalCost < threshold && PileType.Hand.GetPile(Owner).Cards.Count < 10)
+        // Todo : variable max hand size
+        while (totalCost < threshold &&  Owner.PlayerCombatState?.Hand.Cards.Count < 10)
         {
             var cards = (await CardPileCmd.Draw(ctx, 1, Owner)).ToList();
             if (cards.Count == 0)
                 break;
-
-            var card = cards[0];
+            var card = cards.First();
             totalCost += card.EnergyCost.GetWithModifiers(CostModifiers.Local);
         }
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   OnUpgrade removed (all logic migrated to constructor)
- */

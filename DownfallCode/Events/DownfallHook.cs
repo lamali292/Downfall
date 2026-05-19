@@ -8,36 +8,66 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Events;
 
+
+/// <summary>
+/// Provides utility methods for dispatching and aggregating combat hook events
+/// across all <see cref="ICombatState"/> hook listeners.
+/// <para/>
+/// Hook interfaces should be implemented on <see cref="AbstractModel"/> subclasses
+/// to be picked up by the listeners.
+/// </summary>
 public static class DownfallHook
 {
-    public static async Task Dispatch<T>(ICombatState combatState, Func<T, Task> action)
-        where T : class
+    /// <summary>
+    /// Dispatches an action to all hook listeners of type <typeparamref name="THook"/>.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="action">The async action to invoke on each matching listener.</param>
+    public static async Task Dispatch<THook>(ICombatState combatState, Func<THook, Task> action)
+        where THook : class
     {
-        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        foreach (var model in combatState.IterateHookListeners().OfType<THook>())
             await action(model);
     }
 
-    public static async Task Dispatch<T>(ICombatState combatState, PlayerChoiceContext ctx, Func<T, Task> action)
-        where T : class
+    /// <summary>
+    /// Dispatches an action to all hook listeners of type <typeparamref name="THook"/>,
+    /// pushing and popping each listener onto the provided <see cref="PlayerChoiceContext"/>.
+    /// Silently skips listeners that are not <see cref="AbstractModel"/> instances.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="ctx">The player choice context to push/pop each model onto.</param>
+    /// <param name="action">The async action to invoke on each matching listener.</param>
+    public static async Task Dispatch<THook>(ICombatState combatState, PlayerChoiceContext ctx, Func<THook, Task> action)
+        where THook : class
     {
-        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        foreach (var model in combatState.IterateHookListeners().OfType<THook>())
         {
-            var abstractModel = (AbstractModel)(object)model;
+            if (model is not AbstractModel abstractModel) continue;
             ctx.PushModel(abstractModel);
             await action(model);
             ctx.PopModel(abstractModel);
         }
     }
 
-    public static async Task DispatchHookCtx<T>(ICombatState combatState, Func<T, PlayerChoiceContext, Task> action)
-        where T : class
+    /// <summary>
+    /// Dispatches an action to all hook listeners of type <typeparamref name="THook"/>,
+    /// creating a <see cref="HookPlayerChoiceContext"/> for each listener and awaiting
+    /// its completion or pause. Silently skips listeners that are not <see cref="AbstractModel"/> instances.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="action">The async action to invoke on each matching listener, receiving a <see cref="PlayerChoiceContext"/>.</param>
+    public static async Task DispatchWithContext<THook>(ICombatState combatState, Func<THook, PlayerChoiceContext, Task> action)
+        where THook : class
     {
         var netId = LocalContext.NetId;
         if (!netId.HasValue) return;
-
-        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        foreach (var model in combatState.IterateHookListeners().OfType<THook>())
         {
-            var abstractModel = (AbstractModel)(object)model;
+            if (model is not AbstractModel abstractModel) continue; 
             var hookCtx = new HookPlayerChoiceContext(abstractModel, netId.Value, combatState, GameActionType.Combat);
             var task = action(model, hookCtx);
             await hookCtx.AssignTaskAndWaitForPauseOrCompletion(task);
@@ -45,54 +75,96 @@ public static class DownfallHook
         }
     }
 
-    public static TResult Aggregate<T, TResult>(ICombatState combatState, TResult seed,
-        Func<T, TResult, TResult> action)
-        where T : class
+    
+    /// <summary>
+    /// Aggregates a value across all hook listeners of type <typeparamref name="THook"/>,
+    /// passing each listener and the current accumulated value to the provided function.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <typeparam name="TResult">The type of the accumulated result.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="initial">The initial value for the aggregation.</param>
+    /// <param name="action">A function that takes a listener and the current value and returns the new value.</param>
+    /// <returns>The final aggregated value after all listeners have been processed.</returns>
+    public static TResult Aggregate<THook, TResult>(ICombatState combatState, TResult initial,
+        Func<THook, TResult, TResult> action)
+        where THook : class
     {
-        return combatState.IterateHookListeners().OfType<T>()
-            .Aggregate(seed, (current, model) => action(model, current));
+        return combatState.IterateHookListeners().OfType<THook>()
+            .Aggregate(initial, (current, model) => action(model, current));
     }
 
-
-    public static bool Any<T>(ICombatState combatState, Func<T, bool> predicate)
-        where T : class
+    /// <summary>
+    /// Returns <see langword="true"/> if any hook listener of type <typeparamref name="THook"/>
+    /// satisfies the given predicate.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="predicate">The condition to test each listener against.</param>
+    public static bool Any<THook>(ICombatState combatState, Func<THook, bool> predicate)
+        where THook : class
     {
-        return combatState.IterateHookListeners().OfType<T>().Any(predicate);
+        return combatState.IterateHookListeners().OfType<THook>().Any(predicate);
     }
 
-    public static bool All<T>(ICombatState combatState, Func<T, bool> predicate)
-        where T : class
+    /// <summary>
+    /// Returns <see langword="true"/> if all hook listeners of type <typeparamref name="THook"/>
+    /// satisfy the given predicate.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="predicate">The condition to test each listener against.</param>
+    public static bool All<THook>(ICombatState combatState, Func<THook, bool> predicate)
+        where THook : class
     {
-        return combatState.IterateHookListeners().OfType<T>().All(predicate);
+        return combatState.IterateHookListeners().OfType<THook>().All(predicate);
     }
 
-    public static TW Modify<T, TW>(
+    /// <summary>
+    /// Passes a value through all hook listeners of type <typeparamref name="THook"/>,
+    /// tracking which listeners actually modified the value.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <typeparam name="TValue">The type of the value being modified. Must implement <see cref="IEquatable{T}"/>.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="originalAmount">The initial value before any modifications.</param>
+    /// <param name="amountModifier">A function that takes a listener and the current value and returns the modified value.</param>
+    /// <param name="modifiers">Outputs the set of listeners that actually changed the value.</param>
+    /// <returns>The final modified value after all listeners have been processed.</returns>
+    public static TValue Modify<THook, TValue>(
         ICombatState combatState,
-        TW originalAmount,
-        Func<T, TW, TW> amountModifier,
-        out IEnumerable<T> modifiers)
-        where T : class
-        where TW : IEquatable<TW>
+        TValue originalAmount,
+        Func<THook, TValue, TValue> amountModifier,
+        out IEnumerable<THook> modifiers)
+        where THook : class
+        where TValue : IEquatable<TValue>
     {
         var amount = originalAmount;
-        var abstractModelList = new List<T>();
-        foreach (var model in combatState.IterateHookListeners().OfType<T>())
+        var abstractModelList = new List<THook>();
+        foreach (var model in combatState.IterateHookListeners().OfType<THook>())
         {
             var previous = amount;
             amount = amountModifier.Invoke(model, amount);
             if (!previous.Equals(amount))
                 abstractModelList.Add(model);
         }
-
         modifiers = abstractModelList;
         return amount;
     }
 
-    public static async Task AfterModifying<T>(ICombatState cs, IEnumerable<T> modifiers, Func<T, Task> action)
-        where T : class
+    /// <summary>
+    /// Invokes a follow-up action on all listeners that previously modified a value via <see cref="Modify{THook,TValue}"/>,
+    /// iterating in hook listener order and invoking <see cref="AbstractModel.InvokeExecutionFinished"/> for each.
+    /// </summary>
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <param name="cs">The current combat state to iterate listeners from.</param>
+    /// <param name="modifiers">The set of listeners that modified the value, as returned by <see cref="Modify{THook,TValue}"/>.</param>
+    /// <param name="action">The async action to invoke on each modifier.</param>
+    public static async Task AfterModifying<THook>(ICombatState cs, IEnumerable<THook> modifiers, Func<THook, Task> action)
+        where THook : class
     {
-        var modifierSet = new HashSet<T>(modifiers);
-        foreach (var iterateHookListener in cs.IterateHookListeners().OfType<T>())
+        var modifierSet = new HashSet<THook>(modifiers);
+        foreach (var iterateHookListener in cs.IterateHookListeners().OfType<THook>())
         {
             if (!modifierSet.Contains(iterateHookListener)) continue;
             await action(iterateHookListener);
@@ -101,6 +173,9 @@ public static class DownfallHook
         }
     }
 
+    
+    
+    
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)
     {

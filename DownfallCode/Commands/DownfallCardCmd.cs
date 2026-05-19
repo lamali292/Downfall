@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Events;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -36,25 +37,25 @@ public class DownfallCardCmd
         CardCmd.PreviewCardPileAdd(results);
     }
 
-    public static async Task<CardModel> GiveCard<T>(Player player,
+    public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
         bool upgraded = false,
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false,
-        Func<CardModel, Task>? action = null) where T : CardModel
+        Action<T>? action = null) where T : CardModel
     {
-        var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
+        var card = (T)player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         if (upgraded) card.UpgradeInternal();
-        if (action != null) await action(card);
+        action?.Invoke(card);
         var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, player, position);
-        if (!result.success || skipAnimation || pileType == PileType.Hand) return result.cardAdded;
-        CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
-        return result.cardAdded;
+        if (result.success && !skipAnimation && pileType != PileType.Hand)
+            CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+        return (T)result.cardAdded;
     }
 
-    public static async Task<IEnumerable<CardModel>> GiveCards<T>(Player player,
+    public static async Task<IEnumerable<T>> GiveCards<T>(Player player,
         PileType pileType,
         decimal count,
         CardPilePosition position = CardPilePosition.Bottom,
@@ -62,23 +63,23 @@ public class DownfallCardCmd
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false,
-        Func<CardModel, Task>? action = null) where T : CardModel
+        Action<T>? action = null) where T : CardModel
     {
         if (count <= 0) return [];
         var cardInstances = new List<CardModel>();
         var model = ModelDb.Card<T>();
         for (var i = 0; i < count; i++)
         {
-            var card = player.Creature.CombatState!.CreateCard(model, player);
+            var card = (T) player.Creature.CombatState!.CreateCard(model, player);
             if (upgraded) card.UpgradeInternal();
-            if (action != null) await action(card);
+            action?.Invoke(card);
             cardInstances.Add(card);
         }
 
         var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, player, position);
-        if (skipAnimation || pileType == PileType.Hand) return result.Select(e => e.cardAdded);
-        CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
-        return result.Select(e => e.cardAdded);
+        if (!skipAnimation && pileType != PileType.Hand)
+            CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
+        return result.Select(e => (T)e.cardAdded);
     }
 
     public static async Task AutoPlayFromDrawPile(
@@ -198,5 +199,10 @@ public class DownfallCardCmd
         return await CardSelectCmd.FromHand(ctx, card.Owner, new CardSelectorPrefs(card.SelectionScreenPrompt, count),
             filter,
             card);
+    }
+
+    public static void ForceUpgrade(CardModel card, int upgrade = 1)
+    {
+        ForceUpgradeHelper.ForceUpgrade(card, upgrade);
     }
 }

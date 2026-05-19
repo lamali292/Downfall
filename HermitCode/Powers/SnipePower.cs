@@ -1,18 +1,12 @@
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Events;
-using Hermit.HermitCode.Utils;
-using HermitMod.Utility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-/// <summary>
-///     The next X Dead On effect(s) this turn trigger twice.
-/// </summary>
 public sealed class SnipePower : HermitPowerModel, IModifyDeadOnCount
 {
   
@@ -29,5 +23,7 @@ public sealed class SnipePower : HermitPowerModel, IModifyDeadOnCount
         if (side != Owner.Side) return;
         await PowerCmd.Remove(this);
     }
-    
+
+
+
 }

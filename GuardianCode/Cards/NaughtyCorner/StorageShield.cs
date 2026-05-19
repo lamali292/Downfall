@@ -3,6 +3,7 @@ using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
+/*
 namespace Guardian.GuardianCode.Cards.Common;
 
 [Pool(typeof(GuardianCardPool))]
@@ -19,3 +20,4 @@ public class StorageShield : GuardianCardModel
         await GuardianCmd.DebuffDown(ctx, Owner.Creature);
     }
 }
+*/

@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
-using HermitMod.Utility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,10 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-/// <summary>
-///     Deal 5 damage. If last card triggered Dead On, draw a card.
-///     Upgrade: 7 damage, gain Retain.
-/// </summary>
 public sealed class CalledShot : HermitCardModel
 {
     private const int DrawAmount = 1;
@@ -47,13 +42,3 @@ public sealed class CalledShot : HermitCardModel
         if (LastPlayTriggeredDeadOn()) await CardPileCmd.Draw(ctx, DrawAmount, Owner);
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Common
- *   usings updated
- *   CanonicalVars removed → With* calls in constructor
- *   AdditionalHoverTips/ExtraHoverTips removed (covered by WithPower)
- *   OnUpgrade removed (all logic migrated to constructor)
- *   constructor: WithDamage(5, 2), WithKeyword(CardKeyword.Retain, UpgradeType.Add)
- *   DamageCmd.Attack chain → CommonActions.CardAttack
- */

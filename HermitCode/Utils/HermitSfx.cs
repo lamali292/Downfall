@@ -1,17 +1,17 @@
 using BaseLib.Audio;
 
-namespace HermitMod.Utility;
+namespace Hermit.HermitCode.Utils;
 
 public static class HermitSfx
 {
-    public const string Gun1 = "res://Hermit/audio/hermit_gun.ogg";
-    public const string Gun2 = "res://Hermit/audio/hermit_gun2.ogg";
-    public const string Gun3 = "res://Hermit/audio/hermit_gun3.ogg";
-    public const string Spin = "res://Hermit/audio/hermit_spin.ogg";
-    public const string Reload = "res://Hermit/audio/hermit_reload.ogg";
-    public const float DefaultDb = 5f;
-    public const float SpinPitchVariation = 0.15f;
-    public const float GunPitchVariation = 0.1f;
+    private const string Gun1 = "res://Hermit/audio/hermit_gun.ogg";
+    private const string Gun2 = "res://Hermit/audio/hermit_gun2.ogg";
+    private const string Gun3 = "res://Hermit/audio/hermit_gun3.ogg";
+    private const string Spin = "res://Hermit/audio/hermit_spin.ogg";
+    private const string Reload = "res://Hermit/audio/hermit_reload.ogg";
+    private const float DefaultDb = 5f;
+    private const float SpinPitchVariation = 0.15f;
+    private const float GunPitchVariation = 0.1f;
 
     public static void PlayGun1(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {

@@ -197,20 +197,16 @@ public static class GuardianCmd
     // Combat
     public static async Task DebuffDown(PlayerChoiceContext ctx, Creature creature, int amount = 1)
     {
-        foreach (var powerModel in creature.Powers
+        foreach (var power in creature.Powers
                      .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
                      .OrderByDescending(p => p is ITemporaryPower)
                      .ToList())
-            switch (powerModel.Amount)
-            {
-                case > 0:
-                    await PowerCmd.ModifyAmount(ctx, powerModel, -Math.Min(amount, powerModel.Amount), creature, null);
-                    break;
-                case < 0:
-                    await PowerCmd.ModifyAmount(ctx, powerModel, Math.Min(amount, Math.Abs(powerModel.Amount)),
-                        creature, null);
-                    break;
-            }
+        {
+            var change = power.Amount > 0
+                ? -Math.Min(amount, power.Amount)
+                : Math.Min(amount, Math.Abs(power.Amount));
+            await PowerCmd.ModifyAmount(ctx, power, change, creature, null);
+        }
     }
 
     public static async Task Brace(PlayerChoiceContext ctx, Player player, decimal amount)

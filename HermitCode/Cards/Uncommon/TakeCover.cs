@@ -1,22 +1,24 @@
+using System.Runtime.CompilerServices;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Utils;
+using HarmonyLib;
 using Hermit.HermitCode.Cards.Basic;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-/// <summary>
-///     Add an upgraded X times Defend to your hand. It costs 0 in the combat.
-///     Upgrade: Upgrade the generated Defend an additional time.
-/// </summary>
 public sealed class TakeCover : HermitCardModel
 {
     public TakeCover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradingCardTip<DefendHermit>();
-        WithTip(typeof(Nimble));
+        WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);
     }
 
     protected override bool HasEnergyCostX => true;
@@ -24,19 +26,18 @@ public sealed class TakeCover : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand, upgraded: IsUpgraded, action: card => WithPlayModifiers(card, this));
+    }
 
-        var defend = CombatState!.CreateCard<DefendHermit>(Owner);
-        defend.SetToFreeThisCombat();
-        if (IsUpgraded)
-            CardCmd.Upgrade(defend);
-        CardCmd.Enchant<Nimble>(defend, 3 * EnergyCost.CapturedXValue);
-        await CardPileCmd.AddGeneratedCardToCombat(defend, PileType.Hand, Owner);
+    private static void WithPreviewModifiers(DefendHermit defend, CardModel cardModel)
+         => WithModifiers(defend, cardModel.Owner.PlayerCombatState?.Energy ?? 0);
+    
+    private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
+        =>  WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);
+    
+    private static void WithModifiers(DefendHermit defend, int nimble)
+    {
+        DownfallCardCmd.ForceUpgrade(defend, nimble);
+        defend.SetToFreeThisTurn();
     }
 }
-
-/* transform_cards.py changes:
- *   namespace → Hermit.HermitCode.Cards.Uncommon
- *   usings updated
- *   CanonicalKeywords removed → WithKeyword(...) in constructor
- *   constructor: WithKeyword(CardKeyword.Exhaust)
- */

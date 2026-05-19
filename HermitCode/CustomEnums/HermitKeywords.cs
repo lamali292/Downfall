@@ -9,6 +9,9 @@ namespace Hermit.HermitCode.CustomEnums;
 /// </summary>
 public static class HermitKeywords
 {
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Concentrate;
+    
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword DeadOn;
 
