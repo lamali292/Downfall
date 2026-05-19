@@ -48,6 +48,11 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
         return WithVars(new EnergyVar(i));
     }
 
+    protected ConstructedRelicModel WithCards(int i)
+    {
+        WithVars(new CardsVar(i));
+        return this;
+    }
     protected ConstructedRelicModel WithPower<T>(int i) where T : PowerModel
     {
         return WithVars(new PowerVar<T>(i));
