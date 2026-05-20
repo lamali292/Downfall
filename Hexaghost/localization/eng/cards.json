@@ -141,7 +141,7 @@
   "HEXAGHOST-PREMONITION_CHOICE.title": "Premonition",
   "HEXAGHOST-RADIANT_REVERB.description": "Deal {Damage:diff()} damage.\nRemove the target's [gold]Soulburn[/gold] to gain {IntensityPower:diff()} [gold]Intensity[/gold]. ",
   "HEXAGHOST-RADIANT_REVERB.title": "Radiant Reverb",
-  "HEXAGHOST-RAIN_OF_EMBERS.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold] X times.",
+  "HEXAGHOST-RAIN_OF_EMBERS.description": "Deal {Damage:diff()} damage and apply {WeakPower:diff()} [gold]Weak[/gold].\nThe effect triggers X times in total.",
   "HEXAGHOST-RAIN_OF_EMBERS.title": "Rain of Embers",
   "HEXAGHOST-REVERSAL.title": "Reversal",
   "HEXAGHOST-REVERSAL.description": "Deal {Damage:diff()} damage.\nIf the current Ghostflame is [gold]Ignited[/gold], [gold]Extinguish[/gold] it and deal damage {Repeat:diff()} more {Repeat:plural:time|times}.",
