@@ -22,7 +22,7 @@ public class RisingChorusPower : AwakenedPowerModel, IOnChant, IHasSecondAmount
         return (Amount - DynamicVars["UsesLeft"].BaseValue).ToString(CultureInfo.InvariantCulture);
     }
 
-    public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime)
     {
         if (card.Owner.Creature != Owner || card is not IChantable) return;
         if (DynamicVars["UsesLeft"].BaseValue < Amount)

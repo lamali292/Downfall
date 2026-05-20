@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +16,9 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 public class CultistStrike : AutomatonCardModel,
     IEncodable, ICompilable
 {
+    
+    // TODO : Persistent increase with saved property
+    
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6);

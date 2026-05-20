@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://l0vnm41v4k4e"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://gdu0js2nwk06" path="res://Hermit/images/character/selection_screen.png" id="1_utkd2"]
+[ext_resource type="Texture2D" path="res://Hermit/images/character/selection_screen.png" id="1_utkd2"]
 
 [node name="WatcherBg" type="Control"]
 layout_mode = 3

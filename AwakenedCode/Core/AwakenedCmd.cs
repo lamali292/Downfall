@@ -41,7 +41,8 @@ public static class AwakenedCmd
     public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         if (card is not IChantable chantable) return;
-        if (!chantable.HasChanted)
+        var firstTime = !chantable.HasChanted;
+        if (firstTime)
         {
             // TODO : change voice lines
             TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature, VfxColor.Blue);
@@ -49,7 +50,7 @@ public static class AwakenedCmd
         }
         chantable.HasChanted = true;
         await chantable.PlayChantEffect(ctx, cardPlay);
-        await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay);
+        await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime);
     }
 
     public static bool CanConjure(Player player)

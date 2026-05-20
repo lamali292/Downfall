@@ -6,5 +6,5 @@ namespace Awakened.AwakenedCode.Events;
 
 public interface IOnChant
 {
-    Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay);
+    Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime);
 }

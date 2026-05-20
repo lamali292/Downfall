@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -38,6 +39,7 @@ public class AwakenedModel() : CustomSingletonModel(true, true)
         if (cardPlay.Card.Type != CardType.Power) return;
         var meter = AwakenMeter.GetOrCreateValue(owner);
         meter.Value++;
+        StatusBarHelper.SetStatus(cardPlay.Card.Owner, meter.Value, 7, new Color(0x55FFFFFF));
         if (IsAwakened(owner))
             await AwakenedCmd.Awaken(owner, ctx);
     }
