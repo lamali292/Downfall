@@ -14,6 +14,7 @@ public class Inscribe : AwakenedCardModel
 {
     public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        WithConjure(e => e.IsUpgraded);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

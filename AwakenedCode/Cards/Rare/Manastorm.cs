@@ -13,6 +13,7 @@ public class Manastorm : AwakenedCardModel
     {
         WithDamage(14, 4);
         WithTip(AwakenedTip.Conjure);
+        WithConjure();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

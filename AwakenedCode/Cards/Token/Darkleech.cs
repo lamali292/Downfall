@@ -1,4 +1,5 @@
-﻿using Awakened.AwakenedCode.Events;
+﻿using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
@@ -20,6 +21,7 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
         WithPower<VulnerablePower>(1, 1);
         WithPower<ManaburnPower>(4, 2);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+        WithTags(AwakenedTag.Spell);
     }
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)

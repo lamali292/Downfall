@@ -17,7 +17,7 @@ public class Blockchain : AutomatonCardModel, IEncodable,
     public Blockchain() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<BlurPower>(1);
-        // TODO: Should include the Compile hovertip only after upgraded
+        WithTips(e => e.IsUpgraded ? [HoverTipFactory.Static(AutomatonTip.Compile)] : []);
     }
 
 

@@ -11,7 +11,7 @@ public class MysticOrder : AwakenedCardModel
 {
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
         WithCards(2, 1);
     }
 

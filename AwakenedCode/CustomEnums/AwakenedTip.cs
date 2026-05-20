@@ -10,3 +10,4 @@ public static class AwakenedTip
     [CustomEnum] public static StaticHoverTip Chant;
     [CustomEnum] public static StaticHoverTip Drained;
 }
+

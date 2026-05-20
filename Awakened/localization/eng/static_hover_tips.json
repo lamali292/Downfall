@@ -6,5 +6,5 @@
   "AWAKENED-CHANT.title": "Chant",
   "AWAKENED-CHANT.description": "Cards with Chant effects become more powerful for the rest of combat if the last played card in combat was a Power card.",
   "AWAKENED-DRAINED.title": "Drained",
-  "AWAKENED-DRAINED.description": "Any effect that caused you to lose {energyPrefix:energyIcons(1)}, even if you had none to lose.\n(Does not include {energyPrefix:energyIcons(1)} spent playing cards.)"
+  "AWAKENED-DRAINED.description": "Any effect that caused you to lose {Energy:energyIcons()}, even if you had none to lose.\n(Does not include {Energy:energyIcons()} spent playing cards.)"
 }

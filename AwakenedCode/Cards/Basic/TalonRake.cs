@@ -16,8 +16,9 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
     }
+
 
     public CardModel GetTranscendenceTransformedCard()
     {

@@ -1,4 +1,5 @@
-﻿using Awakened.AwakenedCode.Events;
+﻿using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +18,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
     {
         WithDamage(12, 6);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+        WithTags(AwakenedTag.Spell);
     }
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
