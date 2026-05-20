@@ -1,4 +1,4 @@
 ﻿{
   "CHAMP-TRIGGERSKILLBONUS.title": "Skill Bonus",
-  "CHAMP-TRIGGERSKILLBONUS.description": "If you are in a [gold]Stance[/gold], trigger its Skill Bonus.\n[gold]Berserker[/gold] Skill: Gain [blue]2[/blue] [gold]Vigor[/gold].\n[gold]Defensive[/gold] Skill: Gain [blue]2[/blue] [gold]Counter[/gold].\nCan trigger up to [blue]3[/blue] times."
+  "CHAMP-TRIGGERSKILLBONUS.description": "If you are in a [gold]Stance[/gold], trigger its Skill Bonus.\n[gold]Berserker[/gold] Skill: Gain [blue]2[/blue] [gold]Vigor[/gold].\n[gold]Defensive[/gold] Skill: Gain [blue]2[/blue] [gold]Counter[/gold].\nCan trigger up to [blue]3[/blue] times (card's Skill Bonus is not limited)."
 }
