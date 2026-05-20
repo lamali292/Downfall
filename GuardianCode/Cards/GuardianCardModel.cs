@@ -24,12 +24,13 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         : base(cost, type, rarity, targetType)
     {
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
-        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
-        if (GemSlots > 0)
+        // too much lag, half a novel
+        //WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
+        /*if (GemSlots > 0)
         {
             WithTip(GuardianTip.Socket);
             WithTip(GuardianKeyword.Gem);
-        }
+        }*/
         if (this is ITickCard)
         {
             WithTip(GuardianTip.Tick);

@@ -11,7 +11,7 @@ public class BookOfSecrets : AwakenedCardModel
 {
     public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithBlock(6);
     }
@@ -21,7 +21,7 @@ public class BookOfSecrets : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        // TODO - i only create multiplayer desyncs here. need to look into this again. is easy but too lazy right now
+        // TODO - i only create multiplayer desyncs here. need to look into this again. is probably easy but too lazy right now
         /*if (CombatState == null) return;
         var spell = AwakenedCmd.GetSpellbook(Owner);
         var nextSpell = spell?.NextSpell;

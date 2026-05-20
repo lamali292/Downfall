@@ -13,7 +13,7 @@ public class Envision : AwakenedCardModel
     public Envision() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(4, 3);
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

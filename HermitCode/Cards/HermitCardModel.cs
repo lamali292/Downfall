@@ -30,6 +30,8 @@ public abstract class HermitCardModel
     protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect && IsDeadOn;
 
 
+    protected virtual Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay, bool isDeadOn)
+            => PlayEffect(ctx, cardPlay);
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -37,11 +39,12 @@ public abstract class HermitCardModel
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var isDeadOn = PatchDeadOnCapture.LastWasDeadOn; 
         if (CombatState == null) return;
         if (Keywords.Contains(HermitKeywords.Concentrate))
             await CommonActions.ApplySelf<ConcentrationPower>(ctx, this, 1);
-        await PlayEffect(ctx, cardPlay);
-        if (this is IHasDeadOnEffect && PatchDeadOnCapture.LastWasDeadOn)
+        await PlayEffect(ctx, cardPlay, isDeadOn);
+        if (this is IHasDeadOnEffect && isDeadOn)
         {
             await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
         }

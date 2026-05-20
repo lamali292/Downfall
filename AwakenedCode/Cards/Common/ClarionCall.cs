@@ -2,8 +2,10 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions.Cards;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Awakened.AwakenedCode.Cards.Common;
 
@@ -14,7 +16,7 @@ public class ClarionCall : AwakenedCardModel
     {
         WithDamage(8, 3);
         WithPower<ClarionCallPower>(1, false);
-        WithTip(AwakenedTip.Drained);
+        WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

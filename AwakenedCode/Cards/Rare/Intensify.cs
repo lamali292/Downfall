@@ -14,7 +14,7 @@ public class Intensify : AwakenedCardModel
     {
         WithPower<IntensifyPower>(1, false);
         WithPower<BurnoutPower>(1, false);
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

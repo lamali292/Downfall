@@ -14,7 +14,7 @@ public class ByrdsEye : AwakenedCardModel
 {
     public ByrdsEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

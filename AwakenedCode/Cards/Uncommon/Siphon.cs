@@ -16,7 +16,7 @@ public class Siphon : AwakenedCardModel, IChantable
     {
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
-        WithTip(AwakenedTip.Chant);
+        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

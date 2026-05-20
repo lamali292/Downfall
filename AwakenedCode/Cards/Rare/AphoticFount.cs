@@ -17,7 +17,7 @@ public class AphoticFount : AwakenedCardModel
         WithPower<AphoticFountPower>(1, 1, false);
         WithTip(typeof(PlatedArmorPower));
         WithTip(typeof(Cryostasis));
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

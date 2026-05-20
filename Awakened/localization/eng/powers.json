@@ -70,7 +70,7 @@
   "AWAKENED-MAGICIANISM_POWER.smartDescription": "Whenever you play a Colorless card, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "AWAKENED-MANABURN_POWER.title": "Manaburn",
   "AWAKENED-MANABURN_POWER.description": "Whenever you are [gold]Drained[/gold], this enemy loses HP.",
-  "AWAKENED-MANABURN_POWER.smartDescription": "Whenever you are [gold]Drained[/gold], this enemy loses [blue]{Amount}[/blue] HP.",
+  "AWAKENED-MANABURN_POWER.smartDescription": "Whenever {IsApplierYou:you are|[orange]{ApplierName}[/orange] is} [gold]Drained[/gold], this enemy loses [blue]{Amount}[/blue] HP.",
   "AWAKENED-MOONLIT_VISION_POWER.title": "Moonlit Vision",
   "AWAKENED-MOONLIT_VISION_POWER.description": "The first time you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",
   "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "The first {Amount:plural:time|{Amount} times} you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",

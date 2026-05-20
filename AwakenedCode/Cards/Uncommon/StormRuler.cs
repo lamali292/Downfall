@@ -14,7 +14,7 @@ public class StormRuler : AwakenedCardModel
     public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithPower<StormRulerPower>(6, 3, false);
-        WithTip(AwakenedTip.Conjure);
+        WithConjure();
         WithTip(typeof(Thunderbolt));
     }
 

@@ -1,7 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Events;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -29,5 +31,12 @@ public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHa
         return Owner == card.Owner.Creature && UsedAmount < Amount && model.SocketIndex < Amount
             ? baseValue * 2
             : baseValue;
+    }
+
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    {
+        UsedAmount = 0;
+        InvokeDisplayAmountChanged();
+        return Task.CompletedTask;
     }
 }

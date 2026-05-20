@@ -14,6 +14,7 @@ public abstract class DownfallPowerModel(
 
     public override string CustomPackedIconPath => $"{IconName}.tres".DownfallPowerImagePath();
     public override string CustomBigIconPath => $"{IconName}.png".DownfallBigPowerImagePath();
+    public virtual string CustomPackedSpritePath => $"{IconName}.tres".DownfallPowerSpriteImagePath();
 }
 
 public abstract class DownfallPowerModel<T>(
@@ -23,4 +24,5 @@ public abstract class DownfallPowerModel<T>(
 {
     public override string CustomPackedIconPath => $"{IconName}.tres".PowerImagePath<T>();
     public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<T>();
+    public override string CustomPackedSpritePath => $"{IconName}.tres".PowerSpriteImagePath<T>();
 }

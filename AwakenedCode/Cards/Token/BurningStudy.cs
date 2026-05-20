@@ -1,4 +1,5 @@
-﻿using Awakened.AwakenedCode.Events;
+﻿using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -19,6 +20,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithPower<StrengthPower>(1, 1);
         WithPower<WeakPower>(1, 1);
+        WithTags(AwakenedTag.Spell);
     }
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)

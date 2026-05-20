@@ -90,6 +90,8 @@ public abstract class DownfallCardModel(
             case UpgradeType.None:
                 WithTip(tooltipSource);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(upgradeType), upgradeType, null);
         }
         return this;
     }
@@ -97,18 +99,9 @@ public abstract class DownfallCardModel(
     {
         if (baseVal == 0)
         {
-            if (upgrade == 0)
-                return this;
-            else
-                return WithTip(tooltipSource, UpgradeType.Add);
+            return upgrade == 0 ? this : WithTip(tooltipSource, UpgradeType.Add);
         }
-        else
-        {
-            if (baseVal + upgrade == 0)
-                return WithTip(tooltipSource, UpgradeType.Remove);
-            else
-                return WithTip(tooltipSource, UpgradeType.None);
-        }
+        return WithTip(tooltipSource, baseVal + upgrade == 0 ? UpgradeType.Remove : UpgradeType.None);
     }
 
 

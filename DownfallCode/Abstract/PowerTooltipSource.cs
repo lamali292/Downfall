@@ -24,10 +24,13 @@ public class AbstractTooltipSource<T>(Func<T, IHoverTip> tip)
         if (t.IsAssignableTo(typeof(CardModel)))
             return new AbstractTooltipSource<T>(_ =>
                 HoverTipFactory.FromCard(ModelDb.GetById<CardModel>(ModelDb.GetId(t))));
-        return t.IsAssignableTo(typeof(PotionModel))
-            ? new AbstractTooltipSource<T>(_ =>
-                HoverTipFactory.FromPotion(ModelDb.GetById<PotionModel>(ModelDb.GetId(t))))
-            : throw new Exception($"Unable to generate hovertip from type {t}");
+        if (t.IsAssignableTo(typeof(PotionModel)))
+            return new AbstractTooltipSource<T>(_ =>
+                HoverTipFactory.FromPotion(ModelDb.GetById<PotionModel>(ModelDb.GetId(t))));
+        if (t.IsAssignableTo(typeof(EnchantmentModel)))
+            return new AbstractTooltipSource<T>(_ =>
+                ModelDb.GetById<EnchantmentModel>(ModelDb.GetId(t)).HoverTip);
+        throw new Exception($"Unable to generate hovertip from type {t}");
     }
 
     public static implicit operator AbstractTooltipSource<T>(CardKeyword keyword)

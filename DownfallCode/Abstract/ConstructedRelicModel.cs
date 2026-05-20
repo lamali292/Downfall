@@ -36,6 +36,14 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
         return this;
     }
 
+    
+    protected ConstructedRelicModel WithCards(int i)
+    {
+        WithVars(new CardsVar(i));
+        return this;
+    }
+
+    
     protected ConstructedRelicModel WithBlock(int i)
     {
         WithTip(StaticHoverTip.Block);

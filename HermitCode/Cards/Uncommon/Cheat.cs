@@ -6,14 +6,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-public sealed class Cheat : HermitCardModel
+public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
 {
     public Cheat() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         WithCards(3, 2);
     }
     
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override  async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play, bool isDeadOn)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
@@ -32,7 +32,10 @@ public sealed class Cheat : HermitCardModel
         if (selected == null)
             return;
 
-        if (IsDeadOn) await PowerCmd.Apply<CheatPower>(ctx, Owner.Creature, 1, Owner.Creature, this, true);
+        if (isDeadOn) await PowerCmd.Apply<CheatPower>(ctx, Owner.Creature, 1, Owner.Creature, this, true);
         await CardCmd.AutoPlay(ctx, selected, null);
     }
+
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => Task.CompletedTask;
 }

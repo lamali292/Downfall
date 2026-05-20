@@ -7,10 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-/// <summary>
-///     Deal 7 damage. Dead On: Reduce the cost of a random card in your hand by 1 this turn.
-///     Upgrade: 9 damage and reduce the cost by 2.
-/// </summary>
 public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 {
     public ItchyTrigger() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

@@ -13,8 +13,7 @@ public static class AwakenedHook
     {
         return DownfallHook.Dispatch<IOnDrained>(cs, ctx, m => m.OnDrained(ctx, player, amount));
     }
-
-
+    
     public static Task OnCardChanted(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         return DownfallHook.Dispatch<IOnChant>(cs, ctx, m => m.OnCardChanted(card, ctx, cardPlay));
@@ -24,4 +23,12 @@ public static class AwakenedHook
     {
         return DownfallHook.Dispatch<IOnAwaken>(cs, ctx, m => m.OnAwaken(ctx, player));
     }
+    
+    
+    public static decimal ModifyManaburnDamage(ICombatState cs, decimal original, Player player, out IEnumerable<IModifyManaburnDamage> modifiers)
+        => DownfallHook.Modify(cs, original, (e, amount) => e.ModifyManaburnDamage(amount, original,  player), out modifiers);
+
+    public static Task AfterModifyingManaburnDamage(ICombatState cs, PlayerChoiceContext ctx, Player player, IEnumerable<IModifyManaburnDamage> modifiers)
+        => DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingManaburnDamage(ctx, player));
 }
+

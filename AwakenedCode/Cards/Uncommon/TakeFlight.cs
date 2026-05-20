@@ -14,7 +14,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
     public TakeFlight() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
-        WithTip(AwakenedTip.Chant);
+        
         WithPower<BlurPower>(1, false);
     }
 

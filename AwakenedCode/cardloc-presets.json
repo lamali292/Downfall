@@ -22,6 +22,11 @@
           "name": "selectionScreenPrompt",
           "file": "cards.json",
           "optional": true
+        },
+        {
+          "name": "chant",
+          "file": "chants.json",
+          "optional": true
         }
       ]
     },
@@ -170,16 +175,15 @@
           "name": "description",
           "file": "enchantments.json",
           "optional": false
+        },
+        {
+          "name": "extraCardText",
+          "file": "enchantments.json",
+          "optional": true
         }
       ]
     }
   ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
-    },
-    {
-      "tag": "blue"
-    }
-  ]
+  "pinnedColors": [],
+  "customTags": []
 }
