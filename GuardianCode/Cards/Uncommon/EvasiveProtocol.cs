@@ -14,6 +14,7 @@ public class EvasiveProtocol : GuardianCardModel
     {
         WithBrace(6, 3);
         WithPower<EvasiveProtocolPower>(1, 1, false);
+        WithTip(GuardianTip.Polish);
         WithTip(GuardianTip.DefensiveMode);
     }
 

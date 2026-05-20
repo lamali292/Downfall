@@ -32,7 +32,7 @@
   "GUARDIAN-DEFEND_GUARDIAN.title": "Defend",
   "GUARDIAN-EMERGENCY.description": "[gold]Accelerate[/gold] ALL cards in [gold]Stasis[/gold]{IfUpgraded:show: twice|}.",
   "GUARDIAN-EMERGENCY.title": "Emergency",
-  "GUARDIAN-EVASIVE_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], reduce each of your debuffs by {EvasiveProtocolPower:diff()}.\n[gold]Brace [/gold]{Brace:diff()}.",
+  "GUARDIAN-EVASIVE_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], [gold]Polish[/gold] {EvasiveProtocolPower:diff()}.\n[gold]Brace [/gold]{Brace:diff()}.",
   "GUARDIAN-EVASIVE_PROTOCOL.title": "Evasive Protocol",
   "GUARDIAN-EXPLOIT_GEMS.description": "Draw a card.",
   "GUARDIAN-EXPLOIT_GEMS.title": "Exploit Gems",
