@@ -10,7 +10,10 @@ public class FromWithinPower : AwakenedPowerModel
 {
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Pool is not ColorlessCardPool) return;
+        if (cardPlay.Card.Owner.Creature != Owner ||
+            (cardPlay.Card.Pool is not ColorlessCardPool && cardPlay.Card.Pool is not TokenCardPool)
+        )
+            return;
         await PlayerCmd.GainEnergy(Amount, cardPlay.Card.Owner);
         await PowerCmd.Decrement(this);
     }
