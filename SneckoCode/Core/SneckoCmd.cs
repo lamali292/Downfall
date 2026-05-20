@@ -93,15 +93,20 @@ public static class SneckoCmd
                card.TargetType is not (TargetType.Self or TargetType.None);
     }
 
+    private static readonly Dictionary<Type, PowerModel?> PowerCache = new();
+
     private static bool IsDebuffPowerVar(DynamicVar v)
     {
         var t = v.GetType();
         if (!t.IsGenericType || t.GetGenericTypeDefinition() != typeof(PowerVar<>))
             return false;
 
-        var method = typeof(ModelDb).GetMethod("Power")?.MakeGenericMethod(t.GetGenericArguments()[0]);
-        var power = method?.Invoke(null, null) as PowerModel;
-        return power?.Type == PowerType.Debuff && v.BaseValue > 0;
+        if (!PowerCache.TryGetValue(t, out var power))
+            PowerCache[t] = power = typeof(ModelDb)
+                .GetMethod(nameof(ModelDb.Power))
+                ?.MakeGenericMethod(t.GetGenericArguments()[0])
+                .Invoke(null, null) as PowerModel;
+        return power?.GetTypeForAmount(v.BaseValue) == PowerType.Debuff;
     }
 
     public static async Task GetGift(Player player, Gift gift, int amount = 3)

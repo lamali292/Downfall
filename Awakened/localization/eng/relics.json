@@ -18,7 +18,7 @@
   "AWAKENED-FINAL_RITES.description": "The first time you activate [blue]3[/blue] [gold]Chant[/gold] effects in a combat, gain [blue]{RitualPower}[/blue] [gold]Ritual[/gold].",
   "AWAKENED-FINAL_RITES.flavor": "I leave everything I own to my cat, Noodles. Goodbye, cruel world. XOXO Jouster",
   "AWAKENED-MANABOMB.title": "Manabomb",
-  "AWAKENED-MANABOMB.description": "Whenever an enemy dies, transfer any Manaburn it has to a random enemy.",
+  "AWAKENED-MANABOMB.description": "Whenever an enemy dies, transfer any [gold]Manaburn[/gold] it has to a random enemy.",
   "AWAKENED-MANABOMB.flavor": "3... 2...",
   "AWAKENED-PAPER_CROW.title": "Paper Crow",
   "AWAKENED-PAPER_CROW.description": "Enemies take 25% additional damage from [gold]Manaburn[/gold].",
