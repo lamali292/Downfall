@@ -17,7 +17,7 @@ public class FindAndReplace : AutomatonCardModel
     public FindAndReplace() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(Dazed));
+        WithTip(typeof(Dazed), UpgradeType.Remove);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -41,15 +41,17 @@ public class FindAndReplace : AutomatonCardModel
 
 
         // Insert Dazed at exact index
-        var dazed = Owner.Creature.CombatState!.CreateCard<Dazed>(Owner);
-        var dazedResult = await CardPileCmd.AddGeneratedCardToCombat(dazed, sourcePile.Type, Owner,
-            index == 0 ? CardPilePosition.Top : CardPilePosition.Bottom);
+        if (!IsUpgraded)
+        {
+            var dazed = Owner.Creature.CombatState!.CreateCard<Dazed>(Owner);
+            var dazedResult = await CardPileCmd.AddGeneratedCardToCombat(dazed, sourcePile.Type, Owner,
+                index == 0 ? CardPilePosition.Top : CardPilePosition.Bottom);
+            CardCmd.PreviewCardPileAdd(dazedResult, 0.3f);
+        }
+
         // Move to hand
         var result = await CardPileCmd.Add(selected, PileType.Hand);
 
-        // Animations
-        CardCmd.PreviewCardPileAdd(dazedResult, 0.3f);
-        CardCmd.PreviewCardPileAdd(result, 0.3f);
 
 
         // TODO: 

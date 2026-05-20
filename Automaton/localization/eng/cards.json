@@ -63,7 +63,7 @@
   "AUTOMATON-DEV_TOOLS.title": "Dev Tools",
   "AUTOMATON-DIGITAL_CARNAGE.description": "[gold]Compile Error[/gold]: \nFunction is [gold]Ethereal[/gold].",
   "AUTOMATON-DIGITAL_CARNAGE.title": "Digital Carnage",
-  "AUTOMATON-FIND_AND_REPLACE.description": "Select a card from your [gold]Draw[/gold] or [gold]Discard Pile[/gold] to add to your [gold]Hand[/gold].\nAdd a [gold]Dazed[/gold] where it was.",
+  "AUTOMATON-FIND_AND_REPLACE.description": "Select a card from your [gold]Draw[/gold] or [gold]Discard Pile[/gold] to add to your [gold]Hand[/gold].{IfUpgraded:show:|\nAdd a [gold]Dazed[/gold] where it was.}",
   "AUTOMATON-FIND_AND_REPLACE.selectionScreenPrompt": "Choose a card to put in your Hand.",
   "AUTOMATON-FIND_AND_REPLACE.title": "Find and Replace",
   "AUTOMATON-FINE_TUNING.description": "Increase all numbers of [gold]Encoded[/gold] cards by 1 except cost.",
