@@ -13,7 +13,7 @@ public class RisingChorus : AwakenedCardModel
     public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithTip(AwakenedTip.Chant);
+        
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

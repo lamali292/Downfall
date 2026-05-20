@@ -17,7 +17,7 @@ namespace Hermit.HermitCode.Core;
 
 public class Hermit : DownfallCharacterModel
 {
-    private static readonly Color Color = new(0x9e6a34FF);
+    private static readonly Color Color = new(0xCEA477FF);
     public override string CharId => "Hermit";
     public override string ModId => HermitMainFile.ModId;
     public override Color NameColor => Color;
