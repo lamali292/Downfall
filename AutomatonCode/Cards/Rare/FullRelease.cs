@@ -6,7 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class FullRelease()
-    : AutomatonCardModel(1, CardType.Skill, CardRarity.Rare, TargetType.Self), IEncodable, ICompilable;
+public class FullRelease : AutomatonCardModel, IEncodable, ICompilable
+{
+    public FullRelease() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithCostUpgradeBy(-1);
+    }
+}
 
 // Todo: make it not hover tip with encode
