@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -32,4 +33,10 @@ public class ChosenVersePower : AwakenedPowerModel
         Flash();
         await PowerCmd.Decrement(this);
     }
+
+    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        await PowerCmd.Remove(this);
+    }
+
 }
