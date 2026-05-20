@@ -22,7 +22,7 @@ public class ChampDefensiveStance : ChampStanceModel
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var amount = ChampHook.ModifyFinisherBonus(CombatState, this, BaseFinisherAmount);
+        var amount = ChampHook.ModifyDefensiveFinisherBonus(CombatState, this, BaseFinisherAmount);
         await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
     }
 }

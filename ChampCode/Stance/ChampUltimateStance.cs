@@ -25,10 +25,10 @@ public class ChampUltimateStance : ChampStanceModel
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var strength = ChampHook.ModifyFinisherBonus(CombatState, this, ChampBerserkerStance.BaseFinisherAmount);
+        var strength = ChampHook.ModifyBerserkerFinisherBonus(CombatState, this, ChampBerserkerStance.BaseFinisherAmount);
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, strength, Owner.Creature, null);
 
-        var block = ChampHook.ModifyFinisherBonus(CombatState, this, ChampDefensiveStance.BaseFinisherAmount);
+        var block = ChampHook.ModifyDefensiveFinisherBonus(CombatState, this, ChampDefensiveStance.BaseFinisherAmount);
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Unpowered, null);
     }
 }

@@ -43,9 +43,14 @@ public static class ChampHook
         return DownfallHook.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
     }
 
-    public static int ModifyFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
+    public static int ModifyBerserkerFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
     {
-        return DownfallHook.Aggregate<IModifyFinisherBonus, int>(cs, baseAmount,
-            (m, current) => m.ModifyFinisherBonus(stanceModel, current));
+        return DownfallHook.Aggregate<IModifyBerserkerFinisherBonus, int>(cs, baseAmount,
+            (m, current) => m.ModifyBerserkerFinisherBonus(stanceModel, current));
+    }
+    public static int ModifyDefensiveFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
+    {
+        return DownfallHook.Aggregate<IModifyDefensiveFinisherBonus, int>(cs, baseAmount,
+            (m, current) => m.ModifyDefensiveFinisherBonus(stanceModel, current));
     }
 }
