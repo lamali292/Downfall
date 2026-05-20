@@ -14,9 +14,9 @@ public static class AwakenedHook
         return DownfallHook.Dispatch<IOnDrained>(cs, ctx, m => m.OnDrained(ctx, player, amount));
     }
     
-    public static Task OnCardChanted(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public static Task OnCardChanted(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay, bool firstTime)
     {
-        return DownfallHook.Dispatch<IOnChant>(cs, ctx, m => m.OnCardChanted(card, ctx, cardPlay));
+        return DownfallHook.Dispatch<IOnChant>(cs, ctx, m => m.OnCardChanted(card, ctx, cardPlay, firstTime));
     }
 
     public static Task OnAwaken(ICombatState cs, PlayerChoiceContext ctx, Player player)

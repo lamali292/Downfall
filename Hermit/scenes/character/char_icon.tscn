@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4dokn165rbad"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://cv87ha0geth8b" path="res://Hermit/images/character/character_icon.png" id="1_ssuxk"]
+[ext_resource type="Texture2D" path="res://Hermit/images/character/character_icon.png" id="1_ssuxk"]
 
 [node name="WatcherIcon" type="TextureRect"]
 anchors_preset = 15

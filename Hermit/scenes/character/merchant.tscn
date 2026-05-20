@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://blknbv4mj4ex7"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://b1cpwysrt33f0" path="res://HermitCode/Vfx/NHermitMerchantCharacter.cs" id="1_d8cb7"]
-[ext_resource type="PackedScene" uid="uid://4dfhitrnqi5a" path="res://Hermit/scenes/character/hermit.tscn" id="3_hkw07"]
+[ext_resource type="Script" path="res://HermitCode/Vfx/NHermitMerchantCharacter.cs" id="1_d8cb7"]
+[ext_resource type="PackedScene" path="res://Hermit/scenes/character/hermit.tscn" id="3_hkw07"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_d8cb7")

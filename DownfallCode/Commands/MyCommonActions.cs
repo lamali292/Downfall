@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Features;
+﻿using BaseLib.Extensions;
+using BaseLib.Patches.Features;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -150,4 +151,9 @@ public static class MyCommonActions
                 throw new InvalidOperationException($"Unsupported TargetType {card.TargetType} for LoseHp action.");
         }
     }
+
+    public static Task ApplySelf<T>(PlayerChoiceContext ctx, RelicModel model)
+        where T : PowerModel
+        => PowerCmd.Apply<T>(ctx, model.Owner.Creature, model.DynamicVars.Power<T>().BaseValue, model.Owner.Creature,
+            null);
 }

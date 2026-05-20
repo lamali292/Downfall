@@ -18,7 +18,7 @@ public class Conjuration : DownfallEnchantmentModel<Core.Awakened>
     ];
 
     public override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
-     => cardPlay?.Card is { CombatState: not null } ?
+     => cardPlay is { Card.CombatState: not null } ?
          AwakenedCmd.Conjure(cardPlay.Card.Owner, cardPlay.Card.CombatState) :
          Task.CompletedTask;
     

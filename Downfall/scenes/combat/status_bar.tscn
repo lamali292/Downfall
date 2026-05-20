@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 0
 
 [node name="StatusPart1" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
 layout_mode = 2
@@ -52,6 +52,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="StatusPart5" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart6" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart7" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart8" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart9" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusPart10" parent="HpBarContainer/HBoxContainer" instance=ExtResource("2_lssm8")]
 layout_mode = 2
 size_flags_horizontal = 3
 
