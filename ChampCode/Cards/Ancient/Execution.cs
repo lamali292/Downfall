@@ -18,7 +18,11 @@ public class Execution : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).WithHitCount(3).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 3).Execute(ctx);
+    }
+
+    protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true, 2);
     }
 }
