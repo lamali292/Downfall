@@ -15,7 +15,6 @@ public class ForLoop : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        WithTip(typeof(MergePower));
     }
 
     protected override bool HasEnergyCostX => true;

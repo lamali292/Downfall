@@ -10,7 +10,8 @@ public class MarkedCard : SneckoCardModel
 {
     public MarkedCard() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithKeyword(CardKeyword.Exhaust);
         WithMuddle(1, 1);
     }
 

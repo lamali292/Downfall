@@ -81,7 +81,7 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
     protected AwakenedCardModel WithDrained(int baseVal, int upgrade = 0)
     {
         WithPower<DrainedPower>(baseVal, upgrade, false);
-        WithEnergyTip();
+        WithEnergy(baseVal, upgrade);
         return this;
     }
 

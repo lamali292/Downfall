@@ -1,16 +1,12 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
-using Champ.ChampCode.Stance;
 
 namespace Champ.ChampCode.Powers;
 
-public class ArenaMasteryDefensivePower : ChampPowerModel, IModifyFinisherBonus
+public class ArenaMasteryDefensivePower : ChampPowerModel, IModifyDefensiveFinisherBonus
 {
-    public int ModifyFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
+    public int ModifyDefensiveFinisherBonus(ChampStanceModel stanceModel, int baseAmount)
     {
-        if (stanceModel.Owner.Creature != Owner) return baseAmount;
-        if (stanceModel is ChampDefensiveStance or ChampUltimateStance)
-            return baseAmount + Amount;
-        return baseAmount;
+        return stanceModel.Owner.Creature == Owner ? baseAmount + Amount : baseAmount;
     }
 }

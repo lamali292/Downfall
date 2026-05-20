@@ -1,19 +1,21 @@
 ﻿using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
 public class GhostflameBarrierPower : HexaghostPowerModel
 {
-    public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult _, ValueProp props, Creature? dealer, CardModel? __)
     {
-        if (command.Attacker == null) return;
-        var list = command.Results.SelectMany(r => r).Where(r => r.Receiver == Owner).ToList();
-        if (list.Count == 0) return;
-        await PowerCmd.Apply<SoulBurnPower>(ctx, command.Attacker, Amount, Owner, null);
+        if (target == Owner && dealer != null && props.IsPoweredAttack())
+        {
+            await PowerCmd.Apply<SoulBurnPower>(choiceContext, dealer, Amount, Owner, null);
+        }
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

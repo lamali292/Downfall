@@ -25,6 +25,5 @@ public class Execute : ChampCardModel, ITranscendenceCard
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
 }

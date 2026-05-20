@@ -30,7 +30,7 @@ public class ArenaPreparation : ChampCardModel
         var combatCardGeneration = Owner.RunState.Rng.CombatCardGeneration;
         var a = CardFactory.GetDistinctForCombat(Owner, list, DynamicVars.Cards.IntValue, combatCardGeneration)
             .ToList();
-        foreach (var cardModel in a) CardCmd.ApplyKeyword(cardModel, CardKeyword.Ethereal);
+        foreach (var cardModel in a) CardCmd.ApplyKeyword(cardModel, CardKeyword.Retain);
         var result = await CardPileCmd.AddGeneratedCardsToCombat(a, PileType.Hand, Owner);
     }
 }

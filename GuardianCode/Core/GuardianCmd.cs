@@ -194,21 +194,6 @@ public static class GuardianCmd
         await Cmd.Wait(0.5f);
     }
 
-    // Combat
-    public static async Task DebuffDown(PlayerChoiceContext ctx, Creature creature, int amount = 1)
-    {
-        foreach (var power in creature.Powers
-                     .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-                     .OrderByDescending(p => p is ITemporaryPower)
-                     .ToList())
-        {
-            var change = power.Amount > 0
-                ? -Math.Min(amount, power.Amount)
-                : Math.Min(amount, Math.Abs(power.Amount));
-            await PowerCmd.ModifyAmount(ctx, power, change, creature, null);
-        }
-    }
-
     public static async Task Brace(PlayerChoiceContext ctx, Player player, decimal amount)
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
@@ -266,24 +251,28 @@ public static class GuardianCmd
         var amount = card.DynamicVars.Polish().IntValue;
         await Polish(ctx, card, amount);
     }
-
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card, decimal amount)
     {
-        await DecrementPower<WeakPower>(ctx, card.Owner.Creature, amount, card);
-        await DecrementPower<FrailPower>(ctx, card.Owner.Creature, amount, card);
-        await DecrementPower<VulnerablePower>(ctx, card.Owner.Creature, amount, card);
-        var tempPowers = card.Owner.Creature.Powers.Where(e => e is ITemporaryPower).ToList();
+        await Polish(ctx, card.Owner.Creature, amount, card);
+    }
+
+    public static async Task Polish(PlayerChoiceContext ctx, Creature target, decimal amount, CardModel? cardSource)
+    {
+        await DecrementPower<WeakPower>(ctx, target, amount, cardSource);
+        await DecrementPower<FrailPower>(ctx, target, amount, cardSource);
+        await DecrementPower<VulnerablePower>(ctx, target, amount, cardSource);
+        var tempPowers = target.Powers.Where(e => e is ITemporaryPower).ToList();
         foreach (var power in tempPowers)
         {
             var temporaryPower = (ITemporaryPower)power;
-            var internalTemporaryPower = card.Owner.Creature.GetPower(temporaryPower.InternallyAppliedPower.Id);
+            var internalTemporaryPower = target.GetPower(temporaryPower.InternallyAppliedPower.Id);
             if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff) continue;
-            await PowerCmd.ModifyAmount(ctx, power, -amount, card.Owner.Creature, card);
+            await PowerCmd.ModifyAmount(ctx, power, -amount, target, cardSource);
             if (internalTemporaryPower == null)
-                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), card.Owner.Creature,
-                    amount, card.Owner.Creature, card, true);
+                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
+                    amount, target, cardSource, true);
             else
-                await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, card.Owner.Creature, card, true);
+                await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, target, cardSource, true);
         }
     }
 

@@ -21,7 +21,7 @@ public class ChampBerserkerStance : ChampStanceModel
 
     public override async Task Finisher(PlayerChoiceContext ctx)
     {
-        var amount = ChampHook.ModifyFinisherBonus(CombatState, this, BaseFinisherAmount);
+        var amount = ChampHook.ModifyBerserkerFinisherBonus(CombatState, this, BaseFinisherAmount);
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, amount, Owner.Creature, null);
     }
 }

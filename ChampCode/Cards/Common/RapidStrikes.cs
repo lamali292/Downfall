@@ -22,7 +22,7 @@ public class RapidStrikes : ChampCardModel
         PileType.Hand
             .GetPile(Owner)
             .Cards
-            .Where(c => c.Tags.Contains(CardTag.Strike))
+            .Where(c => c.Tags.Contains(CardTag.Strike) && c.EnergyCost.GetResolved() > 0)
             .ToList()
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)
             .FirstOrDefault()?

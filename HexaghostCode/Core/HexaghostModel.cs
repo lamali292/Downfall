@@ -46,7 +46,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         {
             if (player.Character is not Hexaghost) continue;
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
-                await HexaghostCmd.Advance(ctx, player, null, true);
+                await HexaghostCmd.Advance(ctx, player, null, true, true);
         }
     }
 
