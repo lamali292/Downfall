@@ -77,7 +77,7 @@
   "AWAKENED-EXTENSION.description": "Deal {Damage:diff()} damage.\nWhenever you play a Power, return this card from the [gold]Discard Pile[/gold] to your [gold]Hand[/gold].",
   "AWAKENED-EXTENSION.title": "Extension",
   "AWAKENED-E_S_P.title": "ESP",
-  "AWAKENED-E_S_P.description": "",
+  "AWAKENED-E_S_P.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "AWAKENED-FEATHER_FLARE.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-FEATHER_FLARE.title": "Feather Flare",
   "AWAKENED-FEATHER_VEIL.description": "Gain {Block:diff()} [gold]Block[/gold].\nLose {StrengthPower:diff()} [gold]Strength[/gold].",

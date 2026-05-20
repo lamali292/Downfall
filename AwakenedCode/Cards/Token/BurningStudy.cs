@@ -25,6 +25,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
+        if (player != Owner) return Task.CompletedTask;
         CardCmd.Upgrade(this, CardPreviewStyle.None);
         return Task.CompletedTask;
     }
