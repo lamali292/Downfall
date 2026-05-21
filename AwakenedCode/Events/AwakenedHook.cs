@@ -32,6 +32,6 @@ public static class AwakenedHook
         => DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingManaburnDamage(ctx, player));
     
 
-    public static IReadOnlyList<Type> ModifyBaseSpells(ICombatState cs, Player owner, IReadOnlyList<Type> original)
-        => DownfallHook.Aggregate<IModifyBaseSpells, IReadOnlyList<Type>>(cs, original, (e, types) => e.ModifyBaseSpells(owner, types));
+    public static IReadOnlyList<CardModel> ModifyBaseSpells(ICombatState cs, Player owner, IReadOnlyList<CardModel> original)
+        => DownfallHook.Aggregate<IModifyBaseSpells, IReadOnlyList<CardModel>>(cs, original, (e, types) => e.ModifyBaseSpells(owner, types));
 }

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="DataGen/localization/**/*.json"/>
+        <Compile Remove="DataGen/**"/>
+        <EmbeddedResource Remove="DataGen/**"/>
+        <None Include="DataGen.json"/>
+        <None Include="DataGen/**"/>
+        <None Include="DataGenCode/**"/>
+        <Compile Include="DataGenCode/**/*.cs"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Scriban" Version="7.2.0"/>
+    </ItemGroup>
+</Project>

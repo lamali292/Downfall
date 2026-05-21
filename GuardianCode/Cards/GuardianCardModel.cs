@@ -18,6 +18,10 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     public static readonly JsonSavedField<GuardianCardModel, List<SerializableGem>> GemData =
         JsonSavedField.Create<GuardianCardModel, List<SerializableGem>>("DOWNFALL_GEM");
 
+    
+    
+    
+    
     public List<GemModel>? CachedGems;
 
     protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType)

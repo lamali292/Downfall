@@ -145,7 +145,7 @@
   "SLIMEBOSS-TEAMWORK.title": "Teamwork",
   "SLIMEBOSS-TONGUE_LASH.description": "Deal {Damage:diff()} damage. Deals {TongueLashPower:diff()} additional damage for each Exhausted \"Lick\" card.",
   "SLIMEBOSS-TONGUE_LASH.title": "Tongue Lash",
-  "SLIMEBOSS-VICIOUS_TACKLE.description": "Deal {Damage:diff()} damage. Take {SelfDamage:diff()} damage.\nThis gains twice the damage bonus {IfUpgraded:show:AND healing |}from [gold]Goop[/gold].",
+  "SLIMEBOSS-VICIOUS_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:diff()} damage.\nThis gains twice the damage bonus from [gold]Goop[/gold].",
   "SLIMEBOSS-VICIOUS_TACKLE.title": "Vicious Tackle",
   "SLIMEBOSS-WASTE_NOT.description": "[gold]Exhume all [/gold]\"Lick\" cards.{IfUpgraded:show:|\nExhaust.}",
   "SLIMEBOSS-WASTE_NOT.title": "Waste Not",

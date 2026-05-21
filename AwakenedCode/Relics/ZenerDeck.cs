@@ -4,6 +4,7 @@ using Awakened.AwakenedCode.Events;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Relics;
 
@@ -15,6 +16,6 @@ public class ZenerDeck : AwakenedRelicModel, IModifyBaseSpells
         WithTip(typeof(ESP));
     }
     
-    public IReadOnlyList<Type> ModifyBaseSpells(Player owner, IReadOnlyList<Type> types)
-        => [..types, typeof(ESP)];
+    public IReadOnlyList<CardModel> ModifyBaseSpells(Player owner, IReadOnlyList<CardModel> types)
+        => [..types, ModelDb.Card<ESP>()];
 }

@@ -25,7 +25,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
     // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
     // But would be too extreme to make a hook for this.
     public override TargetType TargetType =>
-        Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
+        _owner == null || Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {

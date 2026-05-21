@@ -31,6 +31,5 @@ public sealed class AdaptPower : HermitPowerModel
             await CardCmd.Exhaust(ctx, card);
             await CreatureCmd.GainBlock(Owner, 8, ValueProp.Unpowered, null);
         }
-        
     }
 }

@@ -8,7 +8,6 @@ namespace Snecko.SneckoCode.Cards.Token;
 [Pool(typeof(SneckoCardPool))]
 public class SoulRoll : SneckoCardModel
 {
-    // Todo: fix that it should be not offclass card but in no rewards and no basic
     public SoulRoll() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
