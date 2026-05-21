@@ -2,6 +2,7 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Enchantments;
+using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
@@ -82,9 +83,21 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
+
+        var stance = Owner.ChampStance();
         if (Keywords.Contains(ChampKeyword.TriggerSkillBonus))
         {
-            await Owner.ChampStance().SkillBonus(ctx);
+            await stance.SkillBonus(ctx);
+        }
+
+        if (cardPlay.Card.Type == CardType.Skill
+        && (ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner) || stance.Charges > 0)) 
+        {
+            if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner)) {
+                stance.Charges--;
+                ChampModel.RefreshDisplay(Owner);
+            }
+            await stance.SkillBonus(ctx);
         }
 
         if (EnterStance == StanceType.Berserker)
