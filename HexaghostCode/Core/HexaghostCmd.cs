@@ -164,8 +164,7 @@ public static class HexaghostCmd
     public static async Task IgniteAll(PlayerChoiceContext ctx, Player player)
     {
         var wheel = GetWheel(player);
-        var start = GetCurrentIndex(player);
-        for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, (start + i) % wheel.Length);
+        for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, i);
     }
 
     public static Task Extinguish(Player player, bool silent = false)

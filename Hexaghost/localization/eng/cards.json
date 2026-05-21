@@ -196,7 +196,7 @@
   "HEXAGHOST-UNFETTERED_FORM.description": "Ghostflames deal damage{IfUpgraded:show:,| and} apply [gold]Soulburn[/gold]{IfUpgraded:show:, and grant [gold]Block[/gold]|} an additional time.",
   "HEXAGHOST-UNLEASH_SPIRITS.description": "Deal {Damage:diff()} damage to a random enemy. \nRepeat for each card [gold]Exhausted[/gold] last turn.{InCombat:cond:\n(Hits {Repeat} {Repeat:plural:time|times})|}",
   "HEXAGHOST-UNLEASH_SPIRITS.title": "Unleash Spirits",
-  "HEXAGHOST-UNLIMITED_POWER.description": "Ignite all Ghostflames in order.",
+  "HEXAGHOST-UNLIMITED_POWER.description": "From the first Ghostflame, ignite all Ghostflames in order.",
   "HEXAGHOST-UNLIMITED_POWER.title": "Unlimited Power",
   "HEXAGHOST-VOLCANO_VISAGE.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply {VolcanoVisagePower:diff()} [gold]Soulburn[/gold] to ALL enemies.",
   "HEXAGHOST-VOLCANO_VISAGE.title": "Volcano Visage",
