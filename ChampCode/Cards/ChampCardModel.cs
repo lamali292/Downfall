@@ -13,6 +13,14 @@ namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
 {
+    protected enum StanceType
+    {
+        None,
+        Berserker,
+        Defensive
+    }
+    protected StanceType EnterStance = StanceType.None;
+
     protected override bool ShouldGlowRedInternal =>
         Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
     protected override bool ShouldGlowGoldInternal => (
@@ -57,6 +65,18 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         WithTip(ChampTip.Finisher);
         return this;
     }
+    protected ConstructedCardModel WithEnterBerserker()
+    {
+        EnterStance = StanceType.Berserker;
+        WithTip(ChampTip.Berserker);
+        return this;
+    }
+    protected ConstructedCardModel WithEnterDefensive()
+    {
+        EnterStance = StanceType.Defensive;
+        WithTip(ChampTip.Defensive);
+        return this;
+    }
 
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -65,6 +85,15 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         if (Keywords.Contains(ChampKeyword.TriggerSkillBonus))
         {
             await Owner.ChampStance().SkillBonus(ctx);
+        }
+
+        if (EnterStance == StanceType.Berserker)
+        {
+            await ChampCmd.EnterBerserkerStance(ctx, Owner);
+        }
+        else if (EnterStance == StanceType.Defensive)
+        {
+            await ChampCmd.EnterDefensiveStance(ctx, Owner);
         }
 
         if (this is IBerserkerComboCard berserkerCombo && Owner.ShouldBerserkerComboTrigger())
