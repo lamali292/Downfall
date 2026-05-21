@@ -6,8 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
-using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -29,10 +27,11 @@ public class FindAndReplace : AutomatonCardModel
         if (choices.Count == 0) return;
 
         // Select card to move / show screen
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var screen = NSimpleCardSelectScreen.Create(choices, prefs);
-        NOverlayStack.Instance?.Push(screen);
-        var selected = (await screen.CardsSelected()).FirstOrDefault();
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var pile = PileType.Draw.GetPile(Owner);
+        var selected = (await CardSelectCmd.FromSimpleGrid(ctx, pile.Cards, Owner, prefs)).FirstOrDefault();
+
+        if (selected == null) return;
 
         // Record position before moving
         var sourcePile = selected?.Pile;
