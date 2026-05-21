@@ -2,7 +2,9 @@
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
+using Awakened.AwakenedCode.Relics;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -30,11 +32,15 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
         CardCmd.Upgrade(this, CardPreviewStyle.None);
         return Task.CompletedTask;
     }
+    
+    // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
+    // But would be too extreme to make a hook for this.
+    public override TargetType TargetType =>
+        Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
-        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this);
+        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
     }
 }

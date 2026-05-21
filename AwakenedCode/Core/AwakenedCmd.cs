@@ -1,4 +1,5 @@
-﻿using Awakened.AwakenedCode.Displays;
+﻿using Awakened.AwakenedCode.Cards.Uncommon;
+using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
@@ -42,7 +43,7 @@ public static class AwakenedCmd
     {
         if (card is not IChantable chantable) return;
         var firstTime = !chantable.HasChanted;
-        if (firstTime)
+        if (firstTime && card is not Caw)
         {
             // TODO : change voice lines
             TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature, VfxColor.Blue);

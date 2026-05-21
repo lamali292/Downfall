@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Events;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using Godot;
@@ -65,16 +66,16 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
         SetNextSpell(rng);
     }
-
+    
     private void AddBaseSpells(Player owner, ICombatState state)
     {
-        Type[] baseTypes =
+        Type[] original =
         [
             typeof(BurningStudy), typeof(Cryostasis),
             typeof(Darkleech), typeof(Thunderbolt)
         ];
-
-        foreach (var type in baseTypes)
+        var modified = AwakenedHook.ModifyBaseSpells(state, owner, original);
+        foreach (var type in modified)
             CreateAndAddSpell(owner, state, type);
     }
 

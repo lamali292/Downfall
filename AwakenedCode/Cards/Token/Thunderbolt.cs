@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.Relics;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,6 +21,11 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithTags(AwakenedTag.Spell);
     }
+    
+    // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
+    // But would be too extreme to make a hook for this.
+    public override TargetType TargetType =>
+        Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
@@ -30,7 +36,6 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_lightning")
             .Execute(ctx);

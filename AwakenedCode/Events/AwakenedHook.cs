@@ -30,5 +30,8 @@ public static class AwakenedHook
 
     public static Task AfterModifyingManaburnDamage(ICombatState cs, PlayerChoiceContext ctx, Player player, IEnumerable<IModifyManaburnDamage> modifiers)
         => DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingManaburnDamage(ctx, player));
-}
+    
 
+    public static IReadOnlyList<Type> ModifyBaseSpells(ICombatState cs, Player owner, IReadOnlyList<Type> original)
+        => DownfallHook.Aggregate<IModifyBaseSpells, IReadOnlyList<Type>>(cs, original, (e, types) => e.ModifyBaseSpells(owner, types));
+}

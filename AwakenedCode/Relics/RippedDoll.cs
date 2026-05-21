@@ -43,7 +43,6 @@ public class RippedDoll : AwakenedRelicModel
         if (side != Owner.Creature.Side) 
             return Task.CompletedTask;
         InvokeDisplayAmountChanged(); 
-
         return Task.CompletedTask;
     }
 

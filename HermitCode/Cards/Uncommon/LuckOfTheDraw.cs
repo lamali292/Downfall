@@ -18,8 +18,7 @@ public sealed class LuckOfTheDraw : HermitCardModel
 
         var threshold = DynamicVars["Threshold"].IntValue;
         var totalCost = 0;
-        // Todo : variable max hand size
-        while (totalCost < threshold &&  Owner.PlayerCombatState?.Hand.Cards.Count < 10)
+        while (totalCost < threshold &&  Owner.PlayerCombatState?.Hand.Cards.Count < CardPile.MaxCardsInHand)
         {
             var cards = (await CardPileCmd.Draw(ctx, 1, Owner)).ToList();
             if (cards.Count == 0)
