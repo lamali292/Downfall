@@ -29,7 +29,7 @@ public class EerieExpedition : HexaghostCardModel
             .Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife)).ToList();
         foreach (var player in CombatState.Players)
         {
-            var card = CardFactory.GetDistinctForCombat(Owner, cards, 1, Owner.RunState.Rng.CombatCardGeneration)
+            var card = CardFactory.GetDistinctForCombat(player, cards, 1, Owner.RunState.Rng.CombatCardGeneration)
                 .FirstOrDefault();
             if (card == null) continue;
             card.SetToFreeThisTurn();
