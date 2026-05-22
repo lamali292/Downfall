@@ -20,7 +20,7 @@ public class LanternFlare : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
-        await MyCommonActions.Apply<ScorchedPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<ScorchedPower>(ctx, this, cardPlay);
     }
 }

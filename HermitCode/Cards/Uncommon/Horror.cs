@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,7 @@ public sealed class Horror : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await MyCommonActions.Apply<BruisePower>(ctx, this, play);
-        await MyCommonActions.Apply<HorrorPower>(ctx, this, play);
+        await CommonActions.Apply<BruisePower>(ctx, this, play);
+        await CommonActions.Apply<HorrorPower>(ctx, this, play);
     }
 }

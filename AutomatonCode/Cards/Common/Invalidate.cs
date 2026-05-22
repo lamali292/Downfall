@@ -19,6 +19,6 @@ public class Invalidate : AutomatonCardModel, IEncodable
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

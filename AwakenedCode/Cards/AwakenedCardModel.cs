@@ -19,8 +19,10 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
         int cost,
         CardType type,
         CardRarity rarity,
-        TargetType targetType)
-        : base(cost, type, rarity, targetType)
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true)
+        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         WithTips(card => card is IChantable chantable ?  chantable.HasChanted ? 
             [HoverTipFactory.Static(AwakenedTip.Chanted)] : [HoverTipFactory.Static(AwakenedTip.Chant)] : []);

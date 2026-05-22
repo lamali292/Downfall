@@ -18,12 +18,11 @@ public class StickyShield : AutomatonCardModel
         WithBlock(11, 3);
         WithKeywords(CardKeyword.Retain);
         WithTip(typeof(Slimed));
-        WithTip(AutomatonTip.Insert);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await DownfallCardCmd.Insert(ModelDb.Card<Slimed>(), Owner);
+        await DownfallCardCmd.GiveCard<Slimed>(Owner, PileType.Draw);
     }
 }

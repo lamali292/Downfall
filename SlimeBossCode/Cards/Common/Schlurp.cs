@@ -19,7 +19,7 @@ public class Schlurp : SlimeBossCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCards<Lick>(Owner, PileType.Hand, DynamicVars.Cards.BaseValue);
     }
 }

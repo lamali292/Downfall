@@ -12,7 +12,7 @@ namespace Automaton.AutomatonCode.Cards.Common;
 [Pool(typeof(AutomatonCardPool))]
 public class DelayedGuard : AutomatonCardModel, IEncodable
 {
-    public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, false, false)
     {
         WithPower<BlockNextTurnPower>(7, 3, false);
         WithTip(StaticHoverTip.Block);

@@ -27,8 +27,10 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         int cost,
         CardType type,
         CardRarity rarity,
-        TargetType targetType
-    ) : base(cost, type, rarity, targetType)
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true
+    ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         if (this is IBerserkerComboCard)
         {

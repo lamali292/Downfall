@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class FollowThrough : AutomatonCardModel
 {
-    public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false, false)
     {
         WithBlock(4, 2);
         WithDamage(7, 2);

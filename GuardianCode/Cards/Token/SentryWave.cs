@@ -26,7 +26,7 @@ public class SentryWave : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         if (IsUpgraded) await GuardianCmd.Brace(ctx, this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var card = CombatState!.CreateCard<SentryBlast>(Owner);

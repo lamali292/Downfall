@@ -58,8 +58,8 @@ public class Automaton : DownfallCharacterModel
         ModelDb.Card<DefendAutomaton>(),
         ModelDb.Card<DefendAutomaton>(),
         ModelDb.Card<DefendAutomaton>(),
-        ModelDb.Card<Goto>(),
-        ModelDb.Card<Replicate>()
+        ModelDb.Card<Postpone>(),
+        ModelDb.Card<Branch>()
     ];
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

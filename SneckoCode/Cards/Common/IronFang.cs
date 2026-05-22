@@ -20,6 +20,6 @@ public class IronFang : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
 }

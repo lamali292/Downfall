@@ -15,17 +15,16 @@ public class WildStrike : AutomatonCardModel
 {
     public WildStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12, 5);
+        WithDamage(13, 5);
         WithTip(typeof(Wound));
-        WithTip(AutomatonTip.Insert);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await DownfallCardCmd.Insert(ModelDb.Card<Wound>(), Owner);
+        await DownfallCardCmd.GiveCard<Wound>(Owner, PileType.Draw);
     }
 }

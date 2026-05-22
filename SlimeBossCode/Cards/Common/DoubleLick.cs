@@ -24,7 +24,7 @@ public class DoubleLick : SlimeBossCardModel
     {
         var repeat = DynamicVars.Repeat.BaseValue;
         for (var i = 0; i < repeat; i++)
-            await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
     }
 }

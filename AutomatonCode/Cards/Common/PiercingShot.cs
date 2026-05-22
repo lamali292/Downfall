@@ -1,28 +1,35 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class PiercingShot : AutomatonCardModel, IEncodable
+public class PiercingShot : AutomatonCardModel
 {
     public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(6, 2);
-        
+        WithCards(1, 1);
     }
 
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
-            .TargetingAllOpponents(cardPlay.Card.CombatState)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
+        var cards = StashPile.Stash.GetPile(Owner).Cards
+            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
+        foreach (var card in cards)
+        {
+            CardCmd.Upgrade(card);
+        }
+
     }
 }

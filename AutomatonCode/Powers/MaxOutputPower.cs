@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -14,13 +15,7 @@ public class MaxOutputPower : AutomatonPowerModel
         ICombatState combatState)
     {
         if (Owner.Player != player || Owner.Player == null) return;
-
-        var canonical = ModelDb.Card<Dazed>();
-        var dazed = Enumerable.Range(0, Amount)
-            .Select(_ => canonical)
-            .ToList<CardModel>();
-
-        await DownfallCardCmd.Insert(dazed, Owner.Player);
+        await DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, Amount);
     }
 
     public override decimal ModifyHandDraw(Player player, decimal count)

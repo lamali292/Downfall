@@ -20,6 +20,6 @@ public class FormOfWall : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
     }
 }

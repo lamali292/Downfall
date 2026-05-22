@@ -19,7 +19,7 @@ public class LivingBomb : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
-        await MyCommonActions.Apply<LivingBombPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<LivingBombPower>(ctx, this, cardPlay);
     }
 }

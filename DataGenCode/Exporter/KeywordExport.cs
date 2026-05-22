@@ -93,7 +93,7 @@ public class KeywordExport : ItemExport, IImageExport
             if (instance == null) return null;
             var tipFunc = DynamicVarExtensions.DynamicVarTips.Get(instance);
             if (tipFunc == null) return null;
-            var tip = (HoverTip)tipFunc();
+            var tip = (HoverTip)tipFunc(instance);
             return new KeywordExport(tip, type);
         }
         catch

@@ -20,7 +20,7 @@ public class Lacerate : SneckoCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VenomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VenomPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCard<Deathbringer>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

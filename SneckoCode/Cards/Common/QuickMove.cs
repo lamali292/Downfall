@@ -24,6 +24,6 @@ public class QuickMove : SneckoCardModel
 
     protected override async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

@@ -16,8 +16,10 @@ public abstract class DownfallCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
-    TargetType targetType)
-    : ConstructedCardModel(cost, type, rarity, targetType)
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : ConstructedCardModel(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
     private readonly ConditionalWeakTable<string, PowerModel> _powerCache = [];
 
@@ -115,8 +117,10 @@ public abstract class DownfallCardModel<T>(
     int cost,
     CardType type,
     CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel(cost, type, rarity, targetType)
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : DownfallCardModel(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     where T : DownfallCharacterModel
 {
     //public override string CustomPortraitPath =>

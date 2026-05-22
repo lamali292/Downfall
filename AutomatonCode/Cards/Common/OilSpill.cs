@@ -28,7 +28,7 @@ public class OilSpill : AutomatonCardModel, IEncodable,
         CompileContext compileContext,
         bool forGameplay)
     {
-        await DownfallCardCmd.Insert(ModelDb.Card<Slimed>(), Owner);
+        await DownfallCardCmd.GiveCard<Slimed>(Owner, PileType.Draw);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
@@ -37,6 +37,6 @@ public class OilSpill : AutomatonCardModel, IEncodable,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await MyCommonActions.Apply<PoisonPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<PoisonPower>(ctx, this, cardPlay);
     }
 }

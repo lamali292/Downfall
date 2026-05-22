@@ -24,8 +24,9 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     
     public List<GemModel>? CachedGems;
 
-    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType)
-        : base(cost, type, rarity, targetType)
+    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,  bool showInCardLibrary = true,
+        bool autoAdd = true)
+        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
         // too much lag, half a novel

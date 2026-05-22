@@ -13,8 +13,8 @@ public class Fragment : AutomatonCardModel, IEncodable
 {
     public Fragment() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4, 1);
-        WithBlock(4, 1);
+        WithDamage(3, 1);
+        WithBlock(3, 1);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

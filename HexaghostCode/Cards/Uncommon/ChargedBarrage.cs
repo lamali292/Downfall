@@ -19,6 +19,6 @@ public class ChargedBarrage : HexaghostCardModel
     {
         var count = HexaghostCmd.GetIgnitedCount(Owner);
         for (var i = 0; i < count; i++)
-            await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

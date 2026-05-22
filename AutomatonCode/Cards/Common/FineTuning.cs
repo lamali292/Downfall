@@ -2,6 +2,8 @@
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Displays;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,20 +14,22 @@ public class FineTuning : AutomatonCardModel
 {
     public FineTuning() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
-        WithTip(AutomatonTip.Encode);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithTip(AutomatonTip.Stash);
+        WithTip(CardKeyword.Retain);
+        WithCards(1);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var sequence = AutomatonCmd.GetSequence(Owner);
-        foreach (var card in sequence)
+        var cards = (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(AutomatonCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,
+            this)).ToList();
+        // is order important?
+        foreach (var card in cards)
         {
-            foreach (var dynVar in card.DynamicVars.Values) dynVar.UpgradeValueBy(1m);
+            CardCmd.Upgrade(card);
+            card.AddKeyword(CardKeyword.Retain);
         }
-
-        AutomatonDisplay.Refresh(Owner);
-        return Task.CompletedTask;
+        await AutomatonCmd.Stash(cards);
     }
 }

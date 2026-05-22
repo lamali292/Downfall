@@ -40,7 +40,7 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await MyCommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
     }
 }

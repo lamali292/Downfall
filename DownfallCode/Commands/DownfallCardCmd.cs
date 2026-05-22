@@ -18,25 +18,6 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCardCmd
 {
-    public static async Task Insert(CardModel card, Player player)
-    {
-        var copy = player.Creature.CombatState!.CreateCard(card, player);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, player, CardPilePosition.Random);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
-    }
-
-    public static async Task Insert(IEnumerable<CardModel> cards, Player player)
-    {
-        var copies = cards
-            .Select(card => player.Creature.CombatState!.CreateCard(card, player))
-            .ToList();
-
-        var results =
-            await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, player, CardPilePosition.Random);
-        CardCmd.PreviewCardPileAdd(results);
-    }
-
     public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,

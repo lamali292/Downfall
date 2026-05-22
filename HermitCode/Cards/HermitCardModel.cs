@@ -19,7 +19,9 @@ public abstract class HermitCardModel
         int cost,
         CardType type,
         CardRarity rarity,
-        TargetType targetType) : base(cost, type, rarity, targetType)
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         WithTips(e => e is not HermitCardModel card ? [] :
             card is IHasDeadOnEffect ? [HoverTipFactory.FromKeyword(HermitKeywords.DeadOn)] : Enumerable.Empty<IHoverTip>());

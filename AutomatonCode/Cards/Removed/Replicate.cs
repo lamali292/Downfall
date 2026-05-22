@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Basic;
 [Pool(typeof(AutomatonCardPool))]
 public class Replicate : AutomatonCardModel, IEncodable
 {
-    public Replicate() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    public Replicate() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, false, false)
     {
         WithDamage(5, 2);
     }

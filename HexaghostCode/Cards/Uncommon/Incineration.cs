@@ -21,6 +21,6 @@ public class Incineration : HexaghostCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
-            await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

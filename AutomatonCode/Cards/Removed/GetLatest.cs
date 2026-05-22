@@ -12,7 +12,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class GetLatest : AutomatonCardModel
 {
-    public GetLatest() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public GetLatest() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false, false)
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);

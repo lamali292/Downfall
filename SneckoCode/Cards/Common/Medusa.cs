@@ -24,6 +24,6 @@ public class Medusa : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.Apply<VenomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VenomPower>(ctx, this, cardPlay);
     }
 }

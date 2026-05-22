@@ -11,8 +11,10 @@ public abstract class CollectorCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType)
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
     private bool _hasPyre;
     public virtual bool UsesCollectorEnergyOnly => false;

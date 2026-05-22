@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards;
+
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Displays;
@@ -6,14 +7,17 @@ using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Patches.Content;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using static Automaton.AutomatonCode.Piles.StashPile;
 
 namespace Automaton.AutomatonCode.Core;
 
@@ -29,10 +33,10 @@ public static class AutomatonCmd
         return GetEncodePile(creature)?.Cards ?? [];
     }
 
-    public static AutomatonPile? GetEncodePile(Player creature)
+    public static EncodePile? GetEncodePile(Player creature)
     {
-        return CustomPiles.GetCustomPile(creature.PlayerCombatState, AutomatonPile.FunctionSequence) as
-            AutomatonPile;
+        return CustomPiles.GetCustomPile(creature.PlayerCombatState, EncodePile.FunctionSequence) as
+            EncodePile;
     }
 
     public static int GetMax(Player creature)
@@ -138,5 +142,29 @@ public static class AutomatonCmd
         await CardPileCmd.Add(cards, PileType.Hand);
         if (LocalContext.IsMe(creature))
             AutomatonDisplay.Refresh(creature);
+    }
+
+
+    public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
+    public static async Task Stash(CardModel source, PlayerChoiceContext ctx)
+    {
+        var amount = source.DynamicVars["Stash"].IntValue;
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
+        var cards = await CardSelectCmd.FromHand(ctx, source.Owner, prefs, null, source);
+        await Stash(cards);
+    }
+    
+    public static async Task Stash(CardModel card)
+         => await CardPileCmd.Add(card, StashPile.Stash);
+    
+    public static async Task Stash(IEnumerable<CardModel> cards)
+        => await CardPileCmd.Add(cards, StashPile.Stash);
+
+    public static async Task DrawFromStash(Player player)
+    {
+        var cards = StashPile.Stash.GetPile(player).Cards;
+        if (cards.Count == 0) return;
+        var card = cards[0];
+        await CardPileCmd.Add(card, PileType.Hand);
     }
 }

@@ -20,6 +20,6 @@ public class BroilingFlames : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<BroilingFlamesPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BroilingFlamesPower>(ctx, this, cardPlay);
     }
 }
