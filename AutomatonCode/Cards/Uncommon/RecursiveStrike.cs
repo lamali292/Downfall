@@ -15,22 +15,24 @@ public class RecursiveStrike : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithTip(AutomatonTip.Encode);
-        WithTip(typeof(StrikeAutomaton));
+        WithUpgradingCardTip<StrikeAutomaton>();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
-            .WithHitCount(2)
+        await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         var combatState = Owner.Creature.CombatState;
         if (combatState == null) return;
         var strike1 = combatState.CreateCard<StrikeAutomaton>(Owner);
         var strike2 = combatState.CreateCard<StrikeAutomaton>(Owner);
+        if (IsUpgraded)
+        {
+            strike1.UpgradeInternal();
+            strike2.UpgradeInternal();
+        }
         await AutomatonCmd.EncodeCard(strike1, ctx, cardPlay);
         await AutomatonCmd.EncodeCard(strike2, ctx, cardPlay);
     }

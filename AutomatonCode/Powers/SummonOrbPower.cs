@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Powers;
 
-public class SummonOrbPower : AutomatonPowerModel, IOnCompile
+public class SummonOrbPower : AutomatonPowerModel
 {
     public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot,
         FunctionCard functionCard,

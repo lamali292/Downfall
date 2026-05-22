@@ -65,13 +65,13 @@
   "AUTOMATON-NULL_POINTER.functionPrefix": "null",
   "AUTOMATON-NULL_POINTER.functionName": "Pointer",
   "AUTOMATON-PHILOSOPHIZE.encode": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
-  "AUTOMATON-PHILOSOPHIZE.error": "All enemies gain {EnemyStrength:diff()} [gold]Strength[/gold].",
+  "AUTOMATON-PHILOSOPHIZE.error": "",
   "AUTOMATON-PHILOSOPHIZE.functionPrefix": "smart",
   "AUTOMATON-PHILOSOPHIZE.functionName": "Idea",
-  "AUTOMATON-REPAIR.encode": "Gain {Block:diff()} [gold]Block[/gold].",
-  "AUTOMATON-REPAIR.compile": "Heal {Heal:diff()} HP.",
-  "AUTOMATON-REPAIR.functionPrefix": "tinkers",
-  "AUTOMATON-REPAIR.functionName": "Wrench",
+  "AUTOMATON-REPAIR.encode": "",
+  "AUTOMATON-REPAIR.compile": "",
+  "AUTOMATON-REPAIR.functionPrefix": "",
+  "AUTOMATON-REPAIR.functionName": "",
   "AUTOMATON-SEPARATOR.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-SEPARATOR.functionPrefix": "split",
   "AUTOMATON-SEPARATOR.functionName": "Child",
@@ -88,5 +88,8 @@
   "AUTOMATON-CULTIST_STRIKE.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-CULTIST_STRIKE.compile": "Increase this card's damage by {Increase:diff()} permanently.",
   "AUTOMATON-CULTIST_STRIKE.functionPrefix": "cultist",
-  "AUTOMATON-CULTIST_STRIKE.functionName": "Caw"
+  "AUTOMATON-CULTIST_STRIKE.functionName": "Caw",
+  "AUTOMATON-SPIKE.encode": "Deal {Damage:diff()} damage.",
+  "AUTOMATON-SPIKE.functionPrefix": "spiky",
+  "AUTOMATON-SPIKE.functionName": "Thorn"
 }

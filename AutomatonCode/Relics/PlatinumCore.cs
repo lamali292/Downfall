@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class PlatinumCore : AutomatonRelicModel, IOnCompile
+public class PlatinumCore : AutomatonRelicModel
 {
     private int _triggeredCount;
 

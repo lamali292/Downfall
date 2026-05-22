@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter), IOnCompile
+public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter)
 {
     private bool _isTriggered;
 

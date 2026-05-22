@@ -71,19 +71,19 @@ public static class AutomatonCmd
 
 
     public static async Task CompileFunctionCard(
-        Player creature,
+        Player player,
         PlayerChoiceContext ctx,
         CardPlay cardPlay)
     {
-        var pile = GetEncodePile(creature);
+        var pile = GetEncodePile(player);
         if (pile == null) return;
         await Cmd.Wait(0.3f);
-        var combatState = creature.Creature.CombatState;
+        var combatState = player.Creature.CombatState;
         if (combatState == null) return;
         var snapshot = pile.Cards.ToList();
         pile.Clear(true);
-        if (LocalContext.IsMe(creature))
-            AutomatonDisplay.Refresh(creature);
+        if (LocalContext.IsMe(player))
+            AutomatonDisplay.Refresh(player);
         var functionCard = CreateFunctionCardFromSnapshot(cardPlay, snapshot, combatState);
         for (var i = 0; i < snapshot.Count; i++)
         {
@@ -100,8 +100,10 @@ public static class AutomatonCmd
             }
         }
 
-        await AutomatonHook.OnCompile(ctx, combatState, snapshot, functionCard, cardPlay);
-        await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, creature);
+        functionCard =  AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
+        await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
+        await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result, cardPlay);
         //if (result.success)
         //    CardCmd.PreviewCardPileAdd(result, 0.7f);
     }

@@ -201,6 +201,22 @@ public static class DownfallHook
     }
 
 
+    /// <summary>
+    ///     Passes a mutable value through all hook listeners of type <typeparamref name="THook" />,
+    ///     tracking which listeners actually modified it via a boolean return value.
+    /// </summary>
+    public static TValue ModifyMutable<THook, TValue>(
+        ICombatState combatState,
+        TValue value,
+        Func<THook, TValue, bool> amountModifier,
+        out IEnumerable<THook> modifiers)
+        where THook : class
+    {
+        var list = combatState.IterateHookListeners().OfType<THook>().Where(model => amountModifier.Invoke(model, value)).ToList();
+        modifiers = list;
+        return value;
+    }
+    
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)
     {

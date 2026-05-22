@@ -13,13 +13,9 @@ public class Repulsor : AutomatonCardModel
     public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithTip(DownfallTip.Status);
-        WithTip(CardKeyword.Exhaust);
-        WithPower<ExhaustStatusesPower>(1, false);
-        WithCostUpgradeBy(-1);
+        WithPower<RepulsePower>(4, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.ApplySelf<ExhaustStatusesPower>(ctx, this);
-    }
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+      => CommonActions.ApplySelf<RepulsePower>(ctx, this);
 }

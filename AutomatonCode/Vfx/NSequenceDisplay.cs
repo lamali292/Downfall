@@ -2,6 +2,7 @@ using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Events;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -141,11 +142,10 @@ public partial class NSequenceDisplay : Control
         if (snapshot.Count > 0)
         {
             _previewModel.SetSourceCards(snapshot);
-            foreach (var card in snapshot) card.ApplyToFunctionPreview(_previewModel);
         }
-
         _previewModel.Owner = _trackedPlayer;
-
+        _previewModel =  AutomatonHook.ModifyCompiledFunction(_trackedPlayer.Creature.CombatState!, _previewModel, _trackedPlayer, out _);
+        
         var funcCardNode = NCard.Create(_previewModel);
         if (funcCardNode == null || _previewContainer == null) return;
 
