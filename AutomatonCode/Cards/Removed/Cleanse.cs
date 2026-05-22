@@ -5,8 +5,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Common;
+namespace Automaton.AutomatonCode.Cards.Removed;
 
+[Obsolete]
 [Pool(typeof(AutomatonCardPool))]
 public class Cleanse : AutomatonCardModel
 {

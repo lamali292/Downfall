@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Powers;
 
+[Obsolete]
 public class RemoveErrorsPower : AutomatonPowerModel, IOnEncode
 {
     public async Task OnCardEncoded(PlayerChoiceContext ctx, CardModel encodedCard, CardPlay cardPlay)

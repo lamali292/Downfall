@@ -17,7 +17,7 @@ public abstract class CardResource : CustomSingletonModel
 {
     private readonly SpireField<Player, int> _current;
 
-    protected CardResource() : base(true, true)
+    protected CardResource() : base(HookType.Combat)
     {
         _current = new SpireField<Player, int>(() => 0);
         CardResourceRegistry.Register(this);
@@ -72,6 +72,7 @@ public abstract class CardResource : CustomSingletonModel
         return null;
     }
 
+    // TODO : check if this still triggers
     public override Task BeforeCombatStart()
     {
         if (!ResetOnCombatStart) return Task.CompletedTask;

@@ -12,8 +12,9 @@ using Snecko.SneckoCode.Cards;
 
 namespace Snecko.SneckoCode.Core;
 
-public class SneckoModel() : CustomSingletonModel(true, true)
+public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
+    // TODO : check if this still triggers
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
@@ -54,6 +55,7 @@ public class SneckoModel() : CustomSingletonModel(true, true)
     }
 
 
+    // TODO : check if this still triggers
     public override async Task AfterActEntered()
     {
         var state = RunManager.Instance.State;

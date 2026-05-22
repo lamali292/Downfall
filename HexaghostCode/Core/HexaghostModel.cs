@@ -14,7 +14,7 @@ using static MegaCrit.Sts2.Core.Entities.Multiplayer.GameActionType;
 
 namespace Hexaghost.HexaghostCode.Core;
 
-public class HexaghostModel() : CustomSingletonModel(true, true)
+public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 {
     internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
 
@@ -51,6 +51,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         }
     }
 
+    // TODO : check if this still triggers
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is not CombatRoom) return;

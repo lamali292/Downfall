@@ -8,7 +8,7 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Core;
 
-public class SlimeBossModel() : CustomSingletonModel(true, true)
+public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
 {
     private static IEnumerable<CustomMonsterModel>? _cllCustomMonsterModel;
 

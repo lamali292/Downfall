@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Champ.ChampCode.Core;
 
-public class ChampModel() : CustomSingletonModel(true, true)
+public class ChampModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
         new(ChampModelDb.ChampStance<ChampNoStance>);
@@ -74,6 +74,7 @@ public class ChampModel() : CustomSingletonModel(true, true)
         RefreshStanceDisplay(player, newCanonical);
     }
 
+    // TODO : check if this still triggers
     public override async Task BeforeCombatStart()
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

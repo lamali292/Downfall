@@ -7,8 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Removed;
 
+[Obsolete]
 [Pool(typeof(AutomatonCardPool))]
 public class GetLatest : AutomatonCardModel
 {

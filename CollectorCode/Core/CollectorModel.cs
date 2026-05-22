@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Core;
 
-public class CollectorModel() : CustomSingletonModel(true, false)
+public class CollectorModel() : CustomSingletonModel(HookType.Combat)
 {
     private readonly List<MonsterModel> _defeatedEnemies = [];
     public override bool ShouldReceiveCombatHooks => true;
