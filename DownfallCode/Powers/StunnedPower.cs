@@ -3,6 +3,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,18 +13,19 @@ namespace Downfall.DownfallCode.Powers;
 public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
     public bool Active;
+    
 
-    public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side != Owner.Side) return;
+        await PowerCmd.Remove(this);
+    }
+
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return Task.CompletedTask;
         Active = true;
         return Task.CompletedTask;
-    }
-
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
-    {
-        if (side != Owner.Side) return;
-        await PowerCmd.Remove(this);
     }
 }
 

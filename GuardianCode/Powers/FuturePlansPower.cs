@@ -2,13 +2,14 @@ using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Powers;
 
 public class FuturePlansPower : GuardianPowerModel
 {
-    public override async Task BeforeTurnEndEarly(PlayerChoiceContext ctx, CombatSide side)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         var player = Owner.Player;

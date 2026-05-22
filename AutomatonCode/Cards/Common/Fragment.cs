@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Common;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Fragment : AutomatonCardModel, IEncodable
 {
-    public Fragment() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Fragment() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 1);
         WithBlock(4, 1);

@@ -2,6 +2,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Collector.CollectorCode.History;
 
@@ -12,8 +13,9 @@ public class UnusedBlockEntry : CombatHistoryEntry
         Creature creature,
         int roundNumber,
         CombatSide currentSide,
-        CombatHistory history)
-        : base(creature, roundNumber, currentSide, history)
+        CombatHistory history,
+        IEnumerable<Player> players)
+        : base(creature, roundNumber, currentSide, history, players)
     {
         Amount = amount;
     }
@@ -37,7 +39,7 @@ internal static class ClearBlockPatch
         var combatState = __instance.CombatState;
         if (combatState == null) return true;
         var entry = new UnusedBlockEntry(__instance.Block, __instance, combatState.RoundNumber, __instance.Side,
-            CombatManager.Instance.History);
+            CombatManager.Instance.History, combatState.Players);
         CombatManager.Instance.History.Add(combatState, entry);
         return true;
     }

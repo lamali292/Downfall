@@ -4,6 +4,7 @@ using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -18,7 +19,7 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
     }
     
     
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         await PowerCmd.Remove(this);

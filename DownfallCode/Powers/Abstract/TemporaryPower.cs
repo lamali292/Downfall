@@ -55,8 +55,8 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
         if (_shouldIgnoreNextInstance) _shouldIgnoreNextInstance = false;
         else await PowerCmd.Apply<TP>(ctx, Owner, Sign * amount, applier, cardSource, true);
     }
-
-    public override async Task AfterTurnEnd(PlayerChoiceContext ctx, CombatSide side)
+    
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side == RemovedAfterOwnTurn) return;
         Flash();

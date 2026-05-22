@@ -8,12 +8,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Automaton.AutomatonCode.Cards.Basic;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Goto : AutomatonCardModel, ICompilable, IEncodable
 {
-    public Goto() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public Goto() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCards(1, 1);
         WithVar("Compile", 1, 1);

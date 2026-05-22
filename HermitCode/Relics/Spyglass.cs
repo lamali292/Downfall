@@ -33,7 +33,7 @@ public sealed class Spyglass : HermitRelicModel
         return Task.CompletedTask;
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == Owner.Creature.Side && Owner.Creature.HasPower<ConcentrationPower>())
         {

@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.History;
@@ -13,8 +14,9 @@ public class DeadOnEntry : CombatHistoryEntry
         Creature creature,
         int roundNumber,
         CombatSide currentSide,
-        CombatHistory history)
-        : base(creature, roundNumber, currentSide, history)
+        CombatHistory history,
+        IEnumerable<Player> players)
+        : base(creature, roundNumber, currentSide, history, players)
     {
         CardPlay = cardPlay;
     }

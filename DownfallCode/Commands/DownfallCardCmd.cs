@@ -111,7 +111,7 @@ public class DownfallCardCmd
     }
 
 
-    public static async Task AnimateCardFromRewardScreen(Vector2 targetPos, CardModel card, Player player)
+    public static async Task AnimateCardFromRewardScreen(PileType pile, CardModel card, Player player)
     {
         var node = NCard.Create(card);
         if (node == null) return;
@@ -125,7 +125,7 @@ public class DownfallCardCmd
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
         await node.ToSignal(tween, Tween.SignalName.Finished);
-        var fly = NCardFlyVfx.Create(node, targetPos, true, player.Character.TrailPath);
+        var fly = NCardFlyVfx.Create(node, pile, true, player.Character.TrailPath);
         trailContainer.AddChildSafely(fly);
         if (fly != null)
             await fly.ToSignal(fly, Node.SignalName.TreeExited);
