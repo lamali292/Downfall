@@ -17,11 +17,11 @@ public class ModExport {
     [JsonInclude][JsonPropertyName("authors")]
     private readonly string[] _authors = [];
     [JsonInclude][JsonPropertyName("credits")]
-    private readonly string _credits = "";
+    private string Credits { get; } = "";
     [JsonInclude][JsonPropertyName("description")]
     private readonly string? _description = "";
     [JsonInclude][JsonPropertyName("stsVersion")]
-    private readonly byte _slayTheSpireVersion = 2;
+    private byte SlayTheSpireVersion { get; } = 2;
 
     [JsonIgnore]
     public readonly bool IsBasegame = false;

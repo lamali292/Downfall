@@ -12,7 +12,7 @@ public abstract partial class ItemExport
 {
     private static readonly Regex BbCodeSubstitutor = BbCodeRegex();
 
-    [JsonInclude] [JsonPropertyName("v")] private readonly byte _slayTheSpireVersion = 2;
+    [JsonInclude] [JsonPropertyName("v")] private byte SlayTheSpireVersion { get; } = 2;
 
     [JsonIgnore] public Assembly? Assembly;
 
