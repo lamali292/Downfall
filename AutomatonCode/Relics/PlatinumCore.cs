@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Multiplayer.Transport.ENet;
 
@@ -38,7 +39,7 @@ public class PlatinumCore : AutomatonRelicModel, IOnCompile
         WithCards(3);
     }
 
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
+    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
     {
         if (functionCard.Owner == Owner && TriggeredCount < DynamicVars.Cards.IntValue)
         {

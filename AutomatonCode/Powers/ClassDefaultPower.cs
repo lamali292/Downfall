@@ -5,22 +5,20 @@ using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Powers;
 
-public class ClassDefaultPower : AutomatonPowerModel, IOnCompile
+public class ClassDefaultPower : AutomatonPowerModel
 {
-    public override bool ShouldReceiveCombatHooks => true;
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource)
+        => dealer == Owner && cardSource is FunctionCard ? Amount : 0;
 
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot,
-        FunctionCard functionCard, CardPlay cardPlay)
-    {
-        if (Amount <= 0 || Owner.Player == null) return;
-        var pile = AutomatonCmd.GetEncodePile(Owner.Player);
-        if (pile == null) return;
-        var copy = Owner.CombatState!.CloneCard(cardPlay.Card);
-        if (copy is IEncodable encodable) await encodable.Encode(ctx, cardPlay);
-        await PowerCmd.Decrement(this);
-    }
+    public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
+        => cardSource?.Owner.Creature == Owner && cardSource is FunctionCard ? Amount : 0;
+    
 }

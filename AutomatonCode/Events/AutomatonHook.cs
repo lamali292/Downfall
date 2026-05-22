@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Events;
 public static class AutomatonHook
 {
     public static Task OnCompile(PlayerChoiceContext ctx, ICombatState cs,
-        List<AutomatonCardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
+        List<CardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
     {
         return DownfallHook.Dispatch<IOnCompile>(cs, ctx, m => m.OnCompile(ctx, snapshot, functionCard, cardPlay));
     }

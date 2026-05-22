@@ -28,7 +28,7 @@ public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter), IOnCompile
     }
 
 
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
+    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
     {
         if (functionCard.Owner == Owner && !_isTriggered)
         {

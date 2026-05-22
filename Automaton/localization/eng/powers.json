@@ -1,7 +1,7 @@
 {
   "AUTOMATON-CLASS_DEFAULT_POWER.title": "Class Default",
-  "AUTOMATON-CLASS_DEFAULT_POWER.description": "Next time you create a Function, [gold]Encode[/gold] a copy of current card in the first Slot.",
-  "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Next [blue]{Amount}[/blue] times you create a Function, [gold]Encode[/gold] a copy of current card in the first Slot.",
+  "AUTOMATON-CLASS_DEFAULT_POWER.description": "Functions deal additional damage and grant additional [gold]Block[/gold].",
+  "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Functions deal [blue]{Amount}[/blue] additional damage and grant [blue]{Amount}[/blue] additional [gold]Block[/gold].",
   "AUTOMATON-FULL_RELEASE_POWER.title": "Full Release",
   "AUTOMATON-FULL_RELEASE_POWER.description": "At the start of your turn:\n{effects}",
   "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "At the start of your turn:\n{effects}",
@@ -21,8 +21,8 @@
   "AUTOMATON-MAX_OUTPUT_POWER.description": "At the start of your turn, draw an additional card and add an [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
   "AUTOMATON-MAX_OUTPUT_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards} and add [blue]{Amount}[/blue] [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
   "AUTOMATON-MERGE_POWER.title": "Merge",
-  "AUTOMATON-MERGE_POWER.description": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] extra copies of it.",
-  "AUTOMATON-MERGE_POWER.smartDescription": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] [blue]{Amount}[/blue] extra copies of it.",
+  "AUTOMATON-MERGE_POWER.description": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] additional copies.",
+  "AUTOMATON-MERGE_POWER.smartDescription": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] [blue]{Amount}[/blue] additional copies.",
   "AUTOMATON-OPTIMIZE_POWER.title": "Optimized",
   "AUTOMATON-OPTIMIZE_POWER.description": "[gold]Upgrade[/gold] the next [gold]Upgradable[/gold] cards you [gold]Encode[/gold].",
   "AUTOMATON-OPTIMIZE_POWER.smartDescription": "[gold]Upgrade[/gold] the next [blue]{Amount}[/blue] [gold]Upgradable[/gold] {Amount:plural:card|cards} you [gold]Encode[/gold].",
@@ -40,5 +40,8 @@
   "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "When you draw the first [blue]{Amount}[/blue] [gold]Status[/gold] or [gold]Curse[/gold] {Amount:plural:card|cards} each turn, [gold]Exhaust[/gold] it and draw a card.",
   "AUTOMATON-OVERHEAT_POWER.title": "Overheat",
   "AUTOMATON-OVERHEAT_POWER.description": "The next time you create a card, the target enemy loses HP.",
-  "AUTOMATON-OVERHEAT_POWER.smartDescription": "The next time you create a card, this enemy loses [blue]{Amount}[/blue] HP."
+  "AUTOMATON-OVERHEAT_POWER.smartDescription": "The next time you create a card, this enemy loses [blue]{Amount}[/blue] HP.",
+  "AUTOMATON-BRONZE_ORB_POWER.title": "Bronze Orb",
+  "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]Stash[/gold] the next card you play this turn.",
+  "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Stash[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn."
 }

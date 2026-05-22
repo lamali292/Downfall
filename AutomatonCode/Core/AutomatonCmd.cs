@@ -19,7 +19,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using static Automaton.AutomatonCode.Piles.StashPile;
 
 namespace Automaton.AutomatonCode.Core;
 
@@ -80,7 +79,7 @@ public static class AutomatonCmd
         await Cmd.Wait(0.3f);
         var combatState = creature.Creature.CombatState;
         if (combatState == null) return;
-        var snapshot = pile.Cards.OfType<AutomatonCardModel>().ToList();
+        var snapshot = pile.Cards.ToList();
         pile.Clear(true);
         if (LocalContext.IsMe(creature))
             AutomatonDisplay.Refresh(creature);
@@ -91,7 +90,7 @@ public static class AutomatonCmd
             var compileContext = new CompileContext(i, snapshot.Count);
             switch (card)
             {
-                case ICompilableError compileErrorCard when !card.SuppressCompileError:
+                case ICompilableError compileErrorCard and AutomatonCardModel { SuppressCompileError: false }:
                     await compileErrorCard.OnCompileError(ctx, functionCard, cardPlay, compileContext, true);
                     break;
                 case ICompilable compileCard:
@@ -106,7 +105,7 @@ public static class AutomatonCmd
         //    CardCmd.PreviewCardPileAdd(result, 0.7f);
     }
 
-    private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<AutomatonCardModel> snapshot,
+    private static FunctionCard CreateFunctionCardFromSnapshot(CardPlay cardPlay, List<CardModel> snapshot,
         ICombatState combatState)
     {
         var functionCard = combatState.CreateCard<FunctionCard>(cardPlay.Card.Owner);
@@ -156,9 +155,9 @@ public static class AutomatonCmd
         await Stash(cards);
     }
     
-    public static async Task Stash<TCard>(Player player)
+    public static async Task Stash<TCard>(Player player, int amount = 1)
     where TCard : CardModel
-      => await DownfallCardCmd.GiveCard<TCard>(player, StashPile.Stash);
+      => await DownfallCardCmd.GiveCards<TCard>(player, StashPile.Stash, amount);
     
     public static async Task Stash(CardModel card)
          => await CardPileCmd.Add(card, StashPile.Stash);
@@ -166,11 +165,17 @@ public static class AutomatonCmd
     public static async Task Stash(IEnumerable<CardModel> cards)
         => await CardPileCmd.Add(cards, StashPile.Stash);
 
-    public static async Task DrawFromStash(Player player)
+    
+    public static async Task DrawFromStash(CardModel card)
+    {
+        var cards = card.Owner.GetStash();
+        var n = card.DynamicVars.Cards.IntValue;
+        await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+    }
+    
+    public static async Task DrawFromStash(Player player, int n = 1)
     {
         var cards = player.GetStash();
-        if (cards.Count == 0) return;
-        var card = cards[0];
-        await CardPileCmd.Add(card, PileType.Hand);
+        await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
     }
 }

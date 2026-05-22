@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class NullPointer : AutomatonCardModel,
-    IEncodable, ICompilableError
+    IEncodable, ICompilable
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -20,7 +20,7 @@ public class NullPointer : AutomatonCardModel,
         WithTip(CardKeyword.Unplayable);
     }
 
-    public Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
+    public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         CompileContext compileContext, bool forGameplay)
     {
         card.AddKeyword(CardKeyword.Unplayable);
@@ -30,9 +30,8 @@ public class NullPointer : AutomatonCardModel,
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
@@ -40,7 +39,6 @@ public class NullPointer : AutomatonCardModel,
 
     public override void ApplyToFunctionPreview(FunctionCard card)
     {
-        if (SuppressCompileError) return;
         card.AddKeyword(CardKeyword.Unplayable);
     }
 }

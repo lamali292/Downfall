@@ -36,6 +36,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;
+        if (owner.Character is not Awakened) return;
         if (IsAwakened(owner)) return;
         if (cardPlay.Card.Type != CardType.Power) return;
         var meter = AwakenMeter.GetOrCreateValue(owner);

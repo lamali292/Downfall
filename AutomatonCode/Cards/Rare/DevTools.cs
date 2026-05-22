@@ -1,4 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Removed;
 using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;

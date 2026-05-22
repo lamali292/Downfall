@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class FullReleasePower : AutomatonPowerModel
 {
-    private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
+    private IReadOnlyList<CardModel> _sourceCards = [];
 
     public FullReleasePower() : base(PowerType.Buff, PowerStackType.Single)
     {
@@ -24,7 +24,7 @@ public class FullReleasePower : AutomatonPowerModel
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
 
-    public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
+    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
         _sourceCards = sourceCards;
     }
