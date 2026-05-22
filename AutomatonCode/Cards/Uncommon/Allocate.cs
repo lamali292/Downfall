@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
-using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,8 +22,10 @@ public class Allocate : AutomatonCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? _)
-     => card.Owner.GetDraw().Count(c => c.Type == CardType.Status) +
-        card.Owner.GetStash().Count(c => c.Type == CardType.Status);
+    {
+        return card.Owner.GetDraw().Count(c => c.Type == CardType.Status) +
+               card.Owner.GetStash().Count(c => c.Type == CardType.Status);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

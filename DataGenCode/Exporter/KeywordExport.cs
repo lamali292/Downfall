@@ -68,7 +68,7 @@ public class KeywordExport : ItemExport, IImageExport
     {
         Type = "Orb";
     }
-    
+
 
     [JsonInclude]
     [JsonPropertyName("hasIcon")]
@@ -101,7 +101,7 @@ public class KeywordExport : ItemExport, IImageExport
             return null;
         }
     }
-    
+
     public static List<KeywordExport> FindAll()
     {
         var a = GetCustomEnums.GetEnumsOfType<CardKeyword>()
@@ -119,9 +119,9 @@ public class KeywordExport : ItemExport, IImageExport
             .Cast<KeywordExport>()
             .ToList();
         var c = ModManager.Mods.SelectMany(static m => m.assembly?.GetTypes().Where(t =>
-            t.IsAssignableTo(typeof(DynamicVar)) && t.GetConstructors().Any(c =>
-                c.GetParameters() is { Length: 1 } parameters &&
-                parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)) ?? []
+                    t.IsAssignableTo(typeof(DynamicVar)) && t.GetConstructors().Any(c =>
+                        c.GetParameters() is { Length: 1 } parameters &&
+                        parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)) ?? []
             )
             .Where(e => e != null)
             .Cast<KeywordExport>()

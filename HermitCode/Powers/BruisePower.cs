@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Events;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Combat;
@@ -13,19 +12,21 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff)
 {
-
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
-        => target != Owner || !props.HasFlag(ValueProp.Move) ? 0 : Amount;
+    {
+        return target != Owner || !props.HasFlag(ValueProp.Move) ? 0 : Amount;
+    }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (HermitHook.ShouldPreventBruiseRemoval(CombatState, this, out var preventers))
         {
             await HermitHook.AfterPreventedBruiseRemoval(CombatState, this, preventers);
             return;
         }
+
         await PowerCmd.Remove(this);
     }
 }
-

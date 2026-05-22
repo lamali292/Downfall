@@ -26,6 +26,11 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
 
+    public string GetSecondAmount()
+    {
+        return "Cool Text";
+    }
+
     protected override object InitInternalData()
     {
         return new Data();
@@ -60,7 +65,8 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
                (internalData.CommandToModify != null &&
                 internalData.CommandToModify.Attacker != dealer)
             ? 0M
-            : Amount * (cardSource is IDoubleGoopBonus ? 2M : 1M);;
+            : Amount * (cardSource is IDoubleGoopBonus ? 2M : 1M);
+        ;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
@@ -71,6 +77,7 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
             internalData.CommandToModify = null;
             return;
         }
+
         var amount = Amount;
         var creature = Owner;
         var removeAmount = -internalData.AmountWhenAttackStarted;
@@ -88,6 +95,4 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         public int AmountWhenAttackStarted;
         public AttackCommand? CommandToModify;
     }
-
-    public string GetSecondAmount() => "Cool Text";
 }

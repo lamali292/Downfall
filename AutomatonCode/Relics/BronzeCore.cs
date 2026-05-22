@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using BaseLib.Utils;
@@ -16,6 +15,18 @@ public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter), IOnCompile
 {
     private bool _isTriggered;
 
+
+    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard,
+        CardPlay cardPlay)
+    {
+        if (functionCard.Owner == Owner && !_isTriggered)
+        {
+            Flash();
+            _isTriggered = true;
+            await PlayerCmd.GainEnergy(1, Owner);
+        }
+    }
+
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<PlatinumCore>();
@@ -26,16 +37,4 @@ public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter), IOnCompile
         _isTriggered = false;
         return base.BeforeCombatStart();
     }
-
-
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard, CardPlay cardPlay)
-    {
-        if (functionCard.Owner == Owner && !_isTriggered)
-        {
-            Flash();
-            _isTriggered = true;
-            await PlayerCmd.GainEnergy(1, Owner);
-        }
-    }
-
 }

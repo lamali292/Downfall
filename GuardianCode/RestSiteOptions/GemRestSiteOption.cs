@@ -1,13 +1,11 @@
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Nodes;
-using Downfall.DownfallCode.Utils;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;

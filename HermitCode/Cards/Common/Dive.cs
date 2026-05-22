@@ -14,16 +14,15 @@ public sealed class Dive : HermitCardModel, IHasDeadOnEffect
         WithPower<PlatedArmorPower>(1, 1);
     }
 
-   
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
+    }
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);
-    }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
     }
 }

@@ -20,12 +20,11 @@ public class Return : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var selected = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(), DownfallCardSelectorPrefs.ToTopSelectionPrompt, this)).FirstOrDefault();
-        
-        if (selected != null)
-        {
-            await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
-        }
+        var selected =
+            (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
+                DownfallCardSelectorPrefs.ToTopSelectionPrompt, this)).FirstOrDefault();
+
+        if (selected != null) await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
 
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);
     }

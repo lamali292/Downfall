@@ -16,8 +16,9 @@ public class Manabomb : AwakenedRelicModel
     {
         WithTip(typeof(ManaburnPower));
     }
-    
-    public override async Task AfterDeath(PlayerChoiceContext ctx, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+
+    public override async Task AfterDeath(PlayerChoiceContext ctx, Creature creature, bool wasRemovalPrevented,
+        float deathAnimLength)
     {
         if (wasRemovalPrevented) return;
         var manaburn = creature.GetPowerAmount<ManaburnPower>();
@@ -27,7 +28,7 @@ public class Manabomb : AwakenedRelicModel
             .TakeRandom(1, Owner.RunState.Rng.CombatTargets).FirstOrDefault();
         if (target == null) return;
         var a = await PowerCmd.Apply<ManaburnPower>(ctx, target, manaburn, Owner.Creature, null);
-        if  (a == null) return;
+        if (a == null) return;
         await a.OnDrained(ctx, Owner, 1);
     }
 }

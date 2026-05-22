@@ -15,7 +15,9 @@ public class ZenerDeck : AwakenedRelicModel, IModifyBaseSpells
     {
         WithTip(typeof(ESP));
     }
-    
+
     public IReadOnlyList<CardModel> ModifyBaseSpells(Player owner, IReadOnlyList<CardModel> types)
-        => [..types, ModelDb.Card<ESP>()];
+    {
+        return [..types, ModelDb.Card<ESP>()];
+    }
 }

@@ -19,9 +19,11 @@ public sealed class FinalCanter : HermitCardModel
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     private static decimal CountCursesInHand(CardModel card, Creature? _)
-     => card.Owner.GetHand().Count(c => c.Type == CardType.Curse);
+    {
+        return card.Owner.GetHand().Count(c => c.Type == CardType.Curse);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {

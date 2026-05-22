@@ -25,7 +25,8 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         );
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx,  CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.CombatState == null) return;
 

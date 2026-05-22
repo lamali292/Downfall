@@ -10,14 +10,23 @@ namespace Hermit.HermitCode.Cards.Basic;
 
 public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
 {
-    
+    private AttackCommand? _result;
+
 
     public Snapshot() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
     }
 
-   
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        if (_result == null) return;
+        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.UnblockedDamage);
+        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
+        _result = null;
+    }
+
+
 /*
     public CardModel GetTranscendenceTransformedCard()
     {
@@ -34,14 +43,4 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
             .WithHermitGunHitFx()
             .Execute(ctx);
     }
-    private AttackCommand? _result;
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        if (_result == null) return;
-        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.UnblockedDamage);
-        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
-        _result = null;
-    }
 }
-

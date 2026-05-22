@@ -15,7 +15,7 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals
 	private MegaAnimationState? _animState;
 
 	private MegaSprite? _sprite;
-	
+
 	public override void _Ready()
 	{
 		base._Ready();

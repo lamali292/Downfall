@@ -34,7 +34,7 @@ public sealed class DeadMansHand : HermitCardModel
         var rarest = Owner.GetDraw()
             .OrderByDescending(c => RarityLevel(c.Rarity))
             .Take(3)
-            .ToList();       
-         await CardPileCmd.Add(rarest, PileType.Hand);
+            .ToList();
+        await CardPileCmd.Add(rarest, PileType.Hand);
     }
 }

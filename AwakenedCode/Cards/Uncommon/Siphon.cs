@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
@@ -16,7 +15,6 @@ public class Siphon : AwakenedCardModel, IChantable
     {
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
-        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

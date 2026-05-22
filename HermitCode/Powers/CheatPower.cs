@@ -10,9 +10,13 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class CheatPower() : HermitPowerModel(PowerType.Buff, PowerStackType.Single), IShouldTriggerDeadOn
 {
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-        => PowerCmd.Remove(this);
-    
     public bool ShouldTriggerDeadOn(CardModel card)
-        => card.Owner.Creature == Owner;
+    {
+        return card.Owner.Creature == Owner;
+    }
+
+    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        return PowerCmd.Remove(this);
+    }
 }

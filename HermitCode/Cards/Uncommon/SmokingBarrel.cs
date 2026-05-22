@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class SmokingBarrel : HermitCardModel
 {
-  public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
         WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);
@@ -17,7 +17,8 @@ public sealed class SmokingBarrel : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<SmokingBarrelPower>(ctx, Owner.Creature, DynamicVars["BigShotPower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<SmokingBarrelPower>(ctx, Owner.Creature, DynamicVars["BigShotPower"].BaseValue,
+            Owner.Creature,
             this);
     }
 }

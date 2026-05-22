@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Patches.Features;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -62,6 +61,9 @@ public static class MyCommonActions
 
     public static Task ApplySelf<T>(PlayerChoiceContext ctx, RelicModel model)
         where T : PowerModel
-        => PowerCmd.Apply<T>(ctx, model.Owner.Creature, model.DynamicVars.Power<T>().BaseValue, model.Owner.Creature,
+    {
+        return PowerCmd.Apply<T>(ctx, model.Owner.Creature, model.DynamicVars.Power<T>().BaseValue,
+            model.Owner.Creature,
             null);
+    }
 }

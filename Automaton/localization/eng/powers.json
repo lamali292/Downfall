@@ -18,8 +18,8 @@
   "AUTOMATON-LIBRARY_POWER.description": "At the start of your turn, gain random cards with [gold]Encode[/gold], they cost [blue]0[/blue] until played.",
   "AUTOMATON-LIBRARY_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:a|[blue]{Amount}[/blue]} random {Amount:plural:card|cards} with [gold]Encode[/gold], {Amount:plural:it|they} cost [blue]0[/blue] until played.",
   "AUTOMATON-MAX_OUTPUT_POWER.title": "Max Output",
-  "AUTOMATON-MAX_OUTPUT_POWER.description": "At the start of your turn, draw an additional card and add an [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
-  "AUTOMATON-MAX_OUTPUT_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards} and add [blue]{Amount}[/blue] [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
+  "AUTOMATON-MAX_OUTPUT_POWER.description": "At the start of your turn, [gold]Stash[/gold] an [gold]Error[/gold].",
+  "AUTOMATON-MAX_OUTPUT_POWER.smartDescription": "At the start of your turn, [gold]Stash[/gold] {Amount:plural:an [gold]Error[/gold]|[blue]{}[/blue] [gold]Errors[/gold]}.",
   "AUTOMATON-MERGE_POWER.title": "Merge",
   "AUTOMATON-MERGE_POWER.description": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] additional copies.",
   "AUTOMATON-MERGE_POWER.smartDescription": "The next time you [gold]Encode[/gold] a card, [gold]Encode[/gold] [blue]{Amount}[/blue] additional copies.",
@@ -43,5 +43,11 @@
   "AUTOMATON-OVERHEAT_POWER.smartDescription": "The next time you create a card, this enemy loses [blue]{Amount}[/blue] HP.",
   "AUTOMATON-BRONZE_ORB_POWER.title": "Bronze Orb",
   "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]Stash[/gold] the next card you play this turn.",
-  "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Stash[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn."
+  "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Stash[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn.",
+  "AUTOMATON-MERGE_CONFLICT_POWER.title": "Merge Conflict",
+  "AUTOMATON-MERGE_CONFLICT_POWER.description": "The next time you create a card, create an additional copy of it.",
+  "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you create a card, create an additional copy of it.",
+  "AUTOMATON-CLEAN_CODE_POWER.title": "Clean Code",
+  "AUTOMATON-CLEAN_CODE_POWER.description": "At the end of your turn, you may [gold]Stash[/gold] a card.",
+  "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "At the end of your turn, you may [gold]Stash[/gold] {Amount:plural:a card:[blue]{}[/blue] cards}."
 }

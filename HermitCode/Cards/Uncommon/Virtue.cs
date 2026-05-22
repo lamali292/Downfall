@@ -18,12 +18,12 @@ public sealed class Virtue : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var reduceBy = DynamicVars["Reduce"].IntValue;
         foreach (var power in Owner.Creature.Powers
-            .Where(p => p.StackType == PowerStackType.Counter)
-            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-            .ToList())
+                     .Where(p => p.StackType == PowerStackType.Counter)
+                     .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
+                     .ToList())
         {
-            var change = power.Amount > 0 
-                ? -Math.Min(reduceBy, power.Amount) 
+            var change = power.Amount > 0
+                ? -Math.Min(reduceBy, power.Amount)
                 : Math.Min(reduceBy, Math.Abs(power.Amount));
             await PowerCmd.ModifyAmount(ctx, power, change, Owner.Creature, null);
         }

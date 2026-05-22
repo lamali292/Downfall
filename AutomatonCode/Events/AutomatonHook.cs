@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;

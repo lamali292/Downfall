@@ -8,4 +8,3 @@ public interface IAfterDeadOnTrigger
 {
     Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay);
 }
-

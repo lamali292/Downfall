@@ -17,7 +17,7 @@ public class Cleanse : AutomatonCardModel
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallTip.Status);
     }
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

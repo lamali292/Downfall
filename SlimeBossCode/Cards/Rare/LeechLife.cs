@@ -14,7 +14,7 @@ public class LeechLife : SlimeBossCardModel
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithDamage(8, 2);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

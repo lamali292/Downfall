@@ -13,7 +13,7 @@ public class LevelUp : SlimeBossCardModel
     {
         WithPower<PotencyPower>(2, 1);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<PotencyPower>(ctx, this);

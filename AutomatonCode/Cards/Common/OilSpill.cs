@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,7 +19,7 @@ public class OilSpill : AutomatonCardModel
         WithTip(AutomatonTip.Stash);
         WithTip(typeof(Error));
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -30,5 +29,4 @@ public class OilSpill : AutomatonCardModel
         await CommonActions.Apply<PoisonPower>(ctx, this, cardPlay);
         await AutomatonCmd.Stash<Error>(Owner);
     }
-
 }

@@ -66,7 +66,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
         SetNextSpell(rng);
     }
-    
+
     private void AddBaseSpells(Player owner, ICombatState state)
     {
         CardModel[] original =

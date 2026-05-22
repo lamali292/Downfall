@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -19,20 +18,21 @@ public sealed class HighCaliber : HermitCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradingCardTip<StrikeHermit>(WithModifiers);
     }
- 
-    
+
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         HermitSfx.PlayGun1();
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
-        await DownfallCardCmd.GiveCard<StrikeHermit>(Owner, PileType.Hand, upgraded: IsUpgraded, action: card => WithModifiers(card, this));
+        await DownfallCardCmd.GiveCard<StrikeHermit>(Owner, PileType.Hand, upgraded: IsUpgraded,
+            action: card => WithModifiers(card, this));
     }
 
     private static void WithModifiers(StrikeHermit strike, CardModel card)
     {
-        DownfallCardCmd.ForceUpgrade(strike,  2);
+        DownfallCardCmd.ForceUpgrade(strike, 2);
     }
 
     protected override void AddExtraArgsToDescription(LocString description)
@@ -46,10 +46,9 @@ public sealed class HighCaliber : HermitCardModel
             case 1:
                 description.Add("UpgradeAmount", "+");
                 break;
-            case >1: 
+            case > 1:
                 description.Add("UpgradeAmount", $"+{level}");
                 break;
         }
-      
     }
 }

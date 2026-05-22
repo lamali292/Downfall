@@ -18,7 +18,8 @@ public class Headbutt : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToTopSelectionPrompt, ctx, PileType.Discard);
+        var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToTopSelectionPrompt, ctx,
+            PileType.Discard);
         if (card == null)
             return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);

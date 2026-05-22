@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +20,8 @@ public class RainOfEmbers : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        for (var i = 0; i < x; i++) {
+        for (var i = 0; i < x; i++)
+        {
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
             await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         }

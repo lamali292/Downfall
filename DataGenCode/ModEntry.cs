@@ -8,7 +8,6 @@ public class ModEntry
 {
     public static void Load()
     {
-        
         new Harmony("visible_a_9").PatchAll();
     }
 }

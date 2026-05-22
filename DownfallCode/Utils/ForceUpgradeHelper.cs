@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Utils;
 
-
 public static class ForceUpgradeHelper
 {
     private static readonly ConditionalWeakTable<CardModel, StrongBox<int>> ForceUpgraded = new();

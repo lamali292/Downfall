@@ -26,5 +26,7 @@ public sealed class Grudge : HermitCardModel
     }
 
     private static decimal CountCurses(CardModel card, Creature? _)
-     => card.Owner.GetAllCards().Count(e => e.Type == CardType.Curse);
+    {
+        return card.Owner.GetAllCards().Count(e => e.Type == CardType.Curse);
+    }
 }

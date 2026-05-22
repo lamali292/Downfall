@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-
 public sealed class CoalescencePower : HermitPowerModel
 {
     private static bool RetainFilter(CardModel card)
@@ -34,7 +33,8 @@ public sealed class CoalescencePower : HermitPowerModel
         foreach (var card in selected) card.GiveSingleTurnRetain();
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side == Owner.Side) await PowerCmd.Remove(this);
     }

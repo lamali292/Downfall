@@ -12,14 +12,12 @@ public class CleanCode : AutomatonCardModel
 {
     public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<RemoveErrorsPower>(3, false);
-        WithTip(AutomatonTip.Encode);
-        WithTip(AutomatonTip.CompileError);
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithPower<CleanCodePower>(1, 1, false);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<RemoveErrorsPower>(ctx, this);
+        await CommonActions.ApplySelf<CleanCodePower>(ctx, this);
     }
 }

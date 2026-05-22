@@ -18,17 +18,18 @@ public class TornadoPunch : ChampCardModel, IDefensiveComboCard
         WithVar("LastHitCount", 0);
     }
 
+    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var lastHitCount = DynamicVars["LastHitCount"].IntValue;
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue * lastHitCount, ValueProp.Move,
+            cardPlay);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var lastHitCount = result.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0);
         DynamicVars["LastHitCount"].ResetToBase();
         DynamicVars["LastHitCount"].UpgradeValueBy(lastHitCount);
-    }
-
-    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var lastHitCount = DynamicVars["LastHitCount"].IntValue;
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue * lastHitCount, ValueProp.Move, cardPlay);
     }
 }

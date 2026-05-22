@@ -23,7 +23,7 @@ public sealed class Magnum : HermitCardModel
         if (maxDiscard == 0) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, maxDiscard, maxDiscard);
         var selected = (await CardSelectCmd.FromHandForDiscard(
-                ctx, Owner, prefs, null, this)).ToList();
+            ctx, Owner, prefs, null, this)).ToList();
         if (selected.Count == 0) return;
         await CardCmd.Discard(ctx, selected);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

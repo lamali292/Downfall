@@ -1,8 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
-using Automaton.AutomatonCode.Interfaces;
-using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,10 +24,6 @@ public class PiercingShot : AutomatonCardModel
             .Execute(ctx);
         var cards = Owner.GetStash()
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
-        foreach (var card in cards)
-        {
-            CardCmd.Upgrade(card);
-        }
-
+        foreach (var card in cards) CardCmd.Upgrade(card);
     }
 }

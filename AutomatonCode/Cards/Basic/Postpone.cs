@@ -15,7 +15,6 @@ public class Postpone : AutomatonCardModel
     }
 
 
-
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

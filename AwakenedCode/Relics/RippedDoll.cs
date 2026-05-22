@@ -2,12 +2,11 @@
 using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Awakened.AwakenedCode.Relics;
@@ -20,7 +19,8 @@ public class RippedDoll : AwakenedRelicModel
         WithTip(AwakenedTip.Conjure);
     }
 
-    public override bool ShowCounter => CombatManager.Instance.IsInProgress && Owner.Creature.CombatState?.RoundNumber < 3;
+    public override bool ShowCounter =>
+        CombatManager.Instance.IsInProgress && Owner.Creature.CombatState?.RoundNumber < 3;
 
     public override int DisplayAmount
     {
@@ -39,11 +39,12 @@ public class RippedDoll : AwakenedRelicModel
         return Task.CompletedTask;
     }
 
-    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
-        if (side != Owner.Creature.Side) 
+        if (side != Owner.Creature.Side)
             return Task.CompletedTask;
-        InvokeDisplayAmountChanged(); 
+        InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 
@@ -58,10 +59,10 @@ public class RippedDoll : AwakenedRelicModel
     {
         return ModelDb.Relic<ShreddedDoll>();
     }
-    
+
     public override Task AfterCombatEnd(CombatRoom _)
     {
-        InvokeDisplayAmountChanged(); 
+        InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
-using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;

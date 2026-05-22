@@ -85,7 +85,8 @@ public abstract class CardResource : CustomSingletonModel
     }
 
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!ResetOnTurnStart) return Task.CompletedTask;

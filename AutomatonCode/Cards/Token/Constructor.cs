@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using BaseLib.Utils;
@@ -19,7 +18,6 @@ public class Constructor : AutomatonCardModel, IEncodable
     {
         WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));
-        
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

@@ -12,14 +12,14 @@ namespace Champ.ChampCode.Cards.Common;
 [Pool(typeof(ChampCardPool))]
 public class Circumvent : ChampCardModel
 {
-    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
-
     public Circumvent() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);
         WithCards(2);
         WithTip(ChampTip.Defensive);
     }
+
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

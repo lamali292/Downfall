@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Cards;
-
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Displays;
@@ -24,6 +23,8 @@ namespace Automaton.AutomatonCode.Core;
 
 public static class AutomatonCmd
 {
+    public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
+
     public static int GetSequenceCount(Player creature)
     {
         return GetEncodePile(creature)?.Cards.Count ?? 0;
@@ -145,8 +146,14 @@ public static class AutomatonCmd
             AutomatonDisplay.Refresh(creature);
     }
 
-
-    public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
+    
+    public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
+    {
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, 0, amount);
+        var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, source);
+        await Stash(cards);
+    }
+    
     public static async Task Stash(CardModel source, PlayerChoiceContext ctx)
     {
         var amount = source.DynamicVars["Stash"].IntValue;
@@ -154,25 +161,31 @@ public static class AutomatonCmd
         var cards = await CardSelectCmd.FromHand(ctx, source.Owner, prefs, null, source);
         await Stash(cards);
     }
-    
-    public static async Task Stash<TCard>(Player player, int amount = 1)
-    where TCard : CardModel
-      => await DownfallCardCmd.GiveCards<TCard>(player, StashPile.Stash, amount);
-    
-    public static async Task Stash(CardModel card)
-         => await CardPileCmd.Add(card, StashPile.Stash);
-    
-    public static async Task Stash(IEnumerable<CardModel> cards)
-        => await CardPileCmd.Add(cards, StashPile.Stash);
 
-    
+    public static async Task Stash<TCard>(Player player, int amount = 1)
+        where TCard : CardModel
+    {
+        await DownfallCardCmd.GiveCards<TCard>(player, StashPile.Stash, amount);
+    }
+
+    public static async Task Stash(CardModel card)
+    {
+        await CardPileCmd.Add(card, StashPile.Stash);
+    }
+
+    public static async Task Stash(IEnumerable<CardModel> cards)
+    {
+        await CardPileCmd.Add(cards, StashPile.Stash);
+    }
+
+
     public static async Task DrawFromStash(CardModel card)
     {
         var cards = card.Owner.GetStash();
         var n = card.DynamicVars.Cards.IntValue;
         await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
     }
-    
+
     public static async Task DrawFromStash(Player player, int n = 1)
     {
         var cards = player.GetStash();

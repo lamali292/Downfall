@@ -10,15 +10,15 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class GhostflameBarrierPower : HexaghostPowerModel
 {
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult _, ValueProp props, Creature? dealer, CardModel? __)
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult _,
+        ValueProp props, Creature? dealer, CardModel? __)
     {
         if (target == Owner && dealer != null && props.IsPoweredAttack())
-        {
             await PowerCmd.Apply<SoulBurnPower>(choiceContext, dealer, Amount, Owner, null);
-        }
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side == Owner.Side) return;
         await PowerCmd.Remove(this);

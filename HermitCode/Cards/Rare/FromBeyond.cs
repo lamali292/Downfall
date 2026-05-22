@@ -20,8 +20,10 @@ public sealed class FromBeyond : HermitCardModel
     }
 
     private static decimal CountCardsInExhaust(CardModel card, Creature? _)
-     => card.Owner.GetExhaust().Count;
-    
+    {
+        return card.Owner.GetExhaust().Count;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

@@ -19,7 +19,7 @@ public partial class ExporterScreen : Control
     private Label _testLabel = new() { Text = "StS2 Exporter", HorizontalAlignment = HorizontalAlignment.Center };
     private CheckBox _texDump = new() { Text = "Include full texture dump?", ButtonPressed = false };
     private VBoxContainer _vBox = new();
-    
+
 
     public override void _Ready()
     {
@@ -105,7 +105,7 @@ public partial class ExporterScreen : Control
         _exporter.Run(new ExportConfig
         {
             ExportImages = _exportImages.ButtonPressed,
-            DoTexDump = _texDump.ButtonPressed,
+            DoTexDump = _texDump.ButtonPressed
         });
         if (_exporter.NumImagesToExport != 0) return;
         _exporter = null;

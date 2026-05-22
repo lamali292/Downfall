@@ -16,14 +16,12 @@ public class ViciousTackle : SlimeBossCardModel, IDoubleGoopBonus
         WithDamage(17, 7);
         WithSelfDamage(3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);
     }
 }
-
-
 
 public interface IDoubleGoopBonus;

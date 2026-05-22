@@ -1,6 +1,5 @@
 ﻿using Awakened.AwakenedCode.Cards.Ancient;
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;

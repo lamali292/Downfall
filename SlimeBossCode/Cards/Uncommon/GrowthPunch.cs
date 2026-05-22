@@ -24,7 +24,7 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
         DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
         return Task.CompletedTask;
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

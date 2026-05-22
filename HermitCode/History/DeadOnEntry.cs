@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Combat.History;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.History;
 
@@ -20,7 +19,7 @@ public class DeadOnEntry : CombatHistoryEntry
     {
         CardPlay = cardPlay;
     }
-    
+
     public CardPlay CardPlay { get; }
 
     public override string Description => $"{GetId(Actor)} played Dead On effect for {CardPlay.Card.Id.Entry}";

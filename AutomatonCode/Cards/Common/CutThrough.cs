@@ -1,12 +1,9 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -32,5 +29,4 @@ public class CutThrough : AutomatonCardModel
         if (cards.Count == 0) return;
         await AutomatonCmd.Stash(cards[0]);
     }
-   
 }

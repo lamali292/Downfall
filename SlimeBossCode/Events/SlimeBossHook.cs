@@ -28,15 +28,14 @@ public static class SlimeBossHook
     {
         return DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingGoopConsume(creature, applier));
     }
-    
-    
+
+
     public static int ModifySecondarySlimeEffects(ICombatState cs, int originalAmount,
         out IEnumerable<IModifySecondarySlimeEffects> modifiers, SlimeModel slime)
     {
         return DownfallHook.Modify(cs, originalAmount, (e, a) => e.ModifySecondarySlimeEffects(a, slime),
             out modifiers);
     }
-
 }
 
 public interface IModifySecondarySlimeEffects

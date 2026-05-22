@@ -14,7 +14,7 @@ public class Backtrace : AutomatonCardModel, IEncodable
         WithDamage(7, 2);
         WithKeywords(CardKeyword.Innate);
     }
-    
+
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.CardAttack(this, cardPlay)

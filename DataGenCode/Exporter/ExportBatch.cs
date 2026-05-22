@@ -49,10 +49,10 @@ public class ExportBatch
     {
         _items.FindAll();
     }
+
     private void AssignItemsToMods()
     {
         foreach (var item in _items.All())
-        {
             try
             {
                 var mod = _mods.Values.FirstOrDefault(m => m.Assembly != null && m.Assembly == item.Assembly);
@@ -61,13 +61,13 @@ public class ExportBatch
                     GD.Print($"No mod found for item {item.GetType().Name} assembly {item.Assembly?.GetName().Name}");
                     continue;
                 }
+
                 mod.AddItem(item);
             }
             catch (Exception)
             {
                 // ignored
             }
-        }
     }
 
     private void DiscardBasegame()
@@ -75,6 +75,7 @@ public class ExportBatch
         _items.RemoveIf(i => i.Mod?.IsBasegame ?? true);
         _mods.Remove("slay-the-spire-2");
     }
+
     private void ExportMods()
     {
         foreach (var (_, mod) in _mods.Where(m => m.Value.Items.All().Any()))

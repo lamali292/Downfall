@@ -16,7 +16,7 @@ public class Commit : AutomatonCardModel
         WithBlock(6, 2);
         WithDamage(6, 2);
     }
-    
+
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
 
     private bool WasLastCardPlayedFunction => CombatManager.Instance.History.CardPlaysFinished
@@ -24,7 +24,7 @@ public class Commit : AutomatonCardModel
             e.CardPlay.Card.Owner == Owner &&
             e.CardPlay.Card != this)?.CardPlay.Card is FunctionCard;
 
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
@@ -38,6 +38,7 @@ public class Commit : AutomatonCardModel
             modifiedCost = 0;
             return true;
         }
+
         modifiedCost = originalCost;
         return false;
     }

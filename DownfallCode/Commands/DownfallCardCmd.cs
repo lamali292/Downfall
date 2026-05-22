@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Events;
+﻿using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -11,8 +10,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -146,9 +143,10 @@ public class DownfallCardCmd
     }
 
     /// <summary>
-    /// Select from given cards with count manually specified.
+    ///     Select from given cards with count manually specified.
     /// </summary>
-    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx, IReadOnlyList<CardModel> cards, LocString prompt,  int count, CardModel cardSource,
+    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
+        IReadOnlyList<CardModel> cards, LocString prompt, int count, CardModel cardSource,
         bool optional = false)
     {
         return await CardSelectCmd.FromSimpleGrid(
@@ -165,9 +163,10 @@ public class DownfallCardCmd
 
 
     /// <summary>
-    /// Select from given cards with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
+    ///     Select from given cards with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
     /// </summary>
-    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx, IReadOnlyList<CardModel> cards, LocString prompt, CardModel cardSource,
+    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
+        IReadOnlyList<CardModel> cards, LocString prompt, CardModel cardSource,
         bool optional = false)
     {
         var count = cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
@@ -175,7 +174,7 @@ public class DownfallCardCmd
     }
 
     /// <summary>
-    /// Select cards from hand with count manually specified.
+    ///     Select cards from hand with count manually specified.
     /// </summary>
     public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
         int count, CardModel cardSource,
@@ -193,11 +192,12 @@ public class DownfallCardCmd
             cardSource
         );
     }
-    
+
     /// <summary>
-    /// Select cards from hand with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
+    ///     Select cards from hand with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
     /// </summary>
-    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, CardModel cardSource,
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
+        CardModel cardSource,
         Func<CardModel, bool>? filter = null, bool optional = false)
     {
         var count = cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
@@ -206,9 +206,10 @@ public class DownfallCardCmd
 
 
     /// <summary>
-    /// Select cards from hand with count manually specified.
+    ///     Select cards from hand with count manually specified.
     /// </summary>
-    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, int count, PowerModel powerSource,
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
+        int count, PowerModel powerSource,
         Func<CardModel, bool>? filter = null, bool optional = false)
     {
         return await CardSelectCmd.FromHand(
@@ -225,9 +226,10 @@ public class DownfallCardCmd
     }
 
     /// <summary>
-    /// Select cards from hand with count determined by <c>Amount</c>.
+    ///     Select cards from hand with count determined by <c>Amount</c>.
     /// </summary>
-    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, PowerModel powerSource,
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
+        PowerModel powerSource,
         Func<CardModel, bool>? filter = null, bool optional = false)
     {
         var count = powerSource.Amount;

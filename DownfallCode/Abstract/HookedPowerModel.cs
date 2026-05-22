@@ -66,13 +66,15 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
-    
-    public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+
+    public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         return ExecuteWithContext(ctx => AfterSideTurnStart(ctx, side, participants, combatState));
     }
 
-    protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         return Task.CompletedTask;
     }

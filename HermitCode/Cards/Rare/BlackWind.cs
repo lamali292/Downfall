@@ -19,7 +19,9 @@ public sealed class BlackWind : HermitCardModel
     }
 
     private static decimal GetMissingHp(CardModel card, Creature? _)
-         => card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp;
+    {
+        return card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp;
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {

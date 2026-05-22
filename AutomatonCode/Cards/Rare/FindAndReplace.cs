@@ -3,7 +3,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -30,7 +29,9 @@ public class FindAndReplace : AutomatonCardModel
         if (choices.Count == 0) return;
 
         // Select card to move / show screen
-        var selected = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDraw(), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, optional: true)).FirstOrDefault();
+        var selected =
+            (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDraw(),
+                DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true)).FirstOrDefault();
 
         if (selected == null) return;
 
@@ -51,7 +52,6 @@ public class FindAndReplace : AutomatonCardModel
 
         // Move to hand
         var result = await CardPileCmd.Add(selected, PileType.Hand);
-
 
 
         // TODO: 

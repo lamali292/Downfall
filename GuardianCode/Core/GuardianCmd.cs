@@ -252,6 +252,7 @@ public static class GuardianCmd
         var amount = card.DynamicVars.Polish().IntValue;
         await Polish(ctx, card, amount);
     }
+
     public static async Task Polish(PlayerChoiceContext ctx, CardModel card, decimal amount)
     {
         await Polish(ctx, card.Owner.Creature, amount, card);
@@ -291,6 +292,7 @@ public static class GuardianCmd
                 else
                     await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, target, cardSource, true);
             }
+
             await PowerCmd.ModifyAmount(ctx, power, -amount, target, cardSource);
         }
     }

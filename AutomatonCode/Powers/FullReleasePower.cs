@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +29,8 @@ public class FullReleasePower : AutomatonPowerModel
     }
 
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+        ICombatState combatState)
     {
         if (Owner.Player != player || Owner.CombatState == null) return;
         var resourceInfo = new ResourceInfo

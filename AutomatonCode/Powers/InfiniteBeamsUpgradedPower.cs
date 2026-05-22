@@ -11,7 +11,8 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class InfiniteBeamsUpgradedPower : AutomatonPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var beams = Enumerable.Range(0, Amount)

@@ -17,7 +17,8 @@ public sealed class BrassTacks : HermitRelicModel
         WithBlock(2);
     }
 
-    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Creature.Side || Owner?.Creature == null) return;
 

@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using MegaCrit.Sts2.Core.Commands;

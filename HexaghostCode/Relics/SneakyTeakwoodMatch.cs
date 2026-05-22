@@ -40,8 +40,9 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
         else if (keyword == HexaghostKeyword.Retract)
             await HexaghostCmd.Retract(ctx, Owner, this);
     }
-    
-    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return Task.CompletedTask;
         Status = RelicStatus.Active;

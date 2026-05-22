@@ -26,9 +26,9 @@ public sealed class CalledShot : HermitCardModel
             .Where(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner.Creature)
             .Select(e => e.CardPlay).LastOrDefault();
         var cardplay2 = CombatManager.Instance.History.CardPlaysFinished
-            .Where(e => e.HappenedThisTurn(CombatState)  && e.Actor == Owner.Creature)
+            .Where(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner.Creature)
             .Select(e => e.CardPlay).LastOrDefault();
-        return cardplay2 != null && cardplay1 != null && cardplay2  == cardplay1;
+        return cardplay2 != null && cardplay1 != null && cardplay2 == cardplay1;
     }
 
 

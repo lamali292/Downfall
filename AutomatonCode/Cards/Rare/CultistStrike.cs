@@ -16,9 +16,8 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 public class CultistStrike : AutomatonCardModel,
     IEncodable, ICompilable
 {
-    
     // TODO : Persistent increase with saved property
-    
+
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6);

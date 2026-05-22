@@ -1,12 +1,10 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Common;
-
 
 public sealed class Glare : HermitCardModel
 {

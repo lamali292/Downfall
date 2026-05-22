@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Powers;
 
-
 public sealed class BrawlPower : HermitPowerModel
 {
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

@@ -12,9 +12,6 @@ namespace Automaton.AutomatonCode.Cards;
 
 public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
 {
-    public bool SkipEncode { get; set; }
-    public bool SuppressCompileError { get; set; }
-
     public AutomatonCardModel(
         int cost,
         CardType type,
@@ -31,6 +28,9 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         if (this is ICompilableError)
             WithTip(AutomatonTip.CompileError);
     }
+
+    public bool SkipEncode { get; set; }
+    public bool SuppressCompileError { get; set; }
 
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -72,8 +72,8 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         if (compileError != null)
             description.Add("error", compileError);
     }
-    
-    
+
+
     protected void WithStash(int baseValue, int upgradeValue = 0)
     {
         WithVars(new StashVar(baseValue).WithUpgrade(upgradeValue));

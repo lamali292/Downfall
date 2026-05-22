@@ -12,8 +12,13 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
     {
         WithCards(3, 2);
     }
-    
-    protected override  async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play, bool isDeadOn)
+
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play, bool isDeadOn)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
@@ -35,7 +40,4 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
         if (isDeadOn) await PowerCmd.Apply<CheatPower>(ctx, Owner.Creature, 1, Owner.Creature, this, true);
         await CardCmd.AutoPlay(ctx, selected, null);
     }
-
-    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => Task.CompletedTask;
 }

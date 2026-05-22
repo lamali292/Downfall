@@ -11,7 +11,7 @@ public static class PlayerExtensions
     {
         return StashPile.Stash.GetPile(player).Cards;
     }
-    
+
     public static IReadOnlyList<CardModel> GetEncode(this Player player)
     {
         return EncodePile.FunctionSequence.GetPile(player).Cards;

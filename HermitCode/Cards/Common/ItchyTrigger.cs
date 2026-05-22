@@ -16,7 +16,17 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
         WithVar("CostReduction", 1, 1);
     }
 
-   
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        var cards = Owner.GetHand();
+        var cardModel = cards?.Where(c => c.CostsEnergyOrStars(false))
+                            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault() ??
+                        cards?.Where(c => c.CostsEnergyOrStars(true))
+                            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
+        cardModel?.EnergyCost.AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
+        return Task.CompletedTask;
+    }
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -24,16 +34,5 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
         HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
-    }
-
-    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        var cards =  Owner.GetHand();
-        var cardModel = cards?.Where(c => c.CostsEnergyOrStars(false))
-            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault() ?? 
-                        cards?.Where(c => c.CostsEnergyOrStars(true))
-            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
-        cardModel?.EnergyCost.AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
-        return Task.CompletedTask;
     }
 }

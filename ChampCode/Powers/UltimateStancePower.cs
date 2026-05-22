@@ -20,7 +20,8 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
     }
 
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side == Owner.Side || Owner.Player == null) return;
         await ChampCmd.ClearStance(ctx, Owner.Player);

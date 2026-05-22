@@ -4,8 +4,6 @@ using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -26,7 +24,8 @@ public class Preprogram : GuardianCardModel
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();
-        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
+            this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }

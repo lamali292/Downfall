@@ -11,17 +11,22 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class BronzeOrbPower : AutomatonPowerModel
 {
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
+    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card,
+        bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
-        => card.Owner.Creature != Owner ? (pileType, position) : (StashPile.Stash, CardPilePosition.Top);
+    {
+        return card.Owner.Creature != Owner ? (pileType, position) : (StashPile.Stash, CardPilePosition.Top);
+    }
 
-    public override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
+    public override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
+        CardPilePosition position)
     {
         PowerCmd.Decrement(this);
         return Task.CompletedTask;
     }
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return Task.CompletedTask;
         PowerCmd.Remove(this);

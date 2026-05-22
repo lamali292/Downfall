@@ -14,23 +14,7 @@ namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
 {
-    protected enum StanceType
-    {
-        None,
-        Berserker,
-        Defensive
-    }
     protected StanceType EnterStance = StanceType.None;
-
-    protected override bool ShouldGlowRedInternal =>
-        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
-    protected override bool ShouldGlowGoldInternal => (
-        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger())
-        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger())
-    );
-
-    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
-                                          Enchantment is Signature;
 
     public ChampCardModel(
         int cost,
@@ -46,6 +30,7 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
             WithTip(ChampTip.Berserker);
             WithTip(ChampTip.Combo);
         }
+
         if (this is IDefensiveComboCard)
         {
             WithTip(ChampTip.Defensive);
@@ -53,10 +38,21 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         }
     }
 
+    protected override bool ShouldGlowRedInternal =>
+        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
+
+    protected override bool ShouldGlowGoldInternal =>
+        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger())
+        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger());
+
+    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
+                                          Enchantment is Signature;
+
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
     }
+
     protected virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay);
@@ -68,12 +64,14 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         WithTip(ChampTip.Finisher);
         return this;
     }
+
     protected ConstructedCardModel WithEnterBerserker()
     {
         EnterStance = StanceType.Berserker;
         WithTip(ChampTip.Berserker);
         return this;
     }
+
     protected ConstructedCardModel WithEnterDefensive()
     {
         EnterStance = StanceType.Defensive;
@@ -87,43 +85,30 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         await PlayEffect(ctx, cardPlay);
 
         var stance = Owner.ChampStance();
-        if (Keywords.Contains(ChampKeyword.TriggerSkillBonus))
-        {
-            await stance.SkillBonus(ctx);
-        }
+        if (Keywords.Contains(ChampKeyword.TriggerSkillBonus)) await stance.SkillBonus(ctx);
 
         if (cardPlay.Card.Type == CardType.Skill
-        && (ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner) || stance.Charges > 0)) 
+            && (ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner) || stance.Charges > 0))
         {
-            if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner)) {
+            if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner))
+            {
                 stance.Charges--;
                 ChampModel.RefreshDisplay(Owner);
             }
+
             await stance.SkillBonus(ctx);
         }
 
         if (EnterStance == StanceType.Berserker)
-        {
             await ChampCmd.EnterBerserkerStance(ctx, Owner);
-        }
-        else if (EnterStance == StanceType.Defensive)
-        {
-            await ChampCmd.EnterDefensiveStance(ctx, Owner);
-        }
+        else if (EnterStance == StanceType.Defensive) await ChampCmd.EnterDefensiveStance(ctx, Owner);
 
         if (this is IBerserkerComboCard berserkerCombo && Owner.ShouldBerserkerComboTrigger())
-        {
             await berserkerCombo.BerserkerComboEffect(ctx, cardPlay);
-        }
         if (this is IDefensiveComboCard defensiveCombo && Owner.ShouldDefensiveComboTrigger())
-        {
             await defensiveCombo.DefensiveComboEffect(ctx, cardPlay);
-        }
 
-        if (Tags.Contains(ChampTag.Finisher))
-        {
-            await FinisherEffect(ctx, cardPlay);
-        }
+        if (Tags.Contains(ChampTag.Finisher)) await FinisherEffect(ctx, cardPlay);
     }
 
     protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
@@ -131,5 +116,12 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         WithPower<GloryPower>(baseVal, upgrade);
         WithTip(ChampTip.Ultimate);
         return this;
+    }
+
+    protected enum StanceType
+    {
+        None,
+        Berserker,
+        Defensive
     }
 }

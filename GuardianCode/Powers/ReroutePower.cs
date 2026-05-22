@@ -38,7 +38,8 @@ public class ReroutePower : GuardianPowerModel
         await PowerCmd.Decrement(this);
     }
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         return PowerCmd.Remove(this);
     }

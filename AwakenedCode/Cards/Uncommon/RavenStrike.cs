@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
@@ -14,7 +13,6 @@ public class RavenStrike : AwakenedCardModel, IChantable
     public RavenStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(15, 5);
-        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

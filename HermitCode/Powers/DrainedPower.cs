@@ -6,13 +6,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class DrainedPower: HermitPowerModel
+public sealed class DrainedPower : HermitPowerModel
 {
     public DrainedPower() : base(PowerType.Debuff)
     {
         WithEnergyTip();
     }
-    
+
     protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
     {
         if (player != Owner.Player) return;

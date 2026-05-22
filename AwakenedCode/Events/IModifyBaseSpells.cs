@@ -7,4 +7,3 @@ public interface IModifyBaseSpells
 {
     IReadOnlyList<CardModel> ModifyBaseSpells(Player owner, IReadOnlyList<CardModel> types);
 }
-

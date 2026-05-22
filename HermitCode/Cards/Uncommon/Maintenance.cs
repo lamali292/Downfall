@@ -1,4 +1,3 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;

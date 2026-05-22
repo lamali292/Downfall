@@ -25,7 +25,8 @@ public class MiddenHeap : AwakenedCardModel
         var cardsToSelect = Owner.GetDiscard()
             .Concat(Owner.GetDraw()).Where(c => c.Type is CardType.Status or CardType.Curse)
             .ToList();
-        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
+        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect,
+            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 }

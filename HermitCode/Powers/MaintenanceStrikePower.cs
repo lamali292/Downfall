@@ -10,9 +10,12 @@ public sealed class MaintenanceStrikePower : HermitPowerModel
 {
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
-        => dealer == Owner &&
-           cardSource != null &&
-           cardSource.Tags.Contains(CardTag.Strike) &&
-           props.HasFlag(ValueProp.Move) ?  Amount : 0;
-    
+    {
+        return dealer == Owner &&
+               cardSource != null &&
+               cardSource.Tags.Contains(CardTag.Strike) &&
+               props.HasFlag(ValueProp.Move)
+            ? Amount
+            : 0;
+    }
 }

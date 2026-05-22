@@ -1,8 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Events;
-using Automaton.AutomatonCode.Powers;
+﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -28,6 +24,7 @@ public class ForceShield : AutomatonCardModel
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (card != this || IsClone) return Task.CompletedTask;
@@ -43,5 +40,4 @@ public class ForceShield : AutomatonCardModel
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
-    
 }

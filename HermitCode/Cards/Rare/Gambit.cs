@@ -23,9 +23,6 @@ public sealed class Gambit : HermitCardModel
             .TakeRandom(DynamicVars.Cards.IntValue, combatCardSelection)
             .ToList();
         await CardPileCmd.Add(cards, PileType.Hand);
-        foreach (var card in cards)
-        {
-            card.EnergyCost.AddThisTurn(-1, true);
-        }
+        foreach (var card in cards) card.EnergyCost.AddThisTurn(-1, true);
     }
 }

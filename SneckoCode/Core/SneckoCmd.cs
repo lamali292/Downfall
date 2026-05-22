@@ -19,6 +19,7 @@ namespace Snecko.SneckoCode.Core;
 
 public static class SneckoCmd
 {
+    private static readonly Dictionary<Type, PowerModel?> PowerCache = new();
     private static LocString MuddleSelectionPrompt => new("card_selection", "TO_MUDDLE");
 
     public static Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, bool lowerOnly = false)
@@ -94,8 +95,6 @@ public static class SneckoCmd
                card.TargetType is not (TargetType.Self or TargetType.None);
     }
 
-    private static readonly Dictionary<Type, PowerModel?> PowerCache = new();
-
     private static bool IsDebuffPowerVar(DynamicVar v)
     {
         var t = v.GetType();
@@ -122,6 +121,7 @@ public static class SneckoCmd
             player.RunState.AddCard(cardChoice, player);
             if (gift.IsUpgraded) cardChoice.UpgradeInternal();
         }
+
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
         CardModel? card;
 
@@ -135,6 +135,7 @@ public static class SneckoCmd
                     player, choiceId, PlayerChoiceResult.FromIndex(null));
                 return;
             }
+
             card = (await screen.CardsSelected()).FirstOrDefault();
             RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(
                 player, choiceId, PlayerChoiceResult.FromIndex(card != null ? new int?(cards.IndexOf(card)) : null));

@@ -66,7 +66,10 @@ public sealed class CursedWeapon : HermitCardModel
         });
     }
 
-    protected override void AfterDowngraded() => UpdateDamage();
+    protected override void AfterDowngraded()
+    {
+        UpdateDamage();
+    }
 
     private void BuffFromPlay(int extraDamage)
     {
@@ -74,5 +77,8 @@ public sealed class CursedWeapon : HermitCardModel
         UpdateDamage();
     }
 
-    private void UpdateDamage() => CurrentDamage = BaseDamage + IncreasedDamage;
+    private void UpdateDamage()
+    {
+        CurrentDamage = BaseDamage + IncreasedDamage;
+    }
 }

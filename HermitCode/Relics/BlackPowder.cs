@@ -21,7 +21,7 @@ public sealed class BlackPowder : HermitRelicModel, IAfterDeadOnTrigger
         WithVars(new DamageVar(2, ValueProp.Unpowered));
         WithTip(HermitKeywords.DeadOn);
     }
-    
+
     public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         await CreatureCmd.Damage(ctx, Owner.Creature.CombatState!.HittableEnemies, DynamicVars.Damage, Owner.Creature);

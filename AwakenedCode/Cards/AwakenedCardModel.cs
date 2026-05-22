@@ -24,11 +24,14 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
         bool autoAdd = true)
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        WithTips(card => card is IChantable chantable ?  chantable.HasChanted ? 
-            [HoverTipFactory.Static(AwakenedTip.Chanted)] : [HoverTipFactory.Static(AwakenedTip.Chant)] : []);
+        WithTips(card => card is IChantable chantable
+            ? chantable.HasChanted
+                ? [HoverTipFactory.Static(AwakenedTip.Chanted)]
+                : [HoverTipFactory.Static(AwakenedTip.Chant)]
+            : []);
     }
-    
-    
+
+
     public bool HasChanted { get; set; } = false;
 
     public bool WasLastCardPlayedPower
@@ -68,18 +71,18 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
             await AwakenedCmd.Chant(ctx, this, cardPlay);
     }
 
-    
+
     protected AwakenedCardModel WithConjure(Func<CardModel, bool>? a = null)
     {
         if (a == null)
             WithTip(AwakenedTip.Conjure);
-        else 
+        else
             WithTips(e => a.Invoke(e) ? [HoverTipFactory.Static(AwakenedTip.Conjure)] : []);
-     
+
         WithTags(AwakenedTag.Conjure);
         return this;
     }
-    
+
     protected AwakenedCardModel WithDrained(int baseVal, int upgrade = 0)
     {
         WithPower<DrainedPower>(baseVal, upgrade, false);
