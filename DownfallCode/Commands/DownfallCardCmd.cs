@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Events;
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -8,7 +9,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -51,7 +55,7 @@ public class DownfallCardCmd
         var model = ModelDb.Card<T>();
         for (var i = 0; i < count; i++)
         {
-            var card = (T) player.Creature.CombatState!.CreateCard(model, player);
+            var card = (T)player.Creature.CombatState!.CreateCard(model, player);
             if (upgraded) card.UpgradeInternal();
             action?.Invoke(card);
             cardInstances.Add(card);
@@ -141,45 +145,93 @@ public class DownfallCardCmd
         return result;
     }
 
-    public static async Task<IEnumerable<CardPileAddResult>> SelectCardToMovePiles(PlayerChoiceContext ctx,
-        CardModel card, PileType fromPile,
-        PileType toPile)
+    /// <summary>
+    /// Select from given cards with count manually specified.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx, IReadOnlyList<CardModel> cards, LocString prompt,  int count, CardModel cardSource,
+        bool optional = false)
     {
-        var cards = fromPile.GetPile(card.Owner).Cards.ToList();
-        if (cards.Count == 0) return [];
-        var want = card.DynamicVars.Cards.IntValue;
-        IEnumerable<CardModel> newCard;
-        if (cards.Count <= want)
-        {
-            newCard = cards;
-        }
-        else
-        {
-            var prefs = new CardSelectorPrefs(card.SelectionScreenPrompt, want, want);
-            newCard = await CardSelectCmd.FromSimpleGrid(ctx, cards, card.Owner, prefs);
-        }
-
-        return await CardPileCmd.Add(newCard, toPile);
-    }
-
-    public static async Task<IReadOnlyList<CardPileAddResult>> SelectCardToMoveFromHand(PlayerChoiceContext ctx,
-        CardModel card,
-        PileType toPile, Func<CardModel, bool>? filter)
-    {
-        var want = card.DynamicVars.Cards.IntValue;
-        var prefs = new CardSelectorPrefs(card.SelectionScreenPrompt, want, want);
-        var newCard = await CardSelectCmd.FromHand(ctx, card.Owner, prefs, filter, card);
-        return await CardPileCmd.Add(newCard, toPile);
+        return await CardSelectCmd.FromSimpleGrid(
+            ctx,
+            cards,
+            cardSource.Owner,
+            new CardSelectorPrefs(
+                prompt,
+                optional ? 0 : count,
+                count
+            )
+        );
     }
 
 
-    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, CardModel card,
-        int count = 1,
-        Func<CardModel, bool>? filter = null)
+    /// <summary>
+    /// Select from given cards with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx, IReadOnlyList<CardModel> cards, LocString prompt, CardModel cardSource,
+        bool optional = false)
     {
-        return await CardSelectCmd.FromHand(ctx, card.Owner, new CardSelectorPrefs(card.SelectionScreenPrompt, count),
+        var count = cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
+        return await SelectFromCards(ctx, cards, prompt, count, cardSource, optional);
+    }
+
+    /// <summary>
+    /// Select cards from hand with count manually specified.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
+        int count, CardModel cardSource,
+        Func<CardModel, bool>? filter = null, bool optional = false)
+    {
+        return await CardSelectCmd.FromHand(
+            ctx,
+            cardSource.Owner,
+            new CardSelectorPrefs(
+                prompt,
+                optional ? 0 : count,
+                count
+            ),
             filter,
-            card);
+            cardSource
+        );
+    }
+    
+    /// <summary>
+    /// Select cards from hand with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, CardModel cardSource,
+        Func<CardModel, bool>? filter = null, bool optional = false)
+    {
+        var count = cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
+        return await SelectFromHand(ctx, prompt, count, cardSource, filter, optional);
+    }
+
+
+    /// <summary>
+    /// Select cards from hand with count manually specified.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, int count, PowerModel powerSource,
+        Func<CardModel, bool>? filter = null, bool optional = false)
+    {
+        return await CardSelectCmd.FromHand(
+            ctx,
+            powerSource.Owner.Player!,
+            new CardSelectorPrefs(
+                prompt,
+                optional ? 0 : count,
+                count
+            ),
+            filter,
+            powerSource
+        );
+    }
+
+    /// <summary>
+    /// Select cards from hand with count determined by <c>Amount</c>.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt, PowerModel powerSource,
+        Func<CardModel, bool>? filter = null, bool optional = false)
+    {
+        var count = powerSource.Amount;
+        return await SelectFromHand(ctx, prompt, count, powerSource, filter, optional);
     }
 
     public static void ForceUpgrade(CardModel card, int upgrade = 1)

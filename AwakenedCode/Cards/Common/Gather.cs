@@ -2,6 +2,8 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +21,7 @@ public class Gather : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var selected = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Discard);
+        var selected = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToHandSelectionPrompt, ctx, PileType.Discard);
         if (selected == null) return;
         await CardPileCmd.Add(selected, PileType.Hand);
     }

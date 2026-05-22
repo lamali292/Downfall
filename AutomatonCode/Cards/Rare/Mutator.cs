@@ -26,7 +26,7 @@ public class Mutator : AutomatonCardModel
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
 
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var selected = (await CardSelectCmd.FromHand(ctx, Owner, prefs, card => card.Type == CardType.Status, this))
             .FirstOrDefault();
 

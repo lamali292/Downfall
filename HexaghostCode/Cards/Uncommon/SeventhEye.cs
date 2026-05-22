@@ -1,4 +1,7 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,10 +21,7 @@ public class SeventhEye : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.PlayerCombatState == null) return;
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var card = (await CardSelectCmd.FromSimpleGrid(ctx, Owner.PlayerCombatState.DrawPile.Cards, Owner, prefs))
-            .FirstOrDefault();
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDraw(), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this)).FirstOrDefault();
         if (card != null) await CardPileCmd.Add(card, PileType.Hand);
         await HexaghostCmd.MoveToRandom(ctx, Owner, true);
         await HexaghostCmd.ReplaceCurrentWithRandom(Owner);

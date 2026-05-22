@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -20,8 +22,7 @@ public class Clone : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
+        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ApplySelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         var clone = card.CreateClone();
         await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner);

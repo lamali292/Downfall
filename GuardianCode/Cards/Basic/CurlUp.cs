@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -28,8 +30,7 @@ public class CurlUp : GuardianCardModel
             CardModel? card;
             if (IsUpgraded)
             {
-                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-                card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
+                card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
             }
             else
             {

@@ -2,6 +2,8 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Piles;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,8 +23,7 @@ public class ByrdsEye : AwakenedCardModel
     {
         if (IsUpgraded) AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);
         var cards = AwakenedPile.Spellbook.GetPile(Owner).Cards;
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var selected = (await CardSelectCmd.FromSimpleGrid(ctx, cards, Owner, prefs)).FirstOrDefault();
+        var selected = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.ConjureSelectionPrompt, this)).FirstOrDefault();
         if (selected == null) return;
         await AwakenedCmd.ConjureSelected(Owner, this, selected);
     }

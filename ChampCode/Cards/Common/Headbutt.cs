@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ public class Headbutt : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Discard);
+        var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToTopSelectionPrompt, ctx, PileType.Discard);
         if (card == null)
             return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);

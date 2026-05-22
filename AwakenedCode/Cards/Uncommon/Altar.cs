@@ -1,6 +1,8 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +24,7 @@ public class Altar : AwakenedCardModel
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardBlock(this, cardPlay);
-        var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Hand);
+        var card = await CommonActions.SelectSingleCard(this, CardSelectorPrefs.ExhaustSelectionPrompt, ctx, PileType.Hand);
         if (card != null) await CardCmd.Exhaust(ctx, card);
         await AwakenedCmd.Conjure(Owner, CombatState);
     }

@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,8 +21,7 @@ public class WorthySacrifice : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue);
-        var cards = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).ToList();
+        var cards = (await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this)).ToList();
         foreach (var card in cards) await CardCmd.Exhaust(ctx, card);
 
         await TransformCards(cards, CardType.Attack, CardType.Skill);

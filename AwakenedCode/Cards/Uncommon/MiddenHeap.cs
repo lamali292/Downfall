@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.CardSelection;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,8 +24,7 @@ public class MiddenHeap : AwakenedCardModel
         var cardsToSelect = PileType.Discard.GetPile(Owner).Cards
             .Concat(PileType.Draw.GetPile(Owner).Cards).Where(c => c.Type is CardType.Status or CardType.Curse)
             .ToList();
-        var selected = await CardSelectCmd.FromSimpleGrid(ctx, cardsToSelect, Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue));
+        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 }

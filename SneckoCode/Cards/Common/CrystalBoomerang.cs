@@ -1,5 +1,8 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -17,15 +20,10 @@ public class CrystalBoomerang : SneckoCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = new CardPileAddResult();
-        foreach (var pile in await DownfallCardCmd.SelectCardToMovePiles(ctx, this, PileType.Discard, PileType.Hand))
-        {
-            result = pile;
-            break;
-        }
-
-        if (!result.success || result.cardAdded == null) return;
-        if (!SneckoCmd.IsOffclass(this, result.cardAdded)) return;
-        await CommonActions.CardBlock(this, cardPlay);
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, optional: true)).FirstOrDefault();
+        if (card == null) return;
+        await CardPileCmd.Add(card, PileType.Hand);
+        if (SneckoCmd.IsOffclass(this, card))
+            await CommonActions.CardBlock(this, cardPlay);
     }
 }

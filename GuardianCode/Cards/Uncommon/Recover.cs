@@ -1,4 +1,7 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,9 +26,8 @@ public class Recover : GuardianCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await GuardianCmd.Brace(ctx, this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
-        var cards = PileType.Discard.GetPile(Owner).Cards;
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromSimpleGrid(ctx, cards, Owner, prefs)).FirstOrDefault();
+        
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(), DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }

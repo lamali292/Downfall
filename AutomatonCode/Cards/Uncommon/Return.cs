@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.CardSelection;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,23 +20,13 @@ public class Return : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var discardPile = PileType.Discard.GetPile(Owner);
-        if (discardPile.Cards.Count == 0) return;
+        var selected = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(), DownfallCardSelectorPrefs.ToTopSelectionPrompt, this)).FirstOrDefault();
+        
+        if (selected != null)
+        {
+            await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
+        }
 
-        var prefs = new CardSelectorPrefs(
-            SelectionScreenPrompt,
-            1, 1
-        );
-
-        var selected = await CardSelectCmd.FromSimpleGrid(
-            ctx,
-            discardPile.Cards.ToList(),
-            Owner,
-            prefs
-        );
-
-        foreach (var card in selected)
-            await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);
     }
 }

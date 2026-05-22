@@ -1,0 +1,6 @@
+{
+  "TO_HAND": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to add to your [gold]Hand[/gold].",
+  "TO_TOP": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to put on top of your [gold]Draw Pile[/gold].",
+  "TO_APPLY": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to apply effects.",
+  "TO_STASIS": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to put into [gold]Stasis[/gold]."
+}
