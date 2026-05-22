@@ -7,13 +7,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class DigitalCarnage : AutomatonCardModel,
     IEncodable, ICompilableError
 {
-    public DigitalCarnage() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public DigitalCarnage() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(15, 5);
         WithTip(CardKeyword.Ethereal);

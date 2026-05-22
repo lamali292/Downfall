@@ -1,10 +1,10 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Status;
+using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -15,12 +15,13 @@ public class Turbo : AutomatonCardModel
     {
         WithEnergyTip();
         WithEnergy(2, 1);
-        WithTip(typeof(Void));
+        WithTip(typeof(Error));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-        await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Discard);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Discard);
     }
 }

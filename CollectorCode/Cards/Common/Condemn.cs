@@ -19,7 +19,7 @@ public class Condemn : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await MyCommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
     }
 }

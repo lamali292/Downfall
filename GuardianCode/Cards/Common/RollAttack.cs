@@ -19,7 +19,7 @@ public class RollAttack : GuardianCardModel
     public override int GemSlots => 1;
     protected override bool ShouldGlowGoldInternal => GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner);
 
-    public override TargetType TargetType => !IsMutable
+    public override TargetType TargetType => _owner == null || !IsMutable
         ? TargetType.AnyEnemy
         : GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)
             ? TargetType.AllEnemies

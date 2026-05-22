@@ -10,12 +10,12 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Constructor : AutomatonCardModel, IEncodable
 {
-    public Constructor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Constructor() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));

@@ -21,6 +21,6 @@ public sealed class FlashPowder : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);
-        await MyCommonActions.Apply<StrengthPower>(ctx, this, play);
+        await CommonActions.Apply<StrengthPower>(ctx, this, play);
     }
 }

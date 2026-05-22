@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Events;
 
@@ -27,4 +28,18 @@ public static class SlimeBossHook
     {
         return DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingGoopConsume(creature, applier));
     }
+    
+    
+    public static int ModifySecondarySlimeEffects(ICombatState cs, int originalAmount,
+        out IEnumerable<IModifySecondarySlimeEffects> modifiers, SlimeModel slime)
+    {
+        return DownfallHook.Modify(cs, originalAmount, (e, a) => e.ModifySecondarySlimeEffects(a, slime),
+            out modifiers);
+    }
+
+}
+
+public interface IModifySecondarySlimeEffects
+{
+    int ModifySecondarySlimeEffects(int amount, SlimeModel slime);
 }

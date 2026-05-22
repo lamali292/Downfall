@@ -1,0 +1,17 @@
+{
+  "id": "DataGen",
+  "name": "DataGen",
+  "author": "lamali",
+  "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
+  "version": "0.0.0",
+  "has_pck": false,
+  "has_dll": true,
+  "min_game_version": "0.105.0",
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.1.3"
+    }
+  ],
+  "affects_gameplay": false
+}

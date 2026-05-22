@@ -18,6 +18,6 @@ public class OozeBath : SlimeBossCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<OozeBathPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<OozeBathPower>(ctx, this, cardPlay);
     }
 }

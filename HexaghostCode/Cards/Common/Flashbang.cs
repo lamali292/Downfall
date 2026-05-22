@@ -20,6 +20,6 @@ public class Flashbang : HexaghostCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!HexaghostCmd.IsIgnited(Owner)) return;
-        await MyCommonActions.Apply<TemporaryStrengthDownPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, this, cardPlay);
     }
 }

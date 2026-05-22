@@ -2,6 +2,7 @@ using Hermit.HermitCode.Cards;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -32,7 +33,7 @@ public sealed class ComboPower : HermitPowerModel
         return (PileType.Hand, CardPilePosition.Bottom);
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, ICombatState combatState)
+    protected override Task AfterSideTurnStart(PlayerChoiceContext ctx,  CombatSide side,IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return Task.CompletedTask;
 

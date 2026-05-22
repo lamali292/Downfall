@@ -18,7 +18,7 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff)
         CardModel? cardSource)
         => target != Owner || !props.HasFlag(ValueProp.Move) ? 0 : Amount;
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (HermitHook.ShouldPreventBruiseRemoval(CombatState, this, out var preventers))
         {

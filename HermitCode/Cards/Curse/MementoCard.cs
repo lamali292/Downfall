@@ -24,6 +24,6 @@ public sealed class MementoCard : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, play);
     }
 }

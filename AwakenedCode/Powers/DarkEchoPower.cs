@@ -22,7 +22,7 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
     }
 
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         var damageAmount = Owner.GetPowerAmount<StrengthPower>() + 4;

@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGen", "ImageGen\ImageG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermit", "Hermit.csproj", "{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen", "DataGen.csproj", "{82ACF291-639D-4BC6-A502-B001A46F5C62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,5 +119,11 @@ Global
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

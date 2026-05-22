@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -17,6 +18,7 @@ public class LeechingSlime : SlimeModel
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(1).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
-        await CreatureCmd.GainBlock(PetOwner, 3, ValueProp.Move, null);
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 3, out _, this);
+        await CreatureCmd.GainBlock(PetOwner, modified, ValueProp.Move, null);
     }
 }

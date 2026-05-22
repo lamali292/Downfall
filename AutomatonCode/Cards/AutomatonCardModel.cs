@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Interfaces;
+using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,8 +19,10 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         int cost,
         CardType type,
         CardRarity rarity,
-        TargetType targetType
-    ) : base(cost, type, rarity, targetType)
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true
+    ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         if (this is IEncodable)
             WithTip(AutomatonTip.Encode);
@@ -67,5 +71,11 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         var compileError = compilableError.CompileErrorLocString;
         if (compileError != null)
             description.Add("error", compileError);
+    }
+    
+    
+    protected void WithStash(int baseValue, int upgradeValue = 0)
+    {
+        WithVars(new StashVar(baseValue).WithUpgrade(upgradeValue));
     }
 }

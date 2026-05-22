@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -205,10 +206,9 @@ public partial class NGemUpgradeSelectScreen :
             _isSelectingGem = false;
             RefreshGrid(_cards);
             RefreshConfirmButtonVisibility();
-
-            // Todo: localization
             if (_infoLabel == null) return;
-            _infoLabel.Text = "Select a Card to socket the Gem.";
+            var desc = new LocString("gameplay_ui", "GUARDIAN-GEM_SOCKET_SELECT");
+            _infoLabel.Text = desc.GetFormattedText();
         }
         else
         {

@@ -11,8 +11,10 @@ public abstract class SlimeBossCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Core.SlimeBoss>(cost, type, rarity, targetType)
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : DownfallCardModel<Core.SlimeBoss>(cost, type, rarity, targetType,  showInCardLibrary, autoAdd)
 {
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

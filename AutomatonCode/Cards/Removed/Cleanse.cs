@@ -5,17 +5,19 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Common;
+namespace Automaton.AutomatonCode.Cards.Removed;
 
+[Obsolete]
 [Pool(typeof(AutomatonCardPool))]
 public class Cleanse : AutomatonCardModel
 {
-    public Cleanse() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Cleanse() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, false, false)
     {
         WithDamage(10, 4);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallTip.Status);
     }
+    
 
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

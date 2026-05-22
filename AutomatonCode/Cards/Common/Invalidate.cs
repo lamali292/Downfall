@@ -12,13 +12,13 @@ namespace Automaton.AutomatonCode.Cards.Common;
 [Pool(typeof(AutomatonCardPool))]
 public class Invalidate : AutomatonCardModel, IEncodable
 {
-    public Invalidate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public Invalidate() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<VulnerablePower>(1, 1);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }
 }

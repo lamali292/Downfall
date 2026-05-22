@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using Collector.CollectorCode.Extensions;
+using Collector.CollectorCode.Piles;
 using Collector.CollectorCode.Rewards;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Commands;
@@ -27,7 +28,7 @@ public static class CollectiblesModel
         AddCollectible(player, card);
 
         var target = NTopBarCollectorButton.ButtonPosition + NTopBarCollectorButton.ButtonSize * 0.5f;
-        _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(target, card, player));
+        _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(CollectorPile.Collected, card, player));
 
         CustomMessageWrapper.Send(new CollectibleRewardMessage
         {

@@ -26,7 +26,7 @@ public class Apocryphra : HexaghostCardModel
 
     protected override async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await CardPileCmd.Add(this, PileType.Hand);
     }
 }

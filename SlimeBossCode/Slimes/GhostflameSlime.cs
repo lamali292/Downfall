@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -21,10 +22,11 @@ public class GhostflameSlime : SlimeModel
     {
         var enemy = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets)
             .FirstOrDefault();
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 6, out _, this);
         if (enemy == null) return;
         await DamageCmd.Attack(4).FromSlime(this).Targeting(enemy).Execute(ctx);
         await ModCompat.TryExecute("Hexaghost",
-            () => PowerCmd.Apply<SoulBurnPower>(ctx, enemy, 6,
+            () => PowerCmd.Apply<SoulBurnPower>(ctx, enemy, modified,
                 Creature, null)
         );
     }

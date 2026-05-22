@@ -7,12 +7,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Removed;
 
+[Obsolete]
 [Pool(typeof(AutomatonCardPool))]
 public class GetLatest : AutomatonCardModel
 {
-    public GetLatest() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public GetLatest() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false, false)
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);

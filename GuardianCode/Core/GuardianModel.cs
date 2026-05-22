@@ -20,7 +20,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Guardian.GuardianCode.Core;
 
-public class GuardianModel() : CustomSingletonModel(true, true)
+public class GuardianModel() : CustomSingletonModel(HookType.Combat)
 {
     // SpireFields
     internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
@@ -49,6 +49,7 @@ public class GuardianModel() : CustomSingletonModel(true, true)
         GuardianDisplay.Refresh(player);
     }
 
+    // TODO : check if this still triggers
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

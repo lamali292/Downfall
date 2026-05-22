@@ -10,12 +10,12 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Separator : AutomatonCardModel, IEncodable
 {
-    public Separator() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Separator() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
         WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move).WithUpgrade(2));

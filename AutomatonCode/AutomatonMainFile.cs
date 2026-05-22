@@ -24,10 +24,11 @@ public partial class AutomatonMainFile : Node
     {
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
+        /*
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
             new CompileDescriptionSource());
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
-            new CompileErrorDescriptionSource());
+            new CompileErrorDescriptionSource());*/
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

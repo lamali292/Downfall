@@ -7,12 +7,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace Automaton.AutomatonCode.Cards.Common;
+namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class BugBarrage : AutomatonCardModel
 {
-    public BugBarrage() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public BugBarrage() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
         WithTip(AutomatonTip.Cycle);

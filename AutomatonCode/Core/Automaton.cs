@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
+using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
@@ -57,8 +58,8 @@ public class Automaton : DownfallCharacterModel
         ModelDb.Card<DefendAutomaton>(),
         ModelDb.Card<DefendAutomaton>(),
         ModelDb.Card<DefendAutomaton>(),
-        ModelDb.Card<Goto>(),
-        ModelDb.Card<Replicate>()
+        ModelDb.Card<Postpone>(),
+        ModelDb.Card<Branch>()
     ];
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

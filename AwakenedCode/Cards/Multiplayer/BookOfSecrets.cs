@@ -1,8 +1,11 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Cards.Multiplayer;
 
@@ -21,8 +24,7 @@ public class BookOfSecrets : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        // TODO - i only create multiplayer desyncs here. need to look into this again. is probably easy but too lazy right now
-        /*if (CombatState == null) return;
+        if (CombatState == null) return;
         var spell = AwakenedCmd.GetSpellbook(Owner);
         var nextSpell = spell?.NextSpell;
         if (nextSpell == null) return;
@@ -30,12 +32,9 @@ public class BookOfSecrets : AwakenedCardModel
         {
             var player = creature.Player;
             if (player == null || player == Owner) continue;
-
-
-            var card = CombatState.CreateCard(ModelDb.GetById<CardModel>(nextSpell.Id), player);
-            var result = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
-            if (result.success)
-                CardCmd.PreviewCardPileAdd(result, 0.1f);
-        }*/
+            var a = nextSpell.CreateClone();
+            a._owner = player;
+            await CardPileCmd.Add(a, PileType.Hand);
+        }
     }
 }

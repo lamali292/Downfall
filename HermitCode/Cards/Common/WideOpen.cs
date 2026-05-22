@@ -22,6 +22,6 @@ public sealed class WideOpen : HermitCardModel
         HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, play);
     }
 }

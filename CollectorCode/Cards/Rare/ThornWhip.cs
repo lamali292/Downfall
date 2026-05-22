@@ -21,7 +21,7 @@ public class ThornWhip : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.Apply<BruisePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BruisePower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCard<Shiv>(Owner, PileType.Hand);
     }
 }

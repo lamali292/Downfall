@@ -14,8 +14,10 @@ public abstract class SneckoCardModel(
     int cost,
     CardType type,
     CardRarity rarity,
-    TargetType targetType)
-    : DownfallCardModel<Core.Snecko>(cost, type, rarity, targetType)
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : DownfallCardModel<Core.Snecko>(cost, type, rarity, targetType,  showInCardLibrary, autoAdd)
 {
     protected override bool ShouldGlowGoldInternal =>
         Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(Owner, true);

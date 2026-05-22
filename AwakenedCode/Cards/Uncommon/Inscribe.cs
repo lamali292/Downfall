@@ -40,8 +40,8 @@ public class Inscribe : AwakenedCardModel
         var spellbook = AwakenedCmd.GetSpellbook(Owner);
         if (spellbook == null) return;
 
-        spellbook.AddPersistentType(chosen.GetType());
-        spellbook.AddPersistentType(chosen.GetType());
+        spellbook.AddPersistentType(chosen);
+        spellbook.AddPersistentType(chosen);
 
         var dupe = chosen.CreateClone();
         spellbook.AddInternal(chosen);

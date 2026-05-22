@@ -22,6 +22,6 @@ public class PistolWhip : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play).WithHermitBluntLightHitFx()
             .Execute(ctx);
-        await MyCommonActions.Apply<BruisePower>(ctx, this, play);
+        await CommonActions.Apply<BruisePower>(ctx, this, play);
     }
 }

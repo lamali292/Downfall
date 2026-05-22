@@ -5,6 +5,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -16,7 +17,7 @@ public abstract class CardResource : CustomSingletonModel
 {
     private readonly SpireField<Player, int> _current;
 
-    protected CardResource() : base(true, true)
+    protected CardResource() : base(HookType.Combat)
     {
         _current = new SpireField<Player, int>(() => 0);
         CardResourceRegistry.Register(this);
@@ -71,6 +72,7 @@ public abstract class CardResource : CustomSingletonModel
         return null;
     }
 
+    // TODO : check if this still triggers
     public override Task BeforeCombatStart()
     {
         if (!ResetOnCombatStart) return Task.CompletedTask;
@@ -82,7 +84,8 @@ public abstract class CardResource : CustomSingletonModel
         return Task.CompletedTask;
     }
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!ResetOnTurnStart) return Task.CompletedTask;

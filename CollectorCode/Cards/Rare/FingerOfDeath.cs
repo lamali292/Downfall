@@ -21,6 +21,6 @@ public class FingerOfDeath : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
     }
 }

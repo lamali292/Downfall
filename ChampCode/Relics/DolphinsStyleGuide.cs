@@ -4,6 +4,7 @@ using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -13,7 +14,7 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class DolphinsStyleGuide() : ChampRelicModel(RelicRarity.Uncommon)
 {
-    public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         var creature = Owner.Creature;
         if (side != creature.Side || !Owner.IsInChampStance<ChampNoStance>()) return;

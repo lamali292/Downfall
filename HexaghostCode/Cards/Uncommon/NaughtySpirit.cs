@@ -34,6 +34,6 @@ public class NaughtySpirit : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

@@ -7,14 +7,9 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Piles;
 
-public class AutomatonPile : CustomPile
+public class EncodePile() : CustomPile(FunctionSequence)
 {
     [CustomEnum] public static PileType FunctionSequence;
-
-    // No-parameter constructor — required by BaseLib's reflection
-    public AutomatonPile() : base(FunctionSequence)
-    {
-    }
 
     public override bool CardShouldBeVisible(CardModel card)
     {

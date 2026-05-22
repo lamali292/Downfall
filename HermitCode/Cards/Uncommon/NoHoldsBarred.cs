@@ -24,7 +24,7 @@ public sealed class NoHoldsBarred : HermitCardModel
         await CommonActions.CardAttack(this, play)
             .WithHermitSlashHitFx()
             .Execute(ctx);
-        await MyCommonActions.Apply<BruisePower>(ctx, this, play);
+        await CommonActions.Apply<BruisePower>(ctx, this, play);
         await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }

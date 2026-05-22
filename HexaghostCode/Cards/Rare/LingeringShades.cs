@@ -20,7 +20,7 @@ public class LingeringShades : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         if (Owner.PlayerCombatState == null) return;
         await CardPileCmd.Add(
             Owner.PlayerCombatState.DiscardPile.Cards.Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),

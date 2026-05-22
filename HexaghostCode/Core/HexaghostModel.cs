@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Ghostflames;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Rooms;
@@ -13,7 +14,7 @@ using static MegaCrit.Sts2.Core.Entities.Multiplayer.GameActionType;
 
 namespace Hexaghost.HexaghostCode.Core;
 
-public class HexaghostModel() : CustomSingletonModel(true, true)
+public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 {
     internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
 
@@ -37,9 +38,9 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         Wheel[player] = StartingWheel(player);
         CurrentIndex[player] = 0;
     }
+    
 
-
-    public override async Task BeforeTurnEnd(PlayerChoiceContext ctx, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.State?.Players ?? [])
@@ -50,6 +51,7 @@ public class HexaghostModel() : CustomSingletonModel(true, true)
         }
     }
 
+    // TODO : check if this still triggers
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is not CombatRoom) return;

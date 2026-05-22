@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Events;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using Godot;
@@ -16,14 +17,14 @@ public class AwakenedPile() : CustomPile(Spellbook)
 {
     [CustomEnum] public static PileType Spellbook;
 
-    private readonly List<Type> _dynamicTypes = [];
+    private readonly List<CardModel> _dynamicTypes = [];
 
     public CardModel? NextSpell { get; private set; }
 
 
-    public void AddPersistentType(Type type)
+    public void AddPersistentType(CardModel type)
     {
-        _dynamicTypes.Add(type);
+        _dynamicTypes.Add(type.CanonicalInstance);
     }
 
     public override bool CardShouldBeVisible(CardModel card)
@@ -65,24 +66,22 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
         SetNextSpell(rng);
     }
-
+    
     private void AddBaseSpells(Player owner, ICombatState state)
     {
-        Type[] baseTypes =
+        CardModel[] original =
         [
-            typeof(BurningStudy), typeof(Cryostasis),
-            typeof(Darkleech), typeof(Thunderbolt)
+            ModelDb.Card<BurningStudy>(), ModelDb.Card<Cryostasis>(),
+            ModelDb.Card<Darkleech>(), ModelDb.Card<Thunderbolt>()
         ];
-
-        foreach (var type in baseTypes)
-            CreateAndAddSpell(owner, state, type);
+        var modified = AwakenedHook.ModifyBaseSpells(state, owner, original);
+        foreach (var card in modified)
+            CreateAndAddSpell(owner, state, card);
     }
 
-    private void CreateAndAddSpell(Player owner, ICombatState state, Type type)
+    private void CreateAndAddSpell(Player owner, ICombatState state, CardModel canonical)
     {
-        var id = ModelDb.GetId(type);
-        var model = ModelDb.GetById<CardModel>(id);
-        var spell = state.CreateCard(model, owner);
+        var spell = state.CreateCard(canonical, owner);
         if (AwakenedModel.IsAwakened(owner) && spell.IsUpgradable)
         {
             spell.UpgradeInternal();

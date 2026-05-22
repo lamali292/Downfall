@@ -12,16 +12,17 @@ public class RoboChop : AutomatonCardModel
 {
     public RoboChop() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(9, 1);
-        WithPower<DrawCardsNextTurnPower>(1, 1, false);
+        WithDamage(8, 3);
+        WithCards(1);
+        WithStash(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
+        await CommonActions.Draw(this, ctx);
+        await AutomatonCmd.Stash(this, ctx);
     }
 }

@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Flail : AutomatonCardModel
 {
-    public Flail() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    public Flail() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(7, 1);
         WithPower<ArtifactPower>(1, 1);

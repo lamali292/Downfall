@@ -37,5 +37,8 @@
   "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "Whenever you create or play a Function, gain [blue]{Amount}[/blue] [gold]Block[/gold] and deal [blue]{Amount}[/blue] damage to a random enemy.",
   "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Repulse",
   "AUTOMATON-EXHAUST_STATUSES_POWER.description": "When you draw the first [gold]Status[/gold] or [gold]Curse[/gold] cards each turn, [gold]Exhaust[/gold] it and draw a card.",
-  "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "When you draw the first [blue]{Amount}[/blue] [gold]Status[/gold] or [gold]Curse[/gold] {Amount:plural:card|cards} each turn, [gold]Exhaust[/gold] it and draw a card."
+  "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "When you draw the first [blue]{Amount}[/blue] [gold]Status[/gold] or [gold]Curse[/gold] {Amount:plural:card|cards} each turn, [gold]Exhaust[/gold] it and draw a card.",
+  "AUTOMATON-OVERHEAT_POWER.title": "Overheat",
+  "AUTOMATON-OVERHEAT_POWER.description": "The next time you create a card, the target enemy loses HP.",
+  "AUTOMATON-OVERHEAT_POWER.smartDescription": "The next time you create a card, this enemy loses [blue]{Amount}[/blue] HP."
 }

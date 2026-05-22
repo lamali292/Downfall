@@ -23,6 +23,6 @@ public sealed class GhostlyPresence : HermitCardModel, IHasDeadOnEffect
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        await MyCommonActions.Apply<WeakPower>(ctx, this, play);
+        await CommonActions.Apply<WeakPower>(ctx, this, play);
     }
 }

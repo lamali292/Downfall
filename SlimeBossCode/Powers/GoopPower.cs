@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Localization;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Context;
@@ -8,13 +9,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription
+public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IHasSecondAmount
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
@@ -58,7 +60,7 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
                (internalData.CommandToModify != null &&
                 internalData.CommandToModify.Attacker != dealer)
             ? 0M
-            : Amount;
+            : Amount * (cardSource is IDoubleGoopBonus ? 2M : 1M);;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
@@ -69,7 +71,6 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
             internalData.CommandToModify = null;
             return;
         }
-
         var amount = Amount;
         var creature = Owner;
         var removeAmount = -internalData.AmountWhenAttackStarted;
@@ -87,4 +88,6 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         public int AmountWhenAttackStarted;
         public AttackCommand? CommandToModify;
     }
+
+    public string GetSecondAmount() => "Cool Text";
 }

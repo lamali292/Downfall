@@ -5,12 +5,12 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class CopyPaste : AutomatonCardModel
 {
-    public CopyPaste() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public CopyPaste() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(AutomatonTip.Encode);

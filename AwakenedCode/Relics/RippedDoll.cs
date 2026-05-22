@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Awakened.AwakenedCode.Relics;
@@ -38,12 +39,11 @@ public class RippedDoll : AwakenedRelicModel
         return Task.CompletedTask;
     }
 
-    public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Creature.Side) 
             return Task.CompletedTask;
         InvokeDisplayAmountChanged(); 
-
         return Task.CompletedTask;
     }
 

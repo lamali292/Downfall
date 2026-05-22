@@ -108,7 +108,7 @@ public static class GuardianCmd
         card.EnergyCost.AfterCardPlayedCleanup();
         source ??= card;
         await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
-        await CardPileCmd.Add(card, GetStasisPile(player)!, source: source, skipVisuals: silent);
+        await CardPileCmd.Add(card, GetStasisPile(player)!, clonedBy: source, skipVisuals: silent);
         SetStasisCounter(card);
         await GuardianHook.AfterCardEntersStasis(card.CombatState, ctx, card, source);
         return true;

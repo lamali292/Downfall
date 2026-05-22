@@ -17,7 +17,7 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Awakened.AwakenedCode.Core;
 
-public class AwakenedModel() : CustomSingletonModel(true, true)
+public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
 
@@ -26,6 +26,7 @@ public class AwakenedModel() : CustomSingletonModel(true, true)
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }
 
+    // TODO : check if this still triggers
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
@@ -49,6 +50,7 @@ public class AwakenedModel() : CustomSingletonModel(true, true)
         if (card is Void) await AwakenedHook.OnDrained(card.CombatState!, choiceContext, card.Owner, 1);
     }
 
+    // TODO : check if this still triggers
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

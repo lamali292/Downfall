@@ -17,8 +17,8 @@ public class PlatedArmorPower : DownfallPowerModel
         if (target != Owner || result.UnblockedDamage == 0) return;
         await PowerCmd.Decrement(this);
     }
-
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (Owner.Player is { PlayerCombatState: not null } && side != Owner.Side)
             return;

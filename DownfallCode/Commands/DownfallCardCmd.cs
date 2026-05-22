@@ -18,25 +18,6 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCardCmd
 {
-    public static async Task Insert(CardModel card, Player player)
-    {
-        var copy = player.Creature.CombatState!.CreateCard(card, player);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, player, CardPilePosition.Random);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
-    }
-
-    public static async Task Insert(IEnumerable<CardModel> cards, Player player)
-    {
-        var copies = cards
-            .Select(card => player.Creature.CombatState!.CreateCard(card, player))
-            .ToList();
-
-        var results =
-            await CardPileCmd.AddGeneratedCardsToCombat(copies, PileType.Draw, player, CardPilePosition.Random);
-        CardCmd.PreviewCardPileAdd(results);
-    }
-
     public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
@@ -111,7 +92,7 @@ public class DownfallCardCmd
     }
 
 
-    public static async Task AnimateCardFromRewardScreen(Vector2 targetPos, CardModel card, Player player)
+    public static async Task AnimateCardFromRewardScreen(PileType pile, CardModel card, Player player)
     {
         var node = NCard.Create(card);
         if (node == null) return;
@@ -125,7 +106,7 @@ public class DownfallCardCmd
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
         await node.ToSignal(tween, Tween.SignalName.Finished);
-        var fly = NCardFlyVfx.Create(node, targetPos, true, player.Character.TrailPath);
+        var fly = NCardFlyVfx.Create(node, pile, true, player.Character.TrailPath);
         trailContainer.AddChildSafely(fly);
         if (fly != null)
             await fly.ToSignal(fly, Node.SignalName.TreeExited);

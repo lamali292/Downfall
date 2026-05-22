@@ -7,13 +7,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Terminator : AutomatonCardModel,
     IEncodable, ICompilable
 {
-    public Terminator() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Terminator() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);

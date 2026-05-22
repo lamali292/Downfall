@@ -57,7 +57,7 @@ public class AutomatonDisplay
         display.Refresh();
     }
 
-    public static async Task AnimateCardToSequence(CardModel card, AutomatonPile pile, Player creature)
+    public static async Task AnimateCardToSequence(CardModel card, EncodePile pile, Player creature)
     {
         var display = Displays.GetValueOrDefault(creature);
         if (display == null) return;

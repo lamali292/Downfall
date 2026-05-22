@@ -6,12 +6,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Removed;
 
+[Obsolete]
 [Pool(typeof(AutomatonCardPool))]
 public class FollowThrough : AutomatonCardModel
 {
-    public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public FollowThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false, false)
     {
         WithBlock(4, 2);
         WithDamage(7, 2);

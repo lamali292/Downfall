@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -34,9 +35,9 @@ public class ChosenVersePower : AwakenedPowerModel
         await PowerCmd.Decrement(this);
     }
 
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         await PowerCmd.Remove(this);
     }
-
+    
 }

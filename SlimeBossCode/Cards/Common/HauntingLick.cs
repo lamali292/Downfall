@@ -23,8 +23,8 @@ public class HauntingLick : SlimeBossCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await MyCommonActions.Apply<GoopPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
     }
 }

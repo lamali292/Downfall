@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Commands;
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +20,7 @@ public sealed class Glare : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await MyCommonActions.Apply<WeakPower>(ctx, this, play);
-        await MyCommonActions.Apply<VulnerablePower>(ctx, this, play);
+        await CommonActions.Apply<WeakPower>(ctx, this, play);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, play);
     }
 }
