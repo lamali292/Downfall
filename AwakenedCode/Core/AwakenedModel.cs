@@ -21,6 +21,7 @@ namespace Awakened.AwakenedCode.Core;
 public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
+    private static readonly ConditionalWeakTable<CombatState, StrongBox<bool>> InitializedCombats = new();
 
     public static bool IsAwakened(Player? player)
     {
@@ -31,6 +32,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
+        InitializedCombats.Clear();
         return Task.CompletedTask;
     }
 
@@ -55,6 +57,14 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         var combatRoomNode = NCombatRoom.Instance;
         if (combatRoomNode == null) return;
+
+        var initialized = InitializedCombats.GetOrCreateValue(state);
+        if (initialized.Value) return;
+
+        initialized.Value = true;
+        foreach (var player in state.Players)
+            AwakenMeter.Remove(player);
+
         foreach (var player in state.Players)
         {
             if (player.Character is not Awakened) continue;
