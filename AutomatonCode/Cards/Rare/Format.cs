@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.Cards.Uncommon;
+﻿using Automaton.AutomatonCode.Cards.Common;
+using Automaton.AutomatonCode.Cards.Uncommon;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
