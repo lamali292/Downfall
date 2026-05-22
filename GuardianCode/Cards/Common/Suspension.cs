@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,8 +25,7 @@ public class Suspension : GuardianCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
+        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }

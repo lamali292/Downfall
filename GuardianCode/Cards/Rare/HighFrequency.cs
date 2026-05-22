@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -21,8 +23,7 @@ public class HighFrequency : GuardianCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, c => c != this, this)).FirstOrDefault();
+        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
 
         while (GuardianCmd.CanPutIntoStasis(Owner, true))

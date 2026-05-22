@@ -1,3 +1,5 @@
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -16,8 +18,7 @@ public class FuturePlansPower : GuardianPowerModel
         if (player == null) return;
         if (GuardianCmd.CanPutIntoStasis(player))
         {
-            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, Amount);
-            var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, this);
+            var cards = await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this, optional: true);
             foreach (var card in cards) await GuardianCmd.PutIntoStasis(card, ctx, this);
         }
     }

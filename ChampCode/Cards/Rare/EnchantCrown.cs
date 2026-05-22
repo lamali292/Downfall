@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Enchantments;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +22,7 @@ public class EnchantCrown : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var selectorPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+        var selectorPrefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ApplySelectionPrompt, 1, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Crowned>().CanEnchant,
             this)).FirstOrDefault();
         if (card == null) return;

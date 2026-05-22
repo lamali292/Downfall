@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,7 +30,7 @@ public class TheEncyclopedia : AwakenedCardModel
             .Select(e => new CardCreationResult(e)).ToList();
         ;
         var card = (await CardSelectCmd.FromSimpleGridForRewards(ctx, cards, Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, 2, 2))).ToList();
+            new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 2, 2))).ToList();
 
         foreach (var cardModel in card) cardModel.EnergyCost.UpgradeBy(-2);
         await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, Owner);

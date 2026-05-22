@@ -1,4 +1,6 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,8 +23,8 @@ public class Displace : HexaghostCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue);
-        var card = await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this);
+        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this)).FirstOrDefault();
+        if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
 }

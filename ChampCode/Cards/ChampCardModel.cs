@@ -2,6 +2,7 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Enchantments;
+using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
@@ -13,6 +14,14 @@ namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
 {
+    protected enum StanceType
+    {
+        None,
+        Berserker,
+        Defensive
+    }
+    protected StanceType EnterStance = StanceType.None;
+
     protected override bool ShouldGlowRedInternal =>
         Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
     protected override bool ShouldGlowGoldInternal => (
@@ -59,14 +68,47 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         WithTip(ChampTip.Finisher);
         return this;
     }
+    protected ConstructedCardModel WithEnterBerserker()
+    {
+        EnterStance = StanceType.Berserker;
+        WithTip(ChampTip.Berserker);
+        return this;
+    }
+    protected ConstructedCardModel WithEnterDefensive()
+    {
+        EnterStance = StanceType.Defensive;
+        WithTip(ChampTip.Defensive);
+        return this;
+    }
 
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
+
+        var stance = Owner.ChampStance();
         if (Keywords.Contains(ChampKeyword.TriggerSkillBonus))
         {
-            await Owner.ChampStance().SkillBonus(ctx);
+            await stance.SkillBonus(ctx);
+        }
+
+        if (cardPlay.Card.Type == CardType.Skill
+        && (ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner) || stance.Charges > 0)) 
+        {
+            if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner)) {
+                stance.Charges--;
+                ChampModel.RefreshDisplay(Owner);
+            }
+            await stance.SkillBonus(ctx);
+        }
+
+        if (EnterStance == StanceType.Berserker)
+        {
+            await ChampCmd.EnterBerserkerStance(ctx, Owner);
+        }
+        else if (EnterStance == StanceType.Defensive)
+        {
+            await ChampCmd.EnterDefensiveStance(ctx, Owner);
         }
 
         if (this is IBerserkerComboCard berserkerCombo && Owner.ShouldBerserkerComboTrigger())

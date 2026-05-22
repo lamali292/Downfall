@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -19,8 +20,8 @@ public class SpectralGrace : HexaghostCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue);
-        var cards = await CardSelectCmd.FromHandForDiscard(ctx, Owner, prefs, null, this);
+
+        var cards = await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.DiscardSelectionPrompt, this);
         await CardCmd.Discard(ctx, cards);
     }
 }

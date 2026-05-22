@@ -267,12 +267,30 @@ public static class GuardianCmd
             var temporaryPower = (ITemporaryPower)power;
             var internalTemporaryPower = target.GetPower(temporaryPower.InternallyAppliedPower.Id);
             if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff) continue;
-            await PowerCmd.ModifyAmount(ctx, power, -amount, target, cardSource);
-            if (internalTemporaryPower == null)
-                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
-                    amount, target, cardSource, true);
+
+            var hasArtifact = target.GetPower<ArtifactPower>() != null;
+
+            if (hasArtifact)
+            {
+                // If the target has Artifact, we can ignore the power reduction from removing the temporary power,
+                // since the Artifact will prevent itself.
+                // To compensate, apply 1 stack Artifact.
+                await PowerCmd.Apply<ArtifactPower>(ctx, target, 1, target, cardSource, true);
+            }
+
             else
-                await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, target, cardSource, true);
+            {
+                // Otherwise, we need to apply the power up manually.
+                // Here we apply it *before* removing the temporary power,
+                // because if the temporary power, internal power and polish have the same amount, the internal power
+                // would be removed because of the temporary power reduction and thus missing.
+                if (internalTemporaryPower == null)
+                    await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
+                        amount, target, cardSource, true);
+                else
+                    await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, target, cardSource, true);
+            }
+            await PowerCmd.ModifyAmount(ctx, power, -amount, target, cardSource);
         }
     }
 

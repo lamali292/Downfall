@@ -1,4 +1,7 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -22,9 +25,8 @@ public class Preprogram : GuardianCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
-        var cards = PileType.Draw.GetPile(Owner).Cards.Take(DynamicVars.Cards.IntValue).ToList();
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromSimpleGrid(ctx, cards, Owner, prefs)).FirstOrDefault();
+        var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }

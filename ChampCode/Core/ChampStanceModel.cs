@@ -14,7 +14,7 @@ public abstract class ChampStanceModel : AbstractModel
     public abstract bool HasFinisher { get; }
     public virtual string? ChargeIconPath => null;
 
-    public int Charges { get; private set; }
+    public int Charges;
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     protected ICombatState CombatState => Owner.Creature.CombatState ??
@@ -44,23 +44,6 @@ public abstract class ChampStanceModel : AbstractModel
         Charges = 0;
         return Task.CompletedTask;
     }
-
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (Owner != cardPlay.Card.Owner || cardPlay.Card.Type != CardType.Skill ||
-            Owner.Creature.CombatState == null) return;
-
-        if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState, Owner))
-        {
-            if (Charges <= 0) return;
-            Charges--;
-        }
-
-        ChampModel.RefreshDisplay(Owner);
-        await SkillBonus(ctx);
-    }
-
 
     public virtual Task SkillBonus(PlayerChoiceContext ctx)
     {

@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +21,7 @@ public class Procession : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = await CommonActions.SelectSingleCard(this, SelectionScreenPrompt, ctx, PileType.Draw);
+        var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.PlaySelectionPrompt, ctx, PileType.Draw);
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);
         await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Draw, card.EnergyCost.GetResolved(),

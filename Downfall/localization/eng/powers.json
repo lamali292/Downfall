@@ -10,13 +10,13 @@
   "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold]. Receiving unblocked attack damage reduces [gold]Plated Armor[/gold] by [blue]1[/blue].",
   "DOWNFALL-STUNNED_POWER.title": "Stunned",
   "DOWNFALL-STUNNED_POWER.description": "Skip your next turn.",
-  "DOWNFALL-STUNNED_POWER.smartDescription": "Skip your next turn.",
+  "DOWNFALL-STUNNED_POWER.smartDescription": "Skip your next [blue]{Amount}[/blue] turn.",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.title": "Dexterity Down",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.description": "Gain [gold]Dexterity[/gold] until the end of this turn.",
   "DOWNFALL-TEMPORARY_DEXTERITY_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Dexterity[/gold] until the end of this turn.",
   "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.title": "Shackled",
   "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.description": "Lose [gold]Strength[/gold] until the end of this turn.",
-  "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.smartDescription": "Lose {Amount} [gold]Strength[/gold] until the end of this turn.",
+  "DOWNFALL-TEMPORARY_STRENGTH_DOWN_POWER.smartDescription": "Lose [blue]{Amount}[/blue] [gold]Strength[/gold] until the end of this turn.",
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Strength Down",
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.description": "Gain [gold]Strength[/gold] until the end of this turn.",
   "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold] until the end of this turn.",
@@ -25,5 +25,5 @@
   "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold] until the end of this turn.",
   "DOWNFALL-TEMP_HP_POWER.title": "Temp HP",
   "DOWNFALL-TEMP_HP_POWER.description": "Until end of combat, prevents damage to HP.",
-  "DOWNFALL-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents damage to HP."
+  "DOWNFALL-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents [blue]{Amount}[/blue] damage to HP."
 }

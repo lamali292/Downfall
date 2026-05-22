@@ -1,7 +1,10 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,6 +22,7 @@ public class Rewind : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.SelectCardToMovePiles(ctx, this, PileType.Discard, PileType.Hand);
+        var cards = await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, optional: true);
+        await CardPileCmd.Add(cards, PileType.Hand);
     }
 }
