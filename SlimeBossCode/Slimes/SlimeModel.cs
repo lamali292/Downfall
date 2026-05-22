@@ -17,7 +17,7 @@ public abstract class SlimeModel : CustomMonsterModel
 
     public override bool HasDeathSfx => false;
 
-    protected Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
+    public Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {

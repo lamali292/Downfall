@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -21,6 +22,7 @@ public class TimeSlime : SlimeModel
             .FirstOrDefault();
         if (enemy == null) return;
         await DamageCmd.Attack(4).FromSlime(this).Targeting(enemy).Execute(ctx);
-        await PowerCmd.Apply<WeakPower>(ctx, enemy, 1, Creature, null);
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 1, out _, this);
+        await PowerCmd.Apply<WeakPower>(ctx, enemy, modified, Creature, null);
     }
 }

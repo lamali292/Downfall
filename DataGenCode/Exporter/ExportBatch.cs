@@ -139,6 +139,7 @@ public class ExportBatch
     public static void DeleteDir()
     {
         DeleteRecursive(BaseDir);
+        return;
 
         static void DeleteRecursive(string dir)
         {
@@ -150,7 +151,7 @@ public class ExportBatch
         }
     }
 
-    private void Finish()
+    private static void Finish()
     {
         GD.Print("Export finished!");
     }
@@ -193,10 +194,15 @@ public class ExportBatch
                     DirAccess.MakeDirRecursiveAbsolute(exportPath);
                     var filePath = path.PathJoin(file);
                     var resource = ResourceLoader.Load(filePath);
-                    if (resource is Texture2D texture)
-                        texture.GetImage().SavePng(exportPath.PathJoin(file));
-                    else if (resource is Image image)
-                        image.SavePng(exportPath.PathJoin(file));
+                    switch (resource)
+                    {
+                        case Texture2D texture:
+                            texture.GetImage().SavePng(exportPath.PathJoin(file));
+                            break;
+                        case Image image:
+                            image.SavePng(exportPath.PathJoin(file));
+                            break;
+                    }
                 }
         }
     }

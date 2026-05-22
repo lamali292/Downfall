@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -24,6 +25,8 @@ public class AncientSlime : SlimeModel
 
     public override decimal ModifyHandDraw(Player player, decimal count)
     {
-        return Creature.IsAlive && player == Creature.PetOwner ? count + 1 : count;
+        if (!Creature.IsAlive || player != Creature.PetOwner) return count;
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 1, out _, this);
+        return count + modified;
     }
 }

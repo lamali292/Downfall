@@ -13,15 +13,21 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
 {
     public GrowthPunch() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithDamage(4, 1);
+        WithBlock(4, 1);
+        WithVar("Increase", 4, 1);
     }
 
     public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
-        throw new NotImplementedException();
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        return Task.CompletedTask;
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

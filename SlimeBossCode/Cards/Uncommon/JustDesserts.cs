@@ -8,12 +8,15 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class JustDesserts : SlimeBossCardModel
 {
-    public JustDesserts() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public JustDesserts() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
+        WithSlurp(2);
+        WithDamage(5, 3);
     }
-
-    // TODO: Implement
+    
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await SlimeBossCmd.Slurp(this);
     }
 }

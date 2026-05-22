@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
 
@@ -21,6 +22,7 @@ public class MireSlime : SlimeModel
             .FirstOrDefault();
         if (enemy == null) return;
         await DamageCmd.Attack(2).FromSlime(this).Targeting(enemy).Execute(ctx);
-        await PowerCmd.Apply<GoopPower>(ctx, enemy, 2, Creature, null);
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 2, out _, this);
+        await PowerCmd.Apply<GoopPower>(ctx, enemy, modified, Creature, null);
     }
 }
