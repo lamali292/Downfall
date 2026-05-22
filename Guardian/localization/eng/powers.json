@@ -23,7 +23,6 @@
   "GUARDIAN-FUTURE_PLANS_POWER.title": "Future Plans",
   "GUARDIAN-FUTURE_PLANS_POWER.description": "At the end of your turn, you may place [blue]1[/blue] card into [gold]Stasis[/gold].",
   "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "At the end of your turn, you may place {Amount} {Amount:plural:card|cards} into [gold]Stasis[/gold].",
-  "GUARDIAN-FUTURE_PLANS_POWER.selectionScreenPrompt": "Select cards to put into Stasis.",
   "GUARDIAN-GEM_FINDER_POWER.title": "Gem Finder",
   "GUARDIAN-GEM_FINDER_POWER.description": "At the end of combat you may add a random [gold]Gem[/gold] to your [gold]Deck[/gold].",
   "GUARDIAN-GEM_FINDER_POWER.smartDescription": "At the end of combat you may add {Amount:plural:a random [gold]Gem[/gold]|[blue]{Amount}[/blue] random [gold]Gems[/gold]} to your [gold]Deck[/gold].",

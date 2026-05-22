@@ -51,13 +51,10 @@
   "CHAMP-EMERGENCY_PIVOT.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "CHAMP-ENCHANT_CROWN.description": "Choose a card in [gold]Hand[/gold].\nIt gains [purple]Crowned[/purple].",
   "CHAMP-ENCHANT_CROWN.title": "Enchant Crown",
-  "CHAMP-ENCHANT_CROWN.selectionScreenPrompt": "Enchant a card with [gold]Crowned[/gold].",
   "CHAMP-ENCHANT_SHIELD.description": "Choose a Skill in [gold]Hand[/gold].\nIt gains [purple]Sturdy[/purple].",
   "CHAMP-ENCHANT_SHIELD.title": "Enchant Shield",
-  "CHAMP-ENCHANT_SHIELD.selectionScreenPrompt": "Enchant a card with [gold]Sturdy[/gold].",
   "CHAMP-ENCHANT_SWORD.description": "Choose a Attack in [gold]Hand[/gold].\nIt gains [purple]Instinct[/purple].",
   "CHAMP-ENCHANT_SWORD.title": "Enchant Sword",
-  "CHAMP-ENCHANT_SWORD.selectionScreenPrompt": "Enchant a card with [gold]Instinct[/gold].",
   "CHAMP-ENCIRCLE.description": "Deal {Damage:diff()} damage to ALL enemies.\nGain {GloryPower:diff()} [gold]Glory[/gold] for each enemy hit.",
   "CHAMP-ENCIRCLE.title": "Encircle",
   "CHAMP-ENDURE.description": "Gain {CalculatedBlock:diff()} Block, \nincreased by [gold]Strength[/gold] instead of [gold]Dexterity[/gold].\nEnter [gold]Defensive[/gold].",
@@ -130,7 +127,6 @@
   "CHAMP-PREEMPTIVE_STRIKE.title": "Preemptive Strike",
   "CHAMP-PROTECTIVE_AURA.title": "Protective Aura",
   "CHAMP-PROTECTIVE_AURA.description": "Whenever you end your turn while in no [gold]Stance[/gold], gain {ProtectiveAuraPower:diff()} [gold]Block[/gold].",
-  "CHAMP-PROTECTIVE_AURA.selectionScreenPrompt": "",
   "CHAMP-RAPID_STRIKES.description": "Deal {Damage:diff()} damage twice.\nA random \"Strike\" card in your [gold]Hand[/gold] costs 0{energyPrefix:energyIcons(1)} this turn.",
   "CHAMP-RAPID_STRIKES.title": "Rapid Strikes",
   "CHAMP-RECKLESS_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nEnter [gold]Berserker[/gold].",
@@ -186,10 +182,8 @@
   "CHAMP-VICTORY_IS_MINE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-WIND_UP.description": "Choose a [gold]Stance[/gold] to Enter.\nSelect a [gold]Finisher[/gold] from your [gold]Draw Pile[/gold] to add to your [gold]Hand[/gold].",
   "CHAMP-WIND_UP.title": "Wind Up",
-  "CHAMP-WIND_UP.selectionScreenPrompt": "Select a Finisher from your [gold]Draw Pile[/gold].",
   "CHAMP-WINNERS_CIRCLE.title": "Winner's Circle",
   "CHAMP-WINNERS_CIRCLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-WREATH_OF_VICTORY.title": "Wreath of Victory",
-  "CHAMP-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
-  "CHAMP-HEADBUTT.selectionScreenPrompt": "Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold]."
+  "CHAMP-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold]."
 }
