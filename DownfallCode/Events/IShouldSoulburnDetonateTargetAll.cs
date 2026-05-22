@@ -1,7 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hexaghost.HexaghostCode.Events;
+namespace Downfall.DownfallCode.Events;
 
 public interface IShouldSoulburnDetonateTargetAll
 {

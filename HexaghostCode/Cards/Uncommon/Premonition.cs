@@ -25,7 +25,7 @@ public class Premonition : HexaghostCardModel
         if (CombatState == null) return;
         var cardType = await GetCardType(ctx);
         if (cardType == null) return;
-        var card = Owner.GetDraw().Where(e => e.Type == cardType)
+        var card = Owner.GetDraw(e => e.Type == cardType)
             .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);

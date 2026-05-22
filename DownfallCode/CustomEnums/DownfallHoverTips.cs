@@ -7,7 +7,6 @@ namespace Downfall.DownfallCode.CustomEnums;
 public readonly struct DownfallTip
 {
     public static readonly DownfallTip Scry = new(nameof(Scry));
-    public static readonly DownfallTip Status = new(nameof(Status));
 
     private readonly string _name;
 

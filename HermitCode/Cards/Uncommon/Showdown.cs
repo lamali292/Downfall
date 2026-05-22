@@ -20,8 +20,7 @@ public sealed class Showdown : HermitCardModel
         HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
-        await Owner.GetHand()
-            .Where(c => c.Tags.Contains(CardTag.Strike))
+        await Owner.GetHand(c => c.Tags.Contains(CardTag.Strike))
             .ForEachAsync(card => CardCmd.AutoPlay(ctx, card, null));
     }
 }

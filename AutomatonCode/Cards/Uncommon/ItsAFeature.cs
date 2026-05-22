@@ -5,6 +5,7 @@ using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -13,10 +14,8 @@ public class ItsAFeature : AutomatonCardModel
 {
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithPower<ItsAFeaturePower>(3, 1, false);
-        WithTip(DownfallTip.Status);
-        WithTip(CardKeyword.Exhaust);
-        WithTip(StaticHoverTip.Block);
+        WithPower<ItsAFeaturePower>(3, 2, false);
+        WithTip(typeof(VigorPower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -25,5 +25,8 @@
   "DOWNFALL-TEMPORARY_THORNS_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Thorns[/gold] until the end of this turn.",
   "DOWNFALL-TEMP_HP_POWER.title": "Temp HP",
   "DOWNFALL-TEMP_HP_POWER.description": "Until end of combat, prevents damage to HP.",
-  "DOWNFALL-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents [blue]{Amount}[/blue] damage to HP."
+  "DOWNFALL-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents [blue]{Amount}[/blue] damage to HP.",
+  "DOWNFALL-SOUL_BURN_POWER.title": "Soulburn",
+  "DOWNFALL-SOUL_BURN_POWER.description": "In [blue]3[/blue] turns, this enemy loses HP, then [gold]Soulburn[/gold] is removed.",
+  "DOWNFALL-SOUL_BURN_POWER.smartDescription": "In [blue]{Turns}[/blue] {Turns:plural:turn|turns}, loses [blue]{Amount}[/blue] HP, then [gold]Soulburn[/gold] is removed."
 }

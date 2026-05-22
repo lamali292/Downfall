@@ -15,7 +15,6 @@ public class Cleanse : AutomatonCardModel
     {
         WithDamage(10, 4);
         WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Status);
     }
 
 

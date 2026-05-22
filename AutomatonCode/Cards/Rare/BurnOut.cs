@@ -15,7 +15,6 @@ public class BurnOut : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -18,7 +18,6 @@ public class Mutator : AutomatonCardModel
         WithPower<StrengthPower>(2);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip(StaticHoverTip.Transform);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

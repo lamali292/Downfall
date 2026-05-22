@@ -39,16 +39,7 @@ public static class HexaghostHook
             m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent));
     }
 
-    public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
-    {
-        return DownfallHook.Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));
-    }
 
-    public static Task<bool> ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
-    {
-        return Task.FromResult(
-            DownfallHook.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
-    }
 
     public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,
         GhostflameModel flame, int index)

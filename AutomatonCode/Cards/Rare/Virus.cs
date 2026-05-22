@@ -35,7 +35,7 @@ public class Virus : AutomatonCardModel
             .Execute(ctx);
 
 
-        var hand = Owner.GetHand().ToList();
+        var hand = Owner.GetHand();
         await CardCmd.Discard(ctx, hand);
 
         var beams = hand.Select(_ =>

@@ -32,14 +32,13 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             Cancelable = true,
             RequireManualConfirmation = false
         };
-        var gems = Owner.GetDeck().Where(c => c is IGemCard).ToList();
-        var gemHolder = Owner.GetDeck().Where(c => c is GuardianCardModel { FreeSlots: > 0 })
-            .ToList();
+    
         List<CardModel> cardModel;
-
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(Owner);
         if (CardSelectCmd.ShouldSelectLocalCard(Owner))
         {
+            var gems = Owner.GetDeck(c => c is IGemCard);
+            var gemHolder = Owner.GetDeck(c => c is GuardianCardModel { FreeSlots: > 0 });
             var a = NGemUpgradeSelectScreen.Create(gems, gemHolder, prefs);
             if (NOverlayStack.Instance == null) return false;
             NOverlayStack.Instance.Push(a);

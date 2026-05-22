@@ -14,7 +14,6 @@ public class ShipIt : AutomatonCardModel
     {
         WithDamage(5, 2);
         WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

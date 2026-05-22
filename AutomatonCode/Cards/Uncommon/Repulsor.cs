@@ -12,7 +12,6 @@ public class Repulsor : AutomatonCardModel
 {
     public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(DownfallTip.Status);
         WithPower<RepulsePower>(4, 1, false);
     }
 

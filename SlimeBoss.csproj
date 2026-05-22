@@ -18,8 +18,6 @@
 
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
-        <ProjectReference Include="Hexaghost.csproj"
-                          Condition="Exists('Hexaghost.csproj')"/>
     </ItemGroup>
 
     <ItemGroup>

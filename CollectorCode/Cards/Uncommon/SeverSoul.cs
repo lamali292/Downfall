@@ -29,6 +29,6 @@ public class SeverSoul : CollectorCardModel
 
     private IEnumerable<CardModel> GetCards()
     {
-        return Owner.GetHand().Where(c => c.Type != CardType.Attack);
+        return Owner.GetHand(c => c.Type != CardType.Attack);
     }
 }

@@ -32,7 +32,7 @@ public class CurlUp : GuardianCardModel
                     (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
                     .FirstOrDefault();
             else
-                card = Owner.GetHand().Where(e => e != this)
+                card = Owner.GetHand(e => e != this)
                     .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
 
             if (card == null) return;
