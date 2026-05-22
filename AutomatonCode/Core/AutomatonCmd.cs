@@ -4,9 +4,11 @@ using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -154,6 +156,10 @@ public static class AutomatonCmd
         await Stash(cards);
     }
     
+    public static async Task Stash<TCard>(Player player)
+    where TCard : CardModel
+      => await DownfallCardCmd.GiveCard<TCard>(player, StashPile.Stash);
+    
     public static async Task Stash(CardModel card)
          => await CardPileCmd.Add(card, StashPile.Stash);
     
@@ -162,7 +168,7 @@ public static class AutomatonCmd
 
     public static async Task DrawFromStash(Player player)
     {
-        var cards = StashPile.Stash.GetPile(player).Cards;
+        var cards = player.GetStash();
         if (cards.Count == 0) return;
         var card = cards[0];
         await CardPileCmd.Add(card, PileType.Hand);

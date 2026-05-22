@@ -6,9 +6,8 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Automaton.AutomatonCode.Core;
 
-public class AutomatonModel() : CustomSingletonModel(HookType.Combat)
+public class AutomatonModel() : CustomSingletonModel(HookType.Run)
 {
-    // TODO : check if this still triggers
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

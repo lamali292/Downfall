@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,7 @@ public sealed class Magnum : HermitCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        var handCount = PileType.Hand.GetPile(Owner).Cards.Count;
+        var handCount = Owner.GetHand().Count;
         var maxDiscard = Math.Min(DynamicVars.Cards.IntValue, handCount);
         if (maxDiscard == 0) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, maxDiscard, maxDiscard);

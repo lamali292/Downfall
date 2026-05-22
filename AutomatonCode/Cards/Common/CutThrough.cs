@@ -5,6 +5,7 @@ using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,8 +28,8 @@ public class CutThrough : AutomatonCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitFx("vfx/vfx_attack_slash").Execute(ctx);
         await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
-        var cards = Owner.PlayerCombatState?.DrawPile.Cards;
-        if (cards == null || cards.Count == 0) return;
+        var cards = Owner.GetDraw();
+        if (cards.Count == 0) return;
         await AutomatonCmd.Stash(cards[0]);
     }
    

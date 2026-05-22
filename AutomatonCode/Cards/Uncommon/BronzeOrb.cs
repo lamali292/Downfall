@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +27,7 @@ public class BronzeOrb : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
 
-        var eligibleCards = PileType.Draw.GetPile(Owner).Cards
+        var eligibleCards = Owner.GetDraw()
             .Where(c => c is IEncodable)
             .ToList();
         var randomCard = eligibleCards.Count > 0

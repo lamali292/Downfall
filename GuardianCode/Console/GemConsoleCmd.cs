@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.DevConsole;
@@ -69,7 +70,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
     {
         if (args.Length <= 1 && RunManager.Instance.IsInProgress && player != null)
         {
-            var count = PileType.Hand.GetPile(player).Cards.Count;
+            var count = player.GetHand().Count;
             if (count > 0)
                 return CompleteArgument(
                     Enumerable.Range(0, count).Select(i => i.ToString()).ToList(),

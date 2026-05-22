@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -34,7 +35,7 @@ public class CurlUp : GuardianCardModel
             }
             else
             {
-                card = PileType.Hand.GetPile(Owner).Cards.Where(e => e != this)
+                card = Owner.GetHand().Where(e => e != this)
                     .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
             }
 

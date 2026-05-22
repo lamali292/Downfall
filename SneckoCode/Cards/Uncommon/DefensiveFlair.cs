@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +23,7 @@ public class DefensiveFlair : SneckoCardModel
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
-        return card.Owner.PlayerCombatState?.Hand.Cards.Count(e => SneckoCmd.IsOffclass(card, e)) ?? 0;
+        return card.Owner.GetHand().Count(e => SneckoCmd.IsOffclass(card, e));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

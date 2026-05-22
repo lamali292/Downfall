@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,8 +17,8 @@ public class LuckyBreak : SneckoCardModel
     }
 
 
-    private int TwoCostInHand => Owner.PlayerCombatState?.Hand.Cards
-        .Count(e => e.EnergyCost.GetResolved() >= 2) ?? 0;
+    private int TwoCostInHand => Owner.GetHand()
+        .Count(e => e.EnergyCost.GetResolved() >= 2);
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

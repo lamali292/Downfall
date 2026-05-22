@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,8 +20,7 @@ public class Allocate : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var statusCount = PileType.Draw.GetPile(Owner).Cards
-            .Count(c => c.Type == CardType.Status);
+        var statusCount = Owner.GetDraw().Count(c => c.Type == CardType.Status);
         if (statusCount > 0)
             await PlayerCmd.GainEnergy(statusCount, Owner);
     }

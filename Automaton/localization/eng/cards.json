@@ -121,7 +121,7 @@
   "AUTOMATON-MUTATOR.title": "Mutator",
   "AUTOMATON-NULL_POINTER.description": "",
   "AUTOMATON-NULL_POINTER.title": "Null Pointer",
-  "AUTOMATON-OIL_SPILL.description": "",
+  "AUTOMATON-OIL_SPILL.description": "Deal {Damage:diff()} damage.\nApply {PoisonPower:diff()} [gold]Poison[/gold].\n[gold]Stash[/gold] and [gold]Error[/gold].",
   "AUTOMATON-OIL_SPILL.title": "Oil Spill",
   "AUTOMATON-OPTIMIZE.description": "[gold]Upgrade[/gold] the next {OptimizePower:diff()} cards you [gold]Encode[/gold] that can be [gold]upgraded[/gold].",
   "AUTOMATON-OPTIMIZE.title": "Optimize",

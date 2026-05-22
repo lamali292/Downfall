@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -73,7 +74,7 @@ public static class SneckoCmd
 
     public static bool OverflowActive(Player player, bool cardInHand = false)
     {
-        return player.PlayerCombatState is { Hand.Cards.Count: var count } && count > (cardInHand ? 5 : 4);
+        return player.GetHand().Count > (cardInHand ? 5 : 4);
     }
 
 

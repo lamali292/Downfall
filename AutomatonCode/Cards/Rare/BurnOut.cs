@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,9 +21,7 @@ public class BurnOut : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(Owner.Creature.CombatState);
-        ArgumentNullException.ThrowIfNull(Owner.PlayerCombatState);
-
-        var statuses = Owner.PlayerCombatState.AllCards
+        var statuses = Owner.GetAllCards()
             .Where(c => c.Type is CardType.Status)
             .ToList();
 

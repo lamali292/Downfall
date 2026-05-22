@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -14,8 +15,7 @@ public class Clang : AutomatonCardModel
         WithDamage(14, 4);
     }
 
-    protected override bool IsPlayable => Owner.PlayerCombatState?
-        .Hand.Cards.Any(e => e.Type is CardType.Curse or CardType.Status) ?? false;
+    protected override bool IsPlayable => Owner.GetHand().Any(e => e.Type is CardType.Curse or CardType.Status);
 
     protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
         => CommonActions.CardAttack(this, cardPlay).Execute(ctx);

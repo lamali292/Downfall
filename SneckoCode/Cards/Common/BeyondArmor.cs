@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -24,10 +25,9 @@ public class BeyondArmor : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cards = Owner.PlayerCombatState?
-            .DrawPile.Cards
+        var cards = Owner.GetDraw()
             .Where(c => SneckoCmd.IsOffclass(this, c))
-            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection) ?? [];
+            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
         await CardPileCmd.Add(cards, PileType.Hand);
     }
 }

@@ -34,8 +34,8 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             Cancelable = true,
             RequireManualConfirmation = false
         };
-        var gems = PileType.Deck.GetPile(Owner).Cards.Where(c => c is IGemCard).ToList();
-        var gemHolder = PileType.Deck.GetPile(Owner).Cards.Where(c => c is GuardianCardModel { FreeSlots: > 0 })
+        var gems = Owner.GetDeck().Where(c => c is IGemCard).ToList();
+        var gemHolder = Owner.GetDeck().Where(c => c is GuardianCardModel { FreeSlots: > 0 })
             .ToList();
         List<CardModel> cardModel;
 
@@ -64,8 +64,8 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         if (_gem == null || _gemHolder == null)
             return false;
         await GuardianCmd.PutGemIn(_gem, _gemHolder);
-        var hasGems = PileType.Deck.GetPile(Owner).Cards.Any(c => c is IGemCard);
-        var hasSlots = PileType.Deck.GetPile(Owner).Cards.Any(c => c is GuardianCardModel { FreeSlots: > 0 });
+        var hasGems = Owner.GetDeck().Any(c => c is IGemCard);
+        var hasSlots = Owner.GetDeck().Any(c => c is GuardianCardModel { FreeSlots: > 0 });
         IsEnabled = hasGems && hasSlots;
         var button = NRestSiteRoom.Instance?.GetButtonForOption(this);
         if (button == null) return false;

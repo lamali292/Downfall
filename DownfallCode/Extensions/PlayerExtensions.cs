@@ -28,4 +28,9 @@ public static class PlayerExtensions
     {
         return PileType.Exhaust.GetPile(player).Cards;
     }
+    
+    public static IEnumerable<CardModel> GetAllCards(this Player player)
+    {
+        return player.PlayerCombatState?.AllCards ?? [];
+    }
 }

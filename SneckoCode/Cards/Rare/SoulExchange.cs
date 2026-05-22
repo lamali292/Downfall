@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -18,8 +19,6 @@ public class SoulExchange : SneckoCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var playerCombatState = Owner.PlayerCombatState;
-        if (playerCombatState == null) return;
-        await SneckoCmd.Muddle(ctx, playerCombatState.Hand.Cards, this);
+        await SneckoCmd.Muddle(ctx, Owner.GetHand(), this);
     }
 }

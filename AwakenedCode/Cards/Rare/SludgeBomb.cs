@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,13 +18,13 @@ public class SludgeBomb : AwakenedCardModel
         WithDamage(18, 4);
     }
 
-    protected override bool IsPlayable => PileType.Exhaust.GetPile(Owner).Cards.Any(c => c is Void);
+    protected override bool IsPlayable => Owner.GetExhaust().Any(c => c is Void);
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = PileType.Exhaust.GetPile(Owner).Cards.FirstOrDefault(c => c is Void);
+        var card = Owner.GetExhaust().FirstOrDefault(c => c is Void);
         if (card == null) return;
         await CardPileCmd.RemoveFromCombat(card);
     }

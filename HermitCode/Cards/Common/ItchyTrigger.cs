@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,7 +28,7 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        var cards =  Owner.PlayerCombatState?.Hand.Cards;
+        var cards =  Owner.GetHand();
         var cardModel = cards?.Where(c => c.CostsEnergyOrStars(false))
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault() ?? 
                         cards?.Where(c => c.CostsEnergyOrStars(true))

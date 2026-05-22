@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,9 +29,9 @@ public sealed class DeadMansHand : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var handCards = Owner.PlayerCombatState?.Hand.Cards;
-        if (handCards?.Count > 0) await CardCmd.Discard(ctx, handCards);
-        var rarest = PileType.Draw.GetPile(Owner).Cards
+        var handCards = Owner.GetHand();
+        if (handCards.Count > 0) await CardCmd.Discard(ctx, handCards);
+        var rarest = Owner.GetDraw()
             .OrderByDescending(c => RarityLevel(c.Rarity))
             .Take(3)
             .ToList();       

@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -58,7 +59,7 @@ public sealed class CursedWeapon : HermitCardModel
             .Execute(ctx);
 
         var increase = DynamicVars[IncreaseKey].IntValue;
-        Owner.PlayerCombatState?.AllCards.OfType<CursedWeapon>().ToList().ForEach(card =>
+        Owner.GetAllCards().OfType<CursedWeapon>().ToList().ForEach(card =>
         {
             card.BuffFromPlay(increase);
             (card.DeckVersion as CursedWeapon)?.BuffFromPlay(increase);
