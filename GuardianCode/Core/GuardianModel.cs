@@ -1,6 +1,8 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
@@ -69,9 +71,12 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
     public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
     {
         if (player.Character is not Guardian) return false;
-        var gems = PileType.Deck.GetPile(player).Cards.Where(e => e is IGemCard).ToList();
-        if (gems.Count == 0) return false;
-        options.Add(new GemRestSiteOption(player));
+        if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
+
+        var deck = player.GetDeck();
+        var hasGems = deck.Any(e => e is IGemCard);
+        var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
+        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots });
         return true;
     }
 
