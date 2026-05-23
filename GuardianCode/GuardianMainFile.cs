@@ -26,9 +26,7 @@ public partial class GuardianMainFile : Node
     {
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
-        //_ = GuardianCardModel.GemData;
         Harmony harmony = new(ModId);
-        GuardianSubsriber.Subscribe();
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
