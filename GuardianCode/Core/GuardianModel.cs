@@ -76,7 +76,7 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
         var deck = player.GetDeck();
         var hasGems = deck.Any(e => e is IGemCard);
         var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
-        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots });
+        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
         return true;
     }
 
