@@ -3,7 +3,6 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -75,30 +74,31 @@ public static class AutomatonCmd
     public static void ApplyFunctionCardType(FunctionCard card, IEnumerable<CardModel> snapshot)
     {
         var list = snapshot.ToList();
+     
+        if (list.Any(c => c is { TargetType: TargetType.AnyEnemy }))
+        {
+            card.SetTargetType(TargetType.AnyEnemy);
+        }
+        else if (list.Any(c => c is { TargetType: TargetType.AllEnemies }))
+        {
+            card.SetTargetType(TargetType.AllEnemies);
+        }
+        else
+        {
+            card.SetTargetType(TargetType.Self);
+        }
+        
         if (list.Any(c => c is FullRelease))
         {
             card.SetCardType(CardType.Power);
-            card.SetTargetType(TargetType.None);
         }
-        else if (list.Any(c => c is { TargetType: TargetType.AnyEnemy, Type: CardType.Attack }))
+        else if (list.Any(c => c is { Type: CardType.Attack }))
         {
             card.SetCardType(CardType.Attack);
-            card.SetTargetType(TargetType.AnyEnemy);
-        }
-        else if (list.Any(c => c is { TargetType: TargetType.AllEnemies, Type: CardType.Attack }))
-        {
-            card.SetCardType(CardType.Attack);
-            card.SetTargetType(TargetType.AllEnemies);
-        }
-        else if (list.Any(c => c.TargetType == TargetType.AnyEnemy))
-        {
-            card.SetCardType(CardType.Skill);
-            card.SetTargetType(TargetType.AnyEnemy);
         }
         else
         {
             card.SetCardType(CardType.Skill);
-            card.SetTargetType(TargetType.Self);
         }
     }
     

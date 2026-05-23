@@ -127,7 +127,7 @@
   "AUTOMATON-OPTIMIZE.title": "Optimize",
   "AUTOMATON-OVERHEAT.description": "Deal {Damage:diff()} damage.\nThe next time you create a card, the target enemy loses {OverheatPower:diff()} HP.",
   "AUTOMATON-OVERHEAT.title": "Overheat",
-  "AUTOMATON-PHILOSOPHIZE.description": "The next time you create a Function All enemies gain {EnemyStrength:diff()} [gold]Strength[/gold].",
+  "AUTOMATON-PHILOSOPHIZE.description": "The next time you create a Function All enemies gain {PhilosophizePower:diff()} [gold]Strength[/gold].",
   "AUTOMATON-PHILOSOPHIZE.title": "Philosophize",
   "AUTOMATON-PIERCING_SHOT.description": "Deal {Damage:diff()} damage to ALL enemies.\nUpgrade {Cards:diff()} {Cards:plural:card|cards} in your [gold]Bronze Orb[/gold].",
   "AUTOMATON-PIERCING_SHOT.title": "Piercing Shot",

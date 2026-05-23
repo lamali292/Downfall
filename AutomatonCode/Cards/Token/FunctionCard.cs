@@ -101,17 +101,14 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        for (var i = 0; i < _sourceCards.Count; i++)
+            if (_sourceCards[i] is IEncodable encodable)
+                await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
         if (Type == CardType.Power)
         {
             var power = await PowerCmd.Apply<FullReleasePower>(ctx,
                 Owner.Creature, 1, Owner.Creature, this);
             power?.SetSourceCards(_sourceCards);
-        }
-        else
-        {
-            for (var i = 0; i < _sourceCards.Count; i++)
-                if (_sourceCards[i] is IEncodable encodable)
-                    await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
         }
     }
 

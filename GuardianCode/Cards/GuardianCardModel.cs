@@ -77,8 +77,8 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayEffect(ctx, cardPlay);
-        foreach (var gem in Gems.SelectMany(gem => Enumerable.Repeat(gem, GemReplayCount)))
-            await gem.OnPlayWrapper(ctx, cardPlay);
+        foreach (var gem in Gems)
+            await gem.OnPlayWrapper(ctx, cardPlay, GemReplayCount);
     }
 }
 

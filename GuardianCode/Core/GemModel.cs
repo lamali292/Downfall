@@ -180,9 +180,12 @@ public abstract class GemModel : CardModifier, ICustomModel
         description.Add("energyPrefix", EnergyIconHelper.GetPrefix(ModelDb.Card<StrikeGuardian>()));
     }
 
-    public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay, int count = 1)
     {
-        await OnPlay(ctx, cardPlay);
+        for (var i = 0; i < count; i++)
+        {
+            await OnPlay(ctx, cardPlay);
+        }
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
