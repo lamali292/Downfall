@@ -6,6 +6,7 @@ public struct DownfallCardSelectorPrefs
 {
     public static LocString ToTopSelectionPrompt => new("card_selection", "DOWNFALL-TO_TOP");
     public static LocString ToHandSelectionPrompt => new("card_selection", "DOWNFALL-TO_HAND");
+    public static LocString ToDeckSelectionPrompt => new("card_selection", "DOWNFALL-TO_DECK");
     public static LocString ApplySelectionPrompt => new("card_selection", "DOWNFALL-TO_APPLY");
     public static LocString StasisSelectionPrompt => new("card_selection", "DOWNFALL-TO_STASIS");
     public static LocString PlaySelectionPrompt => new("card_selection", "DOWNFALL-TO_PLAY");
