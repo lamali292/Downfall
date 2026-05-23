@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -34,7 +35,7 @@ public class BismuthGem : GemModel
         await PowerCmd.Apply<ArtifactPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
 
-    protected override void OnAdded(CardModel card)
+    protected override void OnAdded(GuardianCardModel card)
     {
         if (card is IGemCard) return;
         if (!card.IsInCombat) return;

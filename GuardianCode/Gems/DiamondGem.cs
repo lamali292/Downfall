@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -46,7 +47,7 @@ public class DiamondGem : GemModel
     public override int ModifyPlayCount(int originalPlayCount)
     {
         if (UsedThisCombat) return originalPlayCount;
-        var owner = (Player?)Card.Owner;
+        var owner = Card?.Owner;
         if (owner == null) return originalPlayCount;
         var combatState = owner.Creature.CombatState;
         if (combatState == null) return originalPlayCount;
@@ -63,7 +64,7 @@ public class DiamondGem : GemModel
         return Task.CompletedTask;
     }
 
-    protected override void OnAdded(CardModel card)
+    protected override void OnAdded(GuardianCardModel card)
     {
         if (card is IGemCard) return;
         if (!card.IsInCombat) return;

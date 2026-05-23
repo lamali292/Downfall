@@ -5,5 +5,5 @@ namespace Guardian.GuardianCode.Events;
 
 public interface IModifyGemEffect
 {
-    decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel card);
+    decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel? card);
 }

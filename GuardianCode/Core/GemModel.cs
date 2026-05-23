@@ -10,6 +10,7 @@ using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,27 +22,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Core;
 
-public abstract class GemModel : AbstractModel, ICustomModel
+public abstract class GemModel : CardModifier, ICustomModel
 {
     private GemModel _canonicalInstance = null!;
-
-    private GuardianCardModel? _card;
     private DynamicVarSet? _dynamicVars;
-    private PowerModel? _power;
-    public int SocketIndex => _card?.Gems.IndexOf(this) ?? -1;
-
-    protected ICombatState CombatState =>
-        Card.CombatState ?? _power?.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
-
-    protected Player Player => Card.Owner;
-    public override bool ShouldReceiveCombatHooks => true;
-
-    private string IconName => Id.Entry
-        .RemovePrefix()
-        .ToLowerInvariant();
-
     
-
+    
+    private PowerModel? _power;
     public PowerModel Power
     {
         set
@@ -52,27 +39,23 @@ public abstract class GemModel : AbstractModel, ICustomModel
             _power = value;
         }
     }
+    
+    public int SocketIndex => Card?.Gems.IndexOf(this) ?? -1;
 
+    protected ICombatState CombatState =>
+        Card!.CombatState ?? _power?.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
 
-    public GuardianCardModel Card
-    {
-        get
-        {
-            AssertMutable();
-            return _card ?? throw new InvalidOperationException($"Gem {Id} has no Card attached to it!");
-        }
-        set
-        {
-            AssertMutable();
-            value.AssertMutable();
-            _card = value;
-            OnAdded(_card);
-        }
-    }
+    protected Player Player => Card!.Owner;
+    public override bool ShouldReceiveCombatHooks => true;
+
+    private string IconName => Id.Entry
+        .RemovePrefix()
+        .ToLowerInvariant();
+
+    public GuardianCardModel? Card => Owner as GuardianCardModel;
 
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
-
 
     protected DynamicVarSet DynamicVars
     {
@@ -96,20 +79,16 @@ public abstract class GemModel : AbstractModel, ICustomModel
         }
     }
 
-
     public IEnumerable<IHoverTip> HoverTips
     {
         get
         {
             var hoverTips = new List<IHoverTip>();
-
-            var a = GetFormattedText();
-            hoverTips.Add(ToHoverTip(a));
+            hoverTips.Add(ToHoverTip(GetFormattedText()));
             hoverTips.AddRange(ExtraHoverTips);
             return hoverTips;
         }
     }
-
 
     public string IconPath => $"{IconName}.png".GemPath();
     private static string EmptyIconPath => "emptysocket.png".GemPath();
@@ -120,12 +99,16 @@ public abstract class GemModel : AbstractModel, ICustomModel
     public LocString Title => new("gems", Id.Entry + ".title");
     private LocString Description => new("gems", Id.Entry + ".description");
 
-
     public CardModel ToCard => ModelDb.CardPool<GuardianCardPool>().AllCards.OfType<IGemCard>()
         .Where(c => c.CanonicalGemModel.GetType() == GetType()).Cast<CardModel>().First();
 
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
 
+    public override void ModifyDescription(Creature? target, ref string description)
+    {
+        
+    }
+    
     public string GetFormattedText(bool cardText = false)
     {
         var stringBuilder = new StringBuilder();
@@ -134,14 +117,13 @@ public abstract class GemModel : AbstractModel, ICustomModel
         if (isSmart)
         {
             var locString = Description;
-            locString.Add("CardName", Card.Title);
+            locString.Add("CardName", Card!.Title);
             AddDumbVariablesToDescription(locString);
             foreach (var dynamicVar in DynamicVars.Values)
             {
                 var runGlobalHooks = Card is { CombatState: not null, Pile.Type: PileType.Hand or PileType.Play };
                 dynamicVar.UpdateCardPreview(Card, CardPreviewMode.Normal, null, runGlobalHooks);
             }
-
             DynamicVars.AddTo(locString);
             formatted = locString.GetFormattedText();
         }
@@ -153,12 +135,10 @@ public abstract class GemModel : AbstractModel, ICustomModel
             formatted = description.GetFormattedText();
         }
 
-        var isEmpty = formatted.Equals("");
-        if (!isEmpty)
+        if (!formatted.Equals(""))
             stringBuilder.Append(formatted);
         return stringBuilder.ToString();
     }
-
 
     public GemModel ToMutable()
     {
@@ -168,10 +148,21 @@ public abstract class GemModel : AbstractModel, ICustomModel
         return mutable;
     }
 
+    public GemModel CreateClone()
+    {
+        AssertMutable();
+        return (GemModel)MutableClone();
+    }
+
+    public override void AfterClonedOnCard(CardModel card)
+    {
+        if (card is GuardianCardModel gc)
+            OnAdded(gc);
+    }
 
     private HoverTip ToHoverTip(string description)
     {
-        var a = new HoverTip
+        return new HoverTip
         {
             CanonicalModel = null,
             ShouldOverrideTextOverflow = false,
@@ -181,7 +172,6 @@ public abstract class GemModel : AbstractModel, ICustomModel
             Icon = Icon,
             IsSmart = true
         };
-        return a;
     }
 
     private void AddDumbVariablesToDescription(LocString description)
@@ -196,23 +186,9 @@ public abstract class GemModel : AbstractModel, ICustomModel
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
-
     protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
 
+    public virtual int ModifyPlayCount(int originalPlayCount) => originalPlayCount;
 
-    public virtual int ModifyPlayCount(int originalPlayCount)
-    {
-        return originalPlayCount;
-    }
-
-    public GemModel CreateClone()
-    {
-        AssertMutable();
-        var a = (GemModel)MutableClone();
-        return a;
-    }
-
-    protected virtual void OnAdded(CardModel card)
-    {
-    }
+    protected virtual void OnAdded(GuardianCardModel card) { }
 }

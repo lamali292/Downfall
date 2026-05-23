@@ -20,7 +20,9 @@ public class OnyxGem : GemModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await GuardianCmd.Polish(ctx, Card, effect);
+        var card = Card;
+        if (card == null) return;
+        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, card);
+        await GuardianCmd.Polish(ctx, card, effect);
     }
 }

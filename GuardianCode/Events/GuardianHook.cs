@@ -36,7 +36,7 @@ public static class GuardianHook
     }
 
 
-    public static decimal ModifyGemEffect(ICombatState cs, GemModel gem, decimal baseValue, CardModel card)
+    public static decimal ModifyGemEffect(ICombatState cs, GemModel gem, decimal baseValue, CardModel? card)
     {
         return DownfallHook.Aggregate<IModifyGemEffect, decimal>(cs, baseValue,
             (m, val) => m.ModifyGemEffect(gem, val, card));

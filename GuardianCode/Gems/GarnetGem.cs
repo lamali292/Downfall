@@ -22,6 +22,6 @@ public class GarnetGem : GemModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<VulnerablePower>(ctx, CombatState.Enemies, effect, Card.Owner.Creature, null);
+        await PowerCmd.Apply<VulnerablePower>(ctx, CombatState.Enemies, effect, Player.Creature, null);
     }
 }

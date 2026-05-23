@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils;
@@ -17,43 +15,15 @@ namespace Guardian.GuardianCode.Cards;
 
 public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 {
-    [JsonSavedProperty] private List<SerializableGem> SerializableGems { get; set; } = [];
-
-    public IReadOnlyList<GemModel> Gems => SerializableGems.Select(gem =>
-    {
-        var a = gem.ToGem().ToMutable();
-        a.Card = this;
-        return a;
-    }).ToList();
-
-    protected override void DeepCloneFields()
-    {
-        SerializableGems = new List<SerializableGem>(SerializableGems);
-    }
+    public IReadOnlyList<GemModel> Gems =>
+        CardModifier.Modifiers(this).OfType<GemModel>().ToList();
 
     public void AddGem(GemModel gem)
     {
         if (IsFull) return;
         var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
-        mutableGem.Card = this;
-        SerializableGems.Add(SerializableGem.FromGem(gem));
+        CardModifier.AddModifier(this, mutableGem);
     }
-
-    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
-        bool showInCardLibrary = true,
-        bool autoAdd = true)
-        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
-    {
-        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
-        if (this is ITickCard) WithTip(GuardianTip.Tick);
-    }
-
-    public int GemCount => Gems.Count;
-    private bool IsFull => Gems.Count >= GemSlots;
-    public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
-
-    public virtual int GemSlots => 0;
-    protected virtual int GemReplayCount => 1;
 
     public void AddGems(IEnumerable<GemModel> gems)
     {
@@ -65,6 +35,21 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     }
 
     public bool CanAddGem(GemModel gem) => !IsFull;
+
+    public int GemCount => Gems.Count;
+    private bool IsFull => Gems.Count >= GemSlots;
+    public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
+
+    public virtual int GemSlots => 0;
+    protected virtual int GemReplayCount => 1;
+
+    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
+        bool showInCardLibrary = true, bool autoAdd = true)
+        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+    {
+        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
+        if (this is ITickCard) WithTip(GuardianTip.Tick);
+    }
 
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
@@ -94,20 +79,6 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         await PlayEffect(ctx, cardPlay);
         foreach (var gem in Gems.SelectMany(gem => Enumerable.Repeat(gem, GemReplayCount)))
             await gem.OnPlayWrapper(ctx, cardPlay);
-    }
-}
-
-public class GemModelJsonConverter : JsonConverter<GemModel>
-{
-    public override GemModel Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        var serializable = JsonSerializer.Deserialize<SerializableGem>(ref reader, options)!;
-        return serializable.ToGem();
-    }
-
-    public override void Write(Utf8JsonWriter writer, GemModel value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, SerializableGem.FromGem(value), options);
     }
 }
 
