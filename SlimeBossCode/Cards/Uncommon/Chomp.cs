@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +19,7 @@ public class Chomp : SlimeBossCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = Owner.PlayerCombatState?.Hand.Cards.Where(e => e.Tags.Contains(SlimeBossTag.Tackle))
+        var card = Owner.GetHand(e => e.Tags.Contains(SlimeBossTag.Tackle))
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
         if (card == null) return;
         if (IsUpgraded)

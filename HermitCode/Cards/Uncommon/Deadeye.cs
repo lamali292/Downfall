@@ -15,16 +15,16 @@ public sealed class Deadeye : HermitCardModel, IHasDeadOnEffect
         WithPower<StrengthPower>(2, 1);
     }
 
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play)
             .WithHermitBluntHeavyHitFx()
             .Execute(ctx);
-    }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

@@ -2,6 +2,8 @@ using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Extensions;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -62,111 +64,81 @@ public partial class NSequenceDisplay : Control
         var clamped = Math.Clamp(index, 0, _currentMax - 1);
         return clamped < _slots.Count ? _slots[clamped].CardAnchorGlobal : GlobalPosition;
     }
-
+    
     public void Refresh(bool force = false)
     {
         if (_trackedPlayer == null) return;
-
-        var sequence = AutomatonCmd.GetSequence(_trackedPlayer);
-
+        var sequence = _trackedPlayer.GetEncode();
         if (!force && _initialized && sequence.SequenceEqual(_lastSequence)) return;
         _lastSequence = sequence.ToList();
         _initialized = true;
-
         _currentMax = AutomatonCmd.GetMax(_trackedPlayer);
 
-        foreach (var h in _cardHolders.Where(h => h.CardModel != null)) FindOnTablePatch.Unregister(h.CardModel!);
+        RefreshSlots(sequence);
+        RefreshPreview(sequence);
+    }
 
+    private void RefreshSlots(IReadOnlyList<CardModel> sequence)
+    {
+        foreach (var h in _cardHolders.Where(h => h.CardModel != null))
+            FindOnTablePatch.Unregister(h.CardModel!);
         _cardHolders.Clear();
         foreach (var slot in _slots) slot.ClearCard();
 
-        _previewHolder?.QueueFree();
-        _previewHolder = null;
-        _previewModel = null;
-
-        if (_previewContainer != null)
-            foreach (var child in _previewContainer.GetChildren())
-                child.QueueFree();
-
-        // 1. Sequence slots
         for (var i = 0; i < _slots.Count; i++)
         {
             var slot = _slots[i];
             slot.Visible = i < _currentMax;
-
             if (i >= _currentMax || i >= sequence.Count) continue;
 
             var cardNode = NCard.Create(sequence[i]);
             if (cardNode == null) continue;
 
             var holder = slot.SetCard(cardNode);
-            if (holder == null)
-            {
-                cardNode.QueueFree();
-                continue;
-            }
+            if (holder == null) { cardNode.QueueFree(); continue; }
 
             holder.SetClickable(true);
             var captured = i;
-            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen()
-                .Open(AllCardsForInspect(), captured);
-
+            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen().Open(AllCardsForInspect(), captured);
             cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
             FindOnTablePatch.Register(sequence[i], cardNode);
             _cardHolders.Add(holder);
         }
+    }
 
-        var snapshot = sequence.OfType<AutomatonCardModel>().ToList();
+    private void RefreshPreview(IReadOnlyList<CardModel> snapshot)
+    {
+        if (_trackedPlayer == null) return;
+        _previewHolder?.QueueFree();
+        _previewHolder = null;
+        _previewModel = null;
+        if (_previewContainer != null)
+            foreach (var child in _previewContainer.GetChildren())
+                child.QueueFree();
 
-        var previewCanonical = ModelDb.Card<FunctionCard>();
-        if (snapshot.Any(c => c is FullRelease))
-        {
-            previewCanonical.SetCardType(CardType.Power);
-            previewCanonical.SetTargetType(TargetType.None);
-        }
-        else if (snapshot.Any(c => c.Type == CardType.Attack))
-        {
-            previewCanonical.SetCardType(CardType.Attack);
-            previewCanonical.SetTargetType(TargetType.AnyEnemy);
-        }
-        else
-        {
-            previewCanonical.SetCardType(CardType.Skill);
-            previewCanonical.SetTargetType(TargetType.Self);
-        }
-
-        _previewModel = previewCanonical.ToMutable() as FunctionCard;
+        _previewModel = ModelDb.Card<FunctionCard>().ToMutable() as FunctionCard;
         if (_previewModel == null) return;
 
-        if (snapshot.Count > 0)
-        {
-            _previewModel.SetSourceCards(snapshot);
-            foreach (var card in snapshot) card.ApplyToFunctionPreview(_previewModel);
-        }
-
+        AutomatonCmd.ApplyFunctionCardType(_previewModel, snapshot);
+        if (snapshot.Count > 0) _previewModel.SetSourceCards(snapshot);
         _previewModel.Owner = _trackedPlayer;
+        _previewModel = AutomatonHook.ModifyCompiledFunction(_trackedPlayer!.Creature.CombatState!, _previewModel, _trackedPlayer, out _);
 
         var funcCardNode = NCard.Create(_previewModel);
         if (funcCardNode == null || _previewContainer == null) return;
 
         _previewHolder = NCustomCardHolder.Create(funcCardNode, 1.5f, 2.5f);
-        if (_previewHolder == null)
-        {
-            funcCardNode.QueueFree();
-            return;
-        }
+        if (_previewHolder == null) { funcCardNode.QueueFree(); return; }
 
         _previewHolder.Scale = Vector2.One * 1.5f;
         _previewContainer.AddChild(_previewHolder);
         _previewHolder.Position = _previewContainer.Size / 2f - _previewHolder.Size / 2f;
-
         _previewHolder.SetClickable(true);
         _previewHolder.Pressed += _ =>
         {
             var cards = AllCardsForInspect();
             NGame.Instance?.GetInspectCardScreen().Open(cards, cards.Count - 1);
         };
-
         funcCardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
     }
 

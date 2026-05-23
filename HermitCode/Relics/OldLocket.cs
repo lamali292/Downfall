@@ -29,9 +29,9 @@ public sealed class OldLocket : HermitRelicModel
         return ModelDb.Relic<ClaspedLocket>();
     }
 
-    
 
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (!_firstTurn || side != Owner.Creature.Side) return;
         _firstTurn = false;

@@ -19,8 +19,8 @@ namespace Downfall.DownfallCode.Extensions.Relics
 {
     public static class StaticHoverTipPowerExtensions
     {
-
-        public static AbstractTooltipSource<RelicModel> WithVars(this StaticHoverTip staticTip, params DynamicVar[] vars)
+        public static AbstractTooltipSource<RelicModel> WithVars(this StaticHoverTip staticTip,
+            params DynamicVar[] vars)
         {
             return new AbstractTooltipSource<RelicModel>(_ => HoverTipFactory.Static(staticTip, vars));
         }
@@ -32,15 +32,10 @@ namespace Downfall.DownfallCode.Extensions.Powers
 {
     public static class StaticHoverTipRelicExtensions
     {
-        public static AbstractTooltipSource<PowerModel> WithVars(this StaticHoverTip staticTip, params DynamicVar[] vars)
+        public static AbstractTooltipSource<PowerModel> WithVars(this StaticHoverTip staticTip,
+            params DynamicVar[] vars)
         {
             return new AbstractTooltipSource<PowerModel>(_ => HoverTipFactory.Static(staticTip, vars));
         }
     }
 }
-
-
-
-
-
-

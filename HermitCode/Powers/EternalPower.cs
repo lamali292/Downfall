@@ -12,11 +12,17 @@ namespace Hermit.HermitCode.Powers;
 public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
 {
     private int _cardsReducedThisTurn = 4;
- 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-    { 
+
+    public string GetSecondAmount()
+    {
+        return $"{_cardsReducedThisTurn}";
+    }
+
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
+    {
         if (side != Owner.Side) return Task.CompletedTask;
-        _cardsReducedThisTurn = 4;   
+        _cardsReducedThisTurn = 4;
         this.InvokeSecondAmountChanged();
         return Task.CompletedTask;
     }
@@ -24,14 +30,12 @@ public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
     public override Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         if (_cardsReducedThisTurn <= 0
-                || card.Owner.Creature != Owner
-                || card.Keywords.Contains(CardKeyword.Unplayable))
-                return Task.CompletedTask;
+            || card.Owner.Creature != Owner
+            || card.Keywords.Contains(CardKeyword.Unplayable))
+            return Task.CompletedTask;
         card.EnergyCost.AddThisTurnOrUntilPlayed(-Amount, true);
         _cardsReducedThisTurn--;
         this.InvokeSecondAmountChanged();
         return Task.CompletedTask;
     }
-
-    public string GetSecondAmount() => $"{_cardsReducedThisTurn}";
 }

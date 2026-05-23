@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -18,6 +19,7 @@ namespace Snecko.SneckoCode.Core;
 
 public static class SneckoCmd
 {
+    private static readonly Dictionary<Type, PowerModel?> PowerCache = new();
     private static LocString MuddleSelectionPrompt => new("card_selection", "TO_MUDDLE");
 
     public static Task MuddleHandCards(PlayerChoiceContext ctx, CardModel card, bool lowerOnly = false)
@@ -73,7 +75,7 @@ public static class SneckoCmd
 
     public static bool OverflowActive(Player player, bool cardInHand = false)
     {
-        return player.PlayerCombatState is { Hand.Cards.Count: var count } && count > (cardInHand ? 5 : 4);
+        return player.GetHand().Count > (cardInHand ? 5 : 4);
     }
 
 
@@ -92,8 +94,6 @@ public static class SneckoCmd
         return card.DynamicVars.Values.Any(IsDebuffPowerVar) &&
                card.TargetType is not (TargetType.Self or TargetType.None);
     }
-
-    private static readonly Dictionary<Type, PowerModel?> PowerCache = new();
 
     private static bool IsDebuffPowerVar(DynamicVar v)
     {
@@ -121,6 +121,7 @@ public static class SneckoCmd
             player.RunState.AddCard(cardChoice, player);
             if (gift.IsUpgraded) cardChoice.UpgradeInternal();
         }
+
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
         CardModel? card;
 
@@ -134,6 +135,7 @@ public static class SneckoCmd
                     player, choiceId, PlayerChoiceResult.FromIndex(null));
                 return;
             }
+
             card = (await screen.CardsSelected()).FirstOrDefault();
             RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(
                 player, choiceId, PlayerChoiceResult.FromIndex(card != null ? new int?(cards.IndexOf(card)) : null));

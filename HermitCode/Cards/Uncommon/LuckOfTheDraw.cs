@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +19,7 @@ public sealed class LuckOfTheDraw : HermitCardModel
 
         var threshold = DynamicVars["Threshold"].IntValue;
         var totalCost = 0;
-        while (totalCost < threshold &&  Owner.PlayerCombatState?.Hand.Cards.Count < CardPile.MaxCardsInHand)
+        while (totalCost < threshold && Owner.GetHand().Count < CardPile.MaxCardsInHand)
         {
             var cards = (await CardPileCmd.Draw(ctx, 1, Owner)).ToList();
             if (cards.Count == 0)

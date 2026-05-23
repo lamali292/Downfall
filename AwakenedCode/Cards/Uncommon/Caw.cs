@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
@@ -21,7 +20,6 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     {
         WithDamage(3, 1);
         WithVar("Caw", 3, 1);
-        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

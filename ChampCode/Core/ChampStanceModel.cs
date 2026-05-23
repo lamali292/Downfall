@@ -1,6 +1,4 @@
-﻿using Champ.ChampCode.Events;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -11,10 +9,10 @@ public abstract class ChampStanceModel : AbstractModel
 {
     private Player? _player;
 
+    public int Charges;
+
     public abstract bool HasFinisher { get; }
     public virtual string? ChargeIconPath => null;
-
-    public int Charges;
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     protected ICombatState CombatState => Owner.Creature.CombatState ??

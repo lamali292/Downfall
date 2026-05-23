@@ -5,8 +5,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -15,18 +13,15 @@ public class Overheat : AutomatonCardModel
 {
     public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(18, 4);
-        WithTip(AutomatonTip.CompileError);
-        WithTip(AutomatonTip.Encode);
-        WithPower<RemoveErrorsPower>(1, false);
+        WithDamage(9, 3);
+        WithPower<OverheatPower>(9, 3, false);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<RemoveErrorsPower>(ctx, this);
+        await CommonActions.ApplySelf<OverheatPower>(ctx, this);
     }
 }

@@ -22,8 +22,10 @@ public sealed class Ricochet : HermitCardModel
     }
 
     private static decimal CountDeadOnEffects(CardModel card, Creature? _)
-        => CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e =>
+    {
+        return CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e =>
             e.HappenedThisTurn(card.CombatState) && e.Actor == card.Owner.Creature);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -46,6 +48,4 @@ public sealed class Ricochet : HermitCardModel
                 .Execute(ctx);
         }
     }
-
-   
 }

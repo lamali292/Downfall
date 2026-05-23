@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,9 +20,9 @@ public class StokeTheFire : HexaghostCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         var ignitedCount = HexaghostCmd.GetIgnitedCount(Owner);
-        if (ignitedCount == 0 || CombatState == null || Owner.PlayerCombatState == null) return;
+        if (ignitedCount == 0 || CombatState == null) return;
         var randomHandCards =
-            Owner.PlayerCombatState.Hand.Cards.TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
+            Owner.GetHand().TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
         foreach (var card in randomHandCards)
             if (card != this && card.IsUpgradable)
                 CardCmd.Upgrade(card);

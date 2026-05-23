@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -28,7 +29,7 @@ public class Gloomguard : AwakenedCardModel
 
     private bool HasVoidInHand()
     {
-        return PileType.Hand.GetPile(Owner).Cards.Any(e => e.Id == ModelDb.Card<Void>().Id);
+        return Owner.GetHand().Any(e => e.Id == ModelDb.Card<Void>().Id);
     }
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)

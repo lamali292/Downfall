@@ -1,7 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,31 +11,28 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class InfiniteLoop : AutomatonCardModel,
-    IEncodable, ICompilable
+    IEncodable
 {
     public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6);
-        WithVar("Increase", 2, 2);
+        WithPower<InfiniteLoopPower>(2, 2, false);
     }
 
-    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        CompileContext compileContext, bool forGameplay)
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!forGameplay) return;
-
-        var copy = CreateClone();
-        copy.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
-        copy.DynamicVars.FinalizeUpgrade();
-
-        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
+        var power = await CommonActions.ApplySelf<InfiniteLoopPower>(ctx, this);
+        power?.SetCard(this);
     }
-
+    
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
+    
+    
+    
 }

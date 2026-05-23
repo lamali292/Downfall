@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,9 +19,11 @@ public sealed class FinalCanter : HermitCardModel
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     private static decimal CountCursesInHand(CardModel card, Creature? _)
-     => card.Owner.PlayerCombatState?.Hand.Cards.Count(c => c.Type == CardType.Curse) ?? 0;
+    {
+        return card.Owner.GetHand().Count(c => c.Type == CardType.Curse);
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {

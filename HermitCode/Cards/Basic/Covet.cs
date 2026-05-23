@@ -11,7 +11,7 @@ public sealed class Covet : HermitCardModel
     public Covet() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithCards(1, 1);
-        WithVar("Discard",1);
+        WithVar("Discard", 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
@@ -32,6 +32,7 @@ public sealed class Covet : HermitCardModel
             else
                 await CardCmd.Discard(ctx, selected);
         }
+
         await CommonActions.Draw(this, ctx);
     }
 }

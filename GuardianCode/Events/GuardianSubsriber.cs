@@ -1,4 +1,5 @@
-﻿using Guardian.GuardianCode.Cards;
+using Downfall.DownfallCode.Extensions;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Modding;
@@ -24,8 +25,7 @@ public class GuardianSubsriber
     {
         foreach (var player in combatState.Players)
         {
-            if (player.PlayerCombatState == null) continue;
-            foreach (var cards in player.PlayerCombatState.AllCards.OfType<GuardianCardModel>())
+            foreach (var cards in player.GetAllCards().OfType<GuardianCardModel>())
             {
                 foreach (var gem in cards.Gems) yield return gem;
             }

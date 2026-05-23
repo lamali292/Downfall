@@ -1,9 +1,7 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -11,28 +9,20 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Philosophize : AutomatonCardModel,
-    IEncodable, ICompilableError
+public class Philosophize : AutomatonCardModel, IEncodable
 {
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<StrengthPower>(1);
-        WithPower<StrengthPower>("EnemyStrength", 2, -1);
+        WithPower<StrengthPower>(1, 1);
+        WithPower<PhilosophizePower>(1, false);
     }
 
-    public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        CompileContext compileContext, bool forGameplay)
-    {
-        var state = Owner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(state);
-        await PowerCmd.Apply<StrengthPower>(ctx, state.HittableEnemies, DynamicVars["EnemyStrength"].BaseValue,
-            Owner.Creature,
-            this);
-    }
-
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+      =>  CommonActions.ApplySelf<PhilosophizePower>(ctx, this);
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
+    
 }

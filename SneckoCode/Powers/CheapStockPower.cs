@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -13,11 +14,12 @@ public class CheapStockPower : SneckoPowerModel
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
-        var cards = Owner.Player.PlayerCombatState?.Hand.Cards.OrderByDescending(e => e.EnergyCost.GetResolved())
-            .Take(Amount) ?? [];
+        var cards = Owner.Player.GetHand().OrderByDescending(e => e.EnergyCost.GetResolved())
+            .Take(Amount);
         await SneckoCmd.Muddle(ctx, cards, this);
     }
 }

@@ -220,5 +220,4 @@ public abstract class GemModel : AbstractModel, ICustomModel
     protected virtual void OnAdded(CardModel card)
     {
     }
-
 }

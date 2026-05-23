@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,24 +14,17 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Undervolt : AutomatonCardModel
 {
-    public Undervolt() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Undervolt() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<StrengthPower>(2, 1);
-        WithKeywords(CardKeyword.Exhaust);
+        WithPower<StrengthPower>(-2,- 1);
+        WithVar("StrengthLoss", 2, 1);
         WithTip(typeof(Burn));
+        WithCards(2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var combatState = Owner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        await PowerCmd.Apply<StrengthPower>(ctx, combatState.Enemies, -DynamicVars.Power<StrengthPower>().BaseValue,
-            Owner.Creature, this);
-        List<CardModel> burns =
-        [
-            combatState.CreateCard<Burn>(Owner),
-            combatState.CreateCard<Burn>(Owner)
-        ];
-        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, Owner);
+        await CommonActions.Apply<StrengthPower>(ctx, this, cardPlay);
+        await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
     }
 }

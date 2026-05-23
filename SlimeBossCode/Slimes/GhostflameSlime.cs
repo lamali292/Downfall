@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Utils;
-using Hexaghost.HexaghostCode.Powers;
+﻿using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,9 +24,6 @@ public class GhostflameSlime : SlimeModel
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 6, out _, this);
         if (enemy == null) return;
         await DamageCmd.Attack(4).FromSlime(this).Targeting(enemy).Execute(ctx);
-        await ModCompat.TryExecute("Hexaghost",
-            () => PowerCmd.Apply<SoulBurnPower>(ctx, enemy, modified,
-                Creature, null)
-        );
+        await PowerCmd.Apply<SoulBurnPower>(ctx, enemy, modified, Creature, null);
     }
 }

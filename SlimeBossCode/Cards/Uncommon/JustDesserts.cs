@@ -13,7 +13,7 @@ public class JustDesserts : SlimeBossCardModel
         WithSlurp(2);
         WithDamage(5, 3);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

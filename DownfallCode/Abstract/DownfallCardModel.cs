@@ -95,14 +95,13 @@ public abstract class DownfallCardModel(
             default:
                 throw new ArgumentOutOfRangeException(nameof(upgradeType), upgradeType, null);
         }
+
         return this;
     }
+
     protected ConstructedCardModel WithTip(TooltipSource tooltipSource, int baseVal, int upgrade)
     {
-        if (baseVal == 0)
-        {
-            return upgrade == 0 ? this : WithTip(tooltipSource, UpgradeType.Add);
-        }
+        if (baseVal == 0) return upgrade == 0 ? this : WithTip(tooltipSource, UpgradeType.Add);
         return WithTip(tooltipSource, baseVal + upgrade == 0 ? UpgradeType.Remove : UpgradeType.None);
     }
 

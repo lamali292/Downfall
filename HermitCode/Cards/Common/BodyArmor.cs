@@ -22,9 +22,7 @@ public sealed class BodyArmor : HermitCardModel
         await CommonActions.CardBlock(this, play);
         if (selected == null) return;
         await CardCmd.Discard(ctx, selected);
-        if (selected.Type == CardType.Attack)  return;
+        if (selected.Type == CardType.Attack) return;
         await CommonActions.CardBlock(this, play);
-        
     }
 }
-

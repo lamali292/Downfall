@@ -11,7 +11,8 @@ namespace Champ.ChampCode.Powers;
 
 public class ProtectiveAuraPower : ChampPowerModel
 {
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Owner.Player == null || !Owner.Player.IsInChampStance<ChampNoStance>()) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);

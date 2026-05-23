@@ -1,4 +1,5 @@
-﻿using Hexaghost.HexaghostCode.Core;
+﻿using Downfall.DownfallCode.Powers;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

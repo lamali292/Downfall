@@ -1,8 +1,7 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Models;
-using System; // Added for Func support
-using System.IO;
+// Added for Func support
 
 namespace Downfall.DownfallCode.Extensions;
 
@@ -31,7 +30,7 @@ public static class StringExtensions
 
     private static string FallbackImg(string missingPath, string subfolder, string file)
     {
-        DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");   
+        DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
         return ImgPath(DownfallMainFile.ModId, subfolder, file);
     }
 
@@ -65,7 +64,7 @@ public static class StringExtensions
             () => FallbackImg(primaryPath, "atlases/power_sprite_atlas.sprites", "todo_power.tres"));
     }
 
-    
+
     public static string DownfallPowerImagePath(this string path)
     {
         var primaryPath = ImgPath(DownfallMainFile.ModId, "atlases/power_atlas.sprites", path);
@@ -97,8 +96,8 @@ public static class StringExtensions
             primaryPath,
             () => FallbackImg(primaryPath, "powers", "todo_power.png"));
     }
-    
-    
+
+
     public static string PowerSpriteImagePath<T>(this string path) where T : DownfallCharacterModel
     {
         var primaryPath = ImgPath(ModId<T>(), "atlases/power_sprite_atlas.sprites", path);

@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,10 +22,10 @@ public class Premonition : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.PlayerCombatState == null || CombatState == null) return;
+        if (CombatState == null) return;
         var cardType = await GetCardType(ctx);
         if (cardType == null) return;
-        var card = Owner.PlayerCombatState.DrawPile.Cards.Where(e => e.Type == cardType)
+        var card = Owner.GetDraw(e => e.Type == cardType)
             .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);
@@ -32,8 +33,7 @@ public class Premonition : HexaghostCardModel
 
     private async Task<CardType?> GetCardType(PlayerChoiceContext ctx)
     {
-        if (Owner.PlayerCombatState == null) return null;
-        var choices = Owner.PlayerCombatState.DrawPile.Cards.Select(c => c.Type).Distinct()
+        var choices = Owner.GetDraw().Select(c => c.Type).Distinct()
             .Select(f => PremonitionChoice.Create(f, Owner))
             .ToList();
         switch (choices.Count)

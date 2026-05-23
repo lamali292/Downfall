@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,16 +10,4 @@ namespace Automaton.AutomatonCode.Cards.Removed;
 
 [Obsolete]
 [Pool(typeof(AutomatonCardPool))]
-public class DelayedGuard : AutomatonCardModel, IEncodable
-{
-    public DelayedGuard() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, false, false)
-    {
-        WithPower<BlockNextTurnPower>(7, 3, false);
-        WithTip(StaticHoverTip.Block);
-    }
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this);
-    }
-}
+public class DelayedGuard() : AutomatonCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self, false, false);

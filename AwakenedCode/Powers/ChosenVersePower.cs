@@ -35,9 +35,9 @@ public class ChosenVersePower : AwakenedPowerModel
         await PowerCmd.Decrement(this);
     }
 
-    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         await PowerCmd.Remove(this);
     }
-    
 }

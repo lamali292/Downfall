@@ -12,12 +12,12 @@ public abstract partial class ItemExport
 {
     private static readonly Regex BbCodeSubstitutor = BbCodeRegex();
 
-    [JsonInclude] [JsonPropertyName("v")] private readonly byte _slayTheSpireVersion = 2;
-
     [JsonIgnore] public Assembly? Assembly;
 
     [JsonInclude] [JsonPropertyName("mod")] [JsonConverter(typeof(ModPropertyConverter))]
     public ModExport? Mod;
+
+    [JsonInclude] [JsonPropertyName("v")] private byte SlayTheSpireVersion { get; } = 2;
 
     [GeneratedRegex(@"\[.*?\]")]
     private static partial Regex BbCodeRegex();
@@ -28,7 +28,8 @@ public abstract partial class ItemExport
 
     protected static string StripBbCodeTags(string s, AbstractModel model)
     {
-        if (EnergyIconHelper.GetPool(model) is ICustomEnergyIconPool { TextEnergyIconPath: not null } pool) return StripBbCodeTags(s, true, pool.TextEnergyIconPath);
+        if (EnergyIconHelper.GetPool(model) is ICustomEnergyIconPool { TextEnergyIconPath: not null } pool)
+            return StripBbCodeTags(s, true, pool.TextEnergyIconPath);
         return StripBbCodeTags(s, EnergyIconHelper.GetPrefix(model));
     }
 

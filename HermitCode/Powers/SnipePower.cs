@@ -10,21 +10,20 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class SnipePower : HermitPowerModel, IModifyDeadOnCount
 {
-  
     public int ModifyDeadOnCount(int amount, CardModel card)
-     => card.Owner.Creature == Owner ? amount + 1 : amount;
+    {
+        return card.Owner.Creature == Owner ? amount + 1 : amount;
+    }
 
     public async Task AfterModifyingDeadOnCount(PlayerChoiceContext ctx, CardModel card)
     {
         await PowerCmd.ModifyAmount(ctx, this, -1, Owner, card);
     }
-    
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         await PowerCmd.Remove(this);
     }
-
-
-
 }

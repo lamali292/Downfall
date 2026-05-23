@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,8 +21,7 @@ public sealed class Roulette : HermitCardModel
         HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
-        if (Owner.PlayerCombatState == null) return;
-        var hand = Owner.PlayerCombatState.Hand.Cards;
+        var hand = Owner.GetHand();
         var handSize = hand.Count;
         await CardCmd.DiscardAndDraw(ctx, hand, handSize);
     }

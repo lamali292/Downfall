@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public class FiendFire : CollectorCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var list = PileType.Hand.GetPile(Owner).Cards.ToList();
+        var list = Owner.GetHand().ToList();
         var cardCount = list.Count;
         foreach (var card2 in list)
             await CardCmd.Exhaust(ctx, card2);

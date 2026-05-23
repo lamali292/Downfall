@@ -21,7 +21,9 @@ public class Collector : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.25f;
+    public override float CardColorS => 0.6f;
+    public override float CardColorV => 1f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Feminine;

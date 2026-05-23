@@ -4,6 +4,7 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+        <NoWarn>$(NoWarn);STS002</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

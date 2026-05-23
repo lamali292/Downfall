@@ -14,7 +14,7 @@ public sealed class Adapt : HermitCardModel
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

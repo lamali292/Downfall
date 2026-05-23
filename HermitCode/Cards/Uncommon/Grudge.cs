@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,5 +26,7 @@ public sealed class Grudge : HermitCardModel
     }
 
     private static decimal CountCurses(CardModel card, Creature? _)
-     => card.Owner.PlayerCombatState?.AllCards.Count(e => e.Type == CardType.Curse) ?? 0;
+    {
+        return card.Owner.GetAllCards().Count(e => e.Type == CardType.Curse);
+    }
 }

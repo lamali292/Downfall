@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -34,7 +35,7 @@ public class Virus : AutomatonCardModel
             .Execute(ctx);
 
 
-        var hand = PileType.Hand.GetPile(Owner).Cards.ToList();
+        var hand = Owner.GetHand();
         await CardCmd.Discard(ctx, hand);
 
         var beams = hand.Select(_ =>

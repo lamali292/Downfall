@@ -5,21 +5,19 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.DownfallCode.Powers.Abstract;
 
 public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPower
     where TP : PowerModel
 {
+    private bool _shouldIgnoreNextInstance;
+
     protected TemporaryPowerBase()
     {
         WithTip(typeof(TP));
     }
-    
-    private bool _shouldIgnoreNextInstance;
 
     public override PowerType Type => !IsPositive ? PowerType.Debuff : PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -27,7 +25,7 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
     protected virtual bool IsPositive => true;
     private int Sign => !IsPositive ? -1 : 1;
     protected virtual bool RemovedAfterOwnTurn => true;
-    
+
 
     public abstract AbstractModel OriginModel { get; }
     public PowerModel InternallyAppliedPower => ModelDb.Power<TP>();
@@ -55,8 +53,9 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
         if (_shouldIgnoreNextInstance) _shouldIgnoreNextInstance = false;
         else await PowerCmd.Apply<TP>(ctx, Owner, Sign * amount, applier, cardSource, true);
     }
-    
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side == RemovedAfterOwnTurn) return;
         Flash();

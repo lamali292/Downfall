@@ -66,13 +66,15 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
-    
-    public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+
+    public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         return ExecuteWithContext(ctx => AfterSideTurnStart(ctx, side, participants, combatState));
     }
 
-    protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected virtual Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         return Task.CompletedTask;
     }
@@ -118,6 +120,26 @@ public abstract class HookedPowerModel : CustomPowerModel
     }
 
     protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
+    
+    public sealed override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
+    {
+        return ExecuteWithContext(ctx => AfterModifyingCardPlayResultPileOrPosition(ctx, card, pileType, position));
+    }
+
+    protected virtual Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext card, CardModel pileType, PileType position, CardPilePosition cardPilePosition)
+    {
+        return Task.CompletedTask;
+    }
+
+    public sealed override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
+    {
+        return ExecuteWithContext(ctx => AfterCardChangedPiles(ctx, card, oldPileType, clonedBy));
+    }
+
+    protected virtual Task AfterCardChangedPiles(PlayerChoiceContext card, CardModel oldPileType, PileType clonedBy, AbstractModel? abstractModel)
     {
         return Task.CompletedTask;
     }

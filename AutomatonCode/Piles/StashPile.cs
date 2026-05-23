@@ -9,11 +9,12 @@ namespace Automaton.AutomatonCode.Piles;
 
 public class StashPile() : CustomPile(Stash)
 {
-    
     [CustomEnum] public static PileType Stash;
 
     public override bool CardShouldBeVisible(CardModel card)
-        => false;
+    {
+        return false;
+    }
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {

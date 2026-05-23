@@ -37,7 +37,8 @@ public class RelicExport : ItemExport, IImageExport
     [JsonInclude]
     [JsonPropertyName("ancient")]
     public string? Ancient => ModelDb.AllAncients
-        .FirstOrDefault(m => m.AllPossibleOptions.Select(static o => o.Relic?.Id.Entry).Contains(_model.Id.Entry))?.Title
+        .FirstOrDefault(m => m.AllPossibleOptions.Select(static o => o.Relic?.Id.Entry).Contains(_model.Id.Entry))
+        ?.Title
         .GetRawText();
 
     [JsonInclude]
@@ -56,7 +57,6 @@ public class RelicExport : ItemExport, IImageExport
     {
         ViewportManager.DrawRequest relicImg = new(ImgSize, $"relics/{Id}", null, drawer =>
         {
-         
             if (_exampleTexRect == null)
             {
                 var screen = NInspectRelicScreen.Create();

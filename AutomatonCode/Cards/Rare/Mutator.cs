@@ -18,18 +18,14 @@ public class Mutator : AutomatonCardModel
         WithPower<StrengthPower>(2);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip(StaticHoverTip.Transform);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-
-
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var selected = (await CardSelectCmd.FromHand(ctx, Owner, prefs, card => card.Type == CardType.Status, this))
             .FirstOrDefault();
-
         if (selected == null) return;
         await CardCmd.Transform(selected, CreateClone());
     }

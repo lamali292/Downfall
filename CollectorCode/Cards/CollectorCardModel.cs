@@ -1,6 +1,7 @@
 ﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -47,6 +48,6 @@ public abstract class CollectorCardModel(
 
     private bool PyreCondition()
     {
-        return PileType.Hand.GetPile(Owner).Cards.Any(e => e != this);
+        return Owner.GetHand().Any(e => e != this);
     }
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,6 +29,6 @@ public class SeverSoul : CollectorCardModel
 
     private IEnumerable<CardModel> GetCards()
     {
-        return PileType.Hand.GetPile(Owner).Cards.Where(c => c.Type != CardType.Attack);
+        return Owner.GetHand(c => c.Type != CardType.Attack);
     }
 }

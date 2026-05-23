@@ -15,14 +15,14 @@ public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
         WithGold(5, 5);
     }
 
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
-    }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
     }
 }

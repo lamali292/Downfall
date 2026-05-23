@@ -17,11 +17,13 @@ namespace Guardian.GuardianCode.Gems;
 
 public class BismuthGem : GemModel
 {
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [
+    public override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<ArtifactPower>(),
-        HoverTipFactory.Static(StaticHoverTip.Energy), 
+        HoverTipFactory.Static(StaticHoverTip.Energy),
         HoverTipFactory.Static(GuardianTip.Aggravate)
     ];
+
     public override Color GemColor => new(0xD8786AFF);
     public override CardRarity Rarity => CardRarity.Rare;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];

@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -13,7 +14,7 @@ public class Blunderbus : SneckoCardModel
         WithDamage(8, 3);
     }
 
-    private int ThreeCostInHand => Owner.PlayerCombatState?.Hand.Cards.Count(e => e.EnergyCost.GetResolved() >= 3) ?? 0;
+    private int ThreeCostInHand => Owner.GetHand().Count(e => e.EnergyCost.GetResolved() >= 3);
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

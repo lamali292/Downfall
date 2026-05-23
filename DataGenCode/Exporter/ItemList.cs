@@ -4,13 +4,12 @@ namespace DataGen.DataGenCode.Exporter;
 
 public class ItemList
 {
-
     [JsonInclude] [JsonPropertyName("cards")]
     public List<CardExport> Cards = [];
 
     [JsonInclude] [JsonPropertyName("enchantments")]
     public List<EnchantmentExport> Enchantments = [];
-    
+
     [JsonInclude] [JsonPropertyName("keywords")]
     public List<KeywordExport> Keywords = [];
 

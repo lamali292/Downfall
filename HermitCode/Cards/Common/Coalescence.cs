@@ -18,7 +18,7 @@ public sealed class Coalescence : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        
+
         var hand = PileType.Hand.GetPile(Owner);
         if (hand.Cards.Count == 0) return;
 

@@ -1,10 +1,9 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,14 +28,12 @@ public class CurlUp : GuardianCardModel
         {
             CardModel? card;
             if (IsUpgraded)
-            {
-                card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
-            }
+                card =
+                    (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
+                    .FirstOrDefault();
             else
-            {
-                card = PileType.Hand.GetPile(Owner).Cards.Where(e => e != this)
+                card = Owner.GetHand(e => e != this)
                     .TakeRandom(1, CombatState.RunState.Rng.CombatCardSelection).FirstOrDefault();
-            }
 
             if (card == null) return;
             await GuardianCmd.PutIntoStasis(card, ctx, this);

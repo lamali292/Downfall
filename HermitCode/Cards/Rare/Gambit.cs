@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -17,14 +18,11 @@ public sealed class Gambit : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var combatCardSelection = Owner.RunState.Rng.CombatCardSelection;
-        var cards = PileType.Discard.GetPile(Owner).Cards
+        var cards = Owner.GetDiscard()
             .Where(c => c.Type == CardType.Attack)
             .TakeRandom(DynamicVars.Cards.IntValue, combatCardSelection)
             .ToList();
         await CardPileCmd.Add(cards, PileType.Hand);
-        foreach (var card in cards)
-        {
-            card.EnergyCost.AddThisTurn(-1, true);
-        }
+        foreach (var card in cards) card.EnergyCost.AddThisTurn(-1, true);
     }
 }

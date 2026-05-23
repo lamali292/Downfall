@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
-using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
@@ -21,7 +20,9 @@ public class Automaton : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.16f;
+    public override float CardColorS => 0.45f;
+    public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Feminine;

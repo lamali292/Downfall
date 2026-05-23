@@ -17,7 +17,6 @@ public class Headshot : HermitCardModel
         WithDamage(7, 2);
     }
 
-   
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
@@ -26,7 +25,7 @@ public class Headshot : HermitCardModel
             return 1;
         return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;
     }
-    
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {

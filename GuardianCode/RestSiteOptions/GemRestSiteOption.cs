@@ -1,13 +1,11 @@
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Nodes;
-using Downfall.DownfallCode.Utils;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;
@@ -36,14 +34,13 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             Cancelable = true,
             RequireManualConfirmation = false
         };
-        var gems = PileType.Deck.GetPile(Owner).Cards.Where(c => c is IGemCard).ToList();
-        var gemHolder = PileType.Deck.GetPile(Owner).Cards.Where(c => c is GuardianCardModel { FreeSlots: > 0 })
-            .ToList();
+    
         List<CardModel> cardModel;
-
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(Owner);
         if (CardSelectCmd.ShouldSelectLocalCard(Owner))
         {
+            var gems = Owner.GetDeck(c => c is IGemCard);
+            var gemHolder = Owner.GetDeck(c => c is GuardianCardModel { FreeSlots: > 0 });
             var a = NGemUpgradeSelectScreen.Create(gems, gemHolder, prefs);
             if (NOverlayStack.Instance == null) return false;
             NOverlayStack.Instance.Push(a);
@@ -66,8 +63,8 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         if (_gem == null || _gemHolder == null)
             return false;
         await GuardianCmd.PutGemIn(_gem, _gemHolder);
-        var hasGems = PileType.Deck.GetPile(Owner).Cards.Any(c => c is IGemCard);
-        var hasSlots = PileType.Deck.GetPile(Owner).Cards.Any(c => c is GuardianCardModel { FreeSlots: > 0 });
+        var hasGems = Owner.GetDeck().Any(c => c is IGemCard);
+        var hasSlots = Owner.GetDeck().Any(c => c is GuardianCardModel { FreeSlots: > 0 });
         IsEnabled = hasGems && hasSlots;
         var button = NRestSiteRoom.Instance?.GetButtonForOption(this);
         if (button == null) return false;

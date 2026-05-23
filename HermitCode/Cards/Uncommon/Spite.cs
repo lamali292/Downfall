@@ -19,8 +19,7 @@ public sealed class Spite : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        if (Owner.PlayerCombatState == null) return;
-        await Owner.PlayerCombatState.Hand.Cards
+        await Owner.GetHand()
             .Where(c => c.Keywords.Contains(CardKeyword.Unplayable))
             .ForEachAsync(card => CardCmd.Exhaust(ctx, card));
         await CommonActions.CardBlock(this, play);

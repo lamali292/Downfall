@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Guardian.GuardianCode.Gems;
 
@@ -21,7 +20,9 @@ public class DiamondGem : GemModel
     public override Color GemColor => new(0x97CADBFF);
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override CardRarity Rarity => CardRarity.Rare;
-    public override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    public override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.Static(StaticHoverTip.ReplayStatic),
         HoverTipFactory.Static(StaticHoverTip.Energy),
         HoverTipFactory.Static(GuardianTip.Aggravate)

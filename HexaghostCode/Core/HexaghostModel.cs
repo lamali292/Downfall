@@ -40,9 +40,10 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         Wheel[player] = StartingWheel(player);
         CurrentIndex[player] = 0;
     }
-    
 
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.State?.Players ?? [])

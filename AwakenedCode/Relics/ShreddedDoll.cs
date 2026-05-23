@@ -12,7 +12,7 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class ShreddedDoll() : AwakenedRelicModel(RelicRarity.Starter)
 {
-   public override  async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner) return;
         if (combatState.RoundNumber == 1)

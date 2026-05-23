@@ -1,17 +1,17 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Powers;
 
-public class SummonOrbPower : AutomatonPowerModel, IOnCompile
+public class SummonOrbPower : AutomatonPowerModel
 {
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<AutomatonCardModel> snapshot,
+    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot,
         FunctionCard functionCard,
         CardPlay cardPlay)
     {

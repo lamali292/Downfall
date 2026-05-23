@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,9 +22,9 @@ public sealed class FullyLoaded : HermitCardModel
         HermitSfx.PlaySpin();
         HermitSfx.PlayReload();
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var strikesAndDefends = Owner.PlayerCombatState?.DrawPile.Cards
+        var strikesAndDefends = Owner.GetDraw()
             .Where(c => c.Tags.Contains(CardTag.Strike) || c.Tags.Contains(CardTag.Defend))
-            .ToList() ?? [];
+            .ToList();
         await CardPileCmd.Add(strikesAndDefends, PileType.Hand);
     }
 }

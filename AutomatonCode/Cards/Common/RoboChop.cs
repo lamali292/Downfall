@@ -1,9 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -23,6 +21,6 @@ public class RoboChop : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await CommonActions.Draw(this, ctx);
-        await AutomatonCmd.Stash(this, ctx);
+        await StashCmd.StashFromHand(this, ctx);
     }
 }

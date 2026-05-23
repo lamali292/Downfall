@@ -13,18 +13,16 @@ public class MergeConflict : AutomatonCardModel
 {
     public MergeConflict() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        WithDamage(14);
-        WithTip(AutomatonTip.Encode);
-        WithPower<MergePower>(1, false);
+        WithKeyword(CardKeyword.Exhaust);
+        WithDamage(5, 5);
+        WithPower<MergeConflictPower>(1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<MergePower>(ctx, this);
+        await CommonActions.ApplySelf<MergeConflictPower>(ctx, this);
     }
 }

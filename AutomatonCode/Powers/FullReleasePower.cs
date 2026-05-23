@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +12,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class FullReleasePower : AutomatonPowerModel
 {
-    private IReadOnlyList<AutomatonCardModel> _sourceCards = [];
+    private IReadOnlyList<CardModel> _sourceCards = [];
 
     public FullReleasePower() : base(PowerType.Buff, PowerStackType.Single)
     {
@@ -24,13 +23,14 @@ public class FullReleasePower : AutomatonPowerModel
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
 
-    public void SetSourceCards(IReadOnlyList<AutomatonCardModel> sourceCards)
+    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
         _sourceCards = sourceCards;
     }
 
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+        ICombatState combatState)
     {
         if (Owner.Player != player || Owner.CombatState == null) return;
         var resourceInfo = new ResourceInfo

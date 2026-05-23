@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,9 +19,7 @@ public class PerfecterStrike : ChampCardModel
 
     private static decimal CalculateStrikeCount(CardModel card, Creature? creatures)
     {
-        return card.Owner.PlayerCombatState == null
-            ? 0M
-            : card.Owner.PlayerCombatState.AllCards.Count(c => c.Tags.Contains(CardTag.Strike));
+        return card.Owner.GetAllCards().Count(c => c.Tags.Contains(CardTag.Strike));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

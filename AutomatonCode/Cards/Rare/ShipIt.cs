@@ -1,10 +1,10 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -13,24 +13,15 @@ public class ShipIt : AutomatonCardModel
 {
     public ShipIt() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
-        WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Status);
+        WithDamage(6, 2);
+        WithCards(1);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var statuses = PileType.Exhaust
-            .GetPile(Owner)
-            .Cards
-            .Count(c => c.Type == CardType.Status);
-
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
-            .WithHitCount(1 + statuses)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.Draw(this, ctx);
+        await StashCmd.Stash(this);
     }
 }

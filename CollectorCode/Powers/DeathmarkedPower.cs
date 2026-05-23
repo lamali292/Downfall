@@ -23,7 +23,8 @@ public class DeathmarkedPower() : CollectorPowerModel(PowerType.Debuff)
         );
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Applier == null) return;
         await CreatureCmd.Damage(ctx, Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);

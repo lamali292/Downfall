@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -23,7 +24,7 @@ public class ManaShield : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await AwakenedCmd.Conjure(Owner, CombatState);
         var card = Owner.RunState.Rng.CombatCardGeneration
-            .NextItem(PileType.Hand.GetPile(Owner).Cards.Where(c => c is ISpell && c.EnergyCost.GetResolved() > 0));
+            .NextItem(Owner.GetHand(c => c is ISpell && c.EnergyCost.GetResolved() > 0));
         card?.EnergyCost.UpgradeBy(-1);
     }
 }

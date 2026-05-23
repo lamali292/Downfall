@@ -1,8 +1,8 @@
 using BaseLib.Abstracts;
 using BaseLib.Hooks;
+using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Events;
 using Godot;
-using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -10,9 +10,9 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Hexaghost.HexaghostCode.Powers;
+namespace Downfall.DownfallCode.Powers;
 
-public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
+public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
 {
     public SoulBurnPower() : base(PowerType.Debuff)
     {
@@ -37,7 +37,8 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         );
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx,  CombatSide side, IReadOnlyList<Creature> participants,ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side)
             return;
@@ -52,7 +53,7 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
         if (Owner.CombatState == null) return;
         var combatState = Owner.CombatState;
         var owner = Owner;
-        var targetAll = await HexaghostHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
+        var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
         if (targetAll)
             await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
@@ -64,7 +65,7 @@ public class SoulBurnPower : HexaghostPowerModel, IHasSecondAmount
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);
         else
             await PowerCmd.Remove(this);
-        await HexaghostHook.AfterSoulburnDetonate(combatState, ctx, owner);
+        await DownfallHook.AfterSoulburnDetonate(combatState, ctx, owner);
         await Cmd.CustomScaledWait(0.1f, 0.25f);
     }
 }

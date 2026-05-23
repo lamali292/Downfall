@@ -11,7 +11,8 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class AdaptPower : HermitPowerModel
 {
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != CombatSide.Player) return;
         if (Owner.Player == null) return;

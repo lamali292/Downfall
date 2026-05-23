@@ -18,13 +18,11 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
     public static readonly JsonSavedField<GuardianCardModel, List<SerializableGem>> GemData =
         JsonSavedField.Create<GuardianCardModel, List<SerializableGem>>("DOWNFALL_GEM");
 
-    
-    
-    
-    
+
     public List<GemModel>? CachedGems;
 
-    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,  bool showInCardLibrary = true,
+    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
+        bool showInCardLibrary = true,
         bool autoAdd = true)
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
@@ -36,10 +34,7 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
             WithTip(GuardianTip.Socket);
             WithTip(GuardianKeyword.Gem);
         }*/
-        if (this is ITickCard)
-        {
-            WithTip(GuardianTip.Tick);
-        }
+        if (this is ITickCard) WithTip(GuardianTip.Tick);
     }
 
     public IReadOnlyList<GemModel> Gems

@@ -19,12 +19,12 @@ public class SteelEdge : ChampCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        if (x > 0) 
+        if (x > 0)
             await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
     }
+
     protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, repeat: Math.Max(1, ResolveEnergyXValue()));
     }
-
 }

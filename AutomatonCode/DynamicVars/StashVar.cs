@@ -9,4 +9,4 @@ public class StashVar : DynamicVar
     {
         this.WithTooltip();
     }
-};
+}

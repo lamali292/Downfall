@@ -48,6 +48,7 @@ public static class ChampHook
         return DownfallHook.Aggregate<IModifyBerserkerFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyBerserkerFinisherBonus(stanceModel, current));
     }
+
     public static int ModifyDefensiveFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
     {
         return DownfallHook.Aggregate<IModifyDefensiveFinisherBonus, int>(cs, baseAmount,

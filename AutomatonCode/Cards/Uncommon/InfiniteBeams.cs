@@ -15,19 +15,11 @@ public class InfiniteBeams : AutomatonCardModel
 {
     public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        WithTip(new TooltipSource(card =>
-        {
-            var beam = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
-            if (card.IsUpgraded) beam.UpgradeInternal();
-            return HoverTipFactory.FromCard(beam);
-        }));
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithTip(typeof(MinorBeam));
+        WithPower<InfiniteBeamsPower>(1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (IsUpgraded)
-            await PowerCmd.Apply<InfiniteBeamsUpgradedPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
-        else
-            await PowerCmd.Apply<InfiniteBeamsPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
-    }
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => CommonActions.ApplySelf<InfiniteBeamsPower>(ctx, this);
 }

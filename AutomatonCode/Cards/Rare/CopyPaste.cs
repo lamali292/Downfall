@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +19,7 @@ public class CopyPaste : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var sequence = AutomatonCmd.GetSequence(Owner)
+        var sequence = Owner.GetEncode()
             .OfType<AutomatonCardModel>()
             .ToList();
 

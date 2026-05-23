@@ -18,7 +18,8 @@ public class DoomedAttackPower : CollectorPowerModel
         await PowerCmd.Remove(this);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         await PowerCmd.Remove(this);

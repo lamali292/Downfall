@@ -10,7 +10,8 @@ namespace Snecko.SneckoCode.Powers;
 
 public class SneckoConstrictPower() : SneckoPowerModel(PowerType.Debuff)
 {
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side)
             return;

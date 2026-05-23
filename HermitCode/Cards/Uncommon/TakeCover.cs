@@ -20,15 +20,21 @@ public sealed class TakeCover : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand, upgraded: IsUpgraded, action: card => WithPlayModifiers(card, this));
+        await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand, upgraded: IsUpgraded,
+            action: card => WithPlayModifiers(card, this));
     }
 
     private static void WithPreviewModifiers(DefendHermit defend, CardModel cardModel)
-         => WithModifiers(defend, cardModel is { IsMutable: true, _owner: not null } ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
-    
+    {
+        WithModifiers(defend,
+            cardModel is { IsMutable: true, _owner: not null } ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
+    }
+
     private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
-        =>  WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);
-    
+    {
+        WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);
+    }
+
     private static void WithModifiers(DefendHermit defend, int nimble)
     {
         DownfallCardCmd.ForceUpgrade(defend, nimble);

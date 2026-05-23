@@ -13,16 +13,16 @@ public class Roughhouse : HermitCardModel, IHasDeadOnEffect
         WithDamage(24, 6);
         WithBlock(20, 4);
     }
-    
+
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CommonActions.CardBlock(this, play);
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play).WithHermitBluntHeavyHitFx()
             .Execute(ctx);
-    }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        await CommonActions.CardBlock(this, play);
     }
 }

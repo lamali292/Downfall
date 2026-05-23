@@ -1,9 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Audio.Debug;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -20,6 +16,6 @@ public class BitShift : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await AutomatonCmd.DrawFromStash(Owner);
+        await StashCmd.DrawFromStash(Owner);
     }
 }

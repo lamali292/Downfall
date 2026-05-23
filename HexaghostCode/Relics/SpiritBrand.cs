@@ -31,7 +31,8 @@ public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGho
         return ModelDb.Relic<MarkOfTheEther>();
     }
 
-    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return Task.CompletedTask;
         Status = RelicStatus.Active;

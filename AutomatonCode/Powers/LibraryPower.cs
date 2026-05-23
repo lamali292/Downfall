@@ -12,7 +12,8 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class LibraryPower : AutomatonPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx,  CombatSide side,IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var rng = Owner.CombatState!.RunState.Rng.CombatCardSelection;
@@ -22,12 +23,9 @@ public class LibraryPower : AutomatonPowerModel
             .Select(t =>
             {
                 var card = Owner.CombatState!.CreateCard(t, Owner.Player);
-                card.EnergyCost.SetUntilPlayed(0);
-                // ? future proof
-                card.SetStarCostUntilPlayed(0);
+                card.SetToFreeThisTurn();
                 return card;
             });
-
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
     }
 }

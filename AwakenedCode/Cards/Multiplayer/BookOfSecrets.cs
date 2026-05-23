@@ -1,11 +1,8 @@
 ﻿using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Cards.Multiplayer;
 
@@ -28,7 +25,8 @@ public class BookOfSecrets : AwakenedCardModel
         var spell = AwakenedCmd.GetSpellbook(Owner);
         var nextSpell = spell?.NextSpell;
         if (nextSpell == null) return;
-        foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature).Where(c => c is { IsAlive: true, IsPlayer: true }))
+        foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature)
+                     .Where(c => c is { IsAlive: true, IsPlayer: true }))
         {
             var player = creature.Player;
             if (player == null || player == Owner) continue;

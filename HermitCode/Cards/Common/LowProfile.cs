@@ -23,5 +23,7 @@ public sealed class LowProfile : HermitCardModel
     }
 
     private static decimal CountDebuffs(CardModel card, Creature? _)
-     => card.Owner.Creature.Powers.Count(p => p.TypeForCurrentAmount == PowerType.Debuff);
+    {
+        return card.Owner.Creature.Powers.Count(p => p.TypeForCurrentAmount == PowerType.Debuff);
+    }
 }

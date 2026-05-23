@@ -46,9 +46,11 @@ public static class AwakenedCmd
         if (firstTime && card is not Caw)
         {
             // TODO : change voice lines
-            TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature, VfxColor.Blue);
+            TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature,
+                VfxColor.Blue);
             SfxCmd.Play("event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp");
         }
+
         chantable.HasChanted = true;
         await chantable.PlayChantEffect(ctx, cardPlay);
         await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime);

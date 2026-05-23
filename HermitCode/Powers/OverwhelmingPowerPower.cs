@@ -8,10 +8,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-
 public sealed class OverwhelmingPowerPower() : HermitPowerModel(PowerType.Debuff)
 {
-    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player) return;
         var player = Owner.Player;

@@ -6,11 +6,9 @@ using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Relics;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Core;
@@ -23,7 +21,9 @@ public class Hermit : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.1f;
+    public override float CardColorS => 0.4f;
+    public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Neutral;

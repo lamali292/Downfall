@@ -15,8 +15,9 @@ public class EntangledPower() : DownfallPowerModel(PowerType.Debuff, PowerStackT
     {
         return card.Owner != Owner.Player || card.Type != CardType.Attack;
     }
-    
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side == Owner.Side) await PowerCmd.Remove(this);
     }

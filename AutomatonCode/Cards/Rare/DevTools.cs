@@ -1,9 +1,14 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Removed;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Displays;
+using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
@@ -14,30 +19,23 @@ public class DevTools : AutomatonCardModel
     public DevTools() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithKeywords(CardKeyword.Retain);
-        WithTip(typeof(Debug));
-        WithTip(typeof(Batch));
-        WithTip(typeof(Decompile));
-        WithTip(typeof(ByteShift));
+        WithTip(AutomatonTip.Encode);
         WithCostUpgradeBy(-1);
+        WithCalculatedVar("Dev", 0, Calc);
     }
+
+    private static decimal Calc(CardModel card, Creature? arg2)
+        => card.Owner.GetEncode().Count;
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var choices = new List<CardModel>
-        {
-            Owner.Creature.CombatState!.CreateCard<Debug>(Owner),
-            Owner.Creature.CombatState!.CreateCard<Batch>(Owner),
-            Owner.Creature.CombatState!.CreateCard<Decompile>(Owner),
-            Owner.Creature.CombatState!.CreateCard<ByteShift>(Owner)
-        };
-
-        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-        if (chosen == null) return;
-
-        var result = await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
-        if (result.success)
-            CardCmd.PreviewCardPileAdd(result);
+        var count = ((CalculatedVar)DynamicVars["Dev"]).Calculate(null);
+        var cards = Owner.GetEncode().ToList();
+        foreach (var card in cards)
+            await CardCmd.Exhaust(ctx, card);
+        await PlayerCmd.GainEnergy(count, Owner);
+        await CardPileCmd.Draw(ctx, count, Owner);
+        AutomatonDisplay.Refresh(Owner);
     }
 }

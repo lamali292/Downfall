@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,10 +22,11 @@ public class MiddenHeap : AwakenedCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cardsToSelect = PileType.Discard.GetPile(Owner).Cards
-            .Concat(PileType.Draw.GetPile(Owner).Cards).Where(c => c.Type is CardType.Status or CardType.Curse)
+        var cardsToSelect = Owner.GetDiscard()
+            .Concat(Owner.GetDraw()).Where(c => c.Type is CardType.Status or CardType.Curse)
             .ToList();
-        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
+        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect,
+            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,24 +10,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Repair : AutomatonCardModel, IEncodable, ICompilable
+public class Repair : AutomatonCardModel
 {
     public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(4);
-        WithHeal(7, 3);
+        WithPower<SelfRepairPower>(7, 3, false);
     }
-
-
-    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        CompileContext compileContext, bool forGameplay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!forGameplay) return;
-        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
-    }
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        await CommonActions.ApplySelf<SelfRepairPower>(ctx, this);
     }
 }

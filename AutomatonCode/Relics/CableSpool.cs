@@ -12,17 +12,10 @@ namespace Automaton.AutomatonCode.Relics;
 [Pool(typeof(AutomatonRelicPool))]
 public class CableSpool : AutomatonRelicModel, IOnEncode
 {
-    private bool _usedThisCombat = false;
+    private bool _usedThisCombat;
+
     public CableSpool() : base(RelicRarity.Uncommon)
     {
-
-    }
-
-    public override Task BeforeCombatStart()
-    {
-        _usedThisCombat = false;
-        Status = RelicStatus.Active;
-        return Task.CompletedTask;
     }
 
 
@@ -37,5 +30,12 @@ public class CableSpool : AutomatonRelicModel, IOnEncode
         var copy = encodedCard.CreateClone();
         await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
         await AutomatonCmd.EncodeCard(copy, ctx, cardPlay);
+    }
+
+    public override Task BeforeCombatStart()
+    {
+        _usedThisCombat = false;
+        Status = RelicStatus.Active;
+        return Task.CompletedTask;
     }
 }

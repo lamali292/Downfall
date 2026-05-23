@@ -1,6 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,25 +9,19 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Boost : AutomatonCardModel, IEncodable,
-    ICompilable
+public class Boost : AutomatonCardModel
 {
     public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(6);
+        WithBlock(5);
         WithPower<StrengthPower>(1, 1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
 
-    public async Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        CompileContext compileContext,
-        bool forGameplay)
-    {
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-    }
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

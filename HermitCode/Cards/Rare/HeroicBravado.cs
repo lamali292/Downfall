@@ -1,4 +1,3 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class HeroicBravado : HermitCardModel
 {
-  public HeroicBravado() : base(1, CardType.Skill, CardRarity.Rare, TargetType.None)
+    public HeroicBravado() : base(1, CardType.Skill, CardRarity.Rare, TargetType.None)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithPower<RuggedPower>(1);

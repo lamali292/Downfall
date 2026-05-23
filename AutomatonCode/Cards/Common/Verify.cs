@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -23,8 +22,8 @@ public class Verify : AutomatonCardModel
         await CommonActions.CardBlock(this, cardPlay);
         var card = (await CardSelectCmd.FromCombatPile(ctx, PileType.Discard.GetPile(Owner),
             Owner,
-            new CardSelectorPrefs(AutomatonCmd.StashSelectionPrompt, 1))).FirstOrDefault();
+            new CardSelectorPrefs(StashCmd.StashSelectionPrompt, 1))).FirstOrDefault();
         if (card == null) return;
-        await AutomatonCmd.Stash(card);
+        await StashCmd.Stash(card);
     }
 }

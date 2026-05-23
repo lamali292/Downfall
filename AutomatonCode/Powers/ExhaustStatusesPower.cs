@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Powers;
 
+[Obsolete]
 public class ExhaustStatusesPower : AutomatonPowerModel
 {
     private int _triggers;

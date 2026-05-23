@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
@@ -42,9 +43,9 @@ public static class SlimeBossCmd
     public static async Task Slurp(CardModel card)
     {
         var amount = card.DynamicVars["Slurp"].IntValue;
-        var licks = card.Owner.PlayerCombatState?.ExhaustPile.Cards
+        var licks = card.Owner.GetExhaust()
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
-            .ToList() ?? [];
+            .ToList();
 
         var unburied = licks.Where(e => !e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();
         var buried = licks.Where(e => e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();

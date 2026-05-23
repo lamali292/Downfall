@@ -1,6 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Ancient;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;

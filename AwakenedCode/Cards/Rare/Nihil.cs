@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
@@ -16,7 +15,6 @@ public class Nihil : AwakenedCardModel, IChantable
     public Nihil() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithPower<ManaburnPower>(13, 3);
-        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

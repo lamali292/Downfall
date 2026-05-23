@@ -18,7 +18,9 @@ public class Guardian : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.17f;
+    public override float CardColorS => 1.5f;
+    public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Masculine;

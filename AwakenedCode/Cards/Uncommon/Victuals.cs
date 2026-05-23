@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,7 +14,6 @@ public class Victuals : AwakenedCardModel, IChantable
     {
         WithEnergy(2, 1);
         WithKeywords(CardKeyword.Exhaust);
-        
     }
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

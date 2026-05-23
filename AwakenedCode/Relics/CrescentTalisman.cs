@@ -12,15 +12,15 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class CrescentTalisman : AwakenedRelicModel
 {
-    public override bool HasUponPickupEffect => true;
-
     public CrescentTalisman() : base(RelicRarity.Rare)
     {
         WithTip(typeof(Conjuration));
         WithTip(AwakenedTip.Conjure);
     }
-    
-    
+
+    public override bool HasUponPickupEffect => true;
+
+
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);

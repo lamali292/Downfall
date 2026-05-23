@@ -75,7 +75,8 @@ public class SyncSheets
             return;
         }
 
-        var credential = GoogleCredential.FromFile(_serviceAccount)
+        var credential = CredentialFactory.FromFile<ServiceAccountCredential>(_serviceAccount)
+            .ToGoogleCredential()
             .CreateScoped(SheetsService.Scope.Spreadsheets);
         var service = new SheetsService(new BaseClientService.Initializer
             { HttpClientInitializer = credential, ApplicationName = "ImageGen" });

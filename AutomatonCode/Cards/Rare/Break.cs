@@ -1,53 +1,31 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Break : AutomatonCardModel, IEncodable,
-    ICompilableError
+public class Break : AutomatonCardModel
 {
     public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(15, 5);
-        WithTip(typeof(Burn));
-        WithTip(typeof(Void));
-        WithTip(typeof(Dazed));
-        WithTip(typeof(Slimed));
-        WithTip(typeof(Wound));
+        WithDamage(20, 5);
+        WithTip(typeof(Error));
     }
 
-    public async Task OnCompileError(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        CompileContext compileContext,
-        bool forGameplay)
-    {
-        var combatState = Owner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        List<CardModel> burns =
-        [
-            combatState.CreateCard<Dazed>(Owner),
-            combatState.CreateCard<Slimed>(Owner),
-            combatState.CreateCard<Wound>(Owner),
-            combatState.CreateCard<Burn>(Owner),
-            combatState.CreateCard<Void>(Owner)
-        ];
-        await CardPileCmd.AddGeneratedCardsToCombat(burns, PileType.Hand, Owner);
-    }
 
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Hand);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Discard);
+        await StashCmd.Stash<Error>(Owner);
     }
 }

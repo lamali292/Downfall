@@ -16,7 +16,8 @@ public sealed class DrawFewerCardsNextTurnPower() : HermitPowerModel(PowerType.D
         return Math.Max(0m, count - Amount);
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || AmountOnTurnStart == 0) return;
         await PowerCmd.Remove(this);

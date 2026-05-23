@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -20,11 +21,10 @@ public class ToothAndClaw : SneckoCardModel
         WithUpgradingCardTip<Shiv>();
     }
 
-    private int UniqueColorsInHand => Owner.PlayerCombatState?
-        .Hand.Cards
+    private int UniqueColorsInHand => Owner.GetHand()
         .Select(e => e.Pool)
         .Distinct()
-        .Count() ?? 0;
+        .Count();
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

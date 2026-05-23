@@ -14,19 +14,17 @@ public class Assembly : AutomatonCardModel
 {
     public Assembly() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithVar("Scry", 5, 3);
+        WithCards(4, 2);
         WithTip(AutomatonTip.Encode);
-        WithTip(DownfallTip.Scry);
         WithKeywords(CardKeyword.Exhaust);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
-        foreach (var card in result.Discarded.Where(e => e is IEncodable { AutoEncode: true }))
+        var cards = await CommonActions.Draw(this, ctx);
+        foreach (var card in cards.OfType<IEncodable>().Where(e => e is { AutoEncode: true }))
         {
-            if (card is not IEncodable encodable) continue;
-            await encodable.Encode(ctx, cardPlay);
+            await card.Encode(ctx, cardPlay);
         }
     }
 }

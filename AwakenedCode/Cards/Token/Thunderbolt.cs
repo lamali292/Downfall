@@ -21,7 +21,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithTags(AwakenedTag.Spell);
     }
-    
+
     // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
     // But would be too extreme to make a hook for this.
     public override TargetType TargetType =>

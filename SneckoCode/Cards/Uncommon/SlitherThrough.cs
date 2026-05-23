@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -21,7 +22,7 @@ public class SlitherThrough : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        Owner.PlayerCombatState?.Hand.Cards
+        Owner.GetHand()
             .Where(e => SneckoCmd.IsOffclass(this, e))
             .ToList().ForEach(e => e.EnergyCost.AddThisTurn(-1));
     }

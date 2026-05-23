@@ -1,4 +1,5 @@
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,8 +20,10 @@ public sealed class FromBeyond : HermitCardModel
     }
 
     private static decimal CountCardsInExhaust(CardModel card, Creature? _)
-     => card.Owner.PlayerCombatState?.ExhaustPile.Cards.Count ?? 0;
-    
+    {
+        return card.Owner.GetExhaust().Count;
+    }
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

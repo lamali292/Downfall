@@ -14,7 +14,8 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class DolphinsStyleGuide() : ChampRelicModel(RelicRarity.Uncommon)
 {
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         var creature = Owner.Creature;
         if (side != creature.Side || !Owner.IsInChampStance<ChampNoStance>()) return;

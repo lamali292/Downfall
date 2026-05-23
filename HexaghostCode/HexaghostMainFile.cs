@@ -6,10 +6,8 @@ using HarmonyLib;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Hexaghost.HexaghostCode;
 

@@ -1,5 +1,4 @@
 ﻿using Awakened.AwakenedCode.Cards.Basic;
-using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
@@ -7,8 +6,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Core;
@@ -21,7 +18,9 @@ public class Awakened : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.6f;
+    public override float CardColorS => 0.5f;
+    public override float CardColorV => 1f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Neutral;

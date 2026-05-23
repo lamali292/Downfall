@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Displays;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +21,8 @@ public class FineTuning : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(AutomatonCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,
+        var cards = (await CardSelectCmd.FromHand(ctx, Owner,
+            new CardSelectorPrefs(StashCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,
             this)).ToList();
         // is order important?
         foreach (var card in cards)
@@ -30,6 +30,7 @@ public class FineTuning : AutomatonCardModel
             CardCmd.Upgrade(card);
             card.AddKeyword(CardKeyword.Retain);
         }
-        await AutomatonCmd.Stash(cards);
+
+        await StashCmd.Stash(cards);
     }
 }

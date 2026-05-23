@@ -10,7 +10,8 @@ namespace Collector.CollectorCode.Powers;
 
 public class KarmaPower : CollectorPowerModel
 {
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || !CombatState.Enemies.Any(e => e.IsAfflicted())) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);

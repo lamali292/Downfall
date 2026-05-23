@@ -39,7 +39,8 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         if (UsesThisTurn <= Amount) InvokeDisplayAmountChanged();
     }
 
-    public override Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return Task.CompletedTask;
         UsesThisTurn = 0;

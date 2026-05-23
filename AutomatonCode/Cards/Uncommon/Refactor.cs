@@ -17,7 +17,6 @@ public class Refactor : AutomatonCardModel
         WithVar("Scry", 4);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallTip.Scry);
-        WithTip(DownfallTip.Status);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

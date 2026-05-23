@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +22,8 @@ public class WideSting : SneckoCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        foreach (var card in Owner.PlayerCombatState?.Hand.Cards.Where(e =>
-                     e.IsUpgradable && SneckoCmd.IsOffclass(this, e)) ?? []) CardCmd.Upgrade(card);
+        foreach (var card in Owner.GetHand()
+                     .Where(e => e.IsUpgradable && SneckoCmd.IsOffclass(this, e)))
+            CardCmd.Upgrade(card);
     }
 }
