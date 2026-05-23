@@ -5,14 +5,15 @@ using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Rooms;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Awakened.AwakenedCode.Core;
@@ -20,6 +21,7 @@ namespace Awakened.AwakenedCode.Core;
 public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
+    private static readonly ConditionalWeakTable<CombatState, StrongBox<bool>> InitializedCombats = new();
 
     public static bool IsAwakened(Player? player)
     {
@@ -30,6 +32,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
+        InitializedCombats.Clear();
         return Task.CompletedTask;
     }
 
@@ -51,20 +54,24 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         if (card is Void) await AwakenedHook.OnDrained(card.CombatState!, choiceContext, card.Owner, 1);
     }
 
-    // TODO : check if this still triggers
-    public override Task AfterRoomEntered(AbstractRoom room)
+    internal static void SetupAwakenedCombatUi(CombatState state)
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
-        if (state == null) return Task.CompletedTask;
+        var combatRoomNode = NCombatRoom.Instance;
+        if (combatRoomNode == null) return;
+
+        var initialized = InitializedCombats.GetOrCreateValue(state);
+        if (initialized.Value) return;
+
+        initialized.Value = true;
+        foreach (var player in state.Players)
+            AwakenMeter.Remove(player);
+
         foreach (var player in state.Players)
         {
             if (player.Character is not Awakened) continue;
             AwakenedCmd.GetSpellbook(player)?.Refresh(player);
-            var combatRoomNode = NCombatRoom.Instance;
-            if (combatRoomNode != null) SetupAwakenedUi(combatRoomNode, player);
+            SetupAwakenedUi(combatRoomNode, player);
         }
-
-        return Task.CompletedTask;
     }
 
     private static void SetupAwakenedUi(NCombatRoom combatRoom, Player player)
@@ -82,5 +89,14 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 
         AwakenedDisplay.Register(player, display);
         display.Refresh();
+    }
+}
+
+[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
+internal static class AwakenedCombatUiActivatePatch
+{
+    private static void Postfix(CombatState state)
+    {
+        AwakenedModel.SetupAwakenedCombatUi(state);
     }
 }

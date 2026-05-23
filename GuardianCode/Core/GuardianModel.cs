@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Extensions;
 using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
@@ -9,6 +10,7 @@ using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
 using Guardian.GuardianCode.Vfx;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +18,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -50,29 +53,29 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
         GuardianDisplay.Refresh(player);
     }
 
-    // TODO : check if this still triggers
-    public override Task AfterRoomEntered(AbstractRoom room)
+    internal static void SetupGuardianCombatUi(CombatState state)
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
         var combatRoomNode = NCombatRoom.Instance;
-        if (state == null || combatRoomNode == null) return Task.CompletedTask;
+        if (combatRoomNode == null) return;
+
         foreach (var player in state.Players)
         {
             if (player.Character is not Guardian) continue;
             GuardianDisplay.SetupGuardianUi(combatRoomNode, player);
-            StasisSlots.Set(player, 3);
+            if (StasisSlots[player] <= 0)
+                StasisSlots.Set(player, 3);
             GuardianDisplay.Refresh(player);
         }
-
-        return Task.CompletedTask;
     }
 
     public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
     {
-        if (player.Character is not Guardian) return false;
-        var gems = player.GetDeck(e => e is IGemCard).ToList();
-        if (gems.Count == 0) return false;
-        options.Add(new GemRestSiteOption(player));
+        if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
+
+        var deck = player.GetDeck();
+        var hasGems = deck.Any(e => e is IGemCard);
+        var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
+        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
         return true;
     }
 
@@ -99,5 +102,14 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
             guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
             guardianVisuals.OnAnimationTrigger("Idle");
         }).CallDeferred();
+    }
+}
+
+[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
+internal static class GuardianCombatUiActivatePatch
+{
+    private static void Postfix(CombatState state)
+    {
+        GuardianModel.SetupGuardianCombatUi(state);
     }
 }

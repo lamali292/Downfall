@@ -167,7 +167,6 @@
   "HEXAGHOST-SPECTERS_WAIL.title": "Specter's Wail",
   "HEXAGHOST-SPECTRAL_GRACE.description": "Deal {Damage:diff()} damage.\nDiscard {Cards:diff()} cards.",
   "HEXAGHOST-SPECTRAL_GRACE.title": "Spectral Grace",
-  "HEXAGHOST-SPECTRAL_GRACE.": "Select cards to Discard.",
   "HEXAGHOST-SPOOK.title": "Spook",
   "HEXAGHOST-SPOOK.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].",
   "HEXAGHOST-STEP_THROUGH.description": "Deal {Damage:diff()} damage.\nDraw 1 card for each [gold]Ignited[/gold] Ghostflame.",

@@ -163,7 +163,6 @@
   "COLLECTOR-VOID_ARMOR.title": "Void Armor",
   "COLLECTOR-WHIRLING_FLAME.description": "Deal {Damage:diff()} damage to ALL enemies.\nPut a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-WHIRLING_FLAME.title": "Whirling Flame",
-  "COLLECTOR-WHIRLING_FLAME.selectionScreenPrompt": "Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-WHOMP.description": "Deal {Damage:diff()} damage.\n[gold]Kindle[/gold] {Summon:diff()}.",
   "COLLECTOR-WHOMP.title": "Whomp",
   "COLLECTOR-WILDFIRE.description": "Deal {ExtraDamage:diff()} damage for each unique debuff on the enemy.",

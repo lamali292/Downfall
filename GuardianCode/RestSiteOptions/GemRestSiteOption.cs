@@ -17,10 +17,12 @@ namespace Guardian.GuardianCode.RestSiteOptions;
 
 public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 {
+    public const string Id = "DOWNFALL-GEM";
+
     private CardModel? _gem;
     private CardModel? _gemHolder;
 
-    public override string OptionId => "DOWNFALL-GEM";
+    public override string OptionId => Id;
 
     public override string CustomIconPath => "rest_site_option_gem.png".RestSitePath<Core.Guardian>();
 
