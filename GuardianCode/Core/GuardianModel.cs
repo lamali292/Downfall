@@ -20,11 +20,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace Guardian.GuardianCode.Core;
 
-public class GuardianModel() : CustomSingletonModel(HookType.Combat)
+public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 {
     // SpireFields
     internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
@@ -68,17 +67,6 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
         }
     }
 
-    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
-    {
-        if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
-
-        var deck = player.GetDeck();
-        var hasGems = deck.Any(e => e is IGemCard);
-        var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
-        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
-        return true;
-    }
-
     internal static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
     {
         var current = ActiveMode[player];
@@ -105,11 +93,26 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
     }
 }
 
+public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
+{
+    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
+    {
+        if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
+
+        var deck = player.GetDeck();
+        var hasGems = deck.Any(e => e is IGemCard);
+        var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
+        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
+        return true;
+    }
+    
+}
+
 [HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
 internal static class GuardianCombatUiActivatePatch
 {
     private static void Postfix(CombatState state)
     {
-        GuardianModel.SetupGuardianCombatUi(state);
+        GuardianCombatModel.SetupGuardianCombatUi(state);
     }
 }

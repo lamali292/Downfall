@@ -13,14 +13,8 @@ public class GuardianSubsriber
     public static void Subscribe()
     {
         ModHelper.SubscribeForCombatStateHooks(GuardianMainFile.ModId, CollectModels2);
-        ModHelper.SubscribeForRunStateHooks(GuardianMainFile.ModId, CollectModels);
     }
-
-    private static IEnumerable<AbstractModel> CollectModels(RunState runState)
-    {
-        yield return ModelDb.Singleton<GuardianModel>();
-    }
-
+    
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
         foreach (var player in combatState.Players)

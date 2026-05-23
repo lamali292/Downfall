@@ -15,6 +15,8 @@ namespace Guardian.GuardianCode.Cards;
 
 public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 {
+    
+    // TODO : this can be a saved property instead
     public static readonly JsonSavedField<GuardianCardModel, List<SerializableGem>> GemData =
         JsonSavedField.Create<GuardianCardModel, List<SerializableGem>>("DOWNFALL_GEM");
 
@@ -27,7 +29,7 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
-        // too much lag, half a novel
+        // too much lag, half a novel, Hover tips should not exceed the size of the card.
         //WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
         /*if (GemSlots > 0)
         {

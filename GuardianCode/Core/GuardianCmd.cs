@@ -32,12 +32,12 @@ public static class GuardianCmd
     // Mode
     public static Task EnterDefensiveMode(PlayerChoiceContext ctx, Player player)
     {
-        return GuardianModel.SetMode(ctx, player, GuardianModelDb.GuardianMode<GuardianDefensiveMode>());
+        return GuardianCombatModel.SetMode(ctx, player, GuardianModelDb.GuardianMode<GuardianDefensiveMode>());
     }
 
     public static Task LeaveDefensiveMode(PlayerChoiceContext ctx, Player player)
     {
-        return GuardianModel.SetMode(ctx, player, GuardianModelDb.GuardianMode<GuardianNormalMode>());
+        return GuardianCombatModel.SetMode(ctx, player, GuardianModelDb.GuardianMode<GuardianNormalMode>());
     }
 
     public static Task ChangeMode(PlayerChoiceContext ctx, Player player)
@@ -47,12 +47,12 @@ public static class GuardianCmd
 
     public static GuardianModeModel GetMode(Player player)
     {
-        return GuardianModel.ActiveMode[player] ?? GuardianModelDb.GuardianMode<GuardianNormalMode>();
+        return GuardianCombatModel.ActiveMode[player] ?? GuardianModelDb.GuardianMode<GuardianNormalMode>();
     }
 
     public static bool IsInMode<T>(Player player) where T : GuardianModeModel
     {
-        return GuardianModel.ActiveMode[player] is T;
+        return GuardianCombatModel.ActiveMode[player] is T;
     }
 
     // Stasis
@@ -73,20 +73,20 @@ public static class GuardianCmd
 
     public static int GetMaxStasisSlots(Player player)
     {
-        return GuardianModel.StasisSlots[player];
+        return GuardianCombatModel.StasisSlots[player];
     }
 
     public static void AddMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
-        GuardianModel.StasisSlots[player] += value;
+        GuardianCombatModel.StasisSlots[player] += value;
         GuardianDisplay.Refresh(player);
     }
 
     public static void RemoveMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
-        GuardianModel.StasisSlots[player] = Math.Max(0, GuardianModel.StasisSlots[player] - value);
+        GuardianCombatModel.StasisSlots[player] = Math.Max(0, GuardianCombatModel.StasisSlots[player] - value);
         GuardianDisplay.Refresh(player);
     }
 
@@ -117,12 +117,12 @@ public static class GuardianCmd
 
     public static int GetStasisCounter(CardModel card)
     {
-        return GuardianModel.StasisCounter[card];
+        return GuardianCombatModel.StasisCounter[card];
     }
 
     public static void SetStasisCounter(CardModel card)
     {
-        GuardianModel.StasisCounter[card] = CalculateStasisCounter(card);
+        GuardianCombatModel.StasisCounter[card] = CalculateStasisCounter(card);
         GuardianDisplay.Refresh(card.Owner);
     }
 
@@ -145,17 +145,17 @@ public static class GuardianCmd
 
     private static async Task TickCard(CardModel card, Player player, PlayerChoiceContext ctx)
     {
-        if (GuardianModel.StasisCounter[card] <= 0) return;
+        if (GuardianCombatModel.StasisCounter[card] <= 0) return;
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
 
-        GuardianModel.StasisCounter[card]--;
+        GuardianCombatModel.StasisCounter[card]--;
         GuardianDisplay.RefreshCounters(player);
         if (card is ITickCard tickCard)
             await tickCard.OnTick(ctx);
         await GuardianHook.AfterCardTick(combatState, ctx, card, player);
 
-        if (GuardianModel.StasisCounter[card] == 0)
+        if (GuardianCombatModel.StasisCounter[card] == 0)
             await ReturnFromStasis(card, player, ctx);
     }
 
@@ -218,7 +218,7 @@ public static class GuardianCmd
         foreach (var card in cards)
         {
             var ticks = accelerateType == AccelerateType.First
-                ? Math.Min(amount, GuardianModel.StasisCounter[card])
+                ? Math.Min(amount, GuardianCombatModel.StasisCounter[card])
                 : amount;
 
             for (var i = 0; i < ticks; i++)
@@ -234,7 +234,7 @@ public static class GuardianCmd
 
     public static async Task Accelerate(PlayerChoiceContext ctx, CardModel card, Player player, int amount = 1)
     {
-        var ticks = Math.Min(amount, GuardianModel.StasisCounter[card]);
+        var ticks = Math.Min(amount, GuardianCombatModel.StasisCounter[card]);
         for (var i = 0; i < ticks; i++)
             await TickCard(card, player, ctx);
         GuardianDisplay.Refresh(player);
