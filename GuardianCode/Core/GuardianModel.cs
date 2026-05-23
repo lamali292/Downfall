@@ -70,7 +70,6 @@ public class GuardianModel() : CustomSingletonModel(HookType.Combat)
 
     public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
     {
-        if (player.Character is not Guardian) return false;
         if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
 
         var deck = player.GetDeck();
