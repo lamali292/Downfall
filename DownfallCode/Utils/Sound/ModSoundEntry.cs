@@ -9,7 +9,7 @@ public class ModSoundEntry(
     float basePitch = 1f,
     float volumeAdd = 0f)
 {
-    public ModSound Sound { get; } = new(path);
+    public ModSound Sound { get; } = new(path, ModAudio.SoundType.Sfx);
     public float Weight { get; } = weight;
     public float PitchVariation { get; } = pitchVariation;
     public float BasePitch { get; } = basePitch;

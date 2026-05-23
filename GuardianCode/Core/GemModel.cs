@@ -40,14 +40,10 @@ public abstract class GemModel : AbstractModel, ICustomModel
         .RemovePrefix()
         .ToLowerInvariant();
 
+    
 
     public PowerModel Power
     {
-        get
-        {
-            AssertMutable();
-            return _power ?? throw new InvalidOperationException($"Gem {Id} has no Power attached to it!");
-        }
         set
         {
             if (value == _power) throw new Exception($"Power already initialized for {Id}");
@@ -67,7 +63,6 @@ public abstract class GemModel : AbstractModel, ICustomModel
         }
         set
         {
-            if (value == _card) throw new Exception($"Card already initialized for {Id}");
             AssertMutable();
             value.AssertMutable();
             _card = value;

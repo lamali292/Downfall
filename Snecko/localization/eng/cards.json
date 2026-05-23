@@ -109,7 +109,7 @@
   "SNECKO-SERPENTSCALE.title": "Serpentscale",
   "SNECKO-SERPENTS_NEST.description": "Whenever you play a Power, deal {SerpentsNestPower:diff()} damage to ALL enemies.{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon Power.}",
   "SNECKO-SERPENTS_NEST.title": "Serpent's Nest",
-  "SNECKO-SERPENT_IDOL.description": "Choose 1 of {Cards:diff()} random [gold]Offclass [/gold]cards to gain.\nIt free to play this turn.",
+  "SNECKO-SERPENT_IDOL.description": "Choose 1 of {Cards:diff()} random [gold]Offclass [/gold]cards to gain.\nIt's free to play this turn.",
   "SNECKO-SERPENT_IDOL.title": "Serpent Idol",
   "SNECKO-SHIFT.description": "Draw {Cards:diff()} cards and [gold]Muddle[/gold] them.",
   "SNECKO-SHIFT.title": "Shift",

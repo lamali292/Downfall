@@ -4,12 +4,14 @@ using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
@@ -32,7 +34,6 @@ public partial class DownfallMainFile : Node
         harmony.PatchAll();
 
         NCustomCardHolder.InitPool();
-        //DownfallAudiomanager.LoadFModBank(ModId);
     }
 }
 

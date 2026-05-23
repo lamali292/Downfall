@@ -29,5 +29,7 @@
   "GUARDIAN-RUBY_GEM.description": "Gain {Gem:diff()} [gold]Strength[/gold] this turn.",
   "GUARDIAN-RUTILE_GEM.description": "Apply {Gem:diff()} [gold]Weak[/gold] to ALL enemies.",
   "GUARDIAN-SAPPHIRE_GEM.description": "[gold]Brace[/gold] {Gem:diff()}.",
-  "GUARDIAN-TOURMALINE_GEM.description": "Gain {Gem:diff()} [gold]Thorns[/gold] this turn."
+  "GUARDIAN-TOURMALINE_GEM.description": "Gain {Gem:diff()} [gold]Thorns[/gold] this turn.",
+  "GUARDIAN-GEM_MODEL_JSON_CONVERTER.title": "",
+  "GUARDIAN-GEM_MODEL_JSON_CONVERTER.description": ""
 }

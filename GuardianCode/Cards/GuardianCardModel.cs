@@ -1,4 +1,6 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils;
@@ -15,13 +17,27 @@ namespace Guardian.GuardianCode.Cards;
 
 public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 {
-    
-    // TODO : this can be a saved property instead
-    public static readonly JsonSavedField<GuardianCardModel, List<SerializableGem>> GemData =
-        JsonSavedField.Create<GuardianCardModel, List<SerializableGem>>("DOWNFALL_GEM");
+    [JsonSavedProperty] private List<SerializableGem> SerializableGems { get; set; } = [];
 
+    public IReadOnlyList<GemModel> Gems => SerializableGems.Select(gem =>
+    {
+        var a = gem.ToGem().ToMutable();
+        a.Card = this;
+        return a;
+    }).ToList();
 
-    public List<GemModel>? CachedGems;
+    protected override void DeepCloneFields()
+    {
+        SerializableGems = new List<SerializableGem>(SerializableGems);
+    }
+
+    public void AddGem(GemModel gem)
+    {
+        if (IsFull) return;
+        var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
+        mutableGem.Card = this;
+        SerializableGems.Add(SerializableGem.FromGem(gem));
+    }
 
     protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
         bool showInCardLibrary = true,
@@ -29,46 +45,15 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
-        // too much lag, half a novel, Hover tips should not exceed the size of the card.
-        //WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.ExtraHoverTips) : []);
-        /*if (GemSlots > 0)
-        {
-            WithTip(GuardianTip.Socket);
-            WithTip(GuardianKeyword.Gem);
-        }*/
         if (this is ITickCard) WithTip(GuardianTip.Tick);
     }
 
-    public IReadOnlyList<GemModel> Gems
-    {
-        get
-        {
-            if (CachedGems != null) return CachedGems;
-            CachedGems = (GemData.Get(this) ?? [])
-                .Select(sg => sg.ToGem().ToMutable())
-                .ToList();
-
-            foreach (var gem in CachedGems) gem.Card = this;
-            return CachedGems;
-        }
-    }
-
     public int GemCount => Gems.Count;
-    public bool IsFull => Gems.Count >= GemSlots;
+    private bool IsFull => Gems.Count >= GemSlots;
     public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
 
     public virtual int GemSlots => 0;
     protected virtual int GemReplayCount => 1;
-
-    public void AddGem(GemModel gem)
-    {
-        if (IsFull) return;
-        var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
-        CachedGems ??= Gems.ToList();
-        CachedGems.Add(mutableGem);
-        mutableGem.Card = this;
-        UpdateGemData();
-    }
 
     public void AddGems(IEnumerable<GemModel> gems)
     {
@@ -79,18 +64,7 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         }
     }
 
-    public bool CanAddGem(GemModel gem)
-    {
-        return !IsFull;
-    }
-
-    private void UpdateGemData()
-    {
-        var serializedGems = CachedGems?.Select(SerializableGem.FromGem).ToList();
-        GemData.Set(this, serializedGems);
-        //NCard.FindOnTable(this)?.ReloadOverlay();
-        CardGemDisplay.Update(this);
-    }
+    public bool CanAddGem(GemModel gem) => !IsFull;
 
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
@@ -121,31 +95,19 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         foreach (var gem in Gems.SelectMany(gem => Enumerable.Repeat(gem, GemReplayCount)))
             await gem.OnPlayWrapper(ctx, cardPlay);
     }
-
-    protected override void AfterCloned()
-    {
-        base.AfterCloned();
-        if (CachedGems == null) return;
-        var clonedGems = CachedGems.Select(gem => gem.CreateClone()).ToList();
-        CachedGems = clonedGems;
-        foreach (var gem in CachedGems)
-            gem.Card = this;
-    }
 }
 
-[HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.MutableClone))]
-public static class MutableCloneGemsPatch
+public class GemModelJsonConverter : JsonConverter<GemModel>
 {
-    [HarmonyPostfix]
-    public static void Postfix(AbstractModel __instance, AbstractModel __result)
+    public override GemModel Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (__instance is not GuardianCardModel parent || __result is not GuardianCardModel clone) return;
+        var serializable = JsonSerializer.Deserialize<SerializableGem>(ref reader, options)!;
+        return serializable.ToGem();
+    }
 
-        var data = GuardianCardModel.GemData.Get(parent);
-        if (data == null) return;
-        GuardianCardModel.GemData.Set(clone, data);
-        // Clear cached gems so they reload with correct card references
-        clone.CachedGems = null;
+    public override void Write(Utf8JsonWriter writer, GemModel value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(writer, SerializableGem.FromGem(value), options);
     }
 }
 

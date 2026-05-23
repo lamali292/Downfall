@@ -37,10 +37,8 @@ public class BismuthGem : GemModel
     protected override void OnAdded(CardModel card)
     {
         if (card is IGemCard) return;
-        if (card.IsInCombat)
-        {
-            card.EnergyCost.UpgradeBy(1);
-            card.EnergyCost.FinalizeUpgrade();
-        }
+        if (!card.IsInCombat) return;
+        card.EnergyCost.UpgradeBy(1);
+        card.EnergyCost.FinalizeUpgrade();
     }
 }

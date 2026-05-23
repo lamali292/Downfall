@@ -8,6 +8,7 @@ public partial class NSneckoMerchantCharacter : NMerchantCharacter
 {
     public override void _Ready()
     {
+        // Todo : fix black outlines
         PlayAnimation("Idle", true);
     }
 }

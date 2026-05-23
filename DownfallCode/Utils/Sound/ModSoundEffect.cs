@@ -1,5 +1,6 @@
 ﻿using BaseLib.Audio;
 using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.DownfallCode.Utils.Sound;
 
@@ -23,25 +24,33 @@ public class ModSoundEffect
         _globalVolumeAdd = globalVolumeAdd;
         _totalWeight = entries.Sum(e => e.Weight);
     }
-
+    
     public void Play()
     {
-        PlayOn(e => ModAudio.PlaySoundGlobal(
-            e.Sound,
-            _globalVolumeAdd + e.VolumeAdd,
-            pitchVariation: _globalPitchVariation + e.PitchVariation,
-            basePitch: e.BasePitch));
+        PlayOn(e =>
+        {
+            // TODO : i dont know what baselib messed up here, but setting volume directly doesnt work anymore
+            var player = ModAudio.PlaySoundGlobal(
+                e.Sound,
+                pitchVariation: _globalPitchVariation + e.PitchVariation,
+                basePitch: e.BasePitch);
+            if (player != null)
+                player.VolumeDb = _globalVolumeAdd + e.VolumeAdd;
+        });
     }
 
     public void PlayInRun()
     {
-        PlayOn(e => ModAudio.PlaySoundInRun(
-            e.Sound,
-            _globalVolumeAdd + e.VolumeAdd,
-            pitchVariation: _globalPitchVariation + e.PitchVariation,
-            basePitch: e.BasePitch));
+        PlayOn(e =>
+        {
+            var player = ModAudio.PlaySoundInRun(
+                e.Sound,
+                pitchVariation: _globalPitchVariation + e.PitchVariation,
+                basePitch: e.BasePitch);
+            if (player != null)
+                player.VolumeDb = _globalVolumeAdd + e.VolumeAdd;
+        });
     }
-
     private void PlayOn(Action<ModSoundEntry> play)
     {
         play(PickRandom());

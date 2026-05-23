@@ -1,6 +1,7 @@
 using System.Reflection;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using Guardian.GuardianCode.Cards;
@@ -25,11 +26,13 @@ public partial class GuardianMainFile : Node
     {
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
-        _ = GuardianCardModel.GemData;
+        //_ = GuardianCardModel.GemData;
         Harmony harmony = new(ModId);
         GuardianSubsriber.Subscribe();
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
+        
+        
     }
 }
