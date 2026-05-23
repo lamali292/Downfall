@@ -27,6 +27,6 @@ public class OilSpill : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await CommonActions.Apply<PoisonPower>(ctx, this, cardPlay);
-        await AutomatonCmd.Stash<Error>(Owner);
+        await StashCmd.Stash<Error>(Owner);
     }
 }

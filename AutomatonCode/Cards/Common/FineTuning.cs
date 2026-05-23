@@ -22,7 +22,7 @@ public class FineTuning : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = (await CardSelectCmd.FromHand(ctx, Owner,
-            new CardSelectorPrefs(AutomatonCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,
+            new CardSelectorPrefs(StashCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,
             this)).ToList();
         // is order important?
         foreach (var card in cards)
@@ -31,6 +31,6 @@ public class FineTuning : AutomatonCardModel
             card.AddKeyword(CardKeyword.Retain);
         }
 
-        await AutomatonCmd.Stash(cards);
+        await StashCmd.Stash(cards);
     }
 }

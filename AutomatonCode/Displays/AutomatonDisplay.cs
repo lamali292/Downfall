@@ -1,11 +1,8 @@
-using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Displays;
@@ -23,6 +20,8 @@ public class AutomatonDisplay
             Displays.Clear();
         };
     }
+    
+    public static NSequenceDisplay? GetDisplay(Player player) => Displays.GetValueOrDefault(player);
 
     public static void Refresh(Player creature)
     {
@@ -30,7 +29,7 @@ public class AutomatonDisplay
     }
 
 
-    public static void Register(Player creature, NSequenceDisplay display)
+    private static void Register(Player creature, NSequenceDisplay display)
     {
         if (Displays.TryGetValue(creature, out var old))
             if (GodotObject.IsInstanceValid(old))
@@ -55,42 +54,5 @@ public class AutomatonDisplay
 
         Register(player, display);
         display.Refresh();
-    }
-
-    public static async Task AnimateCardToSequence(CardModel card, EncodePile pile, Player creature)
-    {
-        var display = Displays.GetValueOrDefault(creature);
-        if (display == null) return;
-
-        var vfx = NCombatRoom.Instance?.CombatVfxContainer;
-        if (vfx == null) return;
-
-        var cardNode = NCard.FindOnTable(card);
-        if (cardNode == null) return;
-
-        var slotIndex = pile.Cards.Count;
-        var targetPos = display.GetSlotGlobalPosition(slotIndex);
-
-        var originalGlobalPos = cardNode.GlobalPosition;
-        cardNode.GetParent()?.RemoveChild(cardNode);
-        vfx.AddChild(cardNode);
-        cardNode.GlobalPosition = originalGlobalPos;
-
-        var finalSizeHalf = cardNode.Size * display.Scale / 2f;
-        var centeredTarget = targetPos - finalSizeHalf;
-
-        var tween = cardNode.CreateTween().SetParallel();
-        tween.TweenProperty(cardNode, "global_position", centeredTarget, 0.4f)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Cubic);
-
-        tween.TweenProperty(cardNode, "scale", display.Scale, 0.4f)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Cubic);
-
-        await display.ToSignal(tween, Tween.SignalName.Finished);
-
-        cardNode.QueueFree();
-        display.Refresh(true);
     }
 }

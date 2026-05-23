@@ -21,6 +21,6 @@ public class Fortify : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await AutomatonCmd.Stash(this, ctx);
+        await StashCmd.StashFromHand(this, ctx);
     }
 }

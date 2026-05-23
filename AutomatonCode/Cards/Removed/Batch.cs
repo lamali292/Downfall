@@ -8,16 +8,4 @@ namespace Automaton.AutomatonCode.Cards.Removed;
 
 [Obsolete]
 [Pool(typeof(TokenCardPool))]
-public class Batch : AutomatonCardModel
-{
-    public Batch() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
-    {
-        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-    }
-
-
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        await AutomatonCmd.CompileFunctionCard(Owner, choiceContext, cardPlay);
-    }
-}
+public class Batch() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self);

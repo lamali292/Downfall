@@ -8,8 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class BronzeArmor : AutomatonCardModel, IEncodable,
-    ICompilableError
+public class BronzeArmor : AutomatonCardModel, IEncodable
 {
     public BronzeArmor() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -21,6 +20,6 @@ public class BronzeArmor : AutomatonCardModel, IEncodable,
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await AutomatonCmd.Stash<Error>(Owner, DynamicVars["Stash"].IntValue);
+        await StashCmd.Stash<Error>(Owner, DynamicVars["Stash"].IntValue);
     }
 }

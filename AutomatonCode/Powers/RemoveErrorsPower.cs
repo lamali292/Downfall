@@ -11,15 +11,4 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Powers;
 
 [Obsolete]
-public class RemoveErrorsPower : AutomatonPowerModel, IOnEncode
-{
-    public async Task OnCardEncoded(PlayerChoiceContext ctx, CardModel encodedCard, CardPlay cardPlay)
-    {
-        if (encodedCard.Owner != Owner.Player) return;
-        if (encodedCard is not (ICompilableError and AutomatonCardModel automatonCardModel)) return;
-        automatonCardModel.SuppressCompileError = true;
-        AutomatonDisplay.Refresh(Owner.Player);
-        Flash();
-        await PowerCmd.Decrement(this);
-    }
-}
+public class RemoveErrorsPower : AutomatonPowerModel;

@@ -22,8 +22,8 @@ public class Verify : AutomatonCardModel
         await CommonActions.CardBlock(this, cardPlay);
         var card = (await CardSelectCmd.FromCombatPile(ctx, PileType.Discard.GetPile(Owner),
             Owner,
-            new CardSelectorPrefs(AutomatonCmd.StashSelectionPrompt, 1))).FirstOrDefault();
+            new CardSelectorPrefs(StashCmd.StashSelectionPrompt, 1))).FirstOrDefault();
         if (card == null) return;
-        await AutomatonCmd.Stash(card);
+        await StashCmd.Stash(card);
     }
 }

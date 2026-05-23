@@ -9,8 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Boost : AutomatonCardModel, IEncodable,
-    ICompilable
+public class Boost : AutomatonCardModel
 {
     public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {

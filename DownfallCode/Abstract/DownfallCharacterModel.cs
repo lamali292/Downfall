@@ -17,8 +17,10 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     protected virtual Color EnergyBurstColor => new(1, 1, 1);
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
-    public virtual Color CardColor => new(1, 1, 1);
-
+    public abstract float CardColorH { get; }
+    public abstract float CardColorS { get; }
+    public abstract float CardColorV { get; }
+    
     public override string CustomCharacterSelectBg =>
         $"res://{ModId}/scenes/character/selection_screen.tscn";
 

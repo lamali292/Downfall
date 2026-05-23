@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
@@ -240,4 +241,20 @@ public class DownfallCardCmd
     {
         ForceUpgradeHelper.ForceUpgrade(card, upgrade);
     }
+
+
+    public static async Task AddWithIndex(CardModel card, CardPile cardPile, int index)
+    {
+        cardPile.AddInternal(card, index);
+        cardPile.InvokeCardAddFinished();
+        await Hook.AfterCardChangedPiles(card.Owner.RunState, card.Owner.Creature.CombatState, card, PileType.None, null);
+        var errorResult = new CardPileAddResult
+        {
+            cardAdded = card,
+            success = true,
+            oldPile = null,
+            modifyingModels = null
+        };
+        CardCmd.PreviewCardPileAdd(errorResult, 0.6f);
+    } 
 }

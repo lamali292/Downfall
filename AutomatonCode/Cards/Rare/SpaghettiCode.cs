@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,9 +24,9 @@ public class SpaghettiCode : AutomatonCardModel
     {
         var rng = CombatState!.RunState.Rng.CombatCardSelection;
 
-        while (AutomatonCmd.GetSequenceCount(Owner) < AutomatonCmd.GetMax(Owner))
+        while (Owner.GetEncode().Count < AutomatonCmd.GetMax(Owner))
         {
-            var countBefore = AutomatonCmd.GetSequenceCount(Owner);
+            var countBefore = Owner.GetEncode().Count;
             var choices = Pool
                 .AllCards
                 .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token)
@@ -38,7 +39,7 @@ public class SpaghettiCode : AutomatonCardModel
                 c.RemoveFromState();
             if (selected == null) break;
             await AutomatonCmd.EncodeCard(selected, ctx, cardPlay);
-            if (AutomatonCmd.GetSequenceCount(Owner) < countBefore + 1)
+            if (Owner.GetEncode().Count < countBefore + 1)
                 return;
         }
     }

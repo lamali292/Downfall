@@ -18,6 +18,6 @@ public class Postpone : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await AutomatonCmd.Stash(this, ctx);
+        await StashCmd.StashFromHand(this, ctx);
     }
 }

@@ -37,22 +37,12 @@
           "optional": true
         },
         {
-          "name": "compile",
-          "file": "encode.json",
-          "optional": true
-        },
-        {
           "name": "functionPrefix",
           "file": "encode.json",
           "optional": true
         },
         {
           "name": "functionName",
-          "file": "encode.json",
-          "optional": true
-        },
-        {
-          "name": "error",
           "file": "encode.json",
           "optional": true
         }
@@ -215,12 +205,6 @@
       ]
     }
   ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
-    },
-    {
-      "tag": "blue"
-    }
-  ]
+  "pinnedColors": [],
+  "customTags": []
 }

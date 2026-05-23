@@ -10,24 +10,4 @@ namespace Automaton.AutomatonCode.Cards.Removed;
 
 [Obsolete]
 [Pool(typeof(TokenCardPool))]
-public class Debug : AutomatonCardModel
-{
-    public Debug() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
-    {
-        WithKeywords(CardKeyword.Exhaust);
-        WithCostUpgradeBy(0);
-    }
-
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        var sequence = AutomatonCmd.GetSequence(Owner)
-            .OfType<AutomatonCardModel>()
-            .Where(c => c is ICompilableError)
-            .ToList();
-
-        foreach (var card in sequence)
-            card.SuppressCompileError = true;
-        AutomatonDisplay.Refresh(Owner);
-        await Task.CompletedTask;
-    }
-}
+public class Debug() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self);

@@ -30,6 +30,6 @@ public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         var modified = AutomatonHook.ModifyStashDraw(combatState, 1, player, out _);
-        await AutomatonCmd.DrawFromStash(player, modified);
+        await StashCmd.DrawFromStash(player, modified);
     }
 }

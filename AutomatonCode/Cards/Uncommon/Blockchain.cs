@@ -15,6 +15,6 @@ public class Blockchain : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AutomatonCmd.DrawFromStash(this);
+        await StashCmd.DrawFromStash(this);
     }
 }

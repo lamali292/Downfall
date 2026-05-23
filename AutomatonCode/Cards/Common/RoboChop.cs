@@ -21,6 +21,6 @@ public class RoboChop : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await CommonActions.Draw(this, ctx);
-        await AutomatonCmd.Stash(this, ctx);
+        await StashCmd.StashFromHand(this, ctx);
     }
 }

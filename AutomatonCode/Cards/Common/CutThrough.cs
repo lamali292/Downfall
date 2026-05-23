@@ -27,6 +27,6 @@ public class CutThrough : AutomatonCardModel
         await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
         var cards = Owner.GetDraw();
         if (cards.Count == 0) return;
-        await AutomatonCmd.Stash(cards[0]);
+        await StashCmd.Stash(cards[0]);
     }
 }

@@ -20,6 +20,6 @@ public class MaxOutputPower : AutomatonPowerModel
     {
         if (Owner.Player != player || Owner.Player == null) return;
         Flash();
-        await AutomatonCmd.Stash<Error>(player, Amount);
+        await StashCmd.Stash<Error>(player, Amount);
     }
 }

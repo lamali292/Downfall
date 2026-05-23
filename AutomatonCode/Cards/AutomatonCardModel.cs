@@ -23,10 +23,6 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
     {
         if (this is IEncodable)
             WithTip(AutomatonTip.Encode);
-        if (this is ICompilable)
-            WithTip(AutomatonTip.Compile);
-        if (this is ICompilableError)
-            WithTip(AutomatonTip.CompileError);
     }
 
     public bool SkipEncode { get; set; }
@@ -53,24 +49,11 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        if (this is IEncodable encodable)
-        {
-            var encode = encodable.EncodeLocString;
-            if (encode != null)
-                description.Add("encode", encode);
-        }
+        if (this is not IEncodable encodable) return;
+        var encode = encodable.EncodeLocString;
+        if (encode != null)
+            description.Add("encode", encode);
 
-        if (this is ICompilable compilable)
-        {
-            var compile = compilable.CompileLocString;
-            if (compile != null)
-                description.Add("compile", compile);
-        }
-
-        if (this is not ICompilableError compilableError) return;
-        var compileError = compilableError.CompileErrorLocString;
-        if (compileError != null)
-            description.Add("error", compileError);
     }
 
 

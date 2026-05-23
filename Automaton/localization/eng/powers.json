@@ -76,5 +76,11 @@
   "AUTOMATON-CRASHOUT_POWER.smartDescription": "Whenever you play a Status card, deal [blue]{Amount}[/blue] damage to a random enemy.",
   "AUTOMATON-INFINITE_LOOP_POWER.title": "Infinite Loop",
   "AUTOMATON-INFINITE_LOOP_POWER.description": "The next time you create a Function, gain a copy of [gold]Infinite Loop[/gold] with additional damage. ",
-  "AUTOMATON-INFINITE_LOOP_POWER.smartDescription": "The next time you create a Function, gain a copy of [gold]{card}[/gold] with [blue]{Amount}[/blue] additional damage. "
+  "AUTOMATON-INFINITE_LOOP_POWER.smartDescription": "The next time you create a Function, gain a copy of [gold]{card}[/gold] with [blue]{Amount}[/blue] additional damage. ",
+  "AUTOMATON-BURN_OUT_POWER.title": "Burn Out",
+  "AUTOMATON-BURN_OUT_POWER.description": "Whenever you [gold]Stash[/gold] a Status or Curse, deal damage to ALL enemies and [gold]Exhaust[/gold] it instead.",
+  "AUTOMATON-BURN_OUT_POWER.smartDescription": "Whenever you [gold]Stash[/gold] a Status or Curse, deal [blue]{Amount}[/blue] damage to ALL enemies and [gold]Exhaust[/gold] it instead.",
+  "AUTOMATON-PHILOSOPHIZE_POWER.title": "",
+  "AUTOMATON-PHILOSOPHIZE_POWER.description": "The next time you create a Function All enemies gain [gold]Strength[/gold].",
+  "AUTOMATON-PHILOSOPHIZE_POWER.smartDescription": "The next time you create a Function All enemies gain [blue]{Amount}[/blue] [gold]Strength[/gold]."
 }

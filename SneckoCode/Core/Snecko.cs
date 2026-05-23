@@ -20,7 +20,9 @@ public class Snecko : DownfallCharacterModel
     public override Color NameColor => Color;
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
-    public override Color CardColor => Color;
+    public override float CardColorH => 0.55f;
+    public override float CardColorS => 0.5f;
+    public override float CardColorV => 1.3f;
     public override Color MapDrawingColor => Color;
 
     public override CharacterGender Gender => CharacterGender.Neutral;

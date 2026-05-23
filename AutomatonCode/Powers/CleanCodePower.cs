@@ -16,7 +16,7 @@ public class CleanCodePower : AutomatonPowerModel
     {
         if (Owner != player.Creature) return;
         Flash();
-        await AutomatonCmd.StashUpTo(ctx, player, Amount, this);
+        await StashCmd.StashUpTo(ctx, player, Amount, this);
     }
     
 }
