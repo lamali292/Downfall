@@ -23,12 +23,9 @@ public class LibraryPower : AutomatonPowerModel
             .Select(t =>
             {
                 var card = Owner.CombatState!.CreateCard(t, Owner.Player);
-                card.EnergyCost.SetUntilPlayed(0);
-                // ? future proof
-                card.SetStarCostUntilPlayed(0);
+                card.SetToFreeThisTurn();
                 return card;
             });
-
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
     }
 }

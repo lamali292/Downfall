@@ -64,6 +64,7 @@ public static class AutomatonCmd
         AutomatonDisplay.Refresh(player);
         
         var functionCard = combatState.CreateCard<FunctionCard>(cardPlay.Card.Owner);
+        functionCard.SetSourceCards(snapshot);
         ApplyFunctionCardType(functionCard, snapshot);
         functionCard =  AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
