@@ -12,7 +12,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class ItsAFeature : AutomatonCardModel
 {
-    public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ItsAFeaturePower>(3, 2, false);
         WithTip(typeof(VigorPower));

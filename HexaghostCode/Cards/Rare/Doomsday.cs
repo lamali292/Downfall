@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class Doomsday : HexaghostCardModel
 {
-    public Doomsday() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Doomsday() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<DoomsdayPower>(1);
         WithCostUpgradeBy(-1);

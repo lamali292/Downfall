@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Pyromancy : CollectorCardModel
 {
-    public Pyromancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Pyromancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<PyromancyPower>(1);

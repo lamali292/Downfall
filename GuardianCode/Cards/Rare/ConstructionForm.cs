@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class ConstructionForm : GuardianCardModel
 {
-    public ConstructionForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public ConstructionForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<BufferPower>(2);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);

@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class Grow : SlimeBossCardModel
 {
-    public Grow() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Grow() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

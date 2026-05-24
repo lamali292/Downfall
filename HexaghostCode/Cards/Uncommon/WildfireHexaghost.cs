@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class WildfireHexaghost : HexaghostCardModel
 {
-    public WildfireHexaghost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public WildfireHexaghost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<WildfirePower>(5, 2);
     }

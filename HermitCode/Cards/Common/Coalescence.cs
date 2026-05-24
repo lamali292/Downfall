@@ -7,7 +7,7 @@ namespace Hermit.HermitCode.Cards.Common;
 
 public sealed class Coalescence : HermitCardModel
 {
-    public Coalescence() : base(1, CardType.Skill, CardRarity.Common, TargetType.None)
+    public Coalescence() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);
         WithCards(2, 1);

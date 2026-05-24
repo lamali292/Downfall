@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class UnfetteredForm : HexaghostCardModel
 {
-    public UnfetteredForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public UnfetteredForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(new TooltipSource(card => card.IsUpgraded
             ? HoverTipFactory.FromPower<UnfetteredFormPlusPower>()

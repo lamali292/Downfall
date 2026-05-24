@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Determination : HermitCardModel
 {
-    public Determination() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Determination() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithPower<DeterminationPower>(1, false);

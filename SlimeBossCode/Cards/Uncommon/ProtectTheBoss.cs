@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class ProtectTheBoss : SlimeBossCardModel
 {
-    public ProtectTheBoss() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ProtectTheBoss() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class LevelUp : SlimeBossCardModel
 {
-    public LevelUp() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public LevelUp() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PotencyPower>(2, 1);
     }

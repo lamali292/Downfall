@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class SerpentineSleuth : SneckoCardModel
 {
-    public SerpentineSleuth() : base(4, CardType.Power, CardRarity.Rare, TargetType.None)
+    public SerpentineSleuth() : base(4, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithGift(new Gift
         {

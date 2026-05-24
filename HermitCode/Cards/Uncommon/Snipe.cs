@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Snipe : HermitCardModel
 {
-    public Snipe() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Snipe() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);

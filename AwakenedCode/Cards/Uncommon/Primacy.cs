@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class Primacy : AwakenedCardModel
 {
-    public Primacy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Primacy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PrimacyPower>(1, 1, false);
         WithTip(typeof(StrengthPower));

@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Omen : CollectorCardModel
 {
-    public Omen() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Omen() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<OmenPower>(1);
         WithCostUpgradeBy(-1);

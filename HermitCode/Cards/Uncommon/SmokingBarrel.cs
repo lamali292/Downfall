@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class SmokingBarrel : HermitCardModel
 {
-    public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);

@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class RisingChorus : AwakenedCardModel
 {
-    public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }

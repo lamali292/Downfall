@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class AphoticFount : AwakenedCardModel
 {
-    public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<AphoticFountPower>(1, 1, false);
         WithTip(typeof(PlatedArmorPower));

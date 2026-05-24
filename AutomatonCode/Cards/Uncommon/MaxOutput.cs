@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class MaxOutput : AutomatonCardModel
 {
-    public MaxOutput() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public MaxOutput() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(3, 1);
         WithTip(typeof(Error));

@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class NightmareVision : HexaghostCardModel
 {
-    public NightmareVision() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public NightmareVision() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<NightmareVisionPower>(4, 1);
     }

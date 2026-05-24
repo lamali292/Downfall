@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class Daggerstorm : AwakenedCardModel
 {
-    public Daggerstorm() : base(2, CardType.Power, CardRarity.Token, TargetType.None)
+    public Daggerstorm() : base(2, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         WithPower<DaggerstormPower>(4, 2);
     }

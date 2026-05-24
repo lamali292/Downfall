@@ -1,12 +1,15 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Ancient;
+using Automaton.AutomatonCode.Core;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Postpone : AutomatonCardModel
+public class Postpone : AutomatonCardModel, ITranscendenceCard
 {
     public Postpone() : base(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
@@ -20,4 +23,7 @@ public class Postpone : AutomatonCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.StashFromHand(this, ctx);
     }
+
+    public CardModel GetTranscendenceTransformedCard()
+        => ModelDb.Card<Hook>();
 }

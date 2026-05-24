@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class OverwhelmingPower : HermitCardModel
 {
-    public OverwhelmingPower() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public OverwhelmingPower() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCards(3, 1);
         WithEnergy(3);

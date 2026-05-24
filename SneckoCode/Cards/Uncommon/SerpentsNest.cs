@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class SerpentsNest : SneckoCardModel
 {
-    public SerpentsNest() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SerpentsNest() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithGift(new Gift
         {

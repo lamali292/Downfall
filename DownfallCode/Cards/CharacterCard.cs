@@ -16,7 +16,7 @@ namespace Downfall.DownfallCode.Cards;
 
 [Pool(typeof(TokenCardPool))]
 #pragma warning disable
-public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.None)
+public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
 #pragma warning restore
 {
     internal CharacterModel? CharacterModel;

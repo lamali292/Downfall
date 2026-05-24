@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class InfiniteBeams : AutomatonCardModel
 {
-    public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(typeof(MinorBeam));

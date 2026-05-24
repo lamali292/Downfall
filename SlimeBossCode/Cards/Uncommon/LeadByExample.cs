@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class LeadByExample : SlimeBossCardModel
 {
-    public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

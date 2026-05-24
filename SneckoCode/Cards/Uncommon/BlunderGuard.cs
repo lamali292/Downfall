@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class BlunderGuard : SneckoCardModel
 {
-    public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<BlunderGuardPower>(6, 2);
         WithPower<BlunderGuardTwoPower>(2, 1);

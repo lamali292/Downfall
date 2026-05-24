@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class ExtraCrispy : HexaghostCardModel
 {
-    public ExtraCrispy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ExtraCrispy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ExtraCrispyPower>(6, 2);
     }

@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class Adapt : HermitCardModel
 {
-    public Adapt() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Adapt() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<AdaptPower>(1, false);
         WithCostUpgradeBy(-1);

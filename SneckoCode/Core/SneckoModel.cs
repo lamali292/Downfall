@@ -11,14 +11,7 @@ namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
-    // TODO : check if this still triggers
-    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
-    {
-        if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
-            card is SneckoCardModel { Gift: { } gift })
-            await SneckoCmd.GetGift(card.Owner, gift);
-    }
-
+    
 
     private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
     {
@@ -51,8 +44,15 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             player.RunState.Rng.CombatCardGeneration);
     }
 
+    
+    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
+    {
+        if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
+            card is SneckoCardModel { Gift: { } gift })
+            await SneckoCmd.GetGift(card.Owner, gift);
+    }
 
-    // TODO : check if this still triggers
+    
     public override async Task AfterActEntered()
     {
         var state = RunManager.Instance.State;
@@ -75,3 +75,4 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             SetSneckoPools(snecko, pools);
     }
 }
+

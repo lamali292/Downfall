@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Ancient;
 [Pool(typeof(GuardianCardPool))]
 public class AncientConstruct : GuardianCardModel
 {
-    public AncientConstruct() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
+    public AncientConstruct() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithPower<ArtifactPower>(1);
         WithPower<AncientConstructPower>(1, false);

@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class ShootingStar : CollectorCardModel
 {
-    public ShootingStar() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public ShootingStar() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<ShootingStarPower>(1);
         WithCostUpgradeBy(-1);

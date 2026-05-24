@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class DevilsDance : HexaghostCardModel
 {
-    public DevilsDance() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public DevilsDance() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DevilsDancePower>(1, 1);
     }

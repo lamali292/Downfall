@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class ExoticForm : SneckoCardModel
 {
-    public ExoticForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public ExoticForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithGift(new Gift
         {

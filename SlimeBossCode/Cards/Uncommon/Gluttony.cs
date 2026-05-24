@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class Gluttony : SlimeBossCardModel
 {
-    public Gluttony() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Gluttony() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

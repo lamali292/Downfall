@@ -11,7 +11,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class Orbwalk : GuardianCardModel, ITickCard
 {
-    public Orbwalk() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Orbwalk() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(3);
         WithKeyword(GuardianKeyword.Volatile, UpgradeType.Remove);

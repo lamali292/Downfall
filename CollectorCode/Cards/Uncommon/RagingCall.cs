@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class RagingCall : CollectorCardModel
 {
-    public RagingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public RagingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithVars(new SummonVar(6).WithUpgrade(1));
         WithPower<RagingCallPower>(3, 5);

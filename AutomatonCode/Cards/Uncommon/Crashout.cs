@@ -9,7 +9,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Crashout : AutomatonCardModel
 {
-    public Crashout() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Crashout() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<CrashoutPower>(10, 5);
     }

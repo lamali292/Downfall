@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class Recklessness : SlimeBossCardModel
 {
-    public Recklessness() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Recklessness() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

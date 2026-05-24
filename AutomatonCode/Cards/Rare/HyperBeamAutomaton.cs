@@ -17,7 +17,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class HyperBeamAutomaton : AutomatonCardModel
 {
-    public HyperBeamAutomaton() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    public HyperBeamAutomaton() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(18, 4);
         WithPower<VulnerablePower>(1, 1);

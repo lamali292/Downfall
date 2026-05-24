@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class HotStreak : HexaghostCardModel
 {
-    public HotStreak() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public HotStreak() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<HotStreakPower>(6, 3);
         WithTip(typeof(SoulBurnPower));

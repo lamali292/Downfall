@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Archmagus : AwakenedCardModel
 {
-    public Archmagus() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Archmagus() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
     }

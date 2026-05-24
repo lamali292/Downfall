@@ -7,7 +7,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class EyeOfTheStorm : HermitCardModel
 {
-    public EyeOfTheStorm() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public EyeOfTheStorm() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate);

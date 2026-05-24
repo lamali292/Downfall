@@ -16,7 +16,7 @@ public class Format : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        WithTip(typeof(Fragment));
+        WithUpgradedCardTip<Fragment>();
         WithEnergy(1);
     }
 
@@ -30,6 +30,7 @@ public class Format : AutomatonCardModel
         for (var i = 0; i < x; i++)
         {
             var fragment = Owner.Creature.CombatState!.CreateCard<Fragment>(Owner);
+            fragment.UpgradeInternal();
             if (fragment is not IEncodable encodable) continue;
             await encodable.Encode(ctx, cardPlay);
         }

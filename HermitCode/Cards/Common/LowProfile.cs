@@ -11,7 +11,7 @@ namespace Hermit.HermitCode.Cards.Common;
 
 public sealed class LowProfile : HermitCardModel
 {
-    public LowProfile() : base(1, CardType.Skill, CardRarity.Common, TargetType.None)
+    public LowProfile() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithCalculatedBlock(7, 4, CountDebuffs, ValueProp.Move, 2, 1);
     }

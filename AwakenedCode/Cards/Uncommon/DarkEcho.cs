@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class DarkEcho : AwakenedCardModel
 {
-    public DarkEcho() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public DarkEcho() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(typeof(StrengthPower));
         WithPower<DarkEchoPower>(1, false);

@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Spellbinder : AwakenedCardModel
 {
-    public Spellbinder() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Spellbinder() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<SpellbinderPower>(1, false);
         WithConjure();

@@ -1,24 +1,24 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Powers;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class SummonOrb : AutomatonCardModel
 {
-    public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<SummonOrbPower>(3, 1, false);
-        WithTip(StaticHoverTip.Block);
+        WithPower<SummonOrbPower>(1, false);
+        WithTip(AutomatonTip.Stash);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SummonOrbPower>(ctx, this, DynamicVars.Power<SummonOrbPower>().BaseValue);
+        await CommonActions.ApplySelf<SummonOrbPower>(ctx, this);
     }
 }

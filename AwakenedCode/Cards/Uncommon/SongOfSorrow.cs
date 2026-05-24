@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class SongOfSorrow : AwakenedCardModel
 {
-    public SongOfSorrow() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SongOfSorrow() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<SongOfSorrowPower>(7, 3, false);
         WithTip(typeof(Void));

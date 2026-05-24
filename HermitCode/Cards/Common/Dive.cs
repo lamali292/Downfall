@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Common;
 
 public sealed class Dive : HermitCardModel, IHasDeadOnEffect
 {
-    public Dive() : base(1, CardType.Skill, CardRarity.Common, TargetType.None)
+    public Dive() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(8, 2);
         WithPower<PlatedArmorPower>(1, 1);

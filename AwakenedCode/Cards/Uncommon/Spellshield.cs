@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class Spellshield : AwakenedCardModel
 {
-    public Spellshield() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Spellshield() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Retain);
         WithTip(StaticHoverTip.Block);

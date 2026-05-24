@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class BurnOut : AutomatonCardModel
 {
-    public BurnOut() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public BurnOut() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<BurnOutPower>(9, 3);
         WithTip(AutomatonTip.Stash);

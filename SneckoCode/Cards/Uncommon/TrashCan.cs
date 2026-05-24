@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class TrashCan : SneckoCardModel
 {
-    public TrashCan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public TrashCan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<TrashCanPower>(1);
     }

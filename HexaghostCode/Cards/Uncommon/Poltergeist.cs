@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Poltergeist : HexaghostCardModel
 {
-    public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PoltergeistPower>(4, 1);
     }

@@ -7,7 +7,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class LoneWolf : HermitCardModel
 {
-    public LoneWolf() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public LoneWolf() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
     }

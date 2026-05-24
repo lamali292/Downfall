@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class HighNoon : HermitCardModel
 {
-    public HighNoon() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public HighNoon() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithTip(HermitKeywords.Strike);

@@ -80,7 +80,7 @@ public class Bismuth : GemCard<BismuthGem>
 public abstract class GemCard<T> : GuardianCardModel, IGemCard
     where T : GemModel
 {
-    protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.None)
+    protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.Self)
     {
         _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);

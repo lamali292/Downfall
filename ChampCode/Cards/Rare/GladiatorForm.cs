@@ -9,7 +9,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class GladiatorForm : ChampCardModel
 {
-    public GladiatorForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public GladiatorForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<GladiatorFormPower>(1, false);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);

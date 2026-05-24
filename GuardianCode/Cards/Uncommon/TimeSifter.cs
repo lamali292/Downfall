@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class TimeSifter : GuardianCardModel
 {
-    public TimeSifter() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public TimeSifter() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithPower<TimeSifterPower>(1, false);

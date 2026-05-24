@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class SpreadingSpores : AwakenedCardModel
 {
-    public SpreadingSpores() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
+    public SpreadingSpores() : base(0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         WithKeywords(CardKeyword.Ethereal);
         WithPower<ThornsPower>(2, 2);

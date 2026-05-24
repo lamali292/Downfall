@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class VolcanoVisage : HexaghostCardModel
 {
-    public VolcanoVisage() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public VolcanoVisage() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<VolcanoVisagePower>(5, 2);
     }

@@ -12,7 +12,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class ArenaMastery : ChampCardModel
 {
-    public ArenaMastery() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public ArenaMastery() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<ArenaMasteryBerserkerPower>(1, false);
         WithPower<ArenaMasteryDefensivePower>(3, 1, false);

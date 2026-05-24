@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class RepulsorGuardian : GuardianCardModel
 {
-    public RepulsorGuardian() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public RepulsorGuardian() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
         WithPower<ExhaustStatusesPower>(1, false);

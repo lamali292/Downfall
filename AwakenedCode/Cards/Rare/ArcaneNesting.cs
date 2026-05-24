@@ -8,7 +8,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class ArcaneNesting : AwakenedCardModel
 {
-    public ArcaneNesting() : base(-1, CardType.Skill, CardRarity.Rare, TargetType.None)
+    public ArcaneNesting() : base(-1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Unplayable);
         WithBlock(4, 2);

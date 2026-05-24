@@ -11,7 +11,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class MudShield : SneckoCardModel
 {
-    public MudShield() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public MudShield() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<MudShieldPower>(2, 1);
         WithTip(StaticHoverTip.Block);

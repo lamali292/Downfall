@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
 {
-    public Cheat() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Cheat() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(3, 2);
     }

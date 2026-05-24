@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class Mutator : AutomatonCardModel
 {
-    public Mutator() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Mutator() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<StrengthPower>(2);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);

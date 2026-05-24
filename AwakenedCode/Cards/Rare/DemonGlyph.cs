@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class DemonGlyph : AwakenedCardModel
 {
-    public DemonGlyph() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public DemonGlyph() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(typeof(StrengthPower));
         WithTip(typeof(DexterityPower));

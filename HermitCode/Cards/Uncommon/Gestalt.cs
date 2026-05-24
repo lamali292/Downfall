@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Gestalt : HermitCardModel
 {
-    public Gestalt() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Gestalt() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<RuggedPower>(2);
         WithPower<VulnerablePower>(2, -1);

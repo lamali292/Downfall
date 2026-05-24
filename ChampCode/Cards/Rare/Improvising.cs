@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class Improvising : ChampCardModel
 {
-    public Improvising() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Improvising() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<ImprovisingPower>(2, 1, false);
         WithTip(ChampTip.Stance);

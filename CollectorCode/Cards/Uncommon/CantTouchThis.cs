@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class CantTouchThis : CollectorCardModel
 {
-    public CantTouchThis() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public CantTouchThis() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2, 1);
         WithPower<CantTouchThisPower>(2);

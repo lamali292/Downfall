@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class TakeCover : HermitCardModel
 {
-    public TakeCover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public TakeCover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);

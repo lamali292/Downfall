@@ -11,7 +11,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class RevengeProtocol : GuardianCardModel
 {
-    public RevengeProtocol() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public RevengeProtocol() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<BracingPower>(4, 2, false);
         WithPower<RevengeProtocolPower>(2, 1, false);

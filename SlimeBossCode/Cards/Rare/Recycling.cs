@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Recycling : SlimeBossCardModel
 {
-    public Recycling() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Recycling() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 

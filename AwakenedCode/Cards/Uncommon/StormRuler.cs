@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class StormRuler : AwakenedCardModel
 {
-    public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StormRulerPower>(6, 3, false);
         WithConjure();

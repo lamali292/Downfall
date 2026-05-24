@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Repulsor : AutomatonCardModel
 {
-    public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<RepulsePower>(4, 1, false);
     }

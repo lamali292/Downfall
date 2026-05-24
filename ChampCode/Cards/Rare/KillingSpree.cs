@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class KillingSpree : ChampCardModel
 {
-    public KillingSpree() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public KillingSpree() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<KillingSpreePower>(1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);

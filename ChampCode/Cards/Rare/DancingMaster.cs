@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class DancingMaster : ChampCardModel
 {
-    public DancingMaster() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public DancingMaster() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(ChampTip.Finisher);
         WithEnergy(1);

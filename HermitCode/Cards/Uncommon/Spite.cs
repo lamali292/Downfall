@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Spite : HermitCardModel
 {
-    public Spite() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Spite() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(8, 2);
         WithCards(3, 1);

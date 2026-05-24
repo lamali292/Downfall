@@ -79,7 +79,7 @@
   "GUARDIAN-RECOVER.title": "Recover",
   "GUARDIAN-REFRACTED_BEAM.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nCan be [gold]Upgraded[/gold] any number of times.\nFor each Upgrade +1 [gold]Gem[/gold] Slot.",
   "GUARDIAN-REFRACTED_BEAM.title": "Refracted Beam",
-  "GUARDIAN-REPULSOR_GUARDIAN.description": "When you draw the first [gold]Status[/gold] or [gold]Curse[/gold] card each turn, [gold]Exhaust[/gold] it and draw a card.",
+  "GUARDIAN-REPULSOR_GUARDIAN.description": "When you draw the first Status or Curse card each turn, [gold]Exhaust[/gold] it and draw a card.",
   "GUARDIAN-REPULSOR_GUARDIAN.title": "Repulsor",
   "GUARDIAN-REROUTE.description": "Deal {Damage:diff()} damage.\nPlace the next card you play this turn into [gold]Stasis[/gold].",
   "GUARDIAN-REROUTE.title": "Reroute",

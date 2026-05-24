@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class GoopArmor : SlimeBossCardModel
 {
-    public GoopArmor() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public GoopArmor() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

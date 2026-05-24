@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -78,6 +79,19 @@ public abstract class DownfallCardModel(
         WithVars(new EnemyDamageVar(baseValue, ValueProp.Unpowered).WithUpgrade(upgrade));
         return this;
     }
+    
+    protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? modifyTipCard = null)
+        where T : CardModel
+    {
+        return WithTip(new TooltipSource(card =>
+        {
+            var mutable = ModelDb.Card<T>().ToMutable();
+            mutable.UpgradeInternal();
+            if (mutable is T obj2) modifyTipCard?.Invoke(obj2, card);
+            return HoverTipFactory.FromCard(mutable);
+        }));
+    }
+    
 
     protected ConstructedCardModel WithTip(TooltipSource tooltipSource, UpgradeType upgradeType)
     {

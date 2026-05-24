@@ -12,7 +12,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class StrikeOfGenius : ChampCardModel
 {
-    public StrikeOfGenius() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public StrikeOfGenius() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithEnergyTip();
         WithTip(DownfallKeyword.Echo);

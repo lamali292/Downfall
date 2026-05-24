@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class Overwhelming : SneckoCardModel
 {
-    public Overwhelming() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Overwhelming() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<OverwhelmingPower>(1);

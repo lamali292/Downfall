@@ -31,6 +31,15 @@ public class StashCmd
         await Stash(cards);
     }
 
+    public static async Task StashFromDraw(CardModel source, PlayerChoiceContext ctx)
+    {
+        var amount = source.DynamicVars["Stash"].IntValue;
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
+        var cards = await CardSelectCmd.FromCombatPile(ctx,PileType.Draw.GetPile(source.Owner), source.Owner, prefs);
+        await Stash(cards);
+    }
+
+    
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel
     {
