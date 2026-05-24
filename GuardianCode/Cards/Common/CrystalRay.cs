@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -21,9 +22,8 @@ public class CrystalRay : GuardianCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Sum(g => g.GemCount);
-        var gemCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemCard>().Count();
-        return gemsInCards + gemCards;
+        var gems = card.Owner.GetAllCards().OfType<GuardianCardModel>().Sum(g => g.GemCount);
+        return gems;
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
