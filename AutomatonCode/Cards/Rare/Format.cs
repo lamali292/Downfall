@@ -31,8 +31,7 @@ public class Format : AutomatonCardModel
         {
             var fragment = Owner.Creature.CombatState!.CreateCard<Fragment>(Owner);
             fragment.UpgradeInternal();
-            if (fragment is not IEncodable encodable) continue;
-            await encodable.Encode(ctx, cardPlay);
+            await AutomatonCmd.EncodeCard(fragment, ctx);
         }
 
         await PlayerCmd.GainEnergy(1, Owner);

@@ -1,18 +1,20 @@
-﻿using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.CustomEnums;
+﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Downfall.DownfallCode.Abstract;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Awakened.AwakenedCode.Cards.Enchantments;
+namespace Automaton.AutomatonCode.Enchantments;
 
-public class Conjuration : DownfallEnchantmentModel<Core.Awakened>
+public class Encoding : AutomatonEnchantmentModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.Static(AwakenedTip.Conjure)
+        HoverTipFactory.Static(AutomatonTip.Encode)
     ];
 
 
@@ -20,13 +22,13 @@ public class Conjuration : DownfallEnchantmentModel<Core.Awakened>
 
     public override bool CanEnchant(CardModel card)
     {
-        return !card.Tags.Contains(AwakenedTag.Conjure);
+        return !AutomatonCmd.IsEncodable(card);
     }
 
     public override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
-        return cardPlay?.Card.CombatState != null
-            ? AwakenedCmd.Conjure(cardPlay.Card.Owner, cardPlay.Card.CombatState)
+        return cardPlay != null
+            ? AutomatonCmd.EncodeCard(cardPlay.Card, choiceContext)
             : Task.CompletedTask;
     }
 }

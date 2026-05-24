@@ -2,8 +2,8 @@
   "AUTOMATON-REPLICATE.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-REPLICATE.functionPrefix": "copying",
   "AUTOMATON-REPLICATE.functionName": "Copy",
-  "AUTOMATON-STRIKE_AUTOMATON.encode": "Deal {Damage:diff()} damage.",
-  "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "simple",
+  "AUTOMATON-STRIKE_AUTOMATON.encode": "",
+  "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "hit",
   "AUTOMATON-STRIKE_AUTOMATON.functionName": "Strike",
   "AUTOMATON-BRANCH_BLOCK.encode": "Gain {Block:diff()} [gold]Block[/gold].",
   "AUTOMATON-BRANCH_BLOCK.functionPrefix": "forked",
@@ -67,5 +67,7 @@
   "AUTOMATON-DAZING_PULSE.functionName": "Pulse",
   "AUTOMATON-EXPLODE.encode": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold] to ALL enemies.",
   "AUTOMATON-EXPLODE.functionPrefix": "kaboom",
-  "AUTOMATON-EXPLODE.functionName": "Burst"
+  "AUTOMATON-EXPLODE.functionName": "Burst",
+  "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "shield",
+  "AUTOMATON-DEFEND_AUTOMATON.functionName": "Defend"
 }

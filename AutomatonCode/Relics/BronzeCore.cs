@@ -1,8 +1,9 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -10,30 +11,27 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class BronzeCore() : AutomatonRelicModel(RelicRarity.Starter)
+public class BronzeCore : AutomatonRelicModel
 {
-    private bool _isTriggered;
-
-
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard,
-        CardPlay cardPlay)
+    public BronzeCore() : base(RelicRarity.Starter)
     {
-        if (functionCard.Owner == Owner && !_isTriggered)
-        {
-            Flash();
-            _isTriggered = true;
-            await PlayerCmd.GainEnergy(1, Owner);
-        }
+        WithTip(typeof(StrikeAutomaton));
+        WithTip(typeof(DefendAutomaton));
+        WithTip(AutomatonTip.Encode);
     }
-
+    
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<PlatinumCore>();
     }
 
-    public override Task BeforeCombatStart()
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        _isTriggered = false;
-        return base.BeforeCombatStart();
+        if (player != Owner || combatState.RoundNumber > 1) return;
+        Flash();
+        var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
+        var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
+        await AutomatonCmd.EncodeCard(card1, ctx);
+        await AutomatonCmd.EncodeCard(card2, ctx);
     }
 }

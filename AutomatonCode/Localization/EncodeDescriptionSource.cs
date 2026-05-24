@@ -9,7 +9,7 @@ public class EncodeDescriptionSource : IExtraDescriptionSource
 {
     public IEnumerable<string> GetLines(CardModel card)
     {
-        if (card is not IEncodable { AutoEncode: true } encodable) yield break;
+        if (card is not IEncodable encodable) yield break;
         var encode = encodable.EncodeLocString;
         if (encode == null) yield break;
         var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();

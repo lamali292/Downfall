@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using Downfall.DownfallCode.Interfaces;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -97,6 +99,7 @@ public abstract class ConstructedPowerModel(
         _hoverTips.Add(new PowerTooltipSource(HoverTipFactory.ForEnergy));
         return this;
     }
+    
 }
 
 [HarmonyPatch(nameof(PowerModel), nameof(PowerModel.ShouldRemoveDueToAmount))]

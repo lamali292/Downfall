@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -23,7 +24,7 @@ public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
         return player.Creature.CombatState is { RoundNumber: <= 4 };
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (side != Owner.Creature.Side)

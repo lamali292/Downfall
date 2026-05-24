@@ -28,7 +28,7 @@ public class Defiance : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
+        await CommonActions.CardBlock(this, cardPlay);
         await PowerCmd.Remove<CounterPower>(Owner.Creature);
     }
 }

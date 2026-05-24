@@ -124,4 +124,23 @@ public static class StringExtensions
             primaryPath,
             () => FallbackImg(primaryPath, "atlases/relic_atlas.sprites", fallbackFile));
     }
+    
+    public static string TresPotionImagePath<T>(this string path) where T : DownfallCharacterModel
+    {
+        var primaryPath = ImgPath(ModId<T>(), "atlases/potion_atlas.sprites", path);
+        var fallbackFile = path.Contains("outline") ? "todo_potion_outline.tres" : "todo_potion.tres";
+        return WithFallback(
+            primaryPath,
+            () => FallbackImg(primaryPath, "atlases/potion_atlas.sprites", fallbackFile));
+    }
+    
+     
+    public static string DownfallTresPotionImagePath(this string path)
+    {
+        var primaryPath = ImgPath(DownfallMainFile.ModId, "atlases/potion_atlas.sprites", path);
+        var fallbackFile = path.Contains("outline") ? "todo_potion_outline.tres" : "todo_potion.tres";
+        return WithFallback(
+            primaryPath,
+            () => FallbackImg(primaryPath, "atlases/potion_atlas.sprites", fallbackFile));
+    }
 }

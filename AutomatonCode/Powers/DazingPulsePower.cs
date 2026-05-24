@@ -17,8 +17,7 @@ public class DazingPulsePower : AutomatonPowerModel, IAfterCompilingFunction
         WithTip(typeof(Dazed));
     }
 
-    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result,
-        CardPlay cardPlay)
+    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)
     {
         if (player.Creature == Owner) return;
         await DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, Amount);

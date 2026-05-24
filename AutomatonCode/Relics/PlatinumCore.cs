@@ -1,9 +1,13 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -12,42 +16,33 @@ namespace Automaton.AutomatonCode.Relics;
 [Pool(typeof(AutomatonRelicPool))]
 public class PlatinumCore : AutomatonRelicModel
 {
-    private int _triggeredCount;
-
     public PlatinumCore() : base(RelicRarity.Starter)
     {
-        WithCards(3);
+        WithTip(typeof(StrikeAutomaton));
+        WithTip(typeof(DefendAutomaton));
+        WithTip(AutomatonTip.Encode);
     }
-
-    public int TriggeredCount
+    
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        get => _triggeredCount;
-        set
+        Flash();
+        if (player != Owner) return;
+        if (combatState.RoundNumber == 1)
         {
-            AssertMutable();
-            _triggeredCount = value;
-            Status = value == DynamicVars.Cards.IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
-            InvokeDisplayAmountChanged();
+
+            var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
+            var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
+            await AutomatonCmd.EncodeCard(card1, ctx);
+            await AutomatonCmd.EncodeCard(card2, ctx);
         }
-    }
-
-    public override bool ShowCounter => CombatManager.Instance.IsInProgress;
-    public override int DisplayAmount => DynamicVars.Cards.IntValue - TriggeredCount;
-
-    public async Task OnCompile(PlayerChoiceContext ctx, IReadOnlyList<CardModel> snapshot, FunctionCard functionCard,
-        CardPlay cardPlay)
-    {
-        if (functionCard.Owner == Owner && TriggeredCount < DynamicVars.Cards.IntValue)
-        {
-            Flash();
-            TriggeredCount++;
-            functionCard.EnergyCost.SetUntilPlayed(0);
-        }
-    }
-
-    public override Task BeforeCombatStart()
-    {
-        TriggeredCount = 0;
-        return Task.CompletedTask;
+       
+        var cards = Owner.Character.CardPool
+            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();
+        var rng = Owner.RunState.Rng.CombatCardSelection;
+        var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).FirstOrDefault();
+        if (choice == null) return;
+        await AutomatonCmd.EncodeCard(choice, ctx);
+        
     }
 }

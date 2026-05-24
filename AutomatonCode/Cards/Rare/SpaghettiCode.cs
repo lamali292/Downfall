@@ -26,15 +26,16 @@ public class SpaghettiCode : AutomatonCardModel
 
         var cards = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-            .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token).ToList();
+            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();
 
-        while (Owner.GetEncode().Count < AutomatonCmd.GetMax(Owner))
+        var max = AutomatonCmd.GetMax(Owner);
+        while (Owner.GetEncode().Count < max)
         {
             var countBefore = Owner.GetEncode().Count;
             var choices = CardFactory.GetDistinctForCombat(Owner, cards, 3, rng).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
-            await AutomatonCmd.EncodeCard(selected, ctx, cardPlay);
+            await AutomatonCmd.EncodeCard(selected, ctx);
             if (Owner.GetEncode().Count < countBefore + 1)
                 return;
         }

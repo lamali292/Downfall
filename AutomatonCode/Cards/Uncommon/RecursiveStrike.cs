@@ -19,7 +19,6 @@ public class RecursiveStrike : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
@@ -33,7 +32,7 @@ public class RecursiveStrike : AutomatonCardModel
             strike2.UpgradeInternal();
         }
 
-        await AutomatonCmd.EncodeCard(strike1, ctx, cardPlay);
-        await AutomatonCmd.EncodeCard(strike2, ctx, cardPlay);
+        await AutomatonCmd.EncodeCard(strike1, ctx);
+        await AutomatonCmd.EncodeCard(strike2, ctx);
     }
 }

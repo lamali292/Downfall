@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.DynamicVars;
+using Automaton.AutomatonCode.Enchantments;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
@@ -12,7 +14,7 @@ namespace Automaton.AutomatonCode.Cards;
 
 public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
 {
-    public AutomatonCardModel(
+    protected AutomatonCardModel(
         int cost,
         CardType type,
         CardRarity rarity,
@@ -24,17 +26,11 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         if (this is IEncodable)
             WithTip(AutomatonTip.Encode);
     }
-
-    public bool SkipEncode { get; set; }
-    public bool SuppressCompileError { get; set; }
+    
 
     protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
-    }
-
-    public virtual void ApplyToFunctionPreview(FunctionCard card)
-    {
     }
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -43,7 +39,10 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         if (this is IEncodable encodable)
         {
             await encodable.PlayEncodableEffect(ctx, cardPlay, EncodeContext.Direct);
-            if (!SkipEncode && encodable.AutoEncode) await encodable.Encode(ctx, cardPlay);
+        }
+        if (AutomatonCmd.IsEncodable(this) && Enchantment is not Encoding)
+        {
+            await AutomatonCmd.EncodeCard(this, ctx);
         }
     }
 

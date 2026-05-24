@@ -6,5 +6,5 @@ namespace Automaton.AutomatonCode.Events;
 
 public interface IAfterCompilingFunction
 {
-    Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result, CardPlay cardPlay);
+    Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result);
 }
