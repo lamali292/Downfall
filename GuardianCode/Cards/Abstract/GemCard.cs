@@ -97,10 +97,6 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
     public GemModel GemModel =>
         CardModifier.DirectModifiers(this).OfType<GemModel>().First();
 
-    protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay? cardPlay)
-    {
-        return GemModel.OnPlayWrapper(ctx, cardPlay);
-    }
 }
 
 public interface IGemCard
