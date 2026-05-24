@@ -14,7 +14,7 @@ namespace Awakened.AwakenedCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class ESP : AwakenedCardModel, ISpell, IOnAwaken
 {
-    public ESP() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    public ESP() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithCards(1, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
