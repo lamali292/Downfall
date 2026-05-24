@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Piles;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -18,8 +17,10 @@ public class ByrdsEye : AwakenedCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (IsUpgraded) AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);
-        var cards = AwakenedPile.Spellbook.GetPile(Owner).Cards;
+        var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
+        if (IsUpgraded) spellbook.Refresh(Owner);
+
+        var cards = spellbook.Cards;
         var selected =
             (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.ConjureSelectionPrompt, this))
             .FirstOrDefault();
