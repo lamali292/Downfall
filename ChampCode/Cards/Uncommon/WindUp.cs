@@ -22,7 +22,7 @@ public class WindUp : ChampCardModel
         await ChampCmd.SelectStanceToEnter(ctx, Owner);
 
         var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToHandSelectionPrompt, ctx,
-            PileType.Draw);
+            PileType.Draw, c => c.Tags.Contains(ChampTag.Finisher));
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
     }
