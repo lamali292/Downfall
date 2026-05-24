@@ -21,10 +21,11 @@ public class Convert : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = Owner.GetDraw(e => e.Type == CardType.Status).TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
+        var card = Owner.GetDraw(e => e.Type == CardType.Status).TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)
+            .FirstOrDefault();
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
         if (IsUpgraded) fuel.UpgradeInternal();
-        await CardCmd.Transform(card,fuel);
+        await CardCmd.Transform(card, fuel);
     }
 }

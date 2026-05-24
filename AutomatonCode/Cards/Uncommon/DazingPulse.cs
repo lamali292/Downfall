@@ -19,12 +19,14 @@ public class DazingPulse : AutomatonCardModel, IEncodable
         WithDamage(7, 2);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-      => CommonActions.ApplySelf<DazingPulsePower>(ctx, this);
-
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<DazingPulsePower>(ctx, this);
     }
 }

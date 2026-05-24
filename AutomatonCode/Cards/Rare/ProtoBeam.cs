@@ -18,11 +18,14 @@ public class ProtoBeam : AutomatonCardModel
         WithCalculatedVar("CalculatedHits", 0, Calc);
     }
 
-    private static decimal Calc(CardModel card, Creature? arg2) => card.Owner.GetExhaust().Count;
+    private static decimal Calc(CardModel card, Creature? arg2)
+    {
+        return card.Owner.GetExhaust().Count;
+    }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var exhaustCount =(int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(null);
+        var exhaustCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, exhaustCount).Execute(ctx);
     }
 }

@@ -26,9 +26,10 @@ public abstract class GemModel : CardModifier, ICustomModel
 {
     private GemModel _canonicalInstance = null!;
     private DynamicVarSet? _dynamicVars;
-    
-    
+
+
     private PowerModel? _power;
+
     public PowerModel Power
     {
         set
@@ -39,11 +40,12 @@ public abstract class GemModel : CardModifier, ICustomModel
             _power = value;
         }
     }
-    
+
     public int SocketIndex => Card?.Gems.IndexOf(this) ?? -1;
 
     protected ICombatState CombatState =>
-        Card!.CombatState ?? _power?.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
+        Card!.CombatState ??
+        _power?.CombatState ?? throw new InvalidOperationException($"Gem {Id} has no CombatState!");
 
     protected Player Player => Card!.Owner;
     public override bool ShouldReceiveCombatHooks => true;
@@ -106,9 +108,8 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public override void ModifyDescription(Creature? target, ref string description)
     {
-        
     }
-    
+
     public string GetFormattedText(bool cardText = false)
     {
         var stringBuilder = new StringBuilder();
@@ -124,6 +125,7 @@ public abstract class GemModel : CardModifier, ICustomModel
                 var runGlobalHooks = Card is { CombatState: not null, Pile.Type: PileType.Hand or PileType.Play };
                 dynamicVar.UpdateCardPreview(Card, CardPreviewMode.Normal, null, runGlobalHooks);
             }
+
             DynamicVars.AddTo(locString);
             formatted = locString.GetFormattedText();
         }
@@ -182,16 +184,18 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay, int count = 1)
     {
-        for (var i = 0; i < count; i++)
-        {
-            await OnPlay(ctx, cardPlay);
-        }
+        for (var i = 0; i < count; i++) await OnPlay(ctx, cardPlay);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
     protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
 
-    public virtual int ModifyPlayCount(int originalPlayCount) => originalPlayCount;
+    public virtual int ModifyPlayCount(int originalPlayCount)
+    {
+        return originalPlayCount;
+    }
 
-    protected virtual void OnAdded(GuardianCardModel card) { }
+    protected virtual void OnAdded(GuardianCardModel card)
+    {
+    }
 }

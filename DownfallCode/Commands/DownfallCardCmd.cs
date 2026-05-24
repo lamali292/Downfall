@@ -247,7 +247,8 @@ public class DownfallCardCmd
     {
         cardPile.AddInternal(card, index);
         cardPile.InvokeCardAddFinished();
-        await Hook.AfterCardChangedPiles(card.Owner.RunState, card.Owner.Creature.CombatState, card, PileType.None, null);
+        await Hook.AfterCardChangedPiles(card.Owner.RunState, card.Owner.Creature.CombatState, card, PileType.None,
+            null);
         var errorResult = new CardPileAddResult
         {
             cardAdded = card,
@@ -256,5 +257,5 @@ public class DownfallCardCmd
             modifyingModels = null
         };
         CardCmd.PreviewCardPileAdd(errorResult, 0.6f);
-    } 
+    }
 }

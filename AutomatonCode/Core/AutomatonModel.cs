@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Events;
-using Automaton.AutomatonCode.Extensions;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;

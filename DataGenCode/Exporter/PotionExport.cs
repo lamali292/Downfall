@@ -39,7 +39,7 @@ public class PotionExport : ItemExport, IImageExport
     {
         return
         [
-            new(ImgSize, $"potions/{Id}", null, drawer =>
+            new ViewportManager.DrawRequest(ImgSize, $"potions/{Id}", null, drawer =>
             {
                 var potion = NPotion.Create(_model);
                 if (potion == null) return;

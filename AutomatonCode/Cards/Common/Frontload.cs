@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
@@ -18,11 +17,14 @@ public class Frontload : AutomatonCardModel, IEncodable
         WithTip(CardKeyword.Retain);
         WithPower<FrontloadPower>(1, false);
     }
-    
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<FrontloadPower>(ctx, this);
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-      => CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
- 
+    {
+        return CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+    }
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<FrontloadPower>(ctx, this);
+    }
 }

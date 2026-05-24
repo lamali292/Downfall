@@ -1,9 +1,7 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,20 +17,17 @@ public class InfiniteLoop : AutomatonCardModel,
         WithPower<InfiniteLoopPower>(2, 2, false);
     }
 
-
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var power = await CommonActions.ApplySelf<InfiniteLoopPower>(ctx, this);
-        power?.SetCard(this);
-    }
-    
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
-    
-    
-    
+
+
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var power = await CommonActions.ApplySelf<InfiniteLoopPower>(ctx, this);
+        power?.SetCard(this);
+    }
 }

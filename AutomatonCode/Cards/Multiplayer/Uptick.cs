@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Core;
-using BaseLib.Patches.Features;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,9 +16,9 @@ public class Uptick : AutomatonCardModel
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-    
+
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<DrawCardsNextTurnPower>(ctx, this, cardPlay);
-    }   
+    }
 }

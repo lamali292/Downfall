@@ -15,8 +15,8 @@ public class RecreatePower : AutomatonPowerModel
     {
         WithTip(typeof(Fuel));
     }
-    
-    
+
+
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
     {
         if (creator == null || creator.Creature != Owner) return;
@@ -26,7 +26,5 @@ public class RecreatePower : AutomatonPowerModel
         if (generatedThisTurn > Amount) return;
         Flash();
         await CardCmd.TransformTo<Fuel>(card);
-      
     }
 }
-

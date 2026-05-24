@@ -18,5 +18,4 @@ public class CleanCodePower : AutomatonPowerModel
         Flash();
         await StashCmd.StashUpTo(ctx, player, Amount, this);
     }
-    
 }

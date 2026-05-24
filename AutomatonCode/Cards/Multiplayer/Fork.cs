@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,11 +22,11 @@ public class Fork : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToAllPlayerHandSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e.EnergyCost.GetResolved() == 1, this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e.EnergyCost.GetResolved() == 1, this))
+            .FirstOrDefault();
         if (card == null || cardPlay.Target == null) return;
         var clone = card.CreateClone();
         clone._owner = cardPlay.Target.Player;
         await CardPileCmd.Add(clone, PileType.Hand);
-
     }
 }

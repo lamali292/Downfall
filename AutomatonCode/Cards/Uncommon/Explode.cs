@@ -19,9 +19,13 @@ public class Explode : AutomatonCardModel, IEncodable
         WithPower<SoulBurnPower>(15, 5);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<ExplodePower>(ctx, this);
-
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-        => CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+    {
+        return CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+    }
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<ExplodePower>(ctx, this);
+    }
 }

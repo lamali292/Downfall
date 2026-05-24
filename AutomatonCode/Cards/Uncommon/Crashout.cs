@@ -15,5 +15,7 @@ public class Crashout : AutomatonCardModel
     }
 
     protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<CrashoutPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<CrashoutPower>(ctx, this);
+    }
 }

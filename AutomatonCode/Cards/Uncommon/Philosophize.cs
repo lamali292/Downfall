@@ -17,12 +17,13 @@ public class Philosophize : AutomatonCardModel, IEncodable
         WithPower<PhilosophizePower>(1, false);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-      =>  CommonActions.ApplySelf<PhilosophizePower>(ctx, this);
-
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
-    
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<PhilosophizePower>(ctx, this);
+    }
 }

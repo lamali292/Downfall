@@ -2,7 +2,6 @@
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -38,7 +37,6 @@ public static class HexaghostHook
         return DownfallHook.Dispatch<IWheelMoved>(cs, ctx,
             m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent));
     }
-
 
 
     public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,

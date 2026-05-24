@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
@@ -8,7 +7,6 @@ namespace Downfall.DownfallCode.Utils;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class JsonSavedPropertyAttribute : Attribute;
-
 
 [HarmonyPatch]
 public static class JsonSavedPropertyPatches
@@ -57,4 +55,3 @@ public static class JsonSavedPropertyPatches
         }
     }
 }
-

@@ -1,6 +1,5 @@
 ﻿using BaseLib.Audio;
 using MegaCrit.Sts2.Core.Random;
-using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.DownfallCode.Utils.Sound;
 
@@ -24,7 +23,7 @@ public class ModSoundEffect
         _globalVolumeAdd = globalVolumeAdd;
         _totalWeight = entries.Sum(e => e.Weight);
     }
-    
+
     public void Play()
     {
         PlayOn(e =>
@@ -51,6 +50,7 @@ public class ModSoundEffect
                 player.VolumeDb = _globalVolumeAdd + e.VolumeAdd;
         });
     }
+
     private void PlayOn(Action<ModSoundEntry> play)
     {
         play(PickRandom());

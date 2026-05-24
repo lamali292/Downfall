@@ -1,9 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,5 +16,7 @@ public class CopyPaste : AutomatonCardModel
     }
 
     protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-     => CommonActions.ApplySelf<CopyPastePower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<CopyPastePower>(ctx, this);
+    }
 }

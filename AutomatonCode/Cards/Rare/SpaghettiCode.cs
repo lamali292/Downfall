@@ -27,7 +27,7 @@ public class SpaghettiCode : AutomatonCardModel
         var cards = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token).ToList();
-        
+
         while (Owner.GetEncode().Count < AutomatonCmd.GetMax(Owner))
         {
             var countBefore = Owner.GetEncode().Count;

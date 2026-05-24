@@ -21,8 +21,9 @@ public class CopyPastePower : AutomatonPowerModel
         return PowerCmd.Decrement(this);
     }
 
-    
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
         await PowerCmd.Remove(this);

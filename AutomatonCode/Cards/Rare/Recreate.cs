@@ -18,7 +18,9 @@ public class Recreate : AutomatonCardModel
     }
 
     protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => IsUpgraded ? 
-            CommonActions.ApplySelf<RecreatePlusPower>(ctx, this) : 
-            CommonActions.ApplySelf<RecreatePower>(ctx, this);
+    {
+        return IsUpgraded
+            ? CommonActions.ApplySelf<RecreatePlusPower>(ctx, this)
+            : CommonActions.ApplySelf<RecreatePower>(ctx, this);
+    }
 }

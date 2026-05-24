@@ -2,8 +2,6 @@
 using Downfall.DownfallCode.Utils.Sound;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Nodes.Audio;
-using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Patches;
 

@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Interfaces;
+﻿using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,6 +17,11 @@ public class Terminator : AutomatonCardModel,
         WithTip(StaticHoverTip.ReplayStatic);
     }
 
+    public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    {
+        return Task.CompletedTask;
+    }
+
     // Todo in compile
     public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
         bool forGameplay)
@@ -27,11 +31,6 @@ public class Terminator : AutomatonCardModel,
         if (compileContext.IsLast)
             card.BaseReplayCount += 1;
             */
-        return Task.CompletedTask;
-    }
-
-    public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
         return Task.CompletedTask;
     }
 }

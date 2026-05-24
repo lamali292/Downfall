@@ -93,7 +93,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard
     public override int MaxUpgradeLevel => 0;
 
     public GemModel CanonicalGemModel => GuardianModelDb.Gem<T>();
-    
+
     public GemModel GemModel =>
         CardModifier.DirectModifiers(this).OfType<GemModel>().First();
 

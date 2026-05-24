@@ -7,10 +7,7 @@ using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -27,7 +24,9 @@ public class FindAndReplace : AutomatonCardModel
     {
         if (CombatState == null) return;
         var choices = Owner.GetStash().Concat(Owner.GetDraw()).Concat(Owner.GetDiscard()).ToList();
-        var selected = (await DownfallCardCmd.SelectFromCards(ctx, choices, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this)).FirstOrDefault();
+        var selected =
+            (await DownfallCardCmd.SelectFromCards(ctx, choices, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this))
+            .FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;
         var index = sourcePile._cards.IndexOf(selected);

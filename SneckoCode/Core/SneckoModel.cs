@@ -11,8 +11,6 @@ namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
-    
-
     private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
     {
         var pool = DownfallSaveManager.GetPlayerData(player).SneckoPools;
@@ -44,7 +42,7 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             player.RunState.Rng.CombatCardGeneration);
     }
 
-    
+
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
@@ -52,7 +50,7 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             await SneckoCmd.GetGift(card.Owner, gift);
     }
 
-    
+
     public override async Task AfterActEntered()
     {
         var state = RunManager.Instance.State;
@@ -75,4 +73,3 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             SetSneckoPools(snecko, pools);
     }
 }
-

@@ -18,9 +18,13 @@ public class Spike : AutomatonCardModel, IEncodable
         WithTip(typeof(ThornsPower));
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<SpikePower>(ctx, this);
-
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-        => CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    {
+        return CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<SpikePower>(ctx, this);
+    }
 }

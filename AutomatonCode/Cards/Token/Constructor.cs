@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Interfaces;
+﻿using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;

@@ -34,7 +34,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             Cancelable = true,
             RequireManualConfirmation = false
         };
-    
+
         List<CardModel> cardModel;
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(Owner);
         if (CardSelectCmd.ShouldSelectLocalCard(Owner))

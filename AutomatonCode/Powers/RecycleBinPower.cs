@@ -11,12 +11,13 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class RecycleBinPower : AutomatonPowerModel
 {
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
         var block = Owner.Player?.GetHand().Count(e => e.Type is CardType.Curse or CardType.Status);
         if (block is null or 0) return;
         Flash();
-        await CreatureCmd.GainBlock(Owner, block.Value*Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, block.Value * Amount, ValueProp.Unpowered, null);
     }
 }

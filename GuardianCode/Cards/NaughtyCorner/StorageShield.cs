@@ -1,5 +1,3 @@
-
-
 /*
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -18,3 +16,4 @@ public class StorageShield : GuardianCardModel
     }
 }
 */
+

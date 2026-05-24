@@ -11,14 +11,12 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class RecreatePlusPower : AutomatonPowerModel
 {
-    
     public RecreatePlusPower()
     {
         WithUpgradedCardTip<Fuel>();
     }
 
 
-    
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
     {
         if (creator == null || creator.Creature != Owner) return;
@@ -28,7 +26,7 @@ public class RecreatePlusPower : AutomatonPowerModel
         if (generatedThisTurn > Amount) return;
         Flash();
         var fuel = card.CardScope?.CreateCard<Fuel>(card.Owner);
-        if  (fuel == null) return;
+        if (fuel == null) return;
         fuel.UpgradeInternal();
         await CardCmd.Transform(card, fuel);
     }

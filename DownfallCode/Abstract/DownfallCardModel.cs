@@ -79,7 +79,7 @@ public abstract class DownfallCardModel(
         WithVars(new EnemyDamageVar(baseValue, ValueProp.Unpowered).WithUpgrade(upgrade));
         return this;
     }
-    
+
     protected ConstructedCardModel WithUpgradedCardTip<T>(Action<T, CardModel>? modifyTipCard = null)
         where T : CardModel
     {
@@ -91,7 +91,7 @@ public abstract class DownfallCardModel(
             return HoverTipFactory.FromCard(mutable);
         }));
     }
-    
+
 
     protected ConstructedCardModel WithTip(TooltipSource tooltipSource, UpgradeType upgradeType)
     {

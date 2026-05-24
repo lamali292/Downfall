@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
@@ -19,15 +18,17 @@ public class NullPointer : AutomatonCardModel,
         WithTip(CardKeyword.Unplayable);
         WithPower<NullPointerPower>(1, false);
     }
-    
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<NullPointerPower>(ctx, this);
-    
+
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
+    }
+
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<NullPointerPower>(ctx, this);
     }
 }

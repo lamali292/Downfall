@@ -20,8 +20,11 @@ public class AutomatonDisplay
             Displays.Clear();
         };
     }
-    
-    public static NSequenceDisplay? GetDisplay(Player player) => Displays.GetValueOrDefault(player);
+
+    public static NSequenceDisplay? GetDisplay(Player player)
+    {
+        return Displays.GetValueOrDefault(player);
+    }
 
     public static void Refresh(Player creature)
     {

@@ -1,7 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
@@ -15,8 +14,23 @@ namespace Guardian.GuardianCode.Cards;
 
 public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
 {
+    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
+        bool showInCardLibrary = true, bool autoAdd = true)
+        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+    {
+        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
+        if (this is ITickCard) WithTip(GuardianTip.Tick);
+    }
+
     public IReadOnlyList<GemModel> Gems =>
         CardModifier.Modifiers(this).OfType<GemModel>().ToList();
+
+    public int GemCount => Gems.Count;
+    private bool IsFull => Gems.Count >= GemSlots;
+    public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
+
+    public virtual int GemSlots => 0;
+    protected virtual int GemReplayCount => 1;
 
     public void AddGem(GemModel gem)
     {
@@ -34,21 +48,9 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         }
     }
 
-    public bool CanAddGem(GemModel gem) => !IsFull;
-
-    public int GemCount => Gems.Count;
-    private bool IsFull => Gems.Count >= GemSlots;
-    public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
-
-    public virtual int GemSlots => 0;
-    protected virtual int GemReplayCount => 1;
-
-    protected GuardianCardModel(int cost, CardType type, CardRarity rarity, TargetType targetType,
-        bool showInCardLibrary = true, bool autoAdd = true)
-        : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+    public bool CanAddGem(GemModel gem)
     {
-        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
-        if (this is ITickCard) WithTip(GuardianTip.Tick);
+        return !IsFull;
     }
 
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)

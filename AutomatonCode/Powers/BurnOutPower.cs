@@ -22,6 +22,5 @@ public class BurnOutPower : AutomatonPowerModel
             Flash();
             await CreatureCmd.Damage(ctx, enemies, Amount, ValueProp.Unpowered, Owner);
         }
-
     }
 }

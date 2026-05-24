@@ -13,7 +13,7 @@ public class FrontloadPower : AutomatonPowerModel, IModifyCompiledFunction
     {
         WithTip(CardKeyword.Retain);
     }
-    
+
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
     {
         if (player.Creature != Owner) return false;
@@ -22,5 +22,7 @@ public class FrontloadPower : AutomatonPowerModel, IModifyCompiledFunction
     }
 
     public Task AfterModifyCompiledFunction(FunctionCard result, Player player)
-      => PowerCmd.Decrement(this);
+    {
+        return PowerCmd.Decrement(this);
+    }
 }

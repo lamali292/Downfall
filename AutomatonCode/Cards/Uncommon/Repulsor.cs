@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -16,5 +15,7 @@ public class Repulsor : AutomatonCardModel
     }
 
     protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-      => CommonActions.ApplySelf<RepulsePower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<RepulsePower>(ctx, this);
+    }
 }

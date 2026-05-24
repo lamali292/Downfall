@@ -17,13 +17,15 @@ public class Postpone : AutomatonCardModel, ITranscendenceCard
         WithStash(1);
     }
 
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Hook>();
+    }
+
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.StashFromHand(this, ctx);
     }
-
-    public CardModel GetTranscendenceTransformedCard()
-        => ModelDb.Card<Hook>();
 }

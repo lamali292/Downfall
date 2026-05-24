@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Extensions;
@@ -27,6 +26,5 @@ public class BugBarrage : AutomatonCardModel
         var count = statuses.Count;
         await CardCmd.DiscardAndDraw(ctx, statuses, count);
         await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
-
     }
 }
