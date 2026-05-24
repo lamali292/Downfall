@@ -115,7 +115,7 @@
   "HERMIT-ENERVATE.title": "Enervate",
   "HERMIT-ENERVATE.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]:\nGain {Energy:energyIcons()} and draw {Cards:plural:a card|{Cards:diff()} cards}.",
   "HERMIT-RICOCHET.title": "Ricochet",
-  "HERMIT-RICOCHET.description": "Deal {Damage:diff()} damage.\nFor each [gold]Dead On[/gold] effect triggered this turn, deal it again to a random enemy.{InCombat:cond:\n(Hits {CalculatedHits:diff()} more {CalculatedHits:plural:time|times})|}",
+  "HERMIT-RICOCHET.description": "Deal {Damage:diff()} damage.\nFor each [gold]Dead On[/gold] effect triggered this turn, deal it again to a random enemy.{InCombat:cond:\n(Hits {CalculatedHits:diff()} additional {CalculatedHits:plural:time|times})|}",
   "HERMIT-TRACKING_SHOT.title": "Tracking Shots",
   "HERMIT-TRACKING_SHOT.description": "Deal {Damage:diff()} damage twice.",
   "HERMIT-LONE_WOLF.title": "Lone Wolf",

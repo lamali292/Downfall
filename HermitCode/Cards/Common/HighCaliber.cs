@@ -23,8 +23,11 @@ public sealed class HighCaliber : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun1();
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun1();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
         await DownfallCardCmd.GiveCard<StrikeHermit>(Owner, PileType.Hand, upgraded: IsUpgraded,
             action: card => WithModifiers(card, this));

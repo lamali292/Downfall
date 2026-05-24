@@ -29,23 +29,26 @@ public sealed class Ricochet : HermitCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        ArgumentNullException.ThrowIfNull(play.Target);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var extraHitCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(play.Target);
-        HermitSfx.PlayGun2();
         await CommonActions.CardAttack(this, play)
             .WithHermitGunHitFx()
+            .BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun2();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
-        for (var i = 0; i < extraHitCount; i++)
-        {
-            var enemies = CombatState?.HittableEnemies.ToList();
-            if (enemies == null || enemies.Count == 0) break;
-            HermitSfx.PlayGun3();
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
-                .TargetingRandomOpponents(CombatState!)
-                .WithHermitGunHitFx()
-                .Execute(ctx);
-        }
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .WithHitCount(extraHitCount)
+            .TargetingRandomOpponents(CombatState!)
+            .WithHermitGunHitFx()
+            .BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun3();
+                return Task.CompletedTask;
+            })
+            .Execute(ctx);
     }
 }

@@ -37,10 +37,12 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun1();
-
         _result = await CommonActions.CardAttack(this, play)
-            .WithHermitGunHitFx()
+            .WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun1();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
     }
 }

@@ -21,9 +21,12 @@ public sealed class SprayPray : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun3();
         await CommonActions.CardAttack(this, play, DynamicVars.Repeat.IntValue)
-            .WithHermitGunHitFx()
+            .WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun3();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
         await DownfallCardCmd.GiveCard<Doubt>(Owner, PileType.Draw, CardPilePosition.Random);
     }

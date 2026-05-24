@@ -26,24 +26,23 @@ public class FiendFire : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (cardPlay.Target == null) return;
         var list = Owner.GetHand().ToList();
         var cardCount = list.Count;
         foreach (var card2 in list)
             await CardCmd.Exhaust(ctx, card2);
         var scale = 0.8f;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(cardCount).FromCard(this)
-            .Targeting(cardPlay.Target).BeforeDamage((Func<Task>)(() =>
-            {
-                var child = NGroundFireVfx.Create(cardPlay.Target);
-                if (child == null)
-                    return Task.CompletedTask;
-                SfxCmd.Play("event:/sfx/characters/attack_fire");
-                child.Scale = Vector2.One * scale;
-                var instance = NCombatRoom.Instance;
-                instance?.CombatVfxContainer.AddChildSafely(child);
-                scale += 0.1f;
+        await CommonActions.CardAttack(this, cardPlay, cardCount).BeforeDamage(() =>
+        {
+            var child = NGroundFireVfx.Create(cardPlay.Target);
+            if (child == null)
                 return Task.CompletedTask;
-            })).Execute(ctx);
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+            child.Scale = Vector2.One * scale;
+            var instance = NCombatRoom.Instance;
+            instance?.CombatVfxContainer.AddChildSafely(child);
+            scale += 0.1f;
+            return Task.CompletedTask;
+        }).Execute(ctx);
     }
 }

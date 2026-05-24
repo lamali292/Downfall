@@ -32,10 +32,13 @@ public sealed class GoldenBullet : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun1();
 
         var shouldTriggerFatal = play.Target!.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
-        var attackCommand = await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
+        var attackCommand = await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun1();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
 
         if (shouldTriggerFatal && attackCommand.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))

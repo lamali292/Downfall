@@ -19,12 +19,11 @@ public class InflictAgony : CollectorCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!cardPlay.Target.IsAfflicted())
+        if (!cardPlay.Target?.IsAfflicted() ?? false)
         {
-            await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
-            await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
+            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         }
     }
 }
