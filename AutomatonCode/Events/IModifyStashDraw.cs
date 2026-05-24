@@ -2,7 +2,6 @@
 
 namespace Automaton.AutomatonCode.Events;
 
-
 public interface IModifyStashDraw
 {
     int ModifyStashDraw(int amount, Player player);

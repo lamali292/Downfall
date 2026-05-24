@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
 {
-    public Scavenge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Scavenge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PlatedArmorPower>(4, 1);
         WithKeyword(CardKeyword.Exhaust);

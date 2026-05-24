@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class DragonsHoard : SneckoCardModel
 {
-    public DragonsHoard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public DragonsHoard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(3);
         WithPower<DexterityPower>(3);

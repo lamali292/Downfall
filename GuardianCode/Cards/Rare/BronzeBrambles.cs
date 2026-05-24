@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class BronzeBrambles : GuardianCardModel
 {
-    public BronzeBrambles() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public BronzeBrambles() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<BronzeBramblesPower>(1, false);

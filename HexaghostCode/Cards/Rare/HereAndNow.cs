@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class HereAndNow : HexaghostCardModel
 {
-    public HereAndNow() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public HereAndNow() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<MoreEnergyPower>(1);

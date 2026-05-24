@@ -25,7 +25,7 @@
   "HERMIT-PET_GHOST.description": "Prevent your first lethal HP loss each combat.",
   "HERMIT-CHARRED_GLOVE.title": "Charred Glove",
   "HERMIT-CHARRED_GLOVE.flavor": "Parts of the glove still glow with otherworldly cinders.",
-  "HERMIT-CHARRED_GLOVE.description": "Whenever you draw a [gold]Curse[/gold], gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",
+  "HERMIT-CHARRED_GLOVE.description": "Whenever you draw a Curse, gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",
   "HERMIT-CLASPED_LOCKET.title": "Clasped Locket",
   "HERMIT-CLASPED_LOCKET.flavor": "It won't open anymore.",
   "HERMIT-CLASPED_LOCKET.description": "Replaces [gold]Old Locket[/gold]. First time you draw a curse each turn, [gold]Exhaust[/gold] it and draw {Cards} cards. Upon pickup, obtain {Curses} [gold]Injuries[/gold].",

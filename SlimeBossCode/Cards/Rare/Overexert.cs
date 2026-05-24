@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Overexert : SlimeBossCardModel
 {
-    public Overexert() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Overexert() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 

@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class GoodCleanFight : ChampCardModel, IBerserkerComboCard, IDefensiveComboCard
 {
-    public GoodCleanFight() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public GoodCleanFight() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(2, 1);
         WithPower<DexterityPower>(2, 1);

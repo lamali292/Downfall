@@ -4,7 +4,6 @@ using Downfall.DownfallCode.Patches;
 using Godot;
 using Godot.Bridge;
 using Guardian.GuardianCode.Cards;
-using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Localization;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
@@ -25,9 +24,7 @@ public partial class GuardianMainFile : Node
     {
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
-        _ = GuardianCardModel.GemData;
         Harmony harmony = new(ModId);
-        GuardianSubsriber.Subscribe();
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();

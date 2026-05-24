@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Magicianism : AwakenedCardModel
 {
-    public Magicianism() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Magicianism() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(StaticHoverTip.Block);
         WithPower<MagicianismPower>(2, 1, false);

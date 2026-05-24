@@ -14,7 +14,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class DarknessFalls : AwakenedCardModel
 {
-    public DarknessFalls() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public DarknessFalls() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
         WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));

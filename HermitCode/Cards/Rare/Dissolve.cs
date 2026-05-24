@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class Dissolve : HermitCardModel
 {
-    public Dissolve() : base(2, CardType.Skill, CardRarity.Rare, TargetType.None)
+    public Dissolve() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(18, 7);
         WithPower<BlurPower>(2);

@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class DarkLordForm : CollectorCardModel
 {
-    public DarkLordForm() : base(4, CardType.Power, CardRarity.Rare, TargetType.None)
+    public DarkLordForm() : base(4, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(new TooltipSource(card => card.IsUpgraded
             ? HoverTipFactory.FromPower<DarkLordFormPlusPower>()

@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class DoubleStyle : ChampCardModel
 {
-    public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DefensiveStylePower>(1, 1, false);
         WithPower<BerserkerStylePower>(1, 1, false);

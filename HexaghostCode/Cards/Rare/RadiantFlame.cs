@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class RadiantFlame : HexaghostCardModel
 {
-    public RadiantFlame() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public RadiantFlame() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<RadiantFlamePower>(2, 1);
         WithTip(StaticHoverTip.Block);

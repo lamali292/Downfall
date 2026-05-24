@@ -11,7 +11,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class QueenOfPentacles : SneckoCardModel
 {
-    public QueenOfPentacles() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public QueenOfPentacles() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithGift(new Gift
         {

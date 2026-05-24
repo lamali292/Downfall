@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class GemFinder : GuardianCardModel
 {
-    public GemFinder() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public GemFinder() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Ethereal);

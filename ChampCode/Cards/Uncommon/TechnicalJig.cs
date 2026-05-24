@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class TechnicalJig : ChampCardModel
 {
-    public TechnicalJig() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public TechnicalJig() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<TechnicalJigPower>(3, 1, false);
         WithTip(ChampTip.Stance);

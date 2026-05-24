@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Cards.Ancient;
 [Pool(typeof(ChampCardPool))]
 public class LastStand : ChampCardModel
 {
-    public LastStand() : base(1, CardType.Power, CardRarity.Ancient, TargetType.None)
+    public LastStand() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<StrengthPower>(6);

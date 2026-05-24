@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class UnendingSupply : SneckoCardModel
 {
-    public UnendingSupply() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public UnendingSupply() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<UnendingSupplyPower>(1);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);

@@ -12,19 +12,21 @@ public class Flail : AutomatonCardModel
 {
     public Flail() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(7, 1);
-        WithPower<ArtifactPower>(1, 1);
+        WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
+        WithTip(typeof(WeakPower));
+        WithTip(typeof(FrailPower));
+        WithTip(typeof(VulnerablePower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Card.CombatState);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
-            .TargetingAllOpponents(cardPlay.Card.CombatState)
-            .WithHitCount(2)
+        await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<ArtifactPower>(ctx, this);
+        await PowerCmd.Remove<WeakPower>(Owner.Creature);
+        await PowerCmd.Remove<FrailPower>(Owner.Creature);
+        await PowerCmd.Remove<VulnerablePower>(Owner.Creature);
+        PlayerCmd.EndTurn(Owner, false);
     }
 }

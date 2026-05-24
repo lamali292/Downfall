@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class EvasiveProtocol : GuardianCardModel
 {
-    public EvasiveProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public EvasiveProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithBrace(6, 3);
         WithPower<EvasiveProtocolPower>(1, 1, false);

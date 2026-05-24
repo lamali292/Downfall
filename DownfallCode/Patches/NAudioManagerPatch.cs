@@ -2,32 +2,8 @@
 using Downfall.DownfallCode.Utils.Sound;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Nodes.Audio;
-using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Patches;
-
-[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), typeof(string),
-    typeof(Dictionary<string, float>), typeof(float))]
-internal class NAudioManagerPatch
-{
-    private static bool Prefix(string path)
-    {
-        if (TestMode.IsOn) return true;
-        if (!path.StartsWith("res://")) return true;
-
-        // Check for ModSoundEffect override first
-        if (SfxOverridePatch.GetOverride(path) is { } effect)
-        {
-            effect.Play();
-            return false;
-        }
-
-        // Plain res:// sound — play via ModAudio
-        ModAudio.PlaySoundGlobal(new ModSound(path));
-        return false;
-    }
-}
 
 [HarmonyPatch(typeof(SfxCmd), nameof(SfxCmd.Play), typeof(string), typeof(float))]
 internal static class SfxOverridePatch
@@ -46,8 +22,15 @@ internal static class SfxOverridePatch
 
     private static bool Prefix(string sfx)
     {
-        if (Overrides.GetValueOrDefault(sfx) is not { } effect) return true;
-        effect.Play();
+        if (!sfx.StartsWith("res://")) return true; // let FMOD paths through normally
+
+        if (Overrides.GetValueOrDefault(sfx) is { } effect)
+        {
+            effect.Play();
+            return false;
+        }
+
+        ModAudio.PlaySoundGlobal(new ModSound(sfx));
         return false;
     }
 }

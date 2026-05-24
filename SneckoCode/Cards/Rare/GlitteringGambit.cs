@@ -8,7 +8,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class GlitteringGambit : SneckoCardModel
 {
-    public GlitteringGambit() : base(-1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public GlitteringGambit() : base(-1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithVar(new GoldVar(150));
         WithGift(new Gift

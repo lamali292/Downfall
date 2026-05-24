@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class BloodiedPreening : AwakenedCardModel
 {
-    public BloodiedPreening() : base(0, CardType.Power, CardRarity.Rare, TargetType.None)
+    public BloodiedPreening() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(typeof(StrengthPower));
         WithTip(typeof(PlumeJab));

@@ -21,8 +21,4 @@
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Scriban" Version="7.2.0"/>
-    </ItemGroup>
 </Project>

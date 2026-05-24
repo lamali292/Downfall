@@ -123,13 +123,15 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
-    
-    public sealed override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
+
+    public sealed override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
+        CardPilePosition position)
     {
         return ExecuteWithContext(ctx => AfterModifyingCardPlayResultPileOrPosition(ctx, card, pileType, position));
     }
 
-    protected virtual Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext card, CardModel pileType, PileType position, CardPilePosition cardPilePosition)
+    protected virtual Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext card, CardModel pileType,
+        PileType position, CardPilePosition cardPilePosition)
     {
         return Task.CompletedTask;
     }
@@ -139,7 +141,8 @@ public abstract class HookedPowerModel : CustomPowerModel
         return ExecuteWithContext(ctx => AfterCardChangedPiles(ctx, card, oldPileType, clonedBy));
     }
 
-    protected virtual Task AfterCardChangedPiles(PlayerChoiceContext card, CardModel oldPileType, PileType clonedBy, AbstractModel? abstractModel)
+    protected virtual Task AfterCardChangedPiles(PlayerChoiceContext card, CardModel oldPileType, PileType clonedBy,
+        AbstractModel? abstractModel)
     {
         return Task.CompletedTask;
     }

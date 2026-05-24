@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class EmpoweredFlame : HexaghostCardModel
 {
-    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<IntensityPower>(2, 1);
     }

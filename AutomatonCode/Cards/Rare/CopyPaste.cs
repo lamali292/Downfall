@@ -1,8 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,20 +12,11 @@ public class CopyPaste : AutomatonCardModel
     public CopyPaste() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        WithTip(AutomatonTip.Encode);
+        WithPower<CopyPastePower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var sequence = Owner.GetEncode()
-            .OfType<AutomatonCardModel>()
-            .ToList();
-
-        foreach (var dupe in sequence.Select(card => card.CreateDupe()))
-        {
-            if (dupe is not AutomatonCardModel model) continue;
-            model.SkipEncode = true;
-            await CardCmd.AutoPlay(ctx, model, null);
-        }
+        return CommonActions.ApplySelf<CopyPastePower>(ctx, this);
     }
 }

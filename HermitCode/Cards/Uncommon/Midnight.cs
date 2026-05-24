@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Midnight : HermitCardModel
 {
-    public Midnight() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Midnight() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
         WithTip(typeof(ImpendingDoom));

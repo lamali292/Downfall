@@ -10,7 +10,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Maintenance : HermitCardModel
 {
-    public Maintenance() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public Maintenance() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<MaintenanceStrikePower>(3, 1, false);
         WithPower<DexterityPower>(1, 1);

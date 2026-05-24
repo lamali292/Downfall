@@ -1,12 +1,11 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -17,34 +16,17 @@ public class Virus : AutomatonCardModel
     {
         WithDamage(4, 2);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(new TooltipSource(card =>
-        {
-            var beam = ModelDb.GetById<MinorBeam>(ModelDb.Card<MinorBeam>().Id).ToMutable();
-            if (card.IsUpgraded) beam.UpgradeInternal();
-            return HoverTipFactory.FromCard(beam);
-        }));
+        WithUpgradingCardTip<MinorBeam>();
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
+        await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-
-
         var hand = Owner.GetHand();
+        var size = hand.Count;
         await CardCmd.Discard(ctx, hand);
-
-        var beams = hand.Select(_ =>
-        {
-            var beam = CombatState!.CreateCard<MinorBeam>(Owner);
-            if (IsUpgraded) beam.UpgradeInternal();
-            return beam;
-        }).ToList();
-
-        await CardPileCmd.AddGeneratedCardsToCombat(beams, PileType.Hand, Owner);
+        await DownfallCardCmd.GiveCards<MinorBeam>(Owner, PileType.Hand, size, upgraded: IsUpgraded);
     }
 }

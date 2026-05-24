@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class Harden : GuardianCardModel
 {
-    public Harden() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Harden() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PlatedArmorPower>(4, 2);
     }

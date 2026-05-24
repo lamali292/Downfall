@@ -5,9 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
@@ -17,7 +15,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class HyperBeamAutomaton : AutomatonCardModel
 {
-    public HyperBeamAutomaton() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    public HyperBeamAutomaton() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(18, 4);
         WithPower<VulnerablePower>(1, 1);
@@ -45,6 +43,7 @@ public class HyperBeamAutomaton : AutomatonCardModel
             var vfx = NHyperbeamVfx.Create(Owner.Creature, enemies.Last());
             if (vfx != null) NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
         }
+
         await Cmd.Wait(0.5f);
         if (enemies != null)
             foreach (var impact in enemies

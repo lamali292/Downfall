@@ -1,5 +1,3 @@
-using Automaton.AutomatonCode.Cards;
-using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
@@ -64,7 +62,7 @@ public partial class NSequenceDisplay : Control
         var clamped = Math.Clamp(index, 0, _currentMax - 1);
         return clamped < _slots.Count ? _slots[clamped].CardAnchorGlobal : GlobalPosition;
     }
-    
+
     public void Refresh(bool force = false)
     {
         if (_trackedPlayer == null) return;
@@ -95,7 +93,11 @@ public partial class NSequenceDisplay : Control
             if (cardNode == null) continue;
 
             var holder = slot.SetCard(cardNode);
-            if (holder == null) { cardNode.QueueFree(); continue; }
+            if (holder == null)
+            {
+                cardNode.QueueFree();
+                continue;
+            }
 
             holder.SetClickable(true);
             var captured = i;
@@ -122,13 +124,18 @@ public partial class NSequenceDisplay : Control
         AutomatonCmd.ApplyFunctionCardType(_previewModel, snapshot);
         if (snapshot.Count > 0) _previewModel.SetSourceCards(snapshot);
         _previewModel.Owner = _trackedPlayer;
-        _previewModel = AutomatonHook.ModifyCompiledFunction(_trackedPlayer!.Creature.CombatState!, _previewModel, _trackedPlayer, out _);
+        _previewModel = AutomatonHook.ModifyCompiledFunction(_trackedPlayer!.Creature.CombatState!, _previewModel,
+            _trackedPlayer, out _);
 
         var funcCardNode = NCard.Create(_previewModel);
         if (funcCardNode == null || _previewContainer == null) return;
 
         _previewHolder = NCustomCardHolder.Create(funcCardNode, 1.5f, 2.5f);
-        if (_previewHolder == null) { funcCardNode.QueueFree(); return; }
+        if (_previewHolder == null)
+        {
+            funcCardNode.QueueFree();
+            return;
+        }
 
         _previewHolder.Scale = Vector2.One * 1.5f;
         _previewContainer.AddChild(_previewHolder);

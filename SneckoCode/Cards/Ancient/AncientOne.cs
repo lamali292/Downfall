@@ -8,7 +8,7 @@ namespace Snecko.SneckoCode.Cards.Ancient;
 [Pool(typeof(SneckoCardPool))]
 public class AncientOne : SneckoCardModel
 {
-    public AncientOne() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.None)
+    public AncientOne() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithCards(1);

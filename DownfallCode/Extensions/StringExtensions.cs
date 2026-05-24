@@ -1,6 +1,7 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Godot;
 using MegaCrit.Sts2.Core.Models;
+
 // Added for Func support
 
 namespace Downfall.DownfallCode.Extensions;

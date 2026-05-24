@@ -13,7 +13,7 @@ namespace Awakened.AwakenedCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class Ceremony : AwakenedCardModel
 {
-    public Ceremony() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
+    public Ceremony() : base(0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         WithPower<StrengthPower>(1, 1);
         WithKeywords(CardKeyword.Retain);

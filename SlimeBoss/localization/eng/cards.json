@@ -61,7 +61,7 @@
   "SLIMEBOSS-MASS_FEED.title": "Mass Feed",
   "SLIMEBOSS-MASS_REPURPOSE.description": "[gold]Absorb ALL Slimes[/gold]. Split into a random [gold]Specialist for each[/gold].{IfUpgraded:show: [gold]Command them[/gold].|}\nExhaust.",
   "SLIMEBOSS-MASS_REPURPOSE.title": "Mass Repurpose",
-  "SLIMEBOSS-MEGA_LICK.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and {GoopPower:diff()} [gold]Goop[/gold] to ALL enemies.\n{IfUpgraded:show:\nDraw a card.|}",
+  "SLIMEBOSS-MEGA_LICK.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and {GoopPower:diff()} [gold]Goop[/gold] to ALL enemies.{IfUpgraded:show:\nDraw a card.|}",
   "SLIMEBOSS-MEGA_LICK.title": "Mega-Lick",
   "SLIMEBOSS-MINION_MASTER.description": "{IfUpgraded:show:Innate.\n|}Whenever you play a card with [gold]Command[/gold], [gold]Command again[/gold].",
   "SLIMEBOSS-MINION_MASTER.title": "Minion Master",

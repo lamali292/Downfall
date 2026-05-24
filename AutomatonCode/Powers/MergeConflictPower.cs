@@ -19,10 +19,10 @@ public class MergeConflictPower : AutomatonPowerModel
         var a = await CardPileCmd.AddGeneratedCardToCombat(clone, pile.Value, player);
         CardCmd.PreviewCardPileAdd(a);
     }
-    
-    
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return Task.CompletedTask;
         PowerCmd.Remove(this);

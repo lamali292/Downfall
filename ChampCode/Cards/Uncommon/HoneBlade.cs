@@ -9,7 +9,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class HoneBlade : ChampCardModel
 {
-    public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<HoneBladePower>(3, 1, false);
     }

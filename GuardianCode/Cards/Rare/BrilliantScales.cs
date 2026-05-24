@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class BrilliantScales : GuardianCardModel
 {
-    public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<BrilliantScalesPower>(1, false);
     }

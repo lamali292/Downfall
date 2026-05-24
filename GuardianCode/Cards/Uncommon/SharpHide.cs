@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class SharpHide : GuardianCardModel
 {
-    public SharpHide() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SharpHide() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(1);
         WithPower<SharpHidePower>(2, 2, false);

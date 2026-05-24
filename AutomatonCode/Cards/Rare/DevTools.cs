@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Removed;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Extensions;
@@ -25,7 +24,9 @@ public class DevTools : AutomatonCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
-        => card.Owner.GetEncode().Count;
+    {
+        return card.Owner.GetEncode().Count;
+    }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

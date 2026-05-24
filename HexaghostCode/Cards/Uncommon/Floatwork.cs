@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Floatwork : HexaghostCardModel
 {
-    public Floatwork() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Floatwork() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithAfterlife();
         WithPower<DexterityPower>(1);

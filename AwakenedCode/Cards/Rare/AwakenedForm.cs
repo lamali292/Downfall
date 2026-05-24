@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class AwakenedForm : AwakenedCardModel
 {
-    public AwakenedForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public AwakenedForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<CuriosityPower>(1);
         WithPower<RitualPower>(1, 1);

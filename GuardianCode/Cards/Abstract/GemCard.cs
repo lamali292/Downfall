@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -79,40 +80,22 @@ public class Bismuth : GemCard<BismuthGem>
 public abstract class GemCard<T> : GuardianCardModel, IGemCard
     where T : GemModel
 {
-    private GemModel? _mutableGem;
-
-    protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.None)
+    protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.Self)
     {
         _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);
         foreach (var extraHoverTip in GuardianModelDb.Gem<T>().ExtraHoverTips)
             WithTip(new TooltipSource(_ => extraHoverTip));
+        CardModifier.AddModifier(this, GuardianModelDb.Gem<T>().ToMutable());
     }
 
     public override CardRarity Rarity => GuardianModelDb.Gem<T>().Rarity;
-
     public override int MaxUpgradeLevel => 0;
 
     public GemModel CanonicalGemModel => GuardianModelDb.Gem<T>();
 
-    public GemModel GemModel
-    {
-        get
-        {
-            if (_mutableGem != null) return _mutableGem;
-            _mutableGem = GuardianModelDb.Gem<T>().ToMutable();
-            _mutableGem.Card = this;
-            return _mutableGem;
-        }
-    }
-
-    protected override void AfterCloned()
-    {
-        base.AfterCloned();
-        if (_mutableGem == null) return;
-        _mutableGem = _mutableGem.CreateClone();
-        _mutableGem.Card = this;
-    }
+    public GemModel GemModel =>
+        CardModifier.DirectModifiers(this).OfType<GemModel>().First();
 
     protected sealed override Task PlayEffect(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {

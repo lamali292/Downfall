@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class TimeCapacitor : GuardianCardModel
 {
-    public TimeCapacitor() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public TimeCapacitor() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithVar("StasisSlots", 1);

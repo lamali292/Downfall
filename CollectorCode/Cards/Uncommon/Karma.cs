@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class Karma : CollectorCardModel
 {
-    public Karma() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Karma() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<KarmaPower>(2, 1);
         WithPower<MetallicizePower>(2, 1);

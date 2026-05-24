@@ -25,4 +25,3 @@ public class DazingPulsePower : AutomatonPowerModel, IAfterCompilingFunction
         await PowerCmd.Remove(this);
     }
 }
-    

@@ -2,8 +2,6 @@
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -23,8 +21,6 @@ public class Assembly : AutomatonCardModel
     {
         var cards = await CommonActions.Draw(this, ctx);
         foreach (var card in cards.OfType<IEncodable>().Where(e => e is { AutoEncode: true }))
-        {
             await card.Encode(ctx, cardPlay);
-        }
     }
 }

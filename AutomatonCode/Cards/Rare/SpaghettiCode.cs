@@ -5,7 +5,7 @@ using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
@@ -22,21 +22,17 @@ public class SpaghettiCode : AutomatonCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var rng = CombatState!.RunState.Rng.CombatCardSelection;
+        var rng = Owner.RunState.Rng.CombatCardSelection;
+
+        var cards = Owner.Character.CardPool
+            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+            .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token).ToList();
 
         while (Owner.GetEncode().Count < AutomatonCmd.GetMax(Owner))
         {
             var countBefore = Owner.GetEncode().Count;
-            var choices = Pool
-                .AllCards
-                .Where(c => c is IEncodable { AutoEncode: true } && c.Rarity != CardRarity.Token)
-                .TakeRandom(3, rng)
-                .Select(t => CombatState!.CreateCard(t, Owner))
-                .ToList();
-
+            var choices = CardFactory.GetDistinctForCombat(Owner, cards, 3, rng).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-            foreach (var c in choices.Where(c => c != selected))
-                c.RemoveFromState();
             if (selected == null) break;
             await AutomatonCmd.EncodeCard(selected, ctx, cardPlay);
             if (Owner.GetEncode().Count < countBefore + 1)

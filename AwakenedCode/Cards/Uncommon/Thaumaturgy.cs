@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class Thaumaturgy : AwakenedCardModel
 {
-    public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(1, 1);
         WithPower<ThaumaturgyPower>(2, false);

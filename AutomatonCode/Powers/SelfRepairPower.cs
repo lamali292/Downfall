@@ -7,5 +7,7 @@ namespace Automaton.AutomatonCode.Powers;
 public class SelfRepairPower : AutomatonPowerModel
 {
     public override Task AfterCombatEnd(CombatRoom room)
-        =>  CreatureCmd.Heal(Owner, Amount);
+    {
+        return CreatureCmd.Heal(Owner, Amount);
+    }
 }

@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class Fountain : SneckoCardModel
 {
-    public Fountain() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public Fountain() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<FountainPower>(4, 2);
     }

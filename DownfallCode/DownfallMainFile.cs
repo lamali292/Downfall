@@ -32,7 +32,6 @@ public partial class DownfallMainFile : Node
         harmony.PatchAll();
 
         NCustomCardHolder.InitPool();
-        //DownfallAudiomanager.LoadFModBank(ModId);
     }
 }
 

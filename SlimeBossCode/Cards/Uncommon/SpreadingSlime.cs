@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class SpreadingSlime : SlimeBossCardModel
 {
-    public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<SlimyTonguePower>(2, 1);
     }

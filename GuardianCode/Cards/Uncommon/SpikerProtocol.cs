@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class SpikerProtocol : GuardianCardModel
 {
-    public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<SpikerProtocolPower>(2, 1, false);
         WithBrace(6, 3);

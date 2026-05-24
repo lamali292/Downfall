@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Ancient;
 [Pool(typeof(HexaghostCardPool))]
 public class InfernalForm : HexaghostCardModel
 {
-    public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.None)
+    public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithPower<InfernalFormPower>(2, 1);
     }

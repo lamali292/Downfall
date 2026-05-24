@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class StasisEngine : GuardianCardModel
 {
-    public StasisEngine() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public StasisEngine() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithEnergyTip();
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);

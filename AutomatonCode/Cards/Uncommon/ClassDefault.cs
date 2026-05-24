@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class ClassDefault : AutomatonCardModel
 {
-    public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(AutomatonTip.Encode);
         WithPower<ClassDefaultPower>(2, 1, false);

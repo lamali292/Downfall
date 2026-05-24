@@ -12,7 +12,7 @@ public sealed class Manifest : HermitCardModel
     private const int BlockAmount = 16;
     private const int UpgradedBlockAmount = 20;
 
-    public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.None)
+    public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(16, 4);
         WithTip(typeof(Decay));

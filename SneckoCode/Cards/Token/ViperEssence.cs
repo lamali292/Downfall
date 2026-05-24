@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class ViperEssence : SneckoCardModel
 {
-    public ViperEssence() : base(0, CardType.Power, CardRarity.Token, TargetType.None)
+    public ViperEssence() : base(0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithPower<StrengthPower>(1, 1);

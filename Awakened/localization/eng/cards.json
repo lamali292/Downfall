@@ -115,7 +115,7 @@
   "AWAKENED-MANA_SHIELD.title": "Mana Shield",
   "AWAKENED-MANTIS.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nAdd a [gold]Plume Jab[/gold] into your [gold]Hand[/gold]. ",
   "AWAKENED-MANTIS.title": "Mantis",
-  "AWAKENED-MIDDEN_HEAP.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut {Cards:diff()} [gold]Status[/gold] or [gold]Curse[/gold] card from your [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
+  "AWAKENED-MIDDEN_HEAP.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut {Cards:diff()} Status or Curse card from your [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
   "AWAKENED-MIDDEN_HEAP.title": "Midden Heap",
   "AWAKENED-MINNIEGUN.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nShuffle a [gold]Void[/gold] into your [gold]Draw Pile[/gold]. ",
   "AWAKENED-MINNIEGUN.title": "Minniegun",

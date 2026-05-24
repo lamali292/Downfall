@@ -15,7 +15,7 @@ public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHa
 
     public Task AfterGemPlayed(PlayerChoiceContext ctx, GemModel gemModel, CardPlay? cardPlay)
     {
-        if (Owner != gemModel.Card.Owner.Creature || UsedAmount >= Amount) return Task.CompletedTask;
+        if (Owner != gemModel.Card?.Owner.Creature || UsedAmount >= Amount) return Task.CompletedTask;
         UsedAmount++;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
@@ -26,9 +26,9 @@ public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IHa
         return $"{UsedAmount}";
     }
 
-    public decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel card)
+    public decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel? card)
     {
-        return Owner == card.Owner.Creature && UsedAmount < Amount && model.SocketIndex < Amount
+        return Owner == card?.Owner.Creature && UsedAmount < Amount && model.SocketIndex < Amount
             ? baseValue * 2
             : baseValue;
     }

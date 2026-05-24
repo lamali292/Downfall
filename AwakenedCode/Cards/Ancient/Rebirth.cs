@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Ancient;
 [Pool(typeof(AwakenedCardPool))]
 public class Rebirth : AwakenedCardModel
 {
-    public Rebirth() : base(1, CardType.Power, CardRarity.Ancient, TargetType.None)
+    public Rebirth() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithPower<AwakeningPower>(8, 3, false);
         WithTip(typeof(VulnerablePower));

@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Uncommon;
 [Pool(typeof(GuardianCardPool))]
 public class FloatingOrbs : GuardianCardModel
 {
-    public FloatingOrbs() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public FloatingOrbs() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<FloatingOrbsPower>(3, 1, false);
         WithEnergyTip();

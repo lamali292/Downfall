@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class ProtectiveAura : ChampCardModel
 {
-    public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ProtectiveAuraPower>(4, 2, false);
         WithTip(StaticHoverTip.Block);

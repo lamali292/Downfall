@@ -2,7 +2,6 @@
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -33,6 +32,7 @@ public class RecursiveStrike : AutomatonCardModel
             strike1.UpgradeInternal();
             strike2.UpgradeInternal();
         }
+
         await AutomatonCmd.EncodeCard(strike1, ctx, cardPlay);
         await AutomatonCmd.EncodeCard(strike2, ctx, cardPlay);
     }

@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class FuturePlans : GuardianCardModel
 {
-    public FuturePlans() : base(1, CardType.Power, CardRarity.Rare, TargetType.None)
+    public FuturePlans() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<FuturePlansPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);

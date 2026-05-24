@@ -10,7 +10,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class Tsunami : SneckoCardModel
 {
-    public Tsunami() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Tsunami() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<TsunamiPower>(4, 1);
     }

@@ -53,7 +53,6 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
         var encode = encodable.EncodeLocString;
         if (encode != null)
             description.Add("encode", encode);
-
     }
 
 

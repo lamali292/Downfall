@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class HeroicBravado : HermitCardModel
 {
-    public HeroicBravado() : base(1, CardType.Skill, CardRarity.Rare, TargetType.None)
+    public HeroicBravado() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithPower<RuggedPower>(1);

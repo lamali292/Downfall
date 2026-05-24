@@ -1,10 +1,8 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
@@ -12,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class ItsAFeature : AutomatonCardModel
 {
-    public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ItsAFeaturePower>(3, 2, false);
         WithTip(typeof(VigorPower));

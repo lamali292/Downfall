@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class IronFortress : ChampCardModel
 {
-    public IronFortress() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public IronFortress() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2);
         WithPower<MetallicizePower>(3, 2, false);

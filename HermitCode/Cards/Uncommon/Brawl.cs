@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Brawl : HermitCardModel
 {
-    public Brawl() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Brawl() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<BruisePower>(3, 2);
     }

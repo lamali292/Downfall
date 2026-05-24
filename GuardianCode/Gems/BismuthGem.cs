@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -10,7 +11,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Gems;
@@ -34,13 +34,11 @@ public class BismuthGem : GemModel
         await PowerCmd.Apply<ArtifactPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
 
-    protected override void OnAdded(CardModel card)
+    protected override void OnAdded(GuardianCardModel card)
     {
         if (card is IGemCard) return;
-        if (card.IsInCombat)
-        {
-            card.EnergyCost.UpgradeBy(1);
-            card.EnergyCost.FinalizeUpgrade();
-        }
+        if (!card.IsInCombat) return;
+        card.EnergyCost.UpgradeBy(1);
+        card.EnergyCost.FinalizeUpgrade();
     }
 }

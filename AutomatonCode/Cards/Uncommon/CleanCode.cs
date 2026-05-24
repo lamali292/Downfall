@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class CleanCode : AutomatonCardModel
 {
-    public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<CleanCodePower>(1, 1, false);
         WithTip(AutomatonTip.Stash);

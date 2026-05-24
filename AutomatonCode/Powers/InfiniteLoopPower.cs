@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Uncommon;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,17 +14,29 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class InfiniteLoopPower : AutomatonPowerModel, IAfterCompilingFunction
 {
+    private CardModel? _copy;
 
     public InfiniteLoopPower()
     {
         WithVars(new CardDynamicVar());
         WithTips(Tip);
+    }
 
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+
+    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result,
+        CardPlay cardPlay)
+    {
+        if (_copy == null || player.Creature != Owner) return;
+        await CardPileCmd.AddGeneratedCardToCombat(_copy, PileType.Hand, player);
+        await PowerCmd.Remove(this);
     }
 
     private static IEnumerable<IHoverTip> Tip(PowerModel arg)
-     => arg is InfiniteLoopPower { _copy: not null } power ? [new CardHoverTip(power._copy)] : [];
-    private CardModel? _copy;
+    {
+        return arg is InfiniteLoopPower { _copy: not null } power ? [new CardHoverTip(power._copy)] : [];
+    }
+
     public void SetCard(InfiniteLoop infiniteLoop)
     {
         _copy = infiniteLoop.CreateClone();
@@ -33,15 +44,6 @@ public class InfiniteLoopPower : AutomatonPowerModel, IAfterCompilingFunction
         _copy.DynamicVars.FinalizeUpgrade();
     }
 
-    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
-
-    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result, CardPlay cardPlay)
-    {
-        if (_copy == null || player.Creature != Owner) return;
-        await CardPileCmd.AddGeneratedCardToCombat(_copy, PileType.Hand, player);
-        await PowerCmd.Remove(this);
-    }
-    
     private class CardDynamicVar() : DynamicVar("card", 0)
     {
         private InfiniteLoopPower? _power;

@@ -18,9 +18,12 @@ public class BronzeOrbPower : AutomatonPowerModel
         return card.Owner.Creature != Owner ? (pileType, position) : (StashPile.Stash, CardPilePosition.Top);
     }
 
-    protected override Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext ctx, CardModel card, PileType pileType,
+    protected override Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext ctx, CardModel card,
+        PileType pileType,
         CardPilePosition position)
-     => PowerCmd.Decrement(this);
+    {
+        return PowerCmd.Decrement(this);
+    }
 
     public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

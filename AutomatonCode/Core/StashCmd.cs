@@ -13,7 +13,6 @@ namespace Automaton.AutomatonCode.Core;
 
 public class StashCmd
 {
-    
     public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
 
     public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
@@ -22,7 +21,7 @@ public class StashCmd
         var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, source);
         await Stash(cards);
     }
-    
+
     public static async Task StashFromHand(CardModel source, PlayerChoiceContext ctx)
     {
         var amount = source.DynamicVars["Stash"].IntValue;
@@ -30,6 +29,15 @@ public class StashCmd
         var cards = await CardSelectCmd.FromHand(ctx, source.Owner, prefs, null, source);
         await Stash(cards);
     }
+
+    public static async Task StashFromDraw(CardModel source, PlayerChoiceContext ctx)
+    {
+        var amount = source.DynamicVars["Stash"].IntValue;
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
+        var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(source.Owner), source.Owner, prefs);
+        await Stash(cards);
+    }
+
 
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel

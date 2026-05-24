@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class MoonlitVision : AwakenedCardModel
 {
-    public MoonlitVision() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public MoonlitVision() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithEnergyTip();
         WithCostUpgradeBy(-1);

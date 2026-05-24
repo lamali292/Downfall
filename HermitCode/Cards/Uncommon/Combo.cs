@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Combo : HermitCardModel
 {
-    public Combo() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Combo() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ComboPower>(1, 1);
     }

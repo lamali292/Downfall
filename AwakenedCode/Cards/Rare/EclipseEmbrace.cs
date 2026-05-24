@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class EclipseEmbrace : AwakenedCardModel
 {
-    public EclipseEmbrace() : base(2, CardType.Power, CardRarity.Rare, TargetType.None)
+    public EclipseEmbrace() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(Void));

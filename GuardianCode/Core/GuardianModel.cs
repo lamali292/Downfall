@@ -105,7 +105,6 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
         options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
         return true;
     }
-    
 }
 
 [HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]

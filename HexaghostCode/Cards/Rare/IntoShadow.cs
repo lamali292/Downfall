@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class IntoShadow : HexaghostCardModel
 {
-    public IntoShadow() : base(3, CardType.Power, CardRarity.Rare, TargetType.None)
+    public IntoShadow() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<IntoShadowPower>(1);
         WithTip(CardKeyword.Exhaust);

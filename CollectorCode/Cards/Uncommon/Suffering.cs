@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class Suffering : CollectorCardModel
 {
-    public Suffering() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+    public Suffering() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<SufferingPower>(2, 1);
     }

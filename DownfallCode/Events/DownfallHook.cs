@@ -213,17 +213,18 @@ public static class DownfallHook
         out IEnumerable<THook> modifiers)
         where THook : class
     {
-        var list = combatState.IterateHookListeners().OfType<THook>().Where(model => amountModifier.Invoke(model, value)).ToList();
+        var list = combatState.IterateHookListeners().OfType<THook>()
+            .Where(model => amountModifier.Invoke(model, value)).ToList();
         modifiers = list;
         return value;
     }
-    
+
     public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
         CardPileAddResult result)
     {
         return Dispatch<IAfterCustomDraw>(cs, ctx, m => m.AfterCustomDraw(player, pile, result));
     }
-    
+
     public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
     {
         return Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));

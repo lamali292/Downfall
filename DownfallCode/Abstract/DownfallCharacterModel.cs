@@ -20,7 +20,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public abstract float CardColorH { get; }
     public abstract float CardColorS { get; }
     public abstract float CardColorV { get; }
-    
+
     public override string CustomCharacterSelectBg =>
         $"res://{ModId}/scenes/character/selection_screen.tscn";
 

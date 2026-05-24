@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class FullyLoaded : HermitCardModel
 {
-    public FullyLoaded() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public FullyLoaded() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
