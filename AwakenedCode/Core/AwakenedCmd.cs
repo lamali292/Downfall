@@ -21,9 +21,9 @@ namespace Awakened.AwakenedCode.Core;
 
 public static class AwakenedCmd
 {
-    public static AwakenedPile? GetSpellbook(Player player)
+    public static AwakenedPile GetSpellbookOrThrow(Player player)
     {
-        return AwakenedPile.Spellbook.GetPile(player) as AwakenedPile;
+        return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
     }
 
 
@@ -66,9 +66,8 @@ public static class AwakenedCmd
         ICombatState state)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = GetSpellbook(player);
+        var spellbook = AwakenedModel.GetOrInitSpellbook(player);
         var rng = state.RunState.Rng.CombatCardSelection;
-        if (spellbook == null) return null;
 
         var spell = spellbook.NextSpell ?? (spellbook.Cards.Count > 0 ? spellbook.Cards[0] : null);
         if (spell == null) return null;
@@ -82,9 +81,8 @@ public static class AwakenedCmd
         CardModel selectedSpell)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = GetSpellbook(player);
+        var spellbook = AwakenedModel.GetOrInitSpellbook(player);
         var rng = sourceCard.CombatState!.RunState.Rng.CombatCardSelection;
-        if (spellbook == null) return null;
 
         if (!spellbook.Cards.Contains(selectedSpell)) return null;
         return await ConjureSpell(player, selectedSpell, spellbook, rng);

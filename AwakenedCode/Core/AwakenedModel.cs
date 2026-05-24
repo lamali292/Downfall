@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
+using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
@@ -22,6 +23,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
     private static readonly ConditionalWeakTable<CombatState, StrongBox<bool>> InitializedCombats = new();
+    private static readonly ConditionalWeakTable<Player, StrongBox<bool>> InitializedSpellbooks = new();
 
     public static bool IsAwakened(Player? player)
     {
@@ -33,6 +35,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         AwakenMeter.Clear();
         InitializedCombats.Clear();
+        InitializedSpellbooks.Clear();
         return Task.CompletedTask;
     }
 
@@ -69,13 +72,31 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         foreach (var player in state.Players)
         {
             if (player.Character is not Awakened) continue;
-            AwakenedCmd.GetSpellbook(player)?.Refresh(player);
-            SetupAwakenedUi(combatRoomNode, player);
+            GetOrInitSpellbook(player);
         }
+    }
+
+    internal static AwakenedPile GetOrInitSpellbook(Player player)
+    {
+        var spellbook = AwakenedCmd.GetSpellbookOrThrow(player);
+
+        var initialized = InitializedSpellbooks.GetOrCreateValue(player);
+        if (!initialized.Value)
+        {
+            spellbook.Refresh(player);
+            initialized.Value = true;
+        }
+
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null) SetupAwakenedUi(combatRoom, player);
+
+        return spellbook;
     }
 
     private static void SetupAwakenedUi(NCombatRoom combatRoom, Player player)
     {
+        if (AwakenedDisplay.HasDisplay(player)) return;
+
         var display = NSpellbookDisplay.Create(player);
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
