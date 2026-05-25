@@ -11,11 +11,11 @@ public class Harden : GuardianCardModel
 {
     public Harden() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<PlatedArmorPower>(4, 2);
+        WithPower<MetallicizePower>(3, 1);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
+        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
     }
 }

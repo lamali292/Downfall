@@ -69,5 +69,6 @@
   "AUTOMATON-EXPLODE.functionPrefix": "kaboom",
   "AUTOMATON-EXPLODE.functionName": "Burst",
   "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "shield",
-  "AUTOMATON-DEFEND_AUTOMATON.functionName": "Defend"
+  "AUTOMATON-DEFEND_AUTOMATON.functionName": "Defend",
+  "AUTOMATON-TERMINATOR.encode": ""
 }

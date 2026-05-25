@@ -161,7 +161,7 @@
   "AUTOMATON-STRIKE_AUTOMATON.title": "Strike",
   "AUTOMATON-SUMMON_ORB.description": "[gold]Stash[/gold] the first card you play each turn.",
   "AUTOMATON-SUMMON_ORB.title": "Summon Orb",
-  "AUTOMATON-TERMINATOR.description": "If this is the last card of this Function, it gains Replay 1.",
+  "AUTOMATON-TERMINATOR.description": "If this is [gold]Encoded[/gold] as the last card of a Function, the next created Function gains [gold]Replay[/gold].",
   "AUTOMATON-TERMINATOR.title": "Terminator",
   "AUTOMATON-THUNDER_WAVE.description": "Deal {Damage:diff()} damage.\nPrevent the next time you would lose HP.",
   "AUTOMATON-THUNDER_WAVE.title": "Thunder Wave",

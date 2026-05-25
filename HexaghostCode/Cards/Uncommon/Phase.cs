@@ -11,7 +11,7 @@ public class Phase : HexaghostCardModel
 {
     public Phase() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5, 3);
+        WithBlock(6, 3);
         WithPower<VeilpiercerPower>(1);
     }
 

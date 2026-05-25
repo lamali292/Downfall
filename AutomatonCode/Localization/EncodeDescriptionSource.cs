@@ -14,6 +14,8 @@ public class EncodeDescriptionSource : IExtraDescriptionSource
         if (encode == null) yield break;
         var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();
         var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
-        yield return $"{encode.GetFormattedText()}\n[gold]{title}[/gold]{period}";
+        var text = encode.GetFormattedText();
+        var suffix = $"[gold]{title}[/gold]{period}";
+        yield return string.IsNullOrEmpty(text) ? suffix : $"{text}\n{suffix}";
     }
 }

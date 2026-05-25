@@ -1,4 +1,7 @@
-﻿using Automaton.AutomatonCode.Interfaces;
+﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,22 +18,16 @@ public class Terminator : AutomatonCardModel,
     {
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);
+        WithPower<TerminatorPower>(1, false);
     }
 
-    public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        return Task.CompletedTask;
-    }
 
-    // Todo in compile
-    public Task OnCompile(PlayerChoiceContext ctx, FunctionCard card, CardPlay cardPlay,
-        bool forGameplay)
+    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!forGameplay) return Task.CompletedTask;
-        /*
-        if (compileContext.IsLast)
-            card.BaseReplayCount += 1;
-            */
-        return Task.CompletedTask;
+        var a = AutomatonCmd.GetMax(Owner);
+        var b = EncodePile.FunctionSequence.GetPile(Owner).Cards.Count;
+        if (a-1 != b) return;
+        await CommonActions.ApplySelf<TerminatorPower>(ctx, this);
     }
+    
 }

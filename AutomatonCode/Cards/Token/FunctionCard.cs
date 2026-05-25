@@ -113,7 +113,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
             if (card is IEncodable encodable)
             {
                 var text = encodable.GetEncodeLocString(new EncodeContext(true, i))?.GetFormattedText();
-                if (text == null) continue;
+                if (string.IsNullOrEmpty(text)) continue;
                 lines.Add(text);
             }
             else
@@ -139,9 +139,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
             }
             i++;
         }
-        description.Add("effects", lines.Count > 0
-            ? string.Join("\n", lines)
-            : "");
+        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
     }
 
 
@@ -161,7 +159,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
                 {
                     await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
                 }
-                
+
             }
                 
             if (Type == CardType.Power)

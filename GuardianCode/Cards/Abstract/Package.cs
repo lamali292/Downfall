@@ -16,7 +16,7 @@ namespace Guardian.GuardianCode.Cards.Abstract;
 
 #pragma warning disable STS001
 [Pool(typeof(TokenCardPool))]
-public class PackageAncients() : Package<Overload, AncientPower, AncientConstruct>(2);
+public class PackageAncients() : Package<Overload, AncientPower, MaximumOverdrive>(2);
 
 [Pool(typeof(TokenCardPool))]
 public class PackageBronze() : Package<GigaBeam, OrbSupport, ResilientPlate>(1);

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,12 +12,11 @@ public class Spook : HexaghostCardModel
 {
     public Spook() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<WeakPower>(1, 1);
-        WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
+        WithPower<SoulBurnPower>(6, 3);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

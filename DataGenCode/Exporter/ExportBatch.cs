@@ -28,6 +28,7 @@ public class ExportBatch
         DiscardBasegame();
         ExportMods();
         ExportAllData();
+        //CsvExporter.Export(_items, $"{BaseDir}/cards.csv"); 
         if (config.DoTexDump)
             DumpTextures();
         if (config.ExportImages)

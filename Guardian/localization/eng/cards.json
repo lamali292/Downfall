@@ -49,7 +49,7 @@
   "GUARDIAN-GIGA_BEAM.title": "Giga Beam",
   "GUARDIAN-GUARDIAN_WHIRL.description": "Deal {Damage:diff()} damage to ALL enemies twice.\nIf you have {Threshold:diff()} or more [gold]Block[/gold], deal damage 2 more times.",
   "GUARDIAN-GUARDIAN_WHIRL.title": "Guardian Whirl",
-  "GUARDIAN-HARDEN.description": "Gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
+  "GUARDIAN-HARDEN.description": "Gain {MetallicizePower:diff()} [gold]Metallicize[/gold].",
   "GUARDIAN-HARDEN.title": "Harden",
   "GUARDIAN-INCINERATE.description": "Deal {Damage:diff()} damage.\n[gold]Accelerate[/gold]{IfUpgraded:show:[gold] twice[/gold]|}.",
   "GUARDIAN-INCINERATE.title": "Incinerate",

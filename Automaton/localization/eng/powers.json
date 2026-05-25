@@ -97,5 +97,8 @@
   "AUTOMATON-COPY_PASTE_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn that {Amount:plural:costs|cost} {energyPrefix:energyIcons(1)} or less {Amount:plural:is|are} played an extra time.",
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "Alchyrical Elixir",
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "The next Function your create is free to play.",
-  "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "The next {Amount:plural:Function|[gold]{}[/gold] Functions} you create {Amount:plural:is|are} free to play."
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "The next {Amount:plural:Function|[gold]{}[/gold] Functions} you create {Amount:plural:is|are} free to play.",
+  "AUTOMATON-TERMINATOR_POWER.title": "Terminator",
+  "AUTOMATON-TERMINATOR_POWER.description": "The next time you create a Function, it gains [gold]Replay[/gold].",
+  "AUTOMATON-TERMINATOR_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you create a Function, it gains [gold]Replay[/gold]."
 }

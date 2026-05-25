@@ -9,6 +9,7 @@
         <PackageReference Include="SixLabors.ImageSharp" Version="3.*"/>
         <PackageReference Include="Google.Apis.Sheets.v4" Version="1.*"/>
         <PackageReference Include="Google.Apis.Auth" Version="1.*"/>
+        <PackageReference Include="DiffPlex" Version="1.*"/>
     </ItemGroup>
     <ItemGroup>
         <None Include=".gitignore"/>
