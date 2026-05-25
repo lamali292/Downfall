@@ -58,15 +58,20 @@ public static class GuardianCmd
     // Stasis
     public static int GetStasisCount(Player player)
     {
-        return GetStasisPile(player)?.Cards.Count ?? 0;
+        return TryGetStasisPile(player)?.Cards.Count ?? 0;
     }
 
     public static IReadOnlyList<CardModel> GetStasisCards(Player player)
     {
-        return GetStasisPile(player)?.Cards ?? [];
+        return TryGetStasisPile(player)?.Cards ?? [];
     }
 
-    public static GuardianPile? GetStasisPile(Player player)
+    public static GuardianPile GetStasisPile(Player player)
+    {
+        return (GuardianPile)GuardianPile.Stasis.GetPile(player);
+    }
+
+    private static GuardianPile? TryGetStasisPile(Player player)
     {
         return CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis) as GuardianPile;
     }
@@ -92,8 +97,7 @@ public static class GuardianCmd
 
     public static bool CanPutIntoStasis(Player player, bool silent = false)
     {
-        var pile = GetStasisPile(player);
-        if (pile == null) return false;
+        var pile = GuardianCombatModel.GetOrInitStasis(player);
         if (pile.Cards.Count < GetMaxStasisSlots(player)) return true;
         if (silent || !LocalContext.IsMe(player)) return false;
         ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
@@ -105,12 +109,19 @@ public static class GuardianCmd
     {
         if (card.CombatState == null) return false;
         var player = card.Owner;
-        if (!CanPutIntoStasis(player, silent)) return false;
-        card.EnergyCost.AfterCardPlayedCleanup();
+        var pile = GuardianCombatModel.GetOrInitStasis(player);
+        if (pile.Cards.Count >= GetMaxStasisSlots(player))
+        {
+            if (!silent && LocalContext.IsMe(player))
+                ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
+            return false;
+        }
+
         source ??= card;
         await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
-        await CardPileCmd.Add(card, GetStasisPile(player)!, clonedBy: source, skipVisuals: silent);
+        await CardPileCmd.Add(card, pile, clonedBy: source, skipVisuals: silent);
         SetStasisCounter(card);
+        card.EnergyCost.AfterCardPlayedCleanup();
         await GuardianHook.AfterCardEntersStasis(card.CombatState, ctx, card, source);
         return true;
     }
