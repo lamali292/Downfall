@@ -13,4 +13,5 @@ new PackCards(scriptDir, force).Run();
 new PackPowers(scriptDir, force).Run();
 new PackRelics(scriptDir, force).Run();
 new PackPotions(scriptDir, force).Run();
+new PackEnchantments(scriptDir, force).Run();
 new SyncSheets(scriptDir).Run();
