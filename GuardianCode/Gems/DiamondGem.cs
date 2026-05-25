@@ -44,7 +44,11 @@ public class DiamondGem : GemModel
 
     public override int ModifyPlayCount(int originalPlayCount)
     {
-        if (UsedThisCombat) return originalPlayCount;
+        if (UsedThisCombat || Card == null) return originalPlayCount;
+    
+        // don't run on canonical instance
+        if (!IsMutable || !Card.IsMutable) return originalPlayCount;
+    
         var owner = Card?.Owner;
         if (owner == null) return originalPlayCount;
         var combatState = owner.Creature.CombatState;
@@ -52,7 +56,6 @@ public class DiamondGem : GemModel
         return originalPlayCount +
                (int)GuardianHook.ModifyGemEffect(combatState, this, DynamicVars.Gem().BaseValue, Card);
     }
-
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -16,11 +16,11 @@ public class AutomatonDisplay
         CombatManager.Instance.CombatEnded += _ =>
         {
             foreach (var d in Displays.Values)
-                d.QueueFree();
+                if (GodotObject.IsInstanceValid(d))
+                    d.QueueFree();
             Displays.Clear();
         };
     }
-
     public static NSequenceDisplay? GetDisplay(Player player)
     {
         return Displays.GetValueOrDefault(player);

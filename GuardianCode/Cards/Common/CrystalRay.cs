@@ -20,11 +20,7 @@ public class CrystalRay : GuardianCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
-    {
-        var gemsInCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Sum(g => g.GemCount);
-        var gemCards = PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemCard>().Count();
-        return gemsInCards + gemCards;
-    }
+     => PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Sum(g => g.GemCount);
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

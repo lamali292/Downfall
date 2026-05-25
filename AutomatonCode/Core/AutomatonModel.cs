@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -40,6 +41,7 @@ public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
         {
             var card = cardPileAddResult.cardAdded;
             CombatManager.Instance.History.Add(combatState, new CardDrawnEntry(card, combatState.RoundNumber, combatState.CurrentSide, false, CombatManager.Instance.History, combatState.Players));
+            await Hook.AfterCardDrawn(combatState, ctx, card, false);
         }
     }
 }

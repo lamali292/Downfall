@@ -44,11 +44,11 @@ public partial class StashQueueDisplay : Control
         CombatManager.Instance.CombatEnded += _ =>
         {
             foreach (var d in Displays.Values)
-                d.QueueFree();
+                if (GodotObject.IsInstanceValid(d))
+                    d.QueueFree();
             Displays.Clear();
         };
     }
-    
     
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)

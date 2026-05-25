@@ -54,7 +54,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         .RemovePrefix()
         .ToLowerInvariant();
 
-    public GuardianCardModel? Card => Owner as GuardianCardModel;
+    public GuardianCardModel? Card => IsCanonical ? null : Owner as GuardianCardModel;
 
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
