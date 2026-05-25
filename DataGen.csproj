@@ -24,6 +24,6 @@
 
 
     <ItemGroup>
-        <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.6" />
+        <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.7" />
     </ItemGroup>
 </Project>
