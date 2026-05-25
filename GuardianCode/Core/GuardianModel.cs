@@ -102,7 +102,8 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
         var deck = player.GetDeck();
         var hasGems = deck.Any(e => e is IGemCard);
         var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
-        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots & hasGems });
+        if (!hasSlots ||  !hasGems) return false;
+        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots && hasGems });
         return true;
     }
 }

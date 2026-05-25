@@ -27,8 +27,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }
-
-    // TODO : check if this still triggers
+    
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();

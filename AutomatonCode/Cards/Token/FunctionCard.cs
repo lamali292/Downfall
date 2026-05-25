@@ -36,9 +36,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
         );
     }
     
-    private ImageTexture? _cachedPortrait;
     private CardType _cardType;
-    private IReadOnlyList<CardModel> _lastPortraitSource = [];
     public IReadOnlyList<CardModel> SourceCards = [];
     private TargetType _targetType;
     private CardRarity _cardRarity;
@@ -57,11 +55,21 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override CardType Type => _cardType;
     public override TargetType TargetType => _targetType;
 
+    
     public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
+        foreach (var sourceCard in SourceCards)
+        {
+            IsInFunction.Set(sourceCard, false);
+        }
         SourceCards = sourceCards;
+        foreach (var sourceCard in SourceCards)
+        {
+            IsInFunction.Set(sourceCard, true);
+        }
     }
-    
+
+    public static readonly SpireField<CardModel, bool> IsInFunction = new(()=>false);
 
 
     public string GetDynamicTitle()
@@ -137,65 +145,36 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     }
 
 
-    
+    public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        for (var i = 0; i < SourceCards.Count; i++)
+        var previous = CurrentlyExecuting.Value;
+        CurrentlyExecuting.Value = this;
+        try
         {
-            var card = SourceCards[i];
-            if (card is IEncodable encodable)
-                await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
-            else
+            for (var i = 0; i < SourceCards.Count; i++)
             {
-                await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
+                var card = SourceCards[i];
+                if (card is IEncodable encodable)
+                    await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
+                else
+                {
+                    await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
+                }
+                
             }
-            
+                
+            if (Type == CardType.Power)
+            {
+                var power = await PowerCmd.Apply<FullReleasePower>(ctx,
+                    Owner.Creature, 1, Owner.Creature, this);
+                power?.SetSourceCards(SourceCards);
+            }
         }
-            
-        if (Type == CardType.Power)
+        finally
         {
-            var power = await PowerCmd.Apply<FullReleasePower>(ctx,
-                Owner.Creature, 1, Owner.Creature, this);
-            power?.SetSourceCards(SourceCards);
+            CurrentlyExecuting.Value = previous;
         }
-    }
-
-    public ImageTexture? GetCompositePortrait()
-    {
-        if (_cachedPortrait != null && SourceCards.SequenceEqual(_lastPortraitSource))
-            return _cachedPortrait;
-
-        var images = SourceCards
-            .Select(c => ResourceLoader.Load<Texture2D>(c.PortraitPath)?.GetImage())
-            .Where(img => img != null)
-            .Cast<Image>()
-            .ToList();
-
-        if (images.Count == 0) return null;
-
-        var w = images[0].GetWidth();
-        var h = images[0].GetHeight();
-        var sliceW = w / images.Count;
-
-        // Use Rgba8 as the standard
-        var result = Image.CreateEmpty(w, h, false, Image.Format.Rgba8);
-
-        for (var i = 0; i < images.Count; i++)
-        {
-            var src = images[i];
-            if (src.GetFormat() != Image.Format.Rgba8) src.Convert(Image.Format.Rgba8);
-            if (src.IsCompressed()) src.Decompress();
-
-            if (src.GetWidth() != w || src.GetHeight() != h)
-                src.Resize(w, h);
-
-            var width = i == images.Count - 1 ? w - i * sliceW : sliceW;
-            result.BlitRect(src, new Rect2I(i * sliceW, 0, width, h), new Vector2I(i * sliceW, 0));
-        }
-
-        _lastPortraitSource = SourceCards.ToList();
-        _cachedPortrait = ImageTexture.CreateFromImage(result);
-        return _cachedPortrait;
     }
 
     public void SetCardType(CardType cardType)
@@ -230,6 +209,19 @@ public static class FunctionCardTitlePatch
         else
             __result = $"{txt}+{__instance.CurrentUpgradeLevel}";
         return false;
+    }
+}
+
+
+[HarmonyPatch(typeof(CardModel), "get_CombatState")]
+public static class CardModelCombatStatePatch
+{
+    private static void Postfix(CardModel __instance, ref ICombatState? __result)
+    {
+        if (__result != null) return;
+        if (FunctionCard.CurrentlyExecuting.Value == null) return;  
+        if (__instance is FunctionCard) return;
+        __result = FunctionCard.CurrentlyExecuting.Value.Owner.Creature.CombatState;  
     }
 }
 
