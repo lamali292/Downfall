@@ -13,9 +13,7 @@ public static class MyModAudio
         float basePitch = 1f,
         Node? targetNode = null)
     {
-        var a  = ModAudio.PlaySound(sound, volumeAdd, volumeMult, pitchVariation, basePitch, targetNode);
-        if (a != null) a.VolumeDb = volumeAdd;
-        return a;
+        return ModAudio.PlaySound(sound, volumeAdd, volumeMult, pitchVariation, basePitch, targetNode);
     }
 
     public static AudioStreamPlayer? PlaySoundGlobal(
@@ -25,9 +23,7 @@ public static class MyModAudio
         float pitchVariation = 0.0f,
         float basePitch = 1f)
     {
-        var a =  ModAudio.PlaySoundGlobal(sound, volumeAdd, volumeMult, pitchVariation, basePitch);
-        if (a != null) a.VolumeDb = volumeAdd;
-        return a;
+        return ModAudio.PlaySoundGlobal(sound, volumeAdd, volumeMult, pitchVariation, basePitch);;
     }
     
     public static AudioStreamPlayer? PlaySoundInRun(
@@ -37,9 +33,7 @@ public static class MyModAudio
         float pitchVariation = 0.0f,
         float basePitch = 1f)
     {
-        var a = ModAudio.PlaySoundInRun(sound, volumeAdd, volumeMult, pitchVariation, basePitch);
-        if (a != null) a.VolumeDb = volumeAdd;
-        return a;
+        return ModAudio.PlaySoundInRun(sound, volumeAdd, volumeMult, pitchVariation, basePitch);
     }
 
 }

@@ -19,4 +19,8 @@
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.6" />
+    </ItemGroup>
 </Project>

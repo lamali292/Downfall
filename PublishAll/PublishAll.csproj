@@ -16,6 +16,10 @@
         <ProjectReference Include="../SlimeBoss.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.6" />
+    </ItemGroup>
+
 
     <PropertyGroup>
         <NoWarn>$(NoWarn);STS002</NoWarn>

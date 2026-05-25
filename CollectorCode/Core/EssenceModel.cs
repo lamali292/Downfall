@@ -1,34 +1,34 @@
-﻿using Collector.CollectorCode.Vfx;
-using Downfall.DownfallCode.Saves;
+﻿using BaseLib.Utils;
+using Collector.CollectorCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Collector.CollectorCode.Core;
 
 public static class EssenceModel
 {
-    // Reach directly into the SaveManager using the player's NetId
+    public static SavedSpireField<Player, int> Essence = new(()=> 0,"CollectorEssence");
     public static int GetEssence(Player player)
     {
-        return DownfallSaveManager.GetPlayerData(player).Essence;
+        return Essence.Get(player);
     }
 
     public static void AddEssence(Player player, int amount)
     {
-        DownfallSaveManager.GetPlayerData(player).Essence += amount;
+        Essence.Set(player, Essence.Get(player) + amount);
         NTopBarEssenceDisplay.RefreshDisplay();
     }
 
     public static void ClearEssence(Player player)
     {
-        DownfallSaveManager.GetPlayerData(player).Essence = 0;
+        Essence.Set(player, 0);
     }
 
     public static bool SpendEssence(Player player, int amount)
     {
-        var data = DownfallSaveManager.GetPlayerData(player);
-        if (data.Essence < amount) return false;
-
-        data.Essence -= amount;
+        var essence =  Essence.Get(player);
+        if (essence < amount) return false;
+        essence -= amount;
+        Essence.Set(player, essence);
         NTopBarEssenceDisplay.RefreshDisplay();
         return true;
     }

@@ -28,13 +28,12 @@ public class ModSoundEffect
     {
         PlayOn(e =>
         {
-            // TODO : i dont know what baselib messed up here, but setting volume directly doesnt work anymore
-            var player = MyModAudio.PlaySound(
+            MyModAudio.PlaySound(
                 e.Sound,
+                volumeAdd:_globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,
                 basePitch: e.BasePitch);
-            if (player != null)
-                player.VolumeDb = _globalVolumeAdd + e.VolumeAdd;
+            
         });
     }
 
@@ -42,12 +41,11 @@ public class ModSoundEffect
     {
         PlayOn(e =>
         {
-            var player = MyModAudio.PlaySoundInRun(
+            MyModAudio.PlaySoundInRun(
                 e.Sound,
+                volumeAdd: _globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,
                 basePitch: e.BasePitch);
-            if (player != null)
-                player.VolumeDb = _globalVolumeAdd + e.VolumeAdd;
         });
     }
 

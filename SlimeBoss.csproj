@@ -22,5 +22,6 @@
 
     <ItemGroup>
         <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
+        <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.6" />
     </ItemGroup>
 </Project>
