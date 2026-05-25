@@ -16,8 +16,11 @@ public abstract class HookedRelicModel : CustomRelicModel
     private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
         if (LocalContext.NetId == null)
-            throw new InvalidOperationException(
-                $"Cannot execute power hook '{GetType().Name}': LocalContext.NetId is null.");
+        {
+            await action(new ThrowingPlayerChoiceContext());
+            return;
+        }
+           
         if (Owner.Creature.IsDead) return;
         var ctx = new HookPlayerChoiceContext(
             this,

@@ -3,19 +3,15 @@ using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Pooling;
-using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Random;
-using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Settings;
 
 namespace Downfall.DownfallCode.Cards;
 
@@ -45,6 +41,11 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
             .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
+    }
+
+    private static decimal Calc(CardModel arg1, Creature? arg2)
+    {
+        throw new NotImplementedException();
     }
 }
 

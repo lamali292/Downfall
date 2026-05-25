@@ -12,7 +12,8 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace Automaton.AutomatonCode.Cards;
 
-public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>
+public abstract class 
+    AutomatonCardModel : DownfallCardModel<Core.Automaton>
 {
     protected AutomatonCardModel(
         int cost,

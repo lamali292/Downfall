@@ -63,9 +63,9 @@ public class StashCmd
         await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
     }
 
-    public static async Task DrawFromStash(Player player, int n = 1)
+    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(Player player, int n = 1)
     {
         var cards = player.GetStash();
-        await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+        return await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
     }
 }

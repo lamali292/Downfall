@@ -1,4 +1,7 @@
+using System.Net.Http.Headers;
 using System.Reflection;
+using System.Text;
+using System.Text.Json;
 using BaseLib.Config;
 using BaseLib.Patches.Saves;
 using Downfall.DownfallCode.Abstract;
@@ -11,6 +14,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -35,6 +39,46 @@ public partial class DownfallMainFile : Node
         harmony.PatchAll();
 
         NCustomCardHolder.InitPool();
+        ModManager.OnMetricsUpload += OnMetricsUpload;
+    }
+    
+    private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
+    {
+        
+        if (!DownfallConfig.UploadMetrics)
+            return;
+        if (run.Players.All(e =>
+                e.CharacterId == null ||
+                ModelDb.GetById<CharacterModel>(e.CharacterId) is not DownfallCharacterModel)) return;
+        var anonymized = run.Anonymized();
+        var json = JsonSerializer.Serialize(anonymized);
+        _ = SendToMyServer(json);
+    }
+
+    private static async Task SendToMyServer(string json)
+    {
+        var bytes = Encoding.UTF8.GetBytes(json);
+        using var client = new System.Net.Http.HttpClient();
+        client.Timeout = TimeSpan.FromSeconds(15);
+
+        var content = new ByteArrayContent(bytes);
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        try
+        {
+            var response = await client.PutAsync("http://localhost:3000/runs", content);
+            if (response.IsSuccessStatusCode)
+                Logger.Info("Upload successful!");
+            else
+                Logger.Warn($"Upload failed: {response.StatusCode}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Logger.Warn($"Upload failed due to network error: {ex.Message}");
+        }
+        catch (TaskCanceledException ex)
+        {
+            Logger.Warn($"Upload timed out: {ex.Message}");
+        }
     }
 }
 
