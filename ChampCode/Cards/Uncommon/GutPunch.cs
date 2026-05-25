@@ -17,7 +17,7 @@ public class GutPunch : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<GloryPower>(ctx, this);
     }
 }

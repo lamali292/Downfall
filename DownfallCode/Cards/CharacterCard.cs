@@ -8,9 +8,14 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Pooling;
+using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Saves;
+using MegaCrit.Sts2.Core.Settings;
 
 namespace Downfall.DownfallCode.Cards;
 
@@ -92,6 +97,7 @@ public static class NodePoolFreePatch
     }
 }
 
+
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
 {
@@ -139,3 +145,4 @@ public static class NCardPortraitPatch
         }
     }
 }
+

@@ -19,12 +19,12 @@ public class TomeOfPortalmancy : AwakenedRelicModel
         WithTip(typeof(Void));
     }
 
-    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
+    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
     {
         var combatState = Owner.Creature.CombatState;
         if (creator != Owner || card is not Void) return;
         Flash();
-        await PowerCmd.Apply<ManaburnPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ManaburnPower>(ctx,
             combatState!.HittableEnemies, 2, Owner.Creature, null);
     }
 }

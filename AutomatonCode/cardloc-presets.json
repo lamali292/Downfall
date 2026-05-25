@@ -166,7 +166,8 @@
       "markers": [
         "DownfallRelicModel",
         "CollectorRelicModel",
-        "GuardianRelicModel"
+        "GuardianRelicModel",
+        "AutomatonRelicModel"
       ],
       "fields": [
         {
@@ -189,7 +190,8 @@
     {
       "id": "enchantment",
       "markers": [
-        "DownfallEnchantmentModel"
+        "DownfallEnchantmentModel",
+        "AutomatonEnchantmentModel"
       ],
       "fields": [
         {
@@ -201,6 +203,34 @@
           "name": "description",
           "file": "enchantments.json",
           "optional": false
+        },
+        {
+          "name": "extraCardText",
+          "file": "enchantments.json",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "potion",
+      "markers": [
+        "AutomatonPotionModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "potions.json",
+          "optional": true
         }
       ]
     }

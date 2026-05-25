@@ -3,7 +3,7 @@
   "AWAKENED-CAW.chant": "Increase the damage of all [gold]Caw[/gold] cards by {Caw:diff()} this combat.",
   "AWAKENED-FEATHER_FLARE.chant": "Next turn, draw 1 additional card.",
   "AWAKENED-GATHER.chant": "Put a card from your [gold]Discard Pile[/gold] in your [gold]Hand[/gold].",
-  "AWAKENED-GREAT_HEX.chant": "Target enemy gains {ManaburnPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",
+  "AWAKENED-GREAT_HEX.chant": "Target enemy gains {GreatHexPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",
   "AWAKENED-NIHIL.chant": "ALL enemies lose HP equal to their [gold]Manaburn[/gold].",
   "AWAKENED-RAVEN_STRIKE.chant": "Play the top card of your [gold]Draw Pile[/gold].",
   "AWAKENED-TAKE_FLIGHT.chant": "[gold]Block[/gold] is not removed at the start of your next turn.",

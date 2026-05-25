@@ -8,6 +8,8 @@ public class PowerTooltipSource(Func<PowerModel, IHoverTip> tip) : AbstractToolt
 
 public class RelicTooltipSource(Func<RelicModel, IHoverTip> tip) : AbstractTooltipSource<RelicModel>(tip);
 
+public class PotionTooltipSource(Func<PotionModel, IHoverTip> tip) : AbstractTooltipSource<PotionModel>(tip);
+
 public class AbstractTooltipSource<T>(Func<T, IHoverTip> tip)
     where T : AbstractModel
 {

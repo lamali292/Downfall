@@ -1,4 +1,5 @@
 using BaseLib.Audio;
+using Downfall.DownfallCode.Utils.Sound;
 
 namespace Hermit.HermitCode.Utils;
 
@@ -15,26 +16,26 @@ public static class HermitSfx
 
     public static void PlayGun1(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        ModAudio.PlaySound(Gun1, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun1, volumeDb, pitchVariation);
     }
 
     public static void PlayGun2(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        ModAudio.PlaySound(Gun2, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun2, volumeDb, pitchVariation);
     }
 
     public static void PlayGun3(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        ModAudio.PlaySound(Gun3, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun3, volumeDb, pitchVariation);
     }
 
     public static void PlaySpin(float volumeDb = DefaultDb, float pitchVariation = SpinPitchVariation)
     {
-        ModAudio.PlaySound(Spin, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Spin, volumeDb, pitchVariation);
     }
 
     public static void PlayReload(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        ModAudio.PlaySound(Reload, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Reload, volumeDb, pitchVariation);
     }
 }

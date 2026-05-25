@@ -25,7 +25,7 @@ public class WanderBots : GuardianRelicModel
         return Task.CompletedTask;
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return;

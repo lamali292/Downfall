@@ -20,7 +20,7 @@ public class Incorporeal : HexaghostCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.LoseHp(ctx, this, cardPlay);
+        await MyCommonActions.LoseHp(ctx, this, cardPlay.Target);
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);
     }
 }

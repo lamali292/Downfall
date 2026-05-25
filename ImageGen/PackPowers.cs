@@ -138,10 +138,13 @@ public class PackPowers(string scriptDir, bool force)
     private static Image<Rgba32> ScaleCentered(Image<Rgba32> src, int full)
     {
         var inner = Math.Max(1, (int)MathF.Round(full * ContentScale));
-        var offset = (full - inner) / 2;
-        var canvas = new Image<Rgba32>(full, full);
-        using var resized = src.Clone(ctx => ctx.Resize(inner, inner, KnownResamplers.Lanczos3));
-        canvas.Mutate(ctx => ctx.DrawImage(resized, new Point(offset, offset), 1f));
-        return canvas;
+        return src.Clone(ctx => ctx
+            .Resize(inner, inner, KnownResamplers.Lanczos3)
+            .Resize(new ResizeOptions
+            {
+                Size = new Size(full, full),
+                Mode = ResizeMode.BoxPad,
+                Position = AnchorPositionMode.Center
+            }));
     }
 }

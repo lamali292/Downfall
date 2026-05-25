@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
+[Obsolete]
 public class UnfetteredFormPlusPower : HexaghostPowerModel, IModifyGhostflameRepeatAdditive
 {
     public int ModifyGhostflameRepeatAdditive(Player owner, GhostflameRepeatType repeatType,

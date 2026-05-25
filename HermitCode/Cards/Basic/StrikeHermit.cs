@@ -17,8 +17,11 @@ public class StrikeHermit : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun3();
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun3();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
     }
 }

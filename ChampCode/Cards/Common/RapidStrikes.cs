@@ -18,7 +18,7 @@ public class RapidStrikes : ChampCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target).WithHitCount(2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         PileType.Hand
             .GetPile(Owner)
             .Cards

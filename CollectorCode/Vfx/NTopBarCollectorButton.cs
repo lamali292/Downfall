@@ -10,17 +10,27 @@ namespace Collector.CollectorCode.Vfx;
 [GlobalClass]
 public partial class NTopBarCollectorButton : NCustomTopBarButton
 {
-    public override string ScenePath => "res://Collector/scenes/ui/top_bar_collector_button.tscn";
-    public override float Width => 80f;
+    private static NTopBarCollectorButton? _instance;
 
-    public override Func<Player, bool> CanUse =>
-        player => player.Character == ModelDb.Character<Core.Collector>();
+    public static Vector2 ButtonPosition => _instance?.GlobalPosition ?? Vector2.Zero;
+    public static Vector2 ButtonSize => _instance?.Size ?? Vector2.Zero;
 
-    protected override int? GetCount()
+    public override void Initialize(Player player)
     {
-        return Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+        base.Initialize(player);
+        _instance = this;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        if (_instance == this) _instance = null;
+    }
+
+    protected override int? GetCount() =>
+        Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+
+    public static void RefreshButton() => _instance?.RefreshCount();
 
     protected override void OnRelease()
     {
@@ -33,8 +43,13 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
         UpdateScreenOpen();
     }
 
-    protected override bool IsOpen()
+    protected override bool IsOpen() =>
+        NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+
+    public class Descriptor : ITopBarElementDescriptor
     {
-        return NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+        public string ScenePath => "res://Collector/scenes/ui/top_bar_collector_button.tscn";
+        public float Width => 80f;
+        public bool CanUse(Player player) => player.Character == ModelDb.Character<Core.Collector>();
     }
 }

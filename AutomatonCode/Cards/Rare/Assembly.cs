@@ -20,7 +20,7 @@ public class Assembly : AutomatonCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
-        foreach (var card in cards.OfType<IEncodable>().Where(e => e is { AutoEncode: true }))
-            await card.Encode(ctx, cardPlay);
+        foreach (var card in cards.Where(AutomatonCmd.IsEncodable)) 
+            await AutomatonCmd.EncodeCard(card, ctx);
     }
 }

@@ -1,8 +1,11 @@
 ﻿using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Displays;
+using Automaton.AutomatonCode.Enchantments;
 using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,15 +20,14 @@ public static class AutomatonCmd
 {
     public static int GetMax(Player creature)
     {
-        return 3;
+        return creature.GetRelic<ElectromagneticCoil>() == null ? 3 : 4;
     }
 
     public static async Task EncodeCard(
         CardModel card,
-        PlayerChoiceContext ctx,
-        CardPlay cardPlay)
+        PlayerChoiceContext ctx)
     {
-        var creature = cardPlay.Card.Owner;
+        var creature = card.Owner;
         var pile = EncodePile.FunctionSequence.GetPile(creature);
         var isMe = LocalContext.IsMe(creature);
 
@@ -37,19 +39,21 @@ public static class AutomatonCmd
         }
 
         //if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
+        await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, pile);
-        if (isMe) AutomatonDisplay.Refresh(creature);
-
-        await AutomatonHook.OnCardEncoded(card.CombatState!, ctx, card, cardPlay);
+        await Cmd.Wait(0.2f);
+        AutomatonDisplay.Refresh(creature);
+       
         if (pile.Cards.Count >= GetMax(creature))
-            await CompileFunctionCard(creature, ctx, cardPlay);
+            await CompileFunctionCard(creature, ctx);
+        
+        await AutomatonHook.OnCardEncoded(creature.Creature.CombatState!, ctx, card);
     }
 
 
     private static async Task CompileFunctionCard(
         Player player,
-        PlayerChoiceContext ctx,
-        CardPlay cardPlay)
+        PlayerChoiceContext ctx)
     {
         var pile = EncodePile.FunctionSequence.GetPile(player);
         await Cmd.Wait(0.3f);
@@ -60,13 +64,13 @@ public static class AutomatonCmd
 
         AutomatonDisplay.Refresh(player);
 
-        var functionCard = combatState.CreateCard<FunctionCard>(cardPlay.Card.Owner);
+        var functionCard = combatState.CreateCard<FunctionCard>(player);
         functionCard.SetSourceCards(snapshot);
         ApplyFunctionCardType(functionCard, snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
         var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
-        await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result, cardPlay);
+        await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result);
     }
 
     public static void ApplyFunctionCardType(FunctionCard card, IEnumerable<CardModel> snapshot)
@@ -86,5 +90,17 @@ public static class AutomatonCmd
             card.SetCardType(CardType.Attack);
         else
             card.SetCardType(CardType.Skill);
+        
+        if (list.Any(c => c.Rarity == CardRarity.Ancient))
+            card.SetCardRarity(CardRarity.Ancient);
+        else if (list.Any(c => c.Rarity == CardRarity.Rare))
+            card.SetCardRarity(CardRarity.Rare);
+        else  if (list.Any(c => c.Rarity == CardRarity.Uncommon))
+            card.SetCardRarity(CardRarity.Uncommon);
+        else
+            card.SetCardRarity(CardRarity.Common);
     }
+
+    public static bool IsEncodable(CardModel card)
+        => card is IEncodable || card.Enchantment is Encoding;
 }

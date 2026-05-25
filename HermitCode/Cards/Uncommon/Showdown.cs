@@ -17,8 +17,11 @@ public sealed class Showdown : HermitCardModel
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun2();
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx() .BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun2();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
         await Owner.GetHand(c => c.Tags.Contains(CardTag.Strike))
             .ForEachAsync(card => CardCmd.AutoPlay(ctx, card, null));

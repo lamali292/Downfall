@@ -11,12 +11,13 @@ public class Kindle : HexaghostCardModel
 {
     public Kindle() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithKeyword(HexaghostKeyword.Advance, UpgradeType.Add);
+        WithBlock(1, 3);
     }
 
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
         await HexaghostCmd.Ignite(ctx, Owner);
     }
 }

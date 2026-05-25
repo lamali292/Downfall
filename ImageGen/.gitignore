@@ -5,3 +5,5 @@
 /.relics_cache.json
 /.sheets_cache.json
 /service_account.json
+/.potions_cache.json
+/.enchantments_cache.json

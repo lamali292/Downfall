@@ -52,7 +52,7 @@ public abstract partial class ItemExport
     {
         public override ModExport Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("ModExport cannot be deserialized.");
         }
 
         public override void Write(Utf8JsonWriter writer, ModExport value, JsonSerializerOptions options)

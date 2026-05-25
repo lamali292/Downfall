@@ -11,17 +11,6 @@ public interface IEncodable
 {
     LocString? EncodeLocString => this is CardModel card ? BuildEncodeLocString(card) : null;
 
-    bool AutoEncode => true;
-
-    async Task Encode(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (this is CardModel card)
-        {
-            await AutomatonCmd.EncodeCard(card, ctx, cardPlay);
-            await Cmd.Wait(0.2f);
-        }
-    }
-
     Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         return Task.CompletedTask;

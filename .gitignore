@@ -28,6 +28,7 @@ bin/windows/*
 */images/atlases/
 */images/powers/
 */images/relics/
+*/images/enchantments/
 
 *.xlsx#
 **/*.sprites/

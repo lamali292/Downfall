@@ -18,8 +18,6 @@ public class BranchAttack : AutomatonCardModel, IEncodable
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
-            .Targeting(cardPlay.Target).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

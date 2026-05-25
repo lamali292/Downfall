@@ -14,14 +14,13 @@ public class ExplodePower : AutomatonPowerModel, IAfterCompilingFunction
 {
     public ExplodePower() : base(PowerType.Debuff)
     {
-        WithTip(typeof(Wound));
+        WithTip(typeof(Burn));
     }
 
-    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result,
-        CardPlay cardPlay)
+    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)
     {
         if (player.Creature == Owner) return;
-        await DownfallCardCmd.GiveCards<Wound>(player, PileType.Draw, Amount);
+        await DownfallCardCmd.GiveCards<Burn>(player, PileType.Draw, Amount);
         await PowerCmd.Remove(this);
     }
 }

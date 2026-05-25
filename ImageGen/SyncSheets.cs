@@ -12,7 +12,7 @@ namespace ImageGen;
 public class SyncSheets
 {
     private const string SheetId = "1adgDbqi4A7oHqtAb2klUFrUsl4-TQR_AIWqDdDQUQ1g";
-    private const string GithubRaw = "https://raw.githubusercontent.com/lamali292/Downfall/main/image_gen";
+    private const string GithubRaw = "https://raw.githubusercontent.com/lamali292/Downfall/develop-2/ImageGen/images";
 
     private const int RowHeightPx = 130;
     private const int ImgColPx = 170;
@@ -40,6 +40,8 @@ public class SyncSheets
         _parent = Path.GetFullPath(Path.Join(scriptDir, ".."));
         _serviceAccount = Path.Join(scriptDir, "service_account.json");
         _cacheFile = Path.Join(scriptDir, ".sheets_cache.json");
+        Console.WriteLine($"  Parent: {_parent}");
+        Console.WriteLine($"  Dirs: {string.Join(", ", Directory.EnumerateDirectories(_parent).Select(Path.GetFileName))}");
     }
 
     public void Run()
@@ -94,17 +96,14 @@ public class SyncSheets
     private Dictionary<string, CharInfo> DiscoverCharacters()
     {
         var result = new Dictionary<string, CharInfo>();
-        foreach (var projectPath in Directory.EnumerateDirectories(_parent))
+        foreach (var entry in Directory.EnumerateDirectories(_parent))
         {
-            var project = Path.GetFileName(projectPath);
-            foreach (var entry in Directory.EnumerateDirectories(projectPath))
-            {
-                var entryName = Path.GetFileName(entry);
-                if (!entryName.EndsWith("Code")) continue;
-                var charId = entryName[..^4].ToLower();
-                result[charId] = new CharInfo(entry, project, projectPath);
-                Console.WriteLine($"    {charId} -> {Path.GetRelativePath(_parent, entry)}");
-            }
+            var entryName = Path.GetFileName(entry);
+            if (!entryName.EndsWith("Code")) continue;
+            var charId = entryName[..^4].ToLower();
+            var project = entryName[..^4]; // e.g. "Automaton"
+            result[charId] = new CharInfo(entry, project, _parent);
+            Console.WriteLine($"    {charId} -> {Path.GetRelativePath(_parent, entry)}");
         }
 
         return result;

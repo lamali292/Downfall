@@ -13,8 +13,8 @@ public class Floatwork : HexaghostCardModel
     public Floatwork() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithAfterlife();
-        WithPower<DexterityPower>(1);
-        WithPower<MetallicizePower>(2, 2);
+        WithPower<DexterityPower>(1, 1);
+        WithPower<MetallicizePower>(2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

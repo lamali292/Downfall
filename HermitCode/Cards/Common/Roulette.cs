@@ -18,8 +18,11 @@ public sealed class Roulette : HermitCardModel
     {
         HermitSfx.PlaySpin();
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        HermitSfx.PlayGun2();
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
+            {
+                HermitSfx.PlayGun2();
+                return Task.CompletedTask;
+            })
             .Execute(ctx);
         var hand = Owner.GetHand();
         var handSize = hand.Count;

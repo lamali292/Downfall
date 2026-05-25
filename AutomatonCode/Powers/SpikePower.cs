@@ -10,8 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class SpikePower : AutomatonPowerModel, IAfterCompilingFunction
 {
-    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result,
-        CardPlay cardPlay)
+    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, Amount, Owner, null);

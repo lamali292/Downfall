@@ -1,9 +1,10 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Saves;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Cards;
 
@@ -11,16 +12,24 @@ namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
+    public static SavedSpireField<Player, List<ModelId>> SneckoPools = 
+        new(() => [], "SneckoPools")
+        {
+            Serializer = (list, writer) => writer.WriteFullModelIdList(list),
+            Deserializer = reader => reader.ReadFullModelIdList()
+        };
+    
     private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
     {
-        var pool = DownfallSaveManager.GetPlayerData(player).SneckoPools;
+        var pool = SneckoPools.Get(player);
+        if (pool is null) return;
         pool.Clear();
         pool.AddRange(pools.Select(e => e.Id));
     }
 
     private static IEnumerable<CardPoolModel> GetSneckoPools(Player player)
     {
-        return DownfallSaveManager.GetPlayerData(player).SneckoPools.Select(ModelDb.GetById<CardPoolModel>);
+        return SneckoPools.Get(player)?.Select(ModelDb.GetById<CardPoolModel>) ?? [];
     }
 
     private static IEnumerable<CardModel> GetSneckoCards(Player player)

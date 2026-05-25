@@ -5,41 +5,21 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.DownfallCode.Utils.UI;
 
-/// <summary>
-///     Abstract base for top bar elements that are display widgets — no press effect,
-///     just a hover wobble and an optional count badge. Subclasses supply scene path,
-///     player filter, icon node name, count label node name, and count source.
-/// </summary>
 public abstract partial class NCustomTopBarDisplayElement : NClickableControl, ITopBarElement
 {
-    private static NCustomTopBarDisplayElement? _instance;
     private Tween? _bumpTween;
     private MegaLabel? _countLabel;
     private float _elapsedTime;
-
     private Control? _icon;
     private float _previousCount;
     protected Player? Player;
 
-
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
-
-    /// <summary>Node path to the icon Control that wobbles on hover.</summary>
     protected abstract string IconNodePath { get; }
-
-    /// <summary>Node path to the MegaLabel showing the count badge.</summary>
     protected abstract string CountLabelNodePath { get; }
 
-    // ── ITopBarElement ────────────────────────────────────────────────────────
-
-    public abstract string ScenePath { get; }
-    public abstract float Width { get; }
-    public abstract Func<Player, bool> CanUse { get; }
-
-    public void Initialize(Player player)
+    public virtual void Initialize(Player player)
     {
         Player = player;
-        _instance = this;
         RefreshCount();
     }
 
@@ -50,9 +30,6 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
         _countLabel = GetNodeOrNull<MegaLabel>(CountLabelNodePath);
     }
 
-    // ── Count badge ───────────────────────────────────────────────────────────
-
-    /// <summary>Returns the value to show on the badge, or null to hide it.</summary>
     protected abstract int? GetCount();
 
     public void RefreshCount()
@@ -83,8 +60,6 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
         _countLabel.SetTextAutoSize(count.Value.ToString());
     }
 
-    // ── Hover wobble ──────────────────────────────────────────────────────────
-
     public override void _Process(double delta)
     {
         if (!IsFocused) return;
@@ -102,16 +77,5 @@ public abstract partial class NCustomTopBarDisplayElement : NClickableControl, I
     {
         base.OnUnfocus();
         _icon!.Rotation = 0f;
-    }
-
-    public static void RefreshDisplay()
-    {
-        _instance?.RefreshCount();
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        if (_instance == this) _instance = null;
     }
 }

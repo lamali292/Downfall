@@ -26,13 +26,10 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-            .WithHitCount(2)
+        await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-
+        if (CombatState == null) return;
         await AwakenedCmd.Conjure(Owner, CombatState);
     }
 }

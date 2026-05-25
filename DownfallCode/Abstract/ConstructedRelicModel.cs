@@ -1,4 +1,6 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Interfaces;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -7,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicModel
+public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicModel
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<Func<RelicModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
@@ -38,6 +40,11 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : CustomRelicMod
         return this;
     }
 
+    protected ConstructedRelicModel WithDamage(int i)
+    {
+        WithVars(new DamageVar(i, ValueProp.Unpowered));
+        return this;
+    }
 
     protected ConstructedRelicModel WithCards(int i)
     {

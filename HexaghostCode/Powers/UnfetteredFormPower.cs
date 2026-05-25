@@ -9,8 +9,6 @@ public class UnfetteredFormPower : HexaghostPowerModel, IModifyGhostflameRepeatA
     public int ModifyGhostflameRepeatAdditive(Player owner, GhostflameRepeatType repeatType,
         GhostflameModel bolsteringGhostflame)
     {
-        if (owner.Creature != Owner ||
-            repeatType is not (GhostflameRepeatType.Damage or GhostflameRepeatType.Soulburn)) return 0;
-        return Amount;
+        return owner.Creature != Owner ? 0 : Amount;
     }
 }

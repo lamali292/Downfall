@@ -192,6 +192,26 @@
       ]
     }
   ],
-  "pinnedColors": [],
-  "customTags": []
+  "pinnedColors": [
+    {
+      "tag": "gold"
+    },
+    {
+      "tag": "blue"
+    },
+    {
+      "tag": "afterlife"
+    },
+    {
+      "hex": "#00B888",
+      "label": "#00B888"
+    }
+  ],
+  "customTags": [
+    {
+      "tag": "afterlife",
+      "label": "Afterlife",
+      "color": "#E087A4"
+    }
+  ]
 }

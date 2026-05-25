@@ -13,17 +13,13 @@ public class RadiantReverb : HexaghostCardModel
 {
     public RadiantReverb() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(18, 6);
-        WithPower<IntensityPower>(2, 1);
-        WithKeywords(CardKeyword.Exhaust);
+        WithDamage(14, 4);
+        WithPower<TemporaryIntensityPower>(3, 2);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var power = cardPlay.Target?.GetPower<SoulBurnPower>();
-        if (power == null) return;
-        await PowerCmd.Remove(power);
-        await CommonActions.ApplySelf<IntensityPower>(ctx, this);
+        await CommonActions.ApplySelf<TemporaryIntensityPower>(ctx, this);
     }
 }

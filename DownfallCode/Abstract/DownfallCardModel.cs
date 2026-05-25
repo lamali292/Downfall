@@ -37,7 +37,7 @@ public abstract class DownfallCardModel(
     {
         WithVar(new DynamicVar(typeof(T).Name, baseVal).WithUpgrade(upgrade));
         if (showTooltip)
-            WithTip(typeof(T));
+            WithTips(e => [HoverTipFactory.FromPower<T>(e.DynamicVars.Power<T>().IntValue)]);
         return this;
     }
 

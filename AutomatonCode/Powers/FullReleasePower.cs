@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -12,7 +13,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class FullReleasePower : AutomatonPowerModel
 {
-    private IReadOnlyList<CardModel> _sourceCards = [];
+    private IReadOnlyList<CardModel> SourceCards = [];
 
     public FullReleasePower() : base(PowerType.Buff, PowerStackType.Single)
     {
@@ -25,7 +26,7 @@ public class FullReleasePower : AutomatonPowerModel
 
     public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
-        _sourceCards = sourceCards;
+        SourceCards = sourceCards;
     }
 
 
@@ -40,21 +41,31 @@ public class FullReleasePower : AutomatonPowerModel
             StarsSpent = 0,
             StarValue = 0
         };
-        for (var i = 0; i < _sourceCards.Count; i++)
-            if (_sourceCards[i] is IEncodable encodable)
+        for (var i = 0; i < SourceCards.Count; i++)
+        {
+            var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
+            var cardPlay = new CardPlay
             {
-                var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
-                await encodable.PlayEncodableEffect(choiceContext, new CardPlay
-                {
-                    Card = _sourceCards[i],
-                    Target = target,
-                    ResultPile = PileType.None,
-                    Resources = resourceInfo,
-                    IsAutoPlay = true,
-                    PlayIndex = 0,
-                    PlayCount = 1
-                }, new EncodeContext(true, i));
+                Card = SourceCards[i],
+                Target = target,
+                ResultPile = PileType.None,
+                Resources = resourceInfo,
+                IsAutoPlay = true,
+                PlayIndex = 0,
+                PlayCount = 1
+            };
+            var card = SourceCards[i];
+            if (SourceCards[i] is IEncodable encodable)
+            {
+                
+                await encodable.PlayEncodableEffect(choiceContext, cardPlay, new EncodeContext(true, i));
             }
+            else
+            {
+                await DownfallCardCmd.OnPlay.Invoke(card, choiceContext, cardPlay);
+            }
+        }
+            
     }
 
     private class EffectsDynamicVar : DynamicVar
@@ -74,11 +85,23 @@ public class FullReleasePower : AutomatonPowerModel
         public override string ToString()
         {
             if (_power == null) return "";
-            var lines = _power._sourceCards
-                .Select((c, i) => (c as IEncodable)?.GetEncodeLocString(new EncodeContext(true, i)))
-                .Where(loc => loc != null)
-                .Select(loc => loc!.GetFormattedText())
-                .ToList();
+            var i = 0;
+            var lines = new List<string>();
+            foreach (var card in _power.SourceCards)
+            {
+                if (card is IEncodable encodable)
+                {
+                    var text = encodable.GetEncodeLocString(new EncodeContext(true, i))?.GetFormattedText();
+                    if (text == null) continue;
+                    lines.Add(text);
+                }
+                else
+                {
+                    var text = card.GetDescriptionForPile(PileType.Deck, CardModel.DescriptionPreviewType.Upgrade);
+                    lines.Add(text);
+                }
+                i++;
+            }
             return lines.Count > 0 ? string.Join("\n", lines) : "";
         }
     }

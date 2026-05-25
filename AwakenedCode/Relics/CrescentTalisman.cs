@@ -1,6 +1,6 @@
-using Awakened.AwakenedCode.Cards.Enchantments;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Enchantments;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;

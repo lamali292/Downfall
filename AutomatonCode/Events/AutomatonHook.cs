@@ -10,9 +10,9 @@ namespace Automaton.AutomatonCode.Events;
 
 public static class AutomatonHook
 {
-    public static Task OnCardEncoded(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public static Task OnCardEncoded(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
     {
-        return DownfallHook.Dispatch<IOnEncode>(cs, ctx, m => m.OnCardEncoded(ctx, card, cardPlay));
+        return DownfallHook.Dispatch<IOnEncode>(cs, ctx, m => m.OnCardEncoded(ctx, card));
     }
 
 
@@ -37,9 +37,9 @@ public static class AutomatonHook
     }
 
     public static Task AfterCompilingFunction(PlayerChoiceContext ctx, ICombatState cs, Player player,
-        CardPileAddResult result, CardPlay cardPlay)
+        CardPileAddResult result)
     {
         return DownfallHook.Dispatch<IAfterCompilingFunction>(cs, ctx,
-            m => m.AfterCompilingFunction(ctx, player, result, cardPlay));
+            m => m.AfterCompilingFunction(ctx, player, result));
     }
 }

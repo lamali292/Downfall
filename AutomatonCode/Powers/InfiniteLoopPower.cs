@@ -24,8 +24,7 @@ public class InfiniteLoopPower : AutomatonPowerModel, IAfterCompilingFunction
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result,
-        CardPlay cardPlay)
+    public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)
     {
         if (_copy == null || player.Creature != Owner) return;
         await CardPileCmd.AddGeneratedCardToCombat(_copy, PileType.Hand, player);

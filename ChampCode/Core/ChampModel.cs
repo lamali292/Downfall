@@ -73,8 +73,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
             ActiveStance[player]!);
         RefreshStanceDisplay(player, newCanonical);
     }
-
-    // TODO : check if this still triggers
+    
     public override async Task BeforeCombatStart()
     {
         var state = CombatManager.Instance.DebugOnlyGetState();

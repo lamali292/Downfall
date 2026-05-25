@@ -11,7 +11,7 @@ public class Cauterize : HexaghostCardModel
 {
     public Cauterize() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
+        WithDamage(8, 2);
         WithTip(typeof(SoulBurnPower));
     }
 

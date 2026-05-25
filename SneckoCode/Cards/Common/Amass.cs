@@ -25,6 +25,6 @@ public class Amass : SneckoCardModel
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MyCommonActions.CardCalculatedBlock(this, cardPlay);
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }
