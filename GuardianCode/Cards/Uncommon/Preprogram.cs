@@ -24,7 +24,7 @@ public class Preprogram : GuardianCardModel
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();
-        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt, 1,
             this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
