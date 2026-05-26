@@ -17,10 +17,4 @@ public static class HermitKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Bounty;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Strike;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Defend;
 }

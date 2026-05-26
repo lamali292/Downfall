@@ -21,7 +21,7 @@ public class CultistStrike : AutomatonCardModel,
     }
 
     [SavedProperty]
-    private int CurrentDamage
+    public int CurrentDamage
     {
         get => _currentDamage;
         set
@@ -33,7 +33,7 @@ public class CultistStrike : AutomatonCardModel,
     }
 
     [SavedProperty]
-    private int IncreasedDamage
+    public int IncreasedDamage
     {
         get => _increasedDamage;
         set

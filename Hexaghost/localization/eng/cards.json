@@ -93,7 +93,7 @@
   "HEXAGHOST-HEAT_METAL.title": "Heat Metal",
   "HEXAGHOST-HEAT_SHIELD.description": "Gain [gold]Block[/gold] equal to the target's [gold]Soulburn[/gold].",
   "HEXAGHOST-HEAT_SHIELD.title": "Heat Shield",
-  "HEXAGHOST-HERE_AND_NOW.description": "At the start of your turn, gain {energyPrefix:energyIcons(1)} .\nAt the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
+  "HEXAGHOST-HERE_AND_NOW.description": "At the start of your turn, gain {energyPrefix:energyIcons(1)}.\nAt the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
   "HEXAGHOST-HERE_AND_NOW.title": "Here and Now",
   "HEXAGHOST-HEXAGUARD.description": "Draw {Cards:diff()} cards.\n[afterlife]Gain[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]",
   "HEXAGHOST-HEXAGUARD.title": "Hexaguard",

@@ -63,6 +63,7 @@ public abstract class SneckoCardModel(
     {
         if (Gift != null) throw new InvalidOperationException("Gift already set");
         Gift = gift;
+        WithTip(SneckoTip.Gift);
         return this;
     }
 }

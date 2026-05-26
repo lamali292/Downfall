@@ -12,8 +12,6 @@ public sealed class HighNoon : HermitCardModel
     public HighNoon() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithTip(HermitKeywords.Strike);
-        WithTip(HermitKeywords.Defend);
         WithPower<HighNoonPower>(1, false);
     }
 

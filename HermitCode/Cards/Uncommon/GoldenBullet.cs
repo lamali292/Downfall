@@ -3,6 +3,7 @@ using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
@@ -15,10 +16,11 @@ public sealed class GoldenBullet : HermitCardModel
     {
         WithDamage(18, 6);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(StaticHoverTip.Fatal);
     }
 
     [SavedProperty]
-    private int CurrentCost
+    public int CurrentCost
     {
         get => _currentCost;
         set

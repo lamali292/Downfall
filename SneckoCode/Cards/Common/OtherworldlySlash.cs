@@ -22,7 +22,7 @@ public class OtherworldlySlash : SneckoCardModel
     protected override bool ShouldGlowGoldInternal => PlayedOffClassThisTurn;
 
     private bool PlayedOffClassThisTurn => CombatManager.Instance.History.CardPlaysFinished.Any(e =>
-        e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(this, e.CardPlay.Card));
+        e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(this, e.CardPlay.Card));
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -14,7 +14,6 @@ public sealed class Maintenance : HermitCardModel
     {
         WithPower<MaintenanceStrikePower>(3, 1, false);
         WithPower<DexterityPower>(1, 1);
-        WithTip(HermitKeywords.Strike);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)

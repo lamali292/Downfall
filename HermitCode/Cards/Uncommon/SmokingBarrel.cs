@@ -3,6 +3,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -12,6 +13,7 @@ public sealed class SmokingBarrel : HermitCardModel
     {
         WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);
+        WithTip(typeof(VigorPower));
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)

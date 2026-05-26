@@ -26,7 +26,7 @@ public class Float : HexaghostCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         var a = CombatManager.Instance.History.Entries
-            .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState));
+            .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner.Creature);
         if (a >= DynamicVars["CardsPlayed"].IntValue) return;
         await CommonActions.Draw(this, ctx);
         await HexaghostCmd.Advance(ctx, Owner, this);

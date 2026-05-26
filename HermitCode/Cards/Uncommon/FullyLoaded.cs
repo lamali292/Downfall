@@ -13,8 +13,6 @@ public sealed class FullyLoaded : HermitCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithTip(HermitKeywords.Strike);
-        WithTip(HermitKeywords.Defend);
     }
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)

@@ -44,27 +44,25 @@ public partial class DownfallMainFile : Node
     
     private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
     {
-        
-        if (!DownfallConfig.UploadMetrics)
-            return;
+        if (!DownfallConfig.UploadMetrics) return;
         if (run.Players.All(e =>
                 e.CharacterId == null ||
                 ModelDb.GetById<CharacterModel>(e.CharacterId) is not DownfallCharacterModel)) return;
         var anonymized = run.Anonymized();
         var json = JsonSerializer.Serialize(anonymized);
-        _ = SendToMyServer(json);
+        _ = SendToServer(json);
     }
 
-    private static async Task SendToMyServer(string json)
+    private static async Task SendToServer(string json)
     {
         var bytes = Encoding.UTF8.GetBytes(json);
         using var client = new System.Net.Http.HttpClient();
         client.Timeout = TimeSpan.FromSeconds(15);
-
         var content = new ByteArrayContent(bytes);
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         try
         {
+            // TODO
             var response = await client.PutAsync("http://localhost:3000/runs", content);
             if (response.IsSuccessStatusCode)
                 Logger.Info("Upload successful!");

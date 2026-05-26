@@ -93,7 +93,7 @@
   "SNECKO-QUEEN_OF_PENTACLES.title": "Queen of Pentacles",
   "SNECKO-QUICK_MOVE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Overflow[/gold]:\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "SNECKO-QUICK_MOVE.title": "Quick Move",
-  "SNECKO-RAIN_OF_DICE.description": "Deal {Damage:diff()} damage.\n[gold]Muddle[/gold] a card.\nAdd [gold]Rain of Dice{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].",
+  "SNECKO-RAIN_OF_DICE.description": "Deal {Damage:diff()} damage.\n[gold]Muddle[/gold] a card.\nAdd a [gold]Rain of Dice{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].",
   "SNECKO-RAIN_OF_DICE.title": "Rain of Dice",
   "SNECKO-RESTOCK.description": "Discard your [gold]Hand[/gold].\nDraw {Cards:diff()} cards.\n[gold]Muddle[/gold] your [gold]Hand[/gold].",
   "SNECKO-RESTOCK.title": "Restock",
