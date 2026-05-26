@@ -18,10 +18,12 @@ public class ShieldThrow : ChampCardModel
     {
         WithCalculatedDamage(0, BlockDamage);
         WithCostUpgradeBy(-1);
-        WithTip(ChampTip.Defensive);
+        WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
         WithPower<NoBlockNextTurnPower>(1, false);
     }
+
+
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 

@@ -6,6 +6,7 @@ using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
+using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,16 +28,30 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
     {
         if (this is IBerserkerComboCard)
         {
-            WithTip(ChampTip.Berserker);
             WithTip(ChampTip.Combo);
+            WithBerserkerTip();
         }
-
         if (this is IDefensiveComboCard)
         {
-            WithTip(ChampTip.Defensive);
             WithTip(ChampTip.Combo);
+            WithDefensiveTip();
         }
     }
+    
+    protected void WithDefensiveTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTip]);
+    }
+
+    protected void WithBerserkerTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTip]);    }
+
+    protected void WithUltimateTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
+    }
+
 
     protected override bool ShouldGlowRedInternal =>
         Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
@@ -68,14 +83,14 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
     protected ConstructedCardModel WithEnterBerserker()
     {
         EnterStance = StanceType.Berserker;
-        WithTip(ChampTip.Berserker);
+        WithBerserkerTip();
         return this;
     }
 
     protected ConstructedCardModel WithEnterDefensive()
     {
         EnterStance = StanceType.Defensive;
-        WithTip(ChampTip.Defensive);
+        WithDefensiveTip();
         return this;
     }
 
@@ -114,9 +129,11 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
     protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
     {
         WithPower<GloryPower>(baseVal, upgrade);
-        WithTip(ChampTip.Ultimate);
+        WithUltimateTip();
         return this;
     }
+
+
 
     protected enum StanceType
     {

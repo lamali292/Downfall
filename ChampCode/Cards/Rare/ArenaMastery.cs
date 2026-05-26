@@ -16,8 +16,8 @@ public class ArenaMastery : ChampCardModel
     {
         WithPower<ArenaMasteryBerserkerPower>(1, false);
         WithPower<ArenaMasteryDefensivePower>(3, 1, false);
-        WithTip(ChampTip.Berserker);
-        WithTip(ChampTip.Defensive);
+        WithBerserkerTip();
+        WithDefensiveTip();
         WithTip(ChampTip.Finisher);
         WithTip(typeof(StrengthPower));
         WithTip(StaticHoverTip.Block);

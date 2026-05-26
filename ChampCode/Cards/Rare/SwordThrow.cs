@@ -16,9 +16,10 @@ public class SwordThrow : ChampCardModel
         WithDamage(9, 4);
         WithRepeat(2);
         WithPower<EntangledNextTurnPower>(1, false);
-        WithTip(ChampTip.Berserker);
+        WithBerserkerTip();
     }
 
+ 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();
 
     protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

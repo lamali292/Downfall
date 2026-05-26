@@ -1,4 +1,5 @@
 using System.Reflection;
+using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
@@ -23,6 +24,7 @@ public partial class ChampMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,

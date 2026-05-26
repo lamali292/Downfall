@@ -36,12 +36,7 @@ public class ChampCmd
     {
         await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
     }
-
-    public static async Task EnterGladiatorStance(PlayerChoiceContext ctx, Player player)
-    {
-        await ChampModel.SetStance<ChampGladiatorStance>(ctx, player);
-    }
-
+    
     public static async Task EnterStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
         await ChampModel.SetStance<T>(ctx, player);

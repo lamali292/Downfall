@@ -1,4 +1,6 @@
 ﻿using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Stance;
 

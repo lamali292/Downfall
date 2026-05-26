@@ -5,6 +5,9 @@ using Champ.ChampCode.Stance;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Champ.ChampCode.Vfx;
@@ -18,15 +21,15 @@ public partial class NChampStanceDisplay : Control
     private const int TotalWidth = IconCount * ChargeIconSize + (IconCount - 1) * Separation;
     private const int TotalHeight = ChargeIconSize;
     private const int MarginAboveHead = 20;
-    private readonly List<TextureRect> _icons = new();
-    private Control? _bounds;
 
+    private readonly List<TextureRect> _icons = new();
+    private readonly List<StanceIconControl> _wrappers = new();
+    private Control? _bounds;
     private Player? _trackedPlayer;
 
     public static NChampStanceDisplay? Show(Player player)
     {
         var combatRoom = NCombatRoom.Instance;
-
         var creatureNode = combatRoom?.GetCreatureNode(player.Creature);
         if (creatureNode == null) return null;
 
@@ -43,20 +46,28 @@ public partial class NChampStanceDisplay : Control
 
     public override void _Ready()
     {
-        // Set our own size explicitly — no layout system involved
         Size = new Vector2(TotalWidth, TotalHeight);
 
-        // Create icons at known positions
         for (var i = 0; i < IconCount; i++)
         {
             var icon = new TextureRect
             {
                 StretchMode = TextureRect.StretchModeEnum.KeepAspect,
                 Size = new Vector2(ChargeIconSize, ChargeIconSize),
-                Position = new Vector2(i * (ChargeIconSize + Separation), 0)
+                MouseFilter = MouseFilterEnum.Ignore
             };
-            AddChild(icon);
+
+            var wrapper = new StanceIconControl
+            {
+                Size = new Vector2(ChargeIconSize, ChargeIconSize),
+                Position = new Vector2(i * (ChargeIconSize + Separation), 0),
+                MouseFilter = MouseFilterEnum.Stop
+            };
+
+            wrapper.AddChild(icon);
+            AddChild(wrapper);
             _icons.Add(icon);
+            _wrappers.Add(wrapper);
         }
 
         Reposition();
@@ -93,6 +104,36 @@ public partial class NChampStanceDisplay : Control
         {
             var isActive = i < stance.Charges;
             _icons[i].Texture = ResourceLoader.Load<Texture2D>(isActive ? activePath : InactiveChargePath);
+            _wrappers[i].SetTipProvider(() => stance.HoverTip);
+        }
+    }
+    
+    private partial class StanceIconControl : NClickableControl
+    {
+        private IHoverTip? _tip;
+        private Func<IHoverTip>? _tipProvider;
+
+        public void SetTipProvider(Func<IHoverTip> provider)
+        {
+            _tipProvider = provider;
+        }
+
+        public override void _Ready()
+        {
+            ConnectSignals();
+        }
+
+        protected override void OnFocus()
+        {
+            _tip = _tipProvider?.Invoke();
+            if (_tip == null) return;
+            NHoverTipSet.CreateAndShow(this, _tip)
+                ?.SetGlobalPosition(GlobalPosition + new Vector2(0f, Size.Y + 20f));
+        }
+
+        protected override void OnUnfocus()
+        {
+            NHoverTipSet.Remove(this);
         }
     }
 }
