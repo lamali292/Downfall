@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-public class Headshot : HermitCardModel
+public class Headshot : HermitCardModel, IHasDeadOnEffect
 {
     public Headshot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -35,4 +35,7 @@ public class Headshot : HermitCardModel
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
     }
+
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+     => Task.CompletedTask;
 }
