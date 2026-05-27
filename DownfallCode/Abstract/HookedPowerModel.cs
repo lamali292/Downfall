@@ -18,7 +18,7 @@ public abstract class HookedPowerModel : CustomPowerModel
         if (Owner.IsDead) return Task.CompletedTask;
         return action(new BlockingPlayerChoiceContext());
     }
-    
+
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         return ExecuteWithContext(ctx => AfterCardGeneratedForCombat(ctx, card, player));
@@ -49,7 +49,6 @@ public abstract class HookedPowerModel : CustomPowerModel
         return Task.CompletedTask;
     }
 
-   
 
     public override Task AfterEnergyReset(Player player)
     {
@@ -95,7 +94,7 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
-    
+
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {

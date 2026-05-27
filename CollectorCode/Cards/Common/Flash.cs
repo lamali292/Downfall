@@ -32,6 +32,8 @@ public class Flash : CollectorCardModel, IHasPyre
         }));
     }
 
+    public CardModel? PyredCard { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var trip = CombatState!.CreateCard<Trip>(cardPlay.Card.Owner);
@@ -46,6 +48,4 @@ public class Flash : CollectorCardModel, IHasPyre
         if (chosen == null) return;
         await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

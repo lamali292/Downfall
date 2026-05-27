@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Relics;
 
@@ -18,7 +17,7 @@ public class Mallet : AutomatonRelicModel
     {
         WithTip(AutomatonTip.Stash);
     }
-    
+
     protected override Task AfterCardChangedPiles(PlayerChoiceContext ctx, CardModel card, PileType oldPileType,
         AbstractModel? clonedBy)
     {

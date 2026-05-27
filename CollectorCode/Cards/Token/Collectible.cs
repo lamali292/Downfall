@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Patches;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;

@@ -20,13 +20,13 @@ public class Behold : SneckoCardModel, IHasOverflowEffect
         WithTip(typeof(Shiv));
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, DynamicVars.Cards.BaseValue);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

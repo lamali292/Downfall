@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,9 +19,8 @@ public class ShieldThrow : ChampCardModel
         WithCostUpgradeBy(-1);
         WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
-        WithPower<NoBlockNextTurnPower>(1, false);
+        this.WithPower<NoBlockNextTurnPower>(1, false);
     }
-
 
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();

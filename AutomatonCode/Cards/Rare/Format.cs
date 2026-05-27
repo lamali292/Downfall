@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Common;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +15,7 @@ public class Format : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        WithUpgradedCardTip<Fragment>();
+        this.WithUpgradedCardTip<Fragment>();
         WithEnergy(1);
     }
 

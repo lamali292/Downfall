@@ -41,7 +41,8 @@ public class SyncSheets
         _serviceAccount = Path.Join(scriptDir, "service_account.json");
         _cacheFile = Path.Join(scriptDir, ".sheets_cache.json");
         Console.WriteLine($"  Parent: {_parent}");
-        Console.WriteLine($"  Dirs: {string.Join(", ", Directory.EnumerateDirectories(_parent).Select(Path.GetFileName))}");
+        Console.WriteLine(
+            $"  Dirs: {string.Join(", ", Directory.EnumerateDirectories(_parent).Select(Path.GetFileName))}");
     }
 
     public void Run()

@@ -13,7 +13,7 @@ public class SplitWide : AwakenedCardModel
     public SplitWide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithPower<SplitWidePower>(1, 1, false);
+        this.WithPower<SplitWidePower>(1, 1, false);
         WithTip(typeof(StrengthPower));
         WithKeywords(CardKeyword.Exhaust);
     }

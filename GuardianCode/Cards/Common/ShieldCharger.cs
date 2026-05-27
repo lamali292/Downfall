@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +16,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         WithBlock(10, 2);
         WithKeyword(GuardianKeyword.Volatile);
         WithTip(GuardianTip.Stasis);
-        WithBrace(4, 2);
+        this.WithBrace(4, 2);
     }
 
 

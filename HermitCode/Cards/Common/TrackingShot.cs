@@ -13,7 +13,7 @@ public sealed class TrackingShot : HermitCardModel
     public TrackingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithRepeat(2);
+        this.WithRepeat(2);
         WithKeyword(HermitKeywords.Concentrate);
     }
 

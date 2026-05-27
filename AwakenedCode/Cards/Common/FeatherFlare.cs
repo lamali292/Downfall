@@ -13,9 +13,9 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     public FeatherFlare() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 3);
-        WithPower<DrawCardsNextTurnPower>(1, false);
+        this.WithPower<DrawCardsNextTurnPower>(1, false);
     }
-    
+
 
     public bool HasChanted { get; set; } = false;
 

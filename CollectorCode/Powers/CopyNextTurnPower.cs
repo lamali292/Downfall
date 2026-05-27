@@ -1,5 +1,4 @@
 ﻿using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,11 +22,12 @@ public class CopyNextTurnPower : CollectorPowerModel
         WithTips(Tip);
     }
 
-    private IEnumerable<IHoverTip> Tip(PowerModel arg)
-     => arg is CopyNextTurnPower { Card: not null } power ? [new CardHoverTip(power.Card)] : [];
-
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
+    private IEnumerable<IHoverTip> Tip(PowerModel arg)
+    {
+        return arg is CopyNextTurnPower { Card: not null } power ? [new CardHoverTip(power.Card)] : [];
+    }
 
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

@@ -14,7 +14,7 @@ public class Philosophize : AutomatonCardModel, IEncodable
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(1, 1);
-        WithPower<PhilosophizePower>(1, false);
+        this.WithPower<PhilosophizePower>(1, false);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

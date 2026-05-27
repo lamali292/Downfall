@@ -1,5 +1,3 @@
-using Downfall.DownfallCode.Extensions;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.DevConsole;

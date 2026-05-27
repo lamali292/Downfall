@@ -14,7 +14,7 @@ public class RopeADope : ChampCardModel
         WithFinisher();
         WithBlock(8, 2);
         WithEnergy(1, 1);
-        WithPower<DrawCardsNextTurnPower>(2, false);
+        this.WithPower<DrawCardsNextTurnPower>(2, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

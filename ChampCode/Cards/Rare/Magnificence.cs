@@ -11,7 +11,7 @@ public class Magnificence : ChampCardModel
 {
     public Magnificence() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<MagnificencePower>(3, 1, false);
+        this.WithPower<MagnificencePower>(3, 1, false);
         WithTip(typeof(GloryPower));
     }
 

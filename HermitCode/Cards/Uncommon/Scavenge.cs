@@ -12,7 +12,7 @@ public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
     {
         WithPower<PlatedArmorPower>(4, 1);
         WithKeyword(CardKeyword.Exhaust);
-        WithGold(5, 5);
+        this.WithGold(5, 5);
     }
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)

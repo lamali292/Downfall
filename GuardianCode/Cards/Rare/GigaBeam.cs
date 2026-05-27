@@ -21,7 +21,7 @@ public class GigaBeam : GuardianCardModel
     {
         WithDamage(36, 4);
         WithVar("StrengthEffect", 2, 2);
-        WithPower<StunnedPower>(1, false);
+        this.WithPower<StunnedPower>(1, false);
         WithTip(typeof(StrengthPower));
     }
 

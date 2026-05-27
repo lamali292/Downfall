@@ -19,14 +19,14 @@ public class NightmareGuise : HexaghostCardModel, IHasAfterlifeEffect
         this.WithAfterlife();
     }
 
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await DownfallCardCmd.GiveCard<ShadowGuise>(Owner, PileType.Hand, upgraded: IsUpgraded);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await AfterlifeEffect(ctx, cardPlay);
-    }
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await DownfallCardCmd.GiveCard<ShadowGuise>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

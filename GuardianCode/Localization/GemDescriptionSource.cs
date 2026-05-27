@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Localization;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Localization;

@@ -12,7 +12,7 @@ public class Library : AutomatonCardModel
 {
     public Library() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<LibraryPower>(1, false);
+        this.WithPower<LibraryPower>(1, false);
         WithTip(AutomatonTip.Encode);
         WithEnergyTip();
         WithCostUpgradeBy(-1);

@@ -19,9 +19,9 @@ public class ReceiveTribute : CollectorCardModel, IHasPyre
         WithCards(2, 1);
     }
 
+    public CardModel? PyredCard { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
-
-    public CardModel? PyredCard { get; set; }
 }

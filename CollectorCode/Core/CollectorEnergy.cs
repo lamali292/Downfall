@@ -1,5 +1,4 @@
-﻿using Collector.CollectorCode.Cards;
-using Collector.CollectorCode.Interfaces;
+﻿using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Abstract;
 using Godot;

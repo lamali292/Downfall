@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -13,6 +12,21 @@ namespace Automaton.AutomatonCode.Vfx;
 
 public partial class StashQueueDisplay : Control
 {
+    private static readonly Dictionary<Player, StashQueueDisplay> Displays = new();
+    private readonly List<QueueItem> _playQueue = new();
+    private CardPile? _stashPile;
+
+    static StashQueueDisplay()
+    {
+        CombatManager.Instance.CombatEnded += _ =>
+        {
+            foreach (var d in Displays.Values)
+                if (IsInstanceValid(d))
+                    d.QueueFree();
+            Displays.Clear();
+        };
+    }
+
     public static StashQueueDisplay? GetDisplay(Player player)
     {
         return Displays.GetValueOrDefault(player);
@@ -22,9 +36,12 @@ public partial class StashQueueDisplay : Control
     {
         return _playQueue.FirstOrDefault(i => i.Model == card)?.Card;
     }
-    
-    public int GetQueueCount() => _playQueue.Count;
-    
+
+    public int GetQueueCount()
+    {
+        return _playQueue.Count;
+    }
+
     public int GetCardIndex(CardModel card)
     {
         return _playQueue.FindIndex(i => i.Model == card);
@@ -35,21 +52,6 @@ public partial class StashQueueDisplay : Control
         return Displays.Values.Select(display => display.GetNCard(card)).OfType<NCard>().FirstOrDefault();
     }
 
-    private static readonly Dictionary<Player, StashQueueDisplay> Displays = new();
-    private List<QueueItem> _playQueue = new();
-    private CardPile? _stashPile;
-
-    static StashQueueDisplay()
-    {
-        CombatManager.Instance.CombatEnded += _ =>
-        {
-            foreach (var d in Displays.Values)
-                if (GodotObject.IsInstanceValid(d))
-                    d.QueueFree();
-            Displays.Clear();
-        };
-    }
-    
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
@@ -69,7 +71,7 @@ public partial class StashQueueDisplay : Control
         Displays[player] = display;
         display.SubscribeToStash(player);
     }
-    
+
     private void SubscribeToStash(Player player)
     {
         _stashPile = StashPile.Stash.GetPile(player);
@@ -90,6 +92,7 @@ public partial class StashQueueDisplay : Control
         _stashPile.CardRemoved -= OnCardRemoved;
         _stashPile = null;
     }
+
     private void OnCardAdded(CardModel card)
     {
         var child = NCard.Create(card);
@@ -111,7 +114,7 @@ public partial class StashQueueDisplay : Control
         var item = _playQueue[index];
         _playQueue.RemoveAt(index);
 
-        if (item.Card != null && GodotObject.IsInstanceValid(item.Card))
+        if (item.Card != null && IsInstanceValid(item.Card))
         {
             item.CurrentTween?.Kill();
             TweenCardForCancellation(item);
@@ -120,7 +123,7 @@ public partial class StashQueueDisplay : Control
         TweenAllToQueuePosition();
     }
 
-  
+
     public void TweenAllToQueuePosition()
     {
         for (var index = 0; index < _playQueue.Count; ++index)
@@ -173,7 +176,7 @@ public partial class StashQueueDisplay : Control
     public Vector2 GetPositionForQueueIndex(NCard? card, int index)
     {
         ++index;
-        float num = index / (float)(index + 2);
+        var num = index / (float)(index + 2);
         return Vector2.Zero + Vector2.Left * 200f * num;
     }
 

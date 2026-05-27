@@ -12,7 +12,7 @@ public class Uptick : AutomatonCardModel
     public Uptick() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<DrawCardsNextTurnPower>(2, 1, false);
+        this.WithPower<DrawCardsNextTurnPower>(2, 1, false);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

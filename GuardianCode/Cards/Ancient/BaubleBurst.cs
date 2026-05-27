@@ -15,7 +15,7 @@ public class BaubleBurst : GuardianCardModel, IGemSocketCard
     public BaubleBurst() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithRepeat(3);
+        this.WithRepeat(3);
     }
 
     public int GemSlots => IsUpgraded ? 2 : 1;

@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +16,7 @@ public class Clone : GuardianCardModel
     public Clone() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithAccelerate(0, 1);
+        this.WithAccelerate(0, 1);
         WithTip(GuardianTip.Stasis);
     }
 

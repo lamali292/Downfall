@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,12 +13,12 @@ public class SwordThrow : ChampCardModel
     public SwordThrow() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(9, 4);
-        WithRepeat(2);
-        WithPower<EntangledNextTurnPower>(1, false);
+        this.WithRepeat(2);
+        this.WithPower<EntangledNextTurnPower>(1, false);
         WithBerserkerTip();
     }
 
- 
+
     protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,8 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using Godot;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
@@ -103,7 +101,7 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
         var deck = player.GetDeck();
         var hasGems = deck.Any(e => e is IGemCard);
         var hasSlots = deck.Any(e => e is IGemSocketCard { FreeSlots: > 0 });
-        if (!hasSlots ||  !hasGems) return false;
+        if (!hasSlots || !hasGems) return false;
         options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots && hasGems });
         return true;
     }

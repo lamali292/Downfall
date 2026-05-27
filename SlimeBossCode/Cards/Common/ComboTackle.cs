@@ -15,7 +15,7 @@ public class ComboTackle : SlimeBossCardModel
     public ComboTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(12, 7);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
     }
 

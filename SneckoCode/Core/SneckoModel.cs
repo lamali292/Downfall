@@ -6,20 +6,19 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Runs;
-using Snecko.SneckoCode.Cards;
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
-    public static SavedSpireField<Player, List<ModelId>> SneckoPools = 
+    public static SavedSpireField<Player, List<ModelId>> SneckoPools =
         new(() => [], "SneckoPools")
         {
             Serializer = (list, writer) => writer.WriteFullModelIdList(list),
             Deserializer = reader => reader.ReadFullModelIdList()
         };
-    
+
     private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
     {
         var pool = SneckoPools.Get(player);

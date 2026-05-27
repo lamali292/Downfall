@@ -18,15 +18,15 @@ public class TyphoonFang : SneckoCardModel, IHasOverflowEffect
         WithPower<TyphoonFangPower>(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.IsAutoPlay) return;
         var power = await CommonActions.ApplySelf<TyphoonFangPower>(ctx, this);
         power?.SetCard(this);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

@@ -3,7 +3,6 @@ using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

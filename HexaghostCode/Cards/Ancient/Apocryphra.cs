@@ -19,15 +19,15 @@ public class Apocryphra : HexaghostCardModel, IHasAfterlifeEffect
         WithPower<SoulBurnPower>(5, 2);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await AfterlifeEffect(ctx, cardPlay);
-    }
-
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await CardPileCmd.Add(this, PileType.Hand);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await AfterlifeEffect(ctx, cardPlay);
     }
 }

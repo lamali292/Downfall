@@ -19,11 +19,11 @@ public class FuelTheFire : CollectorCardModel, IHasPyre
         WithKeyword(CollectorKeyword.Pyre);
     }
 
+    public CardModel? PyredCard { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, 1);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

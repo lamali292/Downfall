@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +19,7 @@ public class Assembly : AutomatonCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
-        foreach (var card in cards.Where(AutomatonCmd.IsEncodable)) 
+        foreach (var card in cards.Where(AutomatonCmd.IsEncodable))
             await AutomatonCmd.EncodeCard(card, ctx);
     }
 }

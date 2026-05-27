@@ -13,12 +13,13 @@ public class RefractedBeam : GuardianCardModel, IGemSocketCard
     public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(4);
-        WithRepeat(4, 1);
+        this.WithRepeat(4, 1);
         WithTip(GuardianKeyword.Gem);
     }
 
-    public int GemSlots => 1 + CurrentUpgradeLevel;
     public override int MaxUpgradeLevel => int.MaxValue;
+
+    public int GemSlots => 1 + CurrentUpgradeLevel;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

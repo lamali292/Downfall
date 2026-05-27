@@ -16,7 +16,7 @@ public class NullPointer : AutomatonCardModel,
         WithDamage(12, 3);
         WithBlock(12, 3);
         WithTip(CardKeyword.Unplayable);
-        WithPower<NullPointerPower>(1, false);
+        this.WithPower<NullPointerPower>(1, false);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

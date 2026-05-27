@@ -13,7 +13,7 @@ public class DarkEcho : AwakenedCardModel
     public DarkEcho() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(typeof(StrengthPower));
-        WithPower<DarkEchoPower>(1, false);
+        this.WithPower<DarkEchoPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

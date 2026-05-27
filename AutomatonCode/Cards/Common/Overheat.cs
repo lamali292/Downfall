@@ -12,7 +12,7 @@ public class Overheat : AutomatonCardModel
     public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithPower<OverheatPower>(9, 3, false);
+        this.WithPower<OverheatPower>(9, 3, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

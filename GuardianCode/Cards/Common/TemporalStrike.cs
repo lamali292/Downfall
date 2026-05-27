@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Cards.Common;
 
 [Pool(typeof(GuardianCardPool))]
-public class TemporalStrike : GuardianCardModel,IGemSocketCard
+public class TemporalStrike : GuardianCardModel, IGemSocketCard
 {
     public TemporalStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {

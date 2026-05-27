@@ -1,16 +1,9 @@
-﻿using System.Globalization;
-using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
+﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.DynamicVars;
-using Champ.ChampCode.Events;
 using Champ.ChampCode.Powers;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Champ.ChampCode.Stance;
@@ -38,6 +31,4 @@ public class ChampDefensiveStance : ChampStanceModel
         var amount = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
         await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
     }
-
-    
 }

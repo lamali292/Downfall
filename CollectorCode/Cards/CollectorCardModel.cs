@@ -1,6 +1,5 @@
 ﻿using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Collector.CollectorCode.Cards;
@@ -14,5 +13,6 @@ public abstract class CollectorCardModel(
     bool autoAdd = true)
     : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
-    protected override bool IsPlayable => this is not IHasPyre || (this is IHasPyre && Owner.GetHand().Any(e => e != this));
+    protected override bool IsPlayable =>
+        this is not IHasPyre || (this is IHasPyre && Owner.GetHand().Any(e => e != this));
 }

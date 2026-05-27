@@ -11,8 +11,12 @@ namespace Champ.ChampCode.Core;
 
 public abstract class ChampStanceModel : AbstractModel
 {
-   
     private DynamicVarSet? _dynamicVars;
+
+    private Player? _player;
+
+    public int Charges;
+
     public DynamicVarSet DynamicVars
     {
         get
@@ -23,6 +27,7 @@ public abstract class ChampStanceModel : AbstractModel
             return _dynamicVars;
         }
     }
+
     public IHoverTip HoverTip
     {
         get
@@ -33,23 +38,20 @@ public abstract class ChampStanceModel : AbstractModel
             return new HoverTip(title, description);
         }
     }
-    protected override void DeepCloneFields()
-    {
-        _dynamicVars = DynamicVars.Clone(this);
-    }
 
-    
+
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
-
-    private Player? _player;
-
-    public int Charges;
     public abstract bool HasFinisher { get; }
     public virtual string? ChargeIconPath => null;
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     public ICombatState CombatState => Owner.Creature.CombatState ??
-                                          throw new InvalidOperationException("Combat state not initialized");
+                                       throw new InvalidOperationException("Combat state not initialized");
+
+    protected override void DeepCloneFields()
+    {
+        _dynamicVars = DynamicVars.Clone(this);
+    }
 
     public ChampStanceModel ToMutable(Player player)
     {

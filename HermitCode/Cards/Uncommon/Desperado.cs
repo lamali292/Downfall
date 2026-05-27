@@ -29,7 +29,7 @@ public sealed class Desperado : HermitCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx() .BeforeDamage(() =>
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 HermitSfx.PlayGun2();
                 return Task.CompletedTask;

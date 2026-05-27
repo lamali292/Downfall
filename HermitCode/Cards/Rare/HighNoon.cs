@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +11,7 @@ public sealed class HighNoon : HermitCardModel
     public HighNoon() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<HighNoonPower>(1, false);
+        this.WithPower<HighNoonPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

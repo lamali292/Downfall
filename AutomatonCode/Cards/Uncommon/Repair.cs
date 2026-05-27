@@ -11,7 +11,7 @@ public class Repair : AutomatonCardModel
 {
     public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<SelfRepairPower>(7, 3, false);
+        this.WithPower<SelfRepairPower>(7, 3, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

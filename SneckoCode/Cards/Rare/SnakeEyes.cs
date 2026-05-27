@@ -22,11 +22,11 @@ public class SnakeEyes : SneckoCardModel, IHasGift
         WithPower<SnakeEyesPower>(1, 1);
     }
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<SnakeEyesPower>(ctx, this);
     }
-
-    public Gift? Gift { get; set; }
 }

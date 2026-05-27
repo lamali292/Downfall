@@ -6,7 +6,8 @@ namespace Collector.CollectorCode.Core;
 
 public static class EssenceModel
 {
-    public static SavedSpireField<Player, int> Essence = new(()=> 0,"CollectorEssence");
+    public static SavedSpireField<Player, int> Essence = new(() => 0, "CollectorEssence");
+
     public static int GetEssence(Player player)
     {
         return Essence.Get(player);
@@ -25,7 +26,7 @@ public static class EssenceModel
 
     public static bool SpendEssence(Player player, int amount)
     {
-        var essence =  Essence.Get(player);
+        var essence = Essence.Get(player);
         if (essence < amount) return false;
         essence -= amount;
         Essence.Set(player, essence);

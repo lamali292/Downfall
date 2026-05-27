@@ -1,19 +1,12 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
-using Automaton.AutomatonCode.Displays;
-using Automaton.AutomatonCode.Enchantments;
+﻿using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Events;
-using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Vfx;
 using BaseLib.Abstracts;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -32,7 +25,7 @@ public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
                 AutomatonDisplay.SetupAutomatonUi(combatRoomNode, player);
                 StashQueueDisplay.SetupFor(combatRoomNode, player);
             }
-              
+
 
         return Task.CompletedTask;
     }
@@ -47,10 +40,10 @@ public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
         foreach (var cardPileAddResult in result)
         {
             var card = cardPileAddResult.cardAdded;
-            CombatManager.Instance.History.Add(combatState, new CardDrawnEntry(card, combatState.RoundNumber, combatState.CurrentSide, false, CombatManager.Instance.History, combatState.Players));
+            CombatManager.Instance.History.Add(combatState,
+                new CardDrawnEntry(card, combatState.RoundNumber, combatState.CurrentSide, false,
+                    CombatManager.Instance.History, combatState.Players));
             await Hook.AfterCardDrawn(combatState, ctx, card, false);
         }
     }
-    
-
 }

@@ -24,6 +24,8 @@ public class Belittle : SneckoCardModel, IHasGift
         WithCalculatedDamage(0, 9, CalcDamage, ValueProp.Unblockable | ValueProp.Move | ValueProp.Unpowered, 0, 3);
     }
 
+    public Gift? Gift { get; set; }
+
     private static decimal CalcDamage(CardModel card, Creature? creature)
     {
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
@@ -33,6 +35,4 @@ public class Belittle : SneckoCardModel, IHasGift
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-    public Gift? Gift { get; set; }
 }

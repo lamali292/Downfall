@@ -1,5 +1,3 @@
-using Downfall.DownfallCode.Extensions;
-using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

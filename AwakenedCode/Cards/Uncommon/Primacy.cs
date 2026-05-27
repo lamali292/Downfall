@@ -12,7 +12,7 @@ public class Primacy : AwakenedCardModel
 {
     public Primacy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<PrimacyPower>(1, 1, false);
+        this.WithPower<PrimacyPower>(1, 1, false);
         WithTip(typeof(StrengthPower));
     }
 

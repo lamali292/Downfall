@@ -17,14 +17,14 @@ public class Hexaguard : HexaghostCardModel, IHasAfterlifeEffect
         WithCards(2);
     }
 
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
         await AfterlifeEffect(ctx, cardPlay);
-    }
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardBlock(this, cardPlay);
     }
 }

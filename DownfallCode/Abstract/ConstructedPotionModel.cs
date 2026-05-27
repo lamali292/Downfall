@@ -1,7 +1,5 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -13,21 +11,19 @@ namespace Downfall.DownfallCode.Abstract;
 public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType)
     : CustomPotionModel
 {
+    private readonly List<AbstractTooltipSource<PotionModel>> _hoverTips = [];
+    private readonly List<Func<PotionModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
+
+    private readonly List<DynamicVar> _newDynamicVars = [];
     public override PotionRarity Rarity => potionRarity;
     public override PotionUsage Usage => potionUsage;
     public override TargetType TargetType => targetType;
-    
-    private readonly List<AbstractTooltipSource<PotionModel>> _hoverTips = [];
-    private readonly List<Func<PotionModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
-    
-    private readonly List<DynamicVar> _newDynamicVars = [];
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
 
     public sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
         .Concat(_multiHoverTips.SelectMany<Func<PotionModel, IEnumerable<IHoverTip>>, IHoverTip>(mt => mt(this)));
 
-    
-    
+
     protected ConstructedPotionModel WithVars(params DynamicVar[] vars)
     {
         foreach (var dynVar in vars)

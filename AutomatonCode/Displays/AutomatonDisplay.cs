@@ -21,6 +21,7 @@ public class AutomatonDisplay
             Displays.Clear();
         };
     }
+
     public static NSequenceDisplay? GetDisplay(Player player)
     {
         return Displays.GetValueOrDefault(player);

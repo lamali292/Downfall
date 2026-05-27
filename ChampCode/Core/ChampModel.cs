@@ -1,25 +1,16 @@
 ﻿// ChampModel.cs
 
-using System.Reflection;
-using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
-using Champ.ChampCode.Extensions;
-using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Stance;
 using Champ.ChampCode.Vfx;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.GameInfo.Objects;
 
 namespace Champ.ChampCode.Core;
 
@@ -60,9 +51,6 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         GetDisplay(player)?.Refresh();
     }
 
-   
-    
-  
 
     public static async Task SetStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
@@ -87,7 +75,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         RefreshStanceDisplay(player, newCanonical);
     }
 
-    
+
     public override Task BeforeCombatStart()
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -96,7 +84,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
             ActiveStance[player] = ChampModelDb.ChampStance<ChampNoStance>();
         return Task.CompletedTask;
     }
-    
+
 
     private static void TriggerStanceAnimation(Player player)
     {

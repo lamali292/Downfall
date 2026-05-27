@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -96,6 +97,15 @@ public abstract class SlimeBossRelicModel(RelicRarity rarity) : DownfallRelicMod
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType);
+
+public abstract class SlimeBossCardModel(
+    int cost,
+    CardType type,
+    CardRarity rarity,
+    TargetType targetType,
+    bool showInCardLibrary = true,
+    bool autoAdd = true)
+    : DownfallCardModel<SlimeBoss>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 

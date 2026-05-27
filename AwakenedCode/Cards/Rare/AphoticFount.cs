@@ -13,7 +13,7 @@ public class AphoticFount : AwakenedCardModel
 {
     public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<AphoticFountPower>(1, 1, false);
+        this.WithPower<AphoticFountPower>(1, 1, false);
         WithTip(typeof(PlatedArmorPower));
         WithTip(typeof(Cryostasis));
         WithConjure();

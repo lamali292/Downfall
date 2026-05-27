@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
@@ -21,7 +20,9 @@ public class CrystalRay : GuardianCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
-     => PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemSocketCard>().Sum(g => g.GemCount);
+    {
+        return PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemSocketCard>().Sum(g => g.GemCount);
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

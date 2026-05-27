@@ -13,10 +13,11 @@ public class TakeFlight : AwakenedCardModel, IChantable
     public TakeFlight() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
-
-        WithPower<BlurPower>(1, false);
+        this.WithPower<BlurPower>(1, false);
     }
+
     public bool HasChanted { get; set; } = false;
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BlurPower>(ctx, this, 1);

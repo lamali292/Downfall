@@ -15,7 +15,7 @@ public class AwakenedForm : AwakenedCardModel
     {
         WithPower<CuriosityPower>(1);
         WithPower<RitualPower>(1, 1);
-        WithTip(AwakenedTip.Awaken, UpgradeType.Add);
+        this.WithTip(AwakenedTip.Awaken, UpgradeType.Add);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

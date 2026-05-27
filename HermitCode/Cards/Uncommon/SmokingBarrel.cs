@@ -11,7 +11,7 @@ public sealed class SmokingBarrel : HermitCardModel
 {
     public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<SmokingBarrelPower>(3, 1, false);
+        this.WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);
         WithTip(typeof(VigorPower));
     }

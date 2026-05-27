@@ -14,7 +14,7 @@ public class BronzeOrb : AutomatonCardModel
     {
         WithDamage(5, 3);
         WithTip(AutomatonTip.Stash);
-        WithPower<BronzeOrbPower>(1, false);
+        this.WithPower<BronzeOrbPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -11,7 +11,7 @@ public class Spellbinder : AwakenedCardModel
 {
     public Spellbinder() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<SpellbinderPower>(1, false);
+        this.WithPower<SpellbinderPower>(1, false);
         WithConjure();
         WithCostUpgradeBy(-1);
     }

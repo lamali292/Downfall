@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
-using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
@@ -28,7 +27,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }
-    
+
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();

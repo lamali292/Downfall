@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Downfall.DownfallCode.Abstract;

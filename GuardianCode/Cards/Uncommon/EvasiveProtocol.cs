@@ -1,7 +1,7 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions.Cards;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,8 +13,8 @@ public class EvasiveProtocol : GuardianCardModel
 {
     public EvasiveProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBrace(6, 3);
-        WithPower<EvasiveProtocolPower>(1, 1, false);
+        this.WithBrace(6, 3);
+        this.WithPower<EvasiveProtocolPower>(1, 1, false);
         WithTip(GuardianTip.Polish);
         WithTip(GuardianTip.DefensiveMode);
     }

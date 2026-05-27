@@ -14,7 +14,7 @@ public class ChargeUp : GuardianCardModel, IGemSocketCard
     public ChargeUp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        WithPower<TemporaryStrengthUpPower>(2, 1, false);
+        this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
         WithTip(typeof(StrengthPower));
     }
 

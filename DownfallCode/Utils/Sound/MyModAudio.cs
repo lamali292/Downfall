@@ -23,9 +23,10 @@ public static class MyModAudio
         float pitchVariation = 0.0f,
         float basePitch = 1f)
     {
-        return ModAudio.PlaySoundGlobal(sound, volumeAdd, volumeMult, pitchVariation, basePitch);;
+        return ModAudio.PlaySoundGlobal(sound, volumeAdd, volumeMult, pitchVariation, basePitch);
+        ;
     }
-    
+
     public static AudioStreamPlayer? PlaySoundInRun(
         ModSound sound,
         float volumeAdd = 0.0f,
@@ -35,5 +36,4 @@ public static class MyModAudio
     {
         return ModAudio.PlaySoundInRun(sound, volumeAdd, volumeMult, pitchVariation, basePitch);
     }
-
 }

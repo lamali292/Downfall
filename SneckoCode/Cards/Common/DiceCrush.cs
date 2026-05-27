@@ -17,14 +17,14 @@ public class DiceCrush : SneckoCardModel, IHasOverflowEffect
         WithCards(2);
     }
 
+    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.Draw(this, ctx);
+    }
+
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.Draw(this, ctx);
     }
 }

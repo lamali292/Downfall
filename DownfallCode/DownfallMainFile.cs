@@ -17,6 +17,7 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using HttpClient = System.Net.Http.HttpClient;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
@@ -42,7 +43,7 @@ public partial class DownfallMainFile : Node
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
     }
-    
+
     private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
     {
         if (!DownfallConfig.UploadMetrics) return;
@@ -57,7 +58,7 @@ public partial class DownfallMainFile : Node
     private static async Task SendToServer(string json)
     {
         var bytes = Encoding.UTF8.GetBytes(json);
-        using var client = new System.Net.Http.HttpClient();
+        using var client = new HttpClient();
         client.Timeout = TimeSpan.FromSeconds(15);
         var content = new ByteArrayContent(bytes);
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");

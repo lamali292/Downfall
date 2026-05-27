@@ -31,13 +31,20 @@ internal static class TopBarElementRegistry
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             IEnumerable<Type> types;
-            try { types = assembly.GetTypes(); }
-            catch (ReflectionTypeLoadException ex) { types = ex.Types.Where(t => t != null)!; }
+            try
+            {
+                types = assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                types = ex.Types.Where(t => t != null)!;
+            }
 
             results.AddRange(types.Where(t =>
                 t is { IsClass: true, IsAbstract: false } &&
                 t.IsAssignableTo(typeof(ITopBarElementDescriptor))));
         }
+
         return results;
     }
 }

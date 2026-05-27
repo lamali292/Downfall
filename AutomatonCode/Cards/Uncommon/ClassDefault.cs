@@ -13,7 +13,7 @@ public class ClassDefault : AutomatonCardModel
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(AutomatonTip.Encode);
-        WithPower<ClassDefaultPower>(2, 1, false);
+        this.WithPower<ClassDefaultPower>(2, 1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

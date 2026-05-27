@@ -1,6 +1,4 @@
 using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Extensions;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Displays;

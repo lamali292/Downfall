@@ -13,7 +13,7 @@ public class DoubleLick : SlimeBossCardModel
     public DoubleLick() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<GoopPower>(4);
-        WithRepeat(2);
+        this.WithRepeat(2);
         WithKeywords(CardKeyword.Exhaust);
         WithCards(0, 1);
         WithTags(SlimeBossTag.Lick);

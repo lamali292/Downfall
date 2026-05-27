@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Relics;
 
@@ -16,8 +15,9 @@ public class SealOfApproval() : SneckoRelicModel(RelicRarity.Common)
 
     public override async Task AfterObtained()
     {
-        var cards = SneckoModel.GetRewardSneckoCards(Owner).Where(c => c is { Rarity: CardRarity.Uncommon, Type: CardType.Power }).TakeRandom(5,
-            Owner.RunState.Rng.CombatCardSelection).ToList();
+        var cards = SneckoModel.GetRewardSneckoCards(Owner)
+            .Where(c => c is { Rarity: CardRarity.Uncommon, Type: CardType.Power }).TakeRandom(5,
+                Owner.RunState.Rng.CombatCardSelection).ToList();
         var a = await CardSelectCmd.FromChooseACardScreen(new BlockingPlayerChoiceContext(), cards, Owner);
         if (a == null) return;
         var card = a.ToMutable();

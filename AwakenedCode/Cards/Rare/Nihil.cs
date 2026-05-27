@@ -16,7 +16,9 @@ public class Nihil : AwakenedCardModel, IChantable
     {
         WithPower<ManaburnPower>(13, 3);
     }
+
     public bool HasChanted { get; set; } = false;
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);

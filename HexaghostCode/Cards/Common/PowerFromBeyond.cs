@@ -19,15 +19,15 @@ public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
         WithPower<EnergyNextTurnPower>(2, 1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await AfterlifeEffect(ctx, cardPlay);
-        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
-    }
-
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await AfterlifeEffect(ctx, cardPlay);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
     }
 }

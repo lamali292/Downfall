@@ -1,12 +1,10 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
-using System.Runtime.InteropServices;
 using System.Text;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Extensions;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
@@ -28,18 +26,15 @@ namespace Automaton.AutomatonCode.Cards.Token;
 public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     CardRarity.Token, TargetType.AnyEnemy)
 {
-    
-    
-    public IEnumerable<DynamicVarSet> GetDynamicVars()
-    {
-        return SourceCards.Select(t => t.DynamicVars
-        );
-    }
-    
-    private CardType _cardType;
-    public IReadOnlyList<CardModel> SourceCards = [];
-    private TargetType _targetType;
+    public static readonly SpireField<CardModel, bool> IsInFunction = new(() => false);
+
+
+    public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
     private CardRarity _cardRarity;
+
+    private CardType _cardType;
+    private TargetType _targetType;
+    public IReadOnlyList<CardModel> SourceCards = [];
 
     public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
     //public override string CustomPortraitPath => "function_card.png".CardImagePath<Character.Automaton>();
@@ -55,21 +50,20 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override CardType Type => _cardType;
     public override TargetType TargetType => _targetType;
 
-    
-    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
+
+    public IEnumerable<DynamicVarSet> GetDynamicVars()
     {
-        foreach (var sourceCard in SourceCards)
-        {
-            IsInFunction.Set(sourceCard, false);
-        }
-        SourceCards = sourceCards;
-        foreach (var sourceCard in SourceCards)
-        {
-            IsInFunction.Set(sourceCard, true);
-        }
+        return SourceCards.Select(t => t.DynamicVars
+        );
     }
 
-    public static readonly SpireField<CardModel, bool> IsInFunction = new(()=>false);
+
+    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
+    {
+        foreach (var sourceCard in SourceCards) IsInFunction.Set(sourceCard, false);
+        SourceCards = sourceCards;
+        foreach (var sourceCard in SourceCards) IsInFunction.Set(sourceCard, true);
+    }
 
 
     public string GetDynamicTitle()
@@ -131,19 +125,17 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
                 loc.Add("energyPrefix", prefix);
                 loc.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
                 foreach (var variable3 in loc.Variables)
-                {
-                  if (variable3.Value is EnergyVar energyVar)
-                    energyVar.ColorPrefix = prefix;
-                }
+                    if (variable3.Value is EnergyVar energyVar)
+                        energyVar.ColorPrefix = prefix;
                 lines.Add(loc.GetFormattedText());
             }
+
             i++;
         }
+
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
     }
 
-
-    public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var previous = CurrentlyExecuting.Value;
@@ -156,12 +148,9 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
                 if (card is IEncodable encodable)
                     await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
                 else
-                {
                     await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
-                }
-
             }
-                
+
             if (Type == CardType.Power)
             {
                 var power = await PowerCmd.Apply<FullReleasePower>(ctx,
@@ -184,13 +173,12 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     {
         _targetType = targetType;
     }
-    
+
     public void SetCardRarity(CardRarity cardRarity)
     {
         _cardRarity = cardRarity;
     }
 }
-
 
 [HarmonyPatch(typeof(CardModel), "get_Title")]
 public static class FunctionCardTitlePatch
@@ -210,16 +198,15 @@ public static class FunctionCardTitlePatch
     }
 }
 
-
 [HarmonyPatch(typeof(CardModel), "get_CombatState")]
 public static class CardModelCombatStatePatch
 {
     private static void Postfix(CardModel __instance, ref ICombatState? __result)
     {
         if (__result != null) return;
-        if (FunctionCard.CurrentlyExecuting.Value == null) return;  
+        if (FunctionCard.CurrentlyExecuting.Value == null) return;
         if (__instance is FunctionCard) return;
-        __result = FunctionCard.CurrentlyExecuting.Value.Owner.Creature.CombatState;  
+        __result = FunctionCard.CurrentlyExecuting.Value.Owner.Creature.CombatState;
     }
 }
 
@@ -243,7 +230,6 @@ public static class NCardPortraitPatch
 
         var textures = fc.SourceCards
             .Select(c => c.Portrait)
-            
             .ToList();
 
         if (textures.Count == 0) return;
@@ -261,7 +247,6 @@ public static class NCardPortraitPatch
             var atlas = new AtlasTexture { Atlas = src, Region = new Rect2(i * sliceW, 0, sliceW, h) };
 
             foreach (var node in new[] { portraitRect, ancientPortraitRect })
-            {
                 node.AddChild(new TextureRect
                 {
                     Name = $"_composite_{i}",
@@ -275,11 +260,9 @@ public static class NCardPortraitPatch
                     StretchMode = TextureRect.StretchModeEnum.Scale,
                     MouseFilter = Control.MouseFilterEnum.Ignore
                 });
-            }
         }
     }
 }
-
 
 [HarmonyPatch(typeof(NCard), nameof(NCard.Create))]
 public static class NCardCreatePatch

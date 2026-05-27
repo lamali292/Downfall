@@ -43,10 +43,10 @@ public static class AutomatonCmd
         await CardPileCmd.Add(card, pile);
         await Cmd.Wait(0.2f);
         AutomatonDisplay.Refresh(creature);
-       
+
         if (pile.Cards.Count >= GetMax(creature))
             await CompileFunctionCard(creature, ctx);
-        
+
         await AutomatonHook.OnCardEncoded(creature.Creature.CombatState!, ctx, card);
     }
 
@@ -90,17 +90,19 @@ public static class AutomatonCmd
             card.SetCardType(CardType.Attack);
         else
             card.SetCardType(CardType.Skill);
-        
+
         if (list.Any(c => c.Rarity == CardRarity.Ancient))
             card.SetCardRarity(CardRarity.Ancient);
         else if (list.Any(c => c.Rarity == CardRarity.Rare))
             card.SetCardRarity(CardRarity.Rare);
-        else  if (list.Any(c => c.Rarity == CardRarity.Uncommon))
+        else if (list.Any(c => c.Rarity == CardRarity.Uncommon))
             card.SetCardRarity(CardRarity.Uncommon);
         else
             card.SetCardRarity(CardRarity.Common);
     }
 
     public static bool IsEncodable(CardModel card)
-        => card is IEncodable || card.Enchantment is Encoding;
+    {
+        return card is IEncodable || card.Enchantment is Encoding;
+    }
 }

@@ -14,7 +14,7 @@ public class MaximumOverdrive : GuardianCardModel
     public MaximumOverdrive() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<MaximumOverdrivePower>(1, false);
+        this.WithPower<MaximumOverdrivePower>(1, false);
         WithTip(typeof(StrengthPower));
         WithTip(GuardianTip.Stasis);
     }

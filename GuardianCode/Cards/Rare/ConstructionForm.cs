@@ -15,7 +15,7 @@ public class ConstructionForm : GuardianCardModel
         WithPower<BufferPower>(2);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithTip(typeof(StrengthPower));
-        WithPower<ConstructionFormPower>(1, false);
+        this.WithPower<ConstructionFormPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

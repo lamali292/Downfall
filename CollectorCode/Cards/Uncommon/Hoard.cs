@@ -11,12 +11,13 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class Hoard : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public Hoard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithCards(2, 1);
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

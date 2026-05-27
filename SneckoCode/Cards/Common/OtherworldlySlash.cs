@@ -26,6 +26,8 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
     private bool PlayedOffClassThisTurn => CombatManager.Instance.History.CardPlaysFinished.Any(e =>
         e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(this, e.CardPlay.Card));
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (PlayedOffClassThisTurn)
@@ -33,6 +35,4 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
         else
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-    public Gift? Gift { get; set; }
 }

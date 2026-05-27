@@ -18,7 +18,7 @@ public class Terminator : AutomatonCardModel,
     {
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);
-        WithPower<TerminatorPower>(1, false);
+        this.WithPower<TerminatorPower>(1, false);
     }
 
 
@@ -26,8 +26,7 @@ public class Terminator : AutomatonCardModel,
     {
         var a = AutomatonCmd.GetMax(Owner);
         var b = EncodePile.FunctionSequence.GetPile(Owner).Cards.Count;
-        if (a-1 != b) return;
+        if (a - 1 != b) return;
         await CommonActions.ApplySelf<TerminatorPower>(ctx, this);
     }
-    
 }

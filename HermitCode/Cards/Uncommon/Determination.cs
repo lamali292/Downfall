@@ -11,7 +11,7 @@ public sealed class Determination : HermitCardModel
     public Determination() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithPower<DeterminationPower>(1, false);
+        this.WithPower<DeterminationPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

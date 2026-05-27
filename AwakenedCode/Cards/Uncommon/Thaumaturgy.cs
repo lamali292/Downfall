@@ -14,7 +14,7 @@ public class Thaumaturgy : AwakenedCardModel
     public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(1, 1);
-        WithPower<ThaumaturgyPower>(2, false);
+        this.WithPower<ThaumaturgyPower>(2, false);
         WithTip(typeof(Ceremony));
     }
 

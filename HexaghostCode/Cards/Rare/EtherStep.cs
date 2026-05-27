@@ -20,6 +20,11 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
         WithTip(CardKeyword.Exhaust);
     }
 
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
@@ -28,10 +33,5 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
         var exhausted = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
         if (exhausted != null) await CardCmd.Exhaust(ctx, exhausted);
         await CommonActions.Draw(this, ctx);
-    }
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

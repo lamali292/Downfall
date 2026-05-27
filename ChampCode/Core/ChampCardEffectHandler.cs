@@ -14,11 +14,11 @@ public static class ChampCardEffectHandler
     {
         var owner = card.Owner;
         var stance = owner.ChampStance();
-      
+
 
         if (card.Keywords.Contains(ChampKeyword.TriggerSkillBonus))
             await stance.SkillBonus(ctx);
-        
+
         var ignoreChargeCap = ChampHook.IgnoreChargeCap(owner.Creature.CombatState!, owner);
         if (card.Type == CardType.Skill && (ignoreChargeCap || stance.Charges > 0))
         {
@@ -27,9 +27,10 @@ public static class ChampCardEffectHandler
                 stance.Charges--;
                 ChampModel.RefreshDisplay(owner);
             }
+
             await stance.SkillBonus(ctx);
         }
-        
+
         if (card.Tags.Contains(ChampTag.EnterBerserker))
             await ChampCmd.EnterBerserkerStance(ctx, owner);
         else if (card.Tags.Contains(ChampTag.EnterDefensive))

@@ -107,3 +107,4 @@ public static class NMapBgWindowChangePatch
     }
 }
 */
+

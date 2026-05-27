@@ -13,7 +13,7 @@ public class Magicianism : AwakenedCardModel
     public Magicianism() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(StaticHoverTip.Block);
-        WithPower<MagicianismPower>(2, 1, false);
+        this.WithPower<MagicianismPower>(2, 1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

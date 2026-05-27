@@ -19,14 +19,14 @@ public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
         WithPower<MetallicizePower>(2);
     }
 
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await AfterlifeEffect(ctx, cardPlay);
-    }
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
     }
 }

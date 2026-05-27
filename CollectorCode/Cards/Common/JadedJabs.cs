@@ -20,6 +20,8 @@ public class JadedJabs : CollectorCardModel, IHasPyre
         WithVar("JadedJabs", 1, 1);
     }
 
+    public CardModel? PyredCard { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -27,6 +29,4 @@ public class JadedJabs : CollectorCardModel, IHasPyre
         var jadedJabs = DynamicVars["JadedJabs"].IntValue;
         await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

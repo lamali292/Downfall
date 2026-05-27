@@ -13,7 +13,7 @@ public sealed class Quickdraw : HermitCardModel
     {
         WithDamage(9, 2);
         WithCards(2, 1);
-        WithPower<DrawFewerCardsNextTurnPower>(1, false);
+        this.WithPower<DrawFewerCardsNextTurnPower>(1, false);
     }
 
 

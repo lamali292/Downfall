@@ -14,7 +14,7 @@ public class RazorSharp : AwakenedCardModel
     public RazorSharp() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(typeof(PlumeJab));
-        WithPower<RazorSharpPower>(1, 1, false);
+        this.WithPower<RazorSharpPower>(1, 1, false);
     }
 
 

@@ -17,15 +17,15 @@ public class FlamesFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
         WithPower<SoulBurnPower>(10, 3);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await AfterlifeEffect(ctx, cardPlay);
-        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
-    }
-
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await AfterlifeEffect(ctx, cardPlay);
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

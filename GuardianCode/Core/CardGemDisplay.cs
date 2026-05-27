@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;

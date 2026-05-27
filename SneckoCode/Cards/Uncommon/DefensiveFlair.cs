@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,6 +22,8 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
         WithCalculatedBlock(8, 2, CalcBlock, ValueProp.Move, 1, 1);
     }
 
+    public Gift? Gift { get; set; }
+
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
         return card.Owner.GetHand().Count(e => SneckoCmd.IsOffclass(card, e));
@@ -32,6 +33,4 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
-
-    public Gift? Gift { get; set; }
 }

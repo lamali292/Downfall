@@ -12,7 +12,7 @@ public class BurnOut : AutomatonCardModel
 {
     public BurnOut() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<BurnOutPower>(9, 3, false);
+        this.WithPower<BurnOutPower>(9, 3, false);
         WithTip(AutomatonTip.Stash);
         WithTip(CardKeyword.Exhaust);
     }

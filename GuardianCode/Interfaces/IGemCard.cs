@@ -14,9 +14,13 @@ public interface IGemSocketCard
 
     int GemCount => Gems.Count;
     int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
-    bool CanAddGem(GemModel gem) => !IsFull;
 
     private bool IsFull => Gems.Count >= GemSlots;
+
+    bool CanAddGem(GemModel gem)
+    {
+        return !IsFull;
+    }
 
     void AddGem(GemModel gem)
     {

@@ -19,6 +19,11 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
         WithCalculatedDamage(8, 3, Calc, ValueProp.Move, 2, 1);
     }
 
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+    }
+
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         return PileType.Hand.GetPile(card.Owner).Cards
@@ -28,10 +33,5 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
-    }
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

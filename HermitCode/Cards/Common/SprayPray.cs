@@ -13,7 +13,7 @@ public sealed class SprayPray : HermitCardModel
     public SprayPray() : base(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
     {
         WithDamage(4, 1);
-        WithRepeat(3);
+        this.WithRepeat(3);
         WithTip(typeof(Doubt));
     }
 

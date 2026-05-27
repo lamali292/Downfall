@@ -13,7 +13,7 @@ public class StrikeForStrike : GuardianCardModel, IGemSocketCard
     public StrikeForStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(13, 4);
-        WithEnemyDamage(3);
+        this.WithEnemyDamage(3);
         WithTags(CardTag.Strike);
     }
 

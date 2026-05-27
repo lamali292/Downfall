@@ -13,7 +13,7 @@ public class TechnicalJig : ChampCardModel
 {
     public TechnicalJig() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<TechnicalJigPower>(3, 1, false);
+        this.WithPower<TechnicalJigPower>(3, 1, false);
         WithTip(ChampTip.Stance);
         WithTip(StaticHoverTip.Block);
     }

@@ -79,7 +79,7 @@ public abstract class HexaghostCardModel(
     TargetType targetType,
     bool showInCardLibrary = true,
     bool autoAdd = true)
-    : DownfallCardModel<Core.Hexaghost>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
+    : DownfallCardModel<Hexaghost>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 

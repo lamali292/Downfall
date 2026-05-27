@@ -11,7 +11,7 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<ArsenalPower>(2, 1, false);
+        this.WithPower<ArsenalPower>(2, 1, false);
         WithTip(typeof(StrengthPower));
     }
 

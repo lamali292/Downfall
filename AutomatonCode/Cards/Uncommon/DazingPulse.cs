@@ -13,7 +13,7 @@ public class DazingPulse : AutomatonCardModel, IEncodable
 {
     public DazingPulse() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<DazingPulsePower>(2, false);
+        this.WithPower<DazingPulsePower>(2, false);
         WithTip(typeof(Dazed));
         WithBlock(7, 2);
         WithDamage(7, 2);

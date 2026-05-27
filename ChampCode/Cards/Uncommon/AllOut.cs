@@ -12,7 +12,7 @@ public class AllOut : ChampCardModel
     public AllOut() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithRepeat(2, 1);
+        this.WithRepeat(2, 1);
         WithFinisher();
         WithTip(ChampTip.Stance);
     }

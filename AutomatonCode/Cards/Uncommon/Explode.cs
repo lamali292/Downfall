@@ -14,7 +14,7 @@ public class Explode : AutomatonCardModel, IEncodable
 {
     public Explode() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<ExplodePower>(2, false);
+        this.WithPower<ExplodePower>(2, false);
         WithTip(typeof(Burn));
         WithPower<SoulBurnPower>(15, 5);
     }

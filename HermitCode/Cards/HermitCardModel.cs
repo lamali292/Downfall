@@ -3,9 +3,7 @@ using Downfall.DownfallCode.Abstract;
 using HarmonyLib;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
-using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
@@ -25,7 +23,8 @@ public abstract class HermitCardModel
     {
         WithTips(e => e is IHasDeadOnEffect ? [HoverTipFactory.FromKeyword(HermitKeywords.DeadOn)] : []);
     }
-    protected override bool ShouldGlowGoldInternal =>  this is IHasDeadOnEffect { IsDeadOn: true };
+
+    protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect { IsDeadOn: true };
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]

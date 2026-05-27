@@ -4,5 +4,5 @@ namespace Snecko.SneckoCode.Interfaces;
 
 public interface IHasGift
 {
-    Gift? Gift { get; set;  }
+    Gift? Gift { get; set; }
 }

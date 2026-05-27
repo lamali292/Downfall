@@ -13,7 +13,7 @@ public class SigilOfVictory : ChampCardModel
     {
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithTip(ChampTip.Stance);
-        WithRepeat(3, 1);
+        this.WithRepeat(3, 1);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

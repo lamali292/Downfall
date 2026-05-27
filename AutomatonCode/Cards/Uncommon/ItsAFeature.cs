@@ -12,7 +12,7 @@ public class ItsAFeature : AutomatonCardModel
 {
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ItsAFeaturePower>(3, 2, false);
+        this.WithPower<ItsAFeaturePower>(3, 2, false);
         WithTip(typeof(VigorPower));
     }
 

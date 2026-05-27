@@ -12,13 +12,14 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class LanternFlare : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public LanternFlare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithPower<CollectorDoomPower>(12, 3);
         WithPower<ScorchedPower>(3, 1);
     }
+
+    public CardModel? PyredCard { get; set; }
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -13,7 +13,7 @@ public class TimeSifter : GuardianCardModel
     public TimeSifter() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithPower<TimeSifterPower>(1, false);
+        this.WithPower<TimeSifterPower>(1, false);
         WithTip(GuardianTip.Accelerate);
     }
 

@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +13,7 @@ public sealed class FromBeyond : HermitCardModel
 {
     public FromBeyond() : base(1, CardType.Skill, CardRarity.Rare, TargetType.RandomEnemy)
     {
-        WithHpLoss(5, 2);
+        this.WithHpLoss(5, 2);
         WithCalculatedVar("CalculatedHits", 0, CountCardsInExhaust);
         WithTip(CardKeyword.Exhaust);
     }

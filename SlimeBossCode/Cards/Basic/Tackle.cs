@@ -13,7 +13,7 @@ public class Tackle : SlimeBossCardModel
     public Tackle() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(13, 4);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
     }
 

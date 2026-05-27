@@ -19,7 +19,7 @@ public class BronzeCore : AutomatonRelicModel
         WithTip(typeof(DefendAutomaton));
         WithTip(AutomatonTip.Encode);
     }
-    
+
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<PlatinumCore>();

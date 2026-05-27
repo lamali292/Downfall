@@ -1,10 +1,7 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using Downfall.DownfallCode.Abstract;
+﻿using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
-using Snecko.SneckoCode.DynamicVars;
 
 namespace Snecko.SneckoCode.Cards;
 

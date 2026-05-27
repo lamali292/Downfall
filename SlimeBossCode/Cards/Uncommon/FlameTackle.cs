@@ -14,7 +14,7 @@ public class FlameTackle : SlimeBossCardModel
     public FlameTackle() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(18, 4);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithPower<FlameTacklePower>(5, 2);
     }

@@ -1,7 +1,5 @@
 using BaseLib.Abstracts;
-using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Nodes;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;

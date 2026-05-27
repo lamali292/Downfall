@@ -17,10 +17,10 @@ public class Roast : CollectorCardModel, IHasPyre
         WithDamage(4, 3);
     }
 
+    public CardModel? PyredCard { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

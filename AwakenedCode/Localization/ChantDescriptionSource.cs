@@ -1,5 +1,4 @@
-﻿using Awakened.AwakenedCode.Cards;
-using Awakened.AwakenedCode.Core;
+﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using Downfall.DownfallCode.Localization;

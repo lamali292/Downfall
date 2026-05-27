@@ -15,7 +15,7 @@ public class MaxOutput : AutomatonCardModel
     {
         WithCards(3, 1);
         WithTip(typeof(Error));
-        WithPower<MaxOutputPower>(1, false);
+        this.WithPower<MaxOutputPower>(1, false);
         WithTip(AutomatonTip.Stash);
     }
 

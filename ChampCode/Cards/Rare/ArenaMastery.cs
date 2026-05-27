@@ -14,8 +14,8 @@ public class ArenaMastery : ChampCardModel
 {
     public ArenaMastery() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<ArenaMasteryBerserkerPower>(1, false);
-        WithPower<ArenaMasteryDefensivePower>(3, 1, false);
+        this.WithPower<ArenaMasteryBerserkerPower>(1, false);
+        this.WithPower<ArenaMasteryDefensivePower>(3, 1, false);
         WithBerserkerTip();
         WithDefensiveTip();
         WithTip(ChampTip.Finisher);

@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,7 +14,7 @@ public class TimeBomb : GuardianCardModel
     {
         WithDamage(14, 4);
         WithKeyword(CardKeyword.Exhaust);
-        WithAccelerate(1);
+        this.WithAccelerate(1);
         WithTip(GuardianTip.Stasis);
     }
 

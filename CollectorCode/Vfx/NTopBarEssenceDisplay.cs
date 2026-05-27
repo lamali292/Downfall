@@ -26,14 +26,24 @@ public partial class NTopBarEssenceDisplay : NCustomTopBarDisplayElement
         if (_instance == this) _instance = null;
     }
 
-    protected override int? GetCount() => Player?.GetEssence();
+    protected override int? GetCount()
+    {
+        return Player?.GetEssence();
+    }
 
-    public static void RefreshDisplay() => _instance?.RefreshCount();
+    public static void RefreshDisplay()
+    {
+        _instance?.RefreshCount();
+    }
 
     public class Descriptor : ITopBarElementDescriptor
     {
         public string ScenePath => "res://Collector/scenes/ui/top_bar_essence.tscn";
         public float Width => 80f;
-        public bool CanUse(Player player) => player.Character == ModelDb.Character<Core.Collector>();
+
+        public bool CanUse(Player player)
+        {
+            return player.Character == ModelDb.Character<Core.Collector>();
+        }
     }
 }

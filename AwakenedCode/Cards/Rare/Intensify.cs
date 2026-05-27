@@ -11,8 +11,8 @@ public class Intensify : AwakenedCardModel
 {
     public Intensify() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<IntensifyPower>(1, false);
-        WithPower<BurnoutPower>(1, false);
+        this.WithPower<IntensifyPower>(1, false);
+        this.WithPower<BurnoutPower>(1, false);
         WithConjure();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }

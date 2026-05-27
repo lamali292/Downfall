@@ -13,7 +13,7 @@ public class BronzeBrambles : GuardianCardModel
     public BronzeBrambles() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<BronzeBramblesPower>(1, false);
+        this.WithPower<BronzeBramblesPower>(1, false);
         WithTip(typeof(ThornsPower));
     }
 

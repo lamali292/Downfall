@@ -1,6 +1,5 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +13,6 @@ namespace Downfall.DownfallCode.Commands;
 
 public static class MyCommonActions
 {
-
     public static Task ApplySelf<T>(PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
@@ -28,30 +26,38 @@ public static class MyCommonActions
         var dynamicVars = model.GetDynamicVars();
         var creature = model.GetCreature();
 
-        if (dynamicVars.TryGetValue("CalculatedBlock", out var calculatedVar) && calculatedVar is CalculatedBlockVar calculatedBlock)
-            return CreatureCmd.GainBlock(creature, calculatedBlock.Calculate(play?.Target), calculatedBlock.Props, play);
-    
+        if (dynamicVars.TryGetValue("CalculatedBlock", out var calculatedVar) &&
+            calculatedVar is CalculatedBlockVar calculatedBlock)
+            return CreatureCmd.GainBlock(creature, calculatedBlock.Calculate(play?.Target), calculatedBlock.Props,
+                play);
+
         if (dynamicVars.TryGetValue("Block", out var blockVar) && blockVar is BlockVar block)
             return CreatureCmd.GainBlock(creature, block, play);
 
         throw new InvalidOperationException(
             $"{model.GetType().Name} does not have a Block or CalculatedBlock var");
     }
-    
-  
+
+
     public static Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, AbstractModel model)
-        => CreatureCmd.Damage(ctx, model.GetCreature(), model.GetDynamicVars().SelfDamage(), model.GetCreature());
+    {
+        return CreatureCmd.Damage(ctx, model.GetCreature(), model.GetDynamicVars().SelfDamage(), model.GetCreature());
+    }
 
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)
-        => await CreatureCmd.Damage(ctx, target, model.GetDynamicVars().HpLoss.BaseValue,
+    {
+        await CreatureCmd.Damage(ctx, target, model.GetDynamicVars().HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel);
+    }
 
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
-        => await CreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
+    {
+        await CreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel);
+    }
 
-     public static async Task<IReadOnlyList<T>> Apply<T>(
+    public static async Task<IReadOnlyList<T>> Apply<T>(
         PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
         where T : PowerModel
     {
@@ -65,13 +71,17 @@ public static class MyCommonActions
             var result = await PowerCmd.Apply<T>(ctx, targets[0], amount, creature, card);
             return result is not null ? [result] : [];
         }
+
         return await PowerCmd.Apply<T>(ctx, targets, amount, creature, card);
     }
 
     public static async Task LoseHp(PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
-        => await LoseHpToTarget(ctx, model, model.MyGetTargets(target));
+    {
+        await LoseHpToTarget(ctx, model, model.MyGetTargets(target));
+    }
 
-    public static AttackCommand Attack(AbstractModel model, Creature? target = null, TargetType? targetTypeOverride = null,
+    public static AttackCommand Attack(AbstractModel model, Creature? target = null,
+        TargetType? targetTypeOverride = null,
         int hitCount = 1, string? vfx = null, string? sfx = null, string? tmpSfx = null)
     {
         var dynamicVars = model.GetDynamicVars();
@@ -114,10 +124,9 @@ public static class MyCommonActions
 
         cmd.Attacker = model.GetCreature();
         cmd.ModelSource = model;
-        
+
         cmd._attackerAnimName = "Attack";
         cmd._sourceType = AttackCommand.SourceType.Card;
         return cmd;
     }
-    
 }

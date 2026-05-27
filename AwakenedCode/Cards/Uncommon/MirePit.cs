@@ -14,7 +14,7 @@ public class MirePit : AwakenedCardModel
     public MirePit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<TemporaryStrengthDownPower>(6, 2, false);
+        this.WithPower<TemporaryStrengthDownPower>(6, 2, false);
         WithTip(typeof(StrengthPower));
         WithDrained(1);
     }

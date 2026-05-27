@@ -13,7 +13,7 @@ public sealed class Snipe : HermitCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
-        WithPower<SnipePower>(1, false);
+        this.WithPower<SnipePower>(1, false);
     }
 
 

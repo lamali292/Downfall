@@ -34,10 +34,10 @@ public partial class ChampMainFile : Node
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
-        
+
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        
+
         Harmony harmony = new(ModId);
         harmony.TryPatchAll(assembly);
     }

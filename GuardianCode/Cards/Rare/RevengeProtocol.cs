@@ -13,8 +13,8 @@ public class RevengeProtocol : GuardianCardModel
 {
     public RevengeProtocol() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<BracingPower>(4, 2, false);
-        WithPower<RevengeProtocolPower>(2, 1, false);
+        this.WithPower<BracingPower>(4, 2, false);
+        this.WithPower<RevengeProtocolPower>(2, 1, false);
         WithTip(typeof(StrengthPower));
         WithTip(GuardianTip.DefensiveMode);
         WithTip(GuardianTip.Brace);

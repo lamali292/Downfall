@@ -146,5 +146,7 @@
             </Members>
         </Publicize>
     </ItemGroup>
-    
+    <ItemGroup>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
 </Project>

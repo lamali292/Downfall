@@ -16,7 +16,7 @@ public class PlumeJab : AwakenedCardModel
     {
         WithDamage(2, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
-        WithRepeat(2);
+        this.WithRepeat(2);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

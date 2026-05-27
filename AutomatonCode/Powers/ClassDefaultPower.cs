@@ -12,14 +12,13 @@ public class ClassDefaultPower : AutomatonPowerModel
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {
-        if (dealer == Owner && cardSource != null && FunctionCard.IsInFunction.Get(cardSource))
-        {
-            return Amount;
-        }
-        return  0;
+        if (dealer == Owner && cardSource != null && FunctionCard.IsInFunction.Get(cardSource)) return Amount;
+        return 0;
     }
 
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource,
         CardPlay? cardPlay)
-        => cardSource is FunctionCard && cardSource.Owner.Creature == Owner ? Amount : 0;
+    {
+        return cardSource is FunctionCard && cardSource.Owner.Creature == Owner ? Amount : 0;
+    }
 }

@@ -10,5 +10,6 @@ public interface IHasDeadOnEffect
 {
     bool IsDeadOn => HermitCmd.IsDeadOnInCurrentHandState((CardModel)this) ||
                      (PatchDeadOnCapture.LastPlayed == (CardModel)this && PatchDeadOnCapture.LastWasDeadOn);
+
     Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }

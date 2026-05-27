@@ -13,7 +13,7 @@ public sealed class TakeAim : HermitCardModel
     {
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
         WithTip(HermitKeywords.Concentrate);
-        WithPower<TakeAimPower>(1, false);
+        this.WithPower<TakeAimPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

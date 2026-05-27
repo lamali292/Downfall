@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +11,7 @@ public sealed class Maintenance : HermitCardModel
 {
     public Maintenance() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<MaintenanceStrikePower>(3, 1, false);
+        this.WithPower<MaintenanceStrikePower>(3, 1, false);
         WithPower<DexterityPower>(1, 1);
     }
 

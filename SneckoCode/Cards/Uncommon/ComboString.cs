@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -24,6 +23,8 @@ public class ComboString : SneckoCardModel, IHasGift
         WithCalculatedVar("Repeat", 0, CalcDamage);
     }
 
+    public Gift? Gift { get; set; }
+
     private static decimal CalcDamage(CardModel card, Creature? _)
     {
         return CombatManager.Instance.History
@@ -37,6 +38,4 @@ public class ComboString : SneckoCardModel, IHasGift
         var repeat = (int)DynamicVars["Repeat"].Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
-
-    public Gift? Gift { get; set; }
 }

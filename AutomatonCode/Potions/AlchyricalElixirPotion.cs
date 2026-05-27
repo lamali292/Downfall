@@ -18,5 +18,7 @@ public class AlchyricalElixirPotion : AutomatonPotionModel
     }
 
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
-        => MyCommonActions.ApplySelf<AlchyricalElixirPower>(ctx, this);
+    {
+        return MyCommonActions.ApplySelf<AlchyricalElixirPower>(ctx, this);
+    }
 }

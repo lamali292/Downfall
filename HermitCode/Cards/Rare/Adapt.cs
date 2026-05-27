@@ -10,7 +10,7 @@ public sealed class Adapt : HermitCardModel
 {
     public Adapt() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<AdaptPower>(1, false);
+        this.WithPower<AdaptPower>(1, false);
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Exhaust);
     }

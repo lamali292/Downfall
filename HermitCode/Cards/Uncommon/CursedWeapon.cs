@@ -1,8 +1,5 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using Hermit.HermitCode.Utils;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +20,7 @@ public sealed class CursedWeapon : HermitCardModel
         WithCostUpgradeBy(-1);
         WithDamage(CurrentDamage);
         WithKeyword(CardKeyword.Exhaust);
-        WithHpLoss(2);
+        this.WithHpLoss(2);
         WithVar(IncreaseKey, 1);
     }
 

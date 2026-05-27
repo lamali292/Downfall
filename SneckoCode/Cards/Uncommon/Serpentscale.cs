@@ -18,15 +18,15 @@ public class Serpentscale : SneckoCardModel, IHasOverflowEffect
         WithPower<PlatedArmorPower>(3, 1);
     }
 
+    public Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (SneckoCmd.OverflowActive(Owner)) return;
         await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this, 1);
-    }
-
-    public Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
     }
 }

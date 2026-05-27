@@ -14,7 +14,7 @@ public class Parry : ChampCardModel
     {
         WithBlock(8, 4);
         WithPower<CounterPower>(4, 2);
-        WithPower<ParryingPower>(1, false);
+        this.WithPower<ParryingPower>(1, false);
         WithTip(typeof(RiposteStrike));
     }
 

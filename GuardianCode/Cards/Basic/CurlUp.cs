@@ -1,9 +1,9 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +16,7 @@ public class CurlUp : GuardianCardModel
 {
     public CurlUp() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBrace(10, 2);
+        this.WithBrace(10, 2);
         WithTip(GuardianTip.Stasis);
     }
 

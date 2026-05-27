@@ -13,7 +13,7 @@ public class Incineration : HexaghostCardModel
     {
         WithDamage(4);
         WithPower<SoulBurnPower>(4);
-        WithRepeat(3, 1);
+        this.WithRepeat(3, 1);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -12,13 +12,14 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class SomberShield : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public SomberShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithBlock(6, 3);
         WithPower<CopyNextTurnPower>(1);
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

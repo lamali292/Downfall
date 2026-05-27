@@ -14,7 +14,9 @@ public class RavenStrike : AwakenedCardModel, IChantable
     {
         WithDamage(15, 5);
     }
+
     public bool HasChanted { get; set; } = false;
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.AutoPlayFromDrawPile(ctx, Owner, 1);

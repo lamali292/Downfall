@@ -26,7 +26,7 @@ public class BottledCode : AutomatonRelicModel
     public override async Task AfterObtained()
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Encoding>(),  1, e => e is
+        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Encoding>(), 1, e => e is
             {
                 Type: CardType.Attack or CardType.Skill
             } && !e.Keywords.Contains(CardKeyword.Exhaust), prefs))

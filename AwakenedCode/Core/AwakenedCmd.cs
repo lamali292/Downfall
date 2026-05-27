@@ -37,10 +37,9 @@ public static class AwakenedCmd
         if (lastCardEntry == null) return false;
         return lastCardEntry.CardPlay.Card.Type == CardType.Power;
     }
-    
+
     public static bool WasLastCardPlayedPower(CardPlay cardPlay)
     {
-   
         if (!CombatManager.Instance.IsInProgress) return false;
         var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
             .LastOrDefault(e =>
@@ -50,7 +49,6 @@ public static class AwakenedCmd
         if (lastCardEntry == null) return false;
 
         return lastCardEntry.CardPlay.Card.Type == CardType.Power;
-        
     }
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)

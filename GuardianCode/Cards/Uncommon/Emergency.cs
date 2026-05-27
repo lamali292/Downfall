@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,7 +12,7 @@ public class Emergency : GuardianCardModel
 {
     public Emergency() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithAccelerate(1, 1);
+        this.WithAccelerate(1, 1);
         WithTip(GuardianTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }

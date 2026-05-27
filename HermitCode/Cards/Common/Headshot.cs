@@ -17,6 +17,11 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect
         WithDamage(7, 2);
     }
 
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
+
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
@@ -36,7 +41,4 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .Execute(ctx);
     }
-
-    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-     => Task.CompletedTask;
 }

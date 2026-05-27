@@ -14,7 +14,7 @@ public class Spellshield : AwakenedCardModel
     {
         WithTip(CardKeyword.Retain);
         WithTip(StaticHoverTip.Block);
-        WithPower<SpellshieldPower>(2, 1, false);
+        this.WithPower<SpellshieldPower>(2, 1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

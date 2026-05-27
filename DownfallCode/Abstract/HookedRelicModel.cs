@@ -16,10 +16,8 @@ public abstract class HookedRelicModel : CustomRelicModel
     private Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
         if (LocalContext.NetId == null || Owner.Creature.CombatState == null)
-        {
             return action(new ThrowingPlayerChoiceContext());
-        }
-           
+
         if (Owner.Creature.IsDead) return Task.CompletedTask;
         var ctx = new HookPlayerChoiceContext(
             this,
@@ -28,7 +26,7 @@ public abstract class HookedRelicModel : CustomRelicModel
             GameActionType.Combat);
         return ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
     }
-    
+
 
     public sealed override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {

@@ -16,14 +16,15 @@ public class WhisperFromBeyondPower : HexaghostPowerModel
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(SoulBurnPower));
     }
-    
+
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner) return;
         await PowerCmd.Apply<SoulBurnPower>(ctx, Owner, Amount, card.Owner.Creature, null);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
         await PowerCmd.Remove(this);

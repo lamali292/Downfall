@@ -22,12 +22,12 @@ public class MakeshiftBlade : SneckoCardModel, IHasGift
         WithVar("Debuffs", 3);
     }
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (cardPlay.Target?.Powers.Count(e => e is { Type: PowerType.Debuff, Amount: > 0 }) >=
             DynamicVars["Debuffs"].IntValue) await CommonActions.Draw(this, ctx);
     }
-
-    public Gift? Gift { get; set; }
 }

@@ -23,7 +23,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     }
 
     public bool HasChanted { get; set; } = false;
-    
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;

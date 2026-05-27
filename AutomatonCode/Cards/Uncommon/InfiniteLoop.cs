@@ -14,7 +14,7 @@ public class InfiniteLoop : AutomatonCardModel,
     public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6);
-        WithPower<InfiniteLoopPower>(2, 2, false);
+        this.WithPower<InfiniteLoopPower>(2, 2, false);
     }
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

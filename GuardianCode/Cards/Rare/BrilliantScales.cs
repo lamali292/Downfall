@@ -12,7 +12,7 @@ public class BrilliantScales : GuardianCardModel, IGemSocketCard
 {
     public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<BrilliantScalesPower>(1, false);
+        this.WithPower<BrilliantScalesPower>(1, false);
     }
 
 

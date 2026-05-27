@@ -11,7 +11,7 @@ public class Murder : AwakenedCardModel
     public Murder() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
     {
         WithDamage(4);
-        WithRepeat(4);
+        this.WithRepeat(4);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

@@ -16,7 +16,7 @@ public class FrostPrimer : AutomatonRelicModel, IModifyCompiledFunction
     {
         WithTip(typeof(Steady));
     }
-    
+
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
     {
         if (player != Owner) return false;
@@ -25,5 +25,7 @@ public class FrostPrimer : AutomatonRelicModel, IModifyCompiledFunction
     }
 
     public Task AfterModifyCompiledFunction(FunctionCard result, Player player)
-     => Task.CompletedTask;
+    {
+        return Task.CompletedTask;
+    }
 }

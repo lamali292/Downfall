@@ -13,7 +13,6 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class FleetingEmbers : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public FleetingEmbers() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
@@ -21,6 +20,8 @@ public class FleetingEmbers : CollectorCardModel, IHasPyre
         WithCards(2);
         WithTip(typeof(Ember));
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

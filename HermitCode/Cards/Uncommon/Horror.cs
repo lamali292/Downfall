@@ -11,7 +11,7 @@ public sealed class Horror : HermitCardModel
     public Horror() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithPower<BruisePower>(3, 2);
-        WithPower<HorrorPower>(1, false);
+        this.WithPower<HorrorPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

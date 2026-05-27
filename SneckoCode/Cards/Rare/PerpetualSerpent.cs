@@ -18,13 +18,13 @@ public class PerpetualSerpent : SneckoCardModel, IHasOverflowEffect
         this.WithOverflow();
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

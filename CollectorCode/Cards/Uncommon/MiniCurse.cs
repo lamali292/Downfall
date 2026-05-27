@@ -12,7 +12,6 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class MiniCurse : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public MiniCurse() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
@@ -21,6 +20,7 @@ public class MiniCurse : CollectorCardModel, IHasPyre
     }
 
     public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -14,7 +14,7 @@ public class Spike : AutomatonCardModel, IEncodable
     public Spike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(4, 1);
-        WithPower<SpikePower>(3, 2, false);
+        this.WithPower<SpikePower>(3, 2, false);
         WithTip(typeof(ThornsPower));
     }
 

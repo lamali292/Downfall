@@ -14,7 +14,7 @@ public class EclipseEmbrace : AwakenedCardModel
     {
         WithTip(CardKeyword.Exhaust);
         WithTip(typeof(Void));
-        WithPower<EclipseEmbracePower>(1, false);
+        this.WithPower<EclipseEmbracePower>(1, false);
         WithEnergyTip();
         WithCostUpgradeBy(-1);
     }

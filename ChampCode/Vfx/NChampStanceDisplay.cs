@@ -107,7 +107,7 @@ public partial class NChampStanceDisplay : Control
             _wrappers[i].SetTipProvider(() => stance.HoverTip);
         }
     }
-    
+
     private partial class StanceIconControl : NClickableControl
     {
         private IHoverTip? _tip;

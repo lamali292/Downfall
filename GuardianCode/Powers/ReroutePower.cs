@@ -32,7 +32,8 @@ public class ReroutePower : GuardianPowerModel
         return (pile.Type, position);
     }
 
-    public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
+    public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
+        CardPilePosition position)
     {
         await PowerCmd.Decrement(this);
     }

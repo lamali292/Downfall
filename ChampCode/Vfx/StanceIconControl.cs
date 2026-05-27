@@ -9,7 +9,10 @@ public partial class StanceIconControl : NClickableControl
 {
     private IHoverTip? _tip;
 
-    public void SetTip(IHoverTip tip) => _tip = tip;
+    public void SetTip(IHoverTip tip)
+    {
+        _tip = tip;
+    }
 
     public override void _Ready()
     {

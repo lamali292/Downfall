@@ -24,6 +24,8 @@ public class FinalStrike : SneckoCardModel, IHasGift
         WithCalculatedVar("UniqueStrikesPlayed", 0, UniqueStrikesPlayed);
     }
 
+    public Gift? Gift { get; set; }
+
     private static decimal UniqueStrikesPlayed(CardModel card, Creature? creature)
     {
         return CombatManager.Instance.History.CardPlaysFinished
@@ -38,6 +40,4 @@ public class FinalStrike : SneckoCardModel, IHasGift
         var repeat = (int)UniqueStrikesPlayed(this, null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
-
-    public Gift? Gift { get; set; }
 }

@@ -98,7 +98,6 @@ public static class NodePoolFreePatch
     }
 }
 
-
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
 {
@@ -146,4 +145,3 @@ public static class NCardPortraitPatch
         }
     }
 }
-

@@ -14,7 +14,7 @@ public class Devastate : ChampCardModel
     public Devastate() : base(5, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithRepeat(3);
+        this.WithRepeat(3);
         WithEnergyTip();
         WithTip(ChampTip.Finisher);
     }

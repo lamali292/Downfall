@@ -1,5 +1,4 @@
 ﻿using BaseLib.Patches.Content;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Champ.ChampCode.CustomEnums;

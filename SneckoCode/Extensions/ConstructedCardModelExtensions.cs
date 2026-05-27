@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.DynamicVars;

@@ -13,7 +13,7 @@ public class ChosenVerse : AwakenedCardModel
 {
     public ChosenVerse() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ChosenVersePower>(4, 2, false);
+        this.WithPower<ChosenVersePower>(4, 2, false);
         WithTip(StaticHoverTip.Block);
     }
 

@@ -13,7 +13,9 @@ public class Recitation : AwakenedCardModel, IChantable
     {
         WithDamage(6, 2);
     }
+
     public bool HasChanted { get; set; } = false;
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

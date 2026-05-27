@@ -2,7 +2,6 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
-using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Localization;
 using MegaCrit.Sts2.Core.Localization;

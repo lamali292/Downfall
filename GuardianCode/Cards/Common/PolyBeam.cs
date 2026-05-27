@@ -11,7 +11,7 @@ public class PolyBeam : GuardianCardModel
     public PolyBeam() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        WithRepeat(4, 1);
+        this.WithRepeat(4, 1);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -12,7 +12,7 @@ public class RepulsorGuardian : GuardianCardModel
     public RepulsorGuardian() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
-        WithPower<ExhaustStatusesPower>(1, false);
+        this.WithPower<ExhaustStatusesPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

@@ -14,7 +14,7 @@ public class GemFinder : GuardianCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Ethereal);
-        WithPower<GemFinderPower>(1, false);
+        this.WithPower<GemFinderPower>(1, false);
         WithTip(GuardianKeyword.Gem);
     }
 

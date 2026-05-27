@@ -14,7 +14,7 @@ public class InfiniteBeams : AutomatonCardModel
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(typeof(MinorBeam));
-        WithPower<InfiniteBeamsPower>(1, false);
+        this.WithPower<InfiniteBeamsPower>(1, false);
     }
 
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

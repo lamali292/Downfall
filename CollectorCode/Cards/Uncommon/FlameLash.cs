@@ -11,12 +11,13 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class FlameLash : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithDamage(8, 4);
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

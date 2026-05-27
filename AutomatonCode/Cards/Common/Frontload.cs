@@ -15,7 +15,7 @@ public class Frontload : AutomatonCardModel, IEncodable
     {
         WithBlock(8, 3);
         WithTip(CardKeyword.Retain);
-        WithPower<FrontloadPower>(1, false);
+        this.WithPower<FrontloadPower>(1, false);
     }
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

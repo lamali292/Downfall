@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -28,11 +27,11 @@ public class ToothAndClaw : SneckoCardModel, IHasGift
         .Distinct()
         .Count();
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, UniqueColorsInHand, upgraded: IsUpgraded);
     }
-
-    public Gift? Gift { get; set; }
 }

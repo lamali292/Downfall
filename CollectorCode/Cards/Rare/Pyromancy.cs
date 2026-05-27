@@ -12,13 +12,14 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Pyromancy : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public Pyromancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<PyromancyPower>(1);
         WithKeyword(CollectorKeyword.Pyre);
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

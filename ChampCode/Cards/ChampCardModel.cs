@@ -2,7 +2,6 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Enchantments;
-using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
@@ -29,25 +28,12 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
             WithTip(ChampTip.Combo);
             WithBerserkerTip();
         }
+
         if (this is IDefensiveComboCard)
         {
             WithTip(ChampTip.Combo);
             WithDefensiveTip();
         }
-    }
-    
-    protected void WithDefensiveTip()
-    {
-        WithTips(e => [ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTip]);
-    }
-
-    protected void WithBerserkerTip()
-    {
-        WithTips(e => [ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTip]);    }
-
-    protected void WithUltimateTip()
-    {
-        WithTips(e => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
     }
 
 
@@ -60,10 +46,25 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
     protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
                                           Enchantment is Signature;
-    
+
     public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay);
+    }
+
+    protected void WithDefensiveTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTip]);
+    }
+
+    protected void WithBerserkerTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTip]);
+    }
+
+    protected void WithUltimateTip()
+    {
+        WithTips(e => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
     }
 
     protected ConstructedCardModel WithFinisher()
@@ -73,7 +74,7 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         return this;
     }
 
-    
+
     protected ConstructedCardModel WithEnterBerserker()
     {
         WithTags(ChampTag.EnterBerserker);
@@ -87,12 +88,11 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         WithDefensiveTip();
         return this;
     }
-    
+
     protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
     {
         WithPower<GloryPower>(baseVal, upgrade);
         WithUltimateTip();
         return this;
     }
-    
 }

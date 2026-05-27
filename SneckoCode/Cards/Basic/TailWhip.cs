@@ -19,14 +19,14 @@ public class TailWhip : SneckoCardModel, IHasOverflowEffect
         WithPower<VulnerablePower>(1, 1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

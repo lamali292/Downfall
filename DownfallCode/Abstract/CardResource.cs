@@ -72,7 +72,7 @@ public abstract class CardResource : CustomSingletonModel
         return null;
     }
 
-    
+
     public override Task BeforeCombatStart()
     {
         if (!ResetOnCombatStart) return Task.CompletedTask;

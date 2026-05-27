@@ -16,7 +16,9 @@ public class Siphon : AwakenedCardModel, IChantable
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
     }
+
     public bool HasChanted { get; set; } = false;
+
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

@@ -14,7 +14,7 @@ public class ViciousTackle : SlimeBossCardModel, IDoubleGoopBonus
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(17, 7);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -12,7 +12,7 @@ public class PackPotions(string scriptDir, bool force)
     private const int AtlasSize = 64;
     private const float ContentScale = 0.9f;
     private const string CustomSuffix = "_potion";
-    
+
     private const int OutlineRadiusAtlas = 3;
     private const float OutlineSigma = 0.1f;
 
@@ -23,7 +23,7 @@ public class PackPotions(string scriptDir, bool force)
         return DiscoverFromSubdirs(InputSubdirs);
     }
 
-   protected override JsonObject ProcessCharacter(string charId, string charProj, JsonObject charCache)
+    protected override JsonObject ProcessCharacter(string charId, string charProj, JsonObject charCache)
     {
         var outAtlases = Path.Join(Parent, charProj, "images", "atlases");
         var outTres = Path.Join(outAtlases, "potion_atlas.sprites");
@@ -71,7 +71,7 @@ public class PackPotions(string scriptDir, bool force)
 
             var small = ScaleCentered(raw, AtlasSize);
 
-            var outlineFull = Outline.WhiteOutlineImage(small, OutlineRadiusAtlas, OutlineSigma);
+            var outlineFull = Outline.WhiteOutlineImage(small, OutlineRadiusAtlas);
             var outline = outlineFull.Clone(ctx => ctx.Resize(AtlasSize, AtlasSize, KnownResamplers.Lanczos3));
             outlineFull.Dispose();
 
@@ -121,7 +121,7 @@ public class PackPotions(string scriptDir, bool force)
 
         return charCache;
     }
-   
+
     private static Image<Rgba32> ScaleCentered(Image<Rgba32> src, int full)
     {
         var inner = Math.Max(1, (int)MathF.Round(full * ContentScale));

@@ -14,8 +14,6 @@ namespace Collector.CollectorCode.Core;
 
 public static class CollectiblesModel
 {
-    
-    
     public static SavedSpireField<Player, List<SerializableCard>> CollectorDeck = new(() => [], "CollectorDeck")
     {
         Serializer = (list, writer) =>
@@ -34,10 +32,11 @@ public static class CollectiblesModel
                 card.Deserialize(reader);
                 list.Add(card);
             }
+
             return list;
         }
     };
-    
+
     public static List<CardModel> GetCollectibles(Player player)
     {
         return CollectorDeck.Get(player)?.Select(CardModel.FromSerializable).ToList() ?? [];
@@ -65,7 +64,7 @@ public static class CollectiblesModel
 
     internal static void AddCollectible(Player player, CardModel card)
     {
-        CollectorDeck.Set(player, [..CollectorDeck.Get(player)??[], card.ToSerializable() ]);
+        CollectorDeck.Set(player, [..CollectorDeck.Get(player) ?? [], card.ToSerializable()]);
         NTopBarCollectorButton.RefreshButton();
     }
 

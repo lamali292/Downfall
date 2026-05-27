@@ -12,7 +12,7 @@ public class EnragedBash : ChampCardModel, IBerserkerComboCard
     public EnragedBash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 3);
-        WithRepeat(1);
+        this.WithRepeat(1);
     }
 
     public Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

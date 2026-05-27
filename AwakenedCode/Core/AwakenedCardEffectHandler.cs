@@ -12,5 +12,4 @@ public static class AwakenedCardEffectHandler
         if (card is IChantable chantable && (AwakenedCmd.WasLastCardPlayedPower(cardPlay) || chantable.HasChanted))
             await AwakenedCmd.Chant(ctx, card, cardPlay);
     }
-
 }

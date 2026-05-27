@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +20,8 @@ public class WideSting : SneckoCardModel, IHasGift
         WithDamage(7, 3);
     }
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
@@ -28,6 +29,4 @@ public class WideSting : SneckoCardModel, IHasGift
                      .Where(e => e.IsUpgradable && SneckoCmd.IsOffclass(this, e)))
             CardCmd.Upgrade(card);
     }
-
-    public Gift? Gift { get; set; }
 }

@@ -12,7 +12,6 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class DragonsTrove : CollectorCardModel, IHasPyre
 {
-    public CardModel? PyredCard { get; set; }
     public DragonsTrove() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
@@ -20,6 +19,8 @@ public class DragonsTrove : CollectorCardModel, IHasPyre
         WithVar("Reserve", 1, 1);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

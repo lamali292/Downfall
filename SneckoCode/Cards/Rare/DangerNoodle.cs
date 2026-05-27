@@ -20,11 +20,11 @@ public class DangerNoodle : SneckoCardModel, IHasGift
         this.WithMuddle(1);
     }
 
+    public Gift? Gift { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await SneckoCmd.MuddleHandCards(ctx, this);
     }
-
-    public Gift? Gift { get; set; }
 }

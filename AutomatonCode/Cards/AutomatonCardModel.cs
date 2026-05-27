@@ -1,18 +1,14 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.DynamicVars;
-using Automaton.AutomatonCode.Enchantments;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 
 namespace Automaton.AutomatonCode.Cards;
 
-public abstract class 
+public abstract class
     AutomatonCardModel : DownfallCardModel<Core.Automaton>
 {
     protected AutomatonCardModel(
@@ -27,7 +23,7 @@ public abstract class
         if (this is IEncodable)
             WithTip(AutomatonTip.Encode);
     }
-    
+
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
