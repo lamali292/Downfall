@@ -10,7 +10,7 @@ public interface IGemSocketCard
     virtual int GemReplayCount => 1;
 
     IReadOnlyList<GemModel> Gems =>
-        CardModifier.Modifiers(this as CardModel).OfType<GemModel>().ToList();
+        this is CardModel card ? CardModifier.Modifiers(card).OfType<GemModel>().ToList() : throw new InvalidOperationException();
 
     int GemCount => Gems.Count;
     int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
@@ -24,9 +24,9 @@ public interface IGemSocketCard
 
     void AddGem(GemModel gem)
     {
-        if (IsFull) return;
+        if (IsFull || this is not CardModel card) return;
         var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
-        CardModifier.AddModifier(this as CardModel, mutableGem);
+        CardModifier.AddModifier(card, mutableGem);
     }
 
     void AddGems(IEnumerable<GemModel> gems)
