@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
@@ -16,7 +17,7 @@ public class MirePit : AwakenedCardModel
         WithKeywords(CardKeyword.Exhaust);
         this.WithPower<TemporaryStrengthDownPower>(6, 2, false);
         WithTip(typeof(StrengthPower));
-        WithDrained(1);
+        this.WithDrained(1);
     }
 
 

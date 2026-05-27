@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,7 +15,7 @@ public class Altar : AwakenedCardModel
     {
         WithBlock(5, 3);
         WithTip(CardKeyword.Exhaust);
-        WithConjure();
+        this.WithConjure();
     }
 
 

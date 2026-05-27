@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -11,7 +12,7 @@ public class RopeADope : ChampCardModel
 {
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithFinisher();
+        this.WithFinisher();
         WithBlock(8, 2);
         WithEnergy(1, 1);
         this.WithPower<DrawCardsNextTurnPower>(2, false);

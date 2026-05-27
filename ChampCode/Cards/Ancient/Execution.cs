@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,7 +13,7 @@ public class Execution : ChampCardModel
     public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithFinisher();
+        this.WithFinisher();
         WithTip(ChampTip.Stance);
     }
 

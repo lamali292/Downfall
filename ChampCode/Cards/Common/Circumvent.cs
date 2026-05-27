@@ -15,7 +15,7 @@ public class Circumvent : ChampCardModel
     {
         WithBlock(6, 3);
         WithCards(2);
-        WithDefensiveTip();
+        this.WithDefensiveTip();
     }
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();

@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,7 +11,7 @@ public class MysticOrder : AwakenedCardModel
 {
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithConjure();
+        this.WithConjure();
         WithCards(2, 1);
     }
 

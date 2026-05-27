@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +14,7 @@ public class IgnorePain : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
-        WithFinisher();
+        this.WithFinisher();
         this.WithPower<IgnorePainPower>(1, false);
     }
 

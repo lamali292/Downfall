@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,7 +12,7 @@ public class MomentOfTruth : ChampCardModel
     public MomentOfTruth() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(1, 1);
-        WithFinisher();
+        this.WithFinisher();
         WithKeywords(CardKeyword.Retain);
     }
 

@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Displays;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +15,7 @@ public class Inscribe : AwakenedCardModel
 {
     public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithConjure(e => e.IsUpgraded);
+        this.WithConjure(e => e.IsUpgraded);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

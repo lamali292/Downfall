@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,7 +16,7 @@ public class Hymn : AwakenedCardModel
     {
         WithBlock(3, 3);
         WithTip(typeof(Ceremony));
-        WithDrained(1);
+        this.WithDrained(1);
     }
 
 

@@ -31,22 +31,4 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
     protected override bool ShouldGlowGoldInternal => this is IChantable chantable &&
                                                       (AwakenedCmd.WasLastCardPlayedPower(this) ||
                                                        chantable.HasChanted);
-
-    protected AwakenedCardModel WithConjure(Func<CardModel, bool>? a = null)
-    {
-        if (a == null)
-            WithTip(AwakenedTip.Conjure);
-        else
-            WithTips(e => a.Invoke(e) ? [HoverTipFactory.Static(AwakenedTip.Conjure)] : []);
-
-        WithTags(AwakenedTag.Conjure);
-        return this;
-    }
-
-    protected AwakenedCardModel WithDrained(int baseVal, int upgrade = 0)
-    {
-        this.WithPower<DrainedPower>(baseVal, upgrade, false);
-        WithEnergy(baseVal, upgrade);
-        return this;
-    }
 }

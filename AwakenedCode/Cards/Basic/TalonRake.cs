@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Ancient;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +15,7 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithConjure();
+        this.WithConjure();
     }
 
 

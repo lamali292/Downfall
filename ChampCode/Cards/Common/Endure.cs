@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ public class Endure : ChampCardModel
         WithCalculatedBlock(7, BlockCalc, ValueProp.Move, 3);
         WithTip(typeof(StrengthPower));
         WithTip(typeof(DexterityPower));
-        WithEnterDefensive();
+        this.WithEnterDefensive();
     }
 
     private static decimal BlockCalc(CardModel card, Creature? creature)

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -13,7 +14,7 @@ public class BobAndWeave : ChampCardModel
     {
         WithBlock(4, 2);
         WithPower<VigorPower>(4, 1);
-        WithEnterBerserker();
+        this.WithEnterBerserker();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

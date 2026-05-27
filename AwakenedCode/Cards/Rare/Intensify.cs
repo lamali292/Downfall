@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ public class Intensify : AwakenedCardModel
     {
         this.WithPower<IntensifyPower>(1, false);
         this.WithPower<BurnoutPower>(1, false);
-        WithConjure();
+        this.WithConjure();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

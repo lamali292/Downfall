@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ public class StormRuler : AwakenedCardModel
     public StormRuler() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<StormRulerPower>(6, 3, false);
-        WithConjure();
+        this.WithConjure();
         WithTip(typeof(Thunderbolt));
     }
 

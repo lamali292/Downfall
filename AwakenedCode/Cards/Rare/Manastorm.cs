@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +14,7 @@ public class Manastorm : AwakenedCardModel
     {
         WithDamage(14, 4);
         WithTip(AwakenedTip.Conjure);
-        WithConjure();
+        this.WithConjure();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

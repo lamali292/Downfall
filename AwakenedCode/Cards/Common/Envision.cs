@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ public class Envision : AwakenedCardModel
     public Envision() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(4, 3);
-        WithConjure();
+        this.WithConjure();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ public class Spellbinder : AwakenedCardModel
     public Spellbinder() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<SpellbinderPower>(1, false);
-        WithConjure();
+        this.WithConjure();
         WithCostUpgradeBy(-1);
     }
 

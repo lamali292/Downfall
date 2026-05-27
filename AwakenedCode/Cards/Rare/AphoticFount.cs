@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
@@ -16,7 +17,7 @@ public class AphoticFount : AwakenedCardModel
         this.WithPower<AphoticFountPower>(1, 1, false);
         WithTip(typeof(PlatedArmorPower));
         WithTip(typeof(Cryostasis));
-        WithConjure();
+        this.WithConjure();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

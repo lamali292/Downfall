@@ -15,7 +15,7 @@ public class SwordThrow : ChampCardModel
         WithDamage(9, 4);
         this.WithRepeat(2);
         this.WithPower<EntangledNextTurnPower>(1, false);
-        WithBerserkerTip();
+        this.WithBerserkerTip();
     }
 
 

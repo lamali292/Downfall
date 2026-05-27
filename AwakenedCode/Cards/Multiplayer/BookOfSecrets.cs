@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,7 +12,7 @@ public class BookOfSecrets : AwakenedCardModel
 {
     public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithConjure();
+        this.WithConjure();
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithBlock(6);
     }

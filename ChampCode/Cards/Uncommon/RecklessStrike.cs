@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -14,7 +15,7 @@ public class RecklessStrike : ChampCardModel
         WithDamage(6, 3);
         WithPower<StrengthPower>(1);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        WithEnterBerserker();
+        this.WithEnterBerserker();
         WithTags(CardTag.Strike);
     }
 

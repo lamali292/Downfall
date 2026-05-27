@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +12,7 @@ public class GutsAndGlory : ChampCardModel
 {
     public GutsAndGlory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithGlory(5, 3);
+        this.WithGlory(5, 3);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Piles;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
@@ -13,7 +14,7 @@ public class ByrdsEye : AwakenedCardModel
 {
     public ByrdsEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithConjure();
+        this.WithConjure();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
