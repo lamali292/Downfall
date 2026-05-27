@@ -29,6 +29,7 @@ public static class CardExecutionRegistry
     }
 }
 
+
 [HarmonyPatch(typeof(CardModel), "OnPlayWrapper", MethodType.Async)]
 public static class MasterPatchOnPlayWrapper
 {
