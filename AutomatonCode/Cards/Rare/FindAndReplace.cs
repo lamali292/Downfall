@@ -20,7 +20,7 @@ public class FindAndReplace : AutomatonCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         var choices = Owner.GetStash().Concat(Owner.GetDraw()).Concat(Owner.GetDiscard()).ToList();

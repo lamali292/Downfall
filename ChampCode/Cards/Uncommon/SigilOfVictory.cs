@@ -16,7 +16,7 @@ public class SigilOfVictory : ChampCardModel
         WithRepeat(3, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = ChampModel.GetStanceModel(Owner);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)

@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class PrismaticBarrier : GuardianCardModel
+public class PrismaticBarrier : GuardianCardModel, IGemSocketCard
 {
     public PrismaticBarrier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -19,14 +20,14 @@ public class PrismaticBarrier : GuardianCardModel
         WithTip(GuardianKeyword.Gem);
     }
 
-    public override int GemSlots => 3;
+    public int GemSlots => 3;
 
     private static decimal CalcBlock(CardModel card, Creature? arg2)
     {
-        return card is GuardianCardModel gc ? gc.GemCount : 0;
+        return card is IGemSocketCard gc ? gc.GemCount : 0;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

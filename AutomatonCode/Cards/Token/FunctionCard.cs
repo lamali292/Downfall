@@ -144,7 +144,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
 
 
     public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var previous = CurrentlyExecuting.Value;
         CurrentlyExecuting.Value = this;

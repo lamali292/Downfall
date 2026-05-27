@@ -20,7 +20,7 @@ public class Rewind : HexaghostCardModel
         WithKeyword(HexaghostKeyword.Retract);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true);

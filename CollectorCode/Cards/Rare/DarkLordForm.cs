@@ -20,7 +20,7 @@ public class DarkLordForm : CollectorCardModel
         WithTip(typeof(YouAreMine));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await CommonActions.ApplySelf<DarkLordFormPlusPower>(ctx, this, 1);

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Cards.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class RockSlide : GuardianCardModel
+public class RockSlide : GuardianCardModel, IGemSocketCard
 {
     public RockSlide() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -16,23 +17,24 @@ public class RockSlide : GuardianCardModel
         WithTip(GuardianKeyword.Gem);
     }
 
-    public override int GemSlots => 3;
+    public int GemSlots => 3;
 
     public override void AfterCreated()
     {
         var rng = Owner.RunState.Rng.Niche;
 
-        AddGem(GuardianModelDb.AllGems
+        if (this is not IGemSocketCard socketCard) return;
+        socketCard.AddGem(GuardianModelDb.AllGems
             .Where(e => e.Rarity == CardRarity.Common)
             .TakeRandom(1, rng)
             .First()
             .ToMutable());
-        AddGem(GuardianModelDb.AllGems
+        socketCard.AddGem(GuardianModelDb.AllGems
             .Where(e => e.Rarity == CardRarity.Uncommon)
             .TakeRandom(1, rng)
             .First()
             .ToMutable());
-        AddGem(GuardianModelDb.AllGems
+        socketCard.AddGem(GuardianModelDb.AllGems
             .Where(e => e.Rarity == CardRarity.Rare)
             .TakeRandom(1, rng)
             .First()
@@ -40,7 +42,7 @@ public class RockSlide : GuardianCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

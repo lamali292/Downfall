@@ -17,7 +17,7 @@ public class GreatHex : AwakenedCardModel, IChantable
         WithPower<GreatHexPower>(5, 3, false);
         WithTip(typeof(ManaburnPower));
     }
-
+    public bool HasChanted { get; set; } = false;
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<GreatHexPower>(ctx, this, cardPlay);

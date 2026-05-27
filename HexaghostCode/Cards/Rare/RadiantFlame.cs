@@ -16,7 +16,7 @@ public class RadiantFlame : HexaghostCardModel
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RadiantFlamePower>(ctx, this);
     }

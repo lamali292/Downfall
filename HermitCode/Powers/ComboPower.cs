@@ -23,8 +23,7 @@ public sealed class ComboPower : HermitPowerModel
         if (
             GetInternalData<Data>().DeadOnCardsPlayed >= Amount
             || card.Owner.Creature != Owner
-            || card is not HermitCardModel { IsDeadOn: true } ||
-            card is not IHasDeadOnEffect
+            || card is not IHasDeadOnEffect { IsDeadOn: true }
         )
             return (pileType, position);
 
@@ -33,7 +32,7 @@ public sealed class ComboPower : HermitPowerModel
         return (PileType.Hand, CardPilePosition.Bottom);
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return Task.CompletedTask;

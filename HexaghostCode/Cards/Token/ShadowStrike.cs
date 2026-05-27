@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -14,7 +15,7 @@ public class ShadowStrike : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

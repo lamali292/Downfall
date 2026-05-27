@@ -26,7 +26,7 @@ public class Defiance : ChampCardModel
         return card.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await PowerCmd.Remove<CounterPower>(Owner.Creature);

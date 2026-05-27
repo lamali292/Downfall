@@ -16,7 +16,7 @@ public class EnsorcelatePower : AwakenedPowerModel
         return true;
     }
 
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (IsEligiblePower(cardPlay.Card)) await PowerCmd.Decrement(this);
     }

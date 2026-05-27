@@ -13,7 +13,7 @@ public class Divider : HexaghostCardModel
         WithDamage(3, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = HexaghostCmd.GetIgnitedCount(Owner);
         if (count == 0) return;

@@ -15,7 +15,7 @@ public sealed class Dissolve : HermitCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);

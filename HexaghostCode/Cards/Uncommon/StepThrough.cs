@@ -14,7 +14,7 @@ public class StepThrough : HexaghostCardModel
         WithDamage(7, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);

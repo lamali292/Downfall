@@ -16,7 +16,7 @@ public class Soulforge : CollectorCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await CollectorCmd.DrawCollected(ctx, Owner);
         if (!result.success) return;

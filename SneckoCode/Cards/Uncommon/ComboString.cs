@@ -6,15 +6,17 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class ComboString : SneckoCardModel
+public class ComboString : SneckoCardModel, IHasGift
 {
     public ComboString() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithGift(new Gift
+        this.WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon
         });
@@ -30,9 +32,11 @@ public class ComboString : SneckoCardModel
                 SneckoCmd.IsOffclass(card, e.CardPlay.Card));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = (int)DynamicVars["Repeat"].Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);
     }
+
+    public Gift? Gift { get; set; }
 }

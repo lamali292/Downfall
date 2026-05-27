@@ -17,7 +17,7 @@ public class BurnOut : AutomatonCardModel
         WithTip(CardKeyword.Exhaust);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<BurnOutPower>(ctx, this);
     }

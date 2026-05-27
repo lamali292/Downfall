@@ -19,7 +19,7 @@ public class WorthySacrifice : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = (await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
             .ToList();

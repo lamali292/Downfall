@@ -22,6 +22,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         WithVar("Caw", 3, 1);
     }
 
+    public bool HasChanted { get; set; } = false;
+    
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Task.CompletedTask;
@@ -34,7 +36,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         return Task.CompletedTask;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions
             .CardAttack(this, cardPlay, sfx: "event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp").Execute(ctx);

@@ -20,7 +20,7 @@ public class RevengeProtocol : GuardianCardModel
         WithTip(GuardianTip.Brace);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RevengeProtocolPower>(ctx, this);
         await CommonActions.ApplySelf<BracingPower>(ctx, this);

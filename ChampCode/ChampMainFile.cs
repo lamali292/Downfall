@@ -1,10 +1,13 @@
 using System.Reflection;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Champ.ChampCode.Cards;
+using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -24,15 +27,18 @@ public partial class ChampMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlay);
         CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
-        Harmony harmony = new(ModId);
+        
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        Harmony harmony = new(ModId);
+        harmony.TryPatchAll(assembly);
     }
 }

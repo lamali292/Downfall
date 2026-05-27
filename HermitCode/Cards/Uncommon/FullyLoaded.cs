@@ -15,7 +15,7 @@ public sealed class FullyLoaded : HermitCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         HermitSfx.PlaySpin();
         HermitSfx.PlayReload();

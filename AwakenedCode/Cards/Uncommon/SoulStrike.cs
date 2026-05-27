@@ -17,7 +17,7 @@ public class SoulStrike : AwakenedCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitCount(DynamicVars.Repeat.IntValue)

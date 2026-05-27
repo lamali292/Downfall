@@ -15,7 +15,7 @@ public class CopyPaste : AutomatonCardModel
         WithPower<CopyPastePower>(1);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<CopyPastePower>(ctx, this);
     }

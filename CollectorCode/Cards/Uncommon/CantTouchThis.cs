@@ -16,7 +16,7 @@ public class CantTouchThis : CollectorCardModel
         WithPower<CantTouchThisPower>(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<CantTouchThisPower>(ctx, this);

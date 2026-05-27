@@ -16,12 +16,12 @@ public class Execution : ChampCardModel
         WithTip(ChampTip.Stance);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 3).Execute(ctx);
     }
 
-    protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true, 2);
     }

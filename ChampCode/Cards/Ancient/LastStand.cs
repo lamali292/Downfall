@@ -19,7 +19,7 @@ public class LastStand : ChampCardModel
         WithTip(typeof(FrailPower));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await PowerCmd.Remove<WeakPower>(Owner.Creature);

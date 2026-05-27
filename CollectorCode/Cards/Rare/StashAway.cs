@@ -19,7 +19,7 @@ public class StashAway : CollectorCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         for (var i = 0; i < x; i++)

@@ -3,15 +3,17 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class OtherworldlySlash : SneckoCardModel
+public class OtherworldlySlash : SneckoCardModel, IHasGift
 {
     public OtherworldlySlash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithGift(new Gift
+        this.WithGift(new Gift
         {
             Rarity = CardRarity.Common
         });
@@ -24,11 +26,13 @@ public class OtherworldlySlash : SneckoCardModel
     private bool PlayedOffClassThisTurn => CombatManager.Instance.History.CardPlaysFinished.Any(e =>
         e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(this, e.CardPlay.Card));
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (PlayedOffClassThisTurn)
             await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         else
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
+
+    public Gift? Gift { get; set; }
 }

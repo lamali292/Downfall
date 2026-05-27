@@ -13,11 +13,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Champ.ChampCode.Cards;
 
-public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
+public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherCard
 {
-    protected StanceType EnterStance = StanceType.None;
-
-    public ChampCardModel(
+    protected ChampCardModel(
         int cost,
         CardType type,
         CardRarity rarity,
@@ -62,13 +60,8 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
 
     protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
                                           Enchantment is Signature;
-
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
-
-    protected virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
@@ -80,65 +73,26 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>
         return this;
     }
 
+    
     protected ConstructedCardModel WithEnterBerserker()
     {
-        EnterStance = StanceType.Berserker;
+        WithTags(ChampTag.EnterBerserker);
         WithBerserkerTip();
         return this;
     }
 
     protected ConstructedCardModel WithEnterDefensive()
     {
-        EnterStance = StanceType.Defensive;
+        WithTags(ChampTag.EnterDefensive);
         WithDefensiveTip();
         return this;
     }
-
-
-    protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await PlayEffect(ctx, cardPlay);
-
-        var stance = Owner.ChampStance();
-        if (Keywords.Contains(ChampKeyword.TriggerSkillBonus)) await stance.SkillBonus(ctx);
-
-        if (cardPlay.Card.Type == CardType.Skill
-            && (ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner) || stance.Charges > 0))
-        {
-            if (!ChampHook.IgnoreChargeCap(Owner.Creature.CombatState!, Owner))
-            {
-                stance.Charges--;
-                ChampModel.RefreshDisplay(Owner);
-            }
-
-            await stance.SkillBonus(ctx);
-        }
-
-        if (EnterStance == StanceType.Berserker)
-            await ChampCmd.EnterBerserkerStance(ctx, Owner);
-        else if (EnterStance == StanceType.Defensive) await ChampCmd.EnterDefensiveStance(ctx, Owner);
-
-        if (this is IBerserkerComboCard berserkerCombo && Owner.ShouldBerserkerComboTrigger())
-            await berserkerCombo.BerserkerComboEffect(ctx, cardPlay);
-        if (this is IDefensiveComboCard defensiveCombo && Owner.ShouldDefensiveComboTrigger())
-            await defensiveCombo.DefensiveComboEffect(ctx, cardPlay);
-
-        if (Tags.Contains(ChampTag.Finisher)) await FinisherEffect(ctx, cardPlay);
-    }
-
+    
     protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
     {
         WithPower<GloryPower>(baseVal, upgrade);
         WithUltimateTip();
         return this;
     }
-
-
-
-    protected enum StanceType
-    {
-        None,
-        Berserker,
-        Defensive
-    }
+    
 }

@@ -34,7 +34,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
     }
 */
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         _result = await CommonActions.CardAttack(this, play)

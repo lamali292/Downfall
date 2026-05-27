@@ -17,7 +17,7 @@ public class SharpHide : GuardianCardModel
         WithTip(typeof(ThornsPower));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<SharpHidePower>(ctx, this);

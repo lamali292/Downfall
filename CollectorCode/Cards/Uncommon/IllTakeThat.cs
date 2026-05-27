@@ -18,7 +18,7 @@ public class IllTakeThat : CollectorCardModel
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var stolenBlock = Math.Min(cardPlay.Target.Block, DynamicVars["IllTakeThat"].IntValue);

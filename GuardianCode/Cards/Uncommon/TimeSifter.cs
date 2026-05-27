@@ -17,7 +17,7 @@ public class TimeSifter : GuardianCardModel
         WithTip(GuardianTip.Accelerate);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<TimeSifterPower>(ctx, this);
     }

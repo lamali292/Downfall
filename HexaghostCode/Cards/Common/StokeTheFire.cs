@@ -16,7 +16,7 @@ public class StokeTheFire : HexaghostCardModel
         WithBlock(7, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var ignitedCount = HexaghostCmd.GetIgnitedCount(Owner);

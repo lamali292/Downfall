@@ -15,7 +15,7 @@ public class DarkApotheosis : CollectorCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         foreach (var cardModel in CollectorPile.Collected.GetPile(Owner).Cards) CardCmd.Upgrade(cardModel);
         return Task.CompletedTask;

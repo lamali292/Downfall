@@ -51,7 +51,7 @@ public class CultistStrike : AutomatonCardModel,
     }
 
 
-    protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var intValue = DynamicVars["Increase"].IntValue;
         BuffFromPlay(intValue);

@@ -25,7 +25,7 @@ public class GigaBeam : GuardianCardModel
         WithTip(typeof(StrengthPower));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

@@ -9,7 +9,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class CrashoutPower : AutomatonPowerModel
 {
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task AfterCardPlayedLate(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;
         if (player.Creature != Owner || cardPlay.Card.Type != CardType.Status) return;

@@ -19,7 +19,7 @@ public class FineTuning : AutomatonCardModel
         WithCards(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = (await CardSelectCmd.FromHand(ctx, Owner,
             new CardSelectorPrefs(StashCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,

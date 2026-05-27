@@ -16,7 +16,7 @@ public class ByrdsEye : AwakenedCardModel
         WithConjure();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded) AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);
         var cards = AwakenedPile.Spellbook.GetPile(Owner).Cards;

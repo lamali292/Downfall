@@ -14,7 +14,7 @@ public sealed class Malice : HermitCardModel
         WithDamage(16, 4);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();

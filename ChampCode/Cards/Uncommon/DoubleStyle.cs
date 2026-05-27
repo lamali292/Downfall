@@ -19,7 +19,7 @@ public class DoubleStyle : ChampCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DefensiveStylePower>(ctx, this);
         await CommonActions.ApplySelf<BerserkerStylePower>(ctx, this);

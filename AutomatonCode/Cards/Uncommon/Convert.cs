@@ -18,7 +18,7 @@ public class Convert : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = Owner.GetDraw(e => e.Type == CardType.Status).TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)

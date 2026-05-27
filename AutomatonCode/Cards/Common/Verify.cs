@@ -17,7 +17,7 @@ public class Verify : AutomatonCardModel
         WithBlock(6, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var card = (await CardSelectCmd.FromCombatPile(ctx, PileType.Discard.GetPile(Owner),

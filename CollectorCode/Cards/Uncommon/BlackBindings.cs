@@ -24,7 +24,7 @@ public class BlackBindings : CollectorCardModel
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);

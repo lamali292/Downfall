@@ -19,7 +19,7 @@ public class Undervolt : AutomatonCardModel
         WithCards(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<StrengthPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);

@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -13,21 +12,24 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class HookedPowerModel : CustomPowerModel
 {
-    private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
+    private Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
-        if (LocalContext.NetId == null)
-            throw new InvalidOperationException(
-                $"Cannot execute power hook '{GetType().Name}': LocalContext.NetId is null.");
-        if (Owner.IsDead) return;
-        var ctx = new HookPlayerChoiceContext(
-            this,
-            LocalContext.NetId.Value,
-            CombatState,
-            GameActionType.Combat);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
+        if (LocalContext.NetId == null) return action(new ThrowingPlayerChoiceContext());
+        if (Owner.IsDead) return Task.CompletedTask;
+        return action(new BlockingPlayerChoiceContext());
+    }
+    
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
+    {
+        return ExecuteWithContext(ctx => AfterCardGeneratedForCombat(ctx, card, player));
     }
 
-    public sealed override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    protected virtual Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
+    {
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         return ExecuteWithContext(ctx => AfterApplied(ctx, applier, cardSource));
     }
@@ -47,17 +49,9 @@ public abstract class HookedPowerModel : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    public sealed override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
-    {
-        return ExecuteWithContext(ctx => AfterCardGeneratedForCombat(ctx, card, player));
-    }
+   
 
-    protected virtual Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
-    {
-        return Task.CompletedTask;
-    }
-
-    public sealed override Task AfterEnergyReset(Player player)
+    public override Task AfterEnergyReset(Player player)
     {
         return ExecuteWithContext(ctx => AfterEnergyReset(ctx, player));
     }
@@ -67,7 +61,7 @@ public abstract class HookedPowerModel : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         return ExecuteWithContext(ctx => AfterSideTurnStart(ctx, side, participants, combatState));
@@ -101,37 +95,14 @@ public abstract class HookedPowerModel : CustomPowerModel
     {
         return Task.CompletedTask;
     }
+    
 
-    public sealed override Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel? cardSource,
-        CardPlay? cardPlay)
-    {
-        return ExecuteWithContext(ctx => AfterModifyingBlockAmount(ctx, modifiedAmount, cardSource, cardPlay));
-    }
-
-    protected virtual Task AfterModifyingBlockAmount(PlayerChoiceContext ctx, decimal modifiedAmount,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        return Task.CompletedTask;
-    }
-
-    public sealed override Task BeforeCardPlayed(CardPlay cardPlay)
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         return ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
     }
 
     protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return Task.CompletedTask;
-    }
-
-    public sealed override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
-        CardPilePosition position)
-    {
-        return ExecuteWithContext(ctx => AfterModifyingCardPlayResultPileOrPosition(ctx, card, pileType, position));
-    }
-
-    protected virtual Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext card, CardModel pileType,
-        PileType position, CardPilePosition cardPilePosition)
     {
         return Task.CompletedTask;
     }

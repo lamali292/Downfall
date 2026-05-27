@@ -18,7 +18,7 @@ public class Return : AutomatonCardModel
         WithEnergy(1, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selected =
             (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),

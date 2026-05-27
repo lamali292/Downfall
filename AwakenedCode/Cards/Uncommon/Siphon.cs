@@ -16,7 +16,7 @@ public class Siphon : AwakenedCardModel, IChantable
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
     }
-
+    public bool HasChanted { get; set; } = false;
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
@@ -24,7 +24,7 @@ public class Siphon : AwakenedCardModel, IChantable
         await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, cardPlay.Target, this, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

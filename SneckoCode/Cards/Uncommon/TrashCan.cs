@@ -15,7 +15,7 @@ public class TrashCan : SneckoCardModel
         WithPower<TrashCanPower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<TrashCanPower>(ctx, this);

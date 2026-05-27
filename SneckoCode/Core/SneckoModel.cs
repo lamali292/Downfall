@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Cards;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Core;
 
@@ -55,7 +56,7 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
-            card is SneckoCardModel { Gift: { } gift })
+            card is IHasGift { Gift: { } gift })
             await SneckoCmd.GetGift(card.Owner, gift);
     }
 

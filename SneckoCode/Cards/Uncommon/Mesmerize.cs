@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -14,10 +15,10 @@ public class Mesmerize : SneckoCardModel
     {
         WithVar("StrengthLoss", 2, 1);
         WithKeyword(CardKeyword.Exhaust);
-        WithMuddle(1);
+        this.WithMuddle(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await PowerCmd.Apply<StrengthPower>(ctx, CombatState.HittableEnemies,

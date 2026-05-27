@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,9 +21,9 @@ public class CrystalRay : GuardianCardModel
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
-     => PileType.Deck.GetPile(card.Owner).Cards.OfType<GuardianCardModel>().Sum(g => g.GemCount);
+     => PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemSocketCard>().Sum(g => g.GemCount);
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

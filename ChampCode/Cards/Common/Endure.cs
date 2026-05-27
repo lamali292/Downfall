@@ -26,7 +26,7 @@ public class Endure : ChampCardModel
         return card.Owner.Creature.GetPowerAmount<StrengthPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

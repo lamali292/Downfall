@@ -17,7 +17,7 @@ public class RecreatePower : AutomatonPowerModel
     }
 
 
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (creator == null || creator.Creature != Owner) return;
         var generatedThisTurn = CombatManager.Instance.History.Entries

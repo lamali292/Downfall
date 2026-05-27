@@ -20,7 +20,7 @@ public class SpaghettiCode : AutomatonCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;
 

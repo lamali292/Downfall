@@ -18,7 +18,7 @@ public class AwakenedForm : AwakenedCardModel
         WithTip(AwakenedTip.Awaken, UpgradeType.Add);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await AwakenedCmd.Awaken(Owner, ctx);

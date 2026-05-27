@@ -17,7 +17,7 @@ public class KnifesEdge : AwakenedCardModel
         WithTip(typeof(Void));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await DownfallCardCmd.GiveCards<Void>(Owner, PileType.Discard, 2);

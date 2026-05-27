@@ -13,7 +13,7 @@ public class BitShift : AutomatonCardModel
         WithBlock(1, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.DrawFromStash(Owner);

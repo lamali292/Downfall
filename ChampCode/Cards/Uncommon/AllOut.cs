@@ -17,7 +17,7 @@ public class AllOut : ChampCardModel
         WithTip(ChampTip.Stance);
     }
 
-    protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true, DynamicVars.Repeat.IntValue);
     }

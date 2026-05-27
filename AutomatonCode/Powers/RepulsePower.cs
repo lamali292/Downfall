@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class RepulsePower : AutomatonPowerModel
 {
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (creator == null || creator.Creature != Owner || card.Type != CardType.Status)
             return;

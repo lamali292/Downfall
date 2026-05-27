@@ -14,7 +14,7 @@ public sealed class Coalescence : HermitCardModel
         WithTip(CardKeyword.Retain);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);

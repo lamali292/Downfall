@@ -93,6 +93,7 @@ public partial class StashQueueDisplay : Control
     private void OnCardAdded(CardModel card)
     {
         var child = NCard.Create(card);
+        if (child == null) return;
         this.AddChildSafely(child);
         this.MoveChildSafely(child, 0);
         child.UpdateVisuals(StashPile.Stash, CardPreviewMode.Normal);

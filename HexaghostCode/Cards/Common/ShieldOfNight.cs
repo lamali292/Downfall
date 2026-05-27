@@ -18,7 +18,7 @@ public class ShieldOfNight : HexaghostCardModel
         WithTip(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);

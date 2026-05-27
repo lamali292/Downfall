@@ -19,7 +19,7 @@ public class Lariat : ChampCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
         for (var i = 0; i < amount; i++) await CommonActions.CardBlock(this, cardPlay);

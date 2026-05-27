@@ -16,7 +16,7 @@ public class ClassDefault : AutomatonCardModel
         WithPower<ClassDefaultPower>(2, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ClassDefaultPower>(ctx, this);
     }

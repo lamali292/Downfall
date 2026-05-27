@@ -19,7 +19,7 @@ public class MaxOutput : AutomatonCardModel
         WithTip(AutomatonTip.Stash);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
         await CommonActions.ApplySelf<MaxOutputPower>(ctx, this);

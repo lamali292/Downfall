@@ -21,7 +21,7 @@ public class ShowOff : ChampCardModel
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Owner.ChampStance().SkillBonus(ctx);
         if (cardPlay.Target?.Player == null) return;

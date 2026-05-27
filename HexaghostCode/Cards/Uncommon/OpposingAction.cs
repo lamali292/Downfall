@@ -16,7 +16,7 @@ public class OpposingAction : HexaghostCardModel
         WithKeywords(HexaghostKeyword.Retract, CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }

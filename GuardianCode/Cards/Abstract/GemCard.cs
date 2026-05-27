@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Gems;
+using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -77,7 +78,7 @@ public class Bismuth : GemCard<BismuthGem>
 
 #pragma warning restore STS001
 
-public abstract class GemCard<T> : GuardianCardModel, IGemCard
+public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard
     where T : GemModel
 {
     protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.Self)

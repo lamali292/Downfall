@@ -17,7 +17,7 @@ public class BronzeArmor : AutomatonCardModel, IEncodable
         WithTip(typeof(Error));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.Stash<Error>(Owner, DynamicVars["Stash"].IntValue);

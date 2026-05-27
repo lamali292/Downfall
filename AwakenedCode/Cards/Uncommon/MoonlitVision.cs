@@ -16,7 +16,7 @@ public class MoonlitVision : AwakenedCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoonlitVisionPower>(ctx, this, 1);
     }

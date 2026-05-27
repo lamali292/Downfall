@@ -13,21 +13,20 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class HookedRelicModel : CustomRelicModel
 {
-    private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
+    private Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
-        if (LocalContext.NetId == null)
+        if (LocalContext.NetId == null || Owner.Creature.CombatState == null)
         {
-            await action(new ThrowingPlayerChoiceContext());
-            return;
+            return action(new ThrowingPlayerChoiceContext());
         }
            
-        if (Owner.Creature.IsDead) return;
+        if (Owner.Creature.IsDead) return Task.CompletedTask;
         var ctx = new HookPlayerChoiceContext(
             this,
             LocalContext.NetId.Value,
-            Owner.Creature.CombatState!,
+            Owner.Creature.CombatState,
             GameActionType.Combat);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
+        return ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
     }
     
 

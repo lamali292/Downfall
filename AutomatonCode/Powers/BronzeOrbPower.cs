@@ -18,7 +18,7 @@ public class BronzeOrbPower : AutomatonPowerModel
         return card.Owner.Creature != Owner ? (pileType, position) : (StashPile.Stash, CardPilePosition.Top);
     }
 
-    protected override Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext ctx, CardModel card,
+    public override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card,
         PileType pileType,
         CardPilePosition position)
     {

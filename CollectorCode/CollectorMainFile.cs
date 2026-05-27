@@ -1,4 +1,7 @@
 using System.Reflection;
+using BaseLib.Extensions;
+using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -18,9 +21,10 @@ public partial class CollectorMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlay);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        harmony.TryPatchAll(assembly);
     }
 }

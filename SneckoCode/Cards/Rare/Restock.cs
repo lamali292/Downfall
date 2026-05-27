@@ -19,7 +19,7 @@ public class Restock : SneckoCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = Owner.GetHand();
         await CardCmd.DiscardAndDraw(ctx, cards, DynamicVars.Cards.IntValue);

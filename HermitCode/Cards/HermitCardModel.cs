@@ -23,36 +23,9 @@ public abstract class HermitCardModel
         bool showInCardLibrary = true,
         bool autoAdd = true) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        WithTips(e => e is not HermitCardModel card ? [] :
-            card is IHasDeadOnEffect ? [HoverTipFactory.FromKeyword(HermitKeywords.DeadOn)] :
-            Enumerable.Empty<IHoverTip>());
+        WithTips(e => e is IHasDeadOnEffect ? [HoverTipFactory.FromKeyword(HermitKeywords.DeadOn)] : []);
     }
-
-    public bool IsDeadOn => HermitCmd.IsDeadOnInCurrentHandState(this) ||
-                            (PatchDeadOnCapture.LastPlayed == this && PatchDeadOnCapture.LastWasDeadOn);
-
-    protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect && IsDeadOn;
-
-
-    protected virtual Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay, bool isDeadOn)
-    {
-        return PlayEffect(ctx, cardPlay);
-    }
-
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
-
-    protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var isDeadOn = PatchDeadOnCapture.LastWasDeadOn;
-        if (CombatState == null) return;
-        if (Keywords.Contains(HermitKeywords.Concentrate))
-            await CommonActions.ApplySelf<ConcentrationPower>(ctx, this, 1);
-        await PlayEffect(ctx, cardPlay, isDeadOn);
-        if (this is IHasDeadOnEffect && isDeadOn) await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
-    }
+    protected override bool ShouldGlowGoldInternal =>  this is IHasDeadOnEffect { IsDeadOn: true };
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]

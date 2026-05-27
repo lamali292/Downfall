@@ -16,7 +16,7 @@ public class Magicianism : AwakenedCardModel
         WithPower<MagicianismPower>(2, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MagicianismPower>(ctx, this);
     }

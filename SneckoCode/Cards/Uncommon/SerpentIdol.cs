@@ -16,7 +16,7 @@ public class SerpentIdol : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var mutableCards = SneckoModel.GetCombatSneckoCards(Owner, DynamicVars.Cards.IntValue).ToList();
         var selectedCard = await CardSelectCmd.FromChooseACardScreen(ctx, mutableCards, Owner);

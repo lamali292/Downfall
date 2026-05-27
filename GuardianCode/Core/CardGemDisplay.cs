@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Guardian.GuardianCode.Cards;
+using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -25,7 +26,7 @@ public partial class CardGemDisplay : Control
 
     private static CardGemDisplay UpdateVisuals(NCard card, CardGemDisplay? display = null)
     {
-        if (card.Model is not GuardianCardModel guardianCard
+        if (card.Model is not IGemSocketCard guardianCard
             || guardianCard.GemSlots == 0)
         {
             if (display != null) display.Visible = false;

@@ -16,7 +16,7 @@ public class SongOfSorrow : AwakenedCardModel
         WithTip(typeof(Void));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SongOfSorrowPower>(ctx, this);
     }

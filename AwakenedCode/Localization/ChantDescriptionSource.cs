@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Cards;
+using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using Downfall.DownfallCode.Localization;
@@ -20,7 +21,7 @@ public class ChantDescriptionSource : IExtraDescriptionSource
         var chantTitle = new LocString("card_keywords", "AWAKENED-CHANT.card_text");
         chantTitle.Add("Chanted", hasChanted);
         var active = card.IsCanonical || card._owner == null ||
-                     card is AwakenedCardModel { WasLastCardPlayedPower: true } || hasChanted;
+                     AwakenedCmd.WasLastCardPlayedPower(card) || hasChanted;
         var colon = new LocString("card_keywords", "COLON").GetFormattedText();
         var icon = hasChanted ? $"[img]{ModelDb.Power<ChosenVersePower>().CustomPackedSpritePath}[/img] " : "";
         var effect = active ? loc.GetFormattedText() : $"[color=#FFFFFF88]{loc.GetFormattedText()}[/color]";

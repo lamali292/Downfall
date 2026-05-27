@@ -16,7 +16,7 @@ public class HoardersStrike : CollectorCardModel
         WithTags(CardTag.Strike);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var cards = CollectorPile.Collected.GetPile(Owner).Cards;

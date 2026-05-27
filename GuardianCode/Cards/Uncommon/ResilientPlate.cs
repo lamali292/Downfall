@@ -15,7 +15,7 @@ public class ResilientPlate : GuardianCardModel
         WithPolish(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Brace(ctx, this);
         await GuardianCmd.Polish(ctx, this);

@@ -29,7 +29,7 @@ public class PreemptiveStrike : ChampCardModel
         return arg1.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (Owner.ShouldDefensiveComboTrigger()) return;

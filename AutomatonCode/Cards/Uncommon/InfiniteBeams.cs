@@ -17,7 +17,7 @@ public class InfiniteBeams : AutomatonCardModel
         WithPower<InfiniteBeamsPower>(1, false);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<InfiniteBeamsPower>(ctx, this);
     }

@@ -174,7 +174,7 @@ public static class GuardianCmd
             .SelectMany(card => card switch
             {
                 IGemCard gem => [gem.GemModel],
-                GuardianCardModel gc => gc.Gems,
+                IGemSocketCard gc => gc.Gems,
                 _ => []
             })
             .ToList();
@@ -182,7 +182,7 @@ public static class GuardianCmd
 
     public static async Task PutGemIn(CardModel gem, CardModel card)
     {
-        if (card is not GuardianCardModel guardianCard) return;
+        if (card is not IGemSocketCard guardianCard) return;
         if (gem is not IGemCard gemCard) return;
         var gemModel = gemCard.GemModel;
         card.AssertMutable();

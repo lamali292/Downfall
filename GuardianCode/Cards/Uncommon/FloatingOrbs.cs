@@ -15,7 +15,7 @@ public class FloatingOrbs : GuardianCardModel
         WithEnergyTip();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FloatingOrbsPower>(ctx, this);
     }

@@ -19,7 +19,7 @@ public class DemonGlyph : AwakenedCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // could be done better.
         if (AwakenedModel.IsAwakened(Owner))

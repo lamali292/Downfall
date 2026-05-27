@@ -17,7 +17,7 @@ public class Recreate : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return IsUpgraded
             ? CommonActions.ApplySelf<RecreatePlusPower>(ctx, this)

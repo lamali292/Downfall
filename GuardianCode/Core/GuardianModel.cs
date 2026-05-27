@@ -6,6 +6,7 @@ using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
+using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
@@ -101,7 +102,7 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
 
         var deck = player.GetDeck();
         var hasGems = deck.Any(e => e is IGemCard);
-        var hasSlots = deck.Any(e => e is GuardianCardModel { FreeSlots: > 0 });
+        var hasSlots = deck.Any(e => e is IGemSocketCard { FreeSlots: > 0 });
         if (!hasSlots ||  !hasGems) return false;
         options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots && hasGems });
         return true;

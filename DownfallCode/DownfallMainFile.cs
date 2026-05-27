@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using BaseLib.Config;
+using BaseLib.Extensions;
 using BaseLib.Patches.Saves;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
@@ -36,7 +37,7 @@ public partial class DownfallMainFile : Node
 
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        harmony.TryPatchAll(assembly);
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;

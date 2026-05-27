@@ -15,7 +15,7 @@ public class Ensorcelate : AwakenedCardModel
         WithEnergyTip();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
         await CommonActions.ApplySelf<EnsorcelatePower>(ctx, this, 1);

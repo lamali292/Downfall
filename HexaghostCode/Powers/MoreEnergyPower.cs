@@ -7,7 +7,7 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class MoreEnergyPower : HexaghostPowerModel
 {
-    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
+    public override async Task AfterEnergyReset(Player player)
     {
         if (player.Creature != Owner) return;
         Flash();

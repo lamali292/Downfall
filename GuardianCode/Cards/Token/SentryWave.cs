@@ -22,7 +22,7 @@ public class SentryWave : GuardianCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         if (IsUpgraded) await GuardianCmd.Brace(ctx, this);

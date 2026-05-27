@@ -12,7 +12,7 @@ public sealed class LoneWolf : HermitCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var handPile = PileType.Hand.GetPile(Owner);

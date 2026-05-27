@@ -6,15 +6,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class Belittle : SneckoCardModel
+public class Belittle : SneckoCardModel, IHasGift
 {
     public Belittle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithGift(new Gift
+        this.WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon,
             IsDebuff = true
@@ -27,8 +29,10 @@ public class Belittle : SneckoCardModel
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
+
+    public Gift? Gift { get; set; }
 }

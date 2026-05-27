@@ -15,7 +15,7 @@ public class SpiritLeech : CollectorCardModel
         WithBlock(11, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (cardPlay.Target == null || !cardPlay.Target.IsAfflicted()) return;

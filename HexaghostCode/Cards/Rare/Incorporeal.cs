@@ -18,7 +18,7 @@ public class Incorporeal : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust, HexaghostKeyword.Retract);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.LoseHp(ctx, this, cardPlay.Target);
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);

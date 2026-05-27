@@ -20,7 +20,7 @@ public class CursedWail : CollectorCardModel
         WithKeywords(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, CombatState.Enemies, this);

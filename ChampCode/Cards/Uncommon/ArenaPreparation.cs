@@ -19,7 +19,7 @@ public class ArenaPreparation : ChampCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var list = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)

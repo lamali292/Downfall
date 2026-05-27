@@ -11,10 +11,10 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class AncestralGroundsUpgradedPower : AwakenedPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side || Owner.Player == null)
+        if (!participants.Contains(Owner) || Owner.Player == null)
             return;
         await PlayerCmd.GainEnergy(3, Owner.Player);
         await DownfallCardCmd.GiveCard<Void>(Owner.Player, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Events;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Piles;
 using Collector.CollectorCode.Rewards;
 using HarmonyLib;
@@ -87,6 +88,8 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
 
         return Task.CompletedTask;
     }
+
+ 
 }
 
 [HarmonyPatch(typeof(RunState), nameof(RunState.CreateForNewRun))]

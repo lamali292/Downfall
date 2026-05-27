@@ -16,7 +16,7 @@ public class FlashInThePan : SneckoCardModel
         WithBlock(13, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cards = Owner.GetHand();

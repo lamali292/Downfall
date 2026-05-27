@@ -12,7 +12,7 @@ public class ReroutePower : GuardianPowerModel
 {
     private CardModel? _cardSource;
 
-    protected override Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         _cardSource = cardSource;
         return Task.CompletedTask;
@@ -32,8 +32,7 @@ public class ReroutePower : GuardianPowerModel
         return (pile.Type, position);
     }
 
-    protected override async Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext ctx,
-        CardModel card, PileType pileType, CardPilePosition position)
+    public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
     {
         await PowerCmd.Decrement(this);
     }

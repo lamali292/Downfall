@@ -15,7 +15,7 @@ public sealed class HighNoon : HermitCardModel
         WithPower<HighNoonPower>(1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<HighNoonPower>(ctx, this);

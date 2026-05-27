@@ -20,17 +20,15 @@ public class CopyNextTurnPower : CollectorPowerModel
     public CopyNextTurnPower() : base(PowerType.Buff, PowerStackType.Single)
     {
         WithVars(new CardDynamicVar());
-        WithTip(new PowerTooltipSource(Tip));
+        WithTips(Tip);
     }
 
+    private IEnumerable<IHoverTip> Tip(PowerModel arg)
+     => arg is CopyNextTurnPower { Card: not null } power ? [new CardHoverTip(power.Card)] : [];
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    private static IHoverTip Tip(PowerModel arg)
-    {
-        if (arg is CopyNextTurnPower { Card: not null } power) return new CardHoverTip(power.Card);
-        return HoverTipFactory.Static(StaticHoverTip.None);
-    }
+
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {

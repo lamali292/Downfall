@@ -20,7 +20,7 @@ public class ForceShield : AutomatonCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }

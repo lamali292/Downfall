@@ -16,7 +16,7 @@ public class Goodbye : CollectorCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target is not { IsAlive: true }) return;
         var powerAmount = cardPlay.Target.GetPowerAmount<CollectorDoomPower>();

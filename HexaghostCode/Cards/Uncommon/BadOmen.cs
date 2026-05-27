@@ -19,7 +19,7 @@ public class BadOmen : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SelectGhostflame(ctx, Owner);
     }

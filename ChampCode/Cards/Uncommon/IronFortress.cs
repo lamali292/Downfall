@@ -18,7 +18,7 @@ public class IronFortress : ChampCardModel
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<MetallicizePower>(ctx, this);

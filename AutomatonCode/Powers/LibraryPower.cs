@@ -13,10 +13,10 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class LibraryPower : AutomatonPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side || Owner.Player == null) return;
+        if (!participants.Contains(Owner) || Owner.Player == null) return;
         var player = Owner.Player;
         var rng = CombatState.RunState.Rng.CombatCardSelection;
         var cards = player.Character.CardPool

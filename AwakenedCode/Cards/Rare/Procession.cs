@@ -19,7 +19,7 @@ public class Procession : AwakenedCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.PlaySelectionPrompt, ctx,
             PileType.Draw);

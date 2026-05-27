@@ -16,7 +16,7 @@ public class ItsAFeature : AutomatonCardModel
         WithTip(typeof(VigorPower));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ItsAFeaturePower>(ctx, this);
     }

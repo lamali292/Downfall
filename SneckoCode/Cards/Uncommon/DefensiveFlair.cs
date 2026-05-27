@@ -6,15 +6,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class DefensiveFlair : SneckoCardModel
+public class DefensiveFlair : SneckoCardModel, IHasGift
 {
     public DefensiveFlair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithGift(new Gift
+        this.WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon
         });
@@ -26,8 +28,10 @@ public class DefensiveFlair : SneckoCardModel
         return card.Owner.GetHand().Count(e => SneckoCmd.IsOffclass(card, e));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, DynamicVars.CalculatedBlock, cardPlay);
+        await CommonActions.CardBlock(this, cardPlay);
     }
+
+    public Gift? Gift { get; set; }
 }

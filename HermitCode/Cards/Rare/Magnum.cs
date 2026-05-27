@@ -16,7 +16,7 @@ public sealed class Magnum : HermitCardModel
         WithCards(6);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         var handCount = Owner.GetHand().Count;
         var maxDiscard = Math.Min(DynamicVars.Cards.IntValue, handCount);

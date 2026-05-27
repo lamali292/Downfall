@@ -17,7 +17,7 @@ public class SpikerProtocol : GuardianCardModel
         WithTip(GuardianTip.DefensiveMode);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpikerProtocolPower>(ctx, this);
         await GuardianCmd.Brace(ctx, this);

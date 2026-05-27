@@ -15,7 +15,7 @@ public class Gather : AwakenedCardModel, IChantable
     {
         WithBlock(3, 3);
     }
-
+    public bool HasChanted { get; set; } = false;
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selected = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToHandSelectionPrompt, ctx,
@@ -24,7 +24,7 @@ public class Gather : AwakenedCardModel, IChantable
         await CardPileCmd.Add(selected, PileType.Hand);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

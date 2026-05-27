@@ -21,13 +21,14 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !IsDeadOn)
+        if (this is not IHasDeadOnEffect deadOnEffect) return 1;
+        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
             return 1;
         return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         HermitSfx.PlayGun2();

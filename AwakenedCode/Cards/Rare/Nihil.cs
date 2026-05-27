@@ -16,7 +16,7 @@ public class Nihil : AwakenedCardModel, IChantable
     {
         WithPower<ManaburnPower>(13, 3);
     }
-
+    public bool HasChanted { get; set; } = false;
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
@@ -33,7 +33,7 @@ public class Nihil : AwakenedCardModel, IChantable
         }
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this);

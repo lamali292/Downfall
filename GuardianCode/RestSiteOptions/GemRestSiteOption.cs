@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Nodes;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -40,7 +41,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         if (CardSelectCmd.ShouldSelectLocalCard(Owner))
         {
             var gems = Owner.GetDeck(c => c is IGemCard);
-            var gemHolder = Owner.GetDeck(c => c is GuardianCardModel { FreeSlots: > 0 });
+            var gemHolder = Owner.GetDeck(c => c is IGemSocketCard { FreeSlots: > 0 });
             var a = NGemUpgradeSelectScreen.Create(gems, gemHolder, prefs);
             if (NOverlayStack.Instance == null) return false;
             NOverlayStack.Instance.Push(a);
@@ -64,7 +65,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             return false;
         await GuardianCmd.PutGemIn(_gem, _gemHolder);
         var hasGems = Owner.GetDeck().Any(c => c is IGemCard);
-        var hasSlots = Owner.GetDeck().Any(c => c is GuardianCardModel { FreeSlots: > 0 });
+        var hasSlots = Owner.GetDeck().Any(c => c is IGemSocketCard { FreeSlots: > 0 });
         IsEnabled = hasGems && hasSlots;
         var button = NRestSiteRoom.Instance?.GetButtonForOption(this);
         if (button == null) return false;

@@ -16,7 +16,7 @@ public class RainOfGoop : SlimeBossCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = DynamicVars.Repeat.BaseValue;
         for (var i = 0; i < repeat; i++)

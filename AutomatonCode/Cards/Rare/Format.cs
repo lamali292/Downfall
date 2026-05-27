@@ -22,7 +22,7 @@ public class Format : AutomatonCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         if (IsUpgraded) x += 1;

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -7,7 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Cards.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class BrilliantScales : GuardianCardModel
+public class BrilliantScales : GuardianCardModel, IGemSocketCard
 {
     public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
@@ -15,9 +16,9 @@ public class BrilliantScales : GuardianCardModel
     }
 
 
-    public override int GemSlots => IsUpgraded ? 3 : 2;
+    public int GemSlots => IsUpgraded ? 3 : 2;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var power = await CommonActions.ApplySelf<BrilliantScalesPower>(ctx, this);
         power?.SetCard(this);

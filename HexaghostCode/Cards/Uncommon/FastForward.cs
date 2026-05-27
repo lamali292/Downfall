@@ -15,7 +15,7 @@ public class FastForward : HexaghostCardModel
         WithKeywords(HexaghostKeyword.Advance);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
     }

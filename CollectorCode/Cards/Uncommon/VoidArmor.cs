@@ -19,7 +19,7 @@ public class VoidArmor : CollectorCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         //await CommonActions.Apply<StrengthPower>(ctx,cardPlay.Target, this, 1);
         if (CombatState == null) return;

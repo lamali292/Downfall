@@ -1,8 +1,11 @@
 using System.Reflection;
 using Automaton.AutomatonCode.Cards;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
+using BaseLib.Extensions;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -22,16 +25,12 @@ public partial class AutomatonMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlay);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
-        /*
-        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
-            new CompileDescriptionSource());
-        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
-            new CompileErrorDescriptionSource());*/
-        Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        Harmony harmony = new(ModId);
+        harmony.TryPatchAll(assembly);
     }
 }

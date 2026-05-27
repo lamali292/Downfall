@@ -7,6 +7,7 @@ using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -41,7 +42,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         }
     }
 
-    public int SocketIndex => Card?.Gems.IndexOf(this) ?? -1;
+    public int SocketIndex => Card is IGemSocketCard socketCard ? socketCard.Gems.IndexOf(this) : -1;
 
     protected ICombatState CombatState =>
         Card!.CombatState ??
@@ -54,7 +55,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         .RemovePrefix()
         .ToLowerInvariant();
 
-    public GuardianCardModel? Card => IsCanonical ? null : Owner as GuardianCardModel;
+    public CardModel? Card => IsCanonical ? null : Owner;
 
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];

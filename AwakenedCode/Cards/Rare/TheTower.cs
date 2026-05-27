@@ -18,7 +18,7 @@ public class TheTower : AwakenedCardModel
         WithCalculatedDamage(2, 2, DamageCalc, ValueProp.Move, 1, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target, DynamicVars.CalculatedDamage).Execute(ctx);
     }

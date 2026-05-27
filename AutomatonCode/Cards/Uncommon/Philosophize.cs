@@ -22,7 +22,7 @@ public class Philosophize : AutomatonCardModel, IEncodable
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<PhilosophizePower>(ctx, this);
     }

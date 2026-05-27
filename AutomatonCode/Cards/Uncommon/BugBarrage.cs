@@ -19,7 +19,7 @@ public class BugBarrage : AutomatonCardModel
         WithCards(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         var statuses = Owner.GetHand(c => c.Type == CardType.Status);

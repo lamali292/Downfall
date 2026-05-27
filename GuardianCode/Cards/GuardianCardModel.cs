@@ -18,41 +18,10 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         bool showInCardLibrary = true, bool autoAdd = true)
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        WithTips(card => card is GuardianCardModel gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
+        WithTips(card => card is IGemSocketCard gc ? gc.Gems.SelectMany(gem => gem.HoverTips) : []);
         if (this is ITickCard) WithTip(GuardianTip.Tick);
     }
-
-    public IReadOnlyList<GemModel> Gems =>
-        CardModifier.Modifiers(this).OfType<GemModel>().ToList();
-
-    public int GemCount => Gems.Count;
-    private bool IsFull => Gems.Count >= GemSlots;
-    public int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
-
-    public virtual int GemSlots => 0;
-    protected virtual int GemReplayCount => 1;
-
-    public void AddGem(GemModel gem)
-    {
-        if (IsFull) return;
-        var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
-        CardModifier.AddModifier(this, mutableGem);
-    }
-
-    public void AddGems(IEnumerable<GemModel> gems)
-    {
-        foreach (var gem in gems)
-        {
-            if (IsFull) break;
-            AddGem(gem);
-        }
-    }
-
-    public bool CanAddGem(GemModel gem)
-    {
-        return !IsFull;
-    }
-
+    
     protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
         WithTip(GuardianTip.Accelerate, baseVal, upgradeVal);
@@ -70,18 +39,6 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         WithTip(GuardianTip.Polish);
         return WithVars(new PolishVar(baseVal).WithUpgrade(upgradeVal));
     }
-
-    protected virtual async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
-
-    protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await PlayEffect(ctx, cardPlay);
-        foreach (var gem in Gems)
-            await gem.OnPlayWrapper(ctx, cardPlay, GemReplayCount);
-    }
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.GetEnchantedReplayCount))]
@@ -90,7 +47,7 @@ internal static class GetEnchantedReplayCountPatch
     [HarmonyPostfix]
     private static void AddGemReplayCount(CardModel __instance, ref int __result)
     {
-        if (__instance is not GuardianCardModel guardianCard) return;
+        if (__instance is not IGemSocketCard guardianCard) return;
         __result = guardianCard.Gems.Aggregate(__result, (current, gem) => gem.ModifyPlayCount(current));
     }
 }

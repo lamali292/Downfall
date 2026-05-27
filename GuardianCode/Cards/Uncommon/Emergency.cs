@@ -16,7 +16,7 @@ public class Emergency : GuardianCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Accelerate(ctx, this, AccelerateType.All);
     }

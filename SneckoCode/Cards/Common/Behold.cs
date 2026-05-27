@@ -4,26 +4,28 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class Behold : SneckoCardModel
+public class Behold : SneckoCardModel, IHasOverflowEffect
 {
     public Behold() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithOverflow();
+        this.WithOverflow();
         WithDamage(6, 3);
         WithCards(2);
         WithTip(typeof(Shiv));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    protected override async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, DynamicVars.Cards.BaseValue);
     }

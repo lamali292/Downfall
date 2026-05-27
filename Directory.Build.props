@@ -137,5 +137,14 @@
 
     <ItemGroup>
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
+        <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
+            <Members>
+                M:BaseLib.Abstracts.ConstructedCardModel.WithKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword,BaseLib.Abstracts.ConstructedCardModel.UpgradeType);
+                M:BaseLib.Abstracts.ConstructedCardModel.WithKeywords(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword[]);
+                M:BaseLib.Abstracts.ConstructedCardModel.WithTip(BaseLib.Utils.TooltipSource);
+                M:BaseLib.Abstracts.ConstructedCardModel.WithTips(System.Func{MegaCrit.Sts2.Core.Models.CardModel,System.Collections.Generic.IEnumerable{MegaCrit.Sts2.Core.HoverTips.IHoverTip}});
+            </Members>
+        </Publicize>
     </ItemGroup>
+    
 </Project>

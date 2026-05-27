@@ -16,7 +16,7 @@ public sealed class SmokingBarrel : HermitCardModel
         WithTip(typeof(VigorPower));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<SmokingBarrelPower>(ctx, Owner.Creature, DynamicVars["BigShotPower"].BaseValue,

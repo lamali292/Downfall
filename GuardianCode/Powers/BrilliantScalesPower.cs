@@ -1,6 +1,7 @@
 ﻿using Godot;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -14,7 +15,7 @@ namespace Guardian.GuardianCode.Powers;
 
 public class BrilliantScalesPower : GuardianPowerModel
 {
-    private GuardianCardModel? _sourceCard;
+    private IGemSocketCard? _sourceCard;
 
     public BrilliantScalesPower() : base(PowerType.Buff, PowerStackType.Single)
     {
@@ -35,7 +36,7 @@ public class BrilliantScalesPower : GuardianPowerModel
             await gem.OnPlayWrapper(ctx, null);
     }
 
-    public void SetCard(GuardianCardModel cardModel)
+    public void SetCard(IGemSocketCard cardModel)
     {
         _sourceCard = cardModel;
         foreach (var sourceCardGem in _sourceCard.Gems) sourceCardGem.Power = this;

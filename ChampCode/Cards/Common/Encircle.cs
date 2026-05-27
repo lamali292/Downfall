@@ -15,7 +15,7 @@ public class Encircle : ChampCardModel
         WithGlory(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var a = attack.Results.Count();

@@ -24,7 +24,7 @@ public class MultiBeam : GuardianCardModel, ITickCard
         return Task.CompletedTask;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(x).Execute(ctx);
