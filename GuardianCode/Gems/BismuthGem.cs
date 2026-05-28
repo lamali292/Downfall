@@ -20,7 +20,6 @@ public class BismuthGem : GemModel
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<ArtifactPower>(),
-        HoverTipFactory.Static(StaticHoverTip.Energy),
         HoverTipFactory.Static(GuardianTip.Aggravate)
     ];
 

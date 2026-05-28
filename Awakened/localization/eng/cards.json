@@ -187,7 +187,7 @@
   "AWAKENED-SPREADING_SPORES.title": "Spreading Spores",
   "AWAKENED-STORM_RULER.description": "[gold]Conjure[/gold].\n[gold]Thunderbolts[/gold] deal {StormRulerPower:diff()} additional damage.",
   "AWAKENED-STORM_RULER.title": "Storm Ruler",
-  "AWAKENED-STRIKE_AWAKENED.description": "Deal {Damage:diff()} [gold]damage[/gold].",
+  "AWAKENED-STRIKE_AWAKENED.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-STRIKE_AWAKENED.title": "Strike",
   "AWAKENED-TAKE_FLIGHT.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "AWAKENED-TAKE_FLIGHT.title": "Take Flight",
