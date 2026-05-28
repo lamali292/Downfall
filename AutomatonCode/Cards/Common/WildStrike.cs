@@ -13,7 +13,7 @@ public class WildStrike : AutomatonCardModel
     public WildStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(13, 5);
-        WithTip(typeof(Wound));
+        this.WithTip<Wound>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

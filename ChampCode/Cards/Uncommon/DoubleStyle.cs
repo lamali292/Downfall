@@ -14,8 +14,8 @@ public class DoubleStyle : ChampCardModel
     {
         this.WithPower<DefensiveStylePower>(1, 1, false);
         this.WithPower<BerserkerStylePower>(1, 1, false);
-        WithTip(typeof(VigorPower));
-        WithTip(typeof(CounterPower));
+        this.WithTip<VigorPower>();
+        this.WithTip<CounterPower>();
     }
 
 

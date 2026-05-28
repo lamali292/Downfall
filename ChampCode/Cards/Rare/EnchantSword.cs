@@ -16,7 +16,7 @@ public class EnchantSword : ChampCardModel
     public EnchantSword() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(Instinct));
+        this.WithTip<Instinct>();
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -15,6 +16,9 @@ public class TakeFlight : AwakenedCardModel, IChantable
         WithBlock(12, 3);
         this.WithPower<BlurPower>(1, false);
     }
+    
+    protected override Artist Artist => Artist.Get<Eudaimonia>();
+    
 
     public bool HasChanted { get; set; } = false;
 

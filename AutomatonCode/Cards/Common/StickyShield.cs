@@ -15,7 +15,7 @@ public class StickyShield : AutomatonCardModel
     {
         WithBlock(11, 3);
         WithKeywords(CardKeyword.Retain);
-        WithTip(typeof(Slimed));
+        this.WithTip<Slimed>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

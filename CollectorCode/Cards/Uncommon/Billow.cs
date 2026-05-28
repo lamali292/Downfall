@@ -14,7 +14,7 @@ public class Billow : CollectorCardModel
     public Billow() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(18, 5);
-        WithTip(typeof(BellowCollector));
+        this.WithTip<BellowCollector>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

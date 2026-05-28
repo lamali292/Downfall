@@ -15,8 +15,8 @@ public class AncientPower : GuardianCardModel, IGemSocketCard
     {
         this.WithPower<TemporaryStrengthUpPower>(3, 1, false);
         this.WithPower<TemporaryDexterityUpPower>(3, 1, false);
-        WithTip(typeof(StrengthPower));
-        WithTip(typeof(DexterityPower));
+        this.WithTip<StrengthPower>();
+        this.WithTip<DexterityPower>();
     }
 
     public int GemSlots => 1;

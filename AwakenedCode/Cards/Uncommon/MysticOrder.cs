@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -15,7 +16,7 @@ public class MysticOrder : AwakenedCardModel
         WithCards(2, 1);
     }
 
-
+    protected override Artist Artist => Artist.Get<Eudaimonia>();
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);

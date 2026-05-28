@@ -19,10 +19,7 @@ public static class SlimeQueue
         return player.PlayerCombatState?.Pets.Where(e => e.Monster is SlimeModel).ToList() ?? [];
     }
     
-    public static void ResetAllSlots()
-    {
-        SlimeSlots._table.Clear();
-    }
+    public static void ResetAllSlots() =>  SlimeSlots._table.Clear();
 
     public static void SetSlots(Player player, int amount)
     {

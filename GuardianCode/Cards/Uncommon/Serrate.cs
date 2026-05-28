@@ -15,7 +15,7 @@ public class Serrate : GuardianCardModel
     public Serrate() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(15, 3, Calc, ValueProp.Move, 5, 1);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

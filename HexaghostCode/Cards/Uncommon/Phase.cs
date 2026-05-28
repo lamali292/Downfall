@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,7 @@ public class Phase : HexaghostCardModel
         WithPower<VeilpiercerPower>(1);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

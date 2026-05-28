@@ -13,7 +13,7 @@ public class Challenge : ChampCardModel
     {
         WithBlock(8, 3);
         WithDamage(8, 3);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

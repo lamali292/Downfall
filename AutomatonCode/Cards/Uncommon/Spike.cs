@@ -15,7 +15,7 @@ public class Spike : AutomatonCardModel, IEncodable
     {
         WithDamage(4, 1);
         this.WithPower<SpikePower>(3, 2, false);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
     }
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)

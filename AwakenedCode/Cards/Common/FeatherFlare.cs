@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -16,7 +17,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
         this.WithPower<DrawCardsNextTurnPower>(1, false);
     }
 
-
+    protected override Artist Artist => Artist.Get<Opal>();
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,6 +23,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         WithVar("Caw", 3, 1);
     }
 
+    protected override Artist Artist => Artist.Get<Occultpyromancer>();
+    
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

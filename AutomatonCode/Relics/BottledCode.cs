@@ -15,7 +15,7 @@ public class BottledCode : AutomatonRelicModel
 {
     public BottledCode() : base(RelicRarity.Rare)
     {
-        WithTip(typeof(Encoding));
+        this.WithTip<Encoding>();
         WithTip(AutomatonTip.Encode);
         WithTip(CardKeyword.Exhaust);
     }

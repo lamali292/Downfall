@@ -15,7 +15,7 @@ public class Parry : ChampCardModel
         WithBlock(8, 4);
         WithPower<CounterPower>(4, 2);
         this.WithPower<ParryingPower>(1, false);
-        WithTip(typeof(RiposteStrike));
+        this.WithTip<RiposteStrike>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -13,7 +13,7 @@ public class Mantis : AwakenedCardModel
     public Mantis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithPower<StrengthPower>(2, 1);
-        WithTip(typeof(PlumeJab));
+        this.WithTip<PlumeJab>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

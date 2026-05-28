@@ -15,7 +15,7 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
 
     protected TemporaryPowerBase()
     {
-        WithTip(typeof(TP));
+        this.WithTip<TP>();
     }
 
     public override PowerType Type => !IsPositive ? PowerType.Debuff : PowerType.Buff;

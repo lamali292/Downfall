@@ -22,7 +22,7 @@ public class GigaBeam : GuardianCardModel
         WithDamage(36, 4);
         WithVar("StrengthEffect", 2, 2);
         this.WithPower<StunnedPower>(1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

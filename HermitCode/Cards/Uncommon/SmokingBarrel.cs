@@ -13,7 +13,7 @@ public sealed class SmokingBarrel : HermitCardModel
     {
         this.WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

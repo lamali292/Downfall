@@ -16,7 +16,7 @@ public class EnchantShield : ChampCardModel
     public EnchantShield() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(Sturdy));
+        this.WithTip<Sturdy>();
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

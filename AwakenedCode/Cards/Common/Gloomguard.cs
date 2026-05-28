@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -14,8 +15,10 @@ public class Gloomguard : AwakenedCardModel
     {
         WithBlock(8, 3);
         WithEnergyTip();
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override bool ShouldReceiveCombatHooks => true;
     protected override bool ShouldGlowGoldInternal => HasVoidInHand();

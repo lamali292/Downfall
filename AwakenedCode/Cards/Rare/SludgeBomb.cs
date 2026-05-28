@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,10 +14,12 @@ public class SludgeBomb : AwakenedCardModel
     public SludgeBomb() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithTip(CardKeyword.Exhaust);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
         WithDamage(18, 4);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override bool IsPlayable => Owner.GetExhaust().Any(c => c is Void);
 
 

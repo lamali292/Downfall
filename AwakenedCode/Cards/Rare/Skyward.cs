@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,6 +19,7 @@ public class Skyward : AwakenedCardModel
         WithEnergyTip();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
     private int PowersPlayedThisCombat => CombatManager.Instance.History.Entries
         .OfType<CardPlayStartedEntry>()
         .Count(e =>

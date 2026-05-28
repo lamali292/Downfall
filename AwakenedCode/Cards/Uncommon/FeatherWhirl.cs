@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,8 +13,10 @@ public class FeatherWhirl : AwakenedCardModel
 {
     public FeatherWhirl() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(typeof(PlumeJab));
+        this.WithTip<PlumeJab>();
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool HasEnergyCostX => true;
 

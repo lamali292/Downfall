@@ -15,7 +15,7 @@ public sealed class Manifest : HermitCardModel
     public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(16, 4);
-        WithTip(typeof(Decay));
+        this.WithTip<Decay>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

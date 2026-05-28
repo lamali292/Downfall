@@ -14,7 +14,7 @@ public class SplitWide : AwakenedCardModel
     {
         WithDamage(5, 2);
         this.WithPower<SplitWidePower>(1, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         WithKeywords(CardKeyword.Exhaust);
     }
 

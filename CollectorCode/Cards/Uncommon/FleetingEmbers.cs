@@ -18,7 +18,7 @@ public class FleetingEmbers : CollectorCardModel, IHasPyre
         WithKeyword(CollectorKeyword.Pyre);
         WithBlock(5, 3);
         WithCards(2);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
     public CardModel? PyredCard { get; set; }

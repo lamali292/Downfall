@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,8 @@ public class Siphon : AwakenedCardModel, IChantable
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public bool HasChanted { get; set; } = false;
 

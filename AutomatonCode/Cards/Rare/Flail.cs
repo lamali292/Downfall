@@ -14,9 +14,9 @@ public class Flail : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(WeakPower));
-        WithTip(typeof(FrailPower));
-        WithTip(typeof(VulnerablePower));
+        this.WithTip<WeakPower>();
+        this.WithTip<FrailPower>();
+        this.WithTip<VulnerablePower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

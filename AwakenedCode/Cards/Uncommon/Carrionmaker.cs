@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,8 @@ public class Carrionmaker : AwakenedCardModel
         WithDamage(9, 3);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var extra = CombatManager.Instance.History.CardPlaysStarted.Count(s =>

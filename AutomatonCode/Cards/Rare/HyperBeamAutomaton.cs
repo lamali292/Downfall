@@ -20,7 +20,7 @@ public class HyperBeamAutomaton : AutomatonCardModel
         WithDamage(18, 4);
         WithPower<VulnerablePower>(1, 1);
         WithTip(AutomatonTip.Stash);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
         WithCards(3);
     }
 

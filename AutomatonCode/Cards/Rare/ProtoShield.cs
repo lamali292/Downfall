@@ -15,7 +15,7 @@ public class ProtoShield : AutomatonCardModel
     {
         WithBlock(6, 2);
         WithPower<PlatingPower>(2, 1);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
         WithCards(2);
     }
 

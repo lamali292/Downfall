@@ -13,7 +13,7 @@ public class Deception : SneckoCardModel
     public Deception() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(11, 3);
-        WithTip(typeof(Shockwave));
+        this.WithTip<Shockwave>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

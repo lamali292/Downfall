@@ -12,7 +12,7 @@ public class StashAway : CollectorCardModel
     public StashAway() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(4, 2);
-        WithTip(typeof(ReserveNextTurnPower));
+        this.WithTip<ReserveNextTurnPower>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

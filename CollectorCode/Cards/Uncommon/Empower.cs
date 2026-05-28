@@ -14,7 +14,7 @@ public class Empower : CollectorCardModel
 {
     public Empower() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         WithVars(new IntVar("Turns", 2).WithUpgrade(1));
     }
 

@@ -16,8 +16,8 @@ public class Endure : ChampCardModel
     public Endure() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithCalculatedBlock(7, BlockCalc, ValueProp.Move, 3);
-        WithTip(typeof(StrengthPower));
-        WithTip(typeof(DexterityPower));
+        this.WithTip<StrengthPower>();
+        this.WithTip<DexterityPower>();
         this.WithEnterDefensive();
     }
 

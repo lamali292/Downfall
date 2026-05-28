@@ -14,7 +14,7 @@ public class SharpHide : GuardianCardModel
     {
         WithPower<DexterityPower>(1);
         this.WithPower<SharpHidePower>(2, 2, false);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

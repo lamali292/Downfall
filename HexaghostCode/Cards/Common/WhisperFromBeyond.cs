@@ -15,7 +15,7 @@ public class WhisperFromBeyond : HexaghostCardModel
         WithDamage(7, 2);
         this.WithPower<WhisperFromBeyondPower>(5, 2, false);
         WithTip(CardKeyword.Exhaust);
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

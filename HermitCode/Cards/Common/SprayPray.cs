@@ -14,7 +14,7 @@ public sealed class SprayPray : HermitCardModel
     {
         WithDamage(4, 1);
         this.WithRepeat(3);
-        WithTip(typeof(Doubt));
+        this.WithTip<Doubt>();
     }
 
 

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
@@ -17,6 +18,8 @@ public class RockSlide : GuardianCardModel, IGemSocketCard
         WithTip(GuardianKeyword.Gem);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
     public int GemSlots => 3;
 
     public override void AfterCreated()

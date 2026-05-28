@@ -2,6 +2,7 @@
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,9 +15,11 @@ public class GreatHex : AwakenedCardModel, IChantable
     {
         WithKeywords(CardKeyword.Exhaust);
         this.WithPower<GreatHexPower>(5, 3, false);
-        WithTip(typeof(ManaburnPower));
+        this.WithTip<ManaburnPower>();
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -17,7 +17,7 @@ public class CrookedStrike : ChampCardModel
     {
         WithDamage(6, 3);
         this.WithFinisher();
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
         WithTags(CardTag.Strike);
     }
 

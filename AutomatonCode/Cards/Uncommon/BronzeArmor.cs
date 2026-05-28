@@ -14,7 +14,7 @@ public class BronzeArmor : AutomatonCardModel, IEncodable
     {
         WithBlock(13, 4);
         WithStash(2);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

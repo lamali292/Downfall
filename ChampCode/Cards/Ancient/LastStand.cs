@@ -14,9 +14,9 @@ public class LastStand : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithPower<StrengthPower>(6);
-        WithTip(typeof(WeakPower));
-        WithTip(typeof(VulnerablePower));
-        WithTip(typeof(FrailPower));
+        this.WithTip<WeakPower>();
+        this.WithTip<VulnerablePower>();
+        this.WithTip<FrailPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -65,10 +65,10 @@ public static class SlimeBossCmd
         await CardPileCmd.Add(licks, PileType.Hand);
     }
     
-    public static async Task Slurp(CardModel card)
+    
+    public static async Task Slurp(Player player, int amount)
     {
-        var amount = card.DynamicVars["Slurp"].IntValue;
-        var licks = card.Owner.GetExhaust()
+        var licks = player.GetExhaust()
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList();
 
@@ -76,14 +76,18 @@ public static class SlimeBossCmd
         var buried = licks.Where(e => e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();
 
         var cards = unburied
-            .TakeRandom(Math.Min(amount, unburied.Count), card.Owner.RunState.Rng.CombatCardSelection)
+            .TakeRandom(Math.Min(amount, unburied.Count), player.RunState.Rng.CombatCardSelection)
             .ToList();
 
         if (cards.Count < amount)
-            cards.AddRange(buried.TakeRandom(amount - cards.Count, card.Owner.RunState.Rng.CombatCardSelection));
+            cards.AddRange(buried.TakeRandom(amount - cards.Count,player.RunState.Rng.CombatCardSelection));
 
         await CardPileCmd.Add(cards, PileType.Hand);
     }
+
+    
+    public static Task Slurp(CardModel card)
+     => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
 
    
 }

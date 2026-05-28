@@ -14,7 +14,7 @@ public class AdrenalArmor : ChampCardModel
     {
         WithBlock(7, 2);
         this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

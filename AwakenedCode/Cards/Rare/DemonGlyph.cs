@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -13,11 +14,12 @@ public class DemonGlyph : AwakenedCardModel
 {
     public DemonGlyph() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithTip(typeof(StrengthPower));
-        WithTip(typeof(DexterityPower));
+        this.WithTip<StrengthPower>();
+        this.WithTip<DexterityPower>();
         this.WithPower<DemonGlyphPower>(2, 1, false);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

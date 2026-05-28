@@ -14,7 +14,7 @@ public class ThornWhip : CollectorCardModel
     public ThornWhip() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(6, 2);
-        WithTip(typeof(Shiv));
+        this.WithTip<Shiv>();
         WithPower<BruisePower>(3, 1);
     }
 

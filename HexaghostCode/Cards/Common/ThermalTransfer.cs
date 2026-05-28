@@ -13,7 +13,7 @@ public class ThermalTransfer : HexaghostCardModel
     {
         WithDamage(7, 2);
         WithBlock(6, 2);
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

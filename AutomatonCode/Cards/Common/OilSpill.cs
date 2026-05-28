@@ -16,7 +16,7 @@ public class OilSpill : AutomatonCardModel
         WithDamage(5, 2);
         WithPower<PoisonPower>(5, 2);
         WithTip(AutomatonTip.Stash);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

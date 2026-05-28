@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.DynamicVars;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -91,4 +92,17 @@ public static class ConstructedCardModelExtensions
         return card.WithTip(tooltipSource,
             baseVal + upgrade == 0 ? ConstructedCardModel.UpgradeType.Remove : ConstructedCardModel.UpgradeType.None);
     }
+    public static ConstructedCardModel WithTip<T>(this ConstructedCardModel card) where T : AbstractModel
+    {
+        return card.WithTip(typeof(T));
+    }
+    
+    
+    
+    public static ConstructedCardModel WithArtist<T>(this ConstructedCardModel card) where T : Artist, new()
+    {
+        return card.WithTips(_ => [Artist.Get<T>().HoverTip]);
+    }
+
+
 }

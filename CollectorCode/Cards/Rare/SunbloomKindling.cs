@@ -17,7 +17,7 @@ public class SunbloomKindling : CollectorCardModel
         WithKeyword(CardKeyword.Unplayable);
         WithPower<StrengthPower>(2, 3);
         WithCards(2);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,

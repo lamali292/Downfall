@@ -13,7 +13,7 @@ public class ItsAFeature : AutomatonCardModel
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<ItsAFeaturePower>(3, 2, false);
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

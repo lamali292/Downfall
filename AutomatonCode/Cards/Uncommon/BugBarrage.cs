@@ -14,7 +14,7 @@ public class BugBarrage : AutomatonCardModel
     public BugBarrage() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
         WithCards(2);
     }
 

@@ -14,7 +14,7 @@ public class FerventWorship : AwakenedCardModel
     public FerventWorship() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithEnergyTip();
-        WithTip(typeof(Ceremony));
+        this.WithTip<Ceremony>();
         WithTip(StaticHoverTip.ReplayStatic);
         WithCostUpgradeBy(-1);
     }

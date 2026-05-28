@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,6 +15,8 @@ public sealed class StrikeAwakened : AwakenedCardModel
         WithDamage(6, 3);
         WithTags(CardTag.Strike);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -14,7 +14,7 @@ public class DazingPulse : AutomatonCardModel, IEncodable
     public DazingPulse() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         this.WithPower<DazingPulsePower>(2, false);
-        WithTip(typeof(Dazed));
+        this.WithTip<Dazed>();
         WithBlock(7, 2);
         WithDamage(7, 2);
     }

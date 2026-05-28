@@ -14,7 +14,7 @@ public class BronzeBrambles : GuardianCardModel
     {
         WithCostUpgradeBy(-1);
         this.WithPower<BronzeBramblesPower>(1, false);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
     }
 
 

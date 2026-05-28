@@ -13,7 +13,7 @@ public class HeatWave : CollectorCardModel
     public HeatWave() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithDamage(5, 3);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
 

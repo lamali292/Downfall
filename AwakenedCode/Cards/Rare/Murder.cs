@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,6 +15,8 @@ public class Murder : AwakenedCardModel
         this.WithRepeat(4);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
+    
+    protected override Artist Artist => Artist.Get<Eudaimonia>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

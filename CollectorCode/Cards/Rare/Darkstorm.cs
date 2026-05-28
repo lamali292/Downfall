@@ -14,7 +14,7 @@ public class Darkstorm : CollectorCardModel
     {
         WithCards(2, 2);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(typeof(Blightning));
+        this.WithTip<Blightning>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

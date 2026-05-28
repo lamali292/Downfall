@@ -16,7 +16,7 @@ public class PiercingHide : GuardianCardModel, IGemSocketCard
     {
         WithBlock(7, 2);
         this.WithPower<TemporaryThornsPower>(2, 1, false);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
         this.WithBrace(3, 1);
     }
 

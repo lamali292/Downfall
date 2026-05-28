@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +18,8 @@ public class FourthDimension : AwakenedCardModel
         WithCostUpgradeBy(-1);
     }
 
-
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await CardSelectCmd.FromHand(ctx, Owner,

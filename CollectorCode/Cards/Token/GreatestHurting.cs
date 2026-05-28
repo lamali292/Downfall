@@ -14,7 +14,7 @@ public class GreatestHurting : CollectorCardModel
     {
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(30, 9);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

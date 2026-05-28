@@ -14,7 +14,7 @@ public class AshenStrike : CollectorCardModel
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(10, 3);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

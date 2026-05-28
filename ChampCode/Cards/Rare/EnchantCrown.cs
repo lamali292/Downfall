@@ -16,7 +16,7 @@ public class EnchantCrown : ChampCardModel
     public EnchantCrown() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(Crowned));
+        this.WithTip<Crowned>();
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

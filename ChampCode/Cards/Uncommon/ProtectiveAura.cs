@@ -2,6 +2,7 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -18,6 +19,8 @@ public class ProtectiveAura : ChampCardModel
         WithTip(ChampTip.Stance);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ProtectiveAuraPower>(ctx, this);

@@ -12,7 +12,7 @@ public class PhantomFireball : HexaghostCardModel
     public PhantomFireball() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

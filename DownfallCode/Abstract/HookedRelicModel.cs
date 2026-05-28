@@ -18,13 +18,15 @@ public abstract class HookedRelicModel : CustomRelicModel
         if (LocalContext.NetId == null || Owner.Creature.CombatState == null)
             return action(new ThrowingPlayerChoiceContext());
 
+        /*
         if (Owner.Creature.IsDead) return Task.CompletedTask;
         var ctx = new HookPlayerChoiceContext(
             this,
             LocalContext.NetId.Value,
             Owner.Creature.CombatState,
             GameActionType.Combat);
-        return ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
+        return ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));*/
+        return action(new BlockingPlayerChoiceContext());
     }
 
 

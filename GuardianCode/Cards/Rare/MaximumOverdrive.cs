@@ -15,7 +15,7 @@ public class MaximumOverdrive : GuardianCardModel
     {
         WithCostUpgradeBy(-1);
         this.WithPower<MaximumOverdrivePower>(1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         WithTip(GuardianTip.Stasis);
     }
 

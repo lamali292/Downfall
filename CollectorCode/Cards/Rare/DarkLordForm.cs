@@ -17,7 +17,7 @@ public class DarkLordForm : CollectorCardModel
             ? HoverTipFactory.FromPower<DarkLordFormPlusPower>()
             : HoverTipFactory
                 .FromPower<DarkLordFormPower>()));
-        WithTip(typeof(YouAreMine));
+        this.WithTip<YouAreMine>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

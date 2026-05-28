@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -24,6 +25,8 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
         return ModelDb.Card<TalonRend>();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2)

@@ -1,17 +1,26 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class DownfallCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : ConstructedCardModel(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
+public abstract class DownfallCardModel
+    : ConstructedCardModel
+{
+    protected virtual Artist? Artist => null;
+
+    protected DownfallCardModel(
+        int cost,
+        CardType type,
+        CardRarity rarity,
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+    {
+        WithTips(e => e is DownfallCardModel { Artist: not null } card ? [card.Artist.HoverTip] : []);
+    }
+};
 
 public abstract class DownfallCardModel<T>(
     int cost,

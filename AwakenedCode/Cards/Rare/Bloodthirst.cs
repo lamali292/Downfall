@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,9 +17,11 @@ public class Bloodthirst : AwakenedCardModel
     {
         WithDamage(20, 5);
         WithTip(CardKeyword.Exhaust);
-        WithTip(typeof(PowerPotion));
+        this.WithTip<PowerPotion>();
         WithTip(StaticHoverTip.Fatal);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

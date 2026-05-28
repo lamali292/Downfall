@@ -86,6 +86,10 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
         return this;
     }
 
+    public ConstructedRelicModel WithTip<T>() where T : AbstractModel
+    {
+        return WithTip(typeof(T));
+    }
 
     protected ConstructedRelicModel WithEnergyTip()
     {

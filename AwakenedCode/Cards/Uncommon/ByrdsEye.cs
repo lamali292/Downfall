@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Piles;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,8 @@ public class ByrdsEye : AwakenedCardModel
         this.WithConjure();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded) AwakenedCmd.GetSpellbook(Owner)?.Refresh(Owner);

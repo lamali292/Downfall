@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,9 +16,11 @@ public class Procession : AwakenedCardModel
     public Procession() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+    
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

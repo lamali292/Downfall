@@ -17,7 +17,7 @@ public class Behold : SneckoCardModel, IHasOverflowEffect
         this.WithOverflow();
         WithDamage(6, 3);
         WithCards(2);
-        WithTip(typeof(Shiv));
+        this.WithTip<Shiv>();
     }
 
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

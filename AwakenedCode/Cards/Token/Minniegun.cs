@@ -14,7 +14,7 @@ public class Minniegun : AwakenedCardModel
     {
         WithDamage(2);
         this.WithRepeat(5, 1);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

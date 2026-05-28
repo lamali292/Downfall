@@ -15,7 +15,7 @@ public class KrampianCoal : CollectorRelicModel, IAfterCustomDraw
 {
     public KrampianCoal() : base(RelicRarity.Shop)
     {
-        WithTip(typeof(LuckyWick));
+        WithTip<LuckyWick>();
     }
 
     public async Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result)

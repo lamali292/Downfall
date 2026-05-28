@@ -16,7 +16,7 @@ public class SlimeSlap : SlimeBossCardModel
         WithPower<DouseInSlimePower>(1);
         WithDamage(8);
         WithCostUpgradeBy(-1);
-        WithTip(typeof(GoopPower));
+        this.WithTip<GoopPower>();
     }
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

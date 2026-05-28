@@ -22,5 +22,11 @@
   "SLIMEBOSS-ROLL_THROUGH_POWER.smartDescription": "You do not take damage from the next [blue]{Amount}[/blue] \"Tackle\" cards.",
   "SLIMEBOSS-GOOP_ARMOR_POWER.title": "Goop Armor",
   "SLIMEBOSS-GOOP_ARMOR_POWER.description": "Gain [gold]Block[/gold] whenever you [gold]Consume[/gold].",
-  "SLIMEBOSS-GOOP_ARMOR_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Block[/gold] whenever you [gold]Consume[/gold]."
+  "SLIMEBOSS-GOOP_ARMOR_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Block[/gold] whenever you [gold]Consume[/gold].",
+  "SLIMEBOSS-RECYCLING_POWER.title": "Recycling",
+  "SLIMEBOSS-RECYCLING_POWER.description": "At the start of your turn, [gold]Slurp[/gold].",
+  "SLIMEBOSS-RECYCLING_POWER.smartDescription": "At the start of your turn, [gold]Slurp[/gold]{Amount:plural:| [blue]{}[/blue]}.",
+  "SLIMEBOSS-GLUTTONY_POWER.title": "Gluttony",
+  "SLIMEBOSS-GLUTTONY_POWER.description": "The first time you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold].",
+  "SLIMEBOSS-GLUTTONY_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold]."
 }

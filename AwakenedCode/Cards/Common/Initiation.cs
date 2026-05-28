@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,9 +14,9 @@ public class Initiation : AwakenedCardModel
     public Initiation() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(11, 3);
-        WithTip(typeof(Ceremony));
+        this.WithTip<Ceremony>();
     }
-
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

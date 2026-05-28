@@ -15,7 +15,7 @@ public class StormRuler : AwakenedCardModel
     {
         this.WithPower<StormRulerPower>(6, 3, false);
         this.WithConjure();
-        WithTip(typeof(Thunderbolt));
+        this.WithTip<Thunderbolt>();
     }
 
 

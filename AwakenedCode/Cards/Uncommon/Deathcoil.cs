@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ public class Deathcoil : AwakenedCardModel
         WithPower<ManaburnPower>(8, 3);
         this.WithDrained(1);
     }
-
+    protected override Artist Artist => Artist.Get<Eudaimonia>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

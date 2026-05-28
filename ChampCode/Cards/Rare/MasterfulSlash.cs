@@ -12,7 +12,7 @@ public class MasterfulSlash : ChampCardModel
     public MasterfulSlash() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithTip(typeof(VigorNextTurnPower));
+        this.WithTip<VigorNextTurnPower>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

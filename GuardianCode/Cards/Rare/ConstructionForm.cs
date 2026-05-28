@@ -14,7 +14,7 @@ public class ConstructionForm : GuardianCardModel
     {
         WithPower<BufferPower>(2);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         this.WithPower<ConstructionFormPower>(1, false);
     }
 

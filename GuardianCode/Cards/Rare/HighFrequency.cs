@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
@@ -18,7 +19,8 @@ public class HighFrequency : GuardianCardModel
         WithTip(GuardianTip.Stasis);
         WithCostUpgradeBy(-1);
     }
-
+    
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -15,7 +15,7 @@ public class RevengeProtocol : GuardianCardModel
     {
         this.WithPower<BracingPower>(4, 2, false);
         this.WithPower<RevengeProtocolPower>(2, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         WithTip(GuardianTip.DefensiveMode);
         WithTip(GuardianTip.Brace);
     }

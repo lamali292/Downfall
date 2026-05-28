@@ -14,7 +14,7 @@ public class Backstep : ChampCardModel
     public Backstep() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCalculatedBlock(6, CalcBlock, upgrade: 3);
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
     private static decimal CalcBlock(CardModel card, Creature? creature)

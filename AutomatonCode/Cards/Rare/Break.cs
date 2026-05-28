@@ -13,7 +13,7 @@ public class Break : AutomatonCardModel
     public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(20, 5);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
 

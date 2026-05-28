@@ -6,5 +6,5 @@ namespace SlimeBoss.SlimeBossCode.Events;
 
 public interface IAfterConsumeEffect
 {
-    Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, decimal amount);
+    Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal goopAmount);
 }

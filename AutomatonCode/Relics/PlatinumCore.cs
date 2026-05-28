@@ -17,8 +17,8 @@ public class PlatinumCore : AutomatonRelicModel
 {
     public PlatinumCore() : base(RelicRarity.Starter)
     {
-        WithTip(typeof(StrikeAutomaton));
-        WithTip(typeof(DefendAutomaton));
+        this.WithTip<StrikeAutomaton>();
+        this.WithTip<DefendAutomaton>();
         WithTip(AutomatonTip.Encode);
     }
 

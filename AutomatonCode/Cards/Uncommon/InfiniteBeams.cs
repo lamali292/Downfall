@@ -13,7 +13,7 @@ public class InfiniteBeams : AutomatonCardModel
     public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithTip(typeof(MinorBeam));
+        this.WithTip<MinorBeam>();
         this.WithPower<InfiniteBeamsPower>(1, false);
     }
 

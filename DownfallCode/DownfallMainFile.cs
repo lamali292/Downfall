@@ -5,6 +5,7 @@ using System.Text.Json;
 using BaseLib.Config;
 using BaseLib.Extensions;
 using BaseLib.Patches.Saves;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.Nodes;
@@ -32,6 +33,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
         Harmony harmony = new(ModId);

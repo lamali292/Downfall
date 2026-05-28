@@ -12,7 +12,7 @@ public sealed class Midnight : HermitCardModel
     public Midnight() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
-        WithTip(typeof(ImpendingDoom));
+        this.WithTip<ImpendingDoom>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

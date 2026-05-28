@@ -20,7 +20,7 @@ public class ArenaMastery : ChampCardModel
         this.WithBerserkerTip();
         this.WithDefensiveTip();
         WithTip(ChampTip.Finisher);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
         WithTip(StaticHoverTip.Block);
     }
 

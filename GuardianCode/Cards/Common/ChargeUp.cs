@@ -15,7 +15,7 @@ public class ChargeUp : GuardianCardModel, IGemSocketCard
     {
         WithBlock(7, 2);
         this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithTip<StrengthPower>();
     }
 
     public int GemSlots => 1;

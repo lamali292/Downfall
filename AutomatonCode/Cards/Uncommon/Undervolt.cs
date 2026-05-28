@@ -15,7 +15,7 @@ public class Undervolt : AutomatonCardModel
     {
         WithPower<StrengthPower>(-2, -1);
         WithVar("StrengthLoss", 2, 1);
-        WithTip(typeof(Burn));
+        this.WithTip<Burn>();
         WithCards(2);
     }
 

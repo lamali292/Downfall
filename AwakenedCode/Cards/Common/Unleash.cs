@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,6 +15,7 @@ public class Unleash : AwakenedCardModel
     {
         WithCalculatedDamage(5, DamageCalc, bonusUpgrade: 1);
     }
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal DamageCalc(CardModel card, Creature? creature)
     {

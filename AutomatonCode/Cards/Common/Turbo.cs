@@ -15,7 +15,7 @@ public class Turbo : AutomatonCardModel
     {
         WithEnergyTip();
         WithEnergy(2, 1);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

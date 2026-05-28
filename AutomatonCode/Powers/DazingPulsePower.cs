@@ -14,7 +14,7 @@ public class DazingPulsePower : AutomatonPowerModel, IAfterCompilingFunction
 {
     public DazingPulsePower() : base(PowerType.Debuff)
     {
-        WithTip(typeof(Dazed));
+        this.WithTip<Dazed>();
     }
 
     public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)

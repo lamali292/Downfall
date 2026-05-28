@@ -31,9 +31,10 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
     
     public override Task BeforeCombatStart()
     {
+        SlimeQueue.ResetAllSlots();
+        
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
-        SlimeQueue.ResetAllSlots();
         foreach (var player in state.Players.Where(e => e.Character is SlimeBoss))
         {
             SlimeQueue.SetSlots(player, 3);

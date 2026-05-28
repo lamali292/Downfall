@@ -18,7 +18,7 @@ public class GoopArmorPower : SlimeBossPowerModel, IAfterConsumeEffect
         WithTip(SlimeBossTip.Consume);
     }
     
-    public Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, decimal amount)
-     => command.Attacker != Owner ? Task.CompletedTask : 
+    public Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal amount)
+     => attacker != Owner ? Task.CompletedTask : 
          CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
 }
