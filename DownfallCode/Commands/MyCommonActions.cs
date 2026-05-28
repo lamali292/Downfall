@@ -73,14 +73,10 @@ public static class MyCommonActions
         var amount = model.GetDynamicVars().Power<T>().BaseValue;
         var card = model as CardModel;
         var targets = model.MyGetTargets(target).ToList();
+        if (targets.Count != 1) return await PowerCmd.Apply<T>(ctx, targets, amount, creature, card);
+        var result = await PowerCmd.Apply<T>(ctx, targets[0], amount, creature, card);
+        return result is not null ? [result] : [];
 
-        if (targets.Count == 1)
-        {
-            var result = await PowerCmd.Apply<T>(ctx, targets[0], amount, creature, card);
-            return result is not null ? [result] : [];
-        }
-
-        return await PowerCmd.Apply<T>(ctx, targets, amount, creature, card);
     }
 
     public static async Task LoseHp(PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
