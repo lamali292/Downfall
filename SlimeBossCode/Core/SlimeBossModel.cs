@@ -28,4 +28,16 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
         if (slimeModel == null) return;
         await SlimeQueue.AddSlime(player, slimeModel);
     }
+    
+    public override Task BeforeCombatStart()
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        SlimeQueue.ResetAllSlots();
+        foreach (var player in state.Players.Where(e => e.Character is SlimeBoss))
+        {
+            SlimeQueue.SetSlots(player, 3);
+        }
+        return Task.CompletedTask;
+    }
 }

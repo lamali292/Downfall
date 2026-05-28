@@ -235,4 +235,22 @@ public static class DownfallHook
         return Task.FromResult(
             Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
     }
+    
+    public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
+        out IEnumerable<IModifySelfDamage> modifiers)
+    {
+        return Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers);
+    }
+    
+    public static Task AfterModifyingSelfDamage(ICombatState cs, IEnumerable<IModifySelfDamage> modifiers,
+        AbstractModel model)
+    {
+        return AfterModifying(cs, modifiers, m => m.AfterModifyingSelfDamage(model));
+    }
+}
+
+public interface IModifySelfDamage
+{
+    decimal ModifySelfDamage(decimal amount, AbstractModel model);
+    Task AfterModifyingSelfDamage(AbstractModel model);
 }

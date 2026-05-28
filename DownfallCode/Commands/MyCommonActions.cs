@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
+using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -39,9 +40,16 @@ public static class MyCommonActions
     }
 
 
-    public static Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, AbstractModel model)
+    public static async Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, AbstractModel model)
     {
-        return CreatureCmd.Damage(ctx, model.GetCreature(), model.GetDynamicVars().SelfDamage(), model.GetCreature());
+        var creature = model.GetCreature();
+        var combatState = creature.CombatState;
+        if (combatState == null) return [];
+        var damage = model.GetDynamicVars().SelfDamage();
+        var modified = DownfallHook.ModifySelfDamage(combatState, damage.BaseValue, model, out var mod);
+        await DownfallHook.AfterModifyingSelfDamage(combatState, mod, model);
+        if (modified <= 0) return [];
+        return await CreatureCmd.Damage(ctx, model.GetCreature(), modified, damage.Props, model.GetCreature());
     }
 
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)

@@ -12,16 +12,55 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public static class SlimeQueue
 {
-    private static readonly SpireField<Player, int> SlimeSlots = new(_ => 3);
+    private static readonly SpireField<Player, int> SlimeSlots = new(_ => 0);
 
     private static List<Creature> GetSlimes(Player player)
     {
         return player.PlayerCombatState?.Pets.Where(e => e.Monster is SlimeModel).ToList() ?? [];
     }
+    
+    public static void ResetAllSlots()
+    {
+        SlimeSlots._table.Clear();
+    }
 
-    public static async Task AddSlime(Player player, SlimeModel slimeModel)
+    public static void SetSlots(Player player, int amount)
+    {
+        
+        SlimeSlots[player] = amount;
+    }
+    
+    public static int GetCount(Player player)
+    {
+        return player.PlayerCombatState?.Pets.Count(e => e.Monster is SlimeModel) ?? 0;
+    }
+    
+    public static async Task<int> DecreaseSlimeSlots(Player player, int amount = 1)
+    {
+        if (SlimeSlots[player] <= 0) return 0; // can't go below 1
+
+        var actual = Math.Min(amount, SlimeSlots[player]); // clamp so slots never go below 1
+        SlimeSlots[player] -= actual;
+        var maxSlots = SlimeSlots[player];
+        var slimes = GetSlimes(player);
+
+        while (slimes.Count > maxSlots)
+        {
+            var oldest = slimes[0];
+            slimes.RemoveAt(0);
+            if (!oldest.IsAlive) continue;
+            await CreatureCmd.Kill(oldest);
+            player.PlayerCombatState?._pets.Remove(oldest);
+        }
+
+        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return actual;
+    }
+    
+    public static async Task<bool> AddSlime(Player player, SlimeModel slimeModel)
     {
         var maxSlots = SlimeSlots[player];
+        if (maxSlots == 0) return false;
         var slimes = GetSlimes(player);
 
         while (slimes.Count >= maxSlots)
@@ -34,16 +73,49 @@ public static class SlimeQueue
         }
 
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
-        if (pet == null) return;
+        if (pet == null) return false;
         await PlayerCmd.AddPet(pet, player);
 
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return true;
     }
 
     public static Task AddSlime<T>(Player player) where T : SlimeModel
     {
         return AddSlime(player, ModelDb.Monster<T>());
     }
+    
+    public static async Task<bool> RemoveLeadingSlime(Player player)
+    {
+        var slimes = GetSlimes(player);
+        if (slimes.Count == 0) return false;
+
+        var leading = slimes[^1];
+        if (!leading.IsAlive) return false;
+
+        await CreatureCmd.Kill(leading);
+        player.PlayerCombatState?._pets.Remove(leading);
+
+        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return true;
+    }
+    
+    public static async Task<int> RemoveAll(Player player)
+    {
+        var slimes = GetSlimes(player);
+        if (slimes.Count == 0) return 0;
+
+        var amount = 0;
+        foreach (var slime in slimes.Where(slime => slime.IsAlive))
+        {
+            await CreatureCmd.Kill(slime);
+            player.PlayerCombatState?._pets.Remove(slime);
+            amount++;
+        }
+        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return amount;
+    }
+
 
 
     private static void RearrangeSlimeOrbRow(Player player)

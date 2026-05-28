@@ -16,7 +16,7 @@ using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IHasSecondAmount
+public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
@@ -26,10 +26,7 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
 
-    public string GetSecondAmount()
-    {
-        return "Cool Text";
-    }
+    
 
     protected override object InitInternalData()
     {

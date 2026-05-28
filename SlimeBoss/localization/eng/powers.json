@@ -16,5 +16,11 @@
   "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "Tackles deal [blue]{Amount}[/blue] additional damage.",
   "SLIMEBOSS-POTENCY_POWER.title": "Potency",
   "SLIMEBOSS-POTENCY_POWER.description": "Increases the damage of ALL your Spawned Slimes.\nSecondary effects increase by [blue]1[/blue] for every [blue]2[/blue] Potency (rounding up).",
-  "SLIMEBOSS-POTENCY_POWER.smartDescription": "Increases the damage of ALL your Spawned Slimes by [blue]{Amount}[/blue].\nIncrease Secondary effects increase by [blue]{Amount2}[/blue]."
+  "SLIMEBOSS-POTENCY_POWER.smartDescription": "Increases the damage of ALL your Spawned Slimes by [blue]{Amount}[/blue].\nIncrease Secondary effects increase by [blue]{Amount2}[/blue].",
+  "SLIMEBOSS-ROLL_THROUGH_POWER.title": "Roll Through",
+  "SLIMEBOSS-ROLL_THROUGH_POWER.description": "You do not take damage from the next \"Tackle\" cards.",
+  "SLIMEBOSS-ROLL_THROUGH_POWER.smartDescription": "You do not take damage from the next [blue]{Amount}[/blue] \"Tackle\" cards.",
+  "SLIMEBOSS-GOOP_ARMOR_POWER.title": "Goop Armor",
+  "SLIMEBOSS-GOOP_ARMOR_POWER.description": "Gain [gold]Block[/gold] whenever you [gold]Consume[/gold].",
+  "SLIMEBOSS-GOOP_ARMOR_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Block[/gold] whenever you [gold]Consume[/gold]."
 }

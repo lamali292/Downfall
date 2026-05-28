@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
@@ -10,10 +11,16 @@ public class Grow : SlimeBossCardModel
 {
     public Grow() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        WithPower<StrengthPower>(2);
+        WithPower<DexterityPower>(2);
+        WithCostUpgradeBy(-1);
     }
-
-    // TODO: Implement
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var amount = await SlimeQueue.DecreaseSlimeSlots(Owner);
+        if (amount <= 0) return;
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
     }
 }
