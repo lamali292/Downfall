@@ -2,7 +2,7 @@
   "GUARDIAN-ANCIENT_CONSTRUCT_POWER.title": "Ancient Construct",
   "GUARDIAN-ANCIENT_CONSTRUCT_POWER.description": "Gain [blue]1[/blue] [gold]Artifact[/gold] at the start of your turn if you have no [gold]Artifact[/gold].",
   "GUARDIAN-ANCIENT_CONSTRUCT_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Artifact[/gold] at the start of your turn if you have no [gold]Artifact[/gold].",
-  "GUARDIAN-NEXT_TURN_TEMPORARY_STRENGTH_UP_POWER.title": "Next Turn Temporary Strength Up",
+  "GUARDIAN-NEXT_TURN_TEMPORARY_STRENGTH_UP_POWER.title": "Next Turn Charge Up",
   "GUARDIAN-NEXT_TURN_TEMPORARY_STRENGTH_UP_POWER.description": "Gain [blue]1[/blue] [gold]Strength[/gold] during your next turn.",
   "GUARDIAN-NEXT_TURN_TEMPORARY_STRENGTH_UP_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold] during your next turn.",
   "GUARDIAN-BRACING_POWER.title": "Bracing",
