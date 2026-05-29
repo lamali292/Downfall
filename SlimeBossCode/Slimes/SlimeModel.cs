@@ -11,6 +11,7 @@ public abstract class SlimeModel : CustomMonsterModel
 {
     public override int MinInitialHp => 1;
     public override int MaxInitialHp => 1;
+    public abstract bool IsSpecialist { get; }
 
     public override string CustomVisualPath =>
         $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();

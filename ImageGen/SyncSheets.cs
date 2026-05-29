@@ -11,7 +11,6 @@ namespace ImageGen;
 
 public class SyncSheets
 {
-    private const string SheetId = "1adgDbqi4A7oHqtAb2klUFrUsl4-TQR_AIWqDdDQUQ1g";
     private const string GithubRaw = "https://raw.githubusercontent.com/lamali292/Downfall/develop-2/ImageGen/images";
 
     private const int RowHeightPx = 130;
@@ -33,8 +32,10 @@ public class SyncSheets
     private readonly string _scriptDir;
     private readonly string _serviceAccount;
 
-    public SyncSheets(string scriptDir)
+    private readonly string _sheetId;
+    public SyncSheets(string scriptDir, string sheetId)
     {
+        _sheetId = sheetId;
         _scriptDir = scriptDir;
         _imagesDir = Path.Join(scriptDir, "images");
         _parent = Path.GetFullPath(Path.Join(scriptDir, ".."));
@@ -282,7 +283,7 @@ public class SyncSheets
         Console.WriteLine($"  [{name}] Updating {rows.Count} rows...");
 
         // Find or create sheet
-        var spreadsheet = svc.Spreadsheets.Get(SheetId).Execute();
+        var spreadsheet = svc.Spreadsheets.Get(_sheetId).Execute();
         var existing = spreadsheet.Sheets.FirstOrDefault(s => s.Properties.Title == name);
         int sheetId;
 
@@ -298,12 +299,12 @@ public class SyncSheets
                 [
                     new Request { AddSheet = new AddSheetRequest { Properties = new SheetProperties { Title = name } } }
                 ]
-            }, SheetId).Execute();
+            }, _sheetId).Execute();
             sheetId = (int)resp.Replies[0].AddSheet.Properties.SheetId!;
         }
 
         // Clear and write
-        svc.Spreadsheets.Values.Clear(new ClearValuesRequest(), SheetId, name).Execute();
+        svc.Spreadsheets.Values.Clear(new ClearValuesRequest(), _sheetId, name).Execute();
 
         var data = rows.Count > 0
             ? new[] { Header.ToList() }.Concat(rows).ToList()
@@ -311,7 +312,7 @@ public class SyncSheets
 
         var writeReq = svc.Spreadsheets.Values.Update(
             new ValueRange { Values = data.Select(r => (IList<object>)r.Cast<object>().ToList()).ToList() },
-            SheetId, $"{name}!A1");
+            _sheetId, $"{name}!A1");
         writeReq.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
         writeReq.Execute();
 
@@ -330,7 +331,7 @@ public class SyncSheets
                 DimRequest(sheetId, "COLUMNS", 6, 7, ImgColPx),
                 TabColorRequest(sheetId, tabColor)
             ]
-        }, SheetId).Execute();
+        }, _sheetId).Execute();
 
         // Row colors — batch in chunks of 500 to stay under API limits
         var cellRequests = new List<Request>();
@@ -350,7 +351,7 @@ public class SyncSheets
 
         foreach (var chunk in cellRequests.Chunk(500))
             svc.Spreadsheets.BatchUpdate(
-                new BatchUpdateSpreadsheetRequest { Requests = [..chunk] }, SheetId).Execute();
+                new BatchUpdateSpreadsheetRequest { Requests = [..chunk] }, _sheetId).Execute();
 
         cache[name] = hash;
         Console.WriteLine($"  [{name}] Done.");

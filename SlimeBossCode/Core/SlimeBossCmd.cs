@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using SlimeBoss.SlimeBossCode.Cards.Uncommon;
+using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -89,5 +89,23 @@ public static class SlimeBossCmd
     public static Task Slurp(CardModel card)
      => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
 
-   
+
+    public static async Task Split<T>(Player player) where T : SlimeModel
+    {
+        var slimeModel = SlimeBossModelDb.Slime<T>();
+        await SlimeQueue.AddSlime(player, slimeModel);
+    }
+
+    public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player owner)
+    {
+        var combatState = owner.Creature.CombatState;
+        if (combatState == null) return;
+        var slimeCards = SlimeBossModelDb.AllSpecialistSlimes
+            .TakeRandom(3, owner.RunState.Rng.CombatCardGeneration)
+            .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, owner)).ToList();
+        var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, owner);
+        if (card is not ISlimeCard slimeCard) return;
+        var slime = slimeCard.SlimeModel;
+        await SlimeQueue.AddSlime(owner, slime);
+    }
 }

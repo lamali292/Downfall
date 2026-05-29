@@ -1,7 +1,51 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=11 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_2qosm"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/torchhead.tscn" id="2_2qosm"]
+[ext_resource type="Shader" path="res://shaders/vfx/fire/fire_shader_1.tres" id="3_seb7e"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_4.png" id="4_mxwrp"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_1.png" id="5_52deb"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_2.png" id="6_to2sb"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/fire_shape_1.png" id="7_ctcg4"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="8_5u35w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkcqb"]
+shader = ExtResource("3_seb7e")
+shader_parameter/ColorParameter = Color(0.8, 1, 0, 1)
+shader_parameter/Smooth_Step = Vector2(0.81, 0.9)
+shader_parameter/Noise_Intensity_1 = 0.935
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.0
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.69)
+shader_parameter/NoiseTexture1 = ExtResource("5_52deb")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("6_to2sb")
+shader_parameter/Noise_Intensity_2 = 1.055
+shader_parameter/top_gradient = ExtResource("8_5u35w")
+shader_parameter/MaskNoiseIntensity = 0.1
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("4_mxwrp")
+shader_parameter/Shape_Mask = ExtResource("7_ctcg4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3yxl"]
+shader = ExtResource("3_seb7e")
+shader_parameter/ColorParameter = Color(0.9411765, 1, 0.4, 1)
+shader_parameter/Smooth_Step = Vector2(0.925, 0.99)
+shader_parameter/Noise_Intensity_1 = 1.055
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.3
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.2)
+shader_parameter/NoiseTexture1 = ExtResource("5_52deb")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("6_to2sb")
+shader_parameter/Noise_Intensity_2 = 0.985
+shader_parameter/top_gradient = ExtResource("8_5u35w")
+shader_parameter/MaskNoiseIntensity = 0.09
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("4_mxwrp")
+shader_parameter/Shape_Mask = ExtResource("7_ctcg4")
 
 [node name="TorchheadSlime" type="Node2D"]
 script = ExtResource("1_2qosm")
@@ -28,3 +72,40 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="Eye" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-33.87, -25.4)
+
+[node name="RightEye" type="Control" parent="Eye"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.87
+offset_top = -92.6
+offset_right = 77.869995
+offset_bottom = -12.599998
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 60)
+
+[node name="eye_fire_r" type="ColorRect" parent="Eye/RightEye"]
+material = SubResource("ShaderMaterial_qkcqb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Eye/RightEye"]
+material = SubResource("ShaderMaterial_i3yxl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

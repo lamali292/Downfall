@@ -3,7 +3,6 @@ using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
@@ -43,22 +42,8 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         return characterCard;
     }
 
-    private static decimal Calc(CardModel arg1, Creature? arg2)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.Title), MethodType.Getter)]
-public static class CardModelTitlePatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(CardModel __instance, ref string __result)
-    {
-        if (__instance is CharacterCard { CharacterModel: not null } characterCard)
-            __result = new LocString("characters", characterCard.CharacterModel.CharacterSelectTitle)
-                .GetFormattedText();
-    }
+    public override string Title => CharacterModel == null ? "???" : new LocString("characters", CharacterModel.CharacterSelectTitle)
+        .GetFormattedText();
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Description), MethodType.Getter)]

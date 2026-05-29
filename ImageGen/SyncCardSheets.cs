@@ -49,6 +49,7 @@ public class SyncCardSheets
         var baseCards = allCards.Where(c => c.Upgrades == 0).ToList();
         var upgraded = allCards
             .Where(c => c.Upgrades > 0)
+            .DistinctBy(c => c.Id)
             .ToDictionary(c => c.Id);
 
         var credential = CredentialFactory.FromFile<ServiceAccountCredential>(_serviceAccount)
@@ -382,12 +383,12 @@ public class SyncCardSheets
 
     private class CardEntry
     {
-        [JsonPropertyName("id")] public string Id { get; } = "";
-        [JsonPropertyName("name")] public string Name { get; } = "";
-        [JsonPropertyName("rarity")] public string Rarity { get; } = "";
-        [JsonPropertyName("type")] public string Type { get; } = "";
-        [JsonPropertyName("cost")] public string Cost { get; } = "";
-        [JsonPropertyName("description")] public string Description { get; } = "";
+        [JsonPropertyName("id")] public string Id { get; set; } = "";
+        [JsonPropertyName("name")] public string Name { get; set; } = "";
+        [JsonPropertyName("rarity")] public string Rarity { get; set; } = "";
+        [JsonPropertyName("type")] public string Type { get; set; } = "";
+        [JsonPropertyName("cost")] public string Cost { get; set; } = "";
+        [JsonPropertyName("description")] public string Description { get; set; } = "";
         [JsonPropertyName("upgrades")] public int Upgrades { get; set; }
         [JsonPropertyName("mod")] public string? Mod { get; set; }
     }

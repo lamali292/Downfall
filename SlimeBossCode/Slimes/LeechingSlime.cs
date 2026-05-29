@@ -15,6 +15,8 @@ public class LeechingSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
 
+    public override bool IsSpecialist => false;
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(1).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
