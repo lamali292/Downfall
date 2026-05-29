@@ -9,7 +9,7 @@
   "GUARDIAN-BODY_CRASH.title": "Body Crash",
   "GUARDIAN-CHARGE_CORE.description": "Deal {Damage:diff()} damage.\nPlace this into [gold]Stasis[/gold].\n[gold]Tick[/gold]: Draw a card.",
   "GUARDIAN-CHARGE_CORE.title": "Charge Core",
-  "GUARDIAN-CHARGE_UP.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {TemporaryStrengthUpPower:diff()} [gold]Strength[/gold] in one turn.",
+  "GUARDIAN-CHARGE_UP.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {NextTurnTemporaryStrengthUpPower:diff()} [gold]Strength[/gold] in one turn.",
   "GUARDIAN-CHARGE_UP.title": "Charge Up",
   "GUARDIAN-CLONE.description": "Choose a card.\nPlace a copy of that card into [gold]Stasis[/gold].{IfUpgraded:show:\n[gold]Accelerate[/gold].|}",
   "GUARDIAN-CLONE.title": "Clone",
