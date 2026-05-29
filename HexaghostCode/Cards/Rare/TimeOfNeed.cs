@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -15,7 +16,9 @@ public class TimeOfNeed : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = CardFactory.GetDistinctForCombat(Owner,
             Owner.Character.CardPool.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)

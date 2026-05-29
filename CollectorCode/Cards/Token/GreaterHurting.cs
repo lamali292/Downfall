@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Token;
 
@@ -14,10 +15,12 @@ public class GreaterHurting : CollectorCardModel
     {
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(20, 6);
-        WithTip(typeof(GreatestHurting));
+        this.WithTip<GreatestHurting>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

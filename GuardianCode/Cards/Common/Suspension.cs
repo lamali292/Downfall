@@ -3,13 +3,15 @@ using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
 [Pool(typeof(GuardianCardPool))]
-public class Suspension : GuardianCardModel
+public class Suspension : GuardianCardModel, IGemSocketCard
 {
     public Suspension() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -17,9 +19,11 @@ public class Suspension : GuardianCardModel
         WithTip(GuardianTip.Stasis);
     }
 
-    public override int GemSlots => 1;
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public int GemSlots => 1;
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
 

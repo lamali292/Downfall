@@ -29,10 +29,13 @@ public class PackEnchantments(string scriptDir, bool force)
 
         // Collect input files — subdirs in priority order, first-seen filename wins
         var seen = new HashSet<string>();
-        var inputFiles = (from sub in InputSubdirs select Path.Join(ImagesDir, sub, charId) 
-            into d where Directory.Exists(d) 
-            from file in Directory.EnumerateFiles(d, "*.png").Order() 
-            where seen.Add(Path.GetFileName(file)) select file).ToList();
+        var inputFiles = (from sub in InputSubdirs
+            select Path.Join(ImagesDir, sub, charId)
+            into d
+            where Directory.Exists(d)
+            from file in Directory.EnumerateFiles(d, "*.png").Order()
+            where seen.Add(Path.GetFileName(file))
+            select file).ToList();
 
         if (inputFiles.Count == 0)
         {
@@ -56,7 +59,7 @@ public class PackEnchantments(string scriptDir, bool force)
         {
             var fileName = Path.GetFileName(file);
             using var raw = Image.Load<Rgba32>(file);
-            using var outlined = Outline.ApplyOutline(ScaleCentered(raw, OutputSize), OutlineRadius, OutlineSigma);
+            using var outlined = Outline.ApplyOutline(ScaleCentered(raw, OutputSize), OutlineRadius);
 
             if (Utils.SaveImageIfChanged(outlined, Path.Join(outDir, fileName)))
             {

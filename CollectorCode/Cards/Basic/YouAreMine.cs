@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Basic;
 
@@ -20,7 +21,9 @@ public class YouAreMine : CollectorCardModel
         WithPower<CollectorDoomPower>(6, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var vfx = DoomCurseEffect.Create(cardPlay.Target);

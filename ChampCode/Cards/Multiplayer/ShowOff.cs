@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,10 +19,12 @@ public class ShowOff : ChampCardModel
         WithTip(ChampTip.Stance);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await Owner.ChampStance().SkillBonus(ctx);
         if (cardPlay.Target?.Player == null) return;

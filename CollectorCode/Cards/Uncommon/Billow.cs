@@ -5,6 +5,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -14,10 +15,12 @@ public class Billow : CollectorCardModel
     public Billow() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(18, 5);
-        WithTip(typeof(BellowCollector));
+        this.WithTip<BellowCollector>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this, 1);

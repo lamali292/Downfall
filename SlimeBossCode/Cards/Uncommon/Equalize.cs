@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -15,13 +16,15 @@ public class Equalize : SlimeBossCardModel, IHasConsumeEffect
     {
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
         throw new NotImplementedException();
     }
 
     // TODO: Implement
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
     }
 }

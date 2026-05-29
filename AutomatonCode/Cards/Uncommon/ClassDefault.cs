@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -13,10 +14,12 @@ public class ClassDefault : AutomatonCardModel
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(AutomatonTip.Encode);
-        WithPower<ClassDefaultPower>(2, 1, false);
+        this.WithPower<ClassDefaultPower>(2, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ClassDefaultPower>(ctx, this);
     }

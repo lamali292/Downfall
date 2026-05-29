@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,10 +14,12 @@ public class Outflare : HexaghostCardModel
     {
         WithBlock(7, 3);
         WithPower<TemporaryIntensityPower>(1, 1);
-        WithTip(typeof(IntensityPower));
+        this.WithTip<IntensityPower>();
     }
-
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<TemporaryIntensityPower>(ctx, this);

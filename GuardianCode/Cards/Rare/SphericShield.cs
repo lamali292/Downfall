@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -10,13 +12,15 @@ public class SphericShield : GuardianCardModel
 {
     public SphericShield() : base(4, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBrace(40);
+        this.WithBrace(40);
         WithKeyword(CardKeyword.Exhaust);
         WithCostUpgradeBy(-1);
     }
 
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Brace(ctx, this);
     }

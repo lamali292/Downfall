@@ -21,7 +21,7 @@ public class BurningQuestion : HexaghostCardModel
         WithPower<RoyaltiesPower>(30, 5);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         CardModel[] choices =
         [

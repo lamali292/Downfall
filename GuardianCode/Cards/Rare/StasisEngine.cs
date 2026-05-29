@@ -13,11 +13,11 @@ public class StasisEngine : GuardianCardModel
     {
         WithEnergyTip();
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithPower<StasisEnginePower>(1, false);
+        this.WithPower<StasisEnginePower>(1, false);
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StasisEnginePower>(ctx, this);
     }

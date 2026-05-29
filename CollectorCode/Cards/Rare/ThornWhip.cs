@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -14,11 +15,13 @@ public class ThornWhip : CollectorCardModel
     public ThornWhip() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(6, 2);
-        WithTip(typeof(Shiv));
+        this.WithTip<Shiv>();
         WithPower<BruisePower>(3, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<BruisePower>(ctx, this, cardPlay);

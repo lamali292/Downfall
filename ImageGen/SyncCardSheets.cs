@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using DiffPlex;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
 using Google.Apis.Auth.OAuth2;
@@ -19,7 +18,7 @@ public class SyncCardSheets
         { "Common", 1 },
         { "Uncommon", 2 },
         { "Rare", 3 },
-        { "Ancient", 4 },
+        { "Ancient", 4 }
     };
 
     private readonly string _serviceAccount;
@@ -50,6 +49,7 @@ public class SyncCardSheets
         var baseCards = allCards.Where(c => c.Upgrades == 0).ToList();
         var upgraded = allCards
             .Where(c => c.Upgrades > 0)
+            .DistinctBy(c => c.Id)
             .ToDictionary(c => c.Id);
 
         var credential = CredentialFactory.FromFile<ServiceAccountCredential>(_serviceAccount)
@@ -109,7 +109,8 @@ public class SyncCardSheets
                         RepeatCell = new RepeatCellRequest
                         {
                             Range = new GridRange { SheetId = tabSheetId, StartRowIndex = 0, EndRowIndex = 1 },
-                            Cell = new CellData { UserEnteredFormat = new CellFormat { TextFormat = new TextFormat { Bold = true } } },
+                            Cell = new CellData
+                                { UserEnteredFormat = new CellFormat { TextFormat = new TextFormat { Bold = true } } },
                             Fields = "userEnteredFormat.textFormat.bold"
                         }
                     },
@@ -211,8 +212,10 @@ public class SyncCardSheets
         return (int)resp.Replies[0].AddSheet.Properties.SheetId!;
     }
 
-    private static string MergeDiff(string base_, string? up) =>
-        up == null || base_ == up ? base_ : $"{base_} ({up})";
+    private static string MergeDiff(string base_, string? up)
+    {
+        return up == null || base_ == up ? base_ : $"{base_} ({up})";
+    }
 
     private static string MergeDescription(string base_, string? up)
     {
@@ -241,23 +244,29 @@ public class SyncCardSheets
                 var d = i < pendingDel.Count ? pendingDel[i] : null;
                 var ins = i < pendingIns.Count ? pendingIns[i] : null;
                 if (d == null)
+                {
                     parts.Add($"({ins})");
+                }
                 else if (ins == null)
+                {
                     parts.Add($"){d}(");
+                }
                 else if (Similarity(d, ins) > 0.2)
+                {
                     parts.Add(MergeWords(d, ins));
+                }
                 else
                 {
                     parts.Add($"){d}(");
                     parts.Add($"({ins})");
                 }
             }
+
             pendingDel.Clear();
             pendingIns.Clear();
         }
 
         foreach (var line in diff.Lines)
-        {
             switch (line.Type)
             {
                 case ChangeType.Unchanged:
@@ -271,7 +280,7 @@ public class SyncCardSheets
                     pendingIns.Add(line.Text);
                     break;
             }
-        }
+
         Flush();
 
         return string.Join(" ", parts);
@@ -284,7 +293,7 @@ public class SyncCardSheets
         var common = aWords.Count(w => bWords.Contains(w));
         return (double)common / Math.Max(aWords.Count, bWords.Count);
     }
-    
+
     private static string MergeWords(string base_, string up)
     {
         if (base_ == up) return base_;
@@ -294,11 +303,9 @@ public class SyncCardSheets
 
         // Same length — zip directly
         if (bw.Length == uw.Length)
-        {
             return string.Join(" ", bw.Zip(uw, MergeWord))
                 .Replace(" .", ".").Replace(" ,", ",")
                 .Replace(" )", ")").Replace("( ", "(");
-        }
 
         // Different length — use DiffPlex at word level
         var diff = InlineDiffBuilder.Diff(
@@ -308,7 +315,6 @@ public class SyncCardSheets
         var result = new List<string>();
         var pending = new List<string>();
         foreach (var line in diff.Lines)
-        {
             switch (line.Type)
             {
                 case ChangeType.Unchanged:
@@ -326,10 +332,13 @@ public class SyncCardSheets
                         FlushDeleted(result, pending);
                     }
                     else
+                    {
                         result.Add($"({line.Text})");
+                    }
+
                     break;
             }
-        }
+
         FlushDeleted(result, pending);
 
         return string.Join(" ", result)
@@ -360,12 +369,17 @@ public class SyncCardSheets
         return $"{ac} ({bc}){punctA}";
     }
 
-    private static string[] SplitSentences(string s) =>
-        Regex.Split(s, @"(?<=\.)\s+")
+    private static string[] SplitSentences(string s)
+    {
+        return Regex.Split(s, @"(?<=\.)\s+")
             .Where(x => !string.IsNullOrWhiteSpace(x))
             .ToArray();
+    }
 
-    private static string Flatten(string s) => s.Replace("\n", " ").Trim();
+    private static string Flatten(string s)
+    {
+        return s.Replace("\n", " ").Trim();
+    }
 
     private class CardEntry
     {

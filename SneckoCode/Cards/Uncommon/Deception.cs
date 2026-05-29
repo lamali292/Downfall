@@ -13,11 +13,11 @@ public class Deception : SneckoCardModel
     public Deception() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(11, 3);
-        WithTip(typeof(Shockwave));
+        this.WithTip<Shockwave>();
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await DownfallCardCmd.GiveCard<Shockwave>(Owner, PileType.Hand);

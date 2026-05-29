@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -15,10 +16,12 @@ public sealed class Manifest : HermitCardModel
     public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(16, 4);
-        WithTip(typeof(Decay));
+        this.WithTip<Decay>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);

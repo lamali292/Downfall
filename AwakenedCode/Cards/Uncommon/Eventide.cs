@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,10 +14,12 @@ public class Eventide : AwakenedCardModel
     public Eventide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithDamage(8, 2);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top);

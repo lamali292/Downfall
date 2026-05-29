@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -13,12 +14,14 @@ public class Incorporeal : HexaghostCardModel
 {
     public Incorporeal() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithHpLoss(6, -3);
+        this.WithHpLoss(6, -3);
         WithPower<IntangiblePower>(1);
         WithKeywords(CardKeyword.Exhaust, HexaghostKeyword.Retract);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await MyCommonActions.LoseHp(ctx, this, cardPlay.Target);
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);

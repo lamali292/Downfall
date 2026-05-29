@@ -1,8 +1,10 @@
 using System.Reflection;
 using Awakened.AwakenedCode.Cards;
+using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -22,6 +24,7 @@ public partial class AwakenedMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlay);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
         Harmony harmony = new(ModId);

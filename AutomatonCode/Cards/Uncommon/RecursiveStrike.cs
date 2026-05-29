@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -17,7 +18,9 @@ public class RecursiveStrike : AutomatonCardModel
         WithUpgradingCardTip<StrikeAutomaton>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")

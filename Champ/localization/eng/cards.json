@@ -172,7 +172,7 @@
   "CHAMP-TECHNICAL_JIG.title": "Technical Jig",
   "CHAMP-TORNADO_PUNCH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Defensive Combo[/gold]:\nGain {Block:diff()} [gold]Block[/gold] for each enemy hit.",
   "CHAMP-TORNADO_PUNCH.title": "Tornado Punch",
-  "CHAMP-TRIPLE_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {Cards:diff()} [gold]Strike{IfUpgraded:show:+|} Echoes[/gold]. They cost 0{energyPrefix:energyIcons(1)} and trigger [gold]Skill Bonus[/gold].",
+  "CHAMP-TRIPLE_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {Cards:diff()} [gold]Strike{IfUpgraded:show:+|} Echoes[/gold]. \nThey cost 0{energyPrefix:energyIcons(1)} and trigger [gold]Skill Bonus[/gold].",
   "CHAMP-TRIPLE_STRIKE.title": "Triple Strike",
   "CHAMP-ULTIMATE_STANCE.description": "Gain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-ULTIMATE_STANCE.title": "Ultimate Stance",

@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -13,10 +14,12 @@ public class SigilOfVictory : ChampCardModel
     {
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithTip(ChampTip.Stance);
-        WithRepeat(3, 1);
+        this.WithRepeat(3, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = ChampModel.GetStanceModel(Owner);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)

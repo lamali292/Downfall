@@ -5,6 +5,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -17,10 +18,12 @@ public class DarkLordForm : CollectorCardModel
             ? HoverTipFactory.FromPower<DarkLordFormPlusPower>()
             : HoverTipFactory
                 .FromPower<DarkLordFormPower>()));
-        WithTip(typeof(YouAreMine));
+        this.WithTip<YouAreMine>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await CommonActions.ApplySelf<DarkLordFormPlusPower>(ctx, this, 1);

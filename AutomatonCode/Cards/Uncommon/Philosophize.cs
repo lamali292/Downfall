@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -14,15 +15,17 @@ public class Philosophize : AutomatonCardModel, IEncodable
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(1, 1);
-        WithPower<PhilosophizePower>(1, false);
+        this.WithPower<PhilosophizePower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<PhilosophizePower>(ctx, this);
     }

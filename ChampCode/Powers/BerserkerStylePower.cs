@@ -9,7 +9,7 @@ public class BerserkerStylePower : ChampPowerModel, IModifySkillBonus
 {
     public BerserkerStylePower()
     {
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
 

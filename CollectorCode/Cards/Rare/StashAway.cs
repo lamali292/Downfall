@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -12,14 +13,16 @@ public class StashAway : CollectorCardModel
     public StashAway() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(4, 2);
-        WithTip(typeof(ReserveNextTurnPower));
+        this.WithTip<ReserveNextTurnPower>();
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         for (var i = 0; i < x; i++)

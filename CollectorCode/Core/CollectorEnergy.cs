@@ -1,4 +1,4 @@
-﻿using Collector.CollectorCode.Cards;
+﻿using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Abstract;
 using Godot;
@@ -70,7 +70,7 @@ public class CollectorEnergy : CardResource
 
     public override bool UsesResourceExclusively(CardModel card)
     {
-        return card is CollectorCardModel { UsesCollectorEnergyOnly: true };
+        return card is IUsesCollectorEnergyOnly;
     }
 
     public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)

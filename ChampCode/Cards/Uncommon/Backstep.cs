@@ -1,11 +1,11 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -15,15 +15,17 @@ public class Backstep : ChampCardModel
     public Backstep() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCalculatedBlock(6, CalcBlock, upgrade: 3);
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
         return card.Owner.Creature.GetPowerAmount<VigorPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

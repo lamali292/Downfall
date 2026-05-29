@@ -13,13 +13,13 @@ public class KillingSpree : ChampCardModel
 {
     public KillingSpree() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<KillingSpreePower>(1, false);
+        this.WithPower<KillingSpreePower>(1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithTip(ChampTip.Stance);
         WithVar("Skill", 3, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<KillingSpreePower>(ctx, this);
         for (var i = 0; i < DynamicVars["Skill"].IntValue; i++) await Owner.ChampStance().SkillBonus(ctx);

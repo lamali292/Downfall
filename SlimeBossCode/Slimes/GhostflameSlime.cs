@@ -15,6 +15,8 @@ public class GhostflameSlime : SlimeModel
     {
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
+    
+    public override bool IsSpecialist => true;
 
 
     public override async Task Command(PlayerChoiceContext ctx)

@@ -4,6 +4,7 @@ using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -16,13 +17,15 @@ public class FaceSlap : ChampCardModel, IBerserkerComboCard
         WithPower<VulnerablePower>(2, 1);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target != null)
             await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

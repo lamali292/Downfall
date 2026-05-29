@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -18,7 +19,9 @@ public class MudShield : SneckoCardModel
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MudShieldPower>(ctx, this);
     }

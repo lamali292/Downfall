@@ -16,7 +16,7 @@ public class DouseInSlime : SlimeBossCardModel
         WithPower<DouseInSlimePower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await CommonActions.Apply<DouseInSlimePower>(ctx, this, cardPlay);

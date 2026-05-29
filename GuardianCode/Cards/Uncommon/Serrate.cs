@@ -15,7 +15,7 @@ public class Serrate : GuardianCardModel
     public Serrate() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(15, 3, Calc, ValueProp.Move, 5, 1);
-        WithTip(typeof(ThornsPower));
+        this.WithTip<ThornsPower>();
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
@@ -23,7 +23,7 @@ public class Serrate : GuardianCardModel
         return card.Owner.Creature.GetPowerAmount<ThornsPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

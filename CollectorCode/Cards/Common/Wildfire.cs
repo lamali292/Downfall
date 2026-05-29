@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -17,12 +18,14 @@ public class Wildfire : CollectorCardModel
         WithCalculatedDamage(0, 4, DamageCalc, ValueProp.Move, 0, 2);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     private static decimal DamageCalc(CardModel card, Creature? creature)
     {
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

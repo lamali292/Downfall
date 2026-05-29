@@ -12,7 +12,7 @@ public class EntangledNextTurnPower : ChampPowerModel
 {
     public EntangledNextTurnPower() : base(PowerType.Debuff, PowerStackType.Single)
     {
-        WithTip(typeof(EntangledPower));
+        this.WithTip<EntangledPower>();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

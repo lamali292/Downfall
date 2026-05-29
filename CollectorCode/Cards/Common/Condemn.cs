@@ -4,6 +4,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -16,7 +17,9 @@ public class Condemn : CollectorCardModel
         WithPower<CollectorDoomPower>(5, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);

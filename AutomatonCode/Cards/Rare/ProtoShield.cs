@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -15,11 +16,13 @@ public class ProtoShield : AutomatonCardModel
     {
         WithBlock(6, 2);
         WithPower<PlatingPower>(2, 1);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
         WithCards(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<PlatingPower>(ctx, this);

@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -13,10 +14,12 @@ public class WildStrike : AutomatonCardModel
     public WildStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(13, 5);
-        WithTip(typeof(Wound));
+        this.WithTip<Wound>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")

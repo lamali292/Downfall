@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,11 +12,13 @@ public class Magnificence : ChampCardModel
 {
     public Magnificence() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<MagnificencePower>(3, 1, false);
-        WithTip(typeof(GloryPower));
+        this.WithPower<MagnificencePower>(3, 1, false);
+        this.WithTip<GloryPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MagnificencePower>(ctx, this);
     }

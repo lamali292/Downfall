@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_dvpfa"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/cultist.tscn" id="2_dvpfa"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/cultistrightstick.png" id="3_mw5lu"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/cultistleftstick.png" id="4_whwqx"]
 
 [node name="CultistSlime" type="Node2D"]
 script = ExtResource("1_dvpfa")
@@ -28,3 +30,31 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="RightStick" type="Node2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(11.22, -56.6)
+
+[node name="StickR" type="TextureRect" parent="RightStick"]
+offset_left = -77.21999
+offset_top = -87.4
+offset_right = 66.78001
+offset_bottom = 56.6
+texture = ExtResource("3_mw5lu")
+
+[node name="LeftStick" type="Node2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+z_index = 1
+position = Vector2(-36.4, -63.3)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="StickL" type="TextureRect" parent="LeftStick"]
+offset_left = 45.60001
+offset_top = -76.7
+offset_right = 189.6
+offset_bottom = 67.3
+scale = Vector2(-1, 1)
+texture = ExtResource("4_whwqx")

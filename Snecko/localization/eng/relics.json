@@ -15,7 +15,7 @@
   "SNECKO-RING_OF_THE_SNEK.description": "Whenever you activate [blue]{Cards}[/blue] [gold]Overflow[/gold] effects, apply [blue]{WeakPower}[/blue] [gold]Weak[/gold] and [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold] to a random enemy.",
   "SNECKO-RING_OF_THE_SNEK.flavor": "Illegible, unreadable, due by Thursday.",
   "SNECKO-SEAL_OF_APPROVAL.title": "Seal of Approval",
-  "SNECKO-SEAL_OF_APPROVAL.description": "Upon pickup, choose 1 of 5 Uncommon Offclass {{QueryLink|Cards|type:Power|Powers}} to obtain.",
+  "SNECKO-SEAL_OF_APPROVAL.description": "Upon pickup, choose 1 of 5 Uncommon [gold]Offclass[/gold] Powers to obtain.",
   "SNECKO-SEAL_OF_APPROVAL.flavor": "I'm The Ironclad and this is my favorite Relic in the Spire. -Merchant Advertising Pamphlet",
   "SNECKO-SLEEVED_ACE.title": "Sleeved Ace",
   "SNECKO-SLEEVED_ACE.description": "At the start of each combat, gain a [gold]Marked Card+[/gold].",

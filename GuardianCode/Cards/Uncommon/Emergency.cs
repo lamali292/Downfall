@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -11,12 +13,14 @@ public class Emergency : GuardianCardModel
 {
     public Emergency() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithAccelerate(1, 1);
+        this.WithAccelerate(1, 1);
         WithTip(GuardianTip.Stasis);
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.Accelerate(ctx, this, AccelerateType.All);
     }

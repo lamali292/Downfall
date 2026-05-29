@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,6 +14,8 @@ public class ArcaneNesting : AwakenedCardModel
         WithKeywords(CardKeyword.Unplayable);
         WithBlock(4, 2);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {

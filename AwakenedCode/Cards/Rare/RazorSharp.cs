@@ -2,6 +2,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,12 +14,13 @@ public class RazorSharp : AwakenedCardModel
 {
     public RazorSharp() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithTip(typeof(PlumeJab));
-        WithPower<RazorSharpPower>(1, 1, false);
+        this.WithTip<PlumeJab>();
+        this.WithPower<RazorSharpPower>(1, 1, false);
     }
 
-
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);
         await CommonActions.ApplySelf<RazorSharpPower>(ctx, this);

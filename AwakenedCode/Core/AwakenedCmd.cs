@@ -26,6 +26,30 @@ public static class AwakenedCmd
         return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
     }
 
+    public static bool WasLastCardPlayedPower(CardModel card)
+    {
+        if (!CombatManager.Instance.IsInProgress) return false;
+        var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
+            .LastOrDefault(e =>
+                e.CardPlay.Card.Owner == card.Owner &&
+                e.CardPlay.Card != card);
+
+        if (lastCardEntry == null) return false;
+        return lastCardEntry.CardPlay.Card.Type == CardType.Power;
+    }
+
+    public static bool WasLastCardPlayedPower(CardPlay cardPlay)
+    {
+        if (!CombatManager.Instance.IsInProgress) return false;
+        var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
+            .LastOrDefault(e =>
+                e.CardPlay.Card.Owner == cardPlay.Card.Owner &&
+                e.CardPlay != cardPlay);
+
+        if (lastCardEntry == null) return false;
+
+        return lastCardEntry.CardPlay.Card.Type == CardType.Power;
+    }
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {

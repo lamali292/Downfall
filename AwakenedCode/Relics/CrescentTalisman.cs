@@ -14,7 +14,7 @@ public class CrescentTalisman : AwakenedRelicModel
 {
     public CrescentTalisman() : base(RelicRarity.Rare)
     {
-        WithTip(typeof(Conjuration));
+        this.WithTip<Conjuration>();
         WithTip(AwakenedTip.Conjure);
     }
 

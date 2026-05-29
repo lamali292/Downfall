@@ -3,7 +3,9 @@ using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -15,10 +17,13 @@ public sealed class GoldenBullet : HermitCardModel
     {
         WithDamage(18, 6);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(StaticHoverTip.Fatal);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     [SavedProperty]
-    private int CurrentCost
+    public int CurrentCost
     {
         get => _currentCost;
         set
@@ -29,7 +34,7 @@ public sealed class GoldenBullet : HermitCardModel
         }
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
 

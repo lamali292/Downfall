@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -11,10 +12,12 @@ public class HoneBlade : ChampCardModel
 {
     public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<HoneBladePower>(3, 1, false);
+        this.WithPower<HoneBladePower>(3, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<HoneBladePower>(ctx, this);
     }

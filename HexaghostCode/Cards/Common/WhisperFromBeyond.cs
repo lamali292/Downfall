@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Common;
 
@@ -13,12 +14,14 @@ public class WhisperFromBeyond : HexaghostCardModel
     public WhisperFromBeyond() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
-        WithPower<WhisperFromBeyondPower>(5, 2, false);
+        this.WithPower<WhisperFromBeyondPower>(5, 2, false);
         WithTip(CardKeyword.Exhaust);
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<WhisperFromBeyondPower>(ctx, this, cardPlay);

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public class StrikeOfGenius : ChampCardModel
         WithTip(DownfallKeyword.Echo);
     }
 
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
     private static IHoverTip HoverTip(CardModel card)
     {
         return card.IsUpgraded
@@ -25,7 +28,7 @@ public class StrikeOfGenius : ChampCardModel
             : HoverTipFactory.FromPower<StrikeOfGeniusPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await CommonActions.ApplySelf<StrikeOfGeniusPlusPower>(ctx, this, 1);

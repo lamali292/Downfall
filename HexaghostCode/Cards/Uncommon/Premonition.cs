@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +7,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -20,7 +20,9 @@ public class Premonition : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         var cardType = await GetCardType(ctx);

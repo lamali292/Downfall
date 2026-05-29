@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -14,12 +15,14 @@ public class Devastate : ChampCardModel
     public Devastate() : base(5, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithRepeat(3);
+        this.WithRepeat(3);
         WithEnergyTip();
         WithTip(ChampTip.Finisher);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }

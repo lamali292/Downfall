@@ -16,6 +16,8 @@ public class InsultingSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
+    public override bool IsSpecialist => true;
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         var enemy = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets)

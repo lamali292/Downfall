@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -15,7 +16,9 @@ public class SuckerPunch : CollectorCardModel
         WithPower<WeakPower>(1, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<WeakPower>(ctx, this);

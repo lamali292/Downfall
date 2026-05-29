@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class Fragment : AutomatonCardModel, IEncodable
         WithDamage(3, 1);
         WithBlock(3, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

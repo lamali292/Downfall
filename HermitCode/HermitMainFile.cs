@@ -1,7 +1,9 @@
 using System.Reflection;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -19,6 +21,8 @@ public partial class HermitMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlay);
+        CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlay);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

@@ -11,10 +11,10 @@ public class Reversal : HexaghostCardModel
     public Reversal() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
-        WithRepeat(2);
+        this.WithRepeat(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (HexaghostCmd.IsIgnited(Owner))
         {

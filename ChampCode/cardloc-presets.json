@@ -172,14 +172,31 @@
           "optional": false
         }
       ]
-    }
-  ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
     },
     {
-      "tag": "blue"
+      "id": "stance",
+      "markers": [
+        "ChampStanceModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "champ_stances.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "champ_stances.json",
+          "optional": false
+        },
+        {
+          "name": "finisher",
+          "file": "champ_stances.json",
+          "optional": false
+        }
+      ]
     }
-  ]
+  ],
+  "pinnedColors": [],
+  "customTags": []
 }

@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -15,10 +16,12 @@ public class AwakenedForm : AwakenedCardModel
     {
         WithPower<CuriosityPower>(1);
         WithPower<RitualPower>(1, 1);
-        WithTip(AwakenedTip.Awaken, UpgradeType.Add);
+        this.WithTip(AwakenedTip.Awaken, UpgradeType.Add);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (IsUpgraded)
             await AwakenedCmd.Awaken(Owner, ctx);

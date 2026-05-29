@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -15,9 +16,11 @@ public sealed class TakeCover : HermitCardModel
         WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand, upgraded: IsUpgraded,

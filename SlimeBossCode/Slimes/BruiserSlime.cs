@@ -13,6 +13,8 @@ public class BruiserSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
+    public override bool IsSpecialist => false;
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(3).FromSlime(this).WithHitCount(2).TargetingRandomOpponents(CombatState).Execute(ctx);

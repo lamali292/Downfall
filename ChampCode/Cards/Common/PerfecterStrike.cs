@@ -1,10 +1,10 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -17,12 +17,14 @@ public class PerfecterStrike : ChampCardModel
         WithCalculatedDamage(8, 2, CalculateStrikeCount, bonusUpgrade: 1);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     private static decimal CalculateStrikeCount(CardModel card, Creature? creatures)
     {
         return card.Owner.GetAllCards().Count(c => c.Tags.Contains(CardTag.Strike));
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

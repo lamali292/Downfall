@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,11 +21,14 @@ public class HyperBeamAutomaton : AutomatonCardModel
         WithDamage(18, 4);
         WithPower<VulnerablePower>(1, 1);
         WithTip(AutomatonTip.Stash);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
         WithCards(3);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardAttack(this, cardPlay)

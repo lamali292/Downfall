@@ -4,6 +4,7 @@ using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class Refreshment : ChampCardModel, IBerserkerComboCard, IDefensiveComboC
         WithCards(3, 1);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -12,11 +12,11 @@ public class RainOfGoop : SlimeBossCardModel
     public RainOfGoop() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithPower<GoopPower>(4);
-        WithRepeat(3, 1);
+        this.WithRepeat(3, 1);
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = DynamicVars.Repeat.BaseValue;
         for (var i = 0; i < repeat; i++)

@@ -1,12 +1,13 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Cards.Basic;
 
 [Pool(typeof(GuardianCardPool))]
-public class SecondSlam : GuardianCardModel
+public class SecondSlam : GuardianCardModel, IGemSocketCard
 {
     public SecondSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -14,9 +15,9 @@ public class SecondSlam : GuardianCardModel
         WithDamage(7);
     }
 
-    public override int GemSlots => IsUpgraded ? 2 : 1;
+    public int GemSlots => IsUpgraded ? 2 : 1;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

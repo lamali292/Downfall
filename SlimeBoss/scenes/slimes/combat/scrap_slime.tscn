@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=4 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_script"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/scrap.tscn" id="2_visual_scene"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/scrap.png" id="3_pkvbw"]
 
 [node name="ScrapSlime" type="Node2D"]
 script = ExtResource("1_script")
@@ -9,7 +10,7 @@ script = ExtResource("1_script")
 [node name="Visuals" parent="." instance=ExtResource("2_visual_scene")]
 unique_name_in_owner = true
 position = Vector2(2, -20)
-scale = Vector2(-1, 1)
+scale = Vector2(-1.7184346, 1.7184346)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -28,3 +29,15 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="ScrapVfx" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-13, -11)
+
+[node name="TextureRect" type="TextureRect" parent="ScrapVfx"]
+offset_left = -52.0
+offset_top = -102.0
+offset_right = 44.0
+offset_bottom = -6.0
+scale = Vector2(1.247696, 1.247696)
+texture = ExtResource("3_pkvbw")

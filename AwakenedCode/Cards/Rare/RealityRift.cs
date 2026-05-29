@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,10 +19,10 @@ public class RealityRift : AwakenedCardModel
     public RealityRift() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
 
-
+    protected override Artist Artist => Artist.Get<Opal>();
     private static CardModel[] AnotherDimensionCards =>
     [
         ModelDb.Card<Crusher>(),
@@ -36,7 +37,7 @@ public class RealityRift : AwakenedCardModel
     ];
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);
 

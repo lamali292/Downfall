@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -15,7 +14,7 @@ public sealed class DefendAutomaton : AutomatonCardModel
         WithBlock(5, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -21,11 +22,13 @@ public class GigaBeam : GuardianCardModel
     {
         WithDamage(36, 4);
         WithVar("StrengthEffect", 2, 2);
-        WithPower<NextTurnStunnedPower>(1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithPower<NextTurnStunnedPower>(1, false);
+        this.WithTip<StrengthPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -13,14 +14,16 @@ public class RevengeProtocol : GuardianCardModel
 {
     public RevengeProtocol() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<BracingPower>(4, 2, false);
-        WithPower<RevengeProtocolPower>(2, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithPower<BracingPower>(4, 2, false);
+        this.WithPower<RevengeProtocolPower>(2, 1, false);
+        this.WithTip<StrengthPower>();
         WithTip(GuardianTip.DefensiveMode);
         WithTip(GuardianTip.Brace);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RevengeProtocolPower>(ctx, this);
         await CommonActions.ApplySelf<BracingPower>(ctx, this);

@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -14,10 +15,12 @@ public class BronzeArmor : AutomatonCardModel, IEncodable
     {
         WithBlock(13, 4);
         WithStash(2);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.Stash<Error>(Owner, DynamicVars["Stash"].IntValue);

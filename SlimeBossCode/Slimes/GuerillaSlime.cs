@@ -12,6 +12,8 @@ public class GuerillaSlime : SlimeModel
     {
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
+    
+    public override bool IsSpecialist => false;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

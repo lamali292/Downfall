@@ -1,6 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +21,7 @@ public class Amass : SneckoCardModel
         return card.Owner.GetHand().Sum(e => e.EnergyCost.GetResolved());
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

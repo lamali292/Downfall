@@ -11,10 +11,10 @@ public class Repulsor : AutomatonCardModel
 {
     public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<RepulsePower>(4, 1, false);
+        this.WithPower<RepulsePower>(4, 1, false);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<RepulsePower>(ctx, this);
     }

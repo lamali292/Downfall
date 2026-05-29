@@ -1,12 +1,12 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Extensions;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -20,7 +20,9 @@ public class Rewind : HexaghostCardModel
         WithKeyword(HexaghostKeyword.Retract);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true);

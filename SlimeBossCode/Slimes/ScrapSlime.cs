@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class ScrapSlime : SlimeModel
 {
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
@@ -11,6 +12,8 @@ public class ScrapSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
+    public override bool IsSpecialist => false;
+    
     public override Task Command(PlayerChoiceContext ctx)
     {
         throw new NotImplementedException();

@@ -16,10 +16,10 @@ public class PlumeJab : AwakenedCardModel
     {
         WithDamage(2, 1);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
-        WithRepeat(2);
+        this.WithRepeat(2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }

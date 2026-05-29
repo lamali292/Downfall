@@ -15,6 +15,8 @@ public class AncientSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
+    public override bool IsSpecialist => true;
+
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(3)

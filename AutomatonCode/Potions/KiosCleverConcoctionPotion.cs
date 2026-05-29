@@ -22,7 +22,7 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        
+
         var cards = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();

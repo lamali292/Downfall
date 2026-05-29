@@ -52,6 +52,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         return Task.CompletedTask;
     }
 
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = cardPlay.Card.Owner;
@@ -65,9 +66,13 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
             await AwakenedCmd.Awaken(owner, ctx);
     }
 
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card is Void) await AwakenedHook.OnDrained(card.CombatState!, choiceContext, card.Owner, 1);
+        if (card is not Void) return;
+        var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
+        if (combatState == null) return;
+        await AwakenedHook.OnDrained(combatState, choiceContext, card.Owner, 1);
     }
 
     internal static void SetupAwakenedCombatUi(CombatState state)

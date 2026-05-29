@@ -7,27 +7,36 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-public class Headshot : HermitCardModel
+public class Headshot : HermitCardModel, IHasDeadOnEffect
 {
     public Headshot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
+
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !IsDeadOn)
+        if (this is not IHasDeadOnEffect deadOnEffect) return 1;
+        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
             return 1;
         return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         HermitSfx.PlayGun2();

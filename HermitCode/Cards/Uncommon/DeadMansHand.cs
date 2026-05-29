@@ -1,7 +1,7 @@
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -15,6 +15,8 @@ public sealed class DeadMansHand : HermitCardModel
         WithCostUpgradeBy(-1);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     private static int RarityLevel(CardRarity rarity)
     {
         return rarity switch
@@ -26,7 +28,7 @@ public sealed class DeadMansHand : HermitCardModel
         };
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var handCards = Owner.GetHand();

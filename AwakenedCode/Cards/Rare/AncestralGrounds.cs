@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
@@ -14,11 +15,13 @@ public class AncestralGrounds : AwakenedCardModel
     {
         WithBlock(12);
         WithEnergy(2, 1);
-        WithTip(typeof(Void));
+        this.WithTip<Void>();
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         if (IsUpgraded)

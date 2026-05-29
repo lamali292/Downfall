@@ -1,6 +1,6 @@
 using Downfall.DownfallCode.Localization;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -13,7 +13,7 @@ public class GemDescriptionSource : IExtraDescriptionSource
 
     public IEnumerable<string> GetLines(CardModel card)
     {
-        if (card is not GuardianCardModel gc) yield break;
+        if (card is not IGemSocketCard gc) yield break;
         for (var i = 0; i < gc.GemSlots; i++)
             if (i < gc.Gems.Count)
             {

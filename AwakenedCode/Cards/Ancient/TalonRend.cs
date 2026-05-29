@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,10 +13,10 @@ public class TalonRend : AwakenedCardModel
     public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithConjure();
+        this.WithConjure();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

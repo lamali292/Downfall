@@ -3,6 +3,7 @@ using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -17,7 +18,9 @@ public class BrightRitual : HexaghostCardModel
         WithCards(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = await HexaghostCmd.ResetWheel(Owner);
         await PlayerCmd.GainEnergy(amount * DynamicVars.Energy.BaseValue, Owner);

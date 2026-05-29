@@ -4,7 +4,6 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;

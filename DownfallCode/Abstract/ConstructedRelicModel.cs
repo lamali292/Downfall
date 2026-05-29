@@ -1,7 +1,4 @@
-﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Interfaces;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Relics;
+﻿using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -89,6 +86,10 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
         return this;
     }
 
+    public ConstructedRelicModel WithTip<T>() where T : AbstractModel
+    {
+        return WithTip(typeof(T));
+    }
 
     protected ConstructedRelicModel WithEnergyTip()
     {

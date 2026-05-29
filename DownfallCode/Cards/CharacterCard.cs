@@ -8,14 +8,9 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Pooling;
-using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Random;
-using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Settings;
 
 namespace Downfall.DownfallCode.Cards;
 
@@ -46,18 +41,9 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }
-}
 
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.Title), MethodType.Getter)]
-public static class CardModelTitlePatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(CardModel __instance, ref string __result)
-    {
-        if (__instance is CharacterCard { CharacterModel: not null } characterCard)
-            __result = new LocString("characters", characterCard.CharacterModel.CharacterSelectTitle)
-                .GetFormattedText();
-    }
+    public override string Title => CharacterModel == null ? "???" : new LocString("characters", CharacterModel.CharacterSelectTitle)
+        .GetFormattedText();
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Description), MethodType.Getter)]
@@ -96,7 +82,6 @@ public static class NodePoolFreePatch
         return false;
     }
 }
-
 
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
@@ -145,4 +130,3 @@ public static class NCardPortraitPatch
         }
     }
 }
-

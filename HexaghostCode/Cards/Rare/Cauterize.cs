@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,10 +13,13 @@ public class Cauterize : HexaghostCardModel
     public Cauterize() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(8, 2);
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Inmo>();
+
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

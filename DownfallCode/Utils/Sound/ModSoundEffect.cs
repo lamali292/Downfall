@@ -1,5 +1,4 @@
-﻿using BaseLib.Audio;
-using MegaCrit.Sts2.Core.Random;
+﻿using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.DownfallCode.Utils.Sound;
 
@@ -30,10 +29,9 @@ public class ModSoundEffect
         {
             MyModAudio.PlaySound(
                 e.Sound,
-                volumeAdd:_globalVolumeAdd + e.VolumeAdd,
+                _globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,
                 basePitch: e.BasePitch);
-            
         });
     }
 
@@ -43,7 +41,7 @@ public class ModSoundEffect
         {
             MyModAudio.PlaySoundInRun(
                 e.Sound,
-                volumeAdd: _globalVolumeAdd + e.VolumeAdd,
+                _globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,
                 basePitch: e.BasePitch);
         });

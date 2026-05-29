@@ -1,7 +1,11 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -10,10 +14,17 @@ public class SlimeSlap : SlimeBossCardModel
 {
     public SlimeSlap() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithPower<DouseInSlimePower>(1);
+        WithDamage(8);
+        WithCostUpgradeBy(-1);
+        this.WithTip<GoopPower>();
     }
 
-    // TODO: Implement
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.Apply<DouseInSlimePower>(ctx, this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

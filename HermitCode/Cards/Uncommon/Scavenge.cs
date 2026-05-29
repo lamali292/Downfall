@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -12,15 +13,17 @@ public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
     {
         WithPower<PlatedArmorPower>(4, 1);
         WithKeyword(CardKeyword.Exhaust);
-        WithGold(5, 5);
+        this.WithGold(5, 5);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);

@@ -4,17 +4,16 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Awakened.AwakenedCode.Powers;
 
 public class AncestralGroundsUpgradedPower : AwakenedPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side || Owner.Player == null)
+        if (!participants.Contains(Owner) || Owner.Player == null)
             return;
         await PlayerCmd.GainEnergy(3, Owner.Player);
         await DownfallCardCmd.GiveCard<Void>(Owner.Player, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);

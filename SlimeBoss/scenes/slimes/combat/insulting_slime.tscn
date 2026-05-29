@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=4 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_i1xgs"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/champ.tscn" id="2_i1xgs"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/crown.png" id="3_3t8rt"]
 
 [node name="ChampSlime" type="Node2D"]
 script = ExtResource("1_i1xgs")
@@ -28,3 +29,15 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="Crown" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(16.4, -40)
+
+[node name="CrownImg" type="TextureRect" parent="Crown"]
+offset_left = -68.4
+offset_top = -87.0
+offset_right = 75.6
+offset_bottom = 57.0
+scale = Vector2(1.1562281, 1.1562281)
+texture = ExtResource("3_3t8rt")

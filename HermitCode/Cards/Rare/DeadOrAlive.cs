@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Rooms;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -23,9 +24,11 @@ public sealed class DeadOrAlive : HermitCardModel
         WithTip(StaticHoverTip.Fatal);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         var times = EnergyCost.CapturedXValue;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

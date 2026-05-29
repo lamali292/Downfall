@@ -19,7 +19,7 @@ public class BellowCollector : CollectorCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithCalculatedVar("UnusedBlock", 0, Calc);
-        WithTip(typeof(CollectorDoomPower));
+        this.WithTip<CollectorDoomPower>();
         WithTip(StaticHoverTip.Block);
     }
 
@@ -30,7 +30,7 @@ public class BellowCollector : CollectorCardModel
         ).Sum(x => x.Amount);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var unusedBlock = Calc(this, cardPlay.Target);

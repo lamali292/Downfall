@@ -10,15 +10,7 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
 {
-    private static IEnumerable<CustomMonsterModel>? _cllCustomMonsterModel;
-
-    private static IEnumerable<CustomMonsterModel> AllCustomMonsterModel =>
-        _cllCustomMonsterModel ??= ModelDb.AllAbstractModelSubtypes
-            .Where(t => t.IsSubclassOf(typeof(MonsterModel)))
-            .Select(t => (MonsterModel)ModelDb.Get(t))
-            .OfType<CustomMonsterModel>()
-            .ToList();
-
+    /*
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
@@ -27,5 +19,18 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
             .FirstOrDefault();
         if (slimeModel == null) return;
         await SlimeQueue.AddSlime(player, slimeModel);
+    }
+    */
+    public override Task BeforeCombatStart()
+    {
+        SlimeQueue.ResetAllSlots();
+        
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        foreach (var player in state.Players.Where(e => e.Character is SlimeBoss))
+        {
+            SlimeQueue.SetSlots(player, 3);
+        }
+        return Task.CompletedTask;
     }
 }

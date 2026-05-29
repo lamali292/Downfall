@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -19,6 +20,8 @@ public class ShadowDaggers : CollectorCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     private static decimal Calc(CardModel card, Creature? creature)
     {
         return CombatManager.Instance.History.CardPlaysStarted.Count(e => IsCollected(e.CardPlay.Card));
@@ -30,7 +33,7 @@ public class ShadowDaggers : CollectorCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

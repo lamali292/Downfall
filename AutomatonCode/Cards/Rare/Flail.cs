@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -14,12 +15,14 @@ public class Flail : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(typeof(WeakPower));
-        WithTip(typeof(FrailPower));
-        WithTip(typeof(VulnerablePower));
+        this.WithTip<WeakPower>();
+        this.WithTip<FrailPower>();
+        this.WithTip<VulnerablePower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")

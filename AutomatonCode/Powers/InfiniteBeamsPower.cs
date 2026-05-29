@@ -4,16 +4,15 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Powers;
 
 public class InfiniteBeamsPower : AutomatonPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side || Owner.Player == null) return;
+        if (!participants.Contains(Owner) || Owner.Player == null) return;
         await DownfallCardCmd.GiveCards<MinorBeam>(Owner.Player, PileType.Hand, Amount);
     }
 }

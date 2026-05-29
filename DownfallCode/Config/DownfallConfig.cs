@@ -2,7 +2,8 @@
 
 namespace Downfall.DownfallCode.Config;
 
+[ConfigHoverTipsByDefault]
 internal class DownfallConfig : SimpleModConfig
 {
-    public static bool IconPowers { get; set; } = true;
+    public static bool UploadMetrics { get; set; } = false;
 }

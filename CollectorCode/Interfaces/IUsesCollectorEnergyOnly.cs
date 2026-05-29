@@ -1,0 +1,3 @@
+﻿namespace Collector.CollectorCode.Interfaces;
+
+public interface IUsesCollectorEnergyOnly;

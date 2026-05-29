@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public class FierceBash : GuardianCardModel, ITickCard
         WithTip(GuardianTip.Tick);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
 
     public Task OnTick(PlayerChoiceContext ctx)
     {
@@ -25,7 +28,7 @@ public class FierceBash : GuardianCardModel, ITickCard
         return Task.CompletedTask;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await GuardianCmd.PutIntoStasis(this, ctx);

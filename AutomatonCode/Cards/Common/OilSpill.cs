@@ -2,10 +2,10 @@
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -17,10 +17,12 @@ public class OilSpill : AutomatonCardModel
         WithDamage(5, 2);
         WithPower<PoisonPower>(5, 2);
         WithTip(AutomatonTip.Stash);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")

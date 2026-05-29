@@ -3,6 +3,7 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -16,7 +17,9 @@ public class HereAndNow : HexaghostCardModel
         WithPower<HereAndNowPower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoreEnergyPower>(ctx, this);
         await CommonActions.ApplySelf<HereAndNowPower>(ctx, this);

@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -14,6 +15,8 @@ public class Invalidate : AutomatonCardModel, IEncodable
     {
         WithPower<VulnerablePower>(1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

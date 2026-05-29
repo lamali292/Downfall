@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -16,7 +17,9 @@ public class Finalize : CollectorCardModel
         WithPower<FinalizePower>(6, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
         await CommonActions.Apply<FinalizePower>(ctx, this, cardPlay);

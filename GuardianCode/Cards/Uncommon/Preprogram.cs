@@ -1,16 +1,17 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class Preprogram : GuardianCardModel
+public class Preprogram : GuardianCardModel, IGemSocketCard
 {
     public Preprogram() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -18,9 +19,11 @@ public class Preprogram : GuardianCardModel
         WithTip(GuardianTip.Stasis);
     }
 
-    public override int GemSlots => 1;
+    protected override Artist Artist => Artist.Get<Claude27A>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public int GemSlots => 1;
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();

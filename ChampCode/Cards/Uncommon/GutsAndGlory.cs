@@ -1,6 +1,8 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,10 +13,12 @@ public class GutsAndGlory : ChampCardModel
 {
     public GutsAndGlory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithGlory(5, 3);
+        this.WithGlory(5, 3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GloryPower>(ctx, this);
     }

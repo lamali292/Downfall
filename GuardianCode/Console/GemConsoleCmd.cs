@@ -1,6 +1,5 @@
-using Downfall.DownfallCode.Extensions;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -43,7 +42,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
 
         var card = pile.Cards[handIndex];
 
-        if (card is not GuardianCardModel guardianCard)
+        if (card is not IGemSocketCard guardianCard)
             return new CmdResult(false, $"Card at index {handIndex} is not a Guardian card!");
 
         var gemName = args[1].ToUpperInvariant();
@@ -54,10 +53,10 @@ public class GemConsoleCmd : AbstractConsoleCmd
 
         if (guardianCard.GemCount >= guardianCard.GemSlots)
             return new CmdResult(false,
-                $"Card {guardianCard.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
+                $"Card {card.Id.Entry} already has maximum gems ({guardianCard.GemSlots})!");
 
         guardianCard.AddGem(gem);
-        GuardianMainFile.Logger.Info($"Added gem to card: {guardianCard.Title} ({guardianCard.GetHashCode()})");
+        GuardianMainFile.Logger.Info($"Added gem to card: {card.Title} ({guardianCard.GetHashCode()})");
         GuardianMainFile.Logger.Info($"Gem's card reference: {gem.Card?.Title} ({gem.Card?.GetHashCode()})");
         var a = NCard.FindOnTable(card);
         a?.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);

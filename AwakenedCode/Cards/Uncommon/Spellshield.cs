@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -14,10 +15,12 @@ public class Spellshield : AwakenedCardModel
     {
         WithTip(CardKeyword.Retain);
         WithTip(StaticHoverTip.Block);
-        WithPower<SpellshieldPower>(2, 1, false);
+        this.WithPower<SpellshieldPower>(2, 1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpellshieldPower>(ctx, this);
     }

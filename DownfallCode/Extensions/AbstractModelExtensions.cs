@@ -1,6 +1,5 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
-using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
@@ -34,7 +33,7 @@ public static class AbstractModelExtensions
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
-    
+
     public static TargetType GetTargetType(this AbstractModel model)
     {
         return model switch
@@ -44,7 +43,7 @@ public static class AbstractModelExtensions
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
-    
+
     public static IEnumerable<Creature> MyGetTargets(this AbstractModel model, Creature? singleTarget = null)
     {
         // Cards delegate fully to the existing GetTargets() which handles all cases
@@ -78,7 +77,7 @@ public static class AbstractModelExtensions
                 $"Unsupported TargetType {type} for {model.GetType().Name}")
         };
     }
-    
+
     public static IEnumerable<Creature> MyGetTargets(
         this AbstractModel model, Creature? singleTarget, TargetType targetTypeOverride)
     {

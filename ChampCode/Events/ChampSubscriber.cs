@@ -15,11 +15,6 @@ public static class ChampSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        foreach (var player in combatState.Players)
-        {
-            var stance = ChampModel.GetStanceModel(player);
-            if (stance is not ChampNoStance)
-                yield return stance;
-        }
+        return combatState.Players.Select(ChampModel.GetStanceModel).Where(stance => stance is not ChampNoStance);
     }
 }

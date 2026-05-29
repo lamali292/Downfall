@@ -1,4 +1,5 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
-  "DOWNFALL-ICON_POWERS.title": "Enable power icons in card descriptions"
+  "DOWNFALL-UPLOAD_METRICS.title": "Upload Gameplay Data",
+  "DOWNFALL-UPLOAD_METRICS.hover.desc": "Gameplay data is sent to help fix bugs and balance the mod. Only sent when playing as a Downfall character.\n\nPersonally identifying information is NOT collected."
 }

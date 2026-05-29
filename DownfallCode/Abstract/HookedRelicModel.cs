@@ -13,18 +13,22 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class HookedRelicModel : CustomRelicModel
 {
-    private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
+    private Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
-        if (LocalContext.NetId == null) return;
-        if (Owner.Creature.IsDead) return;
+        if (LocalContext.NetId == null || Owner.Creature.CombatState == null)
+            return action(new ThrowingPlayerChoiceContext());
+
+        /*
+        if (Owner.Creature.IsDead) return Task.CompletedTask;
         var ctx = new HookPlayerChoiceContext(
             this,
             LocalContext.NetId.Value,
-            Owner.Creature.CombatState!,
+            Owner.Creature.CombatState,
             GameActionType.Combat);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));
+        return ctx.AssignTaskAndWaitForPauseOrCompletion(action(ctx));*/
+        return action(new BlockingPlayerChoiceContext());
     }
-    
+
 
     public sealed override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {

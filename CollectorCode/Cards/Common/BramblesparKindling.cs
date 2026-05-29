@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -22,6 +23,8 @@ public class BramblesparKindling : CollectorCardModel
         }));
         WithKeyword(CardKeyword.Unplayable);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,

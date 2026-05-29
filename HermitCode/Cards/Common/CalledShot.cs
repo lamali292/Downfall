@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public sealed class CalledShot : HermitCardModel
         WithDamage(5, 2);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override bool ShouldGlowGoldInternal => LastPlayTriggeredDeadOn();
 
@@ -32,10 +35,10 @@ public sealed class CalledShot : HermitCardModel
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        
+
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx()
             .BeforeDamage(() =>
             {

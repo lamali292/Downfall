@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -21,10 +21,12 @@ public class FiendFire : CollectorCardModel
         WithTip(CardKeyword.Exhaust);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
 
     protected override IEnumerable<string> ExtraRunAssetPaths => NGroundFireVfx.AssetPaths;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var list = Owner.GetHand().ToList();

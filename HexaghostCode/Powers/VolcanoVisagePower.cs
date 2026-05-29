@@ -11,7 +11,7 @@ public class VolcanoVisagePower : HexaghostPowerModel, IAfterGhostflameIgnited
 {
     public VolcanoVisagePower()
     {
-        WithTip(typeof(SoulBurnPower));
+        this.WithTip<SoulBurnPower>();
     }
 
 

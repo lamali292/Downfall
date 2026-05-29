@@ -56,16 +56,10 @@ public class FullReleasePower : AutomatonPowerModel
             };
             var card = SourceCards[i];
             if (SourceCards[i] is IEncodable encodable)
-            {
-                
                 await encodable.PlayEncodableEffect(choiceContext, cardPlay, new EncodeContext(true, i));
-            }
             else
-            {
                 await DownfallCardCmd.OnPlay.Invoke(card, choiceContext, cardPlay);
-            }
         }
-            
     }
 
     private class EffectsDynamicVar : DynamicVar
@@ -100,8 +94,10 @@ public class FullReleasePower : AutomatonPowerModel
                     var text = card.GetDescriptionForPile(PileType.Deck, CardModel.DescriptionPreviewType.Upgrade);
                     lines.Add(text);
                 }
+
                 i++;
             }
+
             return lines.Count > 0 ? string.Join("\n", lines) : "";
         }
     }

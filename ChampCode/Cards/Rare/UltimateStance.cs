@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -11,12 +13,14 @@ public class UltimateStance : ChampCardModel
 {
     public UltimateStance() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithGlory(10);
+        this.WithGlory(10);
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GloryPower>(ctx, this);
     }

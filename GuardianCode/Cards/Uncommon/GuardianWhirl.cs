@@ -3,6 +3,7 @@ using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -16,9 +17,11 @@ public class GuardianWhirl : GuardianCardModel
         WithTip(StaticHoverTip.Block);
     }
 
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
     protected override bool ShouldGlowGoldInternal => Owner.Creature.Block >= DynamicVars["Threshold"].IntValue;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions
             .CardAttack(this, cardPlay, Owner.Creature.Block >= DynamicVars["Threshold"].IntValue ? 4 : 2).Execute(ctx);

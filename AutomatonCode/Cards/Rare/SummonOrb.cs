@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -12,12 +13,14 @@ public class SummonOrb : AutomatonCardModel
 {
     public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<SummonOrbPower>(1, false);
+        this.WithPower<SummonOrbPower>(1, false);
         WithTip(AutomatonTip.Stash);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SummonOrbPower>(ctx, this);
     }

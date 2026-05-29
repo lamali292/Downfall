@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -11,13 +13,15 @@ public class RopeADope : ChampCardModel
 {
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithFinisher();
+        this.WithFinisher();
         WithBlock(8, 2);
         WithEnergy(1, 1);
-        WithPower<DrawCardsNextTurnPower>(2, false);
+        this.WithPower<DrawCardsNextTurnPower>(2, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);

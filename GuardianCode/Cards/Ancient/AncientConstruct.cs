@@ -4,6 +4,7 @@ using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Ancient;
 
@@ -13,11 +14,13 @@ public class AncientConstruct : GuardianCardModel
     public AncientConstruct() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithPower<ArtifactPower>(1);
-        WithPower<AncientConstructPower>(1, false);
+        this.WithPower<AncientConstructPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArtifactPower>(ctx, this);
         await CommonActions.ApplySelf<AncientConstructPower>(ctx, this);

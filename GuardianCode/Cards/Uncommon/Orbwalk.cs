@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -17,12 +18,14 @@ public class Orbwalk : GuardianCardModel, ITickCard
         WithKeyword(GuardianKeyword.Volatile, UpgradeType.Remove);
     }
 
+    protected override Artist Artist => Artist.Get<Bukie>();
+
     public async Task OnTick(PlayerChoiceContext ctx)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }

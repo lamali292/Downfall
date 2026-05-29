@@ -1,9 +1,11 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -12,12 +14,14 @@ public class SpikerProtocol : GuardianCardModel
 {
     public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<SpikerProtocolPower>(2, 1, false);
-        WithBrace(6, 3);
+        this.WithPower<SpikerProtocolPower>(2, 1, false);
+        this.WithBrace(6, 3);
         WithTip(GuardianTip.DefensiveMode);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Ez>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpikerProtocolPower>(ctx, this);
         await GuardianCmd.Brace(ctx, this);

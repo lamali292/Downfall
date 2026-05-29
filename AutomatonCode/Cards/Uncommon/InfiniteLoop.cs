@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -14,8 +15,10 @@ public class InfiniteLoop : AutomatonCardModel,
     public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6);
-        WithPower<InfiniteLoopPower>(2, 2, false);
+        this.WithPower<InfiniteLoopPower>(2, 2, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
@@ -25,7 +28,7 @@ public class InfiniteLoop : AutomatonCardModel,
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var power = await CommonActions.ApplySelf<InfiniteLoopPower>(ctx, this);
         power?.SetCard(this);

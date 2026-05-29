@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -14,8 +15,10 @@ public class UnlimitedPower : HexaghostCardModel
         WithCostUpgradeBy(-1);
     }
 
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await HexaghostCmd.IgniteAll(ctx, Owner);
     }

@@ -1,0 +1,14 @@
+{
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "Defensive Stance",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]Skill Bonus[/gold]: Gain [blue]{DefensiveSkill}[/blue] [gold]Counter[/gold].\n[gold]Finisher[/gold]: Gain [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
+  "CHAMP-CHAMP_BERSERKER_STANCE.title": "Berserker Stance",
+  "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]Skill Bonus[/gold]: Gain [blue]{BerserkerSkill}[/blue] [gold]Vigor[/gold].\n[gold]Finisher[/gold]: Gain [blue]{BerserkerFinisher}[/blue] [gold]Strength[/gold].",
+  "CHAMP-CHAMP_NO_STANCE.title": "No Stance",
+  "CHAMP-CHAMP_NO_STANCE.description": "",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Ultimate Stance",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]Skill Bonus[/gold]: Gain [blue]{BerserkerSkill}[/blue] [gold]Vigor[/gold] and [blue]{DefensiveSkill}[/blue] [gold]Counter[/gold].\n[gold]Finisher[/gold]: Gain [blue]{BerserkerFinisher}[/blue] [gold]Strength[/gold] and [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: Gain {BerserkerFinisher} [gold]Strength[/gold] and {DefensiveFinisher} [gold]Block[/gold].",
+  "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finisher[/gold]",
+  "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: Gain {BerserkerFinisher} [gold]Strength[/gold].",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: Gain {DefensiveFinisher} [gold]Block[/gold]."
+}

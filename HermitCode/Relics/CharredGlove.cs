@@ -17,7 +17,7 @@ public sealed class CharredGlove : HermitRelicModel
     public CharredGlove() : base(RelicRarity.Common)
     {
         WithPower<VigorPower>(3);
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
 

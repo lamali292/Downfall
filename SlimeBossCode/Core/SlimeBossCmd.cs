@@ -1,10 +1,11 @@
-﻿using Downfall.DownfallCode.Extensions;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -23,6 +24,21 @@ public static class SlimeBossCmd
     }
 
 
+    public static async Task<bool> Absorb(PlayerChoiceContext ctx, CardModel card)
+    {
+        var a = await SlimeQueue.RemoveLeadingSlime(card.Owner);
+        await PowerCmd.Apply<StrengthPower>(ctx, card.Owner.Creature, 1, card.Owner.Creature, card);
+        return a;
+    }
+    
+    
+    public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, CardModel card)
+    {
+        var a = await SlimeQueue.RemoveAll(card.Owner);
+        await PowerCmd.Apply<StrengthPower>(ctx, card.Owner.Creature, a, card.Owner.Creature, card);
+        return a;
+    }
+    
     private static async Task Command(PlayerChoiceContext ctx, Player player)
     {
         var slime = GetFirstSlime(player);
@@ -30,7 +46,7 @@ public static class SlimeBossCmd
         await slime.Command(ctx);
     }
 
-    private static async Task Command(PlayerChoiceContext ctx, Player player, int amount)
+    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount)
     {
         for (var i = 0; i < amount; i++) await Command(ctx, player);
     }
@@ -40,10 +56,19 @@ public static class SlimeBossCmd
         return Command(ctx, card.Owner, card.DynamicVars["Command"].IntValue);
     }
 
-    public static async Task Slurp(CardModel card)
+    
+    public static async Task SlurpAll(CardModel card)
     {
-        var amount = card.DynamicVars["Slurp"].IntValue;
         var licks = card.Owner.GetExhaust()
+            .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
+            .ToList();
+        await CardPileCmd.Add(licks, PileType.Hand);
+    }
+    
+    
+    public static async Task Slurp(Player player, int amount)
+    {
+        var licks = player.GetExhaust()
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList();
 
@@ -51,12 +76,36 @@ public static class SlimeBossCmd
         var buried = licks.Where(e => e.Keywords.Contains(SlimeBossKeyword.Buried)).ToList();
 
         var cards = unburied
-            .TakeRandom(Math.Min(amount, unburied.Count), card.Owner.RunState.Rng.CombatCardSelection)
+            .TakeRandom(Math.Min(amount, unburied.Count), player.RunState.Rng.CombatCardSelection)
             .ToList();
 
         if (cards.Count < amount)
-            cards.AddRange(buried.TakeRandom(amount - cards.Count, card.Owner.RunState.Rng.CombatCardSelection));
+            cards.AddRange(buried.TakeRandom(amount - cards.Count,player.RunState.Rng.CombatCardSelection));
 
         await CardPileCmd.Add(cards, PileType.Hand);
+    }
+
+    
+    public static Task Slurp(CardModel card)
+     => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
+
+
+    public static async Task Split<T>(Player player) where T : SlimeModel
+    {
+        var slimeModel = SlimeBossModelDb.Slime<T>();
+        await SlimeQueue.AddSlime(player, slimeModel);
+    }
+
+    public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player owner)
+    {
+        var combatState = owner.Creature.CombatState;
+        if (combatState == null) return;
+        var slimeCards = SlimeBossModelDb.AllSpecialistSlimes
+            .TakeRandom(3, owner.RunState.Rng.CombatCardGeneration)
+            .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, owner)).ToList();
+        var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, owner);
+        if (card is not ISlimeCard slimeCard) return;
+        var slime = slimeCard.SlimeModel;
+        await SlimeQueue.AddSlime(owner, slime);
     }
 }

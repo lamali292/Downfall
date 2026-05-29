@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -14,7 +15,9 @@ public class CatchUp : HexaghostCardModel
         WithVar("IgniteCount", 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Inmo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         for (var i = 0; i < DynamicVars["IgniteCount"].IntValue; i++)
             await HexaghostCmd.IgnitePrevious(ctx, Owner);

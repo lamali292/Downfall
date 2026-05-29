@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -12,12 +13,15 @@ public class Recreate : AutomatonCardModel
 {
     public Recreate() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<RecreatePower>(1, false);
-        WithPower<RecreatePlusPower>(1, false);
+        this.WithPower<RecreatePower>(1, false);
+        this.WithPower<RecreatePlusPower>(1, false);
         WithUpgradingCardTip<Fuel>();
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return IsUpgraded
             ? CommonActions.ApplySelf<RecreatePlusPower>(ctx, this)

@@ -12,7 +12,6 @@ namespace Automaton.AutomatonCode.Relics;
 [Pool(typeof(AutomatonRelicPool))]
 public class SilverBullet : AutomatonRelicModel
 {
-
     public SilverBullet() : base(RelicRarity.Common)
     {
         WithDamage(2);
@@ -25,5 +24,4 @@ public class SilverBullet : AutomatonRelicModel
         Flash();
         await MyCommonActions.Attack(this, null, TargetType.AllEnemies).Execute(ctx);
     }
-    
 }

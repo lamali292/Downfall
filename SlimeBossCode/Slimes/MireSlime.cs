@@ -15,6 +15,8 @@ public class MireSlime : SlimeModel
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
+    
+    public override bool IsSpecialist => false;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

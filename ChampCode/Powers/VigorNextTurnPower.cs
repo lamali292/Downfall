@@ -11,7 +11,7 @@ public class VigorNextTurnPower : ChampPowerModel
 {
     public VigorNextTurnPower()
     {
-        WithTip(typeof(VigorPower));
+        this.WithTip<VigorPower>();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

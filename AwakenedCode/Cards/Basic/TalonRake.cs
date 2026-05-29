@@ -1,8 +1,9 @@
 ﻿using Awakened.AwakenedCode.Cards.Ancient;
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -15,7 +16,7 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithConjure();
+        this.WithConjure();
     }
 
 
@@ -24,7 +25,9 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
         return ModelDb.Card<TalonRend>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")

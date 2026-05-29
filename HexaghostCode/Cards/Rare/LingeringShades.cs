@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
@@ -18,7 +17,7 @@ public class LingeringShades : HexaghostCardModel
         WithPower<SoulBurnPower>(14, 4);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await CardPileCmd.Add(

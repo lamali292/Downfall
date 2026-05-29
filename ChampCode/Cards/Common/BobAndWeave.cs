@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -13,10 +15,12 @@ public class BobAndWeave : ChampCardModel
     {
         WithBlock(4, 2);
         WithPower<VigorPower>(4, 1);
-        WithEnterBerserker();
+        this.WithEnterBerserker();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<VigorPower>(ctx, this);

@@ -4,6 +4,7 @@ using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -13,11 +14,13 @@ public class HeatWave : CollectorCardModel
     public HeatWave() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithDamage(5, 3);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);

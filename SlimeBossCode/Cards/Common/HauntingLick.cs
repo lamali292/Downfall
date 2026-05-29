@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -20,7 +21,9 @@ public class HauntingLick : SlimeBossCardModel
         WithCards(0, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);

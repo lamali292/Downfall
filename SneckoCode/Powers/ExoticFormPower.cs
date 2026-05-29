@@ -18,7 +18,7 @@ public class ExoticFormPower : SneckoPowerModel, IHasSecondAmount
         return _uniqueColorsThisTurn.Count.ToString();
     }
 
-    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner) return Task.CompletedTask;
         if (_uniqueColorsThisTurn.Add(cardPlay.Card.Pool))

@@ -1,12 +1,12 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -17,10 +17,12 @@ public class PreemptiveStrike : ChampCardModel
     {
         WithCalculatedDamage(0, CalcDamage);
         WithTags(CardTag.Strike);
-        WithTip(ChampTip.Defensive);
-        WithTip(typeof(CounterPower));
+        this.WithDefensiveTip();
+        this.WithTip<CounterPower>();
         WithCostUpgradeBy(-1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 
@@ -29,7 +31,7 @@ public class PreemptiveStrike : ChampCardModel
         return arg1.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (Owner.ShouldDefensiveComboTrigger()) return;

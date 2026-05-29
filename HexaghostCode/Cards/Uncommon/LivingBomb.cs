@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -16,8 +17,10 @@ public class LivingBomb : HexaghostCardModel
         WithPower<LivingBombPower>(1);
     }
 
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await CommonActions.Apply<LivingBombPower>(ctx, this, cardPlay);

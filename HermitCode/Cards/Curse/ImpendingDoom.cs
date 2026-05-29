@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Curse;
 
@@ -21,12 +22,14 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
         WithKeyword(CardKeyword.Unplayable);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     public override int MaxUpgradeLevel => 0;
 
 
     protected override bool ShouldGlowGoldInternal => false;
-    protected override bool ShouldGlowRedInternal => IsDeadOn;
-    public override bool HasTurnEndInHandEffect => IsDeadOn;
+    protected override bool ShouldGlowRedInternal => this is IHasDeadOnEffect { IsDeadOn: true };
+    public override bool HasTurnEndInHandEffect => this is IHasDeadOnEffect { IsDeadOn: true };
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

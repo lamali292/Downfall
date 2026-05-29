@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -18,10 +18,13 @@ public class ShieldThrow : ChampCardModel
     {
         WithCalculatedDamage(0, BlockDamage);
         WithCostUpgradeBy(-1);
-        WithTip(ChampTip.Defensive);
+        this.WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
-        WithPower<NoBlockNextTurnPower>(1, false);
+        this.WithPower<NoBlockNextTurnPower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
+
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 
@@ -30,7 +33,7 @@ public class ShieldThrow : ChampCardModel
         return card.Owner.Creature.Block;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
         if (Owner.ShouldDefensiveComboTrigger()) return;

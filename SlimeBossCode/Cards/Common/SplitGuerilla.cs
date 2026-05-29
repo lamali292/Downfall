@@ -2,6 +2,9 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using Downfall.DownfallCode.Artists;
+using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -10,10 +13,14 @@ public class SplitGuerilla : SlimeBossCardModel
 {
     public SplitGuerilla() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        this.WithCommand(2, 1);
     }
 
-    // TODO: Implement
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await SlimeBossCmd.Split<GuerillaSlime>(Owner);
+        await SlimeBossCmd.Command(ctx, this);
     }
 }

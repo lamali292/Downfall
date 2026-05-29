@@ -1,5 +1,4 @@
 ﻿using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,7 +15,7 @@ public abstract class TemporaryPowerBase<TP> : DownfallPowerModel, ITemporaryPow
 
     protected TemporaryPowerBase()
     {
-        WithTip(typeof(TP));
+        this.WithTip<TP>();
     }
 
     public override PowerType Type => !IsPositive ? PowerType.Debuff : PowerType.Buff;

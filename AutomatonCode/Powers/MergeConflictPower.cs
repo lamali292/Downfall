@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class MergeConflictPower : AutomatonPowerModel
 {
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         await PowerCmd.Decrement(this);
         var clone = card.CreateClone();

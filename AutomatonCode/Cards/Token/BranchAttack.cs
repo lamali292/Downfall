@@ -1,9 +1,9 @@
 ﻿using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Token;
 
@@ -15,6 +15,8 @@ public class BranchAttack : AutomatonCardModel, IEncodable
         WithDamage(7, 2);
         WithKeywords(CardKeyword.Retain);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

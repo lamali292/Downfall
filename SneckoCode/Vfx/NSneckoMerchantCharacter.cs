@@ -1,6 +1,4 @@
 ﻿using Godot;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
 
 namespace Snecko.SneckoCode.Vfx;

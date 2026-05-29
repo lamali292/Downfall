@@ -1,9 +1,11 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -15,8 +17,10 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         WithBlock(10, 2);
         WithKeyword(GuardianKeyword.Volatile);
         WithTip(GuardianTip.Stasis);
-        WithBrace(4, 2);
+        this.WithBrace(4, 2);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
 
     public async Task OnTick(PlayerChoiceContext ctx)
@@ -25,7 +29,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         await CommonActions.CardBlock(this, null);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.PutIntoStasis(this, ctx);
     }

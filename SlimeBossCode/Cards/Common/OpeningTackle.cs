@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -17,17 +18,19 @@ public class OpeningTackle : SlimeBossCardModel, IHasConsumeEffect
     public OpeningTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(12, 3);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithPower<VulnerablePower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, creature, this);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);

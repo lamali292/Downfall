@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;

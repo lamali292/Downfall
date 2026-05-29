@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -20,8 +21,10 @@ public class CultistStrike : AutomatonCardModel,
         WithVar("Increase", 1, 1);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     [SavedProperty]
-    private int CurrentDamage
+    public int CurrentDamage
     {
         get => _currentDamage;
         set
@@ -33,7 +36,7 @@ public class CultistStrike : AutomatonCardModel,
     }
 
     [SavedProperty]
-    private int IncreasedDamage
+    public int IncreasedDamage
     {
         get => _increasedDamage;
         set
@@ -51,7 +54,7 @@ public class CultistStrike : AutomatonCardModel,
     }
 
 
-    protected override Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var intValue = DynamicVars["Increase"].IntValue;
         BuffFromPlay(intValue);

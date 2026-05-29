@@ -1,22 +1,26 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
 [Pool(typeof(GuardianCardPool))]
-public class RollAttack : GuardianCardModel
+public class RollAttack : GuardianCardModel, IGemSocketCard
 {
     public RollAttack() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(16, 4);
-        WithBrace(8);
+        this.WithBrace(8);
         WithTip(GuardianTip.DefensiveMode);
     }
 
-    public override int GemSlots => 1;
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
+
     protected override bool ShouldGlowGoldInternal => GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner);
 
     public override TargetType TargetType => _owner == null || !IsMutable
@@ -25,7 +29,9 @@ public class RollAttack : GuardianCardModel
             ? TargetType.AllEnemies
             : TargetType.AnyEnemy;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public int GemSlots => 1;
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner)) return;

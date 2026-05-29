@@ -13,10 +13,10 @@ public class Mantis : AwakenedCardModel
     public Mantis() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithPower<StrengthPower>(2, 1);
-        WithTip(typeof(PlumeJab));
+        this.WithTip<PlumeJab>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await DownfallCardCmd.GiveCard<PlumeJab>(Owner, PileType.Hand, animationTime: 0.1f);

@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,7 +16,7 @@ public class Defiance : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain);
-        WithTip(typeof(CounterPower));
+        this.WithTip<CounterPower>();
         WithCalculatedBlock(0, CalcBlock);
     }
 
@@ -26,7 +25,7 @@ public class Defiance : ChampCardModel
         return card.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await PowerCmd.Remove<CounterPower>(Owner.Creature);

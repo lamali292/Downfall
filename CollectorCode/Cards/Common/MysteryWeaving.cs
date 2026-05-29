@@ -1,11 +1,11 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -17,12 +17,14 @@ public class MysteryWeaving : CollectorCardModel
         WithCalculatedBlock(9, 2, CalcBlock, ValueProp.Move, 3);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
         return -PileType.Hand.GetPile(card.Owner).Cards.Count(e => e != card);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

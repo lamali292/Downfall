@@ -22,6 +22,8 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCardCmd
 {
+    public static readonly Func<CardModel, PlayerChoiceContext, CardPlay, Task> OnPlay = BuildOnPlayDelegate();
+
     public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
@@ -260,14 +262,12 @@ public class DownfallCardCmd
         };
         CardCmd.PreviewCardPileAdd(errorResult, 0.6f);
     }
-    
-    public static readonly Func<CardModel, PlayerChoiceContext, CardPlay, Task> OnPlay = BuildOnPlayDelegate();
 
     private static Func<CardModel, PlayerChoiceContext, CardPlay, Task> BuildOnPlayDelegate()
     {
-        var method   = typeof(CardModel).GetMethod("OnPlay", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        var method = typeof(CardModel).GetMethod("OnPlay", BindingFlags.NonPublic | BindingFlags.Instance)!;
         var instance = Expression.Parameter(typeof(CardModel), "instance");
-        var ctx      = Expression.Parameter(typeof(PlayerChoiceContext), "ctx");
+        var ctx = Expression.Parameter(typeof(PlayerChoiceContext), "ctx");
         var cardPlay = Expression.Parameter(typeof(CardPlay), "cardPlay");
 
         return Expression.Lambda<Func<CardModel, PlayerChoiceContext, CardPlay, Task>>(

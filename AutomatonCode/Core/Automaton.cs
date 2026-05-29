@@ -93,7 +93,9 @@ public class Automaton : DownfallCharacterModel
 }
 
 public class AutomatonCardPool : DownfallCardPool<Automaton>;
+
 public class AutomatonPotionPool : DownfallPotionPool<Automaton>;
+
 public class AutomatonRelicPool : DownfallRelicPool<Automaton>;
 
 public abstract class AutomatonPowerModel(
@@ -101,6 +103,8 @@ public abstract class AutomatonPowerModel(
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Automaton>(powerType, powerStackType);
 
 public abstract class AutomatonRelicModel(RelicRarity rarity) : DownfallRelicModel<Automaton>(rarity);
+
 public abstract class AutomatonEnchantmentModel : DownfallEnchantmentModel<Automaton>;
-public abstract class AutomatonPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) : 
+
+public abstract class AutomatonPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
     DownfallPotionModel<Automaton>(potionRarity, potionUsage, targetType);

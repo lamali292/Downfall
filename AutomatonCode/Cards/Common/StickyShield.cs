@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -15,10 +16,12 @@ public class StickyShield : AutomatonCardModel
     {
         WithBlock(11, 3);
         WithKeywords(CardKeyword.Retain);
-        WithTip(typeof(Slimed));
+        this.WithTip<Slimed>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await DownfallCardCmd.GiveCard<Slimed>(Owner, PileType.Draw);

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -14,11 +15,13 @@ public class IronFortress : ChampCardModel
     public IronFortress() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2);
-        WithPower<MetallicizePower>(3, 2, false);
+        this.WithPower<MetallicizePower>(3, 2, false);
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<MetallicizePower>(ctx, this);

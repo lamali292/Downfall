@@ -1,5 +1,7 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -10,12 +12,12 @@ public class MysticOrder : AwakenedCardModel
 {
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithConjure();
+        this.WithConjure();
         WithCards(2, 1);
     }
 
-
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Eudaimonia>();
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.Draw(this, ctx);

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public sealed class Desperado : HermitCardModel
         WithVar("PlayCountMultiplier", 1);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
@@ -26,10 +29,10 @@ public sealed class Desperado : HermitCardModel
         return DynamicVars["PlayCountMultiplier"].BaseValue;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        await CommonActions.CardAttack(this, play).WithHermitGunHitFx() .BeforeDamage(() =>
+        await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 HermitSfx.PlayGun2();
                 return Task.CompletedTask;

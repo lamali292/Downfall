@@ -51,6 +51,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         GetDisplay(player)?.Refresh();
     }
 
+
     public static async Task SetStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
         await SetStance(ctx, player, ChampModelDb.ChampStance<T>());
@@ -73,37 +74,17 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
             ActiveStance[player]!);
         RefreshStanceDisplay(player, newCanonical);
     }
-    
-    public override async Task BeforeCombatStart()
+
+
+    public override Task BeforeCombatStart()
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
-        if (state == null) return;
+        if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
             ActiveStance[player] = ChampModelDb.ChampStance<ChampNoStance>();
+        return Task.CompletedTask;
     }
 
-
-    /*
-    private static void TriggerStanceAnimation(Player player)
-    {
-        Callable.From(() =>
-        {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            var animState = creatureNode?.SpineAnimation.GetAnimationState();
-            if (animState == null) return;
-
-            var trigger = animState.GetCurrent(0).GetAnimation().GetName() switch
-            {
-                "Idle" or "IdleBerserker" or "IdleDefensive" or "IdleUltimate" or "IdleGladiator" => "Idle",
-                "Attack" => "Attack",
-                _ => null
-            };
-
-            if (trigger == null) return;
-            creatureNode?.SetAnimationTrigger(trigger);
-            animState.GetCurrent(0).SetMixDuration(0.3f);
-        }).CallDeferred();
-    }*/
 
     private static void TriggerStanceAnimation(Player player)
     {

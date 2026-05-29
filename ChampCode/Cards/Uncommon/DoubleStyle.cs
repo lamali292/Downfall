@@ -4,6 +4,7 @@ using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -12,14 +13,16 @@ public class DoubleStyle : ChampCardModel
 {
     public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<DefensiveStylePower>(1, 1, false);
-        WithPower<BerserkerStylePower>(1, 1, false);
-        WithTip(typeof(VigorPower));
-        WithTip(typeof(CounterPower));
+        this.WithPower<DefensiveStylePower>(1, 1, false);
+        this.WithPower<BerserkerStylePower>(1, 1, false);
+        this.WithTip<VigorPower>();
+        this.WithTip<CounterPower>();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DefensiveStylePower>(ctx, this);
         await CommonActions.ApplySelf<BerserkerStylePower>(ctx, this);

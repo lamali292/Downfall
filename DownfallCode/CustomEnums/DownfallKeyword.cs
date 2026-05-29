@@ -1,5 +1,4 @@
 ﻿using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;

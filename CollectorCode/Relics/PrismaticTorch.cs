@@ -18,7 +18,7 @@ public class PrismaticTorch : CollectorRelicModel
 {
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
-        WithTip(typeof(Ember));
+        WithTip<Ember>();
     }
 
     public override async Task BeforeHandDraw(

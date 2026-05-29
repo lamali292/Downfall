@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,13 +16,13 @@ public class CrookedStrike : ChampCardModel
     public CrookedStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithFinisher();
-        WithTip(typeof(VigorPower));
+        this.WithFinisher();
+        this.WithTip<VigorPower>();
         WithTags(CardTag.Strike);
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

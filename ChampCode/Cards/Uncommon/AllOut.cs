@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
+using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,12 +13,12 @@ public class AllOut : ChampCardModel
     public AllOut() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithRepeat(2, 1);
-        WithFinisher();
+        this.WithRepeat(2, 1);
+        this.WithFinisher();
         WithTip(ChampTip.Stance);
     }
 
-    protected override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true, DynamicVars.Repeat.IntValue);
     }

@@ -1,22 +1,30 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class SomberShield : CollectorCardModel
+public class SomberShield : CollectorCardModel, IHasPyre
 {
     public SomberShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPyre();
+        WithKeyword(CollectorKeyword.Pyre);
         WithBlock(6, 3);
         WithPower<CopyNextTurnPower>(1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    public CardModel? PyredCard { get; set; }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);

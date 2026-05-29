@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -17,16 +18,18 @@ public class Float : HexaghostCardModel
         WithVar("CardsPlayed", 3, 2);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     protected override bool ShouldGlowGoldInternal => CombatManager.Instance.History.Entries
                                                           .OfType<CardPlayFinishedEntry>()
                                                           .Count(e => e.HappenedThisTurn(CombatState)) <
                                                       DynamicVars["CardsPlayed"].IntValue;
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var a = CombatManager.Instance.History.Entries
-            .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState));
+            .OfType<CardPlayFinishedEntry>().Count(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner.Creature);
         if (a >= DynamicVars["CardsPlayed"].IntValue) return;
         await CommonActions.Draw(this, ctx);
         await HexaghostCmd.Advance(ctx, Owner, this);

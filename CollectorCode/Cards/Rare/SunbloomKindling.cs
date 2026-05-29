@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -17,8 +18,10 @@ public class SunbloomKindling : CollectorCardModel
         WithKeyword(CardKeyword.Unplayable);
         WithPower<StrengthPower>(2, 3);
         WithCards(2);
-        WithTip(typeof(Ember));
+        this.WithTip<Ember>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)

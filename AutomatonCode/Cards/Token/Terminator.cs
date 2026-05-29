@@ -18,16 +18,15 @@ public class Terminator : AutomatonCardModel,
     {
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);
-        WithPower<TerminatorPower>(1, false);
+        this.WithPower<TerminatorPower>(1, false);
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = AutomatonCmd.GetMax(Owner);
         var b = EncodePile.FunctionSequence.GetPile(Owner).Cards.Count;
-        if (a-1 != b) return;
+        if (a - 1 != b) return;
         await CommonActions.ApplySelf<TerminatorPower>(ctx, this);
     }
-    
 }

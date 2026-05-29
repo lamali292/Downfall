@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -23,13 +24,15 @@ public class DevTools : AutomatonCardModel
         WithCalculatedVar("Dev", 0, Calc);
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         return card.Owner.GetEncode().Count;
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = ((CalculatedVar)DynamicVars["Dev"]).Calculate(null);
         var cards = Owner.GetEncode().ToList();

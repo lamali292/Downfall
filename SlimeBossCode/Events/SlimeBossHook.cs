@@ -10,10 +10,10 @@ namespace SlimeBoss.SlimeBossCode.Events;
 public static class SlimeBossHook
 {
     public static Task AfterConsumeEffect(ICombatState cs, PlayerChoiceContext ctx, Creature creature,
-        AttackCommand command, int amount)
+        Creature attacker, int amount)
     {
         return DownfallHook.Dispatch<IAfterConsumeEffect>(cs,
-            e => e.AfterConsumeEffect(ctx, creature, command, amount));
+            e => e.AfterConsumeEffect(ctx, creature, attacker, amount));
     }
 
     public static int ModifyGoopConsume(ICombatState cs, int originalAmount,

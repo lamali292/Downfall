@@ -4,6 +4,7 @@ using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -13,11 +14,13 @@ public class ChainLash : ChampCardModel
     public ChainLash() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(3, 2);
-        WithPower<ChainLashPower>(2, 1, false);
+        this.WithPower<ChainLashPower>(2, 1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<ChainLashPower>(ctx, this);

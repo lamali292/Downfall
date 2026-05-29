@@ -13,12 +13,12 @@ public class BronzeBrambles : GuardianCardModel
     public BronzeBrambles() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<BronzeBramblesPower>(1, false);
-        WithTip(typeof(ThornsPower));
+        this.WithPower<BronzeBramblesPower>(1, false);
+        this.WithTip<ThornsPower>();
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BronzeBramblesPower>(ctx, this);
     }

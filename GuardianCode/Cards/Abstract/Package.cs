@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Guardian.GuardianCode.Cards.Ancient;
 using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Cards.Rare;
 using Guardian.GuardianCode.Cards.Token;
@@ -67,7 +66,7 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard
         description.Add("card3", card3.Title);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);
         await DownfallCardCmd.GiveCard<T1>(Owner, PileType.Hand, upgraded: IsUpgraded);

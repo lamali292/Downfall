@@ -1,9 +1,11 @@
 using System.Reflection;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using Snecko.SneckoCode.Core;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Snecko.SneckoCode;
@@ -18,6 +20,7 @@ public partial class SneckoMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlay);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

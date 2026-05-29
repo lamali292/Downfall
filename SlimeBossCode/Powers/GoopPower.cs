@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Context;
@@ -12,11 +13,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Events;
+using SlimeBoss.SlimeBossCode.History;
 using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IHasSecondAmount
+public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
@@ -26,10 +28,7 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
 
-    public string GetSecondAmount()
-    {
-        return "Cool Text";
-    }
+    
 
     protected override object InitInternalData()
     {
@@ -71,6 +70,8 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
+        var attacker = command.Attacker;
+        if (attacker == null) return;
         var internalData = GetInternalData<Data>();
         if (command != internalData.CommandToModify || command.Results.SelectMany(a => a).All(e => e.Receiver != Owner))
         {
@@ -87,7 +88,14 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         internalData.CommandToModify = null;
         if (command.ModelSource is IHasConsumeEffect slimeBossCardModel)
             await slimeBossCardModel.ConsumeEffect(ctx, creature, command, amount);
-        await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, command, amount);
+
+        
+        var entry = new ConsumeEntry(creature,amount, attacker, CombatState.RoundNumber, attacker.Side,
+            CombatManager.Instance.History, CombatState.Players);
+        CombatManager.Instance.History.Add(CombatState, entry);
+        
+        await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, attacker, amount);
+        
     }
 
     private class Data

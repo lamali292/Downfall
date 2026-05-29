@@ -5,15 +5,17 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Extensions;
+using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class FinalStrike : SneckoCardModel
+public class FinalStrike : SneckoCardModel, IHasGift
 {
     public FinalStrike() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithGift(new Gift
+        this.WithGift(new Gift
         {
             IsStrike = true
         });
@@ -21,6 +23,8 @@ public class FinalStrike : SneckoCardModel
         WithDamage(6, 3);
         WithCalculatedVar("UniqueStrikesPlayed", 0, UniqueStrikesPlayed);
     }
+
+    public Gift? Gift { get; set; }
 
     private static decimal UniqueStrikesPlayed(CardModel card, Creature? creature)
     {
@@ -31,7 +35,7 @@ public class FinalStrike : SneckoCardModel
             .Count() + 1;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = (int)UniqueStrikesPlayed(this, null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);

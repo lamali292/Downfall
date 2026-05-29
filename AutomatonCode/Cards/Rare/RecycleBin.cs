@@ -12,11 +12,11 @@ public class RecycleBin : AutomatonCardModel
 {
     public RecycleBin() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<RecycleBinPower>(4, 1, false);
+        this.WithPower<RecycleBinPower>(4, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<RecycleBinPower>(ctx, this);
     }

@@ -3,6 +3,7 @@ using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -11,11 +12,13 @@ public class FloatingOrbs : GuardianCardModel
 {
     public FloatingOrbs() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FloatingOrbsPower>(3, 1, false);
+        this.WithPower<FloatingOrbsPower>(3, 1, false);
         WithEnergyTip();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Bukie>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FloatingOrbsPower>(ctx, this);
     }

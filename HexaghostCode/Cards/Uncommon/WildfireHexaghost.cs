@@ -14,7 +14,7 @@ public class WildfireHexaghost : HexaghostCardModel
         WithPower<WildfirePower>(5, 2);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<WildfirePower>(ctx, this);
     }

@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,6 +15,8 @@ public class Clutch : AwakenedCardModel
         WithDamage(8, 3);
         WithEnergyTip();
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool ShouldGlowGoldInternal => Has0CostInDraw;
 
@@ -26,7 +29,7 @@ public class Clutch : AwakenedCardModel
         }
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = PileType.Draw.GetPile(Owner)

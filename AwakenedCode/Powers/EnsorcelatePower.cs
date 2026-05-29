@@ -1,7 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Awakened.AwakenedCode.Powers;
@@ -16,7 +15,7 @@ public class EnsorcelatePower : AwakenedPowerModel
         return true;
     }
 
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (IsEligiblePower(cardPlay.Card)) await PowerCmd.Decrement(this);
     }

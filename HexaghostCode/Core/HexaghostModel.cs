@@ -3,12 +3,15 @@ using BaseLib.Utils;
 using HarmonyLib;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Ghostflames;
+using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Runs;
 using static MegaCrit.Sts2.Core.Entities.Multiplayer.GameActionType;
@@ -51,6 +54,24 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
                 await HexaghostCmd.Advance(ctx, player, null, true, true);
         }
+    }
+
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    {
+        if (card.CombatState == null || card is not IHasAfterlifeEffect afterlifeEffect) return;
+        var a = card.CombatState.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets)
+            .FirstOrDefault();
+        var cardPlay = new CardPlay
+        {
+            Card = card,
+            Target = a,
+            ResultPile = PileType.Exhaust,
+            Resources = default,
+            IsAutoPlay = true,
+            PlayIndex = 0,
+            PlayCount = 0
+        };
+        await afterlifeEffect.AfterlifeEffect(ctx, cardPlay);
     }
 
     internal static async Task SetupHexaghostCombatUi(CombatState state)

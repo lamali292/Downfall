@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -18,12 +19,14 @@ public sealed class BlackWind : HermitCardModel
         WithCalculatedDamage(0, 1, GetMissingHp);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     private static decimal GetMissingHp(CardModel card, Creature? _)
     {
         return card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp;
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play)

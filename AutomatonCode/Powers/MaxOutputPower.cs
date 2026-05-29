@@ -12,7 +12,7 @@ public class MaxOutputPower : AutomatonPowerModel
     public MaxOutputPower()
     {
         WithTip(AutomatonTip.Stash);
-        WithTip(typeof(Error));
+        this.WithTip<Error>();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,

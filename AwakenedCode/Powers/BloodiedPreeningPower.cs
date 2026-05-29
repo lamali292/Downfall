@@ -12,7 +12,7 @@ public class BloodiedPreeningPower : AwakenedPowerModel
 {
     public BloodiedPreeningPower()
     {
-        WithTip(typeof(PlumeJab));
+        this.WithTip<PlumeJab>();
     }
 
     public override async Task BeforeHandDraw(

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_vpw3y"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slowing.tscn" id="2_vpw3y"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/antennae.png" id="3_hm1rd"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/stopwatch.png" id="4_03lu2"]
 
 [node name="SlowingSlime" type="Node2D"]
 script = ExtResource("1_vpw3y")
@@ -9,7 +11,7 @@ script = ExtResource("1_vpw3y")
 [node name="Visuals" parent="." instance=ExtResource("2_vpw3y")]
 unique_name_in_owner = true
 position = Vector2(1, -19)
-scale = Vector2(-1, 1)
+scale = Vector2(-1.6209183, 1.6209183)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -28,3 +30,26 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="Antennae" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-8.7, -34)
+
+[node name="TextureRect" type="TextureRect" parent="Antennae"]
+offset_left = -68.3
+offset_top = -105.00001
+offset_right = 75.7
+offset_bottom = 38.999992
+scale = Vector2(1.372813, 1.372813)
+texture = ExtResource("3_hm1rd")
+
+[node name="Stopwatch" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(37, -5.3)
+
+[node name="TextureRect" type="TextureRect" parent="Stopwatch"]
+offset_left = -70.0
+offset_top = -98.7
+offset_right = 74.0
+offset_bottom = 45.300003
+texture = ExtResource("4_03lu2")

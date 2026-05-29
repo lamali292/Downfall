@@ -15,7 +15,7 @@ public class SoulLitLamp : CollectorRelicModel
 {
     public SoulLitLamp() : base(RelicRarity.Uncommon)
     {
-        WithTip(typeof(Ember));
+        WithTip<Ember>();
     }
 
 

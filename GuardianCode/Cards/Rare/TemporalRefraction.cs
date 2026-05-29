@@ -13,11 +13,11 @@ public class TemporalRefraction : GuardianCardModel
     public TemporalRefraction() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<TemporalRefractionPower>(1, false);
+        this.WithPower<TemporalRefractionPower>(1, false);
         WithTip(GuardianKeyword.Gem);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<TemporalRefractionPower>(ctx, this);
     }

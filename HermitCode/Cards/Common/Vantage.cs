@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -13,6 +14,8 @@ public sealed class Vantage : HermitCardModel, IHasDeadOnEffect
         WithCards(1, 1);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
+
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         (await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner))
@@ -22,7 +25,7 @@ public sealed class Vantage : HermitCardModel, IHasDeadOnEffect
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);

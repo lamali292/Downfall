@@ -11,11 +11,11 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<ArsenalPower>(2, 1, false);
-        WithTip(typeof(StrengthPower));
+        this.WithPower<ArsenalPower>(2, 1, false);
+        this.WithTip<StrengthPower>();
     }
 
-    protected override Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<ArsenalPower>(ctx, this);
     }

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -14,10 +15,12 @@ public class ViciousTackle : SlimeBossCardModel, IDoubleGoopBonus
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(17, 7);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);

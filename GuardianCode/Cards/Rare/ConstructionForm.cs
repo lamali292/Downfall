@@ -4,6 +4,7 @@ using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -14,11 +15,13 @@ public class ConstructionForm : GuardianCardModel
     {
         WithPower<BufferPower>(2);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithTip(typeof(StrengthPower));
-        WithPower<ConstructionFormPower>(1);
+        this.WithTip<StrengthPower>();
+        this.WithPower<ConstructionFormPower>(1, false);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BufferPower>(ctx, this);
         await CommonActions.ApplySelf<ConstructionFormPower>(ctx, this);

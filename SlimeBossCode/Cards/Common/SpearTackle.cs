@@ -13,12 +13,12 @@ public class SpearTackle : SlimeBossCardModel
     public SpearTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(11, 2);
-        WithSelfDamage(3);
+        this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithCards(2, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await MyCommonActions.SelfDamage(ctx, this);

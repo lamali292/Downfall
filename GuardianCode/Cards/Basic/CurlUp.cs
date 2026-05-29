@@ -1,13 +1,14 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
-using Downfall.DownfallCode.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Basic;
 
@@ -16,12 +17,14 @@ public class CurlUp : GuardianCardModel
 {
     public CurlUp() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBrace(10, 2);
+        this.WithBrace(10, 2);
         WithTip(GuardianTip.Stasis);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         if (GuardianCmd.CanPutIntoStasis(Owner))

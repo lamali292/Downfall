@@ -4,6 +4,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -13,11 +14,13 @@ public sealed class Snipe : HermitCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
-        WithPower<SnipePower>(1, false);
+        this.WithPower<SnipePower>(1, false);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<SnipePower>(ctx, this);

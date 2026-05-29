@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Basic;
 
@@ -17,6 +18,8 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
     {
         WithDamage(6, 2);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -34,7 +37,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
     }
 */
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         _result = await CommonActions.CardAttack(this, play)

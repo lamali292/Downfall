@@ -4,12 +4,9 @@ using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Relics;
 
@@ -21,7 +18,7 @@ public class ProtectiveGoggles : AutomatonRelicModel
         WithBlock(4);
         WithTip(AutomatonTip.Encode);
     }
-    
+
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

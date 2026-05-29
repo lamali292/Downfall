@@ -14,13 +14,13 @@ public class FerventWorship : AwakenedCardModel
     public FerventWorship() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithEnergyTip();
-        WithTip(typeof(Ceremony));
+        this.WithTip<Ceremony>();
         WithTip(StaticHoverTip.ReplayStatic);
         WithCostUpgradeBy(-1);
     }
 
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FerventWorshipPower>(ctx, this, 1);
     }

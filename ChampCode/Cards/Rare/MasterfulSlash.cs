@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -12,10 +13,12 @@ public class MasterfulSlash : ChampCardModel
     public MasterfulSlash() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithTip(typeof(VigorNextTurnPower));
+        this.WithTip<VigorNextTurnPower>();
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblocked = attack.Results.SelectMany(r => r).Sum(r => r.UnblockedDamage);

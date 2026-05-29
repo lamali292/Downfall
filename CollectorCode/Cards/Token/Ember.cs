@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Token;
 
@@ -15,6 +16,8 @@ public class Ember : CollectorCardModel
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)

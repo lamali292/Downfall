@@ -1,20 +1,28 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class Hoard : CollectorCardModel
+public class Hoard : CollectorCardModel, IHasPyre
 {
     public Hoard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPyre();
+        WithKeyword(CollectorKeyword.Pyre);
         WithCards(2, 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    public CardModel? PyredCard { get; set; }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
         foreach (var card in cards)

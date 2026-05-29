@@ -12,12 +12,12 @@ public class Improvising : ChampCardModel
 {
     public Improvising() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<ImprovisingPower>(2, 1, false);
+        this.WithPower<ImprovisingPower>(2, 1, false);
         WithTip(ChampTip.Stance);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ImprovisingPower>(ctx, this);
     }

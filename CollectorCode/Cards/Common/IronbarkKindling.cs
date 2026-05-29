@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -16,6 +17,8 @@ public class IronbarkKindling : CollectorCardModel
         WithBlock(9);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
         bool causedByEthereal)

@@ -1,8 +1,8 @@
 using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Basic;
 
@@ -14,8 +14,10 @@ public class Kindle : HexaghostCardModel
         WithBlock(1, 3);
     }
 
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await HexaghostCmd.Ignite(ctx, Owner);

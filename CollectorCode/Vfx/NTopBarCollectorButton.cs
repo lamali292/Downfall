@@ -27,10 +27,15 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
         if (_instance == this) _instance = null;
     }
 
-    protected override int? GetCount() =>
-        Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+    protected override int? GetCount()
+    {
+        return Player == null ? null : CollectiblesModel.GetCollectibles(Player).Count;
+    }
 
-    public static void RefreshButton() => _instance?.RefreshCount();
+    public static void RefreshButton()
+    {
+        _instance?.RefreshCount();
+    }
 
     protected override void OnRelease()
     {
@@ -43,13 +48,19 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
         UpdateScreenOpen();
     }
 
-    protected override bool IsOpen() =>
-        NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+    protected override bool IsOpen()
+    {
+        return NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCollectiblesViewScreen;
+    }
 
     public class Descriptor : ITopBarElementDescriptor
     {
         public string ScenePath => "res://Collector/scenes/ui/top_bar_collector_button.tscn";
         public float Width => 80f;
-        public bool CanUse(Player player) => player.Character == ModelDb.Character<Core.Collector>();
+
+        public bool CanUse(Player player)
+        {
+            return player.Character == ModelDb.Character<Core.Collector>();
+        }
     }
 }

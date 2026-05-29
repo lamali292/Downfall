@@ -31,7 +31,7 @@ public class NaughtySpirit : HexaghostCardModel
         await HexaghostCmd.Retract(ctx, Owner, this);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -13,12 +14,14 @@ public class ItMattersNot : CollectorCardModel
     public ItMattersNot() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(13, 4);
-        WithTip(typeof(VulnerablePower));
-        WithTip(typeof(WeakPower));
+        this.WithTip<VulnerablePower>();
+        this.WithTip<WeakPower>();
         WithVar("ItMattersNot", 1);
     }
 
-    protected override async Task PlayEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Opal>();
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
