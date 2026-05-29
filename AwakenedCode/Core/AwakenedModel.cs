@@ -22,6 +22,7 @@ namespace Awakened.AwakenedCode.Core;
 public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
+    private static readonly ConditionalWeakTable<Player, StrongBox<bool>> AwakenDispatched = new();
     private static readonly ConditionalWeakTable<CombatState, StrongBox<bool>> InitializedCombats = new();
     private static readonly ConditionalWeakTable<Player, StrongBox<bool>> InitializedSpellbooks = new();
 
@@ -29,10 +30,23 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }
+
+    public static bool MarkAwakened(Player player)
+    {
+        var dispatched = AwakenDispatched.GetOrCreateValue(player);
+        if (dispatched.Value) return false;
+
+        var meter = AwakenMeter.GetOrCreateValue(player);
+        meter.Value = 7;
+        dispatched.Value = true;
+        StatusBarHelper.SetStatus(player, meter.Value, 7, new Color(0x55FFFFFF));
+        return true;
+    }
     
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
+        AwakenDispatched.Clear();
         InitializedCombats.Clear();
         InitializedSpellbooks.Clear();
         return Task.CompletedTask;
@@ -66,7 +80,10 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 
         initialized.Value = true;
         foreach (var player in state.Players)
+        {
             AwakenMeter.Remove(player);
+            AwakenDispatched.Remove(player);
+        }
 
         foreach (var player in state.Players)
         {

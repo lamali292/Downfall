@@ -29,6 +29,8 @@ public static class AwakenedCmd
 
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {
+        if (!AwakenedModel.MarkAwakened(player)) return;
+
         Callable.From(() =>
         {
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
