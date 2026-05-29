@@ -97,6 +97,19 @@ public class PackCards(string scriptDir, bool force)
 
         var removed = groupCache.Select(kv => kv.Key).Except(entryMap.Keys).ToHashSet();
 
+        if (slotMap.Count == 0)
+        {
+            foreach (var stem in removed)
+            {
+                var p = Path.Join(outDir, "card_atlas.sprites", $"{stem}.tres");
+                if (!File.Exists(p)) continue;
+                File.Delete(p);
+                Console.WriteLine($"  removed: {stem}.tres");
+            }
+            Console.WriteLine($"  {groupId}: 0 cards, 0 page(s), 0 .tres updated");
+            return new JsonObject();
+        }
+
         if (!dirty.Any() && !removed.Any() && !Force)
         {
             Console.WriteLine($"  {groupId}: no changes");
