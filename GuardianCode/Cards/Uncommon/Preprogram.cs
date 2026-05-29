@@ -6,6 +6,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class Preprogram : GuardianCardModel, IGemSocketCard
         WithCards(5, 3);
         WithTip(GuardianTip.Stasis);
     }
+
+    protected override Artist Artist => Artist.Get<Claude27A>();
 
     public int GemSlots => 1;
 

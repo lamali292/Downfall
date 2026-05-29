@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -19,6 +20,8 @@ public class FiendFire : CollectorCardModel
         WithDamage(7, 3);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override IEnumerable<string> ExtraRunAssetPaths => NGroundFireVfx.AssetPaths;

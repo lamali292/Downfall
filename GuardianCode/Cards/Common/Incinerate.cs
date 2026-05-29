@@ -4,6 +4,7 @@ using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class Incinerate : GuardianCardModel, IGemSocketCard
         WithDamage(8);
         this.WithAccelerate(1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public int GemSlots => 1;
 

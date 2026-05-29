@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public class Format : AutomatonCardModel
         this.WithUpgradedCardTip<Fragment>();
         WithEnergy(1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override bool HasEnergyCostX => true;
 

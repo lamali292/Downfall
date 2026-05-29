@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
         WithEnergy(2, 1);
         WithPower<EnergyNextTurnPower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

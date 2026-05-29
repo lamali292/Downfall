@@ -4,6 +4,7 @@ using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -16,6 +17,8 @@ public class BringItOn : ChampCardModel
         WithPower<CounterPower>(6, 2);
         this.WithFinisher();
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

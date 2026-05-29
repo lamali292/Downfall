@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class Spike : AutomatonCardModel, IEncodable
         this.WithPower<SpikePower>(3, 2, false);
         this.WithTip<ThornsPower>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

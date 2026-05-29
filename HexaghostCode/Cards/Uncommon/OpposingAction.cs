@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class OpposingAction : HexaghostCardModel
         WithEnergy(2, 1);
         WithKeywords(HexaghostKeyword.Retract, CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

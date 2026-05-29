@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class Soulforge : CollectorCardModel
         WithCards(1, 1);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class ThermalTransfer : HexaghostCardModel
         WithBlock(6, 2);
         this.WithTip<SoulBurnPower>();
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

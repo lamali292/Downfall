@@ -5,6 +5,7 @@ using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class SkillfulDodge : ChampCardModel, IDefensiveComboCard
         WithPower<CounterPower>(4, 1);
         WithVar("Increase", 3, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

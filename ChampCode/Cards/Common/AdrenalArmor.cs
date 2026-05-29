@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -16,6 +17,8 @@ public class AdrenalArmor : ChampCardModel
         this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
         this.WithTip<StrengthPower>();
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

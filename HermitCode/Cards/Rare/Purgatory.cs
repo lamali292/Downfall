@@ -3,6 +3,7 @@ using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -13,6 +14,8 @@ public sealed class Purgatory : HermitCardModel
         WithDamage(24, 6);
         WithKeyword(CardKeyword.Ethereal);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

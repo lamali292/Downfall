@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -23,6 +24,8 @@ public class TripleStrike : ChampCardModel
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithCards(2);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static IHoverTip StrikeTip(CardModel card)
     {

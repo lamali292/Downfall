@@ -4,6 +4,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -11,10 +13,13 @@ public sealed class FatalDesire : HermitCardModel
 {
     public FatalDesire() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<FatalDesirePower>(1);
-        WithPower<MachineLearningPower>(2);
+        this.WithPower<FatalDesirePower>(1, false);
+        this.WithPower<MachineLearningPower>(2, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        this.WithTip<Injury>();
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

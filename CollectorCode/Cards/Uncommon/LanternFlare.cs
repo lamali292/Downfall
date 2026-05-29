@@ -6,6 +6,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class LanternFlare : CollectorCardModel, IHasPyre
         WithPower<CollectorDoomPower>(12, 3);
         WithPower<ScorchedPower>(3, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

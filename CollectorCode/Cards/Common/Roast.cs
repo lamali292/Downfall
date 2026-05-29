@@ -5,6 +5,7 @@ using Collector.CollectorCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -16,6 +17,8 @@ public class Roast : CollectorCardModel, IHasPyre
         WithKeyword(CollectorKeyword.Pyre);
         WithDamage(4, 3);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

@@ -8,6 +8,7 @@ using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Basic;
 
@@ -20,6 +21,8 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
         WithDamage(5, 2);
         WithPower<SoulBurnPower>(5, 2);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

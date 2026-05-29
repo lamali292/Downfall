@@ -4,6 +4,7 @@ using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class DoubleStyle : ChampCardModel
         this.WithTip<VigorPower>();
         this.WithTip<CounterPower>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

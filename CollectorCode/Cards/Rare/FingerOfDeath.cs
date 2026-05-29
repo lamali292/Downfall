@@ -4,6 +4,7 @@ using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -14,6 +15,8 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
     {
         WithPower<CollectorDoomPower>(60);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
 

@@ -4,6 +4,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class Parry : ChampCardModel
         this.WithPower<ParryingPower>(1, false);
         this.WithTip<RiposteStrike>();
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

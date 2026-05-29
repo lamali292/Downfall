@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -16,6 +17,8 @@ public class SearingWound : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

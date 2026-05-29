@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class SerpentIdol : SneckoCardModel
         WithCards(3);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

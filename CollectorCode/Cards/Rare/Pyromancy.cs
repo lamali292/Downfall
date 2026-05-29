@@ -6,6 +6,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public class Pyromancy : CollectorCardModel, IHasPyre
         WithPower<PyromancyPower>(1);
         WithKeyword(CollectorKeyword.Pyre);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

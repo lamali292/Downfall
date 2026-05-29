@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -15,6 +16,8 @@ public class ShipIt : AutomatonCardModel
         WithCards(1);
         WithTip(AutomatonTip.Stash);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

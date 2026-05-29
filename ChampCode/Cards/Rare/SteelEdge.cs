@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -14,6 +15,8 @@ public class SteelEdge : ChampCardModel
         WithDamage(6, 3);
         this.WithFinisher();
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override bool HasEnergyCostX => true;
 

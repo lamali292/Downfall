@@ -3,6 +3,7 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public class FastForward : HexaghostCardModel
         WithCards(2, 1);
         WithKeywords(HexaghostKeyword.Advance);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

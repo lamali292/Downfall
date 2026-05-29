@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -21,6 +22,8 @@ public class OpeningTackle : SlimeBossCardModel, IHasConsumeEffect
         WithTags(SlimeBossTag.Tackle);
         WithPower<VulnerablePower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {

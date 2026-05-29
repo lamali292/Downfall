@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         WithTip(GuardianTip.Stasis);
         this.WithBrace(4, 2);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
 
     public async Task OnTick(PlayerChoiceContext ctx)

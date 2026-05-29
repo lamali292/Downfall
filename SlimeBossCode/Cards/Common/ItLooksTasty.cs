@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public class ItLooksTasty : SlimeBossCardModel, IHasConsumeEffect
         WithDamage(8, 2);
         WithUpgradingCardTip<Lick>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {

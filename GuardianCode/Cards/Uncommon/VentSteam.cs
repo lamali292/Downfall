@@ -4,6 +4,7 @@ using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public class VentSteam : GuardianCardModel, IGemSocketCard
     {
         WithPower<VulnerablePower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public int GemSlots => 2;
 

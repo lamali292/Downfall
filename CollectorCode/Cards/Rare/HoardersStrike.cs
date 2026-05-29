@@ -4,6 +4,7 @@ using Collector.CollectorCode.Piles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -15,6 +16,8 @@ public class HoardersStrike : CollectorCardModel
         WithDamage(16, 4);
         WithTags(CardTag.Strike);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -4,6 +4,7 @@ using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class SwordThrow : ChampCardModel
         this.WithPower<EntangledNextTurnPower>(1, false);
         this.WithBerserkerTip();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();

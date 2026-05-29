@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class WorthySacrifice : HexaghostCardModel
         WithCards(2);
         WithKeywords(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

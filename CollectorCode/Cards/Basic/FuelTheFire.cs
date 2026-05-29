@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Basic;
 
@@ -18,6 +19,8 @@ public class FuelTheFire : CollectorCardModel, IHasPyre
         WithPower<ReserveNextTurnPower>(2);
         WithKeyword(CollectorKeyword.Pyre);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

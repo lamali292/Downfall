@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public sealed class TakeCover : HermitCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override bool HasEnergyCostX => true;
 

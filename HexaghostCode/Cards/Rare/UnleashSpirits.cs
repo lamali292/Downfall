@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -19,6 +20,8 @@ public class UnleashSpirits : HexaghostCardModel
         WithTip(CardKeyword.Exhaust);
         WithCalculatedVar("Repeat", 1, Calc);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     private static decimal Calc(CardModel card, Creature? target)
     {

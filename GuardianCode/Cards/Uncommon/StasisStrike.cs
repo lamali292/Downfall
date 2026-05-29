@@ -3,6 +3,7 @@ using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class StasisStrike : GuardianCardModel
         WithTags(CardTag.Strike);
         WithTip(GuardianTip.Stasis);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

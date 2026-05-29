@@ -4,6 +4,7 @@ using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class Karma : CollectorCardModel
         WithPower<KarmaPower>(2, 1);
         WithPower<MetallicizePower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

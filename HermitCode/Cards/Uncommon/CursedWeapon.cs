@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -23,6 +24,8 @@ public sealed class CursedWeapon : HermitCardModel
         this.WithHpLoss(2);
         WithVar(IncreaseKey, 1);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     [SavedProperty]
     public int CurrentDamage

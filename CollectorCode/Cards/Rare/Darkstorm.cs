@@ -4,6 +4,7 @@ using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -16,6 +17,8 @@ public class Darkstorm : CollectorCardModel
         WithKeyword(CardKeyword.Exhaust);
         this.WithTip<Blightning>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

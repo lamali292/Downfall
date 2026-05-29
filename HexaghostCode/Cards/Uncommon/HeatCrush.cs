@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class HeatCrush : HexaghostCardModel
     {
         WithCalculatedDamage(12, Calc, ValueProp.Move, 6);
     }
+
+    protected override Artist Artist => Artist.Get<Claude27A>();
 
     private static decimal Calc(CardModel card, Creature? creature)
     {

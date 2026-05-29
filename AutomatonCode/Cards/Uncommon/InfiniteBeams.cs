@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class InfiniteBeams : AutomatonCardModel
         this.WithTip<MinorBeam>();
         this.WithPower<InfiniteBeamsPower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

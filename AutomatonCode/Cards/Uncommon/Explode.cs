@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class Explode : AutomatonCardModel, IEncodable
         this.WithTip<Burn>();
         WithPower<SoulBurnPower>(15, 5);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

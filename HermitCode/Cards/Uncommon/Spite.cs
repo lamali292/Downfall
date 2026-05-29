@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public sealed class Spite : HermitCardModel
         WithTip(CardKeyword.Unplayable);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

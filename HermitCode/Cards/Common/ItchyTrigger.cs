@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -14,6 +15,8 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
         WithDamage(7, 2);
         WithVar("CostReduction", 1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {

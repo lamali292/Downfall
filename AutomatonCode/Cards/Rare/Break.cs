@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -15,6 +16,8 @@ public class Break : AutomatonCardModel
         WithDamage(20, 5);
         this.WithTip<Error>();
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

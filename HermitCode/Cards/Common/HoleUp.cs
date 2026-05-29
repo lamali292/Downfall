@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -13,6 +14,8 @@ public class HoleUp : HermitCardModel
         WithBlock(12, 4);
         WithPower<WeakPower>(2);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,9 @@ public class Cauterize : HexaghostCardModel
         this.WithTip<SoulBurnPower>();
     }
 
+    protected override Artist Artist => Artist.Get<Inmo>();
+
+    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

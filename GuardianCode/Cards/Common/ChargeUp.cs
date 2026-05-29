@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class ChargeUp : GuardianCardModel, IGemSocketCard
         this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
         this.WithTip<StrengthPower>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public int GemSlots => 1;
 

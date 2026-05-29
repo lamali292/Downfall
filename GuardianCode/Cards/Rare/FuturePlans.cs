@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -16,6 +17,8 @@ public class FuturePlans : GuardianCardModel
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(GuardianTip.Stasis);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

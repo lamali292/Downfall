@@ -7,6 +7,7 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -20,6 +21,8 @@ public class FleetingEmbers : CollectorCardModel, IHasPyre
         WithCards(2);
         this.WithTip<Ember>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

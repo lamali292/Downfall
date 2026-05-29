@@ -3,6 +3,7 @@ using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -15,6 +16,8 @@ public class SphericShield : GuardianCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithCostUpgradeBy(-1);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

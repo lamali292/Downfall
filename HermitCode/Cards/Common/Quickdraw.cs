@@ -4,6 +4,7 @@ using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public sealed class Quickdraw : HermitCardModel
         WithCards(2, 1);
         this.WithPower<DrawFewerCardsNextTurnPower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

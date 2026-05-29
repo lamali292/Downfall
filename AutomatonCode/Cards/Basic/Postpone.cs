@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.Core;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -16,6 +17,8 @@ public class Postpone : AutomatonCardModel, ITranscendenceCard
         WithBlock(10, 4);
         WithStash(1);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel GetTranscendenceTransformedCard()
     {

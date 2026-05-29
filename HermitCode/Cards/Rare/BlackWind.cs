@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public sealed class BlackWind : HermitCardModel
         WithCostUpgradeBy(-1);
         WithCalculatedDamage(0, 1, GetMissingHp);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     private static decimal GetMissingHp(CardModel card, Creature? _)
     {

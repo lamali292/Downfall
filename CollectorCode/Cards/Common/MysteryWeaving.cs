@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class MysteryWeaving : CollectorCardModel
     {
         WithCalculatedBlock(9, 2, CalcBlock, ValueProp.Move, 3);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {

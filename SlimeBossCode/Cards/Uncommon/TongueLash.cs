@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class TongueLash : SlimeBossCardModel
         WithCalculatedDamage(6, 2, Calc, ValueProp.Move, 0, 1);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
 
     private static decimal Calc(CardModel card, Creature? _)
      => card.Owner.GetExhaust()

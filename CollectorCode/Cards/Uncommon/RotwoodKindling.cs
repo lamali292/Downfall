@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class RotwoodKindling : CollectorCardModel
         WithPower<VulnerablePower>(2, 1);
         WithPower<CollectorDoomPower>(4, 2);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)

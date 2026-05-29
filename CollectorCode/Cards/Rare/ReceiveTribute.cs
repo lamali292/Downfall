@@ -5,6 +5,7 @@ using Collector.CollectorCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public class ReceiveTribute : CollectorCardModel, IHasPyre
         WithKeyword(CardKeyword.Exhaust);
         WithCards(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 

@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -12,6 +13,8 @@ public class FullRelease : AutomatonCardModel, IEncodable
     {
         WithCostUpgradeBy(-1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 }
 
 // Todo: make it not hover tip with encode

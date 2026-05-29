@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -11,6 +12,8 @@ public class SplitLeeching : SlimeBossCardModel
     public SplitLeeching() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     // TODO: Implement
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

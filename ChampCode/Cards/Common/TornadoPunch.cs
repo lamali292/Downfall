@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class TornadoPunch : ChampCardModel, IDefensiveComboCard
         WithBlock(7, 2);
         WithVar("LastHitCount", 0);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

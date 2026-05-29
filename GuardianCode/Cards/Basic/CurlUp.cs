@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Basic;
 
@@ -19,6 +20,8 @@ public class CurlUp : GuardianCardModel
         this.WithBrace(10, 2);
         WithTip(GuardianTip.Stasis);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class PerfecterStrike : ChampCardModel
         WithTags(CardTag.Strike);
         WithCalculatedDamage(8, 2, CalculateStrikeCount, bonusUpgrade: 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal CalculateStrikeCount(CardModel card, Creature? creatures)
     {

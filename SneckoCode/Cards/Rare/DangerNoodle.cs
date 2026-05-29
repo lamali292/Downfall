@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -19,6 +20,8 @@ public class DangerNoodle : SneckoCardModel, IHasGift
         WithDamage(14, 4);
         this.WithMuddle(1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public Gift? Gift { get; set; }
 

@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -16,6 +17,7 @@ public class TimeSifter : GuardianCardModel
         this.WithPower<TimeSifterPower>(1, false);
         WithTip(GuardianTip.Accelerate);
     }
+
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Curse;
 
@@ -16,6 +17,8 @@ public sealed class MementoCard : HermitCardModel
         WithPower<VulnerablePower>(1);
         WithKeyword(CardKeyword.Retain);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public override int MaxUpgradeLevel => 0;
 

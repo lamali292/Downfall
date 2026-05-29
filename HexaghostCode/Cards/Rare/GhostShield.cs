@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class GhostShield : HexaghostCardModel, IHasAfterlifeEffect
         WithBlock(7, 3);
         WithPower<BlurPower>(1);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

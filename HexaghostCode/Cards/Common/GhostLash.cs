@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
         this.WithAfterlife();
         WithCalculatedDamage(8, 3, Calc, ValueProp.Move, 2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

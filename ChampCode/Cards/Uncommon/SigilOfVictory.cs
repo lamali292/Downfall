@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class SigilOfVictory : ChampCardModel
         WithTip(ChampTip.Stance);
         this.WithRepeat(3, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

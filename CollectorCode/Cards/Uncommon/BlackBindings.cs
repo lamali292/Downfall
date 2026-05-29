@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class BlackBindings : CollectorCardModel
         WithPower<WeakPower>(2);
         WithPower<CollectorDoomPower>(2, 2);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal DamageCalc(Creature? creature)
     {

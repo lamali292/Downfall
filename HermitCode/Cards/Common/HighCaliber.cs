@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public sealed class HighCaliber : HermitCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradingCardTip<StrikeHermit>(WithModifiers);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public sealed class Deadeye : HermitCardModel, IHasDeadOnEffect
         WithDamage(5, 1);
         WithPower<StrengthPower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {

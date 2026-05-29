@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,9 @@ public class Commit : AutomatonCardModel
         WithBlock(6, 2);
         WithDamage(6, 2);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
+
 
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
 

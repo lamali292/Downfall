@@ -6,6 +6,7 @@ using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class NightmareGuise : HexaghostCardModel, IHasAfterlifeEffect
         WithBlock(4, 2);
         this.WithAfterlife();
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -4,6 +4,7 @@ using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class SetATrap : ChampCardModel, IDefensiveComboCard
         WithBlock(8, 2);
         WithPower<WeakPower>(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

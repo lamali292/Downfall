@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class RollAttack : GuardianCardModel, IGemSocketCard
         this.WithBrace(8);
         WithTip(GuardianTip.DefensiveMode);
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     protected override bool ShouldGlowGoldInternal => GuardianCmd.IsInMode<GuardianDefensiveMode>(Owner);
 

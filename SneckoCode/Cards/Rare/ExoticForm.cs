@@ -6,6 +6,7 @@ using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -21,6 +22,8 @@ public class ExoticForm : SneckoCardModel, IHasGift
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<ExoticFormPower>(1);
     }
+
+    protected override Artist Artist => Artist.Get<Zhen>();
 
     public Gift? Gift { get; set; }
 

@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class Hexaguard : HexaghostCardModel, IHasAfterlifeEffect
         WithBlock(6, 3);
         WithCards(2);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

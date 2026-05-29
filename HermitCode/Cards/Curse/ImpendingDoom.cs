@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Curse;
 
@@ -20,6 +21,8 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
         WithVar(new DamageVar(13, ValueProp.Move | ValueProp.Unpowered));
         WithKeyword(CardKeyword.Unplayable);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public override int MaxUpgradeLevel => 0;
 

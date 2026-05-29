@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class PrismaticSpray : GuardianCardModel, IGemSocketCard
         WithCalculatedDamage(0, 3, CalcDamage, ValueProp.Move, 0, 1);
         WithTip(GuardianKeyword.Gem);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public int GemSlots => 3;
 

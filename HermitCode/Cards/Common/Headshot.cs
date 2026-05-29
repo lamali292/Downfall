@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Common;
 
@@ -16,6 +17,8 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect
     {
         WithDamage(7, 2);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -3,6 +3,7 @@ using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public class RainOfEmbers : HexaghostCardModel
         WithDamage(6, 3);
         WithPower<WeakPower>(1);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override bool HasEnergyCostX => true;
 

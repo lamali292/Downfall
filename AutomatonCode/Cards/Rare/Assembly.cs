@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -15,6 +16,8 @@ public class Assembly : AutomatonCardModel
         WithTip(AutomatonTip.Encode);
         WithKeywords(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

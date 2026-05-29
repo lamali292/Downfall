@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class Frontload : AutomatonCardModel, IEncodable
         WithTip(CardKeyword.Retain);
         this.WithPower<FrontloadPower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {

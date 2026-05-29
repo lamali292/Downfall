@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -19,6 +20,8 @@ public class CultistStrike : AutomatonCardModel,
         WithDamage(CurrentDamage);
         WithVar("Increase", 1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     [SavedProperty]
     public int CurrentDamage

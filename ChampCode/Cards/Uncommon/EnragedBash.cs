@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -14,6 +15,8 @@ public class EnragedBash : ChampCardModel, IBerserkerComboCard
         WithDamage(7, 3);
         this.WithRepeat(1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

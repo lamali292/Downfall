@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class StrikeOfGenius : ChampCardModel
         WithEnergyTip();
         WithTip(DownfallKeyword.Echo);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     private static IHoverTip HoverTip(CardModel card)
     {

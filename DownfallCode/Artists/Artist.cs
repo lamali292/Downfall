@@ -31,8 +31,19 @@ public abstract class Artist
     public IHoverTip HoverTip => new ArtistHoverTip(ArtByName, Icon);
 }
 
-
+public class AlexMdle : Artist;
+public class Claude27A : Artist;
 public class GoofballMcgee : Artist;
 public class Eudaimonia : Artist;
 public class Opal : Artist;
 public class Occultpyromancer : Artist;
+public class Ez : Artist;
+public class Thelethargicweirdo : Artist;
+public class Zhen : Artist;
+public class CartesianCanvas : Artist;
+public class Magerblutooth : Artist;
+public class Inmo : Artist;
+public class HalfGoblinHankins : Artist;
+public class Hermitfan69 : Artist;
+public class Bukie : Artist;
+public class Freshbone : Artist;

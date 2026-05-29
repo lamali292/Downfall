@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -20,6 +21,8 @@ public class Endure : ChampCardModel
         this.WithTip<DexterityPower>();
         this.WithEnterDefensive();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal BlockCalc(CardModel card, Creature? creature)
     {

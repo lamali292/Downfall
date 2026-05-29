@@ -4,6 +4,7 @@ using Champ.ChampCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class RisingStrike : ChampCardModel
         WithTags(CardTag.Strike);
         WithTip(ChampTip.Finisher);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private bool WasLastCardPlayedFinisher => CombatManager.Instance.History.CardPlaysStarted
         .LastOrDefault(e =>

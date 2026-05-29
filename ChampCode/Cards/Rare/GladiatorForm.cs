@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -14,6 +15,8 @@ public class GladiatorForm : ChampCardModel
         this.WithPower<GladiatorFormPower>(1, false);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

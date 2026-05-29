@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class HeatShield : HexaghostCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithCalculatedBlock(0, Calc);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     private static decimal Calc(CardModel arg1, Creature? creature)
     {

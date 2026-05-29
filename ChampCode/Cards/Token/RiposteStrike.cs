@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -15,6 +16,8 @@ public class RiposteStrike : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTags(CardTag.Strike);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

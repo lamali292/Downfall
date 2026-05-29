@@ -5,6 +5,7 @@ using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class Gluttony : SlimeBossCardModel
         this.WithTip<Lick>();
         WithTip(SlimeBossTip.Consume);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
     
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
         => CommonActions.ApplySelf<GluttonyPower>(ctx, this);

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -20,6 +21,8 @@ public class PreemptiveStrike : ChampCardModel
         this.WithTip<CounterPower>();
         WithCostUpgradeBy(-1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
 

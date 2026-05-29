@@ -4,6 +4,7 @@ using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Basic;
 
@@ -15,6 +16,8 @@ public class DefensiveShout : ChampCardModel
         WithPower<CounterPower>(3, 3);
         this.WithEnterDefensive();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

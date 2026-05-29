@@ -4,6 +4,7 @@ using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -14,6 +15,8 @@ public class Headbutt : ChampCardModel
     {
         WithDamage(9, 3);
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

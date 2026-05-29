@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Common;
 
@@ -13,6 +14,8 @@ public class PolyBeam : GuardianCardModel
         WithDamage(2);
         this.WithRepeat(4, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class Orbwalk : GuardianCardModel, ITickCard
         WithPower<StrengthPower>(3);
         WithKeyword(GuardianKeyword.Volatile, UpgradeType.Remove);
     }
+
+    protected override Artist Artist => Artist.Get<Bukie>();
 
     public async Task OnTick(PlayerChoiceContext ctx)
     {

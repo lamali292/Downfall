@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public class Backstep : ChampCardModel
         WithCalculatedBlock(6, CalcBlock, upgrade: 3);
         this.WithTip<VigorPower>();
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {

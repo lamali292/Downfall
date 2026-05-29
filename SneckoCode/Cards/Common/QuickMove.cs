@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -17,6 +18,8 @@ public class QuickMove : SneckoCardModel, IHasOverflowEffect
         this.WithOverflow();
         WithPower<VulnerablePower>(1);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

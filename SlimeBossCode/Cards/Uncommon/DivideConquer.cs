@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -17,6 +18,8 @@ public class DivideConquer : SlimeBossCardModel
         WithDamage(10, 5);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal Calc(CardModel card, Creature? _)
         => SlimeQueue.GetCount(card.Owner);

@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class FierceBash : GuardianCardModel, ITickCard
         WithTip(GuardianTip.Stasis);
         WithTip(GuardianTip.Tick);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
     public Task OnTick(PlayerChoiceContext ctx)

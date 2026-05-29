@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -14,6 +15,8 @@ public class Crownarang : ChampCardModel, IBerserkerComboCard
         WithDamage(8, 2);
         WithCards(2, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -18,6 +19,8 @@ public sealed class FinalCanter : HermitCardModel
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     private static decimal CountCursesInHand(CardModel card, Creature? _)
     {

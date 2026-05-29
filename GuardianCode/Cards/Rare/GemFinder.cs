@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class GemFinder : GuardianCardModel
         this.WithPower<GemFinderPower>(1, false);
         WithTip(GuardianKeyword.Gem);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

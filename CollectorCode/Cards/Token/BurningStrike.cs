@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Token;
 
@@ -14,6 +15,8 @@ public class BurningStrike : CollectorCardModel
         WithDamage(14, 1);
         WithCards(1, 1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

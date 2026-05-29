@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class BadOmen : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeywords(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

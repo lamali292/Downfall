@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +18,9 @@ public class Fork : AutomatonCardModel
         WithCostUpgradeBy(-1);
     }
 
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

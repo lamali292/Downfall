@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -16,6 +17,8 @@ public sealed class Desperado : HermitCardModel
         WithDamage(10, 2);
         WithVar("PlayCountMultiplier", 1);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -21,6 +22,8 @@ public class ShieldThrow : ChampCardModel
         WithTip(StaticHoverTip.Block);
         this.WithPower<NoBlockNextTurnPower>(1, false);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();

@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -20,6 +21,8 @@ public sealed class Ricochet : HermitCardModel
         WithCalculatedVar("CalculatedHits", 0, 1, CountDeadOnEffects);
         WithTip(HermitKeywords.DeadOn);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     private static decimal CountDeadOnEffects(CardModel card, Creature? _)
     {

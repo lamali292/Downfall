@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -18,6 +19,8 @@ public class LeechEnergy : SlimeBossCardModel, IHasConsumeEffect
         WithEnergy(1);
         WithCards(1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {

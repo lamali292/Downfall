@@ -4,6 +4,7 @@ using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -15,6 +16,8 @@ public class Lariat : ChampCardModel
         WithBlock(5, 2);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override bool HasEnergyCostX => true;

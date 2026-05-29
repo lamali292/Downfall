@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -19,6 +20,8 @@ public class WideSting : SneckoCardModel, IHasGift
         });
         WithDamage(7, 3);
     }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
 
     public Gift? Gift { get; set; }
 

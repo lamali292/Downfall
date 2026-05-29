@@ -3,6 +3,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -10,9 +11,11 @@ public sealed class ShadowCloak : HermitCardModel
 {
     public ShadowCloak() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ShadowCloakPower>(4, 2);
+        this.WithPower<ShadowCloakPower>(4, 2, false);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

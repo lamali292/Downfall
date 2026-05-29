@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using SlimeBoss.SlimeBossCode.Core;
+using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -21,6 +22,8 @@ public class MassFeed : SlimeBossCardModel
         WithTip(StaticHoverTip.Fatal);
         WithKeyword(CardKeyword.Exhaust);
     }
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

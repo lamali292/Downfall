@@ -5,6 +5,7 @@ using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -18,6 +19,8 @@ public class EvasiveProtocol : GuardianCardModel
         WithTip(GuardianTip.Polish);
         WithTip(GuardianTip.DefensiveMode);
     }
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Basic;
 
@@ -22,6 +23,8 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
             if (g is IGemSocketCard other && c is IGemSocketCard t) t.AddGems(other.Gems.Select(e => e.CreateClone()));
         });
     }
+
+    protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public int GemSlots => IsUpgraded ? 2 : 1;
 

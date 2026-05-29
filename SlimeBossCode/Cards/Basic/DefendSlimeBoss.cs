@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -13,6 +14,8 @@ public class DefendSlimeBoss : SlimeBossCardModel
         WithTags(CardTag.Defend);
         WithBlock(5, 3);
     }
+
+    protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

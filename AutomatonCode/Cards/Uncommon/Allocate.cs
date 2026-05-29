@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -19,6 +20,8 @@ public class Allocate : AutomatonCardModel
         WithEnergyTip();
         WithCalculatedVar("Status", 0, Calc);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal Calc(CardModel card, Creature? _)
     {

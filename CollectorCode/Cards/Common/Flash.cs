@@ -8,12 +8,15 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
 public class Flash : CollectorCardModel, IHasPyre
 {
+    protected override Artist Artist => Artist.Get<Opal>();
+
     public Flash() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);

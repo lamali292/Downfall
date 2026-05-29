@@ -4,6 +4,7 @@ using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 
@@ -17,6 +18,8 @@ public class DancingMaster : ChampCardModel
         this.WithPower<DancingMasterPower>(1, false);
         WithCostUpgradeBy(-1);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
