@@ -15,9 +15,7 @@ public abstract class HookedPowerModel : CustomPowerModel
 {
     private async Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
-        if (LocalContext.NetId == null)
-            throw new InvalidOperationException(
-                $"Cannot execute power hook '{GetType().Name}': LocalContext.NetId is null.");
+        if (LocalContext.NetId == null) return;
         if (Owner.IsDead) return;
         var ctx = new HookPlayerChoiceContext(
             this,
