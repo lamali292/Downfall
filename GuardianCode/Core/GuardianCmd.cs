@@ -209,8 +209,12 @@ public static class GuardianCmd
     public static async Task Brace(PlayerChoiceContext ctx, Player player, decimal amount)
     {
         var power = player.Creature.GetPower<ModeShiftPower>();
-        if (power == null) return;
-        var modifiedAmount = GuardianHook.ModifyBraceAmount(power.CombatState, player, amount);
+        if (power == null)
+        {
+            await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
+            power = player.Creature.GetPower<ModeShiftPower>();
+        }
+        var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
         if (power.Amount > 0) return;
         await power.Reset(ctx);
