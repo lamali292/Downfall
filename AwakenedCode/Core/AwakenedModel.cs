@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
+using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
@@ -21,17 +22,33 @@ namespace Awakened.AwakenedCode.Core;
 public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly ConditionalWeakTable<Player, StrongBox<int>> AwakenMeter = new();
+    private static readonly ConditionalWeakTable<Player, StrongBox<bool>> AwakenDispatched = new();
     private static readonly ConditionalWeakTable<CombatState, StrongBox<bool>> InitializedCombats = new();
+    private static readonly ConditionalWeakTable<Player, StrongBox<bool>> InitializedSpellbooks = new();
 
     public static bool IsAwakened(Player? player)
     {
         return player != null && AwakenMeter.GetOrCreateValue(player).Value >= 7;
     }
 
+    public static bool MarkAwakened(Player player)
+    {
+        var dispatched = AwakenDispatched.GetOrCreateValue(player);
+        if (dispatched.Value) return false;
+
+        var meter = AwakenMeter.GetOrCreateValue(player);
+        meter.Value = 7;
+        dispatched.Value = true;
+        StatusBarHelper.SetStatus(player, meter.Value, 7, new Color(0x55FFFFFF));
+        return true;
+    }
+    
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
+        AwakenDispatched.Clear();
         InitializedCombats.Clear();
+        InitializedSpellbooks.Clear();
         return Task.CompletedTask;
     }
 
@@ -68,18 +85,39 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 
         initialized.Value = true;
         foreach (var player in state.Players)
+        {
             AwakenMeter.Remove(player);
+            AwakenDispatched.Remove(player);
+        }
 
         foreach (var player in state.Players)
         {
             if (player.Character is not Awakened) continue;
-            AwakenedCmd.GetSpellbook(player)?.Refresh(player);
-            SetupAwakenedUi(combatRoomNode, player);
+            GetOrInitSpellbook(player);
         }
+    }
+
+    internal static AwakenedPile GetOrInitSpellbook(Player player)
+    {
+        var spellbook = AwakenedCmd.GetSpellbookOrThrow(player);
+
+        var initialized = InitializedSpellbooks.GetOrCreateValue(player);
+        if (!initialized.Value)
+        {
+            spellbook.Refresh(player);
+            initialized.Value = true;
+        }
+
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null) SetupAwakenedUi(combatRoom, player);
+
+        return spellbook;
     }
 
     private static void SetupAwakenedUi(NCombatRoom combatRoom, Player player)
     {
+        if (AwakenedDisplay.HasDisplay(player)) return;
+
         var display = NSpellbookDisplay.Create(player);
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);

@@ -12,5 +12,6 @@ public class ClarionCallPower : AwakenedPowerModel, IOnDrained
     {
         if (player != Owner.Player) return;
         await PlayerCmd.GainEnergy(Amount, player);
+        await PowerCmd.Remove(this);
     }
 }

@@ -11,14 +11,20 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
-public class TomeOfPortalmancy() : AwakenedRelicModel(RelicRarity.Common)
+public class TomeOfPortalmancy : AwakenedRelicModel
 {
+    public TomeOfPortalmancy(): base(RelicRarity.Common)
+    {
+        WithPower<ManaburnPower>(2);
+        WithTip(typeof(Void));
+    }
+
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
     {
         var combatState = Owner.Creature.CombatState;
-        if (creator != Owner || card is not Void || combatState == null) return;
+        if (creator != Owner || card is not Void) return;
         Flash();
         await PowerCmd.Apply<ManaburnPower>(ctx,
-            combatState.HittableEnemies, 2, Owner.Creature, null);
+            combatState!.HittableEnemies, 2, Owner.Creature, null);
     }
 }

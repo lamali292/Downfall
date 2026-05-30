@@ -13,7 +13,7 @@ public class EclipseEmbracePower : AwakenedPowerModel
         bool causedByEthereal)
     {
         if (card.Owner != Owner.Player || card is not Void) return;
-        await PlayerCmd.GainEnergy(Amount, Owner.Player);
+        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, Owner, Amount, Owner, null);
         await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner, Amount, Owner, null);
     }
 }

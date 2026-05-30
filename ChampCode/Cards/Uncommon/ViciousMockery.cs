@@ -11,18 +11,17 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class ViciousMockery : ChampCardModel
 {
-    public ViciousMockery() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public ViciousMockery() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<VigorPower>(5, 1);
-        WithPower<WeakPower>(1, 2);
+        WithPower<WeakPower>(1, 1);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
-        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target!, this);
         await Owner.ChampStance().SkillBonus(ctx);
     }
 }

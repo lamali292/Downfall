@@ -28,7 +28,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
         new(GuardianModelDb.GuardianMode<GuardianNormalMode>);
 
-    internal static readonly SpireField<Player, int> StasisSlots = new(() => 0);
+    internal static readonly SpireField<Player, int> StasisSlots = new(() => -1);
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
     // Hooks
@@ -57,13 +57,32 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         if (combatRoomNode == null) return;
 
         foreach (var player in state.Players)
+            StasisSlots.Set(player, -1);
+
+        foreach (var player in state.Players)
         {
             if (player.Character is not Guardian) continue;
-            GuardianDisplay.SetupGuardianUi(combatRoomNode, player);
-            if (StasisSlots[player] <= 0)
-                StasisSlots.Set(player, 3);
-            GuardianDisplay.Refresh(player);
+            InitStasisUi(player);
         }
+    }
+
+    internal static GuardianPile GetOrInitStasis(Player player)
+    {
+        var pile = GuardianCmd.GetStasisPile(player);
+        InitStasisUi(player);
+        return pile;
+    }
+
+    internal static void InitStasisUi(Player player)
+    {
+        if (StasisSlots[player] < 0)
+            StasisSlots.Set(player, 3);
+
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null && !GuardianDisplay.HasDisplay(player))
+            GuardianDisplay.SetupGuardianUi(combatRoom, player);
+
+        GuardianDisplay.Refresh(player);
     }
 
     internal static async Task SetMode(PlayerChoiceContext ctx, Player player, GuardianModeModel newCanonical)
@@ -102,7 +121,7 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
         var hasGems = deck.Any(e => e is IGemCard);
         var hasSlots = deck.Any(e => e is IGemSocketCard { FreeSlots: > 0 });
         if (!hasSlots || !hasGems) return false;
-        options.Add(new GemRestSiteOption(player) { IsEnabled = hasSlots && hasGems });
+        options.Add(new GemRestSiteOption(player));
         return true;
     }
 }

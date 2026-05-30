@@ -12,6 +12,8 @@ namespace Champ.ChampCode.Cards.Common;
 [Pool(typeof(ChampCardPool))]
 public class TornadoPunch : ChampCardModel, IDefensiveComboCard
 {
+    private int _lastHitCount;
+
     public TornadoPunch() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(12, 2);
@@ -23,16 +25,16 @@ public class TornadoPunch : ChampCardModel, IDefensiveComboCard
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var lastHitCount = DynamicVars["LastHitCount"].IntValue;
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue * lastHitCount, ValueProp.Move,
-            cardPlay);
+        for (int i = 0; i < _lastHitCount; i++)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block,
+                cardPlay);
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var result = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var lastHitCount = result.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0);
-        DynamicVars["LastHitCount"].ResetToBase();
-        DynamicVars["LastHitCount"].UpgradeValueBy(lastHitCount);
+        _lastHitCount = result.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0);
     }
 }

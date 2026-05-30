@@ -8,6 +8,11 @@ public class AwakenedDisplay
 {
     private static readonly Dictionary<Player, NSpellbookDisplay> Displays = new();
 
+    public static bool HasDisplay(Player player)
+    {
+        return Displays.TryGetValue(player, out var display) && GodotObject.IsInstanceValid(display);
+    }
+
     public static void Register(Player player, NSpellbookDisplay display)
     {
         if (Displays.TryGetValue(player, out var old))

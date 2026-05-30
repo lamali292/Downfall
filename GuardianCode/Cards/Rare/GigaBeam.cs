@@ -22,7 +22,7 @@ public class GigaBeam : GuardianCardModel
     {
         WithDamage(36, 4);
         WithVar("StrengthEffect", 2, 2);
-        this.WithPower<StunnedPower>(1, false);
+        this.WithPower<NextTurnStunnedPower>(1, false);
         this.WithTip<StrengthPower>();
     }
 
@@ -37,7 +37,7 @@ public class GigaBeam : GuardianCardModel
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(BeforeDamageAction)
             .Execute(ctx);
-        await CommonActions.ApplySelf<StunnedPower>(ctx, this);
+        await CommonActions.ApplySelf<NextTurnStunnedPower>(ctx, this);
     }
 
     private async Task BeforeDamageAction()

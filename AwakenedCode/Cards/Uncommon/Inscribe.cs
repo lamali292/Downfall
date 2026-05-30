@@ -38,8 +38,7 @@ public class Inscribe : AwakenedCardModel
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
         if (chosen == null) return;
 
-        var spellbook = AwakenedCmd.GetSpellbook(Owner);
-        if (spellbook == null) return;
+        var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
 
         spellbook.AddPersistentType(chosen);
         spellbook.AddPersistentType(chosen);

@@ -36,8 +36,7 @@ public partial class NSpellbookDisplay : Control
         foreach (var icon in _iconNodes) icon.QueueFree();
         _iconNodes.Clear();
 
-        var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
-        if (spellbook == null) return;
+        var spellbook = AwakenedCmd.GetSpellbookOrThrow(_trackedPlayer);
 
         var groupedCards = spellbook.Cards
             .GroupBy(c => c.Id)

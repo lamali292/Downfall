@@ -1,13 +1,12 @@
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
-using Guardian.GuardianCode.Cards.Rare;
+using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
@@ -69,7 +68,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     protected override async Task<bool> OnSelect()
     {
-        var prefs = new CardSelectorPrefs(ModelDb.Card<GemFinder>().SelectionScreenPrompt, 0, Gems.Count);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToDeckSelectionPrompt, 0, Gems.Count);
         var cards = Gems.Select(e => e.ToCard).ToList();
         _currentlyShownScreen = NSimpleCardSelectScreen.Create(cards, prefs);
         NOverlayStack.Instance?.Push(_currentlyShownScreen);

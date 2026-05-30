@@ -25,10 +25,10 @@ public class ReroutePower : GuardianPowerModel
     {
         if (_cardSource == card) return (pileType, position);
         var player = card.Owner;
-        var pile = GuardianCmd.GetStasisPile(player);
-        if (pile == null || !GuardianCmd.CanPutIntoStasis(player)) return (pileType, position);
-        card.EnergyCost.AfterCardPlayedCleanup();
+        var pile = GuardianCombatModel.GetOrInitStasis(player);
+        if (pile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)) return (pileType, position);
         GuardianCmd.SetStasisCounter(card);
+        card.EnergyCost.AfterCardPlayedCleanup();
         return (pile.Type, position);
     }
 

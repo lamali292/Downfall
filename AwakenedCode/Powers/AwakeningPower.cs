@@ -34,6 +34,7 @@ public class AwakeningPower : AwakenedPowerModel
     {
         if (!wasRemovalPrevented || creature != Owner) return;
 
+        Flash();
         _isReviving = true;
         await PowerCmd.Remove<WeakPower>(Owner);
         await PowerCmd.Remove<VulnerablePower>(Owner);
@@ -50,7 +51,8 @@ public class AwakeningPower : AwakenedPowerModel
 
     public override async Task AfterCombatEnd(CombatRoom room)
     {
-        if (Owner.IsAlive) return;
+        if (!Owner.IsAlive) return;
+        Flash();
         await CreatureCmd.Heal(Owner, Amount);
     }
 }

@@ -23,6 +23,11 @@ public class GuardianDisplay
         };
     }
 
+    public static bool HasDisplay(Player player)
+    {
+        return Displays.TryGetValue(player, out var display) && GodotObject.IsInstanceValid(display);
+    }
+
     public static void Refresh(Player creature)
     {
         Displays.GetValueOrDefault(creature)?.Refresh();
