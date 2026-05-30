@@ -11,7 +11,7 @@ public abstract class SlimeModel : CustomMonsterModel
 {
     public override int MinInitialHp => 1;
     public override int MaxInitialHp => 1;
-    public abstract bool IsSpecialist { get; }
+    public abstract SlimeType SlimeType { get; }
 
     public override string CustomVisualPath =>
         $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
@@ -28,4 +28,13 @@ public abstract class SlimeModel : CustomMonsterModel
     }
 
     public abstract Task Command(PlayerChoiceContext ctx);
+}
+
+[Flags]
+public enum SlimeType
+{
+    None = 0,
+    Normal = 1,
+    Specialist = 2,
+    Any = Normal | Specialist 
 }

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Downfall.DownfallCode.Interfaces;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -8,10 +9,10 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Vfx;
 
 [GlobalClass]
-public partial class NSlimeCreatureVisuals : NCreatureVisuals
+public partial class NSlimeCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private readonly List<(MegaBone Bone, Node2D Node)> _attachments = [];
-
+    private AnimationNodeStateMachinePlayback? _playback;
     public override void _Ready()
     {
         base._Ready();
@@ -23,7 +24,10 @@ public partial class NSlimeCreatureVisuals : NCreatureVisuals
             SpineBody.SetNormalMaterial(premultMat);
         else
             GetCurrentBody().Material = premultMat;
-
+        var animTree = GetNode<AnimationTree>("%AnimationTree");
+        animTree.Active = true;
+        _playback = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/playback");
+        
         GetTree().ProcessFrame += SetupBones;
     }
 
@@ -73,7 +77,23 @@ public partial class NSlimeCreatureVisuals : NCreatureVisuals
             var x = bone.BoundObject.Call("get_world_x").As<float>();
             var y = bone.BoundObject.Call("get_world_y").As<float>();
             node.Position = new Vector2(x, y);
+            //SlimeBossMainFile.Logger.Info($"{bone.BoundObject.Call("get_bone_name")}: {node.Position}");
         }
+    }
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        if (_playback == null) return;
+        var state = trigger switch
+        {
+            "Idle" => "idle",
+            "Attack" => "attack",
+            //"Cast" => "cast",
+            //"Hit" => "hurt",
+            //"Dead" => "death",
+            _ => "idle"
+        };
+        _playback.Travel(state);
     }
 }
 

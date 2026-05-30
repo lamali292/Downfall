@@ -12,10 +12,10 @@ public class ScrapSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
-    public override bool IsSpecialist => false;
+    public override SlimeType SlimeType => SlimeType.None;
     
     public override Task Command(PlayerChoiceContext ctx)
     {
-        throw new NotImplementedException();
+        throw new Exception();
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 ]
+[gd_scene load_steps=21 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_2qosm"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/torchhead.tscn" id="2_2qosm"]
@@ -47,13 +47,115 @@ shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
 shader_parameter/MaskNoiseTexture = ExtResource("4_mxwrp")
 shader_parameter/Shape_Mask = ExtResource("7_ctcg4")
 
+[sub_resource type="Animation" id="Animation_0kbuq"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_hrgbb"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, -0.0045319363, -14.049002, 0.1, 310, 0.238, -0.367, -0.367, 0, 0),
+"times": PackedFloat32Array(0, 0.3667)
+}
+
+[sub_resource type="Animation" id="Animation_l2f2f"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wksd5"]
+_data = {
+&"RESET": SubResource("Animation_l2f2f"),
+&"attack": SubResource("Animation_hrgbb"),
+&"idle": SubResource("Animation_0kbuq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_seb7e"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxwrp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52deb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_to2sb"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctcg4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5u35w"]
+states/attack/node = SubResource("AnimationNodeAnimation_seb7e")
+states/attack/position = Vector2(326, 187)
+states/idle/node = SubResource("AnimationNodeAnimation_mxwrp")
+states/idle/position = Vector2(315, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_52deb"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_to2sb"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ctcg4")]
+
 [node name="TorchheadSlime" type="Node2D"]
 script = ExtResource("1_2qosm")
 
 [node name="Visuals" parent="." instance=ExtResource("2_2qosm")]
 unique_name_in_owner = true
-position = Vector2(-1, -31)
+position = Vector2(0, -31)
 scale = Vector2(-1, 1)
+
+[node name="Eye" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(-33.86, -24.4)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="RightEye" type="Control" parent="Visuals/Eye"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.859997
+offset_top = -61.600006
+offset_right = 12.139999
+offset_bottom = 18.399994
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 60)
+
+[node name="eye_fire_r" type="ColorRect" parent="Visuals/Eye/RightEye"]
+material = SubResource("ShaderMaterial_qkcqb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Visuals/Eye/RightEye"]
+material = SubResource("ShaderMaterial_i3yxl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -73,39 +175,14 @@ position = Vector2(0, -46)
 unique_name_in_owner = true
 position = Vector2(2, -31)
 
-[node name="Eye" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(-33.87, -25.4)
+libraries = {
+&"": SubResource("AnimationLibrary_wksd5")
+}
 
-[node name="RightEye" type="Control" parent="Eye"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 57.87
-offset_top = -92.6
-offset_right = 77.869995
-offset_bottom = -12.599998
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(10, 60)
-
-[node name="eye_fire_r" type="ColorRect" parent="Eye/RightEye"]
-material = SubResource("ShaderMaterial_qkcqb")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Eye/RightEye"]
-material = SubResource("ShaderMaterial_i3yxl")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_5u35w")
+anim_player = NodePath("../AnimationPlayer")

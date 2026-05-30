@@ -16,7 +16,7 @@ public class TimeSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
     
-    public override bool IsSpecialist => true;
+    public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

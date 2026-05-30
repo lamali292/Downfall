@@ -15,7 +15,7 @@ public class LeechingSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
 
-    public override bool IsSpecialist => false;
+    public override SlimeType SlimeType => SlimeType.Normal;
     
     public override async Task Command(PlayerChoiceContext ctx)
     {

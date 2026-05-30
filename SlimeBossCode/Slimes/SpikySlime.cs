@@ -15,7 +15,7 @@ public class SpikySlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
     
-    public override bool IsSpecialist => true;
+    public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

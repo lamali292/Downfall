@@ -34,5 +34,8 @@
   "SLIMEBOSS-OVEREXERT_POWER.smartDescription": "In [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]Absorb[/gold] all Slimes.",
   "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "Protect the Boss",
   "SLIMEBOSS-PROTECT_THE_BOSS_POWER.description": "Prevent the next time you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead.",
-  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.smartDescription": "Prevent the next {Amount:plural:time|[blue]{}[/blue] times} you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead."
+  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.smartDescription": "Prevent the next {Amount:plural:time|[blue]{}[/blue] times} you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead.",
+  "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Duplicated Form",
+  "SLIMEBOSS-DUPLICATED_FORM_POWER.description": "The first card each turn that targets enemies is played twice.",
+  "SLIMEBOSS-DUPLICATED_FORM_POWER.smartDescription": "The first {Amount:plural:card|[blue]{}[/blue] cards} each turn that {Amount:plural:targets|target} enemies {Amount:plural:is|are} played twice."
 }

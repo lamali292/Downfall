@@ -8,14 +8,15 @@ public static class SlimeBossModelDb
 {
     public static T Slime<T>() where T : SlimeModel => ModelDb.Get<T>();
 
-    private static IEnumerable<SlimeModel> AllSlimes =>
+    public static IEnumerable<SlimeModel> AllSlimes =>
         ModelDb.AllAbstractModelSubtypes
             .Where(t => t.IsSubclassOf(typeof(SlimeModel)))
             .Select(t => (SlimeModel)ModelDb.Get(t));
     
     
-    public static IEnumerable<SlimeModel> AllSpecialistSlimes => AllSlimes.Where(t => t.IsSpecialist);
-    
+    public static IEnumerable<SlimeModel> AllSpecialistSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Specialist);
+    public static IEnumerable<SlimeModel> AllNormalSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Normal);
+
     private static Dictionary<Type, CardModel>? _slimeCardByType;
 
     private static Dictionary<Type, CardModel> SlimeCardByType =>

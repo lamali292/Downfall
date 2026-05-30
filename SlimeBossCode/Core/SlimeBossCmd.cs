@@ -46,6 +46,9 @@ public static class SlimeBossCmd
         => AbsorbAll(ctx, card.Owner, card);
     
     
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player)
+    => GetSlimes(player).Reverse().ForEachAsync(slime => slime.Command(ctx));
+    
     private static async Task Command(PlayerChoiceContext ctx, Player player)
     {
         var slime = GetFirstSlime(player);
@@ -97,13 +100,26 @@ public static class SlimeBossCmd
      => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
 
 
-    public static async Task Split<T>(Player player) where T : SlimeModel
+    public static Task Split<T>(Player player) where T : SlimeModel
+        => Split(player, SlimeBossModelDb.Slime<T>());
+
+    private static async Task Split(Player player, SlimeModel slimeModel)
     {
-        var slimeModel = SlimeBossModelDb.Slime<T>();
         await SlimeQueue.AddSlime(player, slimeModel);
+        if (player.Creature.CombatState == null) return;
         await SlimeBossHook.AfterSplit(player.Creature.CombatState, player, slimeModel);
     }
 
+    public static async Task SplitRandom(Player player, SlimeType slimeType)
+    {
+        var combatState = player.Creature.CombatState;
+        if (combatState == null) return;
+        var slime = SlimeBossModelDb.AllSlimes.Where(e => (e.SlimeType & slimeType) != 0)
+            .TakeRandom(1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+        if (slime == null) return;
+        await Split(player, slime);
+    }
+    
     public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player player)
     {
         var combatState = player.Creature.CombatState;
@@ -114,7 +130,6 @@ public static class SlimeBossCmd
         var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, player);
         if (card is not ISlimeCard slimeCard) return;
         var slime = slimeCard.SlimeModel;
-        await SlimeQueue.AddSlime(player, slime);
-        await SlimeBossHook.AfterSplit(combatState, player, slime);
+        await Split(player, slime);
     }
 }

@@ -12,10 +12,10 @@ public class DarklingSlime : SlimeModel
         return SetupAnimationState(controller, "Idle", hitName: "Hit", attackName: "Attack");
     }
 
-    public override bool IsSpecialist => false;
+    public override SlimeType SlimeType => SlimeType.None;
     
     public override Task Command(PlayerChoiceContext ctx)
     {
-        throw new NotImplementedException();
+        throw new Exception();
     }
 }

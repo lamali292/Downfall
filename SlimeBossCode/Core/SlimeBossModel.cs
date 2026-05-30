@@ -10,17 +10,11 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
 {
-    /*
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+    
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx,
         ICombatState combatState)
-    {
-        if (player.Character is not SlimeBoss) return;
-        var slimeModel = AllCustomMonsterModel.OfType<SlimeModel>().TakeRandom(1, combatState.RunState.Rng.Niche)
-            .FirstOrDefault();
-        if (slimeModel == null) return;
-        await SlimeQueue.AddSlime(player, slimeModel);
-    }
-    */
+     =>  SlimeBossCmd.CommandAll(ctx, player);
+    
     public override Task BeforeCombatStart()
     {
         SlimeQueue.ResetAllSlots();
