@@ -82,6 +82,7 @@ public static class GuardianCmd
     public static void AddMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
+        GuardianCombatModel.InitStasisUi(player);
         GuardianCombatModel.StasisSlots[player] += value;
         GuardianDisplay.Refresh(player);
     }
@@ -89,6 +90,7 @@ public static class GuardianCmd
     public static void RemoveMaxStasisSlots(Player player, int value = 1)
     {
         if (value <= 0) return;
+        GuardianCombatModel.InitStasisUi(player);
         GuardianCombatModel.StasisSlots[player] = Math.Max(0, GuardianCombatModel.StasisSlots[player] - value);
         GuardianDisplay.Refresh(player);
     }
