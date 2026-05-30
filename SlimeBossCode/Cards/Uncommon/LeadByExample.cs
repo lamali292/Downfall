@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using Downfall.DownfallCode.Artists;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -11,12 +12,12 @@ public class LeadByExample : SlimeBossCardModel
 {
     public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        this.WithPower<LeadByExamplePower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    // TODO: Implement
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-    }
+    
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => CommonActions.ApplySelf<LeadByExamplePower>(ctx, this);
+    
 }

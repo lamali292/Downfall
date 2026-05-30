@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class GoopDweller() : SlimeBossRelicModel(RelicRarity.Common)
 {
-    // TODO
+    // TODO - Relic
 }

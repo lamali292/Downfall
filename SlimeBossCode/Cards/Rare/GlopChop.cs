@@ -19,7 +19,7 @@ public class GlopChop : SlimeBossCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.SplitRandom(Owner, IsUpgraded ? SlimeType.Specialist : SlimeType.Normal);
+        await SlimeBossCmd.SplitRandom(ctx, Owner, IsUpgraded ? SlimeType.Specialist : SlimeType.Normal);
         await SlimeBossCmd.Command(ctx, this);
     }
 }

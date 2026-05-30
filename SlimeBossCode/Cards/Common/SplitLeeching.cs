@@ -20,7 +20,7 @@ public class SplitLeeching : SlimeBossCardModel
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SlimeBossCmd.Split<LeechingSlime>(Owner);
+        await SlimeBossCmd.Split<LeechingSlime>(ctx, Owner);
         await SlimeBossCmd.Command(ctx, this);
     }
 }

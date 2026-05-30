@@ -12,5 +12,5 @@ public class HeartOfGoo() : SlimeBossRelicModel(RelicRarity.Starter)
     {
         return ModelDb.Relic<BlackHeartOfGoo>();
     }
-    // TODO
+    // TODO - Relic
 }

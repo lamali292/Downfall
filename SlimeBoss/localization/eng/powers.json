@@ -37,5 +37,11 @@
   "SLIMEBOSS-PROTECT_THE_BOSS_POWER.smartDescription": "Prevent the next {Amount:plural:time|[blue]{}[/blue] times} you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead.",
   "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Duplicated Form",
   "SLIMEBOSS-DUPLICATED_FORM_POWER.description": "The first card each turn that targets enemies is played twice.",
-  "SLIMEBOSS-DUPLICATED_FORM_POWER.smartDescription": "The first {Amount:plural:card|[blue]{}[/blue] cards} each turn that {Amount:plural:targets|target} enemies {Amount:plural:is|are} played twice."
+  "SLIMEBOSS-DUPLICATED_FORM_POWER.smartDescription": "The first {Amount:plural:card|[blue]{}[/blue] cards} each turn that {Amount:plural:targets|target} enemies {Amount:plural:is|are} played twice.",
+  "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.title": "Lead by Example",
+  "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.description": "The first card you play each turn that targets enemies also [gold]Commands[/gold].",
+  "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.smartDescription": "The first {Amount:plural:card|[blue]{}[/blue] cards} you play each turn that {Amount:plural:targets|target} enemies also {Amount:plural:[gold]Commands[/gold]|[gold]Command[/gold]}.",
+  "SLIMEBOSS-MINION_MASTER_POWER.title": "Minion Master",
+  "SLIMEBOSS-MINION_MASTER_POWER.description": "Whenever you play a card with [gold]Command[/gold], [gold]Command[/gold] again.",
+  "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "Whenever you play a card with [gold]Command[/gold], [gold]Command[/gold] {Amount:plural:again|[blue]{}[/blue] additional times}."
 }

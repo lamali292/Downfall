@@ -14,7 +14,7 @@ public class Teamwork : SlimeBossCardModel
 
     public Teamwork() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithCommand(1);
+        this.WithCommand(0);
         WithBlock(5, 3);
     }
 
@@ -23,7 +23,7 @@ public class Teamwork : SlimeBossCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        await SlimeBossCmd.Command(ctx, Owner, x);
+        await SlimeBossCmd.Command(ctx, Owner, x, this);
         for (var i = 0; i < x; i++)
         {
             await CommonActions.CardBlock(this, cardPlay);

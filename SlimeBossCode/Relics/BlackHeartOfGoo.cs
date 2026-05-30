@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class BlackHeartOfGoo() : SlimeBossRelicModel(RelicRarity.Starter)
 {
-    // TODO
+    // TODO - Relic
 }

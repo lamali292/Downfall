@@ -21,7 +21,7 @@ public class Grow : SlimeBossCardModel
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var amount = await SlimeQueue.DecreaseSlimeSlots(Owner);
+        var amount = await SlimeBossCmd.DecreaseSlots(ctx, Owner);
         if (amount <= 0) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Events;
@@ -42,6 +43,17 @@ public static class SlimeBossHook
     {
         return DownfallHook.Dispatch<IAfterSplit>(cs,
             e => e.AfterSplit(player, slime));
+    }
+
+    public static int ModifyConsumeCount(ICombatState cs, Player player, int amount, CardModel? cardSource, out IEnumerable<IModifyConsumeCount> modifiers)
+    {
+        return DownfallHook.Modify(cs, amount, (e, a) => e.ModifyConsumeCount(player, a, cardSource),
+            out modifiers);
+    }
+    
+    public static Task AfterModifyingConsumeCount(ICombatState cs, IEnumerable<IModifyConsumeCount> modifiers, Player player, CardModel? cardSource)
+    {
+        return DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingConsumeCount(player, cardSource));
     }
 }
 

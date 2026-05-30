@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -32,15 +34,34 @@ public static class SlimeQueue
         return player.PlayerCombatState?.Pets.Count(e => e.Monster is SlimeModel) ?? 0;
     }
     
-    public static async Task<int> DecreaseSlimeSlots(Player player, int amount = 1)
+    public static async Task<(int actual, int absorbed)> DecreaseSlimeSlots(Player player, int amount = 1)
     {
-        if (SlimeSlots[player] <= 0) return 0; // can't go below 1
-
-        var actual = Math.Min(amount, SlimeSlots[player]); // clamp so slots never go below 1
+        if (SlimeSlots[player] <= 0) return (0, 0);
+        var actual = Math.Min(amount, SlimeSlots[player]);
         SlimeSlots[player] -= actual;
-        var maxSlots = SlimeSlots[player];
-        var slimes = GetSlimes(player);
+        var absorbed = await EvictSlimesDownTo(player, GetSlimes(player), SlimeSlots[player]);
+        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return (actual, absorbed);
+    }
 
+    public static async Task<(bool added, int absorbed)> AddSlime(Player player, SlimeModel slimeModel)
+    {
+        var maxSlots = SlimeSlots[player];
+        if (maxSlots == 0) return (false, 0);
+        var slimes = GetSlimes(player);
+        var absorbed = await EvictSlimesDownTo(player, slimes, maxSlots - 1);
+
+        var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
+        if (pet == null) return (false, absorbed);
+        await PlayerCmd.AddPet(pet, player);
+
+        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        return (true, absorbed);
+    }
+    
+    private static async Task<int> EvictSlimesDownTo(Player player, List<Creature> slimes, int maxSlots)
+    {
+        var evicted = 0;
         while (slimes.Count > maxSlots)
         {
             var oldest = slimes[0];
@@ -48,36 +69,12 @@ public static class SlimeQueue
             if (!oldest.IsAlive) continue;
             await CreatureCmd.Kill(oldest);
             player.PlayerCombatState?._pets.Remove(oldest);
+            evicted++;
         }
-
-        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
-        return actual;
+        return evicted;
     }
     
-    public static async Task<bool> AddSlime(Player player, SlimeModel slimeModel)
-    {
-        var maxSlots = SlimeSlots[player];
-        if (maxSlots == 0) return false;
-        var slimes = GetSlimes(player);
-
-        while (slimes.Count >= maxSlots)
-        {
-            var oldest = slimes[0];
-            slimes.RemoveAt(0);
-            if (!oldest.IsAlive) continue;
-            await CreatureCmd.Kill(oldest);
-            player.PlayerCombatState?._pets.Remove(oldest);
-        }
-
-        var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
-        if (pet == null) return false;
-        await PlayerCmd.AddPet(pet, player);
-
-        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
-        return true;
-    }
-
-    public static Task AddSlime<T>(Player player) where T : SlimeModel
+    public static Task<(bool added, int evicted)> AddSlime<T>(Player player) where T : SlimeModel
     {
         return AddSlime(player, ModelDb.Monster<T>());
     }

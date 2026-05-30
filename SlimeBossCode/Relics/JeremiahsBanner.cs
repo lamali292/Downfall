@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class JeremiahsBanner() : SlimeBossRelicModel(RelicRarity.Uncommon)
 {
-    // TODO
+    // TODO - Relic
 }

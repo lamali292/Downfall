@@ -20,7 +20,7 @@ public class SplitMire : SlimeBossCardModel
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SlimeBossCmd.Split<MireSlime>(Owner);
+        await SlimeBossCmd.Split<MireSlime>(ctx, Owner);
         await SlimeBossCmd.Command(ctx, this);
     }
 }

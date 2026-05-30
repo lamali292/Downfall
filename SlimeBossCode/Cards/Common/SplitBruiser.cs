@@ -20,7 +20,7 @@ public class SplitBruiser : SlimeBossCardModel
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SlimeBossCmd.Split<BruiserSlime>(Owner);
+        await SlimeBossCmd.Split<BruiserSlime>(ctx, Owner);
         await SlimeBossCmd.Command(ctx, this);
     }
 }
