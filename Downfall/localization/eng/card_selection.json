@@ -4,6 +4,6 @@
   "DOWNFALL-TO_APPLY": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to apply effects.",
   "DOWNFALL-TO_DECK": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to add to your [gold]Deck[/gold].",
   "DOWNFALL-TO_STASIS": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to put into [gold]Stasis[/gold].",
-  "DOWNFALL-TO_CONJURE": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to conjure.",
+  "DOWNFALL-TO_CONJURE": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to [gold]Conjure[/gold].",
   "DOWNFALL-TO_PLAY": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to play."
 }
