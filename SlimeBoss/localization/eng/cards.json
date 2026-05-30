@@ -93,7 +93,7 @@
   "SLIMEBOSS-RALLY_THE_TROOPS.title": "Rally the Troops",
   "SLIMEBOSS-RECKLESSNESS.description": "",
   "SLIMEBOSS-RECKLESSNESS.title": "Recklessness",
-  "SLIMEBOSS-RECOLLECT.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhume {IfUpgraded:show:[/gold]2|a} random {IfUpgraded:show:\"Lick\"|\"Lick\"} {IfUpgraded:show:cards.|card.}",
+  "SLIMEBOSS-RECOLLECT.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Slurp[/gold].",
   "SLIMEBOSS-RECOLLECT.title": "Recollect",
   "SLIMEBOSS-RECYCLING.description": "At the start of your turn, [gold]Slurp[/gold].",
   "SLIMEBOSS-RECYCLING.title": "Recycling",
