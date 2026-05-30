@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Gems;
 
@@ -65,10 +66,11 @@ public class DiamondGem : GemModel
         return Task.CompletedTask;
     }
 
+    public override void AfterClonedOnCard(CardModel card) { }
+
     protected override void OnAdded(GuardianCardModel card)
     {
         if (card is IGemCard) return;
-        if (!card.IsInCombat) return;
         card.EnergyCost.UpgradeBy(1);
         card.EnergyCost.FinalizeUpgrade();
     }
