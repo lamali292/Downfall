@@ -31,5 +31,8 @@
   "SLIMEBOSS-GLUTTONY_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold].",
   "SLIMEBOSS-OVEREXERT_POWER.title": "Overexert",
   "SLIMEBOSS-OVEREXERT_POWER.description": "In [blue]X[/blue] turns, [gold]Absorb[/gold] all Slimes.",
-  "SLIMEBOSS-OVEREXERT_POWER.smartDescription": "In [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]Absorb[/gold] all Slimes."
+  "SLIMEBOSS-OVEREXERT_POWER.smartDescription": "In [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]Absorb[/gold] all Slimes.",
+  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "Protect the Boss",
+  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.description": "Prevent the next time you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead.",
+  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.smartDescription": "Prevent the next {Amount:plural:time|[blue]{}[/blue] times} you would be damaged by an enemy attack, [gold]Absorbing[/gold] your leading Slime instead."
 }

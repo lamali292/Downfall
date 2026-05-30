@@ -25,14 +25,16 @@ public static class SlimeBossCmd
     }
 
 
-    public static async Task<bool> Absorb(PlayerChoiceContext ctx, CardModel card)
+    public static Task<bool> Absorb(PlayerChoiceContext ctx, CardModel card)
+        => Absorb(ctx,  card.Owner, card);
+    
+    public static async Task<bool> Absorb(PlayerChoiceContext ctx,  Player player, CardModel? card = null)
     {
-        var a = await SlimeQueue.RemoveLeadingSlime(card.Owner);
-        await PowerCmd.Apply<StrengthPower>(ctx, card.Owner.Creature, 1, card.Owner.Creature, card);
+        var a = await SlimeQueue.RemoveLeadingSlime(player);
+        await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, 1, player.Creature, card);
         return a;
     }
-    
-    
+
         
     public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {

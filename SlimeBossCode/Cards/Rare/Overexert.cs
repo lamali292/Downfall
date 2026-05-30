@@ -14,7 +14,7 @@ public class Overexert : SlimeBossCardModel
     {
         WithPower<PotencyPower>(5);
         this.WithCommand(0, 2);
-        WithPower<OverexertPower>(2);
+        this.WithPower<OverexertPower>(2, false);
     }
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
