@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -36,9 +37,11 @@ public static class SlimeBossHook
         return DownfallHook.Modify(cs, originalAmount, (e, a) => e.ModifySecondarySlimeEffects(a, slime),
             out modifiers);
     }
+
+    public static Task AfterSplit(ICombatState cs, Player player, SlimeModel slime)
+    {
+        return DownfallHook.Dispatch<IAfterSplit>(cs,
+            e => e.AfterSplit(player, slime));
+    }
 }
 
-public interface IModifySecondarySlimeEffects
-{
-    int ModifySecondarySlimeEffects(int amount, SlimeModel slime);
-}

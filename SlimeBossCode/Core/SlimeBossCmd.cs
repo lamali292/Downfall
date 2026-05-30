@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Core;
@@ -32,12 +33,16 @@ public static class SlimeBossCmd
     }
     
     
-    public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, CardModel card)
+        
+    public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {
-        var a = await SlimeQueue.RemoveAll(card.Owner);
-        await PowerCmd.Apply<StrengthPower>(ctx, card.Owner.Creature, a, card.Owner.Creature, card);
+        var a = await SlimeQueue.RemoveAll(player);
+        await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, a, player.Creature, card);
         return a;
     }
+    public static Task<int> AbsorbAll(PlayerChoiceContext ctx, CardModel card)
+        => AbsorbAll(ctx, card.Owner, card);
+    
     
     private static async Task Command(PlayerChoiceContext ctx, Player player)
     {
@@ -94,18 +99,20 @@ public static class SlimeBossCmd
     {
         var slimeModel = SlimeBossModelDb.Slime<T>();
         await SlimeQueue.AddSlime(player, slimeModel);
+        await SlimeBossHook.AfterSplit(player.Creature.CombatState, player, slimeModel);
     }
 
-    public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player owner)
+    public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player player)
     {
-        var combatState = owner.Creature.CombatState;
+        var combatState = player.Creature.CombatState;
         if (combatState == null) return;
         var slimeCards = SlimeBossModelDb.AllSpecialistSlimes
-            .TakeRandom(3, owner.RunState.Rng.CombatCardGeneration)
-            .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, owner)).ToList();
-        var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, owner);
+            .TakeRandom(3, player.RunState.Rng.CombatCardGeneration)
+            .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, player)).ToList();
+        var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, player);
         if (card is not ISlimeCard slimeCard) return;
         var slime = slimeCard.SlimeModel;
-        await SlimeQueue.AddSlime(owner, slime);
+        await SlimeQueue.AddSlime(player, slime);
+        await SlimeBossHook.AfterSplit(combatState, player, slime);
     }
 }

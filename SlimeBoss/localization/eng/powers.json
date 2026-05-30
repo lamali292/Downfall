@@ -28,5 +28,8 @@
   "SLIMEBOSS-RECYCLING_POWER.smartDescription": "At the start of your turn, [gold]Slurp[/gold]{Amount:plural:| [blue]{}[/blue]}.",
   "SLIMEBOSS-GLUTTONY_POWER.title": "Gluttony",
   "SLIMEBOSS-GLUTTONY_POWER.description": "The first time you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold].",
-  "SLIMEBOSS-GLUTTONY_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold]."
+  "SLIMEBOSS-GLUTTONY_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you [gold]Consume[/gold] each turn, gain a [gold]Lick[/gold].",
+  "SLIMEBOSS-OVEREXERT_POWER.title": "Overexert",
+  "SLIMEBOSS-OVEREXERT_POWER.description": "In [blue]X[/blue] turns, [gold]Absorb[/gold] all Slimes.",
+  "SLIMEBOSS-OVEREXERT_POWER.smartDescription": "In [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]Absorb[/gold] all Slimes."
 }

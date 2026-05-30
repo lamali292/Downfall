@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace SlimeBoss.SlimeBossCode.CustomEnums;
 
-public class SlimeBossTag
+public static class SlimeBossTag
 {
     [CustomEnum] public static CardTag Lick;
     [CustomEnum] public static CardTag Tackle;
