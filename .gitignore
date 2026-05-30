@@ -29,6 +29,9 @@ bin/windows/*
 */images/powers/
 */images/relics/
 */images/enchantments/
+!ImageGen/images/powers/
+!ImageGen/images/relics/
+!ImageGen/images/enchantments/
 
 *.xlsx#
 **/*.sprites/

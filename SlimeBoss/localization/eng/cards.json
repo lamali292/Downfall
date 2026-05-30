@@ -75,11 +75,11 @@
   "SLIMEBOSS-OPENING_TACKLE.title": "Opening Tackle",
   "SLIMEBOSS-OVEREXERT.description": "Gain {PotencyPower:diff()} [gold]Potency[/gold].{IfUpgraded:show:\n[gold]Command[/gold] twice.|}\nIn {OverexertPower:diff()} turns from now, [gold]Absorb[/gold] all Slimes.",
   "SLIMEBOSS-OVEREXERT.title": "Overexert",
-  "SLIMEBOSS-PILE_ON.description": "",
+  "SLIMEBOSS-PILE_ON.description": "Deal {Damage:diff()} damage.[gold]\nCommand[/gold] ALL Slimes{Command:pplural:| {Command:diff()} times}.|}",
   "SLIMEBOSS-PILE_ON.title": "Pile On",
-  "SLIMEBOSS-PREPARE.description": "{IfUpgraded:show:|Gain {Block:diff()} [gold]Block[/gold].\n}Next turn, gain {energyPrefix:energyIcons(1)} and draw {PreparePower:diff()} cards.\n{IfUpgraded:show:Retain up to {PreparePower:diff()} cards this turn. |}Exhaust.",
+  "SLIMEBOSS-PREPARE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {Energy:energyIcons()} and draw {PreparePower:diff()} cards.",
   "SLIMEBOSS-PREPARE.title": "Prepare",
-  "SLIMEBOSS-PREPARE_CRUSH.description": "Next turn, gain *SLIME {IfUpgraded:show:*CRUSH+, {energyPrefix:energyIcons(1)}|[gold]CRUSH[/gold],} {energyPrefix:energyIcons(1)} {energyPrefix:energyIcons(1)} {energyPrefix:energyIcons(1)} and {PrepareCrushPower:diff()} Strength.\nExhaust.",
+  "SLIMEBOSS-PREPARE_CRUSH.description": "Next turn, gain [gold]Slime Crush!!!{IfUpgraded:plus()}[/gold], {Energy:energyIcons()} and {StrengthNextTurnPower:diff()} [gold]Strength[/gold].",
   "SLIMEBOSS-PREPARE_CRUSH.title": "Prepare: Crush",
   "SLIMEBOSS-PRESS_THE_ATTACK.description": "Deal {Damage:diff()} damage.\n[gold]Command[/gold]{Command:pplural:| {Command:diff()} times}.",
   "SLIMEBOSS-PRESS_THE_ATTACK.title": "Press the Attack",
@@ -151,5 +151,7 @@
   "SLIMEBOSS-WASTE_NOT.title": "Waste Not",
   "SLIMEBOSS-LICK.title": "Lick",
   "SLIMEBOSS-LICK.description": "Apply {GoopPower:diff()} [gold]Goop[/gold].",
-  "SLIMEBOSS-SLIME_CARD.description": "[gold]Split[/gold] into [gold]{Slime}[/gold]."
+  "SLIMEBOSS-SLIME_CARD.description": "[gold]Split[/gold] into [gold]{Slime}[/gold].",
+  "SLIMEBOSS-SLIME_CRUSH.title": "Slime Crush!!!",
+  "SLIMEBOSS-SLIME_CRUSH.description": "Deal {Damage:diff()} damage{IfUpgraded:show:to ALL enemies|}."
 }

@@ -1,4 +1,4 @@
-﻿using Collector.CollectorCode.Core;
+﻿using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,9 +9,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Collector.CollectorCode.Powers;
+namespace Downfall.DownfallCode.Powers;
 
-public class CopyNextTurnPower : CollectorPowerModel
+public class CopyNextTurnPower : DownfallPowerModel
 {
     public CardModel? Card;
     public Action<CardModel>? OnAdd;
@@ -24,7 +24,7 @@ public class CopyNextTurnPower : CollectorPowerModel
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    private IEnumerable<IHoverTip> Tip(PowerModel arg)
+    private static IEnumerable<IHoverTip> Tip(PowerModel arg)
     {
         return arg is CopyNextTurnPower { Card: not null } power ? [new CardHoverTip(power.Card)] : [];
     }

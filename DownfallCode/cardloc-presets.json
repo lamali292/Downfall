@@ -29,7 +29,8 @@
       "id": "power",
       "markers": [
         "DownfallPowerModel",
-        "TemporaryPower"
+        "TemporaryPower",
+        "PowerNextTurn"
       ],
       "fields": [
         {
