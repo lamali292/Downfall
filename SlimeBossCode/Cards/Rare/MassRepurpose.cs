@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
@@ -25,7 +26,7 @@ public class MassRepurpose : SlimeBossCardModel
             await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
         }
         if (!IsUpgraded) return;
-        await SlimeBossCmd.CommandAll(ctx, Owner, this);
+        await SlimeBossCmd.CommandAll(ctx, Owner,  this, ValueProp.Move);
     }
 
 }

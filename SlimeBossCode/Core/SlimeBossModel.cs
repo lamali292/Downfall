@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Core;
@@ -13,7 +14,7 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
     
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx,
         ICombatState combatState)
-     =>  SlimeBossCmd.CommandAll(ctx, player);
+     =>  SlimeBossCmd.CommandAll(ctx, player, ValueProp.Unpowered);
     
     public override Task BeforeCombatStart()
     {

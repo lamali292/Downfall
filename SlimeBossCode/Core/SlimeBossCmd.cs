@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Events;
@@ -48,7 +49,7 @@ public static class SlimeBossCmd
     
 
     
-    private static async Task Command(PlayerChoiceContext ctx, Player player, CommandType commandType = CommandType.First)
+    private static async Task CommandInternal(PlayerChoiceContext ctx, Player player, CommandType commandType = CommandType.First)
     {
         switch (commandType)
         {
@@ -66,25 +67,29 @@ public static class SlimeBossCmd
   
     }
 
-    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, CardModel? cardSource = null, CommandType commandType = CommandType.First)
+    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, ValueProp props, CardModel? cardSource = null, CommandType commandType = CommandType.First)
     {
-        var cs = player.Creature.CombatState;
-        if (cs == null) return;
-        var modified = SlimeBossHook.ModifyConsumeCount(cs, player, amount, cardSource, out var mod);
-        await SlimeBossHook.AfterModifyingConsumeCount(cs, mod, player, cardSource);
-        for (var i = 0; i < modified; i++) await Command(ctx, player, commandType);
+        var modified = amount;
+        if (!props.HasFlag(ValueProp.Unpowered))
+        {
+            var cs = player.Creature.CombatState;
+            if (cs == null) return;
+            modified = SlimeBossHook.ModifyConsumeCount(cs, player, amount, cardSource, out var mod);
+            await SlimeBossHook.AfterModifyingConsumeCount(cs, mod, player, cardSource);
+        }
+        for (var i = 0; i < modified; i++) await CommandInternal(ctx, player, commandType);
     }
 
-    public static Task Command(PlayerChoiceContext ctx, CardModel card)
+    public static Task Command(PlayerChoiceContext ctx, CardModel card, ValueProp props = ValueProp.Move)
     {
-        return Command(ctx, card.Owner, card.DynamicVars["Command"].IntValue, card);
+        return Command(ctx, card.Owner, card.DynamicVars["Command"].IntValue, props, card);
     }
 
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel card)
-        =>Command(ctx, player, card.DynamicVars["Command"].IntValue, card, CommandType.All);
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel card, ValueProp props)
+        =>Command(ctx, player, card.DynamicVars["Command"].IntValue, props, card, CommandType.All);
     
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, int amount = 1, CardModel? cardSource = null)
-        =>Command(ctx, player, amount, cardSource, CommandType.All);
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, ValueProp props, int amount = 1, CardModel? cardSource = null)
+        =>Command(ctx, player, amount, props, cardSource, CommandType.All);
     
     public static async Task SlurpAll(CardModel card)
     {

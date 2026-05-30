@@ -40,5 +40,5 @@
   "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, add [gold]{card}[/gold] into your [gold]Hand[/gold].",
   "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "Next Turn Strength",
   "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "Next turn, gain [gold]Strength[/gold].",
-  "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "Next turn, gain [blue]{Amount}[/blue] [gold]Strength[/gold]."
+  "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "Next turn, {Amount:cond:>0?gain [blue]{Amount}[/blue]|lose [blue]{NAmount}[/blue]} [gold]Strength[/gold]."
 }

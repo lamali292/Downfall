@@ -91,7 +91,7 @@
   "SLIMEBOSS-RAIN_OF_GOOP.title": "Rain of Goop",
   "SLIMEBOSS-RALLY_THE_TROOPS.description": "Deal {Damage:diff()} damage.\nThe next {RallyTheTroopsPower:diff()} cards played this turn trigger a [gold]Command[/gold].",
   "SLIMEBOSS-RALLY_THE_TROOPS.title": "Rally the Troops",
-  "SLIMEBOSS-RECKLESSNESS.description": "",
+  "SLIMEBOSS-RECKLESSNESS.description": "Your \"Tackle\" cards deal {FlameTacklePower:diff()} additional damage to enemies, and {RecklessnessPower:diff()} additional damage to you. ",
   "SLIMEBOSS-RECKLESSNESS.title": "Recklessness",
   "SLIMEBOSS-RECOLLECT.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Slurp[/gold].",
   "SLIMEBOSS-RECOLLECT.title": "Recollect",

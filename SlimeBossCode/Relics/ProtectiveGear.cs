@@ -7,5 +7,5 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class ProtectiveGear() : SlimeBossRelicModel(RelicRarity.Shop)
 {
-    // TODO
+    // TODO - Relic
 }

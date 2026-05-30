@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
+using Downfall.DownfallCode.Abstract;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
@@ -8,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -16,17 +19,29 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.DownfallCode.Powers.Abstract;
 
-public abstract class PowerNextTurn<T> : CustomPowerModel
+public abstract class PowerNextTurn<T> : DownfallPowerModel, IAddDumbVariablesToPowerDescription
     where T : PowerModel
 {
+    protected PowerNextTurn()
+    {
+        WithTips(e => ModelDb.Power<T>().HoverTips);
+    }
+
+    public override bool AllowNegative => ModelDb.Power<T>().AllowNegative;
     public override PowerType Type => ModelDb.Power<T>().Type;
     public override PowerStackType StackType => ModelDb.Power<T>().StackType;
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => ModelDb.Power<T>().HoverTips;
+    public override PowerInstanceType InstanceType => ModelDb.Power<T>().InstanceType;
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
         await PowerCmd.Apply<T>(ctx, Owner, Amount, Applier, null);
+    }
+
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        description.Add("NAmount", -Amount);
     }
 }
 
