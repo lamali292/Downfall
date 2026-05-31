@@ -55,8 +55,11 @@ public partial class GuardianMainFile : Node
             (card, gemIds) =>
             {
                 if (gemIds == null) return;
+                var existingGemIds = CardModifier.DirectModifiers(card).OfType<GemModel>().Select(g => g.Id).ToHashSet();
                 foreach (var gemId in gemIds)
                 {
+                    if (existingGemIds.Contains(gemId))
+                        continue;
                     if (ModelDb.GetById<CardModifier>(gemId) is not GemModel canonicalGem)
                         continue;
                     var mutableGem = canonicalGem.ToMutable();
