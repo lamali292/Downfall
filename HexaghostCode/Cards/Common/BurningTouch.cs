@@ -12,7 +12,7 @@ public class BurningTouch : HexaghostCardModel
 {
     public BurningTouch() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(8, 2);
+        WithPower<SoulBurnPower>(8, 4);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

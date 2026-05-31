@@ -5,12 +5,12 @@ using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+namespace Hexaghost.HexaghostCode.Cards.Common;
 
 [Pool(typeof(HexaghostCardPool))]
 public class SpectersWail : HexaghostCardModel, IHasAfterlifeEffect
 {
-    public SpectersWail() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    public SpectersWail() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         this.WithAfterlife();
         WithDamage(4, 2);

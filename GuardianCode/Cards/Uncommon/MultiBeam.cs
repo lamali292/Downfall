@@ -8,11 +8,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class MultiBeam : GuardianCardModel, ITickCard
+public class MultiBeam : GuardianCardModel, ITickCard, ICustomTickDuration
 {
     public MultiBeam() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithDamage(6, 2);
+        WithDamage(3, 3);
         WithVar("Increase", 2, 1);
     }
 
@@ -32,4 +32,6 @@ public class MultiBeam : GuardianCardModel, ITickCard
         var x = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(x).Execute(ctx);
     }
+
+    public int TickDuration => 3;
 }

@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hexaghost.HexaghostCode.Cards.Common;
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class Flashbang : HexaghostCardModel
 {
-    public Flashbang() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Flashbang() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
         WithPower<TemporaryStrengthDownPower>(2, 1);

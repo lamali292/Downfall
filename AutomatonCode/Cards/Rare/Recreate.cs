@@ -14,8 +14,8 @@ public class Recreate : AutomatonCardModel
     public Recreate() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<RecreatePower>(1, false);
-        this.WithPower<RecreatePlusPower>(1, false);
-        WithUpgradingCardTip<Fuel>();
+        this.WithTip<Fuel>();
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -23,8 +23,6 @@ public class Recreate : AutomatonCardModel
 
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return IsUpgraded
-            ? CommonActions.ApplySelf<RecreatePlusPower>(ctx, this)
-            : CommonActions.ApplySelf<RecreatePower>(ctx, this);
+        return CommonActions.ApplySelf<RecreatePower>(ctx, this);
     }
 }

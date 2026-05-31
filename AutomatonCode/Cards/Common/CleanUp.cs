@@ -27,6 +27,8 @@ public class CleanUp : AutomatonCardModel
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs,
             null, this)).FirstOrDefault();
+        if (card == null) return;
+        await CardCmd.Exhaust(ctx, card);
         if (card is not { Type: CardType.Curse or CardType.Status }) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

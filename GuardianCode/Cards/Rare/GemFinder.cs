@@ -11,12 +11,14 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class GemFinder : GuardianCardModel
 {
-    public GemFinder() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    protected override bool HasEnergyCostX => true;
+
+
+    public GemFinder() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithKeyword(CardKeyword.Ethereal);
-        this.WithPower<GemFinderPower>(1, false);
+        //this.WithPower<GemFinderPower>(1, false);
         WithTip(GuardianKeyword.Gem);
+        WithTip(GuardianTip.Brace);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
@@ -24,6 +26,8 @@ public class GemFinder : GuardianCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<GemFinderPower>(ctx, this);
+        var x = ResolveEnergyXValue();
+        if (IsUpgraded) x++;
+        await CommonActions.ApplySelf<GemFinderPower>(ctx, this, x);
     }
 }

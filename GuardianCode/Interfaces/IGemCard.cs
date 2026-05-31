@@ -6,8 +6,8 @@ namespace Guardian.GuardianCode.Interfaces;
 
 public interface IGemSocketCard
 {
-    virtual int GemSlots => 0;
-    virtual int GemReplayCount => 1;
+    int GemSlots { get; }
+    int GemReplayCount => 1;
 
     IReadOnlyList<GemModel> Gems =>
         this is CardModel card
