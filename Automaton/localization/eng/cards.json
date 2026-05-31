@@ -35,7 +35,7 @@
   "AUTOMATON-BURN_OUT.title": "Burn Out",
   "AUTOMATON-BYTE_SHIFT.description": "",
   "AUTOMATON-BYTE_SHIFT.title": "",
-  "AUTOMATON-CLASS_DEFAULT.description": "Functions deal {ClassDefaultPower:diff()} additional damage and grant {ClassDefaultPower:diff()} additional [gold]Block[/gold].",
+  "AUTOMATON-CLASS_DEFAULT.description": "Increase the damage and [gold]Block[/gold] of ALL Functions by {ClassDefaultPower:diff()}.",
   "AUTOMATON-CLASS_DEFAULT.title": "Class Default",
   "AUTOMATON-CLEANSE.description": "",
   "AUTOMATON-CLEANSE.title": "",

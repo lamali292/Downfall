@@ -1,7 +1,7 @@
 {
   "AUTOMATON-CLASS_DEFAULT_POWER.title": "Class Default",
-  "AUTOMATON-CLASS_DEFAULT_POWER.description": "Functions deal additional damage and grant additional [gold]Block[/gold].",
-  "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Functions deal [blue]{Amount}[/blue] additional damage and grant [blue]{Amount}[/blue] additional [gold]Block[/gold].",
+  "AUTOMATON-CLASS_DEFAULT_POWER.description": "In this combat, increase the damage and [gold]Block[/gold] of ALL Functions.",
+  "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "In this combat, increase the damage and [gold]Block[/gold] of ALL Functions by [blue]{Amount}[/blue].",
   "AUTOMATON-FULL_RELEASE_POWER.title": "Full Release",
   "AUTOMATON-FULL_RELEASE_POWER.description": "At the start of your turn:\n{effects}",
   "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "At the start of your turn:\n{effects}",
