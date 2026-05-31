@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Repair : AutomatonCardModel
 {
-    public Repair() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Repair() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<SelfRepairPower>(7, 3, false);
     }
