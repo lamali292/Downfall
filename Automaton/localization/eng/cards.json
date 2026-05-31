@@ -83,7 +83,7 @@
   "AUTOMATON-FRAGMENT.title": "Fragment",
   "AUTOMATON-FRONTLOAD.description": "The next time you create a Function, it has [gold]Retain[/gold].",
   "AUTOMATON-FRONTLOAD.title": "Frontload",
-  "AUTOMATON-FULL_RELEASE.description": "The Function is a Power with \"Now and at the start of your turn...\".",
+  "AUTOMATON-FULL_RELEASE.description": "",
   "AUTOMATON-FULL_RELEASE.title": "Full Release",
   "AUTOMATON-FUNCTION_CARD.description": "{effects}",
   "AUTOMATON-FUNCTION_CARD.title": "function()",

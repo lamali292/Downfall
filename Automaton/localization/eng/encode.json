@@ -54,6 +54,7 @@
   "AUTOMATON-SEPARATOR.functionName": "Child",
   "AUTOMATON-TERMINATOR.functionPrefix": "sad",
   "AUTOMATON-TERMINATOR.functionName": "End",
+  "AUTOMATON-FULL_RELEASE.encode": "The Function is a Power with \"Now and at the start of your turn...\".",
   "AUTOMATON-FULL_RELEASE.functionPrefix": "full",
   "AUTOMATON-FULL_RELEASE.functionName": "Release",
   "AUTOMATON-CULTIST_STRIKE.encode": "Deal {Damage:diff()} damage.",
