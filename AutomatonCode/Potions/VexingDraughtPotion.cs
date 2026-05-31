@@ -17,7 +17,7 @@ public class VexingDraughtPotion : AutomatonPotionModel
     {
         WithPower<StrengthPower>(2);
         WithPower<DexterityPower>(2);
-        this.WithTip<Burn>();
+        WithTip<Burn>();
     }
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)

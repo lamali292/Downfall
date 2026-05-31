@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,7 +12,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Rare;
 

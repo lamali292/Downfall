@@ -15,6 +15,7 @@ public class FeatherVeil : AwakenedCardModel
         WithBlock(10, 3);
         WithPower<StrengthPower>(1);
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

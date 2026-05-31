@@ -1,17 +1,13 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Interfaces;
-using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -28,10 +24,12 @@ public class Equalize : SlimeBossCardModel, IHasConsumeEffect
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    
+
     public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
-     =>  CardCmd.AutoPlay(ctx, this, creature);
-    
+    {
+        return CardCmd.AutoPlay(ctx, this, creature);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

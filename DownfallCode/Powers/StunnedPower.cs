@@ -32,10 +32,7 @@ public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackTyp
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side == Owner.Side)
-        {
-            await PowerCmd.Remove(this);
-        }
+        if (side == Owner.Side) await PowerCmd.Remove(this);
     }
 }
 

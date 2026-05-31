@@ -11,12 +11,12 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class TimeSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.Specialist;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
-    
-    public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

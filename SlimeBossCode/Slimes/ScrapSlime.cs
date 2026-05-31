@@ -7,13 +7,13 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class ScrapSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.None;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
-    public override SlimeType SlimeType => SlimeType.None;
-    
     public override Task Command(PlayerChoiceContext ctx)
     {
         throw new Exception();

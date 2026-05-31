@@ -2,9 +2,9 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using Downfall.DownfallCode.Artists;
 
 namespace Collector.CollectorCode.Cards.Rare;
 

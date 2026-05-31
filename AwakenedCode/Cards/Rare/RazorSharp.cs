@@ -19,7 +19,7 @@ public class RazorSharp : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);

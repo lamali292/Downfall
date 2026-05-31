@@ -16,6 +16,7 @@ public class Initiation : AwakenedCardModel
         WithBlock(11, 3);
         this.WithTip<Ceremony>();
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

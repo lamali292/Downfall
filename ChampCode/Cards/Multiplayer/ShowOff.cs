@@ -20,7 +20,7 @@ public class ShowOff : ChampCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
 

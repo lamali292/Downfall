@@ -1,9 +1,9 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -16,10 +16,10 @@ public class SlimeBrawl : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var slimeCount = SlimeQueue.GetCount(Owner);
-        await CardPileCmd.AutoPlayFromDrawPile(ctx, Owner, 1+ slimeCount, CardPilePosition.Top, false);
+        await CardPileCmd.AutoPlayFromDrawPile(ctx, Owner, 1 + slimeCount, CardPilePosition.Top, false);
     }
 }

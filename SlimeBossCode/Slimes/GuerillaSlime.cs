@@ -8,12 +8,12 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class GuerillaSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.Normal;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
-    
-    public override SlimeType SlimeType => SlimeType.Normal;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

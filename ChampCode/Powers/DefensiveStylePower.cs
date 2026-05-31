@@ -8,7 +8,7 @@ public class DefensiveStylePower : ChampPowerModel, IModifySkillBonus
 {
     public DefensiveStylePower()
     {
-        this.WithTip<CounterPower>();
+        WithTip<CounterPower>();
     }
 
     public int ModifySkillBonus<TPower>(ChampStanceModel stance, int amount)

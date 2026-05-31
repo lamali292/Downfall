@@ -1,13 +1,13 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Enchantments;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Rare;
 

@@ -14,7 +14,7 @@ public class RisingChorus : AwakenedCardModel
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

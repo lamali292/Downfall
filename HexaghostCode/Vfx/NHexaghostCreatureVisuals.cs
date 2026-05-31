@@ -7,17 +7,17 @@ namespace Hexaghost.HexaghostCode.Vfx;
 [GlobalClass]
 public partial class NHexaghostCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
-	public NHexaghostVisuals? Visuals;
+    public NHexaghostVisuals? Visuals;
 
 
-	public void OnAnimationTrigger(string trigger)
-	{
-		Visuals?.OnAnimationTrigger(trigger);
-	}
+    public void OnAnimationTrigger(string trigger)
+    {
+        Visuals?.OnAnimationTrigger(trigger);
+    }
 
-	public override void _Ready()
-	{
-		base._Ready();
-		Visuals = GetNode<NHexaghostVisuals>("%Hexaghost");
-	}
+    public override void _Ready()
+    {
+        base._Ready();
+        Visuals = GetNode<NHexaghostVisuals>("%Hexaghost");
+    }
 }

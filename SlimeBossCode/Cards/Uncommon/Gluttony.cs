@@ -1,11 +1,11 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -21,7 +21,9 @@ public class Gluttony : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-    
+
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<GluttonyPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<GluttonyPower>(ctx, this);
+    }
 }

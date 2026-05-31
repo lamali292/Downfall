@@ -10,13 +10,13 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class LeechingSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.Normal;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "damage");
     }
 
-    public override SlimeType SlimeType => SlimeType.Normal;
-    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(1).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);

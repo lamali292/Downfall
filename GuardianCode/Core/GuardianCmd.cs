@@ -212,6 +212,7 @@ public static class GuardianCmd
             await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
             power = player.Creature.GetPower<ModeShiftPower>();
         }
+
         var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
         if (power.Amount > 0) return;

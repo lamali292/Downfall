@@ -1,10 +1,10 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Basic;
 

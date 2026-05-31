@@ -16,7 +16,7 @@ public class Pluck : AwakenedCardModel
         WithDamage(2, 3);
         this.WithTip<PlumeJab>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

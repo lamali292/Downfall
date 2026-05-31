@@ -27,29 +27,33 @@ public static class SlimeBossCmd
 
 
     public static Task<bool> Absorb(PlayerChoiceContext ctx, CardModel card)
-        => Absorb(ctx,  card.Owner, card);
-    
-    public static async Task<bool> Absorb(PlayerChoiceContext ctx,  Player player, CardModel? card = null)
+    {
+        return Absorb(ctx, card.Owner, card);
+    }
+
+    public static async Task<bool> Absorb(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {
         var a = await SlimeQueue.RemoveLeadingSlime(player);
         await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, 1, player.Creature, card);
         return a;
     }
 
-        
+
     public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {
         var a = await SlimeQueue.RemoveAll(player);
         await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, a, player.Creature, card);
         return a;
     }
-    public static Task<int> AbsorbAll(PlayerChoiceContext ctx, CardModel card)
-        => AbsorbAll(ctx, card.Owner, card);
-    
-    
 
-    
-    private static async Task CommandInternal(PlayerChoiceContext ctx, Player player, CommandType commandType = CommandType.First)
+    public static Task<int> AbsorbAll(PlayerChoiceContext ctx, CardModel card)
+    {
+        return AbsorbAll(ctx, card.Owner, card);
+    }
+
+
+    private static async Task CommandInternal(PlayerChoiceContext ctx, Player player,
+        CommandType commandType = CommandType.First)
     {
         switch (commandType)
         {
@@ -64,10 +68,10 @@ public static class SlimeBossCmd
             default:
                 throw new ArgumentOutOfRangeException(nameof(commandType), commandType, null);
         }
-  
     }
 
-    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, ValueProp props, CardModel? cardSource = null, CommandType commandType = CommandType.First)
+    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, ValueProp props,
+        CardModel? cardSource = null, CommandType commandType = CommandType.First)
     {
         var modified = amount;
         if (!props.HasFlag(ValueProp.Unpowered))
@@ -77,6 +81,7 @@ public static class SlimeBossCmd
             modified = SlimeBossHook.ModifyConsumeCount(cs, player, amount, cardSource, out var mod);
             await SlimeBossHook.AfterModifyingConsumeCount(cs, mod, player, cardSource);
         }
+
         for (var i = 0; i < modified; i++) await CommandInternal(ctx, player, commandType);
     }
 
@@ -86,11 +91,16 @@ public static class SlimeBossCmd
     }
 
     public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel card, ValueProp props)
-        =>Command(ctx, player, card.DynamicVars["Command"].IntValue, props, card, CommandType.All);
-    
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, ValueProp props, int amount = 1, CardModel? cardSource = null)
-        =>Command(ctx, player, amount, props, cardSource, CommandType.All);
-    
+    {
+        return Command(ctx, player, card.DynamicVars["Command"].IntValue, props, card, CommandType.All);
+    }
+
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, ValueProp props, int amount = 1,
+        CardModel? cardSource = null)
+    {
+        return Command(ctx, player, amount, props, cardSource, CommandType.All);
+    }
+
     public static async Task SlurpAll(CardModel card)
     {
         var licks = card.Owner.GetExhaust()
@@ -98,8 +108,8 @@ public static class SlimeBossCmd
             .ToList();
         await CardPileCmd.Add(licks, PileType.Hand);
     }
-    
-    
+
+
     public static async Task Slurp(Player player, int amount)
     {
         var licks = player.GetExhaust()
@@ -114,12 +124,12 @@ public static class SlimeBossCmd
             .ToList();
 
         if (cards.Count < amount)
-            cards.AddRange(buried.TakeRandom(amount - cards.Count,player.RunState.Rng.CombatCardSelection));
+            cards.AddRange(buried.TakeRandom(amount - cards.Count, player.RunState.Rng.CombatCardSelection));
 
         await CardPileCmd.Add(cards, PileType.Hand);
     }
 
-    
+
     public static async Task<int> DecreaseSlots(PlayerChoiceContext ctx, Player player, int amount = 1)
     {
         var (actual, absorbed) = await SlimeQueue.DecreaseSlimeSlots(player, amount);
@@ -127,16 +137,22 @@ public static class SlimeBossCmd
             await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, absorbed, player.Creature, null);
         return actual;
     }
-    
+
     public static Task IncreaseSlots(Player player, int amount = 1)
-       => SlimeQueue.IncreaseSlimeSlots(player, amount);
-    
+    {
+        return SlimeQueue.IncreaseSlimeSlots(player, amount);
+    }
+
     public static Task Slurp(CardModel card)
-     => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
+    {
+        return Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
+    }
 
 
     public static Task Split<T>(PlayerChoiceContext ctx, Player player) where T : SlimeModel
-        => Split(ctx, player, SlimeBossModelDb.Slime<T>());
+    {
+        return Split(ctx, player, SlimeBossModelDb.Slime<T>());
+    }
 
     private static async Task Split(PlayerChoiceContext ctx, Player player, SlimeModel slimeModel)
     {
@@ -157,7 +173,7 @@ public static class SlimeBossCmd
         if (slime == null) return;
         await Split(ctx, player, slime);
     }
-    
+
     public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player player)
     {
         var combatState = player.Creature.CombatState;
@@ -165,7 +181,7 @@ public static class SlimeBossCmd
         var slimeCards = SlimeBossModelDb.AllSpecialistSlimes
             .TakeRandom(3, player.RunState.Rng.CombatCardGeneration)
             .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, player)).ToList();
-        var card  = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, player);
+        var card = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, player);
         if (card is not ISlimeCard slimeCard) return;
         var slime = slimeCard.SlimeModel;
         await Split(ctx, player, slime);

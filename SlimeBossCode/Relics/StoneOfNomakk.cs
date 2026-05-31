@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
-using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Relics;
 
@@ -17,9 +16,11 @@ public class StoneOfNomakk : SlimeBossRelicModel
     {
         WithPower<PotencyPower>(1);
     }
-    
+
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-        => combatState.RoundNumber > 1 || player != Owner
+    {
+        return combatState.RoundNumber > 1 || player != Owner
             ? Task.CompletedTask
             : MyCommonActions.ApplySelf<PotencyPower>(ctx, this);
+    }
 }

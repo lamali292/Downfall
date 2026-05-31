@@ -26,12 +26,10 @@ else
     new PackRelics(scriptDir, force).Run();
     new PackPotions(scriptDir, force).Run();
     new PackEnchantments(scriptDir, force).Run();
-  
 }
 
 
-
-partial class Program
+internal partial class Program
 {
     [GeneratedRegex(@"<SteamLibraryPath>(.*?)</SteamLibraryPath>")]
     private static partial Regex MyRegex();

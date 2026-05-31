@@ -4,9 +4,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -20,27 +18,29 @@ public static class SlimeQueue
     {
         return player.PlayerCombatState?.Pets.Where(e => e.Monster is SlimeModel).ToList() ?? [];
     }
-    
-    public static void ResetAllSlots() =>  SlimeSlots._table.Clear();
+
+    public static void ResetAllSlots()
+    {
+        SlimeSlots._table.Clear();
+    }
 
     public static void SetSlots(Player player, int amount)
     {
-        
         SlimeSlots[player] = amount;
     }
-    
+
     public static int GetCount(Player player)
     {
         return player.PlayerCombatState?.Pets.Count(e => e.Monster is SlimeModel) ?? 0;
     }
-    
+
     public static Task IncreaseSlimeSlots(Player player, int amount)
     {
         SlimeSlots[player] += amount;
         return Task.CompletedTask;
         //Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
     }
-    
+
     public static async Task<(int actual, int absorbed)> DecreaseSlimeSlots(Player player, int amount = 1)
     {
         if (SlimeSlots[player] <= 0) return (0, 0);
@@ -65,7 +65,7 @@ public static class SlimeQueue
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
         return (true, absorbed);
     }
-    
+
     private static async Task<int> EvictSlimesDownTo(Player player, List<Creature> slimes, int maxSlots)
     {
         var evicted = 0;
@@ -78,14 +78,15 @@ public static class SlimeQueue
             player.PlayerCombatState?._pets.Remove(oldest);
             evicted++;
         }
+
         return evicted;
     }
-    
+
     public static Task<(bool added, int evicted)> AddSlime<T>(Player player) where T : SlimeModel
     {
         return AddSlime(player, ModelDb.Monster<T>());
     }
-    
+
     public static async Task<bool> RemoveLeadingSlime(Player player)
     {
         var slimes = GetSlimes(player);
@@ -100,7 +101,7 @@ public static class SlimeQueue
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
         return true;
     }
-    
+
     public static async Task<int> RemoveAll(Player player)
     {
         var slimes = GetSlimes(player);
@@ -113,10 +114,10 @@ public static class SlimeQueue
             player.PlayerCombatState?._pets.Remove(slime);
             amount++;
         }
+
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
         return amount;
     }
-
 
 
     private static void RearrangeSlimeOrbRow(Player player)
@@ -195,6 +196,4 @@ public static class SlimeQueue
         var point = uu * p0 + 2f * u * t * p1 + tt * p2;
         return point;
     }
-
-   
 }

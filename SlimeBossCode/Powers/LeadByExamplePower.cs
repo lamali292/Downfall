@@ -11,28 +11,32 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
 {
+    private int CardPlayCount => CombatManager.Instance.History.CardPlaysFinished
+        .Count(e =>
+            e.Actor == Owner
+            && e.HappenedThisTurn(CombatState)
+            && e.CardPlay.Target is { IsEnemy: true });
+
+    public string GetSecondAmount()
+    {
+        return $"{CardPlayCount}";
+    }
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } || CardPlayCount > Amount) return;
-        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, props: ValueProp.Unpowered);
+        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } ||
+            CardPlayCount > Amount) return;
+        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, ValueProp.Unpowered);
         Flash();
         this.InvokeSecondAmountChanged();
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    protected override Task AfterSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
         this.InvokeSecondAmountChanged();
         return Task.CompletedTask;
     }
-
-
-    private int CardPlayCount => CombatManager.Instance.History.CardPlaysFinished
-        .Count(e => 
-            e.Actor == Owner 
-            && e.HappenedThisTurn(CombatState)
-            && e.CardPlay.Target is { IsEnemy: true });
-
-    public string GetSecondAmount() => $"{CardPlayCount}";
 }

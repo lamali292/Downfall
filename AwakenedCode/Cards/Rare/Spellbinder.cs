@@ -17,6 +17,7 @@ public class Spellbinder : AwakenedCardModel
         this.WithConjure();
         WithCostUpgradeBy(-1);
     }
+
     protected override Artist Artist => Artist.Get<Eudaimonia>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

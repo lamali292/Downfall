@@ -15,7 +15,7 @@ public class GlopChop : SlimeBossCardModel
         WithDamage(12);
         this.WithCommand(2, 1);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

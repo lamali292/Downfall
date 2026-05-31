@@ -1,11 +1,10 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -25,11 +24,9 @@ public class TornadoPunch : ChampCardModel, IDefensiveComboCard
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        for (int i = 0; i < _lastHitCount; i++)
-        {
+        for (var i = 0; i < _lastHitCount; i++)
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block,
                 cardPlay);
-        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

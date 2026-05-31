@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
@@ -6,7 +7,6 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using Downfall.DownfallCode.Artists;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -27,7 +27,8 @@ public class Preprogram : GuardianCardModel, IGemSocketCard
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();
-        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt, 1,
+        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
+            1,
             this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);

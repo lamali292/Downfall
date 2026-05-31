@@ -24,7 +24,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
-    
+
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

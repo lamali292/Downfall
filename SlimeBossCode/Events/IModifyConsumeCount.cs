@@ -8,4 +8,3 @@ public interface IModifyConsumeCount
     int ModifyConsumeCount(Player player, int amount, CardModel? cardSource);
     Task AfterModifyingConsumeCount(Player player, CardModel? cardSource);
 }
-

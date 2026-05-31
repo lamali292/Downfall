@@ -15,8 +15,8 @@ public class ProtectiveGear : SlimeBossRelicModel
     {
         WithVar("TackleReduce", 3);
     }
-    
-    
+
+
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {

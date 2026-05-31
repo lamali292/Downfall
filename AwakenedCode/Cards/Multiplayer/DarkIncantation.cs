@@ -16,7 +16,7 @@ public class DarkIncantation : AwakenedCardModel
         WithPower<RitualPower>(2, 1);
         WithKeywords(CardKeyword.Exhaust);
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

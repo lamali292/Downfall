@@ -14,7 +14,7 @@ public class DefendCollector : CollectorCardModel
         WithTags(CardTag.Defend);
         WithBlock(5, 3);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

@@ -17,7 +17,7 @@ public class Prepare : SlimeBossCardModel
         this.WithPower<DrawCardsNextTurnPower>(2, false);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

@@ -1,13 +1,13 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Champ.ChampCode.Cards.Common;
 

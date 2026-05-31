@@ -1,5 +1,6 @@
 using BaseLib.Cards.Variables;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -7,7 +8,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 

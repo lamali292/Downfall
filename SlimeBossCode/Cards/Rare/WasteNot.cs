@@ -14,7 +14,7 @@ public class WasteNot : SlimeBossCardModel
         this.WithSlurp(1);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SlimeBossCmd.SlurpAll(this);

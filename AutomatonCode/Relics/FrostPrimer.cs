@@ -14,7 +14,7 @@ public class FrostPrimer : AutomatonRelicModel, IModifyCompiledFunction
 {
     public FrostPrimer() : base(RelicRarity.Rare)
     {
-        this.WithTip<Steady>();
+        WithTip<Steady>();
     }
 
     public bool ModifyCompiledFunction(FunctionCard function, Player player)

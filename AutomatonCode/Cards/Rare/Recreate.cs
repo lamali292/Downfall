@@ -20,7 +20,7 @@ public class Recreate : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    
+
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return IsUpgraded

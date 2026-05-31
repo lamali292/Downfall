@@ -14,7 +14,7 @@ public class Recollect : SlimeBossCardModel
         WithBlock(8, 3);
         this.WithSlurp(1);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

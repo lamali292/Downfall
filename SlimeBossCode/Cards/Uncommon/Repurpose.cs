@@ -1,8 +1,8 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using Downfall.DownfallCode.Artists;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -18,13 +18,10 @@ public class Repurpose : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    { 
-        if(await SlimeBossCmd.Absorb(ctx, this))
-        {
-            await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
-        }
+    {
+        if (await SlimeBossCmd.Absorb(ctx, this)) await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
         if (!IsUpgraded) return;
         await SlimeBossCmd.Command(ctx, this);
     }

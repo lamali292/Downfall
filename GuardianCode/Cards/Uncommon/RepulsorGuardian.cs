@@ -16,7 +16,7 @@ public class RepulsorGuardian : GuardianCardModel
         this.WithPower<ExhaustStatusesPower>(1, false);
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

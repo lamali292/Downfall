@@ -20,7 +20,7 @@ public class AphoticFount : AwakenedCardModel
         this.WithTip<Cryostasis>();
         this.WithConjure();
     }
-    
+
     protected override Artist Artist => Artist.Get<Eudaimonia>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

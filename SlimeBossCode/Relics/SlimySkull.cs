@@ -15,8 +15,10 @@ public class SlimySkull : SlimeBossRelicModel
         WithVar("GoopIncrease", 1);
         WithTip<GoopPower>();
     }
-    
+
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
-     => giver == Owner.Creature && power is GoopPower ? amount + DynamicVars["GoopIncrease"].BaseValue : amount;
+    {
+        return giver == Owner.Creature && power is GoopPower ? amount + DynamicVars["GoopIncrease"].BaseValue : amount;
+    }
 }

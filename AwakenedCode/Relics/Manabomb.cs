@@ -14,7 +14,7 @@ public class Manabomb : AwakenedRelicModel
 {
     public Manabomb() : base(RelicRarity.Shop)
     {
-        this.WithTip<ManaburnPower>();
+        WithTip<ManaburnPower>();
     }
 
     public override async Task AfterDeath(PlayerChoiceContext ctx, Creature creature, bool wasRemovalPrevented,

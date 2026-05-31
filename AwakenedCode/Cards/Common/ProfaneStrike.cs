@@ -18,7 +18,7 @@ public class ProfaneStrike : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

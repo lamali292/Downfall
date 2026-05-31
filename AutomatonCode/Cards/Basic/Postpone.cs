@@ -17,7 +17,7 @@ public class Postpone : AutomatonCardModel, ITranscendenceCard
         WithBlock(10, 4);
         WithStash(1);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel GetTranscendenceTransformedCard()

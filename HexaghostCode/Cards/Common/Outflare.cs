@@ -16,9 +16,10 @@ public class Outflare : HexaghostCardModel
         WithPower<TemporaryIntensityPower>(1, 1);
         this.WithTip<IntensityPower>();
     }
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
-    
+
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

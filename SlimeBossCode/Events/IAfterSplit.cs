@@ -7,4 +7,3 @@ public interface IAfterSplit
 {
     Task AfterSplit(Player player, SlimeModel slime);
 }
-

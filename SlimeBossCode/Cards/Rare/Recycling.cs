@@ -16,7 +16,9 @@ public class Recycling : SlimeBossCardModel
         WithTip(SlimeBossTip.Slurp);
         this.WithPower<RecyclingPower>(1, false);
     }
-    
+
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-     => CommonActions.ApplySelf<RecyclingPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<RecyclingPower>(ctx, this);
+    }
 }

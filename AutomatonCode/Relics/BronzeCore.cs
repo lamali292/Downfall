@@ -15,8 +15,8 @@ public class BronzeCore : AutomatonRelicModel
 {
     public BronzeCore() : base(RelicRarity.Starter)
     {
-        this.WithTip<StrikeAutomaton>();
-        this.WithTip<DefendAutomaton>();
+        WithTip<StrikeAutomaton>();
+        WithTip<DefendAutomaton>();
         WithTip(AutomatonTip.Encode);
     }
 

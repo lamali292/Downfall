@@ -19,14 +19,14 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
         this.WithConjure();
     }
 
+    protected override Artist Artist => Artist.Get<Opal>();
+
 
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<TalonRend>();
     }
 
-    protected override Artist Artist => Artist.Get<Opal>();
-    
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2)

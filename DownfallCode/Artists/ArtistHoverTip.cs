@@ -23,13 +23,11 @@ public class ArtistHoverTip(LocString title, Texture2D? icon) : IHoverTip
 }
 
 [HarmonyPatch(typeof(NHoverTipSet), "Init")]
-static class NHoverTipSetInitPatch
+internal static class NHoverTipSetInitPatch
 {
-
-
-    static void Prefix(NHoverTipSet __instance, ref IEnumerable<IHoverTip> hoverTips)
+    private static void Prefix(NHoverTipSet __instance, ref IEnumerable<IHoverTip> hoverTips)
     {
-        var shiftHeld = true;//Input.IsPhysicalKeyPressed(Key.Shift);
+        var shiftHeld = true; //Input.IsPhysicalKeyPressed(Key.Shift);
         var list = hoverTips.ToList();
 
         hoverTips = list
@@ -43,14 +41,14 @@ static class NHoverTipSetInitPatch
         {
             var child = PreloadManager.Cache.GetScene("res://scenes/ui/hover_tip.tscn").Instantiate<Control>();
             __instance._textHoverTipContainer.AddChildSafely(child);
-        
+
             var titleNode = child.GetNode<MegaLabel>("%Title");
             titleNode.SetTextAutoSize(tip.Title.GetFormattedText());
-        
+
             child.GetNode<MegaRichTextLabel>("%Description").Text = "";
             child.GetNode<MegaRichTextLabel>("%Description").AutowrapMode = TextServer.AutowrapMode.WordSmart;
             child.GetNode<TextureRect>("%Icon").Texture = tip.Icon;
-        
+
             var bg = child.GetNodeOrNull<CanvasItem>("Bg");
             if (bg != null)
             {
@@ -61,10 +59,12 @@ static class NHoverTipSetInitPatch
                 mat.SetShaderParameter("v", 1.0f);
                 bg.Material = mat;
             }
-        
+
             child.ResetSize();
-            if (NGame.Instance != null && __instance._textHoverTipContainer.Size.Y + child.Size.Y + 5.0 < NGame.Instance.GetViewportRect().Size.Y - 50.0)
-                __instance._textHoverTipContainer.Size = new Vector2(360f, __instance._textHoverTipContainer.Size.Y + child.Size.Y + 5.0f);
+            if (NGame.Instance != null && __instance._textHoverTipContainer.Size.Y + child.Size.Y + 5.0 <
+                NGame.Instance.GetViewportRect().Size.Y - 50.0)
+                __instance._textHoverTipContainer.Size = new Vector2(360f,
+                    __instance._textHoverTipContainer.Size.Y + child.Size.Y + 5.0f);
             else
                 __instance._textHoverTipContainer.Alignment = FlowContainer.AlignmentMode.Center;
         }

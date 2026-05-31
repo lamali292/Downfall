@@ -10,14 +10,16 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class TarrBlob : SlimeBossRelicModel
 {
-
     public TarrBlob() : base(RelicRarity.Ancient)
     {
         WithEnergy(1);
         WithVar("Decrease", 1);
     }
+
     public override decimal ModifyMaxEnergy(Player player, decimal amount)
-        => player == Owner ? amount + DynamicVars.Energy.BaseValue : amount;
+    {
+        return player == Owner ? amount + DynamicVars.Energy.BaseValue : amount;
+    }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {

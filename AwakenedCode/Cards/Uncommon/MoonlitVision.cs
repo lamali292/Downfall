@@ -17,6 +17,7 @@ public class MoonlitVision : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoonlitVisionPower>(ctx, this, 1);

@@ -1,9 +1,9 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -17,7 +17,7 @@ public class RollThrough : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

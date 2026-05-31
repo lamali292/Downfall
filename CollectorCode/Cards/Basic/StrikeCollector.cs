@@ -14,7 +14,7 @@ public class StrikeCollector : CollectorCardModel
         WithTags(CardTag.Strike);
         WithDamage(6, 3);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

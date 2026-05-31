@@ -1,21 +1,12 @@
-﻿using System.Reflection;
-using BaseLib.Abstracts;
-using BaseLib.Patches.Localization;
+﻿using BaseLib.Patches.Localization;
 using Downfall.DownfallCode.Abstract;
-using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.HoverTips;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Downfall.DownfallCode.Powers.Abstract;
 
@@ -32,16 +23,16 @@ public abstract class PowerNextTurn<T> : DownfallPowerModel, IAddDumbVariablesTo
     public override PowerStackType StackType => ModelDb.Power<T>().StackType;
     public override PowerInstanceType InstanceType => ModelDb.Power<T>().InstanceType;
 
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        description.Add("NAmount", -Amount);
+    }
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
         await PowerCmd.Apply<T>(ctx, Owner, Amount, Applier, null);
-    }
-
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("NAmount", -Amount);
     }
 }
 
@@ -158,7 +149,7 @@ internal static class NHoverTipSetInitPatch
                 }
                 catch
                 {
-                   
+
                 }
             }
         }).CallDeferred();

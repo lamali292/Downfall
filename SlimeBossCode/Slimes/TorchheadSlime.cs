@@ -9,13 +9,13 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class TorchheadSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.Specialist;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
-    public override SlimeType SlimeType => SlimeType.Specialist;
-    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(6 + PetOwner.GetPowerAmount<StrengthPower>())

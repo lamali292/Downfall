@@ -16,5 +16,7 @@ public class MinionMaster : SlimeBossCardModel
     }
 
     protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => CommonActions.ApplySelf<MinionMasterPower>(ctx, this);
+    {
+        return CommonActions.ApplySelf<MinionMasterPower>(ctx, this);
+    }
 }

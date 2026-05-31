@@ -15,7 +15,7 @@ public sealed class StrikeAwakened : AwakenedCardModel
         WithDamage(6, 3);
         WithTags(CardTag.Strike);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

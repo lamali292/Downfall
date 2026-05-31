@@ -99,7 +99,7 @@ public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUs
         _hoverTips.Add(new PotionTooltipSource(HoverTipFactory.ForEnergy));
         return this;
     }
-    
+
     public ConstructedPotionModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));

@@ -1,5 +1,6 @@
 using BaseLib.Patches.Features;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,7 +10,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Curse;
 

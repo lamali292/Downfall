@@ -36,5 +36,5 @@ public enum SlimeType
     None = 0,
     Normal = 1,
     Specialist = 2,
-    Any = Normal | Specialist 
+    Any = Normal | Specialist
 }

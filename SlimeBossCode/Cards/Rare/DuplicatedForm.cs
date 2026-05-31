@@ -1,9 +1,8 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -16,7 +15,7 @@ public class DuplicatedForm : SlimeBossCardModel
         this.WithPower<DuplicatedFormPower>(1, false);
         this.WithPower<EnergizedPower>(0, 1, false);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<EnergizedPower>(ctx, this);

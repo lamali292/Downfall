@@ -12,7 +12,8 @@ public class NextTurnStunnedPower() : DownfallPowerModel(PowerType.Debuff)
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) {
+        if (side != Owner.Side)
+        {
             await PowerCmd.Apply<StunnedPower>(ctx, Owner, 1, Owner, null);
             await PowerCmd.Decrement(this);
         }

@@ -18,7 +18,7 @@ public class TheTower : AwakenedCardModel
     {
         WithCalculatedDamage(2, 2, DamageCalc, ValueProp.Move, 1, 1);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

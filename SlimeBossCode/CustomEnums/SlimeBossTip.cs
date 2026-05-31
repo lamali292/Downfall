@@ -1,5 +1,4 @@
 ﻿using BaseLib.Patches.Content;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace SlimeBoss.SlimeBossCode.CustomEnums;

@@ -4,11 +4,10 @@ using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
 
 namespace Downfall.DownfallCode.Vfx;
 
-public abstract partial class NSpineMerchantCharacter: NMerchantCharacter
+public abstract partial class NSpineMerchantCharacter : NMerchantCharacter
 {
-    
     protected abstract string IdleName { get; }
-    
+
     public override void _Ready()
     {
         var megaTrackEntry = new MegaSprite((Variant)(GodotObject)GetChild(0));

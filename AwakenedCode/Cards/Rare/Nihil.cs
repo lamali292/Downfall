@@ -19,7 +19,7 @@ public class Nihil : AwakenedCardModel, IChantable
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

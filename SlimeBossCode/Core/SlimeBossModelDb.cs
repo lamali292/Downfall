@@ -6,18 +6,18 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public static class SlimeBossModelDb
 {
-    public static T Slime<T>() where T : SlimeModel => ModelDb.Get<T>();
+    private static Dictionary<Type, CardModel>? _slimeCardByType;
 
     public static IEnumerable<SlimeModel> AllSlimes =>
         ModelDb.AllAbstractModelSubtypes
             .Where(t => t.IsSubclassOf(typeof(SlimeModel)))
             .Select(t => (SlimeModel)ModelDb.Get(t));
-    
-    
-    public static IEnumerable<SlimeModel> AllSpecialistSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Specialist);
-    public static IEnumerable<SlimeModel> AllNormalSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Normal);
 
-    private static Dictionary<Type, CardModel>? _slimeCardByType;
+
+    public static IEnumerable<SlimeModel> AllSpecialistSlimes =>
+        AllSlimes.Where(t => t.SlimeType == SlimeType.Specialist);
+
+    public static IEnumerable<SlimeModel> AllNormalSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Normal);
 
     private static Dictionary<Type, CardModel> SlimeCardByType =>
         _slimeCardByType ??= ModelDb.AllCards
@@ -25,10 +25,18 @@ public static class SlimeBossModelDb
                         baseType.GetGenericTypeDefinition() == typeof(SlimeCard<>))
             .ToDictionary(c => c.GetType().BaseType!.GenericTypeArguments[0]);
 
-    public static CardModel GetCardForSlime(SlimeModel slime) =>
-        SlimeCardByType[slime.GetType()];
+    public static T Slime<T>() where T : SlimeModel
+    {
+        return ModelDb.Get<T>();
+    }
 
-    public static SlimeCard<T> GetCardForSlime<T>() where T : SlimeModel =>
-        (SlimeCard<T>)SlimeCardByType[typeof(T)];
-    
+    public static CardModel GetCardForSlime(SlimeModel slime)
+    {
+        return SlimeCardByType[slime.GetType()];
+    }
+
+    public static SlimeCard<T> GetCardForSlime<T>() where T : SlimeModel
+    {
+        return (SlimeCard<T>)SlimeCardByType[typeof(T)];
+    }
 }

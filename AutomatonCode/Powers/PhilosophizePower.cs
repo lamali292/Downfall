@@ -13,7 +13,7 @@ public class PhilosophizePower : AutomatonPowerModel, IAfterCompilingFunction
 {
     public PhilosophizePower() : base(PowerType.Debuff)
     {
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
     }
 
 

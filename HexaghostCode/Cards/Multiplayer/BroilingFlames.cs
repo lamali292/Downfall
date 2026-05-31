@@ -18,7 +18,7 @@ public class BroilingFlames : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

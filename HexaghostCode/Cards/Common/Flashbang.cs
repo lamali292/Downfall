@@ -17,7 +17,7 @@ public class Flashbang : HexaghostCardModel
         WithPower<TemporaryStrengthDownPower>(2, 1);
         WithPower<WeakPower>(1, 1);
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

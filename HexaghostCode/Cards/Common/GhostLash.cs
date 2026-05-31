@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -7,7 +8,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Hexaghost.HexaghostCode.Cards.Common;
 

@@ -19,7 +19,7 @@ public class Execution : ChampCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 3).Execute(ctx);

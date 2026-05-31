@@ -17,16 +17,12 @@ public class MassRepurpose : SlimeBossCardModel
         this.WithCommand(1);
     }
 
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var absorbed = await SlimeBossCmd.AbsorbAll(ctx, this);
-        for (var i = 0; i < absorbed; i++)
-        {
-            await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
-        }
+        for (var i = 0; i < absorbed; i++) await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
         if (!IsUpgraded) return;
-        await SlimeBossCmd.CommandAll(ctx, Owner,  this, ValueProp.Move);
+        await SlimeBossCmd.CommandAll(ctx, Owner, this, ValueProp.Move);
     }
-
 }

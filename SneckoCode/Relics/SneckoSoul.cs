@@ -16,7 +16,7 @@ public class SneckoSoul : SneckoRelicModel
 {
     public SneckoSoul() : base(RelicRarity.Starter)
     {
-        this.WithTip<SoulRoll>();
+        WithTip<SoulRoll>();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

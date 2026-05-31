@@ -1,10 +1,10 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
-using Downfall.DownfallCode.Artists;
 
 namespace Automaton.AutomatonCode.Cards.Common;
 

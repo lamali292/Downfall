@@ -92,17 +92,15 @@ public static class ConstructedCardModelExtensions
         return card.WithTip(tooltipSource,
             baseVal + upgrade == 0 ? ConstructedCardModel.UpgradeType.Remove : ConstructedCardModel.UpgradeType.None);
     }
+
     public static ConstructedCardModel WithTip<T>(this ConstructedCardModel card) where T : AbstractModel
     {
         return card.WithTip(typeof(T));
     }
-    
-    
-    
+
+
     public static ConstructedCardModel WithArtist<T>(this ConstructedCardModel card) where T : Artist, new()
     {
         return card.WithTips(_ => [Artist.Get<T>().HoverTip]);
     }
-
-
 }

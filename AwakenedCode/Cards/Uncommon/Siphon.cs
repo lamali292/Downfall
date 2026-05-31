@@ -17,7 +17,7 @@ public class Siphon : AwakenedCardModel, IChantable
         WithDamage(9, 2);
         WithPower<StrengthPower>(2);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public bool HasChanted { get; set; } = false;

@@ -1,6 +1,5 @@
 ﻿using Downfall.DownfallCode.Vfx;
 using Godot;
-using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
 
 namespace SlimeBoss.SlimeBossCode.Vfx;
 

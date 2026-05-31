@@ -20,7 +20,7 @@ public class Fork : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

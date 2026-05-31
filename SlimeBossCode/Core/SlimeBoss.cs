@@ -109,4 +109,4 @@ public abstract class SlimeBossCardModel(
 
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 
-public class SlimeBossCardPool : DownfallCardPool<SlimeBoss>; 
+public class SlimeBossCardPool : DownfallCardPool<SlimeBoss>;

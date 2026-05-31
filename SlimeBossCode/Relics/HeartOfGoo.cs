@@ -15,7 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class HeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
 {
-
     public HeartOfGoo() : base(RelicRarity.Starter)
     {
         WithHeal(2);
@@ -25,17 +24,13 @@ public class HeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
 
     private DynamicVar UsesLeft => DynamicVars["UsesLeft"];
     private DynamicVar MaxUses => DynamicVars["MaxUses"];
-    
+
     public override int DisplayAmount => UsesLeft.IntValue;
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
 
-    public override RelicModel GetUpgradeReplacement()
-    {
-        return ModelDb.Relic<BlackHeartOfGoo>();
-    }
-    
-    
-    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal goopAmount)
+
+    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker,
+        decimal goopAmount)
     {
         if (attacker != Owner.Creature && UsesLeft.BaseValue > 0) return;
         var heal = Math.Min(DynamicVars.Heal.BaseValue, UsesLeft.BaseValue);
@@ -45,7 +40,12 @@ public class HeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
         Flash();
         InvokeDisplayAmountChanged();
     }
-    
+
+    public override RelicModel GetUpgradeReplacement()
+    {
+        return ModelDb.Relic<BlackHeartOfGoo>();
+    }
+
     public override Task BeforeCombatStart()
     {
         UsesLeft.BaseValue = MaxUses.BaseValue;

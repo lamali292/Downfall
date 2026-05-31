@@ -23,12 +23,13 @@ public class BlackHeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
 
     private DynamicVar UsesLeft => DynamicVars["UsesLeft"];
     private DynamicVar MaxUses => DynamicVars["MaxUses"];
-    
+
     public override int DisplayAmount => UsesLeft.IntValue;
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
 
-    
-    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal goopAmount)
+
+    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker,
+        decimal goopAmount)
     {
         if (attacker != Owner.Creature && UsesLeft.BaseValue > 0) return;
         var heal = Math.Min(DynamicVars.Heal.BaseValue, UsesLeft.BaseValue);
@@ -38,7 +39,7 @@ public class BlackHeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
         Flash();
         InvokeDisplayAmountChanged();
     }
-    
+
     public override Task BeforeCombatStart()
     {
         UsesLeft.BaseValue = MaxUses.BaseValue;

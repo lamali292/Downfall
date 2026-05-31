@@ -24,7 +24,7 @@ public class HyperBeamAutomaton : AutomatonCardModel
         this.WithTip<Void>();
         WithCards(3);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

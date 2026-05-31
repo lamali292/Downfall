@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -17,9 +16,8 @@ public class GoopArmor : SlimeBossCardModel
         this.WithPower<GoopArmorPower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
         WithTip(SlimeBossTip.Consume);
-
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<GoopArmorPower>(ctx, this);

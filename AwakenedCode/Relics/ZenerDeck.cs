@@ -13,7 +13,7 @@ public class ZenerDeck : AwakenedRelicModel, IModifyBaseSpells
 {
     public ZenerDeck() : base(RelicRarity.Rare)
     {
-        this.WithTip<ESP>();
+        WithTip<ESP>();
     }
 
     public IReadOnlyList<CardModel> ModifyBaseSpells(Player owner, IReadOnlyList<CardModel> types)

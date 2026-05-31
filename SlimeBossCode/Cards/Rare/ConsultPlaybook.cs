@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 

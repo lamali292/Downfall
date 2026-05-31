@@ -2,12 +2,11 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
-using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 
 namespace Collector.CollectorCode.Cards.Common;
 

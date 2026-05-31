@@ -19,7 +19,7 @@ public sealed class Spyglass : HermitRelicModel
     public Spyglass() : base(RelicRarity.Uncommon)
     {
         WithEnergy(1);
-        this.WithTip<ConcentrationPower>();
+        WithTip<ConcentrationPower>();
     }
 
 

@@ -1,11 +1,11 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
-using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Basic;
 

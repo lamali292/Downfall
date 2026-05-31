@@ -19,6 +19,7 @@ public class SingularityShield : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

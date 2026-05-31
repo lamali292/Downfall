@@ -1,9 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
-using Downfall.DownfallCode.Powers.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
@@ -22,7 +20,7 @@ public class PrepareCrush : SlimeBossCardModel
         this.WithPower<StrengthNextTurnPower>(3, 2, false);
         this.WithPower<EnergyNextTurnPower>(3, 1, false);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this, 1);

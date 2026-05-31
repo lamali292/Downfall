@@ -12,7 +12,7 @@ public class RecreatePower : AutomatonPowerModel
 {
     public RecreatePower()
     {
-        this.WithTip<Fuel>();
+        WithTip<Fuel>();
     }
 
 

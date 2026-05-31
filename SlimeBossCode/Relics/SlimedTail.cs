@@ -15,8 +15,10 @@ public class SlimedTail : SlimeBossRelicModel, IAfterSplit
     {
         WithBlock(3);
     }
-    
-    
+
+
     public Task AfterSplit(Player player, SlimeModel slime)
-     => player == Owner ? MyCommonActions.Block(this) :  Task.CompletedTask;
+    {
+        return player == Owner ? MyCommonActions.Block(this) : Task.CompletedTask;
+    }
 }
