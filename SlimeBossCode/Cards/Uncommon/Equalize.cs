@@ -7,7 +7,11 @@ using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Models;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -19,6 +23,7 @@ public class Equalize : SlimeBossCardModel, IHasConsumeEffect
         WithDamage(8, 4);
         WithHeal(4, 2);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(SlimeBossTip.Consume);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

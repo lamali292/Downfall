@@ -21,6 +21,7 @@ public class OpeningTackle : SlimeBossCardModel, IHasConsumeEffect
         this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithPower<VulnerablePower>(2, 1);
+        WithTip(SlimeBossTip.Consume);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

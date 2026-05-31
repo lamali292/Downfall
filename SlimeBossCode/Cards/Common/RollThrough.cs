@@ -13,7 +13,7 @@ public class RollThrough : SlimeBossCardModel
     public RollThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(6, 1);
-        WithPower<RollThroughPower>(2, 1);
+        this.WithPower<RollThroughPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

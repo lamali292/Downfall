@@ -34,6 +34,13 @@ public static class SlimeQueue
         return player.PlayerCombatState?.Pets.Count(e => e.Monster is SlimeModel) ?? 0;
     }
     
+    public static Task IncreaseSlimeSlots(Player player, int amount)
+    {
+        SlimeSlots[player] += amount;
+        return Task.CompletedTask;
+        //Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+    }
+    
     public static async Task<(int actual, int absorbed)> DecreaseSlimeSlots(Player player, int amount = 1)
     {
         if (SlimeSlots[player] <= 0) return (0, 0);
@@ -188,4 +195,6 @@ public static class SlimeQueue
         var point = uu * p0 + 2f * u * t * p1 + tt * p2;
         return point;
     }
+
+   
 }

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
@@ -17,6 +18,7 @@ public class LeechingStrike : SlimeBossCardModel, IHasConsumeEffect
     {
         WithDamage(5, 3);
         WithTags(CardTag.Strike);
+        WithTip(SlimeBossTip.Consume);
     }
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)

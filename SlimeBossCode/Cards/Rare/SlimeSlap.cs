@@ -1,7 +1,5 @@
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
@@ -14,7 +12,7 @@ public class SlimeSlap : SlimeBossCardModel
 {
     public SlimeSlap() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<DouseInSlimePower>(1);
+        this.WithPower<DouseInSlimePower>(1, false);
         WithDamage(8);
         WithCostUpgradeBy(-1);
         this.WithTip<GoopPower>();

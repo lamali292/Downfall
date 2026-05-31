@@ -1,4 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Entities.Relics;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -62,8 +64,9 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
         return WithVars(new EnergyVar(i));
     }
 
-    protected ConstructedRelicModel WithPower<T>(int i) where T : PowerModel
+    protected ConstructedRelicModel WithPower<T>(int i, bool showTooltip = true) where T : PowerModel
     {
+        if (showTooltip) WithTip<T>();
         return WithVars(new PowerVar<T>(i));
     }
 
@@ -94,6 +97,12 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
     protected ConstructedRelicModel WithEnergyTip()
     {
         _hoverTips.Add(new RelicTooltipSource(HoverTipFactory.ForEnergy));
+        return this;
+    }
+    
+    public ConstructedRelicModel WithHeal(int baseVal)
+    {
+        WithVars(new HealVar(baseVal));
         return this;
     }
 }

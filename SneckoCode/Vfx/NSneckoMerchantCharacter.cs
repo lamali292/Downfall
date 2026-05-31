@@ -1,14 +1,10 @@
-﻿using Godot;
-using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
+﻿using Downfall.DownfallCode.Vfx;
+using Godot;
 
 namespace Snecko.SneckoCode.Vfx;
 
 [GlobalClass]
-public partial class NSneckoMerchantCharacter : NMerchantCharacter
+public partial class NSneckoMerchantCharacter : NSpineMerchantCharacter
 {
-    public override void _Ready()
-    {
-        // Todo : fix black outlines
-        PlayAnimation("Idle", true);
-    }
+    protected override string IdleName => "Idle";
 }

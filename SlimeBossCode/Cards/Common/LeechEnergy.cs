@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
 using Downfall.DownfallCode.Artists;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -18,6 +19,7 @@ public class LeechEnergy : SlimeBossCardModel, IHasConsumeEffect
         WithDamage(5, 3);
         WithEnergy(1);
         WithCards(1);
+        WithTip(SlimeBossTip.Consume);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

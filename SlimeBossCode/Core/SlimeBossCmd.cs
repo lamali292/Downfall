@@ -128,6 +128,9 @@ public static class SlimeBossCmd
         return actual;
     }
     
+    public static Task IncreaseSlots(Player player, int amount = 1)
+       => SlimeQueue.IncreaseSlimeSlots(player, amount);
+    
     public static Task Slurp(CardModel card)
      => Slurp(card.Owner, card.DynamicVars["Slurp"].IntValue);
 

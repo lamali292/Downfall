@@ -1,13 +1,11 @@
-﻿using Godot;
+﻿using Downfall.DownfallCode.Vfx;
+using Godot;
 using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
 
 namespace SlimeBoss.SlimeBossCode.Vfx;
 
 [GlobalClass]
-public partial class NSlimeBossMerchantCharacter : NMerchantCharacter
+public partial class NSlimeBossMerchantCharacter : NSpineMerchantCharacter
 {
-    public override void _Ready()
-    {
-        PlayAnimation("idle", true);
-    }
+    protected override string IdleName => "idle";
 }

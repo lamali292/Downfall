@@ -1,13 +1,10 @@
-﻿using Godot;
-using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
+﻿using Downfall.DownfallCode.Vfx;
+using Godot;
 
 namespace Collector.CollectorCode.Vfx;
 
 [GlobalClass]
-public partial class NCollectorMerchantCharacter : NMerchantCharacter
+public partial class NCollectorMerchantCharacter : NSpineMerchantCharacter
 {
-    public override void _Ready()
-    {
-        PlayAnimation("idle", true);
-    }
+    protected override string IdleName => "idle";
 }

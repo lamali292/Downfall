@@ -1,13 +1,10 @@
-﻿using Godot;
-using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
+﻿using Downfall.DownfallCode.Vfx;
+using Godot;
 
 namespace Awakened.AwakenedCode.Vfx;
 
 [GlobalClass]
-public partial class NAwakenedMerchantCharacter : NMerchantCharacter
+public partial class NAwakenedMerchantCharacter : NSpineMerchantCharacter
 {
-    public override void _Ready()
-    {
-        PlayAnimation("Idle_1", true);
-    }
+    protected override string IdleName => "Idle_1";
 }

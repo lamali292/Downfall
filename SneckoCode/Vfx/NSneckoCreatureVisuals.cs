@@ -17,10 +17,10 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals
 
     private MegaSprite? _sprite;
 
-    private string CastAnim => "Attack";
-    private string IdleAnim => "Idle";
-    private string AttackAnim => "Attack_2";
-    private string HitAnim => "Hit";
+    private const string CastAnim = "Attack";
+    private const string IdleAnim = "Idle";
+    private const string AttackAnim = "Attack_2";
+    private const string HitAnim = "Hit";
 
     public override void _Ready()
     {

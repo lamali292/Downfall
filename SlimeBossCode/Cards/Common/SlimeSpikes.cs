@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -13,7 +14,8 @@ public class SlimeSpikes : SlimeBossCardModel
     public SlimeSpikes() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        WithPower<TemporaryThornsPower>(3, 1);
+        this.WithPower<TemporaryThornsPower>(3, 1, false);
+        this.WithTip<ThornsPower>();
     }
 
     protected override Artist Artist => Artist.Get<HalfGoblinHankins>();

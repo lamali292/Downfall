@@ -8,6 +8,7 @@ using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Interfaces;
 using Downfall.DownfallCode.Artists;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -18,6 +19,7 @@ public class ItLooksTasty : SlimeBossCardModel, IHasConsumeEffect
     {
         WithDamage(8, 2);
         WithUpgradingCardTip<Lick>();
+        WithTip(SlimeBossTip.Consume);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
