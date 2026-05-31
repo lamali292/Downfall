@@ -76,7 +76,7 @@ public class Collector : DownfallCharacterModel
 
 public class CollectorRelicPool : DownfallRelicPool<Collector>;
 
-public abstract class CollectorRelicModel(RelicRarity rarity) : DownfallRelicModel<Collector>(rarity);
+public abstract class CollectorRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Collector>(rarity, autoAdd);
 
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicModel
+public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = true) : HookedRelicModel(autoAdd)
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<Func<RelicModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
