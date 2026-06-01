@@ -2,7 +2,6 @@
 using Downfall.DownfallCode.Utils.Sound;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
-using Godot;
 using MegaCrit.Sts2.Core.Nodes.Audio;
 
 namespace Downfall.DownfallCode.Patches;
@@ -36,13 +35,13 @@ public static class SfxOverrideRegistry
     }
 }
 
+// catch the override at multiple places because some of the original functions get inlined by jit so some patches not work all the time
 [HarmonyPatch(typeof(SfxCmd), nameof(SfxCmd.Play), typeof(string), typeof(float))]
 internal static class SfxOverridePatch
 {
     [HarmonyPrefix]
     public static bool Prefix(string sfx)
     {
-        GD.Print($"[SfxOverridePatch] Prefix hit: {sfx}");
         return !SfxOverrideRegistry.TryHandleResPath(sfx);
     }
 }
@@ -53,7 +52,6 @@ internal static class PlayOneShotPatch
     [HarmonyPrefix]
     public static bool Prefix(string path, float volume)
     {
-        GD.Print($"[PlayOneShotPatch] path: {path}");
         return !SfxOverrideRegistry.TryHandleResPath(path);
     }
 }
@@ -64,7 +62,6 @@ internal static class PlayOneShotDictPatch
     [HarmonyPrefix]
     public static bool Prefix(string path, float volume)
     {
-        GD.Print($"[PlayOneShotDictPatch] path: {path}");
         return !SfxOverrideRegistry.TryHandleResPath(path);
     }
 }
