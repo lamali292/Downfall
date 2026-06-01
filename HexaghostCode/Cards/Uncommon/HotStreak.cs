@@ -16,7 +16,7 @@ public class HotStreak : HexaghostCardModel
         WithPower<HotStreakPower>(6, 3);
         this.WithTip<SoulBurnPower>();
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

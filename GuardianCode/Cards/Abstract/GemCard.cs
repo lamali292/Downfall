@@ -96,6 +96,8 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard
 
     public GemModel GemModel =>
         CardModifier.DirectModifiers(this).OfType<GemModel>().First();
+
+    public int GemSlots => 0;
 }
 
 public interface IGemCard

@@ -19,6 +19,7 @@ public class Hymn : AwakenedCardModel
         this.WithTip<Ceremony>();
         this.WithDrained(1);
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

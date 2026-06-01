@@ -14,7 +14,7 @@ public class ExplodePower : AutomatonPowerModel, IAfterCompilingFunction
 {
     public ExplodePower() : base(PowerType.Debuff)
     {
-        this.WithTip<Burn>();
+        WithTip<Burn>();
     }
 
     public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)

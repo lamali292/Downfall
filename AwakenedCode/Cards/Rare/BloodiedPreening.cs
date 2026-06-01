@@ -20,6 +20,7 @@ public class BloodiedPreening : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<StrengthPower>(ctx, this, -2);

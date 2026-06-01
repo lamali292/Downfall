@@ -76,7 +76,6 @@ public static class MyCommonActions
         if (targets.Count != 1) return await PowerCmd.Apply<T>(ctx, targets, amount, creature, card);
         var result = await PowerCmd.Apply<T>(ctx, targets[0], amount, creature, card);
         return result is not null ? [result] : [];
-
     }
 
     public static async Task LoseHp(PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)

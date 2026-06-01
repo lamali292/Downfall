@@ -15,15 +15,17 @@ public class ServeProtect : SlimeBossCardModel
 {
     public ServeProtect() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCalculatedBlock(0,10, Calc, ValueProp.Move, 0,5);
+        WithCalculatedBlock(0, 10, Calc, ValueProp.Move, 0, 5);
         WithCalculatedVar("Blur", 0, Calc);
         this.WithTip<BlurPower>();
         WithKeyword(CardKeyword.Exhaust);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
-        => SlimeQueue.GetCount(card.Owner);
-    
+    {
+        return SlimeQueue.GetCount(card.Owner);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);

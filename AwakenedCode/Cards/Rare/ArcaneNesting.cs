@@ -14,7 +14,7 @@ public class ArcaneNesting : AwakenedCardModel
         WithKeywords(CardKeyword.Unplayable);
         WithBlock(4, 2);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

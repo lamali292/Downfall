@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class DownfallRelicModel<T>(RelicRarity rarity) : ConstructedRelicModel(rarity)
+public abstract class DownfallRelicModel<T>(RelicRarity rarity, bool autoAdd = true) : ConstructedRelicModel(rarity, autoAdd)
     where T : DownfallCharacterModel
 {
     private string IconName => Id.Entry

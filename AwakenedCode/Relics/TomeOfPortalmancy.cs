@@ -13,7 +13,7 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class TomeOfPortalmancy : AwakenedRelicModel
 {
-    public TomeOfPortalmancy(): base(RelicRarity.Common)
+    public TomeOfPortalmancy() : base(RelicRarity.Common)
     {
         WithPower<ManaburnPower>(2);
         WithTip(typeof(Void));

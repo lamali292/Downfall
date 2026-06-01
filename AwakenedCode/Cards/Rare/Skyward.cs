@@ -20,6 +20,7 @@ public class Skyward : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+
     private int PowersPlayedThisCombat => CombatManager.Instance.History.Entries
         .OfType<CardPlayStartedEntry>()
         .Count(e =>

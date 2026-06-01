@@ -132,7 +132,7 @@ public class Champ : DownfallCharacterModel
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;
 
-public abstract class ChampRelicModel(RelicRarity rarity) : DownfallRelicModel<Champ>(rarity);
+public abstract class ChampRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Champ>(rarity, autoAdd);
 
 public abstract class ChampPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -17,7 +17,7 @@ public class Commit : AutomatonCardModel
         WithBlock(6, 2);
         WithDamage(6, 2);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

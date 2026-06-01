@@ -1,13 +1,10 @@
-﻿using Godot;
-using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
+﻿using Downfall.DownfallCode.Vfx;
+using Godot;
 
 namespace Hermit.HermitCode.Vfx;
 
 [GlobalClass]
-public partial class NHermitMerchantCharacter : NMerchantCharacter
+public partial class NHermitMerchantCharacter : NSpineMerchantCharacter
 {
-    public override void _Ready()
-    {
-        PlayAnimation("Idle", true);
-    }
+    protected override string IdleName => "Idle";
 }

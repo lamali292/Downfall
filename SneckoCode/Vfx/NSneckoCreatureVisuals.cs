@@ -13,14 +13,14 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals
     private const float AttackMix = 0.1f;
     private const float CastMix = 0.1f;
     private const float HitMix = 0.05f;
+
+    private const string CastAnim = "Attack";
+    private const string IdleAnim = "Idle";
+    private const string AttackAnim = "Attack_2";
+    private const string HitAnim = "Hit";
     private MegaAnimationState? _animState;
 
     private MegaSprite? _sprite;
-
-    private string CastAnim => "Attack";
-    private string IdleAnim => "Idle";
-    private string AttackAnim => "Attack_2";
-    private string HitAnim => "Hit";
 
     public override void _Ready()
     {

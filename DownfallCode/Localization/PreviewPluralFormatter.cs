@@ -23,7 +23,7 @@ public class PreviewPluralFormatter : IFormatter
         formattingInfo.FormatAsChild(pluralWords[index], formattingInfo.CurrentValue);
         return true;
     }
-    
+
     private static CultureInfo GetCultureInfo(IFormattingInfo formattingInfo)
     {
         var culture = formattingInfo.FormatterOptions.Trim();
@@ -34,7 +34,7 @@ public class PreviewPluralFormatter : IFormatter
                 cultureInfo = ci;
             else
                 cultureInfo = CultureInfo.CurrentUICulture;
-            if(cultureInfo.Equals(CultureInfo.InvariantCulture))
+            if (cultureInfo.Equals(CultureInfo.InvariantCulture))
                 cultureInfo = CultureInfo.GetCultureInfo("en");
         }
         else

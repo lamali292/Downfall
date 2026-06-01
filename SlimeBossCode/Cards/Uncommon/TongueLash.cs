@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -6,7 +7,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -22,9 +22,11 @@ public class TongueLash : SlimeBossCardModel
     protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
 
     private static decimal Calc(CardModel card, Creature? _)
-     => card.Owner.GetExhaust()
-         .Count(e => e.Tags.Contains(SlimeBossTag.Lick));
-    
+    {
+        return card.Owner.GetExhaust()
+            .Count(e => e.Tags.Contains(SlimeBossTag.Lick));
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

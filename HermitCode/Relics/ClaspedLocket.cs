@@ -22,7 +22,7 @@ public sealed class ClaspedLocket : HermitRelicModel
     {
         WithVars(new CardsVar(2));
         WithVar("Curses", 2);
-        this.WithTip<Injury>();
+        WithTip<Injury>();
     }
 
     public override bool HasUponPickupEffect => true;

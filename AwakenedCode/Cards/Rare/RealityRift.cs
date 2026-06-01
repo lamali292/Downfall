@@ -23,6 +23,7 @@ public class RealityRift : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+
     private static CardModel[] AnotherDimensionCards =>
     [
         ModelDb.Card<Crusher>(),

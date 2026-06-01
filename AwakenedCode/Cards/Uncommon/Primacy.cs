@@ -16,7 +16,7 @@ public class Primacy : AwakenedCardModel
         this.WithPower<PrimacyPower>(1, 1, false);
         this.WithTip<StrengthPower>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

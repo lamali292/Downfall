@@ -26,6 +26,11 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
 
     protected override bool IsPlayable => false;
 
+    public override string Title => CharacterModel == null
+        ? "???"
+        : new LocString("characters", CharacterModel.CharacterSelectTitle)
+            .GetFormattedText();
+
     public static CharacterCard Create(CharacterModel characterModel)
     {
         var a = ModelDb.Card<CharacterCard>().ToMutable();
@@ -41,9 +46,6 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }
-
-    public override string Title => CharacterModel == null ? "???" : new LocString("characters", CharacterModel.CharacterSelectTitle)
-        .GetFormattedText();
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Description), MethodType.Getter)]

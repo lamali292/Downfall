@@ -1,17 +1,108 @@
-[gd_scene load_steps=5 format=3 ]
+[gd_scene load_steps=15 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_vpw3y"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slowing.tscn" id="2_vpw3y"]
 [ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/antennae.png" id="3_hm1rd"]
 [ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/stopwatch.png" id="4_03lu2"]
 
+[sub_resource type="Animation" id="Animation_0kbuq"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_hrgbb"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, -0.0045319363, -14.049002, 0.1, 310, 0.238, -0.367, -0.367, 0, 0),
+"times": PackedFloat32Array(0, 0.3667)
+}
+
+[sub_resource type="Animation" id="Animation_l2f2f"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wksd5"]
+_data = {
+&"RESET": SubResource("Animation_l2f2f"),
+&"attack": SubResource("Animation_hrgbb"),
+&"idle": SubResource("Animation_0kbuq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_seb7e"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxwrp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52deb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_to2sb"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctcg4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hm1rd"]
+states/attack/node = SubResource("AnimationNodeAnimation_seb7e")
+states/attack/position = Vector2(326, 187)
+states/idle/node = SubResource("AnimationNodeAnimation_mxwrp")
+states/idle/position = Vector2(315, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_52deb"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_to2sb"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ctcg4")]
+
 [node name="SlowingSlime" type="Node2D"]
 script = ExtResource("1_vpw3y")
 
 [node name="Visuals" parent="." instance=ExtResource("2_vpw3y")]
 unique_name_in_owner = true
-position = Vector2(1, -19)
+position = Vector2(0, -19)
 scale = Vector2(-1.6209183, 1.6209183)
+
+[node name="Antennae" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(-8.69, -32)
+rotation = 3.1415927
+scale = Vector2(0.61693424, -0.61693424)
+
+[node name="TextureRect" type="TextureRect" parent="Visuals/Antennae"]
+offset_left = -93.08577
+offset_top = -68.13063
+offset_right = 50.91423
+offset_bottom = 75.86937
+scale = Vector2(1.372813, 1.372813)
+texture = ExtResource("3_hm1rd")
+
+[node name="Stopwatch" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(38, -5.3)
+rotation = 3.1415927
+scale = Vector2(0.61693424, -0.61693424)
+
+[node name="TextureRect" type="TextureRect" parent="Visuals/Stopwatch"]
+offset_left = 30.59491
+offset_top = -75.409134
+offset_right = 174.59491
+offset_bottom = 68.590866
+texture = ExtResource("4_03lu2")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -31,25 +122,14 @@ position = Vector2(0, -46)
 unique_name_in_owner = true
 position = Vector2(2, -31)
 
-[node name="Antennae" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(-8.7, -34)
+libraries = {
+&"": SubResource("AnimationLibrary_wksd5")
+}
 
-[node name="TextureRect" type="TextureRect" parent="Antennae"]
-offset_left = -68.3
-offset_top = -105.00001
-offset_right = 75.7
-offset_bottom = 38.999992
-scale = Vector2(1.372813, 1.372813)
-texture = ExtResource("3_hm1rd")
-
-[node name="Stopwatch" type="Node2D" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
-position = Vector2(37, -5.3)
-
-[node name="TextureRect" type="TextureRect" parent="Stopwatch"]
-offset_left = -70.0
-offset_top = -98.7
-offset_right = 74.0
-offset_bottom = 45.300003
-texture = ExtResource("4_03lu2")
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_hm1rd")
+anim_player = NodePath("../AnimationPlayer")

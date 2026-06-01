@@ -15,10 +15,10 @@ public class Split : SlimeBossCardModel
         this.WithCommand(1);
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SlimeBossCmd.Split<GuerillaSlime>(Owner);
+        await SlimeBossCmd.Split<GuerillaSlime>(ctx, Owner);
         await SlimeBossCmd.Command(ctx, this);
     }
 }

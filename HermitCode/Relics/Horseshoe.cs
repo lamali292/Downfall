@@ -14,9 +14,9 @@ public sealed class Horseshoe : HermitRelicModel
 {
     public Horseshoe() : base(RelicRarity.Common)
     {
-        this.WithTip<WeakPower>();
-        this.WithTip<FrailPower>();
-        this.WithTip<VulnerablePower>();
+        WithTip<WeakPower>();
+        WithTip<FrailPower>();
+        WithTip<VulnerablePower>();
     }
 
     public override bool TryModifyPowerAmountReceived(

@@ -17,7 +17,7 @@ public class Gloomguard : AwakenedCardModel
         WithEnergyTip();
         this.WithTip<Void>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override bool ShouldReceiveCombatHooks => true;

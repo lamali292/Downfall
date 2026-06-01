@@ -93,7 +93,7 @@ public class Awakened : DownfallCharacterModel
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;
 
-public abstract class AwakenedRelicModel(RelicRarity rarity) : DownfallRelicModel<Awakened>(rarity);
+public abstract class AwakenedRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Awakened>(rarity, autoAdd);
 
 public abstract class AwakenedPowerModel(
     PowerType powerType = PowerType.Buff,

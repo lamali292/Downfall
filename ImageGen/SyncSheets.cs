@@ -33,6 +33,7 @@ public class SyncSheets
     private readonly string _serviceAccount;
 
     private readonly string _sheetId;
+
     public SyncSheets(string scriptDir, string sheetId)
     {
         _sheetId = sheetId;

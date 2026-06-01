@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Relics;
 [Pool(typeof(AutomatonRelicPool))]
 public class CableSpool : AutomatonRelicModel
 {
-    private int _usesLeft = 2;
+    private int _usesLeft;
 
 
     public CableSpool() : base(RelicRarity.Uncommon)
@@ -38,7 +38,7 @@ public class CableSpool : AutomatonRelicModel
 
     public override Task BeforeCombatStart()
     {
-        _usesLeft = 2;
+        _usesLeft = DynamicVars.Cards.IntValue;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }

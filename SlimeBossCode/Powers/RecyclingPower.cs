@@ -8,5 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 public class RecyclingPower : SlimeBossPowerModel
 {
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-        => player.Creature == Owner ? SlimeBossCmd.Slurp(player, Amount) : Task.CompletedTask;
+    {
+        return player.Creature == Owner ? SlimeBossCmd.Slurp(player, Amount) : Task.CompletedTask;
+    }
 }

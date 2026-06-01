@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Cards;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
@@ -10,14 +9,14 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Token;
 
-
 [Pool(typeof(TokenCardPool))]
-public abstract class SlimeCard<T>(bool showInCardLibrary = true, bool autoAdd = true) : SlimeBossCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self, showInCardLibrary, autoAdd), ISlimeCard
+public abstract class SlimeCard<T>(bool showInCardLibrary = true, bool autoAdd = true)
+    : SlimeBossCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self, showInCardLibrary, autoAdd), ISlimeCard
     where T : SlimeModel
 {
-    public SlimeModel SlimeModel => ModelDb.Get<T>();
     protected override bool IsPlayable => false;
     public override string Title => SlimeModel.Title.GetFormattedText();
+    public SlimeModel SlimeModel => ModelDb.Get<T>();
 }
 
 public interface ISlimeCard
@@ -31,7 +30,7 @@ public static class CardModelDescriptionPatch
     [HarmonyPostfix]
     public static void Postfix(CardModel __instance, ref LocString __result)
     {
-        if (__instance is  not ISlimeCard slimeCard)return;
+        if (__instance is not ISlimeCard slimeCard) return;
         var description = new LocString("cards", "SLIMEBOSS-SLIME_CARD.description");
         description.Add("Slime", slimeCard.SlimeModel.Title.GetFormattedText());
         __result = description;
@@ -42,25 +41,38 @@ public static class CardModelDescriptionPatch
 
 // Normal Slimes
 public class SlimeCardLeeching : SlimeCard<LeechingSlime>;
+
 public class SlimeCardMire : SlimeCard<MireSlime>;
+
 public class SlimeCardBruiser : SlimeCard<BruiserSlime>;
+
 public class SlimeCardGuerilla : SlimeCard<GuerillaSlime>;
+
 // Specialist Slimes
 public class SlimeCardAncient : SlimeCard<AncientSlime>;
-public class SlimeCardBronze: SlimeCard<BronzeSlime>;
-public class SlimeCardCultist: SlimeCard<CultistSlime>;
+
+public class SlimeCardBronze : SlimeCard<BronzeSlime>;
+
+public class SlimeCardCultist : SlimeCard<CultistSlime>;
+
 public class SlimeCardGhostflame : SlimeCard<GhostflameSlime>;
+
 public class SlimeCardInsulting : SlimeCard<InsultingSlime>;
+
 public class SlimeCardSpiky : SlimeCard<SpikySlime>;
+
 public class SlimeCardTime : SlimeCard<TimeSlime>;
-public class SlimeCardTorchhead: SlimeCard<TorchheadSlime>;
+
+public class SlimeCardTorchhead : SlimeCard<TorchheadSlime>;
+
 // Unused Slimes
 [Obsolete]
 public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
+
 [Obsolete]
 public class SlimeCardDarkling() : SlimeCard<DarklingSlime>(false, false);
+
 [Obsolete]
 public class SlimeCardScrap() : SlimeCard<ScrapSlime>(false, false);
-
 
 #pragma warning restore

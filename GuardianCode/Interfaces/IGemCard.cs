@@ -6,11 +6,13 @@ namespace Guardian.GuardianCode.Interfaces;
 
 public interface IGemSocketCard
 {
-    virtual int GemSlots => 0;
-    virtual int GemReplayCount => 1;
+    int GemSlots { get; }
+    int GemReplayCount => 1;
 
     IReadOnlyList<GemModel> Gems =>
-        this is CardModel card ? CardModifier.Modifiers(card).OfType<GemModel>().ToList() : throw new InvalidOperationException();
+        this is CardModel card
+            ? CardModifier.Modifiers(card).OfType<GemModel>().ToList()
+            : throw new InvalidOperationException();
 
     int GemCount => Gems.Count;
     int FreeSlots => Math.Max(0, GemSlots - Gems.Count);

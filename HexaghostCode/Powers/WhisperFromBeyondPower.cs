@@ -14,7 +14,7 @@ public class WhisperFromBeyondPower : HexaghostPowerModel
     public WhisperFromBeyondPower()
     {
         WithTip(CardKeyword.Exhaust);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)

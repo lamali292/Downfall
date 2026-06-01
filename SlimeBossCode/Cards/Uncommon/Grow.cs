@@ -1,9 +1,9 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -18,10 +18,10 @@ public class Grow : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var amount = await SlimeQueue.DecreaseSlimeSlots(Owner);
+        var amount = await SlimeBossCmd.DecreaseSlots(ctx, Owner);
         if (amount <= 0) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);

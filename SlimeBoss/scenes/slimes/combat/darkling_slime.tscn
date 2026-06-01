@@ -1,14 +1,76 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=13 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_ipaxr"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/darkling.tscn" id="2_ipaxr"]
+
+[sub_resource type="Animation" id="Animation_0kbuq"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_hrgbb"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, -0.0045319363, -14.049002, 0.1, 310, 0.238, -0.367, -0.367, 0, 0),
+"times": PackedFloat32Array(0, 0.3667)
+}
+
+[sub_resource type="Animation" id="Animation_l2f2f"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wksd5"]
+_data = {
+&"RESET": SubResource("Animation_l2f2f"),
+&"attack": SubResource("Animation_hrgbb"),
+&"idle": SubResource("Animation_0kbuq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_seb7e"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxwrp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52deb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_to2sb"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctcg4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ipaxr"]
+states/attack/node = SubResource("AnimationNodeAnimation_seb7e")
+states/attack/position = Vector2(326, 187)
+states/idle/node = SubResource("AnimationNodeAnimation_mxwrp")
+states/idle/position = Vector2(315, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_52deb"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_to2sb"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ctcg4")]
 
 [node name="DarklingSlime" type="Node2D"]
 script = ExtResource("1_ipaxr")
 
 [node name="Visuals" parent="." instance=ExtResource("2_ipaxr")]
 unique_name_in_owner = true
-position = Vector2(3, -7.000001)
+position = Vector2(0, -7.000001)
 scale = Vector2(-0.6, 0.6)
 
 [node name="Bounds" type="Control" parent="."]
@@ -28,3 +90,15 @@ position = Vector2(0, -46)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -31)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_wksd5")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_ipaxr")
+anim_player = NodePath("../AnimationPlayer")

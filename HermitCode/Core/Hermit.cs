@@ -97,7 +97,7 @@ public class Hermit : DownfallCharacterModel
 public class HermitRelicPool : DownfallRelicPool<Hermit>;
 
 [Pool(typeof(HermitRelicPool))]
-public abstract class HermitRelicModel(RelicRarity rarity) : DownfallRelicModel<Hermit>(rarity);
+public abstract class HermitRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Hermit>(rarity, autoAdd);
 
 public abstract class HermitPowerModel(
     PowerType powerType = PowerType.Buff,

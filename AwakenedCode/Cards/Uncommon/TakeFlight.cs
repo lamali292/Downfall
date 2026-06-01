@@ -16,9 +16,9 @@ public class TakeFlight : AwakenedCardModel, IChantable
         WithBlock(12, 3);
         this.WithPower<BlurPower>(1, false);
     }
-    
+
     protected override Artist Artist => Artist.Get<Eudaimonia>();
-    
+
 
     public bool HasChanted { get; set; } = false;
 

@@ -13,7 +13,7 @@ public class DouseInSlime : SlimeBossCardModel
     {
         WithPower<GoopPower>(14);
         WithCostUpgradeBy(-1);
-        WithPower<DouseInSlimePower>(1);
+        this.WithPower<DouseInSlimePower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -106,6 +106,7 @@ public class PackCards(string scriptDir, bool force)
                 File.Delete(p);
                 Console.WriteLine($"  removed: {stem}.tres");
             }
+
             Console.WriteLine($"  {groupId}: 0 cards, 0 page(s), 0 .tres updated");
             return new JsonObject();
         }

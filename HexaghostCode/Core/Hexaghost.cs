@@ -66,7 +66,7 @@ public class Hexaghost : DownfallCharacterModel
 
 public class HexaghostRelicPool : DownfallRelicPool<Hexaghost>;
 
-public abstract class HexaghostRelicModel(RelicRarity rarity) : DownfallRelicModel<Hexaghost>(rarity);
+public abstract class HexaghostRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Hexaghost>(rarity, autoAdd);
 
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,

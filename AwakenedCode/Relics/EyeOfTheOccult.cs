@@ -10,7 +10,7 @@ public class EyeOfTheOccult : AwakenedRelicModel
 {
     public EyeOfTheOccult() : base(RelicRarity.Event)
     {
-        this.WithTip<Thunderbolt>();
-        this.WithTip<Darkleech>();
+        WithTip<Thunderbolt>();
+        WithTip<Darkleech>();
     }
 }

@@ -87,7 +87,7 @@ public class Guardian : DownfallCharacterModel
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;
 
-public abstract class GuardianRelicModel(RelicRarity rarity) : DownfallRelicModel<Guardian>(rarity);
+public abstract class GuardianRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Guardian>(rarity, autoAdd);
 
 public abstract class GuardianPowerModel(
     PowerType powerType = PowerType.Buff,

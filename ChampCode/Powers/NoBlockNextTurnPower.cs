@@ -13,7 +13,7 @@ public class NoBlockNextTurnPower : ChampPowerModel
 {
     public NoBlockNextTurnPower() : base(PowerType.Debuff, PowerStackType.Single)
     {
-        this.WithTip<NoBlockPower>();
+        WithTip<NoBlockPower>();
         WithTip(StaticHoverTip.Block);
     }
 

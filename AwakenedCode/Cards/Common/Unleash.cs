@@ -15,6 +15,7 @@ public class Unleash : AwakenedCardModel
     {
         WithCalculatedDamage(5, DamageCalc, bonusUpgrade: 1);
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal DamageCalc(CardModel card, Creature? creature)

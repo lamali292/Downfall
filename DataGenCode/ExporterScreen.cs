@@ -13,7 +13,7 @@ public partial class ExporterScreen : Control
     private Button _exportButton = new() { Text = "Export!" };
 
     private ExportBatch? _exporter;
-    private CheckBox _exportImages = new() { Text = "Export images?", ButtonPressed = true };
+    private CheckBox _exportImages = new() { Text = "Export images?", ButtonPressed = false };
     private Button _openButton = new() { Text = "Open Folder" };
     private Label _statusLabel = new() { Text = "", HorizontalAlignment = HorizontalAlignment.Center };
     private Label _testLabel = new() { Text = "StS2 Exporter", HorizontalAlignment = HorizontalAlignment.Center };

@@ -15,9 +15,9 @@ public class Ensorcelate : AwakenedCardModel
         WithBlock(10, 3);
         WithEnergyTip();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

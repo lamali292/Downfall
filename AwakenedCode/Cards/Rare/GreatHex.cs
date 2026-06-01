@@ -19,7 +19,7 @@ public class GreatHex : AwakenedCardModel, IChantable
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     public bool HasChanted { get; set; } = false;
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

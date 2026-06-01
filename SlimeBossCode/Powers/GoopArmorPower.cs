@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -17,8 +16,9 @@ public class GoopArmorPower : SlimeBossPowerModel, IAfterConsumeEffect
         WithTip(StaticHoverTip.Block);
         WithTip(SlimeBossTip.Consume);
     }
-    
+
     public Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal amount)
-     => attacker != Owner ? Task.CompletedTask : 
-         CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+    {
+        return attacker != Owner ? Task.CompletedTask : CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+    }
 }

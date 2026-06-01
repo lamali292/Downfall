@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicModel
+public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = true) : HookedRelicModel(autoAdd)
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<Func<RelicModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
@@ -62,8 +62,9 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
         return WithVars(new EnergyVar(i));
     }
 
-    protected ConstructedRelicModel WithPower<T>(int i) where T : PowerModel
+    protected ConstructedRelicModel WithPower<T>(int i, bool showTooltip = true) where T : PowerModel
     {
+        if (showTooltip) WithTip<T>();
         return WithVars(new PowerVar<T>(i));
     }
 
@@ -94,6 +95,12 @@ public abstract class ConstructedRelicModel(RelicRarity rarity) : HookedRelicMod
     protected ConstructedRelicModel WithEnergyTip()
     {
         _hoverTips.Add(new RelicTooltipSource(HoverTipFactory.ForEnergy));
+        return this;
+    }
+
+    public ConstructedRelicModel WithHeal(int baseVal)
+    {
+        WithVars(new HealVar(baseVal));
         return this;
     }
 }

@@ -17,6 +17,7 @@ public class MysticOrder : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);

@@ -13,8 +13,9 @@ public class FleetingFlare : HexaghostCardModel
     {
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await HexaghostCmd.Ignite(ctx, Owner);

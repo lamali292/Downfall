@@ -17,6 +17,7 @@ public class ChosenVerse : AwakenedCardModel
         this.WithPower<ChosenVersePower>(4, 2, false);
         WithTip(StaticHoverTip.Block);
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

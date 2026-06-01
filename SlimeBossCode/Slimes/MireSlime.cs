@@ -11,12 +11,12 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class MireSlime : SlimeModel
 {
+    public override SlimeType SlimeType => SlimeType.Normal;
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
-    
-    public override bool IsSpecialist => false;
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
@@ -25,6 +25,6 @@ public class MireSlime : SlimeModel
         if (enemy == null) return;
         await DamageCmd.Attack(2).FromSlime(this).Targeting(enemy).Execute(ctx);
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 2, out _, this);
-        await PowerCmd.Apply<GoopPower>(ctx, enemy, modified, Creature, null);
+        await PowerCmd.Apply<GoopPower>(ctx, enemy, modified, PetOwner, null);
     }
 }

@@ -20,7 +20,7 @@ public class Bloodthirst : AwakenedCardModel
         this.WithTip<PowerPotion>();
         WithTip(StaticHoverTip.Fatal);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

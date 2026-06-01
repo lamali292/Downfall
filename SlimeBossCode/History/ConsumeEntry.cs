@@ -24,7 +24,7 @@ public class ConsumeEntry : CombatHistoryEntry
     public Creature GoopedCreature { get; }
     public decimal GoopAmount { get; }
 
-    
+
     public override string Description => $"{GetId(Actor)} played Dead On effect for {GetId(Actor)}";
 
     private static string? GetId(Creature creature)

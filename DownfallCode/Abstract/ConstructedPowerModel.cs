@@ -97,7 +97,7 @@ public abstract class ConstructedPowerModel(
         _hoverTips.Add(new PowerTooltipSource(HoverTipFactory.ForEnergy));
         return this;
     }
-    
+
     public ConstructedPowerModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));

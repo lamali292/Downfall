@@ -15,7 +15,7 @@ public class SlimeTap : SlimeBossCardModel
         WithEnergy(1, 1);
         WithCards(2);
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (await SlimeBossCmd.Absorb(ctx, this))

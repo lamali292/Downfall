@@ -11,7 +11,7 @@ public class RevengeProtocolPower : GuardianPowerModel, IOnGuardianModeChange
 {
     public RevengeProtocolPower()
     {
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
     }
 
     public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,

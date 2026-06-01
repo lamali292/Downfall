@@ -12,7 +12,7 @@ public class FlameTacklePower : SlimeBossPowerModel
         CardModel? cardSource)
     {
         return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
-               props.IsPoweredAttack()
+               target != dealer
             ? Amount
             : 0;
     }

@@ -11,7 +11,7 @@ public class ItsAFeaturePower : AutomatonPowerModel
 {
     public ItsAFeaturePower()
     {
-        this.WithTip<VigorPower>();
+        WithTip<VigorPower>();
     }
 
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)

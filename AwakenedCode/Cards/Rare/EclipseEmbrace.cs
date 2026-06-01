@@ -19,7 +19,7 @@ public class EclipseEmbrace : AwakenedCardModel
         WithEnergyTip();
         WithCostUpgradeBy(-1);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

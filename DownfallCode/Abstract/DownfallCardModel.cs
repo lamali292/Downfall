@@ -8,8 +8,6 @@ namespace Downfall.DownfallCode.Abstract;
 public abstract class DownfallCardModel
     : ConstructedCardModel
 {
-    protected virtual Artist? Artist => null;
-
     protected DownfallCardModel(
         int cost,
         CardType type,
@@ -20,7 +18,9 @@ public abstract class DownfallCardModel
     {
         WithTips(e => e is DownfallCardModel { Artist: not null } card ? [card.Artist.HoverTip] : []);
     }
-};
+
+    protected virtual Artist? Artist => null;
+}
 
 public abstract class DownfallCardModel<T>(
     int cost,

@@ -91,7 +91,7 @@ public class Snecko : DownfallCharacterModel
 
 public class SneckoRelicPool : DownfallRelicPool<Snecko>;
 
-public abstract class SneckoRelicModel(RelicRarity rarity) : DownfallRelicModel<Snecko>(rarity);
+public abstract class SneckoRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Snecko>(rarity, autoAdd);
 
 public abstract class SneckoPowerModel(
     PowerType powerType = PowerType.Buff,

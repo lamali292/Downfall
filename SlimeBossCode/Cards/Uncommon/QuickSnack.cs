@@ -1,12 +1,12 @@
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using SlimeBoss.SlimeBossCode.Core;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
+using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -21,7 +21,7 @@ public class QuickSnack : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
@@ -31,6 +31,5 @@ public class QuickSnack : SlimeBossCardModel
         var amount = card.EnergyCost.GetResolved();
         await CardCmd.Exhaust(ctx, card);
         await DownfallCardCmd.GiveCards<Lick>(Owner, PileType.Hand, amount);
-
     }
 }

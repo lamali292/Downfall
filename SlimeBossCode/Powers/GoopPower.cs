@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Patches.Localization;
+﻿using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -28,7 +27,6 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
     }
 
-    
 
     protected override object InitInternalData()
     {
@@ -89,13 +87,12 @@ public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescriptio
         if (command.ModelSource is IHasConsumeEffect slimeBossCardModel)
             await slimeBossCardModel.ConsumeEffect(ctx, creature, command, amount);
 
-        
-        var entry = new ConsumeEntry(creature,amount, attacker, CombatState.RoundNumber, attacker.Side,
+
+        var entry = new ConsumeEntry(creature, amount, attacker, CombatState.RoundNumber, attacker.Side,
             CombatManager.Instance.History, CombatState.Players);
         CombatManager.Instance.History.Add(CombatState, entry);
-        
+
         await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, attacker, amount);
-        
     }
 
     private class Data

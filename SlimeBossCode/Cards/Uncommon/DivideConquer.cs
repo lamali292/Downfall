@@ -1,11 +1,11 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
-using Downfall.DownfallCode.Artists;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -22,7 +22,9 @@ public class DivideConquer : SlimeBossCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal Calc(CardModel card, Creature? _)
-        => SlimeQueue.GetCount(card.Owner);
+    {
+        return SlimeQueue.GetCount(card.Owner);
+    }
 
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

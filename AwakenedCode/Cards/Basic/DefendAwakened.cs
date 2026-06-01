@@ -17,7 +17,7 @@ public class DefendAwakened : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

@@ -12,17 +12,19 @@ public class Cauterize : HexaghostCardModel
 {
     public Cauterize() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(8, 2);
+        WithDamage(7, 2);
         this.WithTip<SoulBurnPower>();
     }
 
-    protected override Artist Artist => Artist.Get<Inmo>();
+    protected override bool HasEnergyCostX => true;
 
+    protected override Artist Artist => Artist.Get<Inmo>();
     
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var hits = ResolveEnergyXValue();
+        var attack = await CommonActions.CardAttack(this, cardPlay, hits).Execute(ctx);
         var amount = attack.Results.SelectMany(r => r).Sum(x => x.TotalDamage);
         await CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Target, this, amount);
     }

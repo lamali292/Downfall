@@ -1,11 +1,9 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
-using Awakened.AwakenedCode.Powers;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
 using AwakenedCharacter = Awakened.AwakenedCode.Core.Awakened;
 
 namespace Awakened.AwakenedCode.Cards;

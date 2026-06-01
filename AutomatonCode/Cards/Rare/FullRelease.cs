@@ -1,8 +1,8 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 

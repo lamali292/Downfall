@@ -15,7 +15,7 @@ public class Clutch : AwakenedCardModel
         WithDamage(8, 3);
         WithEnergyTip();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool ShouldGlowGoldInternal => Has0CostInDraw;

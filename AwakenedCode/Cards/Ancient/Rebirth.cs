@@ -20,7 +20,7 @@ public class Rebirth : AwakenedCardModel
         this.WithTip<FrailPower>();
         WithTip(AwakenedTip.Awaken);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

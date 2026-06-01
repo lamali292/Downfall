@@ -19,7 +19,7 @@ public class RockSlide : GuardianCardModel, IGemSocketCard
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     public int GemSlots => 3;
 
     public override void AfterCreated()

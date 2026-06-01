@@ -12,8 +12,8 @@ public class RefractedBeam : GuardianCardModel, IGemSocketCard
 {
     public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4);
-        this.WithRepeat(4, 1);
+        WithDamage(3);
+        this.WithRepeat(3, 1);
         WithTip(GuardianKeyword.Gem);
     }
 

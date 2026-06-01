@@ -1,5 +1,4 @@
-﻿using Awakened.AwakenedCode.Cards;
-using Awakened.AwakenedCode.CustomEnums;
+﻿using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.HoverTips;

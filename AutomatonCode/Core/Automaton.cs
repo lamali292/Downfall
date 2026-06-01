@@ -102,7 +102,7 @@ public abstract class AutomatonPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Automaton>(powerType, powerStackType);
 
-public abstract class AutomatonRelicModel(RelicRarity rarity) : DownfallRelicModel<Automaton>(rarity);
+public abstract class AutomatonRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Automaton>(rarity, autoAdd);
 
 public abstract class AutomatonEnchantmentModel : DownfallEnchantmentModel<Automaton>;
 

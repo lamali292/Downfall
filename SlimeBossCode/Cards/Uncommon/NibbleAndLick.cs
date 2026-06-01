@@ -1,10 +1,10 @@
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using SlimeBoss.SlimeBossCode.Core;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
+using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -20,7 +20,7 @@ public class NibbleAndLick : SlimeBossCardModel
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

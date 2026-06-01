@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
@@ -16,6 +17,7 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
         WithDamage(4, 1);
         WithBlock(4, 1);
         WithVar("Increase", 4, 1);
+        WithTip(SlimeBossTip.Consume);
     }
 
     public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)

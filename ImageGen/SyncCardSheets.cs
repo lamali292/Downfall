@@ -381,6 +381,8 @@ public class SyncCardSheets
         return s.Replace("\n", " ").Trim();
     }
 
+    // ReSharper disable UnusedAutoPropertyAccessor.Local
+    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
     private class CardEntry
     {
         [JsonPropertyName("id")] public string Id { get; set; } = "";
@@ -392,4 +394,6 @@ public class SyncCardSheets
         [JsonPropertyName("upgrades")] public int Upgrades { get; set; }
         [JsonPropertyName("mod")] public string? Mod { get; set; }
     }
+    // ReSharper restore AutoPropertyCanBeMadeGetOnly.Local
+    // ReSharper restore UnusedAutoPropertyAccessor.Local
 }

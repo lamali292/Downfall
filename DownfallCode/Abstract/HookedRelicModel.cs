@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -11,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class HookedRelicModel : CustomRelicModel
+public abstract class HookedRelicModel(bool autoAdd = true) : CustomRelicModel(autoAdd)
 {
     private Task ExecuteWithContext(Func<PlayerChoiceContext, Task> action)
     {
@@ -39,16 +38,7 @@ public abstract class HookedRelicModel : CustomRelicModel
     {
         return Task.CompletedTask;
     }
-
-    public sealed override Task AfterEnergyReset(Player player)
-    {
-        return ExecuteWithContext(ctx => AfterEnergyReset(ctx, player));
-    }
-
-    protected virtual Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
-    {
-        return Task.CompletedTask;
-    }
+    
 
     public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)

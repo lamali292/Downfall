@@ -92,7 +92,7 @@ public class SlimeBoss : DownfallCharacterModel
 
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
 
-public abstract class SlimeBossRelicModel(RelicRarity rarity) : DownfallRelicModel<SlimeBoss>(rarity);
+public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<SlimeBoss>(rarity, autoAdd);
 
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,

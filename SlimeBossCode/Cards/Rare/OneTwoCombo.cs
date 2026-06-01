@@ -19,15 +19,15 @@ public class OneTwoCombo : SlimeBossCardModel, IAfterSplit
         this.WithCommand(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Command(ctx, this);
-    }
-
     public async Task AfterSplit(Player player, SlimeModel slime)
     {
         if (player != Owner || Pile?.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await SlimeBossCmd.Command(ctx, this);
     }
 }

@@ -1,6 +1,5 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
-using Awakened.AwakenedCode.Piles;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -19,7 +18,7 @@ public class ByrdsEye : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);

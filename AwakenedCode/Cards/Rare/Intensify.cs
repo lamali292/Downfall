@@ -18,7 +18,9 @@ public class Intensify : AwakenedCardModel
         this.WithConjure();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
+
     protected override Artist Artist => Artist.Get<Opal>();
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(CombatState);

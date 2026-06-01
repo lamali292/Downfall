@@ -1,8 +1,70 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=14 format=3 ]
 
 [ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_nnsxd"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/hex.tscn" id="2_nnsxd"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/vfx/fire.tscn" id="3_nrisf"]
+
+[sub_resource type="Animation" id="Animation_0kbuq"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_hrgbb"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, -0.0045319363, -14.049002, 0.1, 310, 0.238, -0.367, -0.367, 0, 0),
+"times": PackedFloat32Array(0, 0.3667)
+}
+
+[sub_resource type="Animation" id="Animation_l2f2f"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wksd5"]
+_data = {
+&"RESET": SubResource("Animation_l2f2f"),
+&"attack": SubResource("Animation_hrgbb"),
+&"idle": SubResource("Animation_0kbuq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_seb7e"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxwrp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52deb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_to2sb"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctcg4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nrisf"]
+states/attack/node = SubResource("AnimationNodeAnimation_seb7e")
+states/attack/position = Vector2(326, 187)
+states/idle/node = SubResource("AnimationNodeAnimation_mxwrp")
+states/idle/position = Vector2(315, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_52deb"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_to2sb"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ctcg4")]
 
 [node name="HexSlime" type="Node2D"]
 script = ExtResource("1_nnsxd")
@@ -11,6 +73,17 @@ script = ExtResource("1_nnsxd")
 unique_name_in_owner = true
 position = Vector2(0, -2)
 scale = Vector2(-1, 1)
+
+[node name="Crown" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(16, -40)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="vfx_fire" parent="Visuals/Crown" instance=ExtResource("3_nrisf")]
+position = Vector2(18.000006, -30.999996)
+scale = Vector2(0.3540658, 0.3540658)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -30,10 +103,14 @@ position = Vector2(0, -46)
 unique_name_in_owner = true
 position = Vector2(2, -31)
 
-[node name="Crown" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(16.4, -40)
+libraries = {
+&"": SubResource("AnimationLibrary_wksd5")
+}
 
-[node name="vfx_fire" parent="Crown" instance=ExtResource("3_nrisf")]
-position = Vector2(-16.4, -34)
-scale = Vector2(0.3540658, 0.3540658)
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_nrisf")
+anim_player = NodePath("../AnimationPlayer")

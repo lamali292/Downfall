@@ -17,7 +17,7 @@ public class GhostflameBarrier : HexaghostCardModel
         this.WithTip<SoulBurnPower>();
         WithPower<GhostflameBarrierPower>(5, 2);
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

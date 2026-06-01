@@ -15,7 +15,7 @@ public class FeatherWhirl : AwakenedCardModel
     {
         this.WithTip<PlumeJab>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool HasEnergyCostX => true;

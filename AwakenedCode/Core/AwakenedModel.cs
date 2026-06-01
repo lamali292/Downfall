@@ -42,7 +42,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         StatusBarHelper.SetStatus(player, meter.Value, 7, new Color(0x55FFFFFF));
         return true;
     }
-    
+
     public override Task BeforeCombatStart()
     {
         AwakenMeter.Clear();
