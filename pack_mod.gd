@@ -4,6 +4,7 @@ extends SceneTree
 # These are never loaded at runtime — only their compiled counterparts are.
 const SKIP_EXTENSIONS: Array[String] = [
 	".png", ".jpg", ".jpeg", ".webp", ".bmp", ".svg", ".tga",
+	".ogg", ".mp3", ".wav",  # audio is compiled to cache just like images
 ]
 
 # Prefer the explicit desktop compression variant; fall back to the generic path.

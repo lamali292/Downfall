@@ -108,7 +108,7 @@ internal static class ModelDbInitIdsPatch
 
         foreach (var character in ModelDb.AllCharacters.OfType<DownfallCharacterModel>())
             if (character.CharacterSelectSfxEntry is { } effect)
-                SfxOverridePatch.Register(character.CharacterSelectSfx, effect);
+                SfxOverrideRegistry.Register(character.CharacterSelectSfx, effect);
     }
 }
 
