@@ -19,7 +19,7 @@ public class PhilosophizePower : AutomatonPowerModel, IAfterCompilingFunction
 
     public async Task AfterCompilingFunction(PlayerChoiceContext ctx, Player player, CardPileAddResult result)
     {
-        if (player.Creature == Owner) return;
+        if (player.Creature != Owner) return;
         var enemies = CombatState.HittableEnemies;
         await PowerCmd.Apply<StrengthPower>(ctx, enemies, Amount,
             Owner, null);

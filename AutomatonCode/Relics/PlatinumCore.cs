@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -38,8 +39,7 @@ public class PlatinumCore : AutomatonRelicModel
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).FirstOrDefault();
-        if (choice == null) return;
-        await AutomatonCmd.EncodeCard(choice, ctx);
+        var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).First();
+        await CardPileCmd.Add(choice, PileType.Hand);
     }
 }

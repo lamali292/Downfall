@@ -19,7 +19,7 @@ public class RecreatePower : AutomatonPowerModel
 
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (creator == null || creator.Creature != Owner) return;
+        if (creator == null || creator.Creature != Owner || card.Type != CardType.Status) return;
         var generatedThisTurn = CombatManager.Instance.History.Entries
             .OfType<CardGeneratedEntry>()
             .Count(e => e.HappenedThisTurn(CombatState) && e.Creator == creator  && e.Card.Type == CardType.Status);

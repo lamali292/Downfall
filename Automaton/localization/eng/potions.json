@@ -4,5 +4,5 @@
   "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "Kio's Clever Concoction",
   "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "Choose [blue]1[/blue] of [blue]3[/blue] random cards to [gold]Encode[/gold], repeat until you create a Function.",
   "AUTOMATON-VEXING_DRAUGHT_POTION.title": "Vexing Draught",
-  "AUTOMATON-VEXING_DRAUGHT_POTION.description": "Gain [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].[gold]\n[/gold]Gain [blue]{DexterityPower:diff()}[/blue] [gold]Dexterity[/gold].\nStash [blue]2[/blue] [gold]Burns[/gold]."
+  "AUTOMATON-VEXING_DRAUGHT_POTION.description": "Gain [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].\nGain [blue]{DexterityPower:diff()}[/blue] [gold]Dexterity[/gold].\n[gold]Stash[/gold] [blue]2[/blue] [gold]Burns[/gold]."
 }

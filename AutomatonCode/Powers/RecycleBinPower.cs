@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class RecycleBinPower : AutomatonPowerModel
 {
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task BeforeSideTurnEndVeryEarly(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;

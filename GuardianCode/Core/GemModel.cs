@@ -196,6 +196,12 @@ public abstract class GemModel : CardModifier, ICustomModel
         return originalPlayCount;
     }
 
+    internal void ApplyOnAddedEffects(CardModel card)
+    {
+        if (card is GuardianCardModel gc)
+            OnAdded(gc);
+    }
+
     protected virtual void OnAdded(GuardianCardModel card)
     {
     }

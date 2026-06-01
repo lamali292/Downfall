@@ -23,6 +23,6 @@ public class Overheat : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await CommonActions.ApplySelf<OverheatPower>(ctx, this);
+        await CommonActions.Apply<OverheatPower>(ctx, this, cardPlay);
     }
 }
