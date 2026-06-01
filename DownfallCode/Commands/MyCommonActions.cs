@@ -91,13 +91,14 @@ public static class MyCommonActions
         var dynamicVars = model.GetDynamicVars();
         AttackCommand cmd;
         if (dynamicVars.ContainsKey("CalculatedDamage"))
-            cmd = DamageCmd.Attack(dynamicVars.CalculatedDamage).WithHitCount(hitCount);
+            cmd = DamageCmd.Attack(dynamicVars.CalculatedDamage).WithValueProp(dynamicVars.CalculatedDamage.Props);
         else if (dynamicVars.ContainsKey("Damage"))
-            cmd = DamageCmd.Attack(dynamicVars.Damage.BaseValue).WithHitCount(hitCount);
+            cmd = DamageCmd.Attack(dynamicVars.Damage.BaseValue).WithValueProp(dynamicVars.Damage.Props);
         else
             throw new InvalidOperationException(
                 $"{model.GetType().Name} does not have a Damage or CalculatedDamage var");
 
+        cmd.WithHitCount(hitCount);
         cmd.FromModel(model);
         var targets = targetTypeOverride == null
             ? model.MyGetTargets(target).ToList()
