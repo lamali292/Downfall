@@ -39,7 +39,8 @@ public class PlatinumCore : AutomatonRelicModel
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).First();
+        var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).FirstOrDefault();
+        if (choice == null) return;
         await CardPileCmd.Add(choice, PileType.Hand);
     }
 }

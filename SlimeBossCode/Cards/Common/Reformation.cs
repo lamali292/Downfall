@@ -22,6 +22,7 @@ public class Reformation : SlimeBossCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToTopSelectionPrompt, DynamicVars.Cards.IntValue);
         var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Discard.GetPile(Owner), Owner, prefs);
         await CardPileCmd.Add(cards, PileType.Draw, CardPilePosition.Top);

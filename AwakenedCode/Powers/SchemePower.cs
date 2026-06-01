@@ -20,7 +20,7 @@ public class SchemePower : AwakenedPowerModel
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side == Owner.Side)
-            await PowerCmd.Remove(this);
+        if (!participants.Contains(Owner)) return;
+        await PowerCmd.Remove(this);
     }
 }
