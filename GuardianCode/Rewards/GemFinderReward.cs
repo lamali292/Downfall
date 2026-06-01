@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Guardian.GuardianCode.Rewards;
 
-public class GemFinderReward(int count, Player player) : CustomReward(player)
+public class GemFinderReward(int choosable, int choices, Player player) : CustomReward(player)
 {
     [CustomEnum] public static RewardType GemFinderRewardType;
 
@@ -34,7 +34,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         get
         {
             var desc = new LocString("gameplay_ui", "COMBAT_REWARD_ADD_GEMS");
-            desc.Add("Amount", count);
+            desc.Add("Amount", choosable);
             return desc;
         }
     }
@@ -50,7 +50,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
         var seen = new HashSet<string>();
         var rng = Player.PlayerRng.Rewards;
-        while (Gems.Count < count)
+        while (Gems.Count < choices)
         {
             var roll = rng.NextInt(100);
             var rarity = roll < 55 ? CardRarity.Common
@@ -68,7 +68,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     protected override async Task<bool> OnSelect()
     {
-        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToDeckSelectionPrompt, 0, Gems.Count);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToDeckSelectionPrompt, 0, choosable);
         var cards = Gems.Select(e => e.ToCard).ToList();
         _currentlyShownScreen = NSimpleCardSelectScreen.Create(cards, prefs);
         NOverlayStack.Instance?.Push(_currentlyShownScreen);
@@ -106,7 +106,7 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
 
     private static CustomReward Deserialize(SerializableReward save, Player player1)
     {
-        return new GemFinderReward(save.GoldAmount, player1);
+        return new GemFinderReward(save.GoldAmount, save.OptionCount, player1);
     }
 
     public override SerializableReward ToSerializable()
@@ -114,7 +114,8 @@ public class GemFinderReward(int count, Player player) : CustomReward(player)
         return new SerializableReward
         {
             RewardType = GemFinderRewardType,
-            GoldAmount = count
+            GoldAmount = choosable,
+            OptionCount = choices
         };
     }
 }

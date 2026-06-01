@@ -12,7 +12,7 @@ public class PickOfRhapsody() : GuardianRelicModel(RelicRarity.Uncommon)
     public override Task AfterCombatEnd(CombatRoom room)
     {
         if (room.RoomType != RoomType.Elite) return Task.CompletedTask;
-        var gemReward = new GemFinderReward(1, Owner);
+        var gemReward = new GemFinderReward(1, 1, Owner);
         room.AddExtraReward(Owner, gemReward);
         return Task.CompletedTask;
     }
