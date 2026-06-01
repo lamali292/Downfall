@@ -26,8 +26,4 @@
         <None Include=".gitignore"/>
         <None Include="pack_mod.gd"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.7"/>
-    </ItemGroup>
 </Project>

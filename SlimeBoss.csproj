@@ -19,9 +19,4 @@
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
-        <PackageReference Update="Alchyr.Sts2.BaseLib" Version="3.1.7"/>
-    </ItemGroup>
 </Project>

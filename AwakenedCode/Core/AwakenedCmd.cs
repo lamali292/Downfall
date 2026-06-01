@@ -82,7 +82,7 @@ public static class AwakenedCmd
         await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime);
     }
 
-    public static bool CanConjure(Player player)
+    private static bool CanConjure(Player player)
     {
         return !player.Creature.Powers.Any(p => p is BurnoutPower);
     }

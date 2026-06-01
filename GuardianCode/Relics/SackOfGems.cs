@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class SackOfGems() : GuardianRelicModel(RelicRarity.Shop)
+public class SackOfGems() : GuardianRelicModel(RelicRarity.Shop, false)
 {
     // TODO
 }
