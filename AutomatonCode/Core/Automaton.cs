@@ -17,6 +17,7 @@ namespace Automaton.AutomatonCode.Core;
 public class Automaton : DownfallCharacterModel
 {
     private static readonly Color Color = new(0xD4C99DFF);
+    public override Color EnergyLabelOutlineColor  => Color;
     public override string CharId => "Automaton";
     public override string ModId => AutomatonMainFile.ModId;
     public override Color NameColor => Color;
