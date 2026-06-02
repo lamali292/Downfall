@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cup8nsthyv7gb"]
+[gd_scene load_steps=10 format=3 ]
 
-[ext_resource type="Script" uid="uid://dh4d0sqk21k6" path="res://src/Core/Nodes/Combat/NEnergyCounter.cs" id="1_rvsv6"]
-[ext_resource type="PackedScene" uid="uid://je18xbctrh5k" path="res://Hexaghost/scenes/character/energy_vfx_back.tscn" id="2_rvsv6"]
-[ext_resource type="Texture2D" uid="uid://cx548qsg1umwh" path="res://Hexaghost/images/character/orb_layer_1.png" id="3_rvsv6"]
-[ext_resource type="Texture2D" uid="uid://drvq8hhvtfl7d" path="res://Hexaghost/images/character/orb_layer_2.png" id="4_40p3h"]
-[ext_resource type="Texture2D" uid="uid://bc8lm3sm2ug6t" path="res://Hexaghost/images/character/orb_layer_3.png" id="5_0ylmi"]
-[ext_resource type="PackedScene" uid="uid://cy7e0ntqw1nha" path="res://Hexaghost/scenes/character/energy_vfx_front.tscn" id="6_40p3h"]
-[ext_resource type="FontVariation" uid="uid://bg85h22rkxs6g" path="res://themes/kreon_bold_shared.tres" id="7_pjvvq"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="8_qghg7"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NEnergyCounter.cs" id="1_rvsv6"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/energy_vfx_back.tscn" id="2_rvsv6"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/orb_layer_1.png" id="3_rvsv6"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/orb_layer_2.png" id="4_40p3h"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/orb_layer_3.png" id="5_0ylmi"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/energy_vfx_front.tscn" id="6_40p3h"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_shared.tres" id="7_pjvvq"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="8_qghg7"]
 
 [sub_resource type="FontVariation" id="FontVariation_x0k5t"]
 base_font = ExtResource("7_pjvvq")

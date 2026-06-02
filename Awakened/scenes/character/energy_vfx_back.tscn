@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://v8h67jiyhrpq"]
+[gd_scene load_steps=8 format=3 ]
 
-[ext_resource type="Script" uid="uid://bd46jtcut2h66" path="res://src/Core/Nodes/Vfx/Utilities/NParticlesContainer.cs" id="1_pv4p6"]
-[ext_resource type="PackedScene" uid="uid://cq0m6037hbecy" path="res://scenes/vfx/common/vfx_common_glow.tscn" id="2_r1onb"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Vfx/Utilities/NParticlesContainer.cs" id="1_pv4p6"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/common/vfx_common_glow.tscn" id="2_r1onb"]
 
 [sub_resource type="Curve" id="Curve_k5mkh"]
 _data = [Vector2(0, 0.353316), 0.0, -0.753348, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://uarnf8rbocma"]
+[gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="Script" path="res://AutomatonCode/Vfx/NAutomatonCreatureVisuals.cs" id="1_0l65l"]
 [ext_resource type="PackedScene" path="res://Automaton/scenes/character/automaton.tscn" id="1_tul5f"]
