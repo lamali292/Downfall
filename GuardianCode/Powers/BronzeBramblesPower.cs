@@ -22,8 +22,8 @@ public class BronzeBramblesPower : GuardianPowerModel
 
         var worseOff =
             (oldType == PowerType.Buff && newType == PowerType.Debuff)            
-            || (newType == PowerType.Debuff && Math.Abs(power.Amount) > Math.Abs(oldAmount))  
-            || (oldType != PowerType.Debuff && newType == PowerType.Buff && Math.Abs(power.Amount) < Math.Abs(oldAmount)); 
+            || (oldType == PowerType.Debuff && newType == PowerType.Debuff && Math.Abs(power.Amount) > Math.Abs(oldAmount))  
+            || (oldType == PowerType.Buff && newType == PowerType.Buff && Math.Abs(power.Amount) < Math.Abs(oldAmount)); 
         if (!worseOff) return;
 
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, Amount, applier, null);
