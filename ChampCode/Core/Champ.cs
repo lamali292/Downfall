@@ -13,6 +13,7 @@ namespace Champ.ChampCode.Core;
 public class Champ : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x5E594FFF);
+    public override Color EnergyLabelOutlineColor  => new(0x464203FF);
     public override string CharId => "Champ";
     public override string ModId => ChampMainFile.ModId;
     public override Color NameColor => Color;

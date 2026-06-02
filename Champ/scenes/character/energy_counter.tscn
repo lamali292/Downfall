@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://sifytk1pujk3"]
+
+[ext_resource type="Script" uid="uid://dh4d0sqk21k6" path="res://src/Core/Nodes/Combat/NEnergyCounter.cs" id="1_8ee4c"]
+[ext_resource type="PackedScene" uid="uid://cdq78gntq1va2" path="res://Champ/scenes/character/energy_vfx_back.tscn" id="2_orr43"]
+[ext_resource type="Texture2D" uid="uid://bl4fup7dswme7" path="res://Champ/images/character/orb_layer_1.png" id="3_veufy"]
+[ext_resource type="Texture2D" uid="uid://px84ol02jro5" path="res://Champ/images/character/orb_layer_2.png" id="4_n7ojv"]
+[ext_resource type="Texture2D" uid="uid://bcdqqke1liv7x" path="res://Champ/images/character/orb_layer_3.png" id="5_5sx4t"]
+[ext_resource type="Texture2D" uid="uid://ctgvvb6gydlio" path="res://Champ/images/character/orb_layer_4.png" id="6_75yvb"]
+[ext_resource type="Texture2D" uid="uid://c2w4u533hqifq" path="res://Champ/images/character/orb_layer_5.png" id="7_3v683"]
+[ext_resource type="PackedScene" uid="uid://bpcjsh06c8ka0" path="res://Champ/scenes/character/energy_vfx_front.tscn" id="8_auu06"]
+[ext_resource type="FontVariation" uid="uid://bg85h22rkxs6g" path="res://themes/kreon_bold_shared.tres" id="9_0cs6f"]
+[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="10_6pjng"]
+
+[sub_resource type="FontVariation" id="FontVariation_x0k5t"]
+base_font = ExtResource("9_0cs6f")
+spacing_glyph = 2
+
+[node name="SilentEnergyCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+script = ExtResource("1_8ee4c")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="EnergyVfxBack" parent="." instance=ExtResource("2_orr43")]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+
+[node name="Layers" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer1" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_veufy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("4_n7ojv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("5_5sx4t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer4" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_75yvb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer5" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_3v683")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EnergyVfxFront" parent="." instance=ExtResource("8_auu06")]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -29.0
+offset_right = -16.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.27447784, 0.2578939, 0.013553764, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_x0k5t")
+theme_override_font_sizes/font_size = 36
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_6pjng")
+MinFontSize = 32
+MaxFontSize = 36

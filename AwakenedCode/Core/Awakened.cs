@@ -13,6 +13,7 @@ namespace Awakened.AwakenedCode.Core;
 public class Awakened : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x12FAF0FF);
+    public override Color EnergyLabelOutlineColor  => new(0x004956FF);
     public override string CharId => "Awakened";
     public override string ModId => AwakenedMainFile.ModId;
     public override Color NameColor => Color;
