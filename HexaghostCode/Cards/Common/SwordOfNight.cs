@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +15,7 @@ public class SwordOfNight : HexaghostCardModel
     public SwordOfNight() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(14, 4);
-        WithVar("Scry", 3, 1);
+        this.WithScry(3, 1);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }

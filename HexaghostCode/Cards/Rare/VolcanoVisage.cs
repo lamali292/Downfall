@@ -12,7 +12,7 @@ public class VolcanoVisage : HexaghostCardModel
 {
     public VolcanoVisage() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<VolcanoVisagePower>(5, 2);
+        this.WithPower<VolcanoVisagePower>(5, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

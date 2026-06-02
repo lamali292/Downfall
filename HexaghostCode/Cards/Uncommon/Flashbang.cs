@@ -14,7 +14,8 @@ public class Flashbang : HexaghostCardModel
     public Flashbang() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
-        WithPower<TemporaryStrengthDownPower>(2, 1);
+        this.WithPower<TemporaryStrengthDownPower>(2, 1, false);
+        this.WithTip<StrengthPower>();
         WithPower<WeakPower>(1, 1);
     }
 

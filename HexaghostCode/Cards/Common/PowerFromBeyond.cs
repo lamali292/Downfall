@@ -17,7 +17,7 @@ public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
         this.WithAfterlife();
         WithPower<VigorPower>(3, 1);
         WithEnergy(2, 1);
-        WithPower<EnergyNextTurnPower>(2, 1);
+        this.WithPower<EnergyNextTurnPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

@@ -103,4 +103,10 @@ public static class ConstructedCardModelExtensions
     {
         return card.WithTips(_ => [Artist.Get<T>().HoverTip]);
     }
+    
+    
+    public static ConstructedCardModel WithScry(this ConstructedCardModel card, int baseValue, int upgrade = 0)
+    {
+        return card.WithVars(new ScryVar(baseValue).WithUpgrade(upgrade));
+    }
 }

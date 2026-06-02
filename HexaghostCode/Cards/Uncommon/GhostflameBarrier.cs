@@ -15,7 +15,7 @@ public class GhostflameBarrier : HexaghostCardModel
     {
         WithBlock(12, 4);
         this.WithTip<SoulBurnPower>();
-        WithPower<GhostflameBarrierPower>(5, 2);
+        this.WithPower<GhostflameBarrierPower>(5, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

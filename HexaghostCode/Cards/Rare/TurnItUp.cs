@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
@@ -13,9 +14,12 @@ public class TurnItUp : HexaghostCardModel
 {
     public TurnItUp() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<TemporaryStrengthUpPower>(2, 1);
-        WithPower<TemporaryDexterityUpPower>(2, 1);
-        WithPower<TemporaryIntensityPower>(2, 1);
+        this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
+        this.WithPower<TemporaryDexterityUpPower>(2, 1, false);
+        this.WithPower<TemporaryIntensityPower>(2, 1, false);
+        this.WithTip<StrengthPower>();
+        this.WithTip<DexterityPower>();
+        this.WithTip<IntensityPower>();
         WithKeyword(CardKeyword.Retain);
     }
 

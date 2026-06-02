@@ -16,7 +16,7 @@ public class GhostShield : HexaghostCardModel, IHasAfterlifeEffect
     {
         this.WithAfterlife();
         WithBlock(7, 3);
-        WithPower<BlurPower>(1);
+        this.WithPower<BlurPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

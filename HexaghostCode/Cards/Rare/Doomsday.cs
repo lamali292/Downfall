@@ -12,7 +12,7 @@ public class Doomsday : HexaghostCardModel
 {
     public Doomsday() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<DoomsdayPower>(1);
+        this.WithPower<DoomsdayPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

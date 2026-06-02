@@ -17,6 +17,7 @@ public class HeatShield : HexaghostCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
         WithCalculatedBlock(0, Calc);
+        this.WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

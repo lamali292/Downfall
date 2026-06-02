@@ -12,7 +12,8 @@ public class Poltergeist : HexaghostCardModel
 {
     public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<PoltergeistPower>(4, 1);
+        this.WithPower<PoltergeistPower>(4, 1, false);
+        WithTip(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

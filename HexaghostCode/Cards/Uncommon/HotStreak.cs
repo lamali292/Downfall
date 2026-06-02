@@ -13,7 +13,7 @@ public class HotStreak : HexaghostCardModel
 {
     public HotStreak() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<HotStreakPower>(6, 3);
+        this.WithPower<HotStreakPower>(6, 3, false);
         this.WithTip<SoulBurnPower>();
     }
 

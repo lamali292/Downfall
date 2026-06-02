@@ -13,7 +13,7 @@ public class Outflare : HexaghostCardModel
     public Outflare() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 3);
-        WithPower<TemporaryIntensityPower>(1, 1);
+        this.WithPower<TemporaryIntensityPower>(1, 1, false);
         this.WithTip<IntensityPower>();
     }
 

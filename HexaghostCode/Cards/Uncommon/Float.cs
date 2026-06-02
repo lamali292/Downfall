@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,7 @@ public class Float : HexaghostCardModel
     {
         WithBlock(3, 2);
         WithCards(1);
+        WithTip(HexaghostKeyword.Advance);
         WithVar("CardsPlayed", 3, 2);
     }
 
