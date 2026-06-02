@@ -15,7 +15,7 @@ public class CutThrough : AutomatonCardModel
     public CutThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithVar("Scry", 1, 1);
+        this.WithScry( 1, 1);
         WithTip(DownfallTip.Scry);
         WithTip(AutomatonTip.Stash);
     }

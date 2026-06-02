@@ -15,7 +15,7 @@ public class BattlePlan : ChampCardModel
     {
         WithBlock(2, 2);
         this.WithEnterDefensive();
-        WithVar("Scry", 3, 1);
+        this.WithScry(3, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

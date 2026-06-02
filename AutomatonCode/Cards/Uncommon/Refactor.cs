@@ -15,7 +15,7 @@ public class Refactor : AutomatonCardModel
     public Refactor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(4, 2);
-        WithVar("Scry", 4);
+        this.WithScry(4);
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallTip.Scry);
     }
