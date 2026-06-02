@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="mod.build.props" />
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -19,11 +20,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="Directory.Build.props"/>
-        <None Include="Directory.Build.targets"/>
+        <None Include="mod.build.props"/>
+        <None Include="mod.build.targets"/>
         <None Include="export_presets.cfg"/>
         <None Include="project.godot"/>
         <None Include=".gitignore"/>
         <None Include="pack_mod.gd"/>
     </ItemGroup>
+    <Import Project="mod.build.targets" />
 </Project>

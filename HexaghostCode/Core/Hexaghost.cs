@@ -14,6 +14,7 @@ namespace Hexaghost.HexaghostCode.Core;
 public class Hexaghost : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x723E6DFF);
+    public override Color EnergyLabelOutlineColor  => Color;
     public override string ModId => HexaghostMainFile.ModId;
     public override string CharId => "Hexaghost";
     public override Color NameColor => Color;

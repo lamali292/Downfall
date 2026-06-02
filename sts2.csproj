@@ -1,0 +1,57 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+
+    <PropertyGroup>
+        <AssemblyName>sts2</AssemblyName>
+        <EnableDynamicLoading>True</EnableDynamicLoading>
+        <Nullable>enable</Nullable>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>13.0</LangVersion>
+        <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+        <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+
+        <!-- Do NOT auto-glob. We pick exactly what compiles below. This is what
+             keeps DownfallCode/, HexaghostCode/, AutomatonCode/, etc. OUT. -->
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    </PropertyGroup>
+
+    <!-- Compile ONLY the real game framework. No mod *Code/ folders. -->
+    <ItemGroup>
+        <Compile Include="src/**/*.cs" />
+        <Compile Include="addons/**/*.cs" />
+    </ItemGroup>
+
+    <!-- Game framework dependencies. src/Core references these; if a CS0246
+         'type not found' appears, the missing package/reference goes here. -->
+    <ItemGroup>
+        <PackageReference Include="SharpGen.Runtime" Version="2.2.0-beta" />
+        <PackageReference Include="Sentry" Version="5.0.0" />
+        <PackageReference Include="SmartFormat" Version="3.3.0" />
+        <PackageReference Include="System.IO.Hashing" Version="9.0.0" />
+        <PackageReference Include="Vortice.DXGI" Version="3.6.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="MonoMod.Backports" Version="1.1.2" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="--y__InlineArray2.cs" />
+        <Compile Include="--y__InlineArray3.cs" />
+        <Compile Include="--y__InlineArray4.cs" />
+        <Compile Include="--y__InlineArray5.cs" />
+        <Compile Include="--z__ReadOnlyArray.cs" />
+        <Compile Include="--z__ReadOnlyList.cs" />
+        <Compile Include="--z__ReadOnlySingleElementList.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Steamworks.NET">
+            <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\Steamworks.NET.dll</HintPath>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <PropertyGroup>
+        <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+        <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
+    </PropertyGroup>
+</Project>

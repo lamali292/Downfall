@@ -13,8 +13,6 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     public abstract string ModId { get; }
     public abstract string? CharId { get; }
-    protected virtual Color EnergyOutlineColor => new(0, 0, 0);
-    protected virtual Color EnergyBurstColor => new(1, 1, 1);
     public virtual Color LabOutlineColor => new(1, 1, 1);
     public virtual Color DeckEntryCardColor => new(1, 1, 1);
     public abstract float CardColorH { get; }
@@ -32,11 +30,23 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     public override string CustomIconTexturePath =>
         $"res://{ModId}/images/character/character_icon.png";
-
+    
+    /*
     public override CustomEnergyCounter? CustomEnergyCounter =>
         new CustomEnergyCounter(EnergyCounterPaths, EnergyOutlineColor, EnergyBurstColor);
+*/
+    public override string CustomEnergyCounterPath
+    {
+        get
+        {
+            var path = $"res://{ModId}/scenes/character/energy_counter.tscn";
+            return ResourceLoader.Exists(path)
+                ? path
+                : $"res://Downfall/scenes/character/energy_counter_empty.tscn";
+        }
+    }
 
-    public override string CustomEnergyCounterPath => "res://Downfall/scenes/character/energy_counter_empty.tscn";
+   
 
     public override string CustomMapMarkerPath =>
         $"res://{ModId}/images/character/map_marker.png";
