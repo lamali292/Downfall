@@ -30,5 +30,6 @@ script = ExtResource("1_al5ym")
 _particles = [NodePath("vfx_common_glow")]
 
 [node name="vfx_common_glow" parent="." instance=ExtResource("2_j5n66")]
-self_modulate = Color(0.5314078, 0.8100039, 0.9616289, 1)
+self_modulate = Color(1, 0.60171336, 0.9896576, 1)
+emitting = true
 process_material = SubResource("ParticleProcessMaterial_tfy6v")
