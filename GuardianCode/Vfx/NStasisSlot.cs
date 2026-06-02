@@ -72,7 +72,7 @@ public partial class NStasisSlot : Control
     {
         _holder?.QueueFree();
         _holder = null;
-        if (_count == null) return;
-        _count.Visible = false;
+        if (!IsInstanceValid(_count)) return;
+        _count!.Visible = false;
     }
 }

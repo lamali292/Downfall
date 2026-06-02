@@ -36,6 +36,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     {
         if (player.Character is not Guardian || combatState.RoundNumber > 1) return;
         await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
+        await GuardianCmd.LeaveDefensiveMode(ctx, player);
     }
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
