@@ -16,6 +16,7 @@ namespace Collector.CollectorCode.Core;
 public class Collector : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x0D9D82FF);
+    public override Color EnergyLabelOutlineColor  => new(0x004f04FF);
     public override string CharId => "Collector";
     public override string ModId => CollectorMainFile.ModId;
     public override Color NameColor => Color;

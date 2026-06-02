@@ -16,6 +16,7 @@ namespace SlimeBoss.SlimeBossCode.Core;
 public class SlimeBoss : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x195E19FF);
+    public override Color EnergyLabelOutlineColor  => new(0x005704FF);
     public override string CharId => "SlimeBoss";
     public override string ModId => SlimeBossMainFile.ModId;
     public override Color NameColor => Color;

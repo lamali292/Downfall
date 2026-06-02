@@ -15,6 +15,7 @@ namespace Snecko.SneckoCode.Core;
 public class Snecko : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x467A94FF);
+    public override Color EnergyLabelOutlineColor  => new(0x317394FF);
     public override string CharId => "Snecko";
     public override string ModId => SneckoMainFile.ModId;
     public override Color NameColor => Color;

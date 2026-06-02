@@ -13,6 +13,7 @@ namespace Guardian.GuardianCode.Core;
 public class Guardian : DownfallCharacterModel
 {
     private static readonly Color Color = new(0xCA5B5BFF);
+    public override Color EnergyLabelOutlineColor  => new(0x575044FF);
     public override string CharId => "Guardian";
     public override string ModId => GuardianMainFile.ModId;
     public override Color NameColor => Color;

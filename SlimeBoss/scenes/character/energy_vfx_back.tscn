@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1x1q2i2mth41"]
+
+[ext_resource type="Script" uid="uid://bd46jtcut2h66" path="res://src/Core/Nodes/Vfx/Utilities/NParticlesContainer.cs" id="1_kmsa5"]
+[ext_resource type="PackedScene" uid="uid://cq0m6037hbecy" path="res://scenes/vfx/common/vfx_common_glow.tscn" id="2_jld83"]
+
+[sub_resource type="Curve" id="Curve_k5mkh"]
+_data = [Vector2(0, 0.353316), 0.0, -0.753348, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kin38"]
+curve = SubResource("Curve_k5mkh")
+
+[sub_resource type="Curve" id="Curve_mosi5"]
+_data = [Vector2(0, 0), 0.0, 11.5422, 0, 0, Vector2(0.203175, 0.842474), 0.0, 0.210613, 0, 0, Vector2(1, 1), 0.197691, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_monce"]
+curve = SubResource("Curve_mosi5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfy6v"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 3.5
+scale_max = 3.5
+scale_curve = SubResource("CurveTexture_monce")
+alpha_curve = SubResource("CurveTexture_kin38")
+
+[node name="silent_energy_vfx_back" type="Node2D" node_paths=PackedStringArray("_particles")]
+script = ExtResource("1_kmsa5")
+_particles = [NodePath("vfx_common_glow")]
+
+[node name="vfx_common_glow" parent="." instance=ExtResource("2_jld83")]
+self_modulate = Color(0.15802127, 1, 0.53287697, 1)
+process_material = SubResource("ParticleProcessMaterial_tfy6v")
