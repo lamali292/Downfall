@@ -104,7 +104,7 @@ public static class GuardianCmd
         return false;
     }
 
-    public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel? source = null,
+    public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel source,
         bool silent = false)
     {
         if (card.CombatState == null) return false;
@@ -116,12 +116,11 @@ public static class GuardianCmd
                 ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
             return false;
         }
-
-        source ??= card;
+        
         await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
-        await CardPileCmd.Add(card, pile, clonedBy: source, skipVisuals: silent);
-        SetStasisCounter(card);
+        await CardPileCmd.Add(card, pile, skipVisuals: silent);
         card.EnergyCost.AfterCardPlayedCleanup();
+        SetStasisCounter(card);
         await GuardianHook.AfterCardEntersStasis(card.CombatState, ctx, card, source);
         return true;
     }
@@ -149,7 +148,6 @@ public static class GuardianCmd
             await CardCmd.Exhaust(ctx, card);
             return;
         }
-
         await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
         card.EnergyCost.SetUntilPlayed(0);
     }

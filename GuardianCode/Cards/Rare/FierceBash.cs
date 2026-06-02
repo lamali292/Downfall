@@ -31,6 +31,6 @@ public class FierceBash : GuardianCardModel, ITickCard
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await GuardianCmd.PutIntoStasis(this, ctx);
+        await GuardianCmd.PutIntoStasis(this, ctx, this);
     }
 }

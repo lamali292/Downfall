@@ -18,6 +18,6 @@ public class StasisField : GuardianCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await GuardianCmd.PutIntoStasis(this, ctx);
+        await GuardianCmd.PutIntoStasis(this, ctx, this);
     }
 }
