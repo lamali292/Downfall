@@ -14,6 +14,6 @@ public class Temporal : DownfallEnchantmentModel<Core.Guardian>
         ICombatState combatState)
     {
         if (player != Card.Owner || combatState.RoundNumber > 1) return;
-        await GuardianCmd.PutIntoStasis(Card, ctx, null, true);
+        await GuardianCmd.PutIntoStasis(Card, ctx, this, true);
     }
 }

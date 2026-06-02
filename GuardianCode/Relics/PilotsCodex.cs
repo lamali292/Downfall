@@ -24,7 +24,7 @@ public class PilotsCodex() : GuardianRelicModel(RelicRarity.Rare)
         foreach (var card in list)
         {
             await CardPileCmd.Add(card, PileType.Play);
-            await GuardianCmd.PutIntoStasis(card, ctx, null, true);
+            await GuardianCmd.PutIntoStasis(card, ctx, this, true);
         }
     }
 }
