@@ -37,12 +37,12 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         if (a is not CharacterCard characterCard) throw new Exception("CharacterCard model is not a CharacterCard");
         characterCard.CharacterModel = characterModel;
         characterCard._pool = characterModel.CardPool;
-        characterCard.RandomCommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Common)
-            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
-        characterCard.RandomUncommonCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Uncommon)
-            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
-        characterCard.RandomRareCard = characterModel.CardPool.AllCards.Where(e => e.Rarity == CardRarity.Rare)
-            .TakeRandom(1, Rng.Chaotic).FirstOrDefault();
+        characterCard.RandomCommonCard = Rng.Chaotic.NextItem(characterModel.CardPool.AllCards
+            .Where(e => e.Rarity == CardRarity.Common));
+        characterCard.RandomUncommonCard = Rng.Chaotic.NextItem(characterModel.CardPool.AllCards
+            .Where(e => e.Rarity == CardRarity.Uncommon));
+        characterCard.RandomRareCard = Rng.Chaotic.NextItem(characterModel.CardPool.AllCards
+            .Where(e => e.Rarity == CardRarity.Rare));
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }

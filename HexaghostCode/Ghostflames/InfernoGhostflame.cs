@@ -26,8 +26,7 @@ public class InfernoGhostflame : GhostflameModel
     {
         if (Owner.Creature.CombatState == null) return;
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);
-        var target = CombatState.HittableEnemies
-            .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
+        var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (target == null) return;
 
         SfxCmd.Play("event:/sfx/characters/attack_fire");

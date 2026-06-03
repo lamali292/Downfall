@@ -20,8 +20,7 @@ public class TimeSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        var enemy = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets)
-            .FirstOrDefault();
+        var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
         await DamageCmd.Attack(4).FromSlime(this).Targeting(enemy).Execute(ctx);
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 1, out _, this);

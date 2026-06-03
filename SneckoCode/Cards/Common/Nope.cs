@@ -26,7 +26,8 @@ public class Nope : SneckoCardModel
         if (card == null) return;
         await CardCmd.Exhaust(ctx, card);
         if (!ModelDb.AllCharacterCardPools.Contains(card.Pool)) return;
-        var nopeCard = card.Pool.AllCards.TakeRandom(1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+        // TODO : Probably make a restriction here, lol
+        var nopeCard = Owner.RunState.Rng.CombatCardGeneration.NextItem(card.Pool.AllCards);
         if (nopeCard == null) return;
         var combatCard = CombatState!.CreateCard(nopeCard, Owner);
         await CardPileCmd.AddGeneratedCardToCombat(combatCard, PileType.Hand, Owner);

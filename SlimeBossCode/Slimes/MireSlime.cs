@@ -20,8 +20,7 @@ public class MireSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        var enemy = CombatState.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets)
-            .FirstOrDefault();
+        var enemy =  CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
         await DamageCmd.Attack(2).FromSlime(this).Targeting(enemy).Execute(ctx);
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 2, out _, this);

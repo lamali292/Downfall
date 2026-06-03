@@ -13,8 +13,7 @@ public class CrashoutPower : AutomatonPowerModel
     {
         var player = cardPlay.Card.Owner;
         if (player.Creature != Owner || cardPlay.Card.Type != CardType.Status) return;
-        var enemy = Owner.CombatState?.HittableEnemies
-            .TakeRandom(1, player.RunState.Rng.CombatTargets).FirstOrDefault();
+        var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
         await CreatureCmd.Damage(ctx, enemy, Amount, ValueProp.Unpowered, Owner, null);
     }

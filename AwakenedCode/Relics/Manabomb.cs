@@ -23,9 +23,9 @@ public class Manabomb : AwakenedRelicModel
         if (wasRemovalPrevented) return;
         var manaburn = creature.GetPowerAmount<ManaburnPower>();
         if (manaburn == 0) return;
-        var target = Owner.Creature.CombatState?.HittableEnemies
-            .Where(c => c != creature)
-            .TakeRandom(1, Owner.RunState.Rng.CombatTargets).FirstOrDefault();
+        var combatState = Owner.Creature.CombatState;
+        var target = combatState?.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies
+            .Where(c => c != creature));
         if (target == null) return;
         var a = await PowerCmd.Apply<ManaburnPower>(ctx, target, manaburn, Owner.Creature, null);
         if (a == null) return;

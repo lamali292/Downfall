@@ -24,7 +24,7 @@ public class LaserTurret : GuardianCardModel, ITickCard, ICustomTickDuration
 
     public async Task OnTick(PlayerChoiceContext ctx)
     {
-        var enemy = CombatState?.HittableEnemies.TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
+        var enemy = CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
         await CreatureCmd.Damage(ctx, enemy, DynamicVars.Damage, Owner.Creature);
     }

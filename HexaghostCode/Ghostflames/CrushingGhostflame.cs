@@ -25,8 +25,7 @@ public class CrushingGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        var target = CombatState.HittableEnemies
-            .TakeRandom(1, CombatState.RunState.Rng.CombatTargets).FirstOrDefault();
+        var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
 

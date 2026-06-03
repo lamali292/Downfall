@@ -41,9 +41,7 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
             || Dupe == null
             || cardPlay.IsAutoPlay) return;
 
-        var enemy = CombatState.HittableEnemies
-            .TakeRandom(1, CombatState.RunState.Rng.CombatTargets)
-            .FirstOrDefault();
+        var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
 
         var freshDupe = Source?.CreateDupe();
         Dupe = freshDupe;

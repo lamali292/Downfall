@@ -19,13 +19,11 @@ public class RapidStrikes : ChampCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
-        PileType.Hand
+        Owner.RunState.Rng.CombatCardSelection.NextItem(PileType.Hand
             .GetPile(Owner)
             .Cards
             .Where(c => c.Tags.Contains(CardTag.Strike) && c.EnergyCost.GetResolved() > 0)
-            .ToList()
-            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)
-            .FirstOrDefault()?
+            )?
             .EnergyCost
             .SetThisTurn(0);
     }

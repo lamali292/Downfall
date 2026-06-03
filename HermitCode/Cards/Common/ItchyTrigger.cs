@@ -21,10 +21,10 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         var cards = Owner.GetHand();
-        var cardModel = cards?.Where(c => c.CostsEnergyOrStars(false))
-                            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault() ??
-                        cards?.Where(c => c.CostsEnergyOrStars(true))
-                            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
+        var cardModel = Owner.RunState.Rng.CombatCardSelection.
+                            NextItem(cards.Where(c => c.CostsEnergyOrStars(false))) ?? 
+                        Owner.RunState.Rng.CombatCardSelection
+                            .NextItem(cards.Where(c => c.CostsEnergyOrStars(true)));
         cardModel?.EnergyCost.AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
         return Task.CompletedTask;
     }

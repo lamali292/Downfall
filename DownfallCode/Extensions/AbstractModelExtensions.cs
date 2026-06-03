@@ -46,22 +46,26 @@ public static class AbstractModelExtensions
 
     public static IEnumerable<Creature> MyGetTargets(this AbstractModel model, Creature? singleTarget = null)
     {
-        // Cards delegate fully to the existing GetTargets() which handles all cases
-        if (model is CardModel card)
-        {
-            var targetType = card.TargetType;
-            if (targetType == TargetType.AnyEnemy || targetType == TargetType.AnyAlly ||
-                targetType == TargetType.AnyPlayer || CustomTargetType.IsCustomSingleTargetType(targetType))
-                return singleTarget is not null ? [singleTarget] : [];
+        if (model is not CardModel card) return model.ResolveTargets(model.GetTargetType(), singleTarget);
+        var targetType = card.TargetType;
+        if (targetType is TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer
+            || CustomTargetType.IsCustomSingleTargetType(targetType))
+            return singleTarget is not null ? [singleTarget] : [];
+        return card.GetTargets();
 
-            return card.GetTargets();
-        }
+    }
 
-        // Non-card models resolve from creature's combat state
+    public static IEnumerable<Creature> MyGetTargets(
+        this AbstractModel model, Creature? singleTarget, TargetType targetTypeOverride)
+    {
+        return model.ResolveTargets(targetTypeOverride, singleTarget);
+    }
+
+    private static IEnumerable<Creature> ResolveTargets(
+        this AbstractModel model, TargetType type, Creature? singleTarget)
+    {
         var creature = model.GetCreature();
         var combatState = creature.CombatState;
-        var type = model.GetTargetType();
-
         return type switch
         {
             TargetType.Self => [creature],
@@ -72,31 +76,10 @@ public static class AbstractModelExtensions
             TargetType.AllAllies when combatState is not null =>
                 combatState.PlayerCreatures.Where(c => c is { IsAlive: true }),
             TargetType.RandomEnemy when combatState is not null =>
-                combatState.HittableEnemies.TakeRandom(1, combatState.RunState.Rng.CombatTargets),
+                combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies) is { } enemy
+                    ? [enemy] : [],
             _ => throw new InvalidOperationException(
                 $"Unsupported TargetType {type} for {model.GetType().Name}")
-        };
-    }
-
-    public static IEnumerable<Creature> MyGetTargets(
-        this AbstractModel model, Creature? singleTarget, TargetType targetTypeOverride)
-    {
-        var creature = model.GetCreature();
-        var combatState = creature.CombatState;
-
-        return targetTypeOverride switch
-        {
-            TargetType.Self => [creature],
-            TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer =>
-                singleTarget is not null ? [singleTarget] : [],
-            TargetType.AllEnemies when combatState is not null =>
-                combatState.HittableEnemies,
-            TargetType.AllAllies when combatState is not null =>
-                combatState.PlayerCreatures.Where(c => c is { IsAlive: true }),
-            TargetType.RandomEnemy when combatState is not null =>
-                combatState.HittableEnemies.TakeRandom(1, combatState.RunState.Rng.CombatTargets),
-            _ => throw new InvalidOperationException(
-                $"Unsupported TargetType {targetTypeOverride} for {model.GetType().Name}")
         };
     }
 }

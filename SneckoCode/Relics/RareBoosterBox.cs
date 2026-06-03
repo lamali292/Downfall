@@ -14,8 +14,8 @@ public class RareBoosterBox() : SneckoRelicModel(RelicRarity.Shop)
 
     public override async Task AfterObtained()
     {
-        var a = SneckoModel.GetRewardSneckoCards(Owner).Where(c => c.Rarity == CardRarity.Rare).TakeRandom(1,
-            Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
+        var a = Owner.RunState.Rng.CombatCardSelection
+            .NextItem(SneckoModel.GetRewardSneckoCards(Owner).Where(c => c.Rarity == CardRarity.Rare));
         if (a == null) return;
         var card = a.ToMutable();
         Owner.RunState.AddCard(card, Owner);

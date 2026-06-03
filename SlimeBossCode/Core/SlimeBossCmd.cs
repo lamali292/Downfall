@@ -168,8 +168,8 @@ public static class SlimeBossCmd
     {
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
-        var slime = SlimeBossModelDb.AllSlimes.Where(e => (e.SlimeType & slimeType) != 0)
-            .TakeRandom(1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+        var slime = player.RunState.Rng.CombatCardGeneration
+            .NextItem(SlimeBossModelDb.AllSlimes.Where(e => (e.SlimeType & slimeType) != 0));
         if (slime == null) return;
         await Split(ctx, player, slime);
     }

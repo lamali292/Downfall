@@ -64,32 +64,17 @@ public class DownfallCmd
     public static async Task Steal<T>(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
         where T : PowerModel
     {
-        switch (card.TargetType)
-        {
-            case TargetType.AnyEnemy:
-                if (cardPlay.Target == null) return;
-                await Steal<T>(ctx, cardPlay.Target, card);
-                break;
-            case TargetType.AllEnemies:
-                if (card.CombatState == null) return;
-                await Steal<T>(ctx, card.CombatState.HittableEnemies, card);
-                break;
-            case TargetType.RandomEnemy:
-                if (card.CombatState == null) return;
-                await Steal<T>(ctx,
-                    card.CombatState.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets), card);
-                break;
-        }
+        var targets = card.MyGetTargets(cardPlay.Target);
+        await Steal<T>(ctx, targets, card);
     }
 
-
-    public static Task Steal<T>(PlayerChoiceContext ctx, Creature targets, CardModel card)
+    public static Task Steal<T>(PlayerChoiceContext ctx, Creature target, CardModel card)
         where T : PowerModel
     {
-        return Steal<T>(ctx, [targets], card);
+        return Steal<T>(ctx, [target], card);
     }
 
-    public static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
+    private static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
         where T : PowerModel
     {
         var a = card.DynamicVars.Power<T>().BaseValue;

@@ -18,8 +18,8 @@ public class Chomp : SlimeBossCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = Owner.GetHand(e => e.Tags.Contains(SlimeBossTag.Tackle))
-            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection).FirstOrDefault();
+        var card = Owner.RunState.Rng.CombatCardSelection
+            .NextItem(Owner.GetHand(e => e.Tags.Contains(SlimeBossTag.Tackle)));
         if (card == null) return;
         if (IsUpgraded)
             card.SetToFreeThisCombat();

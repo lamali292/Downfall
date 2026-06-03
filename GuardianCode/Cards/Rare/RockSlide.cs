@@ -27,21 +27,11 @@ public class RockSlide : GuardianCardModel, IGemSocketCard
         var rng = Owner.RunState.Rng.Niche;
 
         if (this is not IGemSocketCard socketCard) return;
-        socketCard.AddGem(GuardianModelDb.AllGems
-            .Where(e => e.Rarity == CardRarity.Common)
-            .TakeRandom(1, rng)
-            .First()
-            .ToMutable());
-        socketCard.AddGem(GuardianModelDb.AllGems
-            .Where(e => e.Rarity == CardRarity.Uncommon)
-            .TakeRandom(1, rng)
-            .First()
-            .ToMutable());
-        socketCard.AddGem(GuardianModelDb.AllGems
-            .Where(e => e.Rarity == CardRarity.Rare)
-            .TakeRandom(1, rng)
-            .First()
-            .ToMutable());
+        foreach (var rarity in new[] { CardRarity.Common, CardRarity.Uncommon, CardRarity.Rare })
+        {
+            var gem = rng.NextItem(GuardianModelDb.AllGems.Where(e => e.Rarity == rarity))?.ToMutable();
+            if (gem != null) socketCard.AddGem(gem);
+        }
     }
 
 

@@ -20,8 +20,8 @@ public class Convert : AutomatonCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = Owner.GetDraw(e => e.Type == CardType.Status).TakeRandom(1, Owner.RunState.Rng.CombatCardSelection)
-            .FirstOrDefault();
+        var card = Owner.RunState.Rng.CombatCardSelection
+            .NextItem(Owner.GetDraw(e => e.Type == CardType.Status));
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
         if (IsUpgraded) fuel.UpgradeInternal();

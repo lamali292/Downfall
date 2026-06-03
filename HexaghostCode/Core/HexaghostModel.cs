@@ -59,8 +59,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card.CombatState == null || card is not IHasAfterlifeEffect afterlifeEffect) return;
-        var a = card.CombatState.HittableEnemies.TakeRandom(1, card.CombatState.RunState.Rng.CombatTargets)
-            .FirstOrDefault();
+        var a = card.CombatState.RunState.Rng.CombatTargets.NextItem(card.CombatState.HittableEnemies);
         var cardPlay = new CardPlay
         {
             Card = card,
