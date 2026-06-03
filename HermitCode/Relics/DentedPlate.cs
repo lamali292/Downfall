@@ -14,29 +14,20 @@ public sealed class DentedPlate : HermitRelicModel
     public DentedPlate() : base(RelicRarity.Uncommon)
     {
         WithEnergy(1);
+        WithCards(1);
     }
 
     public override decimal ModifyHandDraw(Player player, decimal count)
     {
         if (player != Owner || player.Creature.CurrentHp > player.Creature.MaxHp / 2)
             return count;
-        return count + 1;
+        return count + DynamicVars.Cards.BaseValue;
     }
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player)
+    public override decimal ModifyMaxEnergy(Player player, decimal amount)
     {
-        if (player != Owner)
-            return;
-
-        if (player.Creature.CurrentHp <= player.Creature.MaxHp / 2)
-        {
-            Status = RelicStatus.Active;
-            Flash();
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
-        }
-        else
-        {
-            Status = RelicStatus.Normal;
-        }
+        if (player != Owner || player.Creature.CurrentHp > player.Creature.MaxHp / 2) return amount;
+        return amount + DynamicVars.Energy.BaseValue;
+        
     }
 }

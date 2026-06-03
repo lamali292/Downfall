@@ -1,4 +1,5 @@
 using BaseLib.Extensions;
+using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,19 +18,13 @@ public sealed class CharredGlove : HermitRelicModel
     public CharredGlove() : base(RelicRarity.Common)
     {
         WithPower<VigorPower>(3);
-        WithTip<VigorPower>();
     }
 
 
     public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
-        if (card.Owner.Creature != Owner.Creature) return;
-        if (card.Type == CardType.Curse)
-        {
-            Flash();
-            await PowerCmd.Apply<VigorPower>(ctx, Owner!.Creature, DynamicVars.Power<VigorPower>().BaseValue,
-                Owner.Creature,
-                null);
-        }
+        if (card.Owner != Owner || card.Type != CardType.Curse) return;
+        Flash();
+        await MyCommonActions.ApplySelf<VigorPower>(ctx, this);
     }
 }

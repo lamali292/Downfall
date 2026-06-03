@@ -13,18 +13,18 @@ public sealed class BrokenTooth : HermitRelicModel
 {
     public BrokenTooth() : base(RelicRarity.Rare)
     {
-        WithVars(new HealVar(7), new GoldVar(35));
+        WithHeal(7);
+        WithGold(35);
     }
 
     public override RelicRarity Rarity => RelicRarity.Rare;
 
     public override async Task AfterCombatVictory(CombatRoom room)
     {
-        if (room.RoomType == RoomType.Elite)
-        {
-            Flash();
-            await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
-            await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
-        }
+        if (room.RoomType != RoomType.Elite) return;
+        Flash();
+        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+        await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
+        
     }
 }

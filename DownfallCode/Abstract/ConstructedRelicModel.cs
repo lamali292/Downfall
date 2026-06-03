@@ -87,7 +87,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         return this;
     }
 
-    public ConstructedRelicModel WithTip<T>() where T : AbstractModel
+    protected ConstructedRelicModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));
     }
@@ -98,9 +98,15 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         return this;
     }
 
-    public ConstructedRelicModel WithHeal(int baseVal)
+    protected ConstructedRelicModel WithHeal(int baseVal)
     {
         WithVars(new HealVar(baseVal));
+        return this;
+    }
+    
+    protected ConstructedRelicModel WithGold(int baseVal)
+    {
+        WithVars(new GoldVar(baseVal));
         return this;
     }
 }

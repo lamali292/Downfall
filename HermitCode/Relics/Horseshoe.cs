@@ -27,20 +27,13 @@ public sealed class Horseshoe : HermitRelicModel
         out decimal modifiedAmount)
     {
         modifiedAmount = amount;
-
-        // Only reduce debuffs being applied to the relic owner
-        if (target != Owner?.Creature)
+        if (target != Owner.Creature)
             return false;
 
-        // Only trigger for positive amounts (application, not removal)
         if (amount <= 0m)
             return false;
-
-        // Only intercept Weak, Frail, or Vulnerable
         if (canonicalPower is not (WeakPower or FrailPower or VulnerablePower))
             return false;
-
-        // Reduce by 1, minimum 0
         modifiedAmount = Math.Max(0m, amount - 1m);
         return true;
     }

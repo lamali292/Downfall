@@ -20,8 +20,7 @@ public sealed class BrassTacks : HermitRelicModel
     public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Creature.Side || Owner?.Creature == null) return;
-
+        if (!participants.Contains(Owner.Creature)) return;
         Flash();
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
     }

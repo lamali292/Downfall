@@ -19,7 +19,7 @@
   "HERMIT-RED_SCARF.description": "Whenever you apply a new debuff to an enemy, gain [blue]{Block}[/blue] [gold]Block[/gold].",
   "HERMIT-DENTED_PLATE.title": "Dented Plate",
   "HERMIT-DENTED_PLATE.flavor": "Several bullets are still lodged inside.",
-  "HERMIT-DENTED_PLATE.description": "While your HP is at or below [blue]50%[/blue], gain {Energy:energyIcons()} and draw [blue]1[/blue] card at the start of your turn.",
+  "HERMIT-DENTED_PLATE.description": "While your HP is at or below [blue]50%[/blue], gain {Energy:energyIcons()} and draw [blue]{Cards}[/blue] card at the start of your turn.",
   "HERMIT-PET_GHOST.title": "Pet Ghost",
   "HERMIT-PET_GHOST.flavor": "Poor guy.",
   "HERMIT-PET_GHOST.description": "Prevent your first lethal HP loss each combat.",
