@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
 using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -25,6 +26,7 @@ public partial class AutomatonMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("encode");
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlay);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());

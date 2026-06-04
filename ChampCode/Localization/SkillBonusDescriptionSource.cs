@@ -7,11 +7,9 @@ namespace Champ.ChampCode.Localization;
 
 public class SkillBonusDescriptionSource : IExtraDescriptionSource
 {
-    private const string DownfallTable = "downfall";
-
     public IEnumerable<string> GetLines(CardModel card)
     {
         if (!card.Keywords.Contains(ChampKeyword.TriggerSkillBonus)) yield break;
-        yield return new LocString(DownfallTable, "TRIGGER_SKILL_BONUS.title").GetFormattedText();
+        yield return new LocString("static_hover_tips", "TRIGGER_SKILL_BONUS.title").GetFormattedText();
     }
 }

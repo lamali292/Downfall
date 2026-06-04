@@ -1,4 +1,5 @@
 using System.Reflection;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Patches;
 using Godot;
 using Godot.Bridge;
@@ -20,6 +21,7 @@ public partial class HexaghostMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

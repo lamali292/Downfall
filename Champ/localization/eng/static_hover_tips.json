@@ -10,5 +10,6 @@
   "CHAMP-STANCE.title": "Stance",
   "CHAMP-STANCE.description": "You may have only one Stance at a time.",
   "CHAMP-ULTIMATE.title": "Ultimate",
-  "CHAMP-ULTIMATE.description": "[gold]Stance[/gold]. too long."
+  "CHAMP-ULTIMATE.description": "[gold]Stance[/gold]. too long.",
+  "TRIGGER_SKILL_BONUS.title": "Trigger your current [gold]Stance[/gold]'s [gold]Skill Bonus[/gold]."
 }

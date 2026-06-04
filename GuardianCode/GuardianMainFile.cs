@@ -1,6 +1,7 @@
 using System.Reflection;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Saves;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -29,6 +30,7 @@ public partial class GuardianMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("gems");
         RegisterGemSave();
 
         CardExecutionRegistry.RegisterAfter(GuardianCardEffectHandler.DoAfterOnPlay);

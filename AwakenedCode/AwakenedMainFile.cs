@@ -2,6 +2,7 @@ using System.Reflection;
 using Awakened.AwakenedCode.Cards;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -24,6 +25,7 @@ public partial class AwakenedMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("chants");
         CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlay);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
