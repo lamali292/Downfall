@@ -77,7 +77,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     internal static void InitStasisUi(Player player)
     {
         if (StasisSlots[player] < 0)
-            StasisSlots.Set(player, 3);
+            StasisSlots.Set(player, player.Character is Guardian ? 3 : 1);
 
         var combatRoom = NCombatRoom.Instance;
         if (combatRoom != null && !GuardianDisplay.HasDisplay(player))
@@ -95,7 +95,9 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
         TriggerModeAnimation(player);
-        await GuardianHook.OnGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
+        await GuardianHook.AfterGuardianModeChangeEarly(player.Creature.CombatState!, ctx, player, current!,
+            ActiveMode[player]!);
+        await GuardianHook.AfterGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
     }
 

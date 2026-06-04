@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,7 +12,8 @@ public sealed class Combo : HermitCardModel
 {
     public Combo() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ComboPower>(1, 1);
+        WithTip(HermitKeywords.DeadOn);
+        this.WithPower<ComboPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

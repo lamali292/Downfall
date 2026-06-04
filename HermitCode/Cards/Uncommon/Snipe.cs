@@ -14,6 +14,7 @@ public sealed class Snipe : HermitCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
+        WithTip(HermitKeywords.DeadOn);
         this.WithPower<SnipePower>(1, false);
     }
 

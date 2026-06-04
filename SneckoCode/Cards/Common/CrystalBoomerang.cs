@@ -23,7 +23,7 @@ public class CrystalBoomerang : SneckoCardModel
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true)).FirstOrDefault();
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
-        if (SneckoCmd.IsOffclass(this, card))
+        if (SneckoCmd.IsOffclass(card))
             await CommonActions.CardBlock(this, cardPlay);
     }
 }

@@ -103,7 +103,7 @@
   "GUARDIAN-SPEED_BOOST.title": "Speed Boost",
   "GUARDIAN-SPHERIC_SHIELD.description": "[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-SPHERIC_SHIELD.title": "Spheric Shield",
-  "GUARDIAN-SPIKER_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], gain {SpikerProtocolPower:diff()} Thorns.\n[gold]Brace [/gold]{Brace:diff()}.",
+  "GUARDIAN-SPIKER_PROTOCOL.description": "Whenever you enter [gold]Defensive Mode[/gold], gain {SpikerProtocolPower:diff()} [gold]Thorns[/gold].\n[gold]Brace [/gold]{Brace:diff()}.",
   "GUARDIAN-SPIKER_PROTOCOL.title": "Spiker Protocol",
   "GUARDIAN-STASIS_ENGINE.description": "When you play the 3rd 0{energyPrefix:energyIcons(1)} card in a single turn, gain {energyPrefix:energyIcons(1)} and draw a card.",
   "GUARDIAN-STASIS_ENGINE.title": "Stasis Engine",
@@ -133,7 +133,7 @@
   "GUARDIAN-TWIN_SLAM.title": "Twin Slam",
   "GUARDIAN-VENT_STEAM.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "GUARDIAN-VENT_STEAM.title": "Vent Steam",
-  "GUARDIAN-WALKER_CLAW.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
+  "GUARDIAN-WALKER_CLAW.description": "Deal {Damage:diff()} damage.",
   "GUARDIAN-WALKER_CLAW.title": "Walker Claw",
   "GUARDIAN-PACKAGE.description": "Gain a [gold]{card1}[/gold], [gold]{card2}[/gold], and [gold]{card3}[/gold].",
   "GUARDIAN-PACKAGE_ANCIENTS.title": "Package: Ancients",
@@ -163,5 +163,11 @@
   "GUARDIAN-BRONZE_BRAMBLES.title": "Bronze Brambles",
   "GUARDIAN-BRONZE_BRAMBLES.description": "Whenever you are debuffed, also gain {BronzeBramblesPower:diff()} [gold]Thorns[/gold].",
   "GUARDIAN-MAXIMUM_OVERDRIVE.title": "Maximum Overdrive",
-  "GUARDIAN-MAXIMUM_OVERDRIVE.description": "Whenever a card ticks down in [gold]Stasis[/gold], gain 1 [gold]Strength[/gold] this turn."
+  "GUARDIAN-MAXIMUM_OVERDRIVE.description": "Whenever a card ticks down in [gold]Stasis[/gold], gain 1 [gold]Strength[/gold] this turn.",
+  "GUARDIAN-SHARED_F_LUX.title": "",
+  "GUARDIAN-SHARED_F_LUX.description": "",
+  "GUARDIAN-SHARED_FLUX.title": "Shared Flux",
+  "GUARDIAN-SHARED_FLUX.description": "Choose another player to choose a card in their [gold]Draw Pile[/gold] to place into [gold]Stasis[/gold]. ",
+  "GUARDIAN-OVERBLOCK.title": "Overblock",
+  "GUARDIAN-OVERBLOCK.description": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains {OverblockBlockPower:diff()} [gold]Block[/gold] and {OverblockThornsPower:diff()} [gold]Thorns[/gold] this turn."
 }

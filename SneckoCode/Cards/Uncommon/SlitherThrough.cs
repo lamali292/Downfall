@@ -26,7 +26,7 @@ public class SlitherThrough : SneckoCardModel, IHasGift
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         Owner.GetHand()
-            .Where(e => SneckoCmd.IsOffclass(this, e))
+            .Where(SneckoCmd.IsOffclass)
             .ToList().ForEach(e => e.EnergyCost.AddThisTurn(-1));
     }
 }

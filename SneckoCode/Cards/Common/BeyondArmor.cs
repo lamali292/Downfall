@@ -29,7 +29,7 @@ public class BeyondArmor : SneckoCardModel, IHasGift
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cards = Owner.GetDraw()
-            .Where(c => SneckoCmd.IsOffclass(this, c))
+            .Where(SneckoCmd.IsOffclass)
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
         await CardPileCmd.Add(cards, PileType.Hand);
     }

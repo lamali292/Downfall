@@ -52,7 +52,7 @@ public class GuardianDisplay
     public static Vector2? GetPosition(CardModel model)
     {
         var display = Displays.GetValueOrDefault(model.Owner);
-        return GodotObject.IsInstanceValid(display) ? display!.GetTargetPosition(model) : null;
+        return GodotObject.IsInstanceValid(display) ? display.GetTargetPosition(model) : null;
     }
 
     public static void SetupGuardianUi(NCombatRoom combatRoom, Player player)

@@ -13,7 +13,7 @@ public static class SneckoCardEffectHandler
     {
         if (card is IHasOverflowEffect overflow
             && card.Keywords.Contains(SneckoKeywords.Overflow)
-            && SneckoCmd.OverflowActive(card.Owner)
+            && SneckoCmd.OverflowActive(card)
             && !cardPlay.IsAutoPlay)
         {
             await overflow.OverflowEffect(ctx, cardPlay);

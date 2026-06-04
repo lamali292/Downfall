@@ -11,7 +11,7 @@ public class SnakeEyesPower : SneckoPowerModel
 {
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card.Owner.Creature == Owner && SneckoCmd.IsOffclass(card.Owner, card) ? playCount + 1 : playCount;
+        return card.Owner.Creature == Owner && SneckoCmd.IsOffclass( card) ? playCount + 1 : playCount;
     }
 
     public override async Task AfterModifyingCardPlayCount(CardModel card)

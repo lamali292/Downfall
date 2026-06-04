@@ -10,7 +10,7 @@ using Snecko.SneckoCode.Extensions;
 namespace Snecko.SneckoCode.Cards.Basic;
 
 [Pool(typeof(SneckoCardPool))]
-public class SnekBite : SneckoCardModel, ITranscendenceCard
+public class SnekBite : SneckoCardModel
 {
     public SnekBite() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -18,11 +18,7 @@ public class SnekBite : SneckoCardModel, ITranscendenceCard
         this.WithMuddle(1, 1);
     }
 
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<AncientOne>();
-    }
-
+ 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -52,5 +52,14 @@
   "SNECKO-SNAKE_EYES_POWER.smartDescription": "This turn, your next {Amount:plural:[gold]Offclass[/gold] card is|[blue]{}[/blue] [gold]Offclass[/gold] cards are} played twice.",
   "SNECKO-TYPHOON_FANG_POWER.title": "Typhoon Fang",
   "SNECKO-TYPHOON_FANG_POWER.description": "This turn, whenever you [gold]Overflow[/gold], play a copy of [gold]Typhoon Fang[/gold].",
-  "SNECKO-TYPHOON_FANG_POWER.smartDescription": "This turn, whenever you [gold]Overflow[/gold], play a copy of [gold]{card}[/gold]."
+  "SNECKO-TYPHOON_FANG_POWER.smartDescription": "This turn, whenever you [gold]Overflow[/gold], play a copy of [gold]{card}[/gold].",
+  "SNECKO-WEIGHTED_DICE_POWER.title": "Weighted Dice",
+  "SNECKO-WEIGHTED_DICE_POWER.description": "The first time you [gold]Muddle[/gold] a card each turn, draw a card.",
+  "SNECKO-WEIGHTED_DICE_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you [gold]Muddle[/gold] a card each turn, draw a card.",
+  "SNECKO-FORKED_TONGUE_POWER.title": "Forked Tongue",
+  "SNECKO-FORKED_TONGUE_POWER.description": "The first [gold]Offclass[/gold] card you play each turn is played an extra time. ",
+  "SNECKO-FORKED_TONGUE_POWER.smartDescription": "The first {Amount:plural:|[blue]{}[/blue] }[gold]Offclass[/gold] {Amount:plural:card|cards} you play each turn {Amount:plural:is|are} played an extra time. ",
+  "SNECKO-MIMICRY_POWER.title": "Mimicry",
+  "SNECKO-MIMICRY_POWER.description": "At the start of your turn, gain a random [gold]Offclass[/gold] card. ",
+  "SNECKO-MIMICRY_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:a|[blue]{}[/blue]} random Offclass {Amount:plural:card|cards}. "
 }

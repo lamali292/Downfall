@@ -7,14 +7,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class RevengeProtocolPower : GuardianPowerModel, IOnGuardianModeChange
+public class RevengeProtocolPower : GuardianPowerModel, IAfterGuardianModeChange
 {
     public RevengeProtocolPower()
     {
         WithTip<StrengthPower>();
     }
 
-    public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    public async Task AfterGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {
         if (player.Creature != Owner) return;

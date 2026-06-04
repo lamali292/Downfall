@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Events;
 
-public interface IOnGuardianModeChange
+public interface IAfterGuardianModeChangeEarly
 {
-    Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    Task AfterGuardianModeChangeEarly(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode);
 }

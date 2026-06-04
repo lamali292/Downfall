@@ -24,7 +24,7 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
     protected override bool ShouldGlowGoldInternal => PlayedOffClassThisTurn;
 
     private bool PlayedOffClassThisTurn => CombatManager.Instance.History.CardPlaysFinished.Any(e =>
-        e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(this, e.CardPlay.Card));
+        e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(e.CardPlay.Card));
 
     public Gift? Gift { get; set; }
 

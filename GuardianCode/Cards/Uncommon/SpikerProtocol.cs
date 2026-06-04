@@ -6,6 +6,7 @@ using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -16,6 +17,7 @@ public class SpikerProtocol : GuardianCardModel
     {
         this.WithPower<SpikerProtocolPower>(2, 1, false);
         this.WithBrace(6, 3);
+        this.WithTip<ThornsPower>();
         WithTip(GuardianTip.DefensiveMode);
     }
 

@@ -32,21 +32,26 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
         return SneckoPools.Get(player)?.Select(ModelDb.GetById<CardPoolModel>) ?? [];
     }
 
-    private static IEnumerable<CardModel> GetSneckoCards(Player player)
+    public static IEnumerable<CardModel> GetSneckoCards(Player player)
     {
         return GetSneckoPools(player).SelectMany(e => e.AllCards);
     }
 
-    public static IEnumerable<CardModel> GetRewardSneckoCards(Player player)
+    public static IEnumerable<CardModel> GetRewardSneckoCards(Player player, Func<CardModel, bool>? filter = null)
     {
+        var cards = GetSneckoCards(player);
+        if (filter is not null) cards = cards.Where(filter);
         return CardFactory.FilterForPlayerCount(player.RunState,
-            CardFactory.FilterForCombat(GetSneckoCards(player)));
+            CardFactory.FilterForCombat(cards));
     }
 
-    public static IEnumerable<CardModel> GetCombatSneckoCards(Player player, int amount)
+    public static IEnumerable<CardModel> GetCombatSneckoCards(Player player, int amount, Player? forPlayer = null, Func<CardModel, bool>? filter = null)
     {
-        return CardFactory.GetDistinctForCombat(player,
-            GetSneckoCards(player),
+        forPlayer ??= player;
+        var cards = GetSneckoCards(player);
+        if (filter is not null) cards = cards.Where(filter);
+        return CardFactory.GetDistinctForCombat(forPlayer,
+            cards,
             amount,
             player.RunState.Rng.CombatCardGeneration);
     }

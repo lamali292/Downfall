@@ -95,11 +95,12 @@ public static class GuardianCmd
         GuardianDisplay.Refresh(player);
     }
 
-    public static bool CanPutIntoStasis(Player player, bool silent = false)
+    public static bool CanPutIntoStasis(Player player, Player? askingPlayer = null, bool silent = false)
     {
+        askingPlayer ??= player;
         var pile = GuardianCombatModel.GetOrInitStasis(player);
         if (pile.Cards.Count < GetMaxStasisSlots(player)) return true;
-        if (silent || !LocalContext.IsMe(player)) return false;
+        if (silent || !LocalContext.IsMe(askingPlayer)) return false;
         ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
         return false;
     }

@@ -2,20 +2,21 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Ancient;
 
 [Pool(typeof(SneckoCardPool))]
-public class AncientTwo : SneckoCardModel
+public class Mimicry : SneckoCardModel
 {
-    public AncientTwo() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+    public Mimicry() : base(2, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
-        WithCards(1);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        this.WithPower<MimicryPower>(1, false);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Draw(this, ctx);
+        await CommonActions.ApplySelf<MimicryPower>(ctx, this);
     }
 }

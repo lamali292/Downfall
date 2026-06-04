@@ -26,7 +26,7 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
-        return card.Owner.GetHand().Count(e => SneckoCmd.IsOffclass(card, e));
+        return card.Owner.GetHand().Count(SneckoCmd.IsOffclass);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

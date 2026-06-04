@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,6 +14,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Events;
+using Snecko.SneckoCode.History;
 
 namespace Snecko.SneckoCode.Core;
 
@@ -44,9 +46,14 @@ public static class SneckoCmd
     public static async Task Muddle(PlayerChoiceContext ctx, CardModel card, AbstractModel? source = null,
         bool lowerOnly = false)
     {
+        var combatState = card.CombatState;
+        if (combatState == null) return;
         card.EnergyCost.SetThisTurn(NextEnergyCost(card, lowerOnly));
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
-        await SneckoHook.AfterCardMuddled(card.CombatState!, ctx, card, source);
+        await SneckoHook.AfterCardMuddled(combatState, ctx, card, source);
+        var entry = new MuddleEntry(card, card.Owner.Creature, combatState.RoundNumber, card.Owner.Creature.Side,
+            CombatManager.Instance.History, combatState.Players);
+        CombatManager.Instance.History.Add(combatState, entry);
     }
 
     private static int NextEnergyCost(CardModel card, bool lowerOnly = false)
@@ -72,20 +79,14 @@ public static class SneckoCmd
         return !card.Keywords.Contains(CardKeyword.Unplayable) && !card.EnergyCost.CostsX;
     }
 
-    public static bool OverflowActive(Player player, bool cardInHand = false)
+    public static bool OverflowActive(CardModel card)
     {
-        return player.GetHand().Count > (cardInHand ? 5 : 4);
+        return card.Owner.GetHand().Count(e => e != card) >= 5;
     }
-
-
-    public static bool IsOffclass(CardModel card, CardModel other)
+    
+    public static bool IsOffclass(CardModel card)
     {
-        return other.Pool != card.Pool;
-    }
-
-    public static bool IsOffclass(Player player, CardModel other)
-    {
-        return other.Pool != player.Character.CardPool;
+        return card.Pool != card.Owner.Character.CardPool;
     }
 
     public static bool IsDebuff(CardModel card)

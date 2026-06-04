@@ -5,9 +5,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class EvasiveProtocolPower : GuardianPowerModel, IOnGuardianModeChange
+public class EvasiveProtocolPower : GuardianPowerModel, IAfterGuardianModeChange
 {
-    public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    public async Task AfterGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {
         if (player.Creature != Owner || newMode is not GuardianDefensiveMode) return;

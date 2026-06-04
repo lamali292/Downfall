@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 ]
+[gd_scene load_steps=2 format=3 uid="uid://d4eee1av0jxt4"]
 
-[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_tmj8e"]
+[ext_resource type="Script" uid="uid://ctk5vy25l0kme" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_tmj8e"]
 
 [node name="GuardianDisplay" type="Control"]
 layout_mode = 3
@@ -15,6 +15,7 @@ script = ExtResource("1_tmj8e")
 
 [node name="SlotContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
+layout_direction = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

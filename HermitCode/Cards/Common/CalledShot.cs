@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Combat;
@@ -16,6 +17,7 @@ public sealed class CalledShot : HermitCardModel
     public CalledShot() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
+        WithTip(HermitKeywords.DeadOn);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

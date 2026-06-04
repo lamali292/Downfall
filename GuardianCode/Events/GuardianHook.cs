@@ -12,13 +12,22 @@ using Alias = IAfterGemPlayed;
 
 public static class GuardianHook
 {
-    public static Task OnGuardianModeChange(ICombatState cs, PlayerChoiceContext ctx, Player player,
+    public static Task AfterGuardianModeChange(ICombatState cs, PlayerChoiceContext ctx, Player player,
         GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {
-        return DownfallHook.Dispatch<IOnGuardianModeChange>(cs,
-            m => m.OnGuardianModeChange(ctx, player, oldMode, newMode));
+        return DownfallHook.Dispatch<IAfterGuardianModeChange>(cs,
+            m => m.AfterGuardianModeChange(ctx, player, oldMode, newMode));
     }
+    
+    public static Task AfterGuardianModeChangeEarly(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GuardianModeModel oldMode,
+        GuardianModeModel newMode)
+    {
+        return DownfallHook.Dispatch<IAfterGuardianModeChangeEarly>(cs,
+            m => m.AfterGuardianModeChangeEarly(ctx, player, oldMode, newMode));
+    }
+
 
 
     public static Task BeforeCardEntersStasis(ICombatState cs, PlayerChoiceContext ctx, CardModel card,

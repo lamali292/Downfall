@@ -26,7 +26,7 @@ public class Serpentscale : SneckoCardModel, IHasOverflowEffect
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (SneckoCmd.OverflowActive(Owner)) return;
+        if (SneckoCmd.OverflowActive(this)) return;
         await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this, 1);
     }
 }

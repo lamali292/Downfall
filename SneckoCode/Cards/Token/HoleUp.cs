@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class HoleUp : SneckoCardModel
 {
-    public HoleUp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public HoleUp() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithPower<WeakPower>(2);
         WithBlock(12, 4);

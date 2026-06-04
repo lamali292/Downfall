@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class SpikerProtocolPower : GuardianPowerModel, IOnGuardianModeChange
+public class SpikerProtocolPower : GuardianPowerModel, IAfterGuardianModeChange
 {
-    public async Task OnGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
+    public async Task AfterGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {
         if (player.Creature != Owner || newMode is not GuardianDefensiveMode) return;

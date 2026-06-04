@@ -28,7 +28,7 @@ public class HighFrequency : GuardianCardModel
             .FirstOrDefault();
         if (card == null) return;
 
-        while (GuardianCmd.CanPutIntoStasis(Owner, true))
+        while (GuardianCmd.CanPutIntoStasis(Owner, silent: true))
         {
             var a = card.CreateClone();
             await CardPileCmd.Add(a, PileType.Play);

@@ -29,7 +29,7 @@ public class WideSting : SneckoCardModel, IHasGift
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         foreach (var card in Owner.GetHand()
-                     .Where(e => e.IsUpgradable && SneckoCmd.IsOffclass(this, e)))
+                     .Where(e => e.IsUpgradable && SneckoCmd.IsOffclass(e)))
             CardCmd.Upgrade(card);
     }
 }
