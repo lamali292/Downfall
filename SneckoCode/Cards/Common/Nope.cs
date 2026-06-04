@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
@@ -26,10 +27,9 @@ public class Nope : SneckoCardModel
         if (card == null) return;
         await CardCmd.Exhaust(ctx, card);
         if (!ModelDb.AllCharacterCardPools.Contains(card.Pool)) return;
-        // TODO : Probably make a restriction here, lol
-        var nopeCard = Owner.RunState.Rng.CombatCardGeneration.NextItem(card.Pool.AllCards);
+        var nopeCard = CardFactory.GetForCombat(Owner, card.Pool.AllCards, 1, 
+            Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
         if (nopeCard == null) return;
-        var combatCard = CombatState!.CreateCard(nopeCard, Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(combatCard, PileType.Hand, Owner);
+        await CardPileCmd.AddGeneratedCardToCombat(nopeCard, PileType.Hand, Owner);
     }
 }

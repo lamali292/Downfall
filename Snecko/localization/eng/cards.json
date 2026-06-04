@@ -129,7 +129,7 @@
   "SNECKO-SOUL_ROLL.title": "Soul Roll",
   "SNECKO-STRIKE_SNECKO.description": "Deal {Damage:diff()} damage.",
   "SNECKO-STRIKE_SNECKO.title": "Strike",
-  "SNECKO-TAIL_WHIP.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]:\nApply {WeakPower:diff()} [gold]Weak[/gold] and {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "SNECKO-TAIL_WHIP.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]:\nApply {WeakPower:diff()} [gold]Weak.[/gold]\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "SNECKO-TAIL_WHIP.title": "Tail Whip",
   "SNECKO-THROWING_CARDS.description": "Add a copy of [gold]FTL{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].\nGain {Energy:energyIcons()}.",
   "SNECKO-THROWING_CARDS.title": "Throwing Cards",

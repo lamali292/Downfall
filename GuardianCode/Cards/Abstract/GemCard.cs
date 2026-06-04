@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Gems;
@@ -77,10 +78,10 @@ public class Bismuth : GemCard<BismuthGem>
 
 #pragma warning restore STS001
 
-public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard
+public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, ICustomTypePlaque
     where T : GemModel
 {
-    protected GemCard() : base(0, GuardianCardType.Gem, CardRarity.None, TargetType.Self)
+    protected GemCard() : base(0, CardType.Skill, CardRarity.None, TargetType.Self)
     {
         _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);
@@ -98,6 +99,11 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard
         CardModifier.DirectModifiers(this).OfType<GemModel>().First();
 
     public int GemSlots => 0;
+    
+    public string GetTypePlaqueName(string original)
+    {
+        return GuardianCardType.Gem.ToLocString().GetFormattedText();
+    }
 }
 
 public interface IGemCard

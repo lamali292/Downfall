@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.DownfallCode.Patches;
 
-// TODO : this is unused, actually use it or look if baselib finally implemented it
 // modifier to plaques. something like "Skill | Gem" to mark guardian gems or "Power | Slime" to mark slime powers
 [HarmonyPatch(typeof(NCard), nameof(NCard.UpdateTypePlaque))]
 public static class NCardUpdateTypePlaquePatch
