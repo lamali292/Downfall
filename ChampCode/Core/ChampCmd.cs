@@ -86,8 +86,10 @@ public class ChampCmd
             await ChampHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 
-        if (skipClear || m is ChampUltimateStance || cardPlay.Card.Enchantment is Signature) return;
+        if (skipClear || cardPlay.Card.Enchantment is Signature) return;
         await ClearStance(ctx, player);
+        if (m is ChampUltimateStance)
+            await EnterStance<ChampUltimateStance>(ctx, player);
     }
 
 
