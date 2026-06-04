@@ -16,7 +16,7 @@
   "HERMIT-WIDE_OPEN.title": "Wide Open",
   "HERMIT-WIDE_OPEN.description": "Deal {Damage:diff()} damage.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "HERMIT-COVET.title": "Covet",
-  "HERMIT-COVET.description": "Discard {Discard:diff()} {Discard:plural:card|cards}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nDiscarded Curses are Exhausted.",
+  "HERMIT-COVET.description": "Discard {Discard:diff()} {Discard:plural:card|cards}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nDiscarded Curses are [gold]Exhausted[/gold].",
   "HERMIT-HIGH_CALIBER.title": "High-Caliber",
   "HERMIT-HIGH_CALIBER.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Strike{UpgradeAmount}[/gold] to your [gold]Hand[/gold].",
   "HERMIT-BODY_ARMOR.title": "Body Armor",

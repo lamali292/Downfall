@@ -17,9 +17,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <BaseLibVersion>3.1.9</BaseLibVersion>
+        <BaseLibVersion>3.2.0</BaseLibVersion>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
-    
+
     <UsingTask TaskName="CreateSymlink" TaskFactory="RoslynCodeTaskFactory"
                AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
         <ParameterGroup>
@@ -64,9 +65,7 @@
                 TargetPath="$(AssetSourcePath)\%(SymlinkFolders.Identity)"/>
     </Target>
 
-    <PropertyGroup>
-        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
-    </PropertyGroup>
+
 
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true' and '$(Configuration)' == 'Debug'">
         <Optimize>false</Optimize>
@@ -128,16 +127,11 @@
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        
-        
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
     </ItemGroup>
+    
 
     <ItemGroup>
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
