@@ -65,3 +65,4 @@ bin/windows/*
 !*/scenes/character/*.png.import
 !*/scenes/slimes/visuals/*.png.import
 !*/scenes/gremlins/*/*.png.import
+/dist/

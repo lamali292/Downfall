@@ -20,7 +20,7 @@
     </Target>
 
     <Target Name="GodotImport" BeforeTargets="GodotPublish"
-            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)')">
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
         <!-- Added Configuration and GodotTargetConfiguration dynamically -->
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration);GodotTargetConfiguration=Export$(Configuration)"

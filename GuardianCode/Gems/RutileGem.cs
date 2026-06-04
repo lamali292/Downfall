@@ -19,7 +19,7 @@ public class RutileGem : GemModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<WeakPower>(ctx, CombatState.HittableEnemies, effect, Player.Creature,

@@ -185,11 +185,11 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay, int count = 1)
     {
-        for (var i = 0; i < count; i++) await OnPlay(ctx, cardPlay);
+        //for (var i = 0; i < count; i++) await OnPlay(ctx, cardPlay);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
-    protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
+    //protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
 
     public virtual int ModifyPlayCount(int originalPlayCount)
     {

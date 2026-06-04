@@ -6,27 +6,59 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../Snecko.csproj"/>
+    
         <ProjectReference Include="../Automaton.csproj"/>
+        <ProjectReference Include="../Awakened.csproj"/>
         <ProjectReference Include="../Champ.csproj"/>
         <ProjectReference Include="../Collector.csproj"/>
-        <ProjectReference Include="../Awakened.csproj"/>
         <ProjectReference Include="../Gremlins.csproj"/>
-        <ProjectReference Include="../Hexaghost.csproj"/>
         <ProjectReference Include="../Guardian.csproj"/>
+        <ProjectReference Include="../Hexaghost.csproj"/>
+        <ProjectReference Include="../Hermit.csproj"/>
         <ProjectReference Include="../SlimeBoss.csproj"/>
+        <ProjectReference Include="../Snecko.csproj"/>
     </ItemGroup>
-
-  
-
 
     <PropertyGroup>
         <NoWarn>$(NoWarn);STS002</NoWarn>
     </PropertyGroup>
+
+    <!-- Import the shared Godot project once, before any child publishes -->
+    <Target Name="ImportOnce" BeforeTargets="PublishAll"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)')">
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)\..&quot; --import --quit --extra-args --no-window"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              IgnoreExitCode="true"/>
+    </Target>
+
     <Target Name="PublishAll" AfterTargets="Publish">
         <MSBuild Projects="@(ProjectReference)"
                  Targets="Publish"
-                 Properties="Configuration=$(Configuration)"/>
+                 Properties="Configuration=$(Configuration);SkipGodotImport=true"/>
     </Target>
+    
+    <!-- Stage the finished Downfall/ folder and zip it once -->
+    <Target Name="PackageRelease" AfterTargets="PublishAll">
+        <Error Condition="'$(ModsPath)' == ''"
+               Text="ModsPath is empty — set ModsPath (and GodotPath) in local.props." />
+
+        <PropertyGroup>
+            <StagingDir>$(MSBuildProjectDirectory)\..\dist\staging</StagingDir>
+            <ReleaseZip>$(MSBuildProjectDirectory)\..\dist\$(ModOutputFolder)-$(Version).zip</ReleaseZip>
+        </PropertyGroup>
+
+        <RemoveDir Directories="$(StagingDir)" />
+
+        <ItemGroup>
+            <ModFiles Include="$(ModsPath)$(ModOutputFolder)\**\*" Exclude="$(ModsPath)$(ModOutputFolder)\**\*.pdb" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(ModFiles)"
+              DestinationFiles="@(ModFiles->'$(StagingDir)\$(ModOutputFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+        <ZipDirectory SourceDirectory="$(StagingDir)" DestinationFile="$(ReleaseZip)" Overwrite="true" />
+        <Message Text="Packaged release: $(ReleaseZip)" Importance="high" />
+    </Target>
+
     <Import Project="../mod.build.targets" />
 </Project>

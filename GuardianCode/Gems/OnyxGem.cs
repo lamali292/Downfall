@@ -18,7 +18,7 @@ public class OnyxGem : GemModel
     public override Color GemColor => new(0x616161FF);
     public override CardRarity Rarity => CardRarity.Rare;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var card = Card;
         if (card == null) return;

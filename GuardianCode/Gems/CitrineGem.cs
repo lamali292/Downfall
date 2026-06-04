@@ -16,7 +16,7 @@ public class CitrineGem : GemModel
     public override Color GemColor => new(0xA55B08FF);
     public override CardRarity Rarity => CardRarity.Rare;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Energy.BaseValue, Card);
         await PlayerCmd.GainEnergy(effect, Player);

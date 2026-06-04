@@ -38,7 +38,7 @@ public class DiamondGem : GemModel
         }
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    public override Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         return Task.CompletedTask;
     }
