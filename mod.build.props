@@ -16,7 +16,10 @@
         <NoWarn>$(NoWarn);MSB3270;CS1998;CS0436</NoWarn>
     </PropertyGroup>
 
-
+    <PropertyGroup>
+        <BaseLibVersion>3.1.9</BaseLibVersion>
+    </PropertyGroup>
+    
     <UsingTask TaskName="CreateSymlink" TaskFactory="RoslynCodeTaskFactory"
                AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
         <ParameterGroup>
@@ -127,7 +130,7 @@
         </Reference>
         
         
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.1.9" Condition="'$(UseLocalBaseLib)' != 'true'"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
     </ItemGroup>
