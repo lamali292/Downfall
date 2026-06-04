@@ -1,12 +1,12 @@
+using Downfall.DownfallCode.Interfaces;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Snecko.SneckoCode.Vfx;
 
 [GlobalClass]
-public partial class NSneckoCreatureVisuals : NCreatureVisuals
+public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
@@ -70,25 +70,5 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals
             case "Dead":
                 break;
         }
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class SneckoAnimationPatch
-{
-    private static void Postfix(NCreature __instance, string trigger)
-    {
-        if (__instance.Visuals is NSneckoCreatureVisuals sneckoVisuals)
-            sneckoVisuals.OnAnimationTrigger(trigger);
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class SneckoDeathAnimPatch
-{
-    private static void Postfix(NCreature __instance)
-    {
-        if (__instance.Visuals is NSneckoCreatureVisuals sneckoVisuals)
-            sneckoVisuals.OnAnimationTrigger("Dead");
     }
 }

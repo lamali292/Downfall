@@ -1,12 +1,12 @@
-﻿using Godot;
-using HarmonyLib;
+﻿using Downfall.DownfallCode.Interfaces;
+using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Guardian.GuardianCode.Vfx;
 
 [GlobalClass]
-public partial class NGuardianCreatureVisuals : NCreatureVisuals
+public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
@@ -51,25 +51,5 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals
             case "Dead":
                 break;
         }
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-public static class GuardianAnimationPatch
-{
-    private static void Postfix(NCreature __instance, string trigger)
-    {
-        if (__instance.Visuals is NGuardianCreatureVisuals guardianVisuals)
-            guardianVisuals.OnAnimationTrigger(trigger);
-    }
-}
-
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class GuardianDeathAnimPatch
-{
-    private static void Postfix(NCreature __instance)
-    {
-        if (__instance.Visuals is NGuardianCreatureVisuals guardianVisuals)
-            guardianVisuals.OnAnimationTrigger("Dead");
     }
 }
