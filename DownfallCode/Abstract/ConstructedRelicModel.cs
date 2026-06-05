@@ -65,7 +65,8 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
     protected ConstructedRelicModel WithPower<T>(int i, bool showTooltip = true) where T : PowerModel
     {
         if (showTooltip) WithTip<T>();
-        return WithVars(new PowerVar<T>(i));
+        _newDynamicVars.Add(new PowerVar<T>(i));
+        return this;
     }
 
     protected ConstructedRelicModel WithVar(string name, int baseVal)
