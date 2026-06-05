@@ -12,7 +12,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class RazorSharp : AwakenedCardModel
 {
-    public RazorSharp() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public RazorSharp() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithTip<PlumeJab>();
         this.WithPower<RazorSharpPower>(1, 1, false);

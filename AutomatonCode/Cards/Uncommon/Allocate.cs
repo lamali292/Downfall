@@ -17,6 +17,7 @@ public class Allocate : AutomatonCardModel
     public Allocate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
+        WithKeywords(CardKeyword.Exhaust);
         WithEnergyTip();
         WithCalculatedVar("Status", 0, Calc);
     }

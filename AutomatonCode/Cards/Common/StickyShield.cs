@@ -14,7 +14,7 @@ public class StickyShield : AutomatonCardModel
 {
     public StickyShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(11, 3);
+        WithBlock(9, 3);
         WithKeywords(CardKeyword.Retain);
         this.WithTip<Slimed>();
     }

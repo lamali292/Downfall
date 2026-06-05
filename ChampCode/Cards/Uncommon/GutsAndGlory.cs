@@ -13,7 +13,7 @@ public class GutsAndGlory : ChampCardModel
 {
     public GutsAndGlory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithGlory(5, 3);
+        this.WithGlory(4, 2);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

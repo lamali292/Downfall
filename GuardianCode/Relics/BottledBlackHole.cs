@@ -11,6 +11,7 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class BottledBlackHole() : GuardianRelicModel(RelicRarity.Uncommon)
 {
+//todo add Temporal Tip
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()
