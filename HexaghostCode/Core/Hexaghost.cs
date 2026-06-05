@@ -85,8 +85,3 @@ public abstract class HexaghostCardModel(
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 
 public class HexaghostCardPool : DownfallCardPool<Hexaghost>;
-
-public class HexaghostChoiceCardPool : DownfallCardPool<Hexaghost>
-{
-    public override bool IsShared => true;
-}

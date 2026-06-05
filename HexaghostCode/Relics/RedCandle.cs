@@ -10,9 +10,9 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class RedCandle() : HexaghostRelicModel(RelicRarity.Rare)
 {
-    public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
+   public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {
-        return giver == Owner.Creature && power is SoulBurnPower && amount > 0 ? amount + 2 : amount;
+        return giver == Owner.Creature && power is SoulBurnPower && amount > 0 ? 2 : 0;
     }
 }

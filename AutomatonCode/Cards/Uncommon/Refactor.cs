@@ -17,7 +17,6 @@ public class Refactor : AutomatonCardModel
         WithBlock(4, 2);
         this.WithScry(4);
         WithTip(CardKeyword.Exhaust);
-        WithTip(DownfallTip.Scry);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

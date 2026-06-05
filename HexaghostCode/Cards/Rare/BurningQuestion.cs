@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hexaghost.HexaghostCode.Cards.Rare;
@@ -39,10 +40,11 @@ public class BurningQuestion : HexaghostCardModel
     }
 }
 
-[Pool(typeof(HexaghostChoiceCardPool))]
+[Pool(typeof(TokenCardPool))]
 public abstract class BurningQuestionChoiceBase()
     : HexaghostCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
+    public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
     public override string CustomPortraitPath => ModelDb.Card<BurningQuestion>().CustomPortraitPath;
     public abstract Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }

@@ -27,12 +27,14 @@ public class PowerArmor() : ChampRelicModel(RelicRarity.Shop)
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
     }
 
-    public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
+    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {
         if (target != Owner.Creature || power is not (VigorPower or CounterPower))
-            return amount;
+            return 0;
+
         var headroom = Cap - power.Amount;
-        return headroom <= 0 ? 0 : Math.Min(amount, headroom);
+        var final = headroom <= 0 ? 0 : Math.Min(amount, headroom);
+        return final - amount;
     }
 }

@@ -129,16 +129,12 @@
         </Reference>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Update="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
     </ItemGroup>
     
 
     <ItemGroup>
-        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
-            <Members>
-                M:MegaCrit.Sts2.Core.Models.Orbs.LightningOrb.ApplyLightningDamage(System.Decimal,MegaCrit.Sts2.Core.Entities.Creatures.Creature,MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext)
-            </Members>
-        </Publicize>
+        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
         <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
             <Members>
                 M:BaseLib.Abstracts.ConstructedCardModel.WithKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword,BaseLib.Abstracts.ConstructedCardModel.UpgradeType);

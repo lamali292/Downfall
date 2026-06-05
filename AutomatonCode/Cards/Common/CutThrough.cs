@@ -16,7 +16,6 @@ public class CutThrough : AutomatonCardModel
     {
         WithDamage(5, 2);
         this.WithScry( 1, 1);
-        WithTip(DownfallTip.Scry);
         WithTip(AutomatonTip.Stash);
     }
 

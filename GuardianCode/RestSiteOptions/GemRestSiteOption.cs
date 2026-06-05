@@ -25,6 +25,9 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 
     public override string CustomIconPath => "rest_site_option_gem.png".RestSitePath<Core.Guardian>();
 
+    public override bool IsEnabled => Owner.GetDeck().Any(c => c is IGemCard) &&
+                                      Owner.GetDeck().Any(c => c is IGemSocketCard { FreeSlots: > 0 });
+
     public override async Task<bool> OnSelect()
     {
         if (!IsEnabled) return false;
@@ -62,9 +65,6 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         if (_gem == null || _gemHolder == null)
             return false;
         await GuardianCmd.PutGemIn(_gem, _gemHolder);
-        var hasGems = Owner.GetDeck().Any(c => c is IGemCard);
-        var hasSlots = Owner.GetDeck().Any(c => c is IGemSocketCard { FreeSlots: > 0 });
-        IsEnabled = hasGems && hasSlots;
         var button = NRestSiteRoom.Instance?.GetButtonForOption(this);
         if (button == null) return false;
         button.Reload();
