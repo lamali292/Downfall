@@ -206,7 +206,7 @@
   "AUTOMATON-RECYCLE_BIN.title": "Recycle Bin",
   "AUTOMATON-RECYCLE_BIN.description": "At the end of your turn, gain {RecycleBinPower:diff()} [gold]Block[/gold] for each Status or Curse in your [gold]Hand[/gold].",
   "AUTOMATON-RECREATE.title": "Recreate",
-  "AUTOMATON-RECREATE.description": "The first Status you create each turn is Transformed into [gold]Fuel[/gold].",
+  "AUTOMATON-RECREATE.description": "The first Status you create each turn is [gold]Transformed[/gold] into [gold]Fuel[/gold].",
   "AUTOMATON-FLAWLESS_ARTIFACT.title": "Flawless Artifact",
   "AUTOMATON-FLAWLESS_ARTIFACT.description": "Add [gold]Constructor{IfUpgraded:plus()}[/gold], [gold]Separator{IfUpgraded:plus()}[/gold], and [gold]Terminator{IfUpgraded:plus()}[/gold] to your [gold]Hand[/gold].",
   "AUTOMATON-FORK.title": "Fork",

@@ -87,7 +87,7 @@
   "CHAMP-GUT_PUNCH.title": "Gut Punch",
   "CHAMP-HEADBUTT.description": "Deal {Damage:diff()} damage.\nPut a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
   "CHAMP-HEADBUTT.title": "Headbutt",
-  "CHAMP-HOLD_FIRM.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].\nGain {BlurPower:diff()} [gold]Blur[/gold].",
+  "CHAMP-HOLD_FIRM.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].\n[gold]Block[/gold] is not removed at the start of your next turn.",
   "CHAMP-HOLD_FIRM.title": "Hold Firm",
   "CHAMP-HONE_BLADE.description": "Your \"Strike\" cards deal {HoneBladePower:diff()} more damage. ",
   "CHAMP-HONE_BLADE.title": "Hone Blade",

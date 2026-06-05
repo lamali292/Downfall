@@ -15,6 +15,7 @@ public class Recreate : AutomatonCardModel
     {
         this.WithPower<RecreatePower>(1, false);
         this.WithTip<Fuel>();
+        
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

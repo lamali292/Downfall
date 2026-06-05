@@ -26,8 +26,8 @@ public class SludgeBomb : AwakenedCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = Owner.GetExhaust().FirstOrDefault(c => c is Void);
-        if (card == null) return;
-        await CardPileCmd.RemoveFromCombat(card);
+        //var card = Owner.GetExhaust().FirstOrDefault(c => c is Void);
+        //if (card == null) return;
+        //await CardPileCmd.RemoveFromCombat(card);
     }
 }

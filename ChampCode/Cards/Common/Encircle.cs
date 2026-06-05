@@ -12,7 +12,7 @@ public class Encircle : ChampCardModel
 {
     public Encircle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(5, 3);
+        WithDamage(7, 3);
         this.WithGlory(1);
     }
 

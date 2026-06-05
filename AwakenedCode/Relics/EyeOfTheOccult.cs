@@ -8,7 +8,7 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class EyeOfTheOccult : AwakenedRelicModel
 {
-    public EyeOfTheOccult() : base(RelicRarity.Event)
+    public EyeOfTheOccult() : base(RelicRarity.Rare)
     {
         WithTip<Thunderbolt>();
         WithTip<Darkleech>();
