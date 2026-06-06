@@ -17,7 +17,6 @@ public class AphoticFount : AwakenedCardModel
     public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<AphoticFountPower>(1, 1, false);
-        //todo figure out if this actually works in game
         this.WithTip<PlatingPower>();
         this.WithTip<Cryostasis>();
         this.WithConjure();

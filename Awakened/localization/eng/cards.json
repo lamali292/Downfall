@@ -3,7 +3,7 @@
   "AWAKENED-ALTAR.title": "Altar",
   "AWAKENED-ANCESTRAL_GROUNDS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAt the start of your next 2 turns, gain {Energy:energyIcons()} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
   "AWAKENED-ANCESTRAL_GROUNDS.title": "Ancestral Grounds",
-  "AWAKENED-APHOTIC_FOUNT.description": "[gold]Conjure[/gold].\nWhenever you play [gold]Cryostasis[/gold], gain {AphoticFountPower:diff()} [gold]Plating[/gold].",
+  "AWAKENED-APHOTIC_FOUNT.description": "[gold]Conjure[/gold].\nWhenever you play [gold]Cryostasis[/gold], gain {AphoticFountPower:diff()} [gold]Plated Armor[/gold].",
   "AWAKENED-APHOTIC_FOUNT.title": "Aphotic Fount",
   "AWAKENED-ARCANE_NESTING.description": "Whenever you play a Power while this is in [gold]Hand[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "AWAKENED-ARCANE_NESTING.title": "Arcane Nesting",

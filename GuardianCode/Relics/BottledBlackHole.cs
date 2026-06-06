@@ -9,9 +9,13 @@ using MegaCrit.Sts2.Core.Models;
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class BottledBlackHole() : GuardianRelicModel(RelicRarity.Uncommon)
+public class BottledBlackHole : GuardianRelicModel
 {
-//todo add Temporal Tip
+    public BottledBlackHole() : base(RelicRarity.Uncommon)
+    {
+        WithTip<Temporal>();
+    }
+    
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()
