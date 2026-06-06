@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -49,7 +50,7 @@ public class FlareFlick : HexaghostCardModel
     }
 }
 
-[Pool(typeof(HexaghostChoiceCardPool))]
+[Pool(typeof(TokenCardPool))]
 public class FlareFlickChoice : HexaghostCardModel
 {
     public FlareFlickChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
@@ -57,7 +58,7 @@ public class FlareFlickChoice : HexaghostCardModel
         WithTips(c => c is FlareFlickChoice { Keyword: var keyword } ? [HoverTipFactory.FromKeyword(keyword)] : []);
     }
 
-
+    public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
     public CardKeyword Keyword { get; private set; } = CardKeyword.Exhaust;
 
 

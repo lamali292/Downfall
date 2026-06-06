@@ -4,10 +4,10 @@ using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -56,12 +56,14 @@ public class Premonition : HexaghostCardModel
     }
 }
 
-[Pool(typeof(HexaghostChoiceCardPool))]
+[Pool(typeof(TokenCardPool))]
 public class PremonitionChoice : HexaghostCardModel
 {
     public PremonitionChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
     }
+    
+    public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
 
     public override CardType Type => MyType;
     private CardType MyType { get; set; } = CardType.Skill;

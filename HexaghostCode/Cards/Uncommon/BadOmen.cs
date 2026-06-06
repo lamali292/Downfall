@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -38,7 +39,7 @@ public class BadOmen : HexaghostCardModel
     }
 }
 
-[Pool(typeof(HexaghostChoiceCardPool))]
+[Pool(typeof(TokenCardPool))]
 public class BadOmenChoice : HexaghostCardModel
 {
     public BadOmenChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
@@ -46,6 +47,7 @@ public class BadOmenChoice : HexaghostCardModel
         WithTips(c => c is BadOmenChoice { GhostflameModel: { } ghostflameModel } ? [ghostflameModel.HoverTip] : []);
     }
 
+    public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
 
     public GhostflameModel? GhostflameModel { get; private set; }
 

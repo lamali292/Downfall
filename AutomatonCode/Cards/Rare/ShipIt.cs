@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class ShipIt : AutomatonCardModel
 {
-    public ShipIt() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public ShipIt() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
         WithCards(1);

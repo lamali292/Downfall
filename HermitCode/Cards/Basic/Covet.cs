@@ -13,6 +13,7 @@ public sealed class Covet : HermitCardModel
     {
         WithCards(1, 1);
         WithVar("Discard", 1);
+        WithTip(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

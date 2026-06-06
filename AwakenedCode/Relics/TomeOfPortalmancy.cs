@@ -16,7 +16,7 @@ public class TomeOfPortalmancy : AwakenedRelicModel
     public TomeOfPortalmancy() : base(RelicRarity.Common)
     {
         WithPower<ManaburnPower>(2);
-        WithTip(typeof(Void));
+        WithTip<Void>();
     }
 
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
