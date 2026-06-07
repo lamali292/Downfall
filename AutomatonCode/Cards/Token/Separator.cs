@@ -35,7 +35,7 @@ public class Separator : AutomatonCardModel, IEncodable
             .Execute(ctx);
     }
 
-    public LocString? GetEncodeLocString(EncodeContext context)
+    public LocString GetEncodeLocString(EncodeContext context)
     {
         var maxSlots = AutomatonCmd.GetMax(Owner);
         var isMiddle = context is { IsFromFunction: true, SlotIndex: > 0 }

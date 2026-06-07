@@ -30,8 +30,8 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
 
 
     public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
+    
     private CardRarity _cardRarity;
-
     private CardType _cardType;
     private TargetType _targetType;
     public IReadOnlyList<CardModel> SourceCards = [];
@@ -100,37 +100,38 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     // Build description from source card effects
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var i = 0;
         var lines = new List<string>();
+        var i = 0;
         foreach (var card in SourceCards)
         {
+            LocString loc;
             if (card is IEncodable encodable)
             {
-                var text = encodable.GetEncodeLocString(new EncodeContext(true, i))?.GetFormattedText();
-                if (string.IsNullOrEmpty(text)) continue;
-                lines.Add(text);
+                loc = encodable.GetEncodeLocString(new EncodeContext(true, i));
             }
             else
             {
-                var loc = card.Description;
-                card.DynamicVars.AddTo(loc);
-                var upgradeDisplay = !card.IsUpgraded ? UpgradeDisplay.Normal : UpgradeDisplay.Upgraded;
-
-                loc.Add(new IfUpgradedVar(upgradeDisplay));
-                loc.Add("OnTable", false);
-                loc.Add("InCombat", 0);
-                loc.Add("TargetType", card.TargetType.ToString());
-                loc.Add("GainsBlock", card.GainsBlock);
-                var prefix = EnergyIconHelper.GetPrefix(card);
-                loc.Add("energyPrefix", prefix);
-                loc.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
-                foreach (var variable3 in loc.Variables)
-                    if (variable3.Value is EnergyVar energyVar)
-                        energyVar.ColorPrefix = prefix;
-                lines.Add(loc.GetFormattedText());
+                loc = card.Description;
             }
-
             i++;
+            card.DynamicVars.AddTo(loc);
+            var upgradeDisplay = !card.IsUpgraded ? UpgradeDisplay.Normal : UpgradeDisplay.Upgraded;
+
+            loc.Add(new IfUpgradedVar(upgradeDisplay));
+            loc.Add("OnTable", false);
+            loc.Add("InCombat", 0);
+            loc.Add("TargetType", card.TargetType.ToString());
+            loc.Add("GainsBlock", card.GainsBlock);
+            var prefix = EnergyIconHelper.GetPrefix(card);
+            loc.Add("energyPrefix", prefix);
+            loc.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
+            foreach (var variable3 in loc.Variables)
+                if (variable3.Value is EnergyVar energyVar)
+                    energyVar.ColorPrefix = prefix;
+            var text = loc.GetFormattedText();
+            if (string.IsNullOrEmpty(text)) continue;
+            lines.Add(text);
+            
         }
 
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));

@@ -7,23 +7,21 @@ namespace Automaton.AutomatonCode.Interfaces;
 
 public interface IEncodable
 {
-    LocString? EncodeLocString => this is CardModel card ? BuildEncodeLocString(card) : null;
+    LocString EncodeLocString => (this is CardModel card ? BuildEncodeLocString(card) : null) ?? throw new Exception();
 
     Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
         return Task.CompletedTask;
     }
 
-    static LocString? BuildEncodeLocString(CardModel card)
+    static LocString BuildEncodeLocString(CardModel card)
     {
-        var key = card.Id.Entry + ".encode";
-        if (!LocString.Exists("encode", key)) return null;
-        var loc = new LocString("encode", key);
+        var loc = new LocString("encode", card.Id.Entry + ".encode");
         card.DynamicVars.AddTo(loc);
         return loc;
     }
 
-    LocString? GetEncodeLocString(EncodeContext context)
+    LocString GetEncodeLocString(EncodeContext context)
     {
         return EncodeLocString;
     }

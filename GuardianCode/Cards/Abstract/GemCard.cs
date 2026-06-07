@@ -100,10 +100,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
 
     public int GemSlots => 0;
     
-    public string GetTypePlaqueName(string original)
-    {
-        return GuardianCardType.Gem.ToLocString().GetFormattedText();
-    }
+    public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
 }
 
 public interface IGemCard

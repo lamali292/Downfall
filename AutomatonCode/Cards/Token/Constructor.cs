@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -27,7 +28,7 @@ public class Constructor : AutomatonCardModel, IEncodable
         await CreatureCmd.GainBlock(Owner.Creature, amount, DynamicVars.Block.Props, cardPlay);
     }
 
-    public LocString? GetEncodeLocString(EncodeContext context)
+    public LocString GetEncodeLocString(EncodeContext context)
     {
         if (context is not { IsFromFunction: true, SlotIndex: 0 })
             return IEncodable.BuildEncodeLocString(this);
@@ -39,5 +40,12 @@ public class Constructor : AutomatonCardModel, IEncodable
         doubled.SetOwner(this);
         loc.Add(doubled);
         return loc;
+    }
+
+
+    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, PileType pileType, CardPilePosition position)
+    {
+        return base.ModifyCardPlayResultPileTypeAndPosition(card, isAutoPlay, resources, pileType, position);
     }
 }
