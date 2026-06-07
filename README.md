@@ -2,68 +2,57 @@
 
 
 # Downfall — Slay the Spire 2
-
-# Dependency
-This mod requires BaseLib-StS2 for better mod compatibility and future update support.
-
-
-## Outdated Setup - Jusk ask me when you want to contribute. Setup is quite complicated.
-## Setup
-
-### 1. Download the Repository
-
-Clone the repository:
-
+## Build
+### Requirements
+- A Slay the Spire 2 installation
+- A Godot Executable (Preferably to be [MegaDot v4.5.1](https://megadot.megacrit.com/); secondly to be [Godot v4.5.1](https://godotengine.org/download/archive/4.5.1-stable/))
+- Extracted Slay the Spire 2 assets from [GDRE](https://github.com/GDRETools/gdsdecomp)  
+### Setup
+#### 1. Clone the repository
 ```bash
 git clone https://github.com/lamali292/Downfall.git
 ```
 
+#### 2. Set the local path arguments
+Copy `local.properties.example` to `local.properties` and set the paths.
 
-
-### 2. Configure `Downfall.csproj`
-
-
-
-Open the `Downfall.csproj` file and update the paths to match your system:
-
-i.e in Windows look for
-
-```xml
-<PropertyGroup Condition="'$(IsWindows)' == 'true'">
-  <GodotPath Condition="'$(GodotPath)' == ''">C:\Path\To\Godot\Godot4.5.1.exe</GodotPath>
-  <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
-  <!-- The below should not need to be changed. -->
-  ...
-</PropertyGroup>
+#### 3. Link the assets, run the ImageGen & compile setup script
+```bash
+link-assets.ps1
+setup.ps1
 ```
 
+#### 4. Pack the assets
+```bash
+dotnet publish PublishAll/PublishAll.csproj
+```
 
-You only need to change:
+### Re-compilation and re-packing
+The compilation and packing process is split into different steps. Under different circumstances, you may only need to run some of the steps.
 
-- **SteamLibraryPath** → Path to your Steam library
-- **GodotPath** → Path to your Godot installation
+* Original images changed: Run the image generator.
+* Codes changed: Compile the code.
+* Assets changed: Pack the assets.
 
-Recommended: [MegaDot — MegaCrit's custom Godot fork](https://megadot.megacrit.com/)
+#### Run the image generator
+The image generator can copy the images from `ImageGen/` folder to project folders.
 
-Standard: [Godot 4.5.1 .Net exe](https://godotengine.org/download/archive/4.5.1-stable/)
-### 3 Image Generation Scripts
+```bash
+dotnet run --project ImageGen/ImageGen.csproj
+```
 
-These scripts regenerate the relic and power atlases from source PNGs.
-They run automatically on `dotnet publish`.
+#### Compile
+If the code is changed but the assets are not, you can just compile the code without packing the assets. This will significantly reduce the time needed for testing.
 
-1. Install [Python 3.x](https://www.python.org/downloads/)
-2. Run `pip install -r image_gen/requirements.txt`
+```bash
+dotnet build Awakened.csproj
+```
 
+#### Pack
+If the assets are changed, you need to pack the assets into `.pck` files. This process will take a long time.
 
-### 4. Build the Mod
+**This process also automatically compiles the code**.
 
-Build the project using your IDE or the .NET CLI to copy the mod's DLL to the mods folder. 
-Then publish the mod to copy images and localization files as well.
-
-For detailed setup instructions, see the [BaseLib wiki](https://github.com/Alchyr/ModTemplate-StS2/wiki/Setup).
-
-After building, the mod is placed into your Slay the Spire 2 mods folder:
-
-```xml
-...\Steam\steamapps\common\Slay the Spire 2\mods\Downfall
+```bash
+dotnet publish Awakened.csproj
 ```
