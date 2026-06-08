@@ -94,7 +94,9 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         var mutable = newCanonical.ToMutable(player);
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
+        await Cmd.Wait(0.2f);
         TriggerModeAnimation(player);
+        await Cmd.Wait(0.2f);
         await GuardianHook.AfterGuardianModeChangeEarly(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
         await GuardianHook.AfterGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
