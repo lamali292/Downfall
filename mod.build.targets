@@ -23,7 +23,8 @@
         <!-- Added Configuration and GodotTargetConfiguration dynamically -->
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration);GodotTargetConfiguration=Export$(Configuration)"
-              IgnoreExitCode="true"/>
+              IgnoreExitCode="true"
+              IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
     <Target Name="GodotPublish" AfterTargets="Publish"
@@ -31,7 +32,8 @@
         <Message Text="--- RUNNING CUSTOM MOD PACKER FOR: '$(ModAssetFolder)' ---" Importance="high"/>
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s pack_mod.gd -- &quot;$(ModAssetFolder)&quot; &quot;$(ModsPath)$(ModOutputFolder)\$(MSBuildProjectName).pck&quot;"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration);GodotTargetConfiguration=Export$(Configuration)"
-              IgnoreExitCode="false"/>
+              IgnoreExitCode="false"
+              IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
     <Target Name="GodotPublishSkipped" AfterTargets="Publish"

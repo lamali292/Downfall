@@ -1,17 +1,17 @@
 ﻿{
-    "id":  "Downfall",
-    "name":  "Downfall",
-    "author":  "lamali",
-    "description":  "Slay the Spire 2 mod created from a template for use with BaseLib",
-    "version":  "0.0.6",
-    "has_pck":  true,
-    "has_dll":  true,
-    "min_game_version":  "0.105.0",
-    "dependencies":  [
-                         {
-                             "id":  "BaseLib",
-                             "min_version":  "0.0.0"
-                         }
-                     ],
-    "affects_gameplay":  true
+  "id": "Downfall",
+  "name": "Downfall",
+  "author": "lamali",
+  "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
+  "version": "0.0.6",
+  "has_pck": true,
+  "has_dll": true,
+  "min_game_version": "0.105.0",
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "0.0.0"
+    }
+  ],
+  "affects_gameplay": true
 }
