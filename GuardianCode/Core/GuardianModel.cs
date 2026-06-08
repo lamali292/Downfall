@@ -103,14 +103,11 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     private static void TriggerModeAnimation(Player player)
     {
-        Callable.From(() =>
-        {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
 
-            guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
-            guardianVisuals.OnAnimationTrigger("Idle");
-        }).CallDeferred();
+        guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
+        guardianVisuals.OnAnimationTrigger("Idle");
     }
 }
 
