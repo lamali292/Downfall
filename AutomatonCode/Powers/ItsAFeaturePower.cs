@@ -18,6 +18,6 @@ public class ItsAFeaturePower : AutomatonPowerModel
     {
         if (creator == null || creator.Creature != Owner) return;
         Flash();
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<VigorPower>(ctx, Owner, Amount, Owner, null);
     }
 }
