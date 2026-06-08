@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbjwqtye3a1i1"]
+[gd_scene load_steps=9 format=3 ]
 
-[ext_resource type="Script" uid="uid://p2rvugqkjh5h" path="res://GuardianCode/Vfx/NStasisSlot.cs" id="1_5fpke"]
-[ext_resource type="Texture2D" uid="uid://bwh7bh467av5h" path="res://images/orbs/empty_orb.png" id="2_5fpke"]
-[ext_resource type="FontFile" uid="uid://clypo64htko7l" path="res://fonts/kreon_regular.ttf" id="2_i2fes"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="3_5fpke"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NStasisSlot.cs" id="1_5fpke"]
+[ext_resource type="Texture2D" path="res://images/orbs/empty_orb.png" id="2_5fpke"]
+[ext_resource type="FontFile" path="res://fonts/kreon_regular.ttf" id="2_i2fes"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_5fpke"]
 
 [sub_resource type="FontVariation" id="FontVariation_uouql"]
 base_font = ExtResource("2_i2fes")

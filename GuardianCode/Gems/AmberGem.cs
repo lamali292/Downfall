@@ -18,7 +18,7 @@ public class AmberGem : GemModel
     public override Color GemColor => new(0xD0D100FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await GuardianCmd.Accelerate(ctx, Player, (int)effect);

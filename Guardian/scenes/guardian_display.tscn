@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4eee1av0jxt4"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Script" uid="uid://ctk5vy25l0kme" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_tmj8e"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianDisplay.cs" id="1_tmj8e"]
 
 [node name="GuardianDisplay" type="Control"]
 layout_mode = 3
