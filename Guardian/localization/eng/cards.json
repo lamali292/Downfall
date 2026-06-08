@@ -81,7 +81,7 @@
   "GUARDIAN-REFRACTED_BEAM.title": "Refracted Beam",
   "GUARDIAN-REPULSOR_GUARDIAN.description": "When you draw the first Status or Curse card each turn, [gold]Exhaust[/gold] it and draw a card.",
   "GUARDIAN-REPULSOR_GUARDIAN.title": "Repulsor",
-  "GUARDIAN-REROUTE.description": "Deal {Damage:diff()} damage.\nPlace the next card you play this turn into [gold]Stasis[/gold].",
+  "GUARDIAN-REROUTE.description": "Deal {Damage:diff()} damage.\nPlace the next not [gold]Exhausting[/gold] Attack or Skill you play this turn into [gold]Stasis[/gold].",
   "GUARDIAN-REROUTE.title": "Reroute",
   "GUARDIAN-RESILIENT_PLATE.description": "[gold]Brace[/gold] {Brace:diff()}.\n[gold]Polish[/gold] {Polish:diff()}.",
   "GUARDIAN-RESILIENT_PLATE.title": "Resilient Plate",
