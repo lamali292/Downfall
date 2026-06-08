@@ -13,7 +13,7 @@
   "CHAMP-BATTLE_PLAN.title": "Battle Plan",
   "CHAMP-BERSERKERS_SHOUT.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nEnter [gold]Berserker[/gold].",
   "CHAMP-BERSERKERS_SHOUT.title": "Berserker's Shout",
-  "CHAMP-BOB_AND_WEAVE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {VigorPower:diff()} [gold]Vigor[/gold].\nEnter [gold]Berserker[/gold].\n",
+  "CHAMP-BOB_AND_WEAVE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {VigorPower:diff()} [gold]Vigor[/gold].\nEnter [gold]Berserker[/gold].",
   "CHAMP-BOB_AND_WEAVE.title": "Bob and Weave",
   "CHAMP-BRING_IT_ON.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
   "CHAMP-BRING_IT_ON.title": "Bring It On",

@@ -10,10 +10,12 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.CustomEnums;
 
+/*
 public class GuardianCardType
 {
     [CustomEnum] public static CardType Gem;
 }
+
 
 [HarmonyPatch(typeof(ModelDb), "Init")]
 public static class CardTypeGenerator
@@ -93,3 +95,4 @@ public static class LogErrorPatch
         return "UNKNOWN_CARDTYPE";
     }
 }
+*/

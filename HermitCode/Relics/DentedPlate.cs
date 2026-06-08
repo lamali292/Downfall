@@ -11,7 +11,7 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class DentedPlate : HermitRelicModel
 {
-    public DentedPlate() : base(RelicRarity.Uncommon)
+    public DentedPlate() : base(RelicRarity.Rare)
     {
         WithEnergy(1);
         WithCards(1);

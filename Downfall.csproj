@@ -12,6 +12,7 @@
         <Compile Remove="Downfall/**"/>
         <Content Include="local.props"/>
         <Content Include="local.props.example"/>
+        <Content Include="release.ps1"/>
         <EmbeddedResource Remove="Downfall/**"/>
         <None Include="Downfall.json"/>
         <None Include="Downfall/**"/>

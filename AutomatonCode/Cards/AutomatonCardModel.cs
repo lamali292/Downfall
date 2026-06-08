@@ -29,8 +29,7 @@ public abstract class
     {
         if (this is not IEncodable encodable) return;
         var encode = encodable.EncodeLocString;
-        if (encode != null)
-            description.Add("encode", encode);
+        description.Add("encode", encode);
     }
 
 
