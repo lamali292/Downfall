@@ -53,7 +53,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
         Amount = amount;
     }
 
-    protected override async Task<bool> OnSelect()
+    protected override Task<bool> OnSelect()
     {
         Player.AddEssence(Amount);
         CustomMessageWrapper.Send(new EssenceRewardMessage
@@ -61,7 +61,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
             WasSkipped = false,
             Amount = Amount
         });
-        return true;
+        return Task.FromResult(true);
     }
 
     public override void MarkContentAsSeen()

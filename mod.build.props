@@ -13,7 +13,7 @@
         <AssemblyVersion>0.0.9.0</AssemblyVersion>
         <FileVersion>0.0.9.0</FileVersion>
         <Version>0.0.9</Version>
-        <NoWarn>$(NoWarn);MSB3270;CS1998;CS0436</NoWarn>
+        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>

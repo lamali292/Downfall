@@ -147,7 +147,7 @@
   "AWAKENED-PSALM.title": "Psalm",
   "AWAKENED-RAVEN_STRIKE.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-RAVEN_STRIKE.title": "Raven Strike",
-  "AWAKENED-RAZOR_SHARP.description": "Shuffle 2 [gold]Plume Jabs[/gold] into your [gold]Draw Pile[/gold]. [gold]Plume Jabs[/gold] hit {RazorSharpPower:diff()} more {RazorSharpPower:plural:time|times}}.",
+  "AWAKENED-RAZOR_SHARP.description": "Shuffle 2 [gold]Plume Jabs[/gold] into your [gold]Draw Pile[/gold].\n[gold]Plume Jabs[/gold] hit {RazorSharpPower:diff()} more {RazorSharpPower:plural:time|times}.",
   "AWAKENED-RAZOR_SHARP.title": "Razor Sharp",
   "AWAKENED-REALITY_RIFT.description": "Put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].\nChoose 1 of 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}cards from another dimension to add into your [gold]Hand[/gold].",
   "AWAKENED-REALITY_RIFT.title": "Reality Rift",
