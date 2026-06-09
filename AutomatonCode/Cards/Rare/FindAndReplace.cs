@@ -17,6 +17,7 @@ public class FindAndReplace : AutomatonCardModel
     public FindAndReplace() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        this.WithTip<Error>();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
