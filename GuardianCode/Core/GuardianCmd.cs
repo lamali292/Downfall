@@ -194,6 +194,13 @@ public static class GuardianCmd
             .ToList();
     }
 
+    public static async Task DoAfterOnPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (card is not IGemSocketCard gemSocketCard) return;
+        foreach (var gem in gemSocketCard.Gems)
+            await gem.OnPlay(ctx, cardPlay);
+    }
+
     public static async Task PutGemIn(CardModel gem, CardModel card)
     {
         if (card is not IGemSocketCard guardianCard) return;

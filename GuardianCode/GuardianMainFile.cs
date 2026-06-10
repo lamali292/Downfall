@@ -32,6 +32,7 @@ public partial class GuardianMainFile : Node
     {
         CustomLocTableManager.Register("gems");
         RegisterGemSave();
+        CardExecutionRegistry.RegisterAfter(GuardianCmd.DoAfterOnPlay);
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
         Harmony harmony = new(ModId);

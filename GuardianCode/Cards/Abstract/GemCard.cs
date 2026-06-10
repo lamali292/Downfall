@@ -101,11 +101,6 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
 
     public int GemSlots => 0;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await GemModel.OnPlay(ctx, cardPlay);
-    }
-
     public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
 }
 
