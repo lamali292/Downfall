@@ -94,7 +94,9 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         var mutable = newCanonical.ToMutable(player);
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
+        await Cmd.Wait(0.2f);
         TriggerModeAnimation(player);
+        await Cmd.Wait(0.2f);
         await GuardianHook.AfterGuardianModeChangeEarly(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
         await GuardianHook.AfterGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
@@ -103,14 +105,11 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     private static void TriggerModeAnimation(Player player)
     {
-        Callable.From(() =>
-        {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
 
-            guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
-            guardianVisuals.OnAnimationTrigger("Idle");
-        }).CallDeferred();
+        guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
+        guardianVisuals.OnAnimationTrigger("Idle");
     }
 }
 

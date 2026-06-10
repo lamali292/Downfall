@@ -52,12 +52,12 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     {
     }
 
-    protected override async Task<bool> OnSelect()
+    protected override Task<bool> OnSelect()
     {
-        if (!Player.CanAffordEssence(3)) return false;
+        if (!Player.CanAffordEssence(3)) return Task.FromResult(false);
         CollectiblesModel.SyncAdd(Player, card, 3);
         _wasTaken = true;
-        return true;
+        return Task.FromResult(true);
     }
 
     public override void OnSkipped()

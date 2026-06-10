@@ -21,10 +21,11 @@ public class SkillfulDodge : ChampCardModel, IDefensiveComboCard
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();
 
-    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].IntValue);
         DynamicVars.Power<CounterPower>().UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        return Task.CompletedTask;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)

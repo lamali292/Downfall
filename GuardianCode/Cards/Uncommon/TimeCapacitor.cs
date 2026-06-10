@@ -16,8 +16,9 @@ public class TimeCapacitor : GuardianCardModel
         WithTip(GuardianTip.Stasis);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         GuardianCmd.AddMaxStasisSlots(Owner, DynamicVars["StasisSlots"].IntValue);
+        return Task.CompletedTask;
     }
 }

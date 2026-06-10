@@ -50,11 +50,12 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
         await CardCmd.AutoPlay(ctx, freshDupe, enemy);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!_shouldTrigger || _pendingCardPlay != cardPlay || Dupe == null) return;
+        if (!_shouldTrigger || _pendingCardPlay != cardPlay || Dupe == null) return Task.CompletedTask;
         _shouldTrigger = false;
         _pendingCardPlay = null;
+        return Task.CompletedTask;
     }
 
     public void SetCard(CardModel card)

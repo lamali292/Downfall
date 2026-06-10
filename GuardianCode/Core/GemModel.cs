@@ -177,19 +177,21 @@ public abstract class GemModel : CardModifier, ICustomModel
         };
     }
 
-    private void AddDumbVariablesToDescription(LocString description)
+    private static void AddDumbVariablesToDescription(LocString description)
     {
         description.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
         description.Add("energyPrefix", EnergyIconHelper.GetPrefix(ModelDb.Card<StrikeGuardian>()));
     }
 
-    public async Task OnPlayWrapper(PlayerChoiceContext ctx, CardPlay? cardPlay, int count = 1)
+    protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay);
+    
+    
+    public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        //for (var i = 0; i < count; i++) await OnPlay(ctx, cardPlay);
+        var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
+        for (var i = 0; i < replay; i++)  await OnPlayInternal(ctx, cardPlay);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
-
-    //protected abstract Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay);
 
     public virtual int ModifyPlayCount(int originalPlayCount)
     {
