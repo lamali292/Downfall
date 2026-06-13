@@ -21,6 +21,13 @@ public class StashPile() : CustomPile(Stash)
         return false;
     }
 
+    /*
+    public override LocString Name => new("card_selection", "AUTOMATON-STASH_PILE");
+
+    public override string IconPath =>
+        ImageHelper.GetImagePath($"atlases/power_atlas.sprites/strength_power.tres");
+    */
+
     public override NCard? GetNCard(CardModel card)
     {
         return null;

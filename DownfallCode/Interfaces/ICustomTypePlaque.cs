@@ -1,6 +1,8 @@
-﻿namespace Downfall.DownfallCode.Interfaces;
+﻿using MegaCrit.Sts2.Core.Localization;
+
+namespace Downfall.DownfallCode.Interfaces;
 
 public interface ICustomTypePlaque
 {
-    string GetTypePlaqueName(string original);
+    LocString GetTypePlaqueName { get; }
 }

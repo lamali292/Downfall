@@ -248,9 +248,3 @@ public static class DownfallHook
         return AfterModifying(cs, modifiers, m => m.AfterModifyingSelfDamage(model));
     }
 }
-
-public interface IModifySelfDamage
-{
-    decimal ModifySelfDamage(decimal amount, AbstractModel model);
-    Task AfterModifyingSelfDamage(AbstractModel model);
-}

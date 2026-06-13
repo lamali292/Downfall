@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Downfall.DownfallCode.Abstract;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 
@@ -11,6 +12,7 @@ public static class ColorfulPhilosophersPatch
     [HarmonyPostfix]
     public static void Postfix(ref IEnumerable<CardPoolModel> __result)
     {
-        //__result = __result.Append(ModelDb.CardPool<YourCardPool>());
+        var pools = ModelDb.AllCharacters.OfType<DownfallCharacterModel>().Select(e => e.CardPool);
+        __result = __result.Concat(pools);
     }
 }

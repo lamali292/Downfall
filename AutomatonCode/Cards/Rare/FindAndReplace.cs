@@ -1,10 +1,12 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,6 +19,7 @@ public class FindAndReplace : AutomatonCardModel
     public FindAndReplace() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
+        this.WithTip<Error>();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
@@ -26,9 +29,13 @@ public class FindAndReplace : AutomatonCardModel
     {
         if (CombatState == null) return;
         var choices = Owner.GetStash().Concat(Owner.GetDraw()).Concat(Owner.GetDiscard()).ToList();
-        var selected =
+        /*var selected =
             (await DownfallCardCmd.SelectFromCards(ctx, choices, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this))
-            .FirstOrDefault();
+            .FirstOrDefault();*/
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
+        var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();
+        
+        var selected = (await MultiPileCardSelect.Select(ctx, Owner, prefs, choices, pileTypes)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;
         var index = sourcePile._cards.IndexOf(selected);

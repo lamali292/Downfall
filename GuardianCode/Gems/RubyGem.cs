@@ -20,7 +20,7 @@ public class RubyGem : GemModel
     public override Color GemColor => new(0xC52000FF);
     public override CardRarity Rarity => CardRarity.Common;
 
-    public override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<TemporaryStrengthUpPower>(ctx, Player.Creature, effect, Player.Creature, null);

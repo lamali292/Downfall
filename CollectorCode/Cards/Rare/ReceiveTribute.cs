@@ -24,7 +24,8 @@ public class ReceiveTribute : CollectorCardModel, IHasPyre
 
     public CardModel? PyredCard { get; set; }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        return Task.CompletedTask;
     }
 }

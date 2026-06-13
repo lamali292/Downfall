@@ -32,7 +32,7 @@ public class BrilliantScalesPower : GuardianPowerModel
         if (_sourceCard == null) return;
         if (Owner != player.Creature) return;
         foreach (var gem in _sourceCard.Gems)
-            await gem.OnPlayWrapper(ctx, null);
+            await gem.OnPlay(ctx, null);
     }
 
     public void SetCard(IGemSocketCard cardModel)

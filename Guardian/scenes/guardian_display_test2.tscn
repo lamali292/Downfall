@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw66sq3qhu21g"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="Script" uid="uid://nm21x3d2n1th" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_ity66"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_ity66"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="2_87lj2"]
-[ext_resource type="PackedScene" uid="uid://b4cwhbxrui7qv" path="res://Guardian/scenes/guardian_display_test.tscn" id="3_fve8n"]
+[ext_resource type="PackedScene" path="res://Guardian/scenes/guardian_display_test.tscn" id="3_fve8n"]
 
 [node name="GuardianCombat" type="Node2D"]
 script = ExtResource("1_ity66")

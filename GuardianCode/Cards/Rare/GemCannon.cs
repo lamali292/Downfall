@@ -36,7 +36,7 @@ public class GemCannon : GuardianCardModel
         foreach (var gem in gems)
         {
             await Cmd.Wait(0.2f);
-            await gem.OnPlayWrapper(ctx, cardPlay);
+            await gem.OnPlay(ctx, cardPlay);
         }
     }
 }

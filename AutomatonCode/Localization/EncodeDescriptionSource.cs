@@ -11,7 +11,6 @@ public class EncodeDescriptionSource : IExtraDescriptionSource
     {
         if (card is not IEncodable encodable) yield break;
         var encode = encodable.EncodeLocString;
-        if (encode == null) yield break;
         var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();
         var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
         var text = encode.GetFormattedText();

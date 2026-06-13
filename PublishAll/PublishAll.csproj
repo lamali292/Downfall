@@ -28,7 +28,8 @@
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)')">
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)\..&quot; --import --quit --extra-args --no-window"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              IgnoreExitCode="true"/>
+              IgnoreExitCode="true"
+              IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
     <Target Name="PublishAll" AfterTargets="Publish">

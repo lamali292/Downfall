@@ -23,7 +23,7 @@ public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        if (newStance.Owner != Owner && Pile?.Type != PileType.Discard) return;
+        if (newStance.Owner != Owner || Pile?.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 

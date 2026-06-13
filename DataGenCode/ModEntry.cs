@@ -8,6 +8,7 @@ public class ModEntry
 {
     public static void Load()
     {
-        new Harmony("visible_a_9").PatchAll();
+        // TODO fix patches for new baselib
+        //new Harmony("visible_a_9").PatchAll();
     }
 }
