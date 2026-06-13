@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Relics;
-
+//todo Echo keyword needed (yellow), do we need a Stance keyword?
 [Pool(typeof(ChampRelicPool))]
 public class SpectresHand() : ChampRelicModel(RelicRarity.Rare), IOnChampStanceChange
 {

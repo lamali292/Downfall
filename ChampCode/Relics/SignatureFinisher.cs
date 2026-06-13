@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Relics;
-
+//todo add signature tip
 [Pool(typeof(ChampRelicPool))]
 public class SignatureFinisher() : ChampRelicModel(RelicRarity.Rare)
 {

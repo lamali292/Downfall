@@ -22,7 +22,7 @@ public class Execution : ChampCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 3).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 4).Execute(ctx);
     }
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
