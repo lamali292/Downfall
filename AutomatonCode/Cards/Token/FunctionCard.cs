@@ -50,7 +50,8 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override CardType Type => _cardType;
     public override TargetType TargetType => _targetType;
 
-
+//todo make preview properly with strength and dexterity etc
+    
     public IEnumerable<DynamicVarSet> GetDynamicVars()
     {
         return SourceCards.Select(t => t.DynamicVars

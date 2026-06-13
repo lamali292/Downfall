@@ -150,13 +150,15 @@ public static class HexaghostCmd
         await flame.OnIgnite(ctx);
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
-        if (AllIgnited(player))
+        //todo this should be in the inferno ghostflame, I made this a separate command for now
+     /*   if (AllIgnited(player))
         {
             await HexaghostHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
             foreach (var f in GetWheel(player).Where(f => !f.IsActive))
                 f.Extinguish();
             HexaghostVisualsBridge.Refresh(player);
         }
+        */
     }
 
 
@@ -166,6 +168,12 @@ public static class HexaghostCmd
         for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, i);
     }
 
+    public static async Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
+         foreach (var f in GetWheel(player).Where(f => !f.IsActive))
+           f.Extinguish();
+         HexaghostVisualsBridge.Refresh(player);
+    }
+    
     public static Task Extinguish(Player player, bool silent = false)
     {
         GetCurrentFlame(player).Extinguish();

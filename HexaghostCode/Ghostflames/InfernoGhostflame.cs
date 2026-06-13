@@ -38,11 +38,14 @@ public class InfernoGhostflame : GhostflameModel
             if (!target.IsHittable) continue;
             await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
         }
-
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
+        
+        await HexaghostCmd.ExtinguishAllExceptCurrent(ctx, Owner);
     }
 
+    //todo Inferno Ghostflame should self-extinguish at the end of every turn if Ignited
+    
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;

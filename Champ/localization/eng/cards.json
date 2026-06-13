@@ -66,7 +66,7 @@
   "CHAMP-EXECUTE.description": "Deal {Damage:diff()} damage twice.",
   "CHAMP-EXECUTE.title": "Execute",
   "CHAMP-EXECUTION.title": "Execution",
-  "CHAMP-EXECUTION.description": "Deal {Damage:diff()} damage 3 times.\nPerform twice without exiting your [gold]Stance[/gold]: ",
+  "CHAMP-EXECUTION.description": "Deal {Damage:diff()} damage 4 times.\nPerform twice without exiting your [gold]Stance[/gold]: ",
   "CHAMP-FACE_SLAP.description": "Deal {Damage:diff()} damage.\n[gold]Berserker Combo[/gold]:\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "CHAMP-FACE_SLAP.title": "Face Slap",
   "CHAMP-FANCY_FOOTWORK.description": "Enter a [gold]Stance[/gold] you aren't in.\nThe next [gold]Finisher[/gold] this turn deals[gold] [/gold]{FancyFootworkPower:diff()} damage to ALL enemies.",
