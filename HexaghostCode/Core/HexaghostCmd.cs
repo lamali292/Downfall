@@ -151,14 +151,14 @@ public static class HexaghostCmd
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
         //todo this should be in the inferno ghostflame, I made this a separate command for now
-     /*   if (AllIgnited(player))
+        if (AllIgnited(player))
         {
             await HexaghostHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
-            foreach (var f in GetWheel(player).Where(f => !f.IsActive))
+            /*foreach (var f in GetWheel(player).Where(f => !f.IsActive))
                 f.Extinguish();
-            HexaghostVisualsBridge.Refresh(player);
+            HexaghostVisualsBridge.Refresh(player);*/
         }
-        */
+    
     }
 
 
