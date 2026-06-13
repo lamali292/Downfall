@@ -21,8 +21,10 @@ public class Incineration : HexaghostCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
+        {
+            await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
             await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        }
     }
 }

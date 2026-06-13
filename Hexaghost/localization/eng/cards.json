@@ -99,7 +99,7 @@
   "HEXAGHOST-HEXAGUARD.title": "Hexaguard",
   "HEXAGHOST-HOT_STREAK.title": "Hot Streak",
   "HEXAGHOST-HOT_STREAK.description": "At the end of your turn, apply {HotStreakPower:diff()} [gold]Soulburn[/gold] to enemies that already have [gold]Soulburn[/gold].",
-  "HEXAGHOST-INCINERATION.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. Apply {SoulBurnPower:diff()} [gold]Soulburn [/gold]{Repeat:diff()} times.",
+  "HEXAGHOST-INCINERATION.description": "Repeat {Repeat:diff()} times:\nDeal {Damage:diff()} damage.\nApply {SoulBurnPower:diff()} [gold]Soulburn [/gold].",
   "HEXAGHOST-INCINERATION.title": "Incineration",
   "HEXAGHOST-INCORPOREAL.description": "Lose {HpLoss:diff()} HP.\nGain {IntangiblePower:diff()} [gold]Intangible[/gold].",
   "HEXAGHOST-INCORPOREAL.title": "Incorporeal",
