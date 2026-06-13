@@ -1,3 +1,4 @@
 ﻿{
-  "AUTOMATON-TO_STASH": "Select {Amount:plural:a card|[blue]{}[/blue] cards} to Stash"
+  "AUTOMATON-TO_STASH": "Select {Amount:plural:a card|[blue]{}[/blue] cards} to Stash",
+  "AUTOMATON-STASH_PILE": "Stash Pile"
 }

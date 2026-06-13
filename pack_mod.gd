@@ -1,20 +1,18 @@
 extends SceneTree
 
 # Raw source formats Godot compiles into .ctex / other cache files.
-# These are never loaded at runtime — only their compiled counterparts are.
+# These are never loaded at runtime only their compiled counterparts are.
 const SKIP_EXTENSIONS: Array[String] = [
 	".png", ".jpg", ".jpeg", ".webp", ".bmp", ".svg", ".tga",
 	".ogg", ".mp3", ".wav",  # audio is compiled to cache just like images
 ]
 
-# Prefer the explicit desktop compression variant; fall back to the generic path.
 # Change this order if you're targeting mobile/web instead.
 const REMAP_PATH_KEYS: Array[String] = [
 	"path.s3tc_bptc",   # modern desktop (DX11+ / Vulkan)
 	"path.etc2_astc",   # mobile fallback
 	"path",             # generic / uncompressed fallback
 ]
-
 
 func _init() -> void:
 	var args: PackedStringArray = OS.get_cmdline_user_args()
@@ -90,17 +88,10 @@ func _pack_imported_dependency(packer: PCKPacker, import_file_path: String) -> v
 	if not config.has_section("remap"):
 		return
 
-	# Walk the preferred key order and pack only the first match.
-	# This avoids bloating the PCK with multiple compression variants
-	# that will never all be used on the same platform.
 	for key in REMAP_PATH_KEYS:
 		var cache_path = config.get_value("remap", key, "")
 		if cache_path is String and cache_path != "" and FileAccess.file_exists(cache_path):
 			var err: int = packer.add_file(cache_path, cache_path)
 			if err != OK:
 				printerr("Failed to pack imported cache: ", cache_path)
-			break  # First match wins — don't pack fallback variants too.
-
-	# [deps] dest_files is intentionally ignored: it lists the same compiled
-	# cache paths already covered by [remap], so including it would just
-	# call add_file() on the same paths a second time.
+			break
