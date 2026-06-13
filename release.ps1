@@ -108,7 +108,7 @@ git push origin HEAD --tags
 
 # --- auto notes for this tag, then prepend the banner ---
 $repo = gh repo view --json nameWithOwner -q ".nameWithOwner"
-$auto = gh api "repos/$repo/releases/generate-notes" -f tag_name="v$new" -q ".body"
+$auto = (gh api "repos/$repo/releases/generate-notes" -f tag_name="v$new" -q ".body") -join "`n"
 $body = "$banner`n`n---`n`n$auto"
 
 # --- create the release once, with combined body + display title ---

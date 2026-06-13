@@ -168,10 +168,11 @@ public static class HexaghostCmd
         for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, i);
     }
 
-    public static async Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
+    public static Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
          foreach (var f in GetWheel(player).Where(f => !f.IsActive))
            f.Extinguish();
          HexaghostVisualsBridge.Refresh(player);
+         return Task.CompletedTask;
     }
     
     public static Task Extinguish(Player player, bool silent = false)
