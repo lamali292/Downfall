@@ -13,7 +13,7 @@ public class Temporal : DownfallEnchantmentModel<Core.Guardian>
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Card.Owner || combatState.RoundNumber > 1) return;
+        if (player != Card.Owner || player.PlayerCombatState is not { TurnNumber: 1 }) return;
         await GuardianCmd.PutIntoStasis(Card, ctx, this, true);
     }
 }

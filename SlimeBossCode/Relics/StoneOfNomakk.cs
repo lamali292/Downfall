@@ -19,7 +19,7 @@ public class StoneOfNomakk : SlimeBossRelicModel
 
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        return combatState.RoundNumber > 1 || player != Owner
+        return Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner
             ? Task.CompletedTask
             : MyCommonActions.ApplySelf<PotencyPower>(ctx, this);
     }

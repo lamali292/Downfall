@@ -16,7 +16,7 @@ public class PilotsCodex() : GuardianRelicModel(RelicRarity.Rare)
 {
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         var cards = ModelDb.CardPool<GuardianCardPool>()
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint);
         var list = CardFactory.GetDistinctForCombat(Owner, cards, 2, Owner.RunState.Rng.CombatCardGeneration).ToList();

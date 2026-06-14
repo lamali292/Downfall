@@ -26,7 +26,7 @@ public class PrismaticTorch : CollectorRelicModel
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
         CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
         Flash();

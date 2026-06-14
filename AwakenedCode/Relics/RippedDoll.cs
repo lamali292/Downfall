@@ -20,16 +20,16 @@ public class RippedDoll : AwakenedRelicModel
     }
 
     public override bool ShowCounter =>
-        CombatManager.Instance.IsInProgress && Owner.Creature.CombatState?.RoundNumber < 3;
+        CombatManager.Instance.IsInProgress && Owner.PlayerCombatState?.TurnNumber <= 2;
 
     public override int DisplayAmount
     {
         get
         {
-            var combatState = Owner?.Creature?.CombatState;
-            if (combatState == null) return 0;
-            if (combatState.RoundNumber > 2) return 0;
-            return 2 - combatState.RoundNumber;
+            var combatState = Owner.Creature.CombatState;
+            var turn = Owner.PlayerCombatState?.TurnNumber;
+            if (combatState == null || turn == null || turn >= 2) return 0;
+            return 2 - turn.Value;
         }
     }
 
@@ -51,7 +51,7 @@ public class RippedDoll : AwakenedRelicModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 2) return;
+        if (player != Owner || Owner.PlayerCombatState == null || Owner.PlayerCombatState.TurnNumber > 2) return;
         Flash();
         await AwakenedCmd.Conjure(Owner, combatState);
     }

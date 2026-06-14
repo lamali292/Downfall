@@ -28,7 +28,7 @@ public class SleevedAce : SneckoRelicModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         await DownfallCardCmd.GiveCard<MarkedCard>(player, PileType.Hand, upgraded: true);
     }
 }

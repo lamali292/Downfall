@@ -31,7 +31,7 @@ public sealed class OldLocket : HermitRelicModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
-        if (combatState.RoundNumber > 1 || player != Owner) return;
+        if (Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner) return;
         await DownfallCardCmd.GiveCard<MementoCard>(Owner, PileType.Hand);
         Flash();
     }
