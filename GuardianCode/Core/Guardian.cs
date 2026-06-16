@@ -3,7 +3,9 @@ using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -97,3 +99,6 @@ public abstract class GuardianPowerModel(
 public class GuardianPotionPool : DownfallPotionPool<Guardian>;
 
 public class GuardianCardPool : DownfallCardPool<Guardian>;
+
+public abstract class GuardianPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<Guardian>(potionRarity, potionUsage, targetType);
