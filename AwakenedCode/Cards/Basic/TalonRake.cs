@@ -32,7 +32,6 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        if (CombatState == null) return;
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
     }
 }

@@ -53,7 +53,7 @@ public class RippedDoll : AwakenedRelicModel
     {
         if (player != Owner || Owner.PlayerCombatState == null || Owner.PlayerCombatState.TurnNumber > 2) return;
         Flash();
-        await AwakenedCmd.Conjure(Owner, combatState);
+        await AwakenedCmd.Conjure(Owner);
     }
 
     public override RelicModel GetUpgradeReplacement()

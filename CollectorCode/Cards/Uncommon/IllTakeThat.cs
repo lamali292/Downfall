@@ -23,7 +23,7 @@ public class IllTakeThat : CollectorCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (cardPlay.Target == null) return;
         var stolenBlock = Math.Min(cardPlay.Target.Block, DynamicVars["IllTakeThat"].IntValue);
         if (stolenBlock > 0)
         {

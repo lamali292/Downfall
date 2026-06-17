@@ -18,6 +18,6 @@ public class ShreddedDoll() : AwakenedRelicModel(RelicRarity.Starter)
         if (player.PlayerCombatState is { TurnNumber: 1 })
             await PowerCmd.Apply<RitualPower>(ctx, player.Creature, 1, player.Creature, null);
         Flash();
-        await AwakenedCmd.Conjure(Owner, combatState);
+        await AwakenedCmd.Conjure(Owner);
     }
 }
