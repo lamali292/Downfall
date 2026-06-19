@@ -105,6 +105,13 @@ public static class MyCommonActions
 
         switch (targets.Count)
         {
+            case 0:
+                var combatState = model.GetCreature().CombatState;
+                if (combatState == null)
+                    throw new InvalidOperationException(
+                        $"{model.GetType().Name} requested an AllEnemies attack with no combat state.");
+                cmd.TargetingAllOpponents(combatState);
+                break;
             case 1:
                 cmd.Targeting(targets[0]);
                 break;
