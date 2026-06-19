@@ -1,5 +1,6 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
   "DOWNFALL-UPLOAD_METRICS.title": "Upload Gameplay Data",
-  "DOWNFALL-UPLOAD_METRICS.hover.desc": "Gameplay data is sent to help fix bugs and balance the mod. Only sent when playing as a Downfall character.\n\nPersonally identifying information is NOT collected."
+  "DOWNFALL-UPLOAD_METRICS.hover.desc": "Gameplay data is sent to help fix bugs and balance the mod. Only sent when playing as a Downfall character.\n\nPersonally identifying information is NOT collected.",
+  "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "Voting"
 }

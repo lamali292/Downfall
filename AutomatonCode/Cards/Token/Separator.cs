@@ -28,9 +28,8 @@ public class Separator : AutomatonCardModel, IEncodable
         var isMiddle = encodeContext is { IsFromFunction: true, SlotIndex: > 0 }
                        && encodeContext.SlotIndex < maxSlots - 1;
         var amount = DynamicVars.Damage.IntValue + (isMiddle ? DynamicVars["ExtraDamage"].IntValue : 0);
-
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(amount).FromCard(this).Targeting(cardPlay.Target)
+        
+        await CommonActions.CardAttack(this, cardPlay.Target, amount, ValueProp.Move)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }

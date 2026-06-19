@@ -22,7 +22,7 @@ public class PowerArmor() : ChampRelicModel(RelicRarity.Shop)
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
     }

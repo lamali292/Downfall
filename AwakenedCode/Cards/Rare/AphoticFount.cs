@@ -26,8 +26,7 @@ public class AphoticFount : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
         await CommonActions.ApplySelf<AphoticFountPower>(ctx, this);
     }
 }

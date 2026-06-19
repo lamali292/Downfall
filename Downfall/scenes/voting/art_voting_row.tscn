@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://cylwnt0msag45"]
+
+[ext_resource type="Script" uid="uid://d2gwnjdvp0s3x" path="res://DownfallCode/Voting/NArtVotingRow.cs" id="1_hwvba"]
+[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="2_y2c0g"]
+[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="3_1tkpf"]
+[ext_resource type="Texture2D" uid="uid://c1kosvcor5dsr" path="res://images/ui/mods/steam_logo.png" id="4_dqhd6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyjbh"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ModRow" type="Control"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hwvba")
+
+[node name="SelectionHighlight" type="Panel" parent="."]
+modulate = Color(0.594729, 0.78547, 0.959835, 0.203922)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyjbh")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 562.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_y2c0g")
+theme_override_font_sizes/normal_font_size = 32
+text = "A very cool mod"
+scroll_active = false
+vertical_alignment = 1
+script = ExtResource("3_1tkpf")
+MinFontSize = 16
+MaxFontSize = 32
+IsHorizontallyBound = true
+metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -25.0
+offset_right = -12.0
+offset_bottom = 23.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_dqhd6")
+expand_mode = 1
+stretch_mode = 5

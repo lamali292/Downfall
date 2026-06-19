@@ -15,9 +15,9 @@ public class ShreddedDoll() : AwakenedRelicModel(RelicRarity.Starter)
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner) return;
-        if (combatState.RoundNumber == 1)
+        if (player.PlayerCombatState is { TurnNumber: 1 })
             await PowerCmd.Apply<RitualPower>(ctx, player.Creature, 1, player.Creature, null);
         Flash();
-        await AwakenedCmd.Conjure(Owner, combatState);
+        await AwakenedCmd.Conjure(Owner);
     }
 }

@@ -23,7 +23,7 @@ public class ChampionsCrown() : ChampRelicModel(RelicRarity.Starter)
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await ChampCmd.EnterDifferentStance(ctx, player);
         var stance = Owner.ChampStance();

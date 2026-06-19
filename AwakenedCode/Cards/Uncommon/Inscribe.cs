@@ -20,13 +20,11 @@ public class Inscribe : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
         if (IsUpgraded)
-            await AwakenedCmd.Conjure(Owner, CombatState);
+            await AwakenedCmd.Conjure(Owner);
 
         var combatState = Owner.Creature.CombatState!;
-
-        // Wir erstellen die Auswahlmöglichkeiten
+        
         var choices = new List<CardModel>
         {
             combatState.CreateCard<BurningStudy>(Owner),

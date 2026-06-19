@@ -23,7 +23,7 @@ public class TarrBlob : SlimeBossRelicModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (combatState.RoundNumber > 1 || player != Owner) return;
+        if (Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner) return;
         await SlimeBossCmd.DecreaseSlots(ctx, player, DynamicVars["Decrease"].IntValue);
     }
 }

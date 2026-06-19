@@ -20,7 +20,7 @@ public class WanderBots : GuardianRelicModel
 
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return Task.CompletedTask;
         GuardianCmd.RemoveMaxStasisSlots(player);
         return Task.CompletedTask;
     }

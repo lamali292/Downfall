@@ -21,9 +21,8 @@ public class Envision : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardBlock(this, cardPlay);
-        var card = await AwakenedCmd.Conjure(Owner, CombatState);
+        var card = await AwakenedCmd.Conjure(Owner);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }

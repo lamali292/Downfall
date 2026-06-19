@@ -19,9 +19,8 @@ public class ManaShield : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
         var card = Owner.RunState.Rng.CombatCardGeneration
             .NextItem(Owner.GetHand(c => c is ISpell && c.EnergyCost.GetResolved() > 0));
         card?.EnergyCost.UpgradeBy(-1);

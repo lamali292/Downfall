@@ -153,11 +153,11 @@ public static class GuardianCmd
         card.EnergyCost.SetUntilPlayed(0);
     }
 
-    private static async Task TickCard(CardModel card, Player player, PlayerChoiceContext ctx)
+    private static async Task<bool> TickCard(CardModel card, Player player, PlayerChoiceContext ctx)
     {
-        if (GuardianCombatModel.StasisCounter[card] <= 0) return;
+        if (GuardianCombatModel.StasisCounter[card] <= 0) return false;
         var combatState = player.Creature.CombatState;
-        if (combatState == null) return;
+        if (combatState == null) return false;
 
         GuardianCombatModel.StasisCounter[card]--;
         GuardianDisplay.RefreshCounters(player);
@@ -165,8 +165,10 @@ public static class GuardianCmd
             await tickCard.OnTick(ctx);
         await GuardianHook.AfterCardTick(combatState, ctx, card, player);
 
-        if (GuardianCombatModel.StasisCounter[card] == 0)
-            await ReturnFromStasis(card, player, ctx);
+        if (GuardianCombatModel.StasisCounter[card] != 0) return false;
+        await ReturnFromStasis(card, player, ctx);
+        return true;
+
     }
 
 
@@ -225,6 +227,20 @@ public static class GuardianCmd
         return Brace(ctx, card.Owner, card.DynamicVars.Brace().IntValue);
     }
 
+    public static async Task AccelerateUntilExit(PlayerChoiceContext ctx, Player player)
+    {
+        foreach (var card in GetStasisCards(player).ToList())
+        {
+            while (GuardianCombatModel.StasisCounter[card] > 0)
+            {
+                if (!await TickCard(card, player, ctx)) continue;
+                GuardianDisplay.Refresh(player);
+                return;
+            }
+        }
+        GuardianDisplay.Refresh(player);
+    }
+    
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
@@ -255,22 +271,25 @@ public static class GuardianCmd
         GuardianDisplay.Refresh(player);
     }
 
-    public static Task Accelerate(PlayerChoiceContext ctx, CardModel card,
+    public static Task Accelerate(PlayerChoiceContext ctx, AbstractModel source,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        return Accelerate(ctx, card.Owner, card.DynamicVars.Accelerate().IntValue, accelerateType);
+        var player = source.GetCreature().Player;
+        return player == null ? 
+            Task.CompletedTask : 
+            Accelerate(ctx, player, source.GetDynamicVars().Accelerate().IntValue, accelerateType);
     }
 
 
-    public static async Task Polish(PlayerChoiceContext ctx, CardModel card)
+    public static async Task Polish(PlayerChoiceContext ctx, AbstractModel source)
     {
-        var amount = card.DynamicVars.Polish().IntValue;
-        await Polish(ctx, card, amount);
+        var amount = source.GetDynamicVars().Polish().IntValue;
+        await Polish(ctx, source, amount);
     }
 
-    public static async Task Polish(PlayerChoiceContext ctx, CardModel card, decimal amount)
+    public static async Task Polish(PlayerChoiceContext ctx, AbstractModel source, decimal amount)
     {
-        await Polish(ctx, card.Owner.Creature, amount, card);
+        await Polish(ctx, source.GetCreature(), amount, source as CardModel);
     }
 
     public static async Task Polish(PlayerChoiceContext ctx, Creature target, decimal amount, CardModel? cardSource)

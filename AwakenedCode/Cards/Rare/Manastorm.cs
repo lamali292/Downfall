@@ -22,9 +22,8 @@ public class Manastorm : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await AwakenedCmd.Conjure(Owner, CombatState);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
+        await AwakenedCmd.Conjure(Owner);
     }
 }

@@ -34,7 +34,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     // Hooks
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player.Character is not Guardian || combatState.RoundNumber > 1) return;
+        if (player.Character is not Guardian || player.PlayerCombatState is not { TurnNumber: 1 }) return;
         await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
         await GuardianCmd.LeaveDefensiveMode(ctx, player);
     }
