@@ -13,6 +13,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Bloodthirst : AwakenedCardModel
 {
+    public override bool CanBeGeneratedInCombat => false;
     public Bloodthirst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(20, 5);
