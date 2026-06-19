@@ -136,7 +136,7 @@
   "HERMIT-LUCK_OF_THE_DRAW.description": "Draw cards until their total cost is {Threshold:diff()} or more.",
   "HERMIT-COALESCENCE.title": "Coalescence",
   "HERMIT-COALESCENCE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Retain[/gold] up to {Cards:diff()} cards this turn.",
-  "HERMIT-COALESCENCE.selectionScreenPrompt": "Choose up to {Cards:diff()} cards to Retain.",
+  "HERMIT-COALESCENCE.selectionScreenPrompt": "Choose up to {Cards:diff()} cards to [gold]Retain[/gold].",
   "HERMIT-PISTOL_WHIP.title": "Pistol Whip",
   "HERMIT-PISTOL_WHIP.description": "Deal {Damage:diff()} damage.\nApply {BruisePower:diff()} [gold]Bruise[/gold].",
   "HERMIT-DEAD_MANS_HAND.title": "Dead Man's Hand",
