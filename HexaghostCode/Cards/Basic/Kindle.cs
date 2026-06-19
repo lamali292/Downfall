@@ -9,9 +9,9 @@ namespace Hexaghost.HexaghostCode.Cards.Basic;
 [Pool(typeof(HexaghostCardPool))]
 public class Kindle : HexaghostCardModel
 {
-    public Kindle() : base(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public Kindle() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBlock(4, 4);
+        WithBlock(3, 3);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
