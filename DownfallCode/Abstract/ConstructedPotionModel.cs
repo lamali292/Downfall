@@ -41,6 +41,12 @@ public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUs
 
         return this;
     }
+    
+    protected ConstructedPotionModel WithRepeat(int i)
+    {
+        WithVars(new RepeatVar(i));
+        return this;
+    }
 
     protected ConstructedPotionModel WithDamage(int i)
     {

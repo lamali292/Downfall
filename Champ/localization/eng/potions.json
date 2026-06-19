@@ -1,0 +1,8 @@
+{
+  "CHAMP-BOTTLED_TECHNIQUE.title": "Bottled Technique",
+  "CHAMP-BOTTLED_TECHNIQUE.description": "Trigger your current [gold]Stance[/gold]'s [gold]Skill Bonus[/gold] [blue]{Repeat:diff()}[/blue] times.",
+  "CHAMP-BREW_OF_SHARPNESS.title": "Brew of Sharpness",
+  "CHAMP-BREW_OF_SHARPNESS.description": "Gain [blue]{CounterPower:diff()}[/blue] [gold]Counter[/gold].",
+  "CHAMP-STIMPACK.title": "Stimpack",
+  "CHAMP-STIMPACK.description": "Enter [gold]Ultimate Stance[/gold] for [blue]1[/blue] turn."
+}

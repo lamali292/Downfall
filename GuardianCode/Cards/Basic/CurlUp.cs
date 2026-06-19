@@ -37,8 +37,7 @@ public class CurlUp : GuardianCardModel
             else
                 card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.GetHand(e => e != this));
 
-            if (card == null) return;
-            await GuardianCmd.PutIntoStasis(card, ctx, this);
+            if (card != null) await GuardianCmd.PutIntoStasis(card, ctx, this);
         }
 
         await GuardianCmd.Brace(ctx, this);

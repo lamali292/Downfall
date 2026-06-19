@@ -24,7 +24,7 @@ public class EvasiveProtocol : GuardianCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Brace(ctx, this);
         await CommonActions.ApplySelf<EvasiveProtocolPower>(ctx, this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }
