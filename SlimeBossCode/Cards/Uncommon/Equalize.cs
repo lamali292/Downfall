@@ -14,6 +14,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class Equalize : SlimeBossCardModel, IHasConsumeEffect
 {
+    public override bool CanBeGeneratedInCombat => false;
     public Equalize() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(8, 4);

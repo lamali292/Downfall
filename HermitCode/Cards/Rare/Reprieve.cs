@@ -7,6 +7,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class Reprieve : HermitCardModel
 {
+    public override bool CanBeGeneratedInCombat => false;
     public Reprieve() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithHeal(10, 3);
