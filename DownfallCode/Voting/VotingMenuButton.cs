@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Helpers;
+﻿using Downfall.DownfallCode.Config;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -9,6 +10,7 @@ using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
+
 
 [HarmonyPatch(typeof(NMainMenu), "_Ready")]
 public class VotingMenuButton
@@ -24,7 +26,7 @@ public class VotingMenuButton
 
     public static void Postfix(NMainMenu __instance)
     {
-        if (_button == null) return;
+        if (_button == null || !DownfallConfig.DevMode) return;
         __instance.GetNode<NMainMenuTextButton>("MainMenuTextButtons/SettingsButton").AddSibling(_button);
         _button.GetChild<MegaLabel>(0).Text = "Art Voting";
         _button.Connect(NClickableControl.SignalName.Released, Callable.From<NButton>(OnPress));
