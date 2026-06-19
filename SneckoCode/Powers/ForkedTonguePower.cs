@@ -9,7 +9,7 @@ public class ForkedTonguePower : SneckoPowerModel
 {
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card.Owner.Creature != Owner || 
+        return card.Owner.Creature != Owner || !SneckoCmd.IsOffclass(card) ||
                CombatManager.Instance.History.CardPlaysStarted.Count(e => 
                    e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(card)
                    ) >= Amount ? 

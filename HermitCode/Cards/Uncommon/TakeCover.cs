@@ -35,7 +35,7 @@ public sealed class TakeCover : HermitCardModel
 
     private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
     {
-        WithModifiers(defend, cardModel.EnergyCost.CapturedXValue);
+        WithModifiers(defend, cardModel.ResolveEnergyXValue());
     }
 
     private static void WithModifiers(DefendHermit defend, int nimble)

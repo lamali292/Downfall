@@ -11,7 +11,8 @@ public sealed class Brawl : HermitCardModel
 {
     public Brawl() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<BruisePower>(3, 2);
+        this.WithPower<BrawlPower>(3, 2, false);
+        this.WithTip<BruisePower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
