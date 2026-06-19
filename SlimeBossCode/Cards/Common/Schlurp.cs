@@ -12,7 +12,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Common;
 [Pool(typeof(SlimeBossCardPool))]
 public class Schlurp : SlimeBossCardModel
 {
-    public Schlurp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Schlurp() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithCards(1, 1);
         WithPower<GoopPower>(7);
