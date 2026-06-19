@@ -23,6 +23,7 @@ public static class HexaghostVisualsBridge
 
     public static void RefreshCurrentIntent(Player player)
     {
+        //todo this breaks in the Kaiser Crab fight.
         var visuals = GetVisuals(player);
         if (visuals == null) return;
         var wheel = HexaghostCmd.GetWheel(player);

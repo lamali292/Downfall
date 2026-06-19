@@ -24,7 +24,7 @@
   "HEXAGHOST-SOUL_STONE.description": "Whenever you [gold]Exhaust[/gold] [blue]4[/blue] cards, [gold]Ignite[/gold] the current Ghostflame.",
   "HEXAGHOST-SOUL_STONE.flavor": "A spark would liven this thing up!",
   "HEXAGHOST-SPIRIT_BRAND.title": "Spirit Brand",
-  "HEXAGHOST-SPIRIT_BRAND.description": "The first time you [gold]Ignite[/gold] a Ghostflame each turn, gain [blue]4[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-SPIRIT_BRAND.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]2[/blue] [gold]Block[/gold].",
   "HEXAGHOST-SPIRIT_BRAND.flavor": "A bound protector.",
   "HEXAGHOST-THE_BROKEN_SEAL.title": "The Broken Seal",
   "HEXAGHOST-THE_BROKEN_SEAL.description": "Upon pickup, raise your Max HP by 6, then heal all of your HP. Start each combat with 1 Strength, Dexterity, and Intensity. You can not receive The Broken Seal and other seals again.",

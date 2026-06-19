@@ -169,11 +169,15 @@ public static class HexaghostCmd
     }
 
     public static Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
-         foreach (var f in GetWheel(player).Where(f => !f.IsActive))
+        //Todo this is supposed to only extinguish every Ghostflame EXCEPT for the Inferno used to activate this,
+        // but I realized that it won't work with effects like Catch Up, or with multiple Infernos.
+        // for now I'm just going to make it Extinguish every Ghostflame.
+         foreach (var f in GetWheel(player))
            f.Extinguish();
          HexaghostVisualsBridge.Refresh(player);
          return Task.CompletedTask;
     }
+    
     
     public static Task Extinguish(Player player, bool silent = false)
     {
