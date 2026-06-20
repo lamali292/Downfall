@@ -13,6 +13,7 @@ public class SlimeBrawl : SlimeBossCardModel
     public SlimeBrawl() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

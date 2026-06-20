@@ -13,6 +13,7 @@ public class TrashCan : SneckoCardModel
     public TrashCan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<TrashCanPower>(1);
+        WithCostUpgradeBy(-1);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
