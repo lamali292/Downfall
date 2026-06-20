@@ -4,14 +4,13 @@ extends SceneTree
 # These are never loaded at runtime only their compiled counterparts are.
 const SKIP_EXTENSIONS: Array[String] = [
 	".png", ".jpg", ".jpeg", ".webp", ".bmp", ".svg", ".tga",
-	".ogg", ".mp3", ".wav",  # audio is compiled to cache just like images
+	".ogg", ".mp3", ".wav",
 ]
 
-# Change this order if you're targeting mobile/web instead.
 const REMAP_PATH_KEYS: Array[String] = [
-	"path.s3tc_bptc",   # modern desktop (DX11+ / Vulkan)
-	"path.etc2_astc",   # mobile fallback
-	"path",             # generic / uncompressed fallback
+	"path.s3tc_bptc",   
+	"path.etc2_astc",  
+	"path",            
 ]
 
 func _init() -> void:
@@ -63,8 +62,7 @@ func _pack_folder_recursive(packer: PCKPacker, path: String) -> void:
 		if dir.current_is_dir():
 			_pack_folder_recursive(packer, full_path)
 		else:
-			# Skip raw source images — Godot loads only the compiled .ctex
-			# (or equivalent) that the .import file points to, never the original.
+			# Skip raw source images Godot loads only the compiled .ctex
 			var is_raw_image: bool = SKIP_EXTENSIONS.any(
 				func(ext: String) -> bool: return file_name.ends_with(ext)
 			)

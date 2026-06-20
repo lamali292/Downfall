@@ -150,13 +150,15 @@ public static class HexaghostCmd
         await flame.OnIgnite(ctx);
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
+        //todo this should be in the inferno ghostflame, I made this a separate command for now
         if (AllIgnited(player))
         {
             await HexaghostHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
-            foreach (var f in GetWheel(player).Where(f => !f.IsActive))
+            /*foreach (var f in GetWheel(player).Where(f => !f.IsActive))
                 f.Extinguish();
-            HexaghostVisualsBridge.Refresh(player);
+            HexaghostVisualsBridge.Refresh(player);*/
         }
+    
     }
 
 
@@ -166,6 +168,17 @@ public static class HexaghostCmd
         for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, i);
     }
 
+    public static Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
+        //Todo this is supposed to only extinguish every Ghostflame EXCEPT for the Inferno used to activate this,
+        // but I realized that it won't work with effects like Catch Up, or with multiple Infernos.
+        // for now I'm just going to make it Extinguish every Ghostflame.
+         foreach (var f in GetWheel(player))
+           f.Extinguish();
+         HexaghostVisualsBridge.Refresh(player);
+         return Task.CompletedTask;
+    }
+    
+    
     public static Task Extinguish(Player player, bool silent = false)
     {
         GetCurrentFlame(player).Extinguish();

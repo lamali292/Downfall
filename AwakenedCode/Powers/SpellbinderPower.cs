@@ -13,6 +13,6 @@ public class SpellbinderPower : AwakenedPowerModel
         ICombatState combatState)
     {
         if (player != Owner.Player) return;
-        for (var i = 0; i < Amount; i++) await AwakenedCmd.Conjure(player, combatState);
+        for (var i = 0; i < Amount; i++) await AwakenedCmd.Conjure(player);
     }
 }

@@ -13,19 +13,15 @@ public class TalonRend : AwakenedCardModel
     public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
+        this.WithRepeat(2);
         this.WithConjure();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-            .WithHitCount(2)
-            .WithHitFx("vfx/vfx_attack_slash")
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue, vfx: "vfx/vfx_attack_slash")
             .Execute(ctx);
-
-        await AwakenedCmd.Conjure(Owner, CombatState);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
+        await AwakenedCmd.Conjure(Owner);
     }
 }

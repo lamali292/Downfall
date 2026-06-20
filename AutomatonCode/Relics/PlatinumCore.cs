@@ -27,7 +27,7 @@ public class PlatinumCore : AutomatonRelicModel
     {
         Flash();
         if (player != Owner) return;
-        if (combatState.RoundNumber == 1)
+        if (player.PlayerCombatState is { TurnNumber: 1 })
         {
             var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
             var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);

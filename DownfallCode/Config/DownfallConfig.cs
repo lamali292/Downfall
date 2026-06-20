@@ -6,4 +6,5 @@ namespace Downfall.DownfallCode.Config;
 internal class DownfallConfig : SimpleModConfig
 {
     public static bool UploadMetrics { get; set; } = false;
+    public static bool DevMode { get; set; } = false;
 }

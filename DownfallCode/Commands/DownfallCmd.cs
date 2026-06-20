@@ -86,10 +86,7 @@ public class DownfallCmd
 
     public static Creature? GainPet<T>(Player summoner) where T : MonsterModel
     {
-        var combatState = summoner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
-        return combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
+        return summoner.Creature.CombatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
     }
 
     public static async Task<Creature> Summon<T>(
@@ -99,10 +96,7 @@ public class DownfallCmd
         AbstractModel? source) where T : MonsterModel
     {
         var combatState = summoner.Creature.CombatState;
-        ArgumentNullException.ThrowIfNull(combatState);
-        ArgumentNullException.ThrowIfNull(summoner.PlayerCombatState);
-        var existing = combatState.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
-
+        var existing = combatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
         var isReviving = existing is { IsAlive: false };
 
         if (existing is { IsAlive: true })
@@ -111,9 +105,9 @@ public class DownfallCmd
             return existing;
         }
 
-        if (isReviving)
+        if (isReviving && existing != null)
         {
-            summoner.PlayerCombatState.AddPetInternal(existing!);
+            summoner.PlayerCombatState?.AddPetInternal(existing);
         }
         else
         {
@@ -134,8 +128,7 @@ public class DownfallCmd
             node?.TrackBlockStatus(summoner.Creature);
             node?.ToggleIsInteractable(true);
         }
-
-        ArgumentNullException.ThrowIfNull(existing);
+        
         await CreatureCmd.SetMaxHp(existing, hp);
         await CreatureCmd.Heal(existing, hp, isReviving);
 

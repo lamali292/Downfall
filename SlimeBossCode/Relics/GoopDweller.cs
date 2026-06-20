@@ -13,7 +13,7 @@ public class GoopDweller() : SlimeBossRelicModel(RelicRarity.Common)
 {
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (combatState.RoundNumber > 1 || player != Owner) return;
+        if (Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner) return;
         await SlimeBossCmd.Split<BruiserSlime>(ctx, player);
     }
 }

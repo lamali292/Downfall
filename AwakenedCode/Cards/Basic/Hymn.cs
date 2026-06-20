@@ -24,10 +24,8 @@ public class Hymn : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-
+        if (CombatState == null) return;
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
-
         var card = CombatState.CreateCard<Ceremony>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         await CommonActions.ApplySelf<DrainedPower>(ctx, this);

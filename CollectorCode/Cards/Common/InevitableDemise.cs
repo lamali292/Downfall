@@ -17,8 +17,7 @@ public class InevitableDemise : CollectorCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<DemisePower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<DemisePower>(ctx, this, cardPlay);
     }
 }

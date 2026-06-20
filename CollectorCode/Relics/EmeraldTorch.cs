@@ -23,7 +23,7 @@ public class EmeraldTorch() : CollectorRelicModel(RelicRarity.Starter)
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber > 1) return Task.CompletedTask;
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return Task.CompletedTask;
         CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
         Flash();
         return Task.CompletedTask;

@@ -34,7 +34,18 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
 
     public static IEnumerable<CardModel> GetSneckoCards(Player player)
     {
-        return GetSneckoPools(player).SelectMany(e => e.AllCards);
+
+        var cards = GetSneckoPools(player).SelectMany(e => e.AllCards);
+        if (cards != null && cards.Any())
+        {
+            return cards;
+        }
+        else
+        {
+            return ModelDb.AllCharacters
+            .Where(e => e != player.Character)
+            .ToList().Select(c => c.CardPool).ToList().SelectMany(e => e.AllCards);
+        }
     }
 
     public static IEnumerable<CardModel> GetRewardSneckoCards(Player player, Func<CardModel, bool>? filter = null)

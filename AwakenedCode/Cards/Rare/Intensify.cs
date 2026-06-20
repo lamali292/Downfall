@@ -23,8 +23,7 @@ public class Intensify : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
         await CommonActions.ApplySelf<IntensifyPower>(ctx, this);
         await CommonActions.ApplySelf<BurnoutPower>(ctx, this);
     }

@@ -135,7 +135,7 @@
   "SLIMEBOSS-SPLIT_MIRE.title": "Split: Mire",
   "SLIMEBOSS-SPLIT_SPECIALIST.description": "Choose 1 of 3 [gold]Specialist[/gold] to [gold]Split[/gold] into.{IfUpgraded:show:\n[gold]Command[/gold]{Command:pplural:| {Command:diff()} times}.}",
   "SLIMEBOSS-SPLIT_SPECIALIST.title": "Split: Specialist",
-  "SLIMEBOSS-SPREADING_SLIME.description": "Effects that apply [gold]Goop[/gold] apply 2 more.",
+  "SLIMEBOSS-SPREADING_SLIME.description": "Effects that apply [gold]Goop[/gold] apply {SlimyTonguePower:diff()} more.",
   "SLIMEBOSS-SPREADING_SLIME.title": "Spreading Slime",
   "SLIMEBOSS-STRIKE_SLIME_BOSS.description": "Deal {Damage:diff()} damage.",
   "SLIMEBOSS-STRIKE_SLIME_BOSS.title": "Strike",

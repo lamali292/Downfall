@@ -23,11 +23,10 @@ public class Altar : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardBlock(this, cardPlay);
         var card = await CommonActions.SelectSingleCard(this, CardSelectorPrefs.ExhaustSelectionPrompt, ctx,
             PileType.Hand);
         if (card != null) await CardCmd.Exhaust(ctx, card);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        await AwakenedCmd.Conjure(Owner);
     }
 }

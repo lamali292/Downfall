@@ -13,8 +13,8 @@ public sealed class FlashPowder : HermitCardModel
     {
         WithBlock(5);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<StrengthPower>(-1);
-        WithVar("StrengthLoss", 1);
+        WithPower<StrengthPower>(-1, -1);
+        WithVar("StrengthLoss", 1, 1);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

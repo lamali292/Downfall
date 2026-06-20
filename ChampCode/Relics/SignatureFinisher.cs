@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.Models;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class SignatureFinisher() : ChampRelicModel(RelicRarity.Rare)
+public class SignatureFinisher : ChampRelicModel
 {
+    public SignatureFinisher() : base(RelicRarity.Rare)
+    {
+        WithTip<Signature>();
+    }
+    
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()

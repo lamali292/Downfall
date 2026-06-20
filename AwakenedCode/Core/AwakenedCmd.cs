@@ -88,12 +88,11 @@ public static class AwakenedCmd
     }
 
     public static async Task<CardModel?> Conjure(
-        Player player,
-        ICombatState state)
+        Player player)
     {
         if (!CanConjure(player)) return null;
         var spellbook = AwakenedModel.GetOrInitSpellbook(player);
-        var rng = state.RunState.Rng.CombatCardSelection;
+        var rng = player.RunState.Rng.CombatCardSelection;
 
         var spell = spellbook.NextSpell ?? (spellbook.Cards.Count > 0 ? spellbook.Cards[0] : null);
         if (spell == null) return null;

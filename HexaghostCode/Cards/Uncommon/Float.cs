@@ -14,7 +14,7 @@ public class Float : HexaghostCardModel
 {
     public Float() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(3, 2);
+        WithBlock(3, 1);
         WithCards(1);
         WithTip(HexaghostKeyword.Advance);
         WithVar("CardsPlayed", 3, 2);

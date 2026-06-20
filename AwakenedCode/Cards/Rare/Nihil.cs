@@ -24,7 +24,7 @@ public class Nihil : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
+        if (CombatState == null) return;
         foreach (var combatStateEnemy in CombatState.Enemies)
         {
             var a = combatStateEnemy.GetPowerAmount<ManaburnPower>();
@@ -40,7 +40,6 @@ public class Nihil : AwakenedCardModel, IChantable
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CommonActions.Apply<ManaburnPower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
     }
 }

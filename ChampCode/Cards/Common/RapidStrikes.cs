@@ -22,7 +22,7 @@ public class RapidStrikes : ChampCardModel
         Owner.RunState.Rng.CombatCardSelection.NextItem(PileType.Hand
             .GetPile(Owner)
             .Cards
-            .Where(c => c.Tags.Contains(CardTag.Strike) && c.EnergyCost.GetResolved() > 0)
+            .Where(c => c.Tags.Contains(CardTag.Strike) && c.EnergyCost.GetResolved() > 0 && !c.EnergyCost.CostsX)
             )?
             .EnergyCost
             .SetThisTurn(0);

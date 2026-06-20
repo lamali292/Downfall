@@ -1,0 +1,270 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgnr082q0y13w"]
+
+[ext_resource type="Script" uid="uid://bdjjkyu1yalcm" path="res://DownfallCode/Voting/NArtVotingScreen.cs" id="1_cd3my"]
+[ext_resource type="PackedScene" uid="uid://bl4mbjqjfffa3" path="res://scenes/ui/back_button.tscn" id="1_d2wa3"]
+[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="2_cd3my"]
+[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="3_6lchq"]
+[ext_resource type="Script" uid="uid://cv2mvg7qmvhjt" path="res://src/Core/Nodes/GodotExtensions/NScrollableContainer.cs" id="4_jnau3"]
+[ext_resource type="PackedScene" uid="uid://cylwnt0msag45" path="res://Downfall/scenes/voting/art_voting_row.tscn" id="5_5xrb2"]
+[ext_resource type="PackedScene" uid="uid://b6nko387cwp7n" path="res://scenes/ui/scrollbar.tscn" id="6_76oc8"]
+[ext_resource type="Script" uid="uid://c7gxrqkm2qwc" path="res://DownfallCode/Voting/NArtVotingContainer.cs" id="8_cd3my"]
+[ext_resource type="PackedScene" uid="uid://du6e1jakiqvjc" path="res://Downfall/scenes/voting/art_row.tscn" id="8_vcard"]
+[ext_resource type="Script" uid="uid://df0n02af0ca1h" path="res://DownfallCode/Voting/NArtVotingCardContainer.cs" id="10_6lchq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b6vv"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.682353, 0.921569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci2g3"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.682353, 0.921569, 1)
+
+[node name="Voting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cd3my")
+
+[node name="BackButton" parent="." instance=ExtResource("1_d2wa3")]
+layout_mode = 1
+
+[node name="ModsBorder" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 161.0
+offset_right = 594.0
+offset_bottom = 986.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0b6vv")
+
+[node name="ArtVotingTitle" type="RichTextLabel" parent="ModsBorder"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 2.0
+offset_top = -78.0
+offset_right = 354.0
+offset_bottom = -6.0
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/normal_font = ExtResource("2_cd3my")
+theme_override_font_sizes/normal_font_size = 56
+text = "Votings"
+fit_content = true
+script = ExtResource("3_6lchq")
+AutoSizeEnabled = false
+IsVerticallyBound = false
+metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
+
+[node name="ModsScrollContainer" type="Control" parent="ModsBorder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_jnau3")
+
+[node name="Mask" type="ColorRect" parent="ModsBorder/ModsScrollContainer"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="ModsBorder/ModsScrollContainer/Mask"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+
+[node name="ModRow" parent="ModsBorder/ModsScrollContainer/Mask/Content" instance=ExtResource("5_5xrb2")]
+layout_mode = 2
+
+[node name="Scrollbar" parent="ModsBorder/ModsScrollContainer" instance=ExtResource("6_76oc8")]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -8.0
+offset_right = 54.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+
+[node name="SubmissionsContainer" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 661.0
+offset_top = 86.0
+offset_right = 1226.0
+offset_bottom = 987.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci2g3")
+script = ExtResource("8_cd3my")
+
+[node name="SubmissionsTitle" type="RichTextLabel" parent="SubmissionsContainer"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = -78.0
+offset_right = 902.0
+offset_bottom = -6.0
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/normal_font = ExtResource("2_cd3my")
+theme_override_font_sizes/normal_font_size = 56
+text = "Submissions"
+fit_content = true
+script = ExtResource("3_6lchq")
+AutoSizeEnabled = false
+IsVerticallyBound = false
+metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
+
+[node name="SubmissionsScrollContainer" type="Control" parent="SubmissionsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_jnau3")
+
+[node name="Mask" type="ColorRect" parent="SubmissionsContainer/SubmissionsScrollContainer"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="HFlowContainer" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="VoteCard" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard2" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard3" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard4" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard5" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard6" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard7" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard8" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard9" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+layout_mode = 2
+script = null
+
+[node name="Scrollbar" parent="SubmissionsContainer/SubmissionsScrollContainer" instance=ExtResource("6_76oc8")]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -8.0
+offset_right = 54.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+
+[node name="CardContainer" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1298.13
+offset_top = 86.0
+offset_right = 1863.13
+offset_bottom = 987.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci2g3")
+script = ExtResource("10_6lchq")
+
+[node name="SubmissionsTitle" type="RichTextLabel" parent="CardContainer"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = -78.0
+offset_right = 902.0
+offset_bottom = -6.0
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/normal_font = ExtResource("2_cd3my")
+theme_override_font_sizes/normal_font_size = 56
+text = "Card"
+fit_content = true
+script = ExtResource("3_6lchq")
+AutoSizeEnabled = false
+IsVerticallyBound = false
+metadata/_custom_type_script = "uid://c2oywrx8xbqfx"

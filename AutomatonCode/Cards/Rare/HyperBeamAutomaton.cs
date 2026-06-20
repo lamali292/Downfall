@@ -30,7 +30,6 @@ public class HyperBeamAutomaton : AutomatonCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
         await CommonActions.CardAttack(this, cardPlay)
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(BeforeDamageAction)

@@ -30,7 +30,7 @@ public sealed class DeadOrAlive : HermitCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        var times = EnergyCost.CapturedXValue;
+        var times = ResolveEnergyXValue();
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var command = await CommonActions.CardAttack(this, play, times).WithHermitBluntLightHitFx()
             .Execute(ctx);

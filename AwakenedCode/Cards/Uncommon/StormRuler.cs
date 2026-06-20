@@ -21,8 +21,8 @@ public class StormRuler : AwakenedCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(CombatState);
-        await AwakenedCmd.Conjure(Owner, CombatState);
+        if (CombatState == null) return;
+        await AwakenedCmd.Conjure(Owner);
         await CommonActions.ApplySelf<StormRulerPower>(ctx, this);
     }
 }
