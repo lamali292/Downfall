@@ -21,7 +21,7 @@ public class Schlurp : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Freshbone>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCards<Lick>(Owner, PileType.Hand, DynamicVars.Cards.BaseValue);

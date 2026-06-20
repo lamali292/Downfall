@@ -14,7 +14,7 @@ public class Crashout : AutomatonCardModel
         WithPower<CrashoutPower>(10, 5);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<CrashoutPower>(ctx, this);
     }

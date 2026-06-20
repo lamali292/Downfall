@@ -19,7 +19,7 @@ public class ClobberStrike : ChampCardModel
         WithTags(CardTag.Strike);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
         var unblockedDamage = attackCommand.Results.SelectMany(r => r).Sum(x => x.UnblockedDamage);

@@ -18,7 +18,7 @@ public class Turbo : AutomatonCardModel
         this.WithTip<Error>();
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw);

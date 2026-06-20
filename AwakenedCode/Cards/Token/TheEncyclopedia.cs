@@ -20,7 +20,7 @@ public class TheEncyclopedia : AwakenedCardModel
         WithCards(4, 2);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var allCards = ModelDb.CardPool<AwakenedCardPool>().AllCards
             .Concat(ModelDb.CardPool<ColorlessCardPool>().AllCards);

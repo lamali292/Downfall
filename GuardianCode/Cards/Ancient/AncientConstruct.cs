@@ -20,7 +20,7 @@ public class AncientConstruct : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArtifactPower>(ctx, this);
         await CommonActions.ApplySelf<AncientConstructPower>(ctx, this);

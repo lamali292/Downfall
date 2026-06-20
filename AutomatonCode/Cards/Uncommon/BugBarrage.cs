@@ -21,7 +21,7 @@ public class BugBarrage : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         var statuses = Owner.GetHand(c => c.Type == CardType.Status);

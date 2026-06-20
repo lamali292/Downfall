@@ -26,7 +26,7 @@ public class GhostShield : HexaghostCardModel, IHasAfterlifeEffect
         await CommonActions.CardBlock(this, cardPlay);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
         await CommonActions.ApplySelf<BlurPower>(ctx, this);

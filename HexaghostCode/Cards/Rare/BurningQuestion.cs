@@ -23,7 +23,7 @@ public class BurningQuestion : HexaghostCardModel
         this.WithPower<RoyaltiesPower>(30, 5, false);
     }
     public override bool CanBeGeneratedInCombat => false;
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         CardModel[] choices =
         [

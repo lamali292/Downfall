@@ -20,7 +20,7 @@ public class SeventhEye : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<Claude27A>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDraw(),
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this)).FirstOrDefault();

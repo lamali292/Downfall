@@ -21,7 +21,7 @@ public class Deathcoil : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var ownerNode = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);

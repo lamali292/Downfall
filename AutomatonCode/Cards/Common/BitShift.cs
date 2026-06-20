@@ -16,7 +16,7 @@ public class BitShift : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await StashCmd.DrawFromStash(Owner);

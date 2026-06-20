@@ -21,7 +21,7 @@ public class ProtectiveAura : ChampCardModel
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ProtectiveAuraPower>(ctx, this);
     }

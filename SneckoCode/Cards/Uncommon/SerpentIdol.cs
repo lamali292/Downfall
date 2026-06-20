@@ -19,7 +19,7 @@ public class SerpentIdol : SneckoCardModel
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var mutableCards = SneckoModel.GetCombatSneckoCards(Owner, DynamicVars.Cards.IntValue).ToList();
         var selectedCard = await CardSelectCmd.FromChooseACardScreen(ctx, mutableCards, Owner);

@@ -26,7 +26,7 @@ public partial class AwakenedMainFile : Node
     public static void Initialize()
     {
         CustomLocTableManager.Register("chants");
-        CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlay);
+        CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
         Harmony harmony = new(ModId);

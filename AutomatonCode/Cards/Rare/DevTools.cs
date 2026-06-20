@@ -32,7 +32,7 @@ public class DevTools : AutomatonCardModel
     }
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = ((CalculatedVar)DynamicVars["Dev"]).Calculate(null);
         var cards = Owner.GetEncode().ToList();

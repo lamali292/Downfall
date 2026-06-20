@@ -24,7 +24,7 @@ public class SwordThrow : ChampCardModel
 
     protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.Repeat.IntValue).Execute(ctx);
         if (Owner.ShouldBerserkerComboTrigger()) return;

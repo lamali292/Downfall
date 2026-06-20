@@ -22,7 +22,7 @@ public class Rewind : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true);

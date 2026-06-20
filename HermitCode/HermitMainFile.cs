@@ -21,8 +21,8 @@ public partial class HermitMainFile : Node
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlay);
-        CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlay);
+        CardExecutionRegistry.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlayInternal);
+        CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

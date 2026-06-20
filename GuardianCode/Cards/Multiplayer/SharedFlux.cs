@@ -22,7 +22,7 @@ public class SharedFlux : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var target = cardPlay.Target?.Player;
         if (target == null) return;

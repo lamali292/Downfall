@@ -22,7 +22,7 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCardCmd
 {
-    public static readonly Func<CardModel, PlayerChoiceContext, CardPlay, Task> OnPlay = BuildOnPlayDelegate();
+    public static readonly Func<CardModel, PlayerChoiceContext, CardPlay, Task> OnPlayInternal = BuildOnPlayInternalDelegate();
 
     public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
@@ -263,9 +263,9 @@ public class DownfallCardCmd
         CardCmd.PreviewCardPileAdd(errorResult, 0.6f);
     }
 
-    private static Func<CardModel, PlayerChoiceContext, CardPlay, Task> BuildOnPlayDelegate()
+    private static Func<CardModel, PlayerChoiceContext, CardPlay, Task> BuildOnPlayInternalDelegate()
     {
-        var method = typeof(CardModel).GetMethod("OnPlay", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        var method = typeof(CardModel).GetMethod("OnPlayInternal", BindingFlags.NonPublic | BindingFlags.Instance)!;
         var instance = Expression.Parameter(typeof(CardModel), "instance");
         var ctx = Expression.Parameter(typeof(PlayerChoiceContext), "ctx");
         var cardPlay = Expression.Parameter(typeof(CardPlay), "cardPlay");

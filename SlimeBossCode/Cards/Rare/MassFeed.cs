@@ -25,7 +25,7 @@ public class MassFeed : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
 

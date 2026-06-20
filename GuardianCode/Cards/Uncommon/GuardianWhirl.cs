@@ -21,7 +21,7 @@ public class GuardianWhirl : GuardianCardModel
 
     protected override bool ShouldGlowGoldInternal => Owner.Creature.Block >= DynamicVars["Threshold"].IntValue;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions
             .CardAttack(this, cardPlay, Owner.Creature.Block >= DynamicVars["Threshold"].IntValue ? 4 : 2).Execute(ctx);

@@ -21,7 +21,7 @@ public class CompilePackage : GuardianCardModel
         WithTip(GuardianTip.Package);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner) || CombatState == null) return;
         var a = ModelDb

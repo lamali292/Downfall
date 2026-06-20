@@ -28,7 +28,7 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken
         return Task.CompletedTask;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, cardPlay.Card.Owner);
     }

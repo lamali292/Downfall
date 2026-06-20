@@ -16,7 +16,7 @@ public class PileOn : SlimeBossCardModel
         this.WithCommand(1, 1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await SlimeBossCmd.CommandAll(ctx, Owner, this, ValueProp.Move);

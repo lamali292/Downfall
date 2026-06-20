@@ -18,7 +18,7 @@ public class Recharge : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
     
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await GuardianCmd.Brace(ctx, this);

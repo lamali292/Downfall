@@ -20,7 +20,7 @@ public partial class SneckoMainFile : Node
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlay);
+        CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

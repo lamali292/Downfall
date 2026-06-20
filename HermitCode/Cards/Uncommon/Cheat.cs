@@ -21,7 +21,7 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
         return Task.CompletedTask;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var isDeadOn = PatchDeadOnCapture.LastWasDeadOn;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

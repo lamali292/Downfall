@@ -23,7 +23,7 @@ public class SpikerProtocol : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<Ez>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SpikerProtocolPower>(ctx, this);
         await GuardianCmd.Brace(ctx, this);

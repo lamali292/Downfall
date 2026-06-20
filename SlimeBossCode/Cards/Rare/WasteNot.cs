@@ -15,7 +15,7 @@ public class WasteNot : SlimeBossCardModel
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SlimeBossCmd.SlurpAll(this);
     }

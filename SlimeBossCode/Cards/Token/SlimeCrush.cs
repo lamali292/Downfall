@@ -17,7 +17,7 @@ public class SlimeCrush : SlimeBossCardModel
 
     public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

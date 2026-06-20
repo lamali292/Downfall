@@ -35,7 +35,7 @@ public class FinalStrike : SneckoCardModel, IHasGift
             .Count() + 1;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = (int)UniqueStrikesPlayed(this, null);
         await CommonActions.CardAttack(this, cardPlay, repeat).Execute(ctx);

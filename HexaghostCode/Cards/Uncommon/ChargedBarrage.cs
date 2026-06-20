@@ -17,7 +17,7 @@ public class ChargedBarrage : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = HexaghostCmd.GetIgnitedCount(Owner);
         for (var i = 0; i < count; i++)

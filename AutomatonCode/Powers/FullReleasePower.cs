@@ -58,7 +58,7 @@ public class FullReleasePower : AutomatonPowerModel
             if (SourceCards[i] is IEncodable encodable)
                 await encodable.PlayEncodableEffect(choiceContext, cardPlay, new EncodeContext(true, i));
             else
-                await DownfallCardCmd.OnPlay.Invoke(card, choiceContext, cardPlay);
+                await DownfallCardCmd.OnPlayInternal.Invoke(card, choiceContext, cardPlay);
         }
     }
 

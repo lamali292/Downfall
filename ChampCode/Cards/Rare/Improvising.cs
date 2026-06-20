@@ -17,7 +17,7 @@ public class Improvising : ChampCardModel
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ImprovisingPower>(ctx, this);
     }

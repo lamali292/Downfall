@@ -24,7 +24,7 @@ public class CrystalRay : GuardianCardModel
         return PileType.Deck.GetPile(card.Owner).Cards.OfType<IGemSocketCard>().Sum(g => g.GemCount);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

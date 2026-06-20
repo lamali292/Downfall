@@ -29,7 +29,7 @@ public class LaserTurret : GuardianCardModel, ITickCard, ICustomTickDuration
         await CreatureCmd.Damage(ctx, enemy, DynamicVars.Damage, Owner.Creature);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await GuardianCmd.PutIntoStasis(this, ctx, this);

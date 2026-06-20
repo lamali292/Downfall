@@ -21,7 +21,7 @@ public partial class CollectorMainFile : Node
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlay);
+        CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);

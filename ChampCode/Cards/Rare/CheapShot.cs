@@ -19,7 +19,7 @@ public class CheapShot : ChampCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState?.Encounter == null || cardPlay.Target == null) return;
         if (CombatState.Encounter.RoomType == RoomType.Boss)

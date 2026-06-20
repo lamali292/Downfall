@@ -16,7 +16,7 @@ public class RapidStrikes : ChampCardModel
         WithEnergyTip();
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         Owner.RunState.Rng.CombatCardSelection.NextItem(PileType.Hand
