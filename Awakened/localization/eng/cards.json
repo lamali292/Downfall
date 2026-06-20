@@ -183,7 +183,7 @@
   "AWAKENED-SPEW.title": "Spew",
   "AWAKENED-SPLIT_WIDE.description": "Deal {Damage:diff()} damage.\nWhenever you attack this enemy, gain {SplitWidePower:diff()} [gold]Strength[/gold] this turn.",
   "AWAKENED-SPLIT_WIDE.title": "Split Wide",
-  "AWAKENED-SPREADING_SPORES.description": "Gain {ThornsPower:diff()} Thorns.\nShuffle a copy of this into your [gold]Draw Pile[/gold]. ",
+  "AWAKENED-SPREADING_SPORES.description": "Gain {ThornsPower:diff()} [gold]Thorns[/gold].\nShuffle a copy of this into your [gold]Draw Pile[/gold]. ",
   "AWAKENED-SPREADING_SPORES.title": "Spreading Spores",
   "AWAKENED-STORM_RULER.description": "[gold]Conjure[/gold].\n[gold]Thunderbolts[/gold] deal {StormRulerPower:diff()} additional damage.",
   "AWAKENED-STORM_RULER.title": "Storm Ruler",
