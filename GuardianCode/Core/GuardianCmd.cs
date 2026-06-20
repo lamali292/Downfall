@@ -109,6 +109,7 @@ public static class GuardianCmd
         bool silent = false)
     {
         var cs = source.GetCreature().CombatState;
+        if (cs == null) return false;
         var player = card.Owner;
         var pile = GuardianCombatModel.GetOrInitStasis(player);
         if (pile.Cards.Count >= GetMaxStasisSlots(player))

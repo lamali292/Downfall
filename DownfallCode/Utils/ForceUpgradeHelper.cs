@@ -22,7 +22,7 @@ public static class ForceUpgradeHelper
 
 
     [HarmonyPatch(typeof(CardModel), "get_MaxUpgradeLevel")]
-    public static class MaxUpgradeLevel_Patch
+    public static class MaxUpgradeLevelPatch
     {
         public static void Postfix(CardModel __instance, ref int __result)
         {
