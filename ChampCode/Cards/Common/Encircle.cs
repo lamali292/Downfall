@@ -19,7 +19,7 @@ public class Encircle : ChampCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = attack.Results.Count();
+        var a = attack.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0);
         await CommonActions.ApplySelf<GloryPower>(ctx, this, a);
     }
 }

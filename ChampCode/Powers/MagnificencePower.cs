@@ -10,6 +10,7 @@ public class MagnificencePower : ChampPowerModel
 {
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
+        if (player != base.Owner.Player) return;
         await PowerCmd.Apply<GloryPower>(ctx, Owner, Amount, Owner, null);
     }
 }

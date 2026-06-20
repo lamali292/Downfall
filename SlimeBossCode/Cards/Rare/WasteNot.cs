@@ -12,7 +12,7 @@ public class WasteNot : SlimeBossCardModel
     public WasteNot() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         this.WithSlurp(1);
-        WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
