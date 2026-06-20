@@ -70,7 +70,7 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
 
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
-        if (oldPileType == PileType.None && card.Pile?.Type == PileType.Deck &&
+        if (card.Pile?.Type == PileType.Deck &&
             card is IHasGift { Gift: { } gift })
             await SneckoCmd.GetGift(card.Owner, gift);
     }

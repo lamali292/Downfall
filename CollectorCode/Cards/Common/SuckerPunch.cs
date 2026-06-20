@@ -20,7 +20,8 @@ public class SuckerPunch : CollectorCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.ApplySelf<WeakPower>(ctx, this);
+        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
     }
 }
