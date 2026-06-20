@@ -34,6 +34,10 @@ public class Shapeshift  : SneckoCardModel
             if (replacement == null) continue;
 
             await CardCmd.Transform(card, replacement);
+            if (base.IsUpgraded)
+            {
+                CardCmd.Upgrade(replacement);
+            }
         }
     }
 }

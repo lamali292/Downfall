@@ -51,7 +51,7 @@
   "SLIMEBOSS-LEECHING_STRIKE.title": "Leeching Strike",
   "SLIMEBOSS-LEECH_ENERGY.description": "Deal {Damage:diff()} damage.\n[gold]Consume [/gold]- Gain {Energy:energyIcons()} and draw {Cards:plural:a card|{Cards:diff()} cards}.",
   "SLIMEBOSS-LEECH_ENERGY.title": "Leech Energy",
-  "SLIMEBOSS-LEECH_LIFE.description": "Deal {Damage:diff()} damage.\nHeal HP equal to unblocked damage.\n",
+  "SLIMEBOSS-LEECH_LIFE.description": "Deal {Damage:diff()} damage.\nHeal HP equal to unblocked damage.",
   "SLIMEBOSS-LEECH_LIFE.title": "Leech Life",
   "SLIMEBOSS-LEVEL_UP.description": "Gain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-LEVEL_UP.title": "Level Up",
