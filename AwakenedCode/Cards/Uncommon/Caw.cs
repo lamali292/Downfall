@@ -19,8 +19,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
 
     public Caw() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 1);
-        WithVar("Caw", 3, 1);
+        WithDamage(4, 1);
+        WithVar("Caw", 4, 1);
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();

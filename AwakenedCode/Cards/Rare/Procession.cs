@@ -13,14 +13,14 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Procession : AwakenedCardModel
 {
-    public Procession() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Procession() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
+        WithKeyword(CardKeyword.Exhaust);
         this.WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
+    protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
