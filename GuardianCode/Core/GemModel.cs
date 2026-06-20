@@ -117,7 +117,8 @@ public abstract class GemModel : CardModifier, ICustomModel
         {
             var description = Description;
             AddDumbVariablesToDescription(description);
-            DynamicVars.AddTo(description);
+            var vars = _dynamicVars ?? new DynamicVarSet(CanonicalVars);
+            vars.AddTo(description);
             formatted = description.GetFormattedText();
         }
 
