@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
@@ -19,6 +20,7 @@ public class MaximumOverdrive : GuardianCardModel
         WithTip(GuardianTip.Stasis);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

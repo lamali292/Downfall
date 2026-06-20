@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Powers;
@@ -16,6 +17,8 @@ public class TemporalRefraction : GuardianCardModel
         this.WithPower<TemporalRefractionPower>(1, false);
         WithTip(GuardianKeyword.Gem);
     }
+    
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
