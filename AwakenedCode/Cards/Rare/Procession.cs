@@ -17,7 +17,7 @@ public class Procession : AwakenedCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         this.WithTip<Void>();
-        WithCostUpgradeBy(-1)
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
