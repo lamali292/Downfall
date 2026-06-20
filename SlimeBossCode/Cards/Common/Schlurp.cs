@@ -16,6 +16,7 @@ public class Schlurp : SlimeBossCardModel
     {
         WithCards(1, 1);
         WithPower<GoopPower>(7);
+        this.WithTip<Lick>();
     }
 
     protected override Artist Artist => Artist.Get<Freshbone>();

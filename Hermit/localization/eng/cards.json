@@ -93,7 +93,7 @@
   "HERMIT-VANTAGE.title": "Vantage",
   "HERMIT-VANTAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]:\nDraw and Upgrade {Cards:plural:a card|{Cards:diff()} cards}.",
   "HERMIT-BRAWL.title": "Brawl",
-  "HERMIT-BRAWL.description": "At the start of your turn, apply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies.",
+  "HERMIT-BRAWL.description": "At the start of your turn, apply {BrawlPower:diff()} [gold]Bruise[/gold] to ALL enemies.",
   "HERMIT-COMBO.title": "Combo",
   "HERMIT-COMBO.description": "Put the first {IfUpgraded:show:{ComboPower:diff()} |}[gold]Dead On[/gold] card triggered each turn back into your Hand.",
   "HERMIT-OVERWHELMING_POWER.title": "Overwhelming Power",

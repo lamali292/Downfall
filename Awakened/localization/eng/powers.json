@@ -76,7 +76,7 @@
   "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "The first {Amount:plural:time|{Amount} times} you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",
   "AWAKENED-PRIMACY_POWER.title": "Primacy",
   "AWAKENED-PRIMACY_POWER.description": "The first time you gain [gold]Strength[/gold] each turn, draw a card.",
-  "AWAKENED-PRIMACY_POWER.smartDescription": "The first {Amount:plural:time|{Amount:diff()} times} you gain [gold]Strength[/gold] each turn, draw a card.",
+  "AWAKENED-PRIMACY_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} you gain [gold]Strength[/gold] each turn, draw a card.",
   "AWAKENED-RAZOR_SHARP_POWER.title": "Razor Sharp",
   "AWAKENED-RAZOR_SHARP_POWER.description": "Plume Jabs hit 1 more time.",
   "AWAKENED-RAZOR_SHARP_POWER.smartDescription": "Plume Jabs hit [blue]{Amount}[/blue] more times.",

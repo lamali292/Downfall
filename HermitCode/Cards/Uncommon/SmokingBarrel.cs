@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
@@ -22,8 +23,6 @@ public sealed class SmokingBarrel : HermitCardModel
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<SmokingBarrelPower>(ctx, Owner.Creature, DynamicVars["BigShotPower"].BaseValue,
-            Owner.Creature,
-            this);
+        await CommonActions.ApplySelf<SmokingBarrelPower>(ctx, this);
     }
 }

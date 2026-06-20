@@ -108,7 +108,7 @@ public static class GuardianCmd
     public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel source,
         bool silent = false)
     {
-        if (card.CombatState == null) return false;
+        var cs = source.GetCreature().CombatState;
         var player = card.Owner;
         var pile = GuardianCombatModel.GetOrInitStasis(player);
         if (pile.Cards.Count >= GetMaxStasisSlots(player))
@@ -118,11 +118,11 @@ public static class GuardianCmd
             return false;
         }
         
-        await GuardianHook.BeforeCardEntersStasis(card.CombatState, ctx, card, source);
+        await GuardianHook.BeforeCardEntersStasis(cs, ctx, card, source);
         await CardPileCmd.Add(card, pile, skipVisuals: silent);
         card.EnergyCost.AfterCardPlayedCleanup();
         SetStasisCounter(card);
-        await GuardianHook.AfterCardEntersStasis(card.CombatState, ctx, card, source);
+        await GuardianHook.AfterCardEntersStasis(cs, ctx, card, source);
         return true;
     }
 
