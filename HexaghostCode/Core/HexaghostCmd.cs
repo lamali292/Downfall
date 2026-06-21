@@ -189,8 +189,11 @@ public static class HexaghostCmd
 
     public static Task<int> ResetWheel(Player player)
     {
+        Cmd.Wait(0.1f);
         var a = GetWheel(player).Count(flame => flame.Extinguish());
+        Cmd.Wait(0.1f);
         HexaghostModel.ResetWheel(player);
+        Cmd.Wait(0.1f);
         HexaghostVisualsBridge.Refresh(player);
         return Task.FromResult(a);
     }

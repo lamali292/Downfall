@@ -18,7 +18,7 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff), IAddDumb
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {
-        return target != Owner || dealer != Applier ||!props.HasFlag(ValueProp.Move) ? 0 : Amount;
+        return target != Owner || dealer != Applier ||!props.IsPoweredAttack() ? 0 : Amount;
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,

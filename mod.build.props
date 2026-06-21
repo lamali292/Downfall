@@ -18,7 +18,7 @@
 
     <PropertyGroup>
         <BaseLibVersion>3.3.1</BaseLibVersion>
-        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">true</UseLocalBaseLib>
     </PropertyGroup>
 
     <UsingTask TaskName="CreateSymlink" TaskFactory="RoslynCodeTaskFactory"
