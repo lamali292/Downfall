@@ -24,6 +24,8 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
+    public override bool GainsBlock => true;
+    
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         if (_result == null) return;
