@@ -1,0 +1,27 @@
+name: GitHub to Paratranz
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload:
+    name: Upload Source Files
+    environment: PARATRANZ_ENV
+    runs-on: ubuntu-latest
+    env:
+      PARATRANZ_API_KEY_ZHS: ${{ secrets.PARATRANZ_API_KEY_ZHS }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3"
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+          pip install git+https://github.com/MuXiu1997/ParaTranz-SDK-python.git
+
+      - name: Upload to Paratranz
+        run: python .github/scripts/para_upload.py
