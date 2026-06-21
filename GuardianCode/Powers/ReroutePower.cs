@@ -23,7 +23,7 @@ public class ReroutePower : GuardianPowerModel
         CardModel card, bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
     {
-        if (_cardSource == card || card.Type == CardType.Power)
+        if (_cardSource == card || card.Type == CardType.Power || card.Owner.Creature != Owner)
             return (pileType, position);
         var player = card.Owner;
         var pile = GuardianCombatModel.GetOrInitStasis(player);
