@@ -30,6 +30,7 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
     protected override bool ShouldGlowGoldInternal => false;
     protected override bool ShouldGlowRedInternal => this is IHasDeadOnEffect { IsDeadOn: true };
     public override bool HasTurnEndInHandEffect => this is IHasDeadOnEffect { IsDeadOn: true };
+    public override bool CanBeGeneratedByModifiers => false;
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

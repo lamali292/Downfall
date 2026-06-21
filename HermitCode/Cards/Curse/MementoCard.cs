@@ -21,6 +21,7 @@ public sealed class MementoCard : HermitCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public override int MaxUpgradeLevel => 0;
+    public override bool CanBeGeneratedByModifiers => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
