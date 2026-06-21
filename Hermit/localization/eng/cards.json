@@ -60,7 +60,7 @@
   "HERMIT-GLARE.title": "Glare",
   "HERMIT-GLARE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "HERMIT-TAKE_COVER.title": "Take Cover",
-  "HERMIT-TAKE_COVER.description": "Add a [gold]Defend[/gold] to your [gold]Hand[/gold].\nUpgrade it X{IfUpgraded:plus()} times.\nIt's free to play this turn.",
+  "HERMIT-TAKE_COVER.description": "Add a [gold]Defend[/gold] to your [gold]Hand[/gold].\nUpgrade it X{IfUpgraded:show:+1|} times.\nIt's free to play this turn.",
   "HERMIT-MISFIRE.title": "Misfire",
   "HERMIT-MISFIRE.description": "Deal {Damage:diff()} damage.\nShuffle a [gold]Clumsy[/gold] into your [gold]Draw Pile[/gold].",
   "HERMIT-SPRAY_PRAY.title": "Spray n' Pray",
