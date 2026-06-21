@@ -75,7 +75,7 @@
   "HERMIT-SHORT_FUSE.description": "Deal {Damage:diff()} damage.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Basic card played this turn.",
   "HERMIT-GRUDGE.title": "Grudge",
   "HERMIT-GRUDGE.description": "Deal {CalculationBase:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff()} more for ALL your Curse cards.{InCombat:cond:\n(Deals {CalculatedDamage:diff()} damage)|}",
-  "HERMIT-SPITE.title": "Spite",
+  "HERMIT-SPITE.title": "Spiteful",
   "HERMIT-SPITE.description": "[gold]Exhaust[/gold] all [gold]Unplayable[/gold] cards in your Hand.\nGain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} cards.",
   "HERMIT-MANIFEST.title": "Manifest",
   "HERMIT-MANIFEST.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Decay[/gold] to your Hand.",

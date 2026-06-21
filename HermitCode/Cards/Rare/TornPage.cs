@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public class TornPage : HermitCardModel
 {
-    public TornPage() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public TornPage() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(9, 3);
         WithTips(_ => HoverTipFactory.FromAffliction<Necromantic>());
