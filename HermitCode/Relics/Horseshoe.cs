@@ -10,9 +10,10 @@ namespace Hermit.HermitCode.Relics;
 ///     Whenever you gain Weak, Frail or Vulnerable, gain 1 less.
 ///     Uses the built-in TryModifyPowerAmountReceived hook.
 /// </summary>
+[Obsolete]
 public sealed class Horseshoe : HermitRelicModel
 {
-    public Horseshoe() : base(RelicRarity.Common)
+    public Horseshoe() : base(RelicRarity.Common, false)
     {
         WithTip<WeakPower>();
         WithTip<FrailPower>();
