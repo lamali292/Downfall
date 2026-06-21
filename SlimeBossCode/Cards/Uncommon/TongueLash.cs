@@ -27,7 +27,7 @@ public class TongueLash : SlimeBossCardModel
             .Count(e => e.Tags.Contains(SlimeBossTag.Lick));
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

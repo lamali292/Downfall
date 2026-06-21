@@ -16,7 +16,7 @@ public class Divider : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = HexaghostCmd.GetIgnitedCount(Owner);
         if (count == 0) return;

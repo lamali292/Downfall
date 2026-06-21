@@ -19,7 +19,7 @@ public class Repurpose : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (await SlimeBossCmd.Absorb(ctx, this)) await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);
         if (!IsUpgraded) return;

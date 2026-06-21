@@ -14,7 +14,7 @@ git clone https://github.com/lamali292/Downfall.git
 ```
 
 #### 2. Set the local path arguments
-Copy `local.properties.example` to `local.properties` and set the paths.
+Copy `local.props.example` to `local.props` and set the paths.
 
 #### 3. Link the assets, run the ImageGen & compile setup script
 ```bash

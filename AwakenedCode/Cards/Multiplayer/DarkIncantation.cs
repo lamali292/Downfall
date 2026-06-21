@@ -21,7 +21,7 @@ public class DarkIncantation : AwakenedCardModel
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = cardPlay.Card.Owner.GetRelic<Akabeko>();
         if (cardPlay.Target == null) return;

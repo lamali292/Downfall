@@ -25,7 +25,7 @@ public class Hexaguard : HexaghostCardModel, IHasAfterlifeEffect
         await CommonActions.CardBlock(this, cardPlay);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
         await AfterlifeEffect(ctx, cardPlay);

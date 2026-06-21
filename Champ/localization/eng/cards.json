@@ -19,7 +19,7 @@
   "CHAMP-BRING_IT_ON.title": "Bring It On",
   "CHAMP-CHAIN_LASH.description": "Deal {Damage:diff()} damage.\nThis turn, your [gold]Skill Bonus[/gold] effects are increased by {ChainLashPower:diff()}. ",
   "CHAMP-CHAIN_LASH.title": "Chain Lash",
-  "CHAMP-CHALLENGE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {Damage:diff()} damage.\nIf the target has [gold]Strength[/gold], repeat these effects once.",
+  "CHAMP-CHALLENGE.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nIf the target has [gold]Strength[/gold], repeat these effects once.",
   "CHAMP-CHALLENGE.title": "Challenge",
   "CHAMP-CHAMP_CARD_MODEL.description": "",
   "CHAMP-CHAMP_CARD_MODEL.title": "Champ Card Model",

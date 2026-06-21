@@ -145,13 +145,13 @@ public static class HexaghostCmd
         if (!flame.IsIgnited)
             flame.IsIgnited = true;
 
+        var allIgnited = AllIgnited(player);
         flame.SetIgniteProgress();
         HexaghostVisualsBridge.Refresh(player);
         await flame.OnIgnite(ctx);
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
-        //todo this should be in the inferno ghostflame, I made this a separate command for now
-        if (AllIgnited(player))
+        if (allIgnited)
         {
             await HexaghostHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
             /*foreach (var f in GetWheel(player).Where(f => !f.IsActive))
@@ -168,12 +168,12 @@ public static class HexaghostCmd
         for (var i = 0; i < wheel.Length; i++) await IgniteAt(ctx, player, i);
     }
 
-    public static Task ExtinguishAllExceptCurrent(PlayerChoiceContext ctx, Player player) {
+    public static Task ExtinguishAllExceptThis(PlayerChoiceContext ctx, Player player, GhostflameModel model) {
         //Todo this is supposed to only extinguish every Ghostflame EXCEPT for the Inferno used to activate this,
         // but I realized that it won't work with effects like Catch Up, or with multiple Infernos.
         // for now I'm just going to make it Extinguish every Ghostflame.
-         foreach (var f in GetWheel(player))
-           f.Extinguish();
+         foreach (var f in GetWheel(player).Where(e => e != model))
+            f.Extinguish();
          HexaghostVisualsBridge.Refresh(player);
          return Task.CompletedTask;
     }
@@ -189,8 +189,11 @@ public static class HexaghostCmd
 
     public static Task<int> ResetWheel(Player player)
     {
+        Cmd.Wait(0.1f);
         var a = GetWheel(player).Count(flame => flame.Extinguish());
+        Cmd.Wait(0.1f);
         HexaghostModel.ResetWheel(player);
+        Cmd.Wait(0.1f);
         HexaghostVisualsBridge.Refresh(player);
         return Task.FromResult(a);
     }

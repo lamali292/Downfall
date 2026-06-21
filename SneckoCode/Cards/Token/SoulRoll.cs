@@ -20,7 +20,7 @@ public class SoulRoll : SneckoCardModel
     
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<SneckoCardPool>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await SneckoCmd.MuddleHandCards(ctx, this);

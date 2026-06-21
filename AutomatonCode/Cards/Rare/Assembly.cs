@@ -19,7 +19,7 @@ public class Assembly : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
         foreach (var card in cards.Where(AutomatonCmd.IsEncodable))

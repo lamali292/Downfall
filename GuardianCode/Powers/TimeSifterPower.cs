@@ -7,9 +7,10 @@ namespace Guardian.GuardianCode.Powers;
 
 public class TimeSifterPower : GuardianPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         await GuardianCmd.Accelerate(ctx, player, Amount);
+        Flash();
     }
 }

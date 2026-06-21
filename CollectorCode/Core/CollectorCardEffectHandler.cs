@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.Core;
 
 public static class CollectorCardEffectHandler
 {
-    public static async Task<bool> DoBeforeOnPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public static async Task<bool> DoBeforeOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (card is not IHasPyre pyre) return true;
         pyre.PyredCard = await CollectorCmd.Pyre(ctx, card);

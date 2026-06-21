@@ -11,13 +11,14 @@ public sealed class Brawl : HermitCardModel
 {
     public Brawl() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<BruisePower>(3, 2);
+        this.WithPower<BrawlPower>(3, 2, false);
+        this.WithTip<BruisePower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<BrawlPower>(ctx, this);

@@ -25,7 +25,7 @@ public class SetATrap : ChampCardModel, IDefensiveComboCard
         await CommonActions.Apply<WeakPower>(ctx, CombatState.HittableEnemies, this);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

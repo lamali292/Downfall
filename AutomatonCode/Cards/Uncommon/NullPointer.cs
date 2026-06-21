@@ -27,7 +27,7 @@ public class NullPointer : AutomatonCardModel,
             .Execute(ctx);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<NullPointerPower>(ctx, this);
     }

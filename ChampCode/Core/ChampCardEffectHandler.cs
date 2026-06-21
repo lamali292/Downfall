@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Core;
 
 public static class ChampCardEffectHandler
 {
-    public static async Task DoAfterOnPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = card.Owner;
         var stance = owner.ChampStance();
@@ -19,17 +19,7 @@ public static class ChampCardEffectHandler
         if (card.Keywords.Contains(ChampKeyword.TriggerSkillBonus))
             await stance.SkillBonus(ctx);
 
-        var ignoreChargeCap = ChampHook.IgnoreChargeCap(owner.Creature.CombatState!, owner);
-        if (card.Type == CardType.Skill && (ignoreChargeCap || stance.Charges > 0))
-        {
-            if (!ignoreChargeCap)
-            {
-                stance.Charges--;
-                ChampModel.RefreshDisplay(owner);
-            }
-
-            await stance.SkillBonus(ctx);
-        }
+      
 
         if (card.Tags.Contains(ChampTag.EnterBerserker))
             await ChampCmd.EnterBerserkerStance(ctx, owner);

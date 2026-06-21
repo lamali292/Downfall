@@ -39,6 +39,12 @@ public static class StringExtensions
         DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
         return ImgPath(DownfallMainFile.ModId, subfolder, file);
     }
+    
+    private static string FallbackScene(string missingPath, string subfolder, string file)
+    {
+        DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
+        return ScenePath(DownfallMainFile.ModId, subfolder, file);
+    }
 
 
     public static string CardImageAtlasPath<T>(this string path) where T : DownfallCharacterModel
@@ -148,6 +154,15 @@ public static class StringExtensions
             primaryPath,
             () => FallbackImg(primaryPath, "atlases/potion_atlas.sprites", fallbackFile));
     }
+    
+    public static string AfflictionScenePath<T>(this string path) where T : DownfallCharacterModel
+    {
+        var primaryPath = ScenePath(ModId<T>(), "afflictions", path);
+        return WithFallback(
+            primaryPath,
+            () => FallbackScene(primaryPath, "afflictions", "todo_affliction.tscn"));
+    }
+
 
     public static string? ArtistImagePath(this string path)
     {

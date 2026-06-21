@@ -16,7 +16,7 @@ public class ForkedTongue : SneckoCardModel
         this.WithPower<ForkedTonguePower>(1, false);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ForkedTonguePower>(ctx, this);
     }

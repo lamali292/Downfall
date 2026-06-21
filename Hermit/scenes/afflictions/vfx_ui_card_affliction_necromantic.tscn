@@ -1,0 +1,240 @@
+[gd_scene load_steps=27 format=3 uid="uid://c5grf8hx577p6"]
+
+[ext_resource type="Texture2D" uid="uid://ddouphww0r8d6" path="res://images/vfx/ui/ui_card_mask.png" id="1_tk5pc"]
+[ext_resource type="Shader" uid="uid://bpw51lsqv2wp6" path="res://shaders/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_border_shader.gdshader" id="2_g1gdt"]
+[ext_resource type="Texture2D" uid="uid://b1ejst3q0hxds" path="res://images/vfx/noise/vfx_noise_1.png" id="3_l7qdw"]
+[ext_resource type="Texture2D" uid="uid://cnnu2hi8qwc6q" path="res://images/vfx/ui/card/ui_card_border_vignette.png" id="4_a2xqc"]
+[ext_resource type="Texture2D" uid="uid://cgpaf12xcgk58" path="res://images/vfx/ui/card/ui_card_border_glow.png" id="5_07sea"]
+[ext_resource type="PackedScene" uid="uid://chqoe33c4gm6a" path="res://scenes/vfx/common/vfx_common_specks.tscn" id="6_hquqc"]
+[ext_resource type="Material" uid="uid://cgccwawweogof" path="res://materials/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_main.tres" id="7_0rtu5"]
+[ext_resource type="Texture2D" uid="uid://cmj07u2gtuuq1" path="res://images/vfx/ui/card/afflictions/bound/ui_card_bound_main.png" id="8_qah1h"]
+
+[sub_resource type="Gradient" id="Gradient_o32id"]
+colors = PackedColorArray(0.75064427, 4.793823e-05, 0.57840014, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m8t11"]
+gradient = SubResource("Gradient_o32id")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ih5a"]
+shader = ExtResource("2_g1gdt")
+shader_parameter/main_st = Vector4(1, 3, 0.25, 0)
+shader_parameter/mask_erosion = Vector2(0.4, 0.6)
+shader_parameter/lut = SubResource("GradientTexture1D_m8t11")
+shader_parameter/mask = ExtResource("4_a2xqc")
+
+[sub_resource type="Curve" id="Curve_b8nia"]
+_data = [Vector2(0, 0), 0.0, 2.3007884, 0, 0, Vector2(0.4986945, 0.50145626), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.018286815, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_71x6u"]
+curve = SubResource("Curve_b8nia")
+
+[sub_resource type="Curve" id="Curve_u1lcf"]
+_data = [Vector2(0, 0), 0.0, 4.30388, 0, 0, Vector2(0.501292, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.93081, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m0c3s"]
+curve = SubResource("Curve_u1lcf")
+
+[sub_resource type="Curve" id="Curve_1ll8x"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, -0.24951458), 1.7954794, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oyuva"]
+curve = SubResource("Curve_1ll8x")
+
+[sub_resource type="Curve" id="Curve_hjhl6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_pod23"]
+curve = SubResource("Curve_hjhl6")
+
+[sub_resource type="Curve" id="Curve_twkgf"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.604607), -1.44846, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_iejey"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.997601), 0.0, 0.0, 0, 0, Vector2(1, 3.25336), 6.03527, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ose0i"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2ykcv"]
+curve_x = SubResource("Curve_twkgf")
+curve_y = SubResource("Curve_iejey")
+curve_z = SubResource("Curve_ose0i")
+
+[sub_resource type="Curve" id="Curve_y1cen"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sy7ae"]
+curve = SubResource("Curve_y1cen")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3netq"]
+lifetime_randomness = 0.6
+particle_flag_align_y = true
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 180.0
+emission_ring_inner_radius = 120.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(-1, 0, 0)
+spread = 180.0
+flatness = 1.0
+radial_velocity_min = 19.999977
+radial_velocity_max = 49.999977
+radial_velocity_curve = SubResource("CurveTexture_oyuva")
+gravity = Vector3(0, 0, 0)
+damping_min = 0.1
+damping_max = 0.25
+damping_curve = SubResource("CurveTexture_m0c3s")
+scale_min = 0.08
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_pod23")
+scale_over_velocity_max = 75.0
+scale_over_velocity_curve = SubResource("CurveXYZTexture_2ykcv")
+alpha_curve = SubResource("CurveTexture_71x6u")
+turbulence_enabled = true
+turbulence_noise_strength = 5.0
+turbulence_noise_scale = 10.1
+turbulence_noise_speed = Vector3(0.1, 0.1, 0.1)
+turbulence_noise_speed_random = 1.0
+turbulence_influence_min = 0.65
+turbulence_influence_max = 0.85
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+turbulence_influence_over_life = SubResource("CurveTexture_sy7ae")
+
+[node name="vfx_ui_card_affliction_necromantic" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="card_mask" type="TextureRect" parent="."]
+clip_children = 1
+custom_minimum_size = Vector2(300, 422)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_tk5pc")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="border" type="TextureRect" parent="card_mask"]
+self_modulate = Color(0.53086853, 0.11862499, 1, 0.76862746)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1ih5a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_right = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_l7qdw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="card_vignette" type="TextureRect" parent="card_mask"]
+self_modulate = Color(0.6071452, 0.28220028, 1, 0.1254902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_right = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_a2xqc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="card_glow" type="TextureRect" parent="card_mask"]
+self_modulate = Color(0.81018454, 0.5537291, 0.8718328, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_07sea")
+expand_mode = 1
+
+[node name="vfx_common_specks" parent="card_mask" instance=ExtResource("6_hquqc")]
+self_modulate = Color(0.59557605, 1, 0.42108184, 1)
+position = Vector2(150, 211)
+rotation = 0.0
+emitting = true
+lifetime = 2.0
+one_shot = false
+explosiveness = 0.0
+process_material = SubResource("ParticleProcessMaterial_3netq")
+
+[node name="vfx_container" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 422)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 300.0
+offset_bottom = 422.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_tk5pc")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="main" type="TextureRect" parent="vfx_container"]
+self_modulate = Color(0.3566485, 0.28981423, 0.44163045, 0.78431374)
+texture_repeat = 2
+material = ExtResource("7_0rtu5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -211.0
+offset_right = -89.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(211, 211)
+mouse_filter = 2
+texture = ExtResource("8_qah1h")
+expand_mode = 1
+stretch_mode = 5

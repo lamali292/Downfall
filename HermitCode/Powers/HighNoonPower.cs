@@ -1,17 +1,33 @@
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
 public sealed class HighNoonPower : HermitPowerModel
 {
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    private bool IsMyBasicStrike(CardModel card) => card.Owner.Creature == Owner &&
+                                                    card.Tags.Contains(CardTag.Strike) &&
+                                                    card.Rarity == CardRarity.Basic;
+    public override Task AfterCardEnteredCombat(CardModel card)
     {
-        if (cardPlay.Card.Owner != Owner.Player) return;
-        if (!cardPlay.Card.IsBasicStrikeOrDefend) return;
-        Flash();
-        await CardPileCmd.Draw(context, Amount, Owner.Player!);
+        if (!IsMyBasicStrike(card))
+            return Task.CompletedTask;
+        card.BaseReplayCount += Amount;
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
+        CardModel? cardSource)
+    {
+        if (power != this) return Task.CompletedTask;
+        var cards = Owner.Player?.PlayerCombatState?.AllCards.Where(IsMyBasicStrike);
+        if (cards == null) return Task.CompletedTask;
+        foreach (var card in cards)
+            card.BaseReplayCount += (int) amount;
+        return Task.CompletedTask;
     }
 }

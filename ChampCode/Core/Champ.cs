@@ -3,7 +3,9 @@ using Champ.ChampCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
 using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -142,3 +144,6 @@ public abstract class ChampPowerModel(
 public class ChampPotionPool : DownfallPotionPool<Champ>;
 
 public class ChampCardPool : DownfallCardPool<Champ>;
+
+public abstract class ChampPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<Champ>(potionRarity, potionUsage, targetType);

@@ -15,26 +15,26 @@ public static class HermitSfx
 
     public static void PlayGun1(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        MyModAudio.PlaySound(Gun1, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun1, volumeDb, pitchVariation: pitchVariation);
     }
 
     public static void PlayGun2(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        MyModAudio.PlaySound(Gun2, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun2, volumeDb, pitchVariation: pitchVariation);
     }
 
     public static void PlayGun3(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        MyModAudio.PlaySound(Gun3, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Gun3, volumeDb, pitchVariation: pitchVariation);
     }
 
     public static void PlaySpin(float volumeDb = DefaultDb, float pitchVariation = SpinPitchVariation)
     {
-        MyModAudio.PlaySound(Spin, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Spin, volumeDb, pitchVariation: pitchVariation);
     }
 
     public static void PlayReload(float volumeDb = DefaultDb, float pitchVariation = GunPitchVariation)
     {
-        MyModAudio.PlaySound(Reload, volumeDb, pitchVariation);
+        MyModAudio.PlaySound(Reload, volumeDb, pitchVariation: pitchVariation);
     }
 }

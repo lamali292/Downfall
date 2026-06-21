@@ -1,1 +1,8 @@
-{}
+{
+  "HERMIT-TONIC.title": "Tonic",
+  "HERMIT-TONIC.description": "Gain [blue]{RuggedPower:diff()}[/blue] [gold]Rugged[/gold].",
+  "HERMIT-BLACK_BILE.title": "Black Bile",
+  "HERMIT-BLACK_BILE.description": "Apply [blue]{BruisePower:diff()}[/blue] [gold]Bruise[/gold].",
+  "HERMIT-LIQUID_VOID.title": "Liquid Void",
+  "HERMIT-LIQUID_VOID.description": "Put a card from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].\nIt's free to play this turn."
+}

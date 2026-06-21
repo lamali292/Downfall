@@ -7,21 +7,21 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hermit.HermitCode.Cards.Rare;
+namespace Hermit.HermitCode.Cards.Ancient;
 
 public sealed class FatalDesire : HermitCardModel
 {
-    public FatalDesire() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public FatalDesire() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<FatalDesirePower>(1, false);
         this.WithPower<MachineLearningPower>(2, false);
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithTip<Injury>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<MachineLearningPower>(ctx, this);

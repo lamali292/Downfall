@@ -2,7 +2,7 @@
   "HEXAGHOST-ADVANCING_GUARD.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "HEXAGHOST-ADVANCING_GUARD.title": "Advancing Guard",
   "HEXAGHOST-APOCRYPHRA.title": "Apocryphra",
-  "HEXAGHOST-APOCRYPHRA.description": "Deal {Damage:diff()} damage and [afterlife]apply[/afterlife] {SoulBurnPower:diff()} [afterlife]Soulburn to ALL enemies.\nReturn this card to your [/afterlife][gold]Hand[/gold][afterlife].[/afterlife]",
+  "HEXAGHOST-APOCRYPHRA.description": "Deal {Damage:diff()} damage and [afterlife]apply[/afterlife] {SoulBurnPower:diff()} [afterlife]Soulburn to ALL enemies.\nReturn this card to your Hand.[/afterlife]",
   "HEXAGHOST-BACKTRACK_SMACK.description": "Deal {Damage:diff()} damage twice.",
   "HEXAGHOST-BACKTRACK_SMACK.title": "Backtrack Smack",
   "HEXAGHOST-BAD_OMEN.description": "Choose a Ghostflame type to change the current one into.",

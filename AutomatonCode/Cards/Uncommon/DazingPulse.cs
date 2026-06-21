@@ -28,7 +28,7 @@ public class DazingPulse : AutomatonCardModel, IEncodable
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<DazingPulsePower>(ctx, this);
     }

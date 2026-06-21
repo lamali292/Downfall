@@ -10,7 +10,8 @@ namespace Hermit.HermitCode.Relics;
 /// <summary>
 ///     Prevent your first lethal HP loss each combat.
 /// </summary>
-public sealed class PetGhost() : HermitRelicModel(RelicRarity.Rare)
+[Obsolete]
+public sealed class PetGhost() : HermitRelicModel(RelicRarity.Rare, false)
 {
     private bool _usedThisCombat;
 

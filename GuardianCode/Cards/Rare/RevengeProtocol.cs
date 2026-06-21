@@ -23,7 +23,7 @@ public class RevengeProtocol : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<RevengeProtocolPower>(ctx, this);
         await CommonActions.ApplySelf<BracingPower>(ctx, this);

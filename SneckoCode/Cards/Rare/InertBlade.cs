@@ -18,7 +18,7 @@ public class InertBlade : SneckoCardModel
         WithEnergy(1, 1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cost = EnergyCost.GetResolved();
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

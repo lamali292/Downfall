@@ -133,7 +133,7 @@
   "COLLECTOR-SEED_OF_DOUBT.title": "Seed of Doubt",
   "COLLECTOR-SEVER_SOUL.description": "[gold]Exhaust[/gold] all non-Attack cards in your Hand\nDeal {Damage:diff()} damage.",
   "COLLECTOR-SEVER_SOUL.title": "Sever Soul",
-  "COLLECTOR-SHADOW_DAGGERS.description": "Deal {CalculatedDamage:diff()} damage for each Collected card played this combat.",
+  "COLLECTOR-SHADOW_DAGGERS.description": "Deal {Damage:diff()} damage for each Collected card played this combat.{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "COLLECTOR-SHADOW_DAGGERS.title": "Shadow Daggers",
   "COLLECTOR-SHOOTING_STAR.description": "The first time you [gold]Pyre[/gold] an Attack each turn, gain a copy of it.\nIt costs 0 until played.",
   "COLLECTOR-SHOOTING_STAR.title": "Shooting Star",

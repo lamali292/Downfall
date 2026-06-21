@@ -13,7 +13,7 @@ public sealed class SprayPray : HermitCardModel
 {
     public SprayPray() : base(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
     {
-        WithDamage(4, 1);
+        WithDamage(5, 1);
         this.WithRepeat(3);
         this.WithTip<Doubt>();
     }
@@ -21,7 +21,7 @@ public sealed class SprayPray : HermitCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play, DynamicVars.Repeat.IntValue)

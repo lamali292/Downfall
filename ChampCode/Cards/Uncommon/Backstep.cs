@@ -25,7 +25,7 @@ public class Backstep : ChampCardModel
         return card.Owner.Creature.GetPowerAmount<VigorPower>();
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

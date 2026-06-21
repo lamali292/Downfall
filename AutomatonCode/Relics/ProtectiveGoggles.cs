@@ -23,7 +23,7 @@ public class ProtectiveGoggles : AutomatonRelicModel
         IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner.Creature)) return;
-        if (Owner.GetEncode().Count == 0) return;
+        if (Owner.GetEncode().Count > 0) return;
         Flash();
         await MyCommonActions.Block(this);
     }

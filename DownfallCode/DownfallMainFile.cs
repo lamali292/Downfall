@@ -33,6 +33,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
@@ -111,15 +112,3 @@ internal static class ModelDbInitIdsPatch
                 SfxOverrideRegistry.Register(character.CharacterSelectSfx, effect);
     }
 }
-
-/*
-
-[HarmonyPatch(typeof(Log), nameof(Log.Error))]
-public static class LogErrorPatch
-{
-    [HarmonyPrefix]
-    public static bool DowngradeLocErrors(string text)
-    {
-        return !text.StartsWith("Localization formatting error!");
-    }
-}*/

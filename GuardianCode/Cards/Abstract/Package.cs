@@ -66,7 +66,7 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard
         description.Add("card3", card3.Title);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<T1>(Owner, PileType.Hand, upgraded: IsUpgraded);
         await DownfallCardCmd.GiveCard<T2>(Owner, PileType.Hand, upgraded: IsUpgraded);

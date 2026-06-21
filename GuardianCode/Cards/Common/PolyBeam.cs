@@ -9,7 +9,7 @@ namespace Guardian.GuardianCode.Cards.Common;
 [Pool(typeof(GuardianCardPool))]
 public class PolyBeam : GuardianCardModel
 {
-    public PolyBeam() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public PolyBeam() : base(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
     {
         WithDamage(2);
         this.WithRepeat(4, 1);
@@ -17,7 +17,7 @@ public class PolyBeam : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
     }

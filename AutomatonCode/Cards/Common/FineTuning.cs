@@ -22,7 +22,7 @@ public class FineTuning : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = (await CardSelectCmd.FromHand(ctx, Owner,
             new CardSelectorPrefs(StashCmd.StashSelectionPrompt, DynamicVars.Cards.IntValue), null,

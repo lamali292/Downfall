@@ -29,7 +29,7 @@ public class Glut : SneckoCardModel, IHasOverflowEffect
     private static decimal Calc(CardModel card, Creature? _)
         => card.Owner.GetHand().Count(e => e != card);
     
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

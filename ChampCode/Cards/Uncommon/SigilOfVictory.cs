@@ -19,7 +19,7 @@ public class SigilOfVictory : ChampCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = ChampModel.GetStanceModel(Owner);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)

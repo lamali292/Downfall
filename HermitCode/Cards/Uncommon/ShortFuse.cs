@@ -13,24 +13,25 @@ public sealed class ShortFuse : HermitCardModel
 {
     public ShortFuse() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(18, 4);
+        WithDamage(12, 4);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play).WithHermitShortFuseHitFx()
             .Execute(ctx);
     }
-
+    
+    
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (card != this || IsClone) return Task.CompletedTask;
 
         var amount = CombatManager.Instance.History.CardPlaysFinished.Count(e =>
-            (e.CardPlay.Card.Tags.Contains(CardTag.Strike) || e.CardPlay.Card.Tags.Contains(CardTag.Defend)) &&
+            e.CardPlay.Card.Rarity == CardRarity.Basic &&
             e.CardPlay.Card.Owner == Owner && e.HappenedThisTurn(CombatState));
         ReduceCostBy(amount);
         return Task.CompletedTask;
@@ -38,8 +39,7 @@ public sealed class ShortFuse : HermitCardModel
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner || (!cardPlay.Card.Tags.Contains(CardTag.Strike) &&
-                                             !cardPlay.Card.Tags.Contains(CardTag.Defend)))
+        if (cardPlay.Card.Owner != Owner || cardPlay.Card.Rarity != CardRarity.Basic)
             return Task.CompletedTask;
 
         ReduceCostBy(1);

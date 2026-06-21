@@ -22,9 +22,9 @@ public class EvasiveProtocol : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await GuardianCmd.Brace(ctx, this);
         await CommonActions.ApplySelf<EvasiveProtocolPower>(ctx, this);
+        await GuardianCmd.Brace(ctx, this);
     }
 }

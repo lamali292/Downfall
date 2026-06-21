@@ -27,7 +27,7 @@ public class Float : HexaghostCardModel
                                                           .Count(e => e.HappenedThisTurn(CombatState)) <
                                                       DynamicVars["CardsPlayed"].IntValue;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var a = CombatManager.Instance.History.Entries

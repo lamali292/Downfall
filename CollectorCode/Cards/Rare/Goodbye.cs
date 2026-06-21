@@ -19,7 +19,7 @@ public class Goodbye : CollectorCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target is not { IsAlive: true }) return;
         var powerAmount = cardPlay.Target.GetPowerAmount<CollectorDoomPower>();

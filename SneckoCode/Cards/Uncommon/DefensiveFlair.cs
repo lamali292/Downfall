@@ -29,7 +29,7 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
         return card.Owner.GetHand().Count(SneckoCmd.IsOffclass);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

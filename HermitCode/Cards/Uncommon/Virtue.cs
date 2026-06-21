@@ -3,6 +3,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -16,11 +18,12 @@ public sealed class Virtue : HermitCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var reduceBy = DynamicVars["Reduce"].IntValue;
         foreach (var power in Owner.Creature.Powers
+                     .Where(Exclude)
                      .Where(p => p.StackType == PowerStackType.Counter)
                      .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
                      .ToList())
@@ -30,5 +33,10 @@ public sealed class Virtue : HermitCardModel
                 : Math.Min(reduceBy, Math.Abs(power.Amount));
             await PowerCmd.ModifyAmount(ctx, power, change, Owner.Creature, null);
         }
+    }
+
+    private static bool Exclude(PowerModel powerModel)
+    {
+        return powerModel is ChainsOfBindingPower or ConfusedPower;
     }
 }

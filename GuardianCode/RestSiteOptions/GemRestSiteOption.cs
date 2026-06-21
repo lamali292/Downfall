@@ -43,11 +43,9 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         {
             var gems = Owner.GetDeck(c => c is IGemCard);
             var gemHolder = Owner.GetDeck(c => c is IGemSocketCard { FreeSlots: > 0 });
-            var a = NGemUpgradeSelectScreen.Create(gems, gemHolder, prefs);
             if (NOverlayStack.Instance == null) return false;
-            NOverlayStack.Instance.Push(a);
-            cardModel = (await a.CompletionSource.Task).ToList();
-            NOverlayStack.Instance.Remove(a);
+
+            cardModel = (await NGemUpgradeSelectScreen.ShowScreen(gems, gemHolder, prefs).CardsSelected()).ToList();
 
             RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(Owner, choiceId,
                 PlayerChoiceResult.FromMutableDeckCards(cardModel));

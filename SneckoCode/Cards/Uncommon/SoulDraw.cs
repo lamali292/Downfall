@@ -16,7 +16,7 @@ public class SoulDraw : SneckoCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var mutableCards = SneckoModel.GetCombatSneckoCards(Owner, DynamicVars.Cards.IntValue).ToList();
         mutableCards.ForEach(card => card.AddKeyword(CardKeyword.Retain));

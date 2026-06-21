@@ -26,7 +26,7 @@ public sealed class FromBeyond : HermitCardModel
         return card.Owner.GetExhaust().Count;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var enemy = Owner.RunState.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);

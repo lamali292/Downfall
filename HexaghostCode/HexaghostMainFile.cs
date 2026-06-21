@@ -1,11 +1,13 @@
 using System.Reflection;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
+using Hexaghost.HexaghostCode.Localization;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -21,6 +23,7 @@ public partial class HexaghostMainFile : Node
 
     public static void Initialize()
     {
+        RichTextEffectRegistry.Register<RichTextAfterlife>();
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
         var assembly = Assembly.GetExecutingAssembly();

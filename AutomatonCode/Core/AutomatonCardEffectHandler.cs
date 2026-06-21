@@ -8,7 +8,7 @@ namespace Automaton.AutomatonCode.Core;
 
 public static class AutomatonCardEffectHandler
 {
-    public static async Task DoAfterOnPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (card is IEncodable encodable)
             await encodable.PlayEncodableEffect(ctx, cardPlay, EncodeContext.Direct);

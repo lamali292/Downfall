@@ -12,15 +12,16 @@ namespace SlimeBoss.SlimeBossCode.Cards.Common;
 [Pool(typeof(SlimeBossCardPool))]
 public class Schlurp : SlimeBossCardModel
 {
-    public Schlurp() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Schlurp() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithCards(1, 1);
         WithPower<GoopPower>(7);
+        this.WithTip<Lick>();
     }
 
     protected override Artist Artist => Artist.Get<Freshbone>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCards<Lick>(Owner, PileType.Hand, DynamicVars.Cards.BaseValue);

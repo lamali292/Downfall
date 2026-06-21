@@ -7,7 +7,7 @@ namespace Awakened.AwakenedCode.Core;
 
 public static class AwakenedCardEffectHandler
 {
-    public static async Task DoAfterOnPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (card is IChantable chantable && (AwakenedCmd.WasLastCardPlayedPower(cardPlay) || chantable.HasChanted))
             await AwakenedCmd.Chant(ctx, card, cardPlay);

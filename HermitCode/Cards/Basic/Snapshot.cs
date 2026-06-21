@@ -1,15 +1,18 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.Cards.Ancient;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Basic;
 
-public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
+public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendenceCard
 {
     private AttackCommand? _result;
 
@@ -24,20 +27,21 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         if (_result == null) return;
-        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.UnblockedDamage);
+        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
         await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
         _result = null;
     }
 
 
-/*
+
+    
     public CardModel GetTranscendenceTransformedCard()
     {
-        return ModelDb.Card<OneFlash>();
+        return ModelDb.Card<Crackshot>();
     }
-*/
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         _result = await CommonActions.CardAttack(this, play)

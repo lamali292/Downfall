@@ -1,27 +1,28 @@
+using HarmonyLib;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Potions;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Hermit.HermitCode.Relics;
 
 /// <summary>
-///     First 2 times you use a potion each combat, gain a random potion.
-///     You can only use 2 potions each combat.
+///     First 1 times you use a potion each combat, gain a random potion.
+///     You can only use 1 potions each combat.
 /// </summary>
 public sealed class Shotglass : HermitRelicModel
 {
     public Shotglass() : base(RelicRarity.Uncommon)
     {
-        WithVar("Limit", 2);
+        WithVar("Limit", 1);
     }
-
-
-    private int AvailableUses { get; set; }
-    private bool IsInCombat { get; set; }
+    
+    public int AvailableUses { get; set; }
+    public bool IsInCombat { get; set; }
 
     public override bool ShowCounter => IsInCombat;
     public override int DisplayAmount => AvailableUses;
@@ -56,5 +57,19 @@ public sealed class Shotglass : HermitRelicModel
         Status = RelicStatus.Normal;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
+    }
+}
+
+
+
+[HarmonyPatch(typeof(NPotionPopup), nameof(NPotionPopup.RefreshButtons))]
+internal static class ShotglassLimitPatch
+{
+    private static void Postfix(NPotionPopup __instance)
+    {
+        var potion = __instance.Potion;
+        var shotglass = potion?.Owner.GetRelic<Shotglass>();
+        if (shotglass is { IsInCombat: true, AvailableUses: <= 0 })
+            __instance._useButton.Disable();
     }
 }

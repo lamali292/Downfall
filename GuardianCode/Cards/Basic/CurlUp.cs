@@ -24,7 +24,7 @@ public class CurlUp : GuardianCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         if (GuardianCmd.CanPutIntoStasis(Owner))
@@ -37,8 +37,7 @@ public class CurlUp : GuardianCardModel
             else
                 card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.GetHand(e => e != this));
 
-            if (card == null) return;
-            await GuardianCmd.PutIntoStasis(card, ctx, this);
+            if (card != null) await GuardianCmd.PutIntoStasis(card, ctx, this);
         }
 
         await GuardianCmd.Brace(ctx, this);

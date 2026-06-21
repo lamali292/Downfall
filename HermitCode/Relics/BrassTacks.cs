@@ -10,9 +10,10 @@ namespace Hermit.HermitCode.Relics;
 /// <summary>
 ///     At the end of your turn, gain 2 Block.
 /// </summary>
+[Obsolete]
 public sealed class BrassTacks : HermitRelicModel
 {
-    public BrassTacks() : base(RelicRarity.Common)
+    public BrassTacks() : base(RelicRarity.Common, false)
     {
         WithBlock(2);
     }

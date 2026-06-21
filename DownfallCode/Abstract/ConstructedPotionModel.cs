@@ -41,6 +41,12 @@ public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUs
 
         return this;
     }
+    
+    protected ConstructedPotionModel WithRepeat(int i)
+    {
+        WithVars(new RepeatVar(i));
+        return this;
+    }
 
     protected ConstructedPotionModel WithDamage(int i)
     {
@@ -69,9 +75,9 @@ public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUs
 
     protected ConstructedPotionModel WithPower<T>(int i, bool showTip = true) where T : PowerModel
     {
-        if (showTip)
-            _hoverTips.Add(new PotionTooltipSource(_ => HoverTipFactory.FromPower<T>(i)));
-        return WithVars(new PowerVar<T>(i));
+        if (showTip) WithTip<T>();
+        _newDynamicVars.Add(new PowerVar<T>(i));
+        return this;
     }
 
     protected ConstructedPotionModel WithVar(string name, int baseVal)

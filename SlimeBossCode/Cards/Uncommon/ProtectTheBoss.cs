@@ -18,7 +18,7 @@ public class ProtectTheBoss : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<ProtectTheBossPower>(ctx, this);
     }

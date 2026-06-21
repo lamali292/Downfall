@@ -1,3 +1,4 @@
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
@@ -16,10 +17,11 @@ public class Encircle : ChampCardModel
         this.WithGlory(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = attack.Results.Count();
+        var a = attack.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0) 
+                * DynamicVars.Power<GloryPower>().BaseValue;
         await CommonActions.ApplySelf<GloryPower>(ctx, this, a);
     }
 }

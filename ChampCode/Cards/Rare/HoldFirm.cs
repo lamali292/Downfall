@@ -17,7 +17,7 @@ public class HoldFirm : ChampCardModel
         WithPower<BlurPower>(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<CounterPower>(ctx, this);

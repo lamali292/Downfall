@@ -20,7 +20,7 @@ public class TemporalStrike : GuardianCardModel, IGemSocketCard
 
     public int GemSlots => 1;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (GuardianCmd.GetStasisCount(Owner) == 0) return;

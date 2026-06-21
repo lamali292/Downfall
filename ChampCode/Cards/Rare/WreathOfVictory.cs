@@ -16,7 +16,7 @@ public class WreathOfVictory : ChampCardModel
         WithPower<CounterPower>(6, 2);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
         await CommonActions.ApplySelf<CounterPower>(ctx, this);

@@ -12,6 +12,8 @@ public sealed class SmokingBarrelPower : HermitPowerModel, IAfterDeadOnTrigger
 {
     public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<VigorPower>(ctx, Owner, Amount, Owner, cardPlay?.Card);
+        if (card.Owner.Creature != Owner) return;
+        Flash();
+        await PowerCmd.Apply<VigorPower>(ctx, Owner, Amount, Owner, cardPlay.Card);
     }
 }

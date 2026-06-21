@@ -16,7 +16,7 @@ public class RecycleBin : AutomatonCardModel
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<RecycleBinPower>(ctx, this);
     }

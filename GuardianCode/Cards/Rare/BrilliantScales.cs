@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Powers;
@@ -15,10 +16,11 @@ public class BrilliantScales : GuardianCardModel, IGemSocketCard
         this.WithPower<BrilliantScalesPower>(1, false);
     }
 
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     public int GemSlots => IsUpgraded ? 3 : 2;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var power = await CommonActions.ApplySelf<BrilliantScalesPower>(ctx, this);
         power?.SetCard(this);

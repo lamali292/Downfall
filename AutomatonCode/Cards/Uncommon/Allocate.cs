@@ -30,7 +30,7 @@ public class Allocate : AutomatonCardModel
                card.Owner.GetStash().Count(c => c.Type == CardType.Status);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var statusCount = ((CalculatedVar)DynamicVars["Status"]).Calculate(null);
         await PlayerCmd.GainEnergy(statusCount, Owner);

@@ -15,7 +15,7 @@ public class MinionMaster : SlimeBossCardModel
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<MinionMasterPower>(ctx, this);
     }

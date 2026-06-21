@@ -20,10 +20,10 @@ public class BurningQuestion : HexaghostCardModel
     {
         WithPower<IntensityPower>(3, 1);
         WithPower<MetallicizePower>(6, 2);
-        WithPower<RoyaltiesPower>(30, 5);
+        this.WithPower<RoyaltiesPower>(30, 5, false);
     }
     public override bool CanBeGeneratedInCombat => false;
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         CardModel[] choices =
         [

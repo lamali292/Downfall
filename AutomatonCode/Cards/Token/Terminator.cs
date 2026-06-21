@@ -22,7 +22,7 @@ public class Terminator : AutomatonCardModel,
     }
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = AutomatonCmd.GetMax(Owner);
         var b = EncodePile.FunctionSequence.GetPile(Owner).Cards.Count;

@@ -178,7 +178,7 @@
   "AUTOMATON-FORCE_PUSH.title": "Force-Push",
   "AUTOMATON-FORCE_PUSH.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} cards.",
   "AUTOMATON-CLEAN_UP.title": "Clean Up",
-  "AUTOMATON-CLEAN_UP.description": "Deal {Damage:diff()} damage.\n[gold]Exhaust[/gold] {Cards:diff()} {Cards:plural:card|cards}.\nIf it's a Status or Curse card, deal {Damage:diff()} damage again.",
+  "AUTOMATON-CLEAN_UP.description": "[gold]Exhaust[/gold] {Cards:diff()} {Cards:plural:card|cards}.\nDeal {Damage:diff()} damage.\nIf a Status or Curse was [gold]Exhausted[/gold], deal {Damage:diff()} damage again.",
   "AUTOMATON-VERIFY.title": "Verify",
   "AUTOMATON-VERIFY.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] a card in your [gold]Discard Pile[/gold].",
   "AUTOMATON-ERROR.title": "Error",

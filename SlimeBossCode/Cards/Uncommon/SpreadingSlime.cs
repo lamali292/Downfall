@@ -14,7 +14,7 @@ public class SpreadingSlime : SlimeBossCardModel
         this.WithPower<SlimyTonguePower>(2, 1, false);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SlimyTonguePower>(ctx, this);
     }

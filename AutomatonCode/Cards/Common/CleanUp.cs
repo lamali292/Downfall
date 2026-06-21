@@ -21,15 +21,15 @@ public class CleanUp : AutomatonCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+      
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs,
             null, this)).FirstOrDefault();
         if (card == null) return;
         await CardCmd.Exhaust(ctx, card);
-        if (card is not { Type: CardType.Curse or CardType.Status }) return;
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var hitCount = card is { Type: CardType.Curse or CardType.Status } ? 2 : 1;
+        await CommonActions.CardAttack(this, cardPlay, hitCount).Execute(ctx);
     }
 }

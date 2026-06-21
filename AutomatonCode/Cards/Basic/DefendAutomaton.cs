@@ -14,7 +14,7 @@ public sealed class DefendAutomaton : AutomatonCardModel
         WithBlock(5, 3);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

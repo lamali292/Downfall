@@ -34,7 +34,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken
         return Task.CompletedTask;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_lightning")

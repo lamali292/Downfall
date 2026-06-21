@@ -36,6 +36,17 @@ public abstract class ConstructedPowerModel(
             return HoverTipFactory.FromCard(mutable);
         }));
     }
+    
+    protected ConstructedPowerModel WithCardTip<T>(Action<T, PowerModel>? modifyTipCard = null)
+        where T : CardModel
+    {
+        return WithTip(new PowerTooltipSource(power =>
+        {
+            var mutable = ModelDb.Card<T>().ToMutable();
+            if (mutable is T obj2) modifyTipCard?.Invoke(obj2, power);
+            return HoverTipFactory.FromCard(mutable);
+        }));
+    }
 
     protected ConstructedPowerModel WithVars(params DynamicVar[] vars)
     {

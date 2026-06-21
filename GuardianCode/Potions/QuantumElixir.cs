@@ -34,7 +34,6 @@ public class QuantumElixir : GuardianPotionModel
             var choices = CardFactory.GetDistinctForCombat(Owner, cards, DynamicVars.Cards.IntValue, rng).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
-
             await GuardianCmd.PutIntoStasis(selected, ctx, this);
             if (GuardianCmd.GetStasisCount(Owner) < countBefore + 1)
                 return;

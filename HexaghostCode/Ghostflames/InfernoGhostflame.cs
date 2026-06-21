@@ -2,8 +2,10 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Powers;
 using Hexaghost.HexaghostCode.Vfx;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -40,11 +42,18 @@ public class InfernoGhostflame : GhostflameModel
         }
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
-        
-        await HexaghostCmd.ExtinguishAllExceptCurrent(ctx, Owner);
+
+        await Cmd.Wait(0.2f);
+        await HexaghostCmd.ExtinguishAllExceptThis(ctx, Owner, this);
     }
 
-    //todo Inferno Ghostflame should self-extinguish at the end of every turn if Ignited
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (!participants.Contains(Owner.Creature) || !IsIgnited) return Task.CompletedTask;
+        Extinguish();
+        HexaghostVisualsBridge.Refresh(Owner);
+        return Task.CompletedTask;
+    }
     
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {

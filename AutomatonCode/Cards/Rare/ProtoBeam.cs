@@ -25,7 +25,7 @@ public class ProtoBeam : AutomatonCardModel
         return card.Owner.GetExhaust().Count;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var exhaustCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, exhaustCount).Execute(ctx);

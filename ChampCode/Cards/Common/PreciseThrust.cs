@@ -26,7 +26,7 @@ public class PreciseThrust : ChampCardModel, IBerserkerComboCard, IDefensiveComb
         await CommonActions.CardBlock(this, cardPlay);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // We have to use `hitCount` here instead of calling `CardAttack` another time
         // in `BerserkerComboEffect`, because calling `CardAttack` twice

@@ -1,7 +1,6 @@
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Hermit.HermitCode.Relics;
@@ -9,9 +8,10 @@ namespace Hermit.HermitCode.Relics;
 /// <summary>
 ///     Whenever you defeat an Elite encounter, heal 7 HP and gain 35 gold.
 /// </summary>
+[Obsolete]
 public sealed class BrokenTooth : HermitRelicModel
 {
-    public BrokenTooth() : base(RelicRarity.Rare)
+    public BrokenTooth() : base(RelicRarity.Rare, false)
     {
         WithHeal(7);
         WithGold(35);

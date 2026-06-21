@@ -16,7 +16,7 @@ public class SoulExchange : SneckoCardModel
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SneckoCmd.Muddle(ctx, Owner.GetHand(), this);
     }

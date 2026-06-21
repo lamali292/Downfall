@@ -16,7 +16,7 @@ public class DuplicatedForm : SlimeBossCardModel
         this.WithPower<EnergizedPower>(0, 1, false);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<EnergizedPower>(ctx, this);
         await CommonActions.ApplySelf<DuplicatedFormPower>(ctx, this);
