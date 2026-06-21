@@ -1,9 +1,12 @@
 using System.Reflection;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using Hermit.HermitCode.Core;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;

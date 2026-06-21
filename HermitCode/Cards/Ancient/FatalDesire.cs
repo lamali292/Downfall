@@ -11,7 +11,7 @@ namespace Hermit.HermitCode.Cards.Ancient;
 
 public sealed class FatalDesire : HermitCardModel
 {
-    public FatalDesire() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public FatalDesire() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<FatalDesirePower>(1, false);

@@ -33,6 +33,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+        CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());

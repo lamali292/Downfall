@@ -34,9 +34,13 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     // Hooks
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player.Character is not Guardian || player.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
-        await GuardianCmd.LeaveDefensiveMode(ctx, player);
+        if (player is { Character: Guardian, PlayerCombatState.TurnNumber: 1 })
+        {
+            await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
+            await GuardianCmd.LeaveDefensiveMode(ctx, player);
+        };
+        await GuardianCmd.TickAll(player, ctx);
+        GuardianDisplay.Refresh(player);
     }
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
@@ -44,12 +48,6 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         if (card.Pile != null && card.Pile.Type != GuardianPile.Stasis) return Task.CompletedTask;
         GuardianDisplay.Refresh(card.Owner);
         return Task.CompletedTask;
-    }
-
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-    {
-        await GuardianCmd.TickAll(player, ctx);
-        GuardianDisplay.Refresh(player);
     }
 
     internal static void SetupGuardianCombatUi(CombatState state)

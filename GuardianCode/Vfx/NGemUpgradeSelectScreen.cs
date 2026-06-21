@@ -52,7 +52,9 @@ public partial class NGemUpgradeSelectScreen :
     public static IEnumerable<string> AssetPaths => [ScenePath];
     private IEnumerable<Control> PeekButtonTargets => [_closeButton!, _confirmButton!];
 
-    // Grid stuff
+    private static bool UsingController =>
+        NControllerManager.Instance is { IsUsingController: true };
+
     public async Task<IEnumerable<CardModel>> CardsSelected()
     {
         return await CompletionSource.Task;
@@ -92,6 +94,7 @@ public partial class NGemUpgradeSelectScreen :
     {
         _closeButton = GetNode<NBackButton>((NodePath)"%Close");
         _confirmButton = GetNode<NConfirmButton>((NodePath)"%Confirm");
+        _confirmButton.FocusMode = FocusModeEnum.All;
         _infoLabel = GetNode<MegaRichTextLabel>((NodePath)"%BottomLabel");
 
         _ = (long)_closeButton.Connect(NClickableControl.SignalName.Released,
@@ -151,18 +154,19 @@ public partial class NGemUpgradeSelectScreen :
         _grid.SetCards(cardsToShow, PileType.None, sortingOrdersList);
     }
 
-    public static NGemUpgradeSelectScreen Create(
+    public static NGemUpgradeSelectScreen ShowScreen(
         IReadOnlyList<CardModel> gems,
         IReadOnlyList<CardModel> gemHolder,
         CardSelectorPrefs prefs)
     {
-        var cardSelectScreen = PreloadManager.Cache.GetScene(ScenePath)
+        var screen = PreloadManager.Cache.GetScene(ScenePath)
             .Instantiate<NGemUpgradeSelectScreen>();
-        cardSelectScreen.Name = nameof(NGemUpgradeSelectScreen);
-        cardSelectScreen._gems = gems;
-        cardSelectScreen._cards = gemHolder;
-        cardSelectScreen._prefs = prefs;
-        return cardSelectScreen;
+        screen.Name = nameof(NGemUpgradeSelectScreen);
+        screen._gems = gems;
+        screen._cards = gemHolder;
+        screen._prefs = prefs;
+        NOverlayStack.Instance?.Push(screen);
+        return screen;
     }
 
     private void RefreshConfirmButtonVisibility()
@@ -177,6 +181,7 @@ public partial class NGemUpgradeSelectScreen :
     private void OnCardClicked(CardModel card)
     {
         if (_grid == null) return;
+
         // Toggle selection
         if (_selectedCards.Contains(card))
         {
@@ -185,18 +190,20 @@ public partial class NGemUpgradeSelectScreen :
         }
         else
         {
-            // Enforce single selection by clearing previous highlights
             foreach (var previouslySelected in _selectedCards) _grid.UnhighlightCard(previouslySelected);
             _selectedCards.Clear();
-
             _selectedCards.Add(card);
             _grid.HighlightCard(card);
         }
 
         RefreshConfirmButtonVisibility();
+
+        // On controller there is no Confirm button, so a card press commits directly.
+        if (UsingController && _selectedCards.Count == 1)
+            ConfirmSelection(null!);
     }
 
-    private void ConfirmSelection(NButton _)
+    private void ConfirmSelection(NButton b)
     {
         if (_cards == null) return;
         if (_isSelectingGem)
@@ -206,6 +213,10 @@ public partial class NGemUpgradeSelectScreen :
             _isSelectingGem = false;
             RefreshGrid(_cards);
             RefreshConfirmButtonVisibility();
+
+            if (UsingController)
+                _ = GrabFirstCardWhenReady(_cards.Count);
+
             if (_infoLabel == null) return;
             var desc = new LocString("gameplay_ui", "GUARDIAN-GEM_SOCKET_SELECT");
             _infoLabel.Text = desc.GetFormattedText();
@@ -213,6 +224,28 @@ public partial class NGemUpgradeSelectScreen :
         else
         {
             CheckIfSelectionComplete();
+        }
+    }
+
+    private async Task GrabFirstCardWhenReady(int expectedCount)
+    {
+        if (_grid == null || expectedCount == 0) return;
+
+        // SetCards rebuilds the grid through an async path (animate-out -> build -> animate-in),
+        // so the new holders aren't present on the same frame. Poll until the first card exists.
+        // Use FocusedControlFromTopBar so we always target the new first card, never a stale holder.
+        const int maxFrames = 30;
+        for (var i = 0; i < maxFrames; i++)
+        {
+            if (!IsInstanceValid(this) || _grid == null) return;
+
+            var target = _grid.FocusedControlFromTopBar;
+            if (target != null)
+            {
+                target.TryGrabFocus();
+                return;
+            }
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
     }
 

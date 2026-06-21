@@ -15,7 +15,7 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
     {
         if (!card.Tags.Contains(ChampTag.Finisher)) yield break;
 
-        var stance = card.IsCanonical || card._owner == null
+        var stance = card.IsCanonical || card._owner == null || card.CombatState == null
             ? ChampModelDb.ChampStance<ChampNoStance>()
             : card.Owner.ChampStance();
 

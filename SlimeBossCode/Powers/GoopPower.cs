@@ -17,7 +17,7 @@ using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription
+public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariablesToPowerDescription
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
