@@ -13,6 +13,7 @@ public sealed class MaintenanceStrikePower : HermitPowerModel
     {
         return dealer == Owner &&
                cardSource != null &&
+               cardSource.Rarity == CardRarity.Basic &&
                cardSource.Tags.Contains(CardTag.Strike) &&
                props.HasFlag(ValueProp.Move)
             ? Amount

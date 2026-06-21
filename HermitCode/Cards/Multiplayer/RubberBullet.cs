@@ -8,7 +8,7 @@ namespace Hermit.HermitCode.Cards.Multiplayer;
 
 public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 {
-    public RubberBullet() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public RubberBullet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
         WithVar("Increase", 7, 2);
