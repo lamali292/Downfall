@@ -84,5 +84,7 @@
   "HERMIT-DEATHWISH_POWER.title": "Deathwish",
   "HERMIT-DEATHWISH_POWER.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
   "HERMIT-BIG_BRUISER_POWER.title": "Big Bruiser",
-  "HERMIT-BIG_BRUISER_POWER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies."
+  "HERMIT-BIG_BRUISER_POWER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies.",
+  "HERMIT-BIG_BRUISER_POWER.smartDescription": "All players benefit from [gold]Bruise[/gold] you apply to enemies.",
+  "HERMIT-DEATHWISH_POWER.smartDescription": "Cards adjacent to Curses are considered [gold]Dead On[/gold]."
 }
