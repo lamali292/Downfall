@@ -20,7 +20,7 @@ public static class HermitCmd
         var cardIndex = handCards.IndexOf(card);
         if (cardIndex == -1)
             return false;
-
+        
         var handSize = handCards.Count;
         if (handSize % 2 == 0)
             return cardIndex == handSize / 2 - 1 || cardIndex == handSize / 2;

@@ -23,8 +23,8 @@
   "HERMIT-ADAPT_POWER.description": "At the start of your turn, [gold]Exhaust[/gold] up to [blue]1[/blue] card to gain [blue]8[/blue] Block each.",
   "HERMIT-ADAPT_POWER.smartDescription": "At the start of your turn, [gold]Exhaust[/gold] up to [blue]{Amount}[/blue] cards to gain [blue]8[/blue] Block each.",
   "HERMIT-ADAPT_POWER.title": "Adapt",
-  "HERMIT-BRUISE_POWER.description": "This turn, target takes more attack damage.",
-  "HERMIT-BRUISE_POWER.smartDescription": "This turn, {IsApplierYou:your|[orange]{ApplierName}[/orange]'s} attacks deal [blue]{Amount}[/blue] additional damage.",
+  "HERMIT-BRUISE_POWER.description": "This turn, target takes more additional damage.",
+  "HERMIT-BRUISE_POWER.smartDescription": "This turn,{HasBigBruiser:| {IsApplierYou:your|[orange]{ApplierName}[/orange]'s}} attacks deal [blue]{Amount}[/blue] additional damage.",
   "HERMIT-BRUISE_POWER.title": "Bruised",
   "HERMIT-HORROR_POWER.description": "Bruise will not wear off this turn.",
   "HERMIT-HORROR_POWER.smartDescription": "Bruise will not wear off for [blue]{Amount}[/blue] turns.",
@@ -77,5 +77,12 @@
   "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "Basic [gold]Defends[/gold] gain [gold]Replay[/gold] [blue]{Amount}[/blue]. ",
   "HERMIT-HAIR_TRIGGER_POWER.title": "Hair Trigger",
   "HERMIT-HAIR_TRIGGER_POWER.description": "Whenever you trigger a [gold]Dead On[/gold] effect, play a [gold]Strike[/gold] with [gold]Exhaust[/gold] on a random enemy. ",
-  "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "Whenever you trigger a [gold]Dead On[/gold] effect, play {Amount:plural:a [gold]Strike[/gold]|[blue]{}[/blue] [gold]Strikes[/gold]} with [gold]Exhaust[/gold] on a random enemy. "
+  "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "Whenever you trigger a [gold]Dead On[/gold] effect, play {Amount:plural:a [gold]Strike[/gold]|[blue]{}[/blue] [gold]Strikes[/gold]} with [gold]Exhaust[/gold] on a random enemy. ",
+  "HERMIT-UNYIELDING_POWER.title": "Unyielding",
+  "HERMIT-UNYIELDING_POWER.description": "If you are [gold]Vulnerable[/gold], receive [blue]50%[/blue] less damage from Attacks this turn.",
+  "HERMIT-UNYIELDING_POWER.smartDescription": "If you are [gold]Vulnerable[/gold], receive [blue]{DamageDecrease:percentLess()}%[/blue] less damage from Attacks {Amount:plural:this turn|for [blue]{}[/blue] turns}.",
+  "HERMIT-DEATHWISH_POWER.title": "Deathwish",
+  "HERMIT-DEATHWISH_POWER.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
+  "HERMIT-BIG_BRUISER_POWER.title": "Big Bruiser",
+  "HERMIT-BIG_BRUISER_POWER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies."
 }

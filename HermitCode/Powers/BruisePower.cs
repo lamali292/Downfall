@@ -18,7 +18,7 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff), IAddDumb
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {
-        return target != Owner || dealer != Applier ||!props.IsPoweredAttack() ? 0 : Amount;
+        return target != Owner || !(dealer == Applier || HasBigBruiser) ||!props.IsPoweredAttack() ? 0 : Amount;
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
@@ -32,9 +32,12 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff), IAddDumb
         await PowerCmd.Remove(this);
     }
 
+    private bool HasBigBruiser => Applier?.HasPower<BigBruiserPower>() ?? false;
+    
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
         description.Add("IsApplierYou", LocalContext.IsMe(Applier));
+        description.Add("HasBigBruiser", HasBigBruiser);
     }
 
     

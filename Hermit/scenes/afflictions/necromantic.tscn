@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cclw8y8n7fabd"]
+
+[ext_resource type="PackedScene" uid="uid://c5grf8hx577p6" path="res://Hermit/scenes/afflictions/vfx_ui_card_affliction_necromantic.tscn" id="1_4ft7m"]
+
+[node name="Ringing" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="vfx_ui_card_affliction_necromantic" parent="." instance=ExtResource("1_4ft7m")]
+layout_mode = 1

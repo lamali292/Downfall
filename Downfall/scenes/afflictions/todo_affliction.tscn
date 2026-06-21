@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwbeqc45rmins"]
+
+[ext_resource type="PackedScene" uid="uid://u8qi8dt1raw" path="res://scenes/vfx/ui/card/afflictions/ringing/vfx_ui_card_affliction_ringing.tscn" id="1_mwdev"]
+
+[node name="Ringing" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="vfx_ui_card_affliction_ringing" parent="." instance=ExtResource("1_mwdev")]
+layout_mode = 1

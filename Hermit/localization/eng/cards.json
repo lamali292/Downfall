@@ -182,5 +182,13 @@
   "HERMIT-LAST_CHANCE.title": "Last Chance",
   "HERMIT-LAST_CHANCE.description": "Deal {Damage:diff()} damage.\nIf you are debuffed, draw {Cards:diff()} cards.",
   "HERMIT-TORN_PAGE.title": "Torn Page",
-  "HERMIT-TORN_PAGE.description": "Afflict ALL Curses in your Hand with [purple]Necromantic[/purple]."
+  "HERMIT-TORN_PAGE.description": "Afflict ALL Curses in your [gold]Hand[/gold] with [purple]Necromantic[/purple].",
+  "HERMIT-UNYIELDING.title": "Unyielding",
+  "HERMIT-UNYIELDING.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you are [gold]Vulnerable[/gold], receive 50% less damage this turn.",
+  "HERMIT-DEATHWISH.title": "Deathwish",
+  "HERMIT-DEATHWISH.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
+  "HERMIT-RUBBER_BULLET.title": "Rubber Bullet",
+  "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]:\nIncrease this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
+  "HERMIT-BIG_BRUISER.title": "Big Bruiser",
+  "HERMIT-BIG_BRUISER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. "
 }

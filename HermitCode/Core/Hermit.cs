@@ -6,7 +6,9 @@ using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Relics;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -107,3 +109,7 @@ public abstract class HermitPowerModel(
 public class HermitPotionPool : DownfallPotionPool<Hermit>;
 
 public class HermitCardPool : DownfallCardPool<Hermit>;
+
+[Pool(typeof(HermitPotionPool))]
+public abstract class HermitPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<Hermit>(potionRarity, potionUsage, targetType);
