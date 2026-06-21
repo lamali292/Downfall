@@ -34,7 +34,7 @@
   "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "When you lose [blue]{Amount}[/blue] HP gain [blue]{Block:diff()}[/blue] [gold]Block[/gold] enter [gold]Defensive Mode[/gold] until next turn, and increase this amount required to trigger this effect again by [blue]{Increase:diff()}[/blue], up to a maximum of [blue]{MaxLimit:diff()}[/blue].",
   "GUARDIAN-REROUTE_POWER.title": "Reroute",
   "GUARDIAN-REROUTE_POWER.description": "Place the next card you play this turn into [gold]Stasis[/gold].",
-  "GUARDIAN-REROUTE_POWER.smartDescription": "Place the next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn into Stasis.",
+  "GUARDIAN-REROUTE_POWER.smartDescription": "Place the next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn into [gold]Stasis[/gold].",
   "GUARDIAN-REVENGE_PROTOCOL_POWER.title": "Revenge Protocol",
   "GUARDIAN-REVENGE_PROTOCOL_POWER.description": "Whenever you enter [gold]Defensive Mode[/gold], gain [gold]Strength[/gold].",
   "GUARDIAN-REVENGE_PROTOCOL_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold].",

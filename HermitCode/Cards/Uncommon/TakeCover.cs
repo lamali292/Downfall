@@ -13,7 +13,7 @@ public sealed class TakeCover : HermitCardModel
     public TakeCover() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);
+        this.WithCardTip<DefendHermit>(WithPreviewModifiers);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

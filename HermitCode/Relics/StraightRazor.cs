@@ -21,6 +21,7 @@ public sealed class StraightRazor : HermitRelicModel
 
     public override async Task BeforeCardRemoved(CardModel card)
     {
+        if (card.Owner != Owner) return;
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
     }
 }
