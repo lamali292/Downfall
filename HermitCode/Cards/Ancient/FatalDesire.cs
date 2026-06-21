@@ -7,15 +7,15 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hermit.HermitCode.Cards.Rare;
+namespace Hermit.HermitCode.Cards.Ancient;
 
 public sealed class FatalDesire : HermitCardModel
 {
     public FatalDesire() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<FatalDesirePower>(1, false);
         this.WithPower<MachineLearningPower>(2, false);
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithTip<Injury>();
     }
 

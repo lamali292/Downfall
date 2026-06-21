@@ -5,11 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hermit.HermitCode.Cards.Common;
+namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Glare : HermitCardModel
 {
-    public Glare() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public Glare() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);

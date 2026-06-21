@@ -12,7 +12,7 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 {
     public ItchyTrigger() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(7, 2);
+        WithDamage(6, 2);
         WithVar("CostReduction", 1, 1);
     }
 
@@ -20,12 +20,12 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        var cards = Owner.GetHand();
-        var cardModel = Owner.RunState.Rng.CombatCardSelection.
-                            NextItem(cards.Where(c => c.CostsEnergyOrStars(false))) ?? 
-                        Owner.RunState.Rng.CombatCardSelection
-                            .NextItem(cards.Where(c => c.CostsEnergyOrStars(true)));
-        cardModel?.EnergyCost.AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
+        Owner.GetHand()
+            .OrderByDescending(e => e.EnergyCost.GetResolved())
+            .Take(1)
+            .FirstOrDefault()?
+            .EnergyCost
+            .AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
         return Task.CompletedTask;
     }
 
