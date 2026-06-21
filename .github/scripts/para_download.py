@@ -49,7 +49,7 @@ def save_translation(mod_name, lang_code, filename, translated_dict):
     source_path = Path(mod_name) / "localization" / "eng" / filename
 
     try:
-        with open(source_path, "r", encoding="utf-8") as f:
+        with open(source_path, "r", encoding="utf-8-sig") as f:
             source_content = f.read()
         source_json = json.loads(source_content, object_pairs_hook=OrderedDict)
 
