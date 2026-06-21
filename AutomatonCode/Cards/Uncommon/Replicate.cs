@@ -22,7 +22,7 @@ public class Replicate : AutomatonCardModel, IEncodable
             .Execute(ctx);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var copiedCard = cardPlay.Card.CreateClone();
         var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, Owner);

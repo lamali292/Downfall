@@ -24,7 +24,7 @@ public class CurlUp : GuardianCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         if (GuardianCmd.CanPutIntoStasis(Owner))

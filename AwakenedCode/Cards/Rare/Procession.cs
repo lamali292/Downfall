@@ -13,16 +13,16 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Procession : AwakenedCardModel
 {
-    public Procession() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Procession() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
+        WithKeyword(CardKeyword.Exhaust);
         this.WithTip<Void>();
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.PlaySelectionPrompt, ctx,
             PileType.Draw);

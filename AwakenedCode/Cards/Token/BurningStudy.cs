@@ -30,7 +30,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken
         return Task.CompletedTask;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);

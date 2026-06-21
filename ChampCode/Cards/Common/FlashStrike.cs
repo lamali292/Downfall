@@ -24,7 +24,7 @@ public class FlashStrike : ChampCardModel, IDefensiveComboCard
         await CommonActions.CardBlock(this, cardPlay);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
     }

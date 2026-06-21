@@ -19,7 +19,7 @@ public class Grow : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = await SlimeBossCmd.DecreaseSlots(ctx, Owner);
         if (amount <= 0) return;

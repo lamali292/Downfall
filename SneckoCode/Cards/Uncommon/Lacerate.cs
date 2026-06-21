@@ -18,7 +18,7 @@ public class Lacerate : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VenomPower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCard<Deathbringer>(Owner, PileType.Hand, upgraded: IsUpgraded);

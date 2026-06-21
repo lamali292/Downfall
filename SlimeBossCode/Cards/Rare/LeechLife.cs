@@ -15,7 +15,7 @@ public class LeechLife : SlimeBossCardModel
         WithDamage(8, 2);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblocked = attack.Results.SelectMany(e => e).Sum(e => e.UnblockedDamage);

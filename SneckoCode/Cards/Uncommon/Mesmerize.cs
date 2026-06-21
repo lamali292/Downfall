@@ -18,7 +18,7 @@ public class Mesmerize : SneckoCardModel
         this.WithMuddle(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await PowerCmd.Apply<StrengthPower>(ctx, CombatState.HittableEnemies,

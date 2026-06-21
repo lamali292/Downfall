@@ -1,8 +1,4 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
-using BaseLib.Utils.Patching;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -27,7 +23,24 @@ public static class CardExecutionRegistry
     {
         if (!AfterListeners.Contains(callback)) AfterListeners.Add(callback);
     }
+    
+    public static async Task<bool> BeforeOnPlayInternal(CardModel card, PlayerChoiceContext choiceContext,
+        CardPlay cardPlay)
+    {
+        foreach (var cb in BeforeListeners)
+            if (!await cb(card, choiceContext, cardPlay))
+                return true;
+        return false;
+    }
+
+    public static async Task AfterOnPlayInternal(CardModel card, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        foreach (var cb in AfterListeners)
+            await cb(card, choiceContext, cardPlay);
+    }
 }
+
+/*
 
 [HarmonyPatch(typeof(CardModel), "OnPlayWrapper", MethodType.Async)]
 public static class MasterPatchOnPlayWrapper
@@ -38,33 +51,19 @@ public static class MasterPatchOnPlayWrapper
         ILGenerator generator,
         MethodBase original)
     {
-        var onPlayMethod = AccessTools.Method(typeof(CardModel), "OnPlay")
+        var OnPlayInternalMethod = AccessTools.Method(typeof(CardModel), "OnPlay")
                            ?? throw new Exception("Registry Error: Could not find CardModel.OnPlay");
 
         var code = AsyncMethodCall.Create(generator, instructions, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(BeforeOnPlay)),
-            onPlayMethod,
+            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionRegistry.BeforeOnPlayInternal)),
+            OnPlayInternalMethod,
             resultName: "returnIf");
 
         code = AsyncMethodCall.Create(generator, code, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(AfterOnPlay)),
-            afterState: onPlayMethod);
+            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionRegistry.AfterOnPlayInternal)),
+            afterState: OnPlayInternalMethod);
 
         return code;
     }
-
-    public static async Task<bool> BeforeOnPlay(CardModel __instance, PlayerChoiceContext choiceContext,
-        CardPlay cardPlay)
-    {
-        foreach (var cb in CardExecutionRegistry.BeforeListeners)
-            if (!await cb(__instance, choiceContext, cardPlay))
-                return true;
-        return false;
-    }
-
-    public static async Task AfterOnPlay(CardModel __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        foreach (var cb in CardExecutionRegistry.AfterListeners)
-            await cb(__instance, choiceContext, cardPlay);
-    }
 }
+*/

@@ -22,21 +22,20 @@ public class SharedFlux : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target?.Player is null) return;
-        var target = cardPlay.Target.Player;
+        var target = cardPlay.Target?.Player;
+        if (target == null) return;
         if (!GuardianCmd.CanPutIntoStasis(target, Owner)) return;
-        var card = (await CardSelectCmd.FromHand(
+        var card = (await CardSelectCmd.FromCombatPile(
             ctx,
+            PileType.Draw.GetPile(target),
             target,
             new CardSelectorPrefs(
                 DownfallCardSelectorPrefs.StasisSelectionPrompt,
                 0,
                 1
-            ),
-            null,
-            this
+            )
         )).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);

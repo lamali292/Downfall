@@ -20,7 +20,7 @@ public class Darkstorm : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Hand);
         await DownfallCardCmd.GiveCards<Blightning>(Owner, PileType.Draw, DynamicVars.Cards.IntValue,

@@ -16,7 +16,7 @@ public sealed class BodyArmor : HermitCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1);
         var selected = (await CardSelectCmd.FromHandForDiscard(

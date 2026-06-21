@@ -1,6 +1,7 @@
 using Automaton.AutomatonCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -53,7 +54,8 @@ public class AutomatonDisplay
         {
             var globalTopPos = creatureNode.GetTopOfHitbox();
             display.Position = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
-            display.Position += new Vector2(100f, -80f);
+            display.Position +=  LocalContext.IsMe(player) ? new Vector2(100f, -80f) :  new Vector2(20f, -80);
+          
         }
 
         Register(player, display);

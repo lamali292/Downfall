@@ -26,8 +26,6 @@ namespace Guardian.GuardianCode.Core;
 public abstract class GemModel : CardModifier, ICustomModel
 {
     private GemModel _canonicalInstance = null!;
-    private DynamicVarSet? _dynamicVars;
-
 
     private PowerModel? _power;
 
@@ -56,22 +54,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         .ToLowerInvariant();
 
     public CardModel? Card => IsCanonical ? null : Owner;
-
-
-    protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
-
-    protected DynamicVarSet DynamicVars
-    {
-        get
-        {
-            if (_dynamicVars != null)
-                return _dynamicVars;
-            _dynamicVars = new DynamicVarSet(CanonicalVars);
-            _dynamicVars.InitializeWithOwner(this);
-            return _dynamicVars;
-        }
-    }
-
+    
     public GemModel CanonicalInstance
     {
         get => !IsMutable ? this : _canonicalInstance;
@@ -134,7 +117,8 @@ public abstract class GemModel : CardModifier, ICustomModel
         {
             var description = Description;
             AddDumbVariablesToDescription(description);
-            DynamicVars.AddTo(description);
+            var vars = _dynamicVars ?? new DynamicVarSet(CanonicalVars);
+            vars.AddTo(description);
             formatted = description.GetFormattedText();
         }
 

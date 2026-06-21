@@ -17,7 +17,7 @@ public class ManaShield : AwakenedCardModel
         WithTip(AwakenedTip.Conjure);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await AwakenedCmd.Conjure(Owner);

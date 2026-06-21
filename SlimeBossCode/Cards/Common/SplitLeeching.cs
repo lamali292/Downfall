@@ -18,7 +18,7 @@ public class SplitLeeching : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SlimeBossCmd.Split<LeechingSlime>(ctx, Owner);
         await SlimeBossCmd.Command(ctx, this);

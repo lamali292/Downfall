@@ -38,7 +38,7 @@ public class RealityRift : AwakenedCardModel
     ];
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);
 

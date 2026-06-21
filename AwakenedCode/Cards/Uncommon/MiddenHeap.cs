@@ -20,7 +20,7 @@ public class MiddenHeap : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cardsToSelect = Owner.GetDiscard()

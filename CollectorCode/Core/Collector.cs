@@ -2,6 +2,7 @@
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -15,6 +16,8 @@ namespace Collector.CollectorCode.Core;
 
 public class Collector : DownfallCharacterModel
 {
+    public override bool HideFromVanillaCharacterSelect => !DownfallConfig.DevMode;
+    
     private static readonly Color Color = new(0x0D9D82FF);
     public override Color EnergyLabelOutlineColor  => new(0x004f04FF);
     public override string CharId => "Collector";

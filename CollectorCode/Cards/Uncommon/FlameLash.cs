@@ -22,7 +22,7 @@ public class FlameLash : CollectorCardModel, IHasPyre
 
     public CardModel? PyredCard { get; set; }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (PyredCard == null || !PyredCard.DynamicVars.ContainsKey("Damage")) return;

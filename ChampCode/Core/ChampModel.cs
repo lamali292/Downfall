@@ -4,10 +4,12 @@ using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Champ.ChampCode.Events;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Champ.ChampCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -18,6 +20,23 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
         new(ChampModelDb.ChampStance<ChampNoStance>);
+
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    {
+        var card = cardPlay.Card;
+        var owner = card.Owner;
+        var stance = owner.ChampStance();
+        var ignoreChargeCap = ChampHook.IgnoreChargeCap(owner.Creature.CombatState!, owner);
+        if (card.Type == CardType.Skill && (ignoreChargeCap || stance.Charges > 0))
+        {
+            if (!ignoreChargeCap)
+            {
+                stance.Charges--;
+                RefreshDisplay(owner);
+            }
+            await stance.SkillBonus(new BlockingPlayerChoiceContext());
+        }
+    }
 
     private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
 

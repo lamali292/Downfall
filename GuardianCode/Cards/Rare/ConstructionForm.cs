@@ -21,7 +21,7 @@ public class ConstructionForm : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<BufferPower>(ctx, this);
         await CommonActions.ApplySelf<ConstructionFormPower>(ctx, this);

@@ -23,7 +23,7 @@ public sealed class HighCaliber : HermitCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play).WithHermitGunHitFx().BeforeDamage(() =>

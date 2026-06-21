@@ -19,7 +19,7 @@ public class ConsultPlaybook : SlimeBossCardModel
         WithEnergy(1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = CardFactory.GetDistinctForCombat(Owner, Owner.Character.CardPool
                 .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)

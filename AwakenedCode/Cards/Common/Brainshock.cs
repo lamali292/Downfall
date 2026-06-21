@@ -19,7 +19,7 @@ public class Brainshock : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Discard);

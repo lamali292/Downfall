@@ -14,12 +14,12 @@ public class ProfaneStrike : AwakenedCardModel
 {
     public ProfaneStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(11, 3);
+        WithDamage(11, 4);
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this);

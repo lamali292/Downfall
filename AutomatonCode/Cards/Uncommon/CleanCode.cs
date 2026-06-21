@@ -19,7 +19,7 @@ public class CleanCode : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<CleanCodePower>(ctx, this);
     }

@@ -14,7 +14,7 @@ public class Shapeshift  : SneckoCardModel
         
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var rng = Owner.RunState.Rng.CombatCardGeneration;
         var allOffclass = SneckoModel.GetSneckoCards(Owner).ToList();
@@ -34,6 +34,10 @@ public class Shapeshift  : SneckoCardModel
             if (replacement == null) continue;
 
             await CardCmd.Transform(card, replacement);
+            if (base.IsUpgraded)
+            {
+                CardCmd.Upgrade(replacement);
+            }
         }
     }
 }

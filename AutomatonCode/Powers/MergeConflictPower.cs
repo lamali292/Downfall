@@ -10,6 +10,7 @@ public class MergeConflictPower : AutomatonPowerModel
 {
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
+        if (player?.Creature != Owner) return;
         var pile = card.Pile?.Type;
         if (pile == null) return;
         await PowerCmd.Decrement(this);

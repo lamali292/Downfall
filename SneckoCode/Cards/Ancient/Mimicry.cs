@@ -15,7 +15,7 @@ public class Mimicry : SneckoCardModel
         this.WithPower<MimicryPower>(1, false);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MimicryPower>(ctx, this);
     }

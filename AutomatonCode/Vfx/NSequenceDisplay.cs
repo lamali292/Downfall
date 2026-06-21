@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -43,7 +44,7 @@ public partial class NSequenceDisplay : Control
         var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
         var node = scene.Instantiate<NSequenceDisplay>();
         node._trackedPlayer = player;
-        node.Scale = Vector2.One * SequencedCardScale;
+        node.Scale = Vector2.One * (LocalContext.IsMe(player) ? SequencedCardScale : SequencedCardScale * 0.5f);
         return node;
     }
 

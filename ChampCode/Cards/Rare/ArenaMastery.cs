@@ -24,7 +24,7 @@ public class ArenaMastery : ChampCardModel
         WithTip(StaticHoverTip.Block);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<ArenaMasteryBerserkerPower>(ctx, this);
         await CommonActions.ApplySelf<ArenaMasteryDefensivePower>(ctx, this);

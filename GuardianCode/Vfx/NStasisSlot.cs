@@ -22,7 +22,7 @@ public partial class NStasisSlot : Control
 
     public override void _Ready()
     {
-        var anim = GetNode<AnimationPlayer>("AnimationPlayer");
+        var anim = GetNode<AnimationPlayer>("AnimatiOnPlayInternaler");
         anim.Play("idle");
         anim.Seek((float)GD.RandRange(0, anim.CurrentAnimationLength), true);
         _visualParent = GetNode<Control>("%Visuals");

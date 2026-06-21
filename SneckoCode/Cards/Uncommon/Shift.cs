@@ -15,7 +15,7 @@ public class Shift : SneckoCardModel
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
         await SneckoCmd.Muddle(ctx, cards, this);

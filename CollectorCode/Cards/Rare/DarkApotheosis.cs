@@ -18,7 +18,7 @@ public class DarkApotheosis : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         foreach (var cardModel in CollectorPile.Collected.GetPile(Owner).Cards) CardCmd.Upgrade(cardModel);
         return Task.CompletedTask;

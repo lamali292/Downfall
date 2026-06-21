@@ -39,6 +39,8 @@ public class InfiniteLoopPower : AutomatonPowerModel, IAfterCompilingFunction
     public void SetCard(InfiniteLoop infiniteLoop)
     {
         _copy = infiniteLoop.CreateClone();
+        _copy.EnergyCost.AfterCardPlayedCleanup();
+        _copy.EnergyCost.EndOfTurnCleanup();
         _copy.DynamicVars.Damage.UpgradeValueBy(Amount);
         _copy.DynamicVars.FinalizeUpgrade();
     }

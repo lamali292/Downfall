@@ -17,7 +17,7 @@ public class Recycling : SlimeBossCardModel
         this.WithPower<RecyclingPower>(1, false);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<RecyclingPower>(ctx, this);
     }

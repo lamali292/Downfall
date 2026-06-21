@@ -17,7 +17,7 @@ public class CatchUp : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         for (var i = 0; i < DynamicVars["IgniteCount"].IntValue; i++)
             await HexaghostCmd.IgnitePrevious(ctx, Owner);

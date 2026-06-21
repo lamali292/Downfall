@@ -18,7 +18,7 @@ public class FloatingOrbs : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<Bukie>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FloatingOrbsPower>(ctx, this);
     }

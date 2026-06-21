@@ -29,7 +29,7 @@ public class ShieldCharger : GuardianCardModel, ITickCard
         await CommonActions.CardBlock(this, null);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GuardianCmd.PutIntoStasis(this, ctx, this);
     }

@@ -27,7 +27,7 @@ public class DivideConquer : SlimeBossCardModel
     }
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var hits = (int)((CalculatedVar)DynamicVars["Repeat"]).Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, hits).Execute(ctx);

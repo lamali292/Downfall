@@ -28,7 +28,7 @@ public sealed class DeadOrAlive : HermitCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var times = ResolveEnergyXValue();
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

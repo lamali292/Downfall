@@ -16,7 +16,7 @@ public class MarkedCard : SneckoCardModel
         this.WithMuddle(1, 1);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await SneckoCmd.MuddleHandCards(ctx, this, true);
     }

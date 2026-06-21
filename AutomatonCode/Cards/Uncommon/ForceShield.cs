@@ -23,7 +23,7 @@ public class ForceShield : AutomatonCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }

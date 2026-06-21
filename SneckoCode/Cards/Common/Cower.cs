@@ -17,7 +17,7 @@ public class Cower : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await DownfallCardCmd.GiveCard<HoleUp>(Owner, PileType.Hand, upgraded: IsUpgraded);

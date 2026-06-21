@@ -27,7 +27,7 @@ public partial class ChampMainFile : Node
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlay);
+        CardExecutionRegistry.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());

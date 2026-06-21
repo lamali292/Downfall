@@ -21,7 +21,7 @@ public class IllTakeThat : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var stolenBlock = Math.Min(cardPlay.Target.Block, DynamicVars["IllTakeThat"].IntValue);

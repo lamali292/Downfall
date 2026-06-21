@@ -19,7 +19,7 @@ public class SpreadTheChaos : SneckoCardModel
 
     
     
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = cardPlay.Target?.Player?
             .GetHand().OrderByDescending(e => e.EnergyCost.GetResolved())

@@ -19,7 +19,7 @@ public class Condemn : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);

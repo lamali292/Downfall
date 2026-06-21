@@ -19,8 +19,9 @@ public class WhisperFromBeyondPower : HexaghostPowerModel
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
-        if (card.Owner.Creature != Owner) return;
+        if (card.Owner.Creature != Applier) return;
         await PowerCmd.Apply<SoulBurnPower>(ctx, Owner, Amount, card.Owner.Creature, null);
+        Flash();
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,

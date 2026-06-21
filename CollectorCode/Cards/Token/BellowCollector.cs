@@ -30,7 +30,7 @@ public class BellowCollector : CollectorCardModel
         ).Sum(x => x.Amount);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var unusedBlock = Calc(this, cardPlay.Target);

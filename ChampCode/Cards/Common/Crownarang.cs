@@ -23,7 +23,7 @@ public class Crownarang : ChampCardModel, IBerserkerComboCard
         await CommonActions.Draw(this, ctx);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

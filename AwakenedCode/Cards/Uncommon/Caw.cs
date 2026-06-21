@@ -19,8 +19,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
 
     public Caw() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 1);
-        WithVar("Caw", 3, 1);
+        WithDamage(4, 1);
+        WithVar("Caw", 4, 1);
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
@@ -39,7 +39,7 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         return Task.CompletedTask;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions
             .CardAttack(this, cardPlay, sfx: "event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp").Execute(ctx);

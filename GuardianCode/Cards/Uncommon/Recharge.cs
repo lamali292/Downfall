@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +16,9 @@ public class Recharge : GuardianCardModel
         this.WithBrace(6, 2);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<GoofballMcgee>();
+    
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await GuardianCmd.Brace(ctx, this);

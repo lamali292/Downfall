@@ -138,7 +138,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var previous = CurrentlyExecuting.Value;
         CurrentlyExecuting.Value = this;
@@ -150,7 +150,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
                 if (card is IEncodable encodable)
                     await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
                 else
-                    await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
+                    await DownfallCardCmd.OnPlayInternal.Invoke(card, ctx, cardPlay);
             }
 
             if (Type == CardType.Power)

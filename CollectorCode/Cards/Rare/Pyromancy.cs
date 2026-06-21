@@ -24,7 +24,7 @@ public class Pyromancy : CollectorCardModel, IHasPyre
 
     public CardModel? PyredCard { get; set; }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<PyromancyPower>(ctx, this);
     }

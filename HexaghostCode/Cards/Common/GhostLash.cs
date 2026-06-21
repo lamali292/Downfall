@@ -33,7 +33,7 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
             .Count(e => e != card && e.Keywords.Contains(CardKeyword.Ethereal));
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
     }

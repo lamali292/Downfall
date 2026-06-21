@@ -31,7 +31,7 @@ public class UnleashSpirits : HexaghostCardModel
             e.RoundNumber == combatState.RoundNumber - 1 && e.Actor == card.Owner.Creature);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = ((CustomCalculatedVar)DynamicVars["Repeat"]).Calculate(null);
         await CommonActions.CardAttack(this, cardPlay, (int)repeat).Execute(ctx);

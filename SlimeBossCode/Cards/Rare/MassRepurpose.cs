@@ -18,7 +18,7 @@ public class MassRepurpose : SlimeBossCardModel
     }
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var absorbed = await SlimeBossCmd.AbsorbAll(ctx, this);
         for (var i = 0; i < absorbed; i++) await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Specialist);

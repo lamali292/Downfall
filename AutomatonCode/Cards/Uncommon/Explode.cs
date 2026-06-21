@@ -27,7 +27,7 @@ public class Explode : AutomatonCardModel, IEncodable
         return CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<ExplodePower>(ctx, this);
     }

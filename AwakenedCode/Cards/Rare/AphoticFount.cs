@@ -24,7 +24,7 @@ public class AphoticFount : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AwakenedCmd.Conjure(Owner);
         await CommonActions.ApplySelf<AphoticFountPower>(ctx, this);

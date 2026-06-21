@@ -15,7 +15,7 @@ public class SentientForm : AutomatonCardModel
         this.WithTip<StrengthPower>();
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<ArsenalPower>(ctx, this);
     }

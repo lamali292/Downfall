@@ -26,7 +26,7 @@ public class Spike : AutomatonCardModel, IEncodable
         return CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<SpikePower>(ctx, this);
     }

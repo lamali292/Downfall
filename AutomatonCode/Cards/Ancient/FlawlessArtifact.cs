@@ -18,7 +18,7 @@ public class FlawlessArtifact : AutomatonCardModel
         WithUpgradingCardTip<Terminator>();
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<Constructor>(Owner, PileType.Hand, upgraded: IsUpgraded);
         await DownfallCardCmd.GiveCard<Separator>(Owner, PileType.Hand, upgraded: IsUpgraded);

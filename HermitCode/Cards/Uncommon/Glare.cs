@@ -5,11 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hermit.HermitCode.Cards.Common;
+namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Glare : HermitCardModel
 {
-    public Glare() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public Glare() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
@@ -18,7 +18,7 @@ public sealed class Glare : HermitCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.Apply<WeakPower>(ctx, this, play);

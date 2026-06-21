@@ -15,7 +15,7 @@ public class Clang : AutomatonCardModel
 
     protected override bool IsPlayable => Owner.GetHand().Any(e => e.Type is CardType.Curse or CardType.Status);
 
-    protected override Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

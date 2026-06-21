@@ -15,7 +15,7 @@ public class Blunderbus : SneckoCardModel
 
     private int ThreeCostInHand => Owner.GetHand().Count(e => e.EnergyCost.GetResolved() >= 3);
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 1 + ThreeCostInHand).Execute(ctx);
     }

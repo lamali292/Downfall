@@ -26,7 +26,7 @@ public class HeatCrush : HexaghostCardModel
         return creature?.GetPowerAmount<SoulBurnPower>() ?? 0;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

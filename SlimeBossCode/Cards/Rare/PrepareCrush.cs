@@ -21,7 +21,7 @@ public class PrepareCrush : SlimeBossCardModel
         this.WithPower<EnergyNextTurnPower>(3, 1, false);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this, 1);
         var card = CombatState?.CreateCard<SlimeCrush>(Owner);

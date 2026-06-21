@@ -60,6 +60,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     {
         if (card.CombatState == null || card is not IHasAfterlifeEffect afterlifeEffect) return;
         var a = card.CombatState.RunState.Rng.CombatTargets.NextItem(card.CombatState.HittableEnemies);
+        if (a == null) return;
         var cardPlay = new CardPlay
         {
             Card = card,

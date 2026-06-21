@@ -16,7 +16,7 @@ public class Artifice : AwakenedCardModel
     }
 
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
     }

@@ -20,7 +20,7 @@ public class AdrenalArmor : ChampCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);

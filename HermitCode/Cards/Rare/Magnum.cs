@@ -18,7 +18,7 @@ public sealed class Magnum : HermitCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var handCount = Owner.GetHand().Count;
         var maxDiscard = Math.Min(DynamicVars.Cards.IntValue, handCount);
