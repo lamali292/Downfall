@@ -19,6 +19,7 @@ public class CompilePackage : GuardianCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithTip(GuardianTip.Stasis);
         WithTip(GuardianTip.Package);
+        WithCards(3);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -28,7 +29,7 @@ public class CompilePackage : GuardianCardModel
             .CardPool<TokenCardPool>()
             .AllCards
             .OfType<IPackageCard>()
-            .TakeRandom(3, CombatState.RunState.Rng.CombatCardGeneration)
+            .TakeRandom(DynamicVars.Cards.IntValue, CombatState.RunState.Rng.CombatCardGeneration)
             .Cast<CardModel>()
             .Select(Select)
             .ToList();

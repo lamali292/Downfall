@@ -18,8 +18,10 @@ public class DarknessFalls : AwakenedCardModel
     public DarknessFalls() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
-        WithTip(new TooltipSource(_ => HoverTipFactory.Static(StaticHoverTip.Block)));
+        WithTip(StaticHoverTip.Block);
         this.WithTip<StrengthPower>();
+        this.WithPower<DarknessFallsPower>(4, false);
+        this.WithPower<DarkblessedPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
@@ -27,7 +29,7 @@ public class DarknessFalls : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DarknessFallsPower>(ctx, this, 4);
-        await CommonActions.ApplySelf<DarkblessedPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<DarknessFallsPower>(ctx, this);
+        await CommonActions.ApplySelf<DarkblessedPower>(ctx, this);
     }
 }
