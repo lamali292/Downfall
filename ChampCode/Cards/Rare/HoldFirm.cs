@@ -14,7 +14,7 @@ public class HoldFirm : ChampCardModel
     {
         WithBlock(10, 3);
         WithPower<CounterPower>(10, 3);
-        WithPower<BlurPower>(1);
+        this.WithPower<BlurPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
