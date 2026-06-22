@@ -22,7 +22,7 @@ public sealed class FullyLoaded : HermitCardModel
         HermitSfx.PlayReload();
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var strikesAndDefends = Owner.GetDraw()
-            .Where(c => c.Tags.Contains(CardTag.Strike) || c.Tags.Contains(CardTag.Defend))
+            .Where(c => (c.Tags.Contains(CardTag.Strike) || c.Tags.Contains(CardTag.Defend)) && c.Rarity == CardRarity.Basic)
             .ToList();
         await CardPileCmd.Add(strikesAndDefends, PileType.Hand);
     }
