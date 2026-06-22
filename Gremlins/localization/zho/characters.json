@@ -1,0 +1,16 @@
+{
+  "GREMLINS-GREMLINS.aromaPrinciple": "[sine][yellow]Food. Treasure. Food. Treasure. [jitter]FOOD![/jitter][/yellow][/sine]",
+  "GREMLINS-GREMLINS.banter.alive.endTurnPing": "HURRY UP!!",
+  "GREMLINS-GREMLINS.banter.dead.endTurnPing": "...",
+  "GREMLINS-GREMLINS.cardsModifierDescription": "Gremlins cards will now appear in rewards and shops.",
+  "GREMLINS-GREMLINS.cardsModifierTitle": "Gremlins Cards",
+  "GREMLINS-GREMLINS.description": "A chaotic mob of spire denizens banded together in search of food and treasure.",
+  "GREMLINS-GREMLINS.eventDeathPrevention": "We can't die yet, there's still treasure to steal!",
+  "GREMLINS-GREMLINS.goldMonologue": "[sine]So much gold... we could buy SO much food...[/sine]",
+  "GREMLINS-GREMLINS.possessiveAdjective": "their",
+  "GREMLINS-GREMLINS.pronounObject": "them",
+  "GREMLINS-GREMLINS.pronounPossessive": "theirs",
+  "GREMLINS-GREMLINS.pronounSubject": "they",
+  "GREMLINS-GREMLINS.title": "The Gremlins",
+  "GREMLINS-GREMLINS.titleObject": "The Gremlins"
+}
