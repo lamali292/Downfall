@@ -28,7 +28,7 @@
   "HERMIT-CHARRED_GLOVE.description": "Whenever you draw or create a Curse, gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",
   "HERMIT-CLASPED_LOCKET.title": "Clasped Locket",
   "HERMIT-CLASPED_LOCKET.flavor": "It won't open anymore.",
-  "HERMIT-CLASPED_LOCKET.description": "First time you draw a curse each turn, [gold]Exhaust[/gold] it and draw [blue]{Cards}[/blue] cards.\nUpon pickup, obtain [blue]{Curses}[/blue] [gold]Injuries[/gold].",
+  "HERMIT-CLASPED_LOCKET.description": "First time you draw a Curse each turn, [gold]Exhaust[/gold] it and draw [blue]{Cards}[/blue] cards.\nUpon pickup, obtain [blue]{Curses}[/blue] [gold]Injuries[/gold].",
   "HERMIT-STRAIGHT_RAZOR.title": "Straight Razor",
   "HERMIT-STRAIGHT_RAZOR.flavor": "For a cleaner shave...",
   "HERMIT-STRAIGHT_RAZOR.description": "Whenever you remove or [gold]Transform[/gold] a card from your deck, heal [blue]{Heal}[/blue] HP.",
