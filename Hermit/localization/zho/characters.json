@@ -1,0 +1,17 @@
+{
+  "HERMIT-HERMIT.title": "The Hermit",
+  "HERMIT-HERMIT.titleObject": "Hermit",
+  "HERMIT-HERMIT.description": "A lone undead gunslinger from a far away place Haunted by the inescapable specter of the past.",
+  "HERMIT-HERMIT.pronounSubject": "he",
+  "HERMIT-HERMIT.pronounObject": "him",
+  "HERMIT-HERMIT.possessiveAdjective": "his",
+  "HERMIT-HERMIT.pronounPossessive": "his",
+  "HERMIT-HERMIT.goldMonologue": "[sine]These coins... could buy some ammunition...[/sine]",
+  "HERMIT-HERMIT.eventDeathPrevention": "Not yet... I still have unfinished business...",
+  "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...the scent of gunpowder...[/blue][/sine]",
+  "HERMIT-HERMIT.cardsModifierTitle": "Hermit",
+  "HERMIT-HERMIT.cardsModifierDescription": "Hermit cards will now appear in rewards and shops.",
+  "HERMIT-HERMIT.banter.alive.endTurnPing": "Tick tock...",
+  "HERMIT-HERMIT.banter.dead.endTurnPing": "...",
+  "HERMIT-HERMIT.unlockText": "Play a run with [pink]{Prerequisite}[/pink] to unlock this character."
+}
