@@ -3,18 +3,18 @@
   "name": "SlimeBoss",
   "author": "lamali",
   "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "has_pck": true,
   "has_dll": true,
   "min_game_version": "0.107.1",
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "3.3.1"
+      "min_version": "3.3.2"
     },
     {
       "id": "Downfall",
-      "min_version": "0.0.19"
+      "min_version": "0.0.20"
     }
   ],
   "affects_gameplay": true
