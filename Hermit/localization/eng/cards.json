@@ -182,7 +182,7 @@
   "HERMIT-LAST_CHANCE.title": "Last Chance",
   "HERMIT-LAST_CHANCE.description": "Deal {Damage:diff()} damage.\nIf you are debuffed, draw {Cards:diff()} cards.",
   "HERMIT-TORN_PAGE.title": "Torn Page",
-  "HERMIT-TORN_PAGE.description": "[purple]Afflict[/purple] ALL Curses in your [gold]Hand[/gold] with [purple]Necromantic[/purple].",
+  "HERMIT-TORN_PAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[purple]Afflict[/purple] ALL Curses in your [gold]Hand[/gold] with [purple]Necromantic[/purple].",
   "HERMIT-UNYIELDING.title": "Unyielding",
   "HERMIT-UNYIELDING.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you are [gold]Vulnerable[/gold], receive 50% less damage this turn.",
   "HERMIT-DEATHWISH.title": "Deathwish",
