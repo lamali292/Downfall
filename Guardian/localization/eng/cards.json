@@ -73,7 +73,7 @@
   "GUARDIAN-PRIMING_SHOT.title": "Priming Shot",
   "GUARDIAN-PRISMATIC_BARRIER.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each [gold]Gem[/gold] in this card.",
   "GUARDIAN-PRISMATIC_BARRIER.title": "Prismatic Barrier",
-  "GUARDIAN-PRISMATIC_SPRAY.description": "Deal {ExtraDamage:diff()} damage for each [gold]Gem[/gold] in this card.",
+  "GUARDIAN-PRISMATIC_SPRAY.description": "Deal {ExtraDamage:diff()} damage for each [gold]Gem[/gold] in this card.{InCombat:cond:\n(Deal {CalculatedDamage:diff()} damage)|}",
   "GUARDIAN-PRISMATIC_SPRAY.title": "Prismatic Spray",
   "GUARDIAN-RECOVER.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Brace [/gold]{Brace:diff()}.\nPlace a card from your [gold]Discard Pile[/gold] into [gold]Stasis[/gold].",
   "GUARDIAN-RECOVER.title": "Recover",

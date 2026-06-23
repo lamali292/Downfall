@@ -62,7 +62,7 @@ public partial class GuardianMainFile : Node
                         continue;
                     var mutableGem = canonicalGem.ToMutable();
                     CardModifier.AddModifier(card, mutableGem);
-                    mutableGem.ApplyOnAddedEffects(card);
+                    //mutableGem.ApplyOnAddedEffects(card);
                 }
             },
             (gemIds, writer) =>

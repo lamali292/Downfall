@@ -15,15 +15,14 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public abstract class SlimeModel : CustomMonsterModel
 {
-    public override int MinInitialHp => 1;
-    public override int MaxInitialHp => 1;
+    public override int MinInitialHp => 1000;
+    public override int MaxInitialHp => 1000;
     public abstract SlimeType SlimeType { get; }
 
     public override string CustomVisualPath =>
         $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
 
     public override bool HasDeathSfx => false;
-    public override bool IsHealthBarVisible => Creature.IsAlive;
     public Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()

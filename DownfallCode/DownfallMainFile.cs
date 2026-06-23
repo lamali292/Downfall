@@ -38,19 +38,35 @@ public partial class DownfallMainFile : Node
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
-        
+
         Patch(Assembly.GetExecutingAssembly(), ModId);
-  
+
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
-        
     }
 
+    private static readonly string[] BundledMods =
+    [
+        "Automaton",
+        "Awakened",
+        "Champ",
+        "Collector",
+        "Gremlins",
+        "Guardian",
+        "Hermit",
+        "Hexaghost",
+        "SlimeBoss",
+        "Snecko"
+        // ...
+    ];
+    
+
     private static readonly HashSet<Assembly> Patched = [];
+
     public static void Patch(Assembly assembly, string modid)
     {
-        if (!Patched.Add(assembly)) return; 
+        if (!Patched.Add(assembly)) return;
         Harmony harmony = new(modid);
         ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.TryPatchAll(assembly);

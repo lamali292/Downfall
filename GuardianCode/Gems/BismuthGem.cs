@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.Powers.Mocks;
 
 namespace Guardian.GuardianCode.Gems;
 
@@ -33,13 +34,19 @@ public class BismuthGem : GemModel
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<ArtifactPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
-
-    public override void AfterClonedOnCard(CardModel card) { }
-
-    protected override void OnAdded(GuardianCardModel card)
+    
+    /*
+    public override void OnInitialApplication()
     {
-        if (card is IGemCard) return;
-        card.EnergyCost.UpgradeBy(1);
-        card.EnergyCost.FinalizeUpgrade();
+        //if (Card is IGemCard or null) return;
+        Card.EnergyCost.UpgradeBy(1);
+    }*/
+
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
+    {
+        modifiedCost = originalCost;
+        if (Card is  IGemCard || card != Card) return false;
+        modifiedCost++;;
+        return true;
     }
 }

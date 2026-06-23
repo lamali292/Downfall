@@ -153,5 +153,9 @@
   "SLIMEBOSS-LICK.description": "Apply {GoopPower:diff()} [gold]Goop[/gold].",
   "SLIMEBOSS-SLIME_CARD.description": "[gold]Split[/gold] into [gold]{Slime}[/gold].",
   "SLIMEBOSS-SLIME_CRUSH.title": "Slime Crush!!!",
-  "SLIMEBOSS-SLIME_CRUSH.description": "Deal {Damage:diff()} damage{IfUpgraded:show:to ALL enemies|}."
+  "SLIMEBOSS-SLIME_CRUSH.description": "Deal {Damage:diff()} damage{IfUpgraded:show:to ALL enemies|}.",
+  "SLIMEBOSS-ANCIENT_DARV.title": "Dont pick this",
+  "SLIMEBOSS-ANCIENT_DARV.description": "Draw a card.",
+  "SLIMEBOSS-ANCIENT_OROBAS.title": "Dont pick this",
+  "SLIMEBOSS-ANCIENT_OROBAS.description": "Draw a card."
 }
