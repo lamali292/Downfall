@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿/*using BaseLib.Utils;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using Hermit.HermitCode.History;
@@ -53,4 +53,4 @@ public class FireAway : HermitCardModel, IAfterDeadOnTrigger
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
-}
+}*/

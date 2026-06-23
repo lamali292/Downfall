@@ -9,7 +9,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class FlashPowder : HermitCardModel
 {
-    public FlashPowder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+    public FlashPowder() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithBlock(5);
         WithKeyword(CardKeyword.Exhaust);
