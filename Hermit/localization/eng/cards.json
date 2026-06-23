@@ -99,7 +99,7 @@
   "HERMIT-OVERWHELMING_POWER.title": "Overwhelming Power",
   "HERMIT-OVERWHELMING_POWER.description": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} cards.\nWhenever you end your turn with {energyPrefix:energyIcons(0)}, lose {OverwhelmingPowerPower:diff()} HP.",
   "HERMIT-MAINTENANCE.title": "Maintenance",
-  "HERMIT-MAINTENANCE.description": "[gold]Basic[/gold] Strikes deal {MaintenanceStrikePower:diff()} more damage this combat.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nThis costs 1{energyPrefix:energyIcons(1)} more each time you play it.",
+  "HERMIT-MAINTENANCE.description": "[gold]Basic[/gold] Strikes deal {MaintenanceStrikePower:diff()} more damage this combat.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nIncrease the cost of this card by 1.",
   "HERMIT-ETERNAL_FORM.title": "Eternal Form",
   "HERMIT-ETERNAL_FORM.description": "The first 4 playable cards drawn at the start of each turn cost 1 less {energyPrefix:energyIcons(1)} that turn.",
   "HERMIT-ETERNAL_SENTENCE.title": "Eternal Sentence",
