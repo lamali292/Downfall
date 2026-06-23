@@ -12,7 +12,7 @@ public class BroilingFlames : HexaghostCardModel
 {
     public BroilingFlames() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithPower<BroilingFlamesPower>(5, 2, false);
+        this.WithPower<BroilingFlamesPower>(6, 2, false);
         WithKeywords(CardKeyword.Exhaust);
     }
 

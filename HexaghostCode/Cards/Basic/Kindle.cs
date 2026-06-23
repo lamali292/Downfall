@@ -11,7 +11,7 @@ public class Kindle : HexaghostCardModel
 {
     public Kindle() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBlock(3, 3);
+        WithBlock(2, 3);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

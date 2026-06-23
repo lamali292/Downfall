@@ -13,7 +13,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class HeatCrush : HexaghostCardModel
 {
-    public HeatCrush() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public HeatCrush() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(12, Calc, ValueProp.Move, 6);
         this.WithTip<SoulBurnPower>();

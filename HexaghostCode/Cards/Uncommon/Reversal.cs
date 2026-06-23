@@ -8,7 +8,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Reversal : HexaghostCardModel
 {
-    public Reversal() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Reversal() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
         this.WithRepeat(2);
