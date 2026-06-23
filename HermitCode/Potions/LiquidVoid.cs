@@ -11,6 +11,7 @@ namespace Hermit.HermitCode.Potions;
 
 public class LiquidVoid() : HermitPotionModel(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.Self)
 {
+    public override bool CanBeGeneratedInCombat => false;
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1);

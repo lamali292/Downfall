@@ -1,4 +1,5 @@
 using System.Reflection;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
@@ -21,9 +22,7 @@ public partial class SneckoMainFile : Node
     public static void Initialize()
     {
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

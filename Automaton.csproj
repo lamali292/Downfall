@@ -11,7 +11,7 @@
         <AdditionalFiles Include="Automaton/localization/**/*.json"/>
         <Compile Remove="Automaton/**"/>
         <EmbeddedResource Remove="Automaton/**"/>
-        <None Include="Automaton.json"/>
+        <None Include="Automaton.json" />
         <None Include="Automaton/**"/>
         <None Include="AutomatonCode/**"/>
         <Compile Include="AutomatonCode/**/*.cs"/>

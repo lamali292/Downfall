@@ -1,7 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using SlimeBoss.SlimeBossCode.Extensions;
 
@@ -37,4 +39,16 @@ public enum SlimeType
     Normal = 1,
     Specialist = 2,
     Any = Normal | Specialist
+}
+
+[HarmonyPatch(typeof(PersonalHivePower), nameof(PersonalHivePower.AfterDamageReceived))]
+internal static class PersonalHivePowerNoPetCardsPatch
+{
+    static bool Prefix(Creature? dealer, ref Task __result)
+    {
+        if (dealer?.Monster is not SlimeModel) return true; 
+        __result = Task.CompletedTask;
+        return false;
+
+    }
 }

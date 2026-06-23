@@ -1,5 +1,6 @@
 using System.Reflection;
 using BaseLib.Utils;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -26,10 +27,8 @@ public partial class HexaghostMainFile : Node
         RichTextEffectRegistry.Register<RichTextAfterlife>();
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        Harmony harmony = new(ModId);
-        harmony.PatchAll();
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }
 

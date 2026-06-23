@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Runtime.Loader;
 using System.Text;
 using System.Text.Json;
 using BaseLib.Config;
@@ -37,14 +38,22 @@ public partial class DownfallMainFile : Node
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
-        Harmony harmony = new(ModId);
-
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.TryPatchAll(assembly);
+        
+        Patch(Assembly.GetExecutingAssembly(), ModId);
+  
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
+        
+    }
+
+    private static readonly HashSet<Assembly> Patched = [];
+    public static void Patch(Assembly assembly, string modid)
+    {
+        if (!Patched.Add(assembly)) return; 
+        Harmony harmony = new(modid);
+        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
+        harmony.TryPatchAll(assembly);
     }
 
     private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
