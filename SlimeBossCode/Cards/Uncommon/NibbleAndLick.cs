@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -17,6 +18,7 @@ public class NibbleAndLick : SlimeBossCardModel
         WithCards(0, 1);
         WithKeyword(CardKeyword.Exhaust);
         this.WithTip<Lick>();
+        WithTags(SlimeBossTag.Lick);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

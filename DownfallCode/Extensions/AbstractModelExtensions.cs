@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Patches.Features;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -18,6 +19,9 @@ public static class AbstractModelExtensions
             CardModel card => card.Owner.Creature,
             PotionModel potion => potion.Owner.Creature,
             PowerModel power => power.Owner,
+            EnchantmentModel enchantment => enchantment.Card.GetCreature(),
+            AfflictionModel affliction => affliction.Card.GetCreature(),
+            CardModifier cardModifier => cardModifier.Owner?.GetCreature() ?? throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
@@ -30,6 +34,9 @@ public static class AbstractModelExtensions
             CardModel card => card.DynamicVars,
             PotionModel potion => potion.DynamicVars,
             PowerModel power => power.DynamicVars,
+            EnchantmentModel enchantment => enchantment.DynamicVars,
+            AfflictionModel affliction => affliction.Card.DynamicVars,
+            CardModifier cardModifier => cardModifier.DynamicVars,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }

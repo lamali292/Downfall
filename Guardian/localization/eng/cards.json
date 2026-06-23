@@ -5,7 +5,7 @@
   "GUARDIAN-ANCIENT_POWER.title": "Ancient Power",
   "GUARDIAN-BAUBLE_BURST.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nPerform 3 times:",
   "GUARDIAN-BAUBLE_BURST.title": "Bauble Burst",
-  "GUARDIAN-BODY_CRASH.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal damage equal to your [gold]Block[/gold].{InCombat:cond:\n(Deals {CalculatedDamage:diff()} damage)|}",
+  "GUARDIAN-BODY_CRASH.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal damage equal to your [gold]Block[/gold].{InCombat:cond:\n(Deals {VisualBlock:diff()} damage)|}",
   "GUARDIAN-BODY_CRASH.title": "Body Crash",
   "GUARDIAN-CHARGE_CORE.description": "Deal {Damage:diff()} damage.\nPlace this into [gold]Stasis[/gold].\n[gold]Tick[/gold]: Draw a card.",
   "GUARDIAN-CHARGE_CORE.title": "Charge Core",

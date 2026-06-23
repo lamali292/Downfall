@@ -16,6 +16,7 @@ public sealed class Desperado : HermitCardModel
     {
         WithDamage(10, 2);
         WithVar("PlayCountMultiplier", 1);
+        WithVar("CostIncrease", 1);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -39,6 +40,6 @@ public sealed class Desperado : HermitCardModel
             })
             .Execute(ctx);
         DynamicVars["PlayCountMultiplier"].BaseValue *= 2;
-        EnergyCost.UpgradeBy(1);
+        EnergyCost.AddThisCombat(DynamicVars["CostIncrease"].IntValue);
     }
 }
