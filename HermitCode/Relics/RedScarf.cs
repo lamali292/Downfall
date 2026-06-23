@@ -12,7 +12,7 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class RedScarf : HermitRelicModel
 {
-    public RedScarf() : base(RelicRarity.Common)
+    public RedScarf() : base(RelicRarity.Rare)
     {
         WithBlock(3);
     }

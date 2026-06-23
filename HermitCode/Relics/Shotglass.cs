@@ -16,7 +16,7 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class Shotglass : HermitRelicModel
 {
-    public Shotglass() : base(RelicRarity.Uncommon)
+    public Shotglass() : base(RelicRarity.Shop)
     {
         WithVar("Limit", 1);
     }

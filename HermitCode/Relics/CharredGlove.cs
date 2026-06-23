@@ -16,7 +16,7 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class CharredGlove : HermitRelicModel
 {
-    public CharredGlove() : base(RelicRarity.Common)
+    public CharredGlove() : base(RelicRarity.Rare)
     {
         WithPower<VigorPower>(3);
     }
