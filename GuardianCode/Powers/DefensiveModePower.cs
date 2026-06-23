@@ -36,10 +36,10 @@ public class DefensiveModePower : GuardianPowerModel
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, -DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }
 
-    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx,
-        ICombatState combatState)
+    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Decrement(this);
     }
+    
 }

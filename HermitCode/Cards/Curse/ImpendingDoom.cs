@@ -1,14 +1,17 @@
 using BaseLib.Patches.Features;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Curse;
@@ -16,7 +19,7 @@ namespace Hermit.HermitCode.Cards.Curse;
 [Pool(typeof(CurseCardPool))]
 public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
 {
-    public ImpendingDoom() : base(-2, CardType.Curse, CardRarity.Curse, CustomTargetType.Everyone)
+    public ImpendingDoom() : base(-2, CardType.Curse, CardRarity.Curse, DownfallTargetType.MeAndEnemies)
     {
         WithVar(new DamageVar(13, ValueProp.Move | ValueProp.Unpowered));
         WithKeyword(CardKeyword.Unplayable);
@@ -58,5 +61,12 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
             PlayCount = 1
         };
         await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
+    }
+    
+    private static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;
+
+    protected override void AddExtraArgsToDescription(LocString description)
+    { 
+        description.Add("Multiplayer", IsMultiplayer);
     }
 }

@@ -37,6 +37,6 @@ public sealed class Virtue : HermitCardModel
 
     private static bool Exclude(PowerModel powerModel)
     {
-        return powerModel is ChainsOfBindingPower or ConfusedPower;
+        return powerModel is not (ChainsOfBindingPower or ConfusedPower);
     }
 }
