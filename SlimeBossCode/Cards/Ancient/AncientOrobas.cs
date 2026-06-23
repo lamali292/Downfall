@@ -12,7 +12,7 @@ public class AncientOrobas : SlimeBossCardModel
     public AncientOrobas() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
         WithCards(1);
-        WithKeywords(BaseLibKeywords.Purge, CardKeyword.Ethereal, CardKeyword.Exhaust);
+        WithKeywords(BaseLibKeywords.Purge);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

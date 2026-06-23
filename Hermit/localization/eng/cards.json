@@ -129,7 +129,7 @@
   "HERMIT-MAGNUM.title": "Magnum",
   "HERMIT-MAGNUM.description": "Discard {Cards:diff()} cards.\nFor each card, deal {Damage:diff()} damage.",
   "HERMIT-DETERMINATION.title": "Determination",
-  "HERMIT-DETERMINATION.description": "Whenever a debuff is applied to you, gain 1 [gold]Strength[/gold].",
+  "HERMIT-DETERMINATION.description": "Whenever a debuff is applied to you, gain {DeterminationPower:diff()} [gold]Strength[/gold].",
   "HERMIT-SHOWDOWN.title": "Showdown",
   "HERMIT-SHOWDOWN.description": "Deal {Damage:diff()} damage.\nPlay all [gold]Strikes[/gold] in your [gold]Hand[/gold].",
   "HERMIT-LUCK_OF_THE_DRAW.title": "Luck of the Draw",

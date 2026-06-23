@@ -13,8 +13,8 @@ public sealed class DeterminationPower : HermitPowerModel
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
-        if (power.Owner == Owner && power.GetTypeForAmount(amount) == PowerType.Debuff && applier != Owner)
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, Amount, Owner, null);
+        if (power.Owner != Owner || power.GetTypeForAmount(amount) != PowerType.Debuff) return;
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, Amount, Owner, null);
             
     }
 }

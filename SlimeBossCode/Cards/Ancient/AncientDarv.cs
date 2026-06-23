@@ -10,10 +10,10 @@ namespace SlimeBoss.SlimeBossCode.Cards.Ancient;
 [Pool(typeof(SlimeBossCardPool))]
 public class AncientDarv : SlimeBossCardModel
 {
-    public AncientDarv() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public AncientDarv() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
         WithCards(1);
-        WithKeywords(BaseLibKeywords.Purge, CardKeyword.Ethereal, CardKeyword.Exhaust);
+        WithKeywords(BaseLibKeywords.Purge);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

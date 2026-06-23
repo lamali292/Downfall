@@ -2,9 +2,11 @@ using BaseLib.Utils;
 using Godot;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Gems;
 using Guardian.GuardianCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -23,7 +25,9 @@ public class GemCannon : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var gems = GuardianCmd.GetAllCombatGems(Owner).ToList();
+        var gems = GuardianCmd.GetAllCombatGems(Owner)
+            .StableShuffle(Owner.RunState.Rng.Shuffle)
+            .OrderBy(g => g is OnyxGem).ToList();
         var from = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.VfxSpawnPosition ?? Vector2.Zero;
         var target = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target)?.VfxSpawnPosition ?? Vector2.Zero;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
