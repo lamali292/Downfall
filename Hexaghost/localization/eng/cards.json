@@ -21,7 +21,7 @@
   "HEXAGHOST-BURNING_QUESTION_CHOICE2.title": "Burning Question",
   "HEXAGHOST-BURNING_QUESTION_CHOICE3.description": "Gain {RoyaltiesPower:diff()} [gold]Gold[/gold] at the end of combat.",
   "HEXAGHOST-BURNING_QUESTION_CHOICE3.title": "Burning Question",
-  "HEXAGHOST-BURNING_TOUCH.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold], twice if the enemy has [gold]Soulburn[/gold].",
+  "HEXAGHOST-BURNING_TOUCH.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn.\n[/gold]If the enemy has [gold]Soulburn[/gold], draw {Cards:plural:a card|{Cards:diff()} cards}.",
   "HEXAGHOST-BURNING_TOUCH.title": "Burning Touch",
   "HEXAGHOST-CATCH_UP.description": "[gold]Ignite[/gold] the previous Ghostflame {IgniteCount:diff()} times.",
   "HEXAGHOST-CATCH_UP.title": "Catch Up",
@@ -192,5 +192,7 @@
   "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",
   "HEXAGHOST-TEMPORAL_LEAP.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "HEXAGHOST-RADIANT_FLAME.title": "Radiant Flame",
-  "HEXAGHOST-RADIANT_FLAME.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain {RadiantFlamePower:diff()} [gold]Block[/gold]."
+  "HEXAGHOST-RADIANT_FLAME.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain {RadiantFlamePower:diff()} [gold]Block[/gold].",
+  "HEXAGHOST-SIZZLE.title": "Sizzle",
+  "HEXAGHOST-SIZZLE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] the next card you play this turn."
 }

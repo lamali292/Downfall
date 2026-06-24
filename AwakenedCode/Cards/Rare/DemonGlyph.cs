@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Extensions;
 using BaseLib.Utils;
@@ -17,6 +18,7 @@ public class DemonGlyph : AwakenedCardModel
         this.WithTip<StrengthPower>();
         this.WithTip<DexterityPower>();
         this.WithPower<DemonGlyphPower>(2, 1, false);
+        WithTip(AwakenedTip.Awaken);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
