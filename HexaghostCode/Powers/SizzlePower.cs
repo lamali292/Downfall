@@ -14,11 +14,19 @@ public class SizzlePower : HexaghostPowerModel
         WithTip(CardKeyword.Exhaust);
     }
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    private bool _ignoredFirst;
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (!_ignoredFirst)
+        {
+            _ignoredFirst = true;
+            return;
+        }
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner) return;
-        card.ExhaustOnNextPlay = true;
+        await CardCmd.Exhaust(ctx, card);
+        Flash();
         await PowerCmd.Decrement(this);
     }
 
