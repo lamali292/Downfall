@@ -63,7 +63,7 @@
   "HEXAGHOST-FLASHBANG.description": "Deal {Damage:diff()} damage.\nIf the current Ghostflame is [gold]Ignited[/gold], apply {WeakPower:diff()} [gold]Weak[/gold] and the target enemy loses {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn.",
   "HEXAGHOST-FLEETING_FLARE.description": "[gold]Ignite[/gold] the current Ghostflame, then [gold]Extinguish[/gold] it.",
   "HEXAGHOST-FLEETING_FLARE.title": "Fleeting Flare",
-  "HEXAGHOST-FLOAT.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you've played less than {CardsPlayed:diff()} cards this turn, draw {Cards:plural:a card|{Cards:diff()} cards} and [gold]Advance[/gold].",
+  "HEXAGHOST-FLOAT.description": "Draw a card.{IfUpgraded:show:\nYou may choose to [gold]Advance[/gold] or [gold]Retract[/gold].|}",
   "HEXAGHOST-FLOAT.title": "Float",
   "HEXAGHOST-FLOATWORK.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\n[afterlife]Gain[/afterlife] {MetallicizePower:diff()} [afterlife]Metallicize.[/afterlife]",
   "HEXAGHOST-FLOATWORK.title": "Floatwork",
@@ -194,5 +194,9 @@
   "HEXAGHOST-RADIANT_FLAME.title": "Radiant Flame",
   "HEXAGHOST-RADIANT_FLAME.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain {RadiantFlamePower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-SIZZLE.title": "Sizzle",
-  "HEXAGHOST-SIZZLE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] the next card you play this turn."
+  "HEXAGHOST-SIZZLE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] the next card you play this turn.",
+  "HEXAGHOST-FLOAT_CHOICE_RETRACT.title": "Float",
+  "HEXAGHOST-FLOAT_CHOICE_RETRACT.description": "[gold]Retract[/gold].",
+  "HEXAGHOST-FLOAT_CHOICE_ADVANCE.title": "Float",
+  "HEXAGHOST-FLOAT_CHOICE_ADVANCE.description": "[gold]Advance[/gold]."
 }
