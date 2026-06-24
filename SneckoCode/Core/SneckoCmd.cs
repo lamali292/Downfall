@@ -127,7 +127,7 @@ public static class SneckoCmd
 
         if (CardSelectCmd.ShouldSelectLocalCard(player))
         {
-            await Cmd.Wait(1);
+            await Cmd.Wait(0.5f);
             var screen = NChooseACardSelectionScreen.ShowScreen(cards, true);
             if (screen == null)
             {
