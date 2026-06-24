@@ -20,7 +20,7 @@ public class Conjuration : DownfallEnchantmentModel<Core.Awakened>
 
     public override bool CanEnchant(CardModel card)
     {
-        return !card.Tags.Contains(AwakenedTag.Conjure);
+        return base.CanEnchant(card) &&  !card.Tags.Contains(AwakenedTag.Conjure);
     }
 
     public override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)

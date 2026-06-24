@@ -5,6 +5,7 @@ using Champ.ChampCode.Cards;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -34,11 +35,7 @@ public partial class ChampMainFile : Node
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
-
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-
-        Harmony harmony = new(ModId);
-        harmony.TryPatchAll(assembly);
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

@@ -24,7 +24,7 @@ public class Explode : AutomatonCardModel, IEncodable
 
     public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
     {
-        return CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        return cardPlay.Card.CombatState == null ? Task.CompletedTask : CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Card.CombatState.HittableEnemies, this);
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

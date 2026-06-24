@@ -131,7 +131,7 @@
   "SNECKO-STRIKE_SNECKO.title": "Strike",
   "SNECKO-TAIL_WHIP.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]:\nApply {WeakPower:diff()} [gold]Weak.[/gold]\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "SNECKO-TAIL_WHIP.title": "Tail Whip",
-  "SNECKO-THROWING_CARDS.description": "Add a copy of [gold]FTL{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].\nGain {Energy:energyIcons()}.",
+  "SNECKO-THROWING_CARDS.description": "Add X copies of [gold]FTL{IfUpgraded:show:+|}[/gold] to your [gold]Hand[/gold].\nGain {Energy:energyIcons()}.",
   "SNECKO-THROWING_CARDS.title": "Throwing Cards",
   "SNECKO-TOOTH_AND_CLAW.description": "Deal {Damage:diff()} damage.\nGain a [gold]Shiv{IfUpgraded:show:+|}[/gold] for each unique color in your [gold]Hand[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon.}",
   "SNECKO-TOOTH_AND_CLAW.title": "Tooth And Claw",

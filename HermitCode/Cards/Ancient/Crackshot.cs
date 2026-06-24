@@ -17,7 +17,8 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect
         WithDamage(8, 2);
     }
 
-
+    public override bool GainsBlock => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

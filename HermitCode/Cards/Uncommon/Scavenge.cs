@@ -13,14 +13,14 @@ public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
     {
         WithPower<PlatedArmorPower>(4, 1);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithGold(5, 5);
+        WithVar("DeadOn", 2);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
+        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this, DynamicVars["DeadOn"].BaseValue);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)

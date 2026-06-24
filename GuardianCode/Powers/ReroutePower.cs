@@ -11,12 +11,10 @@ namespace Guardian.GuardianCode.Powers;
 public class ReroutePower : GuardianPowerModel
 {
     private CardModel? _cardSource;
-    private bool _hasBeenApplied;
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         _cardSource = cardSource;
-        _hasBeenApplied = false;
         return Task.CompletedTask;
     }
 
@@ -25,10 +23,10 @@ public class ReroutePower : GuardianPowerModel
         CardModel card, bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
     {
-        if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) || card is not { Type: CardType.Attack or CardType.Skill }) return (pileType, position);
-
-        _hasBeenApplied = true;
         var player = card.Owner;
+        if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) || card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
+            return (pileType, position);
+
         var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
         if (stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)) return (pileType, position);
         GuardianCmd.SetStasisCounter(card);
@@ -39,8 +37,6 @@ public class ReroutePower : GuardianPowerModel
     public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
         CardPilePosition position)
     {
-        if (!_hasBeenApplied) return;
-        _hasBeenApplied = false;
         await PowerCmd.Decrement(this);
     }
 

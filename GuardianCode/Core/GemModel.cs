@@ -140,12 +140,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         AssertMutable();
         return (GemModel)MutableClone();
     }
-
-    public override void AfterClonedOnCard(CardModel card)
-    {
-        if (card is GuardianCardModel gc)
-            OnAdded(gc);
-    }
+    
 
     private HoverTip ToHoverTip(string description)
     {
@@ -172,6 +167,7 @@ public abstract class GemModel : CardModifier, ICustomModel
     
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
+        GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         for (var i = 0; i < replay; i++)  await OnPlayInternal(ctx, cardPlay);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
@@ -182,13 +178,4 @@ public abstract class GemModel : CardModifier, ICustomModel
         return originalPlayCount;
     }
 
-    internal void ApplyOnAddedEffects(CardModel card)
-    {
-        if (card is GuardianCardModel gc)
-            OnAdded(gc);
-    }
-
-    protected virtual void OnAdded(GuardianCardModel card)
-    {
-    }
 }

@@ -1,4 +1,4 @@
-﻿{
+{
   "localizationBase": "../Hermit/localization/eng",
   "projectId": "Hermit",
   "presets": [
@@ -185,6 +185,47 @@
           "name": "name",
           "file": "monsters.json",
           "optional": false
+        }
+      ]
+    },
+    {
+      "id": "affliction",
+      "markers": [
+        "DownfallAfflictionModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "afflictions.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "afflictions.json",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "id": "potion",
+      "markers": [
+        "HermitPotionModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "potions.json",
+          "optional": true
         }
       ]
     }

@@ -1,9 +1,13 @@
 using System.Reflection;
+using BaseLib.Utils;
+using Downfall.DownfallCode;
+using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
 using Hermit.HermitCode.Core;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -23,9 +27,7 @@ public partial class HermitMainFile : Node
     {
         CardExecutionRegistry.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

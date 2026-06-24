@@ -1,0 +1,23 @@
+files:
+  - source: Automaton/localization/eng/*.json
+    translation: /Automaton/localization/%three_letters_code%/%original_file_name%
+  - source: Awakened/localization/eng/*.json
+    translation: /Awakened/localization/%three_letters_code%/%original_file_name%
+  - source: Champ/localization/eng/*.json
+    translation: /Champ/localization/%three_letters_code%/%original_file_name%
+  - source: Collector/localization/eng/*.json
+    translation: /Collector/localization/%three_letters_code%/%original_file_name%
+  - source: Downfall/localization/eng/*.json
+    translation: /Downfall/localization/%three_letters_code%/%original_file_name%
+  - source: Gremlins/localization/eng/*.json
+    translation: /Gremlins/localization/%three_letters_code%/%original_file_name%
+  - source: Guardian/localization/eng/*.json
+    translation: /Guardian/localization/%three_letters_code%/%original_file_name%
+  - source: Hermit/localization/eng/*.json
+    translation: /Hermit/localization/%three_letters_code%/%original_file_name%
+  - source: Hexaghost/localization/eng/*.json
+    translation: /Hexaghost/localization/%three_letters_code%/%original_file_name%
+  - source: SlimeBoss/localization/eng/*.json
+    translation: /SlimeBoss/localization/%three_letters_code%/%original_file_name%
+  - source: Snecko/localization/eng/*.json
+    translation: /Snecko/localization/%three_letters_code%/%original_file_name%

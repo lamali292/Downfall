@@ -10,10 +10,10 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class TakeCover : HermitCardModel
 {
-    public TakeCover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public TakeCover() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradingCardTip<DefendHermit>(WithPreviewModifiers);
+        this.WithCardTip<DefendHermit>(WithPreviewModifiers);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -23,19 +23,24 @@ public sealed class TakeCover : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand, upgraded: IsUpgraded,
+        await DownfallCardCmd.GiveCard<DefendHermit>(Owner, PileType.Hand,
             action: card => WithPlayModifiers(card, this));
     }
 
     private static void WithPreviewModifiers(DefendHermit defend, CardModel cardModel)
     {
-        WithModifiers(defend,
-            cardModel is { IsMutable: true, _owner: not null } ? cardModel.Owner.PlayerCombatState?.Energy ?? 0 : 3);
+        var val = cardModel is { IsMutable: true, _owner: not null }
+            ? cardModel.Owner.PlayerCombatState?.Energy ?? 0
+            : 3;
+        if (cardModel.IsUpgraded) val += 1;
+        WithModifiers(defend, val);
     }
 
     private static void WithPlayModifiers(DefendHermit defend, CardModel cardModel)
     {
-        WithModifiers(defend, cardModel.ResolveEnergyXValue());
+        var val = cardModel.ResolveEnergyXValue();
+        if (cardModel.IsUpgraded) val += 1;
+        WithModifiers(defend, val);
     }
 
     private static void WithModifiers(DefendHermit defend, int nimble)

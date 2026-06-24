@@ -8,6 +8,6 @@ public class IntensityPower : HexaghostPowerModel, IModifyGhostflameEffectAdditi
 {
     public int ModifyGhostflameEffectAdditive(Player owner, GhostflameModel bolsteringGhostflame)
     {
-        return owner == Owner.Player ? Amount : 0;
+        return owner.Creature == Owner ? Amount : 0;
     }
 }

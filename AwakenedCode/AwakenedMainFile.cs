@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Cards;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
 using BaseLib.Utils;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -29,9 +30,7 @@ public partial class AwakenedMainFile : Node
         CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

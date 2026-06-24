@@ -13,5 +13,18 @@
   "SLIMEBOSS-INSULTING_SLIME.name": "Insulting Slime",
   "SLIMEBOSS-ANCIENT_SLIME.name": "Ancient Slime",
   "SLIMEBOSS-SPIKY_SLIME.name": "Protector Slime",
-  "SLIMEBOSS-TIME_SLIME.name": "Time Slime"
+  "SLIMEBOSS-TIME_SLIME.name": "Time Slime",
+  "SLIMEBOSS-DARKLING_SLIME.description": "",
+  "SLIMEBOSS-ANCIENT_SLIME.description": "Deals [blue]3[/blue] damage and causes you to draw [blue]1[/blue] card each turn.\nDraw does not scale with [gold]Potency[/gold].",
+  "SLIMEBOSS-TORCHHEAD_SLIME.description": "Deals [blue]6[/blue] damage. Gains damage from your [gold]Strength[/gold]. ",
+  "SLIMEBOSS-GUERILLA_SLIME.description": "Deal [blue]3[/blue] damage to ALL enemies.",
+  "SLIMEBOSS-BRUISER_SLIME.description": "Deals [blue]3[/blue] damage to a random enemy twice. ",
+  "SLIMEBOSS-LEECHING_SLIME.description": "Deals [blue]1[/blue] damage to an enemy and grants [blue]3[/blue] [gold]Block[/gold] to the Slime Boss. ",
+  "SLIMEBOSS-MIRE_SLIME.description": "Deals [blue]2[/blue] damage and applies [blue]2[/blue] [gold]Goop[/gold] to an enemy. ",
+  "SLIMEBOSS-SPIKY_SLIME.description": "Deals [blue]4[/blue] damage and grants [blue]4[/blue] [gold]Thorns[/gold] to the Slime Boss for a turn.",
+  "SLIMEBOSS-GHOSTFLAME_SLIME.description": "Deals [blue]4[/blue] damage and applies [blue]6[/blue] [gold]Soulburn[/gold] to an enemy. ",
+  "SLIMEBOSS-BRONZE_SLIME.description": "Deals [blue]10[/blue] damage to ALL enemies, but skips every other attack.",
+  "SLIMEBOSS-INSULTING_SLIME.description": "Deals [blue]4[/blue] damage and applies [blue]1[/blue] [gold]Vulnerable[/gold] to an enemy. ",
+  "SLIMEBOSS-TIME_SLIME.description": "Deals [blue]4[/blue] damage and applies [blue]1[/blue] [gold]Weak[/gold] to an enemy. ",
+  "SLIMEBOSS-CULTIST_SLIME.description": "Deals [blue]6[/blue] damage. After attacking, increases its damage by [blue]1[/blue]."
 }

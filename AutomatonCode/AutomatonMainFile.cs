@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -30,9 +31,7 @@ public partial class AutomatonMainFile : Node
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        Harmony harmony = new(ModId);
-        harmony.TryPatchAll(assembly);
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

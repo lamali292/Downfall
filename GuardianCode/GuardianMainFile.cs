@@ -2,6 +2,7 @@ using System.Reflection;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -34,10 +35,8 @@ public partial class GuardianMainFile : Node
         RegisterGemSave();
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 
     private static void RegisterGemSave()
@@ -63,7 +62,7 @@ public partial class GuardianMainFile : Node
                         continue;
                     var mutableGem = canonicalGem.ToMutable();
                     CardModifier.AddModifier(card, mutableGem);
-                    mutableGem.ApplyOnAddedEffects(card);
+                    //mutableGem.ApplyOnAddedEffects(card);
                 }
             },
             (gemIds, writer) =>

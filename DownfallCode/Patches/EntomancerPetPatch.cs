@@ -9,6 +9,11 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+
+
+
+
+/*
 [HarmonyPatch]
 internal static class PersonalHivePowerAnyPetPatch
 {
@@ -76,4 +81,4 @@ internal static class PersonalHivePowerAnyPetPatch
 
         return codes;
     }
-}
+}*/

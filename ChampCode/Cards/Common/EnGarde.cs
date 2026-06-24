@@ -20,7 +20,7 @@ public class EnGarde : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<EnGardePower>(ctx, this);
+        var amount = await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<EnGardePower>(ctx, this, amount);
     }
 }
