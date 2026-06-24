@@ -171,7 +171,7 @@
   "HEXAGHOST-THERMAL_TRANSFER.title": "Thermal Transfer",
   "HEXAGHOST-TIME_OF_NEED.description": "Add a random {IfUpgraded:show:upgraded |} Power into your [gold]Hand[/gold].\nIt's free to play this turn.",
   "HEXAGHOST-TIME_OF_NEED.title": "Time of Need",
-  "HEXAGHOST-TIME_WARP.description": "Deal {Damage:diff()} damage.\nWhenever you [gold]Advance[/gold] or [gold]Retract[/gold], return this to your [gold]Hand[gold] from the [gold]Discard Pile[/gold].",
+  "HEXAGHOST-TIME_WARP.description": "Deal {Damage:diff()} damage.\nWhenever you [gold]Advance[/gold] or [gold]Retract[/gold], return this to your [gold]Hand[/gold] from the [gold]Discard Pile[/gold].",
   "HEXAGHOST-TIME_WARP.title": "Time Warp",
   "HEXAGHOST-TURN_IT_UP.description": "Gain {TemporaryStrengthUpPower:diff()} [gold]Strength, [/gold]{TemporaryDexterityUpPower:diff()} [gold]Dexterity[/gold] and {TemporaryIntensityPower:diff()} [gold]Intensity[/gold] this turn.",
   "HEXAGHOST-TURN_IT_UP.title": "Turn It Up",
