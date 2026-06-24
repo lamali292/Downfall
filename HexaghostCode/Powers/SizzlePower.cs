@@ -14,14 +14,13 @@ public class SizzlePower : HexaghostPowerModel
         WithTip(CardKeyword.Exhaust);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner) return;
-        await CardCmd.Exhaust(ctx, card);
+        card.ExhaustOnNextPlay = true;
         await PowerCmd.Decrement(this);
     }
-
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
