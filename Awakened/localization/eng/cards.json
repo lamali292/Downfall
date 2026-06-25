@@ -111,7 +111,7 @@
   "AWAKENED-MAGICIANISM.title": "Magicianism",
   "AWAKENED-MANASTORM.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Conjure[/gold] twice.",
   "AWAKENED-MANASTORM.title": "Manastorm",
-  "AWAKENED-MANA_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Conjure[/gold].\nReduce the cost of a random [gold]Spell[/gold] in [gold]Hand[/gold] by 1.",
+  "AWAKENED-MANA_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Conjure[/gold].\nReduce the cost of a random Spell in [gold]Hand[/gold] by 1.",
   "AWAKENED-MANA_SHIELD.title": "Mana Shield",
   "AWAKENED-MANTIS.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nAdd a [gold]Plume Jab[/gold] into your [gold]Hand[/gold].",
   "AWAKENED-MANTIS.title": "Mantis",
