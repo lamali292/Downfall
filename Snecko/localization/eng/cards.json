@@ -105,7 +105,7 @@
   "SNECKO-SAVE_FOR_LATER.title": "Save For Later",
   "SNECKO-SERPENTINE_SLEUTH.description": "Whenever you play a Power, gain {Energy:energyIcons()}.{InCombat:cond:|\n[gold]Gift[/gold]: Rare Power.}",
   "SNECKO-SERPENTINE_SLEUTH.title": "Serpentine Sleuth",
-  "SNECKO-SERPENTSCALE.description": "Deal {Damage:diff()} damage.\nGain 1 [gold]Plated Armor[/gold].\n[gold]Overflow[/gold]: Gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold] instead.",
+  "SNECKO-SERPENTSCALE.description": "Deal {Damage:diff()} damage.\nGain 1 [gold]Plated Armor[/gold].\n[gold]Overflow[/gold]: Gain {PlatedArmorPower:diff()} more [gold]Plated Armor[/gold].",
   "SNECKO-SERPENTSCALE.title": "Serpentscale",
   "SNECKO-SERPENTS_NEST.description": "Whenever you play a Power, deal {SerpentsNestPower:diff()} damage to ALL enemies.{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon Power.}",
   "SNECKO-SERPENTS_NEST.title": "Serpent's Nest",
