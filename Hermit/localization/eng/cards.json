@@ -168,7 +168,7 @@
   "HERMIT-HAIR_TRIGGER.title": "Hair Trigger",
   "HERMIT-HAIR_TRIGGER.description": "Whenever you trigger a [gold]Dead On[/gold] effect, play a [gold]Strike[/gold] with [gold]Exhaust[/gold] on a random enemy. ",
   "HERMIT-BURDENED.title": "Burdened",
-  "HERMIT-BURDENED.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]:\nPut {Cards:diff()} random Curses from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold]. ",
+  "HERMIT-BURDENED.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]: Put {Cards:diff()} random Curses from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold]. ",
   "HERMIT-FIRE_AWAY.title": "Fire Away",
   "HERMIT-FIRE_AWAY.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nCosts {Energy:energyIcons()} less for each [gold]Dead On[/gold] effect triggered this combat.",
   "HERMIT-LAST_CHANCE.title": "Last Chance",
@@ -180,7 +180,7 @@
   "HERMIT-DEATHWISH.title": "Deathwish",
   "HERMIT-DEATHWISH.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
   "HERMIT-RUBBER_BULLET.title": "Rubber Bullet",
-  "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]:\nIncrease this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
+  "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Increase this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
   "HERMIT-BIG_BRUISER.title": "Big Bruiser",
   "HERMIT-BIG_BRUISER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. "
 }
