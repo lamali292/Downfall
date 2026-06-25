@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 
 namespace Hermit.HermitCode.Patches;
+
+
 [HarmonyPatch(typeof(NPlayerHand), nameof(NPlayerHand.RefreshLayout))]
 static class HandOrderEnforcer
 {
@@ -31,7 +33,7 @@ static class TransformHandReorder
 {
     static void Postfix(NCard cardNode, CardModel endCard)
     {
-        if (endCard?.Pile == null || endCard.Pile.Type != PileType.Hand) return;
+        if (endCard.Pile is not { Type: PileType.Hand }) return;
         var hand = NPlayerHand.Instance;
         if (hand == null) return;
         if (hand.HasDraggedHolder || hand._holdersAwaitingQueue.Count > 0) return;

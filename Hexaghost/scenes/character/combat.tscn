@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0hwg61edisjb"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://bvsoj76fy3bnv" path="res://HexaghostCode/Vfx/NHexaghostCreatureVisuals.cs" id="1_qxg1r"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostCreatureVisuals.cs" id="1_qxg1r"]
 [ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost2.tscn" id="2_qxg1r"]
 
 [node name="HexaghostCombat" type="Node2D"]

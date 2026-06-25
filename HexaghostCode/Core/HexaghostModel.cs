@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using static MegaCrit.Sts2.Core.Entities.Multiplayer.GameActionType;
 
@@ -74,17 +75,16 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         await afterlifeEffect.AfterlifeEffect(ctx, cardPlay);
     }
 
-    internal static async Task SetupHexaghostCombatUi(CombatState state)
+    internal static void SetupHexaghostCombatUi(CombatState state)
     {
+        if (NCombatRoom.Instance is not { } combatRoom) return;
         foreach (var player in state.Players)
         {
             if (player.Character is not Hexaghost) continue;
-            await HexaghostCmd.ResetWheel(player);
-            HexaghostVisualsBridge.Refresh(player);
-            HexaghostCmd.GetCurrentFlame(player).UpdateVisuals();
+            HexaghostVisualsBridge.DiscardDisplay(player);  
+            HexaghostVisualsBridge.Setup(combatRoom, player); 
         }
     }
-
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);
@@ -115,6 +115,6 @@ internal static class HexaghostCombatUiActivatePatch
 {
     private static void Postfix(CombatState state)
     {
-        _ = HexaghostModel.SetupHexaghostCombatUi(state);
+        HexaghostModel.SetupHexaghostCombatUi(state);
     }
 }
