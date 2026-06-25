@@ -2,5 +2,24 @@
   "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "I am angry at the architect",
   "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "You die",
-  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "Both"
+  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "Both",
+
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]...I've.. rebuilt.. you.. ..construct...[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "Continue",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]...now.. go...[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+  
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]..that.. [aqua]iridescent gemstone[/aqua]....[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "Continue",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]..it.. changes.. ..every time.. you are.. rebuilt...[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "Continue",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]..not.. by my.. will... ..odd...[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+  
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine]..do.. you.. ..know.. your.. purpose...?[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "Respond",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<44 45 53 54 52 4F 59> <41 4C 4C> <49 4E 54 52 55 44 45 52 53>[/jitter][/red]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "Continue",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]...[red][jitter]GOOD[/jitter][/red]...[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
 }

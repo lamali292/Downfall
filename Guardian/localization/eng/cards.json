@@ -13,7 +13,7 @@
   "GUARDIAN-CHARGE_UP.title": "Charge Up",
   "GUARDIAN-CLONE.description": "Choose a card.\nPlace a copy of that card into [gold]Stasis[/gold].{IfUpgraded:show:\n[gold]Accelerate[/gold].|}",
   "GUARDIAN-CLONE.title": "Clone",
-  "GUARDIAN-COMPILE_PACKAGE.description": "Choose 1 of 3 random {IfUpgraded:show:[gold]Upgraded[/gold] |}[gold]Package[/gold] to place into [gold]Stasis[/gold].",
+  "GUARDIAN-COMPILE_PACKAGE.description": "Choose 1 of 3 random {IfUpgraded:show:[gold]Upgraded[/gold] |}[gold]Packages[/gold] to place into [gold]Stasis[/gold].",
   "GUARDIAN-COMPILE_PACKAGE.title": "Compile Package",
   "GUARDIAN-CONSTRUCTION_FORM.description": "Gain {BufferPower:diff()} [gold]Buffer[/gold].\nAt the start of your turn, if you have [gold]Buffer[/gold], gain 1 [gold]Strength[/gold].",
   "GUARDIAN-CONSTRUCTION_FORM.title": "Construction Form",

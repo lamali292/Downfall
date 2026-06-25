@@ -10,7 +10,7 @@ namespace Hexaghost.HexaghostCode.Console;
 
 public class GhostwheelIgniteCmd : AbstractConsoleCmd
 {
-    public override string CmdName => "ignite";
+    public override string CmdName => "downfall-ignite";
     public override string Args => "[index:int]";
     public override string Description => "Ignite the current ghostflame, or a specific index if provided.";
     public override bool IsNetworked => true;
@@ -53,7 +53,7 @@ public class GhostwheelIgniteCmd : AbstractConsoleCmd
 
 public class GhostwheelAdvanceCmd : AbstractConsoleCmd
 {
-    public override string CmdName => "advance";
+    public override string CmdName => "downfall-advance";
     public override string Args => "[steps:int]";
     public override string Description => "Advance the ghostwheel by 1 step, or N steps if provided.";
     public override bool IsNetworked => true;
@@ -86,7 +86,7 @@ public class GhostwheelAdvanceCmd : AbstractConsoleCmd
 
 public class GhostwheelRetractCmd : AbstractConsoleCmd
 {
-    public override string CmdName => "retract";
+    public override string CmdName => "downfall-retract";
     public override string Args => "[steps:int]";
     public override string Description => "Retract the ghostwheel by 1 step, or N steps if provided.";
     public override bool IsNetworked => true;

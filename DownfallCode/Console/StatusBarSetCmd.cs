@@ -7,7 +7,7 @@ namespace Downfall.DownfallCode.Console;
 
 public class StatusBarSetCmd : AbstractConsoleCmd
 {
-    public override string CmdName => "statusbar";
+    public override string CmdName => "downfall-statusbar";
     public override string Args => "<current:int> <max:int>";
     public override string Description => "Set the status bar for the issuing player.";
     public override bool IsNetworked => false;
