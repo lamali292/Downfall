@@ -123,7 +123,7 @@
   "SLIMEBOSS-SLIME_TAP.title": "Slime Tap",
   "SLIMEBOSS-SPEAR_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:inverseDiff()} damage.\nDraw {Cards:diff()} cards.",
   "SLIMEBOSS-SPEAR_TACKLE.title": "Spear Tackle",
-  "SLIMEBOSS-SPLIT.description": "[gold]Split[/gold] into a [gold]Guerilla Slime[/gold].\n[gold]Command[/gold]{Command:plural:| {Command:diff()} times}.",
+  "SLIMEBOSS-SPLIT.description": "[gold]Split[/gold] into a random Slime.\n[gold]Command[/gold]{Command:plural:| {Command:diff()} times}.",
   "SLIMEBOSS-SPLIT.title": "Split",
   "SLIMEBOSS-SPLIT_BRUISER.description": "[gold]Split[/gold] into a [gold]Bruiser Slime[/gold].\n[gold]Command[/gold]{Command:plural:| {Command:diff()} times}.",
   "SLIMEBOSS-SPLIT_BRUISER.title": "Split: Bruiser",
