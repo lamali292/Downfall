@@ -119,7 +119,7 @@
   "AWAKENED-MIDDEN_HEAP.title": "Midden Heap",
   "AWAKENED-MINNIEGUN.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nShuffle a [gold]Void[/gold] into your [gold]Draw Pile[/gold]. ",
   "AWAKENED-MINNIEGUN.title": "Minniegun",
-  "AWAKENED-MIRE_PIT.description": "ALL enemies lose {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn.\nNext turn, lose {Energy:energyIcons()}.",
+  "AWAKENED-MIRE_PIT.description": "ALL enemies lose {MirePitPower:diff()} [gold]Strength[/gold] this turn.\nNext turn, lose {Energy:energyIcons()}.",
   "AWAKENED-MIRE_PIT.title": "Mire Pit",
   "AWAKENED-MOONLIT_VISION.description": "The first time you play a Spell each turn, gain {energyPrefix:energyIcons(1)}.",
   "AWAKENED-MOONLIT_VISION.title": "Moonlit Vision",

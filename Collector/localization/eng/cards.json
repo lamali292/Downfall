@@ -31,7 +31,7 @@
   "COLLECTOR-COLLECTIBLE.title": "Collectible",
   "COLLECTOR-CONDEMN.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {CollectorDoomPower:diff()} [gold]Doom[/gold].",
   "COLLECTOR-CONDEMN.title": "Condemn",
-  "COLLECTOR-CURSED_WAIL.description": "ALL enemies lose {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn.\n[gold]Afflicted[/gold] enemies lose {StrengthPower:diff()} [gold]Strength[/gold].",
+  "COLLECTOR-CURSED_WAIL.description": "ALL enemies lose {CursedWailPower:diff()} [gold]Strength[/gold] this turn.\n[gold]Afflicted[/gold] enemies lose {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-CURSED_WAIL.title": "Cursed Wail",
   "COLLECTOR-DARKSTORM.description": "Gain a [gold]Blightning[/gold].\nShuffle {Cards:diff()} more into your [gold]Draw Pile[/gold].",
   "COLLECTOR-DARKSTORM.title": "Darkstorm",

@@ -8,5 +8,5 @@
   "AWAKENED-RAVEN_STRIKE.chant": "Play the top card of your [gold]Draw Pile[/gold].",
   "AWAKENED-TAKE_FLIGHT.chant": "[gold]Block[/gold] is not removed at the start of your next turn.",
   "AWAKENED-VICTUALS.chant": "Gain {Energy:energyIcons()}.",
-  "AWAKENED-SIPHON.chant": "Steal {StrengthPower:diff()} [gold]Strength[/gold] this turn."
+  "AWAKENED-SIPHON.chant": "Steal {SiphonPower:diff()} [gold]Strength[/gold] this turn."
 }

@@ -109,7 +109,7 @@
   "HERMIT-GESTALT.title": "Gestalt",
   "HERMIT-GESTALT.description": "Gain {RuggedPower:diff()} [gold]Rugged[/gold].\nGain {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "HERMIT-ROUNDHOUSE_KICK.title": "Roundhouse Kick",
-  "HERMIT-ROUNDHOUSE_KICK.description": "Deal {Damage:diff()} damage to ALL enemies.\nALL enemies lose {TemporaryStrengthDownPower:diff()} [gold]Strength[/gold] this turn.",
+  "HERMIT-ROUNDHOUSE_KICK.description": "Deal {Damage:diff()} damage to ALL enemies.\nALL enemies lose {RoundhouseKickPower:diff()} [gold]Strength[/gold] this turn.",
   "HERMIT-CURSED_WEAPON.title": "Cursed Weapon",
   "HERMIT-CURSED_WEAPON.description": "Lose {HpLoss:diff()} HP.\nDeal {Damage:diff()} damage.\nPermanently increase the damage of ALL [gold]Cursed Weapons[/gold] by {Increase:diff()}.",
   "HERMIT-ENERVATE.title": "Enervate",

@@ -1,5 +1,5 @@
 {
-  "CHAMP-ADRENAL_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryStrengthUpPower:diff()} [gold]Strength[/gold] this turn.",
+  "CHAMP-ADRENAL_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {AdrenalArmorPower:diff()} [gold]Strength[/gold] this turn.",
   "CHAMP-ADRENAL_ARMOR.title": "Adrenal Armor",
   "CHAMP-ALL_OUT.description": "Perform {Repeat:diff()} times without exiting your [gold]Stance[/gold]:",
   "CHAMP-ALL_OUT.title": "All Out",
