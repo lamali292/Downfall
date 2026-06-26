@@ -27,4 +27,7 @@ public class SlimeSpikes : SlimeBossCardModel
     }
 }
 
-public class SlimeSpikesPower : CustomTemporaryPowerModelWrapper<SlimeSpikes, ThornsPower>;
+public class SlimeSpikesPower : CustomTemporaryPowerModelWrapper<SlimeSpikes, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
+}

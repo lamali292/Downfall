@@ -26,4 +26,7 @@ public class SpikySlime : SlimeModel
     }
 }
 
-public class SpikySlimePower : CustomTemporaryPowerModelWrapper<SpikySlime, ThornsPower>;
+public class SpikySlimePower : CustomTemporaryPowerModelWrapper<SpikySlime, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
+}

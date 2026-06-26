@@ -31,4 +31,7 @@ public class PiercingHide : GuardianCardModel, IGemSocketCard
     }
 }
 
-public class PiercingHidePower : CustomTemporaryPowerModelWrapper<PiercingHide, ThornsPower>;
+public class PiercingHidePower : CustomTemporaryPowerModelWrapper<PiercingHide, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
+}

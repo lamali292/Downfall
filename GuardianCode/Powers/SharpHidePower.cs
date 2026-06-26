@@ -18,4 +18,7 @@ public class SharpHidePower : GuardianPowerModel
     }
 }
 
-public class SharpHideThornsPower : CustomTemporaryPowerModelWrapper<SharpHidePower, ThornsPower>;
+public class SharpHideThornsPower : CustomTemporaryPowerModelWrapper<SharpHidePower, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
+}

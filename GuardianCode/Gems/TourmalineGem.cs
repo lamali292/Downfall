@@ -33,4 +33,5 @@ public class TourmalineGemPower : CustomTemporaryPowerModelWrapper<TourmalineGem
 {
     public override LocString Title => OriginModel is GemModel gem ? gem.Title : base.Title;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
+    protected override bool UntilEndOfOtherSideTurn => true;
 }
