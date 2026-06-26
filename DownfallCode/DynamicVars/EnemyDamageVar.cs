@@ -21,7 +21,7 @@ public class EnemyDamageVar : DynamicVar
         Props = props;
     }
 
-    public ValueProp Props { get; set; }
+    public ValueProp Props { get; }
 
     public override void UpdateCardPreview(
         CardModel card,
@@ -31,8 +31,9 @@ public class EnemyDamageVar : DynamicVar
     {
         var originalDamage1 = BaseValue;
         if (runGlobalHooks)
-            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, target, BaseValue, Props,
+            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, card.Owner.Creature, target, BaseValue, Props,
                 card, ModifyDamageHookType.All, previewMode, out _);
+        DownfallMainFile.Logger.Info($"{originalDamage1}");
         PreviewValue = originalDamage1;
     }
 }
