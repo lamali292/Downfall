@@ -12,9 +12,10 @@ public class FeelMyPainPower : CollectorPowerModel
         bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner) return;
-        var target = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (target != null)
-            await CreatureCmd.Damage(ctx, target, Amount,
-                ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+        if (creature == null) return;
+        await CreatureCmd.Damage(ctx, creature, Amount,
+            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        Flash();
     }
 }
