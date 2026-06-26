@@ -54,7 +54,7 @@ public partial class NGhostflames : Control
             var hitbox = new Control();
             hitbox.CustomMinimumSize = new Vector2(80, 80);
             hitbox.Position = -hitbox.CustomMinimumSize / 2f;
-            hitbox.MouseFilter = Control.MouseFilterEnum.Stop;
+            hitbox.MouseFilter = MouseFilterEnum.Stop;
             anchor.AddChild(hitbox);
 
             hitbox.Connect(Control.SignalName.MouseEntered, Callable.From(() =>
@@ -84,12 +84,12 @@ public partial class NGhostflames : Control
         var containerScale = _vfxContainer.GetGlobalTransform().Scale;
         var sx = Mathf.Abs(ct.Scale.X / containerScale.X);
         var sy = Mathf.Abs(ct.Scale.Y / containerScale.Y);
-        var scalex = _creatureNode._tempScale * sx;
-        var scaley = _creatureNode._tempScale * sy;
+        var scaleX = _creatureNode._tempScale * sx;
+        var scaleY = _creatureNode._tempScale * sy;
         if (IsInstanceValid(_creatureNode) && _vfxContainer != null)
         {
-            Scale = new Vector2(scalex, scaley);
-            var globalCenter = _creatureNode.GlobalPosition + Vector2.Up * 216f * scaley;
+            Scale = new Vector2(scaleX, scaleY);
+            var globalCenter = _creatureNode.GlobalPosition + Vector2.Up * 216f * scaleY;
             Position = _vfxContainer.GetGlobalTransform().AffineInverse() * globalCenter;
         }
 
@@ -105,8 +105,8 @@ public partial class NGhostflames : Control
             if (fire == null) continue;
 
             var worldPos = fire.GlobalPosition
-                           + Vector2.Up * 130f * scaley
-                           + Vector2.Left * 25f * scalex;
+                           + Vector2.Up * 130f * scaleY
+                           + Vector2.Left * 25f * scaleX;
 
             var intent = _intents[i];
             if (intent != null)

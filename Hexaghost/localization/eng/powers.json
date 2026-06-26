@@ -42,7 +42,7 @@
   "HEXAGHOST-UNFETTERED_FORM_PLUS_POWER.description": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] an additional time.",
   "HEXAGHOST-UNFETTERED_FORM_PLUS_POWER.smartDescription": "Ghostflames deal damage, apply [gold]Soulburn[/gold] and grant [gold]Block[/gold] {Amount:plural:an additional time|{Amount} additional times}.",
   "HEXAGHOST-UNFETTERED_FORM_POWER.title": "Unfettered Form",
-  "HEXAGHOST-UNFETTERED_FORM_POWER.description": "Whenever you [gold]Ignit[/gold]e a Ghostflame, active its effects an additional time.",
+  "HEXAGHOST-UNFETTERED_FORM_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, active its effects an additional time.",
   "HEXAGHOST-UNFETTERED_FORM_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, active its effects {Amount:plural:an additional time|[blue]{}[/blue] additional times}.",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "Volcano Visage",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [gold]Soulburn[/gold] to ALL enemies.",
