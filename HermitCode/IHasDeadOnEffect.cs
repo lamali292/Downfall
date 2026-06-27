@@ -8,8 +8,12 @@ namespace Hermit.HermitCode;
 
 public interface IHasDeadOnEffect
 {
-    bool IsDeadOn => HermitCmd.IsDeadOnInCurrentHandState((CardModel)this) ||
-                     (PatchDeadOnCapture.LastPlayed == (CardModel)this && PatchDeadOnCapture.LastWasDeadOn);
+    
+    bool IsDeadOn => ( ((CardModel)this).Pile?.Type == PileType.Hand && IsDeadOnInHand) || (((CardModel)this).Pile?.Type == PileType.Play && WasThisPlayedDeadOn);
+    
+    bool IsDeadOnInHand => HermitCmd.IsDeadOnInCurrentHandState((CardModel)this);
+    bool WasThisPlayedDeadOn =>
+        PatchDeadOnCapture.LastPlayed == (CardModel)this && PatchDeadOnCapture.LastWasDeadOn;
 
     Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }
