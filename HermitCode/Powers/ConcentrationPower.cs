@@ -32,7 +32,7 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
     public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) return;
+        if (participants.Contains(Owner)) return;
         if (Owner.Player?.GetRelic<Spyglass>() != null) return;
         await PowerCmd.Remove(this);
     }

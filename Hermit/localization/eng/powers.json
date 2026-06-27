@@ -7,7 +7,7 @@
   "HERMIT-CHEAT_POWER.title": "Cheat",
   "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.title": "Draw Fewer Cards Next Turn",
   "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.description": "At the start of your next turn, draw [blue]1[/blue] fewer card.",
-  "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, draw [blue]{Amount}[/blue] fewer {Amount:plural:card|cards}.",
+  "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, draw [blue]1[/blue] fewer {Amount:plural:card|cards}.",
   "HERMIT-HIGH_NOON_POWER.description": "[gold]Basic[/gold] [gold]Strikes[/gold] gain [gold]Replay[/gold]. ",
   "HERMIT-HIGH_NOON_POWER.smartDescription": "[gold]Basic[/gold] [gold]Strikes[/gold] gain [gold]Replay[/gold] [blue]{Amount}[/blue]. ",
   "HERMIT-HIGH_NOON_POWER.title": "High Noon",

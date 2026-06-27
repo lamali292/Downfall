@@ -90,6 +90,8 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
         CardModifier.AddModifier(this, GuardianModelDb.Gem<T>().ToMutable());
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+
     public override CardRarity Rarity => GuardianModelDb.Gem<T>().Rarity;
     public override int MaxUpgradeLevel => 0;
 
