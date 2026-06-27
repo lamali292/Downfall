@@ -12,13 +12,13 @@ public sealed class DrawFewerCardsNextTurnPower() : HermitPowerModel(PowerType.D
     public override decimal ModifyHandDraw(Player player, decimal count)
     {
         if (player != Owner.Player || AmountOnTurnStart == 0) return count;
-        return Math.Max(0m, count - Amount);
+        return Math.Max(0m, count - 1);
     }
 
     public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (!participants.Contains(Owner) || AmountOnTurnStart == 0) return;
-        await PowerCmd.Remove(this);
+        await PowerCmd.Decrement(this);
     }
 }
