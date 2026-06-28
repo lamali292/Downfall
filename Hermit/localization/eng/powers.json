@@ -89,5 +89,8 @@
   "HERMIT-DEATHWISH_POWER.smartDescription": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
   "HERMIT-SCOPE_OUT_POWER.title": "Scope Out",
   "HERMIT-SCOPE_OUT_POWER.description": "[gold]Basic[/gold] Strikes now deal damage to ALL enemies.",
-  "HERMIT-SCOPE_OUT_POWER.smartDescription": "[gold]Basic[/gold] Strikes now deal damage to ALL enemies."
+  "HERMIT-SCOPE_OUT_POWER.smartDescription": "[gold]Basic[/gold] Strikes now deal damage to ALL enemies.",
+  "HERMIT-BURDENED_POWER.title": "Burdened",
+  "HERMIT-BURDENED_POWER.description": "At the start of your turn, gain [gold]Vigor[/gold] and add a [gold]Decay[/gold] into your [gold]Hand[/gold].",
+  "HERMIT-BURDENED_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] [gold]Vigor[/gold] and add {Cards:plural:a|[blue]{}[/blue]} [gold]Decay[/gold] into your [gold]Hand[/gold]."
 }
