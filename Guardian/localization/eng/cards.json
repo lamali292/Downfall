@@ -1,7 +1,7 @@
 {
   "GUARDIAN-ANCIENT_CONSTRUCT.description": "Gain {ArtifactPower:diff()} [gold]Artifact[/gold].\nAt the start of your turn, if you have no [gold]Artifact[/gold], gain {AncientConstructPower:diff()} [gold]Artifact[/gold].",
   "GUARDIAN-ANCIENT_CONSTRUCT.title": "Ancient Construct",
-  "GUARDIAN-ANCIENT_POWER.description": "Gain {TemporaryStrengthUpPower:diff()} [gold]Strength[/gold] this turn.\nGain {TemporaryDexterityUpPower:diff()} [gold]Dexterity[/gold] this turn.",
+  "GUARDIAN-ANCIENT_POWER.description": "Gain {AncientStrengthPower:diff()} [gold]Strength[/gold] this turn.\nGain {AncientDexterityPower:diff()} [gold]Dexterity[/gold] this turn.",
   "GUARDIAN-ANCIENT_POWER.title": "Ancient Power",
   "GUARDIAN-BAUBLE_BURST.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nPerform 3 times:",
   "GUARDIAN-BAUBLE_BURST.title": "Bauble Burst",
@@ -61,7 +61,7 @@
   "GUARDIAN-ORB_SUPPORT.title": "Orb Support",
   "GUARDIAN-OVERLOAD.description": "Draw {Cards:diff()} cards.\n[gold]Polish[/gold] {Polish:diff()}.",
   "GUARDIAN-OVERLOAD.title": "Overload",
-  "GUARDIAN-PIERCING_HIDE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryThornsPower:diff()} [gold]Thorns[/gold] this turn.\n[gold]Brace[/gold] {Brace:diff()}.",
+  "GUARDIAN-PIERCING_HIDE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {PiercingHidePower:diff()} [gold]Thorns[/gold] this turn.\n[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-PIERCING_HIDE.title": "Piercing Hide",
   "GUARDIAN-POLY_BEAM.description": "Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.",
   "GUARDIAN-POLY_BEAM.title": "Poly Beam",

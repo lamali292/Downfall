@@ -1,6 +1,6 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -14,7 +14,7 @@ public class SlimeSpikes : SlimeBossCardModel
     public SlimeSpikes() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        this.WithPower<TemporaryThornsPower>(3, 1, false);
+        this.WithPower<SlimeSpikesPower>(3, 1, false);
         this.WithTip<ThornsPower>();
     }
 
@@ -23,6 +23,11 @@ public class SlimeSpikes : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryThornsPower>(ctx, this);
+        await CommonActions.ApplySelf<SlimeSpikesPower>(ctx, this);
     }
+}
+
+public class SlimeSpikesPower : CustomTemporaryPowerModelWrapper<SlimeSpikes, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
 }

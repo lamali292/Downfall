@@ -14,7 +14,7 @@ namespace Downfall.DownfallCode.Commands;
 
 public static class MyCommonActions
 {
-    public static Task ApplySelf<T>(PlayerChoiceContext ctx, AbstractModel model)
+    public static Task<T?> ApplySelf<T>(PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
         var creature = model.GetCreature();

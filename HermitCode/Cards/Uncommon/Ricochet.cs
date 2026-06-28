@@ -17,7 +17,7 @@ public sealed class Ricochet : HermitCardModel
 {
     public Ricochet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(7, 2);
+        WithDamage(8, 2);
         WithCalculatedVar("CalculatedHits", 0, 1, CountDeadOnEffects);
         WithTip(HermitKeywords.DeadOn);
     }

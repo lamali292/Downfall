@@ -9,9 +9,9 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public class HairTrigger: HermitCardModel
 {
-    public HairTrigger() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public HairTrigger() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<HairTriggerPower>(1, false);
         WithTip(CardKeyword.Exhaust);
         WithTip(HermitKeywords.DeadOn);

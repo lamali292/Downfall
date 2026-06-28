@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Powers;
 using Godot;
 using Guardian.GuardianCode.Core;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -24,7 +26,14 @@ public class AmethystGem : GemModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, CombatState.Enemies, effect, Player.Creature,
+        await PowerCmd.Apply<AmethystGemPower>(ctx, CombatState.Enemies, effect, Player.Creature,
             null);
     }
+}
+
+public class AmethystGemPower : CustomTemporaryPowerModelWrapper<AmethystGem, StrengthPower>
+{
+    protected override bool InvertInternalPowerAmount => true;
+    public override LocString Title => OriginModel is GemModel gem ? gem.Title : base.Title;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
 }

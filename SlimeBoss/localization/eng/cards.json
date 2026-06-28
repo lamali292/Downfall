@@ -117,7 +117,7 @@
   "SLIMEBOSS-SLIME_BRAWL.title": "Slime Brawl",
   "SLIMEBOSS-SLIME_SLAP.description": "Deal {Damage:diff()} damage.\nDoes not remove [gold]Goop[/gold].",
   "SLIMEBOSS-SLIME_SLAP.title": "Slime Slap",
-  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryThornsPower:diff()} [gold]Thorns[/gold] this turn.",
+  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn.",
   "SLIMEBOSS-SLIME_SPIKES.title": "Slime Spikes",
   "SLIMEBOSS-SLIME_TAP.description": "[gold]Absorb[/gold]: Gain {Energy:energyIcons()} and draw {Cards:diff()} cards.",
   "SLIMEBOSS-SLIME_TAP.title": "Slime Tap",

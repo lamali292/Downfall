@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
@@ -16,7 +17,7 @@ public sealed class RoundhouseKick : HermitCardModel
     {
         WithDamage(13, 5);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithPower<TemporaryStrengthDownPower>(10, 2, false);
+        this.WithPower<RoundhouseKickPower>(10, 2, false);
         this.WithTip<StrengthPower>();
     }
 
@@ -28,6 +29,11 @@ public sealed class RoundhouseKick : HermitCardModel
         await CommonActions.CardAttack(this, play)
             .WithHermitBluntHeavyHitFx()
             .Execute(ctx);
-        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, this, play);
+        await CommonActions.Apply<RoundhouseKickPower>(ctx, this, play);
     }
+}
+
+public class RoundhouseKickPower : CustomTemporaryPowerModelWrapper<RoundhouseKick, StrengthPower>
+{
+    protected override bool InvertInternalPowerAmount => true;
 }

@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
@@ -15,7 +16,7 @@ public class PiercingHide : GuardianCardModel, IGemSocketCard
     public PiercingHide() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        this.WithPower<TemporaryThornsPower>(2, 1, false);
+        this.WithPower<PiercingHidePower>(2, 1, false);
         this.WithTip<ThornsPower>();
         this.WithBrace(3, 1);
     }
@@ -25,7 +26,12 @@ public class PiercingHide : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryThornsPower>(ctx, this);
+        await CommonActions.ApplySelf<PiercingHidePower>(ctx, this);
         await GuardianCmd.Brace(ctx, this);
     }
+}
+
+public class PiercingHidePower : CustomTemporaryPowerModelWrapper<PiercingHide, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
 }

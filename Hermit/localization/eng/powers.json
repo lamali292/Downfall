@@ -38,7 +38,7 @@
   "HERMIT-RUGGED_POWER.description": "When you would take unblocked attack damage, reduce it to [blue]2[/blue].",
   "HERMIT-RUGGED_POWER.smartDescription": "The next [blue]{Amount}[/blue] times you would take unblocked attack damage, reduce it to [blue]2[/blue].",
   "HERMIT-RUGGED_POWER.title": "Rugged",
-  "HERMIT-ETERNAL_POWER.description": "The first [blue]4[/blue] playable cards drawn at the start of each turn cost [blue]1[/blue] less {energyPrefix:energyIcons(1)} that turn.",
+  "HERMIT-ETERNAL_POWER.description": "The first [blue]4[/blue] playable cards drawn at the start of each turn cost less {energyPrefix:energyIcons(1)} that turn.",
   "HERMIT-ETERNAL_POWER.smartDescription": "The first [blue]4[/blue] playable cards drawn at the start of each turn cost {Amount:energyIcons()} that turn.",
   "HERMIT-ETERNAL_POWER.title": "Eternal Form",
   "HERMIT-OVERWHELMING_POWER_POWER.description": "Lose [blue]3[/blue] HP if you end your turn with {energyPrefix:energyIcons(0)}.",
@@ -85,5 +85,8 @@
   "HERMIT-DEATHWISH_POWER.smartDescription": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
   "HERMIT-SCOPE_OUT_POWER.title": "Scope Out",
   "HERMIT-SCOPE_OUT_POWER.description": "[gold]Basic[/gold] [gold]Strikes[/gold] now deal damage to ALL enemies.",
-  "HERMIT-SCOPE_OUT_POWER.smartDescription": "[gold]Basic[/gold] [gold]Strikes[/gold] now deal damage to ALL enemies."
+  "HERMIT-SCOPE_OUT_POWER.smartDescription": "[gold]Basic[/gold] [gold]Strikes[/gold] now deal damage to ALL enemies.",
+  "HERMIT-BURDENED_POWER.title": "Burdened",
+  "HERMIT-BURDENED_POWER.description": "At the start of your turn, gain [gold]Vigor[/gold] and add a [gold]Decay[/gold] into your [gold]Hand[/gold].",
+  "HERMIT-BURDENED_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] [gold]Vigor[/gold] and add {Cards:plural:a|[blue]{}[/blue]} [gold]Decay[/gold] into your [gold]Hand[/gold]."
 }

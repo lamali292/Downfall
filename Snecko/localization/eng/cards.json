@@ -89,7 +89,7 @@
   "SNECKO-PERPETUAL_SERPENT.title": "Perpetual Serpent",
   "SNECKO-POWER_SHOT.description": "Deal {Damage:diff()} damage.\nWhenever you play a Power, return this from the [gold]Discard Pile[/gold] to your [gold]Hand[/gold].",
   "SNECKO-POWER_SHOT.title": "Power Shot",
-  "SNECKO-QUEEN_OF_PENTACLES.description": "Whenever you apply a debuff to an enemy, gain {QueenOfPentaclesPower:diff()} [gold]Block[/gold].",
+  "SNECKO-QUEEN_OF_PENTACLES.description": "Whenever you apply a debuff to an enemy, gain {QueenOfPentaclesPower:diff()} [gold]Block[/gold].{InCombat:cond:|\\n[gold]Gift[/gold]: Debuff.} ",
   "SNECKO-QUEEN_OF_PENTACLES.title": "Queen of Pentacles",
   "SNECKO-QUICK_MOVE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Overflow[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "SNECKO-QUICK_MOVE.title": "Quick Move",

@@ -1,5 +1,5 @@
 {
-  "CHAMP-ADRENAL_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryStrengthUpPower:diff()} [gold]Strength[/gold] this turn.",
+  "CHAMP-ADRENAL_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {AdrenalArmorPower:diff()} [gold]Strength[/gold] this turn.",
   "CHAMP-ADRENAL_ARMOR.title": "Adrenal Armor",
   "CHAMP-ALL_OUT.description": "Perform {Repeat:diff()} times without exiting your [gold]Stance[/gold]:",
   "CHAMP-ALL_OUT.title": "All Out",
@@ -178,7 +178,7 @@
   "CHAMP-ULTIMATE_STANCE.title": "Ultimate Stance",
   "CHAMP-VICIOUS_MOCKERY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold].\nTrigger your current Stance's [gold]Skill Bonus[/gold].",
   "CHAMP-VICIOUS_MOCKERY.title": "Vicious Mockery",
-  "CHAMP-VICTORY_IS_MINE.title": "Victory is Mine! ",
+  "CHAMP-VICTORY_IS_MINE.title": "Victory is Mine!",
   "CHAMP-VICTORY_IS_MINE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-WIND_UP.description": "Choose a [gold]Stance[/gold] to Enter.\nSelect a [gold]Finisher[/gold] from your [gold]Draw Pile[/gold] to add to your [gold]Hand[/gold].",
   "CHAMP-WIND_UP.title": "Wind Up",

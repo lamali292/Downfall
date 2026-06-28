@@ -18,6 +18,7 @@ public class Undervolt : AutomatonCardModel
         WithVar("StrengthLoss", 2, 1);
         this.WithTip<Burn>();
         WithCards(2);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
