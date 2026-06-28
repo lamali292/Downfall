@@ -59,7 +59,6 @@
   "HERMIT-COALESCENCE_POWER.description": "At the end of your turn, [gold]Retain[/gold] up to [blue]1[/blue] card.",
   "HERMIT-COALESCENCE_POWER.smartDescription": "At the end of your turn, [gold]Retain[/gold] up to [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
   "HERMIT-COALESCENCE_POWER.title": "Coalescence",
-  "HERMIT-COALESCENCE_POWER.selectionScreenPrompt": "Choose cards to Retain.",
   "HERMIT-REPRIEVE_POWER.description": "Take an extra turn after this one.",
   "HERMIT-REPRIEVE_POWER.smartDescription": "Take [blue]{Amount}[/blue] extra turns after this one.",
   "HERMIT-REPRIEVE_POWER.title": "Reprieve",
