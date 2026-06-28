@@ -30,8 +30,8 @@ public class Branch : AutomatonCardModel
         var blockOption = CombatState.CreateCard<BranchBlock>(cardPlay.Card.Owner);
 
         // Copy upgraded values across
-        attackOption.DynamicVars.Damage.BaseValue = DynamicVars.Damage.BaseValue;
-        blockOption.DynamicVars.Block.BaseValue = DynamicVars.Block.BaseValue;
+        //attackOption.DynamicVars.Damage.BaseValue = DynamicVars.Damage.BaseValue;
+        //blockOption.DynamicVars.Block.BaseValue = DynamicVars.Block.BaseValue;
 
         var chosen = await CardSelectCmd.FromChooseACardScreen(
             ctx,

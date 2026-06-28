@@ -29,8 +29,8 @@ public partial class AutomatonMainFile : Node
     {
         CustomLocTableManager.Register("encode");
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
-        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
-            new EncodeDescriptionSource());
+        //CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
+        //    new EncodeDescriptionSource());
         
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }

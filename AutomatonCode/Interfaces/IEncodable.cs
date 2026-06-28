@@ -1,4 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -25,4 +27,14 @@ public interface IEncodable
     {
         return EncodeLocString;
     }
+    
+    //Type EncodeModifierType => typeof(ExplodeEncode);
+    Type? EncodeModifierType => null;
+
+}
+
+
+public interface IEncodable<TMod> : IEncodable where TMod : EncodeModifier
+{
+    Type IEncodable.EncodeModifierType => typeof(TMod);
 }
