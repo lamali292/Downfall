@@ -1,10 +1,12 @@
 ﻿using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Interfaces;
+using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards;
 
@@ -20,19 +22,15 @@ public abstract class
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is IEncodable)
-            WithTip(AutomatonTip.Encode);
+        if (this is not IEncodable e) return;
+        WithTip(AutomatonTip.Encode);
+        if (e.EncodeModifierType == null) return;
+        CardModifier.AddModifier(this,
+            (CardModifier)ModelDb.Get(e.EncodeModifierType).MutableClone());
+
     }
-
-
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        if (this is not IEncodable encodable) return;
-        var encode = encodable.EncodeLocString;
-        description.Add("encode", encode);
-    }
-
-
+    
+    
     protected void WithStash(int baseValue, int upgradeValue = 0)
     {
         WithVars(new StashVar(baseValue).WithUpgrade(upgradeValue));

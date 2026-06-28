@@ -47,6 +47,7 @@ public static class AbstractModelExtensions
         {
             CardModel card => card.TargetType,
             PotionModel potion => potion.TargetType,
+            CardModifier cardModifier => cardModifier.Owner?.TargetType ?? TargetType.None,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
