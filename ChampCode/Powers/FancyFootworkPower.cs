@@ -18,7 +18,7 @@ public class FancyFootworkPower : ChampPowerModel, IOnFinisher
             ctx,
             enemies,
             Amount,
-            ValueProp.Unpowered | ValueProp.Unblockable,
+            ValueProp.Unpowered,
             cardPlay.Card.Owner.Creature);
         await PowerCmd.Remove(this);
     }
