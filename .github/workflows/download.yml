@@ -14,6 +14,7 @@ jobs:
       contents: write
     env:
       PARATRANZ_API_KEY_ZHS: ${{ secrets.PARATRANZ_API_KEY_ZHS }}
+      PARATRANZ_API_KEY_DEU: ${{ secrets.PARATRANZ_API_KEY_DEU }}
     steps:
       - uses: actions/checkout@v5
 
