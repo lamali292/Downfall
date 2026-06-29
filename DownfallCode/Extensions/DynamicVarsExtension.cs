@@ -10,8 +10,8 @@ public static class DynamicVarsExtension
         return (EnemyDamageVar)vard._vars[nameof(EnemyDamage)];
     }
 
-    public static DamageVar SelfDamage(this DynamicVarSet vard)
+    public static SelfDamageVar SelfDamage(this DynamicVarSet vard)
     {
-        return (DamageVar)vard._vars[nameof(SelfDamage)];
+        return (SelfDamageVar)vard._vars[nameof(SelfDamage)];
     }
 }

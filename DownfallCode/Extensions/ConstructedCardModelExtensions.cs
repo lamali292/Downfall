@@ -50,7 +50,7 @@ public static class ConstructedCardModelExtensions
 
     public static ConstructedCardModel WithSelfDamage(this ConstructedCardModel card, int baseVal, int upgrade = 0)
     {
-        return card.WithVar(new DamageVar("SelfDamage", baseVal, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
+        return card.WithVar(new SelfDamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
     }
 
     public static ConstructedCardModel WithEnemyDamage(this ConstructedCardModel card, int baseValue, int upgrade = 0)

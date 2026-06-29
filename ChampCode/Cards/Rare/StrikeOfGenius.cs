@@ -17,6 +17,7 @@ public class StrikeOfGenius : ChampCardModel
     {
         WithEnergyTip();
         WithTip(DownfallKeyword.Echo);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

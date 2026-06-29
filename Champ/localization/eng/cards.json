@@ -185,5 +185,7 @@
   "CHAMP-WINNERS_CIRCLE.title": "Winner's Circle",
   "CHAMP-WINNERS_CIRCLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-WREATH_OF_VICTORY.title": "Wreath of Victory",
-  "CHAMP-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold]."
+  "CHAMP-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
+  "CHAMP-REDIRECT.title": "Redirect",
+  "CHAMP-REDIRECT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut the next card you play this turn on top of your [gold]Draw Pile[/gold]. "
 }

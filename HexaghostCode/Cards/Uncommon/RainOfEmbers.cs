@@ -23,10 +23,10 @@ public class RainOfEmbers : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
+        await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
         for (var i = 0; i < x; i++)
         {
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         }
     }
 }
