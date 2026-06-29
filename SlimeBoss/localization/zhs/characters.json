@@ -1,0 +1,16 @@
+{
+  "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]我们是众。我们是一。我们是众。我们是一。[jitter]我们是众。[/jitter][/green][/sine]",
+  "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "噗叽噗叽……",
+  "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "……",
+  "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "史莱姆老大的卡牌现在会出现在奖励和商店中。",
+  "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "史莱姆老大卡牌",
+  "SLIMEBOSS-SLIME_BOSS.description": "腐化之心麾下最黏稠的造物。\n能够合体战斗，也能各自迎敌。",
+  "SLIMEBOSS-SLIME_BOSS.eventDeathPrevention": "我们不能倒下。我们的史莱姆还需要我们！",
+  "SLIMEBOSS-SLIME_BOSS.goldMonologue": "[sine]这么多金币……足够装满整整一池黏浆……[/sine]",
+  "SLIMEBOSS-SLIME_BOSS.possessiveAdjective": "它们的",
+  "SLIMEBOSS-SLIME_BOSS.pronounObject": "它们",
+  "SLIMEBOSS-SLIME_BOSS.pronounPossessive": "它们的",
+  "SLIMEBOSS-SLIME_BOSS.pronounSubject": "它们",
+  "SLIMEBOSS-SLIME_BOSS.title": "史莱姆老大",
+  "SLIMEBOSS-SLIME_BOSS.titleObject": "史莱姆老大"
+}

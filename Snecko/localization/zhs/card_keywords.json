@@ -1,0 +1,6 @@
+{
+  "SNECKO-MUDDLE.title": "混淆",
+  "SNECKO-MUDDLE.description": "本回合耗能变为[blue]0[/blue]到[blue]3[/blue]之间的随机值。\n混淆后的耗能必定改变。",
+  "SNECKO-OVERFLOW.title": "溢出",
+  "SNECKO-OVERFLOW.description": "当你的[gold]手牌[/gold]数量超过[blue]5[/blue]张时，将触发溢出效果。"
+}

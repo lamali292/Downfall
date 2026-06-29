@@ -1,0 +1,6 @@
+{
+  "AUTOMATON-ENCODE.title": "编码",
+  "AUTOMATON-ENCODE.description": "编码一张牌。\n当[blue]3[/blue]张牌被编码后，它们在编码关键词之上的效果会合并为一个耗能为[blue]1[/blue]的方法。",
+  "AUTOMATON-STASH.title": "储藏",
+  "AUTOMATON-STASH.description": "将一张牌放入[gold]储藏堆[/gold]的底部。\n储藏堆最多储藏[blue]5[/blue]张牌。\n在你的回合开始时，抽取[gold]储藏堆[/gold]顶部的牌。"
+}

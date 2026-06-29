@@ -1,0 +1,16 @@
+{
+  "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]指令：保护。指令：保护。指令：保护。[/blue][/sine]",
+  "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "战斗效率正在下降。行动。",
+  "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "……",
+  "GUARDIAN-GUARDIAN.cardsModifierDescription": "守护者的卡牌现在会出现在奖励和商店中。",
+  "GUARDIAN-GUARDIAN.cardsModifierTitle": "守护者卡牌",
+  "GUARDIAN-GUARDIAN.description": "高塔内被编程以保护它的造物之一。\n能在命令之下保护自己免受伤害。",
+  "GUARDIAN-GUARDIAN.eventDeathPrevention": "中止关机程序。尖塔必须被保护。",
+  "GUARDIAN-GUARDIAN.goldMonologue": "[sine]黄金……可以冶炼成各种元件……[/sine]",
+  "GUARDIAN-GUARDIAN.possessiveAdjective": "它的",
+  "GUARDIAN-GUARDIAN.pronounObject": "它",
+  "GUARDIAN-GUARDIAN.pronounPossessive": "它的",
+  "GUARDIAN-GUARDIAN.pronounSubject": "它",
+  "GUARDIAN-GUARDIAN.title": "守护者",
+  "GUARDIAN-GUARDIAN.titleObject": "守护者"
+}

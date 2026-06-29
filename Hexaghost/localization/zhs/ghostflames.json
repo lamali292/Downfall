@@ -1,0 +1,10 @@
+{
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "高热鬼火",
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[gold]点燃条件[/gold]：打出[blue]1[/blue]张[gold]能力[/gold]牌。\n[gold]效果[/gold]：获得[blue]4[/blue]点[gold]格挡[/gold]和[blue]1[/blue]点[gold]力量[/gold]。",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "碾压鬼火",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]点燃条件[/gold]：打出[blue]2[/blue]张[gold]技能[/gold]牌。\n[gold]效果[/gold]：对随机敌人造成[blue]3[/blue]点伤害2次。",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.title": "狱焱鬼火",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]点燃条件[/gold]：花费[blue]3[/blue]点[gold]能量[/gold]。\n[gold]效果[/gold]：每有一个已[gold]点燃[/gold]的鬼火，对随机敌人造成[blue]4[/blue]点伤害。\n若所有鬼火都已[gold]点燃[/gold]，获得[blue]2[/blue]点[gold]热烈[/gold]。\n[gold]熄灭[/gold]其他鬼火。\n在你的回合结束时，[gold]熄灭[/gold]该鬼火。",
+  "HEXAGHOST-SEARING_GHOSTFLAME.title": "灼热鬼火",
+  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]点燃条件[/gold]：打出[blue]2[/blue]张攻击牌。\n[gold]效果[/gold]：给予随机敌人[blue]3[/blue]层[gold]灼魂[/gold]2次。"
+}

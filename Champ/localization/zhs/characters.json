@@ -1,0 +1,16 @@
+{
+  "CHAMP-CHAMP.aromaPrinciple": "[sine][yellow]我从未输过。我永远不会输。[jitter]我不能输。[/jitter][/yellow][/sine]",
+  "CHAMP-CHAMP.banter.alive.endTurnPing": "轮到你了。",
+  "CHAMP-CHAMP.banter.dead.endTurnPing": "……",
+  "CHAMP-CHAMP.cardsModifierDescription": "第一勇士的卡牌现在会出现在奖励和商店中。",
+  "CHAMP-CHAMP.cardsModifierTitle": "第一勇士卡牌",
+  "CHAMP-CHAMP.description": "无可争议的竞技场王者。\n人生中未尝一败。[fly_in][/fly_in]",
+  "CHAMP-CHAMP.eventDeathPrevention": "第一勇士不会倒下。不在这里倒下。永不倒下。",
+  "CHAMP-CHAMP.goldMonologue": "[sine]奖金......观众总是给得很慷慨......[/sine]",
+  "CHAMP-CHAMP.possessiveAdjective": "他的",
+  "CHAMP-CHAMP.pronounObject": "他",
+  "CHAMP-CHAMP.pronounPossessive": "他的",
+  "CHAMP-CHAMP.pronounSubject": "他",
+  "CHAMP-CHAMP.title": "第一勇士",
+  "CHAMP-CHAMP.titleObject": "第一勇士"
+}

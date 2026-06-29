@@ -1,0 +1,16 @@
+{
+  "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]我被束缚。我忍耐。我被束缚。我忍耐。[jitter]我被束缚。[/jitter][/purple][/sine]",
+  "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "……[jitter]来玩……[/jitter]",
+  "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "……",
+  "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "六火亡魂的卡牌现在会出现在奖励和商店中。",
+  "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "六火亡魂卡牌",
+  "HEXAGHOST-HEXAGHOST.description": "尖塔上被诅咒的灵魂。\n作为保护者将被永远地关在容器之中。",
+  "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "我还不能逝去……我的火焰仍在燃烧。",
+  "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]黄金……对死者来说毫无意义……然而……[/sine]",
+  "HEXAGHOST-HEXAGHOST.possessiveAdjective": "她的",
+  "HEXAGHOST-HEXAGHOST.pronounObject": "她",
+  "HEXAGHOST-HEXAGHOST.pronounPossessive": "她的",
+  "HEXAGHOST-HEXAGHOST.pronounSubject": "她",
+  "HEXAGHOST-HEXAGHOST.title": "六火亡魂",
+  "HEXAGHOST-HEXAGHOST.titleObject": "六火亡魂"
+}

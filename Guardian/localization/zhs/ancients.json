@@ -1,0 +1,25 @@
+{
+  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "我对建筑师感到生气",
+  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "继续",
+  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "死吧",
+  "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "都",
+
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]……我已……重建了……你……尖塔的造物……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "继续",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]……现在……走吧……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+  
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]……那块……[aqua]色彩斑斓的宝石[/aqua]……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "继续",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]每次……你被……重建时……都……改变了不少……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "继续",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]……不是……我的……意愿……奇怪的……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+  
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine]……你……知道……你的……目标……吗？[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "回答",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<44 45 53 54 52 4F 59> <41 4C 4C> <49 4E 54 52 55 44 45 52 53>[/jitter][/red]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "继续",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]……[red][jitter]非常好[/jitter][/red]……[/sine]",
+  "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
+}

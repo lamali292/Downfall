@@ -1,0 +1,8 @@
+{
+  "SLIMEBOSS-SLURP.title": "汲取",
+  "SLIMEBOSS-SLURP.description": "将你的[gold]消耗堆[/gold]中的一张“舔舐”牌加入你的[gold]手牌[/gold]。",
+  "SLIMEBOSS-COMMAND.title": "命令",
+  "SLIMEBOSS-COMMAND.description": "令你最右侧的史莱姆攻击。",
+  "SLIMEBOSS-CONSUME.title": "吞食黏液",
+  "SLIMEBOSS-CONSUME.description": "当攻击拥有[gold]黏液[/gold]的敌人时，触发额外效果。"
+}

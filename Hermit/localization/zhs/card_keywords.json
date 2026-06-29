@@ -1,0 +1,12 @@
+{
+  "HERMIT-BOUNTY.title": "赏金",
+  "HERMIT-BOUNTY.description": "普通敌人：[blue]15[/blue]金币。\n精英敌人：[blue]40[/blue]金币。\nBoss敌人：[blue]100[/blue]金币。",
+  "HERMIT-DEADON.title": "精准",
+  "HERMIT-DEADON.description": "精准牌位于[gold]手牌[/gold]中央打出时会触发额外效果。",
+  "HERMIT-DEFEND.title": "防御",
+  "HERMIT-DEFEND.description": "名称中含有“防御”的牌。",
+  "HERMIT-STRIKE.title": "打击",
+  "HERMIT-STRIKE.description": "名称中含有“打击”的牌。",
+  "HERMIT-CONCENTRATE.title": "专注",
+  "HERMIT-CONCENTRATE.description": "本回合你下一张打出的[gold]精准[/gold]牌必定触发[gold]精准[/gold]效果。"
+}

@@ -1,0 +1,16 @@
+{
+  "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]未检测到错误。未检测到错误。[/blue][/sine]",
+  "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]警告：盟友响应超时。[/red]",
+  "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "……",
+  "AUTOMATON-AUTOMATON.cardsModifierDescription": "铜制机械人偶的卡牌现在会出现在奖励和商店中。",
+  "AUTOMATON-AUTOMATON.cardsModifierTitle": "铜制机械人偶卡牌",
+  "AUTOMATON-AUTOMATON.description": "守卫城市的机械体。\n自适应各类战斗情况。",
+  "AUTOMATON-AUTOMATON.eventDeathPrevention": "中止关机。任务未完成。",
+  "AUTOMATON-AUTOMATON.goldMonologue": "[sine]计算数值……足以获取必要组件……[/sine]",
+  "AUTOMATON-AUTOMATON.possessiveAdjective": "它的",
+  "AUTOMATON-AUTOMATON.pronounObject": "它",
+  "AUTOMATON-AUTOMATON.pronounPossessive": "它的",
+  "AUTOMATON-AUTOMATON.pronounSubject": "它",
+  "AUTOMATON-AUTOMATON.title": "铜制机械人偶",
+  "AUTOMATON-AUTOMATON.titleObject": "铜制机械人偶"
+}
