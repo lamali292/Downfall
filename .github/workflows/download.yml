@@ -1,0 +1,44 @@
+name: Paratranz to GitHub
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  download:
+    name: Download Translations
+    environment: PARATRANZ_ENV
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      PARATRANZ_API_KEY_ZHS: ${{ secrets.PARATRANZ_API_KEY_ZHS }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Download translations from Paratranz
+        run: python .github/scripts/para_download.py
+
+      - name: Commit and Push changes
+        run: |
+          if [[ -z $(git status --porcelain) ]]; then
+            echo "No changes detected."
+            exit 0
+          fi
+          git add .
+          git commit -m "Sync translations from Paratranz"
+          git push

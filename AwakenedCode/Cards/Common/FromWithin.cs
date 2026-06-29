@@ -12,12 +12,14 @@ public class FromWithin : AwakenedCardModel
     public FromWithin() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(10, 3);
+        WithEnergy(1);
+        this.WithPower<FromWithinPower>(1, false);
     }
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<FromWithinPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<FromWithinPower>(ctx, this);
     }
 }

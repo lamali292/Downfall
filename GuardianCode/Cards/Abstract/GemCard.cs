@@ -7,6 +7,7 @@ using Guardian.GuardianCode.Gems;
 using Guardian.GuardianCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -101,7 +102,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
         CardModifier.DirectModifiers(this).OfType<GemModel>().First();
 
     public int GemSlots => 0;
-    
+
     public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
 }
 

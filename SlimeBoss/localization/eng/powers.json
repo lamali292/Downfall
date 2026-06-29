@@ -12,8 +12,8 @@
   "SLIMEBOSS-SLIMY_TONGUE_POWER.description": "Effects that apply [gold]Goop[/gold] apply more.",
   "SLIMEBOSS-SLIMY_TONGUE_POWER.smartDescription": "Effects that apply [gold]Goop[/gold] apply [blue]{Amount}[/blue] more.",
   "SLIMEBOSS-FLAME_TACKLE_POWER.title": "Flame Tackle",
-  "SLIMEBOSS-FLAME_TACKLE_POWER.description": "Tackles deal additional damage to enemies.",
-  "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "Tackles deal [blue]{Amount}[/blue] additional damage to enemies.",
+  "SLIMEBOSS-FLAME_TACKLE_POWER.description": "\"Tackle\" cards deal additional damage to enemies.",
+  "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "\"Tackle\" cards deal [blue]{Amount}[/blue] additional damage to enemies.",
   "SLIMEBOSS-POTENCY_POWER.title": "Potency",
   "SLIMEBOSS-POTENCY_POWER.description": "Increases the damage of ALL your Spawned Slimes.\nSecondary effects increase by [blue]1[/blue] for every [blue]2[/blue] Potency (rounding up).",
   "SLIMEBOSS-POTENCY_POWER.smartDescription": "Increases the damage of ALL your Spawned Slimes by [blue]{Amount}[/blue].\nIncrease Secondary effects increase by [blue]{Amount2}[/blue].",
@@ -48,6 +48,6 @@
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.description": "The next card played this turn triggers a [gold]Command[/gold].",
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} played this turn {Amount:plural:triggers|trigger} a [gold]Command[/gold].",
   "SLIMEBOSS-RECKLESSNESS_POWER.title": "Recklessness",
-  "SLIMEBOSS-RECKLESSNESS_POWER.description": "Tackles deal additional damage to you.",
-  "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "Tackles deal [blue]{Amount}[/blue] additional damage to you."
+  "SLIMEBOSS-RECKLESSNESS_POWER.description": "\"Tackle\" cards deal additional damage to you.",
+  "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "\"Tackle\" cards deal [blue]{Amount}[/blue] additional damage to you."
 }
