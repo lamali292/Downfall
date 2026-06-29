@@ -31,18 +31,18 @@ def get_translations(project_id, file_id, token):
 
     keys, values = [], []
     for item in translations:
-        keys.append(item["key"])
         translation = item.get("translation", "")
-        original = item.get("original", "")
-        if item["stage"] in [0, -1]:
-            values.append(original)
-        else:
+        if item["stage"] >= 1:
+            keys.append(item["key"])
             values.append(translation)
 
     return keys, values
 
 
 def save_translation(mod_name, lang_code, filename, translated_dict):
+    if not translated_dict:
+        return
+
     local_dir = Path(mod_name) / "localization" / lang_code
     local_dir.mkdir(parents=True, exist_ok=True)
     output_path = local_dir / filename
@@ -53,24 +53,13 @@ def save_translation(mod_name, lang_code, filename, translated_dict):
             source_content = f.read()
         source_json = json.loads(source_content, object_pairs_hook=OrderedDict)
 
+        output_json = OrderedDict()
         for key, original_value in source_json.items():
             if key in translated_dict:
-                translated_value = translated_dict[key]
-
-                original_str = json.dumps(original_value, ensure_ascii=False)
-                translated_str = json.dumps(translated_value, ensure_ascii=False)
-
-                key_pattern = re.escape(json.dumps(key, ensure_ascii=False))
-                value_pattern = re.escape(original_str)
-
-                pattern = re.compile(f"({key_pattern}\\s*:\\s*){value_pattern}")
-                safe_replacement = translated_str.replace("\\", "\\\\")
-                replacement = f"\\1{safe_replacement}"
-
-                source_content, _ = pattern.subn(replacement, source_content, count=1)
+                output_json[key] = translated_dict[key]
 
         with open(output_path, "w", encoding="utf-8") as f:
-            f.write(source_content)
+            json.dump(output_json, f, ensure_ascii=False, indent=4)
 
     except (IOError, FileNotFoundError):
         with open(output_path, "w", encoding="utf-8") as f:
