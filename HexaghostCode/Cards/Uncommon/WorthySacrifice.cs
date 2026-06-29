@@ -44,8 +44,12 @@ public class WorthySacrifice : HexaghostCardModel
         var newCards = CardFactory.GetDistinctForCombat(Owner, pool, count, Owner.RunState.Rng.CombatCardGeneration)
             .ToList();
         if (IsUpgraded)
-            foreach (var card in newCards)
-                card.UpgradeInternal();
+        {
+            foreach (var card in newCards.Where(card => card.IsUpgradable))
+            {
+                CardCmd.Upgrade(card);
+            }
+        }
         await CardPileCmd.AddGeneratedCardsToCombat(newCards, PileType.Hand, Owner);
     }
 }
