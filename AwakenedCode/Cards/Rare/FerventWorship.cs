@@ -20,7 +20,7 @@ public class FerventWorship : AwakenedCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override Artist? Artist => Artist.Get<Chimedragon>();
+    protected override Artist Artist => Artist.Get<Chimedragon>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

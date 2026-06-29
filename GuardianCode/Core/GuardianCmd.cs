@@ -223,8 +223,10 @@ public static class GuardianCmd
 
         var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
-        if (power.Amount > 0) return;
-        await power.Reset(ctx);
+        while (power.Amount <= 0)
+        {
+            await power.Reset(ctx);
+        }
     }
 
     public static Task Brace(PlayerChoiceContext ctx, CardModel card)

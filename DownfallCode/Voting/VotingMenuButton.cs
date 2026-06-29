@@ -26,7 +26,8 @@ public class VotingMenuButton
 
     public static void Postfix(NMainMenu __instance)
     {
-        if (_button == null || !DownfallConfig.DevMode) return;
+        // TODO : Screen for people to submit art
+        if (_button == null || !DownfallConfig.DevMode || true) return;
         __instance.GetNode<NMainMenuTextButton>("MainMenuTextButtons/SettingsButton").AddSibling(_button);
         _button.GetChild<MegaLabel>(0).Text = "Art Voting";
         _button.Connect(NClickableControl.SignalName.Released, Callable.From<NButton>(OnPress));
