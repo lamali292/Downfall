@@ -8,7 +8,7 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 
-public class VenomPower : SneckoPowerModel
+public class VenomPower() : SneckoPowerModel(PowerType.Debuff)
 {
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
