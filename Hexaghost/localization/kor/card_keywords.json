@@ -1,0 +1,8 @@
+{
+  "HEXAGHOST-ADVANCE.description": "다음 유령불으로 이동합니다. 이동 시 해당 유령불은 [gold]꺼집니다[/gold].",
+  "HEXAGHOST-ADVANCE.title": "순행",
+  "HEXAGHOST-AFTERLIFE.description": "이 카드가 [gold]소멸[/gold]될 때에도 초록색 효과가 발동합니다.",
+  "HEXAGHOST-AFTERLIFE.title": "잔향",
+  "HEXAGHOST-RETRACT.description": "이전 유령불으로 이동합니다. 이동 시 해당 유령불은 [gold]꺼집니다[/gold].",
+  "HEXAGHOST-RETRACT.title": "역행"
+}

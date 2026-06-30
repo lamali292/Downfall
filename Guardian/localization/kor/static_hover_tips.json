@@ -1,0 +1,20 @@
+{
+  "GUARDIAN-ACCELERATE.description": "[gold]정지장[/gold] 상태에서 가장 오른쪽에 있는 카드의 턴 카운터를 감소시킵니다.",
+  "GUARDIAN-ACCELERATE.title": "가속",
+  "GUARDIAN-AGGRAVATE.description": "전투 시작 시, 이 카드의 비용이 [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img]만큼 증가합니다.",
+  "GUARDIAN-AGGRAVATE.title": "심화",
+  "GUARDIAN-BRACE.description": "[gold]모드 전환[/gold]을 발동하는 데 필요한 체력 감소량을 줄입니다.",
+  "GUARDIAN-BRACE.title": "대비",
+  "GUARDIAN-DEFENSIVE_MODE.description": "[gold]자세[/gold].\n방어 모드 동안 [blue]3[/blue] [gold]가시[/gold]를 얻고 [gold]방어도[/gold]가 사라지지 않습니다.",
+  "GUARDIAN-DEFENSIVE_MODE.title": "방어 모드",
+  "GUARDIAN-PACKAGE.description": "패키지는 선택한 첨탑의 구조물에서 영감을 받은 3장의 카드를 포함합니다.",
+  "GUARDIAN-PACKAGE.title": "패키지",
+  "GUARDIAN-POLISH.description": "[gold]약화[/gold], [gold]취약[/gold], [gold]손상[/gold] 수치를 각각 X만큼 줄입니다.\n일시적인 버프 스택을 영구적인 버프로 변환합니다.",
+  "GUARDIAN-POLISH.title": "연마",
+  "GUARDIAN-SOCKET.description": "휴식터에서 이 소켓에 [gold]보석[/gold]을 장착할 수 있습니다.",
+  "GUARDIAN-SOCKET.title": "소켓",
+  "GUARDIAN-STASIS.description": "[gold]정지장[/gold] 상태의 카드는 비용 +[blue]1[/blue]만큼의 턴 동안 머무릅니다. 정지장 상태에서 벗어나면 [gold]패[/gold]로 돌아오며, 사용하기 전까지는 비용이 들지 않습니다.",
+  "GUARDIAN-STASIS.title": "정지장",
+  "GUARDIAN-TICK.description": "이 카드의 [gold]정지장[/gold] 카운터가 감소할 때마다 틱 효과가 활성화됩니다.",
+  "GUARDIAN-TICK.title": "틱"
+}

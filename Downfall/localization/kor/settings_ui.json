@@ -1,0 +1,6 @@
+{
+  "DOWNFALL-UPLOAD_METRICS.hover.desc": "버그 수정 및 모드의 밸런스 조절에 도움을 주기 위해 게임 플레이 데이터를 전송합니다. 다운폴(Downfall) 캐릭터로 플레이할 때만 전송됩니다.\n\n개인 식별 정보는 절대로 수집되지 않습니다.",
+  "DOWNFALL-UPLOAD_METRICS.title": "게임 플레이 데이터 전송",
+  "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "투표",
+  "DOWNFALL.mod_title": "다운폴"
+}

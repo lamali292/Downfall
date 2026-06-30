@@ -1,0 +1,8 @@
+{
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "다음 생성하는 함수는 이번 턴에 비용없이 사용합니다.",
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.title": "연금술 영약",
+  "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "무작위 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택하여 [gold]기록[/gold]합니다. 함수를 생성할 때까지 반복합니다.",
+  "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "키오의 영리한 혼합물",
+  "AUTOMATON-VEXING_DRAUGHT_POTION.description": "[gold]힘[/gold]을 [blue]{StrengthPower:diff()}[/blue] 얻습니다.\n[gold]민첩[/gold]을 [blue]{DexterityPower:diff()}[/blue] 얻습니다.\n[gold]화상[/gold] [blue]2[/blue]장을 [gold]보관[/gold]합니다.",
+  "AUTOMATON-VEXING_DRAUGHT_POTION.title": "성가신 물약"
+}

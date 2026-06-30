@@ -1,0 +1,4 @@
+{
+  "AUTOMATON-STASH_PILE": "보관 더미",
+  "AUTOMATON-TO_STASH": "보관할 {Amount:plural:카드 한 장을|[blue]{}[/blue]장의 카드를} 선택하세요"
+}

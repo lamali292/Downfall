@@ -1,0 +1,5 @@
+{
+  "COMBAT_REWARD_ADD_GEMS": "{Amount:plural:a [gold]보석[/gold]|{Amount}개의 [gold]보석[/gold]}을 [gold]덱[/gold]에 추가합니다.",
+  "GUARDIAN-GEM": "보석",
+  "GUARDIAN-GEM_SOCKET_SELECT": "보석을 장착할 카드를 선택하세요."
+}

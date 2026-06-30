@@ -1,0 +1,12 @@
+{
+  "AWAKENED-AWAKEN.description": "이번 전투에서 파워 카드를 7장 발동하면, [gold]각성[/gold]합니다.\n[gold]각성됨[/gold] 상태가 되면, 남은 전투 동안 [gold]구현된[/gold] 모든 주문 카드를 [gold]강화[/gold]합니다.",
+  "AWAKENED-AWAKEN.title": "각성",
+  "AWAKENED-CHANT.description": "이번 전투에서 마지막으로 사용한 카드가 파워 카드였다면, 찬가 효과를 가진 카드가 남은 전투 동안 더 강력해집니다.",
+  "AWAKENED-CHANT.title": "찬가",
+  "AWAKENED-CHANTED.description": "이 카드의 효과가 더 강력해졌습니다.",
+  "AWAKENED-CHANTED.title": "성가",
+  "AWAKENED-CONJURE.description": "주문서의 다음 카드를 [gold]패[/gold]에 생성합니다.",
+  "AWAKENED-CONJURE.title": "구현",
+  "AWAKENED-DRAINED.description": "잃을 에너지가 없었더라도, {Energy:energyIcons()}를 잃게 만든 모든 효과를 의미합니다.\n(카드를 사용하는 데 소모한 {Energy:energyIcons()}는 포함되지 않습니다.)",
+  "AWAKENED-DRAINED.title": "고갈됨"
+}

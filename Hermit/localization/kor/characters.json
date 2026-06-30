@@ -1,0 +1,17 @@
+{
+  "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...화약 냄새가 나는군...[/blue][/sine]",
+  "HERMIT-HERMIT.banter.alive.endTurnPing": "째깍 째깍...",
+  "HERMIT-HERMIT.banter.dead.endTurnPing": "...",
+  "HERMIT-HERMIT.cardsModifierDescription": "이제 보상과 상점에서 은둔자 카드가 등장합니다.",
+  "HERMIT-HERMIT.cardsModifierTitle": "허밋",
+  "HERMIT-HERMIT.description": "먼 곳에서 찾아온 고독한 언데드 총잡이입니다. 피할 수 없는 과거의 망령들에게 쫓기고 있습니다.",
+  "HERMIT-HERMIT.eventDeathPrevention": "아직 아니야... 아직 끝내지 못한 일이 있어...",
+  "HERMIT-HERMIT.goldMonologue": "[sine]이 동전들이라면... 탄약을 좀 살 수 있겠어...[/sine]",
+  "HERMIT-HERMIT.possessiveAdjective": "그의",
+  "HERMIT-HERMIT.pronounObject": "그를",
+  "HERMIT-HERMIT.pronounPossessive": "그의",
+  "HERMIT-HERMIT.pronounSubject": "그는",
+  "HERMIT-HERMIT.title": "허밋",
+  "HERMIT-HERMIT.titleObject": "허밋",
+  "HERMIT-HERMIT.unlockText": "[pink]{Prerequisite}[/pink](으)로 게임을 1회 플레이하여 이 캐릭터를 잠금 해제하세요."
+}

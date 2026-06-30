@@ -1,0 +1,12 @@
+{
+  "AWAKENED-CAW.chant": "이번 전투 동안 모든 [gold]까악[/gold] 카드의 피해량이 {Caw:diff()} 증가합니다.",
+  "AWAKENED-FEATHER_FLARE.chant": "다음 턴에 카드를 1장 더 뽑습니다.",
+  "AWAKENED-GATHER.chant": "[gold]버린 카드 더미[/gold]에서 카드를 1장 [gold]패[/gold]로 가져옵니다.",
+  "AWAKENED-GREAT_HEX.chant": "대상 적은 매 턴 종료 시 {GreatHexPower:diff()}의 [gold]마나 연소[/gold]를 얻습니다.",
+  "AWAKENED-NIHIL.chant": "모든 적이 자신의 [gold]마나 연소[/gold]만큼 체력을 잃습니다.",
+  "AWAKENED-RAVEN_STRIKE.chant": "[gold]뽑을 카드 더미[/gold]의 맨 위 카드를 사용합니다.",
+  "AWAKENED-RECITATION.chant": "다시 {Damage:diff()}의 피해를 줍니다.",
+  "AWAKENED-SIPHON.chant": "이번 턴에 [gold]힘[/gold]을 {StrengthPower:diff()} 훔칩니다.",
+  "AWAKENED-TAKE_FLIGHT.chant": "다음 턴 시작 시 [gold]방어도[/gold]가 사라지지 않습니다.",
+  "AWAKENED-VICTUALS.chant": "{Energy:energyIcons()}를 얻습니다."
+}

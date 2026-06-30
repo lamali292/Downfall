@@ -1,0 +1,16 @@
+{
+  "COLLECTOR-COLLECTOR.aromaPrinciple": "[sine][purple]모든 것은 나의 것. 모든 것은 나의 것이 되리라. [jitter]전부 다.[/jitter][/purple][/sine]",
+  "COLLECTOR-COLLECTOR.banter.alive.endTurnPing": "수집할 영혼들이 있군.",
+  "COLLECTOR-COLLECTOR.banter.dead.endTurnPing": "...",
+  "COLLECTOR-COLLECTOR.cardsModifierDescription": "수집가 카드가 보상과 상점에 등장합니다.",
+  "COLLECTOR-COLLECTOR.cardsModifierTitle": "수집가 카드",
+  "COLLECTOR-COLLECTOR.description": "도시의 악명 높은 마법사.\n영혼과 장신구를 가리지 않고 수집한다.",
+  "COLLECTOR-COLLECTOR.eventDeathPrevention": "내 수집품은 아직 완성되지 않았다.",
+  "COLLECTOR-COLLECTOR.goldMonologue": "[sine]이런 부라니... 내 수집품에 더할 훌륭한 추가품이 되겠군...[/sine][/sine]",
+  "COLLECTOR-COLLECTOR.possessiveAdjective": "그녀의",
+  "COLLECTOR-COLLECTOR.pronounObject": "그녀를",
+  "COLLECTOR-COLLECTOR.pronounPossessive": "그녀의 것",
+  "COLLECTOR-COLLECTOR.pronounSubject": "그녀",
+  "COLLECTOR-COLLECTOR.title": "수집가",
+  "COLLECTOR-COLLECTOR.titleObject": "수집가"
+}

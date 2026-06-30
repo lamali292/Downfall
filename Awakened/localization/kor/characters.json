@@ -1,0 +1,16 @@
+{
+  "AWAKENED-AWAKENED.aromaPrinciple": "[sine][purple]공허가 부른다. 나는 응답한다. 공허가 부른다. 나는 응답한다. [jitter]나는 항상 응답한다.[/jitter][/purple][/sine]",
+  "AWAKENED-AWAKENED.banter.alive.endTurnPing": "영겁이 기다린다.",
+  "AWAKENED-AWAKENED.banter.dead.endTurnPing": "...",
+  "AWAKENED-AWAKENED.cardsModifierDescription": "이제 깨어난 자의 카드가 보상과 상점에 등장합니다.",
+  "AWAKENED-AWAKENED.cardsModifierTitle": "깨어난 자 카드",
+  "AWAKENED-AWAKENED.description": "광신도의 승리이자 저너머의 불멸하는 흑마법사입니다.\n공허와 다른 모든 원소를 다루는 힘을 지니고 있습니다.",
+  "AWAKENED-AWAKENED.eventDeathPrevention": "나는 불멸이다. 이토록 하찮은 것에 쓰러질 수 없다.",
+  "AWAKENED-AWAKENED.goldMonologue": "[sine]필멸을 초월한 자에게 부는 아무 의미가 없다... 하지만...[/sine]",
+  "AWAKENED-AWAKENED.possessiveAdjective": "그의",
+  "AWAKENED-AWAKENED.pronounObject": "그를",
+  "AWAKENED-AWAKENED.pronounPossessive": "그의",
+  "AWAKENED-AWAKENED.pronounSubject": "그는",
+  "AWAKENED-AWAKENED.title": "깨어난 자",
+  "AWAKENED-AWAKENED.titleObject": "깨어난 자"
+}

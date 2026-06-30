@@ -1,0 +1,8 @@
+{
+  "SLIMEBOSS-COMMAND.description": "선두의 슬라임이 공격합니다.",
+  "SLIMEBOSS-COMMAND.title": "명령",
+  "SLIMEBOSS-CONSUME.description": "[gold]점액[/gold]이 있는 적에게 공격을 사용할 때 발동하는 보너스 효과.",
+  "SLIMEBOSS-CONSUME.title": "소모",
+  "SLIMEBOSS-SLURP.description": "[gold]소멸된 카드 더미[/gold]에서 무작위 '핥기' 카드를 손으로 가져옵니다.",
+  "SLIMEBOSS-SLURP.title": "호로룩"
+}

@@ -1,0 +1,6 @@
+{
+  "AUTOMATON-ENCODE.description": "카드를 부호화합니다.\n3장의 카드가 부호화되면, (기록 키워드 위의) 효과들이 병합되어 비용이 [blue]1[/blue]인 함수가 됩니다.",
+  "AUTOMATON-ENCODE.title": "부호화",
+  "AUTOMATON-STASH.description": "청동 구체 안에 카드를 넣습니다. 최대 [blue]5[/blue]장까지 가능합니다. 매 턴 시작 시 가장 오래된 카드를 뽑습니다.",
+  "AUTOMATON-STASH.title": "보관"
+}

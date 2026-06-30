@@ -1,0 +1,16 @@
+{
+  "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]오류가 감지되지 않았습니다. 오류가 감지되지 않았습니다.[/blue][/sine]",
+  "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]경고: 아군 응답 시간이 초과되었습니다.[/red]",
+  "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
+  "AUTOMATON-AUTOMATON.cardsModifierDescription": "이제 청동 자동인형 카드가 보상과 상점에 나타납니다.",
+  "AUTOMATON-AUTOMATON.cardsModifierTitle": "청동 자동인형 카드",
+  "AUTOMATON-AUTOMATON.description": "도시의 기계 수호자.\n어떤 전투 상황에도 적응합니다.",
+  "AUTOMATON-AUTOMATON.eventDeathPrevention": "종료 거부됨. 임무 미완료.",
+  "AUTOMATON-AUTOMATON.goldMonologue": "[sine]가치 계산 중... 필요한 부품을 획득하기에 충분함...[/sine]",
+  "AUTOMATON-AUTOMATON.possessiveAdjective": "그것의",
+  "AUTOMATON-AUTOMATON.pronounObject": "그것",
+  "AUTOMATON-AUTOMATON.pronounPossessive": "그것의",
+  "AUTOMATON-AUTOMATON.pronounSubject": "그것",
+  "AUTOMATON-AUTOMATON.title": "청동 자동인형",
+  "AUTOMATON-AUTOMATON.titleObject": "청동 자동인형"
+}

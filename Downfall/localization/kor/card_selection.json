@@ -1,0 +1,11 @@
+{
+  "DOWNFALL-ADD_ETHEREAL": "[gold]휘발성[/gold]으로 만들 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_APPLY": "효과를 적용할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_CONJURE": "[gold]구현[/gold]할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_DECK": "[gold]덱[/gold]에 추가할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_HAND": "[gold]손패[/gold]에 추가할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_OTHER_HANDS": "다른 플레이어의 [gold]손패[/gold]에 추가할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_PLAY": "플레이할 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_STASIS": "[gold]정지장[/gold] 상태로 만들 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요.",
+  "DOWNFALL-TO_TOP": "[gold]뽑을 카드 더미[/gold] 맨 위에 놓을 {Amount:plural:카드를|카드를 [blue]{}[/blue]장} 선택하세요."
+}

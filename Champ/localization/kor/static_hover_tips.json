@@ -1,0 +1,15 @@
+{
+  "CHAMP-BERSERKER.description": "[gold]태세[/gold]. 너무 긺.",
+  "CHAMP-BERSERKER.title": "광란",
+  "CHAMP-COMBO.description": "나열된 [gold]태세[/gold]에서 사용 시 추가 효과.",
+  "CHAMP-COMBO.title": "연계",
+  "CHAMP-DEFENSIVE.description": "[gold]태세[/gold]. 너무 긺.",
+  "CHAMP-DEFENSIVE.title": "철벽",
+  "CHAMP-FINISHER.description": "[gold]태세[/gold]가 필요합니다.\n마무리 카드 사용 후, 태세에서 벗어나 마무리 효과를 발동합니다.",
+  "CHAMP-FINISHER.title": "마무리",
+  "CHAMP-STANCE.description": "한 번에 하나의 태세만 취할 수 있습니다.",
+  "CHAMP-STANCE.title": "태세",
+  "CHAMP-ULTIMATE.description": "[gold]태세[/gold]. 너무 긺.",
+  "CHAMP-ULTIMATE.title": "챔피언",
+  "TRIGGER_SKILL_BONUS.title": "현재 [gold]태세[/gold]의 [gold]스킬 보너스[/gold]를 발동합니다."
+}

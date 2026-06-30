@@ -1,0 +1,10 @@
+{
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]1[/blue]개의 [gold]파워[/gold] 카드를 사용하면 [gold]점화[/gold]됩니다.\n[blue]4[/blue]의 [gold]방어도[/gold]와 [blue]1[/blue]의 [gold]힘[/gold]을 얻습니다.",
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "고양의 유령불",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]2[/blue]개의 [gold]스킬[/gold] 카드를 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [blue]3[/blue]의 피해를 두 번 가합니다.",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "파쇄의 유령불",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]3[/blue]의 [gold]에너지[/gold]를 소모하면 [gold]점화[/gold]됩니다.\n점화된 유령불 하나당 무작위 적에게 [blue]4[/blue]의 피해를 입히고, 다른 유령불들은 [gold]끕니다[/gold].\n모든 유령불이 [gold]점화[/gold]된 상태라면 [blue]2[/blue]의 [gold]고조[/gold]를 얻습니다.\n턴 종료 시 [gold]소등됩니다[/gold].",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.title": "심연의 유령불",
+  "HEXAGHOST-SEARING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]2[/blue]개의 공격 카드를 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [blue]3[/blue]의 [gold]영혼 화상[/gold]을 두 번 새깁니다.",
+  "HEXAGHOST-SEARING_GHOSTFLAME.title": "낙인의 유령불"
+}

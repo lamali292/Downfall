@@ -1,0 +1,16 @@
+{
+  "CHAMP-CHAMP.aromaPrinciple": "[sine][yellow]나는 결코 패배하지 않는다. 나는 절대 패배하지 않을 것이다. [jitter]나는 패배할 수 없다.[/jitter][/yellow][/sine]",
+  "CHAMP-CHAMP.banter.alive.endTurnPing": "움직여라.",
+  "CHAMP-CHAMP.banter.dead.endTurnPing": "...",
+  "CHAMP-CHAMP.cardsModifierDescription": "투사 카드가 보상 및 상점에 나타납니다.",
+  "CHAMP-CHAMP.cardsModifierTitle": "투사 카드",
+  "CHAMP-CHAMP.description": "투기장의 부동의 왕.\n단 한 번도 패배한 적이 없다.[fly_in][/fly_in]",
+  "CHAMP-CHAMP.eventDeathPrevention": "챔피언은 쓰러지지 않는다. 여기서는 안 된다. 절대 안 된다.",
+  "CHAMP-CHAMP.goldMonologue": "[sine]상금... 관중들은 항상 후하게 돈을 지불하지...[/sine]",
+  "CHAMP-CHAMP.possessiveAdjective": "그의",
+  "CHAMP-CHAMP.pronounObject": "그를",
+  "CHAMP-CHAMP.pronounPossessive": "그의",
+  "CHAMP-CHAMP.pronounSubject": "그는",
+  "CHAMP-CHAMP.title": "투사",
+  "CHAMP-CHAMP.titleObject": "투사"
+}

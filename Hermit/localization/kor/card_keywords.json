@@ -1,0 +1,12 @@
+{
+  "HERMIT-BOUNTY.description": "일반 적: [blue]15[/blue] 골드.\n엘리트 적: [blue]40[/blue] 골드.\n보스: [blue]100[/blue] 골드.",
+  "HERMIT-BOUNTY.title": "현상금",
+  "HERMIT-CONCENTRATE.description": "이번 턴에 플레이하는 다음 [gold]정조준[/gold] 카드가 위치에 상관없이 효과를 발동합니다.",
+  "HERMIT-CONCENTRATE.title": "집중",
+  "HERMIT-DEADON.description": "정조준 카드는 내 손패의 중앙에 위치할 때 보너스 효과를 얻습니다.",
+  "HERMIT-DEADON.title": "정조준",
+  "HERMIT-DEFEND.description": "“수비”가 포함된 카드입니다.",
+  "HERMIT-DEFEND.title": "수비",
+  "HERMIT-STRIKE.description": "“타격”이 포함된 카드입니다.",
+  "HERMIT-STRIKE.title": "타격"
+}

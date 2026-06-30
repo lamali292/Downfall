@@ -1,0 +1,6 @@
+{
+  "SNECKO-MUDDLE.description": "카드를 혼란시키면 이번 턴 동안 해당 카드의 비용이 0에서 3 사이의 무작위 값으로 변경됩니다.",
+  "SNECKO-MUDDLE.title": "혼란(Muddle)",
+  "SNECKO-OVERFLOW.description": "과류 효과는 [gold]손패[/gold]에 카드가 5장보다 많을 때 활성화됩니다.",
+  "SNECKO-OVERFLOW.title": "과류(Overflow)"
+}

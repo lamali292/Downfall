@@ -1,0 +1,16 @@
+{
+  "SNECKO-SNECKO.aromaPrinciple": "[sine][green]호오오혼란스러운 게 조오오아. 호오오혼란이 내 고오오향이야. [jitter]호오오혼란이 바로 나야.[/jitter][/green][/sine]",
+  "SNECKO-SNECKO.banter.alive.endTurnPing": "[jitter]고오오옷...[/jitter]",
+  "SNECKO-SNECKO.banter.dead.endTurnPing": "...",
+  "SNECKO-SNECKO.cardsModifierDescription": "이제 보상과 상점에서 스네코 카드가 등장합니다.",
+  "SNECKO-SNECKO.cardsModifierTitle": "스네코 카드",
+  "SNECKO-SNECKO.description": "도시 태생의 뱀 같은 생물입니다. 포식자를 혼란스럽게 만드는 눈빛으로 유명합니다.",
+  "SNECKO-SNECKO.eventDeathPrevention": "스스스네코는 사아아라남아서 더 [jitter]호오오혼란[/jitter]해져야 해!",
+  "SNECKO-SNECKO.goldMonologue": "[sine]바아아안짝이는 게 처어어음 많아... 스스스네코가 [jitter]전부 다...[/jitter] 살 수도 있겠어...[/sine]",
+  "SNECKO-SNECKO.possessiveAdjective": "그것의",
+  "SNECKO-SNECKO.pronounObject": "그것을",
+  "SNECKO-SNECKO.pronounPossessive": "그것의",
+  "SNECKO-SNECKO.pronounSubject": "그것이",
+  "SNECKO-SNECKO.title": "스네코",
+  "SNECKO-SNECKO.titleObject": "스네코"
+}

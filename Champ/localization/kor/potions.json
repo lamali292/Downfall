@@ -1,0 +1,8 @@
+{
+  "CHAMP-BOTTLED_TECHNIQUE.description": "현재 [gold]태세[/gold]의 [gold]스킬 보너스[/gold]를 [blue]{Repeat:diff()}[/blue]번 발동합니다.",
+  "CHAMP-BOTTLED_TECHNIQUE.title": "병에 담긴 기술",
+  "CHAMP-BREW_OF_SHARPNESS.description": "[blue]{CounterPower:diff()}[/blue]의 [gold]반격[/gold]을 얻습니다.",
+  "CHAMP-BREW_OF_SHARPNESS.title": "예리함의 비약",
+  "CHAMP-STIMPACK.description": "[blue]1[/blue]턴 동안 [gold]챔피언의 태세[/gold]를 취합니다.",
+  "CHAMP-STIMPACK.title": "스팀팩"
+}

@@ -1,0 +1,14 @@
+{
+  "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]스킬 보너스[/gold]: [blue]{BerserkerSkill}[/blue] [gold]활력[/gold]을 얻습니다.\n[gold]마무리[/gold]: [blue]{BerserkerFinisher}[/blue] [gold]힘[/gold]을 얻습니다.",
+  "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: {BerserkerFinisher} [gold]힘[/gold]을 얻습니다.",
+  "CHAMP-CHAMP_BERSERKER_STANCE.title": "광란 태세",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]스킬 보너스[/gold]: [blue]{DefensiveSkill}[/blue] [gold]반격[/gold]을 얻습니다.\n[gold]마무리[/gold]: [blue]{DefensiveFinisher}[/blue] [gold]방어도[/gold]를 얻습니다.",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: {DefensiveFinisher} [gold]방어도[/gold]를 얻습니다.",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "철벽 태세",
+  "CHAMP-CHAMP_NO_STANCE.description": "",
+  "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]마무리[/gold]",
+  "CHAMP-CHAMP_NO_STANCE.title": "태세 없음",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]스킬 보너스[/gold]: [blue]{BerserkerSkill}[/blue] [gold]활력[/gold]과 [blue]{DefensiveSkill}[/blue] [gold]반격[/gold]을 얻습니다.\n[gold]마무리[/gold]: [blue]{BerserkerFinisher}[/blue] [gold]힘[/gold]과 [blue]{DefensiveFinisher}[/blue] [gold]방어도[/gold]를 얻습니다.",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: {BerserkerFinisher} [gold]힘[/gold]과 {DefensiveFinisher} [gold]방어도[/gold]를 얻습니다.",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.title": "챔피언의 태세"
+}

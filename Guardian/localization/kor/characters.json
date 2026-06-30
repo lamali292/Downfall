@@ -1,0 +1,16 @@
+{
+  "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]지침: 보호. 지침: 보호. 지침: 보호.[/blue][/sine]",
+  "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "전투 효율 감소 중. 이동하십시오.",
+  "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "...",
+  "GUARDIAN-GUARDIAN.cardsModifierDescription": "수호자 카드가 보상 및 상점에 나타납니다.",
+  "GUARDIAN-GUARDIAN.cardsModifierTitle": "수호자 카드",
+  "GUARDIAN-GUARDIAN.description": "첨탑을 방어하도록 프로그래밍된 구조물.\n명령에 따라 피해로부터 스스로를 방어할 수 있습니다.",
+  "GUARDIAN-GUARDIAN.eventDeathPrevention": "종료 시퀀스 거부됨. 첨탑은 보호되어야 합니다.",
+  "GUARDIAN-GUARDIAN.goldMonologue": "[sine]골드... 부품으로 제련할 수 있을지도...[/sine]",
+  "GUARDIAN-GUARDIAN.possessiveAdjective": "그것의",
+  "GUARDIAN-GUARDIAN.pronounObject": "그것",
+  "GUARDIAN-GUARDIAN.pronounPossessive": "그것의",
+  "GUARDIAN-GUARDIAN.pronounSubject": "그것",
+  "GUARDIAN-GUARDIAN.title": "수호자",
+  "GUARDIAN-GUARDIAN.titleObject": "수호자"
+}

@@ -1,0 +1,8 @@
+{
+  "GUARDIAN-LIQUID_ACCELERANT.description": "카드가 [gold]정지장[/gold] 상태에서 벗어날 때까지 [gold]가속[/gold].",
+  "GUARDIAN-LIQUID_ACCELERANT.title": "액체 촉진제",
+  "GUARDIAN-POLISHING_OIL.description": "[gold]연마[/gold] [blue]{Polish:diff()}[/blue].",
+  "GUARDIAN-POLISHING_OIL.title": "연마유",
+  "GUARDIAN-QUANTUM_ELIXIR.description": "[blue]{Cards:diff()}[/blue]장의 카드 중 [blue]1[/blue]장을 선택해 [gold]정지장[/gold] 상태로 만듭니다.\n[gold]정지장[/gold] 슬롯이 꽉 찰 때까지 반복합니다.",
+  "GUARDIAN-QUANTUM_ELIXIR.title": "양자 비약"
+}

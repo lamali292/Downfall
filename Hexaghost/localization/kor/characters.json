@@ -1,0 +1,16 @@
+{
+  "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]나는 구속되었다. 나는 견딘다. 나는 구속되었다. 나는 견딘다. [jitter]나는 구속되었다.[/jitter][/purple][/sine]",
+  "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "...[jitter]빨리해...[/jitter]",
+  "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "...",
+  "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "육각령 카드가 보상과 상점에 등장합니다.",
+  "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "육각령 카드",
+  "HEXAGHOST-HEXAGHOST.description": "첨탑의 저주받은 영혼.\n수호자로서 영원한 운명에 봉인되었다.",
+  "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "아직 떠날 수 없어... 내 불꽃은 여전히 타오르고 있으니까.",
+  "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]골드... 죽은 자에겐 아무 의미도 없지... 하지만...",
+  "HEXAGHOST-HEXAGHOST.possessiveAdjective": "그녀의",
+  "HEXAGHOST-HEXAGHOST.pronounObject": "그녀를",
+  "HEXAGHOST-HEXAGHOST.pronounPossessive": "그녀의 것",
+  "HEXAGHOST-HEXAGHOST.pronounSubject": "그녀",
+  "HEXAGHOST-HEXAGHOST.title": "육각령",
+  "HEXAGHOST-HEXAGHOST.titleObject": "육각령"
+}

@@ -1,0 +1,8 @@
+{
+  "HERMIT-BLACK_BILE.description": "[blue]{BruisePower:diff()}[/blue]의 [gold]멍[/gold]을 적용합니다.",
+  "HERMIT-BLACK_BILE.title": "검은 담즙",
+  "HERMIT-LIQUID_VOID.description": "[gold]소멸된 카드 더미[/gold]에서 카드 1장을 [gold]손패[/gold]로 가져옵니다.\n그 카드는 이번 턴 동안 비용이 0이 됩니다.",
+  "HERMIT-LIQUID_VOID.title": "액상 공허",
+  "HERMIT-TONIC.description": "[blue]{RuggedPower:diff()}[/blue]의 [gold]거칢[/gold]을 얻습니다.",
+  "HERMIT-TONIC.title": "강장제"
+}
