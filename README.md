@@ -18,13 +18,13 @@ Copy `local.props.example` to `local.props` and set the paths.
 
 #### 3. Link the assets, run the ImageGen & compile setup script
 ```bash
-link-assets.ps1
-setup.ps1
+build/link-assets.ps1
+build/setup.ps1
 ```
 
 #### 4. Pack the assets
 ```bash
-dotnet publish PublishAll/PublishAll.csproj
+dotnet publish Downfall.csproj
 ```
 
 ### Re-compilation and re-packing
@@ -45,7 +45,7 @@ dotnet run --project ImageGen/ImageGen.csproj
 If the code is changed but the assets are not, you can just compile the code without packing the assets. This will significantly reduce the time needed for testing.
 
 ```bash
-dotnet build Awakened.csproj
+dotnet build Downfall.csproj
 ```
 
 #### Pack
@@ -54,5 +54,5 @@ If the assets are changed, you need to pack the assets into `.pck` files. This p
 **This process also automatically compiles the code**.
 
 ```bash
-dotnet publish Awakened.csproj
+dotnet publish Downfall.csproj
 ```
