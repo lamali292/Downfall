@@ -1,15 +1,17 @@
 param([switch]$Force)
-
 $ErrorActionPreference = "Stop"
-Set-Location $PSScriptRoot
+
+# This script lives in build/, but local.props and the symlink targets
+# (src, images, etc.) live at the project root — one level up.
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+Set-Location $ProjectRoot
 
 # Parse AssetSourcePath from local.props
-$localProps = "local.props"
+$localProps = Join-Path $ProjectRoot "local.props"
 if (-not (Test-Path $localProps)) {
     Write-Host "ERROR: local.props not found. Copy local.props.example to local.props first." -ForegroundColor Red
     exit 1
 }
-
 $xml = [xml](Get-Content $localProps)
 $assetSourcePath = $xml.Project.PropertyGroup.AssetSourcePath
 if (-not $assetSourcePath -or -not (Test-Path $assetSourcePath)) {
@@ -17,19 +19,15 @@ if (-not $assetSourcePath -or -not (Test-Path $assetSourcePath)) {
     exit 1
 }
 Write-Host "Asset source: $assetSourcePath"
-
 $folders = @("src", "images", "fonts", "localization", "materials", "models",
              "scenes", "animations", "banks", "debug_audio", "shaders", "themes", "addons")
-
 foreach ($folder in $folders) {
-    $linkPath = Join-Path $PSScriptRoot $folder
+    $linkPath = Join-Path $ProjectRoot $folder
     $targetPath = Join-Path $assetSourcePath $folder
-
     if (-not (Test-Path $targetPath)) {
         Write-Host "SKIP $folder (target not found: $targetPath)" -ForegroundColor DarkGray
         continue
     }
-
     if (Test-Path $linkPath) {
         if ($Force) {
             Remove-Item -LiteralPath $linkPath -Recurse -Force
@@ -39,9 +37,7 @@ foreach ($folder in $folders) {
             continue
         }
     }
-
     New-Item -ItemType Junction -Path $linkPath -Target $targetPath -Force | Out-Null
     Write-Host "LINKED $folder -> $targetPath" -ForegroundColor Green
 }
-
 Write-Host "`nSymlinks ready." -ForegroundColor Green

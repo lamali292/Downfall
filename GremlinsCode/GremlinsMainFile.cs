@@ -1,6 +1,7 @@
 using System.Reflection;
 using BaseLib.Patches.Saves;
 using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Godot;
 using Godot.Bridge;
 using Gremlins.GremlinsCode.Core;
@@ -29,6 +30,7 @@ public partial class GremlinsMainFile : Node
         );
         ExtendedSaveTypes.RegisterListSaveType<GremlinSaveData>();
         
+        BundledSubmodLocRegistry.Register(ModId);
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

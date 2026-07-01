@@ -1,5 +1,6 @@
 using System.Reflection;
 using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
@@ -23,6 +24,7 @@ public partial class SneckoMainFile : Node
     {
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         
+        BundledSubmodLocRegistry.Register(ModId);
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

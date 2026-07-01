@@ -49,11 +49,7 @@
             </Code>
         </Task>
     </UsingTask>
-
-    <PropertyGroup Condition="'$(IsPublishAll)' != 'true'">
-        <AssetSourcePath Condition="'$(AssetSourcePath)' == ''">$(MSBuildThisFileDirectory)Slay the Spire 2</AssetSourcePath>
-    </PropertyGroup>
-
+    
     <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
         <SymlinkFolders Include="src;images;fonts;localization;materials;models;scenes;animations;banks;debug_audio;shaders;themes;addons"/>
     </ItemGroup>
@@ -78,8 +74,7 @@
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
-    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
-
+    <Import Project="$(MSBuildThisFileDirectory)..\local.props" Condition="Exists('$(MSBuildThisFileDirectory)..\local.props')"/>
     <!-- OS Detection -->
     <PropertyGroup Condition="'$(IsPublishAll)' != 'true'">
         <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
