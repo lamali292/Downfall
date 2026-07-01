@@ -1,8 +1,14 @@
 {
-  "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Gain de carte",
-  "DOWNFALL-ENERGIZED_POWER.title": "Énergisé",
-  "DOWNFALL-SOUL_BURN_POWER.title": "Brûlure",
-  "DOWNFALL-STUNNED_POWER.title": "Étourdi",
-  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Perte de Force",
-  "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Perte d'Épines"
+    "DOWNFALL-ENTANGLED_POWER.description": "Tu ne peux pas jouer d'Attaques pendant ce tour.",
+    "DOWNFALL-ENTANGLED_POWER.smartDescription": "Tu ne peux pas jouer d'Attaques pendant ce tour.",
+    "DOWNFALL-STUNNED_POWER.title": "Étourdi",
+    "DOWNFALL-STUNNED_POWER.description": "Tu ne peux pas jouer de cartes, piocher des cartes ou gagner de l’Énergie pendant ce tour.",
+    "DOWNFALL-STUNNED_POWER.smartDescription": "Tu ne peux pas jouer de cartes, piocher des cartes ou gagner de l’Énergie pendant ce tour.",
+    "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Perte de Force",
+    "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Perte d'Épines",
+    "DOWNFALL-SOUL_BURN_POWER.title": "Brûlure",
+    "DOWNFALL-ENERGIZED_POWER.title": "Énergisé",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Gain de carte",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "Au début de votre tour, ajoutez [gold]{card}[/gold] dans votre [gold] Main[/gold].",
+    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "Au prochain tour, gagnez [gold]Force[/gold]."
 }

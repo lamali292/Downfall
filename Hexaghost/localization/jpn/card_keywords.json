@@ -1,0 +1,7 @@
+{
+    "HEXAGHOST-ADVANCE.description": "次の ゴーストフレイム に移動する。移動先の ゴーストフレイム を [gold]滅却[/gold] する。",
+    "HEXAGHOST-ADVANCE.title": "前進",
+    "HEXAGHOST-RETRACT.description": "前の ゴーストフレイム に移動する。移動先の ゴーストフレイム を [gold]滅却[/gold] する。",
+    "HEXAGHOST-RETRACT.title": "後退",
+    "HEXAGHOST-AFTERLIFE.title": "死後"
+}

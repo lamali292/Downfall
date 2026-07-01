@@ -1,13 +1,11 @@
 {
-  "SNECKO-CHEAP_STOCK_POWER.title": "Stock bon marché",
-  "SNECKO-EXOTIC_FORM_POWER.title": "Forme exotique",
-  "SNECKO-FOUNTAIN_POWER.title": "Fontaine",
-  "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reine des Pentacles",
-  "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Détective serpent",
-  "SNECKO-SERPENTS_NEST_POWER.title": "Nid de serpents",
-  "SNECKO-SNAKE_EYES_POWER.title": "Snake Eyes",
-  "SNECKO-TRASH_CAN_POWER.title": "Vide-ordures",
-  "SNECKO-TSUNAMI_POWER.title": "Tsunami",
-  "SNECKO-UNENDING_SUPPLY_POWER.title": "Source inépuisable",
-  "SNECKO-VENOM_POWER.title": "Venin"
+    "SNECKO-VENOM_POWER.title": "Venin",
+    "SNECKO-CHEAP_STOCK_POWER.title": "Stock bon marché",
+    "SNECKO-SERPENTS_NEST_POWER.title": "Nid de serpents",
+    "SNECKO-TRASH_CAN_POWER.title": "Vide-ordures",
+    "SNECKO-UNENDING_SUPPLY_POWER.title": "Source inépuisable",
+    "SNECKO-EXOTIC_FORM_POWER.title": "Forme exotique",
+    "SNECKO-FOUNTAIN_POWER.title": "Fontaine",
+    "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reine des Pentacles",
+    "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Détective serpent"
 }
