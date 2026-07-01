@@ -24,10 +24,9 @@
         <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
         <AdditionalFiles Include="Snecko/localization/**/*.json"/>
 
-        <Compile Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
         <EmbeddedResource Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
-
         <None Include="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
+        <Compile Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
         <None Include="DownfallCode/**;AutomatonCode/**;AwakenedCode/**;ChampCode/**;CollectorCode/**;GremlinsCode/**;GuardianCode/**;HexaghostCode/**;HermitCode/**;SlimeBossCode/**;SneckoCode/**"/>
 
         <!-- Only Downfall.json ships as the mod manifest -->
