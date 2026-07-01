@@ -1,14 +1,13 @@
 {
-  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "Recouvert de Slime",
-  "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Forme dupliquée",
-  "SLIMEBOSS-GLUTTONY_POWER.title": "Gloutonnerie",
-  "SLIMEBOSS-GOOP_ARMOR_POWER.title": "Armure de Goop",
-  "SLIMEBOSS-GOOP_POWER.title": "Goop",
-  "SLIMEBOSS-MINION_MASTER_POWER.title": "Maître des sbires",
-  "SLIMEBOSS-OOZE_BATH_POWER.title": "Bain de boue",
-  "SLIMEBOSS-OVEREXERT_POWER.title": "Surmenage",
-  "SLIMEBOSS-POTENCY_POWER.title": "Puissance",
-  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "Protéger le Boss",
-  "SLIMEBOSS-RECYCLING_POWER.title": "Recyclage",
-  "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "Langue gluante"
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "Recouvert de Slime",
+    "SLIMEBOSS-OOZE_BATH_POWER.title": "Bain de boue",
+    "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "Langue gluante",
+    "SLIMEBOSS-POTENCY_POWER.title": "Puissance",
+    "SLIMEBOSS-GOOP_ARMOR_POWER.title": "Armure de Goop",
+    "SLIMEBOSS-RECYCLING_POWER.title": "Recyclage",
+    "SLIMEBOSS-GLUTTONY_POWER.title": "Gloutonnerie",
+    "SLIMEBOSS-OVEREXERT_POWER.title": "Surmenage",
+    "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "Protéger le Boss",
+    "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Forme dupliquée",
+    "SLIMEBOSS-MINION_MASTER_POWER.title": "Maître des sbires"
 }

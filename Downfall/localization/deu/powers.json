@@ -1,8 +1,8 @@
 {
-  "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Bonuskarte",
-  "DOWNFALL-ENERGIZED_POWER.title": "Energiegeladen",
-  "DOWNFALL-SOUL_BURN_POWER.title": "Seelenfeuer",
-  "DOWNFALL-STUNNED_POWER.title": "Betäubt",
-  "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Temporäre Stärke",
-  "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Temporäre Stacheln"
+    "DOWNFALL-STUNNED_POWER.title": "Betäubt",
+    "DOWNFALL-TEMPORARY_STRENGTH_UP_POWER.title": "Temporäre Stärke",
+    "DOWNFALL-TEMPORARY_THORNS_POWER.title": "Temporäre Stacheln",
+    "DOWNFALL-SOUL_BURN_POWER.title": "Seelenfeuer",
+    "DOWNFALL-ENERGIZED_POWER.title": "Energiegeladen",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Bonuskarte"
 }

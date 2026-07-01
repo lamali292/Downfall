@@ -1,14 +1,14 @@
 {
-  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "スライム浴び",
-  "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "デュプリケイトフォーム",
-  "SLIMEBOSS-GLUTTONY_POWER.title": "暴食",
-  "SLIMEBOSS-GOOP_ARMOR_POWER.title": "ヘドロアーマー",
-  "SLIMEBOSS-GOOP_POWER.title": "汚泥",
-  "SLIMEBOSS-MINION_MASTER_POWER.title": "ミニオンマスター",
-  "SLIMEBOSS-OOZE_BATH_POWER.title": "ヘドロ風呂",
-  "SLIMEBOSS-OVEREXERT_POWER.title": "過剰行使",
-  "SLIMEBOSS-POTENCY_POWER.title": "潜在",
-  "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "主人を守る",
-  "SLIMEBOSS-RECYCLING_POWER.title": "リサイクル",
-  "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "粘性ベロ"
+    "SLIMEBOSS-GOOP_POWER.title": "汚泥",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "スライム浴び",
+    "SLIMEBOSS-OOZE_BATH_POWER.title": "ヘドロ風呂",
+    "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "粘性ベロ",
+    "SLIMEBOSS-POTENCY_POWER.title": "潜在",
+    "SLIMEBOSS-GOOP_ARMOR_POWER.title": "ヘドロアーマー",
+    "SLIMEBOSS-RECYCLING_POWER.title": "リサイクル",
+    "SLIMEBOSS-GLUTTONY_POWER.title": "暴食",
+    "SLIMEBOSS-OVEREXERT_POWER.title": "過剰行使",
+    "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "主人を守る",
+    "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "デュプリケイトフォーム",
+    "SLIMEBOSS-MINION_MASTER_POWER.title": "ミニオンマスター"
 }

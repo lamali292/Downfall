@@ -1,0 +1,22 @@
+{
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "Je suis en colère contre l'architecte",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "Continuer",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "Vous êtes mort",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "Les deux",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]...Je... t'ai.. reconstruit.. ..androïde..[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "Continuer",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]... maintenant.. va...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]..cette.. [aqua]gemme irisée[/aqua]....[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "Continuer",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]... elle... change... ...à chaque fois... que tu es... reconstruit...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "Continuer",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]..pas.. de mon.. plein gré.. ..étrange.. [/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine].. sais-tu.. quelle est... ta.. raison d’être... ? [/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "Répondre",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<44 45 53 54 52 4F 59> <41 4C 4C> <49 4E 54 52 55 44 45 52 53>[/jitter][/red]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "Continuer",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]...[red][jitter]PARFAIT[/jitter][/red]...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
+}
