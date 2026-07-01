@@ -22,5 +22,5 @@
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>
-    <Import Project="mod.build.targets" />
+    <Import Project="build/mod.build.targets" />
 </Project>
