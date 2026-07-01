@@ -1,4 +1,4 @@
-﻿using BaseLib.Patches.Localization;
+using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -95,6 +95,29 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
         await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, attacker, amount);
     }
 
+    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
+        bool wasRemovalPrevented, float deathAnimLength)
+    {
+        var internalData = GetInternalData<Data>();
+        var attacker = Applier;
+        if (attacker == null || internalData.CommandToModify == null) return;
+        
+        var amount = Amount;
+        var removeAmount = -internalData.AmountWhenAttackStarted;
+        var newAmount = SlimeBossHook.ModifyGoopConsume(CombatState, removeAmount, out var consumes, creature, Applier);      
+        
+        await SlimeBossHook.AfterModifyingGoopConsume(CombatState, consumes, creature, Applier);
+        await PowerCmd.ModifyAmount(choiceContext, this, newAmount, null, null);
+        if (internalData.CommandToModify.ModelSource is IHasConsumeEffect slimeBossCardModel)
+            await slimeBossCardModel.ConsumeEffect(choiceContext, creature, internalData.CommandToModify, amount);
+        
+        internalData.CommandToModify = null;
+        var entry = new ConsumeEntry(creature, amount, attacker, CombatState.RoundNumber, attacker.Side,
+            CombatManager.Instance.History, CombatState.Players);
+        CombatManager.Instance.History.Add(CombatState, entry);
+        await SlimeBossHook.AfterConsumeEffect(CombatState, choiceContext, creature, attacker, amount);
+    }
+    
     private class Data
     {
         public int AmountWhenAttackStarted;
