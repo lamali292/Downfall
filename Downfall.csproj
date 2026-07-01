@@ -1,32 +1,88 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
-    <Import Project="mod.build.props" />
+    <Import Project="build/mod.build.props" />
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+        <AssemblyName>Downfall</AssemblyName>
+        <IsPublishAll>true</IsPublishAll>
+        <NoWarn>$(NoWarn);STS002</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
+        <!-- Localization/asset files for every submod, so the pck picker below can find them -->
         <AdditionalFiles Include="Downfall/localization/**/*.json"/>
-        <Compile Remove="Downfall/**"/>
-        <Content Include="local.props"/>
-        <Content Include="local.props.example"/>
-        <Content Include="release.ps1"/>
-        <EmbeddedResource Remove="Downfall/**"/>
+        <AdditionalFiles Include="Automaton/localization/**/*.json"/>
+        <AdditionalFiles Include="Awakened/localization/**/*.json"/>
+        <AdditionalFiles Include="Champ/localization/**/*.json"/>
+        <AdditionalFiles Include="Collector/localization/**/*.json"/>
+        <AdditionalFiles Include="Gremlins/localization/**/*.json"/>
+        <AdditionalFiles Include="Guardian/localization/**/*.json"/>
+        <AdditionalFiles Include="Hexaghost/localization/**/*.json"/>
+        <AdditionalFiles Include="Hermit/localization/**/*.json"/>
+        <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
+        <AdditionalFiles Include="Snecko/localization/**/*.json"/>
+
+        <Compile Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
+        <EmbeddedResource Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
+
+        <None Include="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
+        <None Include="DownfallCode/**;AutomatonCode/**;AwakenedCode/**;ChampCode/**;CollectorCode/**;GremlinsCode/**;GuardianCode/**;HexaghostCode/**;HermitCode/**;SlimeBossCode/**;SneckoCode/**"/>
+
+        <!-- Only Downfall.json ships as the mod manifest -->
         <None Include="Downfall.json"/>
-        <None Include="Downfall/**"/>
-        <None Include="DownfallCode/**"/>
+
+        <None Include="local.props"/>
+        <None Include="local.props.example"/>
+        <!-- All submod source compiled into one assembly: Downfall.dll -->
         <Compile Include="DownfallCode/**/*.cs"/>
+        <Compile Include="AutomatonCode/**/*.cs"/>
+        <Compile Include="AwakenedCode/**/*.cs"/>
+        <Compile Include="ChampCode/**/*.cs"/>
+        <Compile Include="CollectorCode/**/*.cs"/>
+        <Compile Include="GremlinsCode/**/*.cs"/>
+        <Compile Include="GuardianCode/**/*.cs"/>
+        <Compile Include="HexaghostCode/**/*.cs"/>
+        <Compile Include="HermitCode/**/*.cs"/>
+        <Compile Include="SlimeBossCode/**/*.cs"/>
+        <Compile Include="SneckoCode/**/*.cs"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <None Include="mod.build.props"/>
-        <None Include="mod.build.targets"/>
-        <None Include="export_presets.cfg"/>
-        <None Include="project.godot"/>
-        <None Include=".gitignore"/>
-        <None Include="pack_mod.gd"/>
-    </ItemGroup>
-    <Import Project="mod.build.targets" />
+    <PropertyGroup>
+        <ModOutputFolder>Downfall</ModOutputFolder>
+        <!-- Every asset folder to bundle into the single Downfall.pck -->
+        <PackFolders>Downfall;Automaton;Awakened;Champ;Collector;Gremlins;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders>
+    </PropertyGroup>
+
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+
+        <Message Text="Copying BaseLib dependencies..." Importance="high"/>
+        <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
+            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.json;"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+    </Target>
+
+    <Target Name="GodotImport" BeforeTargets="GodotPublish"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="true"
+              IgnoreStandardErrorWarningFormat="true"/>
+    </Target>
+
+    <Target Name="GodotPublish" AfterTargets="Publish"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)\Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="false"
+              IgnoreStandardErrorWarningFormat="true"/>
+    </Target>
 </Project>

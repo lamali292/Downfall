@@ -1,11 +1,14 @@
 # release.ps1  ->  bumps patch, sets version everywhere, builds, then releases
 $ErrorActionPreference = "Stop"
-Set-Location $PSScriptRoot
 
-$modIds    = @('Downfall','Snecko','Automaton','Champ','Collector','Awakened',
-'Gremlins','Hexaghost','Hermit','Guardian','SlimeBoss')
-$propsFile = "mod.build.props"
-$probeProj = "Downfall.csproj"   # a normal mod csproj (NOT PublishAll) — it defines Sts2Path/SteamLibraryPath
+# This script lives in build/, but mod.build.props, Downfall.csproj, and the
+# git repo all live at the project root — one level up.
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+Set-Location $ProjectRoot
+
+$modIds    = @('Downfall')
+$propsFile = "build/mod.build.props"
+$probeProj = "Downfall.csproj"
 $appId     = "2868840"
 
 # --- resolve game + steam library the same way the build does (honours local.props + OS defaults) ---
@@ -14,6 +17,12 @@ if ([string]::IsNullOrWhiteSpace($gameRoot)) { throw "Couldn't resolve Sts2Path 
 
 $steamApps = (& dotnet msbuild $probeProj -getProperty:SteamLibraryPath).Trim()
 if ([string]::IsNullOrWhiteSpace($steamApps)) { throw "Couldn't resolve SteamLibraryPath from $probeProj." }
+
+$modsPath = (& dotnet msbuild $probeProj -getProperty:ModsPath).Trim()
+if ([string]::IsNullOrWhiteSpace($modsPath)) { throw "Couldn't resolve ModsPath from $probeProj." }
+
+$modOutputFolder = (& dotnet msbuild $probeProj -getProperty:ModOutputFolder).Trim()
+if ([string]::IsNullOrWhiteSpace($modOutputFolder)) { $modOutputFolder = "Downfall" }
 
 # --- StS2 version from the game's own release_info.json (field includes leading 'v') ---
 $relPath = Join-Path $gameRoot "release_info.json"
@@ -47,7 +56,7 @@ $props = $props -replace '<AssemblyVersion>\d+\.\d+\.\d+\.\d+</AssemblyVersion>'
 $props = $props -replace '<FileVersion>\d+\.\d+\.\d+\.\d+</FileVersion>',         "<FileVersion>$new.0</FileVersion>"
 Set-Content $propsFile $props -Encoding UTF8 -NoNewline
 
-# --- write every manifest (regex edits = original formatting preserved, clean diffs) ---
+# --- write the Downfall manifest ---
 foreach ($id in $modIds) {
     $path = "$id.json"
     if (-not (Test-Path $path)) { throw "Manifest not found: $path" }
@@ -59,25 +68,41 @@ foreach ($id in $modIds) {
     # set min_game_version to the game build we target
     $text = $text -replace '("min_game_version"\s*:\s*")[^"]+(")', "`${1}$gameVersionBare`$2"
 
-    # bump min_version for deps that are our own mods
-    foreach ($depId in $modIds) {
-        $pattern = '("id"\s*:\s*"' + [regex]::Escape($depId) + '"\s*,\s*"min_version"\s*:\s*")\d+\.\d+\.\d+(")'
-        $text = $text -replace $pattern, "`${1}$new`$2"
-    }
-
     # set the BaseLib dependency's min_version  (CAVEAT: NuGet version may differ from in-game
     # BaseLib mod version the loader checks — comment this line out if they don't match)
     $text = $text -replace '("id"\s*:\s*"BaseLib"\s*,\s*"min_version"\s*:\s*")[^"]+(")', "`${1}$baseLib`$2"
 
     Set-Content $path $text -Encoding UTF8 -NoNewline
 }
-Write-Host "Set version in $($modIds.Count) manifests"
+Write-Host "Set version in $($modIds.Count) manifest(s)"
 
 # --- build (Godot's exit-time errors are expected; the zip is the real success check) ---
-dotnet publish PublishAll/PublishAll.csproj -c Release -p:Version=$new
+dotnet publish Downfall.csproj -c Release -p:Version=$new
 
-$zip = "dist/Downfall-$new.zip"
-if (-not (Test-Path $zip)) { throw "No zip at $zip -- build did not produce output. Nothing committed." }
+# --- stage + zip the finished mods/Downfall folder ourselves (no more PublishAll.PackageRelease) ---
+$builtModDir = Join-Path $modsPath $modOutputFolder
+if (-not (Test-Path $builtModDir)) { throw "Built mod folder not found at $builtModDir -- build did not produce output. Nothing committed." }
+
+$distDir = Join-Path $ProjectRoot "dist"
+New-Item -ItemType Directory -Path $distDir -Force | Out-Null
+
+$stagingDir = Join-Path $distDir "staging"
+Remove-Item -Recurse -Force $stagingDir -ErrorAction SilentlyContinue
+$stagingModDir = Join-Path $stagingDir $modOutputFolder
+New-Item -ItemType Directory -Path $stagingModDir -Force | Out-Null
+
+Get-ChildItem -Path $builtModDir -Recurse -File | Where-Object { $_.Extension -ne ".pdb" } | ForEach-Object {
+    $relative = $_.FullName.Substring($builtModDir.Length).TrimStart('\','/')
+    $dest = Join-Path $stagingModDir $relative
+    New-Item -ItemType Directory -Path (Split-Path $dest) -Force | Out-Null
+    Copy-Item $_.FullName $dest
+}
+
+$zip = Join-Path $distDir "Downfall-$new.zip"
+Remove-Item $zip -ErrorAction SilentlyContinue
+Compress-Archive -Path (Join-Path $stagingDir "*") -DestinationPath $zip
+
+if (-not (Test-Path $zip)) { throw "No zip at $zip -- packaging failed. Nothing committed." }
 if ((Get-Item $zip).LastWriteTime -lt (Get-Date).AddMinutes(-10)) {
     throw "$zip is stale (not rebuilt this run). Aborting."
 }

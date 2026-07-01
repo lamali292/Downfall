@@ -36,6 +36,7 @@ public partial class GuardianMainFile : Node
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
         
+        BundledSubmodLocRegistry.Register(ModId);
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 
