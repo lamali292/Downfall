@@ -1,6 +1,6 @@
 {
-  "COLLECTOR-COLLECTED_PILE.description": "이번 전투에서 아직 뽑지 않은 수집된 카드들이 포함되어 있습니다. 턴 시작 시 이곳에서 카드 1장을 뽑습니다.",
-  "COLLECTOR-COLLECTED_PILE.title": "수집 더미",
-  "COLLECTOR-KINDLE.description": "[gold]횃불 머리[/gold]를 소환합니다. 이미 소환되어 있다면, 이번 전투 동안 최대 HP를 증가시킵니다.",
-  "COLLECTOR-KINDLE.title": "불 지피기"
+    "COLLECTOR-COLLECTED_PILE.title": "수집 더미",
+    "COLLECTOR-COLLECTED_PILE.description": "이번 전투에서 아직 뽑지 않은 수집된 카드가 들어있는 더미입니다. 내 턴 시작 시 이 더미에서 카드를 1장 뽑습니다.",
+    "COLLECTOR-KINDLE.title": "성화",
+    "COLLECTOR-KINDLE.description": "[gold]횃불 머리[/gold]를 소환합니다. 이미 소환되어 있다면, 이번 전투 동안 횃불 머리의 최대 체력이 증가합니다."
 }

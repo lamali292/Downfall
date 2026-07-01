@@ -1,9 +1,9 @@
 {
-  "GREMLINS-FAT_GREMLIN.name": "뚱보 그렘린",
-  "GREMLINS-GREMLIN_NOB.banter": "[jitter]크아아아아!!![/jitter]",
-  "GREMLINS-GREMLIN_NOB.name": "그렘린 놉",
-  "GREMLINS-MAD_GREMLIN.name": "광기어린 그렘린",
-  "GREMLINS-SHIELD_GREMLIN.name": "방패 그렘린",
-  "GREMLINS-SNEAK_GREMLIN.name": "도적 그렘린",
-  "GREMLINS-WIZARD_GREMLIN.name": "마법사 그렘린"
+    "GREMLINS-MAD_GREMLIN.name": "광기어린 그렘린",
+    "GREMLINS-WIZARD_GREMLIN.name": "마법사 그렘린",
+    "GREMLINS-FAT_GREMLIN.name": "뚱보 그렘린",
+    "GREMLINS-SHIELD_GREMLIN.name": "방패 그렘린",
+    "GREMLINS-SNEAK_GREMLIN.name": "도적 그렘린",
+    "GREMLINS-GREMLIN_NOB.name": "그렘린 놉",
+    "GREMLINS-GREMLIN_NOB.banter": "[jitter]크아아아아!!![/jitter]"
 }

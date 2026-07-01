@@ -1,0 +1,5 @@
+{
+    "GUARDIAN-GEM": "Gemme",
+    "COMBAT_REWARD_ADD_GEMS": "Ajoutez {Amount:plural:une [gold]Gemme[/gold]|[blue]{Amount}[/blue] [gold]Gemmes[/gold]} à votre [gold]Deck[/gold].",
+    "GUARDIAN-GEM_SOCKET_SELECT": "Sélectionnez une Carte pour y encastrer la Gemme."
+}
