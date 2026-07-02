@@ -38,6 +38,18 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         ];
     }
 
+    public override Task BeforeCombatStart()
+    {
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+        {
+            ResetWheel(player);
+            HexaghostVisualsBridge.Refresh(player);
+        }
+        return Task.CompletedTask;
+    }
+
     public static void ResetWheel(Player player)
     {
         Wheel[player] = StartingWheel(player);
