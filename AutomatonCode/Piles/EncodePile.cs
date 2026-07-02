@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Displays;
+using Automaton.AutomatonCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using Godot;
@@ -24,7 +25,7 @@ public class EncodePile() : CustomPile(FunctionSequence)
         var display = AutomatonDisplay.GetDisplay(model.Owner);
         if (display != null)
         {
-            var slotIndex = FunctionSequence.GetPile(model.Owner).Cards.IndexOf(model);
+            var slotIndex = model.Owner.GetEncode().IndexOf(model);
             return display.GetSlotGlobalPosition(slotIndex < 0 ? 0 : slotIndex);
         }
 

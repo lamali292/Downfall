@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Piles;
@@ -36,7 +37,8 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
 
         foreach (var player in combatState.Players.Where(p => p.Character is Collector))
         {
-            var pile = CollectorPile.Collected.GetPile(player);
+            var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, CollectorPile.Collected);
+            if (pile == null) continue;
             pile.Clear();
 
             var collectibles = CollectiblesModel.GetCollectibles(player);

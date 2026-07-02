@@ -31,7 +31,6 @@
 
         <!-- Only Downfall.json ships as the mod manifest -->
         <None Include="Downfall.json"/>
-
         <None Include="local.props"/>
         <None Include="local.props.example"/>
         <!-- All submod source compiled into one assembly: Downfall.dll -->
@@ -39,13 +38,14 @@
         <Compile Include="AutomatonCode/**/*.cs"/>
         <Compile Include="AwakenedCode/**/*.cs"/>
         <Compile Include="ChampCode/**/*.cs"/>
-        <Compile Include="CollectorCode/**/*.cs"/>
-        <Compile Include="GremlinsCode/**/*.cs"/>
         <Compile Include="GuardianCode/**/*.cs"/>
         <Compile Include="HexaghostCode/**/*.cs"/>
         <Compile Include="HermitCode/**/*.cs"/>
         <Compile Include="SlimeBossCode/**/*.cs"/>
         <Compile Include="SneckoCode/**/*.cs"/>
+        
+        <!--Compile Include="GremlinsCode/**/*.cs"/-->
+        <!--Compile Include="CollectorCode/**/*.cs"/-->
     </ItemGroup>
 
     <PropertyGroup>
