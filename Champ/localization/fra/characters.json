@@ -1,0 +1,16 @@
+{
+    "CHAMP-CHAMP.aromaPrinciple": "[sine][yellow]Je n'ai jamais perdu. Je ne perdrai jamais. [jitter]Je ne peux pas perdre.[/jitter][/yellow][/sine]",
+    "CHAMP-CHAMP.banter.alive.endTurnPing": "Passez à l'action.",
+    "CHAMP-CHAMP.banter.dead.endTurnPing": "...",
+    "CHAMP-CHAMP.cardsModifierDescription": "Les cartes du Champion peuvent apparaître dans les récompenses et dans la boutique.",
+    "CHAMP-CHAMP.cardsModifierTitle": "Cartes du Champion",
+    "CHAMP-CHAMP.description": "Le Roi de l'Arène indisputé.\nN'a jamais perdu un seul match.[fly_in][/fly_in]",
+    "CHAMP-CHAMP.eventDeathPrevention": "Le Champion ne tombe pas. Ni aujourd'hui, ni jamais.",
+    "CHAMP-CHAMP.goldMonologue": "[sine]Une récompense... le public est toujours généreux...[/sine]",
+    "CHAMP-CHAMP.possessiveAdjective": "son/sa/ses",
+    "CHAMP-CHAMP.pronounObject": "lui",
+    "CHAMP-CHAMP.pronounPossessive": "son/sa/ses",
+    "CHAMP-CHAMP.pronounSubject": "il",
+    "CHAMP-CHAMP.title": "Le Champion",
+    "CHAMP-CHAMP.titleObject": "du Champion"
+}

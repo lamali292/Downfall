@@ -191,7 +191,7 @@
     "HEXAGHOST-TEMPORAL_LEAP.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n抽{Cards:diff()}张牌。",
     "HEXAGHOST-RADIANT_FLAME.title": "辉焰",
     "HEXAGHOST-RADIANT_FLAME.description": "每当你[gold]点燃[/gold]一枚鬼火时，获得{RadiantFlamePower:diff()}点[gold]格挡[/gold]。",
-    "HEXAGHOST-SIZZLE.title": "嘶嘶作响",
+    "HEXAGHOST-SIZZLE.title": "滋滋作响",
     "HEXAGHOST-SIZZLE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]消耗[/gold]你本回合打出的下一张牌。",
     "HEXAGHOST-FLOAT_CHOICE_RETRACT.title": "浮动",
     "HEXAGHOST-FLOAT_CHOICE_RETRACT.description": "[gold]回退[/gold]。",

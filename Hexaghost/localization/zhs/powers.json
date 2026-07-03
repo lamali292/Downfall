@@ -65,7 +65,7 @@
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "彼岸之语",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "本回合此后每[gold]消耗[/gold]一张卡，给予该敌人[gold]灼魂[/gold]。",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "本回合此后每[gold]消耗[/gold]一张卡，给予该敌人[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
-    "HEXAGHOST-SIZZLE_POWER.title": "嘶嘶作响",
+    "HEXAGHOST-SIZZLE_POWER.title": "滋滋作响",
     "HEXAGHOST-SIZZLE_POWER.description": "[gold]消耗[/gold]本回合你打出的下一张牌。",
     "HEXAGHOST-SIZZLE_POWER.smartDescription": "[gold]消耗[/gold]本回合你打出的下[blue]{Amount}[/blue]张牌。"
 }
