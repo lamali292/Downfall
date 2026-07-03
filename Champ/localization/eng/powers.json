@@ -73,5 +73,5 @@
   "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "You are in [gold]Ultimate Stance[/gold] this turn.",
   "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Next Turn Vigor",
   "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Next turn, gain [gold]Vigor[/gold].",
-  "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Next turn, gain {Amount:plural:|[blue]{}[/blue] }[gold]Vigor[/gold]."
+  "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Next turn, gain [blue]{}[/blue] [gold]Vigor[/gold]."
 }
