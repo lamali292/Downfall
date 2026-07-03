@@ -1,6 +1,7 @@
 ﻿using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -23,7 +24,7 @@ public class UnyieldingPower : HermitPowerModel
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return target != Owner || !props.IsPoweredAttack() || dealer == null || !target.HasPower<VulnerablePower>() ? 1M : DynamicVars["DamageDecrease"].BaseValue;
     }

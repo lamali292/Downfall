@@ -19,7 +19,7 @@ public class ModExport
     [JsonInclude] [JsonPropertyName("version")]
     private readonly string? _version = "";
 
-    [JsonIgnore] public readonly Assembly? Assembly;
+    [JsonIgnore] public readonly List<Assembly>? Assembly;
 
     [JsonInclude] [JsonPropertyName("id")] public readonly string? Id;
 
@@ -44,7 +44,7 @@ public class ModExport
         _authors = author == null ? [] : [author];
         _description = mod.manifest?.description;
 
-        Assembly = mod.assembly;
+        Assembly = mod.assemblies;
     }
 
     [JsonInclude]

@@ -44,31 +44,44 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimation(IdleAnim);
+                SetMixOnCurrent(DefaultMix);
                 break;
 
             case "Cast":
-                _animState?.SetAnimation(CastAnim, false)
-                    ?.SetMixDuration(CastMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation(CastAnim, false);
+                SetMixOnCurrent(CastMix);
+                QueueIdle();
                 break;
+
             case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation(AttackAnim, false);
+                SetMixOnCurrent(AttackMix);
+                QueueIdle();
                 break;
 
             case "Hit":
-                _animState?.SetAnimation(HitAnim, false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation(HitAnim, false);
+                SetMixOnCurrent(HitMix);
+                QueueIdle();
                 break;
+
             case "Dead":
                 break;
         }
+    }
+
+    private void SetMixOnCurrent(float mix)
+    {
+        if (_animState == null) return;
+        using var entry = _animState.GetCurrent(0);
+        entry?.SetMixDuration(mix);
+    }
+
+    private void QueueIdle()
+    {
+        if (_animState == null) return;
+        using var entry = _animState.AddAnimationTracked(IdleAnim);
+        entry.SetMixDuration(ToIdleMix);
     }
 }

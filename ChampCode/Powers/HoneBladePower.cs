@@ -13,7 +13,7 @@ public class HoneBladePower : ChampPowerModel
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return !props.IsPoweredAttack() || cardSource == null || !cardSource.Tags.Contains(CardTag.Strike) ||
                (dealer != Owner && cardSource.Owner.Creature != Owner)

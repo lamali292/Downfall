@@ -24,7 +24,7 @@ public class SignInBlood : AwakenedCardModel
     {
         VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
         await CreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         await CommonActions.Draw(this, ctx);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }

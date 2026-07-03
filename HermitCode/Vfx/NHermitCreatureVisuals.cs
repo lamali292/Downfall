@@ -39,19 +39,32 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation("Idle")
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimation("Idle");
+                SetMixOnCurrent(DefaultMix);
                 break;
             case "Hit":
-                _animState?.SetAnimation("Hit", false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation("Idle")
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation("Hit", false);
+                SetMixOnCurrent(HitMix);
+                QueueIdle();
                 break;
             case "Cast":
             case "Attack":
             case "Dead":
                 break;
         }
+    }
+
+    private void SetMixOnCurrent(float mix)
+    {
+        if (_animState == null) return;
+        using var entry = _animState.GetCurrent(0);
+        entry?.SetMixDuration(mix);
+    }
+
+    private void QueueIdle()
+    {
+        if (_animState == null) return;
+        using var entry = _animState.AddAnimationTracked("Idle");
+        entry.SetMixDuration(ToIdleMix);
     }
 }

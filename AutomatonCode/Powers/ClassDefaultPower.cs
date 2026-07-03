@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 public class ClassDefaultPower : AutomatonPowerModel
 {
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         if (dealer == Owner && cardSource != null && FunctionCard.IsInFunction.Get(cardSource)) return Amount;
         return 0;

@@ -34,7 +34,7 @@ public class Nihil : AwakenedCardModel, IChantable
                 combatStateEnemy,
                 a,
                 ValueProp.Unpowered | ValueProp.Unblockable,
-                this);
+                this, cardPlay);
         }
     }
 

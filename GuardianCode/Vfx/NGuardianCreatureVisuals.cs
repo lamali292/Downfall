@@ -42,8 +42,8 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimation(IdleAnim);
+                SetMixOnCurrent(DefaultMix);
                 break;
             case "Hit":
             case "Cast":
@@ -51,5 +51,12 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
             case "Dead":
                 break;
         }
+    }
+
+    private void SetMixOnCurrent(float mix)
+    {
+        if (_animState == null) return;
+        using var entry = _animState.GetCurrent(0);
+        entry?.SetMixDuration(mix);
     }
 }
