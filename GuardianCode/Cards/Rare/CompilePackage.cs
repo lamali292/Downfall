@@ -44,7 +44,7 @@ public class CompilePackage : GuardianCardModel
         if (RunState == null) throw new InvalidOperationException();
         var card = CombatState!.CreateCard(cardModel, Owner);
         if (IsUpgraded)
-            card.UpgradeInternal();
+            CardCmd.Upgrade(card);
         return card;
     }
 }
