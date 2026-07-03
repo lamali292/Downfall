@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using BaseLib.Extensions;
 using BaseLib.Patches.Content;
 using BaseLib.Utils.Patching;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -118,10 +119,10 @@ public class KeywordExport : ItemExport, IImageExport
             .Where(e => e != null)
             .Cast<KeywordExport>()
             .ToList();
-        var c = ModManager.Mods.SelectMany(static m => m.assembly?.GetTypes().Where(t =>
+        var c = ModManager.Mods.SelectMany(static m => m.GetAssemblies().SelectMany(e => e.GetTypes().Where(t =>
                     t.IsAssignableTo(typeof(DynamicVar)) && t.GetConstructors().Any(c =>
                         c.GetParameters() is { Length: 1 } parameters &&
-                        parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)) ?? []
+                        parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)))
             )
             .Where(e => e != null)
             .Cast<KeywordExport>()

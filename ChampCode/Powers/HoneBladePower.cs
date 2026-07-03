@@ -8,12 +8,12 @@ namespace Champ.ChampCode.Powers;
 
 public class HoneBladePower : ChampPowerModel
 {
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return !props.IsPoweredAttack() || cardSource == null || !cardSource.Tags.Contains(CardTag.Strike) ||
                (dealer != Owner && cardSource.Owner.Creature != Owner)

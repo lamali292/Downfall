@@ -45,23 +45,7 @@ public partial class DownfallMainFile : Node
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
     }
-
-    private static readonly string[] BundledMods =
-    [
-        "Automaton",
-        "Awakened",
-        "Champ",
-        "Collector",
-        "Gremlins",
-        "Guardian",
-        "Hermit",
-        "Hexaghost",
-        "SlimeBoss",
-        "Snecko"
-        // ...
-    ];
     
-
     private static readonly HashSet<Assembly> Patched = [];
 
     public static void Patch(Assembly assembly, string modid)

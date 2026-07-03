@@ -32,9 +32,10 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect
         var unblockedDamage = result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
         await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
     }
+    
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+    public override decimal DownfallModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (this is not IHasDeadOnEffect deadOnEffect) return 1;
         if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
