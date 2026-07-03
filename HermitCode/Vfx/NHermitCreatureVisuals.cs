@@ -32,7 +32,7 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("Idle");
+        _animState?.SetAnimationCompat("Idle");
     }
 
 

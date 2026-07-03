@@ -31,7 +31,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("Idle");
+        _animState?.SetAnimationCompat("Idle");
     }
     
     private const float DefaultMix = 0.2f;

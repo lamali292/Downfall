@@ -37,7 +37,7 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("Idle");
+        _animState?.SetAnimationCompat("Idle");
     }
 
     public void OnAnimationTrigger(string trigger)
