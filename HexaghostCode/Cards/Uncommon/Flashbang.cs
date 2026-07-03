@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
@@ -31,7 +32,6 @@ public class Flashbang : HexaghostCardModel
     }
 }
 
-public class FlashbangPower : CustomTemporaryPowerModelWrapper<Flashbang, StrengthPower>
+public class FlashbangPower : TemporaryDebuffPowerWrapper<Flashbang, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
 }

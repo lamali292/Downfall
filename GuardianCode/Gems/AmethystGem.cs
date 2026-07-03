@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Powers;
 using Godot;
 using Guardian.GuardianCode.Core;
@@ -31,9 +32,8 @@ public class AmethystGem : GemModel
     }
 }
 
-public class AmethystGemPower : CustomTemporaryPowerModelWrapper<AmethystGem, StrengthPower>
+public class AmethystGemPower : TemporaryDebuffPowerWrapper<AmethystGem, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
     public override LocString Title => OriginModel is GemModel gem ? gem.Title : base.Title;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
 }

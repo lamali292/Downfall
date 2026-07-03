@@ -3,6 +3,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -36,7 +37,6 @@ public class CursedWail : CollectorCardModel
     }
 }
 
-public class CursedWailPower : CustomTemporaryPowerModelWrapper<CursedWail, StrengthPower>
+public class CursedWailPower : TemporaryDebuffPowerWrapper<CursedWail, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
 }
