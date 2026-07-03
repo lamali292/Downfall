@@ -48,7 +48,7 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
         return Task.CompletedTask;
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

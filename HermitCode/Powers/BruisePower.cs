@@ -16,7 +16,7 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff), IAddDumbVariablesToPowerDescription
 {
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return target != Owner || !(dealer == Applier || HasBigBruiser) ||!props.IsPoweredAttack() ? 0 : Amount;

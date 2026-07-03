@@ -24,7 +24,7 @@ public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage
         return PowerCmd.Decrement(this);
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&

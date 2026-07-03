@@ -59,7 +59,7 @@ public class GigaBeam : GuardianCardModel
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

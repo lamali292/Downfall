@@ -9,7 +9,7 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class StormRulerPower : AwakenedPowerModel
 {
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         if (dealer != Owner || cardSource is not Thunderbolt) return 0;

@@ -24,7 +24,7 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
         return slime.PetOwner == Owner ? amount + Amount2 : amount;
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? Amount : 0;

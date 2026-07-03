@@ -19,7 +19,7 @@ public class UnyieldingPower : HermitPowerModel
     }
      
     
-    public override decimal ModifyDamageMultiplicative(
+    public override decimal DownfallModifyDamageMultiplicative(
         Creature? target,
         decimal amount,
         ValueProp props,
