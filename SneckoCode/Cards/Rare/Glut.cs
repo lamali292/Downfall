@@ -1,6 +1,7 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -40,6 +41,6 @@ public class Glut : SneckoCardModel, IHasOverflowEffect
         var damage = (DamageVar)DynamicVars["OverflowDamage"];
         var hits = (int)((CalculatedVar)DynamicVars["OverflowRepeat"]).Calculate(null);
         if (hits == 0) return;
-        await DamageCmd.Attack(damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState).WithHitCount(hits).Execute(ctx);
+        await DamageCmd.Attack(damage.BaseValue).DownfallFromCard(this, cardPlay).TargetingAllOpponents(CombatState).WithHitCount(hits).Execute(ctx);
     }
 }

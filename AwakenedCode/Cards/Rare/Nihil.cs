@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,7 +30,7 @@ public class Nihil : AwakenedCardModel, IChantable
         {
             var a = combatStateEnemy.GetPowerAmount<ManaburnPower>();
             if (a <= 0) continue;
-            await CreatureCmd.Damage(
+            await DownfallCreatureCmd.Damage(
                 ctx,
                 combatStateEnemy,
                 a,

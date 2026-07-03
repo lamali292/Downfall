@@ -32,6 +32,6 @@ public class PreciseThrust : ChampCardModel, IBerserkerComboCard, IDefensiveComb
         // in `BerserkerComboEffect`, because calling `CardAttack` twice
         // triggers `VigorPower` for the first time only.
         var count = Owner.ShouldBerserkerComboTrigger() ? 2 : 1;
-        await CommonActions.CardAttack(this, cardPlay.Target, count).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
     }
 }

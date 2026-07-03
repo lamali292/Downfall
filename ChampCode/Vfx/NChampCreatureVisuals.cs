@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -62,45 +63,28 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _ => "Hit"
     };
 
+    
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim);
-                SetMixOnCurrent(DefaultMix);
-                break;
-
-            case "Cast":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Attack":
-                _animState?.SetAnimation(AttackAnim, false);
-                SetMixOnCurrent(AttackMix);
-                QueueIdle();
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-
             case "Hit":
-                _animState?.SetAnimation(HitAnim, false);
-                SetMixOnCurrent(HitMix);
-                QueueIdle();
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-
+            case "Cast":
             case "Dead":
                 break;
         }
     }
-
-    private void SetMixOnCurrent(float mix)
-    {
-        if (_animState == null) return;
-        using var entry = _animState.GetCurrent(0);
-        entry?.SetMixDuration(mix);
-    }
-
-    private void QueueIdle()
-    {
-        if (_animState == null) return;
-        using var entry = _animState.AddAnimationTracked(IdleAnim);
-        entry.SetMixDuration(ToIdleMix);
-    }
+    
+    
+    
 }
