@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Modding;
 using FileAccess = Godot.FileAccess;
@@ -44,7 +45,7 @@ public class ModExport
         _authors = author == null ? [] : [author];
         _description = mod.manifest?.description;
 
-        Assembly = mod.assemblies;
+        Assembly = mod.GetAssemblies();
     }
 
     [JsonInclude]

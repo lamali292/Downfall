@@ -84,4 +84,9 @@
               IgnoreExitCode="false"
               IgnoreStandardErrorWarningFormat="true"/>
     </Target>
+
+
+    <PropertyGroup>
+        <DefineConstants>$(DefineConstants);V107</DefineConstants>
+    </PropertyGroup>
 </Project>

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -53,7 +54,7 @@ public sealed class CursedWeapon : HermitCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+        await DownfallCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered, Owner.Creature, this, play);
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
