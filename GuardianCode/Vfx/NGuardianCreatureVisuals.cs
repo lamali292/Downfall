@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Interfaces;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -37,17 +38,17 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState?.SetAnimation("idle");
     }
 
+    
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
+            case "Attack":
             case "Hit":
             case "Cast":
-            case "Attack":
             case "Dead":
                 break;
         }

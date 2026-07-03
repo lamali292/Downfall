@@ -1,11 +1,12 @@
 ﻿using BaseLib.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace Downfall.DownfallCode.Abstract;
 
 public abstract class DownfallPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType powerStackType = PowerStackType.Counter) : ConstructedPowerModel(powerType, powerStackType)
+    PowerStackType powerStackType = PowerStackType.Counter) : CompatibilityPowerModel(powerType, powerStackType)
 {
     protected string IconName => Id.Entry
         .RemovePrefix()

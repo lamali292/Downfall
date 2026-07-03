@@ -1,4 +1,5 @@
 ﻿using BaseLib.Patches.Localization;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -23,8 +24,8 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
         return slime.PetOwner == Owner ? amount + Amount2 : amount;
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource)
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? Amount : 0;
     }

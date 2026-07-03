@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -44,28 +45,19 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
-                break;
-
-            case "Cast":
-                _animState?.SetAnimation(CastAnim, false)
-                    ?.SetMixDuration(CastMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-
             case "Hit":
-                _animState?.SetAnimation(HitAnim, false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Cast":
+                _animState?.SetAnimationWithMix(CastAnim, CastMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Dead":
                 break;

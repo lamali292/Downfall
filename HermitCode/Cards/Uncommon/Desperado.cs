@@ -22,8 +22,8 @@ public sealed class Desperado : HermitCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+    public override decimal DownfallModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack())
             return 1m;

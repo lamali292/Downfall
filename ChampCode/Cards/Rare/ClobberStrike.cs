@@ -21,7 +21,7 @@ public class ClobberStrike : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var attackCommand = await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblockedDamage = attackCommand.Results.SelectMany(r => r).Sum(x => x.UnblockedDamage);
         await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
     }

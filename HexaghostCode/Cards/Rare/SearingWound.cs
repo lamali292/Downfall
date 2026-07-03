@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,9 +27,9 @@ public class SearingWound : HexaghostCardModel
         foreach (var enemy in CombatState.HittableEnemies)
         {
             var amount = enemy.GetPowerAmount<SoulBurnPower>();
-            await CreatureCmd.Damage(ctx, enemy, amount,
+            await DownfallCreatureCmd.Damage(ctx, enemy, amount,
                 ValueProp.Move | ValueProp.Unpowered | ValueProp.Unblockable,
-                Owner.Creature, this);
+                Owner.Creature, this, cardPlay);
         }
     }
 }

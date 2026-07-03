@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -13,44 +14,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
-
     private MegaSprite? _sprite;
-
-    public bool IsAwakened { get; set; }
-
-    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
-    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
-
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
-                break;
-
-            case "Cast":
-                break;
-
-            case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
-                break;
-
-            case "Hit":
-                _animState?.SetAnimation("Hit", false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
-                break;
-
-            case "Dead":
-                break;
-        }
-    }
 
     public override void _Ready()
     {
@@ -67,5 +31,32 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState = _sprite?.GetAnimationState();
 
         _animState?.SetAnimation("Idle_1");
+    }
+    
+    public bool IsAwakened { get; set; }
+
+    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
+    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
+    private string HitAnim => "Hit";
+    
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
+                break;
+            case "Attack":
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Hit":
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Cast":
+            case "Dead":
+                break;
+        }
     }
 }
