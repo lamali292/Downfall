@@ -34,7 +34,7 @@ public class GladiatorFormPower : ChampPowerModel
     }
     */
 
-    public override decimal ModifyDamageMultiplicative(
+    public override decimal DownfallModifyDamageMultiplicative(
         Creature? target,
         decimal amount,
         ValueProp props,

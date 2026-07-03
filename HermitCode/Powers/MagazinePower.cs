@@ -37,7 +37,7 @@ public class MagazinePower : HermitPowerModel
     private static bool IsBasicStrike(CardModel card) =>  card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Strike);
 
     
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

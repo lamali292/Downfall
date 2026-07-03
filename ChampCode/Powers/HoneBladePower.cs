@@ -8,7 +8,7 @@ namespace Champ.ChampCode.Powers;
 
 public class HoneBladePower : ChampPowerModel
 {
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,
