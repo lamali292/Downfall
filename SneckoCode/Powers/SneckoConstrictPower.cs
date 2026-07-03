@@ -15,6 +15,6 @@ public class SneckoConstrictPower() : SneckoPowerModel(PowerType.Debuff)
     {
         if (side != Owner.Side)
             return;
-        await CreatureCmd.Damage(ctx, Owner, Amount, ValueProp.Unpowered, Owner, null);
+        await CreatureCmd.Damage(ctx, Owner, Amount, ValueProp.Unpowered, Owner, null, null);
     }
 }

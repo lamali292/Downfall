@@ -16,12 +16,28 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         Ultimate
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var premultMat = new CanvasItemMaterial
+        {
+            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
+        };
+
+        _sprite = SpineBody;
+        _sprite?.SetNormalMaterial(premultMat);
+
+        _animState = _sprite?.GetAnimationState();
+
+        _animState?.SetAnimation("Idle");
+    }
+    
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
-
     private MegaSprite? _sprite;
 
     public Stance CurrentStance { get; set; } = Stance.Normal;
@@ -51,24 +67,22 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimation(IdleAnim);
+                SetMixOnCurrent(DefaultMix);
                 break;
 
             case "Cast":
                 break;
             case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation(AttackAnim, false);
+                SetMixOnCurrent(AttackMix);
+                QueueIdle();
                 break;
 
             case "Hit":
-                _animState?.SetAnimation(HitAnim, false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimation(HitAnim, false);
+                SetMixOnCurrent(HitMix);
+                QueueIdle();
                 break;
 
             case "Dead":
@@ -76,20 +90,17 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         }
     }
 
-    public override void _Ready()
+    private void SetMixOnCurrent(float mix)
     {
-        base._Ready();
+        if (_animState == null) return;
+        using var entry = _animState.GetCurrent(0);
+        entry?.SetMixDuration(mix);
+    }
 
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
-        _animState = _sprite?.GetAnimationState();
-
-        _animState?.SetAnimation("Idle");
+    private void QueueIdle()
+    {
+        if (_animState == null) return;
+        using var entry = _animState.AddAnimationTracked(IdleAnim);
+        entry.SetMixDuration(ToIdleMix);
     }
 }

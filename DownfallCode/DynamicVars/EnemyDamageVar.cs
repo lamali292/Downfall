@@ -32,7 +32,7 @@ public class EnemyDamageVar : DynamicVar
         var originalDamage1 = BaseValue;
         if (runGlobalHooks)
             originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, card.Owner.Creature, target, BaseValue, Props,
-                card, ModifyDamageHookType.All, previewMode, out _);
+                card, null, ModifyDamageHookType.All, previewMode, out _);
         DownfallMainFile.Logger.Info($"{originalDamage1}");
         PreviewValue = originalDamage1;
     }

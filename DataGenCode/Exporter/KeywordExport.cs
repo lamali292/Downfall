@@ -118,10 +118,10 @@ public class KeywordExport : ItemExport, IImageExport
             .Where(e => e != null)
             .Cast<KeywordExport>()
             .ToList();
-        var c = ModManager.Mods.SelectMany(static m => m.assembly?.GetTypes().Where(t =>
+        var c = ModManager.Mods.SelectMany(static m => m.assemblies.SelectMany(e => e.GetTypes().Where(t =>
                     t.IsAssignableTo(typeof(DynamicVar)) && t.GetConstructors().Any(c =>
                         c.GetParameters() is { Length: 1 } parameters &&
-                        parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)) ?? []
+                        parameters[0].ParameterType == typeof(decimal))).Select(static v => FromDynamicVar(v)))
             )
             .Where(e => e != null)
             .Cast<KeywordExport>()

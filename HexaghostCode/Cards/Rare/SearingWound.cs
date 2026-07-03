@@ -28,7 +28,7 @@ public class SearingWound : HexaghostCardModel
             var amount = enemy.GetPowerAmount<SoulBurnPower>();
             await CreatureCmd.Damage(ctx, enemy, amount,
                 ValueProp.Move | ValueProp.Unpowered | ValueProp.Unblockable,
-                Owner.Creature, this);
+                Owner.Creature, this, cardPlay);
         }
     }
 }

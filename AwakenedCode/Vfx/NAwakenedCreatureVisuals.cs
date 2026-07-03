@@ -13,44 +13,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
-
     private MegaSprite? _sprite;
-
-    public bool IsAwakened { get; set; }
-
-    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
-    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
-
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
-                break;
-
-            case "Cast":
-                break;
-
-            case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
-                break;
-
-            case "Hit":
-                _animState?.SetAnimation("Hit", false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
-                break;
-
-            case "Dead":
-                break;
-        }
-    }
 
     public override void _Ready()
     {
@@ -67,5 +30,53 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState = _sprite?.GetAnimationState();
 
         _animState?.SetAnimation("Idle_1");
+    }
+    
+    public bool IsAwakened { get; set; }
+
+    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
+    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimation(IdleAnim);
+                SetMixOnCurrent(DefaultMix);
+                break;
+
+            case "Cast":
+                break;
+
+            case "Attack":
+                _animState?.SetAnimation(AttackAnim, false);
+                SetMixOnCurrent(AttackMix);
+                QueueIdle();
+                break;
+
+            case "Hit":
+                _animState?.SetAnimation("Hit", false);
+                SetMixOnCurrent(HitMix);
+                QueueIdle();
+                break;
+
+            case "Dead":
+                break;
+        }
+    }
+
+    private void SetMixOnCurrent(float mix)
+    {
+        if (_animState == null) return;
+        using var entry = _animState.GetCurrent(0);
+        entry?.SetMixDuration(mix);
+    }
+
+    private void QueueIdle()
+    {
+        if (_animState == null) return;
+        using var entry = _animState.AddAnimationTracked(IdleAnim);
+        entry.SetMixDuration(ToIdleMix);
     }
 }

@@ -42,7 +42,7 @@ public class MagazinePower : HermitPowerModel
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return !props.IsPoweredAttack() || cardSource == null || !IsBasicStrike(cardSource) || dealer != Owner ||
                CombatManager.Instance.History.CardPlaysFinished

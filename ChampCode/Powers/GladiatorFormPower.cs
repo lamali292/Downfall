@@ -39,7 +39,7 @@ public class GladiatorFormPower : ChampPowerModel
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         if (!props.IsPoweredAttack() || cardSource == null || cardSource.Owner.Creature != Owner)
             return 1M;
