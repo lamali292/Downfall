@@ -33,7 +33,7 @@ public class GigaBeam : GuardianCardModel
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .DownfallFromCard(this, cardPlay)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(BeforeDamageAction)

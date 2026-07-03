@@ -27,7 +27,7 @@ public sealed class Malice : HermitCardModel
         HermitSfx.PlayGun1();
         if (card?.Type == CardType.Curse)
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .DownfallFromCard(this, play)
+                .FromCardCompatibility(this, play)
                 .TargetingAllOpponents(CombatState!)
                 .WithHermitFireHitFx()
                 .Execute(ctx);

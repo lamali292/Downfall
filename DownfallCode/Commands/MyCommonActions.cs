@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
@@ -130,7 +131,7 @@ public static class MyCommonActions
     private static AttackCommand FromModel(this AttackCommand cmd, AbstractModel model)
     {
         if (model is CardModel card)
-            return cmd.DownfallFromCard(card, null);
+            return cmd.FromCardCompatibility(card, null);
         if (cmd.Attacker != null)
             throw new InvalidOperationException("Attacker has already been set.");
 

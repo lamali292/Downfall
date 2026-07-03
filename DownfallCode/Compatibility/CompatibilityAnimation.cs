@@ -7,62 +7,80 @@ public static class CompatibilityAnimation
 {
     private const BindingFlags F = BindingFlags.Public | BindingFlags.Instance;
 
-    private static readonly bool IsNewApi;
-    private static readonly MethodInfo SetAnimation;    // SetAnimation(string, bool) — both versions
-    private static readonly MethodInfo? GetCurrent;     // new: GetCurrent(int)
-    private static readonly MethodInfo AddAnimation;    // old: AddAnimation(string) / new: AddAnimationTracked(string)
-    private static readonly MethodInfo SetMixOnSetEntry;
-    private static readonly MethodInfo SetMixOnAddEntry;
+    private static readonly MethodInfo SetAnimationM;   // SetAnimation(string, [bool], [...])
+    private static readonly MethodInfo? GetCurrentM;    // GetCurrent(int), if present
+    private static readonly MethodInfo AddAnimationM;   // AddAnimationTracked(string) or AddAnimation(string, [...])
 
     static CompatibilityAnimation()
     {
         var t = typeof(MegaAnimationState);
 
-        SetAnimation = t.GetMethod("SetAnimation", F, null, [typeof(string), typeof(bool)], null)
-            ?? throw new MissingMethodException("MegaAnimationState.SetAnimation(string, bool) not found.");
+        SetAnimationM = FindByName(t, "SetAnimation", typeof(string), typeof(bool))
+            ?? throw new MissingMethodException("MegaAnimationState.SetAnimation(string, bool, ...) not found.");
 
-        var tracked = t.GetMethod("AddAnimationTracked", F, null, [typeof(string)], null);
-        IsNewApi = tracked != null;
+        GetCurrentM = FindByName(t, "GetCurrent", typeof(int));
 
-        if (IsNewApi)
-        {
-            GetCurrent = t.GetMethod("GetCurrent", F, null, [typeof(int)], null)
-                ?? throw new MissingMethodException("MegaAnimationState.GetCurrent(int) not found.");
-            AddAnimation = tracked!;
-        }
-        else
-        {
-            AddAnimation = t.GetMethod("AddAnimation", F, null, [typeof(string)], null)
-                ?? throw new MissingMethodException("MegaAnimationState.AddAnimation(string) not found.");
-        }
+        AddAnimationM = FindByName(t, "AddAnimationTracked", typeof(string))
+            ?? FindByName(t, "AddAnimation", typeof(string))
+            ?? throw new MissingMethodException("MegaAnimationState.AddAnimation(Tracked)(string, ...) not found.");
+    }
 
-        // Entry types may differ per version and per call path — resolve SetMixDuration off
-        // the actual return types instead of hardcoding an entry type.
-        var setEntryType = IsNewApi ? GetCurrent!.ReturnType : SetAnimation.ReturnType;
-        SetMixOnSetEntry = setEntryType.GetMethod("SetMixDuration", [typeof(float)])
-            ?? throw new MissingMethodException($"{setEntryType.Name}.SetMixDuration(float) not found.");
-        SetMixOnAddEntry = AddAnimation.ReturnType.GetMethod("SetMixDuration", [typeof(float)])
-            ?? throw new MissingMethodException($"{AddAnimation.ReturnType.Name}.SetMixDuration(float) not found.");
+    /// <summary>
+    /// Finds a method whose leading parameters match <paramref name="leading"/> exactly and
+    /// whose remaining parameters are all optional. Handles C# default parameters, which are
+    /// invisible to exact-signature GetMethod lookups.
+    /// </summary>
+    private static MethodInfo? FindByName(Type type, string name, params Type[] leading)
+    {
+        return type.GetMethods(F)
+            .Where(m => m.Name == name)
+            .Where(m =>
+            {
+                var ps = m.GetParameters();
+                if (ps.Length < leading.Length) return false;
+                for (var i = 0; i < leading.Length; i++)
+                    if (ps[i].ParameterType != leading[i]) return false;
+                for (var i = leading.Length; i < ps.Length; i++)
+                    if (!ps[i].IsOptional) return false;
+                return true;
+            })
+            .OrderBy(m => m.GetParameters().Length) // prefer the tightest match
+            .FirstOrDefault();
+    }
+
+    /// <summary>Invokes, padding unsupplied trailing optional parameters with their defaults.</summary>
+    private static object? Call(MethodInfo m, object target, params object?[] args)
+    {
+        var ps = m.GetParameters();
+        if (ps.Length == args.Length)
+            return m.Invoke(target, args);
+
+        var full = new object?[ps.Length];
+        Array.Copy(args, full, args.Length);
+        for (var i = args.Length; i < ps.Length; i++)
+            full[i] = ps[i].DefaultValue;
+        return m.Invoke(target, full);
+    }
+
+    private static void SetMixDuration(object entry, float mix)
+    {
+        var m = FindByName(entry.GetType(), "SetMixDuration", typeof(float))
+            ?? throw new MissingMethodException($"{entry.GetType().Name}.SetMixDuration(float) not found.");
+        Call(m, entry, mix);
     }
 
     public static void SetAnimationWithMix(this MegaAnimationState animState,
         string anim, float mix, bool loop = true)
     {
-        object? entry;
-        if (IsNewApi)
-        {
-            SetAnimation.Invoke(animState, [anim, loop]);
-            entry = GetCurrent!.Invoke(animState, [0]);
-        }
-        else
-        {
-            entry = SetAnimation.Invoke(animState, [anim, loop]);
-        }
+        // Some versions return the entry directly; others return void and expose GetCurrent(0).
+        var entry = Call(SetAnimationM, animState, anim, loop);
+        if (entry is null && GetCurrentM != null)
+            entry = Call(GetCurrentM, animState, 0);
 
         try
         {
             if (entry != null)
-                SetMixOnSetEntry.Invoke(entry, [mix]);
+                SetMixDuration(entry, mix);
         }
         finally
         {
@@ -72,11 +90,11 @@ public static class CompatibilityAnimation
 
     public static void QueueAnimation(this MegaAnimationState animState, string anim, float mix)
     {
-        var entry = AddAnimation.Invoke(animState, [anim]);
+        var entry = Call(AddAnimationM, animState, anim);
         try
         {
             if (entry != null)
-                SetMixOnAddEntry.Invoke(entry, [mix]);
+                SetMixDuration(entry, mix);
         }
         finally
         {

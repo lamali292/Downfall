@@ -44,7 +44,7 @@ public sealed class Ricochet : HermitCardModel
             })
             .Execute(ctx);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .DownfallFromCard(this, play)
+            .FromCardCompatibility(this, play)
             .WithHitCount(extraHitCount)
             .TargetingRandomOpponents(CombatState!)
             .WithHermitGunHitFx()
