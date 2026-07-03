@@ -33,9 +33,10 @@ public partial class NGremlinsMerchantCharacter : NMerchantCharacter
 
     private void PlayAnimation(NCreatureVisuals visuals, string anim, bool loop = false)
     {
-        var megaTrackEntry = new MegaSprite(visuals._body).GetAnimationState().SetAnimation(anim, loop);
-        if (!loop || megaTrackEntry == null)
-            return;
-        megaTrackEntry.SetTrackTime(megaTrackEntry.GetAnimationEnd() * Rng.Chaotic.NextFloat());
+        var animState = new MegaSprite(visuals._body).GetAnimationState();
+        if (loop)
+            animState.SetAnimationRandomStart(anim, loop: true, Rng.Chaotic.NextFloat());
+        else
+            animState.SetAnimationCompat(anim, loop: false);
     }
 }

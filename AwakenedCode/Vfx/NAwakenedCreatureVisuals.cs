@@ -30,7 +30,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("Idle_1");
+        _animState?.SetAnimationCompat("Idle_1");
     }
     
     public bool IsAwakened { get; set; }

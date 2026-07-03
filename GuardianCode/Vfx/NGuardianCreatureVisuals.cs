@@ -35,7 +35,7 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("idle");
+        _animState?.SetAnimationCompat("idle");
     }
 
     
