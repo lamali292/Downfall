@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hermit.HermitCode.Utils;
@@ -33,7 +34,6 @@ public sealed class RoundhouseKick : HermitCardModel
     }
 }
 
-public class RoundhouseKickPower : CustomTemporaryPowerModelWrapper<RoundhouseKick, StrengthPower>
+public class RoundhouseKickPower : TemporaryDebuffPowerWrapper<RoundhouseKick, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
 }
