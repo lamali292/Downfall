@@ -15,6 +15,7 @@ public class SingularityShield : AwakenedCardModel
     public SingularityShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(8, 2);
+        this.WithPower<BlockNextTurnPower>(8, 2, false);
         this.WithDrained(1);
     }
 
@@ -23,7 +24,7 @@ public class SingularityShield : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, DynamicVars.Block.BaseValue);
+        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this);
         await CommonActions.ApplySelf<DrainedPower>(ctx, this);
     }
 }

@@ -163,7 +163,7 @@
   "AWAKENED-SCOUR.title": "Scour",
   "AWAKENED-SIGN_IN_BLOOD.description": "Take {HpLoss:diff()} damage.\nDraw {Cards:diff()} cards.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "AWAKENED-SIGN_IN_BLOOD.title": "Sign in Blood",
-  "AWAKENED-SINGULARITY_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {Block:diff()} [gold]Block[/gold] and lose {Energy:energyIcons()}.",
+  "AWAKENED-SINGULARITY_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {BlockNextTurnPower:diff()} [gold]Block[/gold] and lose {Energy:energyIcons()}.",
   "AWAKENED-SINGULARITY_SHIELD.title": "Singularity Shield",
   "AWAKENED-SIPHON.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-SIPHON.title": "Siphon",

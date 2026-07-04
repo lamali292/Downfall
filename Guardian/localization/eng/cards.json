@@ -109,7 +109,7 @@
   "GUARDIAN-STASIS_FIELD.title": "Stasis Field",
   "GUARDIAN-STASIS_STRIKE.description": "Deal {Damage:diff()} damage.\nGain {StasisSlots:diff()} [gold]Stasis[/gold] Slot.",
   "GUARDIAN-STASIS_STRIKE.title": "Stasis Strike",
-  "GUARDIAN-STRIKE_FOR_STRIKE.description": "Deal {Damage:diff()} damage.\nEnemy attacks you for {EnemyDamage:diff()} damage.",
+  "GUARDIAN-STRIKE_FOR_STRIKE.description": "Deal {Damage:diff()} damage.\nEnemy attacks you for {EnemyDamage:inverseDiff()} damage.",
   "GUARDIAN-STRIKE_FOR_STRIKE.title": "Strike for Strike",
   "GUARDIAN-STRIKE_GUARDIAN.description": "Deal {Damage:diff()} damage.",
   "GUARDIAN-STRIKE_GUARDIAN.title": "Strike",

@@ -55,7 +55,7 @@ public static class ConstructedCardModelExtensions
 
     public static ConstructedCardModel WithEnemyDamage(this ConstructedCardModel card, int baseValue, int upgrade = 0)
     {
-        return card.WithVars(new EnemyDamageVar(baseValue, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
+        return card.WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));
     }
 
     public static ConstructedCardModel WithUpgradedCardTip<T>(this ConstructedCardModel cons,

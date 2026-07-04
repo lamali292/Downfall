@@ -25,17 +25,15 @@ public class CrushingGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (target == null) return;
         if (Owner.Creature.CombatState == null) return;
-
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-        SpawnVfx(target);
-
         var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
         var damage = 3 + Intensity;
         for (var i = 0; i < hitCount; i++)
         {
+            var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+            if (target == null) return;
+            SpawnVfx(target);
             if (!target.IsHittable) continue;
             await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
         }

@@ -86,7 +86,7 @@ public static class SneckoCmd
     
     public static bool IsOffclass(CardModel card)
     {
-        return card.Pool != card.Owner.Character.CardPool;
+        return card.VisualCardPool != card.Owner.Character.CardPool;
     }
 
     public static bool IsDebuff(CardModel card)
