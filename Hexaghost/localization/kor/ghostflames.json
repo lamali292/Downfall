@@ -1,10 +1,10 @@
 {
-    "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "고양의 유령불",
-    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]1[/blue]개의 [gold]파워[/gold] 카드를 사용하면 [gold]점화[/gold]됩니다.\n[blue]4[/blue]의 [gold]방어도[/gold]와 [blue]1[/blue]의 [gold]힘[/gold]을 얻습니다.",
-    "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "파쇄의 유령불",
-    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]2[/blue]개의 [gold]스킬[/gold] 카드를 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [blue]3[/blue]의 피해를 두 번 가합니다.",
-    "HEXAGHOST-INFERNO_GHOSTFLAME.title": "심연의 유령불",
-    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]3[/blue]의 [gold]에너지[/gold]를 소모하면 [gold]점화[/gold]됩니다.\n점화된 유령불 하나당 무작위 적에게 [blue]4[/blue]의 피해를 입히고, 다른 유령불들은 [gold]끕니다[/gold].\n모든 유령불이 [gold]점화[/gold]된 상태라면 [blue]2[/blue]의 [gold]극열[/gold]을 얻습니다.\n턴 종료 시 [gold]소등[/gold]됩니다.",
-    "HEXAGHOST-SEARING_GHOSTFLAME.title": "낙인의 유령불",
-    "HEXAGHOST-SEARING_GHOSTFLAME.description": "유령불 위에 머무는 동안 [blue]2[/blue]개의 공격 카드를 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [blue]3[/blue]의 [gold]영혼 화상[/gold]을 두 번 새깁니다."
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "부채의 유령불꽃",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 [gold]파워[/gold] 카드를 [blue]1[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n[gold]방어도[/gold] [blue]4[/blue]와 [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "파쇄의 유령불꽃",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 [gold]스킬[/gold] 카드를 [blue]2[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 피해를 [blue]3[/blue]만큼 2번 줍니다.",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.title": "지옥의 유령불꽃",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "유령불꽃에 머무는 동안 [gold]에너지[/gold]를 [blue]3[/blue] 소모하면 [gold]점화[/gold]됩니다.\n[gold]점화된[/gold] 유령불꽃 하나당 무작위 적에게 피해를 [blue]4[/blue] 줍니다.\n모든 유령불꽃이 [gold]점화[/gold]되어 있으면, [gold]극열[/gold]을 [blue]2[/blue] 얻습니다.\n다른 유령불꽃들을 [gold]소화[/gold]합니다.\n내 턴 종료 시, [gold]소화[/gold]됩니다.",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "작열의 유령불꽃",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 공격 카드를 [blue]2[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [gold]영혼 화상[/gold]을 [blue]3[/blue]만큼 2번 부여합니다."
 }

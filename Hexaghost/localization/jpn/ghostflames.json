@@ -4,7 +4,7 @@
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "炎砕のゴーストフレイム",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]スキル[/gold]を[blue]2回[/blue]プレイすると、[gold]発火[/gold]する。\nランダムな敵に[blue]3[/blue]ダメージを2回与える。",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "インフェルノ・ゴーストフレイム",
-    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[blue]3[/blue][gold]エナジー[/gold]を消費すると、[gold]発火[/gold]する。\n[gold]発火状態[/gold]のゴーストフレイム1つにつき、ランダムな敵に[blue]4[/blue]ダメージを与える。\n他のすべてのゴーストフレイムが[gold]発火状態[/gold]である場合、[blue]2[/blue][gold]火力[/gold]を得る。\n他のすべてのゴーストフレイムを[gold]滅却[/gold]する。\nターン終了時、このゴーストフレイムを[gold]滅却[/gold]する。",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[blue]3[/blue][gold]エナジー[/gold]を消費すると、[gold]発火[/gold]する。\n[gold]発火[/gold]しているゴーストフレイム1つにつき、ランダムな敵に[blue]4[/blue]ダメージを与える。\n他のすべてのゴーストフレイムが[gold]発火[/gold]している場合、[blue]2[/blue][gold]火力[/gold]を得る。\n他のすべてのゴーストフレイムを[gold]滅却[/gold]する。\nターン終了時、このゴーストフレイムを[gold]滅却[/gold]する。",
     "HEXAGHOST-SEARING_GHOSTFLAME.title": "灼熱のゴーストフレイム",
     "HEXAGHOST-SEARING_GHOSTFLAME.description": "アタックを[blue]2回[/blue]プレイすると、[gold]発火[/gold]する。\nランダムな敵に[blue]3[/blue][gold]ソウルバーン[/gold]を2回与える。"
 }
