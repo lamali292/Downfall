@@ -30,7 +30,7 @@ public class EmeraldGem : GemModel
     }
 }
 
-public class EmeraldGemPower : CustomTemporaryPowerModelWrapper<EmeraldGem, StrengthPower>
+public class EmeraldGemPower : CustomTemporaryPowerModelWrapper<EmeraldGem, DexterityPower>
 {
     public override LocString Title => OriginModel is GemModel gem ? gem.Title : base.Title;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
