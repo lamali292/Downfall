@@ -28,15 +28,15 @@ public class InfernoGhostflame : GhostflameModel
     {
         if (Owner.Creature.CombatState == null) return;
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);
-        var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (target == null) return;
-
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-        SpawnVfx(target);
+  
         var hitCount = ignited + Repeat(GhostflameRepeatType.Damage);
         var damage = 4 + Intensity;
         for (var i = 0; i < hitCount; i++)
         {
+            var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+            if (target == null) continue;
+            SpawnVfx(target);
             if (!target.IsHittable) continue;
             await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
         }

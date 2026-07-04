@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=3 format=3 uid="uid://d1j15i6irj3x1"]
 
-[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_depl1"]
+[ext_resource type="Script" uid="uid://nm21x3d2n1th" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_depl1"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="2_im64a"]
 
 [node name="GuardianCombat" type="Node2D"]
 script = ExtResource("1_depl1")
 
-[node name="Visuals" parent="." instance=ExtResource("2_im64a")]
-unique_name_in_owner = true
+[node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(-0.5, 0.5)
+
+[node name="Visuals" parent="Node2D" instance=ExtResource("2_im64a")]
+unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

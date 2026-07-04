@@ -12,10 +12,9 @@ public sealed class MaintenanceStrikePower : HermitPowerModel
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner &&
-               cardSource != null &&
-               cardSource.Rarity == CardRarity.Basic &&
+               cardSource is { Rarity: CardRarity.Basic } &&
                cardSource.Tags.Contains(CardTag.Strike) &&
-               props.HasFlag(ValueProp.Move)
+               props.IsPoweredAttack()
             ? Amount
             : 0;
     }
