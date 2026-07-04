@@ -1,28 +1,27 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
-public class Burdened : HermitCardModel, IHasDeadOnEffect
+public class Burdened : HermitCardModel
 {
-    public Burdened() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Burdened() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(10, 3);
-        WithCards(3, 1);
+        this.WithPower<BurdenedPower>(8, 2, false);
+        this.WithTip<VigorPower>();
+        this.WithTip<Decay>();
     }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return CommonActions.CardBlock(this, cardPlay);
+        (await MyCommonActions.ApplySelf<BurdenedPower>(ctx, this))?.IncrementSelfDamage();
     }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var cards = Owner.GetDraw().Where(e => e.Type == CardType.Curse)
-            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
-        await CardPileCmd.Add(cards, PileType.Hand);
-    }
+ 
 }

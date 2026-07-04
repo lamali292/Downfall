@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=3 format=3 uid="uid://cgwi8w8bl3r6n"]
 
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/slime_boss.tscn" id="1_2vsmi"]
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeBossCreatureVisuals.cs" id="1_5ghei"]
+[ext_resource type="PackedScene" uid="uid://b0yyca3xiub5" path="res://SlimeBoss/scenes/character/slime_boss.tscn" id="1_2vsmi"]
+[ext_resource type="Script" uid="uid://5t2a2vnvcolo" path="res://SlimeBossCode/Vfx/NSlimeBossCreatureVisuals.cs" id="1_5ghei"]
 
 [node name="SlimeBossCombat" type="Node2D"]
 script = ExtResource("1_5ghei")
 
-[node name="Visuals" parent="." instance=ExtResource("1_2vsmi")]
+[node name="Node2D" type="Node2D" parent="."]
+show_behind_parent = true
+scale = Vector2(-1, 1)
+
+[node name="Visuals" parent="Node2D" instance=ExtResource("1_2vsmi")]
 unique_name_in_owner = true
 position = Vector2(4, -24)
 
@@ -14,16 +18,18 @@ position = Vector2(4, -24)
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -166.0
-offset_top = -329.0
-offset_right = 159.0
-offset_bottom = -24.0
+offset_left = -163.0
+offset_top = -312.0
+offset_right = 162.0
+offset_bottom = -7.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(7, -205)
+scale = Vector2(-1, 1)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(8, -285)
+scale = Vector2(-1, 1)

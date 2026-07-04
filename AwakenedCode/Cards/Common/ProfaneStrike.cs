@@ -15,6 +15,7 @@ public class ProfaneStrike : AwakenedCardModel
     public ProfaneStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(11, 4);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();

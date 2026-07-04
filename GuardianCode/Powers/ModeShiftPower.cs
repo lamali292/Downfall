@@ -35,10 +35,10 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
         var a = result.UnblockedDamage;
         if (a <= 0) return;
         SetAmount(Amount - a, true);
-        var m = Amount;
-        //var m = await PowerCmd.ModifyAmount(this, -a, dealer, null);
-        if (m > 0) return;
-        await Reset(ctx);
+        while (Amount <= 0)
+        {
+            await Reset(ctx);
+        }
     }
 
 

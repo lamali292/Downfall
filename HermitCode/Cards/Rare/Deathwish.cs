@@ -11,7 +11,7 @@ public class Deathwish: HermitCardModel
 {
  
 
-    public Deathwish() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Deathwish() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         this.WithPower<DeathwishPower>(1, false);

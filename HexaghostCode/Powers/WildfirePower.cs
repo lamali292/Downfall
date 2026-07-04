@@ -14,7 +14,7 @@ public class WildfirePower : HexaghostPowerModel
         decimal amount, Creature? applier,
         CardModel? cardSource)
     {
-        if (applier != Owner || power.Type != PowerType.Debuff || power.Amount != amount) return;
+        if (applier != Owner || power.TypeForCurrentAmount != PowerType.Debuff || power.Amount != amount) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
     }
 }

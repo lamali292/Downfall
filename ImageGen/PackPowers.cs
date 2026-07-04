@@ -73,12 +73,21 @@ public class PackPowers(string scriptDir, bool force)
         var entries = new List<(string Stem, Image<Rgba32> Big, Image<Rgba32> Small, Image<Rgba32> Sprite)>();
         foreach (var file in inputFiles)
         {
-            var stem = Path.GetFileNameWithoutExtension(file);
-            using var raw = Image.Load<Rgba32>(file);
-            var big = Outline.ApplyOutline(ScaleCentered(raw, BigSize), OutlineRadiusBig);
-            var small = Outline.ApplyOutline(ScaleCentered(raw, AtlasSize), OutlineRadiusAtlas);
-            var sprite = ScaleCentered(raw, SpriteSize);
-            entries.Add((stem, big, small, sprite));
+            try
+            {
+                var stem = Path.GetFileNameWithoutExtension(file);
+                using var raw = Image.Load<Rgba32>(file);
+                var big = Outline.ApplyOutline(ScaleCentered(raw, BigSize), OutlineRadiusBig);
+                var small = Outline.ApplyOutline(ScaleCentered(raw, AtlasSize), OutlineRadiusAtlas);
+                var sprite = ScaleCentered(raw, SpriteSize);
+                entries.Add((stem, big, small, sprite));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(file);
+                Console.WriteLine(e);
+            }
+           
         }
 
         var atlasData = entries.Select(e => (e.Stem, (Image)e.Small)).ToList();

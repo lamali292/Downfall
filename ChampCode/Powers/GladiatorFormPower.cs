@@ -34,12 +34,12 @@ public class GladiatorFormPower : ChampPowerModel
     }
     */
 
-    public override decimal ModifyDamageMultiplicative(
+    public override decimal DownfallModifyDamageMultiplicative(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         if (!props.IsPoweredAttack() || cardSource == null || cardSource.Owner.Creature != Owner)
             return 1M;

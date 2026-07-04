@@ -26,7 +26,7 @@ public class Break : AutomatonCardModel
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Hand);
-        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw);
+        await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw, CardPilePosition.Random);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Discard);
         await StashCmd.Stash<Error>(Owner);
     }

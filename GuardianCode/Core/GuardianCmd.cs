@@ -121,7 +121,6 @@ public static class GuardianCmd
         
         await GuardianHook.BeforeCardEntersStasis(cs, ctx, card, source);
         await CardPileCmd.Add(card, pile, skipVisuals: silent);
-        card.EnergyCost.AfterCardPlayedCleanup();
         SetStasisCounter(card);
         await GuardianHook.AfterCardEntersStasis(cs, ctx, card, source);
         return true;
@@ -140,7 +139,12 @@ public static class GuardianCmd
 
     private static int CalculateStasisCounter(CardModel card)
     {
-        return card is ICustomTickDuration custom ? custom.TickDuration : card.EnergyCost.GetResolved() + 1;
+        if (card is ICustomTickDuration custom)
+            return custom.TickDuration;
+        else if(card.EnergyCost.CostsX)
+            return card.Owner.PlayerCombatState!.Energy + 1;
+        else
+            return card.EnergyCost.GetResolved() + 1;
     }
 
     private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
@@ -219,8 +223,10 @@ public static class GuardianCmd
 
         var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
-        if (power.Amount > 0) return;
-        await power.Reset(ctx);
+        while (power.Amount <= 0)
+        {
+            await power.Reset(ctx);
+        }
     }
 
     public static Task Brace(PlayerChoiceContext ctx, CardModel card)

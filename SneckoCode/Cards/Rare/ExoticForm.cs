@@ -20,7 +20,7 @@ public class ExoticForm : SneckoCardModel, IHasGift
             Rarity = CardRarity.Rare
         });
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithPower<ExoticFormPower>(1);
+        this.WithPower<ExoticFormPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Zhen>();

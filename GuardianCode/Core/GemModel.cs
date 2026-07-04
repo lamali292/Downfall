@@ -140,12 +140,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         AssertMutable();
         return (GemModel)MutableClone();
     }
-
-    public override void AfterClonedOnCard(CardModel card)
-    {
-        if (card is GuardianCardModel gc)
-            OnAdded(gc);
-    }
+    
 
     private HoverTip ToHoverTip(string description)
     {
@@ -183,13 +178,4 @@ public abstract class GemModel : CardModifier, ICustomModel
         return originalPlayCount;
     }
 
-    internal void ApplyOnAddedEffects(CardModel card)
-    {
-        if (card is GuardianCardModel gc)
-            OnAdded(gc);
-    }
-
-    protected virtual void OnAdded(GuardianCardModel card)
-    {
-    }
 }

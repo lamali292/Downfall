@@ -12,7 +12,7 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public static class SlimeQueue
 {
-    private static readonly SpireField<Player, int> SlimeSlots = new(_ => 0);
+    private static readonly SpireField<Player, int> SlimeSlots = new(_ => 1);
 
     private static List<Creature> GetSlimes(Player player)
     {

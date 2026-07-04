@@ -1,6 +1,6 @@
 {
   "GUARDIAN-BAALORS_LORDLY_PLATE.title": "Baalor's Lordly Plate",
-  "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Whenever you [gold]Brace[/gold], [gold]Brace[/gold] 1 more.",
+  "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Whenever you [gold]Brace[/gold], [gold]Brace[/gold] [blue]1[/blue] more.",
   "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "One can never have enough armor.",
   "GUARDIAN-BOTTLED_BLACK_HOLE.title": "Bottled Black Hole",
   "GUARDIAN-BOTTLED_BLACK_HOLE.description": "On pickup, Enchant a card with [purple]Temporal[/purple].",
@@ -12,10 +12,10 @@
   "GUARDIAN-CRYO_CHAMBER.description": "At the start of each combat, gain [blue]1[/blue] [gold]Stasis[/gold] slot. Whenever a card enters [gold]Stasis[/gold], [gold]Upgrade[/gold] it for the remainder of combat.",
   "GUARDIAN-CRYO_CHAMBER.flavor": "Things always seem better coming out than they did going in.",
   "GUARDIAN-GUARDIAN_GEAR.title": "Guardian Gear",
-  "GUARDIAN-GUARDIAN_GEAR.description": "At the start of combat, gain [gold]Gear Up[/gold]. Whenever you enter Defensive Mode, gain {energyPrefix:energyIcons(1)} and draw 2 cards.",
+  "GUARDIAN-GUARDIAN_GEAR.description": "At the start of each combat, gain [gold]Gear Up[/gold]. Whenever you enter [gold]Defensive Mode[/gold], gain {energyPrefix:energyIcons(1)} and draw [blue]2[/blue] cards.",
   "GUARDIAN-GUARDIAN_GEAR.flavor": "Replace every 3,000 floors.",
   "GUARDIAN-OBSIDIAN_SCALES.title": "Obsidian Scales",
-  "GUARDIAN-OBSIDIAN_SCALES.description": "At the start of combat, gain 3 Thorns. Whenever you are debuffed or gain a debuff, gain 1 Thorns.",
+  "GUARDIAN-OBSIDIAN_SCALES.description": "At the start of each combat, gain [blue]3[/blue] [gold]Thorns[/gold]. Whenever you are debuffed, gain [blue]1[/blue] [gold]Thorns[/gold].",
   "GUARDIAN-OBSIDIAN_SCALES.flavor": "Stain the sky black with your blood. Retaliate against all who struck out at you.",
   "GUARDIAN-PICK_OF_RHAPSODY.title": "Pick of Rhapsody",
   "GUARDIAN-PICK_OF_RHAPSODY.description": "Whenever you defeat an Elite encounter, add a random [gold]Gem[/gold] to the rewards.",
@@ -27,9 +27,9 @@
   "GUARDIAN-QUANTUM_CHAMBER.description": "The first time you put a card into [gold]Stasis[/gold] each turn, [gold]Accelerate[/gold] it.",
   "GUARDIAN-QUANTUM_CHAMBER.flavor": "You get the chicken by hatching the egg, not by smashing it.",
   "GUARDIAN-SACK_OF_GEMS.title": "Sack of Gems",
-  "GUARDIAN-SACK_OF_GEMS.description": "Upon pickup, you may choose up to 5 random Gems to add to your [gold]Deck[/gold].",
+  "GUARDIAN-SACK_OF_GEMS.description": "Upon pickup, you may choose up to [blue]5[/blue] random [gold]Gems[/gold] to add to your [gold]Deck[/gold].",
   "GUARDIAN-SACK_OF_GEMS.flavor": "Ooh... shiny!",
   "GUARDIAN-WANDER_BOTS.title": "Wander Bots",
-  "GUARDIAN-WANDER_BOTS.description": "At the start of each combat, lose 1 [gold]Stasis[/gold] slot. Gain {Energy:energyIcons()} at the start of your turn.",
+  "GUARDIAN-WANDER_BOTS.description": "At the start of each combat, lose [blue]1[/blue] [gold]Stasis[/gold] slot. Gain {Energy:energyIcons()} at the start of your turn.",
   "GUARDIAN-WANDER_BOTS.flavor": "These drones find the most wonderful salvage, but require processing power to maintain."
 }

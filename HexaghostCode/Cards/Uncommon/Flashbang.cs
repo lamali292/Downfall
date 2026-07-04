@@ -1,4 +1,6 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
@@ -14,7 +16,7 @@ public class Flashbang : HexaghostCardModel
     public Flashbang() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
-        this.WithPower<TemporaryStrengthDownPower>(2, 1, false);
+        this.WithPower<FlashbangPower>(2, 1, false);
         this.WithTip<StrengthPower>();
         WithPower<WeakPower>(1, 1);
     }
@@ -25,7 +27,11 @@ public class Flashbang : HexaghostCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!HexaghostCmd.IsIgnited(Owner)) return;
-        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<FlashbangPower>(ctx, this, cardPlay);
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
+}
+
+public class FlashbangPower : TemporaryDebuffPowerWrapper<Flashbang, StrengthPower>
+{
 }

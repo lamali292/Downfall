@@ -15,6 +15,7 @@ public class RecursiveStrike : AutomatonCardModel
     {
         WithDamage(6, 3);
         WithTip(AutomatonTip.Encode);
+        WithTags(CardTag.Strike);
         WithUpgradingCardTip<StrikeAutomaton>();
     }
 

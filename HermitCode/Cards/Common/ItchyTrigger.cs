@@ -12,7 +12,7 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 {
     public ItchyTrigger() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
+        WithDamage(8, 2);
         WithVar("CostReduction", 1, 1);
     }
 

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,11 +20,12 @@ public class FanOfKnives : ChampCardModel, IBerserkerComboCard
 
     public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (Owner.ShouldBerserkerComboTrigger()) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

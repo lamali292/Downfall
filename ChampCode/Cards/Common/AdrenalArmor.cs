@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Artists;
@@ -14,7 +15,7 @@ public class AdrenalArmor : ChampCardModel
     public AdrenalArmor() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
+        this.WithPower<AdrenalArmorPower>(2, 1, false);
         this.WithTip<StrengthPower>();
     }
 
@@ -23,6 +24,8 @@ public class AdrenalArmor : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);
+        await CommonActions.ApplySelf<AdrenalArmorPower>(ctx, this);
     }
 }
+
+public class AdrenalArmorPower : CustomTemporaryPowerModelWrapper<AdrenalArmor, StrengthPower>;

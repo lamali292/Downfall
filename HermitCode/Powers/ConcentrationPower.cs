@@ -20,7 +20,8 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
 
     public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
-        await PowerCmd.ModifyAmount(ctx, this, -1, Owner, cardPlay?.Card);
+        if (card.Owner.Creature != Owner) return;
+        await PowerCmd.ModifyAmount(ctx, this, -1, Owner, cardPlay.Card);
     }
 
     public bool ShouldTriggerDeadOn(CardModel card)
@@ -32,7 +33,7 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
     public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) return;
+        if (participants.Contains(Owner)) return;
         if (Owner.Player?.GetRelic<Spyglass>() != null) return;
         await PowerCmd.Remove(this);
     }

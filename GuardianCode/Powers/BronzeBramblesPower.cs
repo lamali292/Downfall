@@ -14,18 +14,7 @@ public class BronzeBramblesPower : GuardianPowerModel
         Creature? applier,
         CardModel? cardSource)
     {
-        if (power.Owner != Owner) return;
-
-        var oldAmount = power.Amount - amount;
-        var oldType = power.GetTypeForAmount(oldAmount);
-        var newType = power.TypeForCurrentAmount;
-
-        var worseOff =
-            (oldType == PowerType.Buff && newType == PowerType.Debuff)            
-            || (oldType == PowerType.Debuff && newType == PowerType.Debuff && Math.Abs(power.Amount) > Math.Abs(oldAmount))  
-            || (oldType == PowerType.Buff && newType == PowerType.Buff && Math.Abs(power.Amount) < Math.Abs(oldAmount)); 
-        if (!worseOff) return;
-
+        if (power.Owner != Owner || power.GetTypeForAmount(amount) != PowerType.Debuff) return;
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, Amount, applier, null);
         Flash();
     }

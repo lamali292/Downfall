@@ -1,7 +1,9 @@
+using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +18,7 @@ public class CursedWail : CollectorCardModel
 {
     public CursedWail() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<TemporaryStrengthDownPower>(9, 2);
+        WithPower<CursedWailPower>(9, 2);
         WithPower<StrengthPower>(1, 1);
         WithKeywords(CardKeyword.Exhaust);
     }
@@ -26,11 +28,15 @@ public class CursedWail : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CommonActions.Apply<TemporaryStrengthDownPower>(ctx, CombatState.Enemies, this);
+        await CommonActions.Apply<CursedWailPower>(ctx, CombatState.Enemies, this);
         ;
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
         await PowerCmd.Apply<StrengthPower>(ctx, CombatState.Enemies.Where(e => e.IsAfflicted()), amount,
             Owner.Creature,
             this);
     }
+}
+
+public class CursedWailPower : TemporaryDebuffPowerWrapper<CursedWail, StrengthPower>
+{
 }

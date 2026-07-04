@@ -15,9 +15,9 @@ public class StrikeOfGeniusPlusPower : ChampPowerModel
         ICombatState combatState)
     {
         if (player.Creature != Owner) return;
-        var pool = ModelDb.CardPool<ChampCardPool>()
+        var pool = player.Character.CardPool
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(e => e.Tags.Contains(CardTag.Strike));
+            .Where(e => e.Tags.Contains(CardTag.Strike) && e.Type == CardType.Attack);
         var cards = CardFactory.GetDistinctForCombat(player, pool, Amount,
             player.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var c in cards)

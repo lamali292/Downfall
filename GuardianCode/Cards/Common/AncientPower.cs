@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
@@ -13,8 +14,8 @@ public class AncientPower : GuardianCardModel, IGemSocketCard
 {
     public AncientPower() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        this.WithPower<TemporaryStrengthUpPower>(3, 1, false);
-        this.WithPower<TemporaryDexterityUpPower>(3, 1, false);
+        this.WithPower<AncientStrengthPower>(3, 1, false);
+        this.WithPower<AncientDexterityPower>(3, 1, false);
         this.WithTip<StrengthPower>();
         this.WithTip<DexterityPower>();
     }
@@ -23,7 +24,11 @@ public class AncientPower : GuardianCardModel, IGemSocketCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);
-        await CommonActions.ApplySelf<TemporaryDexterityUpPower>(ctx, this);
+        await CommonActions.ApplySelf<AncientStrengthPower>(ctx, this);
+        await CommonActions.ApplySelf<AncientDexterityPower>(ctx, this);
     }
 }
+
+
+public class AncientStrengthPower : CustomTemporaryPowerModelWrapper<AncientPower, StrengthPower>;
+public class AncientDexterityPower : CustomTemporaryPowerModelWrapper<AncientPower, DexterityPower>;

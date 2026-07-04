@@ -1,5 +1,7 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hexaghost.HexaghostCode.Cards.Common;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +15,7 @@ public class RadiantReverb : HexaghostCardModel
     public RadiantReverb() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(14, 4);
-        this.WithPower<TemporaryIntensityPower>(3, 2, false);
+        this.WithPower<RadiantReverbPower>(3, 2, false);
         this.WithTip<IntensityPower>();
     }
 
@@ -22,6 +24,8 @@ public class RadiantReverb : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.ApplySelf<TemporaryIntensityPower>(ctx, this);
+        await CommonActions.ApplySelf<RadiantReverbPower>(ctx, this);
     }
 }
+
+public class RadiantReverbPower : CustomTemporaryPowerModelWrapper<RadiantReverb, IntensityPower>;

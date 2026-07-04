@@ -2,6 +2,7 @@
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Extensions.Cards;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -20,6 +21,8 @@ public class Immolation : AwakenedCardModel, IOnDrained
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
     }
 
+    protected override Artist? Artist => Artist.Get<Chimedragon>();
+    
     public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         if (player == Owner) EnergyCost.AddUntilPlayed(-amount);

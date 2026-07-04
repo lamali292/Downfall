@@ -86,7 +86,7 @@ public static class SneckoCmd
     
     public static bool IsOffclass(CardModel card)
     {
-        return card.Pool != card.Owner.Character.CardPool;
+        return card.VisualCardPool != card.Owner.Character.CardPool;
     }
 
     public static bool IsDebuff(CardModel card)
@@ -127,7 +127,6 @@ public static class SneckoCmd
 
         if (CardSelectCmd.ShouldSelectLocalCard(player))
         {
-            await Cmd.Wait(1);
             var screen = NChooseACardSelectionScreen.ShowScreen(cards, true);
             if (screen == null)
             {

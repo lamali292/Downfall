@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Piles;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +23,7 @@ public class HoardersStrike : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var cards = CollectorPile.Collected.GetPile(Owner).Cards;
+        var cards = Owner.GetCollectibles();
         if (cards.Count == 0) return;
         var card = cards[0];
         await CardCmd.AutoPlay(ctx, card, cardPlay.Target);
