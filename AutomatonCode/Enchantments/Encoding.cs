@@ -19,6 +19,8 @@ public class Encoding : AutomatonEnchantmentModel
 
     public override bool CanEnchant(CardModel card)
     {
+        if (!base.CanEnchant(card)) 
+            return false;
         return !AutomatonCmd.IsEncodable(card);
     }
 

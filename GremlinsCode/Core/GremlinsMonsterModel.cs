@@ -54,9 +54,11 @@ public class MadGremlin : GremlinsMonsterModel
 
     public override async Task TriggerGremlinBonus(PlayerChoiceContext ctx, Player player)
     {
-        await PowerCmd.Apply<TemporaryStrengthUpPower>(ctx, player.Creature, 2, player.Creature, null);
+        await PowerCmd.Apply<MadGremlinPower>(ctx, player.Creature, 2, player.Creature, null);
     }
 }
+public class MadGremlinPower : CustomTemporaryPowerModelWrapper<MadGremlin, StrengthPower>;
+
 
 public class ShieldGremlin : GremlinsMonsterModel
 {

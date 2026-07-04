@@ -13,7 +13,7 @@ public sealed class ShortFuse : HermitCardModel
 {
     public ShortFuse() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(12, 4);
+        WithDamage(13, 4);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

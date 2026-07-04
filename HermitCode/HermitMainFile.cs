@@ -1,5 +1,7 @@
 using System.Reflection;
 using BaseLib.Utils;
+using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -26,9 +28,8 @@ public partial class HermitMainFile : Node
     {
         CardExecutionRegistry.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        BundledSubmodLocRegistry.Register(ModId);
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

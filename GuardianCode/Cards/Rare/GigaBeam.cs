@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Commands;
@@ -32,7 +33,7 @@ public class GigaBeam : GuardianCardModel
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(BeforeDamageAction)
@@ -58,12 +59,12 @@ public class GigaBeam : GuardianCardModel
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return cardSource != this || !props.IsPoweredAttack()
             ? 0M

@@ -1,0 +1,12 @@
+{
+    "AWAKENED-RECITATION.chant": "再次造成{Damage:diff()}点伤害。",
+    "AWAKENED-CAW.chant": "本场战斗中，所有[gold]咔[/gold]的伤害提高{Caw:diff()}点。",
+    "AWAKENED-FEATHER_FLARE.chant": "下回合多抽一张牌。",
+    "AWAKENED-GATHER.chant": "将你[gold]弃牌堆[/gold]中一张牌放入你的[gold]手牌[/gold]。",
+    "AWAKENED-GREAT_HEX.chant": "目标敌人在其每个回合结束时获得{GreatHexPower:diff()}层[gold]魔力灼烧[/gold]。",
+    "AWAKENED-NIHIL.chant": "所有敌人失去等同于其[gold]魔力灼烧[/gold]层数的生命。",
+    "AWAKENED-RAVEN_STRIKE.chant": "打出你[gold]抽牌堆[/gold]顶的牌。",
+    "AWAKENED-TAKE_FLIGHT.chant": "你的[gold]格挡[/gold]不会在下回合开始时移除。",
+    "AWAKENED-VICTUALS.chant": "获得{Energy:energyIcons()}。",
+    "AWAKENED-SIPHON.chant": "本回合窃取{SiphonPower:diff()}点[gold]力量[/gold]。"
+}

@@ -14,7 +14,7 @@ public class BodyCrash : GuardianCardModel
     {
         WithBlock(5, 3);
         WithCalculatedDamage(0, Calc);
-        WithCalculatedVar("VisualBlock", 0, Calc2);
+        WithCalculatedDamage("VisualBlock", 0, Calc2);
     }
 
     private static decimal Calc2(CardModel card, Creature? arg2)

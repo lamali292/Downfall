@@ -16,8 +16,6 @@ namespace Gremlins.GremlinsCode.Core;
 
 public class Gremlins : DownfallCharacterModel
 {
-    public override bool HideFromVanillaCharacterSelect => !DownfallConfig.DevMode;
-    
     private static readonly Color Color = new(0xCA5B5BFF);
     public override Color EnergyLabelOutlineColor  => new(0x6f0060FF);
     public override string CharId => "Gremlins";

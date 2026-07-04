@@ -1,0 +1,4 @@
+{
+    "CHAMP-TRIGGERSKILLBONUS.title": "技术奖励",
+    "CHAMP-TRIGGERSKILLBONUS.description": "处于[gold]姿态[/gold]时，打出技能牌可获得该[gold]姿态[/gold]的技术奖励。\n每次进入[gold]姿态[/gold]后最多触发[blue]3[/blue]次。\n卡牌效果触发的技术奖励不受此限制。"
+}

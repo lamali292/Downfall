@@ -1,6 +1,8 @@
 using System.Reflection;
 using BaseLib.Extensions;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using Godot.Bridge;
@@ -22,9 +24,8 @@ public partial class CollectorMainFile : Node
     public static void Initialize()
     {
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.TryPatchAll(assembly);
+        
+        BundledSubmodLocRegistry.Register(ModId);
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

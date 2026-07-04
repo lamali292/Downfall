@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,6 +15,8 @@ public class Artifice : AwakenedCardModel
         WithPower<ManaburnPower>(7, 3);
         WithKeywords(CardKeyword.Retain);
     }
+
+    protected override Artist? Artist => Artist.Get<Chimedragon>();
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

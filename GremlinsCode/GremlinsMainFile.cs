@@ -1,5 +1,7 @@
 using System.Reflection;
 using BaseLib.Patches.Saves;
+using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Godot;
 using Godot.Bridge;
 using Gremlins.GremlinsCode.Core;
@@ -27,9 +29,8 @@ public partial class GremlinsMainFile : Node
             ExtendedSaveTypes.PropertyFunc<GremlinSaveData, int>("MaxHp")
         );
         ExtendedSaveTypes.RegisterListSaveType<GremlinSaveData>();
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        
+        BundledSubmodLocRegistry.Register(ModId);
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

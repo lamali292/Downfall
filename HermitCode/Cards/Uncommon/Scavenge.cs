@@ -11,7 +11,7 @@ public sealed class Scavenge : HermitCardModel, IHasDeadOnEffect
 {
     public Scavenge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<PlatedArmorPower>(4, 1);
+        WithPower<PlatedArmorPower>(3, 1);
         WithKeyword(CardKeyword.Exhaust);
         WithVar("DeadOn", 2);
     }

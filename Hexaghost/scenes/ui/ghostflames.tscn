@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 ]
+
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/vfx/fire.tscn" id="1_1iqf8"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NGhostflames.cs" id="1_5wfjy"]
+
+[node name="fire" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5wfjy")
+
+[node name="fire1" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(-90, -150)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire2" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(90, -150)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire3" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(180, 0)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire4" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(90, 150)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire5" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(-90, 150)
+scale = Vector2(0.25, 0.25)
+
+[node name="fire6" parent="." instance=ExtResource("1_1iqf8")]
+unique_name_in_owner = true
+position = Vector2(-180, 0)
+scale = Vector2(0.25, 0.25)

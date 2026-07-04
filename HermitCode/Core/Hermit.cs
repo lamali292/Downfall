@@ -27,7 +27,7 @@ public class Hermit : DownfallCharacterModel
     public override float CardColorH => 0.1f;
     public override float CardColorS => 0.4f;
     public override float CardColorV => 1.2f;
-    public override Color MapDrawingColor => Color;
+    public override Color MapDrawingColor => new(0x7A4900FF);
 
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;

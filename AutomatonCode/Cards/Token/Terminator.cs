@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Powers;
@@ -25,7 +26,7 @@ public class Terminator : AutomatonCardModel,
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = AutomatonCmd.GetMax(Owner);
-        var b = EncodePile.FunctionSequence.GetPile(Owner).Cards.Count;
+        var b = Owner.GetEncode().Count;
         if (a - 1 != b) return;
         await CommonActions.ApplySelf<TerminatorPower>(ctx, this);
     }

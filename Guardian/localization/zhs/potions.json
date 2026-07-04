@@ -1,0 +1,8 @@
+{
+    "GUARDIAN-POLISHING_OIL.title": "抛光油",
+    "GUARDIAN-POLISHING_OIL.description": "[gold]抛光[/gold][blue]{Polish:diff()}[/blue]。",
+    "GUARDIAN-LIQUID_ACCELERANT.title": "液态加速剂",
+    "GUARDIAN-LIQUID_ACCELERANT.description": "[gold]加速[/gold]直至有牌结束[gold]凝滞[/gold]。",
+    "GUARDIAN-QUANTUM_ELIXIR.title": "量子灵药",
+    "GUARDIAN-QUANTUM_ELIXIR.description": "从[blue]{Cards:diff()}[/blue]张牌中选择[blue]1[/blue]张[gold]凝滞[/gold]。\n重复直到你的[gold]凝滞[/gold]栏位已满。"
+}

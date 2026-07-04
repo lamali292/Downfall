@@ -1,0 +1,8 @@
+{
+    "CHAMP-BOTTLED_TECHNIQUE.title": "Technique Embouteillée",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "Déclenchez le [gold]Bonus de Compétence[/gold] de votre [gold]Pose[/gold] actuelle [blue]{Repeat:diff()}[/blue] fois.",
+    "CHAMP-BREW_OF_SHARPNESS.title": "Brassage tranchant",
+    "CHAMP-BREW_OF_SHARPNESS.description": "Gagnez [blue]{CounterPower:diff()}[/blue] de [gold]Contre[/gold].",
+    "CHAMP-STIMPACK.title": "Stimpack",
+    "CHAMP-STIMPACK.description": "Adoptez la [gold]Pose Ultime[/gold] pour [blue]1[/blue] tour."
+}

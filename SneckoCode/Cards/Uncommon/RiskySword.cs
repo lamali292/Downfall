@@ -14,14 +14,14 @@ public class RiskySword : SneckoCardModel, IAfterCardMuddled
     public RiskySword() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(8, 2);
-        WithVar("DamageIncrease", 8, 2);
+        WithVar("Increase", 8, 2);
         WithTip(SneckoKeywords.Muddle);
     }
 
     public Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card != this) return Task.CompletedTask;
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["DamageIncrease"].BaseValue);
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
         return Task.CompletedTask;
     }
 

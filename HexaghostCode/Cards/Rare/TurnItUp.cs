@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
@@ -14,9 +15,9 @@ public class TurnItUp : HexaghostCardModel
 {
     public TurnItUp() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<TemporaryStrengthUpPower>(2, 1, false);
-        this.WithPower<TemporaryDexterityUpPower>(2, 1, false);
-        this.WithPower<TemporaryIntensityPower>(2, 1, false);
+        this.WithPower<TurnItUpStrengthPower>(2, 1, false);
+        this.WithPower<TurnItUpDexterityPower>(2, 1, false);
+        this.WithPower<TurnItUpIntensityPower>(2, 1, false);
         this.WithTip<StrengthPower>();
         this.WithTip<DexterityPower>();
         this.WithTip<IntensityPower>();
@@ -27,8 +28,12 @@ public class TurnItUp : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<TemporaryStrengthUpPower>(ctx, this);
-        await CommonActions.ApplySelf<TemporaryDexterityUpPower>(ctx, this);
-        await CommonActions.ApplySelf<TemporaryIntensityPower>(ctx, this);
+        await CommonActions.ApplySelf<TurnItUpStrengthPower>(ctx, this);
+        await CommonActions.ApplySelf<TurnItUpDexterityPower>(ctx, this);
+        await CommonActions.ApplySelf<TurnItUpIntensityPower>(ctx, this);
     }
 }
+
+public class TurnItUpStrengthPower : CustomTemporaryPowerModelWrapper<TurnItUp, StrengthPower>;
+public class TurnItUpDexterityPower : CustomTemporaryPowerModelWrapper<TurnItUp, DexterityPower>;
+public class TurnItUpIntensityPower : CustomTemporaryPowerModelWrapper<TurnItUp, IntensityPower>;

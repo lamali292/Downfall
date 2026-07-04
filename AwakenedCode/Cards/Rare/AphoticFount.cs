@@ -4,7 +4,6 @@ using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -14,7 +13,7 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class AphoticFount : AwakenedCardModel
 {
-    public AphoticFount() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public AphoticFount() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<AphoticFountPower>(1, 1, false);
         this.WithTip<PlatingPower>();

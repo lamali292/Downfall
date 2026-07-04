@@ -1,4 +1,5 @@
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -35,7 +36,7 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
             ctx,
             topCards,
             Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, 1)
+            new CardSelectorPrefs(DownfallCardSelectorPrefs.PlaySelectionPrompt, 1)
         )).FirstOrDefault();
 
         if (selected == null)

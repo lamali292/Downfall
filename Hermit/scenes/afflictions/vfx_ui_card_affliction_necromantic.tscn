@@ -1,13 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://c5grf8hx577p6"]
+[gd_scene load_steps=27 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://ddouphww0r8d6" path="res://images/vfx/ui/ui_card_mask.png" id="1_tk5pc"]
-[ext_resource type="Shader" uid="uid://bpw51lsqv2wp6" path="res://shaders/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_border_shader.gdshader" id="2_g1gdt"]
-[ext_resource type="Texture2D" uid="uid://b1ejst3q0hxds" path="res://images/vfx/noise/vfx_noise_1.png" id="3_l7qdw"]
-[ext_resource type="Texture2D" uid="uid://cnnu2hi8qwc6q" path="res://images/vfx/ui/card/ui_card_border_vignette.png" id="4_a2xqc"]
-[ext_resource type="Texture2D" uid="uid://cgpaf12xcgk58" path="res://images/vfx/ui/card/ui_card_border_glow.png" id="5_07sea"]
-[ext_resource type="PackedScene" uid="uid://chqoe33c4gm6a" path="res://scenes/vfx/common/vfx_common_specks.tscn" id="6_hquqc"]
-[ext_resource type="Material" uid="uid://cgccwawweogof" path="res://materials/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_main.tres" id="7_0rtu5"]
-[ext_resource type="Texture2D" uid="uid://cmj07u2gtuuq1" path="res://images/vfx/ui/card/afflictions/bound/ui_card_bound_main.png" id="8_qah1h"]
+[ext_resource type="Texture2D" path="res://images/vfx/ui/ui_card_mask.png" id="1_tk5pc"]
+[ext_resource type="Shader" path="res://shaders/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_border_shader.gdshader" id="2_g1gdt"]
+[ext_resource type="Texture2D" path="res://images/vfx/noise/vfx_noise_1.png" id="3_l7qdw"]
+[ext_resource type="Texture2D" path="res://images/vfx/ui/card/ui_card_border_vignette.png" id="4_a2xqc"]
+[ext_resource type="Texture2D" path="res://images/vfx/ui/card/ui_card_border_glow.png" id="5_07sea"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/common/vfx_common_specks.tscn" id="6_hquqc"]
+[ext_resource type="Material" path="res://materials/vfx/ui/card/afflictions/bound/vfx_ui_card_affliction_bound_main.tres" id="7_0rtu5"]
+[ext_resource type="Texture2D" path="res://images/vfx/ui/card/afflictions/bound/ui_card_bound_main.png" id="8_qah1h"]
 
 [sub_resource type="Gradient" id="Gradient_o32id"]
 colors = PackedColorArray(0.75064427, 4.793823e-05, 0.57840014, 1, 1, 1, 1, 1)

@@ -12,7 +12,7 @@
   "HEXAGHOST-OLEXAS_SHIELD.description": "Powers are counted towards the progression of [gold]Searing[/gold] and [gold]Crushing Ghostflames[/gold].",
   "HEXAGHOST-OLEXAS_SHIELD.flavor": "Protection on-demand.",
   "HEXAGHOST-RECYCLER.title": "Recycler",
-  "HEXAGHOST-RECYCLER.description": "The first time a non-Status, non-Curse Ethereal card is Exhausted each combat, add a copy to your [gold]Hand[/gold].",
+  "HEXAGHOST-RECYCLER.description": "The first time a non-Status, non-Curse [gold]Ethereal[/gold] card is [gold]Exhausted[/gold] each combat, add a copy to your [gold]Hand[/gold].",
   "HEXAGHOST-RECYCLER.flavor": "One day, it shall be recycled too.",
   "HEXAGHOST-RED_CANDLE.title": "Red Candle",
   "HEXAGHOST-RED_CANDLE.description": "Whenever you apply [gold]Soulburn[/gold], apply [blue]2[/blue] additional [gold]Soulburn[/gold].",
@@ -27,6 +27,6 @@
   "HEXAGHOST-SPIRIT_BRAND.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]2[/blue] [gold]Block[/gold].",
   "HEXAGHOST-SPIRIT_BRAND.flavor": "A bound protector.",
   "HEXAGHOST-THE_BROKEN_SEAL.title": "The Broken Seal",
-  "HEXAGHOST-THE_BROKEN_SEAL.description": "Upon pickup, raise your Max HP by 6, then heal all of your HP. Start each combat with 1 Strength, Dexterity, and Intensity. You can not receive The Broken Seal and other seals again.",
+  "HEXAGHOST-THE_BROKEN_SEAL.description": "Upon pickup, raise your Max HP by [blue]6[/blue], then heal all of your HP. Start each combat with [blue]1[/blue] [gold]Strength[/gold], [gold]Dexterity[/gold], and [gold]Intensity[/gold]. You can not receive [gold]The Broken Seal[/gold] and other [gold]Seals[/gold] again.",
   "HEXAGHOST-THE_BROKEN_SEAL.flavor": "Unlimited, unrestrained, unquenchable power."
 }

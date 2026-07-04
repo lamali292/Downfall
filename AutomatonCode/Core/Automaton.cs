@@ -26,7 +26,7 @@ public class Automaton : DownfallCharacterModel
     public override float CardColorH => 0.16f;
     public override float CardColorS => 0.45f;
     public override float CardColorV => 1.2f;
-    public override Color MapDrawingColor => Color;
+    public override Color MapDrawingColor => new(0xFFFF00FF);
 
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;

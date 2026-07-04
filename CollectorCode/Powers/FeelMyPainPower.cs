@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -12,9 +13,10 @@ public class FeelMyPainPower : CollectorPowerModel
         bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner) return;
-        var target = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (target != null)
-            await CreatureCmd.Damage(ctx, target, Amount,
-                ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+        if (creature == null) return;
+        await DownfallCreatureCmd.Damage(ctx, creature, Amount,
+            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
+        Flash();
     }
 }

@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Cards.Ancient;
+using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -30,7 +31,10 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
     {
         if (_result == null) return;
         var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
-        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
+
+        var hasSnipe = Owner.Creature.HasPower<SnipePower>() ? 2 : 1;
+        for (var i = 0;  i < hasSnipe; i++)
+            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
         _result = null;
     }
 

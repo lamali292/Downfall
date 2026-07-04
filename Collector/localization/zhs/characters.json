@@ -1,0 +1,16 @@
+{
+    "COLLECTOR-COLLECTOR.aromaPrinciple": "[sine][purple]一切都是我的。一切都将是我的。[jitter]一切的一切。[/jitter][/purple][/sine]",
+    "COLLECTOR-COLLECTOR.banter.alive.endTurnPing": "我还有灵魂要收集。",
+    "COLLECTOR-COLLECTOR.banter.dead.endTurnPing": "……",
+    "COLLECTOR-COLLECTOR.cardsModifierDescription": "收藏家的卡牌现在会出现在奖励和商店中。",
+    "COLLECTOR-COLLECTOR.cardsModifierTitle": "收藏家卡牌",
+    "COLLECTOR-COLLECTOR.description": "尖塔城市中恶名远扬的巫女。\n像占据玩物一般收藏灵魂。",
+    "COLLECTOR-COLLECTOR.eventDeathPrevention": "我的收藏尚未完成。",
+    "COLLECTOR-COLLECTOR.goldMonologue": "[sine]如此多的财富……将会是我收藏的绝佳补充……[/sine][/sine]",
+    "COLLECTOR-COLLECTOR.possessiveAdjective": "她的",
+    "COLLECTOR-COLLECTOR.pronounObject": "她",
+    "COLLECTOR-COLLECTOR.pronounPossessive": "她的",
+    "COLLECTOR-COLLECTOR.pronounSubject": "她",
+    "COLLECTOR-COLLECTOR.title": "收藏家",
+    "COLLECTOR-COLLECTOR.titleObject": "收藏家"
+}

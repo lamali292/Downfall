@@ -5,6 +5,7 @@ using Gremlins.GremlinsCode.CustomEnums;
 using Gremlins.GremlinsCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -68,12 +69,13 @@ public class WizPower : GremlinsPowerModel, IHasSecondAmount
         return Task.CompletedTask;
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal DownfallModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (Amount < 3 || Owner != dealer || !props.IsPoweredAttack())
             return 0M;

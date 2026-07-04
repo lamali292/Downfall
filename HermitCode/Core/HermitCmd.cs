@@ -13,7 +13,8 @@ public static class HermitCmd
 {
     public static bool IsDeadOnInCurrentHandState(CardModel card)
     {
-        if (HermitHook.ShouldTriggerDeadOn(card.CombatState!, card))
+        if (card.CombatState == null) return false;
+        if (HermitHook.ShouldTriggerDeadOn(card.CombatState, card))
             return true;
 
         var handCards = PileType.Hand.GetPile(card.Owner).Cards.ToList();

@@ -1,8 +1,9 @@
-﻿using Downfall.DownfallCode.Powers;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 
@@ -21,6 +22,11 @@ public class SpikySlime : SlimeModel
     {
         await DamageCmd.Attack(4).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 4, out _, this);
-        await PowerCmd.Apply<TemporaryThornsPower>(ctx, PetOwner, modified, Creature, null);
+        await PowerCmd.Apply<SpikySlimePower>(ctx, PetOwner, modified, Creature, null);
     }
+}
+
+public class SpikySlimePower : CustomTemporaryPowerModelWrapper<SpikySlime, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
 }

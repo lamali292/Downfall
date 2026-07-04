@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Localization;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Gremlins.GremlinsCode.Cards.Token;
@@ -77,8 +78,8 @@ public class GremlinPower()
         }
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource)
+    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner && cardSource is { EnergyCost.Canonical: 0 } && GremlinsCmd
             .GetCurrentGremlin(Owner.Player)?
@@ -94,6 +95,8 @@ public class GremlinPower()
         var gremlin = GremlinsCmd.GetCurrentGremlin(player);
         if (gremlin is not { Monster: MadGremlin }) return;
         if (command.Results.SelectMany(e => e).All(e => e.Receiver != player.Creature)) return;
-        await PowerCmd.Apply<TemporaryStrengthUpPower>(ctx, player.Creature, 2, player.Creature, null);
+        await PowerCmd.Apply<GremlinStrengthPower>(ctx, player.Creature, 2, player.Creature, null);
     }
 }
+
+public class GremlinStrengthPower : CustomTemporaryPowerModelWrapper<GremlinPower, StrengthPower>;

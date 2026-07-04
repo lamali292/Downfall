@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Cards.Multiplayer;
 
@@ -24,9 +25,11 @@ public class EerieExpedition : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        var cards = Owner.Character.CardPool
-            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-            .Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife)).ToList();
+        var cards = ModelDb.AllCharacterCardPools
+                .SelectMany(e => e
+                    .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+                .Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife))).ToList()
+           ;
         foreach (var player in CombatState.Players)
         {
             var card = CardFactory.GetDistinctForCombat(player, cards, 1, Owner.RunState.Rng.CombatCardGeneration)

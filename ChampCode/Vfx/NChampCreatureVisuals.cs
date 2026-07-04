@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -16,12 +17,28 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         Ultimate
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var premultMat = new CanvasItemMaterial
+        {
+            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
+        };
+
+        _sprite = SpineBody;
+        _sprite?.SetNormalMaterial(premultMat);
+
+        _animState = _sprite?.GetAnimationState();
+
+        _animState?.SetAnimationCompat("Idle");
+    }
+    
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
-
     private MegaSprite? _sprite;
 
     public Stance CurrentStance { get; set; } = Stance.Normal;
@@ -46,50 +63,28 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _ => "Hit"
     };
 
+    
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation(IdleAnim)
-                    ?.SetMixDuration(DefaultMix);
-                break;
-
-            case "Cast":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Attack":
-                _animState?.SetAnimation(AttackAnim, false)
-                    ?.SetMixDuration(AttackMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-
             case "Hit":
-                _animState?.SetAnimation(HitAnim, false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation(IdleAnim)
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-
+            case "Cast":
             case "Dead":
                 break;
         }
     }
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
-        _animState = _sprite?.GetAnimationState();
-
-        _animState?.SetAnimation("Idle");
-    }
+    
+    
+    
 }

@@ -65,13 +65,12 @@ public class DiamondGem : GemModel
         UsedThisCombat = true;
         return Task.CompletedTask;
     }
-
-    public override void AfterClonedOnCard(CardModel card) { }
-
-    protected override void OnAdded(GuardianCardModel card)
+    
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
-        if (card is IGemCard) return;
-        card.EnergyCost.UpgradeBy(1);
-        card.EnergyCost.FinalizeUpgrade();
+        modifiedCost = originalCost;
+        if (Card is  IGemCard || card != Card) return false;
+        modifiedCost++;;
+        return true;
     }
 }

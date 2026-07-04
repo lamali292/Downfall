@@ -1,4 +1,5 @@
-﻿using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -23,7 +24,7 @@ public class ExhaustStatusesPower : GuardianPowerModel
         await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
     }
 
-    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player == Owner.Player)
             _triggers = 0;

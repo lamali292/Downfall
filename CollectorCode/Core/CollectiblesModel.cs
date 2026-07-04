@@ -51,7 +51,6 @@ public static class CollectiblesModel
         player.SpendEssence(essenceCost);
         AddCollectible(player, card);
 
-        var target = NTopBarCollectorButton.ButtonPosition + NTopBarCollectorButton.ButtonSize * 0.5f;
         _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(CollectorPile.Collected, card, player));
 
         CustomMessageWrapper.Send(new CollectibleRewardMessage

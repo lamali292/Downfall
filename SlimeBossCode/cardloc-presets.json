@@ -185,6 +185,11 @@
           "name": "name",
           "file": "monsters.json",
           "optional": false
+        },
+        {
+          "name": "description",
+          "file": "monsters.json",
+          "optional": false
         }
       ]
     }

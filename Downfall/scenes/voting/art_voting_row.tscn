@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cylwnt0msag45"]
+[gd_scene load_steps=6 format=3 ]
 
-[ext_resource type="Script" uid="uid://d2gwnjdvp0s3x" path="res://DownfallCode/Voting/NArtVotingRow.cs" id="1_hwvba"]
-[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="2_y2c0g"]
-[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="3_1tkpf"]
-[ext_resource type="Texture2D" uid="uid://c1kosvcor5dsr" path="res://images/ui/mods/steam_logo.png" id="4_dqhd6"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/NArtVotingRow.cs" id="1_hwvba"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_y2c0g"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="3_1tkpf"]
+[ext_resource type="Texture2D" path="res://images/ui/mods/steam_logo.png" id="4_dqhd6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyjbh"]
 bg_color = Color(1, 1, 1, 1)

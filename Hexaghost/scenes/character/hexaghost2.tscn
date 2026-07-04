@@ -1,9 +1,8 @@
-[gd_scene load_steps=39 format=3 ]
+[gd_scene load_steps=38 format=3 ]
 
 [ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="1_sll4x"]
 [ext_resource type="Texture2D" path="res://images/vfx/shared_use/smoke_vfx_flat.png" id="2_vvcwg"]
 [ext_resource type="Texture2D" path="res://Hexaghost/images/character/hexaghost_core.png" id="3_sll4x"]
-[ext_resource type="PackedScene" path="res://Hexaghost/scenes/vfx/fire.tscn" id="4_s5e12"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mul2j"]
 particles_animation = true
@@ -208,7 +207,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("fire:modulate:a")
+tracks/6/path = NodePath("Control:modulate:a")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -219,32 +218,21 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Control:modulate:a")
+tracks/7/path = NodePath(".:position:x")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Control/HurtSmoke:emitting")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/HurtSmoke:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -331,21 +319,10 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("fire:modulate:a")
+tracks/5/path = NodePath("Control:modulate:a")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.100000024, 0.281112, 0, 0),
-"times": PackedFloat32Array(0, 0.6666667)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Control:modulate:a")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, -0.0031347023, -0.100000024, 0.4872608, 0, 0),
 "times": PackedFloat32Array(0, 0.8)
@@ -428,33 +405,34 @@ tracks/2/keys = {
 "points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 4)
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("fire:modulate:a")
+tracks/3/path = NodePath(".:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 4)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/OutsideSmoke:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Control/OutsideSmoke:emitting")
+tracks/5/path = NodePath("Control/InsideSmoke:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -466,22 +444,10 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Control/InsideSmoke:emitting")
+tracks/6/path = NodePath("Control/InsideSmoke2:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Control/InsideSmoke2:emitting")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -551,6 +517,7 @@ states/hurt/position = Vector2(327, 278)
 states/idle/node = SubResource("AnimationNodeAnimation_fgopd")
 states/idle/position = Vector2(327, 153)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_4hq55"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_7y477"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_pe7m8"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_e2jop"), "death", "End", SubResource("AnimationNodeStateMachineTransition_mul2j"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_o1pco"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_pj6rm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_eau1d"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_fgopd")]
+graph_offset = Vector2(0, 33.53908)
 
 [node name="Hexaghost" type="Node2D"]
 script = ExtResource("1_sll4x")
@@ -623,48 +590,6 @@ scale = Vector2(1.125, 1.125)
 pivot_offset = Vector2(256, 255)
 texture = ExtResource("3_sll4x")
 expand_mode = 1
-
-[node name="fire" type="Control" parent="."]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 3
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
-grow_vertical = 2
-pivot_offset = Vector2(150, 150)
-
-[node name="fire1" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(60, 0)
-scale = Vector2(0.25, 0.25)
-
-[node name="fire2" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(240, 0)
-scale = Vector2(0.25, 0.25)
-
-[node name="fire3" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(330, 150)
-scale = Vector2(0.25, 0.25)
-
-[node name="fire4" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(240, 300)
-scale = Vector2(0.25, 0.25)
-
-[node name="fire5" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(60, 300)
-scale = Vector2(0.25, 0.25)
-
-[node name="fire6" parent="fire" instance=ExtResource("4_s5e12")]
-unique_name_in_owner = true
-position = Vector2(-30, 150)
-scale = Vector2(0.25, 0.25)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

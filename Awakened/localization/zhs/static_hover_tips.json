@@ -1,0 +1,12 @@
+{
+    "AWAKENED-AWAKEN.title": "觉醒",
+    "AWAKENED-AWAKEN.description": "如果你在一场战斗中打出了7张能力牌，则[gold]觉醒[/gold]。\n当你已[gold]觉醒[/gold]时，在本场战斗中[gold]升级[/gold]所有[gold]念咒[/gold]的法术牌。",
+    "AWAKENED-CONJURE.title": "念咒",
+    "AWAKENED-CONJURE.description": "从咒典中将下一张咒语牌加入你的[gold]手牌[/gold]。",
+    "AWAKENED-CHANT.title": "吟唱",
+    "AWAKENED-CHANT.description": "若上一张打出的牌是能力牌，则在本场战斗中每次打出这张牌都会触发吟唱效果。",
+    "AWAKENED-CHANTED.title": "已吟唱",
+    "AWAKENED-CHANTED.description": "这张卡已被强化。",
+    "AWAKENED-DRAINED.title": "力竭",
+    "AWAKENED-DRAINED.description": "任何令你失去{Energy:energyIcons()}的效果均视为力竭（不包括打出卡牌消耗的能量）。\n能量为0{Energy:energyIcons()}时仍能触发。"
+}

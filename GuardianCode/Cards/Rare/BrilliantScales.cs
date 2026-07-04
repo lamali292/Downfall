@@ -18,6 +18,8 @@ public class BrilliantScales : GuardianCardModel, IGemSocketCard
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
+    public override bool CanBeGeneratedInCombat => false;
+
     public int GemSlots => IsUpgraded ? 3 : 2;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

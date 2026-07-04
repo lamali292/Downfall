@@ -4,10 +4,12 @@ using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using Awakened.AwakenedCode.Relics;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -15,7 +17,7 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 namespace Awakened.AwakenedCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
+public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
 {
     public Darkleech() : base(1, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
@@ -24,6 +26,8 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithTags(AwakenedTag.Spell);
     }
+    
+    public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
     // But would be too extreme to make a hook for this.

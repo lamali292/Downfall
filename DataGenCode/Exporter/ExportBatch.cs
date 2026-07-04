@@ -56,7 +56,10 @@ public class ExportBatch
         foreach (var item in _items.All())
             try
             {
-                var mod = _mods.Values.FirstOrDefault(m => m.Assembly != null && m.Assembly == item.Assembly);
+                var itemAssembly = item.Assembly;
+                if (itemAssembly == null)
+                    return;
+                var mod = _mods.Values.FirstOrDefault(m => m.Assembly != null && m.Assembly.Contains(itemAssembly));
                 if (mod == null)
                 {
                     GD.Print($"No mod found for item {item.GetType().Name} assembly {item.Assembly?.GetName().Name}");

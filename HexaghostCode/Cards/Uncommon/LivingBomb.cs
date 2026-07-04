@@ -13,7 +13,7 @@ public class LivingBomb : HexaghostCardModel
 {
     public LivingBomb() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(4, 3);
+        WithPower<SoulBurnPower>(5, 3);
         this.WithPower<LivingBombPower>(1, false);
     }
 

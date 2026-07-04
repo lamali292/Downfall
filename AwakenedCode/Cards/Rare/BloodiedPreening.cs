@@ -16,6 +16,7 @@ public class BloodiedPreening : AwakenedCardModel
     {
         this.WithTip<StrengthPower>();
         this.WithTip<PlumeJab>();
+        WithVar("StrengthLoss", 2);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
@@ -23,7 +24,7 @@ public class BloodiedPreening : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this, -2);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this, -DynamicVars["StrengthLoss"].BaseValue);
         await CommonActions.ApplySelf<BloodiedPreeningPower>(ctx, this, 1);
     }
 }

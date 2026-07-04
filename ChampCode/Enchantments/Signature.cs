@@ -9,7 +9,7 @@ public class Signature : DownfallEnchantmentModel<Core.Champ>
 {
     public override bool CanEnchant(CardModel card)
     {
-        return card.Tags.Contains(ChampTag.Finisher);
+        return base.CanEnchant(card) && card.Tags.Contains(ChampTag.Finisher);
     }
 
     protected override void OnEnchant()

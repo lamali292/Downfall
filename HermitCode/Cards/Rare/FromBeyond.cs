@@ -29,10 +29,10 @@ public sealed class FromBeyond : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var enemy = Owner.RunState.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
         var exhaustCount = ((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(null);
         for (var i = 0; i < exhaustCount; i++)
         {
+            var enemy = Owner.RunState.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
             if (enemy == null) break;
             HermitCombatFx.GroundFireOnTarget(enemy);
             await MyCommonActions.LoseHpToTarget(ctx, this, enemy);

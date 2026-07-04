@@ -24,10 +24,20 @@ public class SuperSneckoSoul : SneckoRelicModel
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner) return;
-        await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
-        if (player.PlayerCombatState is { TurnNumber: 1 }) return;
-        var card = await CardPileCmd.Draw(ctx, Owner);
-        if (card == null) return;
-        await SneckoCmd.Muddle(ctx, card, this);
+        if (player.PlayerCombatState == null) return;
+        var turnNumber = player.PlayerCombatState.TurnNumber;
+        if (turnNumber % 2 == 1)
+        {
+            await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
+        }
+        else
+        {
+            var card = await CardPileCmd.Draw(ctx, Owner);
+            if (card == null) return;
+            await SneckoCmd.Muddle(ctx, card, this);
+        }
+       
+        
+        
     }
 }

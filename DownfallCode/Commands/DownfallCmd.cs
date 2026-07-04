@@ -56,6 +56,7 @@ public class DownfallCmd
         attack._sourceType = AttackCommand.SourceType.Monster;
         await attack
             .Targeting(player.Creature)
+            .WithValueProp(enemyDamage.Props)
             .WithHitFx("vfx/vfx_attack_slash", "event:/sfx/characters/silent/silent_attack")
             .Execute(ctx);
     }

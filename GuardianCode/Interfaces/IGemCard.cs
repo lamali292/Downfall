@@ -29,7 +29,6 @@ public interface IGemSocketCard
         if (IsFull || this is not CardModel card) return;
         var mutableGem = gem.IsMutable ? gem : gem.ToMutable();
         CardModifier.AddModifier(card, mutableGem);
-        mutableGem.ApplyOnAddedEffects(card);
     }
 
     void AddGems(IEnumerable<GemModel> gems)

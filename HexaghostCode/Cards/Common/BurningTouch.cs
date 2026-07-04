@@ -13,6 +13,7 @@ public class BurningTouch : HexaghostCardModel
     public BurningTouch() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<SoulBurnPower>(8, 4);
+        WithCards(2);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
@@ -23,6 +24,6 @@ public class BurningTouch : HexaghostCardModel
         var cond = cardPlay.Target.HasPower<SoulBurnPower>();
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         if (!cond) return;
-        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await CommonActions.Draw(this, ctx);
     }
 }

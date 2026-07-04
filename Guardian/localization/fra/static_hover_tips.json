@@ -1,0 +1,20 @@
+{
+    "GUARDIAN-ACCELERATE.title": "Accélération",
+    "GUARDIAN-ACCELERATE.description": "Réduisez le compteur de tours de la carte la plus à droite en [gold]Stase[/gold].",
+    "GUARDIAN-AGGRAVATE.title": "Aggravée",
+    "GUARDIAN-AGGRAVATE.description": "Lorsque vous entrez en combat, le coût de la carte augmente de [blue]1[/blue].",
+    "GUARDIAN-BRACE.title": "Ancrage",
+    "GUARDIAN-BRACE.description": "Réduisez la perte de PV nécessaire pour déclencher le [gold]Changement de Mode[/gold].",
+    "GUARDIAN-DEFENSIVE_MODE.title": "Mode Défensif",
+    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Pose[/gold].\nLorsque vous êtes en Mode Défensif, vous avez [blue]3[/blue] [gold]d'Épines[/gold] et votre [gold]Armure[/gold] n'expire pas.",
+    "GUARDIAN-PACKAGE.title": "Colis",
+    "GUARDIAN-PACKAGE.description": "Un colis a trois cartes inspirées d'un Androïde choisi de la Tour.",
+    "GUARDIAN-POLISH.title": "Polissage",
+    "GUARDIAN-POLISH.description": "Réduisez votre [gold]Faiblesse[/gold], votre [gold]Fragilité[/gold], et votre [gold]Vulnérabilité[/gold] de X pour chaque.\nConvertissez X piles de buffs temporaires en buffs permanents.",
+    "GUARDIAN-SOCKET.title": "Cavité",
+    "GUARDIAN-SOCKET.description": "Des [gold]Gemmes[/gold] peuvent être placées dans cette Cavité à un site de Repos.",
+    "GUARDIAN-STASIS.title": "Stase",
+    "GUARDIAN-STASIS.description": "Une carte en [gold]Stase[/gold] reste pour autant de tours que de son coût for +[blue]1[/blue]. Quand elle la quitte, elle retourne dans votre [gold]Main[/gold] et est gratuite jusqu'à ce qu'elle soit jouée.",
+    "GUARDIAN-TICK.title": "Tic",
+    "GUARDIAN-TICK.description": "Les effets Tic s'activent lorsque le compteur de [gold]Stase[/gold] de cette carte est réduit."
+}

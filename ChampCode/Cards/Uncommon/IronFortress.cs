@@ -15,7 +15,7 @@ public class IronFortress : ChampCardModel
     public IronFortress() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2);
-        this.WithPower<MetallicizePower>(3, 2, false);
+        WithPower<MetallicizePower>(3, 2);
         WithTip(StaticHoverTip.Block);
     }
 

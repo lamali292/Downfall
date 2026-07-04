@@ -18,7 +18,7 @@ public class Split : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SlimeBossCmd.Split<GuerillaSlime>(ctx, Owner);
+        await SlimeBossCmd.SplitRandom(ctx, Owner, SlimeType.Normal);
         await SlimeBossCmd.Command(ctx, this);
     }
 }

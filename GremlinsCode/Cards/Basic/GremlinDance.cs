@@ -1,4 +1,6 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Powers;
 using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.Powers;
@@ -25,7 +27,7 @@ public class GremlinDance : GremlinsCardModel
             return GremlinsCmd.GetCurrentGremlin(card._owner)?.Monster switch
             {
                 ShieldGremlin => [HoverTipFactory.Static(StaticHoverTip.Block)],
-                FatGremlin => [HoverTipFactory.FromPower<TemporaryStrengthDownPower>()],
+                FatGremlin => [HoverTipFactory.FromPower<GremlinDancePower>()],
                 WizardGremlin => [HoverTipFactory.FromPower<WizPower>()],
                 GremlinNob => [HoverTipFactory.FromPower<StrengthPower>()],
                 _ => []
@@ -59,7 +61,7 @@ public class GremlinDance : GremlinsCardModel
                 break;
             case FatGremlin:
                 if (cardPlay.Target == null) return;
-                await PowerCmd.Apply<TemporaryStrengthDownPower>(ctx, cardPlay.Target, 2, Owner.Creature, this);
+                await PowerCmd.Apply<GremlinDancePower>(ctx, cardPlay.Target, 2, Owner.Creature, this);
                 break;
             case WizardGremlin:
                 await PowerCmd.Apply<WizPower>(ctx, Owner.Creature, 2, Owner.Creature, this);
@@ -76,4 +78,8 @@ public class GremlinDance : GremlinsCardModel
         base.AddExtraArgsToDescription(description);
         description.Add("GremlinVariant", GremlinName);
     }
+}
+
+public class GremlinDancePower : TemporaryDebuffPowerWrapper<GremlinDance, StrengthPower>
+{
 }
