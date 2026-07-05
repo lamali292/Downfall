@@ -1,7 +1,11 @@
 {
+    "AUTOMATON-ALLOCATE.description": "Gagnez {energyPrefix:energyIcons(1)} pour chaque carte Statut dans votre [gold]Pioche[/gold] et [gold]Orbe de bronze[/gold].{InCombat:cond:\n(Gagnez {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Ventilation",
+    "AUTOMATON-ASSEMBLY.description": "Piochez {Cards:diff()} cartes.\n[gold]Encodez[/gold] toutes les cartes avec [gold]Encode [/gold].",
     "AUTOMATON-ASSEMBLY.title": "Assemblage",
+    "AUTOMATON-BACKTRACE.title": "Backtrace",
     "AUTOMATON-BIT_SHIFT.title": "Décalage binaire",
+    "AUTOMATON-BOOST.title": "Boost",
     "AUTOMATON-BRANCH.title": "Branche",
     "AUTOMATON-BRANCH_ATTACK.title": "Branche: Attaque",
     "AUTOMATON-BRANCH_BLOCK.title": "Branche: Armure",

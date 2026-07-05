@@ -65,7 +65,7 @@
     "AUTOMATON-FUNCTION_SKILL_CARD.title": "함수()",
     "AUTOMATON-FUNCTION_POWER_CARD.title": "함수()",
     "AUTOMATON-FUNCTION_ATTACK_CARD.title": "함수()",
-    "AUTOMATON-GOTO.description": "방어도를 {Block:diff()} 얻습니다.\n카드를 {Cards:diff()}장 뽑습니다.\n상태이상 카드가 생성될 때, 플레이하기 전까지 이 카드의 비용이 {Energy:energyIcons()}(으)로 감소합니다.",
+    "AUTOMATON-GOTO.description": "방어도를 {Block:diff()} 얻습니다.\n카드를 {Cards:diff()} {Cards:plural:card|cards}장 뽑습니다.\n상태이상 카드가 생성될 때, 사용하기 전까지 이 카드의 비용이 {Energy:energyIcons()}(으)로 감소합니다.",
     "AUTOMATON-GOTO.title": "GOTO",
     "AUTOMATON-HYPER_BEAM_AUTOMATON.description": "모든 적에게 {Damage:diff()}의 피해를 주고 [gold]취약[/gold]을 {VulnerablePower:diff()} 부여합니다.\n[gold]공허[/gold]를 {Cards:diff()}장 [gold]보관[/gold]합니다.",
     "AUTOMATON-HYPER_BEAM_AUTOMATON.title": "파괴 광선",

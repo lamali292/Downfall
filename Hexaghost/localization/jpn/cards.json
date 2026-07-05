@@ -12,7 +12,7 @@
     "HEXAGHOST-BRIGHT_RITUAL.description": "ゴーストフレイムの進行を初期化する。\n[gold]滅却[/gold]したゴーストフレイム１つにつき、{Energy:energyIcons()}を得て、カードを{Cards:diff()}枚引く。\n",
     "HEXAGHOST-BRIGHT_RITUAL.title": "輝きの儀式",
     "HEXAGHOST-BROILING_FLAMES.title": "揺らめく炎",
-    "HEXAGHOST-BROILING_FLAMES.description": "このターン、他のプレイヤーがこの敵にダメージを与えるたび、この敵は{BroilingFlamesPower:diff()}[gold]ソウルバーン[/gold]を得る。",
+    "HEXAGHOST-BROILING_FLAMES.description": "このターン、他のプレイヤーがこの敵にダメージを与えるたび、この敵に{BroilingFlamesPower:diff()}[gold]ソウルバーン[/gold]を付与する。",
     "HEXAGHOST-BURNING_QUESTION.description": "1つ選択。\n[gold]火力[/gold]{IntensityPower:diff()}を得る。\n[gold]金属化[/gold]{MetallicizePower:diff()}を得る。\n戦闘終了時、{RoyaltiesPower:diff()}[gold]ゴールド[/gold]を獲得する。",
     "HEXAGHOST-BURNING_QUESTION.title": "火急的問題",
     "HEXAGHOST-BURNING_QUESTION_CHOICE1.description": "[gold]火力[/gold]{IntensityPower:diff()}を得る。",
