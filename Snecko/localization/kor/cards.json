@@ -97,7 +97,7 @@
     "SNECKO-RAIN_OF_DICE.title": "주사위 소나기",
     "SNECKO-RESTOCK.description": "[gold]손패[/gold]를 모두 버립니다.\n카드를 {Cards:diff()}장 뽑습니다.\n[gold]손패[/gold]를 [gold]혼란[/gold]시킵니다.",
     "SNECKO-RESTOCK.title": "재입고",
-    "SNECKO-RISKY_SWORD.description": "{Damage:diff()} 피해를 줍니다.\n[gold]혼란[/gold]될 때, 이번 전투 동안 이 카드의 피해량이 {DamageIncrease:diff()} 증가합니다.",
+    "SNECKO-RISKY_SWORD.description": "{Damage:diff()} 피해를 줍니다.\n아무 카드가 [gold]혼란[/gold]될 때마다, 이번 전투 동안 이 카드의 피해량이 {Increase:diff()} 증가합니다.",
     "SNECKO-RISKY_SWORD.title": "위험천만한 검",
     "SNECKO-ROUNDABOUT_SWING.description": "{Damage:diff()} 피해를 줍니다.\n카드 1장을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n다음 턴에 {DrawCardsNextTurnPower:diff()}장의 추가 카드를 뽑습니다.",
     "SNECKO-ROUNDABOUT_SWING.title": "우회 휘두르기",
