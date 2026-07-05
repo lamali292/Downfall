@@ -7,7 +7,7 @@
   "HERMIT-RYE_STALK.description": "At the start of turn [blue]{Turn}[/blue], gain [blue]{RuggedPower:diff()}[/blue] [gold]Rugged[/gold].",
   "HERMIT-SHOTGLASS.title": "Shotglass",
   "HERMIT-SHOTGLASS.flavor": "Any liquid placed inside changes into something else.",
-  "HERMIT-SHOTGLASS.description": "The first {Limit:plural:time|[blue]{}[/blue] times} you use a potion each combat, gain a random potion. You can only use [blue]{Limit} [/blue]{Limit:plural:potion|potions} each combat.",
+  "HERMIT-SHOTGLASS.description": "The first {Limit:plural:time|[blue]{}[/blue] times} you use a potion each combat, procure a random potion. You can only use [blue]{Limit} [/blue]{Limit:plural:potion|potions} each combat.",
   "HERMIT-HORSESHOE.title": "Horseshoe",
   "HERMIT-HORSESHOE.flavor": "Lucky charm. Somebody is gonna be missing this.",
   "HERMIT-HORSESHOE.description": "Whenever you gain [gold]Weak[/gold], [gold]Frail[/gold] or [gold]Vulnerable[/gold], gain [blue]1[/blue] less.",
