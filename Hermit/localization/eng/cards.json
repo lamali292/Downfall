@@ -51,7 +51,7 @@
   "HERMIT-FLASH_POWDER.description": "Gain {Block:diff()} [gold]Block[/gold].\nALL enemies lose {StrengthLoss:diff()} [gold]Strength[/gold].",
   "HERMIT-ROULETTE.title": "Roulette",
   "HERMIT-ROULETTE.description": "Deal {Damage:diff()} damage.\nDiscard your [gold]Hand[/gold],\nthen draw that many cards.",
-  "HERMIT-MIDNIGHT.title": "Midnight",
+  "HERMIT-MIDNIGHT.title": "Twilight",
   "HERMIT-MIDNIGHT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Impending Doom[/gold] to your [gold]Hand[/gold].",
   "HERMIT-GLARE.title": "Glare",
   "HERMIT-GLARE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
