@@ -92,7 +92,7 @@
   "CHAMP-HONE_BLADE.description": "Your \"Strike\" cards deal {HoneBladePower:diff()} more damage. ",
   "CHAMP-HONE_BLADE.title": "Hone Blade",
   "CHAMP-HUDDLE.title": "Huddle",
-  "CHAMP-HUDDLE.description": "All players gain {VigorPower:diff()} [gold]Vigor[/gold].",
+  "CHAMP-HUDDLE.description": "ALL players gain {VigorPower:diff()} [gold]Vigor[/gold].",
   "CHAMP-IGNORE_PAIN.description": "Your HP cannot be reduced until your next turn.",
   "CHAMP-IGNORE_PAIN.title": "Ignore Pain",
   "CHAMP-IMPROVISING.description": "Whenever you enter a [gold]Stance[/gold], trigger its [gold]Skill Bonus [/gold]{ImprovisingPower:diff()} times.",

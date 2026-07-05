@@ -21,7 +21,7 @@ public class FourthDimension : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
+    public override bool CanBeGeneratedInCombat => false;
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await CardSelectCmd.FromHand(ctx, Owner,
