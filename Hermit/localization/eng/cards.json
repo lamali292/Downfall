@@ -155,7 +155,7 @@
   "HERMIT-SMOKING_BARREL.title": "Smoking Barrel",
   "HERMIT-SMOKING_BARREL.description": "Whenever you trigger a [gold]Dead On[/gold] effect, gain {SmokingBarrelPower:diff()} [gold]Vigor[/gold].",
   "HERMIT-CRACKSHOT.title": "Crackshot",
-  "HERMIT-CRACKSHOT.description": "Deal {Damage:diff()} damage.\nGain [gold]Block[/gold] equal to damage dealt.\n[gold]Dead On[/gold]: Deals double damage.",
+  "HERMIT-CRACKSHOT.description": "Deal {Damage:diff()} damage.\nGain [gold]Block[/gold] equal to damage dealt.\n[gold]Dead On[/gold]: Deal double damage.",
   "HERMIT-SPECTRE.title": "Spectre",
   "HERMIT-SPECTRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd [gold]Ethereal[/gold] to a {IfUpgraded:show:|random }card in your [gold]Hand[/gold].",
   "HERMIT-MAGAZINE.title": "Magazine",
