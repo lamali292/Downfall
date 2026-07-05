@@ -10,6 +10,7 @@ namespace Hermit.HermitCode.Cards.Uncommon;
 
 public sealed class Combo : HermitCardModel
 {
+    //todo this has the same damage preview problem that Feral had at one point
     public Combo() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(HermitKeywords.DeadOn);

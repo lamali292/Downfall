@@ -161,7 +161,7 @@
   "HEXAGHOST-SPOOK.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold].",
   "HEXAGHOST-STEP_THROUGH.description": "Deal {Damage:diff()} damage.\nDraw 1 card for each [gold]Ignited[/gold] Ghostflame.",
   "HEXAGHOST-STEP_THROUGH.title": "Step Through",
-  "HEXAGHOST-STOKE_THE_FIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nFor each [gold]Ignited Ghostflame[/gold], [gold]Upgrade[/gold] a random card in your [gold]Hand[/gold].",
+  "HEXAGHOST-STOKE_THE_FIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nFor each [gold]Ignited[/gold] Ghostflame, [gold]Upgrade[/gold] a random card in your [gold]Hand[/gold].",
   "HEXAGHOST-STOKE_THE_FIRE.title": "Stoke the Fire",
   "HEXAGHOST-STRIKE_HEXAGHOST.description": "Deal {Damage:diff()} damage.",
   "HEXAGHOST-STRIKE_HEXAGHOST.title": "Strike",
