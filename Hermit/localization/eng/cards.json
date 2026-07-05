@@ -182,5 +182,5 @@
   "HERMIT-RUBBER_BULLET.title": "Rubber Bullet",
   "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Increase this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
   "HERMIT-BIG_BRUISER.title": "Big Bruiser",
-  "HERMIT-BIG_BRUISER.description": "All players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. "
+  "HERMIT-BIG_BRUISER.description": "ALL players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. "
 }
