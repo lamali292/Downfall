@@ -1,4 +1,5 @@
 using Hermit.HermitCode.Core;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -12,7 +13,13 @@ public sealed class RuggedPower : HermitPowerModel
     {
         if (target != Owner || Amount <= 0 || amount <= 0m || !props.IsPoweredAttack())
             return amount;
-        SetAmount(Amount - 1);
+       
         return Math.Min(amount, 2m);
+    }
+
+    public override Task AfterModifyingHpLostBeforeOsty()
+    {
+        PowerCmd.Decrement(this);
+        return Task.CompletedTask;
     }
 }
