@@ -12,7 +12,7 @@ public static class AutomatonCardEffectHandler
     {
         //if (card is IEncodable encodable)
         //    await encodable.PlayEncodableEffect(ctx, cardPlay, EncodeContext.Direct);
-        //if (AutomatonCmd.IsEncodable(card) && card.Enchantment is not Encoding)
-        //    await AutomatonCmd.EncodeCard(card, ctx);
+        if (AutomatonCmd.IsEncodable(card) && card.Enchantment is not Encoding)
+            await AutomatonCmd.EncodeCard(card, ctx);
     }
 }

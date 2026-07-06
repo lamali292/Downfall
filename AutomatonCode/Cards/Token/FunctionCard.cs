@@ -1,8 +1,12 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
 using System.Text;
+using Automaton.AutomatonCode.Cards.Rare;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
+using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Godot;
@@ -34,7 +38,6 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     private CardRarity _cardRarity;
     private CardType _cardType;
     private TargetType _targetType;
-    public IReadOnlyList<CardModel> SourceCards = [];
 
     public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
     //public override string CustomPortraitPath => "function_card.png".CardImagePath<Character.Automaton>();
@@ -49,47 +52,73 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override CardRarity Rarity => _cardRarity;
     public override CardType Type => _cardType;
     public override TargetType TargetType => _targetType;
-
-//todo make preview properly with strength and dexterity etc
     
-    public IEnumerable<DynamicVarSet> GetDynamicVars()
-    {
-        return SourceCards.Select(t => t.DynamicVars
-        );
-    }
-
-
+    
     public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
-        foreach (var sourceCard in SourceCards) IsInFunction.Set(sourceCard, false);
-        SourceCards = sourceCards;
-        foreach (var sourceCard in SourceCards) IsInFunction.Set(sourceCard, true);
+        var modifiers = sourceCards.SelectMany(CardModifier.Modifiers).OfType<EncodeModifier>()
+            .Select(e => e.MutableClone()).OfType<EncodeModifier>();
+        foreach (var encodeModifier in modifiers)
+        {
+            CardModifier.AddModifier(this, encodeModifier);
+        }
+
+        ApplyFunctionCardType(sourceCards);
     }
 
+    private void ApplyFunctionCardType(IEnumerable<CardModel> snapshot)
+    {
+        var list = snapshot.ToList();
+
+        if (list.Any(c => c is { TargetType: TargetType.AnyEnemy }))
+            SetTargetType(TargetType.AnyEnemy);
+        else if (list.Any(c => c is { TargetType: TargetType.AllEnemies }))
+            SetTargetType(TargetType.AllEnemies);
+        else
+            SetTargetType(TargetType.Self);
+
+        if (list.Any(c => c is FullRelease))
+            SetCardType(CardType.Power);
+        else if (list.Any(c => c is { Type: CardType.Attack }))
+            SetCardType(CardType.Attack);
+        else
+            SetCardType(CardType.Skill);
+
+        if (list.Any(c => c.Rarity == CardRarity.Ancient))
+            SetCardRarity(CardRarity.Ancient);
+        else if (list.Any(c => c.Rarity == CardRarity.Rare))
+            SetCardRarity(CardRarity.Rare);
+        else if (list.Any(c => c.Rarity == CardRarity.Uncommon))
+            SetCardRarity(CardRarity.Uncommon);
+        else
+            SetCardRarity(CardRarity.Common);
+    }
 
     public string GetDynamicTitle()
     {
-        if (SourceCards.Count == 0)
+        var encoding = Encoding;
+        if (encoding.Count == 0)
             return new LocString("cards", Id.Entry + ".title").GetFormattedText();
 
         var sb = new StringBuilder();
 
-        for (var i = 0; i < SourceCards.Count; i++)
+        for (var i = 0; i < encoding.Count; i++)
         {
-            var card = SourceCards[i];
+            var card = encoding[i];
             switch (i)
             {
                 case 0:
-                    var prefix = new LocString("encode", card.Id.Entry + ".functionPrefix");
+                    var prefix = new LocString("encode", card.Identifier + ".functionPrefix");
                     sb.Append(prefix.Exists() ? prefix.GetFormattedText() : "");
                     break;
                 case 1:
-                    var name = new LocString("encode", card.Id.Entry + ".functionName");
+                    var name = new LocString("encode", card.Identifier + ".functionName");
                     sb.Append(name.Exists() ? name.GetFormattedText() : "");
                     break;
                 case 2:
                 case 3:
-                    sb.Append(card.Title[0]);
+                    // Don't use id for this, lol
+                    sb.Append(card.Identifier.RemovePrefix()[0]);
                     break;
             }
         }
@@ -98,45 +127,7 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
         return sb.ToString();
     }
 
-    // Build description from source card effects
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        var lines = new List<string>();
-        var i = 0;
-        foreach (var card in SourceCards)
-        {
-            LocString loc;
-            if (card is IEncodable encodable)
-            {
-                loc = encodable.GetEncodeLocString(new EncodeContext(true, i));
-            }
-            else
-            {
-                loc = card.Description;
-            }
-            i++;
-            card.DynamicVars.AddTo(loc);
-            var upgradeDisplay = !card.IsUpgraded ? UpgradeDisplay.Normal : UpgradeDisplay.Upgraded;
-
-            loc.Add(new IfUpgradedVar(upgradeDisplay));
-            loc.Add("OnTable", false);
-            loc.Add("InCombat", 0);
-            loc.Add("TargetType", card.TargetType.ToString());
-            loc.Add("GainsBlock", card.GainsBlock);
-            var prefix = EnergyIconHelper.GetPrefix(card);
-            loc.Add("energyPrefix", prefix);
-            loc.Add("singleStarIcon", "[img]res://images/packed/sprite_fonts/star_icon.png[/img]");
-            foreach (var variable3 in loc.Variables)
-                if (variable3.Value is EnergyVar energyVar)
-                    energyVar.ColorPrefix = prefix;
-            var text = loc.GetFormattedText();
-            if (string.IsNullOrEmpty(text)) continue;
-            lines.Add(text);
-            
-        }
-
-        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
-    }
+    private List<EncodeModifier> Encoding => CardModifier.Modifiers(this).OfType<EncodeModifier>().ToList();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -144,20 +135,11 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
         CurrentlyExecuting.Value = this;
         try
         {
-            for (var i = 0; i < SourceCards.Count; i++)
-            {
-                var card = SourceCards[i];
-                if (card is IEncodable encodable)
-                    await encodable.PlayEncodableEffect(ctx, cardPlay, new EncodeContext(true, i));
-                else
-                    await DownfallCardCmd.OnPlay.Invoke(card, ctx, cardPlay);
-            }
-
             if (Type == CardType.Power)
             {
                 var power = await PowerCmd.Apply<FullReleasePower>(ctx,
                     Owner.Creature, 1, Owner.Creature, this);
-                power?.SetSourceCards(SourceCards);
+                power?.SetSourceCards(Encoding);
             }
         }
         finally
@@ -218,7 +200,7 @@ public static class NCardPortraitPatch
     private static void Postfix(NCard __instance)
     {
         if (__instance.Model is not FunctionCard fc) return;
-
+/*
         var portraitRect = __instance.GetNode<TextureRect>("%Portrait");
         var ancientPortraitRect = __instance.GetNode<TextureRect>("%AncientPortrait");
 
@@ -263,6 +245,7 @@ public static class NCardPortraitPatch
                     MouseFilter = Control.MouseFilterEnum.Ignore
                 });
         }
+        */
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
@@ -13,7 +14,7 @@ namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
 public class Terminator : AutomatonCardModel,
-    IEncodable
+    IEncodable<TerminatorEncode>
 {
     public Terminator() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {

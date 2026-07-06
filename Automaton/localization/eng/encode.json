@@ -13,6 +13,7 @@
   "AUTOMATON-BRANCH_ATTACK.functionName": "Branch",
   "AUTOMATON-BUGGY_MESS.encode": "Gain {Energy:energyIcons()}.\nAdd an [gold]Dazed[/gold] to your [gold]Draw Pile[/gold].",
   "AUTOMATON-BUGGY_MESS.functionPrefix": "buggy",
+  "AUTOMATON-BUGGY_MESS.functionName": "Mess",
   "AUTOMATON-DEPRECATE.encode": "Apply {WeakPower:diff()} [gold]Weak[/gold].",
   "AUTOMATON-DEPRECATE.functionPrefix": "old",
   "AUTOMATON-DEPRECATE.functionName": "Insult",

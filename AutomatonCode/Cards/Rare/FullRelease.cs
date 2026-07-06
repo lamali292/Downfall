@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -7,7 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class FullRelease : AutomatonCardModel, IEncodable
+public class FullRelease : AutomatonCardModel, IEncodable<FullReleaseEncode>
 {
     public FullRelease() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {

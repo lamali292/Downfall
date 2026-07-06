@@ -29,8 +29,8 @@ public class BronzeCore : AutomatonRelicModel
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
-        var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
-        var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
+        var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
+        var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
         await AutomatonCmd.EncodeCard(card1, ctx);
         await AutomatonCmd.EncodeCard(card2, ctx);
     }

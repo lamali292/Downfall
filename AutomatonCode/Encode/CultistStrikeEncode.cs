@@ -58,7 +58,7 @@ public class CultistStrikeEncode : EncodeModifier
     {
         if (cardPlay.Target == null || Owner == null) return;
         await DamageCmd.Attack(CurrentDamage)
-            .FromCard(Owner)
+            .FromCard(Owner, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
