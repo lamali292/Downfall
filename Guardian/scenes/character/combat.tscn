@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1j15i6irj3x1"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://nm21x3d2n1th" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_depl1"]
+[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_depl1"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="2_im64a"]
 
 [node name="GuardianCombat" type="Node2D"]

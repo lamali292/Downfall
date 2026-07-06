@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0yyca3xiub5"]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://dxtxkx4wre621" path="res://SlimeBoss/scenes/character/slimeboss.spatlas" id="1_l1fn0"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://dnsylj5a3eamm" path="res://SlimeBoss/scenes/character/slimeboss.spskel" id="2_k5lqo"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/character/slimeboss.spatlas" id="1_l1fn0"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/character/slimeboss2.spskel" id="2_k5lqo"]
 
-[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_h65j7"]
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_4kq0j"]
 atlas_res = ExtResource("1_l1fn0")
 skeleton_file_res = ExtResource("2_k5lqo")
 
 [node name="SlimeBoss" type="SpineSprite"]
-skeleton_data_res = SubResource("SpineSkeletonDataResource_h65j7")
+skeleton_data_res = SubResource("SpineSkeletonDataResource_4kq0j")
 preview_skin = "Default"
 preview_animation = "-- Empty --"
 preview_frame = false

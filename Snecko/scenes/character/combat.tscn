@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clk5e0eqj3sax"]
+[gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="PackedScene" path="res://Snecko/scenes/character/snecko.tscn" id="1_svhpa"]
-[ext_resource type="Script" uid="uid://bl7dfe1bq88uc" path="res://SneckoCode/Vfx/NSneckoCreatureVisuals.cs" id="2_3vjed"]
+[ext_resource type="Script" path="res://SneckoCode/Vfx/NSneckoCreatureVisuals.cs" id="2_3vjed"]
 
 [node name="SneckoCombat" type="Node2D"]
 script = ExtResource("2_3vjed")
