@@ -27,9 +27,6 @@ public class CollectorCmd
 
     public static async Task<CardPileAddResult> DrawCollected(PlayerChoiceContext ctx, Player player)
     {
-        CollectorMainFile.Logger.Info($"DrawCollected: PileType = {CollectorPile.Collected}");
-        CollectorMainFile.Logger.Info(
-            $"Is registered: {CustomPiles.CustomPileProviders.ContainsKey(CollectorPile.Collected)}");
         if (player.Creature.CombatState == null) return default;
         return await DownfallCardCmd.DrawFromCustomPile(ctx, player, CollectorPile.Collected);
     }

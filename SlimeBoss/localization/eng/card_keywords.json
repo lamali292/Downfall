@@ -1,6 +1,6 @@
 ﻿{
   "SLIMEBOSS-BURIED.description": "This card gets [gold]Slurped[/gold] last.",
   "SLIMEBOSS-BURIED.title": "Buried",
-  "SLIMEBOSS-SLURP.description": "Add random \"Licks\" from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
+  "SLIMEBOSS-SLURP.description": "Add random card ending with “Lick” from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-SLURP.title": "Slurp"
 }

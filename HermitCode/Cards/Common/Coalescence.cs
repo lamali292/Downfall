@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.CustomEnums;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -35,7 +36,7 @@ public sealed class Coalescence : HermitCardModel
         var retainable = hand.Cards.Where(c => !c.ShouldRetainThisTurn).ToList();
         if (retainable.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, DynamicVars.Cards.IntValue);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0, DynamicVars.Cards.IntValue);
         var selected = (await CardSelectCmd.FromHand(
             prefs: prefs,
             context: ctx,

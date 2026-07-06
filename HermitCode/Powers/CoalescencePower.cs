@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -21,7 +22,7 @@ public sealed class CoalescencePower : HermitPowerModel
     {
         if (player != Owner.Player || player.Creature.CombatState == null) return;
         if (!Hook.ShouldFlush(player.Creature.CombatState, player)) return;
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, Amount);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0, Amount);
         var selected = (await CardSelectCmd.FromHand(
             ctx,
             Owner.Player,

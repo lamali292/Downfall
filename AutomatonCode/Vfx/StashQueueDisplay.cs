@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Piles;
+using BaseLib.Patches.Content;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -74,7 +75,8 @@ public partial class StashQueueDisplay : Control
 
     private void SubscribeToStash(Player player)
     {
-        _stashPile = StashPile.Stash.GetPile(player);
+        _stashPile = CustomPiles.GetCustomPile(player.PlayerCombatState, StashPile.Stash);
+        if (_stashPile == null) return;
         _stashPile.CardAdded += OnCardAdded;
         _stashPile.CardRemoved += OnCardRemoved;
     }

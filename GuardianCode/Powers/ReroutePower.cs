@@ -23,19 +23,19 @@ public class ReroutePower : GuardianPowerModel
         CardModel card, bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
     {
-        if (_cardSource == card || card.Type == CardType.Power || card.Owner.Creature != Owner)
-            return (pileType, position);
         var player = card.Owner;
-        var pile = GuardianCombatModel.GetOrInitStasis(player);
-        if (pile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)) return (pileType, position);
-        GuardianCmd.SetStasisCounter(card);
-        card.EnergyCost.AfterCardPlayedCleanup();
-        return (pile.Type, position);
+        if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) || card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
+            return (pileType, position);
+
+        var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
+        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? (pileType, position) : (stasisPile.Type, position);
     }
 
     public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
         CardPilePosition position)
     {
+        GuardianCmd.SetStasisCounter(card);
+        card.EnergyCost.AfterCardPlayedCleanup();
         await PowerCmd.Decrement(this);
     }
 

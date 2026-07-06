@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Piles;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,7 +27,7 @@ public class Forgery : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (Owner.Creature.CombatState == null) return;
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        var cards = CollectorPile.Collected.GetPile(Owner).Cards;
+        var cards = Owner.GetCollectibles();
 
         if (cards.Count == 0) return;
         CardModel? chosenCard;

@@ -2,21 +2,27 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Cards.Token;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
 
 [Pool(typeof(GuardianRelicPool))]
-public class BronzeGear() : GuardianRelicModel(RelicRarity.Starter)
+public class BronzeGear : GuardianRelicModel
 {
     public override bool HasUponPickupEffect => true;
+
+    public BronzeGear() : base(RelicRarity.Starter)
+    {
+        WithTip(typeof(GearUp));
+        WithTip(GuardianKeyword.Gem);
+    }
 
     public override RelicModel GetUpgradeReplacement()
     {

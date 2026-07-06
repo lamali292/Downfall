@@ -1,0 +1,8 @@
+{
+    "CHAMP-BOTTLED_TECHNIQUE.title": "瓶装技法",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "触发你当前[gold]姿态[/gold]的[gold]技术奖励[/gold][blue]{Repeat:diff()}[/blue]次。",
+    "CHAMP-BREW_OF_SHARPNESS.title": "锋利药水",
+    "CHAMP-BREW_OF_SHARPNESS.description": "获得[blue]{CounterPower:diff()}[/blue]层[gold]反击[/gold]。",
+    "CHAMP-STIMPACK.title": "兴奋剂",
+    "CHAMP-STIMPACK.description": "进入[gold]终极姿态[/gold][blue]1[/blue]回合。"
+}

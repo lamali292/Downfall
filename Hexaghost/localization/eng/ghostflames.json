@@ -4,7 +4,7 @@
   "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Crushing Ghostflame",
   "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] [gold]Skills[/gold] while on it. \nDeals [blue]3[/blue] damage to a random enemy twice.",
   "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Inferno Ghostflame",
-  "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Ignites[/gold] by spending [blue]3[/blue] [gold]Energy[/gold] while on it.\nDeals [blue]4[/blue] damage to a random enemy for each ignited Ghostflame, then [gold]Extinguish[/gold] others.\nIf all Ghostflames are [gold]Ignited[/gold], gain [blue]2[/blue] [gold]Intensity[/gold].\nAt the end of your turn [gold]Extinguish[/gold]",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Ignites[/gold] by spending [blue]3[/blue] [gold]Energy[/gold] while on it.\nDeals [blue]4[/blue] damage to a random enemy for each [gold]Ignited[/gold] Ghostflame.\nIf all Ghostflames are [gold]Ignited[/gold], gain [blue]2[/blue] [gold]Intensity[/gold].\n[gold]Extinguish[/gold] other Ghostflames.\nAt the end of your turn, [gold]Extinguish[/gold] itself.",
   "HEXAGHOST-SEARING_GHOSTFLAME.title": "Searing Ghostflame",
   "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] Attacks while on it.\nApplies [blue]3[/blue] [gold]Soulburn[/gold] to a random enemy twice. "
 }

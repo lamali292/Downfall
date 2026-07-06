@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
@@ -31,27 +32,26 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimation("Idle");
+        _animState?.SetAnimationCompat("Idle");
     }
+
 
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimation("Idle")
-                    ?.SetMixDuration(DefaultMix);
+                _animState?.SetAnimationWithMix("Idle", DefaultMix);
                 break;
             case "Hit":
-                _animState?.SetAnimation("Hit", false)
-                    ?.SetMixDuration(HitMix);
-                _animState?.AddAnimation("Idle")
-                    .SetMixDuration(ToIdleMix);
+                _animState?.SetAnimationWithMix("Hit", HitMix, loop: false);
+                _animState?.QueueAnimation("Idle", ToIdleMix);
                 break;
-            case "Cast":
             case "Attack":
+            case "Cast":
             case "Dead":
                 break;
+
         }
     }
 }

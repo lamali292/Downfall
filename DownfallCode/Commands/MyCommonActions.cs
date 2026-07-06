@@ -1,5 +1,7 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -54,15 +56,15 @@ public static class MyCommonActions
 
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)
     {
-        await CreatureCmd.Damage(ctx, target, model.GetDynamicVars().HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel);
+        await DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel, null);
     }
 
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
-        await CreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel);
+        await DownfallCreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel, null);
     }
 
     public static async Task<IReadOnlyList<T>> Apply<T>(
@@ -129,7 +131,7 @@ public static class MyCommonActions
     private static AttackCommand FromModel(this AttackCommand cmd, AbstractModel model)
     {
         if (model is CardModel card)
-            return cmd.FromCard(card);
+            return cmd.FromCardCompatibility(card, null);
         if (cmd.Attacker != null)
             throw new InvalidOperationException("Attacker has already been set.");
 

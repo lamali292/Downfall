@@ -15,6 +15,7 @@ public class SpellshieldPower : AwakenedPowerModel
         IReadOnlyCollection<CardModel> flushedCards,
         IReadOnlyCollection<CardModel> retainedCards)
     {
+        if (player.Creature != Owner) return;
         foreach (var card in retainedCards)
             await CreatureCmd.GainBlock(card.Owner.Creature, Amount, ValueProp.Unpowered, null);
     }

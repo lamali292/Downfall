@@ -1,6 +1,6 @@
 ﻿{
   "AUTOMATON-ENCODE.title": "Encode",
-  "AUTOMATON-ENCODE.description": "Encode a card.\nWhen 3 cards are Encoded, their effects (above the Encode keyword) are merged into a Function that costs [blue]1[/blue].",
+  "AUTOMATON-ENCODE.description": "Encode a card.\nWhen [blue]3[/blue] cards are Encoded, their effects (above the Encode keyword) are merged into a Function that costs [blue]1[/blue].",
   "AUTOMATON-STASH.title": "Stash",
   "AUTOMATON-STASH.description": "Place a card inside of your Bronze Orb, up to a maximum of [blue]5[/blue]. You draw the oldest card from it at the start of each turn."
 }

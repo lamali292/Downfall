@@ -65,3 +65,5 @@ public class Hermitfan69 : Artist;
 public class Bukie : Artist;
 
 public class Freshbone : Artist;
+
+public class Chimedragon : Artist;

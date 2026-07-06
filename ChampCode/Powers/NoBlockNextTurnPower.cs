@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Powers;
 
 public class NoBlockNextTurnPower : ChampPowerModel
 {
-    public NoBlockNextTurnPower() : base(PowerType.Debuff, PowerStackType.Single)
+    public NoBlockNextTurnPower() : base(PowerType.Debuff, PowerStackType.Counter)
     {
         WithTip<NoBlockPower>();
         WithTip(StaticHoverTip.Block);
@@ -20,7 +20,7 @@ public class NoBlockNextTurnPower : ChampPowerModel
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
-        await PowerCmd.Remove(this);
         await PowerCmd.Apply<NoBlockPower>(ctx, Owner, Amount, Applier, null);
+        await PowerCmd.Decrement(this);
     }
 }

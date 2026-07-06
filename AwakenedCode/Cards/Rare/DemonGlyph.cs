@@ -15,8 +15,8 @@ public class DemonGlyph : AwakenedCardModel
 {
     public DemonGlyph() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithTip<StrengthPower>();
-        this.WithTip<DexterityPower>();
+        WithPower<StrengthPower>(1);
+        WithPower<DexterityPower>(1);
         this.WithPower<DemonGlyphPower>(2, 1, false);
         WithTip(AwakenedTip.Awaken);
     }
@@ -25,17 +25,16 @@ public class DemonGlyph : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        // could be done better.
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         if (AwakenedModel.IsAwakened(Owner))
         {
             var count = DynamicVars.Power<DemonGlyphPower>().BaseValue;
-            await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1 + count);
-            await CommonActions.ApplySelf<DexterityPower>(ctx, this, 1 + count);
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this, count);
+            await CommonActions.ApplySelf<DexterityPower>(ctx, this, count);
         }
         else
         {
-            await CommonActions.ApplySelf<StrengthPower>(ctx, this, 1);
-            await CommonActions.ApplySelf<DexterityPower>(ctx, this, 1);
             await CommonActions.ApplySelf<DemonGlyphPower>(ctx, this);
         }
     }

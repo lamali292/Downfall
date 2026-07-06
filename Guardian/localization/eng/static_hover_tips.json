@@ -2,7 +2,7 @@
   "GUARDIAN-ACCELERATE.title": "Accelerate",
   "GUARDIAN-ACCELERATE.description": "Reduce the turn counter of the right-most card in [gold]Stasis[/gold].",
   "GUARDIAN-AGGRAVATE.title": "Aggravate",
-  "GUARDIAN-AGGRAVATE.description": "When entering combat, this card's cost increases by [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img].",
+  "GUARDIAN-AGGRAVATE.description": "When entering combat, this card's cost increases by [blue]1[/blue].",
   "GUARDIAN-BRACE.title": "Brace",
   "GUARDIAN-BRACE.description": "Reduce the HP loss required to trigger [gold]Mode Shift[/gold].",
   "GUARDIAN-DEFENSIVE_MODE.title": "Defensive Mode",

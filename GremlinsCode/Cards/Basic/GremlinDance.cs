@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Powers;
 using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.Powers;
@@ -79,7 +80,6 @@ public class GremlinDance : GremlinsCardModel
     }
 }
 
-public class GremlinDancePower : CustomTemporaryPowerModelWrapper<GremlinDance, StrengthPower>
+public class GremlinDancePower : TemporaryDebuffPowerWrapper<GremlinDance, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
 }

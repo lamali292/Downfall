@@ -22,7 +22,7 @@ public class RazorSharp : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2);
+        await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2, CardPilePosition.Random);
         await CommonActions.ApplySelf<RazorSharpPower>(ctx, this);
     }
 }

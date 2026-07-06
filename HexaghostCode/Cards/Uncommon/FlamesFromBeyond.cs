@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
@@ -20,12 +21,12 @@ public class FlamesFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay.Target);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay);
-        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay.Target);
     }
 }

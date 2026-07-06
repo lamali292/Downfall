@@ -1,0 +1,10 @@
+{
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Stärkende Geisterflamme",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[gold]Entzündet[/gold] wenn [blue]1[/blue] [gold]Macht[/gold] gespielt wird, während man sich auf ihr befindet.\nErhalte [blue]4[/blue] [gold]Block[/gold] und [blue]1[/blue] [gold]Stärke[/gold].",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Schlagende Geisterflamme",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]Entzündet[/gold] wenn [blue]2[/blue] [gold]Fertigkeiten[/gold] gespielt werden, während man sich auf ihr befindet.\nFüge einem zufälligen Gegner zweimal [blue]3[/blue] Schaden zu.",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Inferno-Geisterflamme",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Entzündet[/gold] wenn [blue]3[/blue] [gold]Energie[/gold] ausgegeben wird, während man sich auf ihr befindet. \nFüge für jede [gold]Entzündete[/gold] Geisterflamme einem zufälligen Gegner [blue]4[/blue] Schaden zu. \nDu erhältst [blue]2[/blue] [gold]Intensität[/gold], wenn alle Geisterflammen [gold]Entzündet[/gold] sind.\n[gold]Erlösche[/gold] alle anderen Geisterflammen.\nWenn diese Geisterflamme am Ende des Zuges [gold]Entzündet[/gold] ist während du dich auf ihr befindest, spring zur Nächsten.",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "Sengende Geisterflamme",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Entzündet[/gold] wenn [blue]2[/blue] Angriffe gespielt werden, während man sich auf ihr befindet. \nWende [blue]3[/blue] [gold]Seelenfeuer[/gold] zweimal auf einen zufälligen Gegner an."
+}

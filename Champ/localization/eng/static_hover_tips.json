@@ -1,15 +1,8 @@
 ﻿{
-  "CHAMP-BERSERKER.title": "Berserker",
-  "CHAMP-BERSERKER.description": "[gold]Stance[/gold]. too long.",
   "CHAMP-COMBO.title": "Combo",
   "CHAMP-COMBO.description": "Extra effect when played in the listed [gold]Stance[/gold].",
-  "CHAMP-DEFENSIVE.title": "Defensive",
-  "CHAMP-DEFENSIVE.description": "[gold]Stance[/gold]. too long.",
   "CHAMP-FINISHER.title": "Finisher",
-  "CHAMP-FINISHER.description": "Requires a [gold]Stance[/gold].\nAfter playing a Finisher, exit your Stance and trigger its Finisher bonus.",
+  "CHAMP-FINISHER.description": "Requires a [gold]Stance[/gold].\nAfter playing a Finisher, exit your [gold]Stance[/gold] and trigger its Finisher bonus.",
   "CHAMP-STANCE.title": "Stance",
-  "CHAMP-STANCE.description": "You may have only one Stance at a time.",
-  "CHAMP-ULTIMATE.title": "Ultimate",
-  "CHAMP-ULTIMATE.description": "[gold]Stance[/gold]. too long.",
-  "TRIGGER_SKILL_BONUS.title": "Trigger your current [gold]Stance[/gold]'s [gold]Skill Bonus[/gold]."
+  "CHAMP-STANCE.description": "You may have only one Stance at a time."
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,7 +27,7 @@ public sealed class Malice : HermitCardModel
         HermitSfx.PlayGun1();
         if (card?.Type == CardType.Curse)
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCardCompatibility(this, play)
                 .TargetingAllOpponents(CombatState!)
                 .WithHermitFireHitFx()
                 .Execute(ctx);

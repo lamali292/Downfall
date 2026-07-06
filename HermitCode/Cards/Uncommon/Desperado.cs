@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-public sealed class Desperado : HermitCardModel
+public sealed class Desperado : HermitCardModel, IModifyDamageMultiplicative
 {
     public Desperado() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -22,8 +23,8 @@ public sealed class Desperado : HermitCardModel
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack())
             return 1m;

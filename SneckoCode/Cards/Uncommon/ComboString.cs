@@ -30,7 +30,7 @@ public class ComboString : SneckoCardModel, IHasGift
         return CombatManager.Instance.History
             .CardPlaysFinished.Count(e =>
                 e.HappenedThisTurn(card.CombatState) &&
-                SneckoCmd.IsOffclass(e.CardPlay.Card));
+                SneckoCmd.IsOffclass(e.CardPlay.Card) && e.Actor == card.Owner.Creature);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

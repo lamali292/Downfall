@@ -14,6 +14,7 @@ public class Execution : ChampCardModel
     public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
+        this.WithRepeat(4);
         this.WithFinisher();
         WithTip(ChampTip.Stance);
     }

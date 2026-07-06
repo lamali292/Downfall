@@ -24,12 +24,13 @@ public class IrksomeBlow : GremlinsCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         return cardSource != this || !props.IsPoweredAttack()
             ? 0M

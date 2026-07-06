@@ -1,6 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -55,11 +56,11 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var owner = Owner;
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
         if (targetAll)
-            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+            await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered, applier, null, null);
         else
-            await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+            await DownfallCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered, applier, null, null);
 
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);

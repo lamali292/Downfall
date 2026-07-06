@@ -1,0 +1,16 @@
+{
+    "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]Directive : protéger. Directive : protéger. Directive : protéger.[/blue][/sine]",
+    "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "Efficacité au combat déclinante. Agissez.",
+    "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "...",
+    "GUARDIAN-GUARDIAN.cardsModifierDescription": "Les cartes du Gardien peuvent apparaître dans les récompenses et dans la boutique.",
+    "GUARDIAN-GUARDIAN.cardsModifierTitle": "Cartes du Gardien",
+    "GUARDIAN-GUARDIAN.description": "Un androïde de la Tour, programmé pour la défendre.\nCapable de se défendre lui-même sur commande.",
+    "GUARDIAN-GUARDIAN.eventDeathPrevention": "Séquence d'arrêt refusée. La Tour doit être protégée.",
+    "GUARDIAN-GUARDIAN.goldMonologue": "[sine]De l'or… il pourrait être fondu pour fabriquer des composants…[/sine]",
+    "GUARDIAN-GUARDIAN.possessiveAdjective": "son/sa/ses",
+    "GUARDIAN-GUARDIAN.pronounObject": "lui",
+    "GUARDIAN-GUARDIAN.pronounPossessive": "son/sa/ses",
+    "GUARDIAN-GUARDIAN.pronounSubject": "il",
+    "GUARDIAN-GUARDIAN.title": "Le Gardien",
+    "GUARDIAN-GUARDIAN.titleObject": "du Gardien"
+}

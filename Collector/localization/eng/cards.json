@@ -41,7 +41,7 @@
   "COLLECTOR-DARK_APOTHEOSIS.title": "Dark Apotheosis",
   "COLLECTOR-DARK_LORD_FORM.description": "At the start of your turn, play [gold]You Are Mine{IfUpgraded:show:+|}[/gold] on a random enemy.",
   "COLLECTOR-DARK_LORD_FORM.title": "Dark Lord Form",
-  "COLLECTOR-DEATHMARK.description": "Deal {Damage:diff()} damage.\nNext turn, enemey loses HP equal to twice the unblocked damage dealt",
+  "COLLECTOR-DEATHMARK.description": "Deal {Damage:diff()} damage.\nNext turn, enemy loses HP equal to twice the unblocked damage dealt.",
   "COLLECTOR-DEATHMARK.title": "Deathmark",
   "COLLECTOR-DEFEND_COLLECTOR.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "COLLECTOR-DEFEND_COLLECTOR.title": "Defend",
