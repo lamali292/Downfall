@@ -1,6 +1,10 @@
-﻿using Collector.CollectorCode.Core;
+﻿using Automaton.AutomatonCode.Piles;
+using BaseLib.Patches.Content;
+using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Piles;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Extensions;
 
@@ -11,6 +15,12 @@ internal static class PlayerExtensions
         return player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
     }
 
+    
+    public static IReadOnlyList<CardModel> GetCollectibles(this Player player)
+    {
+        return CustomPiles.GetCustomPile(player.PlayerCombatState, CollectorPile.Collected)?.Cards
+               ?? [];
+    }
 
     public static int GetEssence(this Player player)
     {

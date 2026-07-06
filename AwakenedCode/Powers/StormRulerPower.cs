@@ -1,15 +1,17 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
+using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class StormRulerPower : AwakenedPowerModel
+public class StormRulerPower : AwakenedPowerModel, IModifyDamageAdditive
 {
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource)
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
     {
         if (dealer != Owner || cardSource is not Thunderbolt) return 0;
         return Amount;

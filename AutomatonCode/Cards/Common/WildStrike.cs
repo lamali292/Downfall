@@ -24,6 +24,6 @@ public class WildStrike : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await DownfallCardCmd.GiveCard<Wound>(Owner, PileType.Draw);
+        await DownfallCardCmd.GiveCard<Wound>(Owner, PileType.Draw, CardPilePosition.Random);
     }
 }

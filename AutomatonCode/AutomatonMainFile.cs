@@ -32,6 +32,7 @@ public partial class AutomatonMainFile : Node
         //CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
         //    new EncodeDescriptionSource());
         
+        BundledSubmodLocRegistry.Register(ModId);
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

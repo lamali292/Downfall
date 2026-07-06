@@ -1,0 +1,5 @@
+{
+    "COMBAT_REWARD_ESSENCE": "[gold]정수[/gold]를 {essence} 얻습니다.",
+    "COLLECTIBLE_REWARD": "[gold]정수[/gold]를 {essence} 소모하여 {Card}를 얻습니다.",
+    "COLLECTIBLE_REWARD_CANT_AFFORD": "{Card}를 얻으려면 [gold]정수[/gold]가 {essence} 필요합니다."
+}

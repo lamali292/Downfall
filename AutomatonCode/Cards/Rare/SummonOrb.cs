@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
+
+//todo should probably use the same wording as Nostalgia
 public class SummonOrb : AutomatonCardModel
 {
     public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)

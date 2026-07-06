@@ -28,7 +28,7 @@ public class Shatter : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if ((!Owner.ShouldDefensiveComboTrigger() && !Owner.ShouldBerserkerComboTrigger()) ||
             cardPlay.Target == null) return;
         await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);

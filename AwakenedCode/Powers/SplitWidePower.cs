@@ -16,8 +16,8 @@ public class SplitWidePower() : AwakenedPowerModel(PowerType.Debuff)
         DamageResult result, ValueProp props,
         Creature target, CardModel? cardSource)
     {
-        if (target != Owner || Applier == null) return;
-        await PowerCmd.Apply<SplitWidePowerPower>(ctx, Applier, Amount, Owner, null);
+        if (target != Owner || dealer == null) return;
+        await PowerCmd.Apply<SplitWidePowerPower>(ctx, dealer, Amount, Owner, null);
     }
 }
 

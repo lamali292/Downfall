@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Common;
 
-public class Headshot : HermitCardModel, IHasDeadOnEffect
+public class Headshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultiplicative
 {
     public Headshot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -25,9 +26,17 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect
         return Task.CompletedTask;
     }
 
-
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+/*
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
+    {
+        if (this is not IHasDeadOnEffect deadOnEffect) return 1;
+        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
+            return 1;
+        return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;    }
+*/
+    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (this is not IHasDeadOnEffect deadOnEffect) return 1;
         if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)

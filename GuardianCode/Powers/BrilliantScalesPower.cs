@@ -14,6 +14,8 @@ namespace Guardian.GuardianCode.Powers;
 
 public class BrilliantScalesPower : GuardianPowerModel
 {
+    
+    // TODO: Now and at the start of every other turn. not every turn.
     private IGemSocketCard? _sourceCard;
 
     public BrilliantScalesPower() : base(PowerType.Buff, PowerStackType.Single)

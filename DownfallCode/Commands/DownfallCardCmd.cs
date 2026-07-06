@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -123,9 +124,9 @@ public class DownfallCardCmd
         PileType pileType)
     {
         if (player.Creature.CombatState == null) return default;
-        var pile = pileType.GetPile(player);
+        var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, pileType);
         CardPileAddResult result;
-        if (pile.Cards.Count == 0)
+        if (pile == null || pile.Cards.Count == 0)
         {
             result = new CardPileAddResult();
         }

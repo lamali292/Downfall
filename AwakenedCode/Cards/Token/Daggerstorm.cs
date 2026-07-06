@@ -11,7 +11,7 @@ public class Daggerstorm : AwakenedCardModel
 {
     public Daggerstorm() : base(2, CardType.Power, CardRarity.Token, TargetType.Self)
     {
-        WithPower<DaggerstormPower>(4, 2);
+        this.WithPower<DaggerstormPower>(4, 2, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

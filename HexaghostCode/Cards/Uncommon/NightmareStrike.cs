@@ -17,6 +17,7 @@ public class NightmareStrike : HexaghostCardModel, IHasAfterlifeEffect
     {
         WithUpgradingCardTip<ShadowStrike>();
         WithDamage(5, 2);
+        WithTags(CardTag.Strike);
         this.WithAfterlife();
     }
 

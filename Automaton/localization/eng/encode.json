@@ -11,7 +11,7 @@
   "AUTOMATON-BRANCH_ATTACK.encode": "Deal {Damage:diff()} damage.",
   "AUTOMATON-BRANCH_ATTACK.functionPrefix": "forked",
   "AUTOMATON-BRANCH_ATTACK.functionName": "Branch",
-  "AUTOMATON-BUGGY_MESS.encode": "Gain {Energy:energyIcons()}.[gold]\n[/gold]Add an [gold]Dazed[/gold] to your [gold]Draw Pile[/gold].",
+  "AUTOMATON-BUGGY_MESS.encode": "Gain {Energy:energyIcons()}.\nAdd an [gold]Dazed[/gold] to your [gold]Draw Pile[/gold].",
   "AUTOMATON-BUGGY_MESS.functionPrefix": "buggy",
   "AUTOMATON-DEPRECATE.encode": "Apply {WeakPower:diff()} [gold]Weak[/gold].",
   "AUTOMATON-DEPRECATE.functionPrefix": "old",

@@ -21,7 +21,7 @@ public class DeathBlow : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay.Target).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
     }
 }

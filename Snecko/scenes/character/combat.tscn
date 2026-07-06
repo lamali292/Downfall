@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=3 format=3 uid="uid://clk5e0eqj3sax"]
 
 [ext_resource type="PackedScene" path="res://Snecko/scenes/character/snecko.tscn" id="1_svhpa"]
-[ext_resource type="Script" path="res://SneckoCode/Vfx/NSneckoCreatureVisuals.cs" id="2_3vjed"]
+[ext_resource type="Script" uid="uid://bl7dfe1bq88uc" path="res://SneckoCode/Vfx/NSneckoCreatureVisuals.cs" id="2_3vjed"]
 
 [node name="SneckoCombat" type="Node2D"]
 script = ExtResource("2_3vjed")
 
-[node name="Visuals" parent="." instance=ExtResource("1_svhpa")]
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(-1, 1)
+
+[node name="Visuals" parent="Node2D" instance=ExtResource("1_svhpa")]
 unique_name_in_owner = true
 position = Vector2(7, -25)
-scale = Vector2(-1, 1)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

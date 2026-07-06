@@ -36,7 +36,7 @@ public class SearingGhostflame : GhostflameModel
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
 
-        for (var i = 0; i < repeat; i++) await CommonActions.Apply<SoulBurnPower>(ctx, target, null, 3 + intensity);
+        for (var i = 0; i < repeat; i++) await PowerCmd.Apply<SoulBurnPower>(ctx, target, 3 + intensity, Owner.Creature, null);
     }
 
 

@@ -1,0 +1,8 @@
+{
+    "HERMIT-TONIC.title": "奎宁水",
+    "HERMIT-TONIC.description": "获得[blue]{RuggedPower:diff()}[/blue]层[gold]坚固[/gold]。",
+    "HERMIT-BLACK_BILE.title": "黑胆汁",
+    "HERMIT-BLACK_BILE.description": "给予[blue]{BruisePower:diff()}[/blue]层[gold]瘀伤[/gold]。",
+    "HERMIT-LIQUID_VOID.title": "液态虚空",
+    "HERMIT-LIQUID_VOID.description": "将[gold]消耗堆[/gold]中的一张牌加入你的[gold]手牌[/gold]。\n这张牌在本回合可以免费打出。"
+}

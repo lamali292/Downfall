@@ -21,7 +21,7 @@ public class RealityRift : AwakenedCardModel
         WithKeywords(CardKeyword.Exhaust);
         this.WithTip<Void>();
     }
-
+//todo change description or effect eventually, its too wordy in game
     protected override Artist Artist => Artist.Get<Opal>();
 
     private static CardModel[] AnotherDimensionCards =>

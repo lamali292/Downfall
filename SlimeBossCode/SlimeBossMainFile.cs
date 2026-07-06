@@ -1,4 +1,6 @@
 using System.Reflection;
+using Downfall.DownfallCode;
+using Downfall.DownfallCode.Localization;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
@@ -18,9 +20,7 @@ public partial class SlimeBossMainFile : Node
 
     public static void Initialize()
     {
-        Harmony harmony = new(ModId);
-        var assembly = Assembly.GetExecutingAssembly();
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        BundledSubmodLocRegistry.Register(ModId);
+        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

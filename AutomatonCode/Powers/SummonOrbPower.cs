@@ -8,6 +8,7 @@ namespace Automaton.AutomatonCode.Powers;
 public class SummonOrbPower : AutomatonPowerModel
 {
     // TODO : don't stash Summon Orb itself
+    // todo probably shouldn't work on power cards in general
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries) return;

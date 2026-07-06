@@ -36,6 +36,7 @@ public partial class ChampMainFile : Node
             new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
         
+        BundledSubmodLocRegistry.Register(ModId);
         DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -14,8 +15,8 @@ public class FeelMyPainPower : CollectorPowerModel
         if (card.Owner.Creature != Owner) return;
         var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (creature == null) return;
-        await CreatureCmd.Damage(ctx, creature, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        await DownfallCreatureCmd.Damage(ctx, creature, Amount,
+            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
         Flash();
     }
 }

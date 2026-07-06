@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ public class RagingCallPower : CollectorPowerModel
     {
         if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
-            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+            await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
     }
 }

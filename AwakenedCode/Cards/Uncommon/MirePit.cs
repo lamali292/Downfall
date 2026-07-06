@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -34,7 +35,6 @@ public class MirePit : AwakenedCardModel
     }
 }
 
-public class MirePitPower : CustomTemporaryPowerModelWrapper<MirePit, StrengthPower>
+public class MirePitPower : TemporaryDebuffPowerWrapper<MirePit, StrengthPower>
 {
-    protected override bool InvertInternalPowerAmount => true;
 }

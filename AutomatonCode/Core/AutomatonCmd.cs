@@ -6,6 +6,7 @@ using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
+using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -28,7 +29,8 @@ public static class AutomatonCmd
         PlayerChoiceContext ctx)
     {
         var creature = card.Owner;
-        var pile = EncodePile.FunctionSequence.GetPile(creature);
+        var pile = CustomPiles.GetCustomPile(creature.PlayerCombatState, EncodePile.FunctionSequence);
+        if (pile == null) return;
         var isMe = LocalContext.IsMe(creature);
 
 
@@ -55,7 +57,8 @@ public static class AutomatonCmd
         Player player,
         PlayerChoiceContext ctx)
     {
-        var pile = EncodePile.FunctionSequence.GetPile(player);
+        var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence);
+        if (pile == null) return;
         await Cmd.Wait(0.3f);
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;

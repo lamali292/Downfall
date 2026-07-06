@@ -1,5 +1,5 @@
 ﻿using Automaton.AutomatonCode.Piles;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
@@ -9,11 +9,13 @@ public static class PlayerExtensions
 {
     public static IReadOnlyList<CardModel> GetStash(this Player player)
     {
-        return StashPile.Stash.GetPile(player).Cards;
+        return CustomPiles.GetCustomPile(player.PlayerCombatState, StashPile.Stash)?.Cards
+               ?? [];
     }
 
     public static IReadOnlyList<CardModel> GetEncode(this Player player)
     {
-        return EncodePile.FunctionSequence.GetPile(player).Cards;
+        return CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence)?.Cards
+               ?? [];
     }
 }

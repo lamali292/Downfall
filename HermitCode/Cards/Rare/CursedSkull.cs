@@ -14,11 +14,14 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public class CursedSkull : HermitCardModel
 {
+    //todo the replay effect should be additive in the same way transfigure is
     public CursedSkull() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
     }
+    
+    public override bool CanBeGeneratedInCombat => false;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -38,6 +41,7 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
+    //todo this effect should work with Combo
     public bool IsDeadOn => Owner != null && (HermitCmd.IsDeadOnInCurrentHandState(Owner) ||
                                                (PatchDeadOnCapture.LastPlayed == Owner && PatchDeadOnCapture.LastWasDeadOn));
 

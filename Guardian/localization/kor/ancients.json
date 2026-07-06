@@ -1,0 +1,22 @@
+{
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "아키텍트, 나는 너를 증오한다.",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "계속",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "시끄럽다.",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "둘 다",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]...내가... 널... 다시... 만들었다... 피조물아...[/sine]\n",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "계속",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]...이제... 가라...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]..그.. [aqua]오색찬란한 보석...[/aqua]....[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "계속",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]..그것은.. 네가 재구축될 때마다.. 매번 바뀌지...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "계속",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]..내 의지에.. 의한 게.. 아니야... 이상하군...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine]..너는.. 너의.. ..사명을.. 아느냐...?[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "응답",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<44 45 53 54 52 4F 59> <41 4C 4C> <49 4E 54 52 55 44 45 52 53>[/jitter][/red]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "계속",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]...[red][jitter]좋아[/jitter][/red]...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
+}

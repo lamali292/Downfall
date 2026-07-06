@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
@@ -43,7 +44,7 @@ public sealed class Ricochet : HermitCardModel
             })
             .Execute(ctx);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, play)
             .WithHitCount(extraHitCount)
             .TargetingRandomOpponents(CombatState!)
             .WithHermitGunHitFx()
