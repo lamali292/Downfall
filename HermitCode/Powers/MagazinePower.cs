@@ -1,4 +1,5 @@
-﻿using Hermit.HermitCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,7 +10,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-public class MagazinePower : HermitPowerModel
+public class MagazinePower : HermitPowerModel,
+    IModifyDamageAdditive
 {
     public MagazinePower()
     {
@@ -37,7 +39,7 @@ public class MagazinePower : HermitPowerModel
     private static bool IsBasicStrike(CardModel card) =>  card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Strike);
 
     
-    public override decimal DownfallModifyDamageAdditive(
+    public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

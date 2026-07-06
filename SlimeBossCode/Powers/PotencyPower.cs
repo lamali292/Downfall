@@ -1,4 +1,5 @@
 ﻿using BaseLib.Patches.Localization;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization;
@@ -10,7 +11,8 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IModifySecondarySlimeEffects
+public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IModifySecondarySlimeEffects,
+    IModifyDamageAdditive
 {
     private int Amount2 => (Amount + 1) / 2;
 
@@ -24,7 +26,7 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
         return slime.PetOwner == Owner ? amount + Amount2 : amount;
     }
 
-    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? Amount : 0;

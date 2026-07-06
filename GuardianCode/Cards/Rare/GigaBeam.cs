@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Guardian.GuardianCode.Cards.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class GigaBeam : GuardianCardModel
+public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
 {
     public GigaBeam() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
@@ -26,6 +26,15 @@ public class GigaBeam : GuardianCardModel
         this.WithPower<NextTurnStunnedPower>(1, false);
         this.WithTip<StrengthPower>();
     }
+
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
+    {
+        return cardSource != this || !props.IsPoweredAttack()
+            ? 0M
+            : dealer?.GetPowerAmount<StrengthPower>() * (DynamicVars["StrengthEffect"].IntValue - 1) ?? 0;
+    }
+  
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
@@ -59,15 +68,5 @@ public class GigaBeam : GuardianCardModel
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
     }
 
-    public override decimal DownfallModifyDamageAdditive(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        return cardSource != this || !props.IsPoweredAttack()
-            ? 0M
-            : dealer?.GetPowerAmount<StrengthPower>() * (DynamicVars["StrengthEffect"].IntValue - 1) ?? 0;
-    }
+  
 }

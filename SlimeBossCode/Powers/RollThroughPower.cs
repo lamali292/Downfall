@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Events;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -9,7 +10,7 @@ using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage
+public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage, IModifyDamageAdditive
 {
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
@@ -24,7 +25,7 @@ public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage
         return PowerCmd.Decrement(this);
     }
 
-    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&

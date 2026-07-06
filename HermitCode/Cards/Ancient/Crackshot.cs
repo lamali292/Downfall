@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Ancient;
 
-public class Crackshot : HermitCardModel, IHasDeadOnEffect
+public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultiplicative
 {
     public Crackshot() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
@@ -34,7 +35,7 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect
     }
     
 
-    public override decimal DownfallModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
+    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (this is not IHasDeadOnEffect deadOnEffect) return 1;

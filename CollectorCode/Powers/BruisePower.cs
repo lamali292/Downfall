@@ -15,7 +15,7 @@ namespace Collector.CollectorCode.Powers;
 // TODO : remove and use Hermit Bruise
 public class BruisePower() : CollectorPowerModel(PowerType.Debuff)
 {
-    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return target != Owner || dealer != Applier ||!props.IsPoweredAttack() ? 0 : Amount;
