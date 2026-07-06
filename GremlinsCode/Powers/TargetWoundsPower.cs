@@ -9,7 +9,7 @@ namespace Gremlins.GremlinsCode.Powers;
 
 public class TargetWoundsPower : GremlinsPowerModel
 {
-    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return target?.GetPowerAmount<WeakPower>() > 0 ? Amount : 0;

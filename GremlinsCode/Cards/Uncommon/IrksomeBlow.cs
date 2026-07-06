@@ -24,7 +24,7 @@ public class IrksomeBlow : GremlinsCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override decimal DownfallModifyDamageAdditive(
+    public override decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

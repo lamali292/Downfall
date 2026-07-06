@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Downfall.DownfallCode.Abstract;
 
 public abstract class DownfallCardModel
-    : CompatibilityCardModel
+    : ConstructedCardModel
 {
     protected DownfallCardModel(
         int cost,

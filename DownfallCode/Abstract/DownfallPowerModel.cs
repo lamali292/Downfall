@@ -6,7 +6,7 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class DownfallPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType powerStackType = PowerStackType.Counter) : CompatibilityPowerModel(powerType, powerStackType)
+    PowerStackType powerStackType = PowerStackType.Counter) : ConstructedPowerModel(powerType, powerStackType)
 {
     protected string IconName => Id.Entry
         .RemovePrefix()

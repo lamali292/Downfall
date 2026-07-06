@@ -78,7 +78,7 @@ public class GremlinPower()
         }
     }
 
-    public override decimal DownfallModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner && cardSource is { EnergyCost.Canonical: 0 } && GremlinsCmd
