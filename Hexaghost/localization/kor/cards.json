@@ -53,7 +53,7 @@
     "HEXAGHOST-FAST_FORWARD.title": "빨리 감기",
     "HEXAGHOST-FIRESTARTER.description": "피해를 {Damage:diff()} 주고 모든 적에게 [gold]영혼화상[/gold]을 {SoulBurnPower:diff()} 부여합니다.",
     "HEXAGHOST-FIRESTARTER.title": "불쏘시개",
-    "HEXAGHOST-FLAMES_FROM_BEYOND.description": "[afterlife]모든 적에게 영혼화상을[/afterlife] {SoulBurnPower:diff()}만큼 2번 [afterlife]부여합니다.[/afterlife]",
+    "HEXAGHOST-FLAMES_FROM_BEYOND.description": "[afterlife]모든 적에게 영혼화상을 {SoulBurnPower:diff()}만큼[/afterlife] 2번 [afterlife]부여합니다.[/afterlife]",
     "HEXAGHOST-FLAMES_FROM_BEYOND.title": "저편의 불꽃",
     "HEXAGHOST-FLARE_FLICK.description": "피해를 {Damage:diff()} 줍니다.\n현재 유령불꽃을 [gold]점화[/gold]합니다.{IfUpgraded:show:\n[gold]팽창[/gold]하거나 [gold]수축[/gold]할 수 있습니다.|}",
     "HEXAGHOST-FLARE_FLICK.title": "일렁이는 불",

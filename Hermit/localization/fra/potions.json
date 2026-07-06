@@ -1,0 +1,8 @@
+{
+    "HERMIT-TONIC.title": "Tonique",
+    "HERMIT-TONIC.description": "Gagnez [blue]{RuggedPower:diff()}[/blue] de [gold]Robustesse[/gold].",
+    "HERMIT-BLACK_BILE.title": "Bile Noire",
+    "HERMIT-BLACK_BILE.description": "Appliquez [blue]{BruisePower:diff()}[/blue] de [gold]Contusion[/gold].",
+    "HERMIT-LIQUID_VOID.title": "Vide Liquide",
+    "HERMIT-LIQUID_VOID.description": "Placez une carte de votre [gold]Pile d'Épuisement[/gold] vers votre [gold]Main[/gold].\nElle est gratuite à jouer ce tour."
+}
