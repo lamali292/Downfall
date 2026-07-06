@@ -121,8 +121,7 @@ public partial class NSequenceDisplay : Control
 
         _previewModel = ModelDb.Card<FunctionCard>().ToMutable() as FunctionCard;
         if (_previewModel == null) return;
-
-        AutomatonCmd.ApplyFunctionCardType(_previewModel, snapshot);
+        
         if (snapshot.Count > 0) _previewModel.SetSourceCards(snapshot);
         _previewModel.Owner = _trackedPlayer;
         _previewModel = AutomatonHook.ModifyCompiledFunction(_trackedPlayer!.Creature.CombatState!, _previewModel,

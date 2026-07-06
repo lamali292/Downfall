@@ -11,11 +11,6 @@ public interface IEncodable
 {
     LocString EncodeLocString => (this is CardModel card ? BuildEncodeLocString(card) : null) ?? throw new Exception();
 
-    Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        return Task.CompletedTask;
-    }
-
     static LocString BuildEncodeLocString(CardModel card)
     {
         var loc = new LocString("encode", card.Id.Entry + ".encode");
@@ -29,7 +24,8 @@ public interface IEncodable
     }
     
     //Type EncodeModifierType => typeof(ExplodeEncode);
-    Type? EncodeModifierType => null;
+    //Type? EncodeModifierType => null;
+    Type EncodeModifierType { get; }
 
 }
 

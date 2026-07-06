@@ -80,7 +80,7 @@
   "AUTOMATON-BURN_OUT_POWER.title": "Burn Out",
   "AUTOMATON-BURN_OUT_POWER.description": "Whenever you [gold]Stash[/gold] a Status or Curse, deal damage to ALL enemies and [gold]Exhaust[/gold] it instead.",
   "AUTOMATON-BURN_OUT_POWER.smartDescription": "Whenever you [gold]Stash[/gold] a Status or Curse, deal [blue]{Amount}[/blue] damage to ALL enemies and [gold]Exhaust[/gold] it instead.",
-  "AUTOMATON-PHILOSOPHIZE_POWER.title": "",
+  "AUTOMATON-PHILOSOPHIZE_POWER.title": "Philosophize",
   "AUTOMATON-PHILOSOPHIZE_POWER.description": "The next time you create a Function, ALL enemies gain [gold]Strength[/gold].",
   "AUTOMATON-PHILOSOPHIZE_POWER.smartDescription": "The next time you create a Function, ALL enemies gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "AUTOMATON-RECYCLE_BIN_POWER.title": "Recycle Bin",

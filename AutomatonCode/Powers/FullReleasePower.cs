@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Interfaces;
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class FullReleasePower : AutomatonPowerModel
 {
-    private IReadOnlyList<CardModel> SourceCards = [];
+    private IReadOnlyList<CardModifier> SourceCards = [];
 
     public FullReleasePower() : base(PowerType.Buff, PowerStackType.Single)
     {
@@ -24,7 +25,7 @@ public class FullReleasePower : AutomatonPowerModel
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
 
-    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
+    public void SetSourceCards(IReadOnlyList<CardModifier> sourceCards)
     {
         SourceCards = sourceCards;
     }
@@ -41,12 +42,13 @@ public class FullReleasePower : AutomatonPowerModel
             StarsSpent = 0,
             StarValue = 0
         };
-        for (var i = 0; i < SourceCards.Count; i++)
+        
+        foreach (var card in SourceCards)
         {
             var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
             var cardPlay = new CardPlay
             {
-                Card = SourceCards[i],
+                Card = card.Owner,
                 Target = target,
                 ResultPile = PileType.None,
                 Resources = resourceInfo,
@@ -54,11 +56,8 @@ public class FullReleasePower : AutomatonPowerModel
                 PlayIndex = 0,
                 PlayCount = 1
             };
-            var card = SourceCards[i];
-            if (SourceCards[i] is IEncodable encodable)
-                await encodable.PlayEncodableEffect(choiceContext, cardPlay, new EncodeContext(true, i));
-            else
-                await DownfallCardCmd.OnPlay.Invoke(card, choiceContext, cardPlay);
+            
+            await card.OnPlay(choiceContext, cardPlay);
         }
     }
 
@@ -87,11 +86,6 @@ public class FullReleasePower : AutomatonPowerModel
                 {
                     var text = encodable.GetEncodeLocString(new EncodeContext(true, i))?.GetFormattedText();
                     if (text == null) continue;
-                    lines.Add(text);
-                }
-                else
-                {
-                    var text = card.GetDescriptionForPile(PileType.Deck, CardModel.DescriptionPreviewType.Upgrade);
                     lines.Add(text);
                 }
 

@@ -19,10 +19,4 @@ public class BuggyMess : AutomatonCardModel, IEncodable<BuggyMessEncode>
         this.WithTip<Dazed>();
         WithCostUpgradeBy(-1);
     }
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-        await DownfallCardCmd.GiveCard<Dazed>(Owner, PileType.Draw, CardPilePosition.Random);
-    }
 }
