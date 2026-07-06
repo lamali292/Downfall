@@ -21,7 +21,7 @@ public class SearingGhostflame : GhostflameModel
 
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
         () => 3 + Intensity,
-        2 + Repeat(GhostflameRepeatType.Soulburn)
+        2 * (1 + Repeat(GhostflameRepeatType.Soulburn))
     );
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)

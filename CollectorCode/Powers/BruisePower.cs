@@ -1,4 +1,5 @@
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -13,9 +14,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Powers;
 
 // TODO : remove and use Hermit Bruise
-public class BruisePower() : CollectorPowerModel(PowerType.Debuff)
+public class BruisePower() : CollectorPowerModel(PowerType.Debuff), IModifyDamageMultiplicative
 {
-    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return target != Owner || dealer != Applier ||!props.IsPoweredAttack() ? 0 : Amount;
