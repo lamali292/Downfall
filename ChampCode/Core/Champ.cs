@@ -25,7 +25,7 @@ public class Champ : DownfallCharacterModel
     public override float CardColorS => 0.5f;
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
-
+    
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 80;
