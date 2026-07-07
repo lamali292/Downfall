@@ -33,6 +33,7 @@
         <None Include="Downfall.json"/>
         <None Include="local.props"/>
         <None Include="local.props.example"/>
+        <None Include=".gitignore"/>
         <!-- All submod source compiled into one assembly: Downfall.dll -->
         <Compile Include="DownfallCode/**/*.cs"/>
         <Compile Include="AutomatonCode/**/*.cs"/>
