@@ -15,6 +15,8 @@ public class LeechLife : SlimeBossCardModel
         WithDamage(8, 2);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

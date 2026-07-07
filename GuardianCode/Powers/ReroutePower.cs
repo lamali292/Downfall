@@ -28,15 +28,14 @@ public class ReroutePower : GuardianPowerModel
             return (pileType, position);
 
         var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
-        if (stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)) return (pileType, position);
-        GuardianCmd.SetStasisCounter(card);
-        card.EnergyCost.AfterCardPlayedCleanup();
-        return (stasisPile.Type, position);
+        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? (pileType, position) : (stasisPile.Type, position);
     }
 
     public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
         CardPilePosition position)
     {
+        GuardianCmd.SetStasisCounter(card);
+        card.EnergyCost.AfterCardPlayedCleanup();
         await PowerCmd.Decrement(this);
     }
 

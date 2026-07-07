@@ -36,7 +36,7 @@
   "HERMIT-BRAWL_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Bruise[/gold] to ALL enemies.",
   "HERMIT-BRAWL_POWER.title": "Brawl",
   "HERMIT-RUGGED_POWER.description": "When you would take unblocked attack damage, reduce it to [blue]2[/blue].",
-  "HERMIT-RUGGED_POWER.smartDescription": "The next [blue]{Amount}[/blue] times you would take unblocked attack damage, reduce it to [blue]2[/blue].",
+  "HERMIT-RUGGED_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you would take unblocked attack damage, reduce it to [blue]2[/blue].",
   "HERMIT-RUGGED_POWER.title": "Rugged",
   "HERMIT-ETERNAL_POWER.description": "The first [blue]4[/blue] playable cards drawn at the start of each turn cost less {energyPrefix:energyIcons(1)} that turn.",
   "HERMIT-ETERNAL_POWER.smartDescription": "The first [blue]4[/blue] playable cards drawn at the start of each turn cost {Amount:energyIcons()} that turn.",

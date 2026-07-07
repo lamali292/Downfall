@@ -1,4 +1,5 @@
 using BaseLib.Patches.Localization;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -18,7 +19,7 @@ using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariablesToPowerDescription
+public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariablesToPowerDescription, IModifyDamageAdditive
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
@@ -48,7 +49,7 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
         return Task.CompletedTask;
     }
 
-    public override decimal DownfallModifyDamageAdditive(
+    public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

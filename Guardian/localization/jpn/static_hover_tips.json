@@ -1,0 +1,20 @@
+{
+    "GUARDIAN-ACCELERATE.title": "加速",
+    "GUARDIAN-ACCELERATE.description": "[gold]停滞[/gold]スロットの一番右側にあるカードのカウントを減少させる。",
+    "GUARDIAN-AGGRAVATE.title": "負担",
+    "GUARDIAN-AGGRAVATE.description": "戦闘開始時、このカードのコストが[blue]1[/blue]増加する。",
+    "GUARDIAN-BRACE.title": "制動",
+    "GUARDIAN-BRACE.description": "[gold]モードシフト[/gold]の発動に必要なカウントを減少させる。",
+    "GUARDIAN-DEFENSIVE_MODE.title": "防御態勢",
+    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]スタンス[/gold]。\n防御態勢の間、[gold]トゲ[/gold][blue]3[/blue]を得る。次のターン開始時に[gold]ブロック[/gold]を失わない。",
+    "GUARDIAN-PACKAGE.title": "パッケージ",
+    "GUARDIAN-PACKAGE.description": "スパイアの構築物をモチーフにしたカードを3枚生成する。",
+    "GUARDIAN-POLISH.title": "洗練",
+    "GUARDIAN-POLISH.description": "[gold]脱力[/gold]、[gold]脆弱[/gold]、[gold]弱体[/gold]をそれぞれX回減少させる。\n一時的なバフをXスタック分、永続的なバフに変換する。",
+    "GUARDIAN-SOCKET.title": "ソケット",
+    "GUARDIAN-SOCKET.description": "ジェムは、[gold]休憩所[/gold]でカードの[gold]ソケット[/gold]に埋め込むことができる。",
+    "GUARDIAN-STASIS.title": "停滞",
+    "GUARDIAN-STASIS.description": "カードのコスト＋[blue]1[/blue]ターンの間、[gold]停滞[/gold]スロットに配置される。\nカウントが[blue]0[/blue]になると[gold]手札[/gold]に戻り、プレイするまでこのカードのコストは0。",
+    "GUARDIAN-TICK.title": "ティック",
+    "GUARDIAN-TICK.description": "このカードの[gold]停滞[/gold]カウントが減少するたび、効果を発動する。"
+}

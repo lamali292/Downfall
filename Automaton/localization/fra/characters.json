@@ -1,7 +1,9 @@
 {
+    "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Aucune erreur détectée. Aucune erreur détectée.[/blue][/sine]",
     "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
     "AUTOMATON-AUTOMATON.cardsModifierDescription": "Les cartes du Défectueux peuvent apparaître dans les récompenses et dans la boutique.",
     "AUTOMATON-AUTOMATON.cardsModifierTitle": "Les cartes du Défectueux",
+    "AUTOMATON-AUTOMATON.eventDeathPrevention": "Séquence d'arrêt refusée. Mission incomplète.",
     "AUTOMATON-AUTOMATON.possessiveAdjective": "son/sa/ses",
     "AUTOMATON-AUTOMATON.pronounObject": "il/lui",
     "AUTOMATON-AUTOMATON.pronounPossessive": "son/sa/ses",

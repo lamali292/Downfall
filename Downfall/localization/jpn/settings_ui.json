@@ -1,0 +1,5 @@
+{
+    "DOWNFALL.mod_title": "Downfall",
+    "DOWNFALL-UPLOAD_METRICS.title": "ゲームプレイデータの送信(Downfall)",
+    "DOWNFALL-UPLOAD_METRICS.hover.desc": "バグ修正やModのゲームバランス調整のため、Downfallキャラクターのプレイ時のみ、ゲームプレイのデータがDownfall制作者に送信されます。\n\n個人を特定する情報が収集されることは一切ありません。"
+}

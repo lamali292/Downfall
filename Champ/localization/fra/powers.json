@@ -57,7 +57,7 @@
     "CHAMP-PARRYING_POWER.description": "Si votre [gold]Contre[/gold] est déclenché ce tour, obtenez une [gold]Frappe Riposte[/gold] supplémentaire.",
     "CHAMP-PARRYING_POWER.smartDescription": "Si votre [gold]Contre[/gold] est déclenché ce tour, obtenez {Amount:plural:une [gold]Frappe Riposte[/gold] supplémentaire|[blue]{}[/blue] [gold]Frappe Riposte[/gold] supplémentaires}.",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "Aura Protectrice",
-    "CHAMP-PROTECTIVE_AURA_POWER.description": "Lorsque vous finissez votre tour dans aucune [gold]Pose[/gold], gagnez de [gold]l'Armure[/gold].",
+    "CHAMP-PROTECTIVE_AURA_POWER.description": "Lorsque vous terminez votre tour dans aucune [gold]Pose[/gold], gagnez de [gold]l'Armure[/gold].",
     "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "Lorsque vous finissez votre tour dans aucune [gold]Pose[/gold], gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "Frappé de Génie+",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.description": "Au début de votre tour obtenez un [gold]Écho amélioré[/gold] de \"Frappe\" aléatoire. \nElle coûte [blue]0[/blue] jusqu'à ce qu'elle soit jouée.",
@@ -73,5 +73,5 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "Vous êtes en [gold]Pose Ultime[/gold] ce tour.",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Vigueur au Prochain Tour",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Au prochain tour, gagnez de la [gold]Vigueur[/gold].",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Au prochain tour, gagnez {Amount:plural:|[blue]{}[/blue] } de [gold]Vigueur[/gold]."
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Au prochain tour, gagnez |[blue]{}[/blue] de [gold]Vigueur[/gold]."
 }

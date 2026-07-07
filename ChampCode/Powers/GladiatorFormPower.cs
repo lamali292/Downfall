@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Champ.ChampCode.Powers;
 
-public class GladiatorFormPower : ChampPowerModel
+public class GladiatorFormPower : ChampPowerModel, IModifyDamageAdditive
 {
     /*
      * old GladiatorFormPower
@@ -34,7 +35,7 @@ public class GladiatorFormPower : ChampPowerModel
     }
     */
 
-    public override decimal DownfallModifyDamageMultiplicative(
+    public decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
         decimal amount,
         ValueProp props,
