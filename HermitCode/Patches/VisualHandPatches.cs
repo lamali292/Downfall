@@ -53,18 +53,14 @@ internal static class HandVisualSync
             foreach (var card in pile.Cards)
             {
                 if (hand.GetCardHolder(card) is not NHandCardHolder holder)
-                    continue; // no visual holder yet — base game's flow will create/reuse it
+                    continue; 
 
                 if (holder.GetParent() != container)
-                    continue; // e.g. being dragged, selected, or mid-transform
+                    continue; 
 
-                int currentIndex = ((Node)holder).GetIndex(false);
+                var currentIndex = holder.GetIndex();
                 if (currentIndex != visualIndex)
                 {
-                    // Deferred + re-validated: by the time this actually runs (end of
-                    // frame), the holder may have been removed/reparented and the
-                    // container's child count may have changed. Re-check everything
-                    // right before moving instead of trusting the snapshot we took here.
                     var capturedHolder = holder;
                     var capturedIndex = visualIndex;
                     Callable.From(() => SafeMoveChild(container, capturedHolder, capturedIndex))
@@ -85,15 +81,15 @@ internal static class HandVisualSync
     private static void SafeMoveChild(Node container, Node holder, int index)
     {
         if (!GodotObject.IsInstanceValid(container) || !GodotObject.IsInstanceValid(holder))
-            return; // either was freed since this was queued
+            return; 
 
         if (holder.GetParent() != container)
-            return; // holder was reparented/removed since this was queued
+            return; 
 
-        int childCount = container.GetChildCount();
+        var childCount = container.GetChildCount();
         if (childCount == 0) return;
 
-        int clampedIndex = Mathf.Clamp(index, 0, childCount - 1);
+        var clampedIndex = Mathf.Clamp(index, 0, childCount - 1);
         container.MoveChild(holder, clampedIndex);
     }
 }
