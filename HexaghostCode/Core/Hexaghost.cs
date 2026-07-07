@@ -35,12 +35,13 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<StrikeHexaghost>(),
+        ModelDb.Card<StrikeHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
         ModelDb.Card<DefendHexaghost>(),
-        ModelDb.Card<Float>(),
         ModelDb.Card<Sear>(),
+        ModelDb.Card<Float>(),
         ModelDb.Card<Kindle>()
     ];
 
