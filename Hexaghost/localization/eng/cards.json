@@ -21,7 +21,7 @@
   "HEXAGHOST-BURNING_QUESTION_CHOICE2.title": "Burning Question",
   "HEXAGHOST-BURNING_QUESTION_CHOICE3.description": "Gain {RoyaltiesPower:diff()} [gold]Gold[/gold] at the end of combat.",
   "HEXAGHOST-BURNING_QUESTION_CHOICE3.title": "Burning Question",
-  "HEXAGHOST-BURNING_TOUCH.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold].\nIf the enemy has [gold]Soulburn[/gold], draw {Cards:plural:a card|{Cards:diff()} cards}.",
+  "HEXAGHOST-BURNING_TOUCH.description": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold].\nIf the enemy already had [gold]Soulburn[/gold], draw {Cards:plural:a card|{Cards:diff()} cards}.",
   "HEXAGHOST-BURNING_TOUCH.title": "Burning Touch",
   "HEXAGHOST-CATCH_UP.description": "[gold]Ignite[/gold] the previous Ghostflame {IgniteCount:diff()} times.",
   "HEXAGHOST-CATCH_UP.title": "Catch Up",
