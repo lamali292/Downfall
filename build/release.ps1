@@ -1,3 +1,7 @@
+param(
+    [string]$GameVersion  # optional: fixed game version like 0.107.1 or v0.107.1
+)
+
 # release.ps1  ->  bumps patch, sets version everywhere, builds, then releases
 $ErrorActionPreference = "Stop"
 
@@ -25,11 +29,17 @@ $modOutputFolder = (& dotnet msbuild $probeProj -getProperty:ModOutputFolder).Tr
 if ([string]::IsNullOrWhiteSpace($modOutputFolder)) { $modOutputFolder = "Downfall" }
 
 # --- StS2 version from the game's own release_info.json (field includes leading 'v') ---
-$relPath = Join-Path $gameRoot "release_info.json"
-if (-not (Test-Path $relPath)) { throw "release_info.json not found at $relPath -- check the game path." }
-$gameVersion     = (Get-Content $relPath -Raw | ConvertFrom-Json).version   # e.g. v0.107.0
-if ([string]::IsNullOrWhiteSpace($gameVersion)) { throw "No 'version' in $relPath" }
-$gameVersionBare = $gameVersion.TrimStart('v')                              # e.g. 0.107.0 (for manifests)
+if ($GameVersion) {
+    $gameVersionBare = $GameVersion.TrimStart('v')                 # 0.107.1
+    if ($gameVersionBare -notmatch '^\d+\.\d+\.\d+$') { throw "GameVersion must be X.Y.Z, got '$GameVersion'" }
+    $gameVersion = "v$gameVersionBare"                             # v0.107.1
+} else {
+    $relPath = Join-Path $gameRoot "release_info.json"
+    if (-not (Test-Path $relPath)) { throw "release_info.json not found at $relPath -- check the game path." }
+    $gameVersion = (Get-Content $relPath -Raw | ConvertFrom-Json).version   # e.g. v0.107.0
+    if ([string]::IsNullOrWhiteSpace($gameVersion)) { throw "No 'version' in $relPath" }
+    $gameVersionBare = $gameVersion.TrimStart('v')
+}                       # e.g. 0.107.0 (for manifests)
 
 # --- read current mod version, compute bump ---
 $props = Get-Content $propsFile -Raw
