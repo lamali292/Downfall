@@ -21,7 +21,7 @@ public class InfernoGhostflame : GhostflameModel
 
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 4 + Intensity,
-        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) + Repeat(GhostflameRepeatType.Damage)
+        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * ( 1 + Repeat(GhostflameRepeatType.Damage))
     );
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)

@@ -1,0 +1,5 @@
+{
+    "GUARDIAN-GEM": "ジェム",
+    "COMBAT_REWARD_ADD_GEMS": "[gold]デッキ[/gold]に[gold]ジェム[/gold]を[blue]{Amount}[/blue]個加える。",
+    "GUARDIAN-GEM_SOCKET_SELECT": "ジェムを埋め込むカードを選択"
+}

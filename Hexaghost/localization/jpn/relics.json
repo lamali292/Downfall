@@ -12,7 +12,7 @@
     "HEXAGHOST-OLEXAS_SHIELD.description": "パワーのカードは、[gold]炎砕のゴーストフレイム[/gold]と[gold]灼熱のゴーストフレイム[/gold]の進行にカウントされる。",
     "HEXAGHOST-OLEXAS_SHIELD.flavor": "要求に応じて、守護します。",
     "HEXAGHOST-RECYCLER.title": "リサイクラー",
-    "HEXAGHOST-RECYCLER.description": "各戦闘で初めて呪いと状態異常を除く、[gold]エセリアル[/gold]カードが[gold]廃棄[/gold]された時、そのコピーを[gold]手札[/gold]に加える。",
+    "HEXAGHOST-RECYCLER.description": "各戦闘で初めて呪いと状態異常を除く[gold]エセリアル[/gold]が[gold]廃棄[/gold]された時、そのコピーを[gold]手札[/gold]に加える。",
     "HEXAGHOST-RECYCLER.flavor": "いつかは、これもリサイクルされるだろう。",
     "HEXAGHOST-RED_CANDLE.title": "赤いロウソク",
     "HEXAGHOST-RED_CANDLE.description": "[gold]ソウルバーン[/gold]を付与するたび、追加で[gold]ソウルバーン[/gold][blue]2[/blue]を付与する。",
