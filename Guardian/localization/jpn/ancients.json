@@ -1,0 +1,22 @@
+{
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "[jitter][red]デストロイ[/red][/jitter]\n[jitter][red]デストロイ[/red][/jitter]\n[jitter][red]デストロイ[/red][/jitter]",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "続ける",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "哀れな操り人形だな。",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "両方",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]…私が……お前を……”作り直した”……塔の……構造物よ…...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "続ける",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]行け……上へ……[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]……あの……[aqua]七色に輝く宝石[/aqua]……[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "続ける",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]……お前が……作り直されるたびに……それも……姿を変える……[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "続ける",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]……私の……意思では……ない……妙だ……[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine]……”目的”は……知って……いるのか……？[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "返答する",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<44 45 53 54 52 4F 59> <41 4C 4C> <49 4E 54 52 55 44 45 52 53>[/jitter][/red]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "続ける",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]……[red][jitter]素晴らしい[/jitter][/red]……[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
+}
