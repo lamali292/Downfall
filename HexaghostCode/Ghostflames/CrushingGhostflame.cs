@@ -16,7 +16,7 @@ public class CrushingGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 3 + Intensity,
-        () => 2 + Repeat(GhostflameRepeatType.Damage)
+        () => 2 * ( 1 + Repeat(GhostflameRepeatType.Damage))
     );
 
     protected override int IgnitionRequirement => 2;

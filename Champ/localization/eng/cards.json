@@ -117,7 +117,7 @@
   "CHAMP-MURDER_STRIKE.title": "Murder Strike",
   "CHAMP-PARRY.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].\nIf [gold]Counter[/gold] is used this turn, gain another [gold]Riposte Strike[/gold].",
   "CHAMP-PARRY.title": "Parrying Shield",
-  "CHAMP-PERFECTER_STRIKE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL your \"Strike\" cards.",
+  "CHAMP-PERFECTER_STRIKE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL your cards containing \"Strike\".",
   "CHAMP-PERFECTER_STRIKE.title": "Perfecter Strike",
   "CHAMP-PILEDRIVER.description": "Deal {Damage:diff()} damage.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold].",
   "CHAMP-PILEDRIVER.title": "Piledriver",

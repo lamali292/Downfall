@@ -2,8 +2,8 @@
     "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]私は縛られている。耐え続ける。私は縛られている。耐え続ける。[jitter]私は縛られている。[/jitter][/purple][/sine]",
     "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "…[jitter]はやく…[/jitter]",
     "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "…",
-    "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "報酬やショップにヘキサゴーストのカードが出現するようになる。",
-    "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "ヘキサゴーストのカード",
+    "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "報酬やショップにヘクサゴーストのカードが出現するようになる。",
+    "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "ヘクサゴーストのカード",
     "HEXAGHOST-HEXAGHOST.description": "スパイアの呪われた魂。\n塔の守護者として永劫の運命に封印されている。",
     "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "私はまだ成仏できない……我が炎は未だ燃えている。",
     "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]金貨など…死者には無意味なもの…だが、しかし…[/sine]",
@@ -11,6 +11,6 @@
     "HEXAGHOST-HEXAGHOST.pronounObject": "彼女を",
     "HEXAGHOST-HEXAGHOST.pronounPossessive": "彼女のもの",
     "HEXAGHOST-HEXAGHOST.pronounSubject": "彼女は",
-    "HEXAGHOST-HEXAGHOST.title": "ヘキサゴースト",
-    "HEXAGHOST-HEXAGHOST.titleObject": "ヘキサゴースト"
+    "HEXAGHOST-HEXAGHOST.title": "ヘクサゴースト",
+    "HEXAGHOST-HEXAGHOST.titleObject": "ヘクサゴースト"
 }

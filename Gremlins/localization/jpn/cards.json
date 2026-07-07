@@ -1,4 +1,5 @@
 {
+    "GREMLINS-AGGRESSIVE_DEFENSE.description": "{Damage:diff()}ダメージを与える。\nこのターン[gold]ブロック[/gold]を得る度この敵のHPを{BashedPower:diff()}減らす。",
     "GREMLINS-AGGRESSIVE_DEFENSE.title": "守るが勝ち",
     "GREMLINS-ARMS_THEFT.title": "武器泥棒",
     "GREMLINS-ASTOUND.title": "びっくり",

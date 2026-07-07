@@ -31,7 +31,7 @@ public class BangPower : GremlinsPowerModel
         return Task.CompletedTask;
     }
 
-    public override decimal DownfallModifyDamageAdditive(
+    public override decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,
