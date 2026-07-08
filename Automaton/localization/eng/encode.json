@@ -59,5 +59,7 @@
   "AUTOMATON-EXPLODE.functionName": "Burst",
   "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "shield",
   "AUTOMATON-DEFEND_AUTOMATON.functionName": "Defend",
-  "AUTOMATON-STRENGTH_ENCODE.encode": "Gain {StrengthPower:diff()} [gold]Strength[/gold]."
+  "AUTOMATON-STRENGTH_ENCODE.encode": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "AUTOMATON-OIL_SPILL.functionPrefix": "leaky",
+  "AUTOMATON-OIL_SPILL.functionName": "Spill"
 }

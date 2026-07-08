@@ -91,9 +91,17 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
     {
         return Displays.GetValueOrDefault(player);
     }
+    
+    public static bool HasDisplay(Player player)
+    {
+        var display = Displays.GetValueOrDefault(player);
+        return display != null && IsInstanceValid(display);
+    }
+
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
+        if (HasDisplay(player)) return;
         var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
         var display = scene.Instantiate<NSequenceDisplay>();
         display._trackedPlayer = player;
@@ -121,8 +129,13 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
     /// <summary>Static refresh used by game logic (AutomatonCmd etc.).</summary>
     public static void Refresh(Player player, bool force = false)
     {
-        var display = GetDisplay(player);
-        if (display != null && IsInstanceValid(display))
-            display.Refresh(force);
+        if (!HasDisplay(player))
+        {
+            var combatRoom = NCombatRoom.Instance;
+            if (combatRoom == null) return;
+            SetupFor(combatRoom, player);
+            return;
+        }
+        Displays[player].Refresh(force);
     }
 }

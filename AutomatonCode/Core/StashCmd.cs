@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -47,6 +48,7 @@ public class StashCmd
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel
     {
+        NStashDisplay.EnsureFor(player);     
         var toStash = Math.Min(amount, RemainingSpace(player));
 
         if (toStash > 0)
@@ -59,6 +61,7 @@ public class StashCmd
 
     public static async Task Stash(CardModel card)
     {
+        NStashDisplay.EnsureFor(card.Owner);     
         if (RemainingSpace(card.Owner) > 0)
             await CardPileCmd.Add(card, StashPile.Stash);
         else
@@ -71,6 +74,7 @@ public class StashCmd
         if (list.Count == 0)
             return;
 
+        NStashDisplay.EnsureFor(player);     
         var space = RemainingSpace(player);
         var toStash = list.Take(space).ToList();
         var overflow = list.Skip(space).ToList();
