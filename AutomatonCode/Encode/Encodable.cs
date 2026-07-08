@@ -29,6 +29,9 @@ public abstract class Encodable
     public LocString GetDescription(AbstractModel card)
     {
         var description = Description;
+        description.Add("IsOnCard", card is CardModel and not FunctionCard);
+        description.Add("IsOnFunction", card is FunctionCard);
+        description.Add("IsOnPower", card is PowerModel);
         card.GetDynamicVars().AddTo(description);
         return description;
     }

@@ -5,12 +5,12 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Automaton.AutomatonCode.Cards.Rare;
+namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Goto : AutomatonCardModel
 {
-    public Goto() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Goto() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(7, 1);
         WithCards(1, 1);
