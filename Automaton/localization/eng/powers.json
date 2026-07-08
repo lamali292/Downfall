@@ -76,5 +76,8 @@
   "AUTOMATON-COPY_PASTE_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn that {Amount:plural:costs|cost} {energyPrefix:energyIcons(1)} or less {Amount:plural:is|are} played an extra time.",
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "Alchyrical Elixir",
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "The next Function your create is free to play.",
-  "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "The next {Amount:plural:Function|[gold]{}[/gold] Functions} you create {Amount:plural:is|are} free to play."
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "The next {Amount:plural:Function|[gold]{}[/gold] Functions} you create {Amount:plural:is|are} free to play.",
+  "AUTOMATON-SHARE_POWER.title": "Share",
+  "AUTOMATON-SHARE_POWER.description": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains  [gold]Block[/gold].",
+  "AUTOMATON-SHARE_POWER.smartDescription": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains [blue]{Amount}[/blue] [gold]Block[/gold]."
 }
