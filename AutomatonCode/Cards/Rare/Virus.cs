@@ -14,7 +14,7 @@ public class Virus : AutomatonCardModel
 {
     public Virus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
+        WithDamage(2, 2);
         WithKeywords(CardKeyword.Exhaust);
         WithUpgradingCardTip<MinorBeam>();
     }

@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
@@ -11,16 +12,19 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Spike : AutomatonCardModel, IEncodable<SpikeEncode>
+public class Spike : AutomatonCardModel, IEncodable, ICompilable
 {
-    public Spike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Spike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        this.WithPower<SpikePower>(3, 2, false);
-        this.WithTip<ThornsPower>();
+        WithPower<ThornsPower>(3, 2);
+        WithDamage(7, 1);
     }
     protected override Artist Artist => Artist.Get<Opal>();
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+   
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
+    public Task OnCompile(PlayerChoiceContext ctx)
     {
-        return CommonActions.ApplySelf<SpikePower>(ctx, this);
+        return CommonActions.ApplySelf<ThornsPower>(ctx, this);
     }
 }

@@ -1,4 +1,7 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
+using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -6,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Cards.Basic;
 
 [Pool(typeof(AutomatonCardPool))]
-public sealed class DefendAutomaton : AutomatonCardModel
+public sealed class DefendAutomaton : AutomatonCardModel, IEncodable
 {
     public DefendAutomaton() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
@@ -18,4 +21,7 @@ public sealed class DefendAutomaton : AutomatonCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
+
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+    public bool CanPlayerEncode => false;
 }

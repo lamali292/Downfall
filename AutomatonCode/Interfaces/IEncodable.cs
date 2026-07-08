@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,28 +10,15 @@ namespace Automaton.AutomatonCode.Interfaces;
 
 public interface IEncodable
 {
-    LocString EncodeLocString => (this is CardModel card ? BuildEncodeLocString(card) : null) ?? throw new Exception();
-
-    static LocString BuildEncodeLocString(CardModel card)
+    void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
-        var loc = new LocString("encode", card.Id.Entry + ".encode");
-        card.DynamicVars.AddTo(loc);
-        return loc;
+        
     }
 
-    LocString GetEncodeLocString(EncodeContext context)
-    {
-        return EncodeLocString;
-    }
-    
-    //Type EncodeModifierType => typeof(ExplodeEncode);
-    //Type? EncodeModifierType => null;
-    Type EncodeModifierType { get; }
+    IEnumerable<Encodable> Encodings { get; }
 
-}
+    bool CanPlayerEncode => true;
 
+    string EncodeString(CardModel card) => string.Join("\n", Encodings.Select(e => e.GetDescription(card).GetFormattedText())); 
 
-public interface IEncodable<TMod> : IEncodable where TMod : EncodeModifier
-{
-    Type IEncodable.EncodeModifierType => typeof(TMod);
 }
