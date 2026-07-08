@@ -212,7 +212,13 @@
   "AUTOMATON-FORK.title": "Fork",
   "AUTOMATON-FORK.description": "Choose another player, then choose a 1{energyPrefix:energyIcons(1)} card in your [gold]Hand[/gold] and add a copy of it to their [gold]Hand[/gold].",
   "AUTOMATON-UPTICK.title": "Uptick",
-  "AUTOMATON-UPTICK.description": "ALL players draw {DrawCardsNextTurnPower:diff()} additional cards at the start of their next turn.",
+  "AUTOMATON-UPTICK.description": "ALL players draw {DrawCardsNextTurnPower:diff()} additional cards and gain {Energy:energyIcons()} at the start of their next turn.",
   "AUTOMATON-HOOK.title": "Hook",
-  "AUTOMATON-HOOK.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] a card from your [gold]Draw Pile[/gold]."
+  "AUTOMATON-HOOK.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] a card from your [gold]Draw Pile[/gold].",
+  "AUTOMATON-EXPORT.title": "Export",
+  "AUTOMATON-EXPORT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAnother player gains {Energy:energyIcons()}.",
+  "AUTOMATON-SHARE.title": "Share",
+  "AUTOMATON-SHARE.description": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains {SharePower:diff()} [gold]Block[/gold].",
+  "AUTOMATON-BLUESCREEN.title": "Bluescreen",
+  "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nPut an [gold]Error[/gold] on top of their [gold]Draw Pile[/gold]."
 }
