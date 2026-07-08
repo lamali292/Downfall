@@ -14,10 +14,21 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Constructor : AutomatonCardModel, IEncodable<ConstructorEncode>
+public class Constructor : AutomatonCardModel, IEncodable
 {
     public Constructor() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
+        WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));
+    }
+    
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+
+    public void ApplyEncode(FunctionCard function, FunctionPosition position)
+    {
+        if (position == FunctionPosition.Start)
+        {
+            function.DynamicVars.Block.BaseValue += DynamicVars["ExtraBlock"].BaseValue;
+        }
     }
 }

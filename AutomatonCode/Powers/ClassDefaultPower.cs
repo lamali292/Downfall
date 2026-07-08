@@ -13,7 +13,7 @@ public class ClassDefaultPower : AutomatonPowerModel, IModifyDamageAdditive
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (dealer == Owner && cardSource != null && FunctionCard.IsInFunction.Get(cardSource)) return Amount;
+        if (dealer == Owner && cardSource != null) return Amount;
         return 0;
     }
 

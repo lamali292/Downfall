@@ -1,40 +1,95 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
-using System.Text;
-using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Godot;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Pooling;
 
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
+public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     CardRarity.Token, TargetType.AnyEnemy)
 {
-    public static readonly SpireField<CardModel, bool> IsInFunction = new(() => false);
+    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
 
-
-    public static readonly AsyncLocal<FunctionCard?> CurrentlyExecuting = new();
+    public override bool GainsBlock => DynamicVars.Block.BaseValue > 0;
     
+    protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        foreach (var encodable in Encodable.All)
+        {
+            if (encodable.DynamicVar(this).BaseValue > 0)
+                await encodable.OnPlay(this, ctx, cardPlay.Target, cardPlay);
+        }
+    }
+
+    public override TargetType TargetType => CalcTarget();
+    public override CardType Type => CalcType();
+
+    private CardType CalcType()
+    {
+        var targetTypes = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).Select(e => e.Type).Distinct().ToList();
+        if (targetTypes.Contains(CardType.Power)) return CardType.Power;
+        if (targetTypes.Contains(CardType.Attack)) return CardType.Attack;
+        if (targetTypes.Contains(CardType.Skill)) return CardType.Skill;
+        return CardType.None;
+    }
+
+    private TargetType CalcTarget()
+    {
+        var targetTypes = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).Select(e => e.Target).Distinct().ToList();
+        if (targetTypes.Contains(TargetType.AnyEnemy)) return TargetType.AnyEnemy;
+        if (targetTypes.Contains(TargetType.AllEnemies)) return TargetType.AllEnemies;
+        if (targetTypes.Contains(TargetType.Self)) return TargetType.Self;
+        return TargetType.None;
+    }
+
+    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
+    {
+        foreach (var canonicalVar in CanonicalVars)
+        {
+            canonicalVar.BaseValue = 0;
+        }
+
+        if (sourceCards.Count <= 0) return;
+        var max = AutomatonCmd.GetMax(sourceCards[0].Owner);
+
+        var i = 1;
+        foreach (var sourceCard in sourceCards)
+        {
+            var pos = i == 1 ? FunctionPosition.Start : i == max ? FunctionPosition.End : FunctionPosition.Middle;
+            if (sourceCard is not IEncodable encodable) continue;
+            encodable.ApplyEncode(this, pos);
+            foreach (var encodableEncoding in encodable.Encodings)
+            {
+                encodableEncoding.ApplyEncode(this, sourceCard);
+            }
+
+            i++;
+        }
+    }
+    
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        var lines = (from encodable in Encodable.All 
+            where encodable.DynamicVar(this).BaseValue > 0
+            select encodable.GetDescription(this).GetFormattedText()).ToList();
+        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
+    }
+
+    /*
     private CardRarity _cardRarity;
     private CardType _cardType;
     private TargetType _targetType;
@@ -52,8 +107,8 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     public override CardRarity Rarity => _cardRarity;
     public override CardType Type => _cardType;
     public override TargetType TargetType => _targetType;
-    
-    
+
+
     public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
         var modifiers = sourceCards.SelectMany(CardModifier.Modifiers).OfType<EncodeModifier>()
@@ -131,20 +186,11 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var previous = CurrentlyExecuting.Value;
-        CurrentlyExecuting.Value = this;
-        try
+        if (Type == CardType.Power)
         {
-            if (Type == CardType.Power)
-            {
-                var power = await PowerCmd.Apply<FullReleasePower>(ctx,
-                    Owner.Creature, 1, Owner.Creature, this);
-                power?.SetSourceCards(Encoding);
-            }
-        }
-        finally
-        {
-            CurrentlyExecuting.Value = previous;
+            var power = await PowerCmd.Apply<FullReleasePower>(ctx,
+                Owner.Creature, 1, Owner.Creature, this);
+            power?.SetSourceCards(Encoding);
         }
     }
 
@@ -162,8 +208,16 @@ public sealed class FunctionCard() : AutomatonCardModel(1, CardType.Skill,
     {
         _cardRarity = cardRarity;
     }
+    */
 }
 
+public enum FunctionPosition {
+    Start,
+    Middle,
+    End
+}
+
+/*
 [HarmonyPatch(typeof(CardModel), "get_Title")]
 public static class FunctionCardTitlePatch
 {
@@ -182,17 +236,8 @@ public static class FunctionCardTitlePatch
     }
 }
 
-[HarmonyPatch(typeof(CardModel), "get_CombatState")]
-public static class CardModelCombatStatePatch
-{
-    private static void Postfix(CardModel __instance, ref ICombatState? __result)
-    {
-        if (__result != null) return;
-        if (FunctionCard.CurrentlyExecuting.Value == null) return;
-        if (__instance is FunctionCard) return;
-        __result = FunctionCard.CurrentlyExecuting.Value.Owner.Creature.CombatState;
-    }
-}
+
+
 
 [HarmonyPatch(typeof(NCard), "Reload")]
 public static class NCardPortraitPatch
@@ -200,7 +245,7 @@ public static class NCardPortraitPatch
     private static void Postfix(NCard __instance)
     {
         if (__instance.Model is not FunctionCard fc) return;
-/*
+
         var portraitRect = __instance.GetNode<TextureRect>("%Portrait");
         var ancientPortraitRect = __instance.GetNode<TextureRect>("%AncientPortrait");
 
@@ -245,7 +290,7 @@ public static class NCardPortraitPatch
                     MouseFilter = Control.MouseFilterEnum.Ignore
                 });
         }
-        */
+        
     }
 }
 
@@ -273,4 +318,4 @@ public static class NodePoolFreePatch
         ncard.QueueFree();
         return false;
     }
-}
+}*/

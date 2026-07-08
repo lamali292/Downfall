@@ -7,15 +7,15 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class SummonOrbPower : AutomatonPowerModel
 {
-    // TODO : don't stash Summon Orb itself
-    // todo probably shouldn't work on power cards in general
+    // TODO : maybe try to code similar to NostalgiaPower. but i had issues previously with this
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries || cardPlay.Card.Type is not (CardType.Attack or CardType.Skill)) return;
         var playedThisTurn = CombatManager.Instance.History.CardPlaysStarted
-            .Count(e => e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState));
+            .Count(e => e.Actor == Owner && e.CardPlay.Card.Type is CardType.Attack or CardType.Skill && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState));
 
         if (playedThisTurn > Amount) return;
         await StashCmd.Stash(cardPlay.Card);
+        Flash();
     }
 }

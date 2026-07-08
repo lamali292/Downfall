@@ -7,12 +7,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Undervolt : AutomatonCardModel
 {
-    public Undervolt() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+    public Undervolt() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithPower<StrengthPower>(-2, -1);
         WithVar("StrengthLoss", 2, 1);

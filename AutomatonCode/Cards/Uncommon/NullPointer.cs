@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
@@ -10,16 +11,19 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class NullPointer : AutomatonCardModel,
-    IEncodable<NullPointerEncode>
+    IEncodable
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithTip(CardKeyword.Unplayable);
-        this.WithPower<NullPointerPower>(1, false);
+        WithDamage(12, 3);
+        WithBlock(12, 3);
+    }
+    
+    public void ApplyEncode(FunctionCard function, FunctionPosition position)
+    {
+        function.AddKeyword(CardKeyword.Unplayable);
     }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return CommonActions.ApplySelf<NullPointerPower>(ctx, this);
-    }
+    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
 }

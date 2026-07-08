@@ -13,22 +13,22 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Terminator : AutomatonCardModel,
-    IEncodable<TerminatorEncode>
+public class Terminator : AutomatonCardModel, IEncodable
 {
     public Terminator() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);
-        this.WithPower<TerminatorPower>(1, false);
     }
-
-
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    public void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
-        var a = AutomatonCmd.GetMax(Owner);
-        var b = Owner.GetEncode().Count;
-        if (a - 1 != b) return;
-        await CommonActions.ApplySelf<TerminatorPower>(ctx, this);
+        if (position == FunctionPosition.End)
+        {
+            function.BaseReplayCount += 1;
+        }
     }
+
+    public IEnumerable<Encodable> Encodings => [];
+
 }

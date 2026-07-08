@@ -28,9 +28,9 @@ public class AutomatonDisplay
         return Displays.GetValueOrDefault(player);
     }
 
-    public static void Refresh(Player creature)
+    public static void Refresh(Player creature, bool force = false)
     {
-        Displays.GetValueOrDefault(creature)?.Refresh();
+        Displays.GetValueOrDefault(creature)?.Refresh(force);
     }
 
 

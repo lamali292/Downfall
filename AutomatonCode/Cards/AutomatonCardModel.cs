@@ -22,12 +22,8 @@ public abstract class
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is not IEncodable e) return;
+        if (this is not IEncodable) return;
         WithTip(AutomatonTip.Encode);
-        if (e.EncodeModifierType == null) return;
-        CardModifier.AddModifier(this,
-            (CardModifier)ModelDb.Get(e.EncodeModifierType).MutableClone());
-
     }
     
     

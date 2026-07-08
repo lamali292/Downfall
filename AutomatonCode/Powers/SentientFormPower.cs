@@ -1,28 +1,28 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Powers;
 
-public class FrontloadPower : AutomatonPowerModel, IModifyCompiledFunction
+public class SentientFormPower : AutomatonPowerModel, IModifyCompiledFunction
 {
-    public FrontloadPower()
+    public SentientFormPower()
     {
-        WithTip(CardKeyword.Retain);
+        WithTip(StaticHoverTip.ReplayStatic);
     }
-
+    
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
     {
         if (player.Creature != Owner) return false;
-        function.AddKeyword(CardKeyword.Retain);
+        function.BaseReplayCount += Amount;
         return true;
     }
 
     public Task AfterModifyCompiledFunction(FunctionCard result, Player player)
     {
-        return PowerCmd.Decrement(this);
+        Flash();
+        return Task.CompletedTask;
     }
 }
