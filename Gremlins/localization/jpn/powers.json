@@ -1,5 +1,8 @@
 {
     "GREMLINS-WIZ_POWER.title": "魔力",
+    "GREMLINS-WIZ_POWER.description": "[gold]魔力[/gold]が[blue]3[/blue]以上ある場合、攻撃時に全てのスタックを消費して追加で[blue]7[/blue]ダメージを与える。",
+    "GREMLINS-WIZ_POWER.smartDescription": "[gold]魔力[/gold]が[blue]3[/blue]以上ある場合、攻撃時に全てのスタックを消費して追加で[blue]{ExtraDamage:diff()}[/blue]ダメージを与える。",
+    "GREMLINS-TEMP_HP_POWER.title": "一時的な体力",
     "GREMLINS-BASHED_POWER.title": "バシッ！",
     "GREMLINS-BUBBLE_BARRIER_POWER.title": "バブルバリア",
     "GREMLINS-ENTHUSIASM_POWER.title": "熱意",

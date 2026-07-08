@@ -1,6 +1,10 @@
 {
     "SNECKO-LOADED_DIE.title": "いかさまダイス",
+    "SNECKO-LOADED_DIE.description": "カードを[gold]泥まみれ[/gold]にする度、[blue]{Block}[/blue] [gold]ブロック[/gold]を得る。",
+    "SNECKO-LOADED_DIE.flavor": "チーズがたっぷり詰まってる。",
     "SNECKO-LUCKY_HORSESHOE.title": "幸運の蹄鉄",
+    "SNECKO-LUCKY_HORSESHOE.description": "取得時、[blue]3[/blue]体のキャラクターから[blue]1[/blue]体を選択する。選択したキャラクターの[gold]アップグレードされた[/gold][blue]3[/blue]枚の[gold]アンコモン[/gold]カードと、[blue]2[/blue]枚の[gold]レア[/gold]カードを選択し、デッキに加える。今後すべての戦闘で選択したキャラクターのカードを追加で報酬に加える。",
+    "SNECKO-LUCKY_HORSESHOE.flavor": "自分の運を自分で切り開く。",
     "SNECKO-MYSTICAL_OCTAHEDRON.title": "神秘的な八面体",
     "SNECKO-RARE_BOOSTER_BOX.title": "レアブースターボックス",
     "SNECKO-RING_OF_THE_SNEK.title": "蛇の指輪",

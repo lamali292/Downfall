@@ -1,0 +1,16 @@
+{
+    "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]プロトコル：保護。プロトコル：保護。プロトコル：保護。[/blue][/sine]",
+    "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "戦闘効率低下。動ケ。",
+    "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "……",
+    "GUARDIAN-GUARDIAN.cardsModifierDescription": "報酬やショップにガーディアンのカードが出現するようになる。",
+    "GUARDIAN-GUARDIAN.cardsModifierTitle": "ガーディアンのカード",
+    "GUARDIAN-GUARDIAN.description": "塔を守るためにプログラムされたスパイアの構成体。\n命令により自身を守ることができる。",
+    "GUARDIAN-GUARDIAN.eventDeathPrevention": "シャットダウン処理ヲ中止。スパイアノ保護ヲ最優先スル。",
+    "GUARDIAN-GUARDIAN.goldMonologue": "[sine]金……溶カシテ部品ニデキル……[/sine]",
+    "GUARDIAN-GUARDIAN.possessiveAdjective": "その",
+    "GUARDIAN-GUARDIAN.pronounObject": "それ",
+    "GUARDIAN-GUARDIAN.pronounPossessive": "その",
+    "GUARDIAN-GUARDIAN.pronounSubject": "それ",
+    "GUARDIAN-GUARDIAN.title": "ガーディアン",
+    "GUARDIAN-GUARDIAN.titleObject": "ガーディアン"
+}
