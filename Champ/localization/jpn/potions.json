@@ -1,0 +1,8 @@
+{
+    "CHAMP-BOTTLED_TECHNIQUE.title": "瓶詰めのテクニック",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "現在の[gold]スタンス[/gold]の[gold]スキルボーナス[/gold]を[blue]{Repeat:diff()}[/blue]回発動する。",
+    "CHAMP-BREW_OF_SHARPNESS.title": "キレの良い醸造酒",
+    "CHAMP-BREW_OF_SHARPNESS.description": "[gold]カウンター[/gold][blue]{CounterPower:diff()}[/blue]を得る。",
+    "CHAMP-STIMPACK.title": "スティムパック",
+    "CHAMP-STIMPACK.description": "[blue]1[/blue]ターンの間、[gold]アルティメットスタンス[/gold]に入る。"
+}
