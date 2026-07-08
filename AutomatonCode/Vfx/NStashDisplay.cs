@@ -17,6 +17,8 @@ namespace Automaton.AutomatonCode.Vfx;
 public partial class NStashDisplay : NSlotRevealDisplay
 {
     private const float StashDisplayScale = 0.28f;
+    protected override float SlotSeparation => -200f;
+    protected override float PreviewGap => -100f;
     private const string DisplayScenePath = "res://Automaton/scenes/ui/stash_display.tscn";
 
     private static readonly Dictionary<Player, NStashDisplay> Displays = new();
@@ -39,9 +41,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
 
     // Next-draw card is a normal card, not a big compiled Function.
     protected override float PreviewCardScale => 1.0f;
-
-    // Preview slot is regular card size here, so a tighter gap looks right.
-    protected override float PreviewGap => 160f;
+    
 
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
@@ -51,7 +51,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
     /// <summary>Oldest card (drawn next) lives in the preview; the slots hold the rest.</summary>
     protected override IReadOnlyList<CardModel> GetSlotCards()
     {
-        return _stashPile?.Cards.Skip(1).ToList() ?? [];
+        return _stashPile?.Cards.Skip(1).Reverse().ToList() ?? [];
     }
 
     /// <summary>Exactly as many slots as there are cards beyond the preview (0..4).</summary>
@@ -84,7 +84,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
     /// <summary>Inspect in draw order: pile front (next draw) first.</summary>
     protected override List<CardModel> BuildInspectList()
     {
-        return _stashPile?.Cards.ToList() ?? [];
+        return _stashPile?.Cards.Reverse().ToList() ?? [];
     }
 
     // --- Public surface (matches the old StashQueueDisplay) ---
@@ -114,9 +114,17 @@ public partial class NStashDisplay : NSlotRevealDisplay
             return PreviewSlot?.CardAnchorGlobal ?? GlobalPosition;
         return GetSlotGlobalPosition(pileIndex - 1);
     }
+    
+    public static bool HasDisplay(Player player)
+    {
+        var display = Displays.GetValueOrDefault(player);
+        return display != null && IsInstanceValid(display);
+    }
+
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
+        if (HasDisplay(player)) return;
         var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
         var display = scene.Instantiate<NStashDisplay>();
         display._trackedPlayer = player;
@@ -140,7 +148,15 @@ public partial class NStashDisplay : NSlotRevealDisplay
         display.SubscribeToStash(player);
         display.Refresh(true);
     }
-
+    
+    /// <summary>Create on demand (e.g. from the Stash keyword's command) if not present.</summary>
+    public static void EnsureFor(Player player)
+    {
+        if (HasDisplay(player)) return;
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null)
+            SetupFor(combatRoom, player);
+    }
     // --- Lifecycle / pile subscription ---
 
     public override void _Ready()

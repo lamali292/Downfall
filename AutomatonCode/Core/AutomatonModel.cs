@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Automaton.AutomatonCode.Core;
 
+/*
 public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
 {
     public override Task AfterRoomEntered(AbstractRoom room)
@@ -27,7 +28,7 @@ public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
 
         return Task.CompletedTask;
     }
-}
+}*/
 
 public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
 {
