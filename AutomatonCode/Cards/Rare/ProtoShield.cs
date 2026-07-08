@@ -14,10 +14,10 @@ public class ProtoShield : AutomatonCardModel
 {
     public ProtoShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(6, 2);
+        WithBlock(8, 2);
         WithPower<PlatingPower>(2, 1);
         this.WithTip<Error>();
-        WithCards(2);
+        WithCards(1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,6 +26,6 @@ public class ProtoShield : AutomatonCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<PlatingPower>(ctx, this);
-        await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Draw, DynamicVars.Cards.IntValue, CardPilePosition.Random);
+        await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Discard, DynamicVars.Cards.IntValue, CardPilePosition.Random);
     }
 }

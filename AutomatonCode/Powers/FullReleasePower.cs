@@ -21,15 +21,13 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
 
     
     
-    public override string CustomPackedIconPath => $"{IconName}.tres".DownfallPowerImagePath();
-    public override string CustomBigIconPath => $"{IconName}.png".DownfallBigPowerImagePath();
+    public override string CustomPackedIconPath => $"{IconName}.tres".PowerImagePath<Core.Automaton>();
+    public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<Core.Automaton>();
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => _vars;
-    private IEnumerable<DynamicVar> _vars = Encodable.All.Select(e => e.FunctionDynamicVar);
-
+    protected override IEnumerable<DynamicVar> CanonicalVars =>  Encodable.All.Select(e => e.FunctionDynamicVar);
     protected override IEnumerable<IHoverTip> ExtraHoverTips => Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
 
     public void SetDynamicalVars(DynamicVarSet functionCardDynamicVars)

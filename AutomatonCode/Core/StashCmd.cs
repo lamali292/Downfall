@@ -1,5 +1,7 @@
 ﻿using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
+using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,13 +15,18 @@ namespace Automaton.AutomatonCode.Core;
 
 public class StashCmd
 {
+    public const int MaxStashSize = 5;
+
     public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
+
+    private static int RemainingSpace(Player player)
+        => Math.Max(0, MaxStashSize - player.GetStash().Count);
 
     public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
     {
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, 0, amount);
         var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, source);
-        await Stash(cards);
+        await Stash(player, cards);
     }
 
     public static async Task StashFromHand(CardModel source, PlayerChoiceContext ctx)
@@ -27,7 +34,7 @@ public class StashCmd
         var amount = source.DynamicVars["Stash"].IntValue;
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
         var cards = await CardSelectCmd.FromHand(ctx, source.Owner, prefs, null, source);
-        await Stash(cards);
+        await Stash(source.Owner, cards);
     }
 
     public static async Task StashFromDraw(CardModel source, PlayerChoiceContext ctx)
@@ -35,24 +42,46 @@ public class StashCmd
         var amount = source.DynamicVars["Stash"].IntValue;
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
         var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(source.Owner), source.Owner, prefs);
-        await Stash(cards);
+        await Stash(source.Owner, cards);
     }
 
 
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel
     {
-        await DownfallCardCmd.GiveCards<TCard>(player, StashPile.Stash, amount);
+        var toStash = Math.Min(amount, RemainingSpace(player));
+
+        if (toStash > 0)
+            await DownfallCardCmd.GiveCards<TCard>(player, StashPile.Stash, toStash);
+
+        var overflow = amount - toStash;
+        if (overflow > 0)
+            await DownfallCardCmd.GiveCards<TCard>(player, PileType.Discard, overflow);
     }
 
     public static async Task Stash(CardModel card)
     {
-        await CardPileCmd.Add(card, StashPile.Stash);
+        if (RemainingSpace(card.Owner) > 0)
+            await CardPileCmd.Add(card, StashPile.Stash);
+        else
+            await CardPileCmd.Add(card, PileType.Discard);
     }
 
-    public static async Task Stash(IEnumerable<CardModel> cards)
+    public static async Task Stash(Player player, IEnumerable<CardModel> cards)
     {
-        await CardPileCmd.Add(cards, StashPile.Stash);
+        var list = cards.ToList();
+        if (list.Count == 0)
+            return;
+
+        var space = RemainingSpace(player);
+        var toStash = list.Take(space).ToList();
+        var overflow = list.Skip(space).ToList();
+
+        if (toStash.Count > 0)
+            await CardPileCmd.Add(toStash, StashPile.Stash);
+
+        if (overflow.Count > 0)
+            await CardPileCmd.Add(overflow, PileType.Discard);
     }
 
 
