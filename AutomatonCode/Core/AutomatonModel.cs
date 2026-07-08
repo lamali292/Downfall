@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Displays;
-using Automaton.AutomatonCode.Events;
+﻿using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Vfx;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
@@ -22,10 +21,9 @@ public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
         foreach (var player in state.Players)
             if (player.Character is Automaton)
             {
-                AutomatonDisplay.SetupAutomatonUi(combatRoomNode, player);
-                StashQueueDisplay.SetupFor(combatRoomNode, player);
+                NSequenceDisplay.SetupFor(combatRoomNode, player);
+                NStashDisplay.SetupFor(combatRoomNode, player);
             }
-
 
         return Task.CompletedTask;
     }

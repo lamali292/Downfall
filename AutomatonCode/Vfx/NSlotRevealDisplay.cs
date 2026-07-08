@@ -1,0 +1,367 @@
+﻿using Downfall.DownfallCode.Nodes;
+using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+
+namespace Automaton.AutomatonCode.Vfx;
+
+/// <summary>
+/// Generic hover-reveal card slot display: a preview slot that, on hover, fans out
+/// a row of card slots to one side. Knows nothing about piles, players, or game rules —
+/// subclasses supply the data via the abstract/virtual members.
+/// </summary>
+public abstract partial class NSlotRevealDisplay : Control
+{
+    public enum RevealDirection
+    {
+        Left,
+        Right,
+    }
+
+    // --- Tunables (override per subclass) ---
+    protected virtual float SlotSeparation => 70f;
+    protected virtual float PreviewGap => 160f;
+    protected virtual float RevealDuration => 0.25f;
+    protected virtual float RevealFadeDuration => 0.18f;
+    protected virtual float RevealStagger => 0.05f;
+    protected virtual float RetractDuration => 0.2f;
+    protected virtual float RetractFadeDuration => 0.15f;
+    protected virtual float RetractStagger => 0.04f;
+    protected virtual float PreviewBobSpeed => 0.85f;
+    protected virtual float PreviewBobAmplitude => 15f;
+    protected virtual float SlotBobAmplitude => 15f;
+    protected virtual float RetractGraceTime => 0.5f;
+    protected virtual float PreviewCardScale => 1.5f;
+
+    [Export] public RevealDirection Direction { get; set; } = RevealDirection.Left;
+
+    // --- Subclass contract ---
+
+    /// <summary>The cards currently occupying the slots, in slot order.</summary>
+    protected abstract IReadOnlyList<CardModel> GetSlotCards();
+
+    /// <summary>How many slots are currently usable (≤ number of slot nodes in the scene).</summary>
+    protected abstract int GetMaxSlots();
+
+    /// <summary>Model for the preview slot's card. Return null for no preview.</summary>
+    protected abstract CardModel? CreatePreviewModel(IReadOnlyList<CardModel> slotCards);
+
+    /// <summary>
+    /// Cards used for the change detection in Refresh. Default: the slot row.
+    /// Override when the preview or count depend on more than the slot cards.
+    /// </summary>
+    protected virtual IReadOnlyList<CardModel> GetDirtyCheckCards()
+    {
+        return GetSlotCards();
+    }
+
+    /// <summary>Text for the %Count badge. Default: filled/max of the slot row.</summary>
+    protected virtual string BuildCountText(IReadOnlyList<CardModel> slotCards)
+    {
+        return $"{Math.Min(slotCards.Count, CurrentMax)}/{CurrentMax}";
+    }
+
+    /// <summary>Whether the display should process hover/bob this frame.</summary>
+    protected virtual bool IsActive => true;
+
+    /// <summary>Called after a card node is placed in a slot. Hook for registration, etc.</summary>
+    protected virtual void OnSlotCardSet(int index, CardModel model, NCard node, NCustomCardHolder holder) { }
+
+    /// <summary>Called for each slot card model right before the slots are cleared. Hook for unregistration.</summary>
+    protected virtual void OnSlotCardCleared(CardModel model) { }
+
+    /// <summary>Called after the preview card node is placed.</summary>
+    protected virtual void OnPreviewCardSet(CardModel model, NCard node, NCustomCardHolder holder) { }
+
+    /// <summary>Cards shown by the inspect screen. Default: slot cards + preview.</summary>
+    protected virtual List<CardModel> BuildInspectList()
+    {
+        var list = CardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!).ToList();
+        if (PreviewModel != null) list.Add(PreviewModel);
+        return list;
+    }
+
+    // --- State ---
+    protected readonly List<NCustomCardHolder> CardHolders = [];
+    protected readonly List<NAutomatonSlot> Slots = [];
+    protected NAutomatonSlot? PreviewSlot;
+    protected Label? CountLabel;
+    protected CardModel? PreviewModel;
+    protected int CurrentMax = 3;
+
+    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
+    private readonly float[] _lastBobOffsets = new float[4];
+    private readonly Vector2[] _slotHomes = new Vector2[4];
+    private float _bobTime;
+    private Vector2 _hiddenPosition;
+    private float _hoverLostTimer;
+    private bool _initialized;
+    private List<CardModel> _lastDirtyCards = [];
+    private float _lastPreviewBob;
+    private NCustomCardHolder? _previewHolder;
+    private Tween? _revealTween;
+    private bool _slotsRevealed;
+
+    protected bool IsTweenRunning => _revealTween != null && _revealTween.IsValid() && _revealTween.IsRunning();
+
+    public override void _Ready()
+    {
+        Slots.Add(GetNode<NAutomatonSlot>("%Slot0"));
+        Slots.Add(GetNode<NAutomatonSlot>("%Slot1"));
+        Slots.Add(GetNode<NAutomatonSlot>("%Slot2"));
+        Slots.Add(GetNode<NAutomatonSlot>("%Slot3"));
+        PreviewSlot = GetNode<NAutomatonSlot>("%FuncPreview");
+        CountLabel = GetNodeOrNull<Label>("%Count");
+
+        // All slots sit centered behind the preview in the scene — that IS the hidden position.
+        _hiddenPosition = Slots[0].Position;
+
+        foreach (var slot in Slots)
+        {
+            slot.Visible = false;
+            slot.Modulate = new Color(1f, 1f, 1f, 0f);
+        }
+
+        ComputeHomes();
+    }
+
+    /// <summary>
+    /// Fly-out targets: a row beside the preview (side chosen by <see cref="Direction"/>),
+    /// vertically centered on it. The highest-index slot sits closest to the preview.
+    /// </summary>
+    private void ComputeHomes()
+    {
+        if (PreviewSlot == null || Slots.Count == 0) return;
+
+        var slotSize = Slots[0].Size;
+        var y = PreviewSlot.Position.Y + (PreviewSlot.Size.Y - slotSize.Y) / 2f;
+
+        for (var i = 0; i < Slots.Count && i < _slotHomes.Length; i++)
+        {
+            var slotsToPreview = CurrentMax - i; // 1 = nearest slot
+            float x;
+            if (Direction == RevealDirection.Left)
+                x = PreviewSlot.Position.X
+                    - PreviewGap
+                    - slotSize.X
+                    - (slotsToPreview - 1) * (slotSize.X + SlotSeparation);
+            else
+                x = PreviewSlot.Position.X + PreviewSlot.Size.X
+                    + PreviewGap
+                    + (slotsToPreview - 1) * (slotSize.X + SlotSeparation);
+            _slotHomes[i] = new Vector2(x, y);
+        }
+    }
+
+    public Vector2 GetSlotGlobalPosition(int index)
+    {
+        var clamped = Math.Clamp(index, 0, Math.Max(CurrentMax - 1, 0));
+        if (clamped >= Slots.Count) return GlobalPosition;
+
+        var slot = Slots[clamped];
+        // Report the home-based anchor; the live Position may be hidden or mid-animation.
+        var anchorOffset = slot.CardAnchorGlobal - slot.GlobalPosition;
+        return GetGlobalTransform() * _slotHomes[clamped] + anchorOffset;
+    }
+
+    public void Refresh(bool force = false)
+    {
+        var slotCards = GetSlotCards();
+        var dirtyCards = GetDirtyCheckCards();
+        var newMax = GetMaxSlots();
+        var maxChanged = newMax != CurrentMax;
+        if (!force && !maxChanged && _initialized && dirtyCards.SequenceEqual(_lastDirtyCards)) return;
+        _lastDirtyCards = dirtyCards.ToList();
+        _initialized = true;
+
+        if (maxChanged)
+        {
+            CurrentMax = newMax;
+            ComputeHomes();
+        }
+
+        if (CountLabel != null)
+            CountLabel.Text = BuildCountText(slotCards);
+
+        RefreshSlots(slotCards);
+        RefreshPreview(slotCards);
+    }
+
+    private void RefreshSlots(IReadOnlyList<CardModel> slotCards)
+    {
+        foreach (var h in CardHolders.Where(h => h.CardModel != null))
+            OnSlotCardCleared(h.CardModel!);
+        CardHolders.Clear();
+        foreach (var slot in Slots) slot.ClearCard();
+
+        for (var i = 0; i < Slots.Count; i++)
+        {
+            var slot = Slots[i];
+            if (i >= CurrentMax)
+            {
+                slot.Visible = false;
+                continue;
+            }
+
+            slot.Visible = _slotsRevealed || IsTweenRunning;
+
+            if (i >= slotCards.Count) continue;
+
+            var cardNode = NCard.Create(slotCards[i]);
+            if (cardNode == null) continue;
+
+            var holder = slot.SetCard(cardNode);
+            if (holder == null)
+            {
+                cardNode.QueueFree();
+                continue;
+            }
+
+            holder.SetClickable(true);
+            var captured = i;
+            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen().Open(BuildInspectList(), captured);
+            cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+            CardHolders.Add(holder);
+            OnSlotCardSet(i, slotCards[i], cardNode, holder);
+        }
+    }
+
+    private void RefreshPreview(IReadOnlyList<CardModel> slotCards)
+    {
+        PreviewSlot?.ClearCard();
+        _previewHolder = null;
+        PreviewModel = null;
+
+        PreviewModel = CreatePreviewModel(slotCards);
+        if (PreviewModel == null || PreviewSlot == null) return;
+
+        var cardNode = NCard.Create(PreviewModel);
+        if (cardNode == null) return;
+
+        _previewHolder = PreviewSlot.SetCard(cardNode, PreviewCardScale);
+        if (_previewHolder == null)
+        {
+            cardNode.QueueFree();
+            return;
+        }
+
+        _previewHolder.SetClickable(true);
+        _previewHolder.Pressed += _ =>
+        {
+            var cards = BuildInspectList();
+            NGame.Instance?.GetInspectCardScreen().Open(cards, cards.Count - 1);
+        };
+        cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+        OnPreviewCardSet(PreviewModel, cardNode, _previewHolder);
+    }
+
+    public override void _Process(double delta)
+    {
+        if (!IsActive) return;
+        UpdateHoverReveal((float)delta);
+
+        _bobTime += (float)delta;
+        for (var i = 0; i < _bobSpeeds.Length; i++)
+        {
+            var newOffset = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * SlotBobAmplitude;
+            if (!(Mathf.Abs(newOffset - _lastBobOffsets[i]) > 0.05f)) continue;
+            _lastBobOffsets[i] = newOffset;
+            if (i < Slots.Count)
+                Slots[i].BobOffset = newOffset;
+        }
+
+        if (PreviewSlot == null) return;
+        var previewBob = Mathf.Sin(_bobTime * PreviewBobSpeed * Mathf.Pi) * PreviewBobAmplitude;
+        if (!(Mathf.Abs(previewBob - _lastPreviewBob) > 0.05f)) return;
+        _lastPreviewBob = previewBob;
+        PreviewSlot.BobOffset = previewBob;
+    }
+
+    private void UpdateHoverReveal(float delta)
+    {
+        if (PreviewSlot == null) return;
+
+        var mouse = GetGlobalMousePosition();
+        var hovering = PreviewSlot.GetGlobalRect().HasPoint(mouse);
+
+        // Mouse over a revealed slot's home rect also counts as hovering.
+        if (!hovering && _slotsRevealed)
+            for (var i = 0; i < CurrentMax && i < Slots.Count; i++)
+            {
+                var slot = Slots[i];
+                var rect = new Rect2(GetGlobalTransform() * _slotHomes[i],
+                    slot.Size * slot.GetGlobalTransform().Scale);
+                if (!rect.HasPoint(mouse)) continue;
+                hovering = true;
+                break;
+            }
+
+        if (hovering)
+        {
+            _hoverLostTimer = 0f;
+            SetSlotsRevealed(true);
+            return;
+        }
+
+        if (!_slotsRevealed) return;
+
+        _hoverLostTimer += delta;
+        if (!(_hoverLostTimer >= RetractGraceTime)) return;
+        _hoverLostTimer = 0f;
+        SetSlotsRevealed(false);
+    }
+
+    protected void SetSlotsRevealed(bool revealed)
+    {
+        if (_slotsRevealed == revealed) return;
+        _slotsRevealed = revealed;
+
+        _revealTween?.Kill();
+        _revealTween = CreateTween().SetParallel();
+
+        for (var i = 0; i < Slots.Count && i < CurrentMax; i++)
+        {
+            var slot = Slots[i];
+
+            if (revealed)
+            {
+                slot.Visible = true;
+                // Snap behind the preview only when starting fully hidden;
+                // an interrupted retract continues from where it is.
+                if (slot.Modulate.A <= 0.001f)
+                    slot.Position = _hiddenPosition;
+                var delay = i * RevealStagger;
+                _revealTween.TweenProperty(slot, "position", _slotHomes[i], RevealDuration)
+                    .SetDelay(delay)
+                    .SetTrans(Tween.TransitionType.Cubic)
+                    .SetEase(Tween.EaseType.Out);
+                _revealTween.TweenProperty(slot, "modulate:a", 1f, RevealFadeDuration)
+                    .SetDelay(delay);
+            }
+            else
+            {
+                var delay = (CurrentMax - 1 - i) * RetractStagger;
+                _revealTween.TweenProperty(slot, "position", _hiddenPosition, RetractDuration)
+                    .SetDelay(delay)
+                    .SetTrans(Tween.TransitionType.Cubic)
+                    .SetEase(Tween.EaseType.In);
+                _revealTween.TweenProperty(slot, "modulate:a", 0f, RetractFadeDuration)
+                    .SetDelay(delay);
+            }
+        }
+
+        if (!revealed)
+            _revealTween.Chain().TweenCallback(Callable.From(OnRetractFinished));
+    }
+
+    private void OnRetractFinished()
+    {
+        foreach (var slot in Slots)
+        {
+            slot.Visible = false;
+            slot.Position = _hiddenPosition;
+        }
+    }
+}

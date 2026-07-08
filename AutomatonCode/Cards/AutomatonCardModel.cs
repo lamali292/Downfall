@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
@@ -19,8 +20,10 @@ public abstract class
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is not IEncodable) return;
-        WithTip(AutomatonTip.Encode);
+        if (AutomatonCmd.IsEncodable(this))
+            WithTip(AutomatonTip.Encode);
+        if (this is ICompilable)
+            WithTip(AutomatonTip.Compile);
     }
     
     

@@ -1,9 +1,9 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -42,7 +42,7 @@ public static class AutomatonCmd
         await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, pile);
         await Cmd.Wait(0.2f);
-        AutomatonDisplay.Refresh(creature);
+        NSequenceDisplay.Refresh(creature);
 
         FunctionCard? functionCard = null;
         if (pile.Cards.Count >= GetMax(creature))
@@ -64,8 +64,8 @@ public static class AutomatonCmd
         if (combatState == null) return null;
         var snapshot = pile.Cards.ToList();
         pile.Clear(true);
-
-        AutomatonDisplay.Refresh(player);
+        
+        NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
         {
             if (cardModel is ICompilable compilable)
