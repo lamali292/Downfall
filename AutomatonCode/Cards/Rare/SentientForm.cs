@@ -1,6 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Powers;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,6 +22,6 @@ public class SentientForm : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
-        AutomatonDisplay.Refresh(Owner, true);
+        NSequenceDisplay.Refresh(Owner, true);
     }
 }

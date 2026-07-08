@@ -35,12 +35,7 @@ public class StashPile() : CustomPile(Stash)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        var display = StashQueueDisplay.GetDisplay(model.Owner);
-        if (display == null) return Vector2.Zero;
-
-        var index = display.GetCardIndex(model);
-        if (index < 0) index = display.GetQueueCount();
-
-        return display.GlobalPosition + display.GetPositionForQueueIndex(null!, index);
+        var display = NStashDisplay.GetDisplay(model.Owner);
+        return display?.GlobalPosition ?? Vector2.Zero;
     }
 }

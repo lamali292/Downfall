@@ -49,12 +49,13 @@ public class CultistStrike : AutomatonCardModel,
         }
     }
     
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
        var intValue = DynamicVars["Increase"].IntValue;
         BuffFromPlay(intValue);
-        if (DeckVersion is not CultistStrike deckVersion) return;
+        if (DeckVersion is not CultistStrike deckVersion) return Task.CompletedTask;
         deckVersion.BuffFromPlay(intValue);
+        return Task.CompletedTask;
     }
 
     protected override void AfterDowngraded()
