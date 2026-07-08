@@ -1,13 +1,10 @@
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Rare;

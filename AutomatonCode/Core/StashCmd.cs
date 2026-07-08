@@ -1,7 +1,5 @@
 ﻿using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
-using BaseLib.Abstracts;
-using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;

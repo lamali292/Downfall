@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;

@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Godot;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;

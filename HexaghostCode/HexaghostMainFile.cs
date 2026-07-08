@@ -5,7 +5,6 @@ using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
 using HarmonyLib;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;

@@ -5,9 +5,7 @@ namespace Downfall.DownfallCode.Voting;
 
 using Godot;
 using HarmonyLib;
-using Downfall.DownfallCode.Vfx;
 using MegaCrit.Sts2.addons.mega_text;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
 

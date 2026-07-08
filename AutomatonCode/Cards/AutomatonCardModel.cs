@@ -1,12 +1,9 @@
 ﻿using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Interfaces;
-using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards;
 

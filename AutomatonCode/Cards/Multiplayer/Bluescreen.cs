@@ -1,12 +1,10 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Cards.Multiplayer;
