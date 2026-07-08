@@ -1,10 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.CustomEnums;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;

@@ -2,7 +2,6 @@ using Godot;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Hexaghost.HexaghostCode.Core;

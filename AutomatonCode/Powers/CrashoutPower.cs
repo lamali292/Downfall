@@ -1,8 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 

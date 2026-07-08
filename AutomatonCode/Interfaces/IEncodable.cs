@@ -1,9 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Interfaces;

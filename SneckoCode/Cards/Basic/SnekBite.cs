@@ -1,9 +1,6 @@
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using Snecko.SneckoCode.Cards.Ancient;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Extensions;
 

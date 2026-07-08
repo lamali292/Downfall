@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
-using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

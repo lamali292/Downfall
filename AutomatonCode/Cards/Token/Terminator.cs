@@ -1,12 +1,7 @@
-﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Extensions;
+﻿using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
-using Automaton.AutomatonCode.Piles;
-using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.CardPools;
 

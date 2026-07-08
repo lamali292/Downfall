@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
