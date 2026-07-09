@@ -16,7 +16,7 @@ public class AlchyricalElixirPotion : AutomatonPotionModel
 {
     public AlchyricalElixirPotion() : base(PotionRarity.Uncommon, PotionUsage.CombatOnly, TargetType.Self)
     {
-        WithPower<AlchyricalElixirPower>(1);
+        WithPower<AlchyricalElixirPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();
