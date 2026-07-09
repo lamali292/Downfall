@@ -71,7 +71,7 @@
     "GREMLINS-HECKLE.title": "足手まとい",
     "GREMLINS-INFINITE_BLOCKS.description": "ターン開始時、[gold]ガード[/gold]を[gold]手札[/gold]に加える。",
     "GREMLINS-INFINITE_BLOCKS.title": "無限ブロック",
-    "GREMLINS-IRKSOME_BLOW.description": "{Damage:diff()}ダメージを与える。\n追加で[gold]筋力[/gold]の{StrengthEffect:diff()}倍ダメージを与える。",
+    "GREMLINS-IRKSOME_BLOW.description": "{Damage:diff()}ダメージを与える。\nこのカードには、{StrengthEffect:diff()}倍の[gold]筋力[/gold]ボーナスが適用される。",
     "GREMLINS-IRKSOME_BLOW.title": "痛恨の一撃",
     "GREMLINS-IRRITABILITY.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n一時的な[gold]トゲ[/gold]{IrritabilityPower:diff()}を得る。\n[gold]交代[/gold]：マッドグレムリン",
     "GREMLINS-IRRITABILITY.title": "イライラ",

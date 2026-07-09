@@ -1,0 +1,12 @@
+{
+    "AWAKENED-AWAKEN.title": "覚醒",
+    "AWAKENED-AWAKEN.description": "戦闘中にパワーカードを7枚プレイすると[gold]覚醒[/gold]する。\n[gold]覚醒[/gold]している間、[gold]召喚[/gold]された呪文カードすべてを、その戦闘の間[gold]アップグレード[/gold]する。",
+    "AWAKENED-CONJURE.title": "召喚",
+    "AWAKENED-CONJURE.description": "呪文書の次のカードを[gold]手札[/gold]に生成する。",
+    "AWAKENED-CHANT.title": "詠唱",
+    "AWAKENED-CHANT.description": "最後にプレイしたカードがパワーカードだった場合、[gold]詠唱[/gold]効果を持つカードはその戦闘の間、より強力になる。",
+    "AWAKENED-CHANTED.title": "詠唱済み",
+    "AWAKENED-CHANTED.description": "このカードの効果が強化された。",
+    "AWAKENED-DRAINED.title": "ドレイン",
+    "AWAKENED-DRAINED.description": "{Energy:energyIcons()}を失う原因となったあらゆる効果（失う分が無くても発生する）。\n（カードのプレイに使った{Energy:energyIcons()}は含まない。）"
+}

@@ -1,8 +1,12 @@
 {
+    "CHAMP-CHAMP.aromaPrinciple": "[sine][yellow]俺は負けたことがない。俺が負けることはない。[jitter]俺は負けるはずがない。[/jitter][/yellow][/sine]",
+    "CHAMP-CHAMP.banter.alive.endTurnPing": "さっさと動け。",
     "CHAMP-CHAMP.banter.dead.endTurnPing": "…",
     "CHAMP-CHAMP.cardsModifierDescription": "報酬やショップにチャンプのカードが出現するようになる。",
     "CHAMP-CHAMP.cardsModifierTitle": "チャンプのカード",
     "CHAMP-CHAMP.description": "言わずと知れたアリーナの王者。\n一度も負けたことがない。[fly_in][/fly_in]",
+    "CHAMP-CHAMP.eventDeathPrevention": "チャンプは倒れない。ここでは。断じて。",
+    "CHAMP-CHAMP.goldMonologue": "[sine]賞金か…観客はいつだって気前がいい…[/sine]",
     "CHAMP-CHAMP.possessiveAdjective": "彼の",
     "CHAMP-CHAMP.pronounObject": "彼を",
     "CHAMP-CHAMP.pronounPossessive": "彼のもの",

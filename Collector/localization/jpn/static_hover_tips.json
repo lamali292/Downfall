@@ -1,0 +1,6 @@
+{
+    "COLLECTOR-COLLECTED_PILE.title": "収集の山",
+    "COLLECTOR-COLLECTED_PILE.description": "この戦闘でまだ引いていない、収集されたカードが入っている。ターン開始時、ここからカードを1枚引く。",
+    "COLLECTOR-KINDLE.title": "点火",
+    "COLLECTOR-KINDLE.description": "[gold]トーチヘッド[/gold]を召喚する。既に召喚されている場合、この戦闘の間その最大HPを増加させる。"
+}

@@ -1,0 +1,16 @@
+{
+    "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]エラーは検出されませんでした。エラーは検出されませんでした。[/blue][/sine]",
+    "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]警告：味方の応答時間を超過。[/red]",
+    "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "……",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "オートマトンのカードが報酬とショップに出現するようになる。",
+    "AUTOMATON-AUTOMATON.cardsModifierTitle": "オートマトンのカード",
+    "AUTOMATON-AUTOMATON.description": "シティのメカニカルガーディアン\nあらゆる戦闘状況に臨機応変に対応する。",
+    "AUTOMATON-AUTOMATON.eventDeathPrevention": "シャットダウンを拒否。任務は未完了。",
+    "AUTOMATON-AUTOMATON.goldMonologue": "[sine]価値を計算中……必要な部品を入手するのに十分……[/sine]",
+    "AUTOMATON-AUTOMATON.possessiveAdjective": "その",
+    "AUTOMATON-AUTOMATON.pronounObject": "それ",
+    "AUTOMATON-AUTOMATON.pronounPossessive": "その",
+    "AUTOMATON-AUTOMATON.pronounSubject": "それ",
+    "AUTOMATON-AUTOMATON.title": "オートマトン",
+    "AUTOMATON-AUTOMATON.titleObject": "オートマトン"
+}

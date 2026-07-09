@@ -1,0 +1,8 @@
+{
+    "SLIMEBOSS-SLURP.title": "啜り",
+    "SLIMEBOSS-SLURP.description": "[gold]廃棄札[/gold]からランダムな「舐め」系カードを1枚[gold]手札[/gold]に加える。",
+    "SLIMEBOSS-COMMAND.title": "命令",
+    "SLIMEBOSS-COMMAND.description": "先頭のスライムが攻撃する。",
+    "SLIMEBOSS-CONSUME.title": "泥食い",
+    "SLIMEBOSS-CONSUME.description": "[gold]汚泥[/gold]を持つ敵にアタックを使用した時に発動する追加効果。"
+}

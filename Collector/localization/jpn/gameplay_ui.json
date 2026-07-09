@@ -1,0 +1,5 @@
+{
+    "COMBAT_REWARD_ESSENCE": "{essence}エッセンスを得る。",
+    "COLLECTIBLE_REWARD": "{essence}エッセンスを消費して{Card}を入手する。",
+    "COLLECTIBLE_REWARD_CANT_AFFORD": "{Card}の入手には{essence}エッセンスが必要。"
+}

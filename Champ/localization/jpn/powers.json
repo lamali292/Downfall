@@ -73,5 +73,5 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "このターン、[gold]アルティメットスタンス[/gold]になる。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "次のターンの活力",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "次のターン、[gold]活力[/gold]を得る。",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]活力[/gold]{Amount:plural:|[blue]{}[/blue]}を得る。"
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]活力[/gold][blue]{}[/blue]を得る。"
 }

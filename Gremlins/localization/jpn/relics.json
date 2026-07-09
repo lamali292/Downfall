@@ -28,8 +28,16 @@
     "GREMLINS-SHORT_STATUE.flavor": "その効能には驚かされる。",
     "GREMLINS-STOLEN_MERCHANDISE.title": "盗難商品",
     "GREMLINS-STOLEN_MERCHANDISE.description": "交代する度に、ランダムなエコー付きの無色カードを得る。戦闘開始時、商人は筋力2を得る。",
+    "GREMLINS-STOLEN_MERCHANDISE.flavor": "「チクショウ！盗人グレムリン達め！」",
     "GREMLINS-TAG_TEAMWORK.title": "タッグチームワーク",
+    "GREMLINS-TAG_TEAMWORK.description": "[gold]タッグチーム[/gold]をドローする度、もう1枚ドローする。\n入手時、[gold]デッキ[/gold]に2枚の[gold]タッグチーム[/gold]を加える。",
     "GREMLINS-WIZARD_HAT.title": "ウィザードハット",
+    "GREMLINS-WIZARD_HAT.description": "[gold]魔力[/gold]を消費する度、ランダムなデバフを解除する。",
+    "GREMLINS-WIZARD_HAT.flavor": "付属のローブならとっくに盗まれたよ。",
     "GREMLINS-WIZARD_STAFF.title": "ウィザードスタッフ",
-    "GREMLINS-WOUND_POKER.title": "創傷ポーカー"
+    "GREMLINS-WIZARD_STAFF.description": "[gold]魔力[/gold]が追加で[blue]{Damage}[/blue]を与える。",
+    "GREMLINS-WIZARD_STAFF.flavor": "グレムリンウィザード自慢の杖。敵対するモブによく盗まれる。",
+    "GREMLINS-WOUND_POKER.title": "創傷ポーカー",
+    "GREMLINS-WOUND_POKER.description": "各ターン終了時、[gold]脱力[/gold]状態の敵に[blue]{Damage}[/blue]を与える。",
+    "GREMLINS-WOUND_POKER.flavor": "これって痛いの？"
 }
