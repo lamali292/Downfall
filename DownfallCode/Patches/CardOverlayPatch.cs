@@ -1,18 +1,13 @@
-using Godot;
+using Downfall.DownfallCode.Interfaces;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.DownfallCode.Patches;
 
-public interface IAdditionalOverlay
-{
-    string OverlayNodeName { get; }
-    Control? CreateAdditionalOverlay();
-}
 
 [HarmonyPatch(typeof(NCard), nameof(NCard.ReloadOverlay))]
-public static class CreateOverlayPatch
+public static class CardOverlayPatch
 {
     [HarmonyPostfix]
     public static void CreatureOverlay(NCard __instance)
@@ -32,28 +27,3 @@ public static class CreateOverlayPatch
     }
 }
 
-public interface IColoredPortrait
-{
-    float HueShift => 0f;
-    float Saturation => 1f;
-    float Value => 1f;
-}
-
-[HarmonyPatch(typeof(NCard), "Reload")]
-public static class NCardReloadCollectiblePatch
-{
-    public static void Postfix(NCard __instance)
-    {
-        if (__instance.Model is not IColoredPortrait collectible) return;
-
-        var portrait = __instance.GetNodeOrNull<TextureRect>("%Portrait");
-        if (portrait == null) return;
-
-        var shaderMaterial = new ShaderMaterial();
-        shaderMaterial.Shader = ResourceLoader.Load<Shader>("res://shaders/hsv.gdshader");
-        shaderMaterial.SetShaderParameter("h", collectible.HueShift);
-        shaderMaterial.SetShaderParameter("s", collectible.Saturation);
-        shaderMaterial.SetShaderParameter("v", collectible.Value);
-        portrait.Material = shaderMaterial;
-    }
-}

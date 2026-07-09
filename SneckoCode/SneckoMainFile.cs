@@ -21,8 +21,6 @@ public partial class SneckoMainFile : Node
     public static void Initialize()
     {
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
-        
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

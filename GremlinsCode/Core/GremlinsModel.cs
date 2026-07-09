@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using Gremlins.GremlinsCode.Powers;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,29 +16,24 @@ public class GremlinsModel() : CustomSingletonModel(HookType.Combat)
         if (player.Character is not Gremlins || player.PlayerCombatState is not { TurnNumber: 1 }) return;
         await PowerCmd.Apply<GremlinPower>(ctx, player.Creature, 1, player.Creature, null, true);
     }
-}
 
-[HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.KillWithoutCheckingWinCondition))]
-public static class PatchGremlinDeath
-{
-    private static bool Prefix(Creature creature, bool force, ref Task __result)
+    public static Task? OnDeath(Creature creature)
     {
-        if (force) return true;
         var player = creature.Player;
-        if (player?.Character is not Gremlins) return true;
+        if (player?.Character is not Gremlins) return null;
 
         var state = GremlinsRunModel.GetState(player);
         var dying = state.Active;
-        if (dying == null || !state.Bench.Any()) return true;
-        __result = RunAsync(player, dying);
-        return false;
-    }
+        if (dying == null || !state.Bench.Any()) return null;
 
-    private static async Task RunAsync(Player player, Creature dying)
+        return SwapGremlinAsync(player, dying);
+    }
+    
+    private static async Task SwapGremlinAsync(Player player, Creature dying)
     {
         if (player.Creature.CombatState == null || dying.Monster == null) return;
-        var hookCtx = new HookPlayerChoiceContext(dying.Monster, player.NetId, player.Creature.CombatState,
-            GameActionType.Combat);
+        var hookCtx = new HookPlayerChoiceContext(dying.Monster, player.NetId,
+            player.Creature.CombatState, GameActionType.Combat);
         await Cmd.Wait(0.5f);
         await GremlinsCmd.KillGremlin(hookCtx, player, dying);
         dying.Monster.InvokeExecutionFinished();

@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using HarmonyLib;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Ghostflames;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -11,7 +10,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using static MegaCrit.Sts2.Core.Entities.Multiplayer.GameActionType;
@@ -118,14 +116,5 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         //if (retract) await HexaghostCmd.Retract(ctx, cardPlay.Card.Owner);
         var advance = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Advance);
         if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner, cardPlay.Card);
-    }
-}
-
-[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
-internal static class HexaghostCombatUiActivatePatch
-{
-    private static void Postfix(CombatState state)
-    {
-        HexaghostModel.SetupHexaghostCombatUi(state);
     }
 }

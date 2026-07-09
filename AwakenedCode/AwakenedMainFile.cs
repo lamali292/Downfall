@@ -30,6 +30,6 @@ public partial class AwakenedMainFile : Node
             new ChantDescriptionSource());
         
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+        CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
     }
 }

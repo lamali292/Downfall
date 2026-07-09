@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Gremlins.GremlinsCode.Cards.Token;
 using Gremlins.GremlinsCode.Core;
@@ -21,7 +22,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Gremlins.GremlinsCode.Powers;
 
 public class GremlinPower()
-    : GremlinsPowerModel(PowerType.Buff, PowerStackType.Single), IAddDumbVariablesToPowerDescription
+    : GremlinsPowerModel(PowerType.Buff, PowerStackType.Single), IAddDumbVariablesToPowerDescription, IModifyDamageAdditive
 {
     private MonsterModel? CurrentGremlinMonster =>
         IsMutable ? GremlinsCmd.GetCurrentGremlin(Owner.Player)?.Monster : null;
@@ -78,7 +79,7 @@ public class GremlinPower()
         }
     }
 
-    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner && cardSource is { EnergyCost.Canonical: 0 } && GremlinsCmd

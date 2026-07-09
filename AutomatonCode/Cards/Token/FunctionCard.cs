@@ -6,8 +6,9 @@ using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
+using Downfall.DownfallCode.Utils;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -15,15 +16,14 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
 public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
-    CardRarity.Token, TargetType.AnyEnemy)
+    CardRarity.Token, TargetType.AnyEnemy), ICustomPortrait
 {
-    public string DynamicTitle = string.Empty;
+    private string _dynamicTitle = string.Empty;
     protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -74,7 +74,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         foreach (var canonicalVar in CanonicalVars) canonicalVar.BaseValue = 0;
 
         if (sourceCards.Count <= 0) return;
-        DynamicTitle = GetDynamicTitle(_sourceCards);
+        _dynamicTitle = GetDynamicTitle(_sourceCards);
      
         var max = AutomatonCmd.GetMax(_sourceCards[0].Owner);
 
@@ -131,9 +131,8 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         return sb.ToString();
     }
 
-    
 
-    public ImageTexture? GetTexture()
+    private ImageTexture? GetTexture()
     {
         if (_cachedTexture != null &&
             _cachedSourceCards.SequenceEqual(_sourceCards))
@@ -141,62 +140,21 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
             return _cachedTexture;
         }
 
-        var images = _sourceCards
-            .Select(c =>
-            {
-                var tex = ResourceLoader.Load<Texture2D>(c.PortraitPath);
-                return tex?.GetImage();
-            })
-            .Where(img => img != null)
-            .Cast<Image>()
+        var textures = _sourceCards
+            .Select(c => ResourceLoader.Load<Texture2D>(c.PortraitPath))
             .ToList();
 
-     
-        if (images.Count == 0)
-            return null;
+        var composite = PortraitCompositor.SliceHorizontally(textures);
+        if (composite == null) return null;
 
-        var width = images[0].GetWidth();
-        var height = images[0].GetHeight();
-
-        var result = Image.CreateEmpty(
-            width,
-            height,
-            false,
-            Image.Format.Rgba8
-        );
-
-        var sliceWidth = width / images.Count;
-
-        for (var i = 0; i < images.Count; i++)
-        {
-            var src = images[i];
-
-            if (src.GetFormat() != Image.Format.Rgba8)
-                src.Convert(Image.Format.Rgba8);
-
-            if (src.IsCompressed())
-                src.Decompress();
-
-            if (src.GetWidth() != width || src.GetHeight() != height)
-                src.Resize(width, height);
-
-            var w = i == images.Count - 1
-                ? width - i * sliceWidth
-                : sliceWidth;
-
-            result.BlitRect(
-                src,
-                new Rect2I(i * sliceWidth, 0, w, height),
-                new Vector2I(i * sliceWidth, 0)
-            );
-        }
-
-        _cachedTexture = ImageTexture.CreateFromImage(result);
+        _cachedTexture = composite;
         _cachedSourceCards = _sourceCards;
         return _cachedTexture;
     }
 
     public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
+    public override string Title => _dynamicTitle.Equals(string.Empty) ? base.Title : _dynamicTitle;
+    public Texture2D? GetPortraitTexture() => GetTexture();
 }
 
 public enum FunctionPosition
@@ -204,32 +162,4 @@ public enum FunctionPosition
     Start,
     Middle,
     End
-}
-
-[HarmonyPatch(typeof(CardModel), "get_Title")]
-public static class FunctionCardTitlePatch
-{
-    private static bool Prefix(CardModel __instance, ref string __result)
-    {
-        if (__instance is not FunctionCard fc || fc.DynamicTitle.Equals(string.Empty)) return true;
-        __result = fc.DynamicTitle;
-        return false;
-    }
-}
-
-[HarmonyPatch(typeof(NCard))]
-[HarmonyPatch("UpdatePortrait")]
-public static class NCardPortraitPatch
-{
-    private static void Postfix(NCard __instance)
-    {
-        if (__instance.Model is not FunctionCard fc)
-            return;
-
-        var composite = fc.GetTexture();
-        if (composite == null)
-            return;
-
-        __instance._portrait.Texture = composite;
-    }
 }

@@ -49,6 +49,10 @@
         <!--Compile Include="CollectorCode/**/*.cs"/-->
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="GuardianCode\Patches\" />
+    </ItemGroup>
+
     <PropertyGroup>
         <ModOutputFolder>Downfall</ModOutputFolder>
         <!-- Every asset folder to bundle into the single Downfall.pck -->

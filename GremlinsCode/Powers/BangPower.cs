@@ -1,4 +1,5 @@
-﻿using Gremlins.GremlinsCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Gremlins.GremlinsCode.Powers;
 
-public class BangPower : GremlinsPowerModel
+public class BangPower : GremlinsPowerModel, IModifyDamageAdditive
 {
     protected override object InitInternalData()
     {
@@ -31,7 +32,7 @@ public class BangPower : GremlinsPowerModel
         return Task.CompletedTask;
     }
 
-    public override decimal ModifyDamageAdditiveCompability(
+    public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

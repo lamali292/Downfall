@@ -1,10 +1,10 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Cards.Rare;
 using Guardian.GuardianCode.Cards.Token;
 using Guardian.GuardianCode.Cards.Uncommon;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
@@ -36,7 +36,7 @@ public class PackageShapes() : Package<TimeBomb, SpikerProtocol, RepulsorGuardia
 public class PackageSpheric() : Package<SphericShield, FloatingOrbs, Harden>(2);
 #pragma warning restore STS001
 
-public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard
+public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard, IModfyCardDescription
     where T1 : CardModel
     where T2 : CardModel
     where T3 : CardModel
@@ -72,17 +72,12 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard
         await DownfallCardCmd.GiveCard<T2>(Owner, PileType.Hand, upgraded: IsUpgraded);
         await DownfallCardCmd.GiveCard<T3>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
+
+    public LocString ModifyDescription(LocString locString)
+    {
+        return new LocString("cards", "GUARDIAN-PACKAGE.description");
+    }
 }
 
 internal interface IPackageCard;
 
-[HarmonyPatch(typeof(CardModel), "Description", MethodType.Getter)]
-public static class FunctionCardTitlePatch
-{
-    private static bool Prefix(CardModel __instance, ref LocString __result)
-    {
-        if (__instance is not IPackageCard) return true;
-        __result = new LocString("cards", "GUARDIAN-PACKAGE.description");
-        return false;
-    }
-}

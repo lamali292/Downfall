@@ -29,8 +29,6 @@ public partial class AutomatonMainFile : Node
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
-        
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
     }
 }

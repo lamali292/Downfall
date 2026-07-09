@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Gremlins.GremlinsCode.Cards.Uncommon;
 
 [Pool(typeof(GremlinsCardPool))]
-public class IrksomeBlow : GremlinsCardModel
+public class IrksomeBlow : GremlinsCardModel, IModifyDamageMultiplicative
 {
     public IrksomeBlow() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -24,7 +25,7 @@ public class IrksomeBlow : GremlinsCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
-    public override decimal ModifyDamageAdditiveCompability(
+    public decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

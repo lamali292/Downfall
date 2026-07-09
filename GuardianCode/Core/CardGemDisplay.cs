@@ -1,106 +1,47 @@
 ﻿using Godot;
 using Guardian.GuardianCode.Interfaces;
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Guardian.GuardianCode.Core;
 
 public partial class CardGemDisplay : Control
 {
-    public static void Update(CardModel card)
+    private VBoxContainer _slots;
+
+    public CardGemDisplay()
     {
-        var ncard = NCard.FindOnTable(card);
-        if (ncard != null)
-            UpdateFromNCard(ncard);
+        MouseFilter = MouseFilterEnum.Ignore;
+        _slots = new VBoxContainer
+        {
+            Name = "GemSlots",
+            MouseFilter = MouseFilterEnum.Ignore,
+            Position = new Vector2(90, -130)
+        };
+        AddChild(_slots);
     }
 
-    public static void UpdateFromNCard(NCard ncard)
+    public void Refresh(IGemSocketCard card)
     {
-        var display = ncard.GetNodeOrNull<CardGemDisplay>("CardGemDisplay");
-        UpdateVisuals(ncard, display);
-    }
+        Visible = card.GemSlots > 0;
+        if (!Visible) return;
 
-
-    private static CardGemDisplay UpdateVisuals(NCard card, CardGemDisplay? display = null)
-    {
-        if (card.Model is not IGemSocketCard guardianCard
-            || guardianCard.GemSlots == 0)
+        foreach (var child in _slots.GetChildren())
         {
-            if (display != null) display.Visible = false;
-            return display ?? new CardGemDisplay
-            {
-                Visible = false,
-                MouseFilter = MouseFilterEnum.Ignore
-            };
-        }
-
-        var vBox = display?.GetNodeOrNull<VBoxContainer>("GemSlots");
-        if (display == null || vBox == null)
-        {
-            display ??= new CardGemDisplay
-            {
-                MouseFilter = MouseFilterEnum.Ignore
-            };
-            vBox = new VBoxContainer
-            {
-                Name = "GemSlots",
-                MouseFilter = MouseFilterEnum.Ignore,
-                Position = new Vector2(90, -130)
-            };
-            display.AddChild(vBox);
-        }
-
-        display.Visible = true;
-
-        var currentGems = guardianCard.Gems;
-
-        foreach (var child in vBox.GetChildren())
-        {
-            vBox.RemoveChild(child);
+            _slots.RemoveChild(child);
             child.QueueFree();
         }
 
-        for (var i = 0; i < guardianCard.GemSlots; i++)
+        var gems = card.Gems;
+        for (var i = 0; i < card.GemSlots; i++)
         {
-            var isFilled = i < currentGems.Count;
-            var texture = isFilled ? currentGems[i].Icon : GemModel.EmptyIcon;
-
-            vBox.AddChild(new TextureRect
+            _slots.AddChild(new TextureRect
             {
                 Name = $"Slot_{i}",
-                Texture = texture,
+                Texture = i < gems.Count ? gems[i].Icon : GemModel.EmptyIcon,
                 ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 CustomMinimumSize = new Vector2(60f, 60f),
                 MouseFilter = MouseFilterEnum.Ignore
             });
         }
-
-        return display;
-    }
-}
-
-[HarmonyPatch(typeof(NCard), nameof(NCard._Ready))]
-public static class NCardReadyPatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(NCard __instance)
-    {
-        if (__instance.GetNodeOrNull<CardGemDisplay>("CardGemDisplay") != null) return;
-        var display = new CardGemDisplay { Name = "CardGemDisplay", MouseFilter = Control.MouseFilterEnum.Ignore };
-        __instance.AddChildSafely(display);
-        CardGemDisplay.UpdateFromNCard(__instance);
-    }
-}
-
-[HarmonyPatch(typeof(NCard), nameof(NCard.Reload))]
-public static class NCardReloadPatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(NCard __instance)
-    {
-        CardGemDisplay.UpdateFromNCard(__instance);
     }
 }

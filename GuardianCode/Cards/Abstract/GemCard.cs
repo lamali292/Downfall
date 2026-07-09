@@ -5,10 +5,8 @@ using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Gems;
 using Guardian.GuardianCode.Interfaces;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Cards.Abstract;
 
@@ -78,7 +76,7 @@ public class Bismuth : GemCard<BismuthGem>
 
 #pragma warning restore STS001
 
-public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, ICustomTypePlaque
+public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, ICustomTypePlaque, IModfyCardDescription
     where T : GemModel
 {
     protected GemCard() : base(0, CardType.Skill, CardRarity.None, TargetType.Self)
@@ -103,21 +101,14 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
     public int GemSlots => 0;
 
     public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
+    public LocString ModifyDescription(LocString oldLocString)
+    {
+        return new LocString("cards", "GUARDIAN-GEM_CARD.description");
+    }
 }
 
 public interface IGemCard
 {
     GemModel GemModel { get; }
     GemModel CanonicalGemModel { get; }
-}
-
-[HarmonyPatch(typeof(CardModel), "get_Description")]
-public static class GemCardTitlePatch
-{
-    private static bool Prefix(CardModel __instance, ref LocString __result)
-    {
-        if (__instance is not IGemCard gem) return true;
-        __result = new LocString("cards", "GUARDIAN-GEM_CARD.description");
-        return false;
-    }
 }

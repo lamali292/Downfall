@@ -6,7 +6,6 @@ using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -131,14 +130,5 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 
         AwakenedDisplay.Register(player, display);
         display.Refresh();
-    }
-}
-
-[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
-internal static class AwakenedCombatUiActivatePatch
-{
-    private static void Postfix(CombatState state)
-    {
-        AwakenedModel.SetupAwakenedCombatUi(state);
     }
 }
