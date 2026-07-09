@@ -1,7 +1,7 @@
 {
-    "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "守護",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "守護スタンス",
     "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]スキルボーナス[/gold]:[gold]カウンター[/gold][blue]{DefensiveSkill}[/blue]を得る。\n[gold]フィニッシャー[/gold]:[blue]{DefensiveFinisher}[/blue][gold]ブロック[/gold]を得る。",
-    "CHAMP-CHAMP_BERSERKER_STANCE.title": "狂化",
+    "CHAMP-CHAMP_BERSERKER_STANCE.title": "狂化スタンス",
     "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]スキルボーナス[/gold]:[gold]活力[/gold][blue]{BerserkerSkill}[/blue]を得る。\n[gold]フィニッシャー[/gold]:[gold]筋力[/gold][blue]{BerserkerFinisher}[/blue]を得る。",
     "CHAMP-CHAMP_NO_STANCE.title": "スタンスなし",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "アルティメットスタンス",

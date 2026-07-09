@@ -76,7 +76,7 @@
     "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次打出法术时，获得{energyPrefix:energyIcons(1)}。",
     "AWAKENED-PRIMACY_POWER.title": "教主至上",
     "AWAKENED-PRIMACY_POWER.description": "每回合你第一次获得[gold]力量[/gold]时，抽一张牌。",
-    "AWAKENED-PRIMACY_POWER.smartDescription": "每回合你前[blue]{Amount}[blue]次获得[gold]力量[/gold]时，抽一张牌。",
+    "AWAKENED-PRIMACY_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次获得[gold]力量[/gold]时，抽一张牌。",
     "AWAKENED-RAZOR_SHARP_POWER.title": "锋利如刃",
     "AWAKENED-RAZOR_SHARP_POWER.description": "羽刺额外命中1次。",
     "AWAKENED-RAZOR_SHARP_POWER.smartDescription": "羽刺额外命中[blue]{Amount}[/blue]次。",

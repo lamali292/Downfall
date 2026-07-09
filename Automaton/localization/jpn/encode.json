@@ -1,4 +1,13 @@
 {
+    "AUTOMATON-BLOCK_ENCODE.encode": "{Block:diff()}[gold]ブロック[/gold]を得る。",
+    "AUTOMATON-DAMAGE_ENCODE.encode": "{Damage:diff()}ダメージを与える。",
+    "AUTOMATON-WEAK_ENCODE.encode": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。",
+    "AUTOMATON-VULNERABLE_ENCODE.encode": "[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
+    "AUTOMATON-POISON_ENCODE.encode": "[gold]毒[/gold]{PoisonPower:diff()}を付与する。",
+    "AUTOMATON-SOULBURN_ENCODE.encode": "すべての敵に[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を付与する。",
+    "AUTOMATON-ENERGY_ENCODE.encode": "{Energy:energyIcons()}を得る。",
+    "AUTOMATON-DAZED_ENCODE.encode": "[gold]山札[/gold]に[gold]めまい[/gold]を{Dazed}枚加える。",
+    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|今すぐ、そして毎ターン開始時に：}",
     "AUTOMATON-FULL_RELEASE.encode": "この関数は、「今すぐ、およびターン開始時に……」を持つパワーになる。",
     "AUTOMATON-REPLICATE.functionPrefix": "複製の",
     "AUTOMATON-REPLICATE.functionName": "コピー",
@@ -9,6 +18,7 @@
     "AUTOMATON-BRANCH_ATTACK.functionPrefix": "分岐した",
     "AUTOMATON-BRANCH_ATTACK.functionName": "ブランチ",
     "AUTOMATON-BUGGY_MESS.functionPrefix": "バグった",
+    "AUTOMATON-BUGGY_MESS.functionName": "メス",
     "AUTOMATON-DEPRECATE.functionPrefix": "古い",
     "AUTOMATON-DEPRECATE.functionName": "侮辱",
     "AUTOMATON-FRONTLOAD.functionPrefix": "頑丈な",
@@ -48,5 +58,8 @@
     "AUTOMATON-EXPLODE.functionPrefix": "爆発の",
     "AUTOMATON-EXPLODE.functionName": "バースト",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "盾の",
-    "AUTOMATON-DEFEND_AUTOMATON.functionName": "防御"
+    "AUTOMATON-DEFEND_AUTOMATON.functionName": "防御",
+    "AUTOMATON-STRENGTH_ENCODE.encode": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
+    "AUTOMATON-OIL_SPILL.functionPrefix": "漏れた",
+    "AUTOMATON-OIL_SPILL.functionName": "スピル"
 }
