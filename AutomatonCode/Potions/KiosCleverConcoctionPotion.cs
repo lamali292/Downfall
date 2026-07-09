@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,6 +20,8 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
         WithTip(AutomatonTip.Encode);
     }
 
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+    
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;
