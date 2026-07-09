@@ -1,8 +1,4 @@
 using Godot;
-using Hexaghost.HexaghostCode.Core;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Hexaghost.HexaghostCode.Vfx;
 

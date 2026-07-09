@@ -1,9 +1,9 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
-using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -13,22 +13,15 @@ public class NullPointer : AutomatonCardModel,
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithTip(CardKeyword.Unplayable);
         WithDamage(12, 3);
         WithBlock(12, 3);
-        WithTip(CardKeyword.Unplayable);
-        this.WithPower<NullPointerPower>(1, false);
+    }
+    
+    public void ApplyEncode(FunctionCard function, FunctionPosition position)
+    {
+        function.AddKeyword(CardKeyword.Unplayable);
     }
 
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.CardAttack(this, cardPlay)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-    }
-
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return CommonActions.ApplySelf<NullPointerPower>(ctx, this);
-    }
+    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
 }

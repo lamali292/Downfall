@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using BaseLib.Abstracts;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

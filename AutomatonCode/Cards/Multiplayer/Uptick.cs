@@ -9,10 +9,12 @@ namespace Automaton.AutomatonCode.Cards.Multiplayer;
 [Pool(typeof(AutomatonCardPool))]
 public class Uptick : AutomatonCardModel
 {
-    public Uptick() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
+    public Uptick() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
         WithKeyword(CardKeyword.Exhaust);
         this.WithPower<DrawCardsNextTurnPower>(2, 1, false);
+        this.WithPower<EnergyNextTurnPower>(1, false);
+        WithEnergy(1);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -20,5 +22,6 @@ public class Uptick : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<DrawCardsNextTurnPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<EnergyNextTurnPower>(ctx, this, cardPlay);
     }
 }

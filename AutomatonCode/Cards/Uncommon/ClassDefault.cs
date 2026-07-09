@@ -13,8 +13,7 @@ public class ClassDefault : AutomatonCardModel
 {
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(AutomatonTip.Encode);
-        this.WithPower<ClassDefaultPower>(2, 1, false);
+        this.WithPower<ClassDefaultPower>(3, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

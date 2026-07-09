@@ -2,7 +2,6 @@ using System.Text;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Godot;
-using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Events;

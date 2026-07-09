@@ -16,7 +16,7 @@ public static class ConstructedCardModelExtensions
         bool showTooltip)
         where T : PowerModel
     {
-        card.WithVar(new DynamicVar(typeof(T).Name, baseVal).WithUpgrade(upgrade));
+        card._constructedDynamicVars.Add(new PowerVar<T>(baseVal).WithUpgrade(upgrade));
         if (showTooltip)
             card.WithTips(e => [HoverTipFactory.FromPower<T>(e.DynamicVars.Power<T>().IntValue)]);
         return card;

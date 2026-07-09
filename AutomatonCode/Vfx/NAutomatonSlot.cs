@@ -28,11 +28,11 @@ public partial class NAutomatonSlot : Control
         _baseY = _visualParent.Position.Y;
     }
 
-    public NCustomCardHolder? SetCard(NCard cardNode)
+    public NCustomCardHolder? SetCard(NCard cardNode, float scale = 1.0f)
     {
         ClearCard();
 
-        _holder = NCustomCardHolder.Create(cardNode, 1.0f, 2.0f);
+        _holder = NCustomCardHolder.Create(cardNode, 1.0f, 1.2f);
         if (_holder == null) return null;
 
         _visualParent!.AddChild(_holder);
@@ -40,7 +40,7 @@ public partial class NAutomatonSlot : Control
         Callable.From(() =>
         {
             if (_holder == null || _visualParent == null) return;
-            _holder.Position = _visualParent.Size / 2f - _holder.Size / 2f;
+            _holder.Position = _visualParent.Size / 2f - _holder.Size * _holder.Scale / 2f;
         }).CallDeferred();
 
         return _holder;

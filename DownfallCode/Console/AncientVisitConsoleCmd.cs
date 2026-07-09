@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Ancients;
-using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Rooms;
@@ -8,8 +7,6 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Players;
-using System;
-using System.Linq;
 
 public static class AncientDebug
 {

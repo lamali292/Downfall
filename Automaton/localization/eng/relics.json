@@ -1,6 +1,6 @@
 {
   "AUTOMATON-BOTTLED_CODE.title": "Bottled Code",
-  "AUTOMATON-BOTTLED_CODE.description": "Upon pickup, choose an Attack or Skill without [gold]Exhaust[/gold] or [gold]Encode[/gold].\nEnchant it with [purple]Encoding[/purple].",
+  "AUTOMATON-BOTTLED_CODE.description": "Upon pickup, Enchant a card with [gold]Encode[/gold] with [purple]Hardcoded[/purple].",
   "AUTOMATON-BOTTLED_CODE.flavor": "Actually, I have code for that exact thing...",
   "AUTOMATON-BRONZE_CORE.title": "Bronze Core",
   "AUTOMATON-BRONZE_CORE.description": "Start each combat with an [gold]Encoded[/gold] [gold]Strike[/gold] and [gold]Defend[/gold].",

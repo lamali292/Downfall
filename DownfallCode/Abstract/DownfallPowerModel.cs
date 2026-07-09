@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace Downfall.DownfallCode.Abstract;
