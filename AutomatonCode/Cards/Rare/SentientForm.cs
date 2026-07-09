@@ -1,8 +1,10 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Powers;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -11,12 +13,15 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<ArsenalPower>(2, 1, false);
-        this.WithTip<StrengthPower>();
+        this.WithPower<SentientFormPower>( 1, false);
+        WithTip(StaticHoverTip.ReplayStatic);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+
     }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return CommonActions.ApplySelf<ArsenalPower>(ctx, this);
+        await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
+        NSequenceDisplay.Refresh(Owner, true);
     }
 }

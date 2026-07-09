@@ -2,6 +2,8 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Piles;
+using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -9,167 +11,131 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Vfx;
 
 [GlobalClass]
-public partial class NSequenceDisplay : Control
+public partial class NSequenceDisplay : NSlotRevealDisplay
 {
     private const float SequencedCardScale = 0.28f;
-
     private const string DisplayScenePath = "res://Automaton/scenes/ui/automaton_display.tscn";
 
-    private readonly float[] _bobOffsets = new float[4];
-    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
-    private readonly List<NCustomCardHolder> _cardHolders = [];
-    private readonly float[] _lastBobOffsets = new float[4];
-
-    private readonly List<NAutomatonSlot> _slots = [];
-    private float _bobTime;
     private CombatManager? _combatManager;
-    private int _currentMax = 3;
-    private bool _initialized;
-    private List<CardModel> _lastSequence = [];
-
-    private Control? _previewContainer;
-    private NCustomCardHolder? _previewHolder;
-    private FunctionCard? _previewModel;
     private Player? _trackedPlayer;
 
-    public static NSequenceDisplay Create(Player player)
-    {
-        var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
-        var node = scene.Instantiate<NSequenceDisplay>();
-        node._trackedPlayer = player;
-        node.Scale = Vector2.One * (LocalContext.IsMe(player) ? SequencedCardScale : SequencedCardScale * 0.5f);
-        return node;
-    }
-
+    protected override bool IsActive =>
+        _trackedPlayer != null && _combatManager is { IsInProgress: true };
+    
     public override void _Ready()
     {
-        _slots.Add(GetNode<NAutomatonSlot>("%Slot0"));
-        _slots.Add(GetNode<NAutomatonSlot>("%Slot1"));
-        _slots.Add(GetNode<NAutomatonSlot>("%Slot2"));
-        _slots.Add(GetNode<NAutomatonSlot>("%Slot3"));
-        _previewContainer = GetNode<Control>("%FuncPreview");
+        base._Ready();
         _combatManager = CombatManager.Instance;
     }
 
-    public Vector2 GetSlotGlobalPosition(int index)
+    protected override IReadOnlyList<CardModel> GetSlotCards()
     {
-        var clamped = Math.Clamp(index, 0, _currentMax - 1);
-        return clamped < _slots.Count ? _slots[clamped].CardAnchorGlobal : GlobalPosition;
+        return _trackedPlayer?.GetEncode() ?? [];
     }
 
-    public void Refresh(bool force = false)
+    protected override int GetMaxSlots()
     {
-        if (_trackedPlayer == null) return;
-        var sequence = _trackedPlayer.GetEncode();
-        if (!force && _initialized && sequence.SequenceEqual(_lastSequence)) return;
-        _lastSequence = sequence.ToList();
-        _initialized = true;
-        _currentMax = AutomatonCmd.GetMax(_trackedPlayer);
-
-        RefreshSlots(sequence);
-        RefreshPreview(sequence);
+        return _trackedPlayer == null ? 3 : AutomatonCmd.GetMax(_trackedPlayer);
     }
 
-    private void RefreshSlots(IReadOnlyList<CardModel> sequence)
+    protected override CardModel? CreatePreviewModel(IReadOnlyList<CardModel> slotCards)
     {
-        foreach (var h in _cardHolders.Where(h => h.CardModel != null))
-            FindOnTablePatch.Unregister(h.CardModel!);
-        _cardHolders.Clear();
-        foreach (var slot in _slots) slot.ClearCard();
+        if (_trackedPlayer == null) return null;
+        if (ModelDb.Card<FunctionCard>().ToMutable() is not FunctionCard model) return null;
 
-        for (var i = 0; i < _slots.Count; i++)
-        {
-            var slot = _slots[i];
-            slot.Visible = i < _currentMax;
-            if (i >= _currentMax || i >= sequence.Count) continue;
-
-            var cardNode = NCard.Create(sequence[i]);
-            if (cardNode == null) continue;
-
-            var holder = slot.SetCard(cardNode);
-            if (holder == null)
-            {
-                cardNode.QueueFree();
-                continue;
-            }
-
-            holder.SetClickable(true);
-            var captured = i;
-            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen().Open(AllCardsForInspect(), captured);
-            cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-            FindOnTablePatch.Register(sequence[i], cardNode);
-            _cardHolders.Add(holder);
-        }
-    }
-
-    private void RefreshPreview(IReadOnlyList<CardModel> snapshot)
-    {
-        if (_trackedPlayer == null) return;
-        _previewHolder?.QueueFree();
-        _previewHolder = null;
-        _previewModel = null;
-        if (_previewContainer != null)
-            foreach (var child in _previewContainer.GetChildren())
-                child.QueueFree();
-
-        _previewModel = ModelDb.Card<FunctionCard>().ToMutable() as FunctionCard;
-        if (_previewModel == null) return;
-
-        AutomatonCmd.ApplyFunctionCardType(_previewModel, snapshot);
-        if (snapshot.Count > 0) _previewModel.SetSourceCards(snapshot);
-        _previewModel.Owner = _trackedPlayer;
-        _previewModel = AutomatonHook.ModifyCompiledFunction(_trackedPlayer!.Creature.CombatState!, _previewModel,
+        if (slotCards.Count > 0) model.SetSourceCards(slotCards);
+        model.Owner = _trackedPlayer;
+        return AutomatonHook.ModifyCompiledFunction(_trackedPlayer.Creature.CombatState!, model,
             _trackedPlayer, out _);
+    }
 
-        var funcCardNode = NCard.Create(_previewModel);
-        if (funcCardNode == null || _previewContainer == null) return;
+    protected override void OnSlotCardSet(int index, CardModel model, NCard node, NCustomCardHolder holder)
+    {
+        FindOnTablePatch.Register(model, node);
+    }
 
-        _previewHolder = NCustomCardHolder.Create(funcCardNode, 1.5f, 2.5f);
-        if (_previewHolder == null)
+    protected override void OnSlotCardCleared(CardModel model)
+    {
+        FindOnTablePatch.Unregister(model);
+    }
+
+    protected override List<CardModel> BuildInspectList()
+    {
+        var list = (CustomPiles.GetCustomPile(_trackedPlayer?.PlayerCombatState, EncodePile.FunctionSequence)?.Cards ?? [])
+            .Concat(CardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!)).ToList();
+        if (PreviewModel != null) list.Add(PreviewModel);
+        return list;
+    }
+    
+    private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
+
+    static NSequenceDisplay()
+    {
+        CombatManager.Instance.CombatEnded += _ =>
         {
-            funcCardNode.QueueFree();
+            foreach (var d in Displays.Values.Where(IsInstanceValid))
+                d.QueueFree();
+            Displays.Clear();
+        };
+    }
+
+    public static NSequenceDisplay? GetDisplay(Player player)
+    {
+        return Displays.GetValueOrDefault(player);
+    }
+    
+    public static bool HasDisplay(Player player)
+    {
+        var display = Displays.GetValueOrDefault(player);
+        return display != null && IsInstanceValid(display);
+    }
+
+
+    public static void SetupFor(NCombatRoom combatRoom, Player player)
+    {
+        if (HasDisplay(player)) return;
+        var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
+        var display = scene.Instantiate<NSequenceDisplay>();
+        display._trackedPlayer = player;
+        display.Scale = Vector2.One * (LocalContext.IsMe(player) ? SequencedCardScale : SequencedCardScale * 0.5f);
+        display.Direction = RevealDirection.Right;
+        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;  
+        var vfxContainer = combatRoom.CombatVfxContainer;
+        vfxContainer.AddChildSafely(display);
+
+        // Position it wherever SetupAutomatonUi used to put it — e.g. above the player:
+        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        if (creatureNode != null)
+        {
+            var globalTopPos = creatureNode.GetTopOfHitbox();
+            var localPos = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
+            var x = LocalContext.IsMe(player) ? 90 : 50;
+            var y = LocalContext.IsMe(player) ? -100 : -40;
+            display.Position = localPos + new Vector2(x, y); 
+        }
+
+        Displays[player] = display;
+        display.Refresh(true);
+    }
+
+    /// <summary>Static refresh used by game logic (AutomatonCmd etc.).</summary>
+    public static void Refresh(Player player, bool force = false)
+    {
+        if (!HasDisplay(player))
+        {
+            var combatRoom = NCombatRoom.Instance;
+            if (combatRoom == null) return;
+            SetupFor(combatRoom, player);
             return;
         }
-
-        _previewHolder.Scale = Vector2.One * 1.5f;
-        _previewContainer.AddChild(_previewHolder);
-        _previewHolder.Position = _previewContainer.Size / 2f - _previewHolder.Size / 2f;
-        _previewHolder.SetClickable(true);
-        _previewHolder.Pressed += _ =>
-        {
-            var cards = AllCardsForInspect();
-            NGame.Instance?.GetInspectCardScreen().Open(cards, cards.Count - 1);
-        };
-        funcCardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-    }
-
-    public override void _Process(double delta)
-    {
-        if (_trackedPlayer == null || _combatManager is not { IsInProgress: true }) return;
-
-        _bobTime += (float)delta;
-        for (var i = 0; i < 4; i++)
-        {
-            var newOffset = Mathf.Sin(_bobTime * _bobSpeeds[i] * Mathf.Pi) * 15f;
-            if (!(Mathf.Abs(newOffset - _lastBobOffsets[i]) > 0.05f)) continue;
-            _bobOffsets[i] = newOffset;
-            _lastBobOffsets[i] = newOffset;
-            if (i < _slots.Count)
-                _slots[i].BobOffset = newOffset;
-        }
-    }
-
-    private List<CardModel> AllCardsForInspect()
-    {
-        var list = _cardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!).ToList();
-        if (_previewModel != null) list.Add(_previewModel);
-        return list;
+        Displays[player].Refresh(force);
     }
 }

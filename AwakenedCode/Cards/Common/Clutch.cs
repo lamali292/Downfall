@@ -18,13 +18,13 @@ public class Clutch : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override bool ShouldGlowGoldInternal => Has0CostInDraw;
+    protected override bool ShouldGlowRedInternal => !Has0CostInDraw;
 
     private bool Has0CostInDraw
     {
         get
         {
-            return !PileType.Draw.GetPile(Owner)
+            return PileType.Draw.GetPile(Owner)
                 .Cards.Any(c => c.EnergyCost is { Canonical: 0, CostsX: false });
         }
     }

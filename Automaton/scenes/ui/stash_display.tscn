@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://hx2ihjy0726a"]
+
+[ext_resource type="Script" uid="uid://87tanf8oovdb" path="res://AutomatonCode/Vfx/NStashDisplay.cs" id="1_lucsw"]
+[ext_resource type="PackedScene" path="res://Automaton/scenes/ui/automaton_slot.tscn" id="2_slot"]
+[ext_resource type="Texture2D" uid="uid://ce37xptc8x4au" path="res://images/packed/combat_ui/pile_button_count.png" id="4_a2kcg"]
+[ext_resource type="FontFile" uid="uid://dc8ocd36hqnbe" path="res://fonts/kreon_bold.ttf" id="5_4w8a2"]
+[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="6_b7x6m"]
+
+[sub_resource type="FontVariation" id="FontVariation_wov2o"]
+base_font = ExtResource("5_4w8a2")
+spacing_glyph = 1
+
+[node name="AutomatonDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lucsw")
+
+[node name="Slot0" parent="." instance=ExtResource("2_slot")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+
+[node name="Slot1" parent="." instance=ExtResource("2_slot")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+
+[node name="Slot2" parent="." instance=ExtResource("2_slot")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+
+[node name="Slot3" parent="." instance=ExtResource("2_slot")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+
+[node name="FuncPreview" parent="." instance=ExtResource("2_slot")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+scale = Vector2(1.43, 1.43)
+
+[node name="CountContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = 258.0
+offset_right = -171.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="CountContainer"]
+modulate = Color(1, 1, 0.9799528, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_a2kcg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="CountContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.25
+offset_top = -21.250002
+offset_right = -5.75
+offset_bottom = 30.75
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.88870734, 0.9021858)
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1254902)
+theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = SubResource("FontVariation_wov2o")
+theme_override_font_sizes/font_size = 19
+text = "3/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_b7x6m")
+MinFontSize = 20
+MaxFontSize = 26

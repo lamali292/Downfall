@@ -58,7 +58,7 @@ public partial class NCustomCardHolder : NCardHolder, IPoolable
         holder._smallScale = customSmallScale;
         holder._hoverScale = customHoverScale;
         holder.SetCard(cardNode);
-        holder.UpdateCardModel();
+        //holder.UpdateCardModel();
         holder.UpdateName();
         holder.Scale = holder.SmallScale;
         return holder;

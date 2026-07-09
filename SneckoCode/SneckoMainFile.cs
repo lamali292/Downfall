@@ -3,8 +3,6 @@ using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Snecko.SneckoCode.Core;

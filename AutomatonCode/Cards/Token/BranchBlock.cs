@@ -1,9 +1,8 @@
-﻿using Automaton.AutomatonCode.Interfaces;
+﻿using Automaton.AutomatonCode.Encode;
+using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Automaton.AutomatonCode.Cards.Token;
@@ -13,15 +12,12 @@ public class BranchBlock : AutomatonCardModel, IEncodable
 {
     public BranchBlock() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithBlock(6, 2);
         WithKeywords(CardKeyword.Retain);
+        WithBlock(7, 2);
     }
 
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+    
     protected override Artist Artist => Artist.Get<Opal>();
-
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-    }
+    
 }

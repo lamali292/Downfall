@@ -11,11 +11,11 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class Recreate : AutomatonCardModel
 {
-    public Recreate() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Recreate() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<RecreatePower>(1, false);
         this.WithTip<Fuel>();
-        
+        WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

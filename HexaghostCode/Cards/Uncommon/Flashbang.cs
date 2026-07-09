@@ -1,8 +1,6 @@
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

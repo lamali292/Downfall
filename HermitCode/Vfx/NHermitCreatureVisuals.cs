@@ -1,7 +1,6 @@
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 

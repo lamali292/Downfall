@@ -2,7 +2,6 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -11,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Convert : AutomatonCardModel
 {
-    public Convert() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Convert() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9, 1);
         WithUpgradingCardTip<Fuel>();
@@ -21,7 +20,7 @@ public class Convert : AutomatonCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = Owner.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.GetDraw(e => e.Type == CardType.Status));
+            .NextItem(Owner.GetDiscard(e => e.Type == CardType.Status));
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
         if (IsUpgraded) fuel.UpgradeInternal();

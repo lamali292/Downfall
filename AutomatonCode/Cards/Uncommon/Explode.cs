@@ -1,8 +1,9 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
-using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,25 +11,23 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
+
 [Pool(typeof(AutomatonCardPool))]
-public class Explode : AutomatonCardModel, IEncodable
+public class Explode : AutomatonCardModel, IEncodable, ICompilable
 {
     public Explode() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        this.WithPower<ExplodePower>(2, false);
-        this.WithTip<Burn>();
+        WithCards(2);
         WithPower<SoulBurnPower>(15, 5);
+        this.WithTip<Burn>();
     }
 
+    public IEnumerable<Encodable> Encodings => [new SoulburnEncode()];
+    
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    public Task OnCompile(PlayerChoiceContext context)
     {
-        return cardPlay.Card.CombatState == null ? Task.CompletedTask : CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Card.CombatState.HittableEnemies, this);
-    }
-
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return CommonActions.ApplySelf<ExplodePower>(ctx, this);
+        return DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue, CardPilePosition.Random);
     }
 }
