@@ -1,10 +1,12 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Interfaces;
+using Godot;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Interfaces;
 
-public interface IGemSocketCard
+public interface IGemSocketCard : IModifyReplayCount, ICardOverlay
 {
     int GemSlots { get; }
     int GemReplayCount => 1;
@@ -24,6 +26,12 @@ public interface IGemSocketCard
         return !IsFull;
     }
 
+    int IModifyReplayCount.ModifyReplayCount(int current)
+        => Gems.Aggregate(current, (c, gem) => gem.ModifyPlayCount(c));
+    
+    Control ICardOverlay.CreateCustomOverlay() => new CardGemDisplay();
+    void ICardOverlay.UpdateOverlay(Control overlay) => ((CardGemDisplay)overlay).Refresh(this);
+    
     void AddGem(GemModel gem)
     {
         if (IsFull || this is not CardModel card) return;

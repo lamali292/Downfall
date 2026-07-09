@@ -1,5 +1,6 @@
 ﻿using Hermit.HermitCode.Cards;
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -13,7 +14,7 @@ public interface IHasDeadOnEffect
     
     bool IsDeadOnInHand => HermitCmd.IsDeadOnInCurrentHandState((CardModel)this);
     bool WasThisPlayedDeadOn =>
-        PatchDeadOnCapture.LastPlayed == (CardModel)this && PatchDeadOnCapture.LastWasDeadOn;
+        DeadOnPatch.LastPlayed == (CardModel)this && DeadOnPatch.LastWasDeadOn;
 
     Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
 }

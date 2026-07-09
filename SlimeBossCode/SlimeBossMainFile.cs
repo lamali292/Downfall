@@ -1,9 +1,12 @@
 using System.Reflection;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
+using Downfall.DownfallCode.Utils;
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using SlimeBoss.SlimeBossCode.Patches;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace SlimeBoss.SlimeBossCode;
@@ -19,6 +22,10 @@ public partial class SlimeBossMainFile : Node
     public static void Initialize()
     {
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(PersonalHivePowerSlimePatch))
+            .Add(typeof(SlimeDeathPatches))
+            .Add(typeof(SlimeHoverTipPatch))
+            .PatchAll();
     }
 }

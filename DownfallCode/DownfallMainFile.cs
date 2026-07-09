@@ -4,15 +4,21 @@ using System.Text;
 using System.Text.Json;
 using BaseLib.Config;
 using BaseLib.Extensions;
+using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
+using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -37,23 +43,51 @@ public partial class DownfallMainFile : Node
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
-
-        Patch(Assembly.GetExecutingAssembly(), ModId);
+        
+        ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
+        DownfallPatchManager.HarmonyPatches();
+        //Patch(Assembly.GetExecutingAssembly(), ModId);
 
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
-    }
-    
-    private static readonly HashSet<Assembly> Patched = [];
+        
+        CardTitleHooks.Register((card, title) =>
+        {
+            if (!card.IsEcho()) return title; 
+            var echoLoc = new LocString("card_keywords", "DOWNFALL-ECHO.card_title");
+            echoLoc.Add("card", title);
+            return echoLoc.GetFormattedText();
+        });
+        PostInitRegistry.Register(() =>
+        {
+            CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,  (target, player) => target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
+            LogRegisteredCounts();
+        });
+        
+        /*
+        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
+        {
+            Label = "Art Voting",
+            IsVisible = () => DownfallConfig.DevMode,
+            SubmenuType = typeof(NArtVotingScreen),
+            CreateSubmenu = NArtVotingScreen.Create,
+            OnPress = stack =>
+            {
+                if (VotingApi.Instance == null)
+                    stack?.GetTree().Root.AddChild(new VotingApi());
+                stack?.PushSubmenuType<NArtVotingScreen>();
+            }
+        });*/
 
-    public static void Patch(Assembly assembly, string modid)
-    {
-        if (!Patched.Add(assembly)) return;
-        Harmony harmony = new(modid);
-        ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.TryPatchAll(assembly);
+        LocFormatterRegistry.Register(
+            new PowerIconFormatter(),
+            new PreviewPluralFormatter(),
+            new PreviewValueFormatter(),
+            new PlusIfUpgradedFormatter());
     }
+
+   
 
     private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
     {
@@ -91,12 +125,9 @@ public partial class DownfallMainFile : Node
             Logger.Warn($"Upload timed out: {ex.Message}");
         }
     }
-}
-
-[HarmonyPatch(typeof(ModelDb), "InitIds")]
-internal static class ModelDbInitIdsPatch
-{
-    [HarmonyPostfix]
+    
+    
+    
     private static void LogRegisteredCounts()
     {
         var modAssembly = typeof(DownfallMainFile).Assembly;
@@ -109,11 +140,11 @@ internal static class ModelDbInitIdsPatch
             var cards = ModelDb.AllCards.Count(c => c.Pool == character.CardPool);
             var relics = ModelDb.AllRelics.Count(r => r.Pool == character.RelicPool);
             var potions = ModelDb.AllPotions.Count(p => p.Pool == character.PotionPool);
-            DownfallMainFile.Logger.Info($"{charName}: {cards} cards, {relics} relics, {potions} potions");
+            Logger.Info($"{charName}: {cards} cards, {relics} relics, {potions} potions");
         }
 
         var powers = ModelDb.AllPowers.Count(p => p.GetType().Assembly == modAssembly);
-        DownfallMainFile.Logger.Info($"Powers: {powers}");
+        Logger.Info($"Powers: {powers}");
 
         foreach (var character in ModelDb.AllCharacters.OfType<DownfallCharacterModel>())
             if (character.CharacterSelectSfxEntry is { } effect)

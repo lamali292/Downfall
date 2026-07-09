@@ -1,5 +1,6 @@
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.CustomEnums;
+using Hermit.HermitCode.Patches;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -24,7 +25,7 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        var isDeadOn = PatchDeadOnCapture.LastWasDeadOn;
+        var isDeadOn = DeadOnPatch.LastWasDeadOn;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var drawPile = PileType.Draw.GetPile(Owner);

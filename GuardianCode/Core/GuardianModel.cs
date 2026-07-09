@@ -8,7 +8,6 @@ using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
 using Guardian.GuardianCode.Vfx;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -122,14 +121,5 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
         if (!hasSlots || !hasGems) return false;
         options.Add(new GemRestSiteOption(player));
         return true;
-    }
-}
-
-[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
-internal static class GuardianCombatUiActivatePatch
-{
-    private static void Postfix(CombatState state)
-    {
-        GuardianCombatModel.SetupGuardianCombatUi(state);
     }
 }

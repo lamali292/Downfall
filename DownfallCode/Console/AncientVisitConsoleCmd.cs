@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Ancients;
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
@@ -11,18 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 public static class AncientDebug
 {
     public static int? ForcedVisitIndex;
-}
-
-[HarmonyPatch(typeof(AncientDialogueSet), nameof(AncientDialogueSet.GetValidDialogues))]
-static class ForceVisitIndexPatch
-{
-    static void Prefix(ref int charVisits, ref int totalVisits)
-    {
-        if (AncientDebug.ForcedVisitIndex is not { } v) return;
-        charVisits = v;
-        totalVisits = Math.Max(totalVisits, 1); // skip the totalVisits==0 first-ever short-circuit
-        AncientDebug.ForcedVisitIndex = null;   // consume once: immune to _ExitTree race
-    }
 }
 
 public class AncientVisitConsoleCmd : AbstractConsoleCmd

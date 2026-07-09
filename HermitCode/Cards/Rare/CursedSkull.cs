@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.Patches;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -42,7 +43,7 @@ public class DeadOnReplay : DownfallCardModifier
 {
     //todo this effect should work with Combo
     public bool IsDeadOn => Owner != null && (HermitCmd.IsDeadOnInCurrentHandState(Owner) ||
-                                               (PatchDeadOnCapture.LastPlayed == Owner && PatchDeadOnCapture.LastWasDeadOn));
+                                               (DeadOnPatch.LastPlayed == Owner && DeadOnPatch.LastWasDeadOn));
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {

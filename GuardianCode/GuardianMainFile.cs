@@ -5,9 +5,11 @@ using BaseLib.Utils;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -34,8 +36,24 @@ public partial class GuardianMainFile : Node
             new GemDescriptionSource());
         
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+
+        TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
+        CombatUiHooks.Register(GuardianCombatModel.SetupGuardianCombatUi);
     }
+
+    private static void CopyGemsToTranscendence(CardModel starter, CardModel result)
+    {
+        if (starter is not IGemSocketCard sourceCard) return;
+        if (result is not IGemSocketCard targetCard) return;
+        if (sourceCard.Gems.Count == 0) return;
+
+        var gemClones = sourceCard.Gems
+            .Take(targetCard.GemSlots)
+            .Select(gem => gem.CreateClone())
+            .ToList();
+
+        targetCard.AddGems(gemClones);
+    } 
 
     private static void RegisterGemSave()
     {

@@ -1,5 +1,5 @@
 ﻿using BaseLib.Utils;
-using HarmonyLib;
+using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -11,12 +11,19 @@ namespace SlimeBoss.SlimeBossCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
 public abstract class SlimeCard<T>(bool showInCardLibrary = true, bool autoAdd = true)
-    : SlimeBossCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self, showInCardLibrary, autoAdd), ISlimeCard
+    : SlimeBossCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self, showInCardLibrary, autoAdd), ISlimeCard, IModfyCardDescription
     where T : SlimeModel
 {
     protected override bool IsPlayable => false;
     public override string Title => SlimeModel.Title.GetFormattedText();
     public SlimeModel SlimeModel => ModelDb.Get<T>();
+    
+    public LocString ModifyDescription(LocString oldLocString)
+    {
+        var description = new LocString("cards", "SLIMEBOSS-SLIME_CARD.description");
+        description.Add("Slime", SlimeModel.Title.GetFormattedText());
+        return description;
+    }
 }
 
 public interface ISlimeCard
@@ -24,18 +31,6 @@ public interface ISlimeCard
     SlimeModel SlimeModel { get; }
 }
 
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.Description), MethodType.Getter)]
-public static class CardModelDescriptionPatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(CardModel __instance, ref LocString __result)
-    {
-        if (__instance is not ISlimeCard slimeCard) return;
-        var description = new LocString("cards", "SLIMEBOSS-SLIME_CARD.description");
-        description.Add("Slime", slimeCard.SlimeModel.Title.GetFormattedText());
-        __result = description;
-    }
-}
 
 #pragma warning disable
 

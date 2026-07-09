@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Reflection;
+using Godot;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -80,28 +81,18 @@ internal static class HandVisualSync
     }
 }
 
-[HarmonyPatch(typeof(CardPile), nameof(CardPile.InvokeCardAddFinished))]
-static class HandAddFinishedPatch
+[HarmonyPatch]
+internal static class HandChangedPatches
 {
-    static void Postfix(CardPile __instance)
+    private static IEnumerable<MethodBase> TargetMethods()
     {
-        if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
+        yield return AccessTools.Method(typeof(CardPile), nameof(CardPile.InvokeCardAddFinished));
+        yield return AccessTools.Method(typeof(CardPile), nameof(CardPile.InvokeCardRemoveFinished));
+        yield return AccessTools.Method(typeof(CardPile), nameof(CardPile.InvokeContentsChanged));
     }
-}
 
-[HarmonyPatch(typeof(CardPile), nameof(CardPile.InvokeCardRemoveFinished))]
-static class HandRemoveFinishedPatch
-{
-    static void Postfix(CardPile __instance)
-    {
-        if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
-    }
-}
-
-[HarmonyPatch(typeof(CardPile), nameof(CardPile.InvokeContentsChanged))]
-static class HandContentsChangedPatch
-{
-    static void Postfix(CardPile __instance)
+    [HarmonyPostfix]
+    private static void Postfix(CardPile __instance)
     {
         if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
     }
