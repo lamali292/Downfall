@@ -1,5 +1,6 @@
 {
     "SNECKO-MUDDLE.title": "泥まみれ",
+    "SNECKO-MUDDLE.description": "カードを泥まみれにすると、このターンそのコストが[blue]0[/blue]から[blue]3[/blue]の間でランダムに変化する。\n泥まみれにした後のコストは、必ず元のコストと異なる。",
     "SNECKO-OVERFLOW.title": "オーバーフロー",
     "SNECKO-OVERFLOW.description": "[gold]手札[/gold]が [blue]5[/blue]枚以上の場合に発動する効果。"
 }

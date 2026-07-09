@@ -1,0 +1,16 @@
+{
+    "SNECKO-SNECKO.aromaPrinciple": "[sine][green]混乱は心地よいのれす。混乱こそ我が家なのれす。[jitter]混乱こそが我なのれす。[/jitter][/green][/sine]",
+    "SNECKO-SNECKO.banter.alive.endTurnPing": "[jitter]もうすぐ、れす……[/jitter]",
+    "SNECKO-SNECKO.banter.dead.endTurnPing": "……",
+    "SNECKO-SNECKO.cardsModifierDescription": "スネッコのカードが報酬とショップに出現するようになる。",
+    "SNECKO-SNECKO.cardsModifierTitle": "スネッコのカード",
+    "SNECKO-SNECKO.description": "スネッコ。「シティ」に生息する蛇のような生物。\n捕食者を混乱させるにらみつけで知られている。",
+    "SNECKO-SNECKO.eventDeathPrevention": "スネッコは生き延びねばならないのれす。また[jitter]混乱[/jitter]する日のために！",
+    "SNECKO-SNECKO.goldMonologue": "[sine]キラキラがこんなにたくさん……スネッコは[jitter]何もかも……[/jitter]買えちゃうのれす……[/sine]",
+    "SNECKO-SNECKO.possessiveAdjective": "その",
+    "SNECKO-SNECKO.pronounObject": "それ",
+    "SNECKO-SNECKO.pronounPossessive": "その",
+    "SNECKO-SNECKO.pronounSubject": "それ",
+    "SNECKO-SNECKO.title": "スネッコ",
+    "SNECKO-SNECKO.titleObject": "スネッコ"
+}

@@ -1,0 +1,12 @@
+{
+    "HERMIT-BOUNTY.title": "バウンティ",
+    "HERMIT-BOUNTY.description": "通常の敵：[blue]15[/blue]ゴールド。\nエリートの敵：[blue]40[/blue]ゴールド。\nボス：[blue]100[/blue]ゴールド。",
+    "HERMIT-DEADON.title": "命中",
+    "HERMIT-DEADON.description": "命中カードは、手札の中央にある時に追加効果を得る。",
+    "HERMIT-DEFEND.title": "防御",
+    "HERMIT-DEFEND.description": "「防御」を含むカード。",
+    "HERMIT-STRIKE.title": "ストライク",
+    "HERMIT-STRIKE.description": "「ストライク」を含むカード。",
+    "HERMIT-CONCENTRATE.title": "集中",
+    "HERMIT-CONCENTRATE.description": "このターン、次にプレイした[gold]命中[/gold]カードは、位置に関係なくその効果を発動する。"
+}

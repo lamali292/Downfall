@@ -1,0 +1,16 @@
+{
+    "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]我らは多。我らは一。我らは多。我らは一。[jitter]我らは多。[/jitter][/green][/sine]",
+    "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "ぐちゅぐちゅ……",
+    "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "……",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "スライムボスのカードが報酬とショップに出現するようになる。",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "スライムボスのカード",
+    "SLIMEBOSS-SLIME_BOSS.description": "心臓軍のスライムジェネラル。\n一体でも、複数体でも戦える。",
+    "SLIMEBOSS-SLIME_BOSS.eventDeathPrevention": "我らは倒れるわけにはいかぬ。スライムたちにはまだ我らが必要なのだ！",
+    "SLIMEBOSS-SLIME_BOSS.goldMonologue": "[sine]こんなに金貨が……汚泥のプールを丸ごと満たせるほどだ……[/sine]",
+    "SLIMEBOSS-SLIME_BOSS.possessiveAdjective": "彼らの",
+    "SLIMEBOSS-SLIME_BOSS.pronounObject": "彼ら",
+    "SLIMEBOSS-SLIME_BOSS.pronounPossessive": "彼らの",
+    "SLIMEBOSS-SLIME_BOSS.pronounSubject": "彼ら",
+    "SLIMEBOSS-SLIME_BOSS.title": "スライムボス",
+    "SLIMEBOSS-SLIME_BOSS.titleObject": "スライムボス"
+}
