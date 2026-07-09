@@ -12,38 +12,27 @@ namespace Hermit.HermitCode.Patches;
 internal static class HandVisualSync
 {
     private static bool _syncing;
-
-    public static void Sync(CardPile? pile)
+    private static bool _queued;
+    public static bool IsSyncing => _syncing;
+    
+    public static void Queue()
     {
-        if (pile?.Type != PileType.Hand) return;
+        if (_queued) return;
+        _queued = true;
+        Callable.From(Run).CallDeferred();
+    }
+
+    private static void Run()
+    {
+        _queued = false;
+        if (_syncing) return;
+
         var hand = NPlayerHand.Instance;
         if (hand == null) return;
-        Sync(hand, pile);
-    }
 
-    public static void Sync(NPlayerHand? hand = null)
-    {
-        hand ??= NPlayerHand.Instance;
-        if (hand == null) return;
         var pile = FindHandPile(hand);
         if (pile == null) return;
-        Sync(hand, pile);
-    }
 
-    private static CardPile? FindHandPile(NPlayerHand hand)
-    {
-        foreach (var holder in hand.ActiveHolders)
-        {
-            var pile = holder.CardModel?.Pile;
-            if (pile?.Type == PileType.Hand) return pile;
-        }
-        return null;
-    }
-
-
-    private static void Sync(NPlayerHand hand, CardPile pile)
-    {
-        if (_syncing) return;
         _syncing = true;
         try
         {
@@ -52,20 +41,11 @@ internal static class HandVisualSync
 
             foreach (var card in pile.Cards)
             {
-                if (hand.GetCardHolder(card) is not NHandCardHolder holder)
-                    continue; 
+                if (hand.GetCardHolder(card) is not NHandCardHolder holder) continue;
+                if (holder.GetParent() != container) continue;
 
-                if (holder.GetParent() != container)
-                    continue; 
-
-                var currentIndex = holder.GetIndex();
-                if (currentIndex != visualIndex)
-                {
-                    var capturedHolder = holder;
-                    var capturedIndex = visualIndex;
-                    Callable.From(() => SafeMoveChild(container, capturedHolder, capturedIndex))
-                        .CallDeferred();
-                }
+                if (holder.GetIndex() != visualIndex)
+                    SafeMoveChild(container, holder, visualIndex);
 
                 visualIndex++;
             }
@@ -78,19 +58,43 @@ internal static class HandVisualSync
         }
     }
 
+    private static CardPile? FindHandPile(NPlayerHand hand)
+    {
+        foreach (var holder in hand.ActiveHolders)
+        {
+            var pile = holder.CardModel?.Pile;
+            if (pile?.Type == PileType.Hand) return pile;
+        }
+        return null;
+    }
+
     private static void SafeMoveChild(Node container, Node holder, int index)
     {
-        if (!GodotObject.IsInstanceValid(container) || !GodotObject.IsInstanceValid(holder))
-            return; 
-
-        if (holder.GetParent() != container)
-            return; 
+        if (!GodotObject.IsInstanceValid(container) || !GodotObject.IsInstanceValid(holder)) return;
+        if (holder.GetParent() != container) return;
 
         var childCount = container.GetChildCount();
         if (childCount == 0) return;
 
-        var clampedIndex = Mathf.Clamp(index, 0, childCount - 1);
-        container.MoveChild(holder, clampedIndex);
+        container.MoveChild(holder, Mathf.Clamp(index, 0, childCount - 1));
+    }
+}
+
+[HarmonyPatch(typeof(CardPile), nameof(CardPile.InvokeCardAddFinished))]
+static class HandAddFinishedPatch
+{
+    static void Postfix(CardPile __instance)
+    {
+        if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
+    }
+}
+
+[HarmonyPatch(typeof(CardPile), nameof(CardPile.InvokeCardRemoveFinished))]
+static class HandRemoveFinishedPatch
+{
+    static void Postfix(CardPile __instance)
+    {
+        if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
     }
 }
 
@@ -99,25 +103,24 @@ static class HandContentsChangedPatch
 {
     static void Postfix(CardPile __instance)
     {
-        HandVisualSync.Sync(__instance);
+        if (__instance.Type == PileType.Hand) HandVisualSync.Queue();
     }
 }
 
 [HarmonyPatch(typeof(NPlayerHand), nameof(NPlayerHand.RefreshLayout))]
 static class HandRefreshLayoutPatch
 {
-    static void Postfix(NPlayerHand __instance)
+    static void Postfix()
     {
-        HandVisualSync.Sync(__instance);
+        if (!HandVisualSync.IsSyncing) HandVisualSync.Queue();
     }
 }
 
 [HarmonyPatch(typeof(NCardTransformShineVfx), nameof(NCardTransformShineVfx.UpdateCard))]
 static class TransformShineUpdateCardPatch
 {
-    static void Postfix(NCard cardNode, CardModel endCard)
+    static void Postfix(CardModel endCard)
     {
-        if (endCard.Pile is not { Type: PileType.Hand }) return;
-        HandVisualSync.Sync(endCard.Pile);
+        if (endCard.Pile is { Type: PileType.Hand }) HandVisualSync.Queue();
     }
 }
