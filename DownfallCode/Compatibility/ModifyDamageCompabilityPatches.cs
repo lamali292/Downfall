@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -6,21 +8,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Compatibility;
-
-
-internal static class ModifyDamagePatchHelper
-{
-    public static MethodBase Find(string name)
-    {
-        const BindingFlags f = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-        Type[] oldSig = [typeof(Creature), typeof(decimal), typeof(ValueProp),
-            typeof(Creature), typeof(CardModel)];
-
-        return typeof(AbstractModel).GetMethod(name, f, null, [.. oldSig, typeof(CardPlay)], null)
-               ?? typeof(AbstractModel).GetMethod(name, f, null, oldSig, null)
-               ?? throw new MissingMethodException($"{name} not found in any known signature.");
-    }
-}
 
 public interface IModifyDamageAdditive
 {
@@ -30,41 +17,93 @@ public interface IModifyDamageAdditive
 
 public interface IModifyDamageMultiplicative
 {
- decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount,
+    decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount,
         ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay) => 1;
 }
 
-
-
 [HarmonyPatch]
-internal static class ModifyDamageAdditivePatch
+internal static class ModifyDamageInternalPatch
 {
-    private static MethodBase TargetMethod() => ModifyDamagePatchHelper.Find("ModifyDamageAdditive");
-
-    [HarmonyPostfix]
-    private static void Postfix(AbstractModel __instance, object[] __args, ref decimal __result)
+    private static MethodBase TargetMethod()
     {
-        if (__instance is not IModifyDamageAdditive card) return;
-        __result += card.ModifyDamageAdditiveCompability(
-            (Creature?)__args[0], (decimal)__args[1], (ValueProp)__args[2],
-            (Creature?)__args[3], (CardModel?)__args[4],
-            __args.Length > 5 ? (CardPlay?)__args[5] : null);
+        var hook = AccessTools.TypeByName("MegaCrit.Sts2.Core.Hooks.Hook")
+                   ?? throw new MissingMethodException("Hook not found");
+        return AccessTools.Method(hook, "ModifyDamageInternal")
+               ?? throw new MissingMethodException("ModifyDamageInternal not found");
+    }
+
+    private static decimal AdditiveBridge(AbstractModel listener, decimal vanillaNum,
+        Creature target, decimal amount, ValueProp props, Creature dealer,
+        CardModel cardSource, CardPlay? cardPlay)
+    {
+        if (listener is IModifyDamageAdditive m)
+            return vanillaNum + m.ModifyDamageAdditiveCompability(target, amount, props, dealer, cardSource, cardPlay);
+        return vanillaNum;
+    }
+
+    private static decimal MultiplicativeBridge(AbstractModel listener, decimal vanillaNum,
+        Creature target, decimal amount, ValueProp props, Creature dealer,
+        CardModel cardSource, CardPlay? cardPlay)
+    {
+        if (listener is IModifyDamageMultiplicative m)
+            return vanillaNum * m.ModifyDamageMultiplicativeCompability(target, amount, props, dealer, cardSource, cardPlay);
+        return vanillaNum;
+    }
+
+    private static IEnumerable<CodeInstruction> Transpiler(
+        IEnumerable<CodeInstruction> instructions, MethodBase original)
+    {
+        var code = new List<CodeInstruction>(instructions);
+        var hasCardPlay = original.GetParameters().Any(p => p.ParameterType == typeof(CardPlay));
+
+        var addMethod = AccessTools.Method(typeof(AbstractModel), "ModifyDamageAdditive");
+        var mulMethod = AccessTools.Method(typeof(AbstractModel), "ModifyDamageMultiplicative");
+        var addBridge = AccessTools.Method(typeof(ModifyDamageInternalPatch), nameof(AdditiveBridge));
+        var mulBridge = AccessTools.Method(typeof(ModifyDamageInternalPatch), nameof(MultiplicativeBridge));
+        
+        for (var i = 0; i < code.Count; i++)
+        {
+            var isAdd = code[i].Calls(addMethod);
+            var isMul = code[i].Calls(mulMethod);
+            if (!isAdd && !isMul) continue;
+            
+            var storeIndex = i + 1;
+            if (storeIndex >= code.Count || code[storeIndex].opcode != OpCodes.Stloc_S) continue;
+            var numLocal = code[storeIndex].operand;
+            
+            var listenerLoad = FindListenerLoadBackwards(code, i);
+            if (listenerLoad == null) continue;
+
+            var injected = new List<CodeInstruction>
+            {
+                listenerLoad.Clone(),                                  
+                new(OpCodes.Ldloc_S, numLocal),       
+                new(OpCodes.Ldarg_2),                  
+                new(OpCodes.Ldloc_0),                
+                new (OpCodes.Ldarg_S, (byte)5),      
+                new (OpCodes.Ldarg_3),                  
+                new (OpCodes.Ldarg_S, (byte)6),       
+                hasCardPlay
+                    ? new CodeInstruction(OpCodes.Ldarg_S, (byte)7)    
+                    : new CodeInstruction(OpCodes.Ldnull),           
+                new (OpCodes.Call, isAdd ? addBridge : mulBridge),
+                new (OpCodes.Stloc_S, numLocal),       
+            };
+
+            code.InsertRange(storeIndex + 1, injected);
+            i = storeIndex + injected.Count; 
+        }
+
+        return code;
+    }
+    
+    private static CodeInstruction? FindListenerLoadBackwards(List<CodeInstruction> code, int callIndex)
+    {
+        for (var j = callIndex - 1; j >= 0 && j > callIndex - 10; j--)
+        {
+            if (code[j].opcode == OpCodes.Ldarg_2) 
+                return code[j - 1];              
+        }
+        return null;
     }
 }
-
-[HarmonyPatch]
-internal static class ModifyDamageMultiplicativePatch
-{
-    private static MethodBase TargetMethod() => ModifyDamagePatchHelper.Find("ModifyDamageMultiplicative");
-
-    [HarmonyPostfix]
-    private static void Postfix(AbstractModel __instance, object[] __args, ref decimal __result)
-    {
-        if (__instance is not IModifyDamageMultiplicative card) return;
-        __result *= card.ModifyDamageMultiplicativeCompability(
-            (Creature?)__args[0], (decimal)__args[1], (ValueProp)__args[2],
-            (Creature?)__args[3], (CardModel?)__args[4],
-            __args.Length > 5 ? (CardPlay?)__args[5] : null);
-    }
-}
-

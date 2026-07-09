@@ -1,25 +1,50 @@
+using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Interfaces;
 using Godot;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Automaton.AutomatonCode.Vfx;
 
 [GlobalClass]
-public partial class NAutomatonCreatureVisuals : NCreatureVisuals
+public partial class NAutomatonCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
+    private MegaAnimationState? _animState;
+    private MegaSprite? _sprite;
     public override void _Ready()
     {
         base._Ready();
 
-        // Fix dark seams: atlas uses premultiplied alpha data,
-        // so the spine sprite must use PremultAlpha blend mode
+        base._Ready();
+
         var premultMat = new CanvasItemMaterial
         {
             BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
         };
 
-        if (SpineBody != null)
-            SpineBody.SetNormalMaterial(premultMat);
-        else
-            GetCurrentBody().Material = premultMat;
+        _sprite = SpineBody;
+        _sprite?.SetNormalMaterial(premultMat);
+        
+        _animState = _sprite?.GetAnimationState();
+
+        _animState?.SetAnimationCompat(IdleAnim);
+    }
+    
+    private const float DefaultMix = 0.2f;
+    private string IdleAnim => "idle";
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
+                break;
+            case "Attack":
+            case "Hit":
+            case "Cast":
+            case "Dead":
+                break;
+        }
     }
 }
