@@ -2,11 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://7d3insaftni"
-=======
 uid="uid://mkgi1t7auvm0"
->>>>>>> main
 path="res://.godot/imported/slimeboss.png-c1038ee977cd2399f5cc6c6d135b1e3c.ctex"
 metadata={
 "vram_texture": false
@@ -35,7 +31,7 @@ process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
 process/channel_remap/alpha=3
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
