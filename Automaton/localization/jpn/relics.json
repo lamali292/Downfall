@@ -1,5 +1,6 @@
 {
     "AUTOMATON-BOTTLED_CODE.title": "瓶詰めのコード",
+    "AUTOMATON-BOTTLED_CODE.description": "入手時、[gold]エンコード[/gold]を持つカードを1枚[purple]ハードコード[/purple]でエンチャントする。",
     "AUTOMATON-BOTTLED_CODE.flavor": "まさにそれ用のコード、実はあるんだよね……",
     "AUTOMATON-BRONZE_CORE.title": "ブロンズコア",
     "AUTOMATON-BRONZE_CORE.description": "各戦闘を、[gold]エンコード済み[/gold]の[gold]ストライク[/gold]と[gold]防御[/gold]を持った状態で開始する。",

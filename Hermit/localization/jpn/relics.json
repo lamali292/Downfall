@@ -7,6 +7,7 @@
     "HERMIT-RYE_STALK.description": "[blue]{Turn}[/blue]ターン目の開始時、[gold]堅牢[/gold][blue]{RuggedPower:diff()}[/blue]を得る。",
     "HERMIT-SHOTGLASS.title": "ショットグラス",
     "HERMIT-SHOTGLASS.flavor": "中に入れた液体は、別の何かに変化する。",
+    "HERMIT-SHOTGLASS.description": "各戦闘でポーションを最初に使った時、ランダムなポーションを1つ入手する。各戦闘でポーションは[blue]{Limit}[/blue]個までしか使用できない。",
     "HERMIT-HORSESHOE.title": "蹄鉄",
     "HERMIT-HORSESHOE.flavor": "幸運のお守り。誰かがこれを失くして困っているだろう。",
     "HERMIT-HORSESHOE.description": "[gold]脱力[/gold]、[gold]脆弱[/gold]、[gold]弱体[/gold]を得る時、その量が[blue]1[/blue]減少する。",

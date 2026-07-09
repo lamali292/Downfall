@@ -7,6 +7,7 @@
     "HERMIT-RYE_STALK.description": "Au début du tour [blue]{Turn}[/blue], gagnez [blue]{RuggedPower:diff()}[/blue] de [gold]Robustesse[/gold].",
     "HERMIT-SHOTGLASS.title": "Verre à Shot",
     "HERMIT-SHOTGLASS.flavor": "Tout liquide placé à l'intérieur se transforme en quelque chose d'autre.",
+    "HERMIT-SHOTGLASS.description": "{Limit:plural:La première fois|Les [blue]{}[/blue] premières fois} que vous utilisez une potion chaque combat, obtenez une potion aléatoire. Vous ne pouvez utiliser {Limit:plural:qu'une potion|que [blue]{Limit}[/blue] potions} chaque combat.",
     "HERMIT-HORSESHOE.title": "Fer à Cheval",
     "HERMIT-HORSESHOE.flavor": "Porte-bonheur. Ça va manquer à quelqu'un.",
     "HERMIT-HORSESHOE.description": "Lorsque vous gagnez de la [gold]Faiblesse[/gold], de la [gold]Fragilité[/gold] ou de la [gold]Vulnérabilité[/gold], gagnez-en [blue]1[/blue] de moins.",
