@@ -151,29 +151,17 @@ public partial class NStashDisplay : NSlotRevealDisplay
     }
     */
 
-    private static T? FindDescendant<T>(Node root) where T : class
-    {
-        foreach (var child in root.GetChildren())
-        {
-            if (child is T t) return t;
-            if (FindDescendant<T>(child) is { } found) return found;
-        }
-        return null;
-    }
     
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
         if (!LocalContext.IsMe(player) || HasDisplay(player)) return;
-
-        var energyNode = FindDescendant<NEnergyCounter>(combatRoom.Ui); // see note on the type below
-        if (energyNode == null) return;
-
+        var energyNode = combatRoom.Ui._energyCounter; // see note on the type below
         var display = ResourceLoader.Load<PackedScene>(DisplayScenePath).Instantiate<NStashDisplay>();
         display._trackedPlayer = player;
         display.Direction = RevealDirection.Right;
         display.Scale = Vector2.One * StashDisplayScale;
 
-        energyNode.GetParent().AddChildSafely(display);
+        energyNode.AddChildSafely(display);
         display.Position = energyNode.Position + new Vector2(70, -120); // tune offset
 
         Displays[player] = display;
