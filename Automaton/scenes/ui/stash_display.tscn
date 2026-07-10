@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://hx2ihjy0726a"]
+[gd_scene load_steps=7 format=3 ]
 
-[ext_resource type="Script" uid="uid://87tanf8oovdb" path="res://AutomatonCode/Vfx/NStashDisplay.cs" id="1_lucsw"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NStashDisplay.cs" id="1_lucsw"]
 [ext_resource type="PackedScene" path="res://Automaton/scenes/ui/automaton_slot.tscn" id="2_slot"]
-[ext_resource type="Texture2D" uid="uid://ce37xptc8x4au" path="res://images/packed/combat_ui/pile_button_count.png" id="4_a2kcg"]
-[ext_resource type="FontFile" uid="uid://dc8ocd36hqnbe" path="res://fonts/kreon_bold.ttf" id="5_4w8a2"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="6_b7x6m"]
+[ext_resource type="Texture2D" path="res://images/packed/combat_ui/pile_button_count.png" id="4_a2kcg"]
+[ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="5_4w8a2"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="6_b7x6m"]
 
 [sub_resource type="FontVariation" id="FontVariation_wov2o"]
 base_font = ExtResource("5_4w8a2")

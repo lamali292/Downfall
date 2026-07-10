@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Vfx;
@@ -17,8 +18,8 @@ namespace Automaton.AutomatonCode.Vfx;
 public partial class NStashDisplay : NSlotRevealDisplay
 {
     private const float StashDisplayScale = 0.28f;
-    protected override float SlotSeparation => -200f;
-    protected override float PreviewGap => -100f;
+    protected override float SlotSeparation => -100f;
+    protected override float PreviewGap => 0f;
     private const string DisplayScenePath = "res://Automaton/scenes/ui/stash_display.tscn";
 
     private static readonly Dictionary<Player, NStashDisplay> Displays = new();
@@ -121,7 +122,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
         return display != null && IsInstanceValid(display);
     }
 
-
+/*
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
         if (HasDisplay(player)) return;
@@ -143,6 +144,37 @@ public partial class NStashDisplay : NSlotRevealDisplay
             var y = LocalContext.IsMe(player) ? -100 : -40;
             display.Position = localPos + new Vector2(x, y); 
         }
+
+        Displays[player] = display;
+        display.SubscribeToStash(player);
+        display.Refresh(true);
+    }
+    */
+
+    private static T? FindDescendant<T>(Node root) where T : class
+    {
+        foreach (var child in root.GetChildren())
+        {
+            if (child is T t) return t;
+            if (FindDescendant<T>(child) is { } found) return found;
+        }
+        return null;
+    }
+    
+    public static void SetupFor(NCombatRoom combatRoom, Player player)
+    {
+        if (!LocalContext.IsMe(player) || HasDisplay(player)) return;
+
+        var energyNode = FindDescendant<NEnergyCounter>(combatRoom.Ui); // see note on the type below
+        if (energyNode == null) return;
+
+        var display = ResourceLoader.Load<PackedScene>(DisplayScenePath).Instantiate<NStashDisplay>();
+        display._trackedPlayer = player;
+        display.Direction = RevealDirection.Right;
+        display.Scale = Vector2.One * StashDisplayScale;
+
+        energyNode.GetParent().AddChildSafely(display);
+        display.Position = energyNode.Position + new Vector2(70, -120); // tune offset
 
         Displays[player] = display;
         display.SubscribeToStash(player);

@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -44,6 +45,7 @@ public class StashCmd
         await Stash(source.Owner, cards);
     }
 
+    public static LocString FULL_STASH => new LocString("combat_messages", "FULL_STASH");
 
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel
@@ -56,7 +58,11 @@ public class StashCmd
 
         var overflow = amount - toStash;
         if (overflow > 0)
+        {
+            if (LocalContext.IsMe(player)) ThinkCmd.Play(FULL_STASH, player.Creature);
             await DownfallCardCmd.GiveCards<TCard>(player, PileType.Discard, overflow);
+        }
+            
     }
 
     public static async Task Stash(CardModel card)
@@ -65,7 +71,11 @@ public class StashCmd
         if (RemainingSpace(card.Owner) > 0)
             await CardPileCmd.Add(card, StashPile.Stash);
         else
+        {
+            if (LocalContext.IsMe(card.Owner)) ThinkCmd.Play(FULL_STASH, card.Owner.Creature);
             await CardPileCmd.Add(card, PileType.Discard);
+        }
+           
     }
 
     public static async Task Stash(Player player, IEnumerable<CardModel> cards)
@@ -83,7 +93,11 @@ public class StashCmd
             await CardPileCmd.Add(toStash, StashPile.Stash);
 
         if (overflow.Count > 0)
+        {
+            if (LocalContext.IsMe(player)) ThinkCmd.Play(FULL_STASH, player.Creature);
             await CardPileCmd.Add(overflow, PileType.Discard);
+        }
+           
     }
 
 
