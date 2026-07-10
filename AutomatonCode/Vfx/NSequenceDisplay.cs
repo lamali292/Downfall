@@ -89,7 +89,10 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     public static NSequenceDisplay? GetDisplay(Player player)
     {
-        return Displays.GetValueOrDefault(player);
+        var display = Displays.GetValueOrDefault(player);
+        if (display != null && IsInstanceValid(display)) return display;
+        Displays.Remove(player);
+        return null;
     }
     
     public static bool HasDisplay(Player player)
@@ -98,7 +101,13 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         return display != null && IsInstanceValid(display);
     }
 
-
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        if (_trackedPlayer != null && Displays.GetValueOrDefault(_trackedPlayer) == this)
+            Displays.Remove(_trackedPlayer);
+    }
+    
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
         if (HasDisplay(player)) return;
