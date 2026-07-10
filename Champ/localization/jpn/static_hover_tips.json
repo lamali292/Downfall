@@ -4,5 +4,5 @@
     "CHAMP-FINISHER.title": "フィニッシャー",
     "CHAMP-FINISHER.description": "[gold]スタンス[/gold]に入っている必要がある。\nフィニッシャーをプレイ後、[gold]スタンス[/gold]を解除してフィニッシャーボーナスを得る。",
     "CHAMP-STANCE.title": "スタンス",
-    "CHAMP-STANCE.description": "同時に保持できるスタンスは1つのみ。"
+    "CHAMP-STANCE.description": "同時に入ることができるスタンスは1種類のみ。"
 }
