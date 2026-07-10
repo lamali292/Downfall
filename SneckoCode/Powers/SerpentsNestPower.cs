@@ -2,22 +2,14 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
-using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Core; 
 
 namespace Snecko.SneckoCode.Powers;
 
 public class SerpentsNestPower : SneckoPowerModel
 {
-    private bool _shouldIgnore = true;
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (_shouldIgnore)
-        {
-            _shouldIgnore = false;
-            return;
-        }
-
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Power) return;
         await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount, ValueProp.Unpowered, Owner);
     }

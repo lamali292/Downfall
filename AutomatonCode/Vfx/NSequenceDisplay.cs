@@ -126,7 +126,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         {
             var globalTopPos = creatureNode.GetTopOfHitbox();
             var localPos = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
-            var x = LocalContext.IsMe(player) ? 90 : 50;
+            var x = LocalContext.IsMe(player) ? -90 : -50;
             var y = LocalContext.IsMe(player) ? -100 : -40;
             display.Position = localPos + new Vector2(x, y); 
         }

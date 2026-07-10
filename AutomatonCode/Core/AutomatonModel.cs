@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Automaton.AutomatonCode.Core;
 
-/*
+
 public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
 {
     public override Task AfterRoomEntered(AbstractRoom room)
@@ -23,12 +23,12 @@ public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
             if (player.Character is Automaton)
             {
                 NSequenceDisplay.SetupFor(combatRoomNode, player);
-                NStashDisplay.SetupFor(combatRoomNode, player);
+                //NStashDisplay.SetupFor(combatRoomNode, player);
             }
 
         return Task.CompletedTask;
     }
-}*/
+}
 
 public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
 {
