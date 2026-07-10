@@ -55,7 +55,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
         var state = owner.Creature.CombatState;
         if (state == null) return;
 
-        var rng = state.RunState.Rng.CombatCardSelection;
+        var rng = state.RunState.Rng.CombatCardGeneration;
 
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
