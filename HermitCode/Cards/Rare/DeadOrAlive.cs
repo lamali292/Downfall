@@ -28,6 +28,8 @@ public sealed class DeadOrAlive : HermitCardModel
 
     protected override bool HasEnergyCostX => true;
 
+    public override bool CanBeGeneratedInCombat => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var times = ResolveEnergyXValue();
