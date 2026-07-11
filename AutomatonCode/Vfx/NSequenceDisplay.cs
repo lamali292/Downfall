@@ -29,7 +29,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
-    
+
     public override void _Ready()
     {
         base._Ready();
@@ -74,7 +74,34 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         if (PreviewModel != null) list.Add(PreviewModel);
         return list;
     }
-    
+
+    /// <summary>
+    ///     Unregisters every slot card from FindOnTablePatch and destroys only the
+    ///     card nodes this display still owns. Nodes that the base game adopted
+    ///     (FindOnTable → reparented into hand/play flow) are left alone — destroying
+    ///     those breaks the hand and, via stale registry entries, causes
+    ///     ObjectDisposedException during card plays and multiplayer desyncs.
+    /// </summary>
+    private void ReleaseAllSlotCards()
+    {
+        foreach (var holder in CardHolders)
+        {
+            var model = holder.CardModel;
+            if (model != null)
+                FindOnTablePatch.Unregister(model);
+
+            var cardNode = holder.CardNode;
+            if (cardNode == null || !IsInstanceValid(cardNode)) continue;
+
+            // Only destroy what is still under this display.
+            if (!cardNode.IsInsideTree() || !IsAncestorOf(cardNode)) continue;
+            cardNode.GetParent()?.RemoveChild(cardNode);
+            cardNode.QueueFree();
+        }
+    }
+
+    // --- Static lifecycle ---
+
     private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
 
     static NSequenceDisplay()
@@ -82,7 +109,12 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         CombatManager.Instance.CombatEnded += _ =>
         {
             foreach (var d in Displays.Values.Where(IsInstanceValid))
+            {
+                // Release BEFORE QueueFree: freeing the subtree with cards inside
+                // would kill the nodes while FindOnTablePatch still points at them.
+                d.ReleaseAllSlotCards();
                 d.QueueFree();
+            }
             Displays.Clear();
         };
     }
@@ -94,7 +126,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         Displays.Remove(player);
         return null;
     }
-    
+
     public static bool HasDisplay(Player player)
     {
         var display = Displays.GetValueOrDefault(player);
@@ -103,11 +135,16 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     public override void _ExitTree()
     {
+        // Safety net for teardown paths that bypass the CombatEnded handler
+        // (room freed, scene change, etc.). Idempotent: already-released or
+        // adopted nodes are skipped.
+        ReleaseAllSlotCards();
+
         base._ExitTree();
         if (_trackedPlayer != null && Displays.GetValueOrDefault(_trackedPlayer) == this)
             Displays.Remove(_trackedPlayer);
     }
-    
+
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
         if (HasDisplay(player)) return;
@@ -116,11 +153,10 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         display._trackedPlayer = player;
         display.Scale = Vector2.One * (LocalContext.IsMe(player) ? SequencedCardScale : SequencedCardScale * 0.5f);
         display.Direction = RevealDirection.Right;
-        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;  
+        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
 
-        // Position it wherever SetupAutomatonUi used to put it — e.g. above the player:
         var creatureNode = combatRoom.GetCreatureNode(player.Creature);
         if (creatureNode != null)
         {
@@ -128,7 +164,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
             var localPos = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
             var x = LocalContext.IsMe(player) ? -90 : -50;
             var y = LocalContext.IsMe(player) ? -100 : -40;
-            display.Position = localPos + new Vector2(x, y); 
+            display.Position = localPos + new Vector2(x, y);
         }
 
         Displays[player] = display;
