@@ -38,10 +38,9 @@ public class Float : HexaghostCardModel
             CombatState.CreateCard<FloatChoiceRetract>(Owner),
             CombatState.CreateCard<FloatChoiceAdvance>(Owner)
         ];
-        var a = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
+        var a = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, canSkip: true);
         switch (a)
         {
-            //todo do nothing choice
             case FloatChoiceAdvance:
                 await HexaghostCmd.Advance(ctx, Owner, this);
                 break;

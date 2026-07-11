@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -14,7 +15,6 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public class CursedSkull : HermitCardModel
 {
-    //todo the replay effect should be additive in the same way transfigure is
     public CursedSkull() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
@@ -26,9 +26,18 @@ public class CursedSkull : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, HasNotEffectAlready, this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (card == null) return;
-        CardModifier.AddModifier<DeadOnReplay>(card);
+        var deadOnReplay = CardModifier.Modifiers(card).OfType<DeadOnReplay>().FirstOrDefault();
+        if (deadOnReplay == null)
+        {
+            CardModifier.AddModifier<DeadOnReplay>(card);
+        }
+        else
+        {
+            deadOnReplay.Value += 1;
+        }
+       
     }
 
     private static bool HasNotEffectAlready(CardModel cardModel)
@@ -41,22 +50,41 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
-    //todo this effect should work with Combo
-    public bool IsDeadOn => Owner != null && (HermitCmd.IsDeadOnInCurrentHandState(Owner) ||
-                                               (DeadOnPatch.LastPlayed == Owner && DeadOnPatch.LastWasDeadOn));
+    public bool IsDeadOn
+    {
+        get
+        {
+            var pileType = Owner?.Pile?.Type;
+            var inHand = pileType == PileType.Hand;
+            var inPlay = pileType == PileType.Play;
 
+            // only evaluate the relevant sub-condition, mirroring the original short-circuit
+            var isDeadOnInHand = inHand && IsDeadOnInHand;
+            var wasPlayedDeadOn = inPlay && WasThisPlayedDeadOn;
+
+            return Owner != null && (isDeadOnInHand || wasPlayedDeadOn);
+        }
+    }
+
+    private bool IsDeadOnInHand => Owner != null && HermitCmd.IsDeadOnInCurrentHandState(Owner);
+
+    private bool WasThisPlayedDeadOn => DeadOnPatch.LastPlayed == Owner && DeadOnPatch.LastWasDeadOn;
+    
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card == Owner && IsDeadOn ? playCount + (card.Owner.Creature.HasPower<SnipePower>() ? 2 : 1) : playCount;
+        return card == Owner && IsDeadOn ? playCount + ModVal: playCount;
     }
 
     public override void ModifyDescription(Creature? target, ref string description)
     {
         var loc = Description;
         DynamicVars.AddTo(loc);
-        loc.Add("Replay", Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
+        loc.Add("Replay", ModVal);
         description += $"\n{loc.GetFormattedText()}";
     }
 
-    public override bool ShouldGlowGold => IsDeadOn; 
+    private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
+
+    public override bool ShouldGlowGold => IsDeadOn;
+    public int Value { get; set; } = 1;
 }
