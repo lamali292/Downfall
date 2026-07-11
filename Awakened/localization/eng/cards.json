@@ -21,7 +21,7 @@
   "AWAKENED-BLOODTHIRST.title": "Bloodthirst",
   "AWAKENED-BLOOD_RITE.description": "Deal {Damage:diff()} damage.\nGain a [gold]Ceremony[/gold].",
   "AWAKENED-BLOOD_RITE.title": "Blood Rite",
-  "AWAKENED-BOOK_OF_SECRETS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAll other players [gold]Conjure[/gold] a copy of your next up spell.",
+  "AWAKENED-BOOK_OF_SECRETS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAll other players [gold]Conjure[/gold] a copy of your next up Spell.",
   "AWAKENED-BOOK_OF_SECRETS.title": "Book of Secrets",
   "AWAKENED-BRAINSHOCK.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Void[/gold] into your [gold]Discard Pile[/gold].",
   "AWAKENED-BRAINSHOCK.title": "Brainshock",
