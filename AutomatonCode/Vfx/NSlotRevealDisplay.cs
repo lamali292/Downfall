@@ -127,6 +127,56 @@ public abstract partial class NSlotRevealDisplay : Control
         ComputeHomes();
     }
 
+    public override void _ExitTree()
+    {
+        // Room teardown / combat end: release everything BEFORE the subtree is freed,
+        // so no pooled node dies while some registry or the game still points at it.
+        ReleaseAllSlotCards();
+        ReleasePreviewCard();
+        _revealTween?.Kill();
+        _revealTween = null;
+    }
+
+    /// <summary>
+    ///     Card nodes shown in slots can be ADOPTED by the base game: FindOnTable
+    ///     (via FindOnTablePatch) can hand the engine our node, which then reparents
+    ///     it into the hand/play flow. From that moment the node is not ours.
+    ///
+    ///     So cleanup only destroys a node still parented under this display;
+    ///     otherwise it just drops the reference. Destroying an adopted node causes
+    ///     ObjectDisposedException inside CardPileCmd.Add/UpdateVisuals on the next
+    ///     pile move (Stash, DrawFromStash, ...) and desyncs multiplayer.
+    /// </summary>
+    private void ReleaseCardNode(CardModel? model, NCard? cardNode)
+    {
+        if (model != null)
+            OnSlotCardCleared(model); // subclass unregisters (FindOnTablePatch etc.)
+
+        if (cardNode == null || !IsInstanceValid(cardNode)) return;
+
+        var stillOwned = cardNode.IsInsideTree() && IsAncestorOf(cardNode);
+        if (!stillOwned) return; // adopted by the game — hands off
+
+        cardNode.GetParent()?.RemoveChild(cardNode);
+        cardNode.QueueFree();
+    }
+
+    protected void ReleaseAllSlotCards()
+    {
+        foreach (var holder in CardHolders)
+            ReleaseCardNode(holder.CardModel, holder.CardNode);
+        CardHolders.Clear();
+    }
+
+    private void ReleasePreviewCard()
+    {
+        // The preview model is display-only (never registered), but its node is
+        // still a pooled NCard living under us — same release rules apply.
+        ReleaseCardNode(null, _previewHolder?.CardNode);
+        _previewHolder = null;
+        PreviewModel = null;
+    }
+
     /// <summary>
     /// Fly-out targets: a row beside the preview (side chosen by <see cref="Direction"/>),
     /// vertically centered on it. The highest-index slot sits closest to the preview.
@@ -191,9 +241,9 @@ public abstract partial class NSlotRevealDisplay : Control
 
     private void RefreshSlots(IReadOnlyList<CardModel> slotCards)
     {
-        foreach (var h in CardHolders.Where(h => h.CardModel != null))
-            OnSlotCardCleared(h.CardModel!);
-        CardHolders.Clear();
+        // Release (unregister + destroy only owned nodes) BEFORE clearing slots,
+        // so ClearCard can never free a node something else still references.
+        ReleaseAllSlotCards();
         foreach (var slot in Slots) slot.ClearCard();
 
         for (var i = 0; i < Slots.Count; i++)
@@ -215,7 +265,7 @@ public abstract partial class NSlotRevealDisplay : Control
             var holder = slot.SetCard(cardNode);
             if (holder == null)
             {
-                cardNode.QueueFree();
+                cardNode.QueueFree(); // fresh node, nothing references it yet
                 continue;
             }
 
@@ -230,9 +280,8 @@ public abstract partial class NSlotRevealDisplay : Control
 
     private void RefreshPreview(IReadOnlyList<CardModel> slotCards)
     {
+        ReleasePreviewCard();
         PreviewSlot?.ClearCard();
-        _previewHolder = null;
-        PreviewModel = null;
 
         PreviewModel = CreatePreviewModel(slotCards);
         if (PreviewModel == null || PreviewSlot == null) return;
@@ -244,6 +293,7 @@ public abstract partial class NSlotRevealDisplay : Control
         if (_previewHolder == null)
         {
             cardNode.QueueFree();
+            PreviewModel = null;
             return;
         }
 
@@ -319,9 +369,20 @@ public abstract partial class NSlotRevealDisplay : Control
         _slotsRevealed = revealed;
 
         _revealTween?.Kill();
+        _revealTween = null;
+
+        // No usable slots → nothing to animate. Creating a tween anyway spams
+        // "Tween started with no Tweeners" errors.
+        var animatedSlots = Math.Min(Slots.Count, CurrentMax);
+        if (animatedSlots <= 0)
+        {
+            if (!revealed) OnRetractFinished();
+            return;
+        }
+
         _revealTween = CreateTween().SetParallel();
 
-        for (var i = 0; i < Slots.Count && i < CurrentMax; i++)
+        for (var i = 0; i < animatedSlots; i++)
         {
             var slot = Slots[i];
 

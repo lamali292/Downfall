@@ -40,8 +40,7 @@ public class CrushingGhostflame : GhostflameModel
 
     protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner ||
-            LocalContext.NetId == null) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (!(cardPlay.Card.Type == CardType.Skill || shouldCount)) return;
         if (!TryProgress()) return;
