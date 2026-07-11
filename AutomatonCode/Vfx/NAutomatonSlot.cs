@@ -39,16 +39,34 @@ public partial class NAutomatonSlot : Control
 
         Callable.From(() =>
         {
-            if (_holder == null || _visualParent == null) return;
+            if (_holder == null || !IsInstanceValid(_holder) || _visualParent == null) return;
             _holder.Position = _visualParent.Size / 2f - _holder.Size * _holder.Scale / 2f;
         }).CallDeferred();
 
         return _holder;
     }
 
+    /// <summary>
+    ///     Frees the holder, but never a card node inside it. The NCard is a pooled
+    ///     node the base game may have adopted via FindOnTable; if it's still under
+    ///     the holder we detach it first so QueueFreeing the holder can't destroy it.
+    ///     Card ownership belongs to the display (ReleaseAllSlotCards) or the game —
+    ///     never to this slot.
+    /// </summary>
     public void ClearCard()
     {
-        _holder?.QueueFree();
+        if (_holder != null && IsInstanceValid(_holder))
+        {
+            var cardNode = _holder.CardNode;
+            if (cardNode != null && IsInstanceValid(cardNode)
+                && cardNode.GetParent() != null && _holder.IsAncestorOf(cardNode))
+            {
+                cardNode.GetParent().RemoveChild(cardNode);
+            }
+
+            _holder.QueueFree();
+        }
+
         _holder = null;
     }
 }
