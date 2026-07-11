@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,8 @@ public class Sizzle : HexaghostCardModel
         WithBlock(11, 4);
         WithTip(CardKeyword.Exhaust);
     }
+
+    protected override Artist? Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
