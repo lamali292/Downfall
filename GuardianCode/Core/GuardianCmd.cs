@@ -311,8 +311,12 @@ public static class GuardianCmd
             var internalTemporaryPower = target.GetPower(temporaryPower.InternallyAppliedPower.Id);
             if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff) continue;
 
-            var hasArtifact = target.GetPower<ArtifactPower>() != null;
+            // Cap the amount of temp buff removed to the lowest between
+            // Amount of Power and Amount of Polish)
+            var mod = Math.Min(power.Amount, amount);
+            if (mod <= 0) continue;
 
+            var hasArtifact = target.GetPower<ArtifactPower>() != null;
             if (hasArtifact)
             {
                 // If the target has Artifact, we can ignore the power reduction from removing the temporary power,
@@ -329,12 +333,12 @@ public static class GuardianCmd
                 // would be removed because of the temporary power reduction and thus missing.
                 if (internalTemporaryPower == null)
                     await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
-                        amount, target, cardSource, true);
+                        mod, target, cardSource, true);
                 else
-                    await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, amount, target, cardSource, true);
+                    await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, mod, target, cardSource, true);
             }
 
-            await PowerCmd.ModifyAmount(ctx, power, -amount, target, cardSource);
+            await PowerCmd.ModifyAmount(ctx, power, -mod, target, cardSource);
         }
     }
 
