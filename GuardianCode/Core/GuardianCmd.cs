@@ -311,8 +311,8 @@ public static class GuardianCmd
             var internalTemporaryPower = target.GetPower(temporaryPower.InternallyAppliedPower.Id);
             if (temporaryPower.InternallyAppliedPower.Type != PowerType.Buff || power.Type != PowerType.Buff) continue;
 
-            // Cap the amount of temp buff removed to the lowest between
-            // Amount of Power and Amount of Polish)
+            // Cap the amount of temp buff converted to the lowest between
+            // Amount of Power and Amount of Polish
             var mod = Math.Min(power.Amount, amount);
             if (mod <= 0) continue;
 
