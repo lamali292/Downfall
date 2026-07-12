@@ -97,7 +97,7 @@
   "AWAKENED-SPELLSHIELD_POWER.smartDescription": "Whenever you [gold]Retain[/gold] a card, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "AWAKENED-SPLIT_WIDE_POWER.title": "Split Wide",
   "AWAKENED-SPLIT_WIDE_POWER.description": "Whenever you attack this enemy, gain [gold]Strength[/gold] this turn.",
-  "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "Whenever you attack this enemy, gain [blue]{Amount}[/blue] [gold]Strength[/gold] this turn.",
+  "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "Whenever {IsApplierYou:you attack|[orange]{ApplierName}[/orange] attacks} this enemy, {IsApplierYou:you|they} gain [blue]{Amount}[/blue] [gold]Strength[/gold] this turn.",
   "AWAKENED-STORM_RULER_POWER.title": "Storm Ruler",
   "AWAKENED-STORM_RULER_POWER.description": "Your [gold]Thunderbolts[/gold] deal additional damage.",
   "AWAKENED-STORM_RULER_POWER.smartDescription": "Your [gold]Thunderbolts[/gold] deal [blue]{Amount}[/blue] additional damage.",
