@@ -3,7 +3,7 @@
     "DOWNFALL-TO_TOP": "[gold]山札[/gold]の一番上に置くカードを[blue]{amount}[/blue]枚選ぶ。",
     "DOWNFALL-TO_APPLY": "効果を付与するカードを[blue]{Amount}[/blue]枚選ぶ。",
     "DOWNFALL-TO_DECK": "[gold]デッキ[/gold]に加えるカードを[blue]{Amount}[/blue]枚選ぶ。",
-    "DOWNFALL-TO_STASIS": "[gold]停滞[/gold]を付与するカードを[blue]{amount}[/blue]枚選ぶ。",
+    "DOWNFALL-TO_STASIS": "[gold]停滞[/gold]を付与するカードを選ぶ。",
     "DOWNFALL-TO_CONJURE": "[gold]召喚[/gold]するカードを[blue]{Amount}[/blue]枚選ぶ。",
     "DOWNFALL-TO_PLAY": "プレイするカードを[blue]{Amount}[/blue]枚選ぶ。",
     "DOWNFALL-ADD_ETHEREAL": "[gold]エセリアル[/gold]を得るカードを[blue]{Amount}[/blue]枚選ぶ。",
