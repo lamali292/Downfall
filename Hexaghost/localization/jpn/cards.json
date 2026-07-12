@@ -93,7 +93,7 @@
     "HEXAGHOST-HEXAGUARD.title": "ヘクサガード",
     "HEXAGHOST-HOT_STREAK.title": "破竹の勢い",
     "HEXAGHOST-HOT_STREAK.description": "ターン終了時、すでに[gold]ソウルバーン[/gold]を付与している敵に、さらに[gold]ソウルバーン[/gold]{HotStreakPower:diff()}を付与する。",
-    "HEXAGHOST-INCINERATION.description": "以下の効果を{Repeat:diff()}回繰り返す:\n{Damage:diff()}ダメージを与える。\n[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を付与する。",
+    "HEXAGHOST-INCINERATION.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を{Repeat:diff()}回付与する。",
     "HEXAGHOST-INCINERATION.title": "焼却",
     "HEXAGHOST-INCORPOREAL.description": "HPを{HpLoss:diff()}失う。\n[gold]霊体[/gold]{IntangiblePower:diff()}を得る。",
     "HEXAGHOST-INCORPOREAL.title": "形無き身体",
