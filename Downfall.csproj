@@ -7,7 +7,7 @@
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
         <AssemblyName>Downfall</AssemblyName>
         <IsPublishAll>true</IsPublishAll>
-        <NoWarn>$(NoWarn);STS002</NoWarn>
+        <!--NoWarn>$(NoWarn);STS002</NoWarn-->
     </PropertyGroup>
 
     <ItemGroup>

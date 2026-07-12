@@ -26,7 +26,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     private CombatManager? _combatManager;
     private Player? _trackedPlayer;
-
+    
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
 
@@ -74,32 +74,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         if (PreviewModel != null) list.Add(PreviewModel);
         return list;
     }
-
-    /// <summary>
-    ///     Unregisters every slot card from FindOnTablePatch and destroys only the
-    ///     card nodes this display still owns. Nodes that the base game adopted
-    ///     (FindOnTable → reparented into hand/play flow) are left alone — destroying
-    ///     those breaks the hand and, via stale registry entries, causes
-    ///     ObjectDisposedException during card plays and multiplayer desyncs.
-    /// </summary>
-    private void ReleaseAllSlotCards()
-    {
-        foreach (var holder in CardHolders)
-        {
-            var model = holder.CardModel;
-            if (model != null)
-                FindOnTablePatch.Unregister(model);
-
-            var cardNode = holder.CardNode;
-            if (cardNode == null || !IsInstanceValid(cardNode)) continue;
-
-            // Only destroy what is still under this display.
-            if (!cardNode.IsInsideTree() || !IsAncestorOf(cardNode)) continue;
-            cardNode.GetParent()?.RemoveChild(cardNode);
-            cardNode.QueueFree();
-        }
-    }
-
+    
     // --- Static lifecycle ---
 
     private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
@@ -110,8 +85,8 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         {
             foreach (var d in Displays.Values.Where(IsInstanceValid))
             {
-                // Release BEFORE QueueFree: freeing the subtree with cards inside
-                // would kill the nodes while FindOnTablePatch still points at them.
+                // Release BEFORE QueueFree: base implementation unregisters via
+                // OnSlotCardCleared and destroys only nodes still under the display.
                 d.ReleaseAllSlotCards();
                 d.QueueFree();
             }
@@ -135,12 +110,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     public override void _ExitTree()
     {
-        // Safety net for teardown paths that bypass the CombatEnded handler
-        // (room freed, scene change, etc.). Idempotent: already-released or
-        // adopted nodes are skipped.
-        ReleaseAllSlotCards();
-
-        base._ExitTree();
+        base._ExitTree(); // releases slot + preview cards (unregisters via OnSlotCardCleared)
         if (_trackedPlayer != null && Displays.GetValueOrDefault(_trackedPlayer) == this)
             Displays.Remove(_trackedPlayer);
     }
