@@ -4,6 +4,7 @@ using Awakened.AwakenedCode.Enchantments;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
@@ -20,11 +21,12 @@ public class CrescentTalisman : AwakenedRelicModel
 
     public override bool HasUponPickupEffect => true;
 
-
+    private bool Filter(CardModel? card) => card?.Type is CardType.Attack or CardType.Skill;
+    
     public override async Task AfterObtained()
     {
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Conjuration>(), 1, prefs))
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1); 
+        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Conjuration>(), 1, Filter, prefs))
             .FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Conjuration>(card, 1);
