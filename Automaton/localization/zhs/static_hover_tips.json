@@ -1,4 +1,5 @@
 {
     "AUTOMATON-ENCODE.title": "编码",
-    "AUTOMATON-STASH.title": "储藏"
+    "AUTOMATON-STASH.title": "储藏",
+    "AUTOMATON-STASH.description": "将一张牌放入[gold]储藏堆[/gold]的底部。\n储藏堆最多储藏[blue]5[/blue]张牌。\n在你的回合开始时，抽取[gold]储藏堆[/gold]顶部的牌。"
 }
