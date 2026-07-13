@@ -141,7 +141,7 @@
     "SLIMEBOSS-STRIKE_SLIME_BOSS.title": "ストライク",
     "SLIMEBOSS-TACKLE.description": "{Damage:diff()}ダメージを与える。\n{SelfDamage:inverseDiff()}ダメージを受ける。",
     "SLIMEBOSS-TACKLE.title": "タックル",
-    "SLIMEBOSS-TEAMWORK.description": "[gold]命令[/gold]をX{Command:cond>0?+{Command:diff()}|}回行う。\n{Block:diff()}[gold]ブロック[/gold]をX回得る。",
+    "SLIMEBOSS-TEAMWORK.description": "[gold]命令[/gold]をX回行う。\n{Block:diff()}[gold]ブロック[/gold]をX回得る。",
     "SLIMEBOSS-TEAMWORK.title": "チームワーク",
     "SLIMEBOSS-TONGUE_LASH.description": "{CalculatedDamage:diff()}ダメージを与える。\n[gold]廃棄[/gold]された「舐め」カード1枚につき、追加で{ExtraDamage:diff()}ダメージを与える。",
     "SLIMEBOSS-TONGUE_LASH.title": "乱れ舌さばき",

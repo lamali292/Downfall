@@ -1,6 +1,6 @@
 {
     "SLIMEBOSS-BLACK_HEART_OF_GOO.title": "黏液黑心",
-    "SLIMEBOSS-BLACK_HEART_OF_GOO.description": "每当你[gold]吞食黏液[/gold]时，回复[blue]{Heal}[/blue]点生命，每场战斗最多回复[blue]{MaxUses}[/blue]点。",
+    "SLIMEBOSS-BLACK_HEART_OF_GOO.description": "每当你[gold]吞食[/gold]时，回复[blue]{Heal}[/blue]点生命，每场战斗最多回复[blue]{MaxUses}[/blue]点。",
     "SLIMEBOSS-BLACK_HEART_OF_GOO.flavor": "史莱姆的秘密。",
     "SLIMEBOSS-GOOP_DWELLER.title": "黏液居者",
     "SLIMEBOSS-GOOP_DWELLER.description": "在每场战斗开始时，[gold]分裂[/gold]出一个[gold]好斗史莱姆[/gold]。",
@@ -9,7 +9,7 @@
     "SLIMEBOSS-GREED_OOZE.description": "战斗开始时，生成贪婪史莱姆（若被吸收可复活。在休息处，贪婪软泥会吞噬你50个灵魂并提高1点伤害）。",
     "SLIMEBOSS-GREED_OOZE.flavor": "尖塔里找到的囤金子的朋友。",
     "SLIMEBOSS-HEART_OF_GOO.title": "黏液之心",
-    "SLIMEBOSS-HEART_OF_GOO.description": "每当你[gold]吞食黏液[/gold]时，回复[blue]{Heal}[/blue]点生命，每场战斗最多回复[blue]{MaxUses}[/blue]点。",
+    "SLIMEBOSS-HEART_OF_GOO.description": "每当你[gold]吞食[/gold]时，回复[blue]{Heal}[/blue]点生命，每场战斗最多回复[blue]{MaxUses}[/blue]点。",
     "SLIMEBOSS-HEART_OF_GOO.flavor": "我可真时髦。",
     "SLIMEBOSS-JEREMIAHS_BANNER.title": "陆军旗",
     "SLIMEBOSS-JEREMIAHS_BANNER.description": "在每场战斗开始时，获得1个史莱姆槽位并[gold]分裂[/gold]出一个随机史莱姆。",

@@ -30,7 +30,7 @@
     "CHAMP-SIGNATURE_FINISHER.description": "拾起时，选择一张[gold]终结技[/gold]牌为它[gold]附魔[/gold]：[purple]签名[/purple]。",
     "CHAMP-SIGNATURE_FINISHER.flavor": "是时候该使出我的终结一击了。",
     "CHAMP-SPECTRES_HAND.title": "幽影之手",
-    "CHAMP-SPECTRES_HAND.description": "每当你进入[gold]姿态[/gold]，获得一张基础[gold]打击[/gold]或[gold]防守[/gold]的[gold]回响[/gold]。\n它在本回合可以免费打出。",
+    "CHAMP-SPECTRES_HAND.description": "每当你进入[gold]姿态[/gold]，获得一张[gold]打击[/gold]或[gold]防御[/gold]的[gold]回响[/gold]。\n它在本回合可以免费打出。",
     "CHAMP-SPECTRES_HAND.flavor": "有些胜利会一直跟随着你。",
     "CHAMP-VICTORIOUS_CROWN.title": "胜利王冠",
     "CHAMP-VICTORIOUS_CROWN.description": "每场战斗开始时，进入随机[gold]姿态[/gold]，然后触发该[gold]姿态[/gold]的[gold]技术奖励[/gold]两次。\n每回合你第一次打出[gold]终结技[/gold]时，抽[blue]2[/blue]张牌并进入随机[gold]姿态[/gold]。",
