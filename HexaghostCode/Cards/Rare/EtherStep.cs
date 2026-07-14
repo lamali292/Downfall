@@ -16,7 +16,7 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
     public EtherStep() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         this.WithAfterlife();
-        WithDamage(10, 4);
+        WithDamage(10, 3);
         WithCards(1, 1);
         WithTip(CardKeyword.Exhaust);
     }

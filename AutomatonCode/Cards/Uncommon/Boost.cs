@@ -12,9 +12,9 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Boost : AutomatonCardModel, IEncodable, ICompilable
 {
-    public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Boost() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5);
+        WithBlock(6);
         WithPower<StrengthPower>(2, 1);
     }
     

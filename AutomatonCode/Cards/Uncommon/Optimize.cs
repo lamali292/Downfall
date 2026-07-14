@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Optimize : AutomatonCardModel
 {
-    public Optimize() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Optimize() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<OptimizePower>(1, false);
