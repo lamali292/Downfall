@@ -16,6 +16,8 @@ public class Convert : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
 
+    protected override bool ShouldGlowGoldInternal => Owner.GetDiscard(e => e.Type == CardType.Status).Any();
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
