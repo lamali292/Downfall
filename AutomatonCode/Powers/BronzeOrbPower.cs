@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,13 +16,16 @@ public class BronzeOrbPower : AutomatonPowerModel
         bool isAutoPlay,
         ResourceInfo resources, PileType pileType, CardPilePosition position)
     {
-        return card.Owner.Creature != Owner ? (pileType, position) : (StashPile.Stash, CardPilePosition.Top);
+        if (card.Owner.Creature != Owner) return (pileType, position);
+        NStashDisplay.EnsureFor(card.Owner);     
+        return (StashPile.Stash, CardPilePosition.Top);
     }
 
     public override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card,
         PileType pileType,
         CardPilePosition position)
     {
+    
         return PowerCmd.Decrement(this);
     }
 
