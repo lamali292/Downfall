@@ -12,7 +12,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class Virus : AutomatonCardModel
 {
-    public Virus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public Virus() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
         WithKeywords(CardKeyword.Exhaust);

@@ -1,6 +1,129 @@
 {
-  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-0r.char": "I am angry at the architect",
-  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-0r.next": "Continue",
-  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-1r.ancient": "You die",
-  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-attack": "Both"
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "And now the dead have come to haunt me?",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Continue",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.0-1.ancient": "I have no time for this.",
+  
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "The ire of the dead... A foolish idea.",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.1-0r.next": "Continue",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.1-1r.ancient": "Leave me be and move on, spirit.",
+  
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.2-0r.ancient": "Spirits can't truly die, I suppose.\nDo you even want anything?",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.2-0r.next": "Whisper",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.2-1r.char": "[sine]...die...[/sine]",
+  "THE_ARCHITECT.talk.HEXAGHOST-HEXAGHOST.2-1r.next": "Continue",
+
+  "DARV.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "Well, I'm shocked! A ghost! Have ya' come to haunt me?\nI've done no wrong, I swear!",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Say Nothing",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...[/sine]",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "Ah, I get it, ya want one of these!\nWell, go grab whatever catches your fancy!",
+  
+  "DARV.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "Back to the ol' haunting grounds, spooky one? \nMaybe one of these will help those poltergeisty desires?",
+  
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "Found some real spooky stuff for ya this time, spooky one.\nSee this carving?",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-1.ancient": "[i][font_size=22]The carving emanates an infernal heat.[/font_size=22][/i]",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Continue",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "Maybe... this one's better in your hands!\nDon't want to get cursed myself!\nYou should definitely take it!",
+
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "[sine]...arise... bound one...[/sine]",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Whisper",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...promise...[/sine]",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "[sine]...very well...[/sine]",
+  
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "[sine]...bound one... time to... turn up the [jitter][red]heat[/red][/jitter]...[/sine]",
+  
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "[sine]...again...[/sine]",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Whisper",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine]...[jitter][red]again[/red][/jitter]...[/sine]",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "NEOW.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "[sine]...complete your task... seal will be broken...[/sine]",
+
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "A shining specter floats in.",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Continue",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-1.ancient": "Do ones such as you even have need for my fineries?",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "And yet... a certain [sine]brightness[/sine] is about you.",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-2.next": "Continue",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.0-3.ancient": "And you haven't even said hello to your host, visitor...\nVery well.",
+  
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "Bright and dazzling gifts for the bright and dazzling spirit.",
+  
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "You're a curious case, aren't you?",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Say Nothing",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine]...[/sine]",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "NONUPEIPE.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "Still no words for me, spirit?\nClearly no desire for the finer things in the world for the dead.\nAnd yet, you still need my gifts to reach the top.",
+
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "Purple shape so warm! And green lights so bright!! Friends??",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Whisper",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...friends...?[/sine]",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "Yes yes friends! Friends now!!",
+  
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "Bright light shape returns! Shiny for shape friend!!",
+  
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "Shape back! Why shape so bright always?? And floating??",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Say Nothing",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine]...[/sine]",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "OROBAS.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "Sad memory?? Tell me someday??",
+
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "[thinky_dots]A restless spirit wanders into these halls...[/thinky_dots]",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Say Nothing",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...[/sine]",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "[thinky_dots]A shame...[/thinky_dots]",
+  
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "[thinky_dots]No rest for the spirit... I feel sorrow for your torment...[/thinky_dots]",
+  
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "[thinky_dots]The spirit continues to persist...[/thinky_dots]",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Whisper",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine]...not allowed...[/sine]",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "PAEL.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "[thinky_dots]...a true pity... may you one day find rest...[/thinky_dots]",
+
+  "TANX.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "A GHOST!? DOES THE GHOST WANT TO BE SCARY?? REALLY SCARY?",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Say Nothing",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...[/sine]",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "GHOST CAN BE EVEN MORE SCARY WITH A WEAPON!",
+  
+  "TANX.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "TAKE A WEAPON, GHOST!!! GHOST CAN'T DIE AGAIN WITH WEAPONS!",
+  
+  "TANX.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "FIGHT ME, GHOST!!",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Leave",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[i][font_size=22]The Hexaghost phases through the ceiling.[/font_size][/i]",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "TANX.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "WHERE DID YOU GO!!!",
+
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "A [sine]blessed[/sine] one has come to visit me?",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Whisper",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...cursed...[/sine]",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "You know not of the [jitter][b]gifts[/b][/jitter] you possess. [jitter][b]Let me show you[/b][/jitter].",
+  
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "I shall feed your [jitter][b]fire[/b][/jitter] for as long as it takes, blessed one.",
+  
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "Do you even know of what you've been gifted? You shouldn't be [jitter][b]disrespectful[/b][/jitter].",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Boast",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine][jitter][red]...[/red][/jitter][/sine]",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "That council had no idea what could ~really~ be done with that tablet they created.\nAnd the one they dealt it to is a fool who could not see its full potential.",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-2.next": "Continue",
+  "TEZCATARA.talk.HEXAGHOST-HEXAGHOST.2-3.ancient": "Foolish. But I can clearly see what a soul that burns bright can do with it.",
+  
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "Pitiful. But funny.",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.0-0.next": "Say Nothing",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.0-1.char": "[sine]...[/sine],",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.0-1.next": "Continue",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.0-2.ancient": "Hmph. Fine.",
+  
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "You deserve this suffering, cursed one.",
+  
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "Sign yourself to me and I will break your seal, cursed one.\nThe magic is trivial to break for one such as I. [sine]A simple task for a simple signature.[/sine]",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Whisper",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.2-1.char": "[sine]...[jitter][red]never[/red][/jitter]...[/sine]",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
+  "VAKUU.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "You will lose hope eventually. [sine]Everyone does.[/sine]\nAnd when you do... I will be there."
 }

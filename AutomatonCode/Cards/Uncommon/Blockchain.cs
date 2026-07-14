@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,6 +13,7 @@ public class Blockchain : AutomatonCardModel
     public Blockchain() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(2, 1);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
