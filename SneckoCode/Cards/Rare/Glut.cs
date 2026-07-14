@@ -1,7 +1,5 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

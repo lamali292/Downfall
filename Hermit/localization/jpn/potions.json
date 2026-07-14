@@ -1,0 +1,8 @@
+{
+    "HERMIT-TONIC.title": "トニック",
+    "HERMIT-TONIC.description": "[gold]堅牢[/gold][blue]{RuggedPower:diff()}[/blue]を得る。",
+    "HERMIT-BLACK_BILE.title": "黒胆汁",
+    "HERMIT-BLACK_BILE.description": "[gold]打撲[/gold][blue]{BruisePower:diff()}[/blue]を付与する。",
+    "HERMIT-LIQUID_VOID.title": "液状の虚無",
+    "HERMIT-LIQUID_VOID.description": "[gold]廃棄札[/gold]からカードを1枚[gold]手札[/gold]に加える。\nそのカードはこのターン、コスト0でプレイできる。"
+}

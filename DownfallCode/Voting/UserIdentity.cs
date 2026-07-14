@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Steamworks;
+﻿using Steamworks;
 using MegaCrit.Sts2.Core.Platform.Steam;
 
 namespace Downfall.DownfallCode.Voting;

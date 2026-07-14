@@ -1,4 +1,3 @@
-using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Events;
@@ -7,7 +6,6 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 
@@ -42,8 +40,7 @@ public class SearingGhostflame : GhostflameModel
 
     protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner ||
-            LocalContext.NetId == null) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (!(cardPlay.Card.Type == CardType.Attack || shouldCount)) return;
         if (!TryProgress()) return;

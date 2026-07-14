@@ -1,0 +1,16 @@
+{
+    "GREMLINS-GREMLINS.aromaPrinciple": "[sine][yellow]食べ物。宝物。食べ物。宝物。[jitter]食べ物！[/jitter][/yellow][/sine]",
+    "GREMLINS-GREMLINS.banter.alive.endTurnPing": "早くしろ！！",
+    "GREMLINS-GREMLINS.banter.dead.endTurnPing": "...",
+    "GREMLINS-GREMLINS.cardsModifierDescription": "報酬やショップにグレムリンのカードが出現するようになる。",
+    "GREMLINS-GREMLINS.cardsModifierTitle": "グレムリンのカード。",
+    "GREMLINS-GREMLINS.description": "スパイアの住人達。食料と財宝を求め混沌とした暴徒となった。",
+    "GREMLINS-GREMLINS.eventDeathPrevention": "まだ死ぬわけにはいかない、盗むべき宝がまだ残っているんだ！",
+    "GREMLINS-GREMLINS.goldMonologue": "[sine]こんなにたくさんの金…これなら、とんでもない量の食べ物を買えるのに…[/sine]",
+    "GREMLINS-GREMLINS.possessiveAdjective": "彼らの",
+    "GREMLINS-GREMLINS.pronounObject": "彼ら",
+    "GREMLINS-GREMLINS.pronounPossessive": "彼らの物",
+    "GREMLINS-GREMLINS.pronounSubject": "彼らは",
+    "GREMLINS-GREMLINS.title": "グレムリン",
+    "GREMLINS-GREMLINS.titleObject": "グレムリン"
+}

@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;

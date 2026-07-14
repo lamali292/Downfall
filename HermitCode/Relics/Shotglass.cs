@@ -1,11 +1,9 @@
-using HarmonyLib;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Potions;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Hermit.HermitCode.Relics;
@@ -62,14 +60,3 @@ public sealed class Shotglass : HermitRelicModel
 
 
 
-[HarmonyPatch(typeof(NPotionPopup), nameof(NPotionPopup.RefreshButtons))]
-internal static class ShotglassLimitPatch
-{
-    private static void Postfix(NPotionPopup __instance)
-    {
-        var potion = __instance.Potion;
-        var shotglass = potion?.Owner.GetRelic<Shotglass>();
-        if (shotglass is { IsInCombat: true, AvailableUses: <= 0 })
-            __instance._useButton.Disable();
-    }
-}

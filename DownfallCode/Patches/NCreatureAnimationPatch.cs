@@ -15,14 +15,3 @@ public static class NCreatureAnimationPatch
     }
 }
 
-[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
-public static class NCreatureDeathAnimationPatch
-{
-    private static void Postfix(NCreature __instance)
-    {
-        if (__instance.Visuals is IAnimatedVisuals downfallAnimation)
-            downfallAnimation.OnAnimationTrigger("Dead");
-    }
-}
-
-

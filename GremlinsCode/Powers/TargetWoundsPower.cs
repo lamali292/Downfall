@@ -1,4 +1,5 @@
-﻿using Gremlins.GremlinsCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
@@ -7,9 +8,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Gremlins.GremlinsCode.Powers;
 
-public class TargetWoundsPower : GremlinsPowerModel
+public class TargetWoundsPower : GremlinsPowerModel, IModifyDamageAdditive
 {
-    public override decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return target?.GetPowerAmount<WeakPower>() > 0 ? Amount : 0;

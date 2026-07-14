@@ -4,16 +4,13 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Piles;
 using Collector.CollectorCode.Rewards;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Core;
 
@@ -88,21 +85,5 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
         }
 
         return Task.CompletedTask;
-    }
-}
-
-[HarmonyPatch(typeof(RunState), nameof(RunState.CreateForNewRun))]
-internal class PatchNewRun
-{
-    [HarmonyPostfix]
-    private static void GiveStartingEssence(RunState __result)
-    {
-        foreach (var player in __result.Players)
-        {
-            EssenceModel.ClearEssence(player);
-            CollectiblesModel.ClearCollectibles(player);
-            if (player.Character is Collector)
-                EssenceModel.AddEssence(player, 5);
-        }
     }
 }

@@ -18,7 +18,7 @@ public class AgonyPower : GremlinsPowerModel, IModifyDamageMultiplicative
         WithVar("DamageDecrease", 0.2M);
     }
 
-    public override decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer != Owner || !props.IsPoweredAttack() ? 1 : DynamicVars["DamageDecrease"].BaseValue;

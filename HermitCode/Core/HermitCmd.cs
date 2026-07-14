@@ -30,7 +30,7 @@ public static class HermitCmd
 
     public static bool IsDeadOn(CardModel card)
     {
-        return (card is IHasDeadOnEffect { IsDeadOn: true }) ||CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any(e => e.IsDeadOn) ;
+        return card is IHasDeadOnEffect { IsDeadOn: true } || CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any(e => e.IsDeadOn) ;
     }
 
 

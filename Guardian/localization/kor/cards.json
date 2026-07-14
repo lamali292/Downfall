@@ -109,7 +109,6 @@
     "GUARDIAN-STASIS_FIELD.title": "정지장",
     "GUARDIAN-STASIS_STRIKE.description": "{Damage:diff()}의 피해를 줍니다.\n[gold]정지장[/gold] 슬롯을 {StasisSlots:diff()}개 얻습니다.",
     "GUARDIAN-STASIS_STRIKE.title": "정지장 타격",
-    "GUARDIAN-STRIKE_FOR_STRIKE.description": "{Damage:diff()}의 피해를 줍니다.\n적이 당신에게 {EnemyDamage:diff()}의 피해로 공격합니다.",
     "GUARDIAN-STRIKE_FOR_STRIKE.title": "맞타격",
     "GUARDIAN-STRIKE_GUARDIAN.description": "{Damage:diff()}의 피해를 줍니다.",
     "GUARDIAN-STRIKE_GUARDIAN.title": "타격",

@@ -21,7 +21,7 @@ public sealed class ComboPower : HermitPowerModel
         if (
             GetInternalData<Data>().DeadOnCardsPlayed >= Amount
             || card.Owner.Creature != Owner
-            || card is not IHasDeadOnEffect { IsDeadOn: true }
+            || !HermitCmd.IsDeadOn(card)
         )
             return (pileType, position);
 

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.CustomEnums;
 using Gremlins.GremlinsCode.Events;
@@ -13,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Gremlins.GremlinsCode.Powers;
 
-public class WizPower : GremlinsPowerModel, IHasSecondAmount
+public class WizPower : GremlinsPowerModel, IHasSecondAmount, IModifyDamageAdditive
 {
     public WizPower()
     {
@@ -69,7 +70,7 @@ public class WizPower : GremlinsPowerModel, IHasSecondAmount
         return Task.CompletedTask;
     }
 
-    public override decimal ModifyDamageAdditiveCompability(
+    public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,

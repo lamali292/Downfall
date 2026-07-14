@@ -1,7 +1,8 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
+using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -9,21 +10,21 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Boost : AutomatonCardModel
+public class Boost : AutomatonCardModel, IEncodable, ICompilable
 {
     public Boost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(5);
-        WithPower<StrengthPower>(1, 1);
-        WithKeyword(CardKeyword.Exhaust);
+        WithPower<StrengthPower>(2, 1);
     }
+    
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
+    
 
-
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public Task OnCompile(PlayerChoiceContext ctx)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        return CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
 }

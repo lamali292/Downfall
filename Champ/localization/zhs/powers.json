@@ -73,5 +73,5 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "本回合你处于[gold]终极姿态[/gold]。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "下回合活力",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "下回合，获得[gold]活力[/gold]。",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "下回合，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。"
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "下回合，获得[blue]{}[/blue]点[gold]活力[/gold]。"
 }

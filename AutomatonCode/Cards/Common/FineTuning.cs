@@ -34,6 +34,6 @@ public class FineTuning : AutomatonCardModel
             card.AddKeyword(CardKeyword.Retain);
         }
 
-        await StashCmd.Stash(cards);
+        await StashCmd.Stash(Owner, cards);
     }
 }

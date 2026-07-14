@@ -2,10 +2,14 @@ using System.Reflection;
 using BaseLib.Patches.Saves;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
+using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
 using Gremlins.GremlinsCode.Core;
-using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -29,8 +33,8 @@ public partial class GremlinsMainFile : Node
             ExtendedSaveTypes.PropertyFunc<GremlinSaveData, int>("MaxHp")
         );
         ExtendedSaveTypes.RegisterListSaveType<GremlinSaveData>();
-        
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+        DeathHooks.RegisterInterceptor(GremlinsModel.OnDeath);
     }
+   
 }

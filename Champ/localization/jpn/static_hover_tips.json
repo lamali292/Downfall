@@ -1,0 +1,8 @@
+{
+    "CHAMP-COMBO.title": "コンボ",
+    "CHAMP-COMBO.description": "指定の[gold]スタンス[/gold]でプレイすると追加効果が発動する。",
+    "CHAMP-FINISHER.title": "フィニッシャー",
+    "CHAMP-FINISHER.description": "[gold]スタンス[/gold]に入っている必要がある。\nフィニッシャーをプレイ後、[gold]スタンス[/gold]を解除してフィニッシャーボーナスを得る。",
+    "CHAMP-STANCE.title": "スタンス",
+    "CHAMP-STANCE.description": "同時に入ることができるスタンスは1種類のみ。"
+}
