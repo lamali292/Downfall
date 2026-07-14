@@ -12,8 +12,7 @@ public class BranchBlock : AutomatonCardModel, IEncodable
 {
     public BranchBlock() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Retain);
-        WithBlock(7, 2);
+        WithBlock(6, 2);
     }
 
     public IEnumerable<Encodable> Encodings => [new BlockEncode()];

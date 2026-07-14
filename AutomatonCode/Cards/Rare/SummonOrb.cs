@@ -13,10 +13,9 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 //todo should probably use the same wording as Nostalgia
 public class SummonOrb : AutomatonCardModel
 {
-    public SummonOrb() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public SummonOrb() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<SummonOrbPower>(1, false);
-        WithTip(AutomatonTip.Stash);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 

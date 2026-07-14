@@ -22,6 +22,7 @@ public class ChosenVerse : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        //todo this is supposed to scale with dex
         var power = await CommonActions.ApplySelf<ChosenVersePower>(ctx, this, 2);
         if (power == null) return;
         power.SetBlock(DynamicVars.Power<ChosenVersePower>().IntValue);
