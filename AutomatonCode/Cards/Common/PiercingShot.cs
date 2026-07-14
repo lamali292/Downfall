@@ -14,7 +14,7 @@ public class PiercingShot : AutomatonCardModel
 {
     public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(6, 2);
+        WithDamage(7, 2);
         WithCards(1, 1);
     }
 

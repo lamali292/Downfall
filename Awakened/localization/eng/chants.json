@@ -1,6 +1,6 @@
 {
   "AWAKENED-RECITATION.chant": "Deal {Damage:diff()} damage again.",
-  "AWAKENED-CAW.chant": "Increase the damage of all [gold]Caw[/gold] cards by {Caw:diff()} this combat.",
+  "AWAKENED-CAW.chant": "Increase the damage of ALL [gold]Caw[/gold] cards by {Caw:diff()} this combat.",
   "AWAKENED-FEATHER_FLARE.chant": "Next turn, draw 1 additional card.",
   "AWAKENED-GATHER.chant": "Put a card from your [gold]Discard Pile[/gold] in your [gold]Hand[/gold].",
   "AWAKENED-GREAT_HEX.chant": "Target enemy gains {GreatHexPower:diff()} [gold]Manaburn[/gold] at the end of each of its turns.",

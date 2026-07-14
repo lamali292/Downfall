@@ -11,10 +11,10 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class InfiniteBeams : AutomatonCardModel
 {
-    public InfiniteBeams() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public InfiniteBeams() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithTip<MinorBeam>();
+        WithCostUpgradeBy(-1);
         this.WithPower<InfiniteBeamsPower>(1, false);
     }
 

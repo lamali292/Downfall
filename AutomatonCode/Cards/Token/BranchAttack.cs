@@ -14,7 +14,6 @@ public class BranchAttack : AutomatonCardModel, IEncodable
 {
     public BranchAttack() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithKeywords(CardKeyword.Retain);
         WithDamage(7, 2);
     }
     

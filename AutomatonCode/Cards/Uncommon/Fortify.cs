@@ -12,7 +12,7 @@ public class Fortify : AutomatonCardModel
     public Fortify() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(8, 3);
-        WithBlock(8, 2);
+        WithBlock(8, 3);
         WithStash(2, 1);
     }
 

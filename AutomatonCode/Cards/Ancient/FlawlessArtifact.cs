@@ -12,7 +12,7 @@ public class FlawlessArtifact : AutomatonCardModel
 {
     public FlawlessArtifact() : base(0, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Innate, CardKeyword.Retain);
+        WithKeywords(CardKeyword.Retain);
         WithUpgradingCardTip<Constructor>();
         WithUpgradingCardTip<Separator>();
         WithUpgradingCardTip<Terminator>();

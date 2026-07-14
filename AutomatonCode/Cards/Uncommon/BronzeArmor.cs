@@ -10,7 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class BronzeArmor : AutomatonCardModel
 {
-    public BronzeArmor() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public BronzeArmor() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(13, 4);
         WithStash(2);
