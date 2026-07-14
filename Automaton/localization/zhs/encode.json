@@ -6,6 +6,8 @@
     "AUTOMATON-POISON_ENCODE.encode": "给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
     "AUTOMATON-SOULBURN_ENCODE.encode": "给予所有敌人{SoulBurnPower:diff()}层[gold]灼魂[/gold]。",
     "AUTOMATON-ENERGY_ENCODE.encode": "获得{Energy:energyIcons()}。",
+    "AUTOMATON-DAZED_ENCODE.encode": "将{Dazed:plural:|{}}张[gold]晕眩[/gold]放入你的[gold]抽牌堆[/gold]。",
+    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|现在和在你的回合开始时：}",
     "AUTOMATON-FULL_RELEASE.encode": "方法变为能力牌，效果为“现在和在你的回合开始时……”。",
     "AUTOMATON-REPLICATE.functionPrefix": "反复",
     "AUTOMATON-REPLICATE.functionName": "拷贝",
@@ -16,6 +18,7 @@
     "AUTOMATON-BRANCH_ATTACK.functionPrefix": "分叉",
     "AUTOMATON-BRANCH_ATTACK.functionName": "分支",
     "AUTOMATON-BUGGY_MESS.functionPrefix": "错误",
+    "AUTOMATON-BUGGY_MESS.functionName": "混乱",
     "AUTOMATON-DEPRECATE.functionPrefix": "旧版",
     "AUTOMATON-DEPRECATE.functionName": "损伤",
     "AUTOMATON-FRONTLOAD.functionPrefix": "坚固",
@@ -56,5 +59,7 @@
     "AUTOMATON-EXPLODE.functionName": "爆裂",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "防护",
     "AUTOMATON-DEFEND_AUTOMATON.functionName": "防御",
-    "AUTOMATON-STRENGTH_ENCODE.encode": "获得{StrengthPower:diff()}点[gold]力量[/gold]。"
+    "AUTOMATON-STRENGTH_ENCODE.encode": "获得{StrengthPower:diff()}点[gold]力量[/gold]。",
+    "AUTOMATON-OIL_SPILL.functionPrefix": "泄漏",
+    "AUTOMATON-OIL_SPILL.functionName": "溢出"
 }

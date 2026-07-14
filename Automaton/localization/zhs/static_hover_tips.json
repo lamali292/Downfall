@@ -1,5 +1,8 @@
 {
     "AUTOMATON-ENCODE.title": "编码",
+    "AUTOMATON-ENCODE.description": "将此牌置入[gold]序列[/gold]中。\n当它拥有[blue]3[/blue]张牌后，它们在该关键词之上的效果合并为一个耗能为[blue]1[/blue]的方法。",
     "AUTOMATON-STASH.title": "储藏",
-    "AUTOMATON-STASH.description": "将一张牌放入[gold]储藏堆[/gold]的底部。\n储藏堆最多储藏[blue]5[/blue]张牌。\n在你的回合开始时，抽取[gold]储藏堆[/gold]顶部的牌。"
+    "AUTOMATON-STASH.description": "将一张牌放入[gold]储藏堆[/gold]的底部。\n储藏堆最多储藏[blue]5[/blue]张牌。\n在你的回合开始时，抽取[gold]储藏堆[/gold]顶部的牌。",
+    "AUTOMATON-COMPILE.title": "编译",
+    "AUTOMATON-COMPILE.description": "此牌与方法合并时触发的效果。"
 }

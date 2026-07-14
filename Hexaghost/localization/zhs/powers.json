@@ -15,7 +15,7 @@
     "HEXAGHOST-GHOSTFLAME_BARRIER_POWER.description": "本回合每当你受到攻击，反给予攻击者[gold]灼魂[/gold]。",
     "HEXAGHOST-GHOSTFLAME_BARRIER_POWER.smartDescription": "本回合每当你受到攻击，反给予攻击者[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
     "HEXAGHOST-GIFTS_FROM_BEYOND_POWER.title": "彼岸之礼",
-    "HEXAGHOST-GIFTS_FROM_BEYOND_POWER.description": "在你的回合开始时，将一张随机[gold]阴世[/gold]牌加入你的[gold]手牌[/gold]。",
+    "HEXAGHOST-GIFTS_FROM_BEYOND_POWER.description": "在你的回合开始时，将一张随机[gold]阴世[/gold]牌添加到[gold]手牌[/gold]。",
     "HEXAGHOST-GIFTS_FROM_BEYOND_POWER.smartDescription": "在你的回合开始时，将[blue]{Amount}[/blue]张随机[gold]阴世[/gold]牌加入你的[gold]手牌[/gold]。",
     "HEXAGHOST-HOT_STREAK_POWER.title": "火热连击",
     "HEXAGHOST-HOT_STREAK_POWER.description": "在你的回合结束时，给予拥有[gold]灼魂[/gold]的敌人[gold]灼魂[/gold]。",

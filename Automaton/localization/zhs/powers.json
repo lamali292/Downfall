@@ -33,8 +33,8 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "方法获得[gold]重放[/gold][blue]1[/blue]",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "方法获得[gold]重放[/gold][blue]{Amount}[/blue]",
     "AUTOMATON-SUMMON_ORB_POWER.title": "召唤铜球",
-    "AUTOMATON-SUMMON_ORB_POWER.description": "将每回合打出的第一张攻击或技能牌放入[gold]储藏堆[/gold]。",
-    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "将每回合打出的第一张攻击或技能牌放入[gold]储藏堆[/gold]。",
+    "AUTOMATON-SUMMON_ORB_POWER.description": "将你每回合打出的第一张攻击或技能牌放入[gold]储藏堆[/gold]。",
+    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "将你每回合打出的第一张攻击或技能牌放入[gold]储藏堆[/gold]。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "反冲器",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "每回合你第一次抽到状态或诅咒牌时，[gold]消耗[/gold]它并抽一张牌。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次抽到状态或诅咒牌时，[gold]消耗[/gold]它并抽一张牌。",
@@ -76,5 +76,8 @@
     "AUTOMATON-COPY_PASTE_POWER.smartDescription": "本回合你打出的下[blue]{Amount}[/blue]张耗能不超过{energyPrefix:energyIcons(1)}的牌额外打出一次。",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "炼金药剂",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "你下一个生成的方法可以免费打出。",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "你下[blue]{Amount}[/blue]个生成的方法可以免费打出。"
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "你下[blue]{Amount}[/blue]个生成的方法可以免费打出。",
+    "AUTOMATON-SHARE_POWER.title": "分享",
+    "AUTOMATON-SHARE_POWER.description": "每当你从方法中获得[gold]格挡[/gold]时，随机一名盟友获得[gold]格挡[/gold]。",
+    "AUTOMATON-SHARE_POWER.smartDescription": "每当你从方法中获得[gold]格挡[/gold]时，随机一名盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
 }
