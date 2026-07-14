@@ -1,7 +1,7 @@
 {
     "CHAMP-ADRENAL_ARMOR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのターン、[gold]筋力[/gold]{AdrenalArmorPower:diff()}を得る。",
     "CHAMP-ADRENAL_ARMOR.title": "アドレナリン分泌",
-    "CHAMP-ALL_OUT.description": "[gold]スタンス[/gold]を崩さず{Repeat:diff()}回行う:",
+    "CHAMP-ALL_OUT.description": "[gold]スタンス[/gold]を崩さずフィニッシャーを{Repeat:diff()}回行う:",
     "CHAMP-ALL_OUT.title": "オールアウト",
     "CHAMP-ARENA_MASTERY.title": "アリーナマスタリー",
     "CHAMP-ARENA_MASTERY.description": "[gold]狂化のフィニッシャー[/gold]から得られる[gold]筋力[/gold]が{ArenaMasteryBerserkerPower:diff()}増加する。\n[gold]守護のフィニッシャー[/gold]から得られる[gold]ブロック[/gold]が{ArenaMasteryDefensivePower:diff()}増加する。",
@@ -65,7 +65,7 @@
     "CHAMP-EXECUTE.description": "{Damage:diff()}ダメージを2回与える。",
     "CHAMP-EXECUTE.title": "エクスキュート",
     "CHAMP-EXECUTION.title": "処刑",
-    "CHAMP-EXECUTION.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]スタンス[/gold]を崩さず2回行う:",
+    "CHAMP-EXECUTION.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]スタンス[/gold]を崩さずフィニッシャーを2回行う:",
     "CHAMP-FACE_SLAP.description": "{Damage:diff()}ダメージを与える。\n[gold]狂化コンボ[/gold]:\n[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "CHAMP-FACE_SLAP.title": "平手打ち",
     "CHAMP-FANCY_FOOTWORK.description": "現在と別の[gold]スタンス[/gold]に入る。\nこのターン、次に[gold]フィニッシャー[/gold]をプレイした時、すべての敵に{FancyFootworkPower:diff()}ダメージを与える。",

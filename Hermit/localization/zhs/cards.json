@@ -70,7 +70,7 @@
     "HERMIT-SHORT_FUSE.title": "快速引信",
     "HERMIT-SHORT_FUSE.description": "造成{Damage:diff()}点伤害。\n你在本回合中每打出过一张[gold]基础[/gold]牌，耗能减少1{energyPrefix:energyIcons(1)}。",
     "HERMIT-GRUDGE.title": "积怨",
-    "HERMIT-GRUDGE.description": "对所有敌人造成{CalculatedDamage:diff()}点伤害。\n你的[gold]抽牌堆[/gold]、[gold]手牌[/gold]和[gold]弃牌堆[/gold]中每有一张诅咒牌，伤害增加{ExtraDamage:diff()}点。",
+    "HERMIT-GRUDGE.description": "对所有敌人造成{CalculatedDamage:diff()}点伤害。\n你在[gold]消耗堆[/gold]之外每有一张诅咒牌，伤害增加{ExtraDamage:diff()}点。",
     "HERMIT-SPITE.title": "恶意",
     "HERMIT-SPITE.description": "[gold]消耗[/gold][gold]手牌[/gold]中所有[gold]不能被打出[/gold]的牌。\n获得{Block:diff()}点[gold]格挡[/gold]。\n抽{Cards:diff()}张牌。",
     "HERMIT-MANIFEST.title": "恶灵现身",
@@ -181,6 +181,6 @@
     "HERMIT-DEATHWISH.description": "与诅咒牌相邻的牌会触发[gold]精准[/gold]效果。",
     "HERMIT-RUBBER_BULLET.title": "橡胶子弹",
     "HERMIT-RUBBER_BULLET.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：本场战斗中此牌伤害增加{Increase:diff()}点，然后将其移至另一名随机玩家的[gold]手牌[/gold]。",
-    "HERMIT-BIG_BRUISER.title": "大块头",
+    "HERMIT-BIG_BRUISER.title": "莽汉",
     "HERMIT-BIG_BRUISER.description": "[gold]瘀伤[/gold]现在对所有玩家生效。\n给予所有敌人{BruisePower:diff()}层[gold]瘀伤[/gold]。"
 }
