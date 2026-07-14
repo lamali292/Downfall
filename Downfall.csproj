@@ -7,7 +7,7 @@
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
         <AssemblyName>Downfall</AssemblyName>
         <IsPublishAll>true</IsPublishAll>
-        <NoWarn>$(NoWarn);STS002</NoWarn>
+        <!--NoWarn>$(NoWarn);STS002</NoWarn-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -33,6 +33,7 @@
         <None Include="Downfall.json"/>
         <None Include="local.props"/>
         <None Include="local.props.example"/>
+        <None Include=".gitignore"/>
         <!-- All submod source compiled into one assembly: Downfall.dll -->
         <Compile Include="DownfallCode/**/*.cs"/>
         <Compile Include="AutomatonCode/**/*.cs"/>
@@ -46,6 +47,10 @@
         
         <!--Compile Include="GremlinsCode/**/*.cs"/-->
         <!--Compile Include="CollectorCode/**/*.cs"/-->
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="GuardianCode\Patches\" />
     </ItemGroup>
 
     <PropertyGroup>

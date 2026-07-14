@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -20,6 +21,8 @@ public class CultistStrike : AutomatonCardModel,
         WithDamage(CurrentDamage);
         WithVar("Increase", 1, 1);
     }
+    
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 
     protected override Artist Artist => Artist.Get<Opal>();
 
@@ -45,18 +48,10 @@ public class CultistStrike : AutomatonCardModel,
             _increasedDamage = value;
         }
     }
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
+    
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-    }
-
-
-    protected override Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        var intValue = DynamicVars["Increase"].IntValue;
+       var intValue = DynamicVars["Increase"].IntValue;
         BuffFromPlay(intValue);
         if (DeckVersion is not CultistStrike deckVersion) return Task.CompletedTask;
         deckVersion.BuffFromPlay(intValue);
@@ -78,4 +73,6 @@ public class CultistStrike : AutomatonCardModel,
     {
         CurrentDamage = 6 + IncreasedDamage;
     }
+
+    
 }

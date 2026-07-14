@@ -1,5 +1,6 @@
 {
     "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Aucune erreur détectée. Aucune erreur détectée.[/blue][/sine]",
+    "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Avertissement : délai de réponse de l'allié dépassé.[/red]",
     "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
     "AUTOMATON-AUTOMATON.cardsModifierDescription": "Les cartes du Défectueux peuvent apparaître dans les récompenses et dans la boutique.",
     "AUTOMATON-AUTOMATON.cardsModifierTitle": "Les cartes du Défectueux",

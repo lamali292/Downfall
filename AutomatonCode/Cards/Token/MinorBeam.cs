@@ -1,8 +1,8 @@
-﻿using Automaton.AutomatonCode.Interfaces;
+﻿using Automaton.AutomatonCode.Encode;
+using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Automaton.AutomatonCode.Cards.Token;
@@ -12,13 +12,9 @@ public class MinorBeam : AutomatonCardModel, IEncodable
 {
     public MinorBeam() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
+        WithDamage(6, 2);
     }
 
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
 }

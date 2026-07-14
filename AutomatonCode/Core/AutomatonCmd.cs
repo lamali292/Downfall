@@ -1,11 +1,9 @@
-﻿using Automaton.AutomatonCode.Cards.Rare;
-using Automaton.AutomatonCode.Cards.Token;
-using Automaton.AutomatonCode.Displays;
-using Automaton.AutomatonCode.Enchantments;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -24,13 +22,13 @@ public static class AutomatonCmd
         return creature.GetRelic<ElectromagneticCoil>() == null ? 3 : 4;
     }
 
-    public static async Task EncodeCard(
+    public static async Task<FunctionCard?> EncodeCard(
         CardModel card,
         PlayerChoiceContext ctx)
     {
         var creature = card.Owner;
         var pile = CustomPiles.GetCustomPile(creature.PlayerCombatState, EncodePile.FunctionSequence);
-        if (pile == null) return;
+        if (pile == null) return null;
         var isMe = LocalContext.IsMe(creature);
 
 
@@ -44,68 +42,59 @@ public static class AutomatonCmd
         await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, pile);
         await Cmd.Wait(0.2f);
-        AutomatonDisplay.Refresh(creature);
+        NSequenceDisplay.Refresh(creature);
 
+        FunctionCard? functionCard = null;
         if (pile.Cards.Count >= GetMax(creature))
-            await CompileFunctionCard(creature, ctx);
+            functionCard = await CompileFunctionCard(creature, ctx);
 
         await AutomatonHook.OnCardEncoded(creature.Creature.CombatState!, ctx, card);
+        return functionCard;
     }
 
 
-    private static async Task CompileFunctionCard(
+    private static async Task<FunctionCard?> CompileFunctionCard(
         Player player,
         PlayerChoiceContext ctx)
     {
         var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence);
-        if (pile == null) return;
+        if (pile == null) return null;
         await Cmd.Wait(0.3f);
         var combatState = player.Creature.CombatState;
-        if (combatState == null) return;
+        if (combatState == null) return null;
         var snapshot = pile.Cards.ToList();
         pile.Clear(true);
-
-        AutomatonDisplay.Refresh(player);
-
+        
+        NSequenceDisplay.Refresh(player);
+        foreach (var cardModel in snapshot)
+        {
+            if (cardModel is ICompilable compilable)
+            {
+                await compilable.OnCompile(ctx);
+            }
+        }
         var functionCard = combatState.CreateCard<FunctionCard>(player);
         functionCard.SetSourceCards(snapshot);
-        ApplyFunctionCardType(functionCard, snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
         var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
         await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result);
+        return functionCard;
     }
 
-    public static void ApplyFunctionCardType(FunctionCard card, IEnumerable<CardModel> snapshot)
-    {
-        var list = snapshot.ToList();
-
-        if (list.Any(c => c is { TargetType: TargetType.AnyEnemy }))
-            card.SetTargetType(TargetType.AnyEnemy);
-        else if (list.Any(c => c is { TargetType: TargetType.AllEnemies }))
-            card.SetTargetType(TargetType.AllEnemies);
-        else
-            card.SetTargetType(TargetType.Self);
-
-        if (list.Any(c => c is FullRelease))
-            card.SetCardType(CardType.Power);
-        else if (list.Any(c => c is { Type: CardType.Attack }))
-            card.SetCardType(CardType.Attack);
-        else
-            card.SetCardType(CardType.Skill);
-
-        if (list.Any(c => c.Rarity == CardRarity.Ancient))
-            card.SetCardRarity(CardRarity.Ancient);
-        else if (list.Any(c => c.Rarity == CardRarity.Rare))
-            card.SetCardRarity(CardRarity.Rare);
-        else if (list.Any(c => c.Rarity == CardRarity.Uncommon))
-            card.SetCardRarity(CardRarity.Uncommon);
-        else
-            card.SetCardRarity(CardRarity.Common);
-    }
+    
 
     public static bool IsEncodable(CardModel card)
     {
-        return card is IEncodable || card.Enchantment is Encoding;
+        return card is IEncodable { CanPlayerEncode: true };
+    }
+
+    public static async Task EncodeEffect(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (card is not IEncodable encodable) return;
+        foreach (var encodableEncoding in encodable.Encodings)
+        {
+            await encodableEncoding.OnPlay(card, ctx, cardPlay.Target, cardPlay);
+        }
     }
 }

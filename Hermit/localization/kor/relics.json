@@ -7,7 +7,6 @@
     "HERMIT-RYE_STALK.description": "[blue]{Turn}[/blue]번째 턴이 시작될 때, [blue]{RuggedPower:diff()}[/blue] [gold]거칢[/gold]을 얻습니다.",
     "HERMIT-SHOTGLASS.title": "스트레이트 잔",
     "HERMIT-SHOTGLASS.flavor": "안에 담긴 모든 액체가 다른 것으로 변합니다.",
-    "HERMIT-SHOTGLASS.description": "전투마다 처음 [blue]{Limit}[/blue]번 포션을 사용할 때, 무작위 포션을 얻습니다. 매 전투마다 [blue]{Limit}[/blue]번만 포션을 사용할 수 있습니다.",
     "HERMIT-HORSESHOE.title": "편자",
     "HERMIT-HORSESHOE.flavor": "행운의 부적입니다. 누군가는 이걸 잃어버려서 아쉬워하겠군요.",
     "HERMIT-HORSESHOE.description": "[gold]약화[/gold], [gold]손상(Frail)[/gold] 또는 [gold]취약[/gold]을 얻을 때마다, 그 수치가 [blue]1[/blue] 감소합니다.",

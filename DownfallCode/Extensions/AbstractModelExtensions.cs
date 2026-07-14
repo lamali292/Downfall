@@ -3,7 +3,6 @@ using BaseLib.Extensions;
 using BaseLib.Patches.Features;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
@@ -47,6 +46,7 @@ public static class AbstractModelExtensions
         {
             CardModel card => card.TargetType,
             PotionModel potion => potion.TargetType,
+            CardModifier cardModifier => cardModifier.Owner?.TargetType ?? TargetType.None,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }

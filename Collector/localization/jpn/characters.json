@@ -1,0 +1,16 @@
+{
+    "COLLECTOR-COLLECTOR.aromaPrinciple": "[sine][purple]すべては私の物。すべては私の物になる。[jitter]何もかも。[/jitter][/purple][/sine]",
+    "COLLECTOR-COLLECTOR.banter.alive.endTurnPing": "収集すべき魂があるのでね。",
+    "COLLECTOR-COLLECTOR.banter.dead.endTurnPing": "……",
+    "COLLECTOR-COLLECTOR.cardsModifierDescription": "コレクターのカードが報酬とショップに出現するようになる。",
+    "COLLECTOR-COLLECTOR.cardsModifierTitle": "コレクターのカード",
+    "COLLECTOR-COLLECTOR.description": "シティで悪名高き魔術師。\n魂も装身具も、分け隔てなく我が物とする。",
+    "COLLECTOR-COLLECTOR.eventDeathPrevention": "私のコレクションは、まだ完成していない。",
+    "COLLECTOR-COLLECTOR.goldMonologue": "[sine]これほどの富……私のコレクションに加えるにふさわしい……[/sine][/sine]",
+    "COLLECTOR-COLLECTOR.possessiveAdjective": "彼女の",
+    "COLLECTOR-COLLECTOR.pronounObject": "彼女",
+    "COLLECTOR-COLLECTOR.pronounPossessive": "彼女の物",
+    "COLLECTOR-COLLECTOR.pronounSubject": "彼女",
+    "COLLECTOR-COLLECTOR.title": "コレクター",
+    "COLLECTOR-COLLECTOR.titleObject": "コレクター"
+}

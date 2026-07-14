@@ -32,11 +32,6 @@
           "optional": true
         },
         {
-          "name": "encode",
-          "file": "encode.json",
-          "optional": true
-        },
-        {
           "name": "functionPrefix",
           "file": "encode.json",
           "optional": true
@@ -231,6 +226,19 @@
           "name": "selectionScreenPrompt",
           "file": "potions.json",
           "optional": true
+        }
+      ]
+    },
+    {
+      "id": "encodable",
+      "markers": [
+        "Encodable"
+      ],
+      "fields": [
+        {
+          "name": "encode",
+          "file": "encode.json",
+          "optional": false
         }
       ]
     }

@@ -1,5 +1,4 @@
 {
-    "AUTOMATON-ALLOCATE.description": "Gagnez {energyPrefix:energyIcons(1)} pour chaque carte Statut dans votre [gold]Pioche[/gold] et [gold]Orbe de bronze[/gold].{InCombat:cond:\n(Gagnez {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Ventilation",
     "AUTOMATON-ASSEMBLY.description": "Piochez {Cards:diff()} cartes.\n[gold]Encodez[/gold] toutes les cartes avec [gold]Encode [/gold].",
     "AUTOMATON-ASSEMBLY.title": "Assemblage",

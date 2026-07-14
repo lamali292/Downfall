@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Champ.ChampCode.Cards.Common;

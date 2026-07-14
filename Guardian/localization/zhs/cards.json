@@ -109,7 +109,7 @@
     "GUARDIAN-STASIS_FIELD.title": "凝滞屏障",
     "GUARDIAN-STASIS_STRIKE.description": "造成{Damage:diff()}点伤害。\n获得{StasisSlots:diff()}个[gold]凝滞[/gold]栏位。",
     "GUARDIAN-STASIS_STRIKE.title": "凝滞打击",
-    "GUARDIAN-STRIKE_FOR_STRIKE.description": "造成{Damage:diff()}点伤害。\n目标敌人对你造成{EnemyDamage:diff()}点伤害。",
+    "GUARDIAN-STRIKE_FOR_STRIKE.description": "造成{Damage:diff()}点伤害。\n目标敌人对你造成{EnemyDamage:inverseDiff()}点伤害。",
     "GUARDIAN-STRIKE_FOR_STRIKE.title": "应击打击",
     "GUARDIAN-STRIKE_GUARDIAN.description": "造成{Damage:diff()}点伤害。",
     "GUARDIAN-STRIKE_GUARDIAN.title": "打击",

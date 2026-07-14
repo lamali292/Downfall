@@ -1,7 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Displays;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -40,6 +40,6 @@ public class DevTools : AutomatonCardModel
             await CardCmd.Exhaust(ctx, card);
         await PlayerCmd.GainEnergy(count, Owner);
         await CardPileCmd.Draw(ctx, count, Owner);
-        AutomatonDisplay.Refresh(Owner);
+        NSequenceDisplay.Refresh(Owner);
     }
 }

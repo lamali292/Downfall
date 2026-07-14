@@ -13,10 +13,8 @@ public static class PluralRulesPatch
     {
         var prop = typeof(PluralRules).GetProperty("IsoLangToDelegate",
             BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (prop?.GetValue(null) is { } dict)
-        {
-            var indexer = dict.GetType().GetProperty("Item");
-            indexer?.SetValue(dict, PluralRules.GetPluralRule("en"), ["zh"]);
-        }
+        if (prop?.GetValue(null) is not { } dict) return;
+        var indexer = dict.GetType().GetProperty("Item");
+        indexer?.SetValue(dict, PluralRules.GetPluralRule("en"), ["zh"]);
     }
 }

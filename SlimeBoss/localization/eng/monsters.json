@@ -26,5 +26,6 @@
   "SLIMEBOSS-BRONZE_SLIME.description": "Deals [blue]10[/blue] damage to ALL enemies, then goes to sleep for [blue]2[/blue] turns.",
   "SLIMEBOSS-INSULTING_SLIME.description": "Deals [blue]4[/blue] damage and applies [blue]1[/blue] [gold]Vulnerable[/gold] to an enemy. ",
   "SLIMEBOSS-TIME_SLIME.description": "Deals [blue]4[/blue] damage and applies [blue]1[/blue] [gold]Weak[/gold] to an enemy. ",
-  "SLIMEBOSS-CULTIST_SLIME.description": "Deals [blue]6[/blue] damage. After attacking, increases its damage by [blue]1[/blue]."
+  "SLIMEBOSS-CULTIST_SLIME.description": "Deals [blue]6[/blue] damage. After attacking, increases its damage by [blue]1[/blue].",
+  "SLIMEBOSS-SCRAP_SLIME.description": ""
 }

@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -23,6 +22,7 @@ public abstract class ConstructedPowerModel(
         .Concat(_multiHoverTips.SelectMany(e => e.Invoke(this)));
 
     public virtual bool ShouldRemoveDueToZero => true;
+
 
 
     protected ConstructedPowerModel WithUpgradedCardTip<T>(Action<T, PowerModel>? modifyTipCard = null)
@@ -122,14 +122,3 @@ public abstract class ConstructedPowerModel(
     }
 }
 
-[HarmonyPatch(nameof(PowerModel), nameof(PowerModel.ShouldRemoveDueToAmount))]
-public static class PowerModelMutableClonePatch
-{
-    [HarmonyPrefix]
-    public static bool ShouldRemoveOnZero(PowerModel __instance, ref bool __result)
-    {
-        if (__instance is not ConstructedPowerModel { ShouldRemoveDueToZero: false }) return true;
-        __result = false;
-        return false;
-    }
-}

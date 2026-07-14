@@ -1,22 +1,20 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
+using Downfall.DownfallCode.Utils;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.UI;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Pooling;
 using MegaCrit.Sts2.Core.Random;
 
 namespace Downfall.DownfallCode.Cards;
 
 [Pool(typeof(TokenCardPool))]
 #pragma warning disable
-public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
+public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self), IModfyCardDescription, ICustomPortrait
 #pragma warning restore
 {
     internal CharacterModel? CharacterModel;
@@ -46,89 +44,21 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }
-}
 
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.Description), MethodType.Getter)]
-public static class CardModelDescriptionPatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(CardModel __instance, ref LocString __result)
+    public LocString ModifyDescription(LocString oldLocString)
     {
-        if (__instance is CharacterCard { CharacterModel: not null } characterCard)
-            __result = new LocString("characters", characterCard.CharacterModel.CharacterSelectDesc);
+        return CharacterModel == null ? oldLocString : new LocString("characters", CharacterModel.CharacterSelectDesc);
     }
-}
+    
+    private ImageTexture? _cachedTexture;
 
-[HarmonyPatch(typeof(NCard), nameof(NCard.Create))]
-public static class NCardCreatePatch
-{
-    private static bool Prefix(CardModel card, ModelVisibility visibility, ref NCard? __result)
+    public Texture2D? GetPortraitTexture()
     {
-        if (card is not CharacterCard) return true;
-        var scene = ResourceLoader.Load<PackedScene>(NCard._scenePath);
-        var ncard = scene.Instantiate<NCard>();
-        ncard.Model = card;
-        ncard.Visibility = visibility;
-        __result = ncard;
-        return false;
-    }
-}
+        if (_cachedTexture != null) return _cachedTexture;
 
-[HarmonyPatch(typeof(NodePool), nameof(NodePool.Free), typeof(IPoolable))]
-public static class NodePoolFreePatch
-{
-    private static bool Prefix(IPoolable poolable)
-    {
-        if (poolable is not NCard { Model: CharacterCard } ncard) return true;
-        ncard.QueueFree();
-        return false;
-    }
-}
+        _cachedTexture = PortraitCompositor.SliceHorizontally(
+            [RandomCommonCard?.Portrait, RandomUncommonCard?.Portrait, RandomRareCard?.Portrait]);
 
-[HarmonyPatch(typeof(NCard), "Reload")]
-public static class NCardPortraitPatch
-{
-    private static void Postfix(NCard __instance)
-    {
-        var portrait = __instance.GetNode<Control>("%Portrait");
-        if (portrait == null) return;
-
-        foreach (var child in portrait.GetChildren().Where(c => c.Name.ToString().StartsWith("_composite_")))
-            child.QueueFree();
-
-        if (__instance.Model is not CharacterCard fc) return;
-
-
-        List<CardModel?> cards = [fc.RandomCommonCard, fc.RandomUncommonCard, fc.RandomRareCard];
-        var textures = cards.Select(c => c?.Portrait).Where(t => t != null).Cast<Texture2D>().ToList();
-        if (textures.Count == 0) return;
-
-        for (var i = 0; i < textures.Count; i++)
-        {
-            var src = textures[i];
-            var w = src.GetWidth();
-            var h = src.GetHeight();
-            var sliceW = w / textures.Count;
-
-            var atlas = new AtlasTexture
-            {
-                Atlas = src,
-                Region = new Rect2(i * sliceW, 0, sliceW, h)
-            };
-
-            portrait.AddChild(new TextureRect
-            {
-                Name = $"_composite_{i}",
-                Texture = atlas,
-                AnchorLeft = (float)i / textures.Count,
-                AnchorRight = (float)(i + 1) / textures.Count,
-                AnchorTop = 0,
-                AnchorBottom = 1,
-                OffsetLeft = 0, OffsetRight = 0, OffsetTop = 0, OffsetBottom = 0,
-                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-                StretchMode = TextureRect.StretchModeEnum.Scale,
-                MouseFilter = Control.MouseFilterEnum.Ignore
-            });
-        }
+        return _cachedTexture;
     }
 }

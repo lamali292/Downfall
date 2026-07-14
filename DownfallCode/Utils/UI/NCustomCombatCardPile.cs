@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -178,53 +177,5 @@ internal static class CombatPileButtonRegistry
     {
         var probe = (NCustomCombatCardPile)RuntimeHelpers.GetUninitializedObject(type);
         return (probe.ScenePath, probe.CanUsePile);
-    }
-}
-
-[HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.Initialize))]
-internal class PatchCombatPilesContainer
-{
-    [HarmonyPostfix]
-    private static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
-    {
-        foreach (var type in CombatPileButtonRegistry.Types)
-        {
-            var (scenePath, canUse) = CombatPileButtonRegistry.ReadMetadata(type);
-            if (!canUse(player)) continue;
-
-            var scene = ResourceLoader.Load<PackedScene>(scenePath);
-            if (scene == null) continue;
-
-            var button = (NCustomCombatCardPile)scene.Instantiate();
-            __instance.AddChildSafely(button);
-            button.Initialize(player);
-
-            // Scene anchors/offsets handle positioning — just refresh anim
-            // targets after the layout pass has resolved Position.
-            var capturedButton = button;
-            Callable.From(() => capturedButton.RefreshAnimPositions()).CallDeferred();
-        }
-    }
-}
-
-[HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.AnimIn))]
-internal class PatchCombatPilesAnimIn
-{
-    [HarmonyPostfix]
-    private static void AnimInAll(NCombatPilesContainer __instance)
-    {
-        foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            btn.AnimIn();
-    }
-}
-
-[HarmonyPatch(typeof(NCombatPilesContainer), nameof(NCombatPilesContainer.AnimOut))]
-internal class PatchCombatPilesAnimOut
-{
-    [HarmonyPostfix]
-    private static void AnimOutAll(NCombatPilesContainer __instance)
-    {
-        foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            btn.AnimOut();
     }
 }

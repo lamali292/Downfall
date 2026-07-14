@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
-using HarmonyLib;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,15 +26,3 @@ public abstract class HermitCardModel
     protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect { IsDeadOnInHand: true };
 }
 
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]
-internal static class PatchDeadOnCapture
-{
-    internal static bool LastWasDeadOn;
-    internal static CardModel? LastPlayed;
-
-    private static void Prefix(CardModel __instance)
-    {
-        LastPlayed = __instance;
-        LastWasDeadOn = HermitCmd.IsDeadOnInCurrentHandState(__instance);
-    }
-}

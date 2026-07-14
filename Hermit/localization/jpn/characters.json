@@ -1,0 +1,16 @@
+{
+    "HERMIT-HERMIT.title": "ハーミット",
+    "HERMIT-HERMIT.titleObject": "ハーミット",
+    "HERMIT-HERMIT.description": "遥か彼方より来た孤高のアンデッド・ガンスリンガー。\n逃げられぬ過去の亡霊に憑りつかれる。",
+    "HERMIT-HERMIT.pronounSubject": "彼",
+    "HERMIT-HERMIT.pronounObject": "彼",
+    "HERMIT-HERMIT.possessiveAdjective": "彼の",
+    "HERMIT-HERMIT.pronounPossessive": "彼の",
+    "HERMIT-HERMIT.goldMonologue": "[sine]この金貨があれば……弾薬が少し買えるな……[/sine]",
+    "HERMIT-HERMIT.eventDeathPrevention": "まだだ……俺にはまだやり残したことがある……",
+    "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]……火薬の匂いだ……[/blue][/sine]",
+    "HERMIT-HERMIT.cardsModifierTitle": "ハーミットのカード",
+    "HERMIT-HERMIT.cardsModifierDescription": "ハーミットのカードが報酬とショップに出現するようになる。",
+    "HERMIT-HERMIT.banter.alive.endTurnPing": "チクタク……",
+    "HERMIT-HERMIT.banter.dead.endTurnPing": "……"
+}

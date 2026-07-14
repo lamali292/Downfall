@@ -1,7 +1,5 @@
-using BaseLib.Extensions;
 using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Core;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;

@@ -10,6 +10,6 @@ public class SkillBonusDescriptionSource : IExtraDescriptionSource
     public IEnumerable<string> GetLines(CardModel card)
     {
         if (!card.Keywords.Contains(ChampKeyword.TriggerSkillBonus)) yield break;
-        yield return new LocString("static_hover_tips", "TRIGGER_SKILL_BONUS.title").GetFormattedText();
+        yield return new LocString("card_keywords", "CHAMP-TRIGGERSKILLBONUS.card").GetFormattedText();
     }
 }

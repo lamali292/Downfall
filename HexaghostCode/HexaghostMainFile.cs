@@ -5,8 +5,7 @@ using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
-using HarmonyLib;
+using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Localization;
@@ -30,29 +29,15 @@ public partial class HexaghostMainFile : Node
         HexaghostSubscriber.Subscribe();
         
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+   
+        PostInitRegistry.Register(() =>
+        {
+            CardKeywordSubRegistry.Register(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
+            KeywordColorRegistry.Register(HexaghostKeyword.Afterlife, "afterlife");
+        });
+        
+        CombatUiHooks.Register(HexaghostModel.SetupHexaghostCombatUi);
+       
     }
 }
 
-[HarmonyPatch(typeof(ModelDb), "InitIds")]
-internal static class ModelDbInitIdsPatch
-{
-    [HarmonyPostfix]
-    private static void LogRegisteredCounts()
-    {
-        CardKeywordSubRegistry.Register(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
-    }
-}
-
-[HarmonyPatch(typeof(CardKeywordExtensions), nameof(CardKeywordExtensions.GetCardText))]
-public static class CardKeywordColorPatch
-{
-    public static void Postfix(CardKeyword keyword, ref string __result)
-    {
-        string? color = null;
-        if (keyword == HexaghostKeyword.Afterlife) color = "afterlife";
-        if (color == null) return;
-        __result = __result.Replace("[gold]", $"[{color}]")
-            .Replace("[/gold]", $"[/{color}]");
-    }
-}

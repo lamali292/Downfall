@@ -1,0 +1,8 @@
+{
+    "AUTOMATON-ENCODE.title": "エンコード",
+    "AUTOMATON-ENCODE.description": "このカードを[gold]シーケンス[/gold]に配置する。\nそこに[blue]3[/blue]枚のカードが揃うと、このキーワードより上の効果が、コスト[blue]1[/blue]の関数に統合される。",
+    "AUTOMATON-STASH.title": "格納",
+    "AUTOMATON-STASH.description": "カードを[gold]格納の山[/gold]の中に、最大[blue]5[/blue]枚まで置く。毎ターン開始時、その中から最も古いカードを1枚引く。",
+    "AUTOMATON-COMPILE.title": "コンパイル",
+    "AUTOMATON-COMPILE.description": "このカードが関数に統合された時に発動する効果。"
+}

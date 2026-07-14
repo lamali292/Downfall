@@ -1,11 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -33,15 +31,3 @@ public abstract class CustomIntent : AbstractIntent, ICustomModel
     }
 }
 
-[HarmonyPatch(typeof(NIntent), nameof(NIntent.UpdateVisuals))]
-internal static class CustomIntentLabelPatch
-{
-    private static void Postfix(NIntent __instance)
-    {
-        if (__instance._intent is not CustomIntent custom)
-            return;
-
-        __instance._valueLabel.Text = custom.GetIntentLabel(__instance._targets, __instance._owner)
-            .GetFormattedText();
-    }
-}

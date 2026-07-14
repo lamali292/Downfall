@@ -72,6 +72,5 @@
     "CHAMP-ULTIMATE_STANCE_POWER.description": "이번 턴에 [gold]챔피언의 태세[/gold]를 취합니다.",
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "이번 턴에 [gold]챔피언의 태세[/gold]를 취합니다.",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "다음 턴 활력",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "다음 턴에 [gold]활력[/gold]을 얻습니다.",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "다음 턴에 {Amount:plural:|[blue]{}[/blue]의 }[gold]활력[/gold]을 얻습니다."
+    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "다음 턴에 [gold]활력[/gold]을 얻습니다."
 }

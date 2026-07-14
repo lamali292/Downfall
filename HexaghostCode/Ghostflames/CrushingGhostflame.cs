@@ -5,7 +5,6 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -41,8 +40,7 @@ public class CrushingGhostflame : GhostflameModel
 
     protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner ||
-            LocalContext.NetId == null) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (!(cardPlay.Card.Type == CardType.Skill || shouldCount)) return;
         if (!TryProgress()) return;

@@ -12,7 +12,7 @@ namespace Snecko.SneckoCode.Cards.Common;
 [Pool(typeof(SneckoCardPool))]
 public class Snatch : SneckoCardModel, IHasOverflowEffect
 {
-    public Snatch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Snatch() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         this.WithOverflow();
         WithCards(1, 1);

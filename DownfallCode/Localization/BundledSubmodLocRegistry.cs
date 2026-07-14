@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Downfall.DownfallCode.Localization;
+﻿namespace Downfall.DownfallCode.Localization;
 
 /// <summary>
 /// When every submod is bundled into a single Downfall.dll/Downfall.pck

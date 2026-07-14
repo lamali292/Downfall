@@ -92,7 +92,7 @@ public static class SneckoCmd
     public static bool IsDebuff(CardModel card)
     {
         return card.DynamicVars.Values.Any(IsDebuffPowerVar) &&
-               card.TargetType is not (TargetType.Self or TargetType.Self);
+               card.TargetType is not (TargetType.Self or TargetType.AllAllies or TargetType.AnyPlayer or TargetType.Osty or TargetType.AnyAlly);
     }
 
     private static bool IsDebuffPowerVar(DynamicVar v)

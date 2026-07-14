@@ -1,4 +1,3 @@
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 
 namespace DataGen.DataGenCode;

@@ -1,14 +1,11 @@
 using System.Reflection;
-using BaseLib.Utils;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
-using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
 using HarmonyLib;
 using Hermit.HermitCode.Core;
-using MegaCrit.Sts2.Core.Localization;
+using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -30,6 +27,13 @@ public partial class HermitMainFile : Node
         CardExecutionRegistry.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
         
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+        
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(DeadOnPatch))
+            .Add(typeof(ShotglassLimitPatch))
+            .Add(typeof(HandRefreshLayoutPatch))
+            .Add(typeof(TransformShineUpdateCardPatch))
+            .Add(typeof(HandChangedPatches))
+            .PatchAll();
     }
 }

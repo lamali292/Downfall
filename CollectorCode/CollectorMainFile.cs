@@ -1,12 +1,9 @@
 using System.Reflection;
-using BaseLib.Extensions;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using Godot.Bridge;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -26,6 +23,13 @@ public partial class CollectorMainFile : Node
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
         
         BundledSubmodLocRegistry.Register(ModId);
-        DownfallMainFile.Patch(Assembly.GetExecutingAssembly(), ModId);
+        
+        RunHooks.OnNewRunPerPlayer(player =>
+        {
+            EssenceModel.ClearEssence(player);
+            CollectiblesModel.ClearCollectibles(player);
+            if (player.Character is Core.Collector)
+                EssenceModel.AddEssence(player, 5);
+        });
     }
 }

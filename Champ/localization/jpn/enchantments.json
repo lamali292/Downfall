@@ -2,5 +2,7 @@
     "CHAMP-STURDY.title": "頑丈",
     "CHAMP-STURDY.description": "[gold]ブロック[/gold]の値が2倍になる。",
     "CHAMP-CROWNED.title": "戴冠",
-    "CHAMP-CROWNED.description": "コストを支払わずにプレイできる。"
+    "CHAMP-CROWNED.description": "コストを支払わずにプレイできる。",
+    "CHAMP-SIGNATURE.title": "奥義",
+    "CHAMP-SIGNATURE.description": "コストを支払わずにプレイできる。[gold]スタンス[/gold]に入っている必要がなく、プレイ後に[gold]スタンス[/gold]を解除しない。"
 }

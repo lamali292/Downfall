@@ -1,9 +1,9 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -13,16 +13,11 @@ public class DigitalCarnage : AutomatonCardModel,
 {
     public DigitalCarnage() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(20, 8);
         WithKeyword(CardKeyword.Ethereal);
+        WithDamage(20, 8);
     }
-
+    
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
+    
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public async Task PlayEncodableEffect(PlayerChoiceContext ctx, CardPlay cardPlay, EncodeContext encodeContext)
-    {
-        await CommonActions.CardAttack(this, cardPlay)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-    }
 }
