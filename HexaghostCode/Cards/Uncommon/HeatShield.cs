@@ -2,10 +2,12 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -29,6 +31,7 @@ public class HeatShield : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
+        var a = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
+        await CreatureCmd.GainBlock(Owner.Creature, a, ValueProp.Move, cardPlay);
     }
 }
