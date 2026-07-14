@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
@@ -17,7 +18,7 @@ public class RefractedBeam : GuardianCardModel, IGemSocketCard
         WithTip(GuardianKeyword.Gem);
     }
 
-    public override int MaxUpgradeLevel => int.MaxValue;
+    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
 
     public int GemSlots => 1 + CurrentUpgradeLevel;
 
