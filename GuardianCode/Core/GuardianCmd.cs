@@ -316,29 +316,50 @@ public static class GuardianCmd
             var mod = Math.Min(power.Amount, amount);
             if (mod <= 0) continue;
 
-            var hasArtifact = target.GetPower<ArtifactPower>() != null;
-            if (hasArtifact)
+            // var hasArtifact = target.GetPower<ArtifactPower>() != null;
+            // if (hasArtifact)
+            // {
+            //     // If the target has Artifact, we can ignore the power reduction from removing the temporary power,
+            //     // since the Artifact will prevent itself.
+            //     // To compensate, apply 1 stack Artifact.
+            //     await PowerCmd.Apply<ArtifactPower>(ctx, target, 1, target, cardSource, true);
+            // }
+            //
+            // else
+            // {
+            //     // Otherwise, we need to apply the power up manually.
+            //     // Here we apply it *before* removing the temporary power,
+            //     // because if the temporary power, internal power and polish have the same amount, the internal power
+            //     // would be removed because of the temporary power reduction and thus missing.
+            //     if (internalTemporaryPower == null)
+            //         await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
+            //             mod, target, cardSource, true);
+            //     else
+            //         await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, mod, target, cardSource, true);
+            // }
+            // await PowerCmd.ModifyAmount(ctx, power, -mod, target, cardSource);
+            
+            // Lock in `mod` worth of the temp buff as permanent. If the internal power still exists,
+            // leave it untouched -- it already holds the full temp amount, and we're only moving `mod`
+            // worth of bookkeeping from "temporary" (tracked by the wrapper `power`) to "permanent"
+            // (nothing left tracking it for removal). If the internal power was removed by some other
+            // effect while the wrapper survived, recreate it at `mod` since there's nothing to leave alone.
+            if (internalTemporaryPower == null)
+                await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
+                    mod, target, cardSource, true);
+            
+            // Shrink the wrapper's own bookkeeping directly, bypassing PowerCmd's hook pipeline.
+            // This must NOT go through PowerCmd.ModifyAmount: CustomTemporaryPowerModel hardcodes
+            // AllowNegative => true on every temp-power wrapper (Ruby/Tourmaline/etc.), so a hooked
+            // reduction here is misclassified as a Debuff and, if Artifact is present, gets blocked
+            // and silently eats an Artifact charge for no reason.
+            power.SetAmount((int)(power.Amount - mod), false);
+            if (power.ShouldRemoveDueToAmount())
             {
-                // If the target has Artifact, we can ignore the power reduction from removing the temporary power,
-                // since the Artifact will prevent itself.
-                // To compensate, apply 1 stack Artifact.
-                await PowerCmd.Apply<ArtifactPower>(ctx, target, 1, target, cardSource, true);
+                await PowerCmd.Remove(power);
             }
-
-            else
-            {
-                // Otherwise, we need to apply the power up manually.
-                // Here we apply it *before* removing the temporary power,
-                // because if the temporary power, internal power and polish have the same amount, the internal power
-                // would be removed because of the temporary power reduction and thus missing.
-                if (internalTemporaryPower == null)
-                    await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
-                        mod, target, cardSource, true);
-                else
-                    await PowerCmd.ModifyAmount(ctx, internalTemporaryPower, mod, target, cardSource, true);
-            }
-
-            await PowerCmd.ModifyAmount(ctx, power, -mod, target, cardSource);
+            
+            
         }
     }
 
