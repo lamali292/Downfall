@@ -4,7 +4,7 @@ using Champ.ChampCode.Events;
 using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Champ.ChampCode.Relics;
-
+//todo Defensive stance keyword
 [Pool(typeof(ChampRelicPool))]
 public class DefensiveThesis() : ChampRelicModel(RelicRarity.Uncommon), IModifyDefensiveFinisherBonus
 {

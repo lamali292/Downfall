@@ -36,6 +36,7 @@ public class SoulStone() : HexaghostRelicModel(RelicRarity.Rare)
         _ = DoActivateVisuals();
         await HexaghostCmd.Ignite(ctx, card.Owner);
     }
+    //todo should happen after here and now + should let the player advance if it ignites a ghostflame, so the end of turn advance check should happen after ethereal cards exhaust just in case
 
     private async Task DoActivateVisuals()
     {

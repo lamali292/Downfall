@@ -41,6 +41,7 @@ public class Float : HexaghostCardModel
         var a = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, canSkip: true);
         switch (a)
         {
+            //todo Do Nothing option
             case FloatChoiceAdvance:
                 await HexaghostCmd.Advance(ctx, Owner, this);
                 break;

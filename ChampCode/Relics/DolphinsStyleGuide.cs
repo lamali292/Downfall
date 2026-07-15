@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Relics;
-
+//todo stance keyword
 [Pool(typeof(ChampRelicPool))]
 public class DolphinsStyleGuide() : ChampRelicModel(RelicRarity.Uncommon)
 {

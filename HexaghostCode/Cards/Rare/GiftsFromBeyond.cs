@@ -12,7 +12,7 @@ public class GiftsFromBeyond : HexaghostCardModel
     public GiftsFromBeyond() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        WithPower<GiftsFromBeyondPower>(1);
+        this.WithPower<GiftsFromBeyondPower>(1,false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

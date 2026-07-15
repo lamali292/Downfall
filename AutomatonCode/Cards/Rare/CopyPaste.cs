@@ -13,7 +13,7 @@ public class CopyPaste : AutomatonCardModel
     public CopyPaste() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        WithPower<CopyPastePower>(1);
+        this.WithPower<CopyPastePower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

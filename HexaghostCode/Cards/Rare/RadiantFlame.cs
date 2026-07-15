@@ -13,7 +13,7 @@ public class RadiantFlame : HexaghostCardModel
 {
     public RadiantFlame() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<RadiantFlamePower>(2, 1);
+        this.WithPower<RadiantFlamePower>(2, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 
