@@ -14,7 +14,7 @@ public class PlatedArmorPower : DownfallPowerModel
         DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (target != Owner || result.UnblockedDamage == 0) return;
+        if (target != Owner || result.UnblockedDamage == 0 || !props.IsPoweredAttack()) return;
         await PowerCmd.Decrement(this);
     }
 
