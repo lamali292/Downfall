@@ -19,8 +19,8 @@ public class Philosophize : AutomatonCardModel
 {
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
-        this.WithPower<PhilosophizePower>(2, 2, false);
+        WithKeyword(CardKeyword.Ethereal);
+        this.WithPower<PhilosophizePower>(3, 2, false);
         this.WithTip<StrengthPower>();
     }
 
