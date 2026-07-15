@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
@@ -35,17 +36,14 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
     public static IEnumerable<CardModel> GetSneckoCards(Player player)
     {
 
-        var cards = GetSneckoPools(player).SelectMany(e => e.AllCards);
+        var cards = GetSneckoPools(player).SelectMany(e => CardFactory.FilterForPlayerCount(player.RunState, e.AllCards));
         if (cards != null && cards.Any())
         {
             return cards;
         }
-        else
-        {
-            return ModelDb.AllCharacters
+        return ModelDb.AllCharacters
             .Where(e => e != player.Character)
             .ToList().Select(c => c.CardPool).ToList().SelectMany(e => e.AllCards);
-        }
     }
 
     public static IEnumerable<CardModel> GetRewardSneckoCards(Player player, Func<CardModel, bool>? filter = null)
