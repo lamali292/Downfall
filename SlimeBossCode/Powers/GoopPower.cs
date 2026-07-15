@@ -41,8 +41,7 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
             return Task.CompletedTask;
         var internalData = GetInternalData<Data>();
         if (internalData.CommandToModify != null ||
-            (command.ModelSource != null && command.ModelSource is not CardModel) ||
-            !command.DamageProps.IsPoweredAttack())
+            (command.ModelSource != null && command.ModelSource is not CardModel))
             return Task.CompletedTask;
         internalData.CommandToModify = command;
         internalData.AmountWhenAttackStarted = Amount;
@@ -65,7 +64,6 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
                 internalData.CommandToModify.Attacker != dealer)
             ? 0M
             : Amount * (cardSource is IDoubleGoopBonus ? 2M : 1M);
-        ;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
@@ -79,22 +77,7 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
             return;
         }
 
-        var amount = Amount;
-        var creature = Owner;
-        var removeAmount = -internalData.AmountWhenAttackStarted;
-        var newAmount = SlimeBossHook.ModifyGoopConsume(CombatState, removeAmount, out var consumes, creature, Applier);
-        await SlimeBossHook.AfterModifyingGoopConsume(CombatState, consumes, creature, Applier);
-        await PowerCmd.ModifyAmount(ctx, this, newAmount, null, null);
-        internalData.CommandToModify = null;
-        if (command.ModelSource is IHasConsumeEffect slimeBossCardModel)
-            await slimeBossCardModel.ConsumeEffect(ctx, creature, command, amount);
-
-
-        var entry = new ConsumeEntry(creature, amount, attacker, CombatState.RoundNumber, attacker.Side,
-            CombatManager.Instance.History, CombatState.Players);
-        CombatManager.Instance.History.Add(CombatState, entry);
-
-        await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, attacker, amount);
+        await ConsumeGoop(ctx, Owner, attacker, command);
     }
 
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
@@ -103,23 +86,32 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariab
         var internalData = GetInternalData<Data>();
         var attacker = Applier;
         if (attacker == null || internalData.CommandToModify == null) return;
-        
+
+        await ConsumeGoop(choiceContext, creature, attacker, internalData.CommandToModify);
+    }
+
+    private async Task ConsumeGoop(PlayerChoiceContext ctx, Creature creature, Creature attacker, AttackCommand command)
+    {
+        var internalData = GetInternalData<Data>();
         var amount = Amount;
         var removeAmount = -internalData.AmountWhenAttackStarted;
-        var newAmount = SlimeBossHook.ModifyGoopConsume(CombatState, removeAmount, out var consumes, creature, Applier);      
-        
+        var newAmount = SlimeBossHook.ModifyGoopConsume(CombatState, removeAmount, out var consumes, creature, Applier);
+
         await SlimeBossHook.AfterModifyingGoopConsume(CombatState, consumes, creature, Applier);
-        await PowerCmd.ModifyAmount(choiceContext, this, newAmount, null, null);
-        if (internalData.CommandToModify.ModelSource is IHasConsumeEffect slimeBossCardModel)
-            await slimeBossCardModel.ConsumeEffect(choiceContext, creature, internalData.CommandToModify, amount);
-        
+        await PowerCmd.ModifyAmount(ctx, this, newAmount, null, null);
+
+        if (command.ModelSource is IHasConsumeEffect slimeBossCardModel)
+            await slimeBossCardModel.ConsumeEffect(ctx, creature, command, amount);
+
         internalData.CommandToModify = null;
+
         var entry = new ConsumeEntry(creature, amount, attacker, CombatState.RoundNumber, attacker.Side,
             CombatManager.Instance.History, CombatState.Players);
         CombatManager.Instance.History.Add(CombatState, entry);
-        await SlimeBossHook.AfterConsumeEffect(CombatState, choiceContext, creature, attacker, amount);
+
+        await SlimeBossHook.AfterConsumeEffect(CombatState, ctx, creature, attacker, amount);
     }
-    
+
     private class Data
     {
         public int AmountWhenAttackStarted;
