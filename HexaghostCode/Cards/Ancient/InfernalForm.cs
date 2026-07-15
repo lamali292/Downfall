@@ -14,6 +14,7 @@ public class InfernalForm : HexaghostCardModel
     {
         this.WithPower<InfernalFormPower>(2, 1, false);
         WithKeyword(CardKeyword.Innate);
+        this.WithTip<IntensityPower>();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

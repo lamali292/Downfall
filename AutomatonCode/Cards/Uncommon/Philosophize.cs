@@ -1,22 +1,26 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
+using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Guardian.GuardianCode.Cards.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Philosophize : AutomatonCardModel, IEncodable, ICompilable
+public class Philosophize : AutomatonCardModel
 {
-    public Philosophize() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVar("EnemyStrength", 2, -1);
-        WithPower<StrengthPower>(1);
+        WithKeyword(CardKeyword.Exhaust);
+        this.WithPower<PhilosophizePower>(2, 2, false);
         this.WithTip<StrengthPower>();
     }
 
@@ -24,11 +28,16 @@ public class Philosophize : AutomatonCardModel, IEncodable, ICompilable
     
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public Task OnCompile(PlayerChoiceContext ctx)
+    //todo Philosophize -> 1 - Ethereal. Whenever you draw this card, gain 2 (4) Strength this turn. (this kind of stuff should synergize with stash). ethereal exhausting cards should happen before clean code similar to well laid plans
+    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
+        CardModel card, bool fromHandDraw)
     {
-        if (Owner.Creature.CombatState == null) return Task.CompletedTask;
-        var enemies = Owner.Creature.CombatState.HittableEnemies;
-        return PowerCmd.Apply<StrengthPower>(ctx, enemies, DynamicVars["EnemyStrength"].BaseValue,
+        if (CombatState == null || card != this) return;
+
+        await PowerCmd.Apply<PhilosophizePower>(choiceContext, Owner.Creature,
+            DynamicVars.Power<PhilosophizePower>().BaseValue * await GeneratePlayCount(CombatState, null),
             Owner.Creature, this);
     }
+    
+    public class PhilosophizePower : CustomTemporaryPowerModelWrapper<Philosophize, StrengthPower>;
 }

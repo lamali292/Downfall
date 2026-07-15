@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Relics;
-
+//todo echo and stance keywords
 [Pool(typeof(ChampRelicPool))]
 public class SpectresHand() : ChampRelicModel(RelicRarity.Rare), IOnChampStanceChange
 {

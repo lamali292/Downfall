@@ -10,7 +10,7 @@ public class Magazine : HermitCardModel
 {
     public Magazine() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<MagazinePower>(6, 3);
+        this.WithPower<MagazinePower>(6, 3, false);
         WithTip(CardKeyword.Retain);
     }
 

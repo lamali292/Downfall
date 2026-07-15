@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
-
+//todo stasis keyword
 [Pool(typeof(GuardianRelicPool))]
 public class BottledBlackHole : GuardianRelicModel
 {

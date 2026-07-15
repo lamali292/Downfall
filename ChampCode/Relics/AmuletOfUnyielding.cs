@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Relics;
-
+//todo strength and vigor keywords
 [Pool(typeof(ChampRelicPool))]
 public class AmuletOfUnyielding() : ChampRelicModel(RelicRarity.Rare)
 {

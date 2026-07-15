@@ -16,6 +16,8 @@ public class Convert : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
 
+    
+    //todo stash instead of discard pile
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

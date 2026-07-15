@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
-
+//todo stasis keyword
 [Pool(typeof(GuardianRelicPool))]
 public class PilotsCodex() : GuardianRelicModel(RelicRarity.Rare)
 {
