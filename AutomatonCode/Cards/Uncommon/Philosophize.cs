@@ -19,8 +19,8 @@ public class Philosophize : AutomatonCardModel
 {
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
-        this.WithPower<PhilosophizePower>(2, 2, false);
+        WithKeyword(CardKeyword.Ethereal);
+        this.WithPower<PhilosophizePower>(3, 2, false);
         this.WithTip<StrengthPower>();
     }
 
@@ -28,7 +28,6 @@ public class Philosophize : AutomatonCardModel
     
     protected override Artist Artist => Artist.Get<Opal>();
 
-    //todo Philosophize -> 1 - Ethereal. Whenever you draw this card, gain 2 (4) Strength this turn. (this kind of stuff should synergize with stash). ethereal exhausting cards should happen before clean code similar to well laid plans
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
