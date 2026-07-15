@@ -20,7 +20,7 @@
     "AWAKENED-BURNOUT_POWER.title": "燃尽",
     "AWAKENED-BURNOUT_POWER.description": "直到本回合结束，你不能[gold]念咒[/gold]。",
     "AWAKENED-BURNOUT_POWER.smartDescription": "接下来[blue]{Amount}[/blue]个回合内，你不能[gold]念咒[/gold]。",
-    "AWAKENED-CHOSEN_VERSE_POWER.title": "被拣选的诗句",
+    "AWAKENED-CHOSEN_VERSE_POWER.title": "圣诗",
     "AWAKENED-CHOSEN_VERSE_POWER.description": "本回合下次你打出非攻击牌时，抽一张牌并获得[gold]格挡[/gold]。",
     "AWAKENED-CHOSEN_VERSE_POWER.smartDescription": "本回合你下[blue]{Amount}[/blue]次打出非攻击牌时，抽一张牌并获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "AWAKENED-CLARION_CALL_POWER.title": "号召",
