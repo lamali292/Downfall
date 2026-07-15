@@ -12,7 +12,7 @@ public class IntoShadow : HexaghostCardModel
 {
     public IntoShadow() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<IntoShadowPower>(1);
+        this.WithPower<IntoShadowPower>(1,false);
         WithTip(CardKeyword.Exhaust);
         WithTip(HexaghostKeyword.Retract);
         WithCostUpgradeBy(-1);

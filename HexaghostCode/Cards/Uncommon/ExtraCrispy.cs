@@ -12,7 +12,7 @@ public class ExtraCrispy : HexaghostCardModel
 {
     public ExtraCrispy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ExtraCrispyPower>(6, 2);
+        this.WithPower<ExtraCrispyPower>(6, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

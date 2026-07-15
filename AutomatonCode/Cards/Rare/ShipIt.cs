@@ -18,7 +18,7 @@ public class ShipIt : AutomatonCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
+    //todo If the Stash was full, Exhaust.
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

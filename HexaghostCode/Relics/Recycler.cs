@@ -12,6 +12,7 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class Recycler() : HexaghostRelicModel(RelicRarity.Uncommon)
 {
+    //todo ethereal and exhaust keywords
     private bool _usedThisCombat;
 
     private bool UsedThisCombat

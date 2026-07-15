@@ -10,6 +10,7 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class PaperCrow() : AwakenedRelicModel(RelicRarity.Uncommon), IModifyManaburnDamage
 {
+    //todo manaburn keyword
     public decimal ModifyManaburnDamage(decimal amount, decimal original, Player player)
     {
         if (Owner != player) return amount;

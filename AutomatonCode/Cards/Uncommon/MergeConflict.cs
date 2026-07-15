@@ -18,7 +18,7 @@ public class MergeConflict : AutomatonCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
+ //todo make only work on functions (remove status antisynergy)
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)

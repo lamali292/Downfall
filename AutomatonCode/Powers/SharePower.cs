@@ -10,6 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class SharePower : AutomatonPowerModel
 {
+    //todo gives block to the character with the least block
     protected override async Task AfterBlockGained(
         PlayerChoiceContext ctx, 
         Creature creature, 

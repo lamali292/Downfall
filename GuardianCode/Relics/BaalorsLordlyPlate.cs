@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 
 namespace Guardian.GuardianCode.Relics;
-
+//todo brace keyword
 [Pool(typeof(GuardianRelicPool))]
 public class BaalorsLordlyPlate() : GuardianRelicModel(RelicRarity.Common), IModifyBraceAmount
 {
