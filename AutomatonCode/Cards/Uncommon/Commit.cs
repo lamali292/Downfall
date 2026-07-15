@@ -23,7 +23,7 @@ public class Commit : AutomatonCardModel
 
     protected override bool ShouldGlowGoldInternal => WasLastCardPlayedFunction;
 
-    private bool WasLastCardPlayedFunction => CombatManager.Instance.History.CardPlaysFinished
+    private bool WasLastCardPlayedFunction => CombatManager.Instance.History.CardPlaysStarted
         .LastOrDefault(e =>
             e.CardPlay.Card.Owner == Owner &&
             e.CardPlay.Card != this)?.CardPlay.Card is FunctionCard;

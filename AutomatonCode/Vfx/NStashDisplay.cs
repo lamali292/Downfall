@@ -90,9 +90,12 @@ public partial class NStashDisplay : NSlotRevealDisplay
 
     // --- Public surface (matches the old StashQueueDisplay) ---
 
-    public static NStashDisplay? GetDisplay(Player player)
+    public static NStashDisplay? GetDisplay(Player owner)
     {
-        return Displays.GetValueOrDefault(player);
+        if (Displays.TryGetValue(owner, out var display) && IsInstanceValid(display))
+            return display;
+        Displays.Remove(owner);
+        return null;
     }
 
     public int GetQueueCount()
