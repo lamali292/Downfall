@@ -15,7 +15,9 @@ public class Convert : AutomatonCardModel
         WithDamage(9, 1);
         WithUpgradingCardTip<Fuel>();
     }
-
+    
+//todo transform a status in the stash instead of discard pile
+    
     protected override bool ShouldGlowGoldInternal => Owner.GetDiscard(e => e.Type == CardType.Status).Any();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

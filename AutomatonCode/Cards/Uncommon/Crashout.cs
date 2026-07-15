@@ -11,7 +11,7 @@ public class Crashout : AutomatonCardModel
 {
     public Crashout() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<CrashoutPower>(10, 5);
+        this.WithPower<CrashoutPower>(10, 5, false);
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
