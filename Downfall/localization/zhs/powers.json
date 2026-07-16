@@ -30,7 +30,6 @@
     "DOWNFALL-TEMP_HP_POWER.description": "直到战斗结束，阻止你受到的生命值损失。",
     "DOWNFALL-TEMP_HP_POWER.smartDescription": "直到战斗结束，阻止你受到的生命值损失[blue]{Amount}[/blue]点。",
     "DOWNFALL-SOUL_BURN_POWER.title": "灼魂",
-    "DOWNFALL-SOUL_BURN_POWER.description": "在你的[blue]3[/blue]个回合后，此敌人在敌人回合开始时失去生命值，然后移除所有[gold]灼魂[/gold]层数。",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "在你的[blue]{Turns}[/blue]个回合后，此敌人在敌人回合开始时失去[blue]{Amount}[/blue]点生命值，然后移除所有[gold]灼魂[/gold]层数。",
     "DOWNFALL-ENERGIZED_POWER.title": "激励",
     "DOWNFALL-ENERGIZED_POWER.description": "在每回合开始时获得{energyPrefix:energyIcons(1)}。",

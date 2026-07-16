@@ -97,7 +97,6 @@
     "AWAKENED-SPELLSHIELD_POWER.smartDescription": "每当你[gold]保留[/gold]一张牌时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "AWAKENED-SPLIT_WIDE_POWER.title": "劈破",
     "AWAKENED-SPLIT_WIDE_POWER.description": "每当你攻击此敌人时，你在一回合内获得[gold]力量[/gold]。",
-    "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "每当你攻击此敌人时，你在一回合内获得[blue]{Amount}[/blue]点[gold]力量[/gold]。",
     "AWAKENED-STORM_RULER_POWER.title": "雷震子",
     "AWAKENED-STORM_RULER_POWER.description": "你的[gold]雷霆[/gold]造成额外伤害。",
     "AWAKENED-STORM_RULER_POWER.smartDescription": "你的[gold]雷霆[/gold]造成[blue]{Amount}[/blue]点额外伤害。",
