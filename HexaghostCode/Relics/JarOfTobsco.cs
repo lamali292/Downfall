@@ -10,9 +10,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class JarOfTobsco() : HexaghostRelicModel(RelicRarity.Common)
+public class JarOfTobsco : HexaghostRelicModel
 {
-    //todo Intensity keyword
+    public JarOfTobsco() : base(RelicRarity.Common)
+    {
+        WithTip<IntensityPower>();
+    }
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
