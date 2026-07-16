@@ -27,7 +27,6 @@
     "HERMIT-CHARRED_GLOVE.description": "저주를 뽑거나 생성할 때마다, [blue]{VigorPower}[/blue] [gold]활력[/gold]을 얻습니다.",
     "HERMIT-CLASPED_LOCKET.title": "잠긴 로켓",
     "HERMIT-CLASPED_LOCKET.flavor": "더 이상 열리지 않습니다.",
-    "HERMIT-CLASPED_LOCKET.description": "매 턴 처음으로 저주를 뽑을 때, 그 카드를 [gold]소멸[/gold]시키고 카드를 [blue]{Cards}[/blue]장 뽑습니다.\n획득 시, [blue]{Curses}[/blue]장의 [gold]부상[/gold]을 얻습니다.",
     "HERMIT-STRAIGHT_RAZOR.title": "면도칼",
     "HERMIT-STRAIGHT_RAZOR.flavor": "더 깔끔한 면도를 위해...",
     "HERMIT-STRAIGHT_RAZOR.description": "덱에서 카드를 제거하거나 [gold]변화[/gold]시킬 때마다, [blue]{Heal}[/blue] 만큼 체력을 회복합니다.",

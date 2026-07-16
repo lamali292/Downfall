@@ -124,7 +124,6 @@
     "HERMIT-DETERMINATION.title": "Détermination",
     "HERMIT-DETERMINATION.description": "Lorsqu'un Débuff vous est appliqué, gagnez {DeterminationPower:diff()} de [gold]Force[/gold].",
     "HERMIT-SHOWDOWN.title": "Showdown",
-    "HERMIT-SHOWDOWN.description": "Infligez {Damage:diff()} dégâts.\nJouez toutes vos [gold]Frappes[/gold] dans votre [gold]Main[/gold].",
     "HERMIT-LUCK_OF_THE_DRAW.title": "Chance du Tirage",
     "HERMIT-LUCK_OF_THE_DRAW.description": "Piochez des cartes jusqu'à ce que leur coût total soit de {Threshold:diff()} ou plus.",
     "HERMIT-COALESCENCE.title": "Coalescence",

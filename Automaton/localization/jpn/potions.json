@@ -1,6 +1,5 @@
 {
     "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.title": "アルキリカルエリクサー",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "次に作成する関数は、コスト0でプレイできる。",
     "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "キオの巧みな調合薬",
     "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "ランダムな[blue]3[/blue]枚のカードから[blue]1[/blue]枚を選んで[gold]エンコード[/gold]する。これを関数が作成されるまで繰り返す。",
     "AUTOMATON-VEXING_DRAUGHT_POTION.title": "危険な薬",

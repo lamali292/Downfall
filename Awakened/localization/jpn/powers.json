@@ -97,7 +97,6 @@
     "AWAKENED-SPELLSHIELD_POWER.smartDescription": "カードを[gold]保留[/gold]するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AWAKENED-SPLIT_WIDE_POWER.title": "引き裂き",
     "AWAKENED-SPLIT_WIDE_POWER.description": "この敵を攻撃するたび、このターン[gold]筋力[/gold]を得る。",
-    "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "この敵を攻撃するたび、このターン[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "AWAKENED-STORM_RULER_POWER.title": "ストームルーラー",
     "AWAKENED-STORM_RULER_POWER.description": "[gold]雷撃[/gold]が追加ダメージを与える。",
     "AWAKENED-STORM_RULER_POWER.smartDescription": "[gold]雷撃[/gold]が[blue]{Amount}[/blue]の追加ダメージを与える。",
