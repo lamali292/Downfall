@@ -42,7 +42,6 @@
     "AUTOMATON-CLEAN_CODE_POWER.title": "클린 코드",
     "AUTOMATON-CLEAN_CODE_POWER.description": "턴 종료 시, 카드를 [gold]보관[/gold]할 수 있습니다.",
     "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "턴 종료 시, 카드를 {Amount:plural:1장|[blue]{}[/blue]장} [gold]보관[/gold]할 수 있습니다.",
-    "AUTOMATON-SELF_REPAIR_POWER.title": "자가 수리",
     "AUTOMATON-SELF_REPAIR_POWER.description": "전투 종료 시, 체력을 회복합니다.",
     "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "전투 종료 시, 체력을 [blue]{Amount}[/blue] 회복합니다.",
     "AUTOMATON-REPULSE_POWER.title": "반발력",
@@ -67,6 +66,5 @@
     "AUTOMATON-COPY_PASTE_POWER.description": "이번 턴에 다음으로 내는 비용이 {energyPrefix:energyIcons(1)} 이하인 카드를 한 번 더 사용합니다.",
     "AUTOMATON-COPY_PASTE_POWER.smartDescription": "이번 턴에 다음으로 내는 비용이 {energyPrefix:energyIcons(1)} 이하인 카드 {Amount:plural:1장|[blue]{}[/blue]장}을 한 번 더 사용합니다.",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "연금술 영약",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "다음 생성하는 함수는 이번 턴에 비용이 0입니다.",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "다음 생성하는 함수 {Amount:plural:1개|[gold]{}[/gold]개}는 비용이 0입니다."
 }

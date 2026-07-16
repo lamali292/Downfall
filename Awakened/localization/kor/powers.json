@@ -97,7 +97,6 @@
     "AWAKENED-SPELLSHIELD_POWER.smartDescription": "카드를 [gold]보존[/gold]할 때마다 {Amount}의 [gold]방어도[/gold]를 얻습니다.",
     "AWAKENED-SPLIT_WIDE_POWER.title": "갈라진 틈",
     "AWAKENED-SPLIT_WIDE_POWER.description": "이 적을 공격할 때마다 이번 턴 동안 [gold]힘[/gold]을 얻습니다.",
-    "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "이 적을 공격할 때마다 이번 턴 동안 [blue]{Amount}[/blue]의 [gold]힘[/gold]을 얻습니다.",
     "AWAKENED-STORM_RULER_POWER.title": "폭풍의 지배자",
     "AWAKENED-STORM_RULER_POWER.description": "[gold]낙뢰[/gold]가 추가 피해를 줍니다.",
     "AWAKENED-STORM_RULER_POWER.smartDescription": "[gold]낙뢰[/gold]가 [blue]{Amount}[/blue]의 추가 피해를 줍니다.",

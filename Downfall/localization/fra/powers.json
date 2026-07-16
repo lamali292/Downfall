@@ -30,7 +30,6 @@
     "DOWNFALL-TEMP_HP_POWER.description": "Jusqu'à la fin du combat, empêche les dégâts sur les PV.",
     "DOWNFALL-TEMP_HP_POWER.smartDescription": "Jusqu'à la fin du combat, empêche [blue]{Amount}[/blue] dégâts sur les PV.",
     "DOWNFALL-SOUL_BURN_POWER.title": "Brûlure",
-    "DOWNFALL-SOUL_BURN_POWER.description": "Après [blue]3[/blue] tours, cet ennemi perd des PV au début du tour de l'Ennemi, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Dans [blue]{Turns}[/blue] {Turns:plural:tour|tours}, cet ennemi perd [blue]{Amount}[/blue] PV au début du tour de l'Ennemi, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-ENERGIZED_POWER.title": "Énergisé",
     "DOWNFALL-ENERGIZED_POWER.description": "Gagnez {energyPrefix:energyIcons(1)} au début de chaque tour.",

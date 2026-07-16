@@ -28,7 +28,6 @@
     "HERMIT-CHARRED_GLOVE.description": "呪いを引くか生成するたび、[gold]活力[/gold][blue]{VigorPower}[/blue]を得る。",
     "HERMIT-CLASPED_LOCKET.title": "留め具付きのロケット",
     "HERMIT-CLASPED_LOCKET.flavor": "もう開かなくなってしまった。",
-    "HERMIT-CLASPED_LOCKET.description": "毎ターン最初に呪いを引いた時、それを[gold]廃棄[/gold]してカードを[blue]{Cards}[/blue]枚引く。\n入手時、[gold]負傷[/gold]を[blue]{Curses}[/blue]枚入手する。",
     "HERMIT-STRAIGHT_RAZOR.title": "直刃の剃刀",
     "HERMIT-STRAIGHT_RAZOR.flavor": "より綺麗な剃り心地を……",
     "HERMIT-STRAIGHT_RAZOR.description": "[gold]デッキ[/gold]からカードを除去または[gold]変化[/gold]させるたび、HPを[blue]{Heal}[/blue]回復する。",

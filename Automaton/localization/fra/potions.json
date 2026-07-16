@@ -1,0 +1,8 @@
+{
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.title": "Élixir Alchylique",
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "La prochaine Fonction que vous créez est gratuite à jouer.",
+    "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "Savant Mélange de Kio",
+    "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "Choisissez [blue]1[/blue] carte parmi [blue]3[/blue] cartes aléatoires à [gold]Encoder[/gold], répétez ceci jusqu'à ce que vous ayez créé une Fonction.",
+    "AUTOMATON-VEXING_DRAUGHT_POTION.title": "Breuvage Épuisant",
+    "AUTOMATON-VEXING_DRAUGHT_POTION.description": "Gagnez [blue]{StrengthPower:diff()}[/blue] de [gold]Force[/gold].\nGagnez [blue]{DexterityPower:diff()}[/blue] de [gold]Dextérité[/gold].\n[gold]Réservez[/gold] [blue]2[/blue] [gold]Brûlures[/gold]."
+}
