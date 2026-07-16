@@ -12,7 +12,7 @@ public class Overwhelming : SneckoCardModel
     public Overwhelming() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithPower<OverwhelmingPower>(1);
+        this.WithPower<OverwhelmingPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

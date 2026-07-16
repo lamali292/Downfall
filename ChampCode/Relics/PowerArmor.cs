@@ -11,10 +11,16 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Relics;
-//todo strength, vigor, and counter keywords
 [Pool(typeof(ChampRelicPool))]
-public class PowerArmor() : ChampRelicModel(RelicRarity.Shop)
+public class PowerArmor : ChampRelicModel
 {
+    public PowerArmor() : base(RelicRarity.Rare)
+    {
+        WithTip<StrengthPower>();
+        WithTip<VigorPower>();
+        WithTip<CounterPower>();
+    }
+    
     private const int Cap = 10;
 
     public override async Task BeforeHandDraw(

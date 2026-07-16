@@ -12,7 +12,8 @@ public class Fountain : SneckoCardModel
 {
     public Fountain() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<FountainPower>(4, 2);
+        this.WithTip<VenomPower>();
+        this.WithPower<FountainPower>(4, 2, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

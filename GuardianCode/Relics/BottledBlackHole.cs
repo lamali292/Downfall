@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Enchantments;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -7,13 +8,14 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
-//todo stasis keyword
+
 [Pool(typeof(GuardianRelicPool))]
 public class BottledBlackHole : GuardianRelicModel
 {
     public BottledBlackHole() : base(RelicRarity.Uncommon)
     {
         WithTip<Temporal>();
+        WithTip(GuardianTip.Stasis);
     }
     
     public override bool HasUponPickupEffect => true;
