@@ -23,8 +23,6 @@ public class Philosophize : AutomatonCardModel
         this.WithPower<PhilosophizePower>(3, 2, false);
         this.WithTip<StrengthPower>();
     }
-
-    public IEnumerable<Encodable> Encodings => [new StrengthEncode()];
     
     protected override Artist Artist => Artist.Get<Opal>();
 
@@ -37,6 +35,6 @@ public class Philosophize : AutomatonCardModel
             DynamicVars.Power<PhilosophizePower>().BaseValue * await GeneratePlayCount(CombatState, null),
             Owner.Creature, this);
     }
-    
-    public class PhilosophizePower : CustomTemporaryPowerModelWrapper<Philosophize, StrengthPower>;
 }
+
+public class PhilosophizePower : CustomTemporaryPowerModelWrapper<Philosophize, StrengthPower>;
