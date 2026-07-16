@@ -121,7 +121,6 @@
     "HERMIT-DETERMINATION.title": "결의",
     "HERMIT-DETERMINATION.description": "나에게 디버프가 부여될 때마다, {DeterminationPower:diff()} [gold]힘[/gold]을 얻습니다.",
     "HERMIT-SHOWDOWN.title": "결전",
-    "HERMIT-SHOWDOWN.description": "{Damage:diff()} 피해를 줍니다.\n[gold]손패[/gold]에 있는 모든 [gold]타격[/gold]을 사용합니다.",
     "HERMIT-LUCK_OF_THE_DRAW.title": "도박사의 행운",
     "HERMIT-LUCK_OF_THE_DRAW.description": "카드 비용의 합이 {Threshold:diff()} 이상이 될 때까지 카드를 뽑습니다.",
     "HERMIT-COALESCENCE.title": "유착",
