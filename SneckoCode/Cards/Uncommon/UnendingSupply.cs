@@ -11,7 +11,8 @@ public class UnendingSupply : SneckoCardModel
 {
     public UnendingSupply() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<UnendingSupplyPower>(1);
+        //todo echo keyword
+        this.WithPower<UnendingSupplyPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
