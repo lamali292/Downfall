@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Awakened.AwakenedCode.Relics;
 
 [Pool(typeof(AwakenedRelicPool))]
+//todo conjure and ritual keywords
 public class ShreddedDoll() : AwakenedRelicModel(RelicRarity.Starter)
 {
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
