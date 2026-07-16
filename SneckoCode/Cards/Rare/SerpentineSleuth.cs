@@ -19,7 +19,7 @@ public class SerpentineSleuth : SneckoCardModel, IHasGift
             Rarity = CardRarity.Rare,
             Type = CardType.Power
         });
-        WithPower<SerpentineSleuthPower>(1, 1);
+        this.WithPower<SerpentineSleuthPower>(1, 1, false);
         WithEnergy(1, 1);
         WithKeyword(CardKeyword.Ethereal);
     }

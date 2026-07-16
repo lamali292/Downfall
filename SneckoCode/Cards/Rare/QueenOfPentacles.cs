@@ -20,7 +20,7 @@ public class QueenOfPentacles : SneckoCardModel, IHasGift
             IsDebuff = true
         });
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithPower<QueenOfPentaclesPower>(4);
+        this.WithPower<QueenOfPentaclesPower>(4, false);
         WithTip(StaticHoverTip.Block);
     }
 
