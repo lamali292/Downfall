@@ -19,17 +19,10 @@ using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IAddDumbVariablesToPowerDescription, IModifyDamageAdditive
+public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IModifyDamageAdditive
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-
-
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
-    }
-
-
+    
     protected override object InitInternalData()
     {
         return new Data();
