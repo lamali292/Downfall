@@ -4,6 +4,7 @@ using Godot;
 
 namespace Downfall.DownfallCode.Abstract;
 
+
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
     protected DownfallCharacterModel()

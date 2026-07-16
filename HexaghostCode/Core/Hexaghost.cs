@@ -11,7 +11,9 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Core;
 
+#pragma warning disable STS001
 public class Hexaghost : DownfallCharacterModel
+#pragma warning restore STS001
 {
     private static readonly Color Color = new(0x723E6DFF);
     public override Color EnergyLabelOutlineColor  => Color;

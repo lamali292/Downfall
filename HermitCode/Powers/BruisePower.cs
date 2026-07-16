@@ -38,7 +38,6 @@ public sealed class BruisePower() : HermitPowerModel(PowerType.Debuff), IAddDumb
     
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
         description.Add("HasBigBruiser", HasBigBruiser);
     }
 

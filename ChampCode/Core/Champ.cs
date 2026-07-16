@@ -12,7 +12,9 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Core;
 
+#pragma warning disable STS001
 public class Champ : DownfallCharacterModel
+#pragma warning restore STS001
 {
     private static readonly Color Color = new(0x5E594FFF);
     public override Color EnergyLabelOutlineColor  => new(0x464203FF);

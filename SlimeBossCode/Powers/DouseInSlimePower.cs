@@ -9,14 +9,10 @@ using SlimeBoss.SlimeBossCode.Events;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class DouseInSlimePower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IModifyGoopConsume
+public class DouseInSlimePower : SlimeBossPowerModel, IModifyGoopConsume
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
-    }
+    
 
     public int ModifyGoopConsume(int amount, Creature creature, Creature? applier)
     {

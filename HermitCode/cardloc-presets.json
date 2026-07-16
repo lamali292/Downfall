@@ -52,6 +52,11 @@
           "name": "selectionScreenPrompt",
           "file": "powers.json",
           "optional": true
+        },
+        {
+          "name": "remoteDescription",
+          "file": "powers.json",
+          "optional": true
         }
       ]
     },
