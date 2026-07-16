@@ -12,7 +12,7 @@ public class Tsunami : SneckoCardModel
 {
     public Tsunami() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<TsunamiPower>(4, 1);
+        this.WithPower<TsunamiPower>(4, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

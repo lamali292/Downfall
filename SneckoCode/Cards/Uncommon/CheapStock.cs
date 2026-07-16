@@ -13,7 +13,7 @@ public class CheapStock : SneckoCardModel
 {
     public CheapStock() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<CheapStockPower>(1, 1);
+        this.WithPower<CheapStockPower>(1, 1, false);
         WithTip(SneckoKeywords.Muddle);
     }
 

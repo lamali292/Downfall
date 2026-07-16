@@ -8,10 +8,15 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Relics;
-//todo strength and vigor keywords
+
 [Pool(typeof(ChampRelicPool))]
-public class AmuletOfUnyielding() : ChampRelicModel(RelicRarity.Rare)
+public class AmuletofUnyielding : ChampRelicModel
 {
+    public AmuletofUnyielding() : base(RelicRarity.Rare)
+    {
+        WithTip<StrengthPower>();
+        WithTip<VigorPower>();
+    }
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
         CardModel? cardSource)

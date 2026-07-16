@@ -14,7 +14,7 @@ public class MudShield : SneckoCardModel
 {
     public MudShield() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<MudShieldPower>(2, 1);
+        this.WithPower<MudShieldPower>(2, 1, false);
         WithTip(StaticHoverTip.Block);
         WithTip(SneckoKeywords.Muddle);
     }

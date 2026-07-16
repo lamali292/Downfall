@@ -12,8 +12,8 @@ public class BlunderGuard : SneckoCardModel
 {
     public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<BlunderGuardPower>(6, 2);
-        WithPower<BlunderGuardTwoPower>(2, 1);
+        this.WithPower<BlunderGuardPower>(6, 2, false);
+        this.WithPower<BlunderGuardTwoPower>(2, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
