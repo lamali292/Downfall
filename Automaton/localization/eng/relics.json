@@ -31,5 +31,6 @@
   "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Look closely.",
   "AUTOMATON-SILVER_BULLET.title": "Silver Bullet",
   "AUTOMATON-SILVER_BULLET.description": "Whenever you create a Status, deal [blue]{Damage:diff()}[/blue] damage to ALL enemies. ",
-  "AUTOMATON-SILVER_BULLET.flavor": "Spirewolves are long gone."
+  "AUTOMATON-SILVER_BULLET.flavor": "Spirewolves are long gone.",
+  "SEA_GLASS.AUTOMATON-AUTOMATON.title": "Codon Glass"
 }
