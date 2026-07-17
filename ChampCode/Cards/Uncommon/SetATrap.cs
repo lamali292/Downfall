@@ -14,7 +14,7 @@ public class SetATrap : ChampCardModel, IDefensiveComboCard
     public SetATrap() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithBlock(8, 2);
-        WithPower<WeakPower>(2, 1);
+        WithPower<WeakPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

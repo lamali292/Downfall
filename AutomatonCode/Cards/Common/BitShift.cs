@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,6 +13,7 @@ public class BitShift : AutomatonCardModel
     public BitShift() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(1, 3);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

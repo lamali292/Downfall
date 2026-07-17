@@ -5,6 +5,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -14,6 +15,7 @@ public class ClassDefault : AutomatonCardModel
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<ClassDefaultPower>(3, 1, false);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -17,6 +17,7 @@ public class SummonOrb : AutomatonCardModel
     {
         this.WithPower<SummonOrbPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

@@ -19,7 +19,7 @@ public class SnakeEyes : SneckoCardModel, IHasGift
             Rarity = CardRarity.Rare,
             Type = CardType.Skill
         });
-        WithPower<SnakeEyesPower>(1, 1);
+        this.WithPower<SnakeEyesPower>(1, 1, false);
     }
 
     public Gift? Gift { get; set; }

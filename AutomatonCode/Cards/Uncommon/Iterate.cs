@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -16,6 +17,7 @@ public class Iterate : AutomatonCardModel
     {
         WithDamage(4);
         this.WithRepeat(2,1);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
