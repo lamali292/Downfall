@@ -76,6 +76,7 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IModifyDamageA
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
         bool wasRemovalPrevented, float deathAnimLength)
     {
+        if (creature != Owner) return;
         var internalData = GetInternalData<Data>();
         var attacker = Applier;
         if (attacker == null || internalData.CommandToModify == null) return;
