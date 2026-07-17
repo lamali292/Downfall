@@ -27,7 +27,7 @@ public class IllTakeThat : CollectorCardModel
         var stolenBlock = Math.Min(cardPlay.Target.Block, DynamicVars["IllTakeThat"].IntValue);
         if (stolenBlock > 0)
         {
-            await CreatureCmd.LoseBlock(cardPlay.Target, stolenBlock);
+            await CreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, ValueProp.Move | ValueProp.Unpowered, cardPlay);
         }
 

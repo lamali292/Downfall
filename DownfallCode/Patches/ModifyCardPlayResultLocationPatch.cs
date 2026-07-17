@@ -79,7 +79,7 @@ public static class ModifyCardPlayResultLocationOldPatch
     {
         var result = DownfallHook.Modify<IModifyCardPlayResultLocation, CardLocationCompatiblity>(
             combatState,
-            new CardLocationCompatiblity(null, __result.Item1, __result.Item2),
+            new CardLocationCompatiblity(card.Owner, __result.Item1, __result.Item2),
             (m, loc) => m.ModifyCardPlayResultLocationCompability(card, isAutoPlay, resources, loc),
             out var compatModifiers);
 

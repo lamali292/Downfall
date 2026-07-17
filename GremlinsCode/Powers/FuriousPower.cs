@@ -1,4 +1,5 @@
-﻿using Gremlins.GremlinsCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,7 +17,7 @@ public class FuriousPower() : GremlinsPowerModel(PowerType.Buff, PowerStackType.
         CardModel? cardSource)
     {
         if (creature != Owner || amount <= 0 || Owner.Player == null) return;
-        await CreatureCmd.LoseBlock(creature, amount);
+        await DownfallCreatureCmd.LoseBlock(ctx, Owner, amount, Owner);
         var attack = DamageCmd.Attack(amount);
         attack.Attacker = Owner;
         attack._attackerAnimName = "Attack";

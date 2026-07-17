@@ -1,5 +1,6 @@
 ﻿using Gremlins.GremlinsCode.Events;
 using Gremlins.GremlinsCode.Vfx;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -65,7 +66,7 @@ public static class GremlinsCmd
         }
 
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
-        await ctx.SignalPlayerChoiceBegun(PlayerChoiceOptions.None);
+        await ctx.SignalPlayerChoiceBegunCompatibility(player, PlayerChoiceOptions.None);
 
         Creature? chosen;
         if (LocalContext.IsMe(player))
