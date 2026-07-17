@@ -30,7 +30,6 @@
     "CHAMP-SIGNATURE_FINISHER.description": "획득 시, [gold]마무리[/gold] 카드 한 장에 [purple]본능(Signature)[/purple]을 부여합니다.",
     "CHAMP-SIGNATURE_FINISHER.flavor": "이제, 내 필살기를 보여줄 시간이다!",
     "CHAMP-SPECTRES_HAND.title": "망령의 손",
-    "CHAMP-SPECTRES_HAND.description": "[gold]태세[/gold]를 취할 때마다 기본 [gold]타격[/gold] 또는 [gold]수비[/gold]의 [gold]메아리[/gold]를 얻습니다.\n이번 턴에 비용이 0입니다.",
     "CHAMP-SPECTRES_HAND.flavor": "어떤 승리는 당신과 함께 남는다.",
     "CHAMP-VICTORIOUS_CROWN.title": "승리의 왕관",
     "CHAMP-VICTORIOUS_CROWN.description": "전투 시작 시 무작위 [gold]태세[/gold]로 시작하며, 해당 [gold]태세[/gold]의 [gold]스킬 보너스[/gold]를 두 번 발동합니다.\n매 턴 처음으로 [gold]마무리[/gold]를 사용하면, 카드를 [blue]2[/blue]장 뽑고 무작위 [gold]태세[/gold]를 취합니다.",

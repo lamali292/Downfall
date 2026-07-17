@@ -86,7 +86,7 @@
   "SNECKO-OVERWHELMING.description": "The first time you play an [gold]Offclass[/gold] card each turn, draw a card.",
   "SNECKO-OVERWHELMING.title": "Overwhelming",
   "SNECKO-PERPETUAL_SERPENT.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]: Gain {Energy:energyIcons()}.",
-  "SNECKO-PERPETUAL_SERPENT.title": "Perpetual Serpent",
+  "SNECKO-PERPETUAL_SERPENT.title": "Ouroboros",
   "SNECKO-POWER_SHOT.description": "Deal {Damage:diff()} damage.\nWhenever you play a Power, return this from the [gold]Discard Pile[/gold] to your [gold]Hand[/gold].",
   "SNECKO-POWER_SHOT.title": "Power Shot",
   "SNECKO-QUEEN_OF_PENTACLES.description": "Whenever you apply a debuff to an enemy, gain {QueenOfPentaclesPower:diff()} [gold]Block[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Debuff.} ",

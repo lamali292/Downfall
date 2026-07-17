@@ -28,5 +28,6 @@
   "HEXAGHOST-SPIRIT_BRAND.flavor": "A bound protector.",
   "HEXAGHOST-THE_BROKEN_SEAL.title": "The Broken Seal",
   "HEXAGHOST-THE_BROKEN_SEAL.description": "Upon pickup, raise your Max HP by [blue]6[/blue], then heal all of your HP. Start each combat with [blue]1[/blue] [gold]Strength[/gold], [gold]Dexterity[/gold], and [gold]Intensity[/gold]. You can not receive [gold]The Broken Seal[/gold] and other [gold]Seals[/gold] again.",
-  "HEXAGHOST-THE_BROKEN_SEAL.flavor": "Unlimited, unrestrained, unquenchable power."
+  "HEXAGHOST-THE_BROKEN_SEAL.flavor": "Unlimited, unrestrained, unquenchable power.",
+  "SEA_GLASS.HEXAGHOST-HEXAGHOST.title": "Phantom Glass"
 }

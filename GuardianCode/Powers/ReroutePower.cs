@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class ReroutePower : GuardianPowerModel
+public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
 {
     private CardModel? _cardSource;
 
@@ -17,27 +18,26 @@ public class ReroutePower : GuardianPowerModel
         _cardSource = cardSource;
         return Task.CompletedTask;
     }
+    
 
-
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
-        CardModel card, bool isAutoPlay,
-        ResourceInfo resources, PileType pileType, CardPilePosition position)
+    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         var player = card.Owner;
         if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) || card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
-            return (pileType, position);
+            return cardLocation;
 
         var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
-        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? (pileType, position) : (stasisPile.Type, position);
+        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? cardLocation : new CardLocationCompatiblity(card.Owner, stasisPile.Type, CardPilePosition.Bottom);
     }
 
-    public override async Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
-        CardPilePosition position)
+    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
     {
         GuardianCmd.SetStasisCounter(card);
         card.EnergyCost.AfterCardPlayedCleanup();
         await PowerCmd.Decrement(this);
     }
+    
 
     public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

@@ -10,14 +10,14 @@
             localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
         </DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <AssemblyVersion>0.0.30.0</AssemblyVersion>
-        <FileVersion>0.0.30.0</FileVersion>
-        <Version>0.0.30</Version>
+        <AssemblyVersion>0.0.32.0</AssemblyVersion>
+        <FileVersion>0.0.32.0</FileVersion>
+        <Version>0.0.32</Version>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
-        <BaseLibVersion>3.3.5</BaseLibVersion>
+        <BaseLibVersion>3.3.6</BaseLibVersion>
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
 

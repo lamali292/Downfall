@@ -30,7 +30,7 @@
     "DOWNFALL-TEMP_HP_POWER.description": "戦闘終了時まで、ダメージを防ぐ。",
     "DOWNFALL-TEMP_HP_POWER.smartDescription": "戦闘終了時まで、[blue]{Amount}[/blue]ダメージを防ぐ。",
     "DOWNFALL-SOUL_BURN_POWER.title": "ソウルバーン",
-    "DOWNFALL-SOUL_BURN_POWER.description": "[blue]3[/blue]ターン後の敵のターン開始時、この敵はHPを失い、すべての[gold]ソウルバーン[/gold]を取り除く。",
+    "DOWNFALL-SOUL_BURN_POWER.description": "[blue]3[/blue]ターン後、この敵は自身のターン開始時にHPを失い、その後[gold]ソウルバーン[/gold]は取り除かれる。",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]ターン後の敵のターン開始時、この敵はHPを[blue]{Amount}[/blue]失い、すべての[gold]ソウルバーン[/gold]を取り除く。",
     "DOWNFALL-ENERGIZED_POWER.title": "エナジー化",
     "DOWNFALL-ENERGIZED_POWER.description": "ターン開始時、{energyPrefix:energyIcons(1)}を得る。",

@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -6,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class ComboPower : HermitPowerModel
+public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
 {
     public override int DisplayAmount => Math.Max(0, Amount - GetInternalData<Data>().DeadOnCardsPlayed);
 
@@ -14,20 +15,20 @@ public sealed class ComboPower : HermitPowerModel
     {
         return new Data();
     }
-
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card,
-        bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
+    
+    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         if (
             GetInternalData<Data>().DeadOnCardsPlayed >= Amount
             || card.Owner.Creature != Owner
             || !HermitCmd.IsDeadOn(card)
         )
-            return (pileType, position);
+            return cardLocation;
 
         Flash();
         SetDeadOnCardsPlayed(GetInternalData<Data>().DeadOnCardsPlayed + 1);
-        return (PileType.Hand, CardPilePosition.Bottom);
+        return new CardLocationCompatiblity(card.Owner, PileType.Hand, CardPilePosition.Bottom);
     }
 
     public override Task AfterSideTurnStart(CombatSide side,

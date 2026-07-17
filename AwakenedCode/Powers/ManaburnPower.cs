@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class ManaburnPower : AwakenedPowerModel, IOnDrained, IAddDumbVariablesToPowerDescription
+public class ManaburnPower : AwakenedPowerModel, IOnDrained
 {
     public ManaburnPower() : base(PowerType.Debuff)
     {
@@ -23,11 +23,7 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained, IAddDumbVariablesTo
 
 
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("IsApplierYou", LocalContext.IsMe(Applier));
-    }
+    
 
     public async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
