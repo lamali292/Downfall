@@ -11,7 +11,7 @@ public class SnekBite : SneckoCardModel
 {
     public SnekBite() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(8, 2);
+        WithDamage(8, 1);
         this.WithMuddle(1, 1);
     }
 

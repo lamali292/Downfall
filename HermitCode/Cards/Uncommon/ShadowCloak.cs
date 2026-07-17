@@ -4,6 +4,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -13,6 +14,7 @@ public sealed class ShadowCloak : HermitCardModel
     {
         this.WithPower<ShadowCloakPower>(4, 2, false);
         WithTip(CardKeyword.Exhaust);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
