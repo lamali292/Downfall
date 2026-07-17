@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Champ.ChampCode.Powers;
 
-public class GladiatorFormPower : ChampPowerModel, IModifyDamageAdditive
+public class GladiatorFormPower : ChampPowerModel, IModifyDamageMultiplicative
 {
     /*
      * old GladiatorFormPower

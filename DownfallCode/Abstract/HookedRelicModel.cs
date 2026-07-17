@@ -96,19 +96,7 @@ public abstract class HookedRelicModel(bool autoAdd = true) : CustomRelicModel(a
     {
         return Task.CompletedTask;
     }
-
-    public sealed override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType,
-        CardPilePosition position)
-    {
-        return ExecuteWithContext(ctx => AfterModifyingCardPlayResultPileOrPosition(ctx, card, pileType, position));
-    }
-
-    protected virtual Task AfterModifyingCardPlayResultPileOrPosition(PlayerChoiceContext card, CardModel pileType,
-        PileType position, CardPilePosition cardPilePosition)
-    {
-        return Task.CompletedTask;
-    }
-
+    
     public sealed override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
         return ExecuteWithContext(ctx => AfterCardChangedPiles(ctx, card, oldPileType, clonedBy));
