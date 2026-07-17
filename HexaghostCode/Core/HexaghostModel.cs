@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Ghostflames;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -71,16 +72,13 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         if (card.CombatState == null || card is not IHasAfterlifeEffect afterlifeEffect) return;
         var a = card.CombatState.RunState.Rng.CombatTargets.NextItem(card.CombatState.HittableEnemies);
         if (a == null) return;
-        var cardPlay = new CardPlay
+        var cardPlay = CardPlayCompat.Create(card, a, PileType.Exhaust, new ResourceInfo
         {
-            Card = card,
-            Target = a,
-            ResultPile = PileType.Exhaust,
-            Resources = default,
-            IsAutoPlay = true,
-            PlayIndex = 0,
-            PlayCount = 0
-        };
+            EnergySpent = 0,
+            EnergyValue = 0,
+            StarsSpent = 0,
+            StarValue = 0
+        });
         await afterlifeEffect.AfterlifeEffect(ctx, cardPlay);
     }
 

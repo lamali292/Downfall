@@ -40,5 +40,6 @@
   "HERMIT-BLACK_POWDER.description": "Whenever you trigger a [gold]Dead On[/gold] effect, deal [blue]{Damage}[/blue] damage to ALL enemies.",
   "HERMIT-BROKEN_TOOTH.title": "Broken Tooth",
   "HERMIT-BROKEN_TOOTH.flavor": "Appears too large to have come from a human jaw...",
-  "HERMIT-BROKEN_TOOTH.description": "Whenever you defeat an Elite encounter, heal [blue]{Heal}[/blue] HP and gain [blue]{Gold}[/blue] gold."
+  "HERMIT-BROKEN_TOOTH.description": "Whenever you defeat an Elite encounter, heal [blue]{Heal}[/blue] HP and gain [blue]{Gold}[/blue] gold.",
+  "SEA_GLASS.HERMIT-HERMIT.title": "Drifter Glass"
 }

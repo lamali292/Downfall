@@ -159,7 +159,7 @@
     "AWAKENED-SCHEME.title": "スキーム",
     "AWAKENED-SCOUR.description": "{Damage:diff()}ダメージを与える。\n[gold]マナバーン[/gold]{ManaburnPower:diff()}を付与する。",
     "AWAKENED-SCOUR.title": "スカー",
-    "AWAKENED-SIGN_IN_BLOOD.description": "{HpLoss:diff()}ダメージを受ける。\nカードを{Cards:diff()}枚引く。\n[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
+    "AWAKENED-SIGN_IN_BLOOD.description": "HPを{HpLoss:diff()}失う。\nカードを{Cards:diff()}枚引く。\n[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
     "AWAKENED-SIGN_IN_BLOOD.title": "血の署名",
     "AWAKENED-SINGULARITY_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン、{BlockNextTurnPower:diff()}[gold]ブロック[/gold]を得て、{Energy:energyIcons()}を失う。",
     "AWAKENED-SINGULARITY_SHIELD.title": "特異点の盾",

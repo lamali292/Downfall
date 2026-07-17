@@ -124,7 +124,7 @@
     "HERMIT-DETERMINATION.title": "決意",
     "HERMIT-DETERMINATION.description": "デバフを受けるたび、[gold]筋力[/gold]{DeterminationPower:diff()}を得る。",
     "HERMIT-SHOWDOWN.title": "ショーダウン",
-    "HERMIT-SHOWDOWN.description": "{Damage:diff()}ダメージを与える。\n[gold]手札[/gold]のすべての[gold]ストライク[/gold]をプレイする。",
+    "HERMIT-SHOWDOWN.description": "{Damage:diff()}ダメージを与える。\n[gold]手札[/gold]のすべての[gold]基本[/gold][gold]ストライク[/gold]をプレイする。",
     "HERMIT-LUCK_OF_THE_DRAW.title": "クジ運",
     "HERMIT-LUCK_OF_THE_DRAW.description": "引いたカードの合計コストが{Threshold:diff()}以上になるまでカードを引く。",
     "HERMIT-COALESCENCE.title": "融合",

@@ -22,6 +22,7 @@ public class Apocryphra : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
+    // todo : fix so it applies to all
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);

@@ -1,6 +1,6 @@
 {
   "CHAMP-AMULET_OF_UNYIELDING.title": "Amulet of Unyielding",
-  "CHAMP-AMULET_OF_UNYIELDING.description": "Whenever you spend [gold]Vigor[/gold], gain [blue]1[/blue] [gold]Strength[/gold] for every [blue]12[/blue] [gold]Vigor[/gold] spent.",
+  "CHAMP-AMULET_OF_UNYIELDING.description": "Whenever you spend [gold]Vigor[/gold], gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] for every [blue]{VigorPower}[/blue] [gold]Vigor[/gold] spent.",
   "CHAMP-AMULET_OF_UNYIELDING.flavor": "Strength once thought fleeting flows through you as if it had always been there.",
   "CHAMP-BERSERKERS_GUIDE.title": "Berserker's Guide",
   "CHAMP-BERSERKERS_GUIDE.description": "At the start of your turn, gain [blue]3[/blue] [gold]Vigor[/gold].",
@@ -34,5 +34,6 @@
   "CHAMP-SPECTRES_HAND.flavor": "Some victories stay with you.",
   "CHAMP-VICTORIOUS_CROWN.title": "Victorious Crown",
   "CHAMP-VICTORIOUS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], and then trigger that [gold]Stance[/gold]'s [gold]Skill Bonus[/gold] twice.\nThe first time you play a [gold]Finisher[/gold] each turn, draw [blue]2[/blue] cards and enter a random [gold]Stance[/gold].",
-  "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! You are the greatest winner."
+  "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! You are the greatest winner.",
+  "SEA_GLASS.CHAMP-CHAMP.title": "Gladiator Glass"
 }

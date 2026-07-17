@@ -21,7 +21,7 @@ public class EdibleArmor : GremlinsCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var block = Owner.Creature.Block;
-        await CreatureCmd.LoseBlock(Owner.Creature, block);
+        await CreatureCmd.LoseBlock(ctx, Owner.Creature, block, Owner.Creature);
         await DownfallCmd.GainTempHp(ctx, this, block);
     }
 }
