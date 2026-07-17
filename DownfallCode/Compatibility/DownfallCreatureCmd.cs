@@ -103,7 +103,7 @@ public static class DownfallCreatureCmd
         // Old: LoseBlock(Creature, int)
         var oldMethod = typeof(CreatureCmd).GetMethod("LoseBlock",
             BindingFlags.Public | BindingFlags.Static, null,
-            [typeof(Creature), typeof(int)], null);
+            [typeof(Creature), typeof(decimal)], null);
 
         var ctx     = Expression.Parameter(typeof(PlayerChoiceContext), "ctx");
         var target  = Expression.Parameter(typeof(Creature), "target");
@@ -118,8 +118,7 @@ public static class DownfallCreatureCmd
         else if (oldMethod != null)
         {
             // ctx and remover dropped; decimal truncated to int like a C# explicit cast
-            call = Expression.Call(oldMethod, target,
-                Expression.Convert(amount, typeof(int)));
+            call = Expression.Call(oldMethod, target, amount);
         }
         else
         {
