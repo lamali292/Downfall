@@ -74,7 +74,8 @@ public class DownfallPatchManager
 
              .Add(typeof(DeathInterceptPatch))
              .Add(typeof(CustomPowerIconPatch))
-             .Add(typeof(CardOverlayPatches));
+             .Add(typeof(CardOverlayPatches))
+             .Add(typeof(AncientSeaGlassConsolePatch));
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait

@@ -31,5 +31,6 @@
   "SLIMEBOSS-STONE_OF_NOMAKK.flavor": "When presented to one of your Goop Gang, it seems to make the blob dance.",
   "SLIMEBOSS-TARR_BLOB.title": "Tarr Blob",
   "SLIMEBOSS-TARR_BLOB.description": "At the start of each combat, lose [blue]{Decrease}[/blue] Slime {Decrease:plural:slot|slots}.\nAt the start of your turn, gain {Energy:energyIcons()}.",
-  "SLIMEBOSS-TARR_BLOB.flavor": "The bad kind of Slime."
+  "SLIMEBOSS-TARR_BLOB.flavor": "The bad kind of Slime.",
+  "SEA_GLASS.SLIMEBOSS-SLIME_BOSS.title": "Legion Glass"
 }

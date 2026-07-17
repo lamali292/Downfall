@@ -31,5 +31,6 @@
   "GUARDIAN-SACK_OF_GEMS.flavor": "Ooh... shiny!",
   "GUARDIAN-WANDER_BOTS.title": "Wander Bots",
   "GUARDIAN-WANDER_BOTS.description": "At the start of each combat, lose [blue]1[/blue] [gold]Stasis[/gold] slot. Gain {Energy:energyIcons()} at the start of your turn.",
-  "GUARDIAN-WANDER_BOTS.flavor": "These drones find the most wonderful salvage, but require processing power to maintain."
+  "GUARDIAN-WANDER_BOTS.flavor": "These drones find the most wonderful salvage, but require processing power to maintain.",
+  "SEA_GLASS.GUARDIAN-GUARDIAN.title": "Thorny Glass"
 }

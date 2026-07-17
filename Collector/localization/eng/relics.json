@@ -28,5 +28,6 @@
   "COLLECTOR-THE_CONTRACT.flavor": "Sign in blood.",
   "COLLECTOR-THIMBLE_HELM.title": "Thimble Helm",
   "COLLECTOR-THIMBLE_HELM.description": "At the start of combat [gold]Kindle[/gold] [blue]3[/blue]. While [gold]Torchhead[/gold] is alive, cards grant [blue]1[/blue] additional [gold]Block[/gold].",
-  "COLLECTOR-THIMBLE_HELM.flavor": "Worn by the Spire's miniest heroes."
+  "COLLECTOR-THIMBLE_HELM.flavor": "Worn by the Spire's miniest heroes.",
+  "SEA_GLASS.COLLECTOR-COLLECTOR.title": "Greed Glass"
 }
