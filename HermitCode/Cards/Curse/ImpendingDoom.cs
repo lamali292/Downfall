@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -49,16 +50,13 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
 
     protected override async Task OnTurnEndInHand(PlayerChoiceContext ctx)
     {
-        var cardPlay = new CardPlay
+        var cardPlay = CardPlayCompat.Create(this, null, PileType.Discard, new ResourceInfo
         {
-            Card = this,
-            Target = null,
-            ResultPile = PileType.Discard,
-            Resources = default,
-            IsAutoPlay = true,
-            PlayIndex = 0,
-            PlayCount = 1
-        };
+            EnergySpent = 0,
+            EnergyValue = 0,
+            StarsSpent = 0,
+            StarValue = 0
+        }, playCount: 1);
         await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
     }
     
