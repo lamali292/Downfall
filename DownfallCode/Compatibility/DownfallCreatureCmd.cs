@@ -79,4 +79,53 @@ public static class DownfallCreatureCmd
         var call = Expression.Call(method, callArgs.Cast<Expression>());
         return Expression.Lambda<TDelegate>(call, lambdaParams).Compile();
     }
+    
+    
+    
+    public static Task LoseBlock(
+        PlayerChoiceContext choiceContext, Creature target, decimal amount, Creature? remover)
+        => LoseBlockImpl(choiceContext, target, amount, remover);
+
+// --- plumbing ---
+
+    private delegate Task LoseBlockDel(
+        PlayerChoiceContext ctx, Creature target, decimal amount, Creature? remover);
+
+    private static readonly LoseBlockDel LoseBlockImpl = BuildLoseBlock();
+
+    private static LoseBlockDel BuildLoseBlock()
+    {
+        // New: LoseBlock(PlayerChoiceContext, Creature, decimal, Creature?)
+        var newMethod = typeof(CreatureCmd).GetMethod("LoseBlock",
+            BindingFlags.Public | BindingFlags.Static, null,
+            [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(Creature)], null);
+
+        // Old: LoseBlock(Creature, int)
+        var oldMethod = typeof(CreatureCmd).GetMethod("LoseBlock",
+            BindingFlags.Public | BindingFlags.Static, null,
+            [typeof(Creature), typeof(int)], null);
+
+        var ctx     = Expression.Parameter(typeof(PlayerChoiceContext), "ctx");
+        var target  = Expression.Parameter(typeof(Creature), "target");
+        var amount  = Expression.Parameter(typeof(decimal), "amount");
+        var remover = Expression.Parameter(typeof(Creature), "remover");
+
+        Expression call;
+        if (newMethod != null)
+        {
+            call = Expression.Call(newMethod, ctx, target, amount, remover);
+        }
+        else if (oldMethod != null)
+        {
+            // ctx and remover dropped; decimal truncated to int like a C# explicit cast
+            call = Expression.Call(oldMethod, target,
+                Expression.Convert(amount, typeof(int)));
+        }
+        else
+        {
+            throw new MissingMethodException("CreatureCmd.LoseBlock not found in either known signature");
+        }
+
+        return Expression.Lambda<LoseBlockDel>(call, ctx, target, amount, remover).Compile();
+    }
 }
