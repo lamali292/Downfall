@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
@@ -9,24 +10,24 @@ using MegaCrit.Sts2.Core.Models;
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class NaughtySpirit : HexaghostCardModel
+public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
 {
     public NaughtySpirit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<SoulBurnPower>(3, 2);
         WithTip(HexaghostKeyword.Retract);
     }
-
-
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
-        CardModel card, bool isAutoPlay,
-        ResourceInfo resources, PileType pileType, CardPilePosition position)
+    
+    
+    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
-        if (this != card || !HexaghostCmd.IsIgnited(card.Owner)) return (pileType, position);
+        if (this != card || !HexaghostCmd.IsIgnited(card.Owner)) return cardLocation;
 
-        return (PileType.Hand, position);
+        return new CardLocationCompatiblity(card.Owner, PileType.Hand, CardPilePosition.Bottom);
     }
-
+    
+    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.ResultPile != PileType.Hand || this != cardPlay.Card) return;

@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Patches;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Patches;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -76,9 +77,16 @@ public class DownfallPatchManager
              .Add(typeof(CardOverlayPatches));
 
 
-        patcher.Add(AccessTools.Method(typeof(NCard), "UpdatePortrait") != null
+        patcher.Add(GameVersion.HasNCardUpdatePortrait
             ? typeof(NCardUpdatePortraitPatch)
             : typeof(NCardReloadPortraitPatch)); 
+        
+        if (GameVersion.HasCardLocation)
+            patcher.Add(typeof(ModifyCardPlayResultLocationNewPatch)) 
+                .Add(typeof(AfterModifyingLocationNewPatch));
+        else
+            patcher.Add(typeof(ModifyCardPlayResultLocationOldPatch))
+                .Add(typeof(AfterModifyingLocationOldPatch));
         
         patcher.PatchAll();
         
