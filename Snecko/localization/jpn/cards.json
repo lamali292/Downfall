@@ -86,7 +86,7 @@
     "SNECKO-OVERWHELMING.description": "毎ターン最初に[gold]他クラス[/gold]のカードをプレイした時、カードを1枚引く。",
     "SNECKO-OVERWHELMING.title": "圧倒",
     "SNECKO-PERPETUAL_SERPENT.description": "{Damage:diff()}ダメージを与える。\n[gold]オーバーフロー[/gold]：{Energy:energyIcons()}を得る。",
-    "SNECKO-PERPETUAL_SERPENT.title": "不滅の蛇",
+    "SNECKO-PERPETUAL_SERPENT.title": "ウロボロス",
     "SNECKO-POWER_SHOT.description": "{Damage:diff()}ダメージを与える。\nパワーをプレイするたび、このカードを[gold]捨て札[/gold]から[gold]手札[/gold]に戻す。",
     "SNECKO-POWER_SHOT.title": "パワーショット",
     "SNECKO-QUEEN_OF_PENTACLES.description": "敵にデバフを付与するたび、{QueenOfPentaclesPower:diff()}[gold]ブロック[/gold]を得る。{InCombat:cond:|\n[gold]ギフト[/gold]：デバフ。}",

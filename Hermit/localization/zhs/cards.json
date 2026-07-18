@@ -124,6 +124,7 @@
     "HERMIT-DETERMINATION.title": "决心",
     "HERMIT-DETERMINATION.description": "每当你获得负面效果时，获得{DeterminationPower:diff()}点[gold]力量[/gold]。",
     "HERMIT-SHOWDOWN.title": "决战",
+    "HERMIT-SHOWDOWN.description": "造成{Damage:diff()}点伤害。\n打出[gold]手牌[/gold]中的所有[gold]打击[/gold]。",
     "HERMIT-LUCK_OF_THE_DRAW.title": "神抽",
     "HERMIT-LUCK_OF_THE_DRAW.description": "抽牌直到总耗能不小于{Threshold:diff()}。",
     "HERMIT-COALESCENCE.title": "唤魂",

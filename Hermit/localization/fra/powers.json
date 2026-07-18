@@ -24,7 +24,6 @@
     "HERMIT-ADAPT_POWER.smartDescription": "Au début de votre tour, [gold]Épuisez[/gold] jusqu'à [blue]{Amount}[/blue] {Amount:plural:carte|cartes} pour gagner [blue]8[/blue] [gold]d'Armure[/gold] pour chaque carte.",
     "HERMIT-ADAPT_POWER.title": "Adaptation",
     "HERMIT-BRUISE_POWER.description": "Ce tour, vos Attaques infligent des dégâts supplémentaires à la cible.",
-    "HERMIT-BRUISE_POWER.smartDescription": "Ce tour, {HasBigBruiser:|{IsApplierYou:vos Attaques|les Attaques de [orange]{ApplierName}[/orange]}} infligent [blue]{Amount}[/blue] dégâts supplémentaires à la cible.",
     "HERMIT-BRUISE_POWER.title": "Contusion",
     "HERMIT-HORROR_POWER.description": "La Contusion ne s'estompera pas ce tour.",
     "HERMIT-HORROR_POWER.smartDescription": "La Contusion ne s'estompera pas {Amount:plural:ce tour|pendant [blue]{Amount}[/blue] tours}.",

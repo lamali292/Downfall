@@ -175,7 +175,6 @@
     "AWAKENED-SPELLSHIELD.title": "마법 방패",
     "AWAKENED-SPEW.description": "{Damage:diff()}의 피해를 줍니다.\n이 카드에 소비된 {energyPrefix:energyIcons(1)}는 [gold]고갈[/gold]된 것으로 간주됩니다.",
     "AWAKENED-SPEW.title": "뿜어내기",
-    "AWAKENED-SPLIT_WIDE.description": "{Damage:diff()}의 피해를 줍니다.\n이 적을 공격할 때마다 이번 턴 동안 {SplitWidePower:diff()}의 [gold]힘[/gold]을 얻습니다.",
     "AWAKENED-SPLIT_WIDE.title": "갈라진 틈",
     "AWAKENED-SPREADING_SPORES.description": "{ThornsPower:diff()}의 [gold]가시[/gold]를 얻습니다.\n이 카드의 복사본을 [gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.",
     "AWAKENED-SPREADING_SPORES.title": "퍼지는 포자",

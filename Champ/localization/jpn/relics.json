@@ -1,6 +1,6 @@
 {
     "CHAMP-AMULET_OF_UNYIELDING.title": "不屈のアミュレット",
-    "CHAMP-AMULET_OF_UNYIELDING.description": "[gold]活力[/gold]を[blue]12[/blue]消費するたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "CHAMP-AMULET_OF_UNYIELDING.description": "[gold]活力[/gold]を[blue]{VigorPower}[/blue]消費するたび、[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。",
     "CHAMP-AMULET_OF_UNYIELDING.flavor": "かつては儚いものと思われていた力が、まるで最初から自分の中にあったかのように、あなたの内を流れている。",
     "CHAMP-BERSERKERS_GUIDE.title": "バーサーカーの心得",
     "CHAMP-BERSERKERS_GUIDE.description": "ターン開始時、[gold]活力[/gold][blue]3[/blue]を得る。",

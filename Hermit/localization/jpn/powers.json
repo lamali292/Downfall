@@ -24,7 +24,7 @@
     "HERMIT-ADAPT_POWER.smartDescription": "ターン開始時、カードを最大[blue]{Amount}[/blue]枚[gold]廃棄[/gold]し、1枚につき[blue]8[/blue][gold]ブロック[/gold]を得る。",
     "HERMIT-ADAPT_POWER.title": "適応",
     "HERMIT-BRUISE_POWER.description": "このターン、あなたの攻撃は対象に追加ダメージを与える。",
-    "HERMIT-BRUISE_POWER.smartDescription": "このターン、{HasBigBruiser:|{IsApplierYou:あなたの|[orange]{ApplierName}[/orange]の}}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "HERMIT-BRUISE_POWER.smartDescription": "このターン、{HasBigBruiser:|あなたの}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。",
     "HERMIT-BRUISE_POWER.title": "打撲",
     "HERMIT-HORROR_POWER.description": "このターン、打撲が消えない。",
     "HERMIT-HORROR_POWER.smartDescription": "[blue]{Amount}[/blue]ターンの間、打撲が消えない。",
@@ -88,5 +88,6 @@
     "HERMIT-SCOPE_OUT_POWER.smartDescription": "[gold]基本[/gold][gold]ストライク[/gold]がすべての敵にダメージを与えるようになる。",
     "HERMIT-BURDENED_POWER.title": "重荷",
     "HERMIT-BURDENED_POWER.description": "ターン開始時、[gold]活力[/gold]を得て、[gold]腐敗[/gold]を[gold]手札[/gold]に加える。",
-    "HERMIT-BURDENED_POWER.smartDescription": "ターン開始時、[gold]活力[/gold][blue]{Amount}[/blue]を得て、[gold]腐敗[/gold]を[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。"
+    "HERMIT-BURDENED_POWER.smartDescription": "ターン開始時、[gold]活力[/gold][blue]{Amount}[/blue]を得て、[gold]腐敗[/gold]を[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。",
+    "HERMIT-BRUISE_POWER.remoteDescription": "このターン、{HasBigBruiser:|[orange]{ApplierName}[/orange]の}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。"
 }
