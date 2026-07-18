@@ -1,7 +1,9 @@
-﻿using Godot;
+﻿using Downfall.DownfallCode.Utils.UI;
+using Godot;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Hexaghost.HexaghostCode.Vfx;
@@ -15,8 +17,15 @@ public partial class NGhostflames : Control
     private NFire? _fire5;
     private NFire? _fire6;
     private Node2D?[] _hitboxAnchors = [];
+    private Control?[] _hitboxes = [];
+    private NSelectionReticle?[] _reticles = [];
+    private List<Control> _reachableHitboxes = [];
     private NIntent?[] _intents = [];
     private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
+    private static readonly Vector2 ReticleVisualSize = new(44, 44);
+    // Fire sprites are positioned with their origin at the base, not their visual center —
+    // without this the bracket reads as centered too low, well below the flame itself.
+    private static readonly Vector2 ReticleCenterOffset = new(0, -22);
     private Tween? _intentTween;
     private Tween? _positionTween;
     private Player? _player;
@@ -45,6 +54,8 @@ public partial class NGhostflames : Control
             return intent;
         }).ToArray();
 
+        _hitboxes = new Control?[AllFires.Length];
+        _reticles = new NSelectionReticle?[AllFires.Length];
         _hitboxAnchors = AllFires.Select((fire, i) =>
         {
             if (fire == null) return null;
@@ -56,24 +67,53 @@ public partial class NGhostflames : Control
             hitbox.Position = -hitbox.CustomMinimumSize / 2f;
             hitbox.MouseFilter = MouseFilterEnum.Stop;
             anchor.AddChild(hitbox);
+            _hitboxes[i] = hitbox;
 
-            hitbox.Connect(Control.SignalName.MouseEntered, Callable.From(() =>
-            {
-                var flame = _currentWheel?.ElementAtOrDefault(i);
-                if (flame == null) return;
-                NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)
-                    ?.ShowHoverTips([flame.HoverTip]);
-            }));
-            hitbox.Connect(Control.SignalName.MouseExited,
-                Callable.From(() => { NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.HideHoverTips(); }));
+            // Sibling of the hitbox, centered on the same anchor origin (matches how
+            // orb.tscn positions its own SelectionReticle relative to the orb's hitbox).
+            // Sized to the flame sprite itself, not the (deliberately oversized, for easier
+            // targeting) 80x80 hitbox — otherwise the bracket reads as loose/oversized.
+            _reticles[i] = DownfallControllerNav.AttachFocusReticle(anchor, ReticleCenterOffset, ReticleVisualSize, margin: 4f);
             return anchor;
         }).ToArray();
+
+        _reachableHitboxes = _hitboxes.Where(h => h != null).Cast<Control>().ToList();
+
+        // Each hitbox gets its own hover callback keyed to its wheel index (not the
+        // wheel's rotation, which only ever changes fire/anchor positions, never identity).
+        for (var i = 0; i < _hitboxes.Length; i++)
+        {
+            var hitbox = _hitboxes[i];
+            if (hitbox == null) continue;
+            var index = i;
+            var reticle = _reticles[i];
+            DownfallControllerNav.WireHover(hitbox,
+                () =>
+                {
+                    // Matches NOrb.OnFocus: the reticle is a controller-only affordance —
+                    // mouse hover should still show the tooltip but never draw the bracket.
+                    if (NControllerManager.Instance?.IsUsingController == true) reticle?.OnSelect();
+                    var flame = _currentWheel?.ElementAtOrDefault(index);
+                    if (flame == null) return;
+                    NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.ShowHoverTips([flame.HoverTip]);
+                },
+                () =>
+                {
+                    reticle?.OnDeselect();
+                    NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.HideHoverTips();
+                });
+        }
+
+        // Ring topology: the wheel wraps around, so left/right should too.
+        DownfallControllerNav.WireChain(_reachableHitboxes, wrap: true);
     }
 
     public void Track(NCreature creatureNode, Control vfxContainer)
     {
         _creatureNode = creatureNode;
         _vfxContainer = vfxContainer;
+
+        DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
     // TODO : make transition more clean for Shrinker Beetle scaling
     public override void _Process(double delta)
@@ -115,7 +155,14 @@ public partial class NGhostflames : Control
                 intent.Rotation = -Rotation;
             }
             if (_hitboxAnchors[i] != null)
+            {
                 _hitboxAnchors[i]!.GlobalPosition = fire.GlobalPosition;
+                // Counter-rotate, same as fire/intent above: the anchor is a child of this
+                // Control (which itself spins to bring the active flame to the top), so
+                // without this the hitbox + focus reticle riding on it would tilt with the
+                // wheel instead of staying flat.
+                _hitboxAnchors[i]!.Rotation = -Rotation;
+            }
         }
     }
 
@@ -168,6 +215,12 @@ public partial class NGhostflames : Control
         }
 
         SetFirePosition(currentIndex);
+
+        // Keep controller-nav "up" from the creature landing on whichever flame is
+        // currently active/top, not always index 0 — the wheel's active flame changes
+        // independently of screen rotation as the player ignites/rotates it.
+        if (_creatureNode != null)
+            DownfallControllerNav.LinkAbove(_reachableHitboxes, _creatureNode.Hitbox, currentIndex);
     }
 
     public void RefreshCurrentIntent(GhostflameModel[] wheel, int currentIndex, Player player)
