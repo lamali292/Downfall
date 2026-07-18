@@ -85,7 +85,7 @@
     "HEXAGHOST-HEAT_CRUSH.title": "ヒートクラッシュ",
     "HEXAGHOST-HEAT_METAL.description": "{Damage:diff()}ダメージを与える。\n[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を付与する。\n[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "HEXAGHOST-HEAT_METAL.title": "ヒートメタル",
-    "HEXAGHOST-HEAT_SHIELD.description": "対象に付与されている[gold]ソウルバーン[/gold]に等しい[gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-HEAT_SHIELD.description": "対象の[gold]ソウルバーン[/gold]に等しい[gold]ブロック[/gold]を得る。{IsTargeting:cond:\n({CalculatedBlock:diff()}[gold]ブロック[/gold]を得る)|}",
     "HEXAGHOST-HEAT_SHIELD.title": "ヒートシールド",
     "HEXAGHOST-HERE_AND_NOW.description": "ターン開始時、{energyPrefix:energyIcons(1)}を得る。\nターン終了時、現在のゴーストフレイムを[gold]滅却[/gold]する。",
     "HEXAGHOST-HERE_AND_NOW.title": "今はここで",

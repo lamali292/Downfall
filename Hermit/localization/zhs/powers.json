@@ -24,7 +24,6 @@
     "HERMIT-ADAPT_POWER.smartDescription": "在你的回合开始时，[gold]消耗[/gold]至多[blue]{Amount}[/blue]张牌。每[gold]消耗[/gold]一张，获得[blue]8[/blue]点[gold]格挡[/gold]。",
     "HERMIT-ADAPT_POWER.title": "适应",
     "HERMIT-BRUISE_POWER.description": "本回合你的攻击对该目标造成额外伤害。",
-    "HERMIT-BRUISE_POWER.smartDescription": "本回合{HasBigBruiser:|{IsApplierYou:你|[orange]{ApplierName}[/orange]}}的攻击对该目标额外造成[blue]{Amount}[/blue]点伤害。",
     "HERMIT-BRUISE_POWER.title": "瘀伤",
     "HERMIT-HORROR_POWER.description": "瘀伤本回合不会消失。",
     "HERMIT-HORROR_POWER.smartDescription": "瘀伤在[blue]{Amount}[/blue]回合内不会消失。",

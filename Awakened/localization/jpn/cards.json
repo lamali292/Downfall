@@ -179,7 +179,7 @@
     "AWAKENED-SPELLSHIELD.title": "スペルシールド",
     "AWAKENED-SPEW.description": "{Damage:diff()}ダメージを与える。\nこのカードに使った{energyPrefix:energyIcons(1)}は[gold]ドレイン[/gold]として扱われる。",
     "AWAKENED-SPEW.title": "吐瀉",
-    "AWAKENED-SPLIT_WIDE.description": "{Damage:diff()}ダメージを与える。\nこの敵を攻撃するたび、このターン[gold]筋力[/gold]{SplitWidePower:diff()}を得る。",
+    "AWAKENED-SPLIT_WIDE.description": "{Damage:diff()}ダメージを与える。\nこの敵を攻撃するたび、1ターンの間[gold]筋力[/gold]{SplitWidePower:diff()}を得る。",
     "AWAKENED-SPLIT_WIDE.title": "引き裂く",
     "AWAKENED-SPREADING_SPORES.description": "[gold]トゲ[/gold]{ThornsPower:diff()}を得る。\nこのカードのコピーを1枚[gold]山札[/gold]に混ぜる。",
     "AWAKENED-SPREADING_SPORES.title": "胞子拡散",

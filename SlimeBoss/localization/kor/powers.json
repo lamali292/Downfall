@@ -1,13 +1,10 @@
 {
     "SLIMEBOSS-GOOP_POWER.title": "점액",
     "SLIMEBOSS-GOOP_POWER.description": "다음 공격이 추가 피해를 주고 [gold]소모[/gold] 효과를 발동시킵니다.",
-    "SLIMEBOSS-GOOP_POWER.smartDescription": "{IsApplierYou:당신의 다음 공격이|[orange]{ApplierName}[/orange]의 다음 공격이} [blue]{Amount}[/blue]의 추가 피해를 주고 [gold]소모[/gold] 효과를 발동시킵니다.",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "점액 투척",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "다음에 이 적을 공격할 때, [gold]점액[/gold]이 제거되지 않습니다.",
-    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "다음에 {IsApplierYou:당신이|[orange]{ApplierName}[/orange]이(가)} 이 적을 {Amount:plural:공격할 때|[blue]{}[/blue] 번 공격할 때}, {IsApplierYou:당신의|그들의} [gold]점액[/gold]이 제거되지 않습니다.",
     "SLIMEBOSS-OOZE_BATH_POWER.title": "점액질 샤워",
     "SLIMEBOSS-OOZE_BATH_POWER.description": "턴 시작 시 [gold]점액[/gold]을 얻습니다.",
-    "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "턴 시작 시 {IsMultiplayer:[orange]{ApplierName}[/orange]에게서 |}[blue]{Amount}[/blue]의 [gold]점액[/gold]을 얻습니다.",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "점액질 혀",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.description": "[gold]점액[/gold]을 부여하는 효과가 더 강력해집니다.",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.smartDescription": "[gold]점액[/gold]을 부여하는 효과가 [blue]{Amount}[/blue]만큼 더 부여됩니다.",

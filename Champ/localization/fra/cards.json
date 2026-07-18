@@ -53,7 +53,6 @@
     "CHAMP-ENCHANT_SWORD.title": "Épée enchantée",
     "CHAMP-ENCIRCLE.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis. \nGagnez {GloryPower:diff()} de [gold]Gloire[/gold] pour chaque ennemi touché.",
     "CHAMP-ENCIRCLE.title": "Encerclement",
-    "CHAMP-ENDURE.description": "Gagnez {CalculatedBlock:diff()} d'Armure,\naugmentée par la [gold]Force[/gold] au lieu de la [gold]Dextérité[/gold].\nAdoptez la [gold]Pose Défensive[/gold]. ",
     "CHAMP-ENDURE.title": "Endurance",
     "CHAMP-ENRAGED_BASH.description": "Infligez {Damage:diff()} dégâts {Repeat:plural:|{Repeat:diff()}fois}.\n[gold]Combo du Destructeur[/gold] : \nCette carte touche une fois supplémentaire ce combat.",
     "CHAMP-ENRAGED_BASH.title": "Fleuret enragé",

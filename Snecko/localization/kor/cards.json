@@ -86,7 +86,6 @@
     "SNECKO-OVERWHELMING.description": "매 턴 처음으로 [gold]타직업[/gold] 카드를 사용할 때, 카드를 1장 뽑습니다.",
     "SNECKO-OVERWHELMING.title": "압도적인 힘으로",
     "SNECKO-PERPETUAL_SERPENT.description": "{Damage:diff()} 피해를 줍니다.\n[gold]과류[/gold]:\n{Energy:energyIcons()}를 얻습니다.",
-    "SNECKO-PERPETUAL_SERPENT.title": "영겁의 뱀",
     "SNECKO-POWER_SHOT.description": "{Damage:diff()} 피해를 줍니다.\n파워 카드를 사용할 때마다, 이 카드를 [gold]버린 카드 더미[/gold]에서 [gold]손패[/gold]로 되돌립니다.",
     "SNECKO-POWER_SHOT.title": "파워 샷",
     "SNECKO-QUEEN_OF_PENTACLES.description": "적에게 해로운 효과를 적용할 때마다, {QueenOfPentaclesPower:diff()} [gold]방어도[/gold]를 얻습니다.",

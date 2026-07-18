@@ -56,7 +56,7 @@
     "CHAMP-ENCHANT_SWORD.title": "エンチャントソード",
     "CHAMP-ENCIRCLE.description": "すべての敵に{Damage:diff()}ダメージを与える。\n攻撃した敵1体につき、[gold]栄光[/gold]{GloryPower:diff()}を得る。",
     "CHAMP-ENCIRCLE.title": "包囲",
-    "CHAMP-ENDURE.description": "{CalculatedBlock:diff()}ブロックを得る。\nこのブロック値は[gold]敏捷[/gold]の代わりに[gold]筋力[/gold]の影響を受ける。\n[gold]守護[/gold]スタンスに入る。",
+    "CHAMP-ENDURE.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\nこのブロック値は[gold]敏捷[/gold]の代わりに[gold]筋力[/gold]の影響を受ける。\n[gold]守護[/gold]スタンスに入る。",
     "CHAMP-ENDURE.title": "耐える",
     "CHAMP-ENRAGED_BASH.description": "{Damage:diff()}ダメージを与える。{Repeat:plural:|(攻撃回数は{Repeat:diff()}回)}\n[gold]狂化コンボ[/gold]:\nこの戦闘中、攻撃回数が1増加する。",
     "CHAMP-ENRAGED_BASH.title": "怒りの一撃",

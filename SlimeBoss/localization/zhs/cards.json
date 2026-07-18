@@ -25,7 +25,7 @@
     "SLIMEBOSS-FORM_OF_WALL.title": "活体墙壁",
     "SLIMEBOSS-FORWARD_TACKLE.description": "造成{Damage:diff()}点伤害。\n受到{SelfDamage:inverseDiff()}伤害。\n[gold]命令[/gold]{Command:plural:|{Command:diff()}次}。",
     "SLIMEBOSS-FORWARD_TACKLE.title": "进军冲撞",
-    "SLIMEBOSS-GLOP_CHOP.description": "造成{Damage:diff()}点伤害。\n[gold]分裂[/gold]出一个随机{IfUpgraded:show:[gold]专家[/gold]|}史莱姆。\n[gold]命令[/gold]{Command:plural:|{Command:diff()}次}。",
+    "SLIMEBOSS-GLOP_CHOP.description": "造成{Damage:diff()}点伤害。\n[gold]分裂[/gold]一个随机{IfUpgraded:show:[gold]专家[/gold]|}史莱姆。\n[gold]命令[/gold]{Command:plural:|{Command:diff()}次}。",
     "SLIMEBOSS-GLOP_CHOP.title": "搭档",
     "SLIMEBOSS-GLUTTONY.description": "每回合你第一次[gold]吞食[/gold]时，\n获得一张[gold]舔舐[/gold]。",
     "SLIMEBOSS-GLUTTONY.title": "暴食",

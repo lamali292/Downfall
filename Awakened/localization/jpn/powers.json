@@ -70,7 +70,7 @@
     "AWAKENED-MAGICIANISM_POWER.smartDescription": "無色のカードをプレイするたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AWAKENED-MANABURN_POWER.title": "マナバーン",
     "AWAKENED-MANABURN_POWER.description": "あなたが[gold]ドレイン[/gold]するたび、この敵はHPを失う。",
-    "AWAKENED-MANABURN_POWER.smartDescription": "{IsApplierYou:あなた|[orange]{ApplierName}[/orange]}が[gold]ドレイン[/gold]するたび、この敵はHPを[blue]{Amount}[/blue]失う。",
+    "AWAKENED-MANABURN_POWER.smartDescription": "[gold]ドレイン[/gold]するたび、この敵はHPを[blue]{Amount}[/blue]失う。",
     "AWAKENED-MOONLIT_VISION_POWER.title": "月明かりの幻影",
     "AWAKENED-MOONLIT_VISION_POWER.description": "毎ターン最初に呪文をプレイした時、{energyPrefix:energyIcons(1)}を得る。",
     "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "毎ターン最初に[blue]{Amount}[/blue]回呪文をプレイした時、{energyPrefix:energyIcons(1)}を得る。",
@@ -97,11 +97,13 @@
     "AWAKENED-SPELLSHIELD_POWER.smartDescription": "カードを[gold]保留[/gold]するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AWAKENED-SPLIT_WIDE_POWER.title": "引き裂き",
     "AWAKENED-SPLIT_WIDE_POWER.description": "この敵を攻撃するたび、このターン[gold]筋力[/gold]を得る。",
-    "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "{IsApplierYou:あなた|[orange]{ApplierName}[/orange]}がこの敵を攻撃するたび、このターン[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
+    "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "この敵を攻撃するたび、1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "AWAKENED-STORM_RULER_POWER.title": "ストームルーラー",
     "AWAKENED-STORM_RULER_POWER.description": "[gold]雷撃[/gold]が追加ダメージを与える。",
     "AWAKENED-STORM_RULER_POWER.smartDescription": "[gold]雷撃[/gold]が[blue]{Amount}[/blue]の追加ダメージを与える。",
     "AWAKENED-THAUMATURGY_POWER.title": "魔術",
     "AWAKENED-THAUMATURGY_POWER.description": "次のターン開始時、[gold]セレモニー[/gold]を1枚得る。",
-    "AWAKENED-THAUMATURGY_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、[gold]セレモニー[/gold]を1枚得る。"
+    "AWAKENED-THAUMATURGY_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、[gold]セレモニー[/gold]を1枚得る。",
+    "AWAKENED-MANABURN_POWER.remoteDescription": "[orange]{ApplierName}[/orange]が[gold]ドレイン[/gold]するたび、この敵はHPを[blue]{Amount}[/blue]失う。",
+    "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "[orange]{ApplierName}[/orange]がこの敵を攻撃するたび、そのプレイヤーは1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。"
 }

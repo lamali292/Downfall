@@ -1,13 +1,13 @@
 {
     "SLIMEBOSS-GOOP_POWER.title": "汚泥",
     "SLIMEBOSS-GOOP_POWER.description": "次の攻撃は追加ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
-    "SLIMEBOSS-GOOP_POWER.smartDescription": "{IsApplierYou:次の攻撃|[orange]{ApplierName}[/orange]の次の攻撃}は追加で[blue]{Amount}[/blue]ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
+    "SLIMEBOSS-GOOP_POWER.smartDescription": "次の攻撃は追加で[blue]{Amount}[/blue]ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "スライム浴び",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "次にこの敵を攻撃した時、[gold]汚泥[/gold]が取り除かれない。",
-    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "次に[blue]{Amount}[/blue]回{IsApplierYou:この敵を攻撃した|[orange]{ApplierName}[/orange]がこの敵を攻撃した}時、[gold]汚泥[/gold]が取り除かれない。",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "次に[blue]{Amount}[/blue]回この敵を攻撃した時、[gold]汚泥[/gold]が取り除かれない。",
     "SLIMEBOSS-OOZE_BATH_POWER.title": "ヘドロ風呂",
     "SLIMEBOSS-OOZE_BATH_POWER.description": "ターン開始時、[gold]汚泥[/gold]を得る。",
-    "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "ターン開始時、{IsMultiplayer:[orange]{ApplierName}[/orange]から|}[gold]汚泥[/gold][blue]{Amount}[/blue]を得る。",
+    "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "ターン開始時、[gold]汚泥[/gold][blue]{Amount}[/blue]を得る。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "粘性ベロ",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.description": "[gold]汚泥[/gold]を付与する効果が、より多く付与する。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.smartDescription": "[gold]汚泥[/gold]を付与する効果が、追加で[blue]{Amount}[/blue]多く付与する。",
@@ -49,5 +49,8 @@
     "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "このターン、次にプレイした[blue]{Amount}[/blue]枚のカードが[gold]命令[/gold]を発動する。",
     "SLIMEBOSS-RECKLESSNESS_POWER.title": "無謀な行動",
     "SLIMEBOSS-RECKLESSNESS_POWER.description": "「タックル」カードがあなたに追加ダメージを与える。",
-    "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "「タックル」カードがあなたに追加で[blue]{Amount}[/blue]ダメージを与える。"
+    "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "「タックル」カードがあなたに追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "SLIMEBOSS-GOOP_POWER.remoteDescription": "[orange]{ApplierName}[/orange]の次の攻撃は追加で[blue]{Amount}[/blue]ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
+    "SLIMEBOSS-OOZE_BATH_POWER.remoteDescription": "自身のターン開始時、[orange]{ApplierName}[/orange]から[gold]汚泥[/gold][blue]{Amount}[/blue]を得る。",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "次に[blue]{Amount}[/blue]回[orange]{ApplierName}[/orange]がこの敵を攻撃した時、その[gold]汚泥[/gold]が取り除かれない。"
 }
