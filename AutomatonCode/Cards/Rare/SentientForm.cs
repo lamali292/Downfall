@@ -13,6 +13,9 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        
+        this.WithPower<SentientFormPower>( 1, false);
+        WithTip(StaticHoverTip.ReplayStatic);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 
