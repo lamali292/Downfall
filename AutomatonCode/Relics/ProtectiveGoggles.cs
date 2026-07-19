@@ -13,7 +13,7 @@ namespace Automaton.AutomatonCode.Relics;
 [Pool(typeof(AutomatonRelicPool))]
 public class ProtectiveGoggles : AutomatonRelicModel
 {
-    public ProtectiveGoggles() : base(RelicRarity.Common)
+    public ProtectiveGoggles() : base(RelicRarity.Uncommon)
     {
         WithBlock(4);
         WithTip(AutomatonTip.Encode);
