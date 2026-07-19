@@ -15,7 +15,7 @@ public class Nihil : AwakenedCardModel, IChantable
 {
     public Nihil() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<ManaburnPower>(13, 3);
+        WithPower<ManaburnPower>(13, 4);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

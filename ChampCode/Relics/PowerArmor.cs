@@ -14,7 +14,7 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class PowerArmor : ChampRelicModel
 {
-    public PowerArmor() : base(RelicRarity.Rare)
+    public PowerArmor() : base(RelicRarity.Shop)
     {
         WithTip<StrengthPower>();
         WithTip<VigorPower>();
