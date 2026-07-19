@@ -35,9 +35,12 @@ public class Iterate : AutomatonCardModel
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(ctx);
-        DynamicVars.Repeat.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+            if (cardPlay.Target == null) return;
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCardCompatibility(this, cardPlay)
+                .Targeting(cardPlay.Target)
+                .WithHitCount(DynamicVars.Repeat.IntValue)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(ctx);
     }
 }
