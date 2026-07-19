@@ -4,25 +4,32 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class ShipIt : AutomatonCardModel
 {
-    public ShipIt() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public ShipIt() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
-        WithCards(1);
-        WithTip(AutomatonTip.Stash);
+        WithKeyword(CardKeyword.Ethereal);
+        WithDamage(10, 4);
+        WithCards(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    //todo If the Stash was full, Exhaust.
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Draw(this, ctx);
-        await StashCmd.Stash(this);
     }
+    
+    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
+        CardModel card, bool fromHandDraw)
+    {
+        if (CombatState == null || card != this) return;
+        await CommonActions.Draw(this, choiceContext);
+    }
+    
+    
 }
