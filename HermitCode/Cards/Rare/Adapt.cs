@@ -4,6 +4,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -14,6 +15,7 @@ public sealed class Adapt : HermitCardModel
         this.WithPower<AdaptPower>(1, false);
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Exhaust);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

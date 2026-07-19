@@ -2,6 +2,7 @@
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Patches;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -18,6 +19,7 @@ public class CursedSkull : HermitCardModel
     public CursedSkull() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
+        WithTip(HermitKeywords.DeadOn);
         WithKeyword(CardKeyword.Exhaust);
     }
     

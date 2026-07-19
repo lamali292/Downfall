@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -14,6 +15,7 @@ public class Optimize : AutomatonCardModel
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<OptimizePower>(1, false);
+        WithTip(AutomatonTip.Stash);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

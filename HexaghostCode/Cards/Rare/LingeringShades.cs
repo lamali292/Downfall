@@ -15,6 +15,7 @@ public class LingeringShades : HexaghostCardModel
     {
         WithKeyword(HexaghostKeyword.Retract);
         WithPower<SoulBurnPower>(15, 4);
+        WithTip(CardKeyword.Ethereal);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
