@@ -15,7 +15,7 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
 {
     public Crackshot() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
-        WithDamage(8, 2);
+        WithDamage(7, 3);
     }
 
     public override bool GainsBlock => true;

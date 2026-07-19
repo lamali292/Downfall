@@ -20,7 +20,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
 
     public Snapshot() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
+        WithDamage(5, 2);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
