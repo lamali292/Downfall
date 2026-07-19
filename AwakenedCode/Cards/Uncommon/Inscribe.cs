@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,6 +18,8 @@ public class Inscribe : AwakenedCardModel
     {
         this.WithConjure(e => e.IsUpgraded);
     }
+    
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

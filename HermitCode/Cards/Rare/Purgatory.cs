@@ -11,7 +11,7 @@ public sealed class Purgatory : HermitCardModel
 {
     public Purgatory() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(24, 6);
+        WithDamage(28, 6);
         WithKeyword(CardKeyword.Ethereal);
     }
 
