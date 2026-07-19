@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class FullRelease : AutomatonCardModel, IEncodable
 {
-    public FullRelease() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public FullRelease() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<FullReleasePower>(1);
