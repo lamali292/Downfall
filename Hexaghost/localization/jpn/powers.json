@@ -40,7 +40,7 @@
     "HEXAGHOST-TEMPORARY_INTENSITY_POWER.smartDescription": "[gold]火力[/gold][blue]{Amount}[/blue]を得る。ターン終了時、[gold]火力[/gold][blue]{Amount}[/blue]を失う。",
     "HEXAGHOST-UNFETTERED_FORM_POWER.title": "無縛化",
     "HEXAGHOST-UNFETTERED_FORM_POWER.description": "ゴーストフレイムを[gold]発火[/gold]するたび、追加で1回発火する。",
-    "HEXAGHOST-UNFETTERED_FORM_POWER.smartDescription": "ゴーストフレイムを[gold]発火[/gold]するたび、追加で[blue]{amount}[/blue]回発火する。",
+    "HEXAGHOST-UNFETTERED_FORM_POWER.smartDescription": "ゴーストフレイムを[gold]発火[/gold]するたび、追加で[blue]{Amount}[/blue]回発火する。",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "怒髪衝天",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "ゴーストフレイムを[gold]発火[/gold]するたびに、すべての敵に[gold]ソウルバーン[/gold]を付与する。",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "ゴーストフレイムを[gold]発火[/gold]するたびに、すべての敵に[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",
@@ -67,5 +67,5 @@
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "このターン、カードが[gold]廃棄[/gold]されるたび、敵に[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",
     "HEXAGHOST-SIZZLE_POWER.title": "ジュージュー",
     "HEXAGHOST-SIZZLE_POWER.description": "このターン、次にプレイするカードを[gold]廃棄[/gold]する。",
-    "HEXAGHOST-SIZZLE_POWER.smartDescription": "このターン、次にプレイする[blue]{amount}[/blue]枚のカードを[gold]廃棄[/gold]する。"
+    "HEXAGHOST-SIZZLE_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚のカードを[gold]廃棄[/gold]する。"
 }

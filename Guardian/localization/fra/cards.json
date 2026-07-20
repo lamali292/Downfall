@@ -158,7 +158,9 @@
     "GUARDIAN-BRONZE_BRAMBLES.title": "Ronces de Bronze",
     "GUARDIAN-BRONZE_BRAMBLES.description": "Lorsqu'un débuff vous est appliqué, gagnez {BronzeBramblesPower:diff()} [gold]d'Épines[/gold].",
     "GUARDIAN-MAXIMUM_OVERDRIVE.title": "Plein Régime",
+    "GUARDIAN-MAXIMUM_OVERDRIVE.description": "Lorsque le compteur d'une carte en [gold]Stase[/gold] diminue, gagnez {MaximumOverdrivePower:diff()} de [gold]Force[/gold] pour un tour.",
     "GUARDIAN-SHARED_FLUX.title": "Flux partagé",
     "GUARDIAN-SHARED_FLUX.description": "Choisissez un autre joueur pour choisir une carte dans leur [gold]Pioche[/gold] à placer en [gold]Stase[/gold]. ",
-    "GUARDIAN-OVERBLOCK.title": "Surprotection"
+    "GUARDIAN-OVERBLOCK.title": "Surprotection",
+    "GUARDIAN-OVERBLOCK.description": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne {OverblockBlockPower:diff()} [gold]d'Armure[/gold] et {OverblockThornsPower:diff()} [gold]d'Épines[/gold] pour un tour. "
 }
