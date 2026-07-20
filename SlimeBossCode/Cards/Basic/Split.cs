@@ -10,6 +10,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Basic;
 [Pool(typeof(SlimeBossCardPool))]
 public class Split : SlimeBossCardModel
 {
+    // todo add split hovertip
     public Split() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         this.WithCommand(1);
