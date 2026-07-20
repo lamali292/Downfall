@@ -15,7 +15,7 @@
   "SLIMEBOSS-SPIKY_SLIME.name": "Protector Slime",
   "SLIMEBOSS-TIME_SLIME.name": "Time Slime",
   "SLIMEBOSS-DARKLING_SLIME.description": "",
-  "SLIMEBOSS-ANCIENT_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nCauses you to draw {Cards:plural:a card|[blue]{Cards:diff()}[/blue] cards} each turn.\nDraw does not scale with [gold]Potency[/gold].",
+  "SLIMEBOSS-ANCIENT_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nCauses you to draw {Cards:plural:an additional card|[blue]{Cards:diff()}[/blue] additional cards} each turn.\nDraw does not scale with [gold]Potency[/gold].",
   "SLIMEBOSS-TORCHHEAD_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nGains damage from your [gold]Strength[/gold]. ",
   "SLIMEBOSS-GUERILLA_SLIME.description": "Deal [blue]{Damage:diff()}[/blue] damage to ALL enemies.",
   "SLIMEBOSS-BRUISER_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to a random enemy twice. ",
