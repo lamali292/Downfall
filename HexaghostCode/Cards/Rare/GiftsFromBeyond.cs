@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class GiftsFromBeyond : HexaghostCardModel
 {
-    public GiftsFromBeyond() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public GiftsFromBeyond() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         this.WithPower<GiftsFromBeyondPower>(1,false);

@@ -16,7 +16,7 @@ public class Flashbang : HexaghostCardModel
         WithDamage(5, 1);
         this.WithPower<FlashbangPower>(2, 1, false);
         this.WithTip<StrengthPower>();
-        WithPower<WeakPower>(1, 1);
+        WithPower<WeakPower>(1);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
