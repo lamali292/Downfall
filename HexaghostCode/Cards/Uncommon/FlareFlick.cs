@@ -47,7 +47,6 @@ public class FlareFlick : HexaghostCardModel
             await HexaghostCmd.Advance(ctx, Owner, this);
         else if (keyword == HexaghostKeyword.Retract)
             await HexaghostCmd.Retract(ctx, Owner, this);
-        //todo Do Nothing option
     }
 }
 

@@ -113,7 +113,7 @@
   "AUTOMATON-LIBRARY.title": "Library",
   "AUTOMATON-MAX_OUTPUT.description": "Draw {Cards:diff()} cards.\nAt the start of your turn, [gold]Stash[/gold] an [gold]Error[/gold].",
   "AUTOMATON-MAX_OUTPUT.title": "Max Output",
-  "AUTOMATON-MERGE_CONFLICT.description": "Deal {Damage:diff()} damage.\nThe next time you create a card, create an additional copy of it.",
+  "AUTOMATON-MERGE_CONFLICT.description": "Deal {Damage:diff()} damage.\nThe next time you create a Function, create an additional copy of it.",
   "AUTOMATON-MERGE_CONFLICT.title": "Merge Conflict",
   "AUTOMATON-MINOR_BEAM.description": "",
   "AUTOMATON-MINOR_BEAM.title": "Minor Beam",
@@ -198,7 +198,7 @@
   "AUTOMATON-CRASHOUT.title": "Crashout",
   "AUTOMATON-CRASHOUT.description": "Whenever you play a Status card, deal {CrashoutPower:diff()} damage to a random enemy.",
   "AUTOMATON-CONVERT.title": "Convert",
-  "AUTOMATON-CONVERT.description": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] a random Status in your [gold]Discard Pile[/gold] into [gold]Fuel{IfUpgraded:plus()}[/gold].",
+  "AUTOMATON-CONVERT.description": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] a random Status in your [gold]Stash[/gold] into [gold]Fuel{IfUpgraded:plus()}[/gold].",
   "AUTOMATON-PROTO_SHIELD.title": "Proto-Shield",
   "AUTOMATON-PROTO_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {PlatingPower:diff()} [gold]Plating[/gold].\nAdd {Cards:plural:a [gold]Error[/gold]|{Cards:diff()} [gold]Errors[/gold]} to your [gold]Discard Pile[/gold].",
   "AUTOMATON-PROTO_BEAM.title": "Proto-Beam",
@@ -218,7 +218,7 @@
   "AUTOMATON-EXPORT.title": "Export",
   "AUTOMATON-EXPORT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAnother player gains {Energy:energyIcons()}.",
   "AUTOMATON-SHARE.title": "Share",
-  "AUTOMATON-SHARE.description": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains {SharePower:diff()} [gold]Block[/gold].",
+  "AUTOMATON-SHARE.description": "Whenever you gain [gold]Block[/gold] from a Function, the ally with the least [gold]Block[/gold] gains {SharePower:diff()} [gold]Block[/gold].",
   "AUTOMATON-BLUESCREEN.title": "Bluescreen",
   "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nPut an [gold]Error[/gold] on top of their [gold]Draw Pile[/gold]."
 }
