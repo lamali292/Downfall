@@ -13,7 +13,7 @@ public class PunchTicket : AutomatonCardModel
 {
     public PunchTicket() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(8, 2);
+        WithDamage(6, 2);
         WithPower<WeakPower>(1, 1);
         this.WithTip<Error>();
     }
