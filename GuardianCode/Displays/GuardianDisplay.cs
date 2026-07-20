@@ -57,11 +57,11 @@ public class GuardianDisplay
 
     public static void SetupGuardianUi(NCombatRoom combatRoom, Player player)
     {
-        var display = NGuardianDisplay.Create(player);
+        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        var display = NGuardianDisplay.Create(player, creatureNode?.Hitbox);
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
 
-        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
         if (creatureNode != null)
         {
             var globalTopPos = creatureNode.GetTopOfHitbox();
