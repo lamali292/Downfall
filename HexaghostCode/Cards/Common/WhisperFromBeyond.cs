@@ -14,7 +14,7 @@ public class WhisperFromBeyond : HexaghostCardModel
     public WhisperFromBeyond() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
-        this.WithPower<WhisperFromBeyondPower>(5, 2, false);
+        this.WithPower<WhisperFromBeyondPower>(6, 2, false);
         WithTip(CardKeyword.Exhaust);
         this.WithTip<SoulBurnPower>();
     }
