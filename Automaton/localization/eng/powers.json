@@ -45,8 +45,8 @@
   "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]Stash[/gold] the next card you play this turn.",
   "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Stash[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn.",
   "AUTOMATON-MERGE_CONFLICT_POWER.title": "Merge Conflict",
-  "AUTOMATON-MERGE_CONFLICT_POWER.description": "The next time you create a card, create an additional copy of it.",
-  "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you create a card, create an additional copy of it.",
+  "AUTOMATON-MERGE_CONFLICT_POWER.description": "The next time you create a Function, create an additional copy of it.",
+  "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you create a Function, create an additional copy of it.",
   "AUTOMATON-CLEAN_CODE_POWER.title": "Clean Code",
   "AUTOMATON-CLEAN_CODE_POWER.description": "At the end of your turn, you may [gold]Stash[/gold] a card.",
   "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "At the end of your turn, you may [gold]Stash[/gold] {Amount:plural:a card|[blue]{}[/blue] cards}.",
@@ -78,6 +78,6 @@
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "The next Function you create is free to play.",
   "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "The next {Amount:plural:Function|[gold]{}[/gold] Functions} you create {Amount:plural:is|are} free to play.",
   "AUTOMATON-SHARE_POWER.title": "Share",
-  "AUTOMATON-SHARE_POWER.description": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains  [gold]Block[/gold].",
-  "AUTOMATON-SHARE_POWER.smartDescription": "Whenever you gain [gold]Block[/gold] from a Function, a random ally gains [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "AUTOMATON-SHARE_POWER.description": "Whenever you gain [gold]Block[/gold] from a Function, the ally with the least [gold]Block[/gold] gains [gold]Block[/gold].",
+  "AUTOMATON-SHARE_POWER.smartDescription": "Whenever you gain [gold]Block[/gold] from a Function, the ally with the least [gold]Block[/gold] gains [blue]{Amount}[/blue] [gold]Block[/gold]."
 }

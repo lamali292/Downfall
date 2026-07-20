@@ -6,10 +6,16 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Relics;
-//todo soulburn keyword
+
 [Pool(typeof(HexaghostRelicPool))]
-public class RedCandle() : HexaghostRelicModel(RelicRarity.Rare)
+public class RedCandle : HexaghostRelicModel
 {
+
+    public RedCandle() : base(RelicRarity.Rare)
+    {
+        WithTip<SoulBurnPower>();
+    }
+    
    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {

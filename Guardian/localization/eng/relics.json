@@ -1,6 +1,6 @@
 {
   "GUARDIAN-BAALORS_LORDLY_PLATE.title": "Baalor's Lordly Plate",
-  "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Whenever you [gold]Brace[/gold], [gold]Brace[/gold] [blue]1[/blue] more.",
+  "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Whenever you [gold]Brace[/gold], [gold]Brace[/gold] [blue]{Brace:diff()}[/blue] more.",
   "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "One can never have enough armor.",
   "GUARDIAN-BOTTLED_BLACK_HOLE.title": "Bottled Black Hole",
   "GUARDIAN-BOTTLED_BLACK_HOLE.description": "On pickup, [gold]Enchant[/gold] a card with [purple]Temporal[/purple].",

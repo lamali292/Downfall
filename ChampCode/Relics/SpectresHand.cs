@@ -1,9 +1,11 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -11,10 +13,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Relics;
-//todo echo and stance keywords
+
 [Pool(typeof(ChampRelicPool))]
-public class SpectresHand() : ChampRelicModel(RelicRarity.Rare), IOnChampStanceChange
+public class SpectresHand : ChampRelicModel, IOnChampStanceChange
 {
+    public SpectresHand() : base(RelicRarity.Rare)
+    {
+        WithTip(ChampTip.Stance);
+        WithTip(DownfallKeyword.Echo);
+        
+    }
+    
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {

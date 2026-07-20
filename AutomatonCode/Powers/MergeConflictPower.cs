@@ -1,4 +1,5 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,7 +11,7 @@ public class MergeConflictPower : AutomatonPowerModel
 {
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
-        if (player?.Creature != Owner) return;
+        if (player?.Creature != Owner || card is not FunctionCard) return;
         var pile = card.Pile?.Type;
         if (pile == null) return;
         await PowerCmd.Decrement(this);

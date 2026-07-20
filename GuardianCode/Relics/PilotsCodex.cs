@@ -1,5 +1,7 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,10 +12,15 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
-//todo stasis keyword
+
 [Pool(typeof(GuardianRelicPool))]
-public class PilotsCodex() : GuardianRelicModel(RelicRarity.Rare)
+public class PilotsCodex : GuardianRelicModel
 {
+    public PilotsCodex() : base(RelicRarity.Rare)
+    {
+        WithTip(GuardianTip.Stasis);
+    }
+    
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
