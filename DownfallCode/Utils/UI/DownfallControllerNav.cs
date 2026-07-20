@@ -27,9 +27,10 @@ public static class DownfallControllerNav
     /// <summary>
     /// Sets FocusMode and links FocusNeighborLeft/Right across an ordered list, so
     /// d-pad/stick left-right moves between them. Pass <paramref name="wrap"/> for a ring
-    /// (e.g. a wheel). Safe to call repeatedly on the same list.
+    /// (e.g. a wheel). Pass <paramref name="rtl"/> to reverse screen layout / navigation
+    /// Safe to call repeatedly on the same list.
     /// </summary>
-    public static void WireChain(IReadOnlyList<Control> controls, bool wrap = false)
+    public static void WireChain(IReadOnlyList<Control> controls, bool wrap = false, bool rtl = false)
     {
         for (var i = 0; i < controls.Count; i++)
         {
@@ -39,8 +40,10 @@ public static class DownfallControllerNav
 
             var prev = i > 0 ? controls[i - 1] : wrap && controls.Count > 1 ? controls[^1] : null;
             var next = i < controls.Count - 1 ? controls[i + 1] : wrap && controls.Count > 1 ? controls[0] : null;
-            if (prev != null) control.FocusNeighborLeft = prev.GetPath();
-            if (next != null) control.FocusNeighborRight = next.GetPath();
+            var left = rtl ? next : prev;
+            var right = rtl ? prev : next;
+            if (left != null) control.FocusNeighborLeft = left.GetPath();
+            if (right != null) control.FocusNeighborRight = right.GetPath();
         }
     }
 
@@ -135,9 +138,10 @@ public static class DownfallControllerNav
         IReadOnlyList<Control> controls,
         Action<int> onFocus,
         Action<int> onUnfocus,
-        bool wrap = false)
+        bool wrap = false,
+        bool rtl = false)
     {
-        WireChain(controls, wrap);
+        WireChain(controls, wrap, rtl);
         for (var i = 0; i < controls.Count; i++)
         {
             var index = i;
