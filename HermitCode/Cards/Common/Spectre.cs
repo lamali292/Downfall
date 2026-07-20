@@ -9,9 +9,9 @@ namespace Hermit.HermitCode.Cards.Common;
 
 public class Spectre : HermitCardModel
 {
-    public Spectre() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Spectre() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(7, 2);
+        WithBlock(3, 1);
         WithTip(CardKeyword.Ethereal);
     }
 
