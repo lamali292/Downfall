@@ -5,15 +5,23 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public abstract class SlimeCard<T>(bool showInCardLibrary = true, bool autoAdd = true)
-    : SlimeBossCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self, showInCardLibrary, autoAdd), ISlimeCard, IModfyCardDescription
+public abstract class SlimeCard<T>
+    : SlimeBossCardModel, ISlimeCard, IModfyCardDescription
     where T : SlimeModel
 {
+    protected SlimeCard(bool showInCardLibrary = true, bool autoAdd = true) : base(-1, CardType.Skill, CardRarity.Token,
+        TargetType.Self, showInCardLibrary, autoAdd)
+    {
+        WithTips(_ => [SlimeModel.SlimeTip]);
+    }
+    
+    
     protected override bool IsPlayable => false;
     public override string Title => SlimeModel.Title.GetFormattedText();
     public SlimeModel SlimeModel => ModelDb.Get<T>();
