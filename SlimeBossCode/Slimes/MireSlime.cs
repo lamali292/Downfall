@@ -2,6 +2,11 @@
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
+using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
@@ -17,12 +22,23 @@ public class MireSlime : SlimeModel
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
 
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(2, ValueProp.Move),
+        new SlimeSecondaryVar(2)
+    ];
+
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        var enemy =  CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (enemy == null) return;
-        await DamageCmd.Attack(2).FromSlime(this).Targeting(enemy).Execute(ctx);
-        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, 2, out _, this);
-        await PowerCmd.Apply<GoopPower>(ctx, enemy, modified, PetOwner, null);
+        var cmd =  await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
+        var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
+        var original = DynamicVars.Slime().IntValue;
+        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
+        await PowerCmd.Apply<GoopPower>(ctx, target, modified, Creature, null);
     }
+    
+    public override IEnumerable<IHoverTip> ExtraTips =>
+    [
+        HoverTipFactory.FromPower<GoopPower>()
+    ];
 }

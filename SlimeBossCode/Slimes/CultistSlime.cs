@@ -2,14 +2,20 @@
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class CultistSlime : SlimeModel
 {
-    private int _additionalDamage;
-
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(6, ValueProp.Move),
+        new("Increase", 1)
+    ];
+    
     public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
@@ -19,10 +25,10 @@ public class CultistSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(6 + _additionalDamage)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromSlime(this)
             .TargetingRandomOpponents(CombatState)
             .Execute(ctx);
-        _additionalDamage++;
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
     }
 }
