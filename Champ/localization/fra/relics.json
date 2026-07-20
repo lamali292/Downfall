@@ -1,5 +1,6 @@
 {
     "CHAMP-AMULET_OF_UNYIELDING.title": "Amulette d'Inflexibilité",
+    "CHAMP-AMULET_OF_UNYIELDING.description": "Chaque fois que vous dépensez de la [gold]Vigueur[/gold], gagnez [blue]{StrengthPower}[/blue] de [gold]Force[/gold] tous les [blue]{VigorPower}[/blue] de [gold]Vigueur[/gold] dépensés.",
     "CHAMP-AMULET_OF_UNYIELDING.flavor": "Une force que l'on croyait éphémère vous envahit comme si elle avait toujours été là.",
     "CHAMP-BERSERKERS_GUIDE.title": "Guide du Destructeur",
     "CHAMP-BERSERKERS_GUIDE.description": "Au début de votre tour, gagnez [blue]3[/blue] de [gold]Vigueur[/gold].",
@@ -29,6 +30,7 @@
     "CHAMP-SIGNATURE_FINISHER.description": "Lorsque vous la récupérez, [gold]Enchantez[/gold] un [gold]Finisher[/gold] avec [purple]Signature[/purple].",
     "CHAMP-SIGNATURE_FINISHER.flavor": "Et maintenant, il est l'heure d'utiliser mon ATTAQUE LA PLUS PUISSANTE !",
     "CHAMP-SPECTRES_HAND.title": "Main du Spectre",
+    "CHAMP-SPECTRES_HAND.description": "Lorsque vous Adoptez une [gold]Pose[/gold], obtenez un [gold]Écho[/gold] d'une [gold]Frappe[/gold] ou d'une [gold]Défense Basique[/gold].\nElle est gratuite ce tour.",
     "CHAMP-SPECTRES_HAND.flavor": "Certaines victoires restent avec vous.",
     "CHAMP-VICTORIOUS_CROWN.title": "Couronne du Victorieux",
     "CHAMP-VICTORIOUS_CROWN.description": "Commencez chaque combat dans une [gold]Pose[/gold] aléatoire, et déclenchez ensuite le [gold]Bonus de Compétence[/gold] de cette [gold]Pose[/gold] deux fois.\nLa prochaine fois que vous jouez un [gold]Finisher[/gold] à chaque tour, piochez [blue]2[/blue] cartes et entrez dans une [gold]Pose[/gold] aléatoire.",

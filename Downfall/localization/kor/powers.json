@@ -30,7 +30,6 @@
     "DOWNFALL-TEMP_HP_POWER.description": "전투가 끝날 때까지 체력이 피해를 입는 것을 방지합니다.",
     "DOWNFALL-TEMP_HP_POWER.smartDescription": "전투가 끝날 때까지 체력이 [blue]{Amount}[/blue]만큼 피해를 입는 것을 방지합니다.",
     "DOWNFALL-SOUL_BURN_POWER.title": "영혼 화상",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]턴 뒤에 [blue]{Amount}[/blue]의 체력을 잃고, [gold]영혼 화상[/gold] 상태이상이 제거됩니다.",
     "DOWNFALL-ENERGIZED_POWER.title": "에너지 충전",
     "DOWNFALL-ENERGIZED_POWER.description": "매 턴이 시작될 때마다 {energyPrefix:energyIcons(1)}를 얻습니다.",
     "DOWNFALL-ENERGIZED_POWER.smartDescription": "매 턴이 시작될 때마다 {Amount:energyIcons()}를 얻습니다.",
