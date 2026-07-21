@@ -1,5 +1,6 @@
 
-.godot/
+.godot/*
+!.godot/.gdignore
 /android/
 .git/
 .idea/
