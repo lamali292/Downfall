@@ -56,7 +56,7 @@
   "AUTOMATON-REPULSE_POWER.title": "Repulse",
   "AUTOMATON-REPULSE_POWER.description": "Whenever you create a Status, gain [gold]Block[/gold].",
   "AUTOMATON-REPULSE_POWER.smartDescription": "Whenever you create a Status, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
-  "AUTOMATON-CRASHOUT_POWER.title": "Crashout",
+  "AUTOMATON-CRASHOUT_POWER.title": "Debug",
   "AUTOMATON-CRASHOUT_POWER.description": "Whenever you play a Status card, deal damage to a random enemy.",
   "AUTOMATON-CRASHOUT_POWER.smartDescription": "Whenever you play a Status card, deal [blue]{Amount}[/blue] damage to a random enemy.",
   "AUTOMATON-BURN_OUT_POWER.title": "Burn Out",
