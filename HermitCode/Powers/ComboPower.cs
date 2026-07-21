@@ -15,15 +15,17 @@ public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
     {
         return new Data();
     }
-    
+
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         if (
-            GetInternalData<Data>().DeadOnCardsPlayed >= Amount
-            || card.Owner.Creature != Owner
-            || !HermitCmd.IsDeadOn(card)
-        )
+            (GetInternalData<Data>().DeadOnCardsPlayed >= Amount
+             || card.Owner.Creature != Owner
+             || !HermitCmd.IsDeadOn(card)
+             || card.Type is CardType.Power
+             || card.Keywords.Contains(CardKeyword.Exhaust)
+            ))
             return cardLocation;
 
         Flash();
