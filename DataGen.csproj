@@ -12,7 +12,6 @@
         <AdditionalFiles Include="DataGen/localization/**/*.json"/>
         <Compile Remove="DataGen/**"/>
         <EmbeddedResource Remove="DataGen/**"/>
-        <None Include="DataGen.json"/>
         <None Include="DataGen/**"/>
         <None Include="DataGenCode/**"/>
         <Compile Include="DataGenCode/**/*.cs"/>
