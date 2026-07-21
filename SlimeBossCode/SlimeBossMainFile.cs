@@ -1,9 +1,6 @@
-using System.Reflection;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using SlimeBoss.SlimeBossCode.Patches;

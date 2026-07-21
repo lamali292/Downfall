@@ -1,9 +1,6 @@
-﻿using BaseLib.Patches.Localization;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Localization;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Events;
 
@@ -12,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 public class DouseInSlimePower : SlimeBossPowerModel, IModifyGoopConsume
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-    
+
 
     public int ModifyGoopConsume(int amount, Creature creature, Creature? applier)
     {

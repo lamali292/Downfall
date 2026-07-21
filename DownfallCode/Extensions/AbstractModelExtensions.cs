@@ -20,7 +20,8 @@ public static class AbstractModelExtensions
             PowerModel power => power.Owner,
             EnchantmentModel enchantment => enchantment.Card.GetCreature(),
             AfflictionModel affliction => affliction.Card.GetCreature(),
-            CardModifier cardModifier => cardModifier.Owner?.GetCreature() ?? throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
+            CardModifier cardModifier => cardModifier.Owner?.GetCreature() ??
+                                         throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
@@ -59,7 +60,6 @@ public static class AbstractModelExtensions
             || CustomTargetType.IsCustomSingleTargetType(targetType))
             return singleTarget is not null ? [singleTarget] : [];
         return card.GetTargets();
-
     }
 
     public static IEnumerable<Creature> MyGetTargets(
@@ -84,7 +84,8 @@ public static class AbstractModelExtensions
                 combatState.PlayerCreatures.Where(c => c is { IsAlive: true }),
             TargetType.RandomEnemy when combatState is not null =>
                 combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies) is { } enemy
-                    ? [enemy] : [],
+                    ? [enemy]
+                    : [],
             _ => throw new InvalidOperationException(
                 $"Unsupported TargetType {type} for {model.GetType().Name}")
         };

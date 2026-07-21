@@ -8,13 +8,11 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Guardian.GuardianCode.Powers;
 
 public class BrilliantScalesPower : GuardianPowerModel, ICustomPowerIcon
 {
-    
     // TODO: Now and at the start of every other turn. not every turn.
     private IGemSocketCard? _sourceCard;
 
@@ -27,6 +25,35 @@ public class BrilliantScalesPower : GuardianPowerModel, ICustomPowerIcon
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     private IReadOnlyList<GemModel> Gems => _sourceCard?.Gems ?? [];
+
+
+    public void DecorateIcon(TextureRect icon)
+    {
+        var gems = Gems.ToList();
+        if (gems.Count == 0) return;
+
+        float[] rotations = gems.Count switch
+        {
+            1 => [0f],
+            2 => [-45f, 135f],
+            _ => [0f, 120f, -120f]
+        };
+        var shaderMaterial = (ShaderMaterial)icon.Material;
+
+        for (var i = 0; i < gems.Count; i++)
+            icon.AddDecoration(new TextureRect
+            {
+                Texture = gems[i].Icon,
+                Material = shaderMaterial,
+                OffsetLeft = 10f, OffsetTop = -2f, OffsetRight = 30f, OffsetBottom = 18f,
+                PivotOffset = new Vector2(10f, 22f),
+                Rotation = Mathf.DegToRad(rotations[i]),
+                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspect
+            }, i);
+    }
+
+    public event Action? IconChanged;
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
@@ -67,35 +94,4 @@ public class BrilliantScalesPower : GuardianPowerModel, ICustomPowerIcon
             return lines.Count > 0 ? string.Join("\n", lines) : "";
         }
     }
-    
-
-    public void DecorateIcon(TextureRect icon)
-    {
-        var gems = Gems.ToList();
-        if (gems.Count == 0) return;
-
-        float[] rotations = gems.Count switch
-        {
-            1 => [0f],
-            2 => [-45f, 135f],
-            _ => [0f, 120f, -120f]
-        };
-        var shaderMaterial = (ShaderMaterial)icon.Material;
-
-        for (var i = 0; i < gems.Count; i++)
-        {
-            icon.AddDecoration(new TextureRect
-            {
-                Texture = gems[i].Icon,
-                Material = shaderMaterial,
-                OffsetLeft = 10f, OffsetTop = -2f, OffsetRight = 30f, OffsetBottom = 18f,
-                PivotOffset = new Vector2(10f, 22f),
-                Rotation = Mathf.DegToRad(rotations[i]),
-                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-                StretchMode = TextureRect.StretchModeEnum.KeepAspect
-            }, i);
-        }
-    }
-
-    public event Action? IconChanged;
 }

@@ -8,9 +8,13 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class HighNoonPower : HermitPowerModel
 {
-    private bool IsMyBasicStrike(CardModel card) => card.Owner.Creature == Owner &&
-                                                    card.Tags.Contains(CardTag.Strike) &&
-                                                    card.Rarity == CardRarity.Basic;
+    private bool IsMyBasicStrike(CardModel card)
+    {
+        return card.Owner.Creature == Owner &&
+               card.Tags.Contains(CardTag.Strike) &&
+               card.Rarity == CardRarity.Basic;
+    }
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (!IsMyBasicStrike(card))
@@ -19,14 +23,15 @@ public sealed class HighNoonPower : HermitPowerModel
         return Task.CompletedTask;
     }
 
-    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount,
+        Creature? applier,
         CardModel? cardSource)
     {
         if (power != this) return Task.CompletedTask;
         var cards = Owner.Player?.PlayerCombatState?.AllCards.Where(IsMyBasicStrike);
         if (cards == null) return Task.CompletedTask;
         foreach (var card in cards)
-            card.BaseReplayCount += (int) amount;
+            card.BaseReplayCount += (int)amount;
         return Task.CompletedTask;
     }
 }

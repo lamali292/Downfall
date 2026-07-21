@@ -11,7 +11,7 @@ internal static class DeathInterceptPatch
     [HarmonyPrefix]
     private static bool Prefix(Creature creature, bool force, ref Task __result)
     {
-        if (force) return true;   // forced kills are never interceptable
+        if (force) return true; // forced kills are never interceptable
 
         var task = DeathHooks.TryIntercept(creature);
         if (task == null) return true;

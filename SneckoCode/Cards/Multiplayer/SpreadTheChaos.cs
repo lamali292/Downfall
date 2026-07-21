@@ -13,12 +13,11 @@ public class SpreadTheChaos : SneckoCardModel
     {
         this.WithMuddle(1, 1);
     }
-    
+
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = cardPlay.Target?.Player?

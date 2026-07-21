@@ -61,7 +61,6 @@ public partial class NGuardianDisplay : Control
     ///     moves to another pile, NCard.FindOnTable (via FindOnTablePatch) hands the
     ///     engine our node and the engine reparents it into the hand/play flow.
     ///     From that moment the node is no longer ours.
-    ///
     ///     So on cleanup we only destroy a node that is still under this display
     ///     (IsAncestorOf). If it was reparented away, we just drop our references
     ///     and let the game manage its lifecycle (it will pool-free it itself).
@@ -166,7 +165,7 @@ public partial class NGuardianDisplay : Control
             _cardHolders.Add(holder);
         }
 
-        DownfallControllerNav.WireChain(_cardHolders, wrap: true, rtl: true);
+        DownfallControllerNav.WireChain(_cardHolders, true, true);
         if (_creatureHitbox != null)
             DownfallControllerNav.LinkAbove(_cardHolders, _creatureHitbox);
 

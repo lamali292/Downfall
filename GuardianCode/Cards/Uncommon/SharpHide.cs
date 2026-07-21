@@ -19,7 +19,7 @@ public class SharpHide : GuardianCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);

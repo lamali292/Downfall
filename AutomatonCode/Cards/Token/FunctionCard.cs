@@ -23,7 +23,11 @@ namespace Automaton.AutomatonCode.Cards.Token;
 public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     CardRarity.Token, TargetType.AnyEnemy), ICustomPortrait
 {
+    private IReadOnlyList<CardModel> _cachedSourceCards = [];
+    private ImageTexture? _cachedTexture;
     private string _dynamicTitle = string.Empty;
+
+    private IReadOnlyList<CardModel> _sourceCards = [];
     protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -34,15 +38,23 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     public override bool CanBeGeneratedByModifiers => false;
     public override bool GainsBlock => DynamicVars.Block.BaseValue > 0;
 
+    public override TargetType TargetType => CalcTarget();
+    public override CardType Type => CalcType();
+
+    public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
+    public override string Title => _dynamicTitle.Equals(string.Empty) ? base.Title : _dynamicTitle;
+
+    public Texture2D? GetPortraitTexture()
+    {
+        return GetTexture();
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         foreach (var encodable in Encodable.All)
             if (encodable.DynamicVar(this).BaseValue > 0)
                 await encodable.OnPlay(this, ctx, cardPlay.Target, cardPlay);
     }
-
-    public override TargetType TargetType => CalcTarget();
-    public override CardType Type => CalcType();
 
     private CardType CalcType()
     {
@@ -64,10 +76,6 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         return TargetType.None;
     }
 
-    private IReadOnlyList<CardModel> _sourceCards = [];
-    private ImageTexture? _cachedTexture;
-    private IReadOnlyList<CardModel> _cachedSourceCards = [];
-
     public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
     {
         _sourceCards = sourceCards.ToList();
@@ -75,7 +83,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
 
         if (sourceCards.Count <= 0) return;
         _dynamicTitle = GetDynamicTitle(_sourceCards);
-     
+
         var max = AutomatonCmd.GetMax(_sourceCards[0].Owner);
 
         var i = 1;
@@ -136,9 +144,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     {
         if (_cachedTexture != null &&
             _cachedSourceCards.SequenceEqual(_sourceCards))
-        {
             return _cachedTexture;
-        }
 
         var textures = _sourceCards
             .Select(c => ResourceLoader.Load<Texture2D>(c.PortraitPath))
@@ -151,10 +157,6 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         _cachedSourceCards = _sourceCards;
         return _cachedTexture;
     }
-
-    public override string CustomPortraitPath => "function_card.tres".CardImageAtlasPath<Core.Automaton>();
-    public override string Title => _dynamicTitle.Equals(string.Empty) ? base.Title : _dynamicTitle;
-    public Texture2D? GetPortraitTexture() => GetTexture();
 }
 
 public enum FunctionPosition

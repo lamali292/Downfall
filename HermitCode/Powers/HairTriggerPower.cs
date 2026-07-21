@@ -29,6 +29,5 @@ public class HairTriggerPower : HermitPowerModel, IAfterDeadOnTrigger
             var clone = strike.CreateClone();
             await CardCmd.AutoPlay(ctx, clone, null);
         }
-            
     }
 }

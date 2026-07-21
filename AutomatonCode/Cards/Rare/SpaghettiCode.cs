@@ -26,11 +26,11 @@ public class SpaghettiCode : AutomatonCardModel
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;
 
-       
-        var cards =  CardFactory.FilterForCombat(Owner.Character.CardPool
+
+        var cards = CardFactory.FilterForCombat(Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
-        
+
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {
@@ -39,6 +39,7 @@ public class SpaghettiCode : AutomatonCardModel
             if (selected == null) break;
             functionCard = await AutomatonCmd.EncodeCard(selected, ctx);
         }
+
         functionCard?.SetToFreeThisTurn();
     }
 }

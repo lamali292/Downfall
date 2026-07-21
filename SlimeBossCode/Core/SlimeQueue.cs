@@ -198,7 +198,7 @@ public static class SlimeQueue
     {
         slimeNode._stateDisplay._healthBar.Visible = false;
     }
-    
+
     private static Vector2 CalculateQuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float t)
     {
         var u = 1f - t;

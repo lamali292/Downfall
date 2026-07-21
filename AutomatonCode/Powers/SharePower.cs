@@ -11,9 +11,9 @@ namespace Automaton.AutomatonCode.Powers;
 public class SharePower : AutomatonPowerModel
 {
     protected override async Task AfterBlockGained(
-        PlayerChoiceContext ctx, 
-        Creature creature, 
-        decimal amount, 
+        PlayerChoiceContext ctx,
+        Creature creature,
+        decimal amount,
         ValueProp props,
         CardModel? cardSource)
     {
@@ -25,6 +25,5 @@ public class SharePower : AutomatonPowerModel
             .FirstOrDefault();
         if (teammate == null) return;
         await CreatureCmd.GainBlock(teammate, Amount, ValueProp.Unpowered, null);
-    
     }
 }

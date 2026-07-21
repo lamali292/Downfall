@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
@@ -20,7 +19,7 @@ public class PilotsCodex : GuardianRelicModel
     {
         WithTip(GuardianTip.Stasis);
     }
-    
+
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;

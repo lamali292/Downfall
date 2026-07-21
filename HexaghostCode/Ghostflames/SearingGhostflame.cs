@@ -4,7 +4,6 @@ using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
@@ -34,7 +33,8 @@ public class SearingGhostflame : GhostflameModel
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         SpawnVfx(target);
 
-        for (var i = 0; i < repeat; i++) await PowerCmd.Apply<SoulBurnPower>(ctx, target, 3 + intensity, Owner.Creature, null);
+        for (var i = 0; i < repeat; i++)
+            await PowerCmd.Apply<SoulBurnPower>(ctx, target, 3 + intensity, Owner.Creature, null);
     }
 
 

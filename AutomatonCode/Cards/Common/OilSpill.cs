@@ -21,13 +21,13 @@ public class OilSpill : AutomatonCardModel, IEncodable, ICompilable
         WithTip(AutomatonTip.Stash);
         this.WithTip<Error>();
     }
-    
-    public IEnumerable<Encodable> Encodings => [new DamageEncode(), new PoisonEncode()];
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     public Task OnCompile(PlayerChoiceContext context)
     {
         return StashCmd.Stash<Error>(Owner);
     }
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode(), new PoisonEncode()];
 }

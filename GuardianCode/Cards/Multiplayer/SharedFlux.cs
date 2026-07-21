@@ -17,6 +17,7 @@ public class SharedFlux : GuardianCardModel
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
     }
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

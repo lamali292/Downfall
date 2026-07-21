@@ -14,12 +14,17 @@ public class TorchheadSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Specialist;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
+
+    public override IEnumerable<IHoverTip> ExtraTips =>
+    [
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle", hitName: "hit");
     }
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
@@ -28,9 +33,4 @@ public class TorchheadSlime : SlimeModel
             .TargetingRandomOpponents(CombatState)
             .Execute(ctx);
     }
-    
-    public override IEnumerable<IHoverTip> ExtraTips =>
-    [
-        HoverTipFactory.FromPower<StrengthPower>()
-    ];
 }

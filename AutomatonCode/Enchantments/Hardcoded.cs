@@ -22,12 +22,10 @@ public class Hardcoded : AutomatonEnchantmentModel
     {
         return base.CanEnchant(card) && AutomatonCmd.IsEncodable(card);
     }
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player !=  Card.Owner || Card.Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
+        if (player != Card.Owner || Card.Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         await AutomatonCmd.EncodeCard(Card, ctx);
     }
-
-    
 }

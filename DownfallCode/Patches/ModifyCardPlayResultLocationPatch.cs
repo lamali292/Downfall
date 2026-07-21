@@ -3,7 +3,6 @@ using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
-using Downfall.DownfallCode.Events;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -24,11 +23,13 @@ public static class ModifyCardPlayResultLocationNewPatch
     private static readonly Type? CardLocationType =
         AccessTools.TypeByName("MegaCrit.Sts2.Core.Entities.Cards.CardLocation");
 
-    static MethodBase TargetMethod() =>
-        AccessTools.Method(typeof(Hook), "ModifyCardPlayResultLocation");
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(Hook), "ModifyCardPlayResultLocation");
+    }
 
     // __result as object: Harmony boxes the CardLocation struct for us
-    static void Postfix(
+    private static void Postfix(
         ICombatState combatState,
         CardModel card,
         bool isAutoPlay,
@@ -37,7 +38,7 @@ public static class ModifyCardPlayResultLocationNewPatch
         ref IEnumerable<AbstractModel> modifiers)
     {
         var tr = Traverse.Create(__result);
-        var player   = tr.Field("player").GetValue<Player>();
+        var player = tr.Field("player").GetValue<Player>();
         var pileType = tr.Field("pileType").GetValue<PileType>();
         var position = tr.Field("position").GetValue<CardPilePosition>();
 
@@ -56,7 +57,6 @@ public static class ModifyCardPlayResultLocationNewPatch
     }
 }
 
-
 /// <summary>
 ///     Old game version only: dispatches <see cref="IModifyCardPlayResultLocation" /> compat listeners
 ///     after the vanilla <c>Hook.ModifyCardPlayResultPileTypeAndPosition</c> loop.
@@ -67,10 +67,12 @@ public static class ModifyCardPlayResultLocationNewPatch
 [HarmonyPatch]
 public static class ModifyCardPlayResultLocationOldPatch
 {
-    static MethodBase TargetMethod() =>
-        AccessTools.Method(typeof(Hook), "ModifyCardPlayResultPileTypeAndPosition");
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(Hook), "ModifyCardPlayResultPileTypeAndPosition");
+    }
 
-    static void Postfix(
+    private static void Postfix(
         ICombatState combatState,
         CardModel card,
         bool isAutoPlay,
@@ -91,8 +93,6 @@ public static class ModifyCardPlayResultLocationOldPatch
             modifiers = modifiers.Concat(added).ToList();
     }
 }
-
-
 
 internal static class OnPlayWrapperStateMachine
 {
@@ -118,9 +118,12 @@ internal static class AfterModifyingLocationNewPatch
     private static readonly MethodInfo Vanilla =
         AccessTools.Method(typeof(AbstractModel), "AfterModifyingCardPlayResultLocation");
 
-    static MethodBase TargetMethod() => OnPlayWrapperStateMachine.MoveNext();
+    private static MethodBase TargetMethod()
+    {
+        return OnPlayWrapperStateMachine.MoveNext();
+    }
 
-    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var code = new List<CodeInstruction>(instructions);
         var bridge = AccessTools.Method(typeof(AfterModifyingLocationNewPatch), nameof(Bridge));
@@ -179,9 +182,12 @@ internal static class AfterModifyingLocationOldPatch
     private static readonly MethodInfo Vanilla =
         AccessTools.Method(typeof(AbstractModel), "AfterModifyingCardPlayResultPileOrPosition");
 
-    static MethodBase TargetMethod() => OnPlayWrapperStateMachine.MoveNext();
+    private static MethodBase TargetMethod()
+    {
+        return OnPlayWrapperStateMachine.MoveNext();
+    }
 
-    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var code = new List<CodeInstruction>(instructions);
         var bridge = AccessTools.Method(typeof(AfterModifyingLocationOldPatch), nameof(Bridge));

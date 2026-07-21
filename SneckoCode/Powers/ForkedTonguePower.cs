@@ -12,19 +12,26 @@ namespace Snecko.SneckoCode.Powers;
 
 public class ForkedTonguePower : SneckoPowerModel, IHasSecondAmount
 {
+    private int PlayedThisTurn => CombatManager.Instance.History.CardPlaysStarted.Count(e =>
+        e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) &&
+        SneckoCmd.IsOffclass(e.CardPlay.Card)
+    );
+
+    public override int DisplayAmount => Math.Max(0, Amount - PlayedThisTurn);
+
+    public string GetSecondAmount()
+    {
+        return "";
+    }
+
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         return card.Owner.Creature != Owner || !SneckoCmd.IsOffclass(card) ||
-               PlayedThisTurn >= Amount ? 
-            playCount : playCount + 1;
+               PlayedThisTurn >= Amount
+            ? playCount
+            : playCount + 1;
     }
 
-    private int PlayedThisTurn => CombatManager.Instance.History.CardPlaysStarted.Count(e =>
-        e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(e.CardPlay.Card)
-    );
-    
-    public override int DisplayAmount => Math.Max(0, Amount - PlayedThisTurn);
-    
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {
         Flash();
@@ -43,10 +50,5 @@ public class ForkedTonguePower : SneckoPowerModel, IHasSecondAmount
         if (cardPlay.Card.Owner.Creature != Owner) return Task.CompletedTask;
         this.InvokeSecondAmountChanged();
         return Task.CompletedTask;
-    }
-
-    public string GetSecondAmount()
-    {
-        return "";
     }
 }

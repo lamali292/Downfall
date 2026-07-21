@@ -9,5 +9,4 @@ public static class DynamicVarsExtension
     {
         return (SlimeSecondaryVar)vard._vars[nameof(Slime)];
     }
-
 }

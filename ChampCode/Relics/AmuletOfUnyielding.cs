@@ -14,17 +14,18 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class AmuletOfUnyielding : ChampRelicModel
 {
+    private int _strengthGranted;
+    private decimal _vigorSpentThisCombat;
+
     public AmuletOfUnyielding() : base(RelicRarity.Rare)
     {
         WithPower<StrengthPower>(1);
         WithPower<VigorPower>(12);
     }
-    
+
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
 
-    public override int DisplayAmount =>(int)(_vigorSpentThisCombat % VigorThreshold);
-    private decimal _vigorSpentThisCombat;
-    private int _strengthGranted;
+    public override int DisplayAmount => (int)(_vigorSpentThisCombat % VigorThreshold);
     private int VigorThreshold => DynamicVars.Power<VigorPower>().IntValue;
     private int StrengthMult => DynamicVars.Power<StrengthPower>().IntValue;
 

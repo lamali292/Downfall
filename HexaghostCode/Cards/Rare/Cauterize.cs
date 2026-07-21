@@ -19,7 +19,7 @@ public class Cauterize : HexaghostCardModel
     protected override bool HasEnergyCostX => true;
 
     protected override Artist Artist => Artist.Get<Inmo>();
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

@@ -9,12 +9,9 @@ namespace Downfall.DownfallCode.DynamicVars;
 
 public class SelfDamageVar : DamageVar
 {
-    
-
     public SelfDamageVar(decimal damage, ValueProp props)
-        : base("SelfDamage", damage,  props)
+        : base("SelfDamage", damage, props)
     {
-        
     }
 
     public SelfDamageVar(string name, decimal damage, ValueProp props)
@@ -30,7 +27,7 @@ public class SelfDamageVar : DamageVar
     {
         var originalDamage1 = BaseValue;
         if (runGlobalHooks && card.CombatState != null)
-            originalDamage1 =  DownfallHook.ModifySelfDamage(card.CombatState, originalDamage1, card, out _);
+            originalDamage1 = DownfallHook.ModifySelfDamage(card.CombatState, originalDamage1, card, out _);
         PreviewValue = originalDamage1;
     }
 }

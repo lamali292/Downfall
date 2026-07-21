@@ -8,17 +8,38 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 namespace Automaton.AutomatonCode.Vfx;
 
 /// <summary>
-/// Generic hover-reveal card slot display: a preview slot that, on hover, fans out
-/// a row of card slots to one side. Knows nothing about piles, players, or game rules —
-/// subclasses supply the data via the abstract/virtual members.
+///     Generic hover-reveal card slot display: a preview slot that, on hover, fans out
+///     a row of card slots to one side. Knows nothing about piles, players, or game rules —
+///     subclasses supply the data via the abstract/virtual members.
 /// </summary>
 public abstract partial class NSlotRevealDisplay : Control
 {
     public enum RevealDirection
     {
         Left,
-        Right,
+        Right
     }
+
+    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
+    private readonly float[] _lastBobOffsets = new float[4];
+    private readonly Vector2[] _slotHomes = new Vector2[4];
+
+    // --- State ---
+    protected readonly List<NCustomCardHolder> CardHolders = [];
+    protected readonly List<NAutomatonSlot> Slots = [];
+    private float _bobTime;
+    private Vector2 _hiddenPosition;
+    private float _hoverLostTimer;
+    private bool _initialized;
+    private List<CardModel> _lastDirtyCards = [];
+    private float _lastPreviewBob;
+    private NCustomCardHolder? _previewHolder;
+    private Tween? _revealTween;
+    private bool _slotsRevealed;
+    protected Label? CountLabel;
+    protected int CurrentMax = 3;
+    protected CardModel? PreviewModel;
+    protected NAutomatonSlot? PreviewSlot;
 
     // --- Tunables (override per subclass) ---
     protected virtual float SlotSeparation => 70f;
@@ -37,6 +58,11 @@ public abstract partial class NSlotRevealDisplay : Control
 
     [Export] public RevealDirection Direction { get; set; } = RevealDirection.Left;
 
+    /// <summary>Whether the display should process hover/bob this frame.</summary>
+    protected virtual bool IsActive => true;
+
+    protected bool IsTweenRunning => _revealTween != null && _revealTween.IsValid() && _revealTween.IsRunning();
+
     // --- Subclass contract ---
 
     /// <summary>The cards currently occupying the slots, in slot order.</summary>
@@ -49,8 +75,8 @@ public abstract partial class NSlotRevealDisplay : Control
     protected abstract CardModel? CreatePreviewModel(IReadOnlyList<CardModel> slotCards);
 
     /// <summary>
-    /// Cards used for the change detection in Refresh. Default: the slot row.
-    /// Override when the preview or count depend on more than the slot cards.
+    ///     Cards used for the change detection in Refresh. Default: the slot row.
+    ///     Override when the preview or count depend on more than the slot cards.
     /// </summary>
     protected virtual IReadOnlyList<CardModel> GetDirtyCheckCards()
     {
@@ -63,17 +89,20 @@ public abstract partial class NSlotRevealDisplay : Control
         return $"{Math.Min(slotCards.Count, CurrentMax)}/{CurrentMax}";
     }
 
-    /// <summary>Whether the display should process hover/bob this frame.</summary>
-    protected virtual bool IsActive => true;
-
     /// <summary>Called after a card node is placed in a slot. Hook for registration, etc.</summary>
-    protected virtual void OnSlotCardSet(int index, CardModel model, NCard node, NCustomCardHolder holder) { }
+    protected virtual void OnSlotCardSet(int index, CardModel model, NCard node, NCustomCardHolder holder)
+    {
+    }
 
     /// <summary>Called for each slot card model right before the slots are cleared. Hook for unregistration.</summary>
-    protected virtual void OnSlotCardCleared(CardModel model) { }
+    protected virtual void OnSlotCardCleared(CardModel model)
+    {
+    }
 
     /// <summary>Called after the preview card node is placed.</summary>
-    protected virtual void OnPreviewCardSet(CardModel model, NCard node, NCustomCardHolder holder) { }
+    protected virtual void OnPreviewCardSet(CardModel model, NCard node, NCustomCardHolder holder)
+    {
+    }
 
     /// <summary>Cards shown by the inspect screen. Default: slot cards + preview.</summary>
     protected virtual List<CardModel> BuildInspectList()
@@ -82,29 +111,6 @@ public abstract partial class NSlotRevealDisplay : Control
         if (PreviewModel != null) list.Add(PreviewModel);
         return list;
     }
-
-    // --- State ---
-    protected readonly List<NCustomCardHolder> CardHolders = [];
-    protected readonly List<NAutomatonSlot> Slots = [];
-    protected NAutomatonSlot? PreviewSlot;
-    protected Label? CountLabel;
-    protected CardModel? PreviewModel;
-    protected int CurrentMax = 3;
-
-    private readonly float[] _bobSpeeds = [1.1f, 0.9f, 1.05f, 0.95f];
-    private readonly float[] _lastBobOffsets = new float[4];
-    private readonly Vector2[] _slotHomes = new Vector2[4];
-    private float _bobTime;
-    private Vector2 _hiddenPosition;
-    private float _hoverLostTimer;
-    private bool _initialized;
-    private List<CardModel> _lastDirtyCards = [];
-    private float _lastPreviewBob;
-    private NCustomCardHolder? _previewHolder;
-    private Tween? _revealTween;
-    private bool _slotsRevealed;
-
-    protected bool IsTweenRunning => _revealTween != null && _revealTween.IsValid() && _revealTween.IsRunning();
 
     public override void _Ready()
     {
@@ -141,7 +147,6 @@ public abstract partial class NSlotRevealDisplay : Control
     ///     Card nodes shown in slots can be ADOPTED by the base game: FindOnTable
     ///     (via FindOnTablePatch) can hand the engine our node, which then reparents
     ///     it into the hand/play flow. From that moment the node is not ours.
-    ///
     ///     So cleanup only destroys a node still parented under this display;
     ///     otherwise it just drops the reference. Destroying an adopted node causes
     ///     ObjectDisposedException inside CardPileCmd.Add/UpdateVisuals on the next
@@ -178,8 +183,8 @@ public abstract partial class NSlotRevealDisplay : Control
     }
 
     /// <summary>
-    /// Fly-out targets: a row beside the preview (side chosen by <see cref="Direction"/>),
-    /// vertically centered on it. The highest-index slot sits closest to the preview.
+    ///     Fly-out targets: a row beside the preview (side chosen by <see cref="Direction" />),
+    ///     vertically centered on it. The highest-index slot sits closest to the preview.
     /// </summary>
     private void ComputeHomes()
     {
@@ -199,8 +204,8 @@ public abstract partial class NSlotRevealDisplay : Control
                     - (slotsToPreview - 1) * (slotSize.X + SlotSeparation);
             else
                 x = PreviewSlot.Position.X + PreviewSlot.Size.X
-                    + PreviewGap
-                    + (slotsToPreview - 1) * (slotSize.X + SlotSeparation);
+                                           + PreviewGap
+                                           + (slotsToPreview - 1) * (slotSize.X + SlotSeparation);
             _slotHomes[i] = new Vector2(x, y);
         }
     }

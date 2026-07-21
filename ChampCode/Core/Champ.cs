@@ -17,7 +17,7 @@ public class Champ : DownfallCharacterModel
 #pragma warning restore STS001
 {
     private static readonly Color Color = new(0x5E594FFF);
-    public override Color EnergyLabelOutlineColor  => new(0x464203FF);
+    public override Color EnergyLabelOutlineColor => new(0x464203FF);
     public override string CharId => "Champ";
     public override string ModId => ChampMainFile.ModId;
     public override Color NameColor => Color;
@@ -27,7 +27,7 @@ public class Champ : DownfallCharacterModel
     public override float CardColorS => 0.5f;
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
-    
+
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 80;
@@ -137,7 +137,8 @@ public class Champ : DownfallCharacterModel
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;
 
-public abstract class ChampRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Champ>(rarity, autoAdd);
+public abstract class ChampRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<Champ>(rarity, autoAdd);
 
 public abstract class ChampPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -36,8 +36,5 @@ public class SuperSneckoSoul : SneckoRelicModel
             if (card == null) return;
             await SneckoCmd.Muddle(ctx, card, this);
         }
-       
-        
-        
     }
 }

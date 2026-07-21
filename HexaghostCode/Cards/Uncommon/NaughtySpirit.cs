@@ -17,8 +17,8 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
         WithPower<SoulBurnPower>(3, 2);
         WithTip(HexaghostKeyword.Retract);
     }
-    
-    
+
+
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
@@ -26,8 +26,8 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
 
         return new CardLocationCompatiblity(card.Owner, PileType.Hand, CardPilePosition.Bottom);
     }
-    
-    
+
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.ResultPile != PileType.Hand || this != cardPlay.Card) return;

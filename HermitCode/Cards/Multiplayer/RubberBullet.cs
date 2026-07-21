@@ -13,7 +13,22 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
         WithDamage(7, 2);
         WithVar("Increase", 7, 2);
     }
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
+    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        var player =
+            RunState?.Rng.CombatTargets.NextItem(RunState.Players.Where(e => e.Creature.IsAlive && e != Owner));
+        if (player == null) return;
+
+        var clone = CreateClone();
+        clone._owner = player;
+        await CardPileCmd.RemoveFromCombat(this);
+        await CardPileCmd.Add(clone, PileType.Hand);
+        HermitSfx.PlayReload();
+    }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -24,18 +39,5 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
                 return Task.CompletedTask;
             })
             .Execute(ctx);
-    }
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
-        var player = RunState?.Rng.CombatTargets.NextItem(RunState.Players.Where(e => e.Creature.IsAlive && e != Owner));
-        if (player == null) return;
-
-        var clone = CreateClone();
-        clone._owner = player;
-        await CardPileCmd.RemoveFromCombat(this);
-        await CardPileCmd.Add(clone, PileType.Hand);
-        HermitSfx.PlayReload();
     }
 }

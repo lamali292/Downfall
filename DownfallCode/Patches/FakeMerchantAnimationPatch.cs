@@ -9,7 +9,7 @@ namespace Downfall.DownfallCode.Patches;
 public static class FakeMerchantAnimationPatch
 {
     [HarmonyPrefix]
-    static bool Prefix(NCreatureVisuals visuals)
+    private static bool Prefix(NCreatureVisuals visuals)
     {
         if (visuals is not IAnimatedVisuals animatedVisuals) return true;
         animatedVisuals.OnAnimationTrigger("Idle");

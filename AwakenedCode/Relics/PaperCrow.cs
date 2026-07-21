@@ -15,7 +15,7 @@ public class PaperCrow : AwakenedRelicModel, IModifyManaburnDamage
     {
         WithTip<ManaburnPower>();
     }
-    
+
     public decimal ModifyManaburnDamage(decimal amount, decimal original, Player player)
     {
         if (Owner != player) return amount;

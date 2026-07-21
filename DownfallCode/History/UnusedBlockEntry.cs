@@ -28,4 +28,3 @@ public class UnusedBlockEntry : CombatHistoryEntry
         return !creature.IsPlayer ? creature.Monster?.Id.Entry : creature.Player?.Character.Id.Entry;
     }
 }
-

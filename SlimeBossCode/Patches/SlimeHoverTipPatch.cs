@@ -8,7 +8,7 @@ namespace SlimeBoss.SlimeBossCode.Patches;
 [HarmonyPatch(typeof(Creature), nameof(Creature.HoverTips), MethodType.Getter)]
 internal static class SlimeHoverTipPatch
 {
-    static void Postfix(Creature __instance, ref IEnumerable<IHoverTip> __result)
+    private static void Postfix(Creature __instance, ref IEnumerable<IHoverTip> __result)
     {
         if (__instance.Monster is not SlimeModel slime) return;
         __result = __result.Append(slime.SlimeTip);

@@ -16,7 +16,7 @@ public class Hexaghost : DownfallCharacterModel
 #pragma warning restore STS001
 {
     private static readonly Color Color = new(0x723E6DFF);
-    public override Color EnergyLabelOutlineColor  => Color;
+    public override Color EnergyLabelOutlineColor => Color;
     public override string ModId => HexaghostMainFile.ModId;
     public override string CharId => "Hexaghost";
     public override Color NameColor => Color;
@@ -70,7 +70,8 @@ public class Hexaghost : DownfallCharacterModel
 
 public class HexaghostRelicPool : DownfallRelicPool<Hexaghost>;
 
-public abstract class HexaghostRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Hexaghost>(rarity, autoAdd);
+public abstract class HexaghostRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<Hexaghost>(rarity, autoAdd);
 
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,

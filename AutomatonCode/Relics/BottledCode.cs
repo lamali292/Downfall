@@ -23,7 +23,6 @@ public class BottledCode : AutomatonRelicModel
 
     public override async Task AfterObtained()
     {
-        
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Hardcoded>(), 1, null, prefs))
             .FirstOrDefault();

@@ -18,8 +18,6 @@ public class InfiniteLoop : AutomatonCardModel,
         WithDamage(6);
         WithVar("Increase", 2, 2);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 
     protected override Artist Artist => Artist.Get<Opal>();
 
@@ -32,4 +30,6 @@ public class InfiniteLoop : AutomatonCardModel,
         copy.DynamicVars.FinalizeUpgrade();
         await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
     }
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

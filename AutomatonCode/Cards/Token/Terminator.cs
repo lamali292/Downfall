@@ -15,15 +15,11 @@ public class Terminator : AutomatonCardModel, IEncodable
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.ReplayStatic);
     }
-    
+
     public void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
-        if (position == FunctionPosition.End)
-        {
-            function.BaseReplayCount += 1;
-        }
+        if (position == FunctionPosition.End) function.BaseReplayCount += 1;
     }
 
     public IEnumerable<Encodable> Encodings => [];
-
 }

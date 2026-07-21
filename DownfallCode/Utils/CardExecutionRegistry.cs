@@ -23,7 +23,7 @@ public static class CardExecutionRegistry
     {
         if (!AfterListeners.Contains(callback)) AfterListeners.Add(callback);
     }
-    
+
     public static async Task<bool> BeforeOnPlayInternal(CardModel card, PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {

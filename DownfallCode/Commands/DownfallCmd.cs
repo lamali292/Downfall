@@ -128,7 +128,7 @@ public class DownfallCmd
             node?.TrackBlockStatus(summoner.Creature);
             node?.ToggleIsInteractable(true);
         }
-        
+
         await CreatureCmd.SetMaxHp(existing, hp);
         await CreatureCmd.Heal(existing, hp, isReviving);
 

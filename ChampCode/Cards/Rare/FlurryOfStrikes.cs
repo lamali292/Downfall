@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Champ.ChampCode.Cards.Rare;
+
 [Pool(typeof(ChampCardPool))]
 public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
 {
@@ -23,7 +24,7 @@ public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        if (newStance.Owner != Owner || Pile?.Type != PileType.Discard || (newStance is ChampNoStance)) return;
+        if (newStance.Owner != Owner || Pile?.Type != PileType.Discard || newStance is ChampNoStance) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 

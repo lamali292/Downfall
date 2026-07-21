@@ -13,5 +13,3 @@ public static class NCreatureDeathAnimationPatch
             downfallAnimation.OnAnimationTrigger("Dead");
     }
 }
-
-

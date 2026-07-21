@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Token;
@@ -20,25 +19,25 @@ public abstract class SlimeCard<T>
     {
         WithTips(_ => [SlimeModel.SlimeTip]);
     }
-    
-    
+
+
     protected override bool IsPlayable => false;
     public override string Title => SlimeModel.Title.GetFormattedText();
-    public SlimeModel SlimeModel => ModelDb.Get<T>();
-    
+
     public LocString ModifyDescription(LocString oldLocString)
     {
         var description = new LocString("cards", "SLIMEBOSS-SLIME_CARD.description");
         description.Add("Slime", SlimeModel.Title.GetFormattedText());
         return description;
     }
+
+    public SlimeModel SlimeModel => ModelDb.Get<T>();
 }
 
 public interface ISlimeCard
 {
     SlimeModel SlimeModel { get; }
 }
-
 
 #pragma warning disable
 

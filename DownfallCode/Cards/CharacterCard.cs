@@ -14,9 +14,11 @@ namespace Downfall.DownfallCode.Cards;
 
 [Pool(typeof(TokenCardPool))]
 #pragma warning disable
-public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self), IModfyCardDescription, ICustomPortrait
+public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRarity.Token, TargetType.Self),
+    IModfyCardDescription, ICustomPortrait
 #pragma warning restore
 {
+    private ImageTexture? _cachedTexture;
     internal CharacterModel? CharacterModel;
     public CardModel? RandomCommonCard;
     public CardModel? RandomRareCard;
@@ -28,6 +30,21 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
         ? "???"
         : new LocString("characters", CharacterModel.CharacterSelectTitle)
             .GetFormattedText();
+
+    public Texture2D? GetPortraitTexture()
+    {
+        if (_cachedTexture != null) return _cachedTexture;
+
+        _cachedTexture = PortraitCompositor.SliceHorizontally(
+            [RandomCommonCard?.Portrait, RandomUncommonCard?.Portrait, RandomRareCard?.Portrait]);
+
+        return _cachedTexture;
+    }
+
+    public LocString ModifyDescription(LocString oldLocString)
+    {
+        return CharacterModel == null ? oldLocString : new LocString("characters", CharacterModel.CharacterSelectDesc);
+    }
 
     public static CharacterCard Create(CharacterModel characterModel)
     {
@@ -43,22 +60,5 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
             .Where(e => e.Rarity == CardRarity.Rare));
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
-    }
-
-    public LocString ModifyDescription(LocString oldLocString)
-    {
-        return CharacterModel == null ? oldLocString : new LocString("characters", CharacterModel.CharacterSelectDesc);
-    }
-    
-    private ImageTexture? _cachedTexture;
-
-    public Texture2D? GetPortraitTexture()
-    {
-        if (_cachedTexture != null) return _cachedTexture;
-
-        _cachedTexture = PortraitCompositor.SliceHorizontally(
-            [RandomCommonCard?.Portrait, RandomUncommonCard?.Portrait, RandomRareCard?.Portrait]);
-
-        return _cachedTexture;
     }
 }

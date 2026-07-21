@@ -9,7 +9,6 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class ForkedTongue : SneckoCardModel
 {
-
     public ForkedTongue() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
@@ -20,5 +19,4 @@ public class ForkedTongue : SneckoCardModel
     {
         await CommonActions.ApplySelf<ForkedTonguePower>(ctx, this);
     }
-    
 }

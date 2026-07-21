@@ -16,8 +16,8 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
         WithTip(GuardianTip.DefensiveMode);
         WithTip(StaticHoverTip.Block);
     }
-    
-    
+
+
     public async Task AfterGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {

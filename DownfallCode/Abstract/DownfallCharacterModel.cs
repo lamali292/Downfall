@@ -4,7 +4,6 @@ using Godot;
 
 namespace Downfall.DownfallCode.Abstract;
 
-
 public abstract class DownfallCharacterModel : CustomCharacterModel
 {
     protected DownfallCharacterModel()
@@ -31,7 +30,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
 
     public override string CustomIconTexturePath =>
         $"res://{ModId}/images/character/character_icon.png";
-    
+
     /*
     public override CustomEnergyCounter? CustomEnergyCounter =>
         new CustomEnergyCounter(EnergyCounterPaths, EnergyOutlineColor, EnergyBurstColor);
@@ -43,11 +42,10 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
             var path = $"res://{ModId}/scenes/character/energy_counter.tscn";
             return ResourceLoader.Exists(path)
                 ? path
-                : $"res://Downfall/scenes/character/energy_counter_empty.tscn";
+                : "res://Downfall/scenes/character/energy_counter_empty.tscn";
         }
     }
 
-   
 
     public override string CustomMapMarkerPath =>
         $"res://{ModId}/images/character/map_marker.png";

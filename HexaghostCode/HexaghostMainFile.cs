@@ -1,6 +1,4 @@
-using System.Reflection;
 using BaseLib.Utils;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -11,7 +9,6 @@ using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Localization;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode;
 
@@ -27,17 +24,15 @@ public partial class HexaghostMainFile : Node
         RichTextEffectRegistry.Register<RichTextAfterlife>();
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
-        
+
         BundledSubmodLocRegistry.Register(ModId);
-   
+
         PostInitRegistry.Register(() =>
         {
             CardKeywordSubRegistry.Register(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
             KeywordColorRegistry.Register(HexaghostKeyword.Afterlife, "afterlife");
         });
-        
+
         CombatUiHooks.Register(HexaghostModel.SetupHexaghostCombatUi);
-       
     }
 }
-

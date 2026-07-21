@@ -12,6 +12,15 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage, IModifyDamageAdditive
 {
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
+    {
+        return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
+               props.HasFlag(ValueProp.Unpowered)
+            ? -amount
+            : 0;
+    }
+
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
         return model is CardModel card && card.Tags.Contains(SlimeBossTag.Tackle) && card.Owner.Creature == Owner
@@ -23,14 +32,5 @@ public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage, IModifyD
     public Task AfterModifyingSelfDamage(AbstractModel model)
     {
         return PowerCmd.Decrement(this);
-    }
-
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
-               props.HasFlag(ValueProp.Unpowered)
-            ? -amount
-            : 0;
     }
 }

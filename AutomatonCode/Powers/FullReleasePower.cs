@@ -14,21 +14,30 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
-
     private string IconName => Id.Entry
         .RemovePrefix()
         .ToLowerInvariant();
 
-    
-    
+
     public override string CustomPackedIconPath => $"{IconName}.tres".PowerImagePath<Core.Automaton>();
     public override string CustomBigIconPath => $"{IconName}.png".BigPowerImagePath<Core.Automaton>();
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>  Encodable.All.Select(e => e.FunctionDynamicVar);
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
+    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
+
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        var lines = (from encodable in Encodable.All
+            where encodable is not PowerEncode
+            where encodable.DynamicVar(this).BaseValue > 0
+            select encodable.GetDescription(this).GetFormattedText()).ToList();
+        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
+    }
 
     public void SetDynamicalVars(DynamicVarSet functionCardDynamicVars)
     {
@@ -39,22 +48,11 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         ICombatState combatState)
     {
         if (Owner.Player != player || Owner.CombatState == null) return;
-      
+
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
         foreach (var encodable in Encodable.All.Where(e => e is not PowerEncode))
-        {
             if (encodable.DynamicVar(this).BaseValue > 0)
                 await encodable.OnPlay(this, ctx, target, null);
-        }
         Flash();
-    }
-    
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        var lines = (from encodable in Encodable.All
-            where encodable is not PowerEncode
-            where encodable.DynamicVar(this).BaseValue > 0
-            select encodable.GetDescription(this).GetFormattedText()).ToList();
-        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
     }
 }

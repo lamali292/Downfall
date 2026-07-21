@@ -1,10 +1,8 @@
-using System.Reflection;
 using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Localization;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -32,7 +30,7 @@ public partial class ChampMainFile : Node
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new FinisherDescriptionSource());
         ChampSubscriber.Subscribe();
-        
+
         BundledSubmodLocRegistry.Register(ModId);
         LocFormatterRegistry.Register(new FinisherFormatter());
     }

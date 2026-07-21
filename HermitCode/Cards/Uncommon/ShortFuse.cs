@@ -24,8 +24,8 @@ public sealed class ShortFuse : HermitCardModel
         await CommonActions.CardAttack(this, play).WithHermitShortFuseHitFx()
             .Execute(ctx);
     }
-    
-    
+
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (card != this || IsClone) return Task.CompletedTask;

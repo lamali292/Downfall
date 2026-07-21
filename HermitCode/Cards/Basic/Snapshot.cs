@@ -26,21 +26,19 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public override bool GainsBlock => true;
-    
+
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         if (_result == null) return;
         var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
 
         var hasSnipe = Owner.Creature.HasPower<SnipePower>() ? 2 : 1;
-        for (var i = 0;  i < hasSnipe; i++)
+        for (var i = 0; i < hasSnipe; i++)
             await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
         _result = null;
     }
 
 
-
-    
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<Crackshot>();

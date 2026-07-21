@@ -15,6 +15,16 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGhostflameIgnited
 {
+    private bool UsedThisTurn { get; set; }
+
+    public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
+    {
+        if (player != Owner || UsedThisTurn) return;
+        UsedThisTurn = true;
+        Flash();
+        Status = RelicStatus.Normal;
+        await CreatureCmd.GainBlock(Owner.Creature, 3, ValueProp.Move | ValueProp.Unpowered, null, true);
+    }
 
     /*
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
@@ -29,17 +39,7 @@ public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGho
     {
         return ModelDb.Relic<MarkOfTheEther>();
     }
-    private bool UsedThisTurn { get; set; }
 
-    public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
-    {
-        if (player != Owner || UsedThisTurn) return;
-        UsedThisTurn = true;
-        Flash();
-        Status = RelicStatus.Normal;
-        await CreatureCmd.GainBlock(Owner.Creature, 3, ValueProp.Move | ValueProp.Unpowered, null, true);
-    }
-    
     protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)

@@ -1,11 +1,9 @@
 ﻿using Downfall.DownfallCode.Interfaces;
-using Guardian.GuardianCode.Cards.Abstract;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Patches;
-
 
 [HarmonyPatch(typeof(CardModel), "Description", MethodType.Getter)]
 public static class ModifyCardDescriptionPatch
@@ -17,6 +15,3 @@ public static class ModifyCardDescriptionPatch
         return false;
     }
 }
-
-
-

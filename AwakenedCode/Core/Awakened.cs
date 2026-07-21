@@ -13,7 +13,7 @@ namespace Awakened.AwakenedCode.Core;
 public class Awakened : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x12FAF0FF);
-    public override Color EnergyLabelOutlineColor  => new(0x004956FF);
+    public override Color EnergyLabelOutlineColor => new(0x004956FF);
     public override string CharId => "Awakened";
     public override string ModId => AwakenedMainFile.ModId;
     public override Color NameColor => Color;
@@ -94,7 +94,8 @@ public class Awakened : DownfallCharacterModel
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;
 
-public abstract class AwakenedRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Awakened>(rarity, autoAdd);
+public abstract class AwakenedRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<Awakened>(rarity, autoAdd);
 
 public abstract class AwakenedPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -1,5 +1,4 @@
 ﻿using Godot;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Interfaces;
 
@@ -12,8 +11,6 @@ public interface ICustomPowerIcon
     // Lib subscribes to this for live updates. Implement as a plain event.
     event Action? IconChanged;
 }
-
-
 
 // Lib helper so implementers name their nodes consistently for cleanup:
 public static class PowerIconExtensions

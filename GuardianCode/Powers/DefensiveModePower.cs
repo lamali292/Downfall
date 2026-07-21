@@ -40,5 +40,4 @@ public class DefensiveModePower : GuardianPowerModel
         if (player.Creature != Owner) return;
         await PowerCmd.Decrement(this);
     }
-    
 }

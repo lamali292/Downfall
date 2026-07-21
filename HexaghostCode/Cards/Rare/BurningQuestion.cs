@@ -15,14 +15,15 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class BurningQuestion : HexaghostCardModel
 {
-    
     public BurningQuestion() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<IntensityPower>(3, 1);
         WithPower<MetallicizePower>(6, 2);
         this.WithPower<RoyaltiesPower>(30, 5, false);
     }
+
     public override bool CanBeGeneratedInCombat => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         CardModel[] choices =

@@ -15,12 +15,14 @@ public class WeightedDicePower : SneckoPowerModel, IAfterCardMuddled
     {
         WithTip(SneckoKeywords.Muddle);
     }
+
+    private int CardsMuddled => CombatManager.Instance.History.Entries.OfType<MuddleEntry>()
+        .Count(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner);
+
     public Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card.Owner.Creature != Owner || CardsMuddled >= Amount) return Task.CompletedTask;
         Flash();
         return CardPileCmd.Draw(ctx, card.Owner);
     }
-    
-    private int CardsMuddled => CombatManager.Instance.History.Entries.OfType<MuddleEntry>().Count(e => e.HappenedThisTurn(CombatState) && e.Actor == Owner);
 }

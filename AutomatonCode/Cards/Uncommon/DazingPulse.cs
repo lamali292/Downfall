@@ -21,13 +21,13 @@ public class DazingPulse : AutomatonCardModel, IEncodable, ICompilable
         this.WithTip<Dazed>();
     }
 
-    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
-    
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
     public Task OnCompile(PlayerChoiceContext context)
     {
-        return DownfallCardCmd.GiveCards<Dazed>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue, CardPilePosition.Random);
-
+        return DownfallCardCmd.GiveCards<Dazed>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue,
+            CardPilePosition.Random);
     }
+
+    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
 }

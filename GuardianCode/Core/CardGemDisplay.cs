@@ -32,7 +32,6 @@ public partial class CardGemDisplay : Control
 
         var gems = card.Gems;
         for (var i = 0; i < card.GemSlots; i++)
-        {
             _slots.AddChild(new TextureRect
             {
                 Name = $"Slot_{i}",
@@ -42,6 +41,5 @@ public partial class CardGemDisplay : Control
                 CustomMinimumSize = new Vector2(60f, 60f),
                 MouseFilter = MouseFilterEnum.Ignore
             });
-        }
     }
 }

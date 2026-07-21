@@ -12,14 +12,13 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 public class Replicate : AutomatonCardModel,
     IEncodable
 {
-
     public Replicate() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
     }
-    
+
     public IEnumerable<Encodable> Encodings => [new DamageEncode()];
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var copiedCard = cardPlay.Card.CreateClone();

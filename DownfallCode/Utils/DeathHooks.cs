@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace Downfall.DownfallCode.Utils;
 
@@ -12,23 +11,23 @@ public static class DeathHooks
     private static readonly List<DeathInterceptor> interceptors = new();
 
     public static void RegisterInterceptor(DeathInterceptor interceptor)
-        => interceptors.Add(interceptor);
+    {
+        interceptors.Add(interceptor);
+    }
 
     internal static Task? TryIntercept(Creature creature)
     {
         foreach (var interceptor in interceptors)
-        {
             try
             {
                 var task = interceptor(creature);
-                if (task != null) return task;   // first taker wins
+                if (task != null) return task; // first taker wins
             }
             catch (Exception e)
             {
                 DownfallMainFile.Logger.Error($"Death interceptor failed: {e}");
             }
-        }
+
         return null;
     }
 }
-

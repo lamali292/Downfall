@@ -16,13 +16,13 @@ namespace Guardian.GuardianCode.Relics;
 [Pool(typeof(GuardianRelicPool))]
 public class BronzeGear : GuardianRelicModel
 {
-    public override bool HasUponPickupEffect => true;
-
     public BronzeGear() : base(RelicRarity.Starter)
     {
         WithTip(typeof(GearUp));
         WithTip(GuardianKeyword.Gem);
     }
+
+    public override bool HasUponPickupEffect => true;
 
     public override RelicModel GetUpgradeReplacement()
     {

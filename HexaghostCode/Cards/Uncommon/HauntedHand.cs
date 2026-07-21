@@ -20,11 +20,6 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay) {
-        await CommonActions.CardBlock(this, cardPlay);
-        await AfterlifeEffect(ctx, cardPlay);
-    }
-    
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
@@ -33,5 +28,10 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
             if (drawn == null || !drawn.Keywords.Contains(CardKeyword.Ethereal)) return;
         }
     }
-    
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
+        await AfterlifeEffect(ctx, cardPlay);
+    }
 }

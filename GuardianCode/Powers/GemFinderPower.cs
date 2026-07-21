@@ -8,13 +8,12 @@ namespace Guardian.GuardianCode.Powers;
 
 public class GemFinderPower : GuardianPowerModel
 {
-
     public GemFinderPower()
     {
         WithTip(GuardianKeyword.Gem);
         WithTip(GuardianTip.Brace);
     }
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = cardPlay.Card;

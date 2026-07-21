@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
-
 [Pool(typeof(AutomatonCardPool))]
 public class Explode : AutomatonCardModel, IEncodable, ICompilable
 {
@@ -22,12 +21,13 @@ public class Explode : AutomatonCardModel, IEncodable, ICompilable
         this.WithTip<Burn>();
     }
 
-    public IEnumerable<Encodable> Encodings => [new SoulburnEncode()];
-    
     protected override Artist Artist => Artist.Get<Opal>();
 
     public Task OnCompile(PlayerChoiceContext context)
     {
-        return DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue, CardPilePosition.Random);
+        return DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue,
+            CardPilePosition.Random);
     }
+
+    public IEnumerable<Encodable> Encodings => [new SoulburnEncode()];
 }

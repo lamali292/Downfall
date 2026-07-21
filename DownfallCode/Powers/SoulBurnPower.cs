@@ -32,13 +32,13 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
     {
         if (Amount <= 0) yield break;
         if (DynamicVars["Turns"].BaseValue != 1) yield break;
-        var a = (int) CompatibilityHook.ModifyDamage(Owner.CombatState!.RunState, 
-            Owner.CombatState, 
-            Owner, 
-            Applier, 
+        var a = (int)CompatibilityHook.ModifyDamage(Owner.CombatState!.RunState,
+            Owner.CombatState,
+            Owner,
+            Applier,
             Amount,
-            ValueProp.Unpowered | ValueProp.Unblockable, 
-            null, 
+            ValueProp.Unpowered | ValueProp.Unblockable,
+            null,
             null,
             ModifyDamageHookType.All,
             CardPreviewMode.Normal,

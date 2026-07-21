@@ -9,15 +9,15 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class AllIn : SneckoCardModel
 {
-    protected override bool HasEnergyCostX => true;
-
     public AllIn() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(8, 2);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(SneckoKeywords.Muddle);
     }
-    
+
+    protected override bool HasEnergyCostX => true;
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

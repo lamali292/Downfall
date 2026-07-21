@@ -20,7 +20,7 @@ public class Encircle : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = attack.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0) 
+        var a = attack.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0)
                 * DynamicVars.Power<GloryPower>().BaseValue;
         await CommonActions.ApplySelf<GloryPower>(ctx, this, a);
     }

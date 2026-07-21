@@ -12,16 +12,19 @@ public sealed class ModPatcher
     private readonly List<Type> _types = [];
     private bool _applied;
 
-    /// Log every successfully patched method individually (verbose). Failures are always logged.
-    public bool Verbose { get; set; }
-
     private ModPatcher(string modId, Logger logger)
     {
         _harmony = new Harmony(modId);
         _logger = logger;
     }
 
-    public static ModPatcher Create(string modId, Logger logger) => new(modId, logger);
+    /// Log every successfully patched method individually (verbose). Failures are always logged.
+    public bool Verbose { get; set; }
+
+    public static ModPatcher Create(string modId, Logger logger)
+    {
+        return new ModPatcher(modId, logger);
+    }
 
     public ModPatcher Add(Type patchClass)
     {
@@ -32,7 +35,7 @@ public sealed class ModPatcher
     public ModPatcher AddAllFrom(Assembly assembly)
     {
         var found = SafeGetTypes(assembly)
-            .Where(t => t.GetCustomAttributes(typeof(HarmonyPatch), inherit: false).Length > 0)
+            .Where(t => t.GetCustomAttributes(typeof(HarmonyPatch), false).Length > 0)
             .ToList();
         _types.AddRange(found);
         _logger.Info($"Discovered {found.Count} patch classes in {assembly.GetName().Name}.");
@@ -52,6 +55,7 @@ public sealed class ModPatcher
             _logger.Warn("PatchAll called twice; ignoring.");
             return;
         }
+
         _applied = true;
 
         var sw = Stopwatch.StartNew();
@@ -118,11 +122,19 @@ public sealed class ModPatcher
     }
 
     private static string Describe(MethodBase method)
-        => $"{method.DeclaringType?.Name}.{method.Name}";
+    {
+        return $"{method.DeclaringType?.Name}.{method.Name}";
+    }
 
     private static Type[] SafeGetTypes(Assembly a)
     {
-        try { return a.GetTypes(); }
-        catch (ReflectionTypeLoadException e) { return e.Types.Where(t => t != null).ToArray()!; }
+        try
+        {
+            return a.GetTypes();
+        }
+        catch (ReflectionTypeLoadException e)
+        {
+            return e.Types.Where(t => t != null).ToArray()!;
+        }
     }
 }

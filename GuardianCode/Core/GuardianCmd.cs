@@ -44,7 +44,6 @@ public static class GuardianCmd
     }
 
 
-
     public static GuardianPile GetStasisPile(Player player)
     {
         var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis);
@@ -52,7 +51,7 @@ public static class GuardianCmd
             throw new ArgumentNullException(nameof(pile));
         return (GuardianPile)pile;
     }
-    
+
     public static int GetMaxStasisSlots(Player player)
     {
         return GuardianCombatModel.StasisSlots[player];
@@ -97,7 +96,7 @@ public static class GuardianCmd
                 ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
             return false;
         }
-        
+
         await GuardianHook.BeforeCardEntersStasis(cs, ctx, card, source);
         await CardPileCmd.Add(card, pile, skipVisuals: silent);
         SetStasisCounter(card);
@@ -120,7 +119,7 @@ public static class GuardianCmd
     {
         if (card is ICustomTickDuration custom)
             return custom.TickDuration;
-        if(card.EnergyCost.CostsX)
+        if (card.EnergyCost.CostsX)
             return card.Owner.PlayerCombatState!.Energy + 1;
         return card.EnergyCost.GetResolved() + 1;
     }
@@ -132,6 +131,7 @@ public static class GuardianCmd
             await CardCmd.Exhaust(ctx, card);
             return;
         }
+
         await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
         card.EnergyCost.SetUntilPlayed(0);
     }
@@ -151,7 +151,6 @@ public static class GuardianCmd
         if (GuardianCombatModel.StasisCounter[card] != 0) return false;
         await ReturnFromStasis(card, player, ctx);
         return true;
-
     }
 
 
@@ -202,10 +201,7 @@ public static class GuardianCmd
 
         var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
-        while (power.Amount <= 0)
-        {
-            await power.Reset(ctx);
-        }
+        while (power.Amount <= 0) await power.Reset(ctx);
     }
 
     public static Task Brace(PlayerChoiceContext ctx, CardModel card)
@@ -217,17 +213,16 @@ public static class GuardianCmd
     {
         var stasisCards = player.GetStasis();
         foreach (var card in stasisCards)
-        {
             while (GuardianCombatModel.StasisCounter[card] > 0)
             {
                 if (!await TickCard(card, player, ctx)) continue;
                 GuardianDisplay.Refresh(player);
                 return;
             }
-        }
+
         GuardianDisplay.Refresh(player);
     }
-    
+
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
@@ -261,9 +256,9 @@ public static class GuardianCmd
         AccelerateType accelerateType = AccelerateType.First)
     {
         var player = source.GetCreature().Player;
-        return player == null ? 
-            Task.CompletedTask : 
-            Accelerate(ctx, player, source.GetDynamicVars().Accelerate().IntValue, accelerateType);
+        return player == null
+            ? Task.CompletedTask
+            : Accelerate(ctx, player, source.GetDynamicVars().Accelerate().IntValue, accelerateType);
     }
 
 
@@ -294,7 +289,7 @@ public static class GuardianCmd
             // Amount of Power and Amount of Polish
             var mod = Math.Min(power.Amount, amount);
             if (mod <= 0) continue;
-            
+
             // Lock in `mod` worth of the temp buff as permanent. If the internal power still exists,
             // leave it untouched -- it already holds the full temp amount, and we're only moving `mod`
             // worth of bookkeeping from "temporary" (tracked by the wrapper `power`) to "permanent"
@@ -303,17 +298,14 @@ public static class GuardianCmd
             if (internalTemporaryPower == null)
                 await PowerCmd.Apply(ctx, temporaryPower.InternallyAppliedPower.ToMutable(), target,
                     mod, target, cardSource, true);
-            
+
             // Shrink the wrapper's own bookkeeping directly, bypassing PowerCmd's hook pipeline.
             // This must NOT go through PowerCmd.ModifyAmount because CustomTemporaryPowerModel hardcodes
             // AllowNegative => true on every temp-power wrapper (Ruby/Tourmaline/etc.), so a 
             // reduction here would be misclassified as a Debuff and, if Artifact is present, 
             // gets blocked and silently eats an Artifact charge for no reason.
             power.SetAmount((int)(power.Amount - mod));
-            if (power.ShouldRemoveDueToAmount())
-            {
-                await PowerCmd.Remove(power);
-            }
+            if (power.ShouldRemoveDueToAmount()) await PowerCmd.Remove(power);
         }
     }
 

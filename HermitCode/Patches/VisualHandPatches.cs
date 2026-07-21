@@ -1,21 +1,19 @@
 ﻿using System.Reflection;
 using Godot;
-using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
-using MegaCrit.Sts2.Core.Nodes.Combat;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
-using HarmonyLib;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 
 namespace Hermit.HermitCode.Patches;
 
 internal static class HandVisualSync
 {
-    private static bool _syncing;
     private static bool _queued;
-    public static bool IsSyncing => _syncing;
-    
+    public static bool IsSyncing { get; private set; }
+
     public static void Queue()
     {
         if (_queued) return;
@@ -26,7 +24,7 @@ internal static class HandVisualSync
     private static void Run()
     {
         _queued = false;
-        if (_syncing) return;
+        if (IsSyncing) return;
 
         var hand = NPlayerHand.Instance;
         if (hand == null) return;
@@ -34,7 +32,7 @@ internal static class HandVisualSync
         var pile = FindHandPile(hand);
         if (pile == null) return;
 
-        _syncing = true;
+        IsSyncing = true;
         try
         {
             var container = hand.CardHolderContainer;
@@ -55,7 +53,7 @@ internal static class HandVisualSync
         }
         finally
         {
-            _syncing = false;
+            IsSyncing = false;
         }
     }
 
@@ -66,6 +64,7 @@ internal static class HandVisualSync
             var pile = holder.CardModel?.Pile;
             if (pile?.Type == PileType.Hand) return pile;
         }
+
         return null;
     }
 
@@ -99,18 +98,18 @@ internal static class HandChangedPatches
 }
 
 [HarmonyPatch(typeof(NPlayerHand), nameof(NPlayerHand.RefreshLayout))]
-static class HandRefreshLayoutPatch
+internal static class HandRefreshLayoutPatch
 {
-    static void Postfix()
+    private static void Postfix()
     {
         if (!HandVisualSync.IsSyncing) HandVisualSync.Queue();
     }
 }
 
 [HarmonyPatch(typeof(NCardTransformShineVfx), nameof(NCardTransformShineVfx.UpdateCard))]
-static class TransformShineUpdateCardPatch
+internal static class TransformShineUpdateCardPatch
 {
-    static void Postfix(CardModel endCard)
+    private static void Postfix(CardModel endCard)
     {
         if (endCard.Pile is { Type: PileType.Hand }) HandVisualSync.Queue();
     }

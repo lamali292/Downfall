@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,15 +21,15 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();
-    
+
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;
 
-        var cards =  CardFactory.FilterForCombat(Owner.Character.CardPool
+        var cards = CardFactory.FilterForCombat(Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
-        
+
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {

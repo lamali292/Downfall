@@ -15,7 +15,7 @@ public class Whiplash : SneckoCardModel
         WithPower<WeakPower>(2, 1);
         WithPower<VulnerablePower>(2, 1);
     }
- 
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

@@ -12,19 +12,20 @@ public class GuerillaSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Normal;
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
-    }
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, ValueProp.Move)
     ];
 
-    
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    {
+        return SetupAnimationState(controller, "idle", hitName: "damage");
+    }
+
+
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingAllOpponents(CombatState).Execute(ctx);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingAllOpponents(CombatState)
+            .Execute(ctx);
     }
 }

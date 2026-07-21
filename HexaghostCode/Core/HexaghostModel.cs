@@ -45,6 +45,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
             ResetWheel(player);
             HexaghostVisualsBridge.Refresh(player);
         }
+
         return Task.CompletedTask;
     }
 
@@ -88,10 +89,11 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         foreach (var player in state.Players)
         {
             if (player.Character is not Hexaghost) continue;
-            HexaghostVisualsBridge.DiscardDisplay(player);  
-            HexaghostVisualsBridge.Setup(combatRoom, player); 
+            HexaghostVisualsBridge.DiscardDisplay(player);
+            HexaghostVisualsBridge.Setup(combatRoom, player);
         }
     }
+
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);

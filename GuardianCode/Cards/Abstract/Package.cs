@@ -49,6 +49,11 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard, IMo
         WithUpgradingCardTip<T3>();
     }
 
+    public LocString ModifyDescription(LocString locString)
+    {
+        return new LocString("cards", "GUARDIAN-PACKAGE.description");
+    }
+
     protected override void AddExtraArgsToDescription(LocString description)
     {
         var card1 = ModelDb.Card<T1>().ToMutable();
@@ -72,12 +77,6 @@ public abstract class Package<T1, T2, T3> : GuardianCardModel, IPackageCard, IMo
         await DownfallCardCmd.GiveCard<T2>(Owner, PileType.Hand, upgraded: IsUpgraded);
         await DownfallCardCmd.GiveCard<T3>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
-
-    public LocString ModifyDescription(LocString locString)
-    {
-        return new LocString("cards", "GUARDIAN-PACKAGE.description");
-    }
 }
 
 internal interface IPackageCard;
-

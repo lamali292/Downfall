@@ -21,17 +21,26 @@ public interface IGemSocketCard : IModifyReplayCount, ICardOverlay
 
     private bool IsFull => Gems.Count >= GemSlots;
 
+    Control ICardOverlay.CreateCustomOverlay()
+    {
+        return new CardGemDisplay();
+    }
+
+    void ICardOverlay.UpdateOverlay(Control overlay)
+    {
+        ((CardGemDisplay)overlay).Refresh(this);
+    }
+
+    int IModifyReplayCount.ModifyReplayCount(int current)
+    {
+        return Gems.Aggregate(current, (c, gem) => gem.ModifyPlayCount(c));
+    }
+
     bool CanAddGem(GemModel gem)
     {
         return !IsFull;
     }
 
-    int IModifyReplayCount.ModifyReplayCount(int current)
-        => Gems.Aggregate(current, (c, gem) => gem.ModifyPlayCount(c));
-    
-    Control ICardOverlay.CreateCustomOverlay() => new CardGemDisplay();
-    void ICardOverlay.UpdateOverlay(Control overlay) => ((CardGemDisplay)overlay).Refresh(this);
-    
     void AddGem(GemModel gem)
     {
         if (IsFull || this is not CardModel card) return;

@@ -19,13 +19,13 @@ public class Snatch : SneckoCardModel, IHasOverflowEffect
         WithVar(new CardsVar("OverflowCards", 1));
     }
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-         await CommonActions.Draw(this, ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(ctx, DynamicVars["OverflowCards"].BaseValue, Owner);
+    }
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.Draw(this, ctx);
     }
 }

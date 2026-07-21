@@ -12,6 +12,7 @@ namespace Downfall.DownfallCode.Patches;
 public static class NCardUpdateTypePlaquePatch
 {
     private static LocString PlaqueLocString => new("gameplay_ui", "DOWNFALL-PLAQUE");
+
     public static void Postfix(NCard __instance)
     {
         var model = __instance.Model;
@@ -20,8 +21,8 @@ public static class NCardUpdateTypePlaquePatch
         var overrideText = customPlaque.GetTypePlaqueName.GetFormattedText();
         if (string.IsNullOrEmpty(overrideText)) return;
         var text = PlaqueLocString;
-        text.Add("original",  originalText);
-        text.Add("type",  overrideText);
+        text.Add("original", originalText);
+        text.Add("type", overrideText);
         var result = text.GetFormattedText();
         __instance._typeLabel.SetTextAutoSize(result);
         Callable.From(__instance.UpdateTypePlaqueSizeAndPosition).CallDeferred();

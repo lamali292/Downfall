@@ -10,7 +10,6 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class WeightedDice : SneckoCardModel
 {
-
     public WeightedDice() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
@@ -22,5 +21,4 @@ public class WeightedDice : SneckoCardModel
     {
         await CommonActions.ApplySelf<WeightedDicePower>(ctx, this);
     }
-    
 }

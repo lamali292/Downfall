@@ -53,7 +53,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         .ToLowerInvariant();
 
     public CardModel? Card => IsCanonical ? null : Owner;
-    
+
     public GemModel CanonicalInstance
     {
         get => !IsMutable ? this : _canonicalInstance;
@@ -139,7 +139,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         AssertMutable();
         return (GemModel)MutableClone();
     }
-    
+
 
     private HoverTip ToHoverTip(string description)
     {
@@ -162,13 +162,13 @@ public abstract class GemModel : CardModifier, ICustomModel
     }
 
     protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay);
-    
-    
+
+
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
-        for (var i = 0; i < replay; i++)  await OnPlayInternal(ctx, cardPlay);
+        for (var i = 0; i < replay; i++) await OnPlayInternal(ctx, cardPlay);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
@@ -176,5 +176,4 @@ public abstract class GemModel : CardModifier, ICustomModel
     {
         return originalPlayCount;
     }
-
 }

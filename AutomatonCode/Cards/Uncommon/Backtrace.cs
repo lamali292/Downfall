@@ -16,9 +16,7 @@ public class Backtrace : AutomatonCardModel, IEncodable
         WithKeywords(CardKeyword.Innate);
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
-    
     protected override Artist Artist => Artist.Get<Opal>();
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }
-
-

@@ -26,6 +26,7 @@ public class BruiserSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).WithHitCount(DynamicVars.Repeat.IntValue).TargetingRandomOpponents(CombatState).Execute(ctx);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).WithHitCount(DynamicVars.Repeat.IntValue)
+            .TargetingRandomOpponents(CombatState).Execute(ctx);
     }
 }

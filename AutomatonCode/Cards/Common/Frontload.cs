@@ -17,12 +17,12 @@ public class Frontload : AutomatonCardModel, IEncodable
         WithBlock(8, 3);
     }
 
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
-    
     public override bool GainsBlock => true;
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+
     public void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
         function.AddKeyword(CardKeyword.Retain);

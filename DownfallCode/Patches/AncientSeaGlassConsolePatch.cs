@@ -1,7 +1,4 @@
-﻿namespace Downfall.DownfallCode.Patches;
-
-using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Events;
@@ -9,14 +6,16 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Models.Relics;
 
+namespace Downfall.DownfallCode.Patches;
+
 [HarmonyPatch]
 public static class AncientSeaGlassConsolePatch
 {
-    /// <summary>Character entry (e.g. "IRONCLAD") forced via console, or null for default behavior.</summary>
-    private static string? _forcedSeaGlassCharacter;
-
     private const string SeaGlassKey = "SEA_GLASS";
     private const string Prefix = SeaGlassKey + "_";
+
+    /// <summary>Character entry (e.g. "IRONCLAD") forced via console, or null for default behavior.</summary>
+    private static string? _forcedSeaGlassCharacter;
 
     // 1) Rewrite "SEA_GLASS_IRONCLAD" -> "SEA_GLASS" + remember the character,
     //    so the vanilla Contains() validation and DebugOption matching still work.
@@ -57,12 +56,12 @@ public static class AncientSeaGlassConsolePatch
     {
         if (args.Length != 2)
             return true;
-        if (ModelDb.GetByIdOrNull<EventModel>(new ModelId(ModelDb.GetCategory(typeof(EventModel)), args[0].ToUpperInvariant())) is not Orobas orobas)
+        if (ModelDb.GetByIdOrNull<EventModel>(new ModelId(ModelDb.GetCategory(typeof(EventModel)),
+                args[0].ToUpperInvariant())) is not Orobas orobas)
             return true;
 
         var names = new List<string>();
         foreach (var name in orobas.AllPossibleOptions.Select(o => o.TextKey.Split('.').Last()))
-        {
             if (name == SeaGlassKey)
             {
                 if (!names.Any(n => n.StartsWith(Prefix)))
@@ -72,7 +71,6 @@ public static class AncientSeaGlassConsolePatch
             {
                 names.Add(name);
             }
-        }
 
         __result = __instance.CompleteArgument(names, [args[0]], args[1]);
         return false;

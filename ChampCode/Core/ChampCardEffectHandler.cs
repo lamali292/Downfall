@@ -18,7 +18,6 @@ public static class ChampCardEffectHandler
         if (card.Keywords.Contains(ChampKeyword.TriggerSkillBonus))
             await stance.SkillBonus(ctx);
 
-      
 
         if (card.Tags.Contains(ChampTag.EnterBerserker))
             await ChampCmd.EnterBerserkerStance(ctx, owner);

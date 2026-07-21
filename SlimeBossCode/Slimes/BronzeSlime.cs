@@ -12,9 +12,12 @@ public class BronzeSlime : SlimeModel
 {
     private int _skipTurns;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => 
-        [new DamageVar(10, ValueProp.Move),
-        new("Sleep", 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(10, ValueProp.Move),
+        new("Sleep", 2)
+    ];
+
     public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

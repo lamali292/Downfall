@@ -17,6 +17,25 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
     private MegaSprite? _sprite;
 
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix("Idle", DefaultMix);
+                break;
+            case "Hit":
+                _animState?.SetAnimationWithMix("Hit", HitMix, false);
+                _animState?.QueueAnimation("Idle", ToIdleMix);
+                break;
+            case "Attack":
+            case "Cast":
+            case "Dead":
+                break;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -32,25 +51,5 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _animState = _sprite?.GetAnimationState();
 
         _animState?.SetAnimationCompat("Idle");
-    }
-
-
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimationWithMix("Idle", DefaultMix);
-                break;
-            case "Hit":
-                _animState?.SetAnimationWithMix("Hit", HitMix, loop: false);
-                _animState?.QueueAnimation("Idle", ToIdleMix);
-                break;
-            case "Attack":
-            case "Cast":
-            case "Dead":
-                break;
-
-        }
     }
 }

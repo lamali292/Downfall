@@ -18,7 +18,7 @@ public class TalonRend : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue, vfx: "vfx/vfx_attack_slash")
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue, "vfx/vfx_attack_slash")
             .Execute(ctx);
         await AwakenedCmd.Conjure(Owner);
         await AwakenedCmd.Conjure(Owner);

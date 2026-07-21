@@ -16,27 +16,29 @@ public class TimeSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Specialist;
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
-    }
-    
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(4, ValueProp.Move),
         new SlimeSecondaryVar(1)
     ];
 
+    public override IEnumerable<IHoverTip> ExtraTips =>
+    [
+        HoverTipFactory.FromPower<WeakPower>()
+    ];
+
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    {
+        return SetupAnimationState(controller, "idle", hitName: "hit");
+    }
+
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        var cmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
+        var cmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
+            .TargetingRandomOpponents(CombatState).Execute(ctx);
         var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
         var original = DynamicVars.Slime().IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         await PowerCmd.Apply<WeakPower>(ctx, target, modified, Creature, null);
     }
-    
-    public override IEnumerable<IHoverTip> ExtraTips =>
-    [
-        HoverTipFactory.FromPower<WeakPower>()
-    ];
 }

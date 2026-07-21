@@ -18,7 +18,7 @@ public sealed class Shotglass : HermitRelicModel
     {
         WithVar("Limit", 1);
     }
-    
+
     public int AvailableUses { get; set; }
     public bool IsInCombat { get; set; }
 
@@ -57,6 +57,3 @@ public sealed class Shotglass : HermitRelicModel
         return Task.CompletedTask;
     }
 }
-
-
-

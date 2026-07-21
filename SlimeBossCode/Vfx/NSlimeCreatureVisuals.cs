@@ -94,4 +94,3 @@ public partial class NSlimeCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         }
     }
 }
-

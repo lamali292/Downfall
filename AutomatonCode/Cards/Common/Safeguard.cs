@@ -14,8 +14,8 @@ public class Safeguard : AutomatonCardModel, IEncodable
     {
         WithBlock(4, 2);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
 }

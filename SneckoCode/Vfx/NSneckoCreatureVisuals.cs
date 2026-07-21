@@ -23,6 +23,30 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
     private MegaSprite? _sprite;
 
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
+                break;
+            case "Attack":
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Hit":
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Cast":
+                _animState?.SetAnimationWithMix(CastAnim, CastMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Dead":
+                break;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -38,29 +62,5 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _animState = _sprite?.GetAnimationState();
 
         _animState?.SetAnimationCompat("Idle");
-    }
-
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
-                break;
-            case "Attack":
-                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Hit":
-                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Cast":
-                _animState?.SetAnimationWithMix(CastAnim, CastMix, loop: false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Dead":
-                break;
-        }
     }
 }

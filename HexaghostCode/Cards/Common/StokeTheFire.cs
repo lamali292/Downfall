@@ -24,7 +24,8 @@ public class StokeTheFire : HexaghostCardModel
         var ignitedCount = HexaghostCmd.GetIgnitedCount(Owner);
         if (ignitedCount == 0 || CombatState == null) return;
         var randomHandCards =
-            Owner.GetHand().Where(e => e.IsUpgradable).TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
+            Owner.GetHand().Where(e => e.IsUpgradable)
+                .TakeRandom(ignitedCount, CombatState.RunState.Rng.CombatCardSelection);
         foreach (var card in randomHandCards)
             CardCmd.Upgrade(card);
     }

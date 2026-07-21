@@ -16,8 +16,8 @@ public class DigitalCarnage : AutomatonCardModel,
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(20, 8);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

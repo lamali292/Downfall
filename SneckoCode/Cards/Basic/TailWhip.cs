@@ -21,17 +21,17 @@ public class TailWhip : SneckoCardModel, IHasOverflowEffect, ITranscendenceCard
         WithPower<WeakPower>(1, 1);
         WithPower<VulnerablePower>(1, 1);
     }
-    
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<Whiplash>();
-    }
 
 
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+    }
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Whiplash>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

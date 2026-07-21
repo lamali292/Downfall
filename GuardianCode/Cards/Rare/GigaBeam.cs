@@ -27,6 +27,9 @@ public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
         this.WithTip<StrengthPower>();
     }
 
+
+    protected override Artist Artist => Artist.Get<CartesianCanvas>();
+
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
@@ -34,9 +37,6 @@ public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
             ? 0M
             : dealer?.GetPowerAmount<StrengthPower>() * (DynamicVars["StrengthEffect"].IntValue - 1) ?? 0;
     }
-  
-
-    protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -67,6 +67,4 @@ public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
                          .OfType<NHyperbeamImpactVfx>())
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(impact);
     }
-
-  
 }

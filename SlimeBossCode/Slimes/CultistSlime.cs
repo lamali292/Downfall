@@ -15,7 +15,7 @@ public class CultistSlime : SlimeModel
         new DamageVar(6, ValueProp.Move),
         new("Increase", 1)
     ];
-    
+
     public override SlimeType SlimeType => SlimeType.Specialist;
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)

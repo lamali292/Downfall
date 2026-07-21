@@ -20,5 +20,4 @@ public class Burdened : HermitCardModel
     {
         (await MyCommonActions.ApplySelf<BurdenedPower>(ctx, this))?.IncrementSelfDamage();
     }
- 
 }

@@ -11,15 +11,14 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class GemFinder : GuardianCardModel
 {
-    protected override bool HasEnergyCostX => true;
-
-
     public GemFinder() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         //this.WithPower<GemFinderPower>(1, false);
         WithTip(GuardianKeyword.Gem);
         WithTip(GuardianTip.Brace);
     }
+
+    protected override bool HasEnergyCostX => true;
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 

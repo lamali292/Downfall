@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Relics;
+
 [Pool(typeof(ChampRelicPool))]
 public class DolphinsStyleGuide : ChampRelicModel
 {
@@ -18,6 +19,7 @@ public class DolphinsStyleGuide : ChampRelicModel
     {
         WithTip(ChampTip.Stance);
     }
+
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

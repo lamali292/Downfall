@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.RichTextTags;
 namespace Downfall.DownfallCode.Utils;
 
 /// <summary>
-/// Central registry for custom [bbcode] rich-text effects.
+///     Central registry for custom [bbcode] rich-text effects.
 /// </summary>
 public static class RichTextEffectRegistry
 {
@@ -20,11 +20,13 @@ public static class RichTextEffectRegistry
 
     /// <summary>Register an effect type with a parameterless constructor.</summary>
     public static void Register<T>() where T : AbstractMegaRichTextEffect, new()
-        => Register(new T());
+    {
+        Register(new T());
+    }
 
     /// <summary>
-    /// Called by the patch for every label. InstallEffectsIfNeeded rebuilds CustomEffects
-    /// with only the built-ins when it runs, so we re-add anything missing afterward.
+    ///     Called by the patch for every label. InstallEffectsIfNeeded rebuilds CustomEffects
+    ///     with only the built-ins when it runs, so we re-add anything missing afterward.
     /// </summary>
     internal static void InstallInto(MegaRichTextLabel label)
     {

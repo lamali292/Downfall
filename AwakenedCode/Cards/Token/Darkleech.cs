@@ -26,13 +26,13 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithTags(AwakenedTag.Spell);
     }
-    
-    public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     // Here I don't follow my own rules regarding modularity and hardcoding of models in other models.
     // But would be too extreme to make a hook for this.
     public override TargetType TargetType =>
         _owner == null || Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
+
+    public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {

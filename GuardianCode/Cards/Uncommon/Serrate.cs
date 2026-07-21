@@ -18,7 +18,7 @@ public class Serrate : GuardianCardModel
         WithCalculatedDamage(15, 3, Calc, ValueProp.Move, 5, 1);
         this.WithTip<ThornsPower>();
     }
-    
+
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     private static decimal Calc(CardModel card, Creature? arg2)

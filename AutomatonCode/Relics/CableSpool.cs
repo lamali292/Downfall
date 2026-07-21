@@ -28,7 +28,8 @@ public class CableSpool : AutomatonRelicModel
 
     public override Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card.Owner != Owner || !card.IsUpgradable ||!AutomatonCmd.IsEncodable(card) || _usesLeft == 0) return Task.CompletedTask;
+        if (card.Owner != Owner || !card.IsUpgradable || !AutomatonCmd.IsEncodable(card) || _usesLeft == 0)
+            return Task.CompletedTask;
         CardCmd.Upgrade(card);
         _usesLeft--;
         InvokeDisplayAmountChanged();

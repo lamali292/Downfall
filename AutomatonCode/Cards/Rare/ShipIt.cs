@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,17 +18,16 @@ public class ShipIt : AutomatonCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-    
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
         if (CombatState == null || card != this) return;
         await CommonActions.Draw(this, choiceContext);
     }
-    
-    
 }

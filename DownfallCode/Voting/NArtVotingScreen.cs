@@ -11,9 +11,13 @@ namespace Downfall.DownfallCode.Voting;
 public partial class NArtVotingScreen : NSubmenu
 {
     private const string ScenePath = "res://Downfall/scenes/voting/voting.tscn";
-    private NArtVotingContainer _submissionsContainer = null!;
     private NArtVotingCardContainer _cardContainer = null!;
     private Control _modRowContainer = null!;
+    private NArtVotingContainer _submissionsContainer = null!;
+
+    private static LocString RowTitle => new("settings_ui", "DOWNFALL-VOTING_SCREEN.ROW_TITLE");
+
+    protected override Control? InitialFocusedControl => null;
 
     public static NArtVotingScreen? Create()
     {
@@ -30,10 +34,8 @@ public partial class NArtVotingScreen : NSubmenu
         }
 
         foreach (var nmodMenuRow in _modRowContainer.GetChildren().OfType<NArtVotingRow>())
-        {
             if (nmodMenuRow != row)
                 nmodMenuRow.SetSelected(false);
-        }
     }
 
     public void AddArtData(ArtData artData)
@@ -58,8 +60,6 @@ public partial class NArtVotingScreen : NSubmenu
             OnRowSelected(first);
     }
 
-    private static LocString RowTitle => new("settings_ui", "DOWNFALL-VOTING_SCREEN.ROW_TITLE");
-
     public override void _Ready()
     {
         _submissionsContainer = GetNode<NArtVotingContainer>("%SubmissionsContainer");
@@ -78,6 +78,4 @@ public partial class NArtVotingScreen : NSubmenu
         ConnectSignals();
         _ = LoadCategories();
     }
-
-    protected override Control? InitialFocusedControl => null;
 }

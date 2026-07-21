@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
@@ -16,23 +15,26 @@ public class LeechingSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Normal;
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
-    }
-    
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(1, ValueProp.Move),
         new SlimeSecondaryVar(3)
     ];
+
     public override IEnumerable<IHoverTip> ExtraTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    {
+        return SetupAnimationState(controller, "idle", hitName: "damage");
+    }
+
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState).Execute(ctx);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
+            .Execute(ctx);
 
         var original = DynamicVars.Slime().IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);

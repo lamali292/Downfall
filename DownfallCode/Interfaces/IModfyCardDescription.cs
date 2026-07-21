@@ -2,7 +2,7 @@
 
 namespace Downfall.DownfallCode.Interfaces;
 
-interface IModfyCardDescription
+internal interface IModfyCardDescription
 {
     LocString ModifyDescription(LocString oldLocString);
 }

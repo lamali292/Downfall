@@ -34,7 +34,8 @@ internal static class ModifyDamageInternalPatch
         CardModel cardSource, CardPlay? cardPlay)
     {
         if (listener is IModifyDamageMultiplicative m)
-            return vanillaNum * m.ModifyDamageMultiplicativeCompability(target, amount, props, dealer, cardSource, cardPlay);
+            return vanillaNum *
+                   m.ModifyDamageMultiplicativeCompability(target, amount, props, dealer, cardSource, cardPlay);
         return vanillaNum;
     }
 
@@ -48,50 +49,48 @@ internal static class ModifyDamageInternalPatch
         var mulMethod = AccessTools.Method(typeof(AbstractModel), "ModifyDamageMultiplicative");
         var addBridge = AccessTools.Method(typeof(ModifyDamageInternalPatch), nameof(AdditiveBridge));
         var mulBridge = AccessTools.Method(typeof(ModifyDamageInternalPatch), nameof(MultiplicativeBridge));
-        
+
         for (var i = 0; i < code.Count; i++)
         {
             var isAdd = code[i].Calls(addMethod);
             var isMul = code[i].Calls(mulMethod);
             if (!isAdd && !isMul) continue;
-            
+
             var storeIndex = i + 1;
             if (storeIndex >= code.Count || code[storeIndex].opcode != OpCodes.Stloc_S) continue;
             var numLocal = code[storeIndex].operand;
-            
+
             var listenerLoad = FindListenerLoadBackwards(code, i);
             if (listenerLoad == null) continue;
 
             var injected = new List<CodeInstruction>
             {
-                listenerLoad.Clone(),                                  
-                new(OpCodes.Ldloc_S, numLocal),       
-                new(OpCodes.Ldarg_2),                  
-                new(OpCodes.Ldloc_0),                
-                new (OpCodes.Ldarg_S, (byte)5),      
-                new (OpCodes.Ldarg_3),                  
-                new (OpCodes.Ldarg_S, (byte)6),       
+                listenerLoad.Clone(),
+                new(OpCodes.Ldloc_S, numLocal),
+                new(OpCodes.Ldarg_2),
+                new(OpCodes.Ldloc_0),
+                new(OpCodes.Ldarg_S, (byte)5),
+                new(OpCodes.Ldarg_3),
+                new(OpCodes.Ldarg_S, (byte)6),
                 hasCardPlay
-                    ? new CodeInstruction(OpCodes.Ldarg_S, (byte)7)    
-                    : new CodeInstruction(OpCodes.Ldnull),           
-                new (OpCodes.Call, isAdd ? addBridge : mulBridge),
-                new (OpCodes.Stloc_S, numLocal),       
+                    ? new CodeInstruction(OpCodes.Ldarg_S, (byte)7)
+                    : new CodeInstruction(OpCodes.Ldnull),
+                new(OpCodes.Call, isAdd ? addBridge : mulBridge),
+                new(OpCodes.Stloc_S, numLocal)
             };
 
             code.InsertRange(storeIndex + 1, injected);
-            i = storeIndex + injected.Count; 
+            i = storeIndex + injected.Count;
         }
 
         return code;
     }
-    
+
     private static CodeInstruction? FindListenerLoadBackwards(List<CodeInstruction> code, int callIndex)
     {
         for (var j = callIndex - 1; j >= 0 && j > callIndex - 10; j--)
-        {
-            if (code[j].opcode == OpCodes.Ldarg_2) 
-                return code[j - 1];              
-        }
+            if (code[j].opcode == OpCodes.Ldarg_2)
+                return code[j - 1];
         return null;
     }
 }

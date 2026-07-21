@@ -34,5 +34,7 @@ public class TurnItUp : HexaghostCardModel
 }
 
 public class TurnItUpStrengthPower : CustomTemporaryPowerModelWrapper<TurnItUp, StrengthPower>;
+
 public class TurnItUpDexterityPower : CustomTemporaryPowerModelWrapper<TurnItUp, DexterityPower>;
+
 public class TurnItUpIntensityPower : CustomTemporaryPowerModelWrapper<TurnItUp, IntensityPower>;
