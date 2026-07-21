@@ -1,3 +1,4 @@
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -24,7 +25,7 @@ public class SwordOfNight : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
+        var result = await ScryCmd.Execute(ctx, this);
         foreach (var cardModel in result.Discarded.Where(card => card.Keywords.Contains(CardKeyword.Ethereal)))
             await CardCmd.Exhaust(ctx, cardModel);
     }
