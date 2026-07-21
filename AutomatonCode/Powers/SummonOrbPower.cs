@@ -10,7 +10,7 @@ public class SummonOrbPower : AutomatonPowerModel
     // TODO : maybe try to code similar to NostalgiaPower. but i had issues previously with this
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries || cardPlay.Card.Type is not (CardType.Attack or CardType.Skill)) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries || cardPlay.Card.Keywords.Contains(CardKeyword.Exhaust) || AutomatonCmd.IsEncodable(cardPlay.Card) || cardPlay.Card.Type is not (CardType.Attack or CardType.Skill)) return;
         var playedThisTurn = CombatManager.Instance.History.CardPlaysStarted
             .Count(e => e.Actor == Owner && e.CardPlay.Card.Type is CardType.Attack or CardType.Skill && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState));
 
