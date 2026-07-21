@@ -10,9 +10,14 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class Recycler() : HexaghostRelicModel(RelicRarity.Uncommon)
+public class Recycler : HexaghostRelicModel
 {
-    //todo ethereal and exhaust keywords
+    public Recycler() : base(RelicRarity.Uncommon)
+    {
+        WithTip(CardKeyword.Ethereal);
+        WithTip(CardKeyword.Exhaust);
+    }
+    
     private bool _usedThisCombat;
 
     private bool UsedThisCombat

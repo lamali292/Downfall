@@ -28,5 +28,6 @@
     "COLLECTOR-THE_CONTRACT.flavor": "血で署名を。",
     "COLLECTOR-THIMBLE_HELM.title": "シンブルヘルム",
     "COLLECTOR-THIMBLE_HELM.description": "戦闘開始時、[gold]点火[/gold][blue]3[/blue]する。[gold]トーチヘッド[/gold]が生きている間、カードは追加で[blue]1[/blue][gold]ブロック[/gold]を与える。",
-    "COLLECTOR-THIMBLE_HELM.flavor": "スパイア最小の英雄たちが身につけていた。"
+    "COLLECTOR-THIMBLE_HELM.flavor": "スパイア最小の英雄たちが身につけていた。",
+    "SEA_GLASS.COLLECTOR-COLLECTOR.title": "強欲グラス"
 }

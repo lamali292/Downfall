@@ -40,7 +40,6 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
             await HexaghostCmd.Advance(ctx, Owner, this);
         else if (keyword == HexaghostKeyword.Retract)
             await HexaghostCmd.Retract(ctx, Owner, this);
-        //todo Do Nothing option
     }
 
     protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,

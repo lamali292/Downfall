@@ -27,7 +27,7 @@
   "AWAKENED-RIPPED_DOLL.description": "At the start of the first [blue]2[/blue] turns of combat, [gold]Conjure[/gold].",
   "AWAKENED-RIPPED_DOLL.flavor": "The last reminder of your prior self. It still holds latent magicks.",
   "AWAKENED-SHREDDED_DOLL.title": "Shredded Doll",
-  "AWAKENED-SHREDDED_DOLL.description": "At the start of your turn, [gold]Conjure[/gold].\nStart combat with [blue]1[/blue] [gold]Ritual[/gold].",
+  "AWAKENED-SHREDDED_DOLL.description": "At the start of your turn, [gold]Conjure[/gold].\nStart combat with [blue]{RitualPower:diff()}[/blue] [gold]Ritual[/gold].",
   "AWAKENED-SHREDDED_DOLL.flavor": "A reminder of your weakness, and yet you still can't let go.",
   "AWAKENED-TOME_OF_PORTALMANCY.title": "Tome of Portalmancy",
   "AWAKENED-TOME_OF_PORTALMANCY.description": "Whenever you create a [gold]Void[/gold], apply [blue]2[/blue] [gold]Manaburn[/gold] to ALL enemies.",

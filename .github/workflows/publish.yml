@@ -1,0 +1,98 @@
+﻿name: Publish
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+permissions:
+  contents: write
+# A newer push to the same branch/PR cancels the still-running older build.
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  MEGADOT_VERSION: 4.5.1-m.11
+  SPINE_VERSION: 4.2-4.5.1-stable
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Guard against stale build artifacts (nothing generated should be in git).
+      - name: Clean stale build artifacts
+        run: rm -rf .godot obj bin
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # ---- Caches: skip re-downloading / re-restoring / re-importing when nothing changed ----
+      - name: Cache engine downloads
+        id: cache-engine
+        uses: actions/cache@v4
+        with:
+          path: |
+            megadot.zip
+            spine-godot.zip
+          key: engine-${{ env.MEGADOT_VERSION }}-${{ env.SPINE_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
+          restore-keys: nuget-
+
+      - name: Cache Godot import results
+        uses: actions/cache@v4
+        with:
+          path: .godot/imported
+          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
+          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
+
+      - name: Download MegaDot
+        if: steps.cache-engine.outputs.cache-hit != 'true'
+        run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
+
+      - name: Download spine-godot extension
+        if: steps.cache-engine.outputs.cache-hit != 'true'
+        run: |
+          curl -fL --retry 3 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-${SPINE_VERSION}.zip"
+
+      - name: Install engine
+        run: |
+          unzip -q megadot.zip -d megadot
+          chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
+          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+
+      # Generate the texture atlases BEFORE Godot imports them.
+      # Adjust the --project path to wherever the ImageGen csproj lives in the repo.
+      - name: Build image atlases
+        run: dotnet run --project ImageGen -c Release -- --repack
+
+      # First cold import often exits non-zero while bootstrapping .godot/ — run twice.
+      # With a warm import cache this step only re-imports changed assets.
+      - name: Import Godot resources
+        run: |
+          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --import
+
+      - name: Publish
+        run: |
+          mkdir -p "${{ github.workspace }}/output/mods"
+          dotnet publish Downfall.csproj -c Release \
+            /p:GodotPath="$GODOT_PATH" \
+            /p:ModsPath="${{ github.workspace }}/output/mods/" \
+            /p:SkipGodotImport=true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Downfall
+          path: output/mods/Downfall
+          retention-days: 14

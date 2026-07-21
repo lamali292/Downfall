@@ -25,7 +25,6 @@
     "HERMIT-PET_GHOST.description": "每场战斗阻止你受到的第一次致命伤害。",
     "HERMIT-CHARRED_GLOVE.title": "烧焦手套",
     "HERMIT-CHARRED_GLOVE.flavor": "手套上还残留着部分的尘世灰烬。",
-    "HERMIT-CHARRED_GLOVE.description": "每当你抽到或生成诅咒牌时，获得[blue]{VigorPower}[/blue]点[gold]活力[/gold]。",
     "HERMIT-CLASPED_LOCKET.title": "被锁死的小盒",
     "HERMIT-CLASPED_LOCKET.flavor": "再也打不开了。",
     "HERMIT-STRAIGHT_RAZOR.title": "刮胡刀",

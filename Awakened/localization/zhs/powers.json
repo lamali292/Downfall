@@ -70,7 +70,6 @@
     "AWAKENED-MAGICIANISM_POWER.smartDescription": "每当你打出一张无色牌时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "AWAKENED-MANABURN_POWER.title": "魔力灼烧",
     "AWAKENED-MANABURN_POWER.description": "每当你[gold]力竭[/gold]时，此敌人失去生命。",
-    "AWAKENED-MANABURN_POWER.smartDescription": "每当{IsApplierYou:你|[orange]{ApplierName}[/orange]}[gold]力竭[/gold]时，此敌人失去[blue]{Amount}[/blue]点生命。",
     "AWAKENED-MOONLIT_VISION_POWER.title": "月映法眼",
     "AWAKENED-MOONLIT_VISION_POWER.description": "每回合你第一次打出法术时，获得{energyPrefix:energyIcons(1)}。",
     "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次打出法术时，获得{energyPrefix:energyIcons(1)}。",

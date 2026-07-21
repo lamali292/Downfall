@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -61,7 +62,6 @@ public static class SlimeQueue
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
         if (pet == null) return (false, absorbed);
         await PlayerCmd.AddPet(pet, player);
-
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
         return (true, absorbed);
     }
@@ -147,8 +147,9 @@ public static class SlimeQueue
         {
             var activePet = slimes[i];
             var slimeNode = NCombatRoom.Instance?.GetCreatureNode(activePet);
+            slimeNode?.ToggleIsInteractable(true);
             if (slimeNode == null) continue;
-
+            HideHealthBar(slimeNode);
             var layoutIndex = totalSlimes - 1 - i;
 
             var t = totalSlimes == 1 ? 0.0f : Mathf.Lerp(tStart, tEnd, (float)layoutIndex / (totalSlimes - 1));
@@ -159,27 +160,33 @@ public static class SlimeQueue
             if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
 
             var targetGlobalPos = playerNode.GlobalPosition + relativeOffset;
-            var targetVisualLocalOffset = targetGlobalPos - slimeNode.GlobalPosition;
 
-            var currentVisualPos = slimeNode.Visuals.Position;
+            // convert the global target into the slime node's parent-local space,
+            // since Node2D.Position is relative to the parent
+            var targetLocalPos = slimeNode.GetParent() is Node2D parent
+                ? parent.ToLocal(targetGlobalPos)
+                : targetGlobalPos;
+
+            var currentPos = slimeNode.Position;
 
             if (!slimeNode.HasMeta("layout_tween"))
             {
-                slimeNode.Visuals.Position = targetVisualLocalOffset;
+                // first layout: snap instantly, no tween
+                slimeNode.Position = targetLocalPos;
                 slimeNode.UpdateBounds(slimeNode.Visuals);
-                currentVisualPos = targetVisualLocalOffset;
+                currentPos = targetLocalPos;
             }
 
-            if (slimeNode.HasMeta("layout_tween"))
+            if (!slimeNode.HasMeta("layout_tween"))
             {
-                var oldTween = slimeNode.GetMeta("layout_tween").As<Tween>();
-                if (oldTween.IsValid()) oldTween.Kill();
+                slimeNode.GlobalPosition = targetGlobalPos;
+                slimeNode.UpdateBounds(slimeNode.Visuals);
             }
 
             var layoutTween = slimeNode.CreateTween();
             slimeNode.SetMeta("layout_tween", layoutTween);
-            layoutTween.TweenProperty(slimeNode.Visuals, "position", targetVisualLocalOffset, 0.35f)
-                .From(currentVisualPos)
+            layoutTween.TweenProperty(slimeNode, "global_position", targetGlobalPos, 0.35f)
+                .From(slimeNode.GlobalPosition)
                 .SetEase(Tween.EaseType.Out)
                 .SetTrans(Tween.TransitionType.Cubic);
 
@@ -187,6 +194,11 @@ public static class SlimeQueue
         }
     }
 
+    private static void HideHealthBar(NCreature slimeNode)
+    {
+        slimeNode._stateDisplay._healthBar.Visible = false;
+    }
+    
     private static Vector2 CalculateQuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float t)
     {
         var u = 1f - t;

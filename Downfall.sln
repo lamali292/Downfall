@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downfall", "Downfall.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGen", "ImageGen\ImageGen.csproj", "{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen", "DataGen.csproj", "{82ACF291-639D-4BC6-A502-B001A46F5C62}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,12 +95,6 @@ Global
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
-		{82ACF291-639D-4BC6-A502-B001A46F5C62}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 		{579ACEFC-670E-4510-8581-148092FB9E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{579ACEFC-670E-4510-8581-148092FB9E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579ACEFC-670E-4510-8581-148092FB9E5E}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU

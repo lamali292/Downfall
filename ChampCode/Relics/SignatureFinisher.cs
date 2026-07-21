@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Relics;
-//todo finisher keyword
+
 [Pool(typeof(ChampRelicPool))]
 public class SignatureFinisher : ChampRelicModel
 {

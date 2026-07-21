@@ -31,5 +31,6 @@
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "よく見て。",
     "AUTOMATON-SILVER_BULLET.title": "シルバーバレット",
     "AUTOMATON-SILVER_BULLET.description": "状態異常を1枚生成するたび、敵全体に[blue]{Damage:diff()}[/blue]ダメージを与える。",
-    "AUTOMATON-SILVER_BULLET.flavor": "スパイアウルフはとうの昔に絶滅した。"
+    "AUTOMATON-SILVER_BULLET.flavor": "スパイアウルフはとうの昔に絶滅した。",
+    "SEA_GLASS.AUTOMATON-AUTOMATON.title": "コドングラス"
 }

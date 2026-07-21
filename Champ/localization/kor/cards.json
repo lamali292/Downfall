@@ -53,7 +53,6 @@
     "CHAMP-ENCHANT_SWORD.title": "무엇이든 베는 검",
     "CHAMP-ENCIRCLE.description": "모든 적에게 {Damage:diff()} 피해를 줍니다.\n적중한 적 한 마리당 {GloryPower:diff()} [gold]영광[/gold]을 얻습니다.",
     "CHAMP-ENCIRCLE.title": "포위",
-    "CHAMP-ENDURE.description": "{CalculatedBlock:diff()} 방어도를 얻습니다.\n이 방어도는 [gold]민첩[/gold] 대신 [gold]힘[/gold]의 영향을 받아 증가합니다.\n[gold]철벽[/gold] 태세에 진입합니다.",
     "CHAMP-ENDURE.title": "인내",
     "CHAMP-ENRAGED_BASH.description": "{Damage:diff()} 피해를 {Repeat:plural:줍니다|{Repeat:diff()}번 줍니다}.\n[gold]광란 연계[/gold]:\n이 카드는 이번 전투 동안 공격 횟수가 1회 추가됩니다.",
     "CHAMP-ENRAGED_BASH.title": "분노의 강타",

@@ -24,7 +24,7 @@
     "HERMIT-ADAPT_POWER.smartDescription": "Au début de votre tour, [gold]Épuisez[/gold] jusqu'à [blue]{Amount}[/blue] {Amount:plural:carte|cartes} pour gagner [blue]8[/blue] [gold]d'Armure[/gold] pour chaque carte.",
     "HERMIT-ADAPT_POWER.title": "Adaptation",
     "HERMIT-BRUISE_POWER.description": "Ce tour, vos Attaques infligent des dégâts supplémentaires à la cible.",
-    "HERMIT-BRUISE_POWER.smartDescription": "Ce tour, {HasBigBruiser:|{IsApplierYou:vos Attaques|les Attaques de [orange]{ApplierName}[/orange]}} infligent [blue]{Amount}[/blue] dégâts supplémentaires à la cible.",
+    "HERMIT-BRUISE_POWER.smartDescription": "Ce tour, {HasBigBruiser:|vos Attaques} infligent [blue]{Amount}[/blue] dégâts supplémentaires à la cible.",
     "HERMIT-BRUISE_POWER.title": "Contusion",
     "HERMIT-HORROR_POWER.description": "La Contusion ne s'estompera pas ce tour.",
     "HERMIT-HORROR_POWER.smartDescription": "La Contusion ne s'estompera pas {Amount:plural:ce tour|pendant [blue]{Amount}[/blue] tours}.",
@@ -88,5 +88,6 @@
     "HERMIT-SCOPE_OUT_POWER.smartDescription": "Les [gold]Frappes[/gold] [gold]Basiques[/gold] infligent maintenant des dégâts à TOUS les ennemis.",
     "HERMIT-BURDENED_POWER.title": "Fardeau",
     "HERMIT-BURDENED_POWER.description": "Au début de votre tour, gagnez de la [gold]Vigueur[/gold] et ajoutez un [gold]Déclin[/gold] dans votre [gold]Main[/gold].",
-    "HERMIT-BURDENED_POWER.smartDescription": "Au début de votre tour, gagnez [blue]{Amount}[/blue] de [gold]Vigueur[/gold] et ajoutez {Cards:plural:un [gold]Déclin[/gold]|[blue]{}[/blue] [gold]Déclins[/gold]} dans votre [gold]Main[/gold]."
+    "HERMIT-BURDENED_POWER.smartDescription": "Au début de votre tour, gagnez [blue]{Amount}[/blue] de [gold]Vigueur[/gold] et ajoutez {Cards:plural:un [gold]Déclin[/gold]|[blue]{}[/blue] [gold]Déclins[/gold]} dans votre [gold]Main[/gold].",
+    "HERMIT-BRUISE_POWER.remoteDescription": "Ce tour, {HasBigBruiser:|les Attaques de [orange]{ApplierName}[/orange]} infligent [blue]{Amount}[/blue] dégâts supplémentaires à la cible."
 }

@@ -100,7 +100,6 @@
     "AUTOMATON-SENTIENT_FORM.title": "지성의 형상",
     "AUTOMATON-SEPARATOR.description": "중간에 [gold]부호화[/gold]될 때, 부여하는 피해량이 {ExtraDamage:diff()} 증가합니다.",
     "AUTOMATON-SEPARATOR.title": "분리기",
-    "AUTOMATON-SHIP_IT.description": "피해를 {Damage:diff()} 줍니다.\n카드를 {Cards:diff()}장 뽑습니다.\n이 카드를 [gold]보관[/gold]합니다.",
     "AUTOMATON-SHIP_IT.title": "배포",
     "AUTOMATON-SPAGHETTI_CODE.title": "스파게티 코드",
     "AUTOMATON-STICKY_SHIELD.description": "방어도를 {Block:diff()} 얻습니다.\n[gold]뽑을 카드 더미[/gold]에 [gold]점액투성이[/gold]를 1장 추가합니다.",
