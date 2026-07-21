@@ -1,23 +1,18 @@
-﻿name: Publish
+name: Release
 on:
-  workflow_dispatch:
   push:
     tags: ['v*']
-  pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch:
 permissions:
   contents: write
 env:
   MEGADOT_VERSION: 4.5.1-m.11
   SPINE_VERSION: 4.2-4.5.1-stable
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # Guard against stale build artifacts (nothing generated should be in git).
       - name: Clean stale build artifacts
         run: rm -rf .godot obj bin
 
@@ -25,7 +20,6 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      # ---- Caches: skip re-downloading / re-restoring / re-importing when nothing changed ----
       - name: Cache engine downloads
         id: cache-engine
         uses: actions/cache@v4
@@ -66,13 +60,25 @@ jobs:
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
 
-      # Generate the texture atlases BEFORE Godot imports them.
-      # Adjust the --project path to wherever the ImageGen csproj lives in the repo.
+      # Version comes from the tag: v1.2.3 -> 1.2.3
+      - name: Set version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Tag must be vX.Y.Z, got $GITHUB_REF_NAME"; exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      # Patch the manifest's top-level "version" to match the tag (build-time only, not committed).
+      # min_game_version and the BaseLib min_version stay as committed in the repo.
+      - name: Sync manifest version
+        run: |
+          sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' Downfall.json
+          grep '"version"' Downfall.json
+
       - name: Build image atlases
         run: dotnet run --project ImageGen -c Release -- --repack
 
-      # First cold import often exits non-zero while bootstrapping .godot/ — run twice.
-      # With a warm import cache this step only re-imports changed assets.
       - name: Import Godot resources
         run: |
           "$GODOT_PATH" --headless --audio-driver Dummy --import || true
@@ -84,10 +90,34 @@ jobs:
           dotnet publish Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
-            /p:SkipGodotImport=true
+            /p:SkipGodotImport=true \
+            /p:Version="$VERSION" \
+            /p:AssemblyVersion="$VERSION.0" \
+            /p:FileVersion="$VERSION.0"
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Downfall
-          path: output/mods/Downfall
+      # Zip ONLY the Downfall folder (BaseLib is a sibling in mods/ and is deliberately excluded),
+      # without .pdb files — mirrors what release.ps1's staging did.
+      - name: Package zip
+        run: |
+          test -d output/mods/Downfall || { echo "Built mod folder missing"; exit 1; }
+          find output/mods/Downfall -name '*.pdb' -delete
+          cd output/mods
+          zip -r "../../Downfall-$VERSION.zip" Downfall
+          cd ../..
+          unzip -l "Downfall-$VERSION.zip"
+
+      # Banner values come from the committed manifest instead of the local game install.
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          MIN_GAME=$(grep -oE '"min_game_version"[[:space:]]*:[[:space:]]*"[^"]+"' Downfall.json | sed -E 's/.*"([^"]+)"$/\1/' || true)
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+</BaseLibVersion>' build/mod.build.props | sed -E 's/<\/?BaseLibVersion>//g' || true)
+          {
+            echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
+            echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."
+          } > banner.md
+          gh release create "v$VERSION" "Downfall-$VERSION.zip" \
+            --title "Downfall v$VERSION - StS2 v${MIN_GAME:-unknown}" \
+            --generate-notes \
+            --notes-file banner.md
