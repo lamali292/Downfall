@@ -6,9 +6,11 @@ using Downfall.DownfallCode.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Powers;
@@ -30,8 +32,19 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
     {
         if (Amount <= 0) yield break;
         if (DynamicVars["Turns"].BaseValue != 1) yield break;
-        yield return new HealthBarForecastSegment(
+        var a = (int) CompatibilityHook.ModifyDamage(Owner.CombatState!.RunState, 
+            Owner.CombatState, 
+            Owner, 
+            Applier, 
             Amount,
+            ValueProp.Unpowered | ValueProp.Unblockable, 
+            null, 
+            null,
+            ModifyDamageHookType.All,
+            CardPreviewMode.Normal,
+            out _);
+        yield return new HealthBarForecastSegment(
+            a,
             new Color("8AD974"),
             HealthBarForecastDirection.FromRight,
             2
