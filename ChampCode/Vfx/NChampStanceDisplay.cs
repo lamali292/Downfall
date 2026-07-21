@@ -2,10 +2,13 @@
 
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -26,6 +29,10 @@ public partial class NChampStanceDisplay : Control
     private readonly List<StanceIconControl> _wrappers = new();
     private Control? _bounds;
     private Player? _trackedPlayer;
+    private Control? _creatureHitbox;
+
+    private static readonly Vector2 ReticleCenterOffset = new(ChargeIconSize / 2f, ChargeIconSize / 2f);
+    private static readonly Vector2 ReticleVisualSize = new(ChargeIconSize, ChargeIconSize);
 
     public static NChampStanceDisplay? Show(Player player)
     {
@@ -37,7 +44,8 @@ public partial class NChampStanceDisplay : Control
         {
             _trackedPlayer = player,
             _bounds = creatureNode.Visuals.Bounds,
-            ZIndex = creatureNode.ZIndex - 1
+            ZIndex = creatureNode.ZIndex - 1,
+            _creatureHitbox = creatureNode?.Hitbox
         };
 
         combatRoom?.CombatVfxContainer.AddChildSafely(display);
@@ -68,8 +76,14 @@ public partial class NChampStanceDisplay : Control
             AddChild(wrapper);
             _icons.Add(icon);
             _wrappers.Add(wrapper);
-        }
 
+            var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, ReticleCenterOffset, ReticleVisualSize, margin: 4f);
+            wrapper.SetReticle(reticle);
+        }
+        DownfallControllerNav.WireChain(_wrappers, wrap: true);
+        if (_creatureHitbox != null)
+            // Entry point is the rightmost icon, since that's the "first" stance charge
+            DownfallControllerNav.LinkAbove(_wrappers, _creatureHitbox, entryIndex: _wrappers.Count - 1);
         Reposition();
         Refresh();
     }
@@ -112,10 +126,16 @@ public partial class NChampStanceDisplay : Control
     {
         private IHoverTip? _tip;
         private Func<IHoverTip>? _tipProvider;
+        private NSelectionReticle? _reticle;
 
         public void SetTipProvider(Func<IHoverTip> provider)
         {
             _tipProvider = provider;
+        }
+
+        public void SetReticle(NSelectionReticle reticle)
+        {
+            _reticle = reticle;
         }
 
         public override void _Ready()
@@ -125,6 +145,8 @@ public partial class NChampStanceDisplay : Control
 
         protected override void OnFocus()
         {
+            if (NControllerManager.Instance?.IsUsingController == true) _reticle?.OnSelect();
+
             _tip = _tipProvider?.Invoke();
             if (_tip == null) return;
             NHoverTipSet.CreateAndShow(this, _tip)
@@ -133,6 +155,7 @@ public partial class NChampStanceDisplay : Control
 
         protected override void OnUnfocus()
         {
+            _reticle?.OnDeselect();
             NHoverTipSet.Remove(this);
         }
     }
