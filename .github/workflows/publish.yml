@@ -1,0 +1,54 @@
+﻿name: Publish
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install MegaDot
+        run: |
+          curl -L -o megadot.zip "https://megadot.megacrit.com/4.5.1-m.11/megadot-4.5.1-m.11-linux-x86_64-editor-csharp.zip"
+          unzip -q megadot.zip -d megadot
+          chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
+          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+
+      - name: Install spine-godot extension
+        run: |
+          curl -fL --retry 3 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-4.2-4.5.1-stable.zip"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+
+      # Generate the texture atlases BEFORE Godot imports them.
+      # Adjust the --project path to wherever the ImageGen csproj lives in the repo.
+      - name: Build image atlases
+        run: dotnet run --project ImageGen -c Release -- --repack
+
+      # First cold import often exits non-zero while bootstrapping .godot/ — run twice.
+      - name: Import Godot resources
+        run: |
+          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --import
+
+      - name: Publish
+        run: |
+          mkdir -p "${{ github.workspace }}/output/mods"
+          dotnet publish Downfall.csproj -c Release \
+            /p:GodotPath="$GODOT_PATH" \
+            /p:ModsPath="${{ github.workspace }}/output/mods/" \
+            /p:SkipGodotImport=true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Downfall
+          path: output/mods

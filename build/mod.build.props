@@ -49,7 +49,7 @@
             </Code>
         </Task>
     </UsingTask>
-    
+
     <ItemGroup Condition="'$(IsPublishAll)' != 'true'">
         <SymlinkFolders Include="src;images;fonts;localization;materials;models;scenes;animations;banks;debug_audio;shaders;themes;addons"/>
     </ItemGroup>
@@ -105,7 +105,8 @@
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 
-    <ItemGroup>
+    <!-- Game assemblies: real DLLs when STS2 is installed locally... -->
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
             <Private>false</Private>
@@ -120,7 +121,14 @@
         <Reference Include="Steamworks.NET">
             <HintPath>$(Sts2DataDir)/Steamworks.NET.dll</HintPath>
         </Reference>
+    </ItemGroup>
 
+    <!-- ...reference assemblies from NuGet when it isn't (CI). -->
+    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
+        <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
             <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
             <Private>false</Private>
@@ -129,10 +137,13 @@
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
     </ItemGroup>
-    
 
-    <ItemGroup>
+
+    <!-- Only publicize the real game DLL; RefLib reference assemblies are already public -->
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
+    </ItemGroup>
+    <ItemGroup>
         <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
             <Members>
                 M:BaseLib.Abstracts.ConstructedCardModel.WithKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword,BaseLib.Abstracts.ConstructedCardModel.UpgradeType);
