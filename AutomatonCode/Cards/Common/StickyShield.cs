@@ -24,6 +24,6 @@ public class StickyShield : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await DownfallCardCmd.GiveCard<Slimed>(Owner, PileType.Draw);
+        await DownfallCardCmd.GiveCard<Slimed>(Owner, PileType.Draw, CardPilePosition.Random);
     }
 }

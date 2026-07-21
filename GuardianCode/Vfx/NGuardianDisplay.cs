@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
@@ -114,7 +115,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return;
 
-        var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
+        var sequence = _trackedPlayer.GetStasis();
 
         for (var i = 0; i < _slots.Count && i < sequence.Count; i++)
             _slots[i].UpdateCounterDisplay(sequence[i]);
@@ -124,7 +125,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return;
 
-        var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
+        var sequence = _trackedPlayer.GetStasis();
         _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
         _initialized = true;
 
@@ -193,7 +194,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return GlobalPosition;
 
-        var sequence = GuardianCmd.GetStasisCards(_trackedPlayer);
+        var sequence = _trackedPlayer.GetStasis();
         var existingIndex = sequence.IndexOf(card);
         if (existingIndex >= 0)
             return existingIndex < _slots.Count ? _slots[existingIndex].CardAnchorGlobal : GlobalPosition;

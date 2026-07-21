@@ -36,7 +36,7 @@ public class PowerArmor : ChampRelicModel
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target,
         CardModel? cardSource)
     {
-        if (target != Owner.Creature || power is not (VigorPower or CounterPower))
+        if (target != Owner.Creature || power is not (VigorPower or CounterPower) || amount <= 0)
             return 0;
 
         var headroom = Cap - power.Amount;
