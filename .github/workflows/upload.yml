@@ -16,6 +16,7 @@ jobs:
       PARATRANZ_API_KEY_JPN: ${{ secrets.PARATRANZ_API_KEY_JPN }}
       PARATRANZ_API_KEY_RUS: ${{ secrets.PARATRANZ_API_KEY_RUS }}
       PARATRANZ_API_KEY_ITA: ${{ secrets.PARATRANZ_API_KEY_ITA }}
+      PARATRANZ_API_KEY_PTB: ${{ secrets.PARATRANZ_API_KEY_PTB }}
     steps:
       - uses: actions/checkout@v5
 
