@@ -17,7 +17,7 @@ public static class SneckoCardEffectHandler
             && !cardPlay.IsAutoPlay)
         {
             await overflow.OverflowEffect(ctx, cardPlay);
-            await SneckoHook.AfterOverflowEffect(card.CombatState!, cardPlay, card);
+            await SneckoHook.AfterOverflowEffect(card.Owner, cardPlay, card);
         }
     }
 }

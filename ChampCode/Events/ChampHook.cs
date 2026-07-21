@@ -1,4 +1,5 @@
-﻿using Champ.ChampCode.Core;
+﻿using BaseLib.Utils;
+using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ public static class ChampHook
 {
     public static Task OnFinisher(ICombatState cs, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return DownfallHook.Dispatch<IOnFinisher>(cs, ctx, m => m.OnFinisher(ctx, cardPlay));
+        return HookUtils.Dispatch<IOnFinisher>(cs, ctx, m => m.OnFinisher(ctx, cardPlay));
     }
 
 
@@ -20,7 +21,7 @@ public static class ChampHook
         ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        return DownfallHook.Dispatch<IOnChampStanceChange>(cs, ctx,
+        return HookUtils.Dispatch<IOnChampStanceChange>(cs, ctx,
             m => m.OnChampStanceChange(ctx, player, oldStance, newStance));
     }
 
@@ -28,30 +29,30 @@ public static class ChampHook
     public static int ModifySkillBonus<TPower>(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
         where TPower : PowerModel
     {
-        return DownfallHook.Aggregate<IModifySkillBonus, int>(cs, baseAmount,
+        return HookUtils.Aggregate<IModifySkillBonus, int>(cs, baseAmount,
             (m, current) => m.ModifySkillBonus<TPower>(stanceModel, current));
     }
 
     public static int ModifyCounterStrikeCount(ICombatState cs, Player player, int baseAmount)
     {
-        return DownfallHook.Aggregate<IModifyCounterStrikeCount, int>(cs, baseAmount,
+        return HookUtils.Aggregate<IModifyCounterStrikeCount, int>(cs, baseAmount,
             (m, current) => m.ModifyCounterStrikeCount(player, current));
     }
 
     public static bool IgnoreChargeCap(ICombatState cs, Player player)
     {
-        return DownfallHook.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
+        return HookUtils.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
     }
 
     public static int ModifyBerserkerFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
     {
-        return DownfallHook.Aggregate<IModifyBerserkerFinisherBonus, int>(cs, baseAmount,
+        return HookUtils.Aggregate<IModifyBerserkerFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyBerserkerFinisherBonus(stanceModel, current));
     }
 
     public static int ModifyDefensiveFinisherBonus(ICombatState cs, ChampStanceModel stanceModel, int baseAmount)
     {
-        return DownfallHook.Aggregate<IModifyDefensiveFinisherBonus, int>(cs, baseAmount,
+        return HookUtils.Aggregate<IModifyDefensiveFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyDefensiveFinisherBonus(stanceModel, current));
     }
 }

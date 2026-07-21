@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Events;
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Events;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,35 +12,35 @@ public class HermitHook
 {
     public static bool ShouldTriggerDeadOn(ICombatState cs, CardModel card)
     {
-        return DownfallHook.Any<IShouldTriggerDeadOn>(cs, e => e.ShouldTriggerDeadOn(card));
+        return HookUtils.Any<IShouldTriggerDeadOn>(cs, e => e.ShouldTriggerDeadOn(card));
     }
 
     public static Task AfterDeadOnTrigger(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
-        return DownfallHook.Dispatch<IAfterDeadOnTrigger>(cs, e => e.AfterDeadOnTrigger(ctx, card, cardPlay));
+        return HookUtils.Dispatch<IAfterDeadOnTrigger>(cs, e => e.AfterDeadOnTrigger(ctx, card, cardPlay));
     }
 
     public static int ModifyDeadOnCount(ICombatState cs, int orignal, CardModel card,
         out IEnumerable<IModifyDeadOnCount> modifiers)
     {
-        return DownfallHook.Modify(cs, orignal, (e, amount) => e.ModifyDeadOnCount(amount, card), out modifiers);
+        return HookUtils.Modify(cs, orignal, (e, amount) => e.ModifyDeadOnCount(amount, card), out modifiers);
     }
 
     public static Task AfterModifyingDeadOnCount(ICombatState cs, PlayerChoiceContext ctx, CardModel card,
         IEnumerable<IModifyDeadOnCount> modifiers)
     {
-        return DownfallHook.AfterModifying(cs, modifiers, e => e.AfterModifyingDeadOnCount(ctx, card));
+        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingDeadOnCount(ctx, card));
     }
 
     public static bool ShouldPreventBruiseRemoval(ICombatState cs, BruisePower power,
         out IEnumerable<IShouldPreventBruiseRemoval> preventers)
     {
-        return DownfallHook.Any(cs, h => h.ShouldPreventBruiseRemoval(power), out preventers);
+        return HookUtils.Any(cs, h => h.ShouldPreventBruiseRemoval(power), out preventers);
     }
 
     public static Task AfterPreventedBruiseRemoval(ICombatState cs, BruisePower power,
         IEnumerable<IShouldPreventBruiseRemoval> preventers)
     {
-        return DownfallHook.AfterModifying(cs, preventers, h => h.AfterPreventedBruiseRemoval(power));
+        return HookUtils.AfterModifying(cs, preventers, h => h.AfterPreventedBruiseRemoval(power));
     }
 }
