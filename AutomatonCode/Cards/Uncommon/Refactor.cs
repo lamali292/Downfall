@@ -1,4 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
+using BaseLib.Commands;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -22,7 +24,7 @@ public class Refactor : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
+        var result = await ScryCmd.Execute(ctx, this);
 
         var statuses = result.Discarded.Where(c => c.Type == CardType.Status).ToList();
         foreach (var status in statuses)

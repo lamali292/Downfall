@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <BaseLibVersion>3.3.6</BaseLibVersion>
+        <BaseLibVersion>3.3.8</BaseLibVersion>
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
 
