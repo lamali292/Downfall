@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using HarmonyLib;
@@ -40,7 +41,7 @@ public static class ModifyCardPlayResultLocationNewPatch
         var pileType = tr.Field("pileType").GetValue<PileType>();
         var position = tr.Field("position").GetValue<CardPilePosition>();
 
-        var result = DownfallHook.Modify<IModifyCardPlayResultLocation, CardLocationCompatiblity>(
+        var result = HookUtils.Modify<IModifyCardPlayResultLocation, CardLocationCompatiblity>(
             combatState,
             new CardLocationCompatiblity(player, pileType, position),
             (m, loc) => m.ModifyCardPlayResultLocationCompability(card, isAutoPlay, resources, loc),
@@ -77,7 +78,7 @@ public static class ModifyCardPlayResultLocationOldPatch
         ref (PileType, CardPilePosition) __result,
         ref IEnumerable<AbstractModel> modifiers)
     {
-        var result = DownfallHook.Modify<IModifyCardPlayResultLocation, CardLocationCompatiblity>(
+        var result = HookUtils.Modify<IModifyCardPlayResultLocation, CardLocationCompatiblity>(
             combatState,
             new CardLocationCompatiblity(card.Owner, __result.Item1, __result.Item2),
             (m, loc) => m.ModifyCardPlayResultLocationCompability(card, isAutoPlay, resources, loc),
