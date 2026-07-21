@@ -130,8 +130,29 @@ jobs:
           sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' Downfall.json
           grep '"version"' Downfall.json
 
+      # Persist ImageGen's own incremental cache (hash-based, so CI-safe) plus the generated
+      # atlas outputs it diffs against. Keyed on the source images — any art change re-runs
+      # only the changed items, everything else is restored. No --repack (that flag forces a
+      # full rebuild by wiping the cache: `if (Force) groupCache = new JsonObject()`).
+      # NOTE: caching every submod images/ dir so no Pack* output subfolder is missed.
+      - name: Cache image atlas outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ImageGen/.cards_cache.json
+            ImageGen/.powers_cache.json
+            ImageGen/.relics_cache.json
+            ImageGen/.potions_cache.json
+            ImageGen/.enchantments_cache.json
+            */images/atlases
+            */images/powers
+            */images/relics
+            */images/enchantments
+          key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
+          restore-keys: atlases-
+
       - name: Build image atlases
-        run: dotnet run --project ImageGen -c Release -- --repack
+        run: dotnet run --project ImageGen -c Release
 
       - name: Import Godot resources
         run: |
