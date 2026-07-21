@@ -26,8 +26,15 @@ public static class DownfallControllerNav
 
     /// <summary>
     /// Sets FocusMode and links FocusNeighborLeft/Right across an ordered list, so
-    /// d-pad/stick left-right moves between them. Pass <paramref name="wrap"/> for a ring
-    /// (e.g. a wheel). Pass <paramref name="rtl"/> to reverse screen layout / navigation
+    /// d-pad/stick left-right moves between them.
+    /// <para/>
+    /// Pass <paramref name="wrap"/> for a ring (e.g. a wheel).
+    /// <para/>
+    /// <paramref name="rtl"/> for when <paramref name="controls"/>' index order doesn't match true
+    /// left-to-right screen position — e.g. because the controls are in a container
+    /// with layout_direction set to RTL. Pass true there so FocusNeighborLeft/Right still point at the correct
+    /// physical neighbor
+    /// <para/>
     /// Safe to call repeatedly on the same list.
     /// </summary>
     public static void WireChain(IReadOnlyList<Control> controls, bool wrap = false, bool rtl = false)
@@ -51,6 +58,7 @@ public static class DownfallControllerNav
     /// Links a group above <paramref name="anchor"/> (typically a creature's Hitbox): "up"
     /// from the anchor enters the group at <paramref name="entryIndex"/>, "down" from the
     /// group returns to the anchor. Matches NOrbManager/NCreature's Top/Bottom convention.
+    /// <paramref name="entryIndex"/>  is what controls which control is reached first
     /// </summary>
     public static void LinkAbove(IReadOnlyList<Control> controls, Control anchor, int entryIndex = 0)
     {
@@ -80,6 +88,18 @@ public static class DownfallControllerNav
     private static void ApplyAnchorLink(Control anchor)
     {
         if (!AnchorLinks.TryGetValue(anchor, out var link)) return;
+
+        // A linked group can be freed out from under this 
+        // (like Champ's icons when the stance ends)
+        // while the anchor itself (the creature's Hitbox) stays alive. 
+        // Validate and drop any stale entries so we don't throw an error downstream
+        foreach (var control in link.Controls)
+        {
+            if (GodotObject.IsInstanceValid(control)) continue;
+            AnchorLinks.Remove(anchor);
+            return;
+        }
+
         anchor.FocusNeighborTop = link.Controls[link.EntryIndex].GetPath();
         foreach (var control in link.Controls)
             control.FocusNeighborBottom = anchor.GetPath();
