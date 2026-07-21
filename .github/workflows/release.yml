@@ -1,5 +1,10 @@
 name: Release
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (X.Y.Z, no leading v)'
+        required: true
   push:
     tags: ['v*']
 permissions:
@@ -60,12 +65,16 @@ jobs:
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
 
-      # Version comes from the tag: v1.2.3 -> 1.2.3
-      - name: Set version from tag
+      # Version source depends on trigger: manual run -> the input, tag push -> the tag (v1.2.3 -> 1.2.3)
+      - name: Set version
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
           if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "Tag must be vX.Y.Z, got $GITHUB_REF_NAME"; exit 1
+            echo "Version must be X.Y.Z, got '$VERSION'"; exit 1
           fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
@@ -117,7 +126,12 @@ jobs:
             echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
             echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."
           } > banner.md
+          TARGET=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TARGET="--target $GITHUB_SHA"
+          fi
           gh release create "v$VERSION" "Downfall-$VERSION.zip" \
+            $TARGET \
             --title "Downfall v$VERSION - StS2 v${MIN_GAME:-unknown}" \
             --generate-notes \
             --notes-file banner.md

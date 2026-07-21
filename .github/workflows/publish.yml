@@ -1,13 +1,17 @@
 ﻿name: Publish
 on:
-  workflow_dispatch:
   push:
-    tags: ['v*']
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 permissions:
   contents: write
+# A newer push to the same branch/PR cancels the still-running older build.
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
 env:
   MEGADOT_VERSION: 4.5.1-m.11
   SPINE_VERSION: 4.2-4.5.1-stable
@@ -91,3 +95,4 @@ jobs:
         with:
           name: Downfall
           path: output/mods/Downfall
+          retention-days: 14
