@@ -38,42 +38,21 @@ public static class GuardianCmd
         return GuardianCombatModel.SetMode(ctx, player, GuardianModelDb.GuardianMode<GuardianNormalMode>());
     }
 
-    public static Task ChangeMode(PlayerChoiceContext ctx, Player player)
-    {
-        return IsInMode<GuardianNormalMode>(player) ? EnterDefensiveMode(ctx, player) : LeaveDefensiveMode(ctx, player);
-    }
-
-    public static GuardianModeModel GetMode(Player player)
-    {
-        return GuardianCombatModel.ActiveMode[player] ?? GuardianModelDb.GuardianMode<GuardianNormalMode>();
-    }
-
     public static bool IsInMode<T>(Player player) where T : GuardianModeModel
     {
         return GuardianCombatModel.ActiveMode[player] is T;
     }
 
-    // Stasis
-    public static int GetStasisCount(Player player)
-    {
-        return TryGetStasisPile(player)?.Cards.Count ?? 0;
-    }
 
-    public static IReadOnlyList<CardModel> GetStasisCards(Player player)
-    {
-        return TryGetStasisPile(player)?.Cards ?? [];
-    }
 
     public static GuardianPile GetStasisPile(Player player)
     {
-        return (GuardianPile)GuardianPile.Stasis.GetPile(player);
+        var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis);
+        if (pile == null)
+            throw new ArgumentNullException(nameof(pile));
+        return (GuardianPile)pile;
     }
-
-    private static GuardianPile? TryGetStasisPile(Player player)
-    {
-        return CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis) as GuardianPile;
-    }
-
+    
     public static int GetMaxStasisSlots(Player player)
     {
         return GuardianCombatModel.StasisSlots[player];
@@ -141,10 +120,9 @@ public static class GuardianCmd
     {
         if (card is ICustomTickDuration custom)
             return custom.TickDuration;
-        else if(card.EnergyCost.CostsX)
+        if(card.EnergyCost.CostsX)
             return card.Owner.PlayerCombatState!.Energy + 1;
-        else
-            return card.EnergyCost.GetResolved() + 1;
+        return card.EnergyCost.GetResolved() + 1;
     }
 
     private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)
@@ -179,7 +157,8 @@ public static class GuardianCmd
 
     public static async Task TickAll(Player player, PlayerChoiceContext ctx)
     {
-        foreach (var card in GetStasisCards(player).ToList())
+        var stasisCards = player.GetStasis();
+        foreach (var card in stasisCards)
             await TickCard(card, player, ctx);
         GuardianDisplay.Refresh(player);
     }
@@ -236,7 +215,8 @@ public static class GuardianCmd
 
     public static async Task AccelerateUntilExit(PlayerChoiceContext ctx, Player player)
     {
-        foreach (var card in GetStasisCards(player).ToList())
+        var stasisCards = player.GetStasis();
+        foreach (var card in stasisCards)
         {
             while (GuardianCombatModel.StasisCounter[card] > 0)
             {
@@ -251,8 +231,7 @@ public static class GuardianCmd
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        var cards = GetStasisCards(player).ToList();
-
+        var cards = player.GetStasis();
         foreach (var card in cards)
         {
             var ticks = accelerateType == AccelerateType.First
@@ -330,7 +309,7 @@ public static class GuardianCmd
             // AllowNegative => true on every temp-power wrapper (Ruby/Tourmaline/etc.), so a 
             // reduction here would be misclassified as a Debuff and, if Artifact is present, 
             // gets blocked and silently eats an Artifact charge for no reason.
-            power.SetAmount((int)(power.Amount - mod), false);
+            power.SetAmount((int)(power.Amount - mod));
             if (power.ShouldRemoveDueToAmount())
             {
                 await PowerCmd.Remove(power);

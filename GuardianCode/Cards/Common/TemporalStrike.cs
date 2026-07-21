@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +24,7 @@ public class TemporalStrike : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (GuardianCmd.GetStasisCount(Owner) == 0) return;
+        if (Owner.GetStasis().Count == 0) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }

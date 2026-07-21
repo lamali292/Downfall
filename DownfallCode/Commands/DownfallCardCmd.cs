@@ -32,12 +32,14 @@ public class DownfallCardCmd
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false,
-        Action<T>? action = null) where T : CardModel
+        Action<T>? action = null,
+        Player? creator = null) where T : CardModel
     {
+        creator ??= player;
         var card = (T)player.Creature.CombatState!.CreateCard(ModelDb.Card<T>(), player);
         if (upgraded) card.UpgradeInternal();
         action?.Invoke(card);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, player, position);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(card, pileType, creator, position);
         if (result.success && !skipAnimation && pileType != PileType.Hand)
             CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
         return (T)result.cardAdded;
@@ -51,8 +53,10 @@ public class DownfallCardCmd
         float animationTime = 0.6f,
         CardPreviewStyle animationStyle = CardPreviewStyle.HorizontalLayout,
         bool skipAnimation = false,
-        Action<T>? action = null) where T : CardModel
+        Action<T>? action = null,
+        Player? creator = null) where T : CardModel
     {
+        creator ??= player;
         if (count <= 0) return [];
         var cardInstances = new List<CardModel>();
         var model = ModelDb.Card<T>();
@@ -64,7 +68,7 @@ public class DownfallCardCmd
             cardInstances.Add(card);
         }
 
-        var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, player, position);
+        var result = await CardPileCmd.AddGeneratedCardsToCombat(cardInstances, pileType, creator, position);
         if (!skipAnimation && pileType != PileType.Hand)
             CardCmd.PreviewCardPileAdd(result, animationTime, animationStyle);
         return result.Select(e => (T)e.cardAdded);

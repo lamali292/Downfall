@@ -1,6 +1,7 @@
 ﻿using Guardian.GuardianCode.Core;
 using BaseLib.Utils;
 using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -29,13 +30,15 @@ public class QuantumElixir : GuardianPotionModel
         
         while (GuardianCmd.CanPutIntoStasis(Owner, silent: true))
         {
-            var countBefore = GuardianCmd.GetStasisCount(Owner);
+            var countBefore = Owner.GetStasis().Count;
 
             var choices = CardFactory.GetDistinctForCombat(Owner, cards, DynamicVars.Cards.IntValue, rng).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
             await GuardianCmd.PutIntoStasis(selected, ctx, this);
-            if (GuardianCmd.GetStasisCount(Owner) < countBefore + 1)
+            
+            var countAfter = Owner.GetStasis().Count;
+            if (countAfter < countBefore + 1)
                 return;
         }
     }

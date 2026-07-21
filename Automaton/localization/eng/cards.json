@@ -186,7 +186,7 @@
   "AUTOMATON-CLANG.title": "Clang",
   "AUTOMATON-CLANG.description": "Deal {Damage:diff()} damage.\nCan only be played if a Status or Curse is in your [gold]Hand[/gold].",
   "AUTOMATON-COMMIT.title": "Commit",
-  "AUTOMATON-COMMIT.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} if the last card played this combat was a Function.",
+  "AUTOMATON-COMMIT.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nCosts {energyPrefix:energyIcons(0)} if the last card played this combat was a Function.",
   "AUTOMATON-SPIKE.title": "Spike",
   "AUTOMATON-SPIKE.description": "[gold]Compile[/gold] - Gain {ThornsPower:diff()} [gold]Thorns[/gold].",
   "AUTOMATON-DAZING_PULSE.title": "Dazing Pulse",

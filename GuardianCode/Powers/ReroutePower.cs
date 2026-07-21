@@ -1,5 +1,6 @@
 using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Piles;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -28,7 +29,7 @@ public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
             return cardLocation;
 
         var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
-        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? cardLocation : new CardLocationCompatiblity(card.Owner, stasisPile.Type, CardPilePosition.Bottom);
+        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? cardLocation : new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
     }
 
     public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
