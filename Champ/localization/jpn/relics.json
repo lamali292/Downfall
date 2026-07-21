@@ -34,5 +34,6 @@
     "CHAMP-SPECTRES_HAND.flavor": "心に残る勝利もある。",
     "CHAMP-VICTORIOUS_CROWN.title": "皇帝の冠",
     "CHAMP-VICTORIOUS_CROWN.description": "戦闘開始時、ランダムな[gold]スタンス[/gold]に入り、[gold]スキルボーナス[/gold]を2回発動する。\n各ターン、初めて[gold]フィニッシャー[/gold]をプレイした時、カードを[blue]2[/blue]枚引いてランダムな[gold]スタンス[/gold]に入る。",
-    "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! あなたは最高の勝者だ。"
+    "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! あなたは最高の勝者だ。",
+    "SEA_GLASS.CHAMP-CHAMP.title": "グラディエーターグラス"
 }
