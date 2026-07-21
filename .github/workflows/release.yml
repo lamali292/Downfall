@@ -177,36 +177,26 @@ jobs:
             --notes-file banner.md
 
       # ---- Steam Workshop upload (opt-in) ----
-      # Requires: repo variable STEAM_WORKSHOP_ID (from mod_id.txt after the first
-      # manual ModUploader upload), secrets STEAM_USERNAME and STEAM_CONFIG_VDF
-      # (base64 of a locally logged-in steamcmd config/config.vdf).
-      - name: Install SteamCMD
+      # Requires repo VARIABLE  STEAM_WORKSHOP_ID  (the id from mod_id.txt)
+      # and repo SECRETS:
+      #   STEAM_USERNAME       - builder account login name
+      #   STEAM_PASSWORD       - builder account password
+      #   STEAM_SHARED_SECRET  - that account's Steam Guard shared secret (for TOTP)
+      - name: Generate Steam TOTP
         if: vars.STEAM_WORKSHOP_ID != '' && (github.event_name != 'workflow_dispatch' || inputs.steam)
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lib32gcc-s1
-          mkdir steamcmd && cd steamcmd
-          curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zx
-
-      - name: Restore Steam session
-        if: vars.STEAM_WORKSHOP_ID != '' && (github.event_name != 'workflow_dispatch' || inputs.steam)
-        env:
-          STEAM_CONFIG_VDF: ${{ secrets.STEAM_CONFIG_VDF }}
-        run: |
-          mkdir -p steamcmd/config
-          echo "$STEAM_CONFIG_VDF" | base64 -d > steamcmd/config/config.vdf
+        id: steam-totp
+        uses: CyberAndrii/steam-totp@v1
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
       - name: Upload to Steam Workshop
         if: vars.STEAM_WORKSHOP_ID != '' && (github.event_name != 'workflow_dispatch' || inputs.steam)
-        env:
-          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
-        run: |
-          cat > item.vdf << VDF
-          "workshopitem"
-          {
-              "appid"             "2868840"
-              "publishedfileid"   "${{ vars.STEAM_WORKSHOP_ID }}"
-              "contentfolder"     "$GITHUB_WORKSPACE/output/mods/Downfall"
-              "changenote"        "Release v$VERSION - https://github.com/${{ github.repository }}/releases/tag/v$VERSION"
-          }
-          VDF
-          ./steamcmd/steamcmd.sh +login "$STEAM_USERNAME" +workshop_build_item "$GITHUB_WORKSPACE/item.vdf" +quit
+        uses: m00nl1ght-dev/steam-workshop-deploy@v3
+        with:
+          username: ${{ secrets.STEAM_USERNAME }}
+          password: ${{ secrets.STEAM_PASSWORD }}
+          totp: ${{ steps.steam-totp.outputs.code }}
+          appId: 2868840
+          publishedFileId: ${{ vars.STEAM_WORKSHOP_ID }}
+          path: output/mods/Downfall
+          changeNote: "Release v${{ env.VERSION }} - https://github.com/${{ github.repository }}/releases/tag/v${{ env.VERSION }}"
