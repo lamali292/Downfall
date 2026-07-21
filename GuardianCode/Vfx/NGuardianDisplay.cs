@@ -1,5 +1,6 @@
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,6 +22,7 @@ public partial class NGuardianDisplay : Control
 
     private readonly List<NStasisSlot> _slots = [];
     private float _bobTime;
+    private Control? _creatureHitbox;
     private int _currentMax = 3;
     private bool _initialized;
 
@@ -29,11 +31,12 @@ public partial class NGuardianDisplay : Control
 
     private Player? _trackedPlayer;
 
-    public static NGuardianDisplay Create(Player player)
+    public static NGuardianDisplay Create(Player player, Control? creatureHitbox)
     {
         var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
         var node = scene.Instantiate<NGuardianDisplay>();
         node._trackedPlayer = player;
+        node._creatureHitbox = creatureHitbox;
         node.Scale = Vector2.One * SequencedCardScale;
         return node;
     }
@@ -161,6 +164,10 @@ public partial class NGuardianDisplay : Control
             FindOnTablePatch.Register(sequence[i], cardNode);
             _cardHolders.Add(holder);
         }
+
+        DownfallControllerNav.WireChain(_cardHolders, wrap: true, rtl: true);
+        if (_creatureHitbox != null)
+            DownfallControllerNav.LinkAbove(_cardHolders, _creatureHitbox);
 
         RefreshCounters();
     }

@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,15 +17,13 @@ public class Convert : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
     
-//todo transform a status in the stash instead of discard pile
-    
-    protected override bool ShouldGlowGoldInternal => Owner.GetDiscard(e => e.Type == CardType.Status).Any();
+    protected override bool ShouldGlowGoldInternal => Owner.GetStash(e => e.Type == CardType.Status).Any();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = Owner.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.GetDiscard(e => e.Type == CardType.Status));
+            .NextItem(Owner.GetStash(e => e.Type == CardType.Status));
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
         if (IsUpgraded) fuel.UpgradeInternal();

@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -24,7 +25,7 @@ public class CutThrough : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitFx("vfx/vfx_attack_slash").Execute(ctx);
-        await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
+        await ScryCmd.Execute(ctx, this);
         var cards = Owner.GetDraw();
         if (cards.Count == 0) return;
         await StashCmd.Stash(cards[0]);

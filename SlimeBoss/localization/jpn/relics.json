@@ -30,5 +30,6 @@
     "SLIMEBOSS-STONE_OF_NOMAKK.flavor": "汚泥の仲間の一体に見せると、そのブロブが踊り出すようだ。",
     "SLIMEBOSS-TARR_BLOB.title": "タラゴンの球根",
     "SLIMEBOSS-TARR_BLOB.description": "各戦闘開始時、スライムスロットを[blue]{Decrease}[/blue]つ失う。\nターン開始時、{Energy:energyIcons()}を得る。",
-    "SLIMEBOSS-TARR_BLOB.flavor": "悪い種類のスライム。"
+    "SLIMEBOSS-TARR_BLOB.flavor": "悪い種類のスライム。",
+    "SEA_GLASS.SLIMEBOSS-SLIME_BOSS.title": "レギオングラス"
 }

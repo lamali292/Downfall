@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,10 +10,16 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Relics;
-//todo stasis keyword
+
 [Pool(typeof(GuardianRelicPool))]
-public class CryoChamber() : GuardianRelicModel(RelicRarity.Rare), IBeforeCardEntersStasis
+public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
 {
+    public CryoChamber() : base(RelicRarity.Rare)
+    {
+        WithTip(GuardianTip.Stasis);
+    }
+    
+    
     public Task BeforeCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (card.Owner != Owner) return Task.CompletedTask;

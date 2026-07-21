@@ -1,3 +1,4 @@
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Extensions;
@@ -23,6 +24,6 @@ public class BattlePlan : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
+        await ScryCmd.Execute(ctx, this);
     }
 }

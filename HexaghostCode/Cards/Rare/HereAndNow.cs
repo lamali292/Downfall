@@ -18,7 +18,7 @@ public class HereAndNow : HexaghostCardModel
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
-//todo the debuff should probably be non-stackable, it doesn't really make sense if it stacks
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MoreEnergyPower>(ctx, this);

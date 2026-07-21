@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -11,7 +12,9 @@ public class UnendingSupply : SneckoCardModel
 {
     public UnendingSupply() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        //todo echo keyword
+        WithTip(DownfallKeyword.Echo);
+        WithTip(CardKeyword.Ethereal);
+        WithTip(CardKeyword.Exhaust);
         this.WithPower<UnendingSupplyPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }

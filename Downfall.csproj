@@ -44,15 +44,11 @@
         <Compile Include="HermitCode/**/*.cs"/>
         <Compile Include="SlimeBossCode/**/*.cs"/>
         <Compile Include="SneckoCode/**/*.cs"/>
-        
+
         <!--Compile Include="GremlinsCode/**/*.cs"/-->
         <!--Compile Include="CollectorCode/**/*.cs"/-->
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="GuardianCode\Patches\" />
-    </ItemGroup>
-
+    
     <PropertyGroup>
         <ModOutputFolder>Downfall</ModOutputFolder>
         <!-- Every asset folder to bundle into the single Downfall.pck -->
@@ -84,7 +80,7 @@
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)\Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false"
               IgnoreStandardErrorWarningFormat="true"/>

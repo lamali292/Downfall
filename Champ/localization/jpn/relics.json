@@ -1,6 +1,6 @@
 {
     "CHAMP-AMULET_OF_UNYIELDING.title": "不屈のアミュレット",
-    "CHAMP-AMULET_OF_UNYIELDING.description": "[gold]活力[/gold]を[blue]12[/blue]消費するたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "CHAMP-AMULET_OF_UNYIELDING.description": "[gold]活力[/gold]を[blue]{VigorPower}[/blue]消費するたび、[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。",
     "CHAMP-AMULET_OF_UNYIELDING.flavor": "かつては儚いものと思われていた力が、まるで最初から自分の中にあったかのように、あなたの内を流れている。",
     "CHAMP-BERSERKERS_GUIDE.title": "バーサーカーの心得",
     "CHAMP-BERSERKERS_GUIDE.description": "ターン開始時、[gold]活力[/gold][blue]3[/blue]を得る。",
@@ -34,5 +34,6 @@
     "CHAMP-SPECTRES_HAND.flavor": "心に残る勝利もある。",
     "CHAMP-VICTORIOUS_CROWN.title": "皇帝の冠",
     "CHAMP-VICTORIOUS_CROWN.description": "戦闘開始時、ランダムな[gold]スタンス[/gold]に入り、[gold]スキルボーナス[/gold]を2回発動する。\n各ターン、初めて[gold]フィニッシャー[/gold]をプレイした時、カードを[blue]2[/blue]枚引いてランダムな[gold]スタンス[/gold]に入る。",
-    "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! あなたは最高の勝者だ。"
+    "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! あなたは最高の勝者だ。",
+    "SEA_GLASS.CHAMP-CHAMP.title": "グラディエーターグラス"
 }

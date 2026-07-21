@@ -10,7 +10,6 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class SharePower : AutomatonPowerModel
 {
-    //todo gives block to the character with the least block
     protected override async Task AfterBlockGained(
         PlayerChoiceContext ctx, 
         Creature creature, 
@@ -20,9 +19,10 @@ public class SharePower : AutomatonPowerModel
     {
         if (creature != Owner || creature.Player == null || cardSource is not FunctionCard)
             return;
-        var teammate =
-            creature.Player.RunState.Rng.CombatTargets.NextItem(CombatState.GetTeammatesOf(Owner)
-                .Where(e => e.IsAlive));
+        var teammate = CombatState.GetTeammatesOf(Owner)
+            .Where(e => e.IsAlive && e != Owner)
+            .OrderBy(e => e.Block)
+            .FirstOrDefault();
         if (teammate == null) return;
         await CreatureCmd.GainBlock(teammate, Amount, ValueProp.Unpowered, null);
     

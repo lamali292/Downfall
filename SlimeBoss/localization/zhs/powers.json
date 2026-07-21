@@ -1,13 +1,10 @@
 {
     "SLIMEBOSS-GOOP_POWER.title": "黏液",
     "SLIMEBOSS-GOOP_POWER.description": "你的下一次攻击造成额外伤害，并触发[gold]吞食[/gold]效果。",
-    "SLIMEBOSS-GOOP_POWER.smartDescription": "{IsApplierYou:你|[orange]{ApplierName}[/orange]}的下一次攻击造成[blue]{Amount}[/blue]点额外伤害，并触发[gold]吞食[/gold]效果。",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "浸入黏液",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "下次你攻击此敌人时，你的[gold]黏液[/gold]不会被移除。",
-    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "接下来[blue]{Amount}[/blue]次{IsApplierYou:你|[orange]{ApplierName}[/orange]}攻击此敌人时，{IsApplierYou:你的|其}[gold]黏液[/gold]不会被移除。",
     "SLIMEBOSS-OOZE_BATH_POWER.title": "黏浆浴",
     "SLIMEBOSS-OOZE_BATH_POWER.description": "在你的回合开始时，获得[gold]黏液[/gold]。",
-    "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]层{IsMultiplayer:来自[orange]{ApplierName}[/orange]的|}[gold]黏液[/gold]。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "黏液舌",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.description": "给予[gold]黏液[/gold]的效果给予额外层数。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.smartDescription": "给予[gold]黏液[/gold]的效果额外给予[blue]{Amount}[/blue]层。",

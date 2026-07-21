@@ -25,10 +25,10 @@
     "HERMIT-PET_GHOST.description": "各戦闘で最初の致命的なHP喪失を1回防ぐ。",
     "HERMIT-CHARRED_GLOVE.title": "焦げた手袋",
     "HERMIT-CHARRED_GLOVE.flavor": "手袋の一部が、異界の残り火で今も輝いている。",
-    "HERMIT-CHARRED_GLOVE.description": "呪いを引くか生成するたび、[gold]活力[/gold][blue]{VigorPower}[/blue]を得る。",
+    "HERMIT-CHARRED_GLOVE.description": "[red]呪い[/red]を引くか生成するたび、[gold]活力[/gold][blue]{VigorPower}[/blue]を得る。",
     "HERMIT-CLASPED_LOCKET.title": "留め具付きのロケット",
     "HERMIT-CLASPED_LOCKET.flavor": "もう開かなくなってしまった。",
-    "HERMIT-CLASPED_LOCKET.description": "毎ターン最初に呪いを引いた時、それを[gold]廃棄[/gold]してカードを[blue]{Cards}[/blue]枚引く。\n入手時、[gold]負傷[/gold]を[blue]{Curses}[/blue]枚入手する。",
+    "HERMIT-CLASPED_LOCKET.description": "毎ターン最初に[red]呪い[/red]を引いた時、それを[gold]廃棄[/gold]してカードを[blue]{Cards}[/blue]枚引く。\n入手時、[red]負傷[/red]を[blue]{Curses}[/blue]枚入手する。",
     "HERMIT-STRAIGHT_RAZOR.title": "直刃の剃刀",
     "HERMIT-STRAIGHT_RAZOR.flavor": "より綺麗な剃り心地を……",
     "HERMIT-STRAIGHT_RAZOR.description": "[gold]デッキ[/gold]からカードを除去または[gold]変化[/gold]させるたび、HPを[blue]{Heal}[/blue]回復する。",
@@ -40,5 +40,6 @@
     "HERMIT-BLACK_POWDER.description": "[gold]命中[/gold]効果を発動するたび、すべての敵に[blue]{Damage}[/blue]ダメージを与える。",
     "HERMIT-BROKEN_TOOTH.title": "折れた歯",
     "HERMIT-BROKEN_TOOTH.flavor": "人間の顎から来たにしては大きすぎるようだ……",
-    "HERMIT-BROKEN_TOOTH.description": "エリートの遭遇を倒すたび、HPを[blue]{Heal}[/blue]回復し、[blue]{Gold}[/blue]ゴールドを得る。"
+    "HERMIT-BROKEN_TOOTH.description": "エリートの遭遇を倒すたび、HPを[blue]{Heal}[/blue]回復し、[blue]{Gold}[/blue]ゴールドを得る。",
+    "SEA_GLASS.HERMIT-HERMIT.title": "放浪者グラス"
 }

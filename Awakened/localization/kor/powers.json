@@ -70,7 +70,6 @@
     "AWAKENED-MAGICIANISM_POWER.smartDescription": "무색 카드를 사용할 때마다 [blue]{Amount}[/blue]의 [gold]방어도[/gold]를 얻습니다.",
     "AWAKENED-MANABURN_POWER.title": "마나 연소",
     "AWAKENED-MANABURN_POWER.description": "[gold]고갈[/gold]될 때마다 이 적은 체력을 잃습니다.",
-    "AWAKENED-MANABURN_POWER.smartDescription": "{IsApplierYou:당신이|[orange]{ApplierName}[/orange]이(가)} [gold]고갈[/gold]될 때마다 이 적은 [blue]{Amount}[/blue]의 체력을 잃습니다.",
     "AWAKENED-MOONLIT_VISION_POWER.title": "달빛의 환상",
     "AWAKENED-MOONLIT_VISION_POWER.description": "매 턴 처음으로 주문을 시전할 때, {energyPrefix:energyIcons(1)}를 얻습니다.",
     "AWAKENED-MOONLIT_VISION_POWER.smartDescription": "매 턴 처음으로 주문을 시전할 때 {Amount:plural:|({Amount}번)}, {energyPrefix:energyIcons(1)}를 얻습니다.",

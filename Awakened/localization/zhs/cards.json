@@ -177,7 +177,6 @@
     "AWAKENED-SPELLSHIELD.title": "咒盾",
     "AWAKENED-SPEW.description": "造成{Damage:diff()}点伤害。\n用于打出此牌的{energyPrefix:energyIcons(1)}视为触发[gold]力竭[/gold]。",
     "AWAKENED-SPEW.title": "喷涌",
-    "AWAKENED-SPLIT_WIDE.description": "造成{Damage:diff()}点伤害。\n每当该敌人受到攻击伤害时，你在本回合获得{SplitWidePower:diff()}点[gold]力量[/gold]。",
     "AWAKENED-SPLIT_WIDE.title": "劈破",
     "AWAKENED-SPREADING_SPORES.description": "获得{ThornsPower:diff()}点[gold]荆棘[/gold]。\n将此牌的一张复制洗入你的[gold]抽牌堆[/gold]。",
     "AWAKENED-SPREADING_SPORES.title": "扩散孢子",
