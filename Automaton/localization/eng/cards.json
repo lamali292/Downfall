@@ -151,7 +151,7 @@
   "AUTOMATON-SENTIENT_FORM.title": "Sentient Form",
   "AUTOMATON-SEPARATOR.description": "When [gold]Encoded[/gold] in the middle, increase its damage by {ExtraDamage:diff()}.",
   "AUTOMATON-SEPARATOR.title": "Separator",
-  "AUTOMATON-SHIP_IT.description": "Deal {Damage:diff()} damage.\nWhen you draw this, {Cards:plural:a card|{Cards:diff()} cards}.",
+  "AUTOMATON-SHIP_IT.description": "Deal {Damage:diff()} damage.\nWhen you draw this, draw {Cards:plural:a card|{Cards:diff()} cards}.",
   "AUTOMATON-SHIP_IT.title": "Ship It",
   "AUTOMATON-SPAGHETTI_CODE.description": "Choose 1 of 3 random cards to [gold]Encode[/gold].\nRepeat until you create a Function.\nIt's free to play this turn.",
   "AUTOMATON-SPAGHETTI_CODE.title": "Spaghetti Code",
