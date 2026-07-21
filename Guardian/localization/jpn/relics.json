@@ -31,5 +31,6 @@
     "GUARDIAN-SACK_OF_GEMS.flavor": "おおっ……ピカピカだ！",
     "GUARDIAN-WANDER_BOTS.title": "ワンダーボット",
     "GUARDIAN-WANDER_BOTS.description": "各戦闘開始時、[gold]停滞[/gold]スロットを[blue]1[/blue]つ失う。ターン開始時、{Energy:energyIcons()}を得る。",
-    "GUARDIAN-WANDER_BOTS.flavor": "このドローンは素晴らしい廃品を見つけてくるが、維持には処理能力を要する。"
+    "GUARDIAN-WANDER_BOTS.flavor": "このドローンは素晴らしい廃品を見つけてくるが、維持には処理能力を要する。",
+    "SEA_GLASS.GUARDIAN-GUARDIAN.title": "トゲのグラス"
 }
