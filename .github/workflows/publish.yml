@@ -1,6 +1,8 @@
 ﻿name: Publish
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 permissions:
@@ -10,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Guard against stale build artifacts committed to the repo (.godot should be gitignored).
+      - name: Clean stale build artifacts
+        run: rm -rf .godot obj bin
 
       - uses: actions/setup-dotnet@v4
         with:
