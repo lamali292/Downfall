@@ -16,6 +16,7 @@ public class JarOfTobsco : HexaghostRelicModel
     {
         WithTip<IntensityPower>();
     }
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;

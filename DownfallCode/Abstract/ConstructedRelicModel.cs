@@ -104,7 +104,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         WithVars(new HealVar(baseVal));
         return this;
     }
-    
+
     protected ConstructedRelicModel WithGold(int baseVal)
     {
         WithVars(new GoldVar(baseVal));

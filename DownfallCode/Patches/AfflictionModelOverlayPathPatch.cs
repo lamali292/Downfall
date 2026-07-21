@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Patches;
 
-
 [HarmonyPatch(typeof(AfflictionModel), nameof(AfflictionModel.OverlayPath), MethodType.Getter)]
 internal static class AfflictionModelOverlayPathPatch
 {

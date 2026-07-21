@@ -4,10 +4,10 @@ namespace Downfall.DownfallCode.Voting;
 
 public record ArtData
 {
+    public List<ArtEntry>? Entries;
     public required ModelId ModelId { get; init; }
-    public string? Id { get; init; }         
-    public List<ArtEntry>? Entries;       
-    
-    
+    public string? Id { get; init; }
+
+
     public CardModel? Card => ModelDb.GetByIdOrNull<CardModel>(ModelId);
 }

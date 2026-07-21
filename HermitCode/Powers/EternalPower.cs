@@ -14,10 +14,13 @@ public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
 {
     private const int MaxReductions = 4;
 
-    public string GetSecondAmount() =>
-        $"{Math.Max(0, MaxReductions - QualifyingHandDrawsThisTurn())}";
+    public string GetSecondAmount()
+    {
+        return $"{Math.Max(0, MaxReductions - QualifyingHandDrawsThisTurn())}";
+    }
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
@@ -41,11 +44,13 @@ public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
         return Task.CompletedTask;
     }
 
-    private int QualifyingHandDrawsThisTurn() =>
-        CombatManager.Instance.History.Entries
+    private int QualifyingHandDrawsThisTurn()
+    {
+        return CombatManager.Instance.History.Entries
             .OfType<CardDrawnEntry>()
             .Count(e => e.HappenedThisTurn(CombatState)
                         && e.FromHandDraw
                         && e.Card.Owner.Creature == Owner
                         && !e.Card.Keywords.Contains(CardKeyword.Unplayable));
+    }
 }

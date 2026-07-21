@@ -45,7 +45,7 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
             return;
 
         if (isDeadOn) await PowerCmd.Apply<CheatPower>(ctx, Owner.Creature, 1, Owner.Creature, this, true);
-     
+
         await CardCmd.AutoPlay(ctx, selected, null);
         DeadOnPatch.LastWasDeadOn = isDeadOn;
         DeadOnPatch.LastPlayed = lastPlayed;

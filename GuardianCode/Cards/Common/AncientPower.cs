@@ -28,6 +28,6 @@ public class AncientPower : GuardianCardModel, IGemSocketCard
     }
 }
 
-
 public class AncientStrengthPower : CustomTemporaryPowerModelWrapper<AncientPower, StrengthPower>;
+
 public class AncientDexterityPower : CustomTemporaryPowerModelWrapper<AncientPower, DexterityPower>;

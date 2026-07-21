@@ -21,12 +21,16 @@ public class CrescentTalisman : AwakenedRelicModel
 
     public override bool HasUponPickupEffect => true;
 
-    private static bool IsNonConjureSkillOrAttack(CardModel? card) => card?.Type is CardType.Attack or CardType.Skill && !card.Tags.Contains(AwakenedTag.Conjure);
-    
+    private static bool IsNonConjureSkillOrAttack(CardModel? card)
+    {
+        return card?.Type is CardType.Attack or CardType.Skill && !card.Tags.Contains(AwakenedTag.Conjure);
+    }
+
     public override async Task AfterObtained()
     {
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1); 
-        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Conjuration>(), 1, IsNonConjureSkillOrAttack, prefs))
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
+        var card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Conjuration>(), 1,
+                IsNonConjureSkillOrAttack, prefs))
             .FirstOrDefault();
         if (card == null) return;
         CardCmd.Enchant<Conjuration>(card, 1);

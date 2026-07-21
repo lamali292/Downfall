@@ -16,7 +16,7 @@ public class Convert : AutomatonCardModel
         WithDamage(9, 1);
         WithUpgradingCardTip<Fuel>();
     }
-    
+
     protected override bool ShouldGlowGoldInternal => Owner.GetStash(e => e.Type == CardType.Status).Any();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

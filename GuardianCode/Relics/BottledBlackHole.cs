@@ -17,7 +17,7 @@ public class BottledBlackHole : GuardianRelicModel
         WithTip<Temporal>();
         WithTip(GuardianTip.Stasis);
     }
-    
+
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()

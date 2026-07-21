@@ -14,6 +14,9 @@ public class SoulburnEncode : Encodable
 {
     public override TargetType Target => TargetType.AllEnemies;
     public override CardType Type => CardType.Skill;
+
+    public override DynamicVar FunctionDynamicVar => new PowerVar<SoulBurnPower>(0);
+
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
         var creature = model.GetCreature();
@@ -22,8 +25,14 @@ public class SoulburnEncode : Encodable
         return PowerCmd.Apply<SoulBurnPower>(ctx, combatState.HittableEnemies,
             model.GetDynamicVars().Power<SoulBurnPower>().BaseValue, creature, model as CardModel);
     }
-    
-    public override DynamicVar FunctionDynamicVar => new PowerVar<SoulBurnPower>(0);
-    public override IEnumerable<IHoverTip> HoverTips(AbstractModel model) => [HoverTipFactory.FromPower<SoulBurnPower>()];
-    public override DynamicVar DynamicVar(AbstractModel model) => model.GetDynamicVars().Power<SoulBurnPower>();
+
+    public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
+    {
+        return [HoverTipFactory.FromPower<SoulBurnPower>()];
+    }
+
+    public override DynamicVar DynamicVar(AbstractModel model)
+    {
+        return model.GetDynamicVars().Power<SoulBurnPower>();
+    }
 }

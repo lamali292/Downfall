@@ -21,9 +21,13 @@ public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn
         var idx = hand.IndexOf(card);
         if (idx == -1) return false;
 
-        var leftIsCurse  = idx > 0 && IsCurse(hand[idx - 1]);
+        var leftIsCurse = idx > 0 && IsCurse(hand[idx - 1]);
         var rightIsCurse = idx < hand.Count - 1 && IsCurse(hand[idx + 1]);
         return leftIsCurse || rightIsCurse;
     }
-    private static bool IsCurse(CardModel c) => c.Type == CardType.Curse;
+
+    private static bool IsCurse(CardModel c)
+    {
+        return c.Type == CardType.Curse;
+    }
 }

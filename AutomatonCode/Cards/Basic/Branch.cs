@@ -29,13 +29,14 @@ public class Branch : AutomatonCardModel
         var attackOption = CombatState.CreateCard<BranchAttack>(cardPlay.Card.Owner);
         var blockOption = CombatState.CreateCard<BranchBlock>(cardPlay.Card.Owner);
 
-        if (IsUpgraded) {
+        if (IsUpgraded)
+        {
             CardCmd.Upgrade(attackOption);
             CardCmd.Upgrade(blockOption);
         }
         //todo make options reflect enchantments, sharp 3 / instinct etc branch will make the attack option stronger
         // and nimble 3 / sturdy will increase the block option and so on
-        
+
         // Copy upgraded values across
         //attackOption.DynamicVars.Damage.BaseValue = DynamicVars.Damage.BaseValue;
         //blockOption.DynamicVars.Block.BaseValue = DynamicVars.Block.BaseValue;

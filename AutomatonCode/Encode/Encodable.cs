@@ -13,15 +13,33 @@ namespace Automaton.AutomatonCode.Encode;
 
 public abstract class Encodable
 {
+    public static readonly IEnumerable<Encodable> All =
+    [
+        new PowerEncode(),
+        new BlockEncode(),
+        new DamageEncode(),
+        new StrengthEncode(),
+        new WeakEncode(),
+        new VulnerableEncode(),
+        new PoisonEncode(),
+        new SoulburnEncode(),
+        new EnergyEncode(),
+        new DazedEncode()
+    ];
+
     public abstract TargetType Target { get; }
     public abstract CardType Type { get; }
 
-    private string Id =>  StringHelper.Slugify(GetType().Name);
-    private LocString Description => new("encode", GetType().GetPrefix() +  Id+".encode");
+    private string Id => StringHelper.Slugify(GetType().Name);
+    private LocString Description => new("encode", GetType().GetPrefix() + Id + ".encode");
+    public abstract DynamicVar FunctionDynamicVar { get; }
     public abstract Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay);
     public abstract DynamicVar DynamicVar(AbstractModel card);
-    public abstract DynamicVar FunctionDynamicVar { get; }
-    public virtual IEnumerable<IHoverTip> HoverTips(AbstractModel card) => [];
+
+    public virtual IEnumerable<IHoverTip> HoverTips(AbstractModel card)
+    {
+        return [];
+    }
 
     public LocString GetDescription(AbstractModel card)
     {
@@ -32,20 +50,6 @@ public abstract class Encodable
         card.GetDynamicVars().AddTo(description);
         return description;
     }
-
-    public static readonly IEnumerable<Encodable> All =
-    [
-        new PowerEncode(),
-        new BlockEncode(),
-        new DamageEncode(), 
-        new StrengthEncode(),
-        new WeakEncode(), 
-        new VulnerableEncode(), 
-        new PoisonEncode(),
-        new SoulburnEncode(), 
-        new EnergyEncode(), 
-        new DazedEncode()
-    ];
 
     public void ApplyEncode(FunctionCard functionCard, CardModel sourceCard)
     {

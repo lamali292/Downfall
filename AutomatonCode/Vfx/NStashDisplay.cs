@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Vfx;
@@ -18,8 +17,6 @@ namespace Automaton.AutomatonCode.Vfx;
 public partial class NStashDisplay : NSlotRevealDisplay
 {
     private const float StashDisplayScale = 0.28f;
-    protected override float SlotSeparation => -100f;
-    protected override float PreviewGap => 0f;
     private const string DisplayScenePath = "res://Automaton/scenes/ui/stash_display.tscn";
 
     private static readonly Dictionary<Player, NStashDisplay> Displays = new();
@@ -38,11 +35,14 @@ public partial class NStashDisplay : NSlotRevealDisplay
         };
     }
 
+    protected override float SlotSeparation => -100f;
+    protected override float PreviewGap => 0f;
+
     // --- Base overrides: presentation config ---
 
     // Next-draw card is a normal card, not a big compiled Function.
     protected override float PreviewCardScale => 1.0f;
-    
+
 
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
@@ -68,9 +68,9 @@ public partial class NStashDisplay : NSlotRevealDisplay
     }
 
     /// <summary>
-    /// The badge and preview depend on the whole pile, not just the slot row —
-    /// without this, adding the first card wouldn't register as a change
-    /// (slot row stays empty, max stays 0) and the display would stick at 0/5.
+    ///     The badge and preview depend on the whole pile, not just the slot row —
+    ///     without this, adding the first card wouldn't register as a change
+    ///     (slot row stays empty, max stays 0) and the display would stick at 0/5.
     /// </summary>
     protected override IReadOnlyList<CardModel> GetDirtyCheckCards()
     {
@@ -109,8 +109,8 @@ public partial class NStashDisplay : NSlotRevealDisplay
     }
 
     /// <summary>
-    /// Global target position for a card flying into the stash.
-    /// Pile index 0 = the preview slot; index N = slot N-1.
+    ///     Global target position for a card flying into the stash.
+    ///     Pile index 0 = the preview slot; index N = slot N-1.
     /// </summary>
     public Vector2 GetCardGlobalPosition(int pileIndex)
     {
@@ -118,7 +118,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
             return PreviewSlot?.CardAnchorGlobal ?? GlobalPosition;
         return GetSlotGlobalPosition(pileIndex - 1);
     }
-    
+
     public static bool HasDisplay(Player player)
     {
         var display = Displays.GetValueOrDefault(player);
@@ -134,7 +134,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
         display._trackedPlayer = player;
         display.Scale = Vector2.One * (LocalContext.IsMe(player) ? StashDisplayScale : StashDisplayScale * 0.5f);
         display.Direction = RevealDirection.Left;
-        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;   
+        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
 
@@ -145,7 +145,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
             var localPos = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
             var x = LocalContext.IsMe(player) ? -90 : -50;
             var y = LocalContext.IsMe(player) ? -100 : -40;
-            display.Position = localPos + new Vector2(x, y); 
+            display.Position = localPos + new Vector2(x, y);
         }
 
         Displays[player] = display;
@@ -154,7 +154,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
     }
     */
 
-    
+
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
         if (!LocalContext.IsMe(player) || HasDisplay(player)) return;
@@ -171,7 +171,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
         display.SubscribeToStash(player);
         display.Refresh(true);
     }
-    
+
     /// <summary>Create on demand (e.g. from the Stash keyword's command) if not present.</summary>
     public static void EnsureFor(Player player)
     {

@@ -22,6 +22,7 @@ public class HighFrequency : GuardianCardModel
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
     public override bool CanBeGeneratedInCombat => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))

@@ -20,7 +20,7 @@ public class InfernoGhostflame : GhostflameModel
 
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 4 + Intensity,
-        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * ( 1 + Repeat(GhostflameRepeatType.Damage))
+        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * (1 + Repeat(GhostflameRepeatType.Damage))
     );
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
@@ -28,7 +28,7 @@ public class InfernoGhostflame : GhostflameModel
         if (Owner.Creature.CombatState == null) return;
         var ignited = HexaghostCmd.GetIgnitedCount(Owner);
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-  
+
         var hitCount = ignited + Repeat(GhostflameRepeatType.Damage);
         var damage = 4 + Intensity;
         for (var i = 0; i < hitCount; i++)
@@ -39,6 +39,7 @@ public class InfernoGhostflame : GhostflameModel
             if (!target.IsHittable) continue;
             await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
         }
+
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
 
@@ -46,14 +47,15 @@ public class InfernoGhostflame : GhostflameModel
         await HexaghostCmd.ExtinguishAllExceptThis(ctx, Owner, this);
     }
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner.Creature) || !IsIgnited) return Task.CompletedTask;
         Extinguish();
         HexaghostVisualsBridge.Refresh(Owner);
         return Task.CompletedTask;
     }
-    
+
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
         if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;

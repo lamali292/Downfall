@@ -34,7 +34,7 @@ public class FindAndReplace : AutomatonCardModel
             .FirstOrDefault();*/
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
         var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();
-        
+
         var selected = (await MultiPileCardSelect.Select(ctx, Owner, prefs, choices, pileTypes)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;

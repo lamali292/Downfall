@@ -13,12 +13,18 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class AncientSlime : SlimeModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(3, ValueProp.Move),
         new CardsVar(1)
     ];
 
     public override SlimeType SlimeType => SlimeType.Specialist;
+
+    public override IEnumerable<IHoverTip> ExtraTips =>
+    [
+        HoverTipFactory.FromPower<PotencyPower>()
+    ];
 
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
@@ -40,9 +46,4 @@ public class AncientSlime : SlimeModel
         //var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         return count + DynamicVars.Cards.IntValue;
     }
-
-    public override IEnumerable<IHoverTip> ExtraTips =>
-    [
-        HoverTipFactory.FromPower<PotencyPower>()
-    ];
 }

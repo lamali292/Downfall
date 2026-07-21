@@ -1,10 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Map;
-using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
-using MegaCrit.Sts2.Core.DevConsole;
+﻿using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Map;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 
 public static class AncientDebug
 {
@@ -27,10 +28,10 @@ public class AncientVisitConsoleCmd : AbstractConsoleCmd
 
         var model = ModelDb.GetByIdOrNull<EventModel>(
             new ModelId(ModelDb.GetCategory(typeof(EventModel)), args[0].ToUpperInvariant()));
-        if (model is not AncientEventModel && model is not MegaCrit.Sts2.Core.Models.Events.TheArchitect)
+        if (model is not AncientEventModel && model is not TheArchitect)
             return new CmdResult(false, "Invalid ancient ID.");
 
-        AncientDebug.ForcedVisitIndex = index;  // set before EnterRoom; consumed by the next selection
+        AncientDebug.ForcedVisitIndex = index; // set before EnterRoom; consumed by the next selection
 
         var room = new EventRoom(model);
         issuingPlayer?.RunState.AppendToMapPointHistory(MapPointType.Ancient, RoomType.Event, model.Id);

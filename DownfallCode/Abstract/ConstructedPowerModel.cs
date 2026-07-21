@@ -24,7 +24,6 @@ public abstract class ConstructedPowerModel(
     public virtual bool ShouldRemoveDueToZero => true;
 
 
-
     protected ConstructedPowerModel WithUpgradedCardTip<T>(Action<T, PowerModel>? modifyTipCard = null)
         where T : CardModel
     {
@@ -36,7 +35,7 @@ public abstract class ConstructedPowerModel(
             return HoverTipFactory.FromCard(mutable);
         }));
     }
-    
+
     protected ConstructedPowerModel WithCardTip<T>(Action<T, PowerModel>? modifyTipCard = null)
         where T : CardModel
     {
@@ -82,7 +81,7 @@ public abstract class ConstructedPowerModel(
         _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
         return this;
     }
-    
+
     protected ConstructedPowerModel WithCards(int baseVal)
     {
         _newDynamicVars.Add(new CardsVar(baseVal));
@@ -121,4 +120,3 @@ public abstract class ConstructedPowerModel(
         return WithTip(typeof(T));
     }
 }
-

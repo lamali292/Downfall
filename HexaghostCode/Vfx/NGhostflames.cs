@@ -10,6 +10,14 @@ namespace Hexaghost.HexaghostCode.Vfx;
 
 public partial class NGhostflames : Control
 {
+    private static readonly Vector2 ReticleVisualSize = new(44, 44);
+
+    // Fire sprites are positioned with their origin at the base, not their visual center —
+    // without this the bracket reads as centered too low, well below the flame itself.
+    private static readonly Vector2 ReticleCenterOffset = new(0, -22);
+
+    private NCreature? _creatureNode;
+    private GhostflameModel[]? _currentWheel;
     private NFire? _fire1;
     private NFire? _fire2;
     private NFire? _fire3;
@@ -18,22 +26,15 @@ public partial class NGhostflames : Control
     private NFire? _fire6;
     private Node2D?[] _hitboxAnchors = [];
     private Control?[] _hitboxes = [];
-    private NSelectionReticle?[] _reticles = [];
-    private List<Control> _reachableHitboxes = [];
     private NIntent?[] _intents = [];
-    private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
-    private static readonly Vector2 ReticleVisualSize = new(44, 44);
-    // Fire sprites are positioned with their origin at the base, not their visual center —
-    // without this the bracket reads as centered too low, well below the flame itself.
-    private static readonly Vector2 ReticleCenterOffset = new(0, -22);
     private Tween? _intentTween;
-    private Tween? _positionTween;
-    private Player? _player;
-    private GhostflameModel[]? _currentWheel;
-
-    private NCreature? _creatureNode;
-    private Control? _vfxContainer;
     private bool _loggedTrackState;
+    private Player? _player;
+    private Tween? _positionTween;
+    private List<Control> _reachableHitboxes = [];
+    private NSelectionReticle?[] _reticles = [];
+    private Control? _vfxContainer;
+    private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
 
     public override void _Ready()
     {
@@ -49,7 +50,7 @@ public partial class NGhostflames : Control
             if (fire == null) return null;
             var intent = NIntent.Create(i * 0.3f);
             intent.Visible = false;
-            intent.MouseFilter = Control.MouseFilterEnum.Ignore;
+            intent.MouseFilter = MouseFilterEnum.Ignore;
             AddChild(intent);
             return intent;
         }).ToArray();
@@ -73,7 +74,7 @@ public partial class NGhostflames : Control
             // orb.tscn positions its own SelectionReticle relative to the orb's hitbox).
             // Sized to the flame sprite itself, not the (deliberately oversized, for easier
             // targeting) 80x80 hitbox — otherwise the bracket reads as loose/oversized.
-            _reticles[i] = DownfallControllerNav.AttachFocusReticle(anchor, ReticleCenterOffset, ReticleVisualSize, margin: 4f);
+            _reticles[i] = DownfallControllerNav.AttachFocusReticle(anchor, ReticleCenterOffset, ReticleVisualSize, 4f);
             return anchor;
         }).ToArray();
 
@@ -105,7 +106,7 @@ public partial class NGhostflames : Control
         }
 
         // Ring topology: the wheel wraps around, so left/right should too.
-        DownfallControllerNav.WireChain(_reachableHitboxes, wrap: true);
+        DownfallControllerNav.WireChain(_reachableHitboxes, true);
     }
 
     public void Track(NCreature creatureNode, Control vfxContainer)
@@ -115,12 +116,13 @@ public partial class NGhostflames : Control
 
         DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
+
     // TODO : make transition more clean for Shrinker Beetle scaling
     public override void _Process(double delta)
     {
         if (_creatureNode == null || _vfxContainer == null) return;
         var ct = _creatureNode.GetGlobalTransform();
-        
+
         var containerScale = _vfxContainer.GetGlobalTransform().Scale;
         var sx = Mathf.Abs(ct.Scale.X / containerScale.X);
         var sy = Mathf.Abs(ct.Scale.Y / containerScale.Y);
@@ -154,6 +156,7 @@ public partial class NGhostflames : Control
                 intent.GlobalPosition = worldPos;
                 intent.Rotation = -Rotation;
             }
+
             if (_hitboxAnchors[i] != null)
             {
                 _hitboxAnchors[i]!.GlobalPosition = fire.GlobalPosition;

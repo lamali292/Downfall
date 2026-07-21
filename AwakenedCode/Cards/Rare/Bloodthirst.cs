@@ -13,7 +13,6 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class Bloodthirst : AwakenedCardModel
 {
-    public override bool CanBeGeneratedInCombat => false;
     public Bloodthirst() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(20, 5);
@@ -21,6 +20,8 @@ public class Bloodthirst : AwakenedCardModel
         this.WithTip<PowerPotion>();
         WithTip(StaticHoverTip.Fatal);
     }
+
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override Artist Artist => Artist.Get<Opal>();
 

@@ -64,12 +64,13 @@ public class DiamondGem : GemModel
         UsedThisCombat = true;
         return Task.CompletedTask;
     }
-    
+
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
-        if (Card is  IGemCard || card != Card) return false;
-        modifiedCost++;;
+        if (Card is IGemCard || card != Card) return false;
+        modifiedCost++;
+        ;
         return true;
     }
 }

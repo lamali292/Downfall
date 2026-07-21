@@ -39,13 +39,13 @@ public class FireAway : HermitCardModel, IAfterDeadOnTrigger
 
     public override Task AfterCardEnteredCombat(CardModel card)
     {
-        
+
         if (card != this || IsClone)
             return Task.CompletedTask;
         EnergyCost.AddThisCombat(-DeadOnCount * DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
-    
+
     public Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner)
@@ -54,3 +54,4 @@ public class FireAway : HermitCardModel, IAfterDeadOnTrigger
         return Task.CompletedTask;
     }
 }*/
+

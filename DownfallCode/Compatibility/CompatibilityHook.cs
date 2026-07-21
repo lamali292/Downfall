@@ -12,12 +12,6 @@ namespace Downfall.DownfallCode.Compatibility;
 
 public static class CompatibilityHook
 {
-    private delegate decimal ModifyDamageDel(
-        IRunState runState, ICombatState? combatState, Creature? target, Creature? dealer,
-        decimal damage, ValueProp props, CardModel? cardSource, CardPlay? cardPlay,
-        ModifyDamageHookType modifyDamageHookType, CardPreviewMode previewMode,
-        out IEnumerable<AbstractModel> modifiers);
-
     private static readonly ModifyDamageDel ModifyDamageD = Build();
 
     public static decimal ModifyDamage(
@@ -25,8 +19,10 @@ public static class CompatibilityHook
         decimal damage, ValueProp props, CardModel? cardSource, CardPlay? cardPlay,
         ModifyDamageHookType modifyDamageHookType, CardPreviewMode previewMode,
         out IEnumerable<AbstractModel> modifiers)
-        => ModifyDamageD(runState, combatState, target, dealer, damage, props, cardSource,
+    {
+        return ModifyDamageD(runState, combatState, target, dealer, damage, props, cardSource,
             cardPlay, modifyDamageHookType, previewMode, out modifiers);
+    }
 
     private static ModifyDamageDel Build()
     {
@@ -48,7 +44,7 @@ public static class CompatibilityHook
                          BindingFlags.Public | BindingFlags.Static, null, oldSig, null)
                      ?? throw new MissingMethodException("Hook.ModifyDamage not found in any known signature.");
 
-        bool hasCardPlay = method.GetParameters().Length == newSig.Length;
+        var hasCardPlay = method.GetParameters().Length == newSig.Length;
 
         // Lambda always has the full new-style parameter list, incl. the by-ref 'modifiers'.
         var ps = new[]
@@ -63,7 +59,7 @@ public static class CompatibilityHook
             Expression.Parameter(typeof(CardPlay), "cardPlay"),
             Expression.Parameter(typeof(ModifyDamageHookType), "hookType"),
             Expression.Parameter(typeof(CardPreviewMode), "previewMode"),
-            Expression.Parameter(outType, "modifiers"), // by-ref param, passed straight through
+            Expression.Parameter(outType, "modifiers") // by-ref param, passed straight through
         };
 
         var callArgs = hasCardPlay ? ps : [.. ps[..7], .. ps[8..]];
@@ -71,4 +67,10 @@ public static class CompatibilityHook
 
         return Expression.Lambda<ModifyDamageDel>(call, ps).Compile();
     }
+
+    private delegate decimal ModifyDamageDel(
+        IRunState runState, ICombatState? combatState, Creature? target, Creature? dealer,
+        decimal damage, ValueProp props, CardModel? cardSource, CardPlay? cardPlay,
+        ModifyDamageHookType modifyDamageHookType, CardPreviewMode previewMode,
+        out IEnumerable<AbstractModel> modifiers);
 }

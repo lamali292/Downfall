@@ -17,23 +17,6 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         Ultimate
     }
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
-        _animState = _sprite?.GetAnimationState();
-
-        _animState?.SetAnimationCompat("Idle");
-    }
-    
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
@@ -63,7 +46,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _ => "Hit"
     };
 
-    
+
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
@@ -72,11 +55,11 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Attack":
-                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, false);
                 _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Hit":
-                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
                 _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Cast":
@@ -84,7 +67,21 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 break;
         }
     }
-    
-    
-    
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var premultMat = new CanvasItemMaterial
+        {
+            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
+        };
+
+        _sprite = SpineBody;
+        _sprite?.SetNormalMaterial(premultMat);
+
+        _animState = _sprite?.GetAnimationState();
+
+        _animState?.SetAnimationCompat("Idle");
+    }
 }

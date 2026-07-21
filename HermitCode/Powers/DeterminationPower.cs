@@ -15,6 +15,5 @@ public sealed class DeterminationPower : HermitPowerModel
     {
         if (power.Owner != Owner || power.GetTypeForAmount(amount) != PowerType.Debuff) return;
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, Amount, Owner, null);
-            
     }
 }

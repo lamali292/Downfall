@@ -16,7 +16,7 @@ public sealed class CursedWeapon : HermitCardModel
     private const int BaseDamage = 10;
     private int _currentDamage = 10;
     private int _increasedDamage;
-    public override bool CanBeGeneratedInCombat => false;
+
     public CursedWeapon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCostUpgradeBy(-1);
@@ -25,6 +25,8 @@ public sealed class CursedWeapon : HermitCardModel
         this.WithHpLoss(2);
         WithVar(IncreaseKey, 1);
     }
+
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 

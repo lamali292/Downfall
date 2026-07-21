@@ -3,7 +3,6 @@ using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
@@ -15,7 +14,7 @@ public class CrushingGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 3 + Intensity,
-        () => 2 * ( 1 + Repeat(GhostflameRepeatType.Damage))
+        () => 2 * (1 + Repeat(GhostflameRepeatType.Damage))
     );
 
     protected override int IgnitionRequirement => 2;

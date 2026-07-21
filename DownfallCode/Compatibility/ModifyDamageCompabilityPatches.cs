@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -21,10 +20,17 @@ public interface IModifyDamageMultiplicative
 
 public interface IModifyCardPlayResultLocation
 {
-    CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay, ResourceInfo resources,
-        CardLocationCompatiblity cardLocation) => cardLocation;
+    CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources,
+        CardLocationCompatiblity cardLocation)
+    {
+        return cardLocation;
+    }
 
-    Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation) => Task.CompletedTask;
+    Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
+    {
+        return Task.CompletedTask;
+    }
 }
 
 public record struct CardLocationCompatiblity(Player Player, PileType PileType, CardPilePosition Position);

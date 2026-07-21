@@ -18,7 +18,12 @@ public class BurdenedPower : HermitPowerModel, IHasSecondAmount
     {
         WithCards(0);
     }
-    
+
+    public string GetSecondAmount()
+    {
+        return $"{DynamicVars.Cards.IntValue}";
+    }
+
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player != Owner.Player)
@@ -34,6 +39,4 @@ public class BurdenedPower : HermitPowerModel, IHasSecondAmount
         ++DynamicVars.Cards.BaseValue;
         this.InvokeSecondAmountChanged();
     }
-
-    public string GetSecondAmount() => $"{DynamicVars.Cards.IntValue}";
 }

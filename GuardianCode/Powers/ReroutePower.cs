@@ -14,31 +14,35 @@ public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
 {
     private CardModel? _cardSource;
 
-    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
-    {
-        _cardSource = cardSource;
-        return Task.CompletedTask;
-    }
-    
 
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         var player = card.Owner;
-        if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) || card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
+        if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) ||
+            card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
             return cardLocation;
 
         var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
-        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player) ? cardLocation : new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
+        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)
+            ? cardLocation
+            : new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
     }
 
-    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
+    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card,
+        CardLocationCompatiblity cardLocation)
     {
         GuardianCmd.SetStasisCounter(card);
         card.EnergyCost.AfterCardPlayedCleanup();
         await PowerCmd.Decrement(this);
     }
-    
+
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    {
+        _cardSource = cardSource;
+        return Task.CompletedTask;
+    }
+
 
     public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

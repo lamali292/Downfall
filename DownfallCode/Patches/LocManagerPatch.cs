@@ -1,8 +1,6 @@
-﻿using Downfall.DownfallCode.Localization;
-using Downfall.DownfallCode.Utils;
+﻿using Downfall.DownfallCode.Utils;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
-using SmartFormat;
 
 namespace Downfall.DownfallCode.Patches;
 
@@ -10,5 +8,8 @@ namespace Downfall.DownfallCode.Patches;
 public static class LocManagerPatch
 {
     [HarmonyPostfix]
-    private static void Postfix() => LocFormatterRegistry.ApplyAll();
+    private static void Postfix()
+    {
+        LocFormatterRegistry.ApplyAll();
+    }
 }

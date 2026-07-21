@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Events;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;

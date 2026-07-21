@@ -16,7 +16,7 @@ public class Iterate : AutomatonCardModel
     public Iterate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(4);
-        this.WithRepeat(2,1);
+        this.WithRepeat(2, 1);
         WithTip(AutomatonTip.Stash);
     }
 
@@ -25,22 +25,18 @@ public class Iterate : AutomatonCardModel
     public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
     {
         if (Pile != null && Pile.Type == StashPile.Stash)
-        {
             if (player == Owner)
-            {
                 await CardCmd.AutoPlay(choiceContext, this, null);
-            }
-        }
     }
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-            if (cardPlay.Target == null) return;
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCardCompatibility(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .WithHitCount(DynamicVars.Repeat.IntValue)
-                .WithHitFx("vfx/vfx_attack_slash")
-                .Execute(ctx);
+        if (cardPlay.Target == null) return;
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target)
+            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(ctx);
     }
 }

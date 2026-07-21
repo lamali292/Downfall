@@ -16,7 +16,7 @@ namespace SlimeBoss.SlimeBossCode.Core;
 public class SlimeBoss : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x195E19FF);
-    public override Color EnergyLabelOutlineColor  => new(0x005704FF);
+    public override Color EnergyLabelOutlineColor => new(0x005704FF);
     public override string CharId => "SlimeBoss";
     public override string ModId => SlimeBossMainFile.ModId;
     public override Color NameColor => Color;
@@ -93,7 +93,8 @@ public class SlimeBoss : DownfallCharacterModel
 
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
 
-public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<SlimeBoss>(rarity, autoAdd);
+public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<SlimeBoss>(rarity, autoAdd);
 
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -1,11 +1,16 @@
-﻿namespace Downfall.DownfallCode.Voting;
+﻿using Godot;
+using FileAccess = Godot.FileAccess;
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Godot;
+namespace Downfall.DownfallCode.Voting;
 
 public partial class NVoteCard : PanelContainer
 {
+    [Signal]
+    public delegate void CardClickedEventHandler(string imagePath);
+
+    [Signal]
+    public delegate void ScoreChangedEventHandler();
+
     internal static readonly Dictionary<string, Texture2D> TextureCache = new();
 
     private static readonly (string reason, string label)[] ReportReasons =
@@ -14,40 +19,40 @@ public partial class NVoteCard : PanelContainer
         ("stolen", "Stolen / copyright"),
         ("inappropriate", "NSFW / inappropriate"),
         ("offtopic", "Off-topic"),
-        ("other", "Other"),
+        ("other", "Other")
     };
 
-    private TextureRect _image = null!;
+    private static readonly Color UpColor = new(1f, 0.6f, 0.2f); // orange
+    private static readonly Color DownColor = new(0.3f, 0.55f, 1f); // blau
+    private readonly HashSet<string> _myFlags = new();
     private Label _authorLabel = null!;
     private Label _count = null!;
-    private Button _upButton = null!;
+    private int _down;
     private Button _downButton = null!;
-    private Button _reportButton = null!;
+
+    private TextureRect _image = null!;
 
     private string _imagePath = "";
+    private int _myVote;
     private ArtEntry? _pending;
+    private Button _reportButton = null!;
     private long _submissionId;
     private int _up;
-    private int _down;
-    private int _myVote;
-    private readonly HashSet<string> _myFlags = new();
+    private Button _upButton = null!;
 
     public int Score => _up - _down;
 
-    [Signal] public delegate void ScoreChangedEventHandler();
-    [Signal] public delegate void CardClickedEventHandler(string imagePath);
-
     public override void _Ready()
     {
-        _image        = GetNode<TextureRect>("MarginContainer/VBoxContainer/Image");
-        _authorLabel  = GetNode<Label>("MarginContainer/VBoxContainer/AuthorLabel");
-        _upButton     = GetNode<Button>("MarginContainer/VBoxContainer/VoteRow/UpButton");
-        _count        = GetNode<Label>("MarginContainer/VBoxContainer/VoteRow/CountLabel");
-        _downButton   = GetNode<Button>("MarginContainer/VBoxContainer/VoteRow/DownButton");
+        _image = GetNode<TextureRect>("MarginContainer/VBoxContainer/Image");
+        _authorLabel = GetNode<Label>("MarginContainer/VBoxContainer/AuthorLabel");
+        _upButton = GetNode<Button>("MarginContainer/VBoxContainer/VoteRow/UpButton");
+        _count = GetNode<Label>("MarginContainer/VBoxContainer/VoteRow/CountLabel");
+        _downButton = GetNode<Button>("MarginContainer/VBoxContainer/VoteRow/DownButton");
         _reportButton = GetNode<Button>("MarginContainer/VBoxContainer/VoteRow/ReportButton");
 
-        _upButton.Pressed     += () => Vote(1);
-        _downButton.Pressed   += () => Vote(-1);
+        _upButton.Pressed += () => Vote(1);
+        _downButton.Pressed += () => Vote(-1);
         _reportButton.Pressed += OpenReportPopup;
 
         _image.GuiInput += OnImageGuiInput;
@@ -97,7 +102,7 @@ public partial class NVoteCard : PanelContainer
         // alten Vote rückgängig
         switch (_myVote)
         {
-            case 1:  _up--;   break;
+            case 1: _up--; break;
             case -1: _down--; break;
         }
 
@@ -106,17 +111,19 @@ public partial class NVoteCard : PanelContainer
         // neuen Vote anwenden (bei 0 passiert nichts)
         switch (_myVote)
         {
-            case 1:  _up++;   break;
+            case 1: _up++; break;
             case -1: _down++; break;
         }
 
         Refresh();
         UpdateVoteHighlight();
 
-        _ = _myVote == 0 ? VotingApi.Instance.ClearVote(_submissionId) : VotingApi.Instance.CastVote(_submissionId, _myVote);
+        _ = _myVote == 0
+            ? VotingApi.Instance.ClearVote(_submissionId)
+            : VotingApi.Instance.CastVote(_submissionId, _myVote);
     }
 
-    
+
     private void OpenReportPopup()
     {
         var draft = new HashSet<string>(_myFlags);
@@ -133,7 +140,8 @@ public partial class NVoteCard : PanelContainer
             var r = reason;
             check.Toggled += on =>
             {
-                if (on) draft.Add(r); else draft.Remove(r);
+                if (on) draft.Add(r);
+                else draft.Remove(r);
             };
             vbox.AddChild(check);
         }
@@ -174,12 +182,9 @@ public partial class NVoteCard : PanelContainer
             : Colors.White;
     }
 
-    private static readonly Color UpColor   = new(1f, 0.6f, 0.2f);   // orange
-    private static readonly Color DownColor = new(0.3f, 0.55f, 1f);  // blau
-
     private void UpdateVoteHighlight()
     {
-        _upButton.Modulate   = _myVote == 1  ? UpColor   : Colors.White;
+        _upButton.Modulate = _myVote == 1 ? UpColor : Colors.White;
         _downButton.Modulate = _myVote == -1 ? DownColor : Colors.White;
     }
 
@@ -220,7 +225,11 @@ public partial class NVoteCard : PanelContainer
     {
         var http = new HttpRequest();
         AddChild(http);
-        if (http.Request(url) != Error.Ok) { http.QueueFree(); return null; }
+        if (http.Request(url) != Error.Ok)
+        {
+            http.QueueFree();
+            return null;
+        }
 
         var result = await ToSignal(http, HttpRequest.SignalName.RequestCompleted);
         http.QueueFree();

@@ -10,6 +10,7 @@ namespace Guardian.GuardianCode.Relics;
 public class SackOfGems() : GuardianRelicModel(RelicRarity.Shop)
 {
     public override bool HasUponPickupEffect => true;
+
     public override async Task AfterObtained()
     {
         await RewardsCmd.OfferCustom(Owner, [new GemFinderReward(5, 10, Owner)]);

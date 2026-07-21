@@ -17,7 +17,7 @@ public class Bluescreen : AutomatonCardModel
         WithBlock(12, 5);
         this.WithTip<Error>();
     }
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -25,8 +25,8 @@ public abstract class
         if (this is ICompilable)
             WithTip(AutomatonTip.Compile);
     }
-    
-    
+
+
     protected void WithStash(int baseValue, int upgradeValue = 0)
     {
         WithVars(new StashVar(baseValue).WithUpgrade(upgradeValue));

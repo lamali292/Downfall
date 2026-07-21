@@ -21,9 +21,8 @@ public class SpectresHand : ChampRelicModel, IOnChampStanceChange
     {
         WithTip(ChampTip.Stance);
         WithTip(DownfallKeyword.Echo);
-        
     }
-    
+
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {

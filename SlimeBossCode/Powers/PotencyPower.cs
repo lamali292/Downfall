@@ -21,14 +21,14 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
         description.Add("Amount2", Amount2);
     }
 
-    public int ModifySecondarySlimeEffects(int amount, SlimeModel slime)
-    {
-        return slime.PetOwner == Owner ? amount + Amount2 : amount;
-    }
-
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? Amount : 0;
+    }
+
+    public int ModifySecondarySlimeEffects(int amount, SlimeModel slime)
+    {
+        return slime.PetOwner == Owner ? amount + Amount2 : amount;
     }
 }

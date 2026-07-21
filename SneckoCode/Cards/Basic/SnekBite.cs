@@ -15,7 +15,7 @@ public class SnekBite : SneckoCardModel
         this.WithMuddle(1, 1);
     }
 
- 
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

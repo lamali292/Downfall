@@ -27,6 +27,5 @@ public sealed class DentedPlate : HermitRelicModel
     {
         if (player != Owner || player.Creature.CurrentHp > player.Creature.MaxHp / 2) return amount;
         return amount + DynamicVars.Energy.BaseValue;
-        
     }
 }

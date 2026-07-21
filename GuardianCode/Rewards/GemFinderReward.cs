@@ -110,12 +110,10 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
             CleanupScreen();
 
             foreach (var idx in selectedCards.Select(card => cards.IndexOf(card)))
-            {
                 if (idx >= 0)
                     chosenIndices.Add(idx);
                 else
                     Log.Error("GemFinderReward: selected card not found in offered list!");
-            }
 
             // Protocol: one synced index per pick, then a null terminator.
             foreach (var idx in chosenIndices)
@@ -124,6 +122,7 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
                 _synchronizer.SyncLocalChoice(Player, choiceId,
                     PlayerChoiceResult.FromIndex(idx));
             }
+
             var endId = _synchronizer.ReserveChoiceId(Player);
             _synchronizer.SyncLocalChoice(Player, endId,
                 PlayerChoiceResult.FromIndex(null));
@@ -145,10 +144,11 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
                               $"for {cards.Count} gems!");
                     continue;
                 }
+
                 chosenIndices.Add(idx.Value);
             }
         }
-        
+
         if (chosenIndices.Count <= 0) return true;
         var mutable = chosenIndices
             .Select(i => Player.RunState.CreateCard(cards[i], Player))
@@ -167,19 +167,27 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
         _currentlyShownScreen = null;
     }
 
-    public override void OnSkipped() => CleanupScreen();
+    public override void OnSkipped()
+    {
+        CleanupScreen();
+    }
 
     public override void MarkContentAsSeen()
     {
     }
 
     private static CustomReward Deserialize(SerializableReward save, Player player)
-        => new GemFinderReward(save.GoldAmount, save.OptionCount, player);
-
-    public override SerializableReward ToSerializable() => new()
     {
-        RewardType = GemFinderRewardType,
-        GoldAmount = choosable,
-        OptionCount = choices
-    };
+        return new GemFinderReward(save.GoldAmount, save.OptionCount, player);
+    }
+
+    public override SerializableReward ToSerializable()
+    {
+        return new SerializableReward
+        {
+            RewardType = GemFinderRewardType,
+            GoldAmount = choosable,
+            OptionCount = choices
+        };
+    }
 }

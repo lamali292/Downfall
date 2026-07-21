@@ -62,7 +62,7 @@ public class PremonitionChoice : HexaghostCardModel
     public PremonitionChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
     }
-    
+
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
 
     public override CardType Type => MyType;

@@ -23,7 +23,6 @@ public class CleanUp : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-      
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs,
             null, this)).FirstOrDefault();

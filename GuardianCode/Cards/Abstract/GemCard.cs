@@ -93,6 +93,8 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
     public override CardRarity Rarity => GuardianModelDb.Gem<T>().Rarity;
     public override int MaxUpgradeLevel => 0;
 
+    public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
+
     public GemModel CanonicalGemModel => GuardianModelDb.Gem<T>();
 
     public GemModel GemModel =>
@@ -100,7 +102,6 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
 
     public int GemSlots => 0;
 
-    public LocString GetTypePlaqueName => new("gameplay_ui", "GUARDIAN-GEM");
     public LocString ModifyDescription(LocString oldLocString)
     {
         return new LocString("cards", "GUARDIAN-GEM_CARD.description");

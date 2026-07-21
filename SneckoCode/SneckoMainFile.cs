@@ -1,5 +1,3 @@
-using System.Reflection;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Godot;

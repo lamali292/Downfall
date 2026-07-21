@@ -41,7 +41,7 @@ public class FlareFlick : HexaghostCardModel
         var choices = new[] { HexaghostKeyword.Retract, HexaghostKeyword.Advance }
             .Select(f => FlareFlickChoice.Create(f, Owner))
             .ToList();
-        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, canSkip:true);
+        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, true);
         if (chosen is not FlareFlickChoice { Keyword : var keyword }) return;
         if (keyword == HexaghostKeyword.Advance)
             await HexaghostCmd.Advance(ctx, Owner, this);

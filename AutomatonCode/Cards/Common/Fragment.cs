@@ -11,13 +11,13 @@ namespace Automaton.AutomatonCode.Cards.Common;
 public class Fragment : AutomatonCardModel,
     IEncodable
 {
-
     public Fragment() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithBlock(3, 1);
         WithDamage(3, 1);
     }
+
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-    
+
     public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
 }

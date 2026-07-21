@@ -4,5 +4,4 @@ namespace SlimeBoss.SlimeBossCode.DynamicVars;
 
 public class SlimeSecondaryVar(decimal baseValue) : DynamicVar("Slime", baseValue)
 {
-    
 }

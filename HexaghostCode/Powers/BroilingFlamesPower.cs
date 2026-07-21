@@ -16,7 +16,8 @@ public class BroilingFlamesPower : HexaghostPowerModel
         await PowerCmd.Apply<SoulBurnPower>(ctx, Owner, Amount, command.Attacker, null);
     }
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         return !participants.Contains(Owner) ? Task.CompletedTask : PowerCmd.Remove(this);
     }

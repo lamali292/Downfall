@@ -14,8 +14,7 @@ public class ProtectiveGear : SlimeBossRelicModel, IModifySelfDamage
         WithVar("TackleReduce", 3);
     }
 
-    
-    
+
 /*
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
@@ -29,7 +28,7 @@ public class ProtectiveGear : SlimeBossRelicModel, IModifySelfDamage
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
         var creature = model.GetCreature();
-        return creature != Owner.Creature ? amount : Math.Max(0,amount - DynamicVars["TackleReduce"].BaseValue);
+        return creature != Owner.Creature ? amount : Math.Max(0, amount - DynamicVars["TackleReduce"].BaseValue);
     }
 
     public Task AfterModifyingSelfDamage(AbstractModel model)
@@ -37,4 +36,3 @@ public class ProtectiveGear : SlimeBossRelicModel, IModifySelfDamage
         return Task.CompletedTask;
     }
 }
-

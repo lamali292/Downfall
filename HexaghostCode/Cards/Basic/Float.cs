@@ -12,7 +12,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Basic;
 
-
 [Pool(typeof(HexaghostCardPool))]
 public class Float : HexaghostCardModel
 {
@@ -21,10 +20,12 @@ public class Float : HexaghostCardModel
         WithCards(1);
         WithKeyword(HexaghostKeyword.Advance, UpgradeType.Remove);
         WithTips(e => e.IsUpgraded
-            ? [HoverTipFactory.FromKeyword(HexaghostKeyword.Retract),
-                HoverTipFactory.FromKeyword(HexaghostKeyword.Advance)]
-            :
-            []);
+            ?
+            [
+                HoverTipFactory.FromKeyword(HexaghostKeyword.Retract),
+                HoverTipFactory.FromKeyword(HexaghostKeyword.Advance)
+            ]
+            : []);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -38,7 +39,7 @@ public class Float : HexaghostCardModel
             CombatState.CreateCard<FloatChoiceRetract>(Owner),
             CombatState.CreateCard<FloatChoiceAdvance>(Owner)
         ];
-        var a = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, canSkip: true);
+        var a = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, true);
         switch (a)
         {
             case FloatChoiceAdvance:
@@ -51,7 +52,6 @@ public class Float : HexaghostCardModel
     }
 }
 
-
 [Pool(typeof(TokenCardPool))]
 public class FloatChoiceRetract : HexaghostCardModel
 {
@@ -59,8 +59,10 @@ public class FloatChoiceRetract : HexaghostCardModel
     {
         WithTip(HexaghostKeyword.Retract);
     }
+
     public override string CustomPortraitPath =>
         $"{ModelDb.Card<Float>().Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<Core.Hexaghost>();
+
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
 }
 
@@ -71,7 +73,9 @@ public class FloatChoiceAdvance : HexaghostCardModel
     {
         WithTip(HexaghostKeyword.Advance);
     }
+
     public override string CustomPortraitPath =>
         $"{ModelDb.Card<Float>().Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<Core.Hexaghost>();
+
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
 }

@@ -16,8 +16,8 @@ public class BuggyMess : AutomatonCardModel, IEncodable
         this.WithTip<Dazed>();
         WithCostUpgradeBy(-1);
         WithEnergy(1);
-        WithVar("Dazed",1);
+        WithVar("Dazed", 1);
     }
-    
+
     public IEnumerable<Encodable> Encodings => [new EnergyEncode(), new DazedEncode()];
 }

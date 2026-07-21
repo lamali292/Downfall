@@ -64,15 +64,12 @@ public static class AutomatonCmd
         if (combatState == null) return null;
         var snapshot = pile.Cards.ToList();
         pile.Clear(true);
-        
+
         NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
-        {
             if (cardModel is ICompilable compilable)
-            {
                 await compilable.OnCompile(ctx);
-            }
-        }
+
         var functionCard = combatState.CreateCard<FunctionCard>(player);
         functionCard.SetSourceCards(snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
@@ -82,7 +79,6 @@ public static class AutomatonCmd
         return functionCard;
     }
 
-    
 
     public static bool IsEncodable(CardModel card)
     {
@@ -93,8 +89,6 @@ public static class AutomatonCmd
     {
         if (card is not IEncodable encodable) return;
         foreach (var encodableEncoding in encodable.Encodings)
-        {
             await encodableEncoding.OnPlay(card, ctx, cardPlay.Target, cardPlay);
-        }
     }
 }

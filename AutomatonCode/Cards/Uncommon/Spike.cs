@@ -17,12 +17,14 @@ public class Spike : AutomatonCardModel, IEncodable, ICompilable
         WithPower<ThornsPower>(3, 2);
         WithDamage(7, 1);
     }
-    protected override Artist Artist => Artist.Get<Opal>();
-   
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
+    protected override Artist Artist => Artist.Get<Opal>();
+
     public Task OnCompile(PlayerChoiceContext ctx)
     {
         return CommonActions.ApplySelf<ThornsPower>(ctx, this);
     }
+
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

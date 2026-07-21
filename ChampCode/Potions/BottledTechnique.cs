@@ -1,5 +1,5 @@
-﻿using Champ.ChampCode.Core;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;

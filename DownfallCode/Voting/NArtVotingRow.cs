@@ -10,11 +10,11 @@ namespace Downfall.DownfallCode.Voting;
 
 public partial class NArtVotingRow : NClickableControl
 {
-    private Panel _selectionHighlight = null!;
-    private bool _isSelected;
     private const string ScenePath = "res://Downfall/scenes/voting/art_voting_row.tscn";
     private const float SelectedAlpha = 0.25f;
+    private bool _isSelected;
     private NArtVotingScreen _screen = null!;
+    private Panel _selectionHighlight = null!;
 
     public ArtData? ArtData { get; private set; }
 
@@ -43,7 +43,7 @@ public partial class NArtVotingRow : NClickableControl
         row._screen = screen;
         return row;
     }
-    
+
     public override void _Ready()
     {
         if (ArtData == null)
@@ -56,7 +56,7 @@ public partial class NArtVotingRow : NClickableControl
         _selectionHighlight.Modulate = _selectionHighlight.Modulate with { A = 0f };
 
         var card = ArtData.Card;
-        if (card ==  null) return;
+        if (card == null) return;
         title.Text = card.Title;
         var texture = GetIcon(card.Pool);
         if (texture != null) platformIcon.Texture = texture;
@@ -78,8 +78,11 @@ public partial class NArtVotingRow : NClickableControl
         _selectionHighlight.Modulate = Colors.Transparent;
     }
 
-    protected override void OnRelease() => _screen.OnRowSelected(this);
-    
+    protected override void OnRelease()
+    {
+        _screen.OnRowSelected(this);
+    }
+
     private static Texture2D? GetIcon(CardPoolModel poolModel)
     {
         return ModelDb.AllCharacters.FirstOrDefault(e => e.CardPool == poolModel)?.IconTexture;

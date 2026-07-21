@@ -1,5 +1,5 @@
-﻿using Guardian.GuardianCode.Core;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +27,7 @@ public class QuantumElixir : GuardianPotionModel
         var cards = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c.Rarity != CardRarity.Token).ToList();
-        
+
         while (GuardianCmd.CanPutIntoStasis(Owner, silent: true))
         {
             var countBefore = Owner.GetStasis().Count;
@@ -36,7 +36,7 @@ public class QuantumElixir : GuardianPotionModel
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
             await GuardianCmd.PutIntoStasis(selected, ctx, this);
-            
+
             var countAfter = Owner.GetStasis().Count;
             if (countAfter < countBefore + 1)
                 return;

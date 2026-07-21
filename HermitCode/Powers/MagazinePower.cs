@@ -16,8 +16,24 @@ public class MagazinePower : HermitPowerModel,
     {
         WithTip(CardKeyword.Retain);
     }
-    
-    
+
+
+    public decimal ModifyDamageAdditiveCompability(
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
+    {
+        return !props.IsPoweredAttack() || cardSource == null || !IsBasicStrike(cardSource) || dealer != Owner ||
+               CombatManager.Instance.History.CardPlaysFinished
+                   .Any(e => e.HappenedThisTurn(CombatState) && IsBasicStrike(e.CardPlay.Card) &&
+                             e.CardPlay.Card.Owner.Creature == Owner)
+            ? 0M
+            : Amount;
+    }
+
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (!card.IsBasicStrikeOrDefend || card.Owner != Owner.Player)
@@ -35,18 +51,8 @@ public class MagazinePower : HermitPowerModel,
         return Task.CompletedTask;
     }
 
-    private static bool IsBasicStrike(CardModel card) =>  card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Strike);
-
-    
-    public decimal ModifyDamageAdditiveCompability(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
+    private static bool IsBasicStrike(CardModel card)
     {
-        return !props.IsPoweredAttack() || cardSource == null || !IsBasicStrike(cardSource) || dealer != Owner ||
-               CombatManager.Instance.History.CardPlaysFinished
-                   .Any(e => e.HappenedThisTurn(CombatState) && IsBasicStrike(e.CardPlay.Card) && e.CardPlay.Card.Owner.Creature == Owner) ? 0M : Amount;
+        return card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Strike);
     }
 }

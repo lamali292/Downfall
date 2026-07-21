@@ -22,7 +22,7 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
         WithTags(AwakenedTag.Spell);
     }
-    
+
     public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)

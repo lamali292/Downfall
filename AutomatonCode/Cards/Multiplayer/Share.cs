@@ -15,7 +15,7 @@ public class Share : AutomatonCardModel
         this.WithPower<SharePower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
     }
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

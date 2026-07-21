@@ -17,14 +17,14 @@ public class Boost : AutomatonCardModel, IEncodable, ICompilable
         WithBlock(6);
         WithPower<StrengthPower>(2, 1);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
-    
+
 
     public Task OnCompile(PlayerChoiceContext ctx)
     {
         return CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
+
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
 }

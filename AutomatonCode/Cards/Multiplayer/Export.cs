@@ -15,7 +15,7 @@ public class Export : AutomatonCardModel
         WithBlock(5);
         WithEnergy(1);
     }
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

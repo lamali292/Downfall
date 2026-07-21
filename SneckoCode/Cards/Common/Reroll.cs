@@ -11,10 +11,10 @@ public class Reroll : SneckoCardModel
 {
     public Reroll() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(6 ,3);
+        WithBlock(6, 3);
         this.WithMuddle(1, 1);
     }
-    
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

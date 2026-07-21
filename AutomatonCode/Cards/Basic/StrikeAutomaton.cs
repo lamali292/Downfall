@@ -16,14 +16,14 @@ public class StrikeAutomaton : AutomatonCardModel, IEncodable
         WithDamage(6, 3);
     }
 
+    public bool CanPlayerEncode => false;
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }
-
-    public bool CanPlayerEncode => false;
-
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

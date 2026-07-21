@@ -19,15 +19,15 @@ public class Stockpile : SneckoCardModel, IHasOverflowEffect
         WithEnergy(1);
     }
 
+    public Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+    }
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var baseValue = DynamicVars.Cards.BaseValue;
         var count = Owner.GetHand().Count;
         await CardPileCmd.Draw(ctx, Math.Max(0M, baseValue - count), Owner);
-    }
-
-    public Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }

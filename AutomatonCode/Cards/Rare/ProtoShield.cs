@@ -26,6 +26,7 @@ public class ProtoShield : AutomatonCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<PlatingPower>(ctx, this);
-        await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Discard, DynamicVars.Cards.IntValue, CardPilePosition.Random);
+        await DownfallCardCmd.GiveCards<Error>(Owner, PileType.Discard, DynamicVars.Cards.IntValue,
+            CardPilePosition.Random);
     }
 }

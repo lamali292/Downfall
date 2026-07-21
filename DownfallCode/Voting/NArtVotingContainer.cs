@@ -6,16 +6,17 @@ namespace Downfall.DownfallCode.Voting;
 
 public partial class NArtVotingContainer : Control
 {
+    [Signal]
+    public delegate void EntryClickedEventHandler(string imagePath);
+
     private const string VoteCardScenePath = "res://Downfall/scenes/voting/art_row.tscn";
 
-    private MegaRichTextLabel _title = null!;
+    private readonly Dictionary<string, List<ArtEntry>> _entryCache = new();
     private HFlowContainer _content = null!;
-    private PackedScene _voteCardScene = null!;
     private int _fillGeneration;
 
-    private readonly Dictionary<string, List<ArtEntry>> _entryCache = new();
-
-    [Signal] public delegate void EntryClickedEventHandler(string imagePath);
+    private MegaRichTextLabel _title = null!;
+    private PackedScene _voteCardScene = null!;
 
     public override void _Ready()
     {
@@ -68,19 +69,18 @@ public partial class NArtVotingContainer : Control
 
     private async Task<List<ArtEntry>?> GetEntriesFor(ArtData artData)
     {
-    
         if (artData.Entries is { Count: > 0 })
             return artData.Entries;
 
         var key = artData.Id ?? artData.ModelId.ToString();
-        
+
         if (_entryCache.TryGetValue(key, out var cached))
             return cached;
-        
+
         var fetched = await FetchFromDatabase(key);
         if (fetched == null) return fetched;
         _entryCache[key] = fetched;
-        artData.Entries = fetched;   
+        artData.Entries = fetched;
         return fetched;
     }
 

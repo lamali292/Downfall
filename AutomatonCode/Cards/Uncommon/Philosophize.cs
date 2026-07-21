@@ -1,11 +1,8 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Guardian.GuardianCode.Cards.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +20,7 @@ public class Philosophize : AutomatonCardModel
         this.WithPower<PhilosophizePower>(3, 2, false);
         this.WithTip<StrengthPower>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,

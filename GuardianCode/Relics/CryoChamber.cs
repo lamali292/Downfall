@@ -18,8 +18,8 @@ public class CryoChamber : GuardianRelicModel, IBeforeCardEntersStasis
     {
         WithTip(GuardianTip.Stasis);
     }
-    
-    
+
+
     public Task BeforeCardEntersStasis(PlayerChoiceContext ctx, CardModel card, AbstractModel source)
     {
         if (card.Owner != Owner) return Task.CompletedTask;

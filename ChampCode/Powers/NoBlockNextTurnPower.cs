@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Powers;
 
 public class NoBlockNextTurnPower : ChampPowerModel
 {
-    public NoBlockNextTurnPower() : base(PowerType.Debuff, PowerStackType.Counter)
+    public NoBlockNextTurnPower() : base(PowerType.Debuff)
     {
         WithTip<NoBlockPower>();
         WithTip(StaticHoverTip.Block);

@@ -24,9 +24,6 @@ public class RainOfEmbers : HexaghostCardModel
     {
         var x = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
-        for (var i = 0; i < x; i++)
-        {
-            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
-        }
+        for (var i = 0; i < x; i++) await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
 }

@@ -16,10 +16,8 @@ public class Deprecate : AutomatonCardModel,
     {
         WithPower<WeakPower>(1, 1);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new WeakEncode()];
-    
+
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-  
+    public IEnumerable<Encodable> Encodings => [new WeakEncode()];
 }

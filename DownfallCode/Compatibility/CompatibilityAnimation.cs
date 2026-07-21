@@ -5,11 +5,11 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 namespace Downfall.DownfallCode.Compatibility;
 
 /// <summary>
-/// Version-safe animation calls. ALWAYS use these instead of calling MegaAnimationState
-/// directly: a direct call bakes one version's signature into IL and JIT-crashes the
-/// entire containing method on the other version.
-/// Known drift: 107 SetAnimation/AddAnimation/AddEmptyAnimation return MegaTrackEntry;
-/// 108 returns void (PRG-6985) and adds AddAnimationTracked.
+///     Version-safe animation calls. ALWAYS use these instead of calling MegaAnimationState
+///     directly: a direct call bakes one version's signature into IL and JIT-crashes the
+///     entire containing method on the other version.
+///     Known drift: 107 SetAnimation/AddAnimation/AddEmptyAnimation return MegaTrackEntry;
+///     108 returns void (PRG-6985) and adds AddAnimationTracked.
 /// </summary>
 public static class CompatibilityAnimation
 {
@@ -27,6 +27,8 @@ public static class CompatibilityAnimation
     // (idle loops, per-trigger mix) doesn't rescan GetMethods() every call.
     private static readonly ConcurrentDictionary<(Type, string), MethodInfo?> EntryMethodCache = new();
 
+    private static readonly HashSet<string> LoggedFailures = [];
+
     private static bool EnsureInitialized()
     {
         if (_initialized) return !_initFailed;
@@ -39,13 +41,15 @@ public static class CompatibilityAnimation
                 _setAnimationM = FindByName(t, "SetAnimation", typeof(string), typeof(bool));
                 _getCurrentM = FindByName(t, "GetCurrent", typeof(int));
                 _addAnimationM = FindByName(t, "AddAnimationTracked", typeof(string))
-                              ?? FindByName(t, "AddAnimation", typeof(string));
+                                 ?? FindByName(t, "AddAnimation", typeof(string));
                 _addEmptyAnimationM = FindByName(t, "AddEmptyAnimation");
 
                 if (_setAnimationM == null)
-                    DownfallMainFile.Logger.Warn("CompatibilityAnimation: SetAnimation not found — animations will be skipped.");
+                    DownfallMainFile.Logger.Warn(
+                        "CompatibilityAnimation: SetAnimation not found — animations will be skipped.");
                 if (_addAnimationM == null)
-                    DownfallMainFile.Logger.Warn("CompatibilityAnimation: AddAnimation(Tracked) not found — queued animations will be skipped.");
+                    DownfallMainFile.Logger.Warn(
+                        "CompatibilityAnimation: AddAnimation(Tracked) not found — queued animations will be skipped.");
 
                 _initFailed = _setAnimationM == null && _addAnimationM == null;
             }
@@ -54,8 +58,10 @@ public static class CompatibilityAnimation
                 _initFailed = true;
                 DownfallMainFile.Logger.Warn($"CompatibilityAnimation: init failed, animations disabled. {ex.Message}");
             }
+
             _initialized = true; // set LAST so concurrent callers never see half-probed state
         }
+
         return !_initFailed;
     }
 
@@ -68,9 +74,11 @@ public static class CompatibilityAnimation
                 var ps = m.GetParameters();
                 if (ps.Length < leading.Length) return false;
                 for (var i = 0; i < leading.Length; i++)
-                    if (ps[i].ParameterType != leading[i]) return false;
+                    if (ps[i].ParameterType != leading[i])
+                        return false;
                 for (var i = leading.Length; i < ps.Length; i++)
-                    if (!ps[i].IsOptional) return false;
+                    if (!ps[i].IsOptional)
+                        return false;
                 return true;
             })
             .OrderBy(m => m.GetParameters().Length)
@@ -98,13 +106,20 @@ public static class CompatibilityAnimation
             // OptionalParamBinding lets the binder resolve it instead of us guessing.
             full[i] = dv == DBNull.Value ? Type.Missing : dv;
         }
+
         return m.Invoke(target, F | BindingFlags.OptionalParamBinding, null, full, null);
     }
 
     private static void DisposeEntry(object? entry)
     {
-        try { (entry as IDisposable)?.Dispose(); }
-        catch { /* native teardown failure — nothing to do */ }
+        try
+        {
+            (entry as IDisposable)?.Dispose();
+        }
+        catch
+        {
+            /* native teardown failure — nothing to do */
+        }
     }
 
     private static void TrySetMixDuration(object entry, float mix)
@@ -115,10 +130,10 @@ public static class CompatibilityAnimation
             LogOnce("SetMixDuration", $"{entry.GetType().Name}.SetMixDuration(float) not found — mix ignored.");
             return;
         }
+
         Call(m, entry, mix);
     }
 
-    private static readonly HashSet<string> LoggedFailures = [];
     private static void LogOnce(string key, string message)
     {
         lock (LoggedFailures)
@@ -150,7 +165,8 @@ public static class CompatibilityAnimation
         }
         catch (Exception ex)
         {
-            LogOnce($"SetAnimationCompat:{ex.GetType().Name}", $"SetAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
+            LogOnce($"SetAnimationCompat:{ex.GetType().Name}",
+                $"SetAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
         }
         finally
         {
@@ -169,7 +185,8 @@ public static class CompatibilityAnimation
         }
         catch (Exception ex)
         {
-            LogOnce($"AddAnimationCompat:{ex.GetType().Name}", $"AddAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
+            LogOnce($"AddAnimationCompat:{ex.GetType().Name}",
+                $"AddAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
         }
         finally
         {
@@ -188,7 +205,8 @@ public static class CompatibilityAnimation
         }
         catch (Exception ex)
         {
-            LogOnce($"AddEmptyAnimationCompat:{ex.GetType().Name}", $"AddEmptyAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
+            LogOnce($"AddEmptyAnimationCompat:{ex.GetType().Name}",
+                $"AddEmptyAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
         }
         finally
         {
@@ -211,7 +229,8 @@ public static class CompatibilityAnimation
         }
         catch (Exception ex)
         {
-            LogOnce($"SetAnimationWithMix:{ex.GetType().Name}", $"SetAnimationWithMix failed: {ex.InnerException?.Message ?? ex.Message}");
+            LogOnce($"SetAnimationWithMix:{ex.GetType().Name}",
+                $"SetAnimationWithMix failed: {ex.InnerException?.Message ?? ex.Message}");
         }
         finally
         {
@@ -231,7 +250,8 @@ public static class CompatibilityAnimation
         }
         catch (Exception ex)
         {
-            LogOnce($"QueueAnimation:{ex.GetType().Name}", $"QueueAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
+            LogOnce($"QueueAnimation:{ex.GetType().Name}",
+                $"QueueAnimation failed: {ex.InnerException?.Message ?? ex.Message}");
         }
         finally
         {
@@ -240,9 +260,9 @@ public static class CompatibilityAnimation
     }
 
     /// <summary>
-    /// Version-safe: plays an animation and randomizes its start time within the clip
-    /// (used to de-sync idle loops). 107: uses SetAnimation's returned entry.
-    /// 108: SetAnimation returns void → fetches the entry via GetCurrent(0).
+    ///     Version-safe: plays an animation and randomizes its start time within the clip
+    ///     (used to de-sync idle loops). 107: uses SetAnimation's returned entry.
+    ///     108: SetAnimation returns void → fetches the entry via GetCurrent(0).
     /// </summary>
     public static void SetAnimationRandomStart(this MegaAnimationState animState,
         string anim, bool loop, float normalizedTime)
@@ -258,7 +278,8 @@ public static class CompatibilityAnimation
             var setTime = FindEntryMethod(entry, "SetTrackTime", typeof(float));
             if (getEnd == null || setTime == null)
             {
-                LogOnce("RandomStart", $"{entry.GetType().Name}: GetAnimationEnd/SetTrackTime not found — random start skipped.");
+                LogOnce("RandomStart",
+                    $"{entry.GetType().Name}: GetAnimationEnd/SetTrackTime not found — random start skipped.");
                 return;
             }
 

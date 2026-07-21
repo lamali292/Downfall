@@ -13,7 +13,7 @@ public sealed class RuggedPower : HermitPowerModel
     {
         if (target != Owner || Amount <= 0 || amount <= 0m || !props.IsPoweredAttack())
             return amount;
-       
+
         return Math.Min(amount, 2m);
     }
 

@@ -26,7 +26,8 @@ public sealed class OldLocket : HermitRelicModel
         return ModelDb.Relic<ClaspedLocket>();
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+        ICombatState combatState)
     {
         if (Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner) return;
         await DownfallCardCmd.GiveCard<MementoCard>(Owner, PileType.Hand);

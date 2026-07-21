@@ -17,7 +17,7 @@ public class SignatureFinisher : ChampRelicModel
         WithTip(ChampTip.Finisher);
         WithTip<Signature>();
     }
-    
+
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()

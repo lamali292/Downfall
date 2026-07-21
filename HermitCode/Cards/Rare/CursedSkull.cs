@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
@@ -22,9 +21,9 @@ public class CursedSkull : HermitCardModel
         WithTip(HermitKeywords.DeadOn);
         WithKeyword(CardKeyword.Exhaust);
     }
-    
+
     public override bool CanBeGeneratedInCombat => false;
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
@@ -32,22 +31,15 @@ public class CursedSkull : HermitCardModel
         if (card == null) return;
         var deadOnReplay = CardModifier.Modifiers(card).OfType<DeadOnReplay>().FirstOrDefault();
         if (deadOnReplay == null)
-        {
             CardModifier.AddModifier<DeadOnReplay>(card);
-        }
         else
-        {
             deadOnReplay.Value += 1;
-        }
-       
     }
 
     private static bool HasNotEffectAlready(CardModel cardModel)
     {
         return !CardModifier.Modifiers(cardModel).OfType<DeadOnReplay>().Any();
     }
-    
-    
 }
 
 public class DeadOnReplay : DownfallCardModifier
@@ -71,10 +63,15 @@ public class DeadOnReplay : DownfallCardModifier
     private bool IsDeadOnInHand => Owner != null && HermitCmd.IsDeadOnInCurrentHandState(Owner);
 
     private bool WasThisPlayedDeadOn => DeadOnPatch.LastPlayed == Owner && DeadOnPatch.LastWasDeadOn;
-    
+
+    private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
+
+    public override bool ShouldGlowGold => IsDeadOn;
+    public int Value { get; set; } = 1;
+
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card == Owner && IsDeadOn ? playCount + ModVal: playCount;
+        return card == Owner && IsDeadOn ? playCount + ModVal : playCount;
     }
 
     public override void ModifyDescription(Creature? target, ref string description)
@@ -84,9 +81,4 @@ public class DeadOnReplay : DownfallCardModifier
         loc.Add("Replay", ModVal);
         description += $"\n{loc.GetFormattedText()}";
     }
-
-    private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
-
-    public override bool ShouldGlowGold => IsDeadOn;
-    public int Value { get; set; } = 1;
 }

@@ -25,14 +25,14 @@ public partial class NChampStanceDisplay : Control
     private const int TotalHeight = ChargeIconSize;
     private const int MarginAboveHead = 20;
 
+    private static readonly Vector2 ReticleCenterOffset = new(ChargeIconSize / 2f, ChargeIconSize / 2f);
+    private static readonly Vector2 ReticleVisualSize = new(ChargeIconSize, ChargeIconSize);
+
     private readonly List<TextureRect> _icons = new();
     private readonly List<StanceIconControl> _wrappers = new();
     private Control? _bounds;
-    private Player? _trackedPlayer;
     private Control? _creatureHitbox;
-
-    private static readonly Vector2 ReticleCenterOffset = new(ChargeIconSize / 2f, ChargeIconSize / 2f);
-    private static readonly Vector2 ReticleVisualSize = new(ChargeIconSize, ChargeIconSize);
+    private Player? _trackedPlayer;
 
     public static NChampStanceDisplay? Show(Player player)
     {
@@ -77,13 +77,14 @@ public partial class NChampStanceDisplay : Control
             _icons.Add(icon);
             _wrappers.Add(wrapper);
 
-            var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, ReticleCenterOffset, ReticleVisualSize, margin: 4f);
+            var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, ReticleCenterOffset, ReticleVisualSize, 4f);
             wrapper.SetReticle(reticle);
         }
-        DownfallControllerNav.WireChain(_wrappers, wrap: true);
+
+        DownfallControllerNav.WireChain(_wrappers, true);
         if (_creatureHitbox != null)
             // Entry point is the rightmost icon, since that's the "first" stance charge
-            DownfallControllerNav.LinkAbove(_wrappers, _creatureHitbox, entryIndex: _wrappers.Count - 1);
+            DownfallControllerNav.LinkAbove(_wrappers, _creatureHitbox, _wrappers.Count - 1);
         Reposition();
         Refresh();
     }
@@ -124,9 +125,9 @@ public partial class NChampStanceDisplay : Control
 
     private partial class StanceIconControl : NClickableControl
     {
+        private NSelectionReticle? _reticle;
         private IHoverTip? _tip;
         private Func<IHoverTip>? _tipProvider;
-        private NSelectionReticle? _reticle;
 
         public void SetTipProvider(Func<IHoverTip> provider)
         {

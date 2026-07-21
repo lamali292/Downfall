@@ -16,11 +16,11 @@ public sealed class DefendAutomaton : AutomatonCardModel, IEncodable
         WithBlock(5, 3);
     }
 
+    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+    public bool CanPlayerEncode => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
-
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
-    public bool CanPlayerEncode => false;
 }

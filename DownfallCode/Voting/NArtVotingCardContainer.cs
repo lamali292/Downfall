@@ -1,10 +1,9 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using FileAccess = Godot.FileAccess;
 
 namespace Downfall.DownfallCode.Voting;
-
-using System.Threading.Tasks;
-using Godot;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 
 public partial class NArtVotingCardContainer : Control
 {
@@ -19,6 +18,7 @@ public partial class NArtVotingCardContainer : Control
             _card.QueueFree();
             _card = null;
         }
+
         _currentImagePath = "";
 
         var model = artData.Card;
@@ -32,7 +32,7 @@ public partial class NArtVotingCardContainer : Control
 
         if (!_card.IsNodeReady())
             await ToSignal(_card, Node.SignalName.Ready);
-        
+
         _card.UpdateVisuals(PileType.Deck, CardPreviewMode.Normal);
     }
 
@@ -54,16 +54,22 @@ public partial class NArtVotingCardContainer : Control
 
         Texture2D? tex;
         if (path.StartsWith("res://"))
+        {
             tex = ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : null;
+        }
         else if (path.StartsWith("http://") || path.StartsWith("https://"))
+        {
             tex = await Download(path);
-        else if (Godot.FileAccess.FileExists(path))
+        }
+        else if (FileAccess.FileExists(path))
         {
             var img = new Image();
             tex = img.Load(path) == Error.Ok ? ImageTexture.CreateFromImage(img) : null;
         }
         else
+        {
             tex = null;
+        }
 
         if (tex != null)
             NVoteCard.TextureCache[path] = tex;
@@ -74,7 +80,11 @@ public partial class NArtVotingCardContainer : Control
     {
         var http = new HttpRequest();
         AddChild(http);
-        if (http.Request(url) != Error.Ok) { http.QueueFree(); return null; }
+        if (http.Request(url) != Error.Ok)
+        {
+            http.QueueFree();
+            return null;
+        }
 
         var result = await ToSignal(http, HttpRequest.SignalName.RequestCompleted);
         http.QueueFree();

@@ -12,13 +12,13 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class Recycler : HexaghostRelicModel
 {
+    private bool _usedThisCombat;
+
     public Recycler() : base(RelicRarity.Uncommon)
     {
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }
-    
-    private bool _usedThisCombat;
 
     private bool UsedThisCombat
     {

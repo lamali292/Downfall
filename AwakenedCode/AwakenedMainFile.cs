@@ -1,9 +1,7 @@
-using System.Reflection;
 using Awakened.AwakenedCode.Cards;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
 using BaseLib.Utils;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -28,7 +26,7 @@ public partial class AwakenedMainFile : Node
         CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
-        
+
         BundledSubmodLocRegistry.Register(ModId);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
     }

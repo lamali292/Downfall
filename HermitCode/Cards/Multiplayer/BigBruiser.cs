@@ -13,6 +13,7 @@ public class BigBruiser : HermitCardModel
         this.WithPower<BigBruiserPower>(1, false);
         WithPower<BruisePower>(3, 3);
     }
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
 

@@ -5,7 +5,6 @@ using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -31,10 +30,10 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
         UsedThisTurn = true;
         Flash();
         Status = RelicStatus.Normal;
-        var choices = new[] { HexaghostKeyword.Retract,  HexaghostKeyword.Advance }
+        var choices = new[] { HexaghostKeyword.Retract, HexaghostKeyword.Advance }
             .Select(f => FlareFlickChoice.Create(f, Owner))
             .ToList();
-        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, canSkip: true);
+        var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner, true);
         if (chosen is not FlareFlickChoice { Keyword : var keyword }) return;
         if (keyword == HexaghostKeyword.Advance)
             await HexaghostCmd.Advance(ctx, Owner, this);

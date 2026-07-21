@@ -14,19 +14,22 @@ public class DamageEncode : Encodable
 {
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Attack;
+    public override DynamicVar FunctionDynamicVar => new DamageVar(0, ValueProp.Move);
+
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
         if (target == null) return Task.CompletedTask;
         if (model is CardModel card)
-        {
             return DamageCmd.Attack(card.DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
-        }
         return DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().Damage.BaseValue, ValueProp.Unpowered,
             model.GetCreature(), null, null);
     }
-    public override DynamicVar FunctionDynamicVar => new DamageVar(0, ValueProp.Move);
-    public override DynamicVar DynamicVar(AbstractModel model) => model.GetDynamicVars().Damage;
+
+    public override DynamicVar DynamicVar(AbstractModel model)
+    {
+        return model.GetDynamicVars().Damage;
+    }
 }

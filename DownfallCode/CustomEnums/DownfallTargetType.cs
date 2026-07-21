@@ -5,6 +5,5 @@ namespace Downfall.DownfallCode.CustomEnums;
 
 public class DownfallTargetType
 {
-    [CustomEnum]
-    public static TargetType MeAndEnemies;
+    [CustomEnum] public static TargetType MeAndEnemies;
 }

@@ -27,7 +27,7 @@ public abstract class DownfallCardModel
     {
         return Task.CompletedTask;
     }
-    
+
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (await CardExecutionRegistry.BeforeOnPlayInternal(this, ctx, cardPlay)) return;

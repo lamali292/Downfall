@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Patches;
 
-
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
 public static class NCreatureAnimationPatch
 {
@@ -14,4 +13,3 @@ public static class NCreatureAnimationPatch
             downfallAnimation.OnAnimationTrigger(trigger);
     }
 }
-

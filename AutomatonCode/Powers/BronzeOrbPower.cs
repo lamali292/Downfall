@@ -16,8 +16,9 @@ public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
-        if (card.Owner.Creature != Owner || card.Keywords.Contains(CardKeyword.Exhaust) || AutomatonCmd.IsEncodable(card) || card.Type is (CardType.Power)) return cardLocation;
-        NStashDisplay.EnsureFor(card.Owner);     
+        if (card.Owner.Creature != Owner || card.Keywords.Contains(CardKeyword.Exhaust) ||
+            AutomatonCmd.IsEncodable(card) || card.Type is CardType.Power) return cardLocation;
+        NStashDisplay.EnsureFor(card.Owner);
         return new CardLocationCompatiblity(card.Owner, StashPile.Stash, CardPilePosition.Top);
     }
 
@@ -25,7 +26,7 @@ public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
     {
         return PowerCmd.Decrement(this);
     }
-    
+
 
     public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

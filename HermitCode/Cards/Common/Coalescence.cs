@@ -29,7 +29,8 @@ public sealed class Coalescence : HermitCardModel
         var retainable = hand.Cards.Where(c => !c.ShouldRetainThisTurn).ToList();
         if (retainable.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0, DynamicVars.Cards.IntValue);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0,
+            DynamicVars.Cards.IntValue);
         var selected = (await CardSelectCmd.FromHand(
             prefs: prefs,
             context: ctx,
@@ -41,5 +42,3 @@ public sealed class Coalescence : HermitCardModel
         foreach (var card in selected) card.GiveSingleTurnRetain();
     }
 }
-
-

@@ -25,6 +25,5 @@ public sealed class BrokenTooth : HermitRelicModel
         Flash();
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
         await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
-        
     }
 }

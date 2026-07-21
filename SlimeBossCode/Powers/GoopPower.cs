@@ -1,14 +1,11 @@
-using BaseLib.Patches.Localization;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
@@ -22,24 +19,6 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IModifyDamageAdditive
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-    
-    protected override object InitInternalData()
-    {
-        return new Data();
-    }
-
-    public override Task BeforeAttack(AttackCommand command)
-    {
-        if (command.Attacker != Applier || !command.DamageProps.IsPoweredAttack())
-            return Task.CompletedTask;
-        var internalData = GetInternalData<Data>();
-        if (internalData.CommandToModify != null ||
-            (command.ModelSource != null && command.ModelSource is not CardModel))
-            return Task.CompletedTask;
-        internalData.CommandToModify = command;
-        internalData.AmountWhenAttackStarted = Amount;
-        return Task.CompletedTask;
-    }
 
     public decimal ModifyDamageAdditiveCompability(
         Creature? target,
@@ -57,6 +36,24 @@ public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IModifyDamageA
                 internalData.CommandToModify.Attacker != dealer)
             ? 0M
             : Amount * (cardSource is IDoubleGoopBonus ? 2M : 1M);
+    }
+
+    protected override object InitInternalData()
+    {
+        return new Data();
+    }
+
+    public override Task BeforeAttack(AttackCommand command)
+    {
+        if (command.Attacker != Applier || !command.DamageProps.IsPoweredAttack())
+            return Task.CompletedTask;
+        var internalData = GetInternalData<Data>();
+        if (internalData.CommandToModify != null ||
+            (command.ModelSource != null && command.ModelSource is not CardModel))
+            return Task.CompletedTask;
+        internalData.CommandToModify = command;
+        internalData.AmountWhenAttackStarted = Amount;
+        return Task.CompletedTask;
     }
 
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)

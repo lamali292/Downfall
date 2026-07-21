@@ -16,6 +16,7 @@ public class Invalidate : AutomatonCardModel,
     {
         WithPower<VulnerablePower>(1, 1);
     }
-    public IEnumerable<Encodable> Encodings => [new VulnerableEncode()];
+
     protected override Artist Artist => Artist.Get<Opal>();
+    public IEnumerable<Encodable> Encodings => [new VulnerableEncode()];
 }

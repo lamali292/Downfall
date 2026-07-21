@@ -17,7 +17,7 @@ public class NullPointer : AutomatonCardModel,
         WithDamage(12, 3);
         WithBlock(12, 3);
     }
-    
+
     public void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
         function.AddKeyword(CardKeyword.Unplayable);

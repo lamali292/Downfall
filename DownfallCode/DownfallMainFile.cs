@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using BaseLib.Config;
-using BaseLib.Extensions;
 using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
@@ -14,10 +13,8 @@ using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using Godot;
 using Godot.Bridge;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -43,7 +40,7 @@ public partial class DownfallMainFile : Node
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
-        
+
         ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
         DownfallPatchManager.HarmonyPatches();
         //Patch(Assembly.GetExecutingAssembly(), ModId);
@@ -51,20 +48,22 @@ public partial class DownfallMainFile : Node
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += OnMetricsUpload;
-        
+
         CardTitleHooks.Register((card, title) =>
         {
-            if (!card.IsEcho()) return title; 
+            if (!card.IsEcho()) return title;
             var echoLoc = new LocString("card_keywords", "DOWNFALL-ECHO.card_title");
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
         PostInitRegistry.Register(() =>
         {
-            CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,  (target, player) => target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
+            CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,
+                (target, player) =>
+                    target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
             LogRegisteredCounts();
         });
-        
+
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
@@ -87,7 +86,6 @@ public partial class DownfallMainFile : Node
             new PlusIfUpgradedFormatter());
     }
 
-   
 
     private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
     {
@@ -125,9 +123,8 @@ public partial class DownfallMainFile : Node
             Logger.Warn($"Upload timed out: {ex.Message}");
         }
     }
-    
-    
-    
+
+
     private static void LogRegisteredCounts()
     {
         var modAssembly = typeof(DownfallMainFile).Assembly;

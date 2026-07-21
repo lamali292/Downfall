@@ -1,7 +1,7 @@
-﻿namespace Downfall.DownfallCode.Compatibility;
-
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+
+namespace Downfall.DownfallCode.Compatibility;
 
 public static class GameVersion
 {

@@ -28,9 +28,10 @@ public class RubyGem : GemModel
     }
 }
 
-
 public class RubyGemPower : CustomTemporaryPowerModelWrapper<RubyGem, StrengthPower>
 {
     public override LocString Title => OriginModel is GemModel gem ? gem.Title : base.Title;
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        OriginModel is GemModel gem ? gem.HoverTips : base.ExtraHoverTips;
 }

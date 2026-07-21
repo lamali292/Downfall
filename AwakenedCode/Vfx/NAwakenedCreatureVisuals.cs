@@ -16,6 +16,33 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private MegaAnimationState? _animState;
     private MegaSprite? _sprite;
 
+    public bool IsAwakened { get; set; }
+
+    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
+    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
+    private string HitAnim => "Hit";
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
+                break;
+            case "Attack":
+                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Hit":
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Cast":
+            case "Dead":
+                break;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -31,32 +58,5 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState = _sprite?.GetAnimationState();
 
         _animState?.SetAnimationCompat("Idle_1");
-    }
-    
-    public bool IsAwakened { get; set; }
-
-    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
-    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
-    private string HitAnim => "Hit";
-    
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
-                break;
-            case "Attack":
-                _animState?.SetAnimationWithMix(AttackAnim, AttackMix, loop: false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Hit":
-                _animState?.SetAnimationWithMix(HitAnim, HitMix, loop: false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Cast":
-            case "Dead":
-                break;
-        }
     }
 }

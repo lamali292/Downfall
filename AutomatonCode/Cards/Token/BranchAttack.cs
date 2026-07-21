@@ -7,8 +7,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Automaton.AutomatonCode.Cards.Token;
 
-
-
 [Pool(typeof(TokenCardPool))]
 public class BranchAttack : AutomatonCardModel, IEncodable
 {
@@ -16,7 +14,8 @@ public class BranchAttack : AutomatonCardModel, IEncodable
     {
         WithDamage(7, 2);
     }
-    
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
+
     protected override Artist Artist => Artist.Get<Opal>();
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

@@ -38,7 +38,7 @@ public abstract class HookedRelicModel(bool autoAdd = true) : CustomRelicModel(a
     {
         return Task.CompletedTask;
     }
-    
+
 
     public sealed override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
@@ -96,7 +96,7 @@ public abstract class HookedRelicModel(bool autoAdd = true) : CustomRelicModel(a
     {
         return Task.CompletedTask;
     }
-    
+
     public sealed override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
         return ExecuteWithContext(ctx => AfterCardChangedPiles(ctx, card, oldPileType, clonedBy));

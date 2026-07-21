@@ -9,5 +9,7 @@ internal static class NewRunPatch
 {
     [HarmonyPostfix]
     private static void Postfix(RunState __result)
-        => RunHooks.RaiseNewRun(__result);
+    {
+        RunHooks.RaiseNewRun(__result);
+    }
 }

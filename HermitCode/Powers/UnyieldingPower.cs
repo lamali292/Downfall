@@ -18,8 +18,8 @@ public class UnyieldingPower : HermitPowerModel, IModifyDamageMultiplicative
         WithVar("DamageDecrease", 0.5m);
         WithTip<VulnerablePower>();
     }
-     
-    
+
+
     public decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
         decimal amount,
@@ -27,9 +27,11 @@ public class UnyieldingPower : HermitPowerModel, IModifyDamageMultiplicative
         Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        return target != Owner || !props.IsPoweredAttack() || dealer == null || !target.HasPower<VulnerablePower>() ? 1M : DynamicVars["DamageDecrease"].BaseValue;
+        return target != Owner || !props.IsPoweredAttack() || dealer == null || !target.HasPower<VulnerablePower>()
+            ? 1M
+            : DynamicVars["DamageDecrease"].BaseValue;
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,
@@ -39,5 +41,4 @@ public class UnyieldingPower : HermitPowerModel, IModifyDamageMultiplicative
             return;
         await PowerCmd.Decrement(this);
     }
-
 }

@@ -17,10 +17,10 @@ public class WalkerClaw : GuardianCardModel, IGemSocketCard
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
+    public int GemSlots => 2;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-    public int GemSlots => 2;
 }

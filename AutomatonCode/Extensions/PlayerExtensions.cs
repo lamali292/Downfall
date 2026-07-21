@@ -7,7 +7,7 @@ namespace Automaton.AutomatonCode.Extensions;
 
 public static class PlayerExtensions
 {
-    public static IReadOnlyList<CardModel> GetStash(this Player player,Func<CardModel, bool>? filter = null)
+    public static IReadOnlyList<CardModel> GetStash(this Player player, Func<CardModel, bool>? filter = null)
     {
         var cards = CustomPiles.GetCustomPile(player.PlayerCombatState, StashPile.Stash)?.Cards
                     ?? [];

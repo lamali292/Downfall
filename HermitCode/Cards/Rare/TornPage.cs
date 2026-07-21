@@ -21,10 +21,6 @@ public class TornPage : HermitCardModel
 
         await CommonActions.CardBlock(this, cardPlay);
         var curses = Owner.GetHand().Where(e => e.Type == CardType.Curse);
-        foreach (var cardModel in curses)
-        {
-            await CardCmd.Afflict<Necromantic>(cardModel, 1);
-        }
-        
+        foreach (var cardModel in curses) await CardCmd.Afflict<Necromantic>(cardModel, 1);
     }
 }

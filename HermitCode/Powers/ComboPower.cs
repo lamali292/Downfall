@@ -11,26 +11,25 @@ public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
 {
     public override int DisplayAmount => Math.Max(0, Amount - GetInternalData<Data>().DeadOnCardsPlayed);
 
-    protected override object InitInternalData()
-    {
-        return new Data();
-    }
-
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         if (
-            (GetInternalData<Data>().DeadOnCardsPlayed >= Amount
-             || card.Owner.Creature != Owner
-             || !HermitCmd.IsDeadOn(card)
-             || card.Type is CardType.Power
-             || card.Keywords.Contains(CardKeyword.Exhaust)
-            ))
+            GetInternalData<Data>().DeadOnCardsPlayed >= Amount
+            || card.Owner.Creature != Owner
+            || !HermitCmd.IsDeadOn(card)
+            || card.Type is CardType.Power
+            || card.Keywords.Contains(CardKeyword.Exhaust))
             return cardLocation;
 
         Flash();
         SetDeadOnCardsPlayed(GetInternalData<Data>().DeadOnCardsPlayed + 1);
         return new CardLocationCompatiblity(card.Owner, PileType.Hand, CardPilePosition.Bottom);
+    }
+
+    protected override object InitInternalData()
+    {
+        return new Data();
     }
 
     public override Task AfterSideTurnStart(CombatSide side,

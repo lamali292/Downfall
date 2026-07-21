@@ -3,8 +3,6 @@ using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
 using Godot;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Potions;
@@ -17,7 +15,7 @@ namespace Automaton.AutomatonCode.Core;
 public class Automaton : DownfallCharacterModel
 {
     private static readonly Color Color = new(0xD4C99DFF);
-    public override Color EnergyLabelOutlineColor  => new("4e3e01FF");
+    public override Color EnergyLabelOutlineColor => new("4e3e01FF");
     public override string CharId => "Automaton";
     public override string ModId => AutomatonMainFile.ModId;
     public override Color NameColor => Color;
@@ -77,7 +75,8 @@ public abstract class AutomatonPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Automaton>(powerType, powerStackType);
 
-public abstract class AutomatonRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Automaton>(rarity, autoAdd);
+public abstract class AutomatonRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<Automaton>(rarity, autoAdd);
 
 public abstract class AutomatonEnchantmentModel : DownfallEnchantmentModel<Automaton>;
 

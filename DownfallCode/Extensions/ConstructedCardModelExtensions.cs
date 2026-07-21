@@ -63,8 +63,7 @@ public static class ConstructedCardModelExtensions
         Action<T, CardModel>? modifyTipCard = null)
         where T : CardModel
     {
-        
-        return  cons.WithTip(new TooltipSource(card =>
+        return cons.WithTip(new TooltipSource(card =>
         {
             var mutable = ModelDb.Card<T>().ToMutable();
             mutable.UpgradeInternal();
@@ -72,7 +71,7 @@ public static class ConstructedCardModelExtensions
             return HoverTipFactory.FromCard(mutable);
         }));
     }
-    
+
     public static ConstructedCardModel WithCardTip<T>(this ConstructedCardModel cons,
         Action<T, CardModel>? modifyTipCard = null)
         where T : CardModel
@@ -117,8 +116,8 @@ public static class ConstructedCardModelExtensions
     {
         return card.WithTips(_ => [Artist.Get<T>().HoverTip]);
     }
-    
-    
+
+
     public static ConstructedCardModel WithScry(this ConstructedCardModel card, int baseValue, int upgrade = 0)
     {
         return card.WithVars(new ScryVar(baseValue).WithUpgrade(upgrade));

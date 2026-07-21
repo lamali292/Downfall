@@ -20,6 +20,7 @@ public static class SlimeDeathPatches
         shouldRemove = true;
         NCombatRoom.Instance?.RemoveCreatureNode(__instance);
     }
+
     [HarmonyPrefix]
     [HarmonyPatch(nameof(NCreature.GetCurrentAnimationTimeRemaining))]
     public static bool Prefix(NCreature __instance, ref float __result)

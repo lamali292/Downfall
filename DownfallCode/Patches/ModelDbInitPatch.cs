@@ -8,15 +8,22 @@ public static class PostInitRegistry
 {
     private static readonly List<Action> actions = new();
 
-    public static void Register(Action action) => actions.Add(action);
+    public static void Register(Action action)
+    {
+        actions.Add(action);
+    }
 
     internal static void RunAll()
     {
         foreach (var action in actions)
-        {
-            try { action(); }
-            catch (Exception e) { DownfallMainFile.Logger.Error($"Post-init action failed: {e}"); }
-        }
+            try
+            {
+                action();
+            }
+            catch (Exception e)
+            {
+                DownfallMainFile.Logger.Error($"Post-init action failed: {e}");
+            }
     }
 }
 
@@ -24,5 +31,8 @@ public static class PostInitRegistry
 internal static class ModelDbInitPatch
 {
     [HarmonyPostfix]
-    private static void Postfix() => PostInitRegistry.RunAll();
+    private static void Postfix()
+    {
+        PostInitRegistry.RunAll();
+    }
 }

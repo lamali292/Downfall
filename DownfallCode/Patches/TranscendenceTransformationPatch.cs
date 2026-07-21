@@ -15,8 +15,14 @@ public static class TranscendenceHooks
         foreach (var d in OnTransformed.GetInvocationList())
         {
             var handler = (Action<CardModel, CardModel>)d;
-            try { handler(starter, result); }
-            catch (Exception e) { DownfallMainFile.Logger.Error($"Transcendence handler failed: {e}"); }
+            try
+            {
+                handler(starter, result);
+            }
+            catch (Exception e)
+            {
+                DownfallMainFile.Logger.Error($"Transcendence handler failed: {e}");
+            }
         }
     }
 }
@@ -26,5 +32,7 @@ internal static class TranscendenceTransformationPatch
 {
     [HarmonyPostfix]
     private static void Postfix(CardModel starterCard, CardModel __result)
-        => TranscendenceHooks.RaiseTransformed(starterCard, __result);
+    {
+        TranscendenceHooks.RaiseTransformed(starterCard, __result);
+    }
 }

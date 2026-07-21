@@ -2,7 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
-using Snecko.SneckoCode.Core; 
+using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 

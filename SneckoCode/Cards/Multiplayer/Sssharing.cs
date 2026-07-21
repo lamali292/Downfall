@@ -15,10 +15,10 @@ public class Sssharing : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
     }
-    
+
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-    
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -27,10 +27,7 @@ public class Sssharing : SneckoCardModel
         {
             var pool = SneckoModel.GetCombatSneckoCards(Owner, amount, player)
                 .ToList();
-            foreach (var card in pool)
-            {
-                card.SetToFreeThisTurn();
-            }
+            foreach (var card in pool) card.SetToFreeThisTurn();
             await CardPileCmd.Add(pool, PileType.Hand);
         }
     }

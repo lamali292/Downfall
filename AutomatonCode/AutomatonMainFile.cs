@@ -1,9 +1,7 @@
-using System.Reflection;
 using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
 using BaseLib.Utils;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;

@@ -53,7 +53,7 @@ internal static class CustomSubmenuPatch
     private static bool Prefix(Type type, NMainMenuSubmenuStack __instance, ref NSubmenu __result)
     {
         var entry = MainMenuButtonRegistry.FindBySubmenuType(type);
-        if (entry?.CreateSubmenu == null) return true;   // not ours → run original
+        if (entry?.CreateSubmenu == null) return true; // not ours → run original
 
         if (!cache.TryGetValue(type, out var menu) || !GodotObject.IsInstanceValid(menu))
         {

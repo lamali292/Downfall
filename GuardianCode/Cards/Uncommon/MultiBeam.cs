@@ -21,6 +21,8 @@ public class MultiBeam : GuardianCardModel, ITickCard, ICustomTickDuration
 
     protected override bool HasEnergyCostX => true;
 
+    public int TickDuration => 3;
+
     public Task OnTick(PlayerChoiceContext ctx)
     {
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
@@ -32,6 +34,4 @@ public class MultiBeam : GuardianCardModel, ITickCard, ICustomTickDuration
         var x = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(x).Execute(ctx);
     }
-
-    public int TickDuration => 3;
 }

@@ -20,14 +20,14 @@ public class Tackle : SlimeBossCardModel, ITranscendenceCard
         this.WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
     }
-    
-    
+
+    protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
+
+
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<AncientDarv>();
     }
-
-    protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

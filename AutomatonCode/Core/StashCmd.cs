@@ -19,8 +19,12 @@ public class StashCmd
 
     public static LocString StashSelectionPrompt => new("card_selection", "AUTOMATON-TO_STASH");
 
+    public static LocString FULL_STASH => new("combat_messages", "FULL_STASH");
+
     private static int RemainingSpace(Player player)
-        => Math.Max(0, MaxStashSize - player.GetStash().Count);
+    {
+        return Math.Max(0, MaxStashSize - player.GetStash().Count);
+    }
 
     public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
     {
@@ -45,12 +49,10 @@ public class StashCmd
         await Stash(source.Owner, cards);
     }
 
-    public static LocString FULL_STASH => new LocString("combat_messages", "FULL_STASH");
-
     public static async Task Stash<TCard>(Player player, int amount = 1)
         where TCard : CardModel
     {
-        NStashDisplay.EnsureFor(player);     
+        NStashDisplay.EnsureFor(player);
         var toStash = Math.Min(amount, RemainingSpace(player));
 
         if (toStash > 0)
@@ -62,20 +64,20 @@ public class StashCmd
             if (LocalContext.IsMe(player)) ThinkCmd.Play(FULL_STASH, player.Creature);
             await DownfallCardCmd.GiveCards<TCard>(player, PileType.Discard, overflow);
         }
-            
     }
 
     public static async Task Stash(CardModel card)
     {
-        NStashDisplay.EnsureFor(card.Owner);     
+        NStashDisplay.EnsureFor(card.Owner);
         if (RemainingSpace(card.Owner) > 0)
+        {
             await CardPileCmd.Add(card, StashPile.Stash);
+        }
         else
         {
             if (LocalContext.IsMe(card.Owner)) ThinkCmd.Play(FULL_STASH, card.Owner.Creature);
             await CardPileCmd.Add(card, PileType.Discard);
         }
-           
     }
 
     public static async Task Stash(Player player, IEnumerable<CardModel> cards)
@@ -84,7 +86,7 @@ public class StashCmd
         if (list.Count == 0)
             return;
 
-        NStashDisplay.EnsureFor(player);     
+        NStashDisplay.EnsureFor(player);
         var space = RemainingSpace(player);
         var toStash = list.Take(space).ToList();
         var overflow = list.Skip(space).ToList();
@@ -97,7 +99,6 @@ public class StashCmd
             if (LocalContext.IsMe(player)) ThinkCmd.Play(FULL_STASH, player.Creature);
             await CardPileCmd.Add(overflow, PileType.Discard);
         }
-           
     }
 
 

@@ -2,7 +2,6 @@
 
 namespace Downfall.DownfallCode.Utils;
 
-
 public static class PortraitCompositor
 {
     /// Blits vertical slices of each texture side by side. Null if no usable images.

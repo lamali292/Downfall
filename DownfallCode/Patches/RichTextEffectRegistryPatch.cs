@@ -9,5 +9,7 @@ public static class RichTextEffectRegistryPatch
 {
     [HarmonyPostfix]
     public static void Postfix(MegaRichTextLabel __instance)
-        => RichTextEffectRegistry.InstallInto(__instance);
+    {
+        RichTextEffectRegistry.InstallInto(__instance);
+    }
 }

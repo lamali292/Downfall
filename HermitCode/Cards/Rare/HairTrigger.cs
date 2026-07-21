@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
-public class HairTrigger: HermitCardModel
+public class HairTrigger : HermitCardModel
 {
     public HairTrigger() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {

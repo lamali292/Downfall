@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Hermit.HermitCode.Relics;
 
 /// <summary>
-/// At the start of turn 4, gain 1 Rugged.
+///     At the start of turn 4, gain 1 Rugged.
 /// </summary>
 public sealed class RyeStalk : HermitRelicModel
 {
@@ -19,9 +19,11 @@ public sealed class RyeStalk : HermitRelicModel
         WithVar("Turn", 4);
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (!participants.Contains(Owner.Creature) || Owner.PlayerCombatState?.TurnNumber != DynamicVars["Turn"].IntValue) return;
+        if (!participants.Contains(Owner.Creature) ||
+            Owner.PlayerCombatState?.TurnNumber != DynamicVars["Turn"].IntValue) return;
         await MyCommonActions.ApplySelf<RuggedPower>(ctx, this);
     }
 }

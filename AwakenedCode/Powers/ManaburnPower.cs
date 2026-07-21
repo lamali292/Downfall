@@ -1,14 +1,12 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
-using BaseLib.Patches.Localization;
 using Downfall.DownfallCode.Extensions.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -23,7 +21,7 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
 
 
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-    
+
 
     public async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {

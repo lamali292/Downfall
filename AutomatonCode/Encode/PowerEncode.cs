@@ -13,14 +13,20 @@ namespace Automaton.AutomatonCode.Encode;
 public class PowerEncode : Encodable
 {
     public override TargetType Target => TargetType.Self;
-    public override CardType Type =>  CardType.Power;
-    public override async Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
+    public override CardType Type => CardType.Power;
+
+    public override DynamicVar FunctionDynamicVar => new PowerVar<FullReleasePower>(0);
+
+    public override async Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target,
+        CardPlay? cardPlay)
     {
         if (model is not FunctionCard functionCard) return;
         var fullReleasePower = await CommonActions.ApplySelf<FullReleasePower>(ctx, functionCard);
         fullReleasePower?.SetDynamicalVars(functionCard.DynamicVars);
     }
 
-    public override DynamicVar DynamicVar(AbstractModel model) => model.GetDynamicVars().Power<FullReleasePower>();
-    public override DynamicVar FunctionDynamicVar => new PowerVar<FullReleasePower>(0);
+    public override DynamicVar DynamicVar(AbstractModel model)
+    {
+        return model.GetDynamicVars().Power<FullReleasePower>();
+    }
 }

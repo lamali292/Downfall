@@ -9,12 +9,12 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class SizzlePower : HexaghostPowerModel
 {
+    private bool _ignoredFirst;
+
     public SizzlePower()
     {
         WithTip(CardKeyword.Exhaust);
     }
-
-    private bool _ignoredFirst;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -23,6 +23,7 @@ public class SizzlePower : HexaghostPowerModel
             _ignoredFirst = true;
             return;
         }
+
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner) return;
         await CardCmd.Exhaust(ctx, card);
@@ -30,9 +31,9 @@ public class SizzlePower : HexaghostPowerModel
         await PowerCmd.Decrement(this);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
-        
         if (!participants.Contains(Owner))
             return;
         await PowerCmd.Remove(this);

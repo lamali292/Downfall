@@ -16,7 +16,6 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class Glut : SneckoCardModel, IHasOverflowEffect
 {
-
     public Glut() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         this.WithOverflow();
@@ -25,20 +24,23 @@ public class Glut : SneckoCardModel, IHasOverflowEffect
         WithVar(new DamageVar("OverflowDamage", 2, ValueProp.Move).WithUpgrade(1));
     }
 
-    private static decimal Calc(CardModel card, Creature? _)
-        => card.Owner.GetHand().Count(e => e != card);
-    
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         var damage = (DamageVar)DynamicVars["OverflowDamage"];
         var hits = (int)((CalculatedVar)DynamicVars["OverflowRepeat"]).Calculate(null);
         if (hits == 0) return;
-        await DamageCmd.Attack(damage.BaseValue).FromCardCompatibility(this, cardPlay).TargetingAllOpponents(CombatState).WithHitCount(hits).Execute(ctx);
+        await DamageCmd.Attack(damage.BaseValue).FromCardCompatibility(this, cardPlay)
+            .TargetingAllOpponents(CombatState).WithHitCount(hits).Execute(ctx);
+    }
+
+    private static decimal Calc(CardModel card, Creature? _)
+    {
+        return card.Owner.GetHand().Count(e => e != card);
+    }
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

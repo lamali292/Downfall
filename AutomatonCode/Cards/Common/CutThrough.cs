@@ -3,7 +3,6 @@ using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -15,7 +14,7 @@ public class CutThrough : AutomatonCardModel
     public CutThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
-        this.WithScry( 1, 1);
+        this.WithScry(1, 1);
         WithTip(AutomatonTip.Stash);
     }
 

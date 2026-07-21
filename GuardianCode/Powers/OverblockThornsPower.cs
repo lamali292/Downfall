@@ -17,8 +17,8 @@ public class OverblockThornsPower : GuardianPowerModel, IAfterGuardianModeChange
         WithTip(StaticHoverTip.Block);
         WithTip<ThornsPower>();
     }
-    
-    
+
+
     public async Task AfterGuardianModeChangeEarly(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
     {

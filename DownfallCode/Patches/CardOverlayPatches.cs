@@ -13,7 +13,10 @@ internal static class CardOverlayPatches
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(NCard.Reload))]
-    private static void ReloadPostfix(NCard __instance) => Sync(__instance);
+    private static void ReloadPostfix(NCard __instance)
+    {
+        Sync(__instance);
+    }
 
     internal static void Sync(NCard ncard)
     {

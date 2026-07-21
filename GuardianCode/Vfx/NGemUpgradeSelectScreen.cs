@@ -245,6 +245,7 @@ public partial class NGemUpgradeSelectScreen :
                 target.TryGrabFocus();
                 return;
             }
+
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
     }

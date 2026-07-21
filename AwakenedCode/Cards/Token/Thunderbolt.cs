@@ -30,7 +30,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaq
         _owner == null || Owner.GetRelic<EyeOfTheOccult>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
-    
+
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
         if (player != Owner) return Task.CompletedTask;

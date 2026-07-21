@@ -10,5 +10,7 @@ internal static class CombatUiActivatePatch
 {
     [HarmonyPostfix]
     private static void Postfix(CombatState state)
-        => CombatUiHooks.RaiseActivate(state);
+    {
+        CombatUiHooks.RaiseActivate(state);
+    }
 }

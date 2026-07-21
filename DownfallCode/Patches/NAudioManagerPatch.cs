@@ -9,7 +9,7 @@ namespace Downfall.DownfallCode.Patches;
 public static class SfxOverrideRegistry
 {
     private static readonly Dictionary<string, ModSoundEffect> Overrides = new();
-    
+
     public static void Register(string path, ModSoundEffect effect)
     {
         Overrides[path] = effect;
@@ -51,7 +51,8 @@ internal static class PlayOneShotPatch
     }
 }
 
-[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), typeof(string), typeof(Dictionary<string, float>), typeof(float))]
+[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), typeof(string),
+    typeof(Dictionary<string, float>), typeof(float))]
 internal static class PlayOneShotDictPatch
 {
     [HarmonyPrefix]

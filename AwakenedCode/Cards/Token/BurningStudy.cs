@@ -24,6 +24,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePla
         WithPower<WeakPower>(1, 1);
         WithTags(AwakenedTag.Spell);
     }
+
     public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)

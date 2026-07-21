@@ -22,7 +22,7 @@ public class RecreatePower : AutomatonPowerModel
         if (creator == null || creator.Creature != Owner || card.Type != CardType.Status) return;
         var generatedThisTurn = CombatManager.Instance.History.Entries
             .OfType<CardGeneratedEntry>()
-            .Count(e => e.HappenedThisTurn(CombatState) && e.Creator == creator  && e.Card.Type == CardType.Status);
+            .Count(e => e.HappenedThisTurn(CombatState) && e.Creator == creator && e.Card.Type == CardType.Status);
         if (generatedThisTurn > Amount) return;
         Flash();
         await CardCmd.TransformTo<Fuel>(card);

@@ -22,7 +22,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
     }
 
     protected override Artist? Artist => Artist.Get<Chimedragon>();
-    
+
     public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
         if (player == Owner) EnergyCost.AddUntilPlayed(-amount);

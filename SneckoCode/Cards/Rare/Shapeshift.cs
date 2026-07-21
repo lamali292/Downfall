@@ -7,11 +7,10 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class Shapeshift  : SneckoCardModel
+public class Shapeshift : SneckoCardModel
 {
     public Shapeshift() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -26,18 +25,15 @@ public class Shapeshift  : SneckoCardModel
         foreach (var card in cards)
         {
             if (!byRarity.TryGetValue(card.Rarity, out var choices) || choices.Count == 0) continue;
-            var pick = choices.Where(c => c.Id != card.Id).ToList();   // exclude the same card
+            var pick = choices.Where(c => c.Id != card.Id).ToList(); // exclude the same card
             if (pick.Count == 0) continue;
             var template = rng.NextItem(pick);
-            if  (template == null) continue;
+            if (template == null) continue;
             var replacement = CombatState?.CreateCard(template, Owner);
             if (replacement == null) continue;
 
             await CardCmd.Transform(card, replacement);
-            if (base.IsUpgraded)
-            {
-                CardCmd.Upgrade(replacement);
-            }
+            if (IsUpgraded) CardCmd.Upgrade(replacement);
         }
     }
 }

@@ -22,17 +22,6 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
         WithUpgradingCardTip<SecondSlam>(Action);
     }
 
-    private static void Action(SecondSlam secondSlam, CardModel card)
-    {
-        if (card is IGemSocketCard other && secondSlam is IGemSocketCard t) t.AddGems(other.Gems.Select(e => e.CreateClone()));
-        if (card.Enchantment == null) return;
-        var enchantment = (EnchantmentModel) card.Enchantment.MutableClone();
-        CardCmd.Enchant(enchantment, secondSlam, enchantment.Amount);
-        NCard.FindOnTable(secondSlam)?.ReloadOverlay();
-    }
-
-    private void Action(SecondSlam secondSlam) => Action(secondSlam, this);
-
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public int GemSlots => IsUpgraded ? 2 : 1;
@@ -42,12 +31,27 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
         return ModelDb.Card<BaubleBurst>();
     }
 
-    
+    private static void Action(SecondSlam secondSlam, CardModel card)
+    {
+        if (card is IGemSocketCard other && secondSlam is IGemSocketCard t)
+            t.AddGems(other.Gems.Select(e => e.CreateClone()));
+        if (card.Enchantment == null) return;
+        var enchantment = (EnchantmentModel)card.Enchantment.MutableClone();
+        CardCmd.Enchant(enchantment, secondSlam, enchantment.Amount);
+        NCard.FindOnTable(secondSlam)?.ReloadOverlay();
+    }
+
+    private void Action(SecondSlam secondSlam)
+    {
+        Action(secondSlam, this);
+    }
+
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = await DownfallCardCmd.GiveCard<SecondSlam>(Owner, PileType.Hand, upgraded: IsUpgraded, action: Action);
+        var card = await DownfallCardCmd.GiveCard<SecondSlam>(Owner, PileType.Hand, upgraded: IsUpgraded,
+            action: Action);
         NCard.FindOnTable(card)?.ReloadOverlay();
     }
-
 }

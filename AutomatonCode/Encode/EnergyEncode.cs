@@ -12,15 +12,20 @@ public class EnergyEncode : Encodable
 {
     public override TargetType Target => TargetType.Self;
     public override CardType Type => CardType.Skill;
+    public override DynamicVar FunctionDynamicVar => new EnergyVar(0);
+
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
         var player = model.GetCreature().Player;
-        return player == null ?
-            Task.CompletedTask : 
-            PlayerCmd.GainEnergy(model.GetDynamicVars().Energy.IntValue, player);
+        return player == null
+            ? Task.CompletedTask
+            : PlayerCmd.GainEnergy(model.GetDynamicVars().Energy.IntValue, player);
     }
-    public override DynamicVar FunctionDynamicVar => new EnergyVar(0);
-    public override IEnumerable<IHoverTip> HoverTips(AbstractModel model) => [GetEnergyTip(model)];
+
+    public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
+    {
+        return [GetEnergyTip(model)];
+    }
 
     private IHoverTip GetEnergyTip(AbstractModel model)
     {
@@ -33,6 +38,9 @@ public class EnergyEncode : Encodable
             _ => throw new Exception("Unknown model")
         };
     }
-    
-    public override DynamicVar DynamicVar(AbstractModel model) => model.GetDynamicVars().Energy;
+
+    public override DynamicVar DynamicVar(AbstractModel model)
+    {
+        return model.GetDynamicVars().Energy;
+    }
 }

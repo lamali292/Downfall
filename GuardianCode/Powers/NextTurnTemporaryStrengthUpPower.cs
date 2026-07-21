@@ -18,4 +18,6 @@ public class NextTurnTemporaryStrengthUpPower : GuardianPowerModel
     }
 }
 
-public class NextTurnTemporaryStrengthUpPowerPower : CustomTemporaryPowerModelWrapper<NextTurnTemporaryStrengthUpPower, StrengthPower>;
+public class
+    NextTurnTemporaryStrengthUpPowerPower : CustomTemporaryPowerModelWrapper<NextTurnTemporaryStrengthUpPower,
+    StrengthPower>;

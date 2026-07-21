@@ -14,7 +14,7 @@ public class Tonic : HermitPotionModel
     {
         WithPower<RuggedPower>(1);
     }
-    
+
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         return MyCommonActions.ApplySelf<RuggedPower>(ctx, this);

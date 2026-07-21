@@ -18,7 +18,7 @@ public class Inscribe : AwakenedCardModel
     {
         this.WithConjure(e => e.IsUpgraded);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -27,7 +27,7 @@ public class Inscribe : AwakenedCardModel
             await AwakenedCmd.Conjure(Owner);
 
         var combatState = Owner.Creature.CombatState!;
-        
+
         var choices = new List<CardModel>
         {
             combatState.CreateCard<BurningStudy>(Owner),

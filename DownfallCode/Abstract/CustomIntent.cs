@@ -30,4 +30,3 @@ public abstract class CustomIntent : AbstractIntent, ICustomModel
         return base.GetAnimation(targets, owner);
     }
 }
-

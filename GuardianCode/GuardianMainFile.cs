@@ -1,8 +1,6 @@
-using System.Reflection;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -34,7 +32,7 @@ public partial class GuardianMainFile : Node
         RegisterGemSave();
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
             new GemDescriptionSource());
-        
+
         BundledSubmodLocRegistry.Register(ModId);
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
@@ -53,7 +51,7 @@ public partial class GuardianMainFile : Node
             .ToList();
 
         targetCard.AddGems(gemClones);
-    } 
+    }
 
     private static void RegisterGemSave()
     {
@@ -69,7 +67,8 @@ public partial class GuardianMainFile : Node
             (card, gemIds) =>
             {
                 if (gemIds == null) return;
-                var existingGemIds = CardModifier.DirectModifiers(card).OfType<GemModel>().Select(g => g.Id).ToHashSet();
+                var existingGemIds =
+                    CardModifier.DirectModifiers(card).OfType<GemModel>().Select(g => g.Id).ToHashSet();
                 foreach (var gemId in gemIds)
                 {
                     if (existingGemIds.Contains(gemId))

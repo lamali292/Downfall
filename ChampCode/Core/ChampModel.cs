@@ -21,6 +21,8 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
         new(ChampModelDb.ChampStance<ChampNoStance>);
 
+    private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
+
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var card = cardPlay.Card;
@@ -34,11 +36,10 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
                 stance.Charges--;
                 RefreshDisplay(owner);
             }
+
             await stance.SkillBonus(new BlockingPlayerChoiceContext());
         }
     }
-
-    private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
 
     public static T GetStanceAs<T>(Player player) where T : ChampStanceModel
     {

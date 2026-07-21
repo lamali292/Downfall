@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Events;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,7 +19,7 @@ public static class GuardianHook
         return HookUtils.Dispatch<IAfterGuardianModeChange>(cs,
             m => m.AfterGuardianModeChange(ctx, player, oldMode, newMode));
     }
-    
+
     public static Task AfterGuardianModeChangeEarly(ICombatState cs, PlayerChoiceContext ctx, Player player,
         GuardianModeModel oldMode,
         GuardianModeModel newMode)
@@ -28,7 +27,6 @@ public static class GuardianHook
         return HookUtils.Dispatch<IAfterGuardianModeChangeEarly>(cs,
             m => m.AfterGuardianModeChangeEarly(ctx, player, oldMode, newMode));
     }
-
 
 
     public static Task BeforeCardEntersStasis(ICombatState cs, PlayerChoiceContext ctx, CardModel card,

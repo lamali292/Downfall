@@ -15,6 +15,7 @@ public class MinorBeam : AutomatonCardModel, IEncodable
         WithDamage(6, 2);
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
     protected override Artist Artist => Artist.Get<Opal>();
+
+    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

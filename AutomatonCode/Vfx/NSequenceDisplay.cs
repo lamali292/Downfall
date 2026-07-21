@@ -9,7 +9,6 @@ using Downfall.DownfallCode.Patches;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -24,9 +23,29 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
     private const float SequencedCardScale = 0.28f;
     private const string DisplayScenePath = "res://Automaton/scenes/ui/automaton_display.tscn";
 
+    // --- Static lifecycle ---
+
+    private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
+
     private CombatManager? _combatManager;
     private Player? _trackedPlayer;
-    
+
+    static NSequenceDisplay()
+    {
+        CombatManager.Instance.CombatEnded += _ =>
+        {
+            foreach (var d in Displays.Values.Where(IsInstanceValid))
+            {
+                // Release BEFORE QueueFree: base implementation unregisters via
+                // OnSlotCardCleared and destroys only nodes still under the display.
+                d.ReleaseAllSlotCards();
+                d.QueueFree();
+            }
+
+            Displays.Clear();
+        };
+    }
+
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
 
@@ -69,29 +88,11 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     protected override List<CardModel> BuildInspectList()
     {
-        var list = (CustomPiles.GetCustomPile(_trackedPlayer?.PlayerCombatState, EncodePile.FunctionSequence)?.Cards ?? [])
+        var list = (CustomPiles.GetCustomPile(_trackedPlayer?.PlayerCombatState, EncodePile.FunctionSequence)?.Cards ??
+                    [])
             .Concat(CardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!)).ToList();
         if (PreviewModel != null) list.Add(PreviewModel);
         return list;
-    }
-    
-    // --- Static lifecycle ---
-
-    private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
-
-    static NSequenceDisplay()
-    {
-        CombatManager.Instance.CombatEnded += _ =>
-        {
-            foreach (var d in Displays.Values.Where(IsInstanceValid))
-            {
-                // Release BEFORE QueueFree: base implementation unregisters via
-                // OnSlotCardCleared and destroys only nodes still under the display.
-                d.ReleaseAllSlotCards();
-                d.QueueFree();
-            }
-            Displays.Clear();
-        };
     }
 
     public static NSequenceDisplay? GetDisplay(Player player)
@@ -151,6 +152,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
             SetupFor(combatRoom, player);
             return;
         }
+
         Displays[player].Refresh(force);
     }
 }
