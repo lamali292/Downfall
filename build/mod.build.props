@@ -142,6 +142,16 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
     </ItemGroup>
 
+    <!-- CI only: RefLib generates its own IgnoresAccessChecksToAttribute, which collides with
+         Krafs's bundled copy (CS0101/CS0121). ExcludeAssets doesn't stop it (Krafs injects the
+         file via its .targets), so strip it from the Compile items directly before compiling. -->
+    <Target Name="RemoveDuplicateKrafsAttribute" BeforeTargets="CoreCompile"
+            Condition="!Exists('$(Sts2DataDir)')">
+        <ItemGroup>
+            <Compile Remove="$(NuGetPackageRoot)krafs.publicizer/**/IgnoresAccessChecksToAttribute.cs"/>
+        </ItemGroup>
+    </Target>
+
 
     <!-- Only publicize the real game DLL; RefLib reference assemblies are already public -->
     <ItemGroup Condition="Exists('$(Sts2DataDir)')">
