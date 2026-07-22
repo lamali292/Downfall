@@ -1,6 +1,6 @@
 {
     "GUARDIAN-BAALORS_LORDLY_PLATE.title": "巴洛尔领主板甲",
-    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "每当你[gold]提防[/gold]时，额外[gold]提防[/gold][blue]1[/blue]。",
+    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "每当你[gold]提防[/gold]时，额外[gold]提防[/gold][blue]{Brace:diff()}[/blue]。",
     "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "护甲永远不嫌多。",
     "GUARDIAN-BOTTLED_BLACK_HOLE.title": "瓶装黑洞",
     "GUARDIAN-BOTTLED_BLACK_HOLE.description": "拾取时，选择一张牌[gold]附魔[/gold][purple]时流[/purple]。",
@@ -31,5 +31,6 @@
     "GUARDIAN-SACK_OF_GEMS.flavor": "噢……闪闪发光！",
     "GUARDIAN-WANDER_BOTS.title": "漫游机器人",
     "GUARDIAN-WANDER_BOTS.description": "在每场战斗开始时，失去[blue]1[/blue]个[gold]凝滞[/gold]栏位。在你的回合开始时，获得{Energy:energyIcons()}。",
-    "GUARDIAN-WANDER_BOTS.flavor": "这些无人机会找到最美妙的废料，但需要处理能力来维持。"
+    "GUARDIAN-WANDER_BOTS.flavor": "这些无人机会找到最美妙的废料，但需要处理能力来维持。",
+    "SEA_GLASS.GUARDIAN-GUARDIAN.title": "荆棘水晶"
 }

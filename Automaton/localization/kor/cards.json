@@ -72,7 +72,6 @@
     "AUTOMATON-LIBRARY.title": "라이브러리",
     "AUTOMATON-MAX_OUTPUT.description": "카드를 {Cards:diff()}장 뽑습니다.\n턴 시작 시, [gold]오류[/gold]를 1장 [gold]보관[/gold]합니다.",
     "AUTOMATON-MAX_OUTPUT.title": "최대 출력",
-    "AUTOMATON-MERGE_CONFLICT.description": "피해를 {Damage:diff()} 줍니다.\n다음 번에 카드를 생성할 때, 추가로 한 장 더 복사하여 생성합니다.",
     "AUTOMATON-MERGE_CONFLICT.title": "병합 충돌",
     "AUTOMATON-MINOR_BEAM.title": "소형 광선",
     "AUTOMATON-MUTATOR.description": "[gold]힘[/gold]을 {StrengthPower:diff()} 얻습니다.\n상태이상 카드를 이 카드의 복사본으로 [gold]변환[/gold]시킵니다.",

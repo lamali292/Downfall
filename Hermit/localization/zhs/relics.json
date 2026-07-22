@@ -25,8 +25,10 @@
     "HERMIT-PET_GHOST.description": "每场战斗阻止你受到的第一次致命伤害。",
     "HERMIT-CHARRED_GLOVE.title": "烧焦手套",
     "HERMIT-CHARRED_GLOVE.flavor": "手套上还残留着部分的尘世灰烬。",
+    "HERMIT-CHARRED_GLOVE.description": "每当你抽到或生成[red]诅咒[/red]时，获得[blue]{VigorPower}[/blue]点[gold]活力[/gold]。",
     "HERMIT-CLASPED_LOCKET.title": "被锁死的小盒",
     "HERMIT-CLASPED_LOCKET.flavor": "再也打不开了。",
+    "HERMIT-CLASPED_LOCKET.description": "每回合你首次抽到[red]诅咒[/red]时，将其[gold]消耗[/gold]并抽[blue]{Cards}[/blue]张牌。\n拾起时，获得[blue]{Curses}[/blue]张[red]伤口[/red]。",
     "HERMIT-STRAIGHT_RAZOR.title": "刮胡刀",
     "HERMIT-STRAIGHT_RAZOR.flavor": "为了更干净地剃须……",
     "HERMIT-STRAIGHT_RAZOR.description": "每当你从[gold]牌组[/gold]中移除或[gold]变化[/gold]一张牌时，回复[blue]{Heal}[/blue]点生命。",
@@ -38,5 +40,6 @@
     "HERMIT-BLACK_POWDER.description": "每当你触发[gold]精准[/gold]效果时，对所有敌人造成[blue]{Damage}[/blue]点伤害。",
     "HERMIT-BROKEN_TOOTH.title": "兽牙战利品",
     "HERMIT-BROKEN_TOOTH.flavor": "看起来太大了，不像是人类的牙齿……",
-    "HERMIT-BROKEN_TOOTH.description": "每当你击败精英敌人时，回复[blue]{Heal}[/blue]点生命并获得[blue]{Gold}[/blue]金币。"
+    "HERMIT-BROKEN_TOOTH.description": "每当你击败精英敌人时，回复[blue]{Heal}[/blue]点生命并获得[blue]{Gold}[/blue]金币。",
+    "SEA_GLASS.HERMIT-HERMIT.title": "浪客水晶"
 }

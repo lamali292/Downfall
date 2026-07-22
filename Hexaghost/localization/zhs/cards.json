@@ -77,7 +77,7 @@
     "HEXAGHOST-GHOST_SHIELD.title": "幽灵护盾",
     "HEXAGHOST-GIFTS_FROM_BEYOND.description": "在你的回合开始时，将1张随机[gold]阴世[/gold]牌加入你的[gold]手牌[/gold]。",
     "HEXAGHOST-GIFTS_FROM_BEYOND.title": "彼岸之礼",
-    "HEXAGHOST-HAUNTED_HAND.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n抽牌，直到你抽到一张非[gold]虚无[/gold]牌。",
+    "HEXAGHOST-HAUNTED_HAND.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[afterlife]抽牌直到抽到一张非虚无牌。[/afterlife]",
     "HEXAGHOST-HAUNTED_HAND.title": "鬼手",
     "HEXAGHOST-HAUNTING_ECHO.description": "造成{Damage:diff()}点伤害。\n若当前鬼火已被[gold]点燃[/gold]，再次[gold]点燃[/gold]它。",
     "HEXAGHOST-HAUNTING_ECHO.title": "回声萦绕",

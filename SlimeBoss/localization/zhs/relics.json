@@ -30,5 +30,6 @@
     "SLIMEBOSS-STONE_OF_NOMAKK.flavor": "当你把它拿给你的史莱姆帮众看时，它们似乎会开始跳舞。",
     "SLIMEBOSS-TARR_BLOB.title": "焦油团",
     "SLIMEBOSS-TARR_BLOB.description": "在每场战斗开始时，失去[blue]{Decrease}[/blue]个史莱姆槽位。\n在你的回合开始时，获得{Energy:energyIcons()}。",
-    "SLIMEBOSS-TARR_BLOB.flavor": "坏的那种史莱姆。"
+    "SLIMEBOSS-TARR_BLOB.flavor": "坏的那种史莱姆。",
+    "SEA_GLASS.SLIMEBOSS-SLIME_BOSS.title": "团伙水晶"
 }

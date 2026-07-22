@@ -17,7 +17,7 @@
     "SNECKO-COBRA_COIL.title": "眼镜蛇盘蜷",
     "SNECKO-COMBO_STRING.description": "本回合此前你每打出过一张[gold]异色[/gold]牌，就造成{Damage:diff()}点伤害。{InCombat:cond:\n（命中{Repeat:diff()}次）|\n[gold]赠礼[/gold]：罕见牌。}",
     "SNECKO-COMBO_STRING.title": "异色连击",
-    "SNECKO-COWER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]躲藏{IfUpgraded:show:+|}[/gold]加入你的[gold]手牌[/gold]。",
+    "SNECKO-COWER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]洞藏{IfUpgraded:show:+|}[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-COWER.title": "蜷缩",
     "SNECKO-CRYSTAL_BOOMERANG.description": "将[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。\n如果它是[gold]异色[/gold]牌，获得{Block:diff()}点[gold]格挡[/gold]。",
     "SNECKO-CRYSTAL_BOOMERANG.title": "水晶回旋镖",

@@ -31,5 +31,6 @@
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Regardez attentivement.",
     "AUTOMATON-SILVER_BULLET.title": "Balle argentée",
     "AUTOMATON-SILVER_BULLET.description": "Lorsque vous créez un Statut, infligez [blue]{Damage:diff()}[/blue] dégâts à TOUS les ennemis.",
-    "AUTOMATON-SILVER_BULLET.flavor": "Les loups de la tour se sont enfuis."
+    "AUTOMATON-SILVER_BULLET.flavor": "Les loups de la tour se sont enfuis.",
+    "SEA_GLASS.AUTOMATON-AUTOMATON.title": "Verre à Codons"
 }

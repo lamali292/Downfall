@@ -37,8 +37,6 @@
     "AUTOMATON-BRONZE_ORB_POWER.description": "이번 턴에 다음으로 내는 카드를 [gold]보관[/gold]합니다.",
     "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "이번 턴에 다음으로 내는 카드 {Amount:plural:1장|[blue]{}[/blue]장}을 [gold]보관[/gold]합니다.",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "병합 충돌",
-    "AUTOMATON-MERGE_CONFLICT_POWER.description": "다음 번에 카드를 생성할 때, 추가로 한 장 더 복사하여 생성합니다.",
-    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "다음 {Amount:plural:1번|[blue]{}[/blue]번} 동안 카드를 생성할 때, 추가로 한 장 더 복사하여 생성합니다.",
     "AUTOMATON-CLEAN_CODE_POWER.title": "클린 코드",
     "AUTOMATON-CLEAN_CODE_POWER.description": "턴 종료 시, 카드를 [gold]보관[/gold]할 수 있습니다.",
     "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "턴 종료 시, 카드를 {Amount:plural:1장|[blue]{}[/blue]장} [gold]보관[/gold]할 수 있습니다.",

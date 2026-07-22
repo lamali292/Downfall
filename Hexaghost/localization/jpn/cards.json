@@ -77,7 +77,6 @@
     "HEXAGHOST-GHOST_SHIELD.title": "ゴーストシールド",
     "HEXAGHOST-GIFTS_FROM_BEYOND.description": "ターン開始時、ランダムな[gold]死後[/gold]カードを1枚[gold]手札[/gold]に加える。",
     "HEXAGHOST-GIFTS_FROM_BEYOND.title": "彼方からの贈物",
-    "HEXAGHOST-HAUNTED_HAND.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]エセリアル[/gold]以外のカードを引くまで、カードを引く。",
     "HEXAGHOST-HAUNTED_HAND.title": "亡霊の手",
     "HEXAGHOST-HAUNTING_ECHO.description": "{Damage:diff()}ダメージを与える。\n現在のゴーストフレイムが[gold]発火[/gold]している場合、再び[gold]発火[/gold]する。",
     "HEXAGHOST-HAUNTING_ECHO.title": "呪いの反響",

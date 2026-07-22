@@ -1,0 +1,12 @@
+{
+    "HERMIT-BOUNTY.title": "Награда",
+    "HERMIT-BOUNTY.description": "За казнь обычного врага: дает [blue]15[/blue] [gold]золота[/gold]. За элитного врага: [blue]40[/blue] [gold]золота[/gold]. За Босса: [blue]100[/blue] [gold]золота[/gold].",
+    "HERMIT-DEADON.title": "В яблочко",
+    "HERMIT-DEADON.description": "Этот эффект срабатывает, если разыгрываемая карта находится в середине руки.",
+    "HERMIT-DEFEND.title": "Оборона",
+    "HERMIT-DEFEND.description": "Карты с «обороной» в названии.",
+    "HERMIT-STRIKE.title": "Удар",
+    "HERMIT-STRIKE.description": "Карты с «ударом» в названии.",
+    "HERMIT-CONCENTRATE.title": "Концентрация",
+    "HERMIT-CONCENTRATE.description": "Следующий эффект [gold]В яблочко[/gold] срабатывает вне зависимости от положения карты в руке."
+}
