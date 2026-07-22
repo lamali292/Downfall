@@ -1,0 +1,8 @@
+{
+  "HEXAGHOST-ADVANCE.description": "Move to the next Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] esso.",
+  "HEXAGHOST-ADVANCE.title": "Avanza",
+  "HEXAGHOST-RETRACT.description": "Move to the previous Ghostflame. Moving onto a Ghostflame [gold]Extinguishes[/gold] esso.",
+  "HEXAGHOST-RETRACT.title": "Ritira",
+  "HEXAGHOST-AFTERLIFE.description": "The green effect will also trigger when this card is [gold]Esaurita[/gold].",
+  "HEXAGHOST-AFTERLIFE.title": "Oltretomba"
+}

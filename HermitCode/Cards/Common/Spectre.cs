@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,8 @@ public class Spectre : HermitCardModel
         WithBlock(7, 2);
         WithTip(CardKeyword.Ethereal);
     }
+    
+    protected override Artist Artist => Artist.Get<DawnablesAwakened>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

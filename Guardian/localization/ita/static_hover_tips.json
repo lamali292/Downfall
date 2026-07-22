@@ -1,0 +1,20 @@
+{
+  "GUARDIAN-ACCELERATE.title": "Accelera",
+  "GUARDIAN-ACCELERATE.description": "Riduci il contatore di turno della carta più a destra in [gold]Stasi[/gold].",
+  "GUARDIAN-AGGRAVATE.title": "Aggravia",
+  "GUARDIAN-AGGRAVATE.description": "Quando entra in combattimento, il costo di questa carta aumenta di [blue]1[/blue].",
+  "GUARDIAN-BRACE.title": "Irrobustisci",
+  "GUARDIAN-BRACE.description": "Riduce la perdita di HP necessaria per attivare [gold]Cambio Modalità[/gold].",
+  "GUARDIAN-DEFENSIVE_MODE.title": "Modalità Difensiva",
+  "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Posizione[/gold].\nMentre sei in Modalità Difensiva hai [blue]3[/blue] [gold]Spine[/gold] e il tuo [gold]Blocco[/gold] non scade.",
+  "GUARDIAN-PACKAGE.title": "Pacchetto",
+  "GUARDIAN-PACKAGE.description": "Un pacchetto ha tre carte ispirate da un Costrutto del Picco scelto.",
+  "GUARDIAN-POLISH.title": "Lucida",
+  "GUARDIAN-POLISH.description": "Riduci la tua [gold]Debolezza[/gold], [gold]Fragilità[/gold] e [gold]Vulnerabilità[/gold] di X ciascuna.\nConverti X accumuli di potenziamenti temporanei in potenziamenti permanenti.",
+  "GUARDIAN-SOCKET.title": "Incasto",
+  "GUARDIAN-SOCKET.description": "Le [gold]Gemme[/gold] possono essere inserite in questo Incasto in un Sito di Riposo.",
+  "GUARDIAN-STASIS.title": "Stasi",
+  "GUARDIAN-STASIS.description": "Una carta in [gold]Stasi[/gold] rimane per turni pari al suo costo +[blue]1[/blue]. Quando esce, torna nella tua [gold]Mano[/gold] ed è gratuita fino a quando non viene giocata.",
+  "GUARDIAN-TICK.title": "Tic",
+  "GUARDIAN-TICK.description": "Gli effetti Tick si attivano ogni volta che il contatore [gold]Stasi[/gold] di questa carta viene ridotto."
+}

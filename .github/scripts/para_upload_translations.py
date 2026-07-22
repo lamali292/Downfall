@@ -9,11 +9,8 @@ CONFIG_PATH = Path(".github/configs/paratranz.json")
 with open(CONFIG_PATH, encoding="utf-8") as f:
     config = json.load(f)
 
-# Only these are handled — matches the localization sync script
-CATEGORY_FILES = {"cards.json", "powers.json", "relics.json"}
-
 # This script only ever uploads German translations.
-LANG_CODE = "jpn"
+LANG_CODE = os.environ.get("LANG_CODE", "ita")
 
 # force=False: only fills in strings that haven't been manually edited by a
 # human translator on Paratranz. Set to True to overwrite everything.
@@ -104,14 +101,10 @@ async def main():
             if not lang_dir.is_dir():
                 continue
 
-            for json_file in sorted(lang_dir.glob("*.json")):
-                if json_file.name.lower() not in CATEGORY_FILES:
-                    continue  # only cards.json / powers.json / relics.json
-
-                # Must match the path used when the SOURCE file was created
-                # (see para_upload.py): {repo}/localization/{lang}/{filename}
-                file_path = f"{repo.name}/localization/{LANG_CODE}/{json_file.name}"
-                tasks.append(upload_with_limit(file_path, json_file))
+           for json_file in sorted(lang_dir.glob("*.json")):
+               # Must match the path used when the SOURCE file was created
+               file_path = f"{repo.name}/localization/{LANG_CODE}/{json_file.name}"
+               tasks.append(upload_with_limit(file_path, json_file))
 
         if not tasks:
             print(f"  No local translation files found for '{LANG_CODE}'.")

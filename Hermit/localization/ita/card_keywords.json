@@ -1,0 +1,12 @@
+{
+  "HERMIT-BOUNTY.title": "Taglia",
+  "HERMIT-BOUNTY.description": "Nemico Normale: [blue]15[/blue] oro.\nNemico Élite: [blue]40[/blue] oro.\nBOSS: [blue]100[/blue] oro.",
+  "HERMIT-DEADON.title": "Nel Segno",
+  "HERMIT-DEADON.description": "Le carte Nel Segno hanno un effetto bonus quando sono al centro della tua Mano.",
+  "HERMIT-DEFEND.title": "Difendi",
+  "HERMIT-DEFEND.description": "Carte che contengono \"Difendi\".",
+  "HERMIT-STRIKE.title": "Colpo",
+  "HERMIT-STRIKE.description": "Carte che contengono \"Colpo\".",
+  "HERMIT-CONCENTRATE.title": "Concentrati",
+  "HERMIT-CONCENTRATE.description": "La prossima carta [gold]Nel Segno[/gold] giocata in questo turno attiva il suo effetto indipendentemente dalla posizione."
+}

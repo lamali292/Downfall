@@ -1,7 +1,21 @@
-name: GitHub to Paratranz (english source)
+﻿name: GitHub to Paratranz (language translation)
 
 on:
   workflow_dispatch:
+    inputs:
+      language:
+        description: "Language code to upload"
+        required: true
+        type: choice
+        options:
+          - zhs
+          - deu
+          - fra
+          - kor
+          - jpn
+          - rus
+          - ita
+          - ptb
 
 jobs:
   upload:
@@ -31,4 +45,6 @@ jobs:
           pip install git+https://github.com/MuXiu1997/ParaTranz-SDK-python.git
 
       - name: Upload to Paratranz
-        run: python .github/scripts/para_upload.py
+        env:
+          LANG_CODE: ${{ inputs.language }}
+        run: python .github/scripts/para_upload_translations.py

@@ -1,0 +1,12 @@
+{
+  "DOWNFALL-TO_HAND": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da aggiungere alla tua [gold]Mano[/gold].",
+  "DOWNFALL-TO_TOP": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da mettere in cima al tuo [gold]Mazzo Pesca[/gold].",
+  "DOWNFALL-TO_APPLY": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} per applicare effetti.",
+  "DOWNFALL-TO_DECK": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da aggiungere al tuo [gold]Mazzo[/gold].",
+  "DOWNFALL-TO_STASIS": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da mettere in [gold]Stasi[/gold].",
+  "DOWNFALL-TO_CONJURE": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da [gold]Evocare[/gold].",
+  "DOWNFALL-TO_PLAY": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da giocare.",
+  "DOWNFALL-ADD_ETHEREAL": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da rendere [gold]Eterea[/gold].",
+  "DOWNFALL-TO_RETAIN": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da [gold]Mantenere[/gold].",
+  "DOWNFALL-TO_OTHER_HANDS": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} da aggiungere alla [gold]Mano[/gold] di un altro giocatore."
+}

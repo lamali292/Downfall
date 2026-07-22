@@ -1,0 +1,8 @@
+{
+  "CHAMP-COMBO.title": "Combo",
+  "CHAMP-COMBO.description": "Effetto extra quando giocato nella [gold]Posizione[/gold] elencata.",
+  "CHAMP-FINISHER.title": "Finalizzatore",
+  "CHAMP-FINISHER.description": "Richiede una [gold]Posizione[/gold].\nDopo aver giocato un Finalizzatore, esci dalla tua [gold]Posizione[/gold] e innesca il suo bonus Finalizzatore.",
+  "CHAMP-STANCE.title": "Posizione",
+  "CHAMP-STANCE.description": "Puoi avere solo una Posizione alla volta."
+}

@@ -1,0 +1,8 @@
+{
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.title": "Elisir Alchirico",
+  "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "La prossima Funzione che crei è gratuita da giocare.",
+  "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "La Scaltra Miscela di Kio",
+  "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "Scegli [blue]1[/blue] di [blue]3[/blue] carte casuali da [gold]Codificare[/gold], ripeti fino a creare una Funzione.",
+  "AUTOMATON-VEXING_DRAUGHT_POTION.title": "Pozione Irritante",
+  "AUTOMATON-VEXING_DRAUGHT_POTION.description": "Ottieni [blue]{StrengthPower:diff()}[/blue] [gold]Forza[/gold].\nOttieni [blue]{DexterityPower:diff()}[/blue] [gold]Destrezza[/gold].\n[gold]Deposita[/gold] [blue]2[/blue] [gold]Bruciature[/gold]."
+}
