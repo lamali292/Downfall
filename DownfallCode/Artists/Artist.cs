@@ -38,6 +38,8 @@ public class AlexMdle : Artist;
 
 public class Claude27A : Artist;
 
+public class DawnablesAwakened : Artist;
+
 public class GoofballMcgee : Artist;
 
 public class Eudaimonia : Artist;
