@@ -13,17 +13,5 @@
     "SLIMEBOSS-INSULTING_SLIME.name": "インサルティングスライム",
     "SLIMEBOSS-ANCIENT_SLIME.name": "エンシェントスライム",
     "SLIMEBOSS-SPIKY_SLIME.name": "プロテクタースライム",
-    "SLIMEBOSS-TIME_SLIME.name": "タイムスライム",
-    "SLIMEBOSS-ANCIENT_SLIME.description": "[blue]3[/blue]ダメージを与え、毎ターンカードを[blue]1[/blue]枚引かせる。\nドローは[gold]潜在[/gold]で増加しない。",
-    "SLIMEBOSS-TORCHHEAD_SLIME.description": "[blue]6[/blue]ダメージを与える。あなたの[gold]筋力[/gold]分ダメージが増加する。",
-    "SLIMEBOSS-GUERILLA_SLIME.description": "すべての敵に[blue]3[/blue]ダメージを与える。",
-    "SLIMEBOSS-BRUISER_SLIME.description": "ランダムな敵1体に[blue]3[/blue]ダメージを2回与える。",
-    "SLIMEBOSS-LEECHING_SLIME.description": "敵1体に[blue]1[/blue]ダメージを与え、スライムボスに[blue]3[/blue][gold]ブロック[/gold]を与える。",
-    "SLIMEBOSS-MIRE_SLIME.description": "敵1体に[blue]2[/blue]ダメージを与え、[gold]汚泥[/gold][blue]2[/blue]を付与する。",
-    "SLIMEBOSS-SPIKY_SLIME.description": "[blue]4[/blue]ダメージを与え、スライムボスに1ターンの間[gold]トゲ[/gold][blue]4[/blue]を与える。",
-    "SLIMEBOSS-GHOSTFLAME_SLIME.description": "敵1体に[blue]4[/blue]ダメージを与え、[gold]ソウルバーン[/gold][blue]6[/blue]を付与する。",
-    "SLIMEBOSS-BRONZE_SLIME.description": "すべての敵に[blue]10[/blue]ダメージを与え、その後[blue]2[/blue]ターン眠る。",
-    "SLIMEBOSS-INSULTING_SLIME.description": "敵1体に[blue]4[/blue]ダメージを与え、[gold]弱体[/gold][blue]1[/blue]を付与する。",
-    "SLIMEBOSS-TIME_SLIME.description": "敵1体に[blue]4[/blue]ダメージを与え、[gold]脱力[/gold][blue]1[/blue]を付与する。",
-    "SLIMEBOSS-CULTIST_SLIME.description": "[blue]6[/blue]ダメージを与える。攻撃後、自身のダメージを[blue]1[/blue]増加させる。"
+    "SLIMEBOSS-TIME_SLIME.name": "タイムスライム"
 }

@@ -1,0 +1,6 @@
+{
+    "SNECKO-MUDDLE.title": "Спутывание",
+    "SNECKO-MUDDLE.description": "Спутывание карты меняет её стоимость в этот ход на случайную от [blue]0[/blue] до [blue]3[/blue].\nСтоимость после Спутывания всегда отличается от исходной.",
+    "SNECKO-OVERFLOW.title": "Переполнение",
+    "SNECKO-OVERFLOW.description": "Эффекты Переполнения срабатывают, если у вас в [gold]Руке[/gold] больше [blue]5[/blue] карт."
+}

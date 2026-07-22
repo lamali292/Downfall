@@ -1,6 +1,6 @@
 {
     "GUARDIAN-BAALORS_LORDLY_PLATE.title": "Cuirasse Royale de Baalor",
-    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Lorsque vous vous [gold]Ancrez[/gold], [gold]Ancrez-vous[/gold] [blue]1[/blue] fois de plus.",
+    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Lorsque vous vous [gold]Ancrez[/gold], [gold]Ancrez-vous[/gold] [blue]{Brace:diff()}[/blue] fois de plus.",
     "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "On n'a jamais assez d'armure.",
     "GUARDIAN-BOTTLED_BLACK_HOLE.title": "Trou Noir Embouteillé",
     "GUARDIAN-BOTTLED_BLACK_HOLE.description": "Lorsque vous le récupérez, [gold]Enchantez[/gold] une carte avec [purple]Temporelle[/purple].",
@@ -31,5 +31,6 @@
     "GUARDIAN-SACK_OF_GEMS.flavor": "Ooh... brillant !",
     "GUARDIAN-WANDER_BOTS.title": "Drones errants",
     "GUARDIAN-WANDER_BOTS.description": "Au début de chaque combat, perdez [blue]1[/blue] emplacement de [gold]Stase[/gold]. NL Gagnez {Energy:energyIcons()} au début de votre tour.",
-    "GUARDIAN-WANDER_BOTS.flavor": "Ces drones trouvent les meilleures pièces de récupération, mais requiert de la puissance pour se maintenir."
+    "GUARDIAN-WANDER_BOTS.flavor": "Ces drones trouvent les meilleures pièces de récupération, mais requiert de la puissance pour se maintenir.",
+    "SEA_GLASS.GUARDIAN-GUARDIAN.title": "Verre Épineux"
 }

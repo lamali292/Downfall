@@ -13,7 +13,6 @@
     "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "태클이 적에게 [blue]{Amount}[/blue]의 추가 피해를 줍니다.",
     "SLIMEBOSS-POTENCY_POWER.title": "잠재력",
     "SLIMEBOSS-POTENCY_POWER.description": "모든 소환된 슬라임의 피해량을 증가시킵니다.\n보조 효과는 잠재력 2당 1씩 증가합니다(올림 적용).",
-    "SLIMEBOSS-POTENCY_POWER.smartDescription": "모든 소환된 슬라임의 피해량이 [blue]{Amount}[/blue]만큼 증가합니다.\n보조 효과는 [blue]{Amount2}[/blue]씩 증가합니다(올림 적용).",
     "SLIMEBOSS-ROLL_THROUGH_POWER.title": "굴러서 통과하기",
     "SLIMEBOSS-ROLL_THROUGH_POWER.description": "다음번 \"태클\" 카드로 인한 피해를 받지 않습니다.",
     "SLIMEBOSS-ROLL_THROUGH_POWER.smartDescription": "다음 [blue]{Amount}[/blue]장의 \"태클\" 카드로 인한 피해를 받지 않습니다.",

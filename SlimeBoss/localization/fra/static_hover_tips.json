@@ -1,0 +1,8 @@
+{
+    "SLIMEBOSS-SLURP.title": "Slurpez",
+    "SLIMEBOSS-SLURP.description": "Ajoutez une \"Léchouille\" [gold]Épuisée[/gold] dans votre [gold]Main[/gold].",
+    "SLIMEBOSS-COMMAND.title": "Commandez",
+    "SLIMEBOSS-COMMAND.description": "Votre Slime en tête attaque.",
+    "SLIMEBOSS-CONSUME.title": "Consumez",
+    "SLIMEBOSS-CONSUME.description": "Effet bonus qui s'active quand une Attaque est utilisée sur un ennemi qui a du [gold]Goop[/gold]."
+}

@@ -16,7 +16,6 @@
     "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "「タックル」カードが敵に追加で[blue]{Amount}[/blue]ダメージを与える。",
     "SLIMEBOSS-POTENCY_POWER.title": "潜在",
     "SLIMEBOSS-POTENCY_POWER.description": "産み出したすべてのスライムのダメージを増加させる。\n[gold]潜在[/gold][blue]2[/blue]ごとに副次効果が[blue]1[/blue]増加する（切り上げ）。",
-    "SLIMEBOSS-POTENCY_POWER.smartDescription": "産み出したすべてのスライムのダメージを[blue]{Amount}[/blue]増加させる。\n副次効果が[blue]{Amount2}[/blue]増加する。",
     "SLIMEBOSS-ROLL_THROUGH_POWER.title": "ロールスルー",
     "SLIMEBOSS-ROLL_THROUGH_POWER.description": "次の「タックル」カードからダメージを受けない。",
     "SLIMEBOSS-ROLL_THROUGH_POWER.smartDescription": "次の[blue]{Amount}[/blue]枚の「タックル」カードからダメージを受けない。",

@@ -1,0 +1,16 @@
+{
+    "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]Nous sommes nombreux. Nous ne faisons qu'un. Nous sommes nombreux. Nous ne faisons qu'un.[jitter]Nous sommes nombreux.[/jitter][/green][/sine]",
+    "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "Gloup gloup...",
+    "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "...",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "Les cartes du Parrain Slime peuvent apparaître dans les récompenses et dans la boutique.",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "Cartes du Parrain Slime",
+    "SLIMEBOSS-SLIME_BOSS.description": "Le général le plus visqueux du Cœur.\nPeut se battre seul, ou à plusieurs.",
+    "SLIMEBOSS-SLIME_BOSS.eventDeathPrevention": "Nous ne pouvons pas échouer. Nos slimes ont encore besoin de nous !",
+    "SLIMEBOSS-SLIME_BOSS.goldMonologue": "[sine]Tellement d'or... assez pour remplir toute une piscine de substance gluante...[/sine]",
+    "SLIMEBOSS-SLIME_BOSS.possessiveAdjective": "son/sa/ses",
+    "SLIMEBOSS-SLIME_BOSS.pronounObject": "lui",
+    "SLIMEBOSS-SLIME_BOSS.pronounPossessive": "son/sa/ses",
+    "SLIMEBOSS-SLIME_BOSS.pronounSubject": "il",
+    "SLIMEBOSS-SLIME_BOSS.title": "Le Parrain Slime",
+    "SLIMEBOSS-SLIME_BOSS.titleObject": "du Parrain Slime"
+}
