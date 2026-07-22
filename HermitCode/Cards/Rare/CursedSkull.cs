@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Patches;
@@ -9,6 +10,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Rare;
@@ -19,9 +21,12 @@ public class CursedSkull : HermitCardModel
     {
         WithCostUpgradeBy(-1);
         WithTip(HermitKeywords.DeadOn);
+        WithTip(StaticHoverTip.ReplayStatic);
         WithKeyword(CardKeyword.Exhaust);
     }
 
+    protected override Artist Artist => Artist.Get<DawnablesAwakened>();
+    
     public override bool CanBeGeneratedInCombat => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -34,11 +39,6 @@ public class CursedSkull : HermitCardModel
             CardModifier.AddModifier<DeadOnReplay>(card);
         else
             deadOnReplay.Value += 1;
-    }
-
-    private static bool HasNotEffectAlready(CardModel cardModel)
-    {
-        return !CardModifier.Modifiers(cardModel).OfType<DeadOnReplay>().Any();
     }
 }
 
