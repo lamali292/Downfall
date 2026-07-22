@@ -33,7 +33,6 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "関数が[gold]リプレイ[/gold][blue]1[/blue]を得る。",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "関数が[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
     "AUTOMATON-SUMMON_ORB_POWER.title": "サモンオーブ",
-    "AUTOMATON-SUMMON_ORB_POWER.description": "毎ターン最初にプレイしたアタックかスキルは[gold]格納[/gold]に置かれる。",
     "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "毎ターン最初にプレイした[blue]{Amount}[/blue]枚のアタックかスキルは[gold]格納[/gold]に置かれる。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "撃退",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "毎ターン、最初に状態異常か呪いを引いた時、それを[gold]廃棄[/gold]してカードを1枚引く。",
@@ -45,8 +44,6 @@
     "AUTOMATON-BRONZE_ORB_POWER.description": "このターン、次にプレイするカードを[gold]格納[/gold]する。",
     "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚のカードを[gold]格納[/gold]する。",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "競合をマージ",
-    "AUTOMATON-MERGE_CONFLICT_POWER.description": "次にカードを作成する時、そのコピーを追加で1枚作成する。",
-    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "次に[blue]{Amount}[/blue]回カードを作成する時、そのコピーを追加で1枚作成する。",
     "AUTOMATON-CLEAN_CODE_POWER.title": "コード清書",
     "AUTOMATON-CLEAN_CODE_POWER.description": "ターン終了時、カードを1枚[gold]格納[/gold]してもよい。",
     "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "ターン終了時、カードを[blue]{Amount}[/blue]枚[gold]格納[/gold]してもよい。",
@@ -77,7 +74,5 @@
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "アルキリカルエリクサー",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "次に作成する関数は、コスト0でプレイできる。",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "次に作成する[blue]{Amount}[/blue]枚の関数は、コスト0でプレイできる。",
-    "AUTOMATON-SHARE_POWER.title": "共有",
-    "AUTOMATON-SHARE_POWER.description": "関数から[gold]ブロック[/gold]を得るたび、ランダムな味方1人が[gold]ブロック[/gold]を得る。",
-    "AUTOMATON-SHARE_POWER.smartDescription": "関数から[gold]ブロック[/gold]を得るたび、ランダムな味方1人が[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。"
+    "AUTOMATON-SHARE_POWER.title": "共有"
 }

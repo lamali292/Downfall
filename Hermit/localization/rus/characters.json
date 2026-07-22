@@ -1,0 +1,16 @@
+{
+    "HERMIT-HERMIT.title": "Отшельник",
+    "HERMIT-HERMIT.titleObject": "Отшельника",
+    "HERMIT-HERMIT.description": "Одинокий [gold]стрелок-нежить[/gold], родом из далеких мест. Его терзают призраки прошлого.\nСтреляет прямо [gold]В яблочко[/gold], накладывает [gold]Ушибы[/gold] на врагов и обращает [red]проклятия[/red] себе в пользу.",
+    "HERMIT-HERMIT.pronounSubject": "он",
+    "HERMIT-HERMIT.pronounObject": "его",
+    "HERMIT-HERMIT.possessiveAdjective": "его",
+    "HERMIT-HERMIT.pronounPossessive": "его",
+    "HERMIT-HERMIT.goldMonologue": "[sine]Эти монеты... можно купить снаряжение получше...[/sine]",
+    "HERMIT-HERMIT.eventDeathPrevention": "Не сейчас... У меня еще остались незаконченные дела...",
+    "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...выжить, собрать добычу, двигаться дальше...[/blue][/sine]",
+    "HERMIT-HERMIT.cardsModifierTitle": "Карты Отшельника",
+    "HERMIT-HERMIT.cardsModifierDescription": "Карты Отшельника теперь будут появляться в наградах и магазинах.",
+    "HERMIT-HERMIT.banter.alive.endTurnPing": "Тик-так...",
+    "HERMIT-HERMIT.banter.dead.endTurnPing": "..."
+}

@@ -1,0 +1,6 @@
+{
+    "AUTOMATON-ENCODE.title": "Кодировать",
+    "AUTOMATON-ENCODE.description": "Поместите эту карту в вашу [gold]Последовательность[/gold].\nКогда в ней [blue]3[/blue] карты, их эффекты выше этого ключевого слова объединяются в Функцию стоимостью [blue]1[/blue].",
+    "AUTOMATON-STASH.title": "Запас",
+    "AUTOMATON-COMPILE.title": "Скомпилировать"
+}

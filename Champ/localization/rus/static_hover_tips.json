@@ -1,0 +1,8 @@
+{
+    "CHAMP-COMBO.title": "Комбо",
+    "CHAMP-COMBO.description": "Дополнительный эффект при розыгрыше в указанной [gold]Стойке[/gold].",
+    "CHAMP-FINISHER.title": "Добивание",
+    "CHAMP-FINISHER.description": "Требует [gold]Стойку[/gold].\nПосле розыгрыша Добивания выйдите из [gold]Стойки[/gold] и активируйте её бонус Добивания.",
+    "CHAMP-STANCE.title": "Стойка",
+    "CHAMP-STANCE.description": "Одновременно у вас может быть только одна Стойка.`"
+}

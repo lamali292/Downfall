@@ -45,8 +45,8 @@
     "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]Réservez[/gold] la prochaine carte que vous jouez ce tour.",
     "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Réservez[/gold] {Amount:plural:la prochaine carte|les [blue]{}[/blue] prochaines cartes} que vous jouez ce tour.",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "Conflit Fusionnel",
-    "AUTOMATON-MERGE_CONFLICT_POWER.description": "La prochaine fois que vous créez une carte, créez-en une copie supplémentaire.",
-    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "{Amount:plural:La prochaine fois|Les [blue]{}[/blue] prochaines fois} que vous créez une carte, créez-en une copie supplémentaire.",
+    "AUTOMATON-MERGE_CONFLICT_POWER.description": "La prochaine fois que vous créez une Fonction, créez-en une copie supplémentaire.",
+    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "{Amount:plural:La prochaine fois|Les [blue]{}[/blue] prochaines fois} que vous créez une Fonction, créez-en une copie supplémentaire.",
     "AUTOMATON-CLEAN_CODE_POWER.title": "Code Propre",
     "AUTOMATON-CLEAN_CODE_POWER.description": "À la fin de votre tour, vous pouvez [gold]Réserver[/gold] une carte.",
     "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "À la fin de votre tour, vous pouvez [gold]Réserver[/gold] {Amount:plural:une carte|[blue]{}[/blue] cartes}.",
@@ -78,6 +78,6 @@
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "La prochaine Fonction que vous créez est gratuite à jouer.",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "{Amount:plural:La prochaine Fonction|Les [gold]{}[/gold] prochaines Fonctions} que vous créez {Amount:plural:est gratuite|sont gratuites} à jouer.",
     "AUTOMATON-SHARE_POWER.title": "Partage",
-    "AUTOMATON-SHARE_POWER.description": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, un allié aléatoire gagne de [gold]l'Armure[/gold].",
-    "AUTOMATON-SHARE_POWER.smartDescription": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, un allié aléatoire gagne [blue]{Amount}[/blue] [gold]d'Armure[/gold]."
+    "AUTOMATON-SHARE_POWER.description": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, l'allié avec le moins [gold]d'Armure[/gold] gagne de [gold]l'Armure[/gold].",
+    "AUTOMATON-SHARE_POWER.smartDescription": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, l'allié avec le moins [gold]d'Armure[/gold] gagne [blue]{Amount}[/blue] [gold]l'Armure[/gold]."
 }

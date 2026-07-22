@@ -45,11 +45,12 @@
     "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]储藏[/gold]本回合你打出的下一张牌。",
     "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]储藏[/gold]本回合你打出的下[blue]{Amount}[/blue]张牌。",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "合并冲突",
-    "AUTOMATON-MERGE_CONFLICT_POWER.description": "下次你生成一张牌时，额外生成一张它的复制。",
-    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "下[blue]{Amount}[/blue]次你生成一张牌时，额外生成一张它的复制。",
+    "AUTOMATON-MERGE_CONFLICT_POWER.description": "下次你生成一个方法时，额外生成一个它的复制。",
+    "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "下[blue]{Amount}[/blue]次你生成一个方法时，额外生成一个它的复制。",
     "AUTOMATON-CLEAN_CODE_POWER.title": "简明代码",
     "AUTOMATON-CLEAN_CODE_POWER.description": "在你的回合结束时，你可以[gold]储藏[/gold]一张牌。",
     "AUTOMATON-CLEAN_CODE_POWER.smartDescription": "在你的回合结束时，你可以[gold]储藏[/gold][blue]{Amount}[/blue]张牌。",
+    "AUTOMATON-SELF_REPAIR_POWER.title": "自我修复",
     "AUTOMATON-SELF_REPAIR_POWER.description": "在战斗结束时，回复生命。",
     "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "在战斗结束时，回复[blue]{Amount}[/blue]点生命。",
     "AUTOMATON-REPULSE_POWER.title": "反冲器",
@@ -74,8 +75,9 @@
     "AUTOMATON-COPY_PASTE_POWER.description": "本回合你打出的下一张耗能不超过{energyPrefix:energyIcons(1)}的牌额外打出一次。",
     "AUTOMATON-COPY_PASTE_POWER.smartDescription": "本回合你打出的下[blue]{Amount}[/blue]张耗能不超过{energyPrefix:energyIcons(1)}的牌额外打出一次。",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "炼金药剂",
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "你下一个生成的方法可以免费打出。",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "你下[blue]{Amount}[/blue]个生成的方法可以免费打出。",
     "AUTOMATON-SHARE_POWER.title": "分享",
-    "AUTOMATON-SHARE_POWER.description": "每当你从方法中获得[gold]格挡[/gold]时，随机一名盟友获得[gold]格挡[/gold]。",
-    "AUTOMATON-SHARE_POWER.smartDescription": "每当你从方法中获得[gold]格挡[/gold]时，随机一名盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
+    "AUTOMATON-SHARE_POWER.description": "每当你从方法中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得[gold]格挡[/gold]。",
+    "AUTOMATON-SHARE_POWER.smartDescription": "每当你从方法中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
 }

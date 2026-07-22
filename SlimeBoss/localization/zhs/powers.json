@@ -1,10 +1,13 @@
 {
     "SLIMEBOSS-GOOP_POWER.title": "黏液",
     "SLIMEBOSS-GOOP_POWER.description": "你的下一次攻击造成额外伤害，并触发[gold]吞食[/gold]效果。",
+    "SLIMEBOSS-GOOP_POWER.smartDescription": "你的下一次攻击额外造成[blue]{Amount}[/blue]点伤害，并触发[gold]吞食[/gold]效果。",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "浸入黏液",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "下次你攻击此敌人时，你的[gold]黏液[/gold]不会被移除。",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "你下[blue]{Amount}[/blue]次攻击此敌人时，[gold]黏液[/gold]不会被移除。",
     "SLIMEBOSS-OOZE_BATH_POWER.title": "黏浆浴",
     "SLIMEBOSS-OOZE_BATH_POWER.description": "在你的回合开始时，获得[gold]黏液[/gold]。",
+    "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]层[gold]黏液[/gold]。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "黏液舌",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.description": "给予[gold]黏液[/gold]的效果给予额外层数。",
     "SLIMEBOSS-SLIMY_TONGUE_POWER.smartDescription": "给予[gold]黏液[/gold]的效果额外给予[blue]{Amount}[/blue]层。",
@@ -46,5 +49,8 @@
     "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "本回合你打出下[blue]{Amount}[/blue]张牌时，[gold]命令[/gold]一次。",
     "SLIMEBOSS-RECKLESSNESS_POWER.title": "鲁莽",
     "SLIMEBOSS-RECKLESSNESS_POWER.description": "“冲撞”牌对你造成额外伤害。",
-    "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "“冲撞”牌对你额外造成[blue]{Amount}[/blue]点伤害。"
+    "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "“冲撞”牌对你额外造成[blue]{Amount}[/blue]点伤害。",
+    "SLIMEBOSS-GOOP_POWER.remoteDescription": "[orange]{ApplierName}[/orange]的下一次攻击额外造成[blue]{Amount}[/blue]点伤害，并触发[gold]吞食[/gold]效果。",
+    "SLIMEBOSS-OOZE_BATH_POWER.remoteDescription": "在[orange]{ApplierName}[/orange]的回合开始时，获得[blue]{Amount}[/blue]层[gold]黏液[/gold]。",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "[orange]{ApplierName}[/orange]下[blue]{Amount}[/blue]次攻击此敌人时，其的[gold]黏液[/gold]不会被移除。"
 }
