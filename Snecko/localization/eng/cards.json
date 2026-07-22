@@ -101,7 +101,7 @@
   "SNECKO-RISKY_SWORD.title": "Risky Sword",
   "SNECKO-ROUNDABOUT_SWING.description": "Deal {Damage:diff()} damage.\nPut a card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].\nDraw {DrawCardsNextTurnPower:diff()} additional cards next turn.",
   "SNECKO-ROUNDABOUT_SWING.title": "Roundabout Swing",
-  "SNECKO-SAVE_FOR_LATER.description": "Deal {Damage:diff()} damage.\n[gold]Retain[/gold] {SaveForLaterPower:diff()} {SaveForLaterPower:plural:card|cards} at the end of your turn.",
+  "SNECKO-SAVE_FOR_LATER.description": "Deal {Damage:diff()} damage.\n[gold]Retain[/gold] {SaveForLaterPower:plural:a card|{SaveForLaterPower:diff()} cards} at the end of your turn.",
   "SNECKO-SAVE_FOR_LATER.title": "Save For Later",
   "SNECKO-SERPENTINE_SLEUTH.description": "Whenever you play a Power, gain {Energy:energyIcons()}.{InCombat:cond:|\n[gold]Gift[/gold]: Rare Power.}",
   "SNECKO-SERPENTINE_SLEUTH.title": "Serpentine Sleuth",
