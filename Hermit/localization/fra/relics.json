@@ -25,8 +25,10 @@
     "HERMIT-PET_GHOST.description": "Empêchez votre première perte de PV mortelle à chaque combat.",
     "HERMIT-CHARRED_GLOVE.title": "Gant Carbonisé",
     "HERMIT-CHARRED_GLOVE.flavor": "Certaines parties de ce gant brillent encore de cendres d'un autre monde.",
+    "HERMIT-CHARRED_GLOVE.description": "Lorsque vous piochez ou créez une [red]Malédiction[/red], gagnez [blue]{VigorPower}[/blue] de [gold]Vigueur[/gold].",
     "HERMIT-CLASPED_LOCKET.title": "Médaillon Agrafé",
     "HERMIT-CLASPED_LOCKET.flavor": "Il ne veut plus s'ouvrir à présent.",
+    "HERMIT-CLASPED_LOCKET.description": "La première fois que vous piochez une [red]Malédiction[/red] chaque tour, [gold]Épuisez-la[/gold] et piochez [blue]{Cards}[/blue] cartes.\nLorsque vous le récupérez, obtenez [blue]{Curses}[/blue] [red]Blessures[/red].",
     "HERMIT-STRAIGHT_RAZOR.title": "Coupe-Choux",
     "HERMIT-STRAIGHT_RAZOR.flavor": "Pour un rasage plus net...",
     "HERMIT-STRAIGHT_RAZOR.description": "Lorsque vous retirez ou [gold]Transformez[/gold] une carte de votre [gold]Deck[/gold], soignez-vous de [blue]{Heal}[/blue] PV.",
@@ -38,5 +40,6 @@
     "HERMIT-BLACK_POWDER.description": "Lorsque vous activez un effet [gold]Dans Le Mille[/gold], infligez [blue]{Damage}[/blue] dégâts à TOUS les ennemis.",
     "HERMIT-BROKEN_TOOTH.title": "Dent Cassée",
     "HERMIT-BROKEN_TOOTH.flavor": "Elle semble trop large pour être venue d'une mâchoire humaine...",
-    "HERMIT-BROKEN_TOOTH.description": "Lorsque vous battez un ennemi d'Élite, soignez-vous de [blue]{Heal}[/blue] PV et gagnez [blue]{Gold}[/blue] d'Or."
+    "HERMIT-BROKEN_TOOTH.description": "Lorsque vous battez un ennemi d'Élite, soignez-vous de [blue]{Heal}[/blue] PV et gagnez [blue]{Gold}[/blue] d'Or.",
+    "SEA_GLASS.HERMIT-HERMIT.title": "Verre du Vagabond"
 }

@@ -34,5 +34,6 @@
     "CHAMP-SPECTRES_HAND.flavor": "Certaines victoires restent avec vous.",
     "CHAMP-VICTORIOUS_CROWN.title": "Couronne du Victorieux",
     "CHAMP-VICTORIOUS_CROWN.description": "Commencez chaque combat dans une [gold]Pose[/gold] aléatoire, et déclenchez ensuite le [gold]Bonus de Compétence[/gold] de cette [gold]Pose[/gold] deux fois.\nLa prochaine fois que vous jouez un [gold]Finisher[/gold] à chaque tour, piochez [blue]2[/blue] cartes et entrez dans une [gold]Pose[/gold] aléatoire.",
-    "CHAMP-VICTORIOUS_CROWN.flavor": "Félissitations!! Vous êtes le plus grand vainqueur."
+    "CHAMP-VICTORIOUS_CROWN.flavor": "Félissitations!! Vous êtes le plus grand vainqueur.",
+    "SEA_GLASS.CHAMP-CHAMP.title": "Verre Gladiateur"
 }

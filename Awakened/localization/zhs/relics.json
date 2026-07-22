@@ -25,7 +25,7 @@
     "AWAKENED-RIPPED_DOLL.description": "每场战斗前[blue]2[/blue]个回合开始时，[gold]念咒[/gold]。",
     "AWAKENED-RIPPED_DOLL.flavor": "你前身的遗物。残余蕴藏的魔法。",
     "AWAKENED-SHREDDED_DOLL.title": "撕碎的玩偶",
-    "AWAKENED-SHREDDED_DOLL.description": "在你的回合开始时，[gold]念咒[/gold]。\n每场战斗开始时，获得[blue]1[/blue]层[gold]仪式[/gold]。",
+    "AWAKENED-SHREDDED_DOLL.description": "在你的回合开始时，[gold]念咒[/gold]。\n每场战斗开始时，获得[blue]{RitualPower:diff()}[/blue]层[gold]仪式[/gold]。",
     "AWAKENED-SHREDDED_DOLL.flavor": "你自身懦弱的证明，然而你仍未能放下。",
     "AWAKENED-TOME_OF_PORTALMANCY.title": "召门之书",
     "AWAKENED-TOME_OF_PORTALMANCY.description": "每当你生成一张[gold]虚空[/gold]时，给予所有敌人[blue]2[/blue]点[gold]魔力灼烧[/gold]。",
@@ -38,5 +38,6 @@
     "AWAKENED-ZENER_DECK.flavor": "“小眼睛，看老师。“",
     "AWAKENED-ZETSUMEI.title": "绝命",
     "AWAKENED-ZETSUMEI.description": "每当你在一场战斗中打出[blue]{Cards}[/blue]张法术牌时，获得一张[gold]祭仪[/gold]。",
-    "AWAKENED-ZETSUMEI.flavor": "法师钟爱此刃，因为它能将施放出的魔力引回自身。"
+    "AWAKENED-ZETSUMEI.flavor": "法师钟爱此刃，因为它能将施放出的魔力引回自身。",
+    "SEA_GLASS.AWAKENED-AWAKENED.title": "邪教水晶"
 }

@@ -1,0 +1,12 @@
+{
+    "DOWNFALL-TO_HAND": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите добавить в [gold]руку[/gold]",
+    "DOWNFALL-TO_TOP": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите положить на верх [gold]стопки добора[/gold]",
+    "DOWNFALL-TO_APPLY": "Выберите {Amount:plural(ru):карту, на которую|[blue]{}[/blue] карты, на которые|[blue]{}[/blue] карт, на которые} хотите наложить эффекты.",
+    "DOWNFALL-TO_DECK": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите добавить в вашу [gold]колоду[/gold].",
+    "DOWNFALL-TO_STASIS": "Выберите {Amount:plural(ru):карту, на которую|[blue]{}[/blue] карты, на которые|[blue]{}[/blue] карт, на которые} хотите наложить [gold]Стазис[/gold].",
+    "DOWNFALL-TO_CONJURE": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите [gold]Сотворить[/gold].",
+    "DOWNFALL-TO_PLAY": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите разыграть.",
+    "DOWNFALL-ADD_ETHEREAL": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите сделать [gold]{Amount:plural(ru):эфирной|эфирными|эфирными}[/gold]",
+    "DOWNFALL-TO_RETAIN": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите [gold]оставить[/gold]",
+    "DOWNFALL-TO_OTHER_HANDS": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите добавить в [gold]руку[/gold] другого игрока."
+}

@@ -1,0 +1,8 @@
+{
+    "HERMIT-TONIC.title": "Тоник",
+    "HERMIT-TONIC.description": "Дает [blue]{RuggedPower:diff()}[/blue] [gold]Стойкости[/gold].",
+    "HERMIT-BLACK_BILE.title": "Черная желчь",
+    "HERMIT-BLACK_BILE.description": "Накладывает [blue]{BruisePower:diff()}[/blue] [gold]{BruisePower:plural(ru):Ушиб|Ушиба|Ушибов}[/gold].",
+    "HERMIT-LIQUID_VOID.title": "Жидкая пустота",
+    "HERMIT-LIQUID_VOID.description": "Вы кладете карту из [gold]стопки пепла[/gold] в [gold]руку[/gold].\nВ этом ходу она бесплатна."
+}

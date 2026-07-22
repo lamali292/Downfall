@@ -1,0 +1,4 @@
+{
+    "AUTOMATON-TO_STASH": "Выберите {Amount:plural:карту|[blue]{}[/blue] карты}, чтобы поместить в Запас",
+    "AUTOMATON-STASH_PILE": "Стопка запаса"
+}
