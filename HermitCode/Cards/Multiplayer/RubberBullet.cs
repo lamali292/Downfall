@@ -25,6 +25,7 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 
         var clone = CreateClone();
         clone._owner = player;
+        clone.EnergyCost.AfterCardPlayedCleanup();
         await CardPileCmd.RemoveFromCombat(this);
         await CardPileCmd.Add(clone, PileType.Hand);
         HermitSfx.PlayReload();

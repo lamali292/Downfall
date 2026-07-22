@@ -1,0 +1,10 @@
+{
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Fiamma Spettrale Rinforzante",
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]1[/blue] [gold]Potere[/gold] while on esso. \nYou gain [blue]4[/blue] [gold]Blocco[/gold] and [blue]1[/blue] [gold]Forza[/gold].",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Fiamma Spettrale Schiacciante",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] [gold]Abilità[/gold] while on esso. \nDeals [blue]3[/blue] damage a un nemico casuale twice.",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Fiamma Spettrale Inferno",
+  "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Ignites[/gold] by spending [blue]3[/blue] [gold]Energia[/gold] while on esso.\nDeals [blue]4[/blue] damage a un nemico casuale per ogni Fiamma Spettrale [gold]Accesa[/gold].\nIf all Ghostflames are [gold]Accesa[/gold], gain [blue]2[/blue] [gold]Intensità[/gold].\n[gold]Estingui[/gold] other Ghostflames.\nAlla fine del tuo turno, [gold]Extinguishes[/gold] itself.",
+  "HEXAGHOST-SEARING_GHOSTFLAME.title": "Fiamma Spettrale Ustionante",
+  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Ignites[/gold] by playing [blue]2[/blue] Attacks while on esso.\nApplies [blue]3[/blue] [gold]Brucianima[/gold] a un nemico casuale twice. "
+}

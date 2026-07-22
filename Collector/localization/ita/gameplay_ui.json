@@ -1,0 +1,5 @@
+{
+  "COMBAT_REWARD_ESSENCE": "Ottieni {essence} Essenza.",
+  "COLLECTIBLE_REWARD": "Spendi {essence} Essenza per ottenere {Card}.",
+  "COLLECTIBLE_REWARD_CANT_AFFORD": "Servono {essence} Essenza per ottenere {Card}."
+}

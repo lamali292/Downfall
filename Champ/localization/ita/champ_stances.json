@@ -1,0 +1,14 @@
+{
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "Posizione Difensiva",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]Bonus Abilità[/gold]: Ottieni [blue]{DefensiveSkill}[/blue] [gold]Contrattacco[/gold].\n[gold]Finalizzatore[/gold]: Ottieni [blue]{DefensiveFinisher}[/blue] [gold]Blocco[/gold].",
+  "CHAMP-CHAMP_BERSERKER_STANCE.title": "Posizione Berserker",
+  "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]Bonus Abilità[/gold]: Ottieni [blue]{BerserkerSkill}[/blue] [gold]Vigore[/gold].\n[gold]Finalizzatore[/gold]: Ottieni [blue]{BerserkerFinisher}[/blue] [gold]Forza[/gold].",
+  "CHAMP-CHAMP_NO_STANCE.title": "Nessuna Posizione",
+  "CHAMP-CHAMP_NO_STANCE.description": "",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Posizione Suprema",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]Bonus Abilità[/gold]: Ottieni [blue]{BerserkerSkill}[/blue] [gold]Vigore[/gold] e [blue]{DefensiveSkill}[/blue] [gold]Contrattacco[/gold].\n[gold]Finalizzatore[/gold]: Ottieni [blue]{BerserkerFinisher}[/blue] [gold]Forza[/gold] e [blue]{DefensiveFinisher}[/blue] [gold]Blocco[/gold].",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: Ottieni {BerserkerFinisher} [gold]Forza[/gold] e {DefensiveFinisher} [gold]Blocco[/gold].",
+  "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finalizzatore[/gold]",
+  "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: Ottieni {BerserkerFinisher} [gold]Forza[/gold].",
+  "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: Ottieni {DefensiveFinisher} [gold]Blocco[/gold]."
+}

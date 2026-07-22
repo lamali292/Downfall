@@ -1,0 +1,16 @@
+{
+  "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]Sono vincolato. Sopporto. Sono vincolato. Sopporto. [jitter]Sono vincolato.[/jitter][/purple][/sine]",
+  "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "...[jitter]gioca...[/jitter]",
+  "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "...",
+  "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "Le carte Hexaghost appariranno ora nelle ricompense e nei negozi.",
+  "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "Carte Hexaghost",
+  "HEXAGHOST-HEXAGHOST.description": "Uno spirito maledetto della Torre.\nSigillato in un destino eterno come protettore.",
+  "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "Non posso ancora andare... le mie fiamme bruciano ancora.",
+  "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]Oro... non significa nulla per i morti... eppure...[/sine]",
+  "HEXAGHOST-HEXAGHOST.possessiveAdjective": "lei",
+  "HEXAGHOST-HEXAGHOST.pronounObject": "lei",
+  "HEXAGHOST-HEXAGHOST.pronounPossessive": "suo",
+  "HEXAGHOST-HEXAGHOST.pronounSubject": "lei",
+  "HEXAGHOST-HEXAGHOST.title": "Hexaghost",
+  "HEXAGHOST-HEXAGHOST.titleObject": "Hexaghost"
+}

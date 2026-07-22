@@ -1,0 +1,12 @@
+{
+  "AWAKENED-AWAKEN.title": "Risvegliati",
+  "AWAKENED-AWAKEN.description": "Se giochi [blue]7[/blue] carte Potere nel combattimento, [gold]Risvegliati[/gold].\nMentre sei [gold]Risvegliato[/gold], [gold]Potenziamento[/gold] TUTTE le carte Magia [gold]Evocate[/gold] per il resto del combattimento.",
+  "AWAKENED-CONJURE.title": "Evoca",
+  "AWAKENED-CONJURE.description": "Crea la prossima carta dal tuo Libro delle Magie nella tua [gold]Mano[/gold].",
+  "AWAKENED-CHANT.title": "Canta",
+  "AWAKENED-CHANT.description": "Le carte con effetti Cantati diventano più potenti per il resto del combattimento se l'ultima carta giocata in combattimento era una carta Potere.",
+  "AWAKENED-CHANTED.title": "Cantato",
+  "AWAKENED-CHANTED.description": "Gli effetti di questa carta sono diventati più forti.",
+  "AWAKENED-DRAINED.title": "Drenato",
+  "AWAKENED-DRAINED.description": "Qualsiasi effetto che ti ha fatto perdere {Energy:energyIcons()}, anche se non ne avevi da perdere.\n(Non include {Energy:energyIcons()} speso giocando carte.)"
+}
