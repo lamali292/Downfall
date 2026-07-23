@@ -19,7 +19,7 @@ public class CobraCoil : SneckoCardModel, IHasGift
             Type = CardType.Attack
         });
         WithDamage(20, 4);
-        WithPower<SneckoConstrictPower>(10);
+        this.WithPower<SneckoConstrictPower>(10, false);
     }
 
     public Gift? Gift { get; set; }

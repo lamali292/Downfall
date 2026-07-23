@@ -62,6 +62,7 @@ public partial class DownfallMainFile : Node
                 (target, player) =>
                     target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
             LogRegisteredCounts();
+            CustomPowerInstanceType.RegisterAll();
         });
 
         /*

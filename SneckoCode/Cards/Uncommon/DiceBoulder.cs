@@ -19,6 +19,6 @@ public class DiceBoulder : SneckoCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        EnergyCost.UpgradeBy(DynamicVars.Energy.IntValue);
+        EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
     }
 }

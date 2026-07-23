@@ -43,7 +43,9 @@ public class CharacterCard() : ConstructedCardModel(-1, CardType.Skill, CardRari
 
     public LocString ModifyDescription(LocString oldLocString)
     {
-        return CharacterModel == null ? oldLocString : new LocString("characters", CharacterModel.CharacterSelectDesc);
+        if (CharacterModel == null) return oldLocString;
+        var desc = CharacterModel.CharacterSelectDesc;
+        return string.IsNullOrEmpty(desc) ? oldLocString : new LocString("characters", desc);
     }
 
     public static CharacterCard Create(CharacterModel characterModel)

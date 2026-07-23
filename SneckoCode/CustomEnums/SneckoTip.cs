@@ -6,4 +6,5 @@ namespace Snecko.SneckoCode.CustomEnums;
 public static class SneckoTip
 {
     [CustomEnum] public static StaticHoverTip Gift;
+    [CustomEnum] public static StaticHoverTip Offclass;
 }

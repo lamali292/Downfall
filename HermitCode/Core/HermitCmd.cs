@@ -33,6 +33,12 @@ public static class HermitCmd
         return card is IHasDeadOnEffect { IsDeadOn: true } ||
                CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any(e => e.IsDeadOn);
     }
+    
+    public static bool HasDeadOn(CardModel card)
+    {
+        return card is IHasDeadOnEffect ||
+               CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any();
+    }
 
 
     public static async Task TriggerDeadOnEffect(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)

@@ -32,20 +32,13 @@ public class BismuthGem : GemModel
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         await PowerCmd.Apply<ArtifactPower>(ctx, Player.Creature, effect, Player.Creature, null);
     }
-
-    /*
-    public override void OnInitialApplication()
-    {
-        //if (Card is IGemCard or null) return;
-        Card.EnergyCost.UpgradeBy(1);
-    }*/
+    
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
         if (Card is IGemCard || card != Card) return false;
         modifiedCost++;
-        ;
         return true;
     }
 }

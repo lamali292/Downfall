@@ -21,14 +21,14 @@ public class Belittle : SneckoCardModel, IHasGift
             Rarity = CardRarity.Uncommon,
             IsDebuff = true
         });
-        WithCalculatedDamage(0, 9, CalcDamage, ValueProp.Unblockable | ValueProp.Move | ValueProp.Unpowered, 0, 3);
+        WithCalculatedDamage(0, 8, CalcDamage, ValueProp.Unblockable | ValueProp.Move | ValueProp.Unpowered, 0, 3);
     }
 
     public Gift? Gift { get; set; }
 
     private static decimal CalcDamage(CardModel card, Creature? creature)
     {
-        return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
+        return creature?.Powers.Count(e => e.TypeForCurrentAmount == PowerType.Debuff) ?? 0;
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

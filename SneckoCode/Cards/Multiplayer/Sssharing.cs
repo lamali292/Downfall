@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Multiplayer;
 
@@ -14,6 +15,7 @@ public class Sssharing : SneckoCardModel
         WithCards(1, 1);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
+        WithTip(SneckoTip.Offclass);
     }
 
 

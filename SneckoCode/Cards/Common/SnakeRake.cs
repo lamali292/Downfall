@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -12,6 +13,7 @@ public class SnakeRake : SneckoCardModel
     {
         WithDamage(7, 2);
         WithCards(1, 1);
+        WithTip(SneckoKeywords.Muddle);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -18,6 +19,7 @@ public class WideSting : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
+        WithTip(SneckoTip.Offclass);
         WithDamage(7, 3);
     }
 

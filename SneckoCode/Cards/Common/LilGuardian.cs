@@ -12,6 +12,7 @@ public class LilGuardian : SneckoCardModel
     public LilGuardian() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
+        WithEnergy(2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -21,7 +22,7 @@ public class LilGuardian : SneckoCardModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner || cardPlay.Resources.EnergySpent < 2 ||
+        if (cardPlay.Card.Owner != Owner || cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue ||
             Pile is not { Type: PileType.Hand }) return;
         await CardCmd.AutoPlay(ctx, this, null);
     }

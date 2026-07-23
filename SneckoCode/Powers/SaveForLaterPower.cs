@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
@@ -12,6 +13,11 @@ namespace Snecko.SneckoCode.Powers;
 
 public class SaveForLaterPower : SneckoPowerModel
 {
+    public SaveForLaterPower()
+    {
+        WithTip(CardKeyword.Retain);
+    }
+    
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;

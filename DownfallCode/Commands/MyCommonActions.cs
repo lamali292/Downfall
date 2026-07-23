@@ -142,4 +142,11 @@ public static class MyCommonActions
         cmd._sourceType = AttackCommand.SourceType.Card;
         return cmd;
     }
+    
+    public static async Task<IEnumerable<CardModel>> Draw(AbstractModel card, PlayerChoiceContext context)
+    {
+        var player = card.GetCreature().Player;
+        if (player == null) return [];
+        return await CardPileCmd.Draw(context, card.GetDynamicVars().Cards.BaseValue, player);
+    }
 }

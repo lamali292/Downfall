@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -19,6 +20,7 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Uncommon
         });
+        WithTip(SneckoTip.Offclass);
         WithCalculatedBlock(8, 2, CalcBlock, ValueProp.Move, 1, 1);
     }
 

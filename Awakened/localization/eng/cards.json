@@ -197,7 +197,7 @@
   "AWAKENED-TALON_REND.title": "Talon Rend",
   "AWAKENED-THAUMATURGY.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAt the start of you next {ThaumaturgyPower:diff()} turns, add a [gold]Ceremony[/gold] into your [gold]Hand[/gold].",
   "AWAKENED-THAUMATURGY.title": "Thaumaturgy",
-  "AWAKENED-THE_ENCYCLOPEDIA.description": "Choose 2 of {Cards:diff()} random cards to add into your [gold]Hand[/gold].\nThey cost 2 less.",
+  "AWAKENED-THE_ENCYCLOPEDIA.description": "Choose 2 of {Cards:diff()} random cards to add into your [gold]Hand[/gold].\nThey cost 2{energyPrefix:energyIcons(1)} less.",
   "AWAKENED-THE_ENCYCLOPEDIA.title": "The Encyclopedia",
   "AWAKENED-THE_TOWER.description": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff()} additional damage for each card created this combat.",
   "AWAKENED-THE_TOWER.title": "The Tower",

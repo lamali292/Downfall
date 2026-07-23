@@ -3,6 +3,7 @@ using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -17,6 +18,7 @@ public class UnendingSupply : SneckoCardModel
         WithTip(CardKeyword.Exhaust);
         this.WithPower<UnendingSupplyPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithTip(SneckoTip.Offclass);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

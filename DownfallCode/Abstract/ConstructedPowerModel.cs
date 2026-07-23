@@ -78,7 +78,7 @@ public abstract class ConstructedPowerModel(
 
     protected ConstructedPowerModel WithBlock(decimal baseVal)
     {
-        _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
+        _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Unpowered));
         return this;
     }
 
@@ -87,11 +87,18 @@ public abstract class ConstructedPowerModel(
         _newDynamicVars.Add(new CardsVar(baseVal));
         return this;
     }
+    
+    public ConstructedPowerModel WithEnergy(int baseVal)
+    {
+        _newDynamicVars.Add(new EnergyVar(baseVal));
+        WithEnergyTip();
+        return this;
+    }
 
 
     protected ConstructedPowerModel WithDamage(decimal baseVal)
     {
-        _newDynamicVars.Add(new DamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered));
+        _newDynamicVars.Add(new DamageVar(baseVal, ValueProp.Unpowered));
         return this;
     }
 
@@ -115,6 +122,9 @@ public abstract class ConstructedPowerModel(
         return this;
     }
 
+    
+  
+    
     public ConstructedPowerModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));

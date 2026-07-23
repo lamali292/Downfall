@@ -5,12 +5,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 
-namespace Snecko.SneckoCode.Cards.Uncommon;
+namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
 public class GildedShield : SneckoCardModel
 {
-    public GildedShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public GildedShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(8, 3);
         WithTip(SneckoKeywords.Muddle);

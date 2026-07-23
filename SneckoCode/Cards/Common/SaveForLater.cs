@@ -11,8 +11,9 @@ public class SaveForLater : SneckoCardModel
 {
     public SaveForLater() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<SaveForLaterPower>(1, 1);
+        this.WithPower<SaveForLaterPower>(1, 1, false);
         WithDamage(8, 3);
+        WithTip(CardKeyword.Retain);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

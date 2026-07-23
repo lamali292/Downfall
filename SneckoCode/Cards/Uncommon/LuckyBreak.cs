@@ -13,11 +13,12 @@ public class LuckyBreak : SneckoCardModel
     {
         WithBlock(8, 3);
         WithCards(1);
+        WithEnergy(2);
     }
 
 
     private int TwoCostInHand => Owner.GetHand()
-        .Count(e => e.EnergyCost.GetResolved() >= 2);
+        .Count(e => e.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
