@@ -37,7 +37,7 @@
     "GUARDIAN-FLOATING_ORBS.title": "Парящие сферы",
     "GUARDIAN-FUTURE_PLANS.description": "Вы можете поместить {FuturePlansPower:diff()} карту из [gold]руки[/gold] в [gold]Стазис[/gold] в конце хода.",
     "GUARDIAN-FUTURE_PLANS.title": "Планы на будущее",
-    "GUARDIAN-GEAR_UP.title": "Ускориться",
+    "GUARDIAN-GEAR_UP.title": "Сборка",
     "GUARDIAN-GEAR_UP.description": "[gold]Укрепление[/gold] {Brace:diff()}.",
     "GUARDIAN-GEM_CANNON.description": "Наносит {Damage:diff()} урона.\nАктивирует эффекты ВСЕХ ваших[gold]Самоцветов[/gold].",
     "GUARDIAN-GEM_CANNON.title": "Самоцветная пушка",

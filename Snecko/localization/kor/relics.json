@@ -27,7 +27,6 @@
     "SNECKO-SNECKO_SOUL.description": "전투가 시작될 때마다 [gold]영혼 굴리기[/gold] 1장을 [gold]손패[/gold]에 추가합니다.",
     "SNECKO-SNECKO_SOUL.flavor": "0...3...2...2...1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "슈퍼 스네코의 영혼",
-    "SNECKO-SUPER_SNECKO_SOUL.description": "전투가 시작될 때마다 첫 턴과 매 2번째 턴마다 [gold]영혼 굴리기[/gold] 1장을 얻습니다.\n그 외의 턴에는, 턴이 시작될 때 카드를 1장 더 뽑고 그 카드를 [gold]혼란[/gold]시킵니다.",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "정체불명의 알",
     "SNECKO-UNIDENTIFIED_EGG.description": "덱에 [gold]타직업[/gold] 카드를 추가할 때마다 그 카드를 강화합니다.\n획득 시, 무작위 [gold]타직업[/gold] 카드 [blue]{Cards}[/blue]장을 [gold]강화[/gold]합니다.",
