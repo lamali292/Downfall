@@ -55,7 +55,8 @@ public class DownfallPatchManager
             .Add(typeof(CustomPowerIconPatch))
             .Add(typeof(CardOverlayPatches))
             .Add(typeof(AncientSeaGlassConsolePatch))
-            .Add(typeof(CreatureNavigationLinkPatch));
+            .Add(typeof(CreatureNavigationLinkPatch))
+            .Add(typeof(FindExistingInstanceForStackingPatch));
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait

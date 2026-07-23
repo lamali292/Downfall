@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -21,6 +22,7 @@ public class ComboString : SneckoCardModel, IHasGift
         });
         WithDamage(7, 2);
         WithCalculatedVar("Repeat", 0, CalcDamage);
+        WithTip(SneckoTip.Offclass);
     }
 
     public Gift? Gift { get; set; }

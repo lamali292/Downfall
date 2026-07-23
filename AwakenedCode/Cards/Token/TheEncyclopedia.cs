@@ -32,7 +32,7 @@ public class TheEncyclopedia : AwakenedCardModel
         var card = (await CardSelectCmd.FromSimpleGridForRewards(ctx, cards, Owner,
             new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 2, 2))).ToList();
 
-        foreach (var cardModel in card) cardModel.EnergyCost.UpgradeBy(-2);
+        foreach (var cardModel in card) cardModel.EnergyCost.AddThisCombat(-2);
         await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, Owner);
     }
 }

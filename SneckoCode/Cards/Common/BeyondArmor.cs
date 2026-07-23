@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -20,6 +21,7 @@ public class BeyondArmor : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
+        WithTip(SneckoTip.Offclass);
     }
 
     public Gift? Gift { get; set; }

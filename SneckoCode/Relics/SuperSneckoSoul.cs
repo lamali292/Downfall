@@ -18,6 +18,7 @@ public class SuperSneckoSoul : SneckoRelicModel
     public SuperSneckoSoul() : base(RelicRarity.Starter)
     {
         WithTip(SneckoKeywords.Muddle);
+        WithCards(1);
     }
 
 
@@ -26,15 +27,12 @@ public class SuperSneckoSoul : SneckoRelicModel
         if (player != Owner) return;
         if (player.PlayerCombatState == null) return;
         var turnNumber = player.PlayerCombatState.TurnNumber;
-        if (turnNumber % 2 == 1)
+        if (turnNumber  == 1)
         {
             await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
         }
-        else
-        {
-            var card = await CardPileCmd.Draw(ctx, Owner);
-            if (card == null) return;
-            await SneckoCmd.Muddle(ctx, card, this);
-        }
+        var card = await CardPileCmd.Draw(ctx, Owner);
+        if (card == null) return;
+        await SneckoCmd.Muddle(ctx, card, this);
     }
 }

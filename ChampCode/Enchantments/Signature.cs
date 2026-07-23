@@ -15,5 +15,6 @@ public class Signature : DownfallEnchantmentModel<Core.Champ>
     protected override void OnEnchant()
     {
         Card.EnergyCost.UpgradeBy(-Card.EnergyCost.GetWithModifiers(CostModifiers.None));
+        Card.EnergyCost.FinalizeUpgrade();
     }
 }

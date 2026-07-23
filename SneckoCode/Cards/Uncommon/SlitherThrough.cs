@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -16,6 +17,7 @@ public class SlitherThrough : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Uncommon
         });
+        WithTip(SneckoTip.Offclass);
         WithDamage(14, 4);
         WithEnergy(1);
     }

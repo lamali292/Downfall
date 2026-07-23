@@ -13,7 +13,7 @@ public class MarkedCard : SneckoCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithMuddle(1, 1);
+        this.WithMuddle(1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -8,9 +8,14 @@ namespace Snecko.SneckoCode.Powers;
 
 public class BlunderGuardPower : SneckoPowerModel
 {
+    public BlunderGuardPower()
+    {
+        WithEnergy(3);
+    }
+    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Resources.EnergySpent < 3 || cardPlay.Card.Owner.Creature != Owner) return;
+        if (cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue || cardPlay.Card.Owner.Creature != Owner) return;
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }

@@ -30,7 +30,7 @@ public class Ceremony : AwakenedCardModel
         if (card != this) return Task.CompletedTask;
         var a = Owner.Creature.GetPowerAmount<FerventWorshipPower>();
         if (a == 0) return Task.CompletedTask;
-        EnergyCost.UpgradeBy(a);
+        EnergyCost.AddThisCombat(a);
         BaseReplayCount += a;
         return Task.CompletedTask;
     }
@@ -41,7 +41,7 @@ public class Ceremony : AwakenedCardModel
     {
         if (power is not FerventWorshipPower || power.Owner != Owner.Creature) return Task.CompletedTask;
         var i = (int)amount;
-        EnergyCost.UpgradeBy(i);
+        EnergyCost.AddThisCombat(i);
         BaseReplayCount += i;
         return Task.CompletedTask;
     }

@@ -1,4 +1,6 @@
 ﻿{
   "SNECKO-GIFT.title": "Gift",
-  "SNECKO-GIFT.description": "When you obtain this card, get a card reward with the specified card type."
+  "SNECKO-GIFT.description": "When you obtain this card, get a card reward with the specified card type.",
+  "SNECKO-OFFCLASS.title": "Offclass",
+  "SNECKO-OFFCLASS.description": "A card that doesn't belong to your character:\nStatus, Colorless, and Curse cards, or cards from other characters."
 }

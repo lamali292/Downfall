@@ -26,7 +26,7 @@ public class Duplicate : GremlinsCardModel
             .Select(_ =>
             {
                 var echo = card.CreateEcho();
-                echo.EnergyCost.UpgradeBy(-1);
+                echo.EnergyCost.AddThisCombat(-1);
                 return echo;
             })
             .ToList();

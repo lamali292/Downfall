@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -17,6 +18,7 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
+        WithTip(SneckoTip.Offclass);
         WithDamage(7, 2);
     }
 

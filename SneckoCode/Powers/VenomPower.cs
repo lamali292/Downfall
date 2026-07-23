@@ -14,7 +14,7 @@ public class VenomPower() : SneckoPowerModel(PowerType.Debuff)
         Creature? applier,
         CardModel? cardSource)
     {
-        if (power == this || power.Owner != Owner || power.Type != PowerType.Debuff || amount <= 0) return;
+        if (power == this || power.Owner != Owner || power.GetTypeForAmount(amount) != PowerType.Debuff) return;
         await DownfallCreatureCmd.Damage(ctx, Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, applier, null,
             null);
     }

@@ -156,7 +156,7 @@ public static class GuardianCmd
 
     public static async Task TickAll(Player player, PlayerChoiceContext ctx)
     {
-        var stasisCards = player.GetStasis();
+        var stasisCards = player.GetStasis().ToList();
         foreach (var card in stasisCards)
             await TickCard(card, player, ctx);
         GuardianDisplay.Refresh(player);
@@ -211,7 +211,7 @@ public static class GuardianCmd
 
     public static async Task AccelerateUntilExit(PlayerChoiceContext ctx, Player player)
     {
-        var stasisCards = player.GetStasis();
+        var stasisCards = player.GetStasis().ToList();
         foreach (var card in stasisCards)
             while (GuardianCombatModel.StasisCounter[card] > 0)
             {
@@ -226,7 +226,7 @@ public static class GuardianCmd
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        var cards = player.GetStasis();
+        var cards = player.GetStasis().ToList();
         foreach (var card in cards)
         {
             var ticks = accelerateType == AccelerateType.First

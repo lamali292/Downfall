@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -14,6 +15,7 @@ public class SerpentIdol : SneckoCardModel
     {
         WithCostUpgradeBy(-1);
         WithCards(3);
+        WithTip(SneckoTip.Offclass);
         WithKeyword(CardKeyword.Exhaust);
     }
 

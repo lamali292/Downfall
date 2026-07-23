@@ -6,12 +6,12 @@ using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
 
-namespace Snecko.SneckoCode.Cards.Uncommon;
+namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
 public class CheapStock : SneckoCardModel
 {
-    public CheapStock() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public CheapStock() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<CheapStockPower>(1, 1, false);
         WithTip(SneckoKeywords.Muddle);

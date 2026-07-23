@@ -27,7 +27,7 @@
   "SNECKO-SNECKO_SOUL.description": "At the start of each combat, add [gold]Soul Roll[/gold] to your [gold]Hand[/gold].",
   "SNECKO-SNECKO_SOUL.flavor": "0...3...2...2...1",
   "SNECKO-SUPER_SNECKO_SOUL.title": "Super Snecko Soul",
-  "SNECKO-SUPER_SNECKO_SOUL.description": "At the start of every odd turn, gain a [gold]Soul Roll[/gold].\nAt the start of every even turn, draw an additional card at the start of your turn and [gold]Muddle[/gold] it.",
+  "SNECKO-SUPER_SNECKO_SOUL.description": "At the start of each combat, add [gold]Soul Roll[/gold] to your [gold]Hand[/gold].\nAt the start of your turn, draw a card and [gold]Muddle[/gold] it.",
   "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
   "SNECKO-UNIDENTIFIED_EGG.title": "Unidentified Egg",
   "SNECKO-UNIDENTIFIED_EGG.description": "Whenever you add an [gold]Offclass[/gold] card to your [gold]Deck[/gold], [gold]Upgrade[/gold] it.\nUpon pickup, [gold]Upgrade[/gold] [blue]{Cards}[/blue] random [gold]Offclass[/gold] cards.",

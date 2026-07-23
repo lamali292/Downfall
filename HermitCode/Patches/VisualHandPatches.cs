@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Godot;
 using HarmonyLib;
+using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
@@ -32,6 +33,9 @@ internal static class HandVisualSync
         var pile = FindHandPile(hand);
         if (pile == null) return;
 
+        if (!pile.Cards.Any(HermitCmd.HasDeadOn)) return;
+        
+        
         IsSyncing = true;
         try
         {

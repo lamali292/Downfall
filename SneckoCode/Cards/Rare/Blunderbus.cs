@@ -11,9 +11,10 @@ public class Blunderbus : SneckoCardModel
     public Blunderbus() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(8, 3);
+        WithEnergy(3);
     }
 
-    private int ThreeCostInHand => Owner.GetHand().Count(e => e.EnergyCost.GetResolved() >= 3);
+    private int ThreeCostInHand => Owner.GetHand().Count(e => e.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

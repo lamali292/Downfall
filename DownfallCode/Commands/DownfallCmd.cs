@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -133,5 +134,10 @@ public class DownfallCmd
         await CreatureCmd.Heal(existing, hp, isReviving);
 
         return existing;
+    }
+
+    public static bool IsDebuffed(Creature? creature)
+    {
+        return creature?.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff) ?? false;
     }
 }

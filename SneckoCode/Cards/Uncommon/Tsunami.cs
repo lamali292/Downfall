@@ -2,7 +2,9 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -13,6 +15,8 @@ public class Tsunami : SneckoCardModel
     public Tsunami() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<TsunamiPower>(4, 1, false);
+        WithTip(SneckoKeywords.Overflow);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

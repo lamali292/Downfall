@@ -23,6 +23,6 @@ public sealed class Maintenance : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<MaintenanceStrikePower>(ctx, this);
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
-        EnergyCost.UpgradeBy(1);
+        EnergyCost.AddThisCombat(1);
     }
 }
