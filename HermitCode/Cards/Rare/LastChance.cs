@@ -16,6 +16,10 @@ public class LastChance : HermitCardModel
         WithCards(3, 1);
     }
 
+    protected override bool ShouldGlowGoldInternal => IsDebuffed;
+    
+    private bool IsDebuffed => Owner.Creature.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff);
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
@@ -25,7 +29,7 @@ public class LastChance : HermitCardModel
             return Task.CompletedTask;
         }).Execute(ctx);
 
-        if (Owner.Creature.Powers.All(e => e.TypeForCurrentAmount != PowerType.Debuff)) return;
+        if (!IsDebuffed) return;
         await CommonActions.Draw(this, ctx);
     }
 }

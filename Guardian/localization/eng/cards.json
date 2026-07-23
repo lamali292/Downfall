@@ -165,5 +165,11 @@
   "GUARDIAN-SHARED_FLUX.title": "Shared Flux",
   "GUARDIAN-SHARED_FLUX.description": "Choose another player to choose a card in their [gold]Draw Pile[/gold] to place into [gold]Stasis[/gold]. ",
   "GUARDIAN-OVERBLOCK.title": "Overblock",
-  "GUARDIAN-OVERBLOCK.description": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains {OverblockBlockPower:diff()} [gold]Block[/gold] and {OverblockThornsPower:diff()} [gold]Thorns[/gold] for one turn."
+  "GUARDIAN-OVERBLOCK.description": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains {OverblockBlockPower:diff()} [gold]Block[/gold] and {OverblockThornsPower:diff()} [gold]Thorns[/gold] for one turn.",
+  "GUARDIAN-REFRACTED_LIGHT.title": "Refracted Light",
+  "GUARDIAN-REFRACTED_LIGHT.description": "Deal {Damage:diff()} damage.\nGems in this card affect ALL players.",
+  "GUARDIAN-MULTI_TROPS.title": "Multi-Trops",
+  "GUARDIAN-MULTI_TROPS.description": "ALL players gain {ThornsPower:diff()} [gold]Thorns[/gold].",
+  "GUARDIAN-BASTION.title": "Bastion",
+  "GUARDIAN-BASTION.description": "Whenever you [gold]Brace[/gold], all allies gain {BastionPower:diff()} [gold]Block[/gold]."
 }

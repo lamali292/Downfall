@@ -5,4 +5,5 @@ namespace Guardian.GuardianCode.Events;
 public interface IModifyBraceAmount
 {
     decimal ModifyBraceAmount(Player player, decimal amount);
+    Task AfterModifyingBraceAmount(Player player, decimal modifiedAmount);
 }
