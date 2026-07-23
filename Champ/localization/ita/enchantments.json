@@ -1,8 +1,8 @@
 {
-  "CHAMP-STURDY.title": "Robusta",
-  "CHAMP-STURDY.description": "Il [gold]Blocco[/gold] di questa carta è raddoppiato.",
-  "CHAMP-CROWNED.title": "Incoronata",
-  "CHAMP-CROWNED.description": "Questa carta è gratuita da giocare.",
-  "CHAMP-SIGNATURE.title": "Firma",
-  "CHAMP-SIGNATURE.description": "Gratuita da giocare, non richiede [gold]Posizione[/gold] per essere giocata, non esce dalla [gold]Posizione[/gold] all'uso."
+    "CHAMP-STURDY.title": "Robusta",
+    "CHAMP-STURDY.description": "Il [gold]Blocco[/gold] di questa carta è raddoppiato.",
+    "CHAMP-CROWNED.title": "Incoronata",
+    "CHAMP-CROWNED.description": "Questa carta è gratuita da giocare.",
+    "CHAMP-SIGNATURE.title": "Firma",
+    "CHAMP-SIGNATURE.description": "Gratuita da giocare, non richiede [gold]Posizione[/gold] per essere giocata, non esce dalla [gold]Posizione[/gold] all'uso."
 }

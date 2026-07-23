@@ -135,7 +135,6 @@
     "AUTOMATON-EXPLODE.title": "폭발",
     "AUTOMATON-PUNCH_TICKET.title": "펀치 티켓",
     "AUTOMATON-PUNCH_TICKET.description": "피해를 {Damage:diff()} 줍니다.\n[gold]약화[/gold]를 {WeakPower:diff()} 부여합니다.\n[gold]패[/gold]에 [gold]오류[/gold]를 1장 추가합니다.",
-    "AUTOMATON-CRASHOUT.title": "크래시아웃",
     "AUTOMATON-CRASHOUT.description": "상태이상 카드를 낼 때마다 무작위 적에게 {CrashoutPower:diff()}의 피해를 줍니다.",
     "AUTOMATON-CONVERT.title": "변환",
     "AUTOMATON-PROTO_SHIELD.title": "프로토-실드",

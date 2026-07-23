@@ -1,8 +1,8 @@
 {
-  "CHAMP-BOTTLED_TECHNIQUE.title": "Tecnica Imbottigliata",
-  "CHAMP-BOTTLED_TECHNIQUE.description": "Innesca il [gold]Bonus Abilità[/gold] della tua [gold]Posizione[/gold] attuale [blue]{Repeat:diff()}[/blue] volte.",
-  "CHAMP-BREW_OF_SHARPNESS.title": "Infuso di Tagliente",
-  "CHAMP-BREW_OF_SHARPNESS.description": "Ottieni [blue]{CounterPower:diff()}[/blue] [gold]Contrattacco[/gold].",
-  "CHAMP-STIMPACK.title": "Stimolante",
-  "CHAMP-STIMPACK.description": "Entra in [gold]Posizione Suprema[/gold] per [blue]1[/blue] turno."
+    "CHAMP-BOTTLED_TECHNIQUE.title": "Tecnica Imbottigliata",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "Innesca il [gold]Bonus Abilità[/gold] della tua [gold]Posizione[/gold] attuale [blue]{Repeat:diff()}[/blue] volte.",
+    "CHAMP-BREW_OF_SHARPNESS.title": "Infuso di Tagliente",
+    "CHAMP-BREW_OF_SHARPNESS.description": "Ottieni [blue]{CounterPower:diff()}[/blue] [gold]Contrattacco[/gold].",
+    "CHAMP-STIMPACK.title": "Stimolante",
+    "CHAMP-STIMPACK.description": "Entra in [gold]Posizione Suprema[/gold] per [blue]1[/blue] turno."
 }

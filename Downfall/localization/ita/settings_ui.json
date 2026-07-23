@@ -1,6 +1,5 @@
 {
-  "DOWNFALL.mod_title": "Downfall",
-  "DOWNFALL-UPLOAD_METRICS.title": "Carica Dati di Gioco",
-  "DOWNFALL-UPLOAD_METRICS.hover.desc": "I dati di gioco vengono inviati per aiutare a correggere bug e bilanciare la mod. Inviati solo quando si gioca con un personaggio di Downfall.\n\nLe informazioni di identificazione personale NON vengono raccolte.",
-  "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "Votazione"
+    "DOWNFALL-UPLOAD_METRICS.title": "Carica Dati di Gioco",
+    "DOWNFALL-UPLOAD_METRICS.hover.desc": "I dati di gioco vengono inviati per aiutare a correggere bug e bilanciare la mod. Inviati solo quando si gioca con un personaggio di Downfall.\n\nLe informazioni di identificazione personale NON vengono raccolte.",
+    "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "Votazione"
 }

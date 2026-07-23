@@ -1,0 +1,5 @@
+{
+    "GUARDIAN-GEM": "Самоцвет",
+    "COMBAT_REWARD_ADD_GEMS": "Добавить {Amount:plural(ru):[gold]Самоцвет[/gold]|[blue]{Amount}[/blue] [gold]Самоцвета[/gold]|[blue]{Amount}[/blue] [gold]Самоцветов[/gold]} в [gold]колоду[/gold].",
+    "GUARDIAN-GEM_SOCKET_SELECT": "Выберите карту для инкрустации Самоцвета."
+}

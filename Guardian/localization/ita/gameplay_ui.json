@@ -1,5 +1,5 @@
 {
-  "GUARDIAN-GEM": "Gemma",
-  "COMBAT_REWARD_ADD_GEMS": "Aggiungi {Amount:plural:una [gold]Gemma[/gold]|[blue]{Amount}[/blue] [gold]Gemme[/gold]} al tuo [gold]Mazzo[/gold].",
-  "GUARDIAN-GEM_SOCKET_SELECT": "Seleziona una carta in cui incastonare la Gemma."
+    "GUARDIAN-GEM": "Gemma",
+    "COMBAT_REWARD_ADD_GEMS": "Aggiungi {Amount:plural:una [gold]Gemma[/gold]|[blue]{Amount}[/blue] [gold]Gemme[/gold]} al tuo [gold]Mazzo[/gold].",
+    "GUARDIAN-GEM_SOCKET_SELECT": "Seleziona una carta in cui incastonare la Gemma."
 }

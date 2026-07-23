@@ -45,7 +45,6 @@
     "AUTOMATON-REPULSE_POWER.title": "반발력",
     "AUTOMATON-REPULSE_POWER.description": "상태이상 카드를 생성할 때마다, [gold]방어도[/gold]를 얻습니다.",
     "AUTOMATON-REPULSE_POWER.smartDescription": "상태이상 카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]{Amount}[/blue] 얻습니다.",
-    "AUTOMATON-CRASHOUT_POWER.title": "크래시아웃",
     "AUTOMATON-CRASHOUT_POWER.description": "상태이상 카드를 낼 때마다, 무작위 적에게 피해를 줍니다.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "상태이상 카드를 낼 때마다, 무작위 적에게 [blue]{Amount}[/blue]의 피해를 줍니다.",
     "AUTOMATON-BURN_OUT_POWER.title": "번아웃",

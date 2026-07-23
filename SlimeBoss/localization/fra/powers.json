@@ -36,5 +36,21 @@
     "SLIMEBOSS-PROTECT_THE_BOSS_POWER.description": "Empêchez la prochaine fois où vous auriez pris des dégâts d'un ennemi, [gold]Absorbant[/gold] votre Slime en tête à la place.",
     "SLIMEBOSS-PROTECT_THE_BOSS_POWER.smartDescription": "Empêchez {Amount:plural:la prochaine| les [blue]{}[/blue] prochaines} fois où vous auriez pris des dégâts d'un ennemi, [gold]Absorbant[/gold] votre Slime en tête à la place.",
     "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Forme dupliquée",
-    "SLIMEBOSS-MINION_MASTER_POWER.title": "Maître des sbires"
+    "SLIMEBOSS-DUPLICATED_FORM_POWER.description": "La première carte qui cible un ennemi chaque tour est jouée deux fois.",
+    "SLIMEBOSS-DUPLICATED_FORM_POWER.smartDescription": "{Amount:plural:La première carte qui cible|Les [blue]{}[/blue] premières cartes qui ciblent} un ennemi chaque tour {Amount:plural:est jouée|sont jouées} deux fois.",
+    "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.title": "Montrer l'Exemple",
+    "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.description": "La première carte que vous jouez chaque tour et qui cible un ennemi vous fait également [gold]Commander[/gold].",
+    "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.smartDescription": "{Amount:plural:La première carte|Les [blue]{}[/blue] premières cartes} que vous jouez chaque tour et qui {Amount:plural:cible|ciblent} un ennemi vous fait également [gold]Commander[/gold].",
+    "SLIMEBOSS-MINION_MASTER_POWER.title": "Maître des Sbires",
+    "SLIMEBOSS-MINION_MASTER_POWER.description": "Lorsque vous jouez une carte avec [gold]Commandez[/gold], [gold]Commandez[/gold] à nouveau.",
+    "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "Lorsque vous jouez une carte avec [gold]Commandez[/gold], [gold]Commandez[/gold] {Amount:plural:à nouveau|[blue]{}[/blue] fois supplémentaires}.",
+    "SLIMEBOSS-RALLY_THE_TROOPS_POWER.title": "Ralliement",
+    "SLIMEBOSS-RALLY_THE_TROOPS_POWER.description": "La prochaine carte jouée ce tour déclenche l'effet [gold]Commandez[/gold].",
+    "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "{Amount:plural:La prochaine carte jouée|Les [blue]{}[/blue] prochaines cartes jouées} ce tour {Amount:plural:déclenche|déclenchent} l'effet [gold]Commandez[/gold].",
+    "SLIMEBOSS-RECKLESSNESS_POWER.title": "Témérité",
+    "SLIMEBOSS-RECKLESSNESS_POWER.description": "Les cartes \"Tacle\" vous infligent des dégâts supplémentaires.",
+    "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "Les cartes \"Tacle\" vous infligent [blue]{Amount}[/blue] dégâts supplémentaires.",
+    "SLIMEBOSS-GOOP_POWER.remoteDescription": "La prochaine attaque de [orange]{ApplierName}[/orange] inflige [blue]{Amount}[/blue] dégâts supplémentaires et déclenche les effets [gold]Consumez[/gold].",
+    "SLIMEBOSS-OOZE_BATH_POWER.remoteDescription": "Gagne [blue]{Amount}[/blue] de [gold]Goop[/gold] de [orange]{ApplierName}[/orange] au début de son tour.",
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "{Amount:plural:La prochaine|Les [blue]{}[/blue] prochaines} fois que [orange]{ApplierName}[/orange] attaque cet ennemi, le [gold]Goop[/gold] ne sera pas retiré."
 }
