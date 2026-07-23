@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -62,9 +63,21 @@ public static class GuardianHook
             m => m.AfterCardTick(ctx, card, player));
     }
 
-    public static decimal ModifyBraceAmount(ICombatState cs, Player player, decimal amount)
+    public static decimal ModifyBraceAmount(ICombatState cs, Player player, decimal amount, out IEnumerable<IModifyBraceAmount> modifiers)
     {
-        return HookUtils.Aggregate<IModifyBraceAmount, decimal>(cs, amount,
-            (m, val) => m.ModifyBraceAmount(player, amount));
+        return HookUtils.Modify(cs, amount,
+            (m, val) => m.ModifyBraceAmount(player, val), out modifiers);
+    }
+    
+    public static Task AfterModifyingBraceAmount(ICombatState cs, Player player, decimal modifiedAmount, IEnumerable<IModifyBraceAmount> modifiers)
+    {
+        return HookUtils.AfterModifying(cs, modifiers,
+            m=> m.AfterModifyingBraceAmount(player, modifiedAmount));
+    }
+
+    public static Task AfterBrace(ICombatState cs, Player player, decimal amount)
+    {
+        return HookUtils.Dispatch<IAfterBrace>(cs, m => m.AfterBrace(player, amount));
     }
 }
+

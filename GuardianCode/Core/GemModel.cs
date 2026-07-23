@@ -161,17 +161,27 @@ public abstract class GemModel : CardModifier, ICustomModel
         description.Add("energyPrefix", EnergyIconHelper.GetPrefix(ModelDb.Card<StrikeGuardian>()));
     }
 
-    protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay);
+    protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers);
 
 
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
-        for (var i = 0; i < replay; i++) await OnPlayInternal(ctx, cardPlay);
+        var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
+        var targetPlayers = TargetPlayers(affectsAll).ToList();
+        for (var i = 0; i < replay; i++) await OnPlayInternal(ctx, cardPlay, targetPlayers);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
-
+    
+    protected IEnumerable<Player> TargetPlayers(bool affectAllPlayers)
+    {
+        yield return Player;
+        if (!affectAllPlayers) yield break;
+        foreach (var other in CombatState.Players.Where(p => p != Player))
+            yield return other;
+    }
+    
     public virtual int ModifyPlayCount(int originalPlayCount)
     {
         return originalPlayCount;

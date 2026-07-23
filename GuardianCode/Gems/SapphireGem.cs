@@ -5,6 +5,7 @@ using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -18,9 +19,12 @@ public class SapphireGem : GemModel
     public override Color GemColor => new(0x0624BEFF);
     public override CardRarity Rarity => CardRarity.Common;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await GuardianCmd.Brace(ctx, Player, effect);
+        foreach (var player in targetPlayers)
+        {
+            await GuardianCmd.Brace(ctx, player, effect);
+        }
     }
 }

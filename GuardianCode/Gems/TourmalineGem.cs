@@ -6,6 +6,7 @@ using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -21,10 +22,13 @@ public class TourmalineGem : GemModel
     public override Color GemColor => new(0x06BE7BFF);
     public override CardRarity Rarity => CardRarity.Common;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<TourmalineGemPower>(ctx, Player.Creature, effect, Player.Creature, null);
+        foreach (var player in targetPlayers)
+        {
+            await PowerCmd.Apply<TourmalineGemPower>(ctx, player.Creature, effect, Player.Creature, Card);
+        }
     }
 }
 

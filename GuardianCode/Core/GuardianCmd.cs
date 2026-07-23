@@ -199,9 +199,12 @@ public static class GuardianCmd
             power = player.Creature.GetPower<ModeShiftPower>();
         }
 
-        var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount);
+        var modifiedAmount = GuardianHook.ModifyBraceAmount(power!.CombatState, player, amount, out var modifiers);
+        await GuardianHook.AfterModifyingBraceAmount(power.CombatState, player, modifiedAmount, modifiers);
         power.SetAmount((int)(power.Amount - modifiedAmount), true);
         while (power.Amount <= 0) await power.Reset(ctx);
+
+        await GuardianHook.AfterBrace(power.CombatState, player, modifiedAmount);
     }
 
     public static Task Brace(PlayerChoiceContext ctx, CardModel card)

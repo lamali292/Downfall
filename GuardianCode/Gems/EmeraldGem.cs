@@ -6,6 +6,7 @@ using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -21,11 +22,14 @@ public class EmeraldGem : GemModel
     public override Color GemColor => new(0x319028FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
         var owner = Player.Creature;
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
-        await PowerCmd.Apply<EmeraldGemPower>(ctx, owner, effect, owner, null);
+        foreach (var player in targetPlayers)
+        {
+            await PowerCmd.Apply<EmeraldGemPower>(ctx, player.Creature, effect, owner, Card);
+        }
     }
 }
 

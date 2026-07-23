@@ -6,6 +6,7 @@ using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -37,7 +38,7 @@ public class DiamondGem : GemModel
         }
     }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
         return Task.CompletedTask;
     }

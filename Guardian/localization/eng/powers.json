@@ -67,5 +67,8 @@
   "GUARDIAN-OVERBLOCK_THORNS_POWER.title": "Overblock",
   "GUARDIAN-OVERBLOCK_THORNS_POWER.description": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains [gold]Thorns[/gold] this turn.",
   "GUARDIAN-OVERBLOCK_THORNS_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains[blue] {Amount}[/blue] [gold]Thorns[/gold] this turn.",
-  "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains[blue] {Amount}[/blue] [gold]Block[/gold]."
+  "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains[blue] {Amount}[/blue] [gold]Block[/gold].",
+  "GUARDIAN-BASTION_POWER.title": "Bastion",
+  "GUARDIAN-BASTION_POWER.description": "Whenever you [gold]Brace[/gold], all allies gain [gold]Block[/gold].",
+  "GUARDIAN-BASTION_POWER.smartDescription": "Whenever you [gold]Brace[/gold], all allies gain [blue]{Amount}[/blue] [gold]Block[/gold]."
 }
