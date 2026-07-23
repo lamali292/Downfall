@@ -190,7 +190,6 @@
     "AWAKENED-TALON_REND.title": "발톱 찢기",
     "AWAKENED-THAUMATURGY.description": "{DexterityPower:diff()}의 [gold]민첩[/gold]을 얻습니다.\n다음 {ThaumaturgyPower:diff()}턴의 시작 시마다 [gold]패[/gold]에 [gold]의례[/gold]를 1장 추가합니다.",
     "AWAKENED-THAUMATURGY.title": "마법",
-    "AWAKENED-THE_ENCYCLOPEDIA.description": "무작위 카드 {Cards:diff()}장 중 2장을 선택하여 [gold]패[/gold]로 가져옵니다.\n선택한 카드의 비용이 2 감소합니다.",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "백과사전",
     "AWAKENED-THE_TOWER.description": "모든 적에게 {CalculatedDamage:diff()}의 피해를 줍니다.\n이번 전투에서 생성된 카드 1장당 {ExtraDamage:diff()}의 추가 피해를 줍니다.",
     "AWAKENED-THE_TOWER.title": "탑",

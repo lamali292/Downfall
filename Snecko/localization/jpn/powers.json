@@ -6,11 +6,7 @@
     "SNECKO-SAVE_FOR_LATER_POWER.description": "ターン終了時、カードを1枚[gold]保留[/gold]する。",
     "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "ターン終了時、カードを[blue]{Amount}[/blue]枚[gold]保留[/gold]する。",
     "SNECKO-BLUNDER_GUARD_POWER.title": "失敗保険：ブロック",
-    "SNECKO-BLUNDER_GUARD_POWER.description": "コスト[blue]3[/blue]以上のカードをプレイするたび、[gold]ブロック[/gold]を得る。",
-    "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "コスト[blue]3[/blue]以上のカードをプレイするたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "SNECKO-BLUNDER_GUARD_TWO_POWER.title": "失敗保険：筋力",
-    "SNECKO-BLUNDER_GUARD_TWO_POWER.description": "コスト[blue]3[/blue]以上のカードをプレイするたび、[gold]筋力[/gold]を得る。",
-    "SNECKO-BLUNDER_GUARD_TWO_POWER.smartDescription": "コスト[blue]3[/blue]以上のカードをプレイするたび、[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "SNECKO-CHEAP_STOCK_POWER.title": "チープストック",
     "SNECKO-CHEAP_STOCK_POWER.description": "ターン開始時、[gold]手札[/gold]で最もコストが高いカードを[gold]泥まみれ[/gold]にする。",
     "SNECKO-CHEAP_STOCK_POWER.smartDescription": "ターン開始時、[gold]手札[/gold]で最もコストが高いカード[blue]{Amount}[/blue]枚を[gold]泥まみれ[/gold]にする。",
@@ -54,12 +50,6 @@
     "SNECKO-TYPHOON_FANG_POWER.description": "このターン、[gold]オーバーフロー[/gold]するたび、[gold]暴風牙[/gold]のコピーを1枚プレイする。",
     "SNECKO-TYPHOON_FANG_POWER.smartDescription": "このターン、[gold]オーバーフロー[/gold]するたび、[gold]{card}[/gold]のコピーを1枚プレイする。",
     "SNECKO-WEIGHTED_DICE_POWER.title": "重り付きダイス",
-    "SNECKO-WEIGHTED_DICE_POWER.description": "毎ターン最初にカードを[gold]泥まみれ[/gold]にした時、カードを1枚引く。",
-    "SNECKO-WEIGHTED_DICE_POWER.smartDescription": "毎ターン最初に[blue]{Amount}[/blue]回カードを[gold]泥まみれ[/gold]にした時、カードを1枚引く。",
     "SNECKO-FORKED_TONGUE_POWER.title": "二枚舌",
-    "SNECKO-FORKED_TONGUE_POWER.description": "毎ターン最初にプレイした[gold]他クラス[/gold]のカードは、追加でもう1回プレイされる。",
-    "SNECKO-FORKED_TONGUE_POWER.smartDescription": "毎ターン最初にプレイした[blue]{Amount}[/blue]枚の[gold]他クラス[/gold]のカードは、追加でもう1回プレイされる。",
-    "SNECKO-MIMICRY_POWER.title": "擬態",
-    "SNECKO-MIMICRY_POWER.description": "ターン開始時、ランダムな[gold]他クラス[/gold]のカードを1枚得る。",
-    "SNECKO-MIMICRY_POWER.smartDescription": "ターン開始時、ランダムな[gold]他クラス[/gold]のカードを[blue]{Amount}[/blue]枚得る。"
+    "SNECKO-MIMICRY_POWER.title": "擬態"
 }

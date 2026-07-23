@@ -194,7 +194,6 @@
     "AWAKENED-TALON_REND.title": "Artiglio Squarciante",
     "AWAKENED-THAUMATURGY.description": "Ottieni {DexterityPower:diff()} [gold]Destrezza[/gold].\nAll'inizio dei prossimi {ThaumaturgyPower:diff()} turni, aggiungi una [gold]Cerimonia[/gold] nella tua [gold]Mano[/gold].",
     "AWAKENED-THAUMATURGY.title": "Taumaturgia",
-    "AWAKENED-THE_ENCYCLOPEDIA.description": "Scegli 2 di {Cards:diff()} carte casuali da aggiungere alla tua [gold]Mano[/gold].\nCostano 2 in meno.",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "L'Enciclopedia",
     "AWAKENED-THE_TOWER.description": "Infliggi {CalculatedDamage:diff()} di danno a TUTTI i nemici.\nInfligge {ExtraDamage:diff()} danno aggiuntivo per ogni carta creata in questo combattimento.",
     "AWAKENED-THE_TOWER.title": "La Torre",
