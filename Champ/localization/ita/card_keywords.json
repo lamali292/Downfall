@@ -1,5 +1,5 @@
 {
-  "CHAMP-TRIGGERSKILLBONUS.title": "Bonus Abilità",
-  "CHAMP-TRIGGERSKILLBONUS.description": "Ogni volta che giochi un'[gold]Abilità[/gold] mentre sei in una [gold]Posizione[/gold], innesca l'effetto bonus di quella Posizione, fino a [blue]3[/blue] volte.\nI Bonus Abilità innescati da effetti di carte non contano verso questo limite.",
-  "CHAMP-TRIGGERSKILLBONUS.card": "Innesca il [gold]Bonus Abilità[/gold] della tua [gold]Posizione[/gold] attuale."
+    "CHAMP-TRIGGERSKILLBONUS.title": "Bonus Abilità",
+    "CHAMP-TRIGGERSKILLBONUS.description": "Ogni volta che giochi un'[gold]Abilità[/gold] mentre sei in una [gold]Posizione[/gold], innesca l'effetto bonus di quella Posizione, fino a [blue]3[/blue] volte.\nI Bonus Abilità innescati da effetti di carte non contano verso questo limite.",
+    "CHAMP-TRIGGERSKILLBONUS.card": "Innesca il [gold]Bonus Abilità[/gold] della tua [gold]Posizione[/gold] attuale."
 }

@@ -1,0 +1,8 @@
+{
+    "SLIMEBOSS-SLURP.title": "Облизывание",
+    "SLIMEBOSS-SLURP.description": "Добавляет в [gold]руку[/gold] случайный [gold]Лизь[/gold] из [gold]стопки пепла[/gold].",
+    "SLIMEBOSS-COMMAND.title": "Приказ",
+    "SLIMEBOSS-COMMAND.description": "Ваш первый слизень атакует.",
+    "SLIMEBOSS-CONSUME.title": "Поглощение",
+    "SLIMEBOSS-CONSUME.description": "Этот эффект срабатывает при разыгрывании Атаки по существу с [gold]Липкостью[/gold]."
+}

@@ -1,7 +1,12 @@
 {
     "SLIMEBOSS-BLACK_HEART_OF_GOO.title": "Чёрное Вязкое сердце",
+    "SLIMEBOSS-BLACK_HEART_OF_GOO.description": "Восполняет [blue]{Heal}[/blue] ОЗ при [gold]Пожирании[/gold] (не более [blue]{MaxUses}[/blue] ОЗ за бой).",
+    "SLIMEBOSS-BLACK_HEART_OF_GOO.flavor": "Секрет слизи.",
     "SLIMEBOSS-GOOP_DWELLER.title": "Слизень-обыватель",
+    "SLIMEBOSS-GOOP_DWELLER.description": "[gold]Призывает[/gold] [gold]Слизня-крушителя[/gold] в начале боя.",
+    "SLIMEBOSS-GOOP_DWELLER.flavor": "Он шел за мной до дома. Может оставить его?",
     "SLIMEBOSS-GREED_OOZE.title": "Слизень-жадина",
+    "SLIMEBOSS-GREED_OOZE.flavor": "В Шпиле нашелся друг, который пожирает души.",
     "SLIMEBOSS-HEART_OF_GOO.title": "Вязкое сердце",
     "SLIMEBOSS-JEREMIAHS_BANNER.title": "Знамя Джереми",
     "SLIMEBOSS-PROTECTIVE_GEAR.title": "Защитная пластина",

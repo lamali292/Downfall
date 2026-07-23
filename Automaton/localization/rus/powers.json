@@ -2,6 +2,7 @@
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "Базовый класс",
     "AUTOMATON-FULL_RELEASE_POWER.title": "Релиз",
     "AUTOMATON-INFINITE_BEAMS_POWER.title": "Нескончаемые лучи",
+    "AUTOMATON-INFINITE_BEAMS_UPGRADED_POWER.title": "Нескончаемые Лучи+",
     "AUTOMATON-ITS_A_FEATURE_POWER.title": "Не баг, а фича",
     "AUTOMATON-LIBRARY_POWER.title": "Библиотека",
     "AUTOMATON-MAX_OUTPUT_POWER.title": "Разогнанный",
@@ -11,7 +12,14 @@
     "AUTOMATON-SENTIENT_FORM_POWER.title": "Облик сознания",
     "AUTOMATON-SUMMON_ORB_POWER.title": "Призыв сферы",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Репульсор",
+    "AUTOMATON-OVERHEAT_POWER.title": "Перегрев",
+    "AUTOMATON-BRONZE_ORB_POWER.title": "Бронзовая Сфера",
+    "AUTOMATON-MERGE_CONFLICT_POWER.title": "Конфликт Слияния",
+    "AUTOMATON-MERGE_CONFLICT_POWER.description": "При создании следующей Функции, создает её дополнительную копию.",
     "AUTOMATON-CLEAN_CODE_POWER.title": "Чистый код",
+    "AUTOMATON-SELF_REPAIR_POWER.title": "Самопочинка",
+    "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "Восстанавливает [blue]{Amount}[/blue] ОЗ в конце боя.",
     "AUTOMATON-REPULSE_POWER.title": "Репульсор",
+    "AUTOMATON-RECYCLE_BIN_POWER.title": "Корзина",
     "AUTOMATON-COPY_PASTE_POWER.title": "Копировать-вставить"
 }

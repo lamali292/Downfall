@@ -1,0 +1,8 @@
+{
+    "GUARDIAN-POLISHING_OIL.title": "Полировочное масло",
+    "GUARDIAN-POLISHING_OIL.description": "[gold]Шлифовка[/gold] [blue]{Polish:diff()}[/blue].",
+    "GUARDIAN-LIQUID_ACCELERANT.title": "Разгоняющая жидкость",
+    "GUARDIAN-LIQUID_ACCELERANT.description": "Дает [gold]Разгон[/gold], пока карта не выйдет из [gold]Стазиса[/gold].",
+    "GUARDIAN-QUANTUM_ELIXIR.title": "Квантовый эликсир",
+    "GUARDIAN-QUANTUM_ELIXIR.description": "Выберите [blue]1[/blue] из [blue]{Cards:diff()}[/blue] карт и поместите ее в [gold]Стазис[/gold].\nПовторите, пока не будут заполнены все слоты для [gold]Стазиса[/gold]."
+}

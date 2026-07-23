@@ -1,0 +1,20 @@
+{
+    "GUARDIAN-ACCELERATE.title": "Разгон",
+    "GUARDIAN-ACCELERATE.description": "Уменьшает количество ходов до выхода самой правой карты из [gold]Стазиса[/gold].",
+    "GUARDIAN-AGGRAVATE.title": "Утяжеление",
+    "GUARDIAN-AGGRAVATE.description": "Стоимость этой карты повышается на [blue]1[/blue] в начале боя.",
+    "GUARDIAN-BRACE.title": "Укрепление",
+    "GUARDIAN-BRACE.description": "Понижает количество ОЗ, которые тратятся на [gold]Смену режима[/gold].",
+    "GUARDIAN-DEFENSIVE_MODE.title": "Оборонительный режим",
+    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Стойка[/gold].\nНаходясь в Оборонительном режиме вы получаете [blue]3[/blue] [gold]шипов[/gold] и ваша [gold]защита[/gold] не пропадает в начале хода.",
+    "GUARDIAN-PACKAGE.title": "Пак",
+    "GUARDIAN-PACKAGE.description": "Набор из [blue]3[/blue] карт выбранного Босса Шпиля.",
+    "GUARDIAN-POLISH.title": "Шлифовка",
+    "GUARDIAN-POLISH.description": "Понижает вашу [gold]слабость[/gold], [gold]хрупкость[/gold] и [gold]уязвимость[/gold] на [blue]X[/blue].\nПреобразует [blue]X[/blue] стаков временных положительных эффектов в постоянные.",
+    "GUARDIAN-SOCKET.title": "Гнездо",
+    "GUARDIAN-SOCKET.description": "В гнездо карты можно [gold]Инкрустировать[/gold] [gold]Самоцвет[/gold], находясь в Лагере.",
+    "GUARDIAN-STASIS.title": "Стазис",
+    "GUARDIAN-STASIS.description": "Карта, помещенная в [gold]Стазис[/gold], остается в нем на [blue]N+1[/blue] ходов, где [blue]N[/blue] - стоимость карты.\nПри выходе из [gold]Стазиса[/gold], карта возвращается в [gold]руку[/gold] и стоит [blue]0[/blue], пока не разыграна.",
+    "GUARDIAN-TICK.title": "Тик",
+    "GUARDIAN-TICK.description": "Этот эффект срабатывает при уменьшении количества ходов до выхода этой карты из [gold]Стазиса[/gold]."
+}

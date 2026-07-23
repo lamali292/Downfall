@@ -1,6 +1,6 @@
 {
-  "COLLECTOR-COLLECTED_PILE.title": "Pila dei Collezionati",
-  "COLLECTOR-COLLECTED_PILE.description": "Contiene le carte Collezionate che non hai ancora pescato in questo combattimento. Ne peschi una all'inizio del tuo turno.",
-  "COLLECTOR-KINDLE.title": "Accendi",
-  "COLLECTOR-KINDLE.description": "Evoca un [gold]Testa di Torcia[/gold]. Se ne è già stato evocato uno, aumenta i suoi PF Max per questo combattimento."
+    "COLLECTOR-COLLECTED_PILE.title": "Pila dei Collezionati",
+    "COLLECTOR-COLLECTED_PILE.description": "Contiene le carte Collezionate che non hai ancora pescato in questo combattimento. Ne peschi una all'inizio del tuo turno.",
+    "COLLECTOR-KINDLE.title": "Accendi",
+    "COLLECTOR-KINDLE.description": "Evoca un [gold]Testa di Torcia[/gold]. Se ne è già stato evocato uno, aumenta i suoi PF Max per questo combattimento."
 }

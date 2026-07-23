@@ -187,7 +187,7 @@
     "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "每当你给予敌人新的负面状态时，获得{WildfirePower:diff()}点[gold]格挡[/gold]。",
     "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]消耗[/gold]{Cards:diff()}张牌。\n将被[gold]消耗[/gold]的攻击牌和技能牌[gold]变化[/gold]为相反类型的{IfUpgraded:show:已[gold]升级[/gold]的|}卡牌。",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "献祭",
-    "HEXAGHOST-TEMPORAL_LEAP.title": "时间跃迁",
+    "HEXAGHOST-TEMPORAL_LEAP.title": "穿越时间",
     "HEXAGHOST-TEMPORAL_LEAP.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n抽{Cards:diff()}张牌。",
     "HEXAGHOST-RADIANT_FLAME.title": "辉焰",
     "HEXAGHOST-RADIANT_FLAME.description": "每当你[gold]点燃[/gold]一枚鬼火时，获得{RadiantFlamePower:diff()}点[gold]格挡[/gold]。",
