@@ -9,6 +9,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public class LastChance : HermitCardModel
 {
+    //todo internal glow check
     public LastChance() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
