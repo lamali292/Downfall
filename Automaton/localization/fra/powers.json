@@ -56,7 +56,6 @@
     "AUTOMATON-REPULSE_POWER.title": "Répulseur",
     "AUTOMATON-REPULSE_POWER.description": "Lorsque vous créez un Statut, gagnez de [gold]l'Armure[/gold].",
     "AUTOMATON-REPULSE_POWER.smartDescription": "Lorsque vous créez un Statut, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
-    "AUTOMATON-CRASHOUT_POWER.title": "Plantage",
     "AUTOMATON-CRASHOUT_POWER.description": "Chaque fois que vous jouez une carte Statut, infligez des dégâts à un ennemi aléatoire.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "Chaque fois que vous jouez une carte Statut, infligez [blue]{Amount}[/blue] dégâts à un ennemi aléatoire.",
     "AUTOMATON-BURN_OUT_POWER.title": "Court-circuit",

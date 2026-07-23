@@ -1,6 +1,6 @@
 {
-  "SNECKO-MUDDLE.title": "Confondi",
-  "SNECKO-MUDDLE.description": "Confondere una carta cambia il suo costo in questo turno tra [blue]0[/blue] e [blue]3[/blue] casualmente.\nIl costo dopo la Confusione differisce sempre dal costo originale.",
-  "SNECKO-OVERFLOW.title": "Trabocco",
-  "SNECKO-OVERFLOW.description": "Gli effetti Overflow si attivano se hai più di [blue]5[/blue] carte in [gold]Mano[/gold]."
+    "SNECKO-MUDDLE.title": "Confondi",
+    "SNECKO-MUDDLE.description": "Confondere una carta cambia il suo costo in questo turno tra [blue]0[/blue] e [blue]3[/blue] casualmente.\nIl costo dopo la Confusione differisce sempre dal costo originale.",
+    "SNECKO-OVERFLOW.title": "Trabocco",
+    "SNECKO-OVERFLOW.description": "Gli effetti Overflow si attivano se hai più di [blue]5[/blue] carte in [gold]Mano[/gold]."
 }
