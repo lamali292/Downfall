@@ -114,7 +114,7 @@
   "HERMIT-LONE_WOLF.title": "Lone Wolf",
   "HERMIT-LONE_WOLF.description": "Choose a card.\nIt's free to play this turn.\nDiscard the rest of your [gold]Hand[/gold].",
   "HERMIT-HIGH_NOON.title": "High Noon",
-  "HERMIT-HIGH_NOON.description": "[gold]Basic[/gold] [gold]Strikes{IfUpgraded:show: and Defends|}[/gold] gain [gold]Replay[/gold] {HighNoonPower:diff()}.",
+  "HERMIT-HIGH_NOON.description": "[gold]Basic[/gold] [gold]Strikes[/gold]{IfUpgraded:show: and [gold]Defends[/gold]|} gain [gold]Replay[/gold] {HighNoonPower:diff()}.",
   "HERMIT-REPRIEVE.title": "Reprieve",
   "HERMIT-REPRIEVE.description": "Heal {Heal:diff()} HP.",
   "HERMIT-TAKE_AIM.title": "Take Aim",
