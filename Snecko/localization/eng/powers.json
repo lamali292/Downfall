@@ -72,5 +72,6 @@
   "SNECKO-GAMBLE_POWER.description": "Next turn, draw cards and [gold]Muddle[/gold] them.",
   "SNECKO-GAMBLE_POWER.smartDescription": "Next turn, draw {Amount:plural:a card|[blue]{}[/blue] cards} and [gold]Muddle[/gold] {Amount:plural:it|them}.",
   "SNECKO-MULLIGAN_POWER.title": "Mulligan",
-  "SNECKO-MULLIGAN_POWER.description": "The first {Amount:plural:time|[blue]{}[/blue] times} each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}."
+  "SNECKO-MULLIGAN_POWER.description": "The first time each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}.",
+  "SNECKO-MULLIGAN_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}."
 }
