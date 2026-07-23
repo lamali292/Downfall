@@ -9,10 +9,12 @@ using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
+//TODO : remove or rework so we have 20 commons again
 [Pool(typeof(SneckoCardPool))]
+[Obsolete]
 public class Snatch : SneckoCardModel, IHasOverflowEffect
 {
-    public Snatch() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Snatch() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, false)
     {
         this.WithOverflow();
         WithCards(1, 1);
