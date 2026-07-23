@@ -1,0 +1,16 @@
+{
+    "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]Директива: защищать. Директива: защищать. Директива: защищать.[/blue][/sine]",
+    "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "Снижение эффективности боя. Быстрее.",
+    "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "...",
+    "GUARDIAN-GUARDIAN.cardsModifierDescription": "Карты Стража теперь могут появляться в наградах и магазинах.",
+    "GUARDIAN-GUARDIAN.cardsModifierTitle": "Карты Стража",
+    "GUARDIAN-GUARDIAN.description": "Конструкт Шпиля, запрограмированный на его защиту.\nПротокол защиты активируется при получении урона.",
+    "GUARDIAN-GUARDIAN.eventDeathPrevention": "Протокол отключения отменен. Шпиль должен быть защищен.",
+    "GUARDIAN-GUARDIAN.goldMonologue": "[sine]Золото... можно переплавить на компоненты...[/sine]",
+    "GUARDIAN-GUARDIAN.possessiveAdjective": "его",
+    "GUARDIAN-GUARDIAN.pronounObject": "он",
+    "GUARDIAN-GUARDIAN.pronounPossessive": "его",
+    "GUARDIAN-GUARDIAN.pronounSubject": "его",
+    "GUARDIAN-GUARDIAN.title": "Страж",
+    "GUARDIAN-GUARDIAN.titleObject": "Стража"
+}

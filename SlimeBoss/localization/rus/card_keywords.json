@@ -1,0 +1,6 @@
+{
+    "SLIMEBOSS-BURIED.description": "Эта карта всегда выбирается последней при случайном [gold]Облизывании[/gold].",
+    "SLIMEBOSS-BURIED.title": "Тлеющая",
+    "SLIMEBOSS-SLURP.description": "Добавляет в [gold]руку[/gold] случайную карту с \"Лизем\" в названии из [gold]стопки пепла[/gold].",
+    "SLIMEBOSS-SLURP.title": "Облизывание"
+}

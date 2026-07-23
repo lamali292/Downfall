@@ -126,7 +126,7 @@
     "AWAKENED-MYSTIC_ORDER.description": "抽{Cards:diff()}张牌。\n[gold]念咒[/gold]。",
     "AWAKENED-MYSTIC_ORDER.title": "秘术修会",
     "AWAKENED-NIHIL.description": "给予{ManaburnPower:diff()}层[gold]魔力灼烧[/gold]。",
-    "AWAKENED-NIHIL.title": "寂灭",
+    "AWAKENED-NIHIL.title": "归寂",
     "AWAKENED-PECK.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。",
     "AWAKENED-PECK.title": "异鸟啄击",
     "AWAKENED-PLANESWALK.description": "获得{Energy:energyIcons()}。\n将一张[gold]虚空[/gold]加入你的[gold]抽牌堆[/gold]。",

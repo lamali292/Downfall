@@ -53,7 +53,6 @@
     "AUTOMATON-REPULSE_POWER.title": "撃退",
     "AUTOMATON-REPULSE_POWER.description": "状態異常を作成するたび、[gold]ブロック[/gold]を得る。",
     "AUTOMATON-REPULSE_POWER.smartDescription": "状態異常を作成するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
-    "AUTOMATON-CRASHOUT_POWER.title": "クラッシュアウト",
     "AUTOMATON-CRASHOUT_POWER.description": "状態異常カードをプレイするたび、ランダムな敵1体にダメージを与える。",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "状態異常カードをプレイするたび、ランダムな敵1体に[blue]{Amount}[/blue]ダメージを与える。",
     "AUTOMATON-BURN_OUT_POWER.title": "バーンアウト",

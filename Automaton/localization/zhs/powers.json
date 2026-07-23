@@ -56,7 +56,6 @@
     "AUTOMATON-REPULSE_POWER.title": "反冲器",
     "AUTOMATON-REPULSE_POWER.description": "每当你生成一张状态牌时，获得[gold]格挡[/gold]。",
     "AUTOMATON-REPULSE_POWER.smartDescription": "每当你生成一张状态牌时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
-    "AUTOMATON-CRASHOUT_POWER.title": "崩溃退出",
     "AUTOMATON-CRASHOUT_POWER.description": "每当你打出一张状态牌时，随机对敌人造成伤害。",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "每当你打出一张状态牌时，随机对敌人造成[blue]{Amount}[/blue]点伤害。",
     "AUTOMATON-BURN_OUT_POWER.title": "燃烧殆尽",

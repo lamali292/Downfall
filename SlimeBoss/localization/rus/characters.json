@@ -1,0 +1,16 @@
+{
+    "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]Нас много. Мы едины. Нас много. Мы едины. [jitter]Нас много.[/jitter][/green][/sine]",
+    "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "Чавк-чавк...",
+    "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "...",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "Карты Слизнебосса теперь могут появляться в наградах и магазинах.",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "Карты Слизнебосса",
+    "SLIMEBOSS-SLIME_BOSS.description": "Слизнейший генерал Сердца Шпиля.\nМожет сражаться в одиночку или армией.",
+    "SLIMEBOSS-SLIME_BOSS.eventDeathPrevention": "Мы не падем. Слизни все еще нуждаются в нас!",
+    "SLIMEBOSS-SLIME_BOSS.goldMonologue": "[sine]Так много золота... достаточно, чтобы заполнить целый бассейн со слизью...[/sine]",
+    "SLIMEBOSS-SLIME_BOSS.possessiveAdjective": "его",
+    "SLIMEBOSS-SLIME_BOSS.pronounObject": "его",
+    "SLIMEBOSS-SLIME_BOSS.pronounPossessive": "его",
+    "SLIMEBOSS-SLIME_BOSS.pronounSubject": "он",
+    "SLIMEBOSS-SLIME_BOSS.title": "Слизнебосс",
+    "SLIMEBOSS-SLIME_BOSS.titleObject": "Слизнебосса"
+}
