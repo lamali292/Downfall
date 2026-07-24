@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Uncommon;
 [Pool(typeof(SneckoCardPool))]
 public class Mulligan : SneckoCardModel
 {
-    public Mulligan() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+    public Mulligan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         this.WithPower<MulliganPower>(1, 1, false);
     }
