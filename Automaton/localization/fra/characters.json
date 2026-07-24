@@ -2,8 +2,8 @@
     "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Aucune erreur détectée. Aucune erreur détectée.[/blue][/sine]",
     "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Avertissement : délai de réponse de l'allié dépassé.[/red]",
     "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
-    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Les cartes du Défectueux peuvent apparaître dans les récompenses et dans la boutique.",
-    "AUTOMATON-AUTOMATON.cardsModifierTitle": "Les cartes du Défectueux",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Les cartes de l'Automate peuvent apparaître dans les récompenses et dans la boutique.",
+    "AUTOMATON-AUTOMATON.cardsModifierTitle": "Les cartes de l'Automate",
     "AUTOMATON-AUTOMATON.description": "Le gardien mécanique de la Cité.\nS'adapte à n'importe quelle situation.",
     "AUTOMATON-AUTOMATON.eventDeathPrevention": "Séquence d'arrêt refusée. Mission incomplète.",
     "AUTOMATON-AUTOMATON.goldMonologue": "[sine]Calcul de la valeur… suffisante pour acquérir les composants nécessaires…[/sine]",
@@ -11,6 +11,6 @@
     "AUTOMATON-AUTOMATON.pronounObject": "il/lui",
     "AUTOMATON-AUTOMATON.pronounPossessive": "son/sa/ses",
     "AUTOMATON-AUTOMATON.pronounSubject": "il/lui",
-    "AUTOMATON-AUTOMATON.title": "Le Défectueux",
-    "AUTOMATON-AUTOMATON.titleObject": "Le Défectueux"
+    "AUTOMATON-AUTOMATON.title": "L'Automate",
+    "AUTOMATON-AUTOMATON.titleObject": "de l'Automate"
 }

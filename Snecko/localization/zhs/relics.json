@@ -27,6 +27,7 @@
     "SNECKO-SNECKO_SOUL.description": "在每场战斗开始时，将一张[gold]灵魂骰掷[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-SNECKO_SOUL.flavor": "0……3……2……2……1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "超级蛇魂",
+    "SNECKO-SUPER_SNECKO_SOUL.description": "每场战斗回合开始时，获得一张[gold]灵魂骰掷[/gold]。\n在你的回合开始时，抽1张牌并将其[gold]混淆[/gold]。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "未知之蛋",
     "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。\n拾起时，随机[gold]升级[/gold][blue]{Cards}[/blue]张[gold]异色牌[/gold]。",

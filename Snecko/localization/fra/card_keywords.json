@@ -1,0 +1,6 @@
+{
+    "SNECKO-MUDDLE.title": "Confondez",
+    "SNECKO-MUDDLE.description": "Confondre une carte fait varier son coût aléatoirement entre [blue]0[/blue] et [blue]3[/blue] ce tour.\nLe coût après avoir Confondu diffère toujours du coût original. ",
+    "SNECKO-OVERFLOW.title": "Excédent",
+    "SNECKO-OVERFLOW.description": "Les effets des cartes Excédentes s'activent si vous avez plus de [blue]5[/blue] cartes dans votre  [gold]Main[/gold]."
+}
