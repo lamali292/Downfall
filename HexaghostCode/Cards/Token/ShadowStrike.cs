@@ -11,7 +11,7 @@ public class ShadowStrike : HexaghostCardModel
 {
     public ShadowStrike() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
+        WithDamage(4, 2);
         WithKeywords(CardKeyword.Exhaust, CardKeyword.Retain);
     }
 

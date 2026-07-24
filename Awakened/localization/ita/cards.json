@@ -74,6 +74,7 @@
     "AWAKENED-EVENTIDE.title": "Vespro",
     "AWAKENED-EXTENSION.description": "Infliggi {Damage:diff()} di danno.\nOgni volta che giochi un Potere, riporta questa carta dalla [gold]Pila Scarti[/gold] alla tua [gold]Mano[/gold].",
     "AWAKENED-EXTENSION.title": "Estensione",
+    "AWAKENED-E_S_P.title": "ESP",
     "AWAKENED-E_S_P.description": "Pesca {Cards:diff()} {Cards:plural:carta|carte}.",
     "AWAKENED-FEATHER_FLARE.description": "Infliggi {Damage:diff()} di danno.",
     "AWAKENED-FEATHER_FLARE.title": "Bagliore di Piume",
@@ -194,6 +195,7 @@
     "AWAKENED-TALON_REND.title": "Artiglio Squarciante",
     "AWAKENED-THAUMATURGY.description": "Ottieni {DexterityPower:diff()} [gold]Destrezza[/gold].\nAll'inizio dei prossimi {ThaumaturgyPower:diff()} turni, aggiungi una [gold]Cerimonia[/gold] nella tua [gold]Mano[/gold].",
     "AWAKENED-THAUMATURGY.title": "Taumaturgia",
+    "AWAKENED-THE_ENCYCLOPEDIA.description": "Scegli 2 di {Cards:diff()} carte casuali da aggiungere alla tua [gold]Mano[/gold].\nCostano 2{energyPrefix:energyIcons(1)} in meno.",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "L'Enciclopedia",
     "AWAKENED-THE_TOWER.description": "Infliggi {CalculatedDamage:diff()} di danno a TUTTI i nemici.\nInfligge {ExtraDamage:diff()} danno aggiuntivo per ogni carta creata in questo combattimento.",
     "AWAKENED-THE_TOWER.title": "La Torre",
@@ -204,5 +206,6 @@
     "AWAKENED-VICTUALS.title": "Vettovaglie",
     "AWAKENED-WAVE_OF_MIASMA.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nApplichi {ManaburnPower:diff()} [gold]Manaustione[/gold] a TUTTI i nemici.",
     "AWAKENED-WAVE_OF_MIASMA.title": "Onda di Miasma",
-    "AWAKENED-ESP.description": "Pesca {Cards:diff()} {Cards:plural:carta|carte}."
+    "AWAKENED-ESP.description": "Pesca {Cards:diff()} {Cards:plural:carta|carte}.",
+    "AWAKENED-ESP.title": "ESP"
 }

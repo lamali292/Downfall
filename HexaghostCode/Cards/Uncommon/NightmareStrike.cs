@@ -13,10 +13,10 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class NightmareStrike : HexaghostCardModel, IHasAfterlifeEffect
 {
-    public NightmareStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public NightmareStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithUpgradingCardTip<ShadowStrike>();
-        WithDamage(5, 2);
+        WithDamage(4, 2);
         WithTags(CardTag.Strike);
         this.WithAfterlife();
     }

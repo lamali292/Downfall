@@ -1,5 +1,6 @@
 {
     "GUARDIAN-BAALORS_LORDLY_PLATE.title": "バロールの豪奢なプレート",
+    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "[gold]制動[/gold]するたび、さらに[blue]{Brace:diff()}[/blue][gold]制動[/gold]する。",
     "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "装甲は、いくらあっても足りない。",
     "GUARDIAN-BOTTLED_BLACK_HOLE.title": "瓶詰めのブラックホール",
     "GUARDIAN-BOTTLED_BLACK_HOLE.description": "入手時、カードを1枚[purple]時紡ぎ[/purple]で[gold]エンチャント[/gold]する。",

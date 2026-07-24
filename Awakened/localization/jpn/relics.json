@@ -25,6 +25,7 @@
     "AWAKENED-RIPPED_DOLL.description": "戦闘の最初の[blue]2[/blue]ターンの開始時、[gold]召喚[/gold]する。",
     "AWAKENED-RIPPED_DOLL.flavor": "かつての自分を思い出させる、最後の形見。今なお潜在的な魔力を宿している。",
     "AWAKENED-SHREDDED_DOLL.title": "引き裂かれた人形",
+    "AWAKENED-SHREDDED_DOLL.description": "ターン開始時、[gold]召喚[/gold]する。\n[gold]儀式[/gold][blue]{RitualPower:diff()}[/blue]を持って戦闘を開始する。",
     "AWAKENED-SHREDDED_DOLL.flavor": "己の弱さを思い出させる品。それでも、手放すことができない。",
     "AWAKENED-TOME_OF_PORTALMANCY.title": "ポータルの書",
     "AWAKENED-TOME_OF_PORTALMANCY.description": "[gold]虚無[/gold]を生成するたび、すべての敵に[gold]マナバーン[/gold][blue]2[/blue]を付与する。",
