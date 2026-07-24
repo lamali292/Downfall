@@ -1,5 +1,14 @@
 name: Paratranz to GitHub
 
+# Nightly translation sync. Pushes directly to main, so it authenticates with the
+# release deploy key rather than GITHUB_TOKEN — GITHUB_TOKEN is not on the bypass
+# list of the `main` ruleset and would be rejected.
+#
+# Requires on environment PARATRANZ_ENV:
+#   deployment branch    - main (and NO required reviewer; this runs unattended at 00:00)
+#   RELEASE_DEPLOY_KEY   - private half of the write-enabled deploy key
+#   PARATRANZ_API_KEY_*  - the eight Paratranz tokens
+
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -10,8 +19,6 @@ jobs:
     name: Download Translations
     environment: PARATRANZ_ENV
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     env:
       PARATRANZ_API_KEY_ZHS: ${{ secrets.PARATRANZ_API_KEY_ZHS }}
       PARATRANZ_API_KEY_DEU: ${{ secrets.PARATRANZ_API_KEY_DEU }}
@@ -23,6 +30,8 @@ jobs:
       PARATRANZ_API_KEY_PTB: ${{ secrets.PARATRANZ_API_KEY_PTB }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
