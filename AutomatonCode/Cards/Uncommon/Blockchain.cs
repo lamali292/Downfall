@@ -10,6 +10,7 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Blockchain : AutomatonCardModel
 {
+    //todo make activate "on draw" effects such as Void
     public Blockchain() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(2, 1);
