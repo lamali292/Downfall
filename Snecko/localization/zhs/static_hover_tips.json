@@ -1,4 +1,6 @@
 {
     "SNECKO-GIFT.title": "赠礼",
-    "SNECKO-GIFT.description": "当你获得这张牌时，获得一次指定类型的卡牌奖励。"
+    "SNECKO-GIFT.description": "当你获得这张牌时，获得一次指定类型的卡牌奖励。",
+    "SNECKO-OFFCLASS.title": "异色牌",
+    "SNECKO-OFFCLASS.description": "状态、无色、诅咒或属于其他角色的卡牌。"
 }

@@ -8,7 +8,7 @@
     "COLLECTOR-CANT_TOUCH_THIS_POWER.title": "Non Mi Toccare",
     "COLLECTOR-CANT_TOUCH_THIS_POWER.description": "Quando blocchi completamente un attacco, applica [gold]Destino[/gold] all'attaccante.",
     "COLLECTOR-CANT_TOUCH_THIS_POWER.smartDescription": "Quando blocchi completamente un attacco, applica [blue]{Amount}[/blue] [gold]Destino[/gold] all'attaccante.",
-    "COLLECTOR-COLLECTOR_DOOM_POWER.title": "Destino",
+    "COLLECTOR-COLLECTOR_DOOM_POWER.title": "Condanna",
     "COLLECTOR-COLLECTOR_DOOM_POWER.description": "Perde PF all'inizio del suo turno, rimuovendo tutto il [gold]Destino[/gold] a meno che non sia [gold]Afflitto[/gold].",
     "COLLECTOR-COLLECTOR_DOOM_POWER.smartDescription": "Perde [blue]{Amount}[/blue] PF all'inizio del suo turno, rimuovendo tutto il [gold]Destino[/gold] a meno che non sia [gold]Afflitto[/gold].",
     "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.title": "Forma del Signore Oscuro",

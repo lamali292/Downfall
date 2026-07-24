@@ -1,6 +1,7 @@
 {
     "COLLECTOR-COLLECTOR.aromaPrinciple": "[sine][purple]Tutto è mio. Tutto sarà mio. [jitter]Tutto.[/jitter][/purple][/sine]",
     "COLLECTOR-COLLECTOR.banter.alive.endTurnPing": "Ho anime da collezionare.",
+    "COLLECTOR-COLLECTOR.banter.dead.endTurnPing": "...",
     "COLLECTOR-COLLECTOR.cardsModifierDescription": "Le carte del Collezionista appariranno ora nelle ricompense e nei negozi.",
     "COLLECTOR-COLLECTOR.cardsModifierTitle": "Carte del Collezionista",
     "COLLECTOR-COLLECTOR.description": "La famigerata Strega della Città.\nReclama anime e cianfrusaglie.",
