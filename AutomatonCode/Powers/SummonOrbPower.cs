@@ -8,6 +8,7 @@ namespace Automaton.AutomatonCode.Powers;
 public class SummonOrbPower : AutomatonPowerModel
 {
     // TODO : maybe try to code similar to NostalgiaPower. but i had issues previously with this
+    // todo make fail if stash is full
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries ||
