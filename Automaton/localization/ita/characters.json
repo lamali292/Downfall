@@ -1,6 +1,7 @@
 {
     "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Nessun errore rilevato. Nessun errore rilevato.[/blue][/sine]",
     "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Attenzione: tempo di risposta dell'alleato superato.[/red]",
+    "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
     "AUTOMATON-AUTOMATON.cardsModifierDescription": "Le carte dell'Automaton appariranno ora nelle ricompense e nei negozi.",
     "AUTOMATON-AUTOMATON.cardsModifierTitle": "Carte Automaton",
     "AUTOMATON-AUTOMATON.description": "Il guardiano meccanico della Città.\nSi adatta a qualsiasi situazione di combattimento.",

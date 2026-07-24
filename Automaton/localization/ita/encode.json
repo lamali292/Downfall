@@ -42,6 +42,7 @@
     "AUTOMATON-NULL_POINTER.functionPrefix": "nullo",
     "AUTOMATON-NULL_POINTER.functionName": "Puntatore",
     "AUTOMATON-PHILOSOPHIZE.functionPrefix": "saggio",
+    "AUTOMATON-PHILOSOPHIZE.functionName": "Idea",
     "AUTOMATON-SEPARATOR.functionPrefix": "diviso",
     "AUTOMATON-SEPARATOR.functionName": "Figlio",
     "AUTOMATON-TERMINATOR.functionPrefix": "triste",
