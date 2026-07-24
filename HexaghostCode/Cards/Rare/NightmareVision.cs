@@ -12,7 +12,7 @@ public class NightmareVision : HexaghostCardModel
 {
     public NightmareVision() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<NightmareVisionPower>(4, 1, false);
+        this.WithPower<NightmareVisionPower>(4, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
