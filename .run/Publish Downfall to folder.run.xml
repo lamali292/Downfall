@@ -1,0 +1,6 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish Downfall to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish configuration="ExportRelease" platform="Any CPU" target_folder="$PROJECT_DIR$/bin/ExportRelease/net9.0/publish" target_framework="net9.0" uuid_high="235595486208609568" uuid_low="-5314557146192442183" />
+    <method v="2" />
+  </configuration>
+</component>
