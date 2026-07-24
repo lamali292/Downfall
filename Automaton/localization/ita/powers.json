@@ -56,6 +56,7 @@
     "AUTOMATON-REPULSE_POWER.title": "Respingi",
     "AUTOMATON-REPULSE_POWER.description": "Ogni volta che crei uno Stato, ottieni [gold]Blocco[/gold].",
     "AUTOMATON-REPULSE_POWER.smartDescription": "Ogni volta che crei uno Stato, ottieni [blue]{Amount}[/blue] [gold]Blocco[/gold].",
+    "AUTOMATON-CRASHOUT_POWER.title": "Debug",
     "AUTOMATON-CRASHOUT_POWER.description": "Ogni volta che giochi una carta Stato, infliggi danno a un nemico casuale.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "Ogni volta che giochi una carta Stato, infliggi [blue]{Amount}[/blue] danno a un nemico casuale.",
     "AUTOMATON-BURN_OUT_POWER.title": "Esaurimento",

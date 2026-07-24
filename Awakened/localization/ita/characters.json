@@ -1,6 +1,7 @@
 {
     "AWAKENED-AWAKENED.aromaPrinciple": "[sine][purple]Il Vuoto chiama. Io rispondo. Il Vuoto chiama. Io rispondo. [jitter]Rispondo sempre.[/jitter][/purple][/sine]",
     "AWAKENED-AWAKENED.banter.alive.endTurnPing": "L'eternità attende.",
+    "AWAKENED-AWAKENED.banter.dead.endTurnPing": "...",
     "AWAKENED-AWAKENED.cardsModifierDescription": "Le carte del Risvegliato appariranno ora nelle ricompense e nei negozi.",
     "AWAKENED-AWAKENED.cardsModifierTitle": "Carte del Risvegliato",
     "AWAKENED-AWAKENED.description": "Il trionfo del Culto e l'immortale stregone oscuro dell'Aldilà.\nPossiede potere sul Vuoto e su tutti gli altri elementi.",

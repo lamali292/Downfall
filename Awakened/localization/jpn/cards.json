@@ -195,6 +195,7 @@
     "AWAKENED-TALON_REND.title": "かぎ爪裂き",
     "AWAKENED-THAUMATURGY.description": "[gold]敏捷[/gold]{DexterityPower:diff()}を得る。\n次の{ThaumaturgyPower:diff()}ターンの開始時、[gold]手札[/gold]に[gold]セレモニー[/gold]を1枚加える。",
     "AWAKENED-THAUMATURGY.title": "魔導学",
+    "AWAKENED-THE_ENCYCLOPEDIA.description": "ランダムな{Cards:diff()}枚のカードから2枚を選び、[gold]手札[/gold]に加える。\nそれらのコストは2{energyPrefix:energyIcons(1)}減少する。",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "エンサイクロペディア",
     "AWAKENED-THE_TOWER.description": "すべての敵に{CalculatedDamage:diff()}ダメージを与える。\nこの戦闘中に作成したカード1枚につき、追加で{ExtraDamage:diff()}ダメージを与える。",
     "AWAKENED-THE_TOWER.title": "塔",
