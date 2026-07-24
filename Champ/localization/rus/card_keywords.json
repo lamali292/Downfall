@@ -1,0 +1,5 @@
+{
+    "CHAMP-TRIGGERSKILLBONUS.title": "Бонус стойки",
+    "CHAMP-TRIGGERSKILLBONUS.description": "Когда вы находитесь в [gold]Стойке[/gold] и разыгрываете [gold]Навык[/gold], срабатывает бонусный эффект текущей [gold]Стойки[/gold] (до [blue]3[/blue] раз).\nКарты, действие которых активирует [gold]Бонус стойки[/gold], не влияют на лимит.",
+    "CHAMP-TRIGGERSKILLBONUS.card": "Активирует [gold]Бонус стойки[/gold]."
+}

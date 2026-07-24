@@ -1,6 +1,7 @@
 {
     "CHAMP-CHAMP.aromaPrinciple": "[sine][orange]Non ho mai perso. Non perderò mai. [jitter]Non posso perdere.[/jitter][/orange][/sine]",
     "CHAMP-CHAMP.banter.alive.endTurnPing": "Fai la tua mossa.",
+    "CHAMP-CHAMP.banter.dead.endTurnPing": "...",
     "CHAMP-CHAMP.cardsModifierDescription": "Le carte del Campione appariranno ora nelle ricompense e nei negozi.",
     "CHAMP-CHAMP.cardsModifierTitle": "Carte del Campione",
     "CHAMP-CHAMP.description": "L'indiscusso Re dell'Arena.\nNon ha mai perso un match.[fly_in][/fly_in]",

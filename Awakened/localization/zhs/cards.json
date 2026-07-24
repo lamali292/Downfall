@@ -195,6 +195,7 @@
     "AWAKENED-TALON_REND.title": "爪肆",
     "AWAKENED-THAUMATURGY.description": "获得{DexterityPower:diff()}点[gold]敏捷[/gold]。\n下{ThaumaturgyPower:diff()}个回合开始时，将一张[gold]祭仪[/gold]加入你的[gold]手牌[/gold]。",
     "AWAKENED-THAUMATURGY.title": "奇术",
+    "AWAKENED-THE_ENCYCLOPEDIA.description": "从{Cards:diff()}张随机牌中选择2张加入你的[gold]手牌[/gold]。\n其耗能减少{energyPrefix:energyIcons(1)}。",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "百科全书",
     "AWAKENED-THE_TOWER.description": "对所有敌人造成{CalculatedDamage:diff()}点伤害。\n本场战斗此前你每生成过一张牌，额外造成{ExtraDamage:diff()}点伤害。",
     "AWAKENED-THE_TOWER.title": "高塔",

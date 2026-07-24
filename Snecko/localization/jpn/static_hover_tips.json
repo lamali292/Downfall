@@ -1,4 +1,6 @@
 {
     "SNECKO-GIFT.title": "ギフト",
-    "SNECKO-GIFT.description": "このカードを入手した時、指定されたカードタイプのカード報酬を得る。"
+    "SNECKO-GIFT.description": "このカードを入手した時、指定されたカードタイプのカード報酬を得る。",
+    "SNECKO-OFFCLASS.title": "他クラス",
+    "SNECKO-OFFCLASS.description": "自分のキャラクターに属さないカード：\n状態異常、無色、呪いのカード、または他のキャラクターのカード。"
 }
