@@ -1,4 +1,11 @@
 name: Release
+
+# Two-stage release:
+#   prepare  (manual button) -> bumps versions, commits, pushes tag. Nothing else.
+#   release  (tag push)      -> builds, publishes GitHub release, uploads to Steam.
+# The tag push from `prepare` is what starts `release`. Unlike GITHUB_TOKEN, a deploy-key
+# push DOES retrigger workflows — that chaining is intentional here, not a bug.
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,25 +21,29 @@ on:
         default: true
   push:
     tags: ['v*']
-permissions:
-  contents: write
+
 env:
   MEGADOT_VERSION: 4.5.1-m.11
   SPINE_VERSION: 4.2-4.5.1-stable
+
 jobs:
-  release:
+  # ---------------------------------------------------------------------------
+  # STAGE 1 — version bump + tag. Manual runs only.
+  # Environment `release-prepare`: required reviewer = you, branches = main.
+  # Holds RELEASE_DEPLOY_KEY, which is on the bypass list of both rulesets.
+  # ---------------------------------------------------------------------------
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    environment: release
+    environment: release-prepare
+    permissions:
+      contents: read          # the push uses the deploy key, not GITHUB_TOKEN
     steps:
       - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
 
-      - name: Clean stale build artifacts
-        run: rm -rf .godot obj bin
-
-      # Manual runs: bump versions in the repo, commit, and tag — the CI replacement for release.ps1's
-      # front half. Pushes made with GITHUB_TOKEN don't retrigger workflows, so no double run.
-      - name: Bump versions and tag (manual runs)
-        if: github.event_name == 'workflow_dispatch'
+      - name: Bump versions, commit and tag
         run: |
           CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' build/mod.build.props | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
           if [ -n "${{ inputs.version }}" ]; then
@@ -66,9 +77,46 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add build/mod.build.props Downfall.json
           git commit -m "Release v$VERSION"
-          git tag "v$VERSION"
-          git push origin "HEAD:$GITHUB_REF_NAME" --tags
+
+          # Annotated tag carries the steam toggle forward — stage 2 has no inputs context.
+          git tag -a "v$VERSION" -m "steam=${{ inputs.steam }}"
+          git push origin "HEAD:${GITHUB_REF_NAME}" "refs/tags/v$VERSION"
+
+          echo "Pushed v$VERSION — the tag push starts the release job."
+
+  # ---------------------------------------------------------------------------
+  # STAGE 2 — build and publish. Tag pushes only.
+  # Environment `release`: required reviewer = you, tags = v*.
+  # Holds STEAM_USERNAME / STEAM_PASSWORD / STEAM_SHARED_SECRET.
+  # ---------------------------------------------------------------------------
+  release:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write         # gh release create
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clean stale build artifacts
+        run: rm -rf .godot obj bin
+
+      - name: Set version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Tag must be vX.Y.Z, got $GITHUB_REF_NAME"; exit 1
+          fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      # Reads "steam=true|false" out of the annotated tag written by `prepare`.
+      # Tags pushed by hand from a local clone have no message -> defaults to true.
+      - name: Read steam flag from tag
+        run: |
+          git fetch --force origin "refs/tags/${GITHUB_REF_NAME}:refs/tags/${GITHUB_REF_NAME}" --quiet || true
+          STEAM=$(git for-each-ref "refs/tags/${GITHUB_REF_NAME}" --format='%(contents)' \
+                  | grep -oE 'steam=(true|false)' | cut -d= -f2 || true)
+          echo "STEAM=${STEAM:-true}" >> "$GITHUB_ENV"
 
       - uses: actions/setup-dotnet@v4
         with:
@@ -113,16 +161,6 @@ jobs:
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
-
-      # Tag pushes: version comes from the tag (v1.2.3 -> 1.2.3). Manual runs set VERSION in the bump step.
-      - name: Set version from tag
-        if: github.event_name != 'workflow_dispatch'
-        run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "Tag must be vX.Y.Z, got $GITHUB_REF_NAME"; exit 1
-          fi
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       # Patch the manifest's top-level "version" to match the tag (build-time only, not committed).
       # min_game_version and the BaseLib min_version stay as committed in the repo.
@@ -198,21 +236,21 @@ jobs:
             --generate-notes \
             --notes-file banner.md
 
-      # ---- Steam Workshop upload (opt-in) ----
+      # ---- Steam Workshop upload (opt-in via the annotated tag) ----
       # Requires repo VARIABLE  STEAM_WORKSHOP_ID  (the id from mod_id.txt)
-      # and repo SECRETS:
+      # and ENVIRONMENT SECRETS on `release` (NOT repository secrets):
       #   STEAM_USERNAME       - builder account login name
       #   STEAM_PASSWORD       - builder account password
       #   STEAM_SHARED_SECRET  - that account's Steam Guard shared secret (for TOTP)
       - name: Generate Steam TOTP
-        if: vars.STEAM_WORKSHOP_ID != '' && (github.event_name != 'workflow_dispatch' || inputs.steam)
+        if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
         id: steam-totp
         uses: CyberAndrii/steam-totp@v1
         with:
           shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
       - name: Upload to Steam Workshop
-        if: vars.STEAM_WORKSHOP_ID != '' && (github.event_name != 'workflow_dispatch' || inputs.steam)
+        if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
         uses: m00nl1ght-dev/steam-workshop-deploy@v4
         with:
           username: ${{ secrets.STEAM_USERNAME }}

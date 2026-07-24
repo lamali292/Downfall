@@ -17,6 +17,7 @@ env:
   SPINE_VERSION: 4.2-4.5.1-stable
 jobs:
   publish:
+    if: "!startsWith(github.event.head_commit.message, 'Release v')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
