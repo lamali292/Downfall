@@ -18,7 +18,7 @@
     "GUARDIAN-AQUAMARINE_GEM.description": "Добавляет в [gold]руку[/gold] [gold]«Кристаллическую защиту»[/gold].",
     "GUARDIAN-AMBER_GEM.description": "[gold]Разгон[/gold].",
     "GUARDIAN-AMETHYST_GEM.description": "Отнимает у ВСЕХ врагов {Gem:diff()} [gold]силы[/gold] на этот ход.",
-    "GUARDIAN-BISMUTH_GEM.description": "Дает {Gem:diff()} [gold]артефакта[/gold]. [gold]Утяжеление[/gold].",
+    "GUARDIAN-BISMUTH_GEM.description": "Дает {Gem:diff()} [gold]{Gem:plural:артефакт|артефакта}[/gold]. [gold]Утяжеление[/gold].",
     "GUARDIAN-CITRINE_GEM.description": "Дает {Energy:energyIcons()}.",
     "GUARDIAN-DIAMOND_GEM.description": "[gold]Повтор[/gold] 1 (1 раз за бой). [gold]Утяжеление[/gold].",
     "GUARDIAN-EMERALD_GEM.description": "Дает {Gem:diff()} [gold]ловкости[/gold] на этот ход.",

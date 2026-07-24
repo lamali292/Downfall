@@ -1,0 +1,13 @@
+{
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "Стойка Рыцаря",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]Бонус стойки[/gold]: дает [blue]{DefensiveSkill}[/blue] [gold]Контратаки[/gold].\n[gold]Финишер[/gold]: дает [blue]{DefensiveFinisher}[/blue] [gold]защиты[/gold].",
+    "CHAMP-CHAMP_BERSERKER_STANCE.title": "Стойка Берсерка",
+    "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]Бонус стойки[/gold]: дает [blue]{BerserkerSkill}[/blue] [gold]бодрости[/gold].\n[gold]Финишер[/gold]: дает [blue]{BerserkerFinisher}[/blue] [gold]силы[/gold].",
+    "CHAMP-CHAMP_NO_STANCE.title": "Не в стойке",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Совершенная стойка",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]Бонус стойки[/gold]: дает [blue]{BerserkerSkill}[/blue] [gold]бодрости[/gold] и [blue]{DefensiveSkill}[/blue] [gold]Контратаки[/gold].\n[gold]Финишер[/gold]: дает [blue]{BerserkerFinisher}[/blue] [gold]силы[/gold] и [blue]{DefensiveFinisher}[/blue] [gold]защиты[/gold].",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: дает {BerserkerFinisher} [gold]силы[/gold] и {DefensiveFinisher} [gold]защиты[/gold].",
+    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Финишер[/gold]",
+    "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: дает {BerserkerFinisher} [gold]силы[/gold].",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: дает {DefensiveFinisher} [gold]защиты[/gold]."
+}

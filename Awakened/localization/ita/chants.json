@@ -1,12 +1,12 @@
 {
     "AWAKENED-RECITATION.chant": "Infliggi {Damage:diff()} di danno di nuovo.",
-    "AWAKENED-CAW.chant": "Aumenta il danno di TUTTE le carte [gold]Graccchio[/gold] di {Caw:diff()} in questo combattimento.",
+    "AWAKENED-CAW.chant": "Aumenta il danno di TUTTE le carte [gold]Gracchio[/gold] di {Caw:diff()} in questo combattimento.",
     "AWAKENED-FEATHER_FLARE.chant": "Il prossimo turno, pesca 1 carta aggiuntiva.",
-    "AWAKENED-GATHER.chant": "Metti una carta dalla tua [gold]Pila Scarti[/gold] nella tua [gold]Mano[/gold].",
+    "AWAKENED-GATHER.chant": "Metti una carta dalla tua [gold]Mazzo degli Scarti[/gold] nella tua [gold]Mano[/gold].",
     "AWAKENED-GREAT_HEX.chant": "Il nemico bersaglio ottiene {GreatHexPower:diff()} [gold]Manaustione[/gold] alla fine di ogni suo turno.",
-    "AWAKENED-NIHIL.chant": "TUTTI i nemici perdono PS pari alla loro [gold]Manaustione[/gold].",
-    "AWAKENED-RAVEN_STRIKE.chant": "Gioca la prima carta del tuo [gold]Mazzo Pesca[/gold].",
+    "AWAKENED-NIHIL.chant": "TUTTI i nemici perdono PV pari alla loro [gold]Manaustione[/gold].",
+    "AWAKENED-RAVEN_STRIKE.chant": "Gioca la prima carta del tuo [gold]Mazzo di Pesca[/gold].",
     "AWAKENED-TAKE_FLIGHT.chant": "Il [gold]Blocco[/gold] non viene rimosso all'inizio del tuo prossimo turno.",
     "AWAKENED-VICTUALS.chant": "Ottieni {Energy:energyIcons()}.",
-    "AWAKENED-SIPHON.chant": "Rubi {SiphonPower:diff()} [gold]Forza[/gold] in questo turno."
+    "AWAKENED-SIPHON.chant": "Ruba {SiphonPower:diff()} [gold]Forza[/gold] in questo turno."
 }
