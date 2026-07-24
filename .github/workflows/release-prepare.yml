@@ -1,0 +1,77 @@
+﻿name: Prepare Release
+
+# Stage 1 of 2. Bumps versions, commits, and pushes a v* tag — nothing is built here.
+# The tag push is what starts release.yml.
+#
+# Requires:
+#   environment `release-prepare`  - required reviewer: you, deployment branch: main
+#   secret RELEASE_DEPLOY_KEY      - private half of a write-enabled deploy key,
+#                                    stored on that environment (NOT a repo secret).
+#                                    The key must be on the bypass list of both the
+#                                    `main` branch ruleset and the `v*` tag ruleset.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (X.Y.Z). Leave empty to auto-bump the patch number.'
+        required: false
+      game_version:
+        description: 'STS2 version for min_game_version (e.g. 0.107.1). Empty = keep current.'
+        required: false
+      steam:
+        description: 'Also upload to Steam Workshop'
+        type: boolean
+        default: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    environment: release-prepare
+    permissions:
+      contents: read          # the push authenticates with the deploy key, not GITHUB_TOKEN
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
+
+      - name: Bump versions, commit and tag
+        run: |
+          CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' build/mod.build.props | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          if [ -n "${{ inputs.version }}" ]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION=$(echo "$CURRENT" | awk -F. '{print $1"."$2"."$3+1}')
+          fi
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Version must be X.Y.Z, got '$VERSION'"; exit 1
+          fi
+          git fetch --tags --quiet
+          if git rev-parse -q --verify "refs/tags/v$VERSION" > /dev/null; then
+            echo "Tag v$VERSION already exists"; exit 1
+          fi
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+' build/mod.build.props | sed 's/<BaseLibVersion>//')
+
+          perl -0pi -e "s/<Version>\d+\.\d+\.\d+<\/Version>/<Version>$VERSION<\/Version>/" build/mod.build.props
+          perl -0pi -e "s/<AssemblyVersion>\d+\.\d+\.\d+\.\d+<\/AssemblyVersion>/<AssemblyVersion>$VERSION.0<\/AssemblyVersion>/" build/mod.build.props
+          perl -0pi -e "s/<FileVersion>\d+\.\d+\.\d+\.\d+<\/FileVersion>/<FileVersion>$VERSION.0<\/FileVersion>/" build/mod.build.props
+          perl -0pi -e "s/(\"version\"\s*:\s*\")\d+\.\d+\.\d+(\")/\${1}$VERSION\${2}/" Downfall.json
+          GV="${{ inputs.game_version }}"
+          if [ -n "$GV" ]; then
+            GV="${GV#v}"
+            perl -0pi -e "s/(\"min_game_version\"\s*:\s*\")[^\"]+(\")/\${1}$GV\${2}/" Downfall.json
+          fi
+          # CAVEAT (from release.ps1): NuGet BaseLib version may differ from the in-game BaseLib
+          # mod version the loader checks — remove this line if they don't match.
+          perl -0pi -e "s/(\"id\"\s*:\s*\"BaseLib\"\s*,\s*\"min_version\"\s*:\s*\")[^\"]+(\")/\${1}$BASELIB\${2}/" Downfall.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add build/mod.build.props Downfall.json
+          git commit -m "Release v$VERSION"
+
+          # Annotated tag carries the steam toggle forward — release.yml has no inputs context.
+          git tag -a "v$VERSION" -m "steam=${{ inputs.steam }}"
+          git push origin "HEAD:${GITHUB_REF_NAME}" "refs/tags/v$VERSION"
+
+          echo "Pushed v$VERSION — the tag push starts the Release workflow."
