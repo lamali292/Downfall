@@ -12,7 +12,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
 {
-    //todo iternal glow check AND if it's on a crushing with one token, or an infernal where energy on this card equals # of required tokens
+    //todo iternal glow check AND if it's on a crushing / inferno with 1/equiv tokens
     public NaughtySpirit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<SoulBurnPower>(3, 2);

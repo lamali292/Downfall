@@ -9,7 +9,7 @@ namespace Hexaghost.HexaghostCode.Cards.Common;
 [Pool(typeof(HexaghostCardPool))]
 public class HauntingEcho : HexaghostCardModel
 {
-    //    //todo iternal glow check AND if it's on a searing with one token, or an infernal where energy on this card equals # of required tokens
+    //    //todo iternal glow check AND if it's on a searing / inferno with 1/equiv tokens
     public HauntingEcho() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(7, 3);
