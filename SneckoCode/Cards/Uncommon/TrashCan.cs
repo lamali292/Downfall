@@ -14,7 +14,7 @@ public class TrashCan : SneckoCardModel
     {
         this.WithPower<TrashCanPower>(1, false);
         WithCostUpgradeBy(-1);
-        WithKeyword(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
