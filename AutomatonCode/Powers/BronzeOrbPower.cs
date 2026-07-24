@@ -13,6 +13,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
 {
+    //// todo make fail if stash is full and still tick down, make tick down even if the card has encode etc
     public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {

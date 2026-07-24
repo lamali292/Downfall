@@ -12,6 +12,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
 {
+    //todo add secret post-turn retain (similar to centennial puzzle)
     public HauntedHand() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithAfterlife();
