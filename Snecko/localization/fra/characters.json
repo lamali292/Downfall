@@ -1,0 +1,16 @@
+{
+    "SNECKO-SNECKO.aromaPrinciple": "[sine][green]La confussssion, sss'est bien. La confussssion, ssse sssont mes rassssines. [jitter]La confussssion, sss'est moi.[/jitter][/green][/sine]",
+    "SNECKO-SNECKO.banter.alive.endTurnPing": "[jitter]Bientôt...[/jitter]",
+    "SNECKO-SNECKO.banter.dead.endTurnPing": "...",
+    "SNECKO-SNECKO.cardsModifierDescription": "Les cartes du Geckobra peuvent apparaître dans les récompenses et dans la boutique.",
+    "SNECKO-SNECKO.cardsModifierTitle": "Les cartes du Geckobra",
+    "SNECKO-SNECKO.description": "Une créature serpentine, native de la Ville.\nConnue pour un regard qui rend confus ses prédateurs.",
+    "SNECKO-SNECKO.eventDeathPrevention": "Le Geckobra doit sssssurvivre pour être [jitter]déssssorienté[/jitter] un jour de plusssss !",
+    "SNECKO-SNECKO.goldMonologue": "[sine]Ces choses ssssont ssssi brillantes... Geckobra pourrait tout [jitter]sss'offrir...[/jitter][/sine]",
+    "SNECKO-SNECKO.possessiveAdjective": "son/sa/ses",
+    "SNECKO-SNECKO.pronounObject": "il/lui",
+    "SNECKO-SNECKO.pronounPossessive": "son/sa/ses",
+    "SNECKO-SNECKO.pronounSubject": "il/lui",
+    "SNECKO-SNECKO.title": "du Geckobra",
+    "SNECKO-SNECKO.titleObject": "du Geckobra"
+}
