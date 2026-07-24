@@ -27,8 +27,6 @@ public class SaveForLaterPower : SneckoPowerModel
             return;
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0, Amount);
         var list = (await CardSelectCmd.FromHand(choiceContext, Owner.Player, prefs, RetainFilter, this)).ToList();
-        if (list.Count == 0)
-            return;
         foreach (var cardModel in list)
             cardModel.GiveSingleTurnRetain();
         await PowerCmd.Remove(this);
