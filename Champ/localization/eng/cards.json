@@ -167,7 +167,7 @@
   "CHAMP-SWORD_THROW.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.\nIf not in [gold]Berserker[/gold], you can't play Attacks next turn.",
   "CHAMP-SWORD_THROW.title": "Sword Throw",
   "CHAMP-TAUNT.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and {VulnerablePower:diff()} [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.",
-  "CHAMP-TAUNT.title": "Taunt",
+  "CHAMP-TAUNT.title": "Provoke",
   "CHAMP-TECHNICAL_JIG.description": "Whenever you enter a [gold]Stance[/gold], gain {TechnicalJigPower:diff()} [gold]Block[/gold]. ",
   "CHAMP-TECHNICAL_JIG.title": "Technical Jig",
   "CHAMP-TORNADO_PUNCH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Defensive Combo[/gold]:\nGain {Block:diff()} [gold]Block[/gold] for each enemy hit.",
