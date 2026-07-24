@@ -6,7 +6,7 @@
     "GUARDIAN-BRACE.title": "Укрепление",
     "GUARDIAN-BRACE.description": "Понижает количество ОЗ, которые тратятся на [gold]Смену режима[/gold].",
     "GUARDIAN-DEFENSIVE_MODE.title": "Оборонительный режим",
-    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Стойка[/gold].\nНаходясь в Оборонительном режиме вы получаете [blue]3[/blue] [gold]шипов[/gold] и ваша [gold]защита[/gold] не пропадает в начале хода.",
+    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Стойка[/gold]. Находясь в Оборонительном режиме вы получаете [blue]3[/blue] [gold]шипов[/gold] и ваша [gold]защита[/gold] не пропадает в начале хода.",
     "GUARDIAN-PACKAGE.title": "Пак",
     "GUARDIAN-PACKAGE.description": "Набор из [blue]3[/blue] карт выбранного Босса Шпиля.",
     "GUARDIAN-POLISH.title": "Шлифовка",

@@ -27,6 +27,7 @@
     "SNECKO-SNECKO_SOUL.description": "各戦闘開始時、[gold]ソウルロール[/gold]を[gold]手札[/gold]に加える。",
     "SNECKO-SNECKO_SOUL.flavor": "0…3…2…2…1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "スネッコソウルSP",
+    "SNECKO-SUPER_SNECKO_SOUL.description": "戦闘開始時ごとに、[gold]手札[/gold]に[gold]ソウルロール[/gold]を1枚加える。\nターン開始時、カードを1枚引いて[gold]泥まみれ[/gold]にする。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "正体不明の卵",
     "SNECKO-UNIDENTIFIED_EGG.description": "[gold]他クラス[/gold]のカードを[gold]デッキ[/gold]に加えるたび、それを[gold]アップグレード[/gold]する。\n入手時、ランダムな[gold]他クラス[/gold]カードを[blue]{Cards}[/blue]枚[gold]アップグレード[/gold]する。",

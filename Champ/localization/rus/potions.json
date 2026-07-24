@@ -1,0 +1,8 @@
+{
+    "CHAMP-BOTTLED_TECHNIQUE.title": "Закупоренная техника",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "Активирует [gold]Бонус стойки[/gold] [blue]{Repeat:diff()}[/blue] {Repeat:plural(ru):раз|раза|раз}.",
+    "CHAMP-BREW_OF_SHARPNESS.title": "Острый напиток",
+    "CHAMP-BREW_OF_SHARPNESS.description": "Дает [blue]{CounterPower:diff()}[/blue] [gold]Контратаки[/gold].",
+    "CHAMP-STIMPACK.title": "Стимулятор",
+    "CHAMP-STIMPACK.description": "Вы переходите в [gold]Совершенную стойку[/gold] на [blue]1[/blue] ход."
+}

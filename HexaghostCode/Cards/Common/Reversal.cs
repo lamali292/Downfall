@@ -8,6 +8,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Reversal : HexaghostCardModel
 {
+    //todo iternal glow check AND if it's on a searing with one token, or an infernal where energy on this card equals # of required tokens
     public Reversal() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);

@@ -2,7 +2,7 @@
     "AUTOMATON-ENCODE.title": "Codifica",
     "AUTOMATON-ENCODE.description": "Metti questa carta nella tua [gold]Sequenza[/gold].\nQuando contiene [blue]3[/blue] carte, i loro effetti sopra questa parola chiave vengono fusi in una Funzione che costa [blue]1[/blue].",
     "AUTOMATON-STASH.title": "Deposito",
-    "AUTOMATON-STASH.description": "Metti una carta nel tuo [gold]Mucchio Deposito[/gold], fino a un massimo di [blue]5[/blue]. Ne peschi la carta più vecchia all'inizio di ogni turno.",
+    "AUTOMATON-STASH.description": "Metti una carta nel tuo [gold]Mazzo di Deposito[/gold], fino a un massimo di [blue]5[/blue]. Peschi la carta più vecchia all'inizio di ogni turno.",
     "AUTOMATON-COMPILE.title": "Compila",
     "AUTOMATON-COMPILE.description": "Un effetto che si attiva quando questa carta viene fusa in una Funzione."
 }
