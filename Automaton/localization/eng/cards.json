@@ -202,7 +202,7 @@
   "AUTOMATON-PROTO_SHIELD.title": "Proto-Shield",
   "AUTOMATON-PROTO_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {PlatingPower:diff()} [gold]Plating[/gold].\nAdd {Cards:plural:a [gold]Error[/gold]|{Cards:diff()} [gold]Errors[/gold]} to your [gold]Discard Pile[/gold].",
   "AUTOMATON-PROTO_BEAM.title": "Proto-Beam",
-  "AUTOMATON-PROTO_BEAM.description": "Deal {Damage:diff()} damage for every Status card in your [gold]Exhaust Pile[/gold].\n{InCombat:cond:\n(Hits {CalculatedHits:diff()} times)|}",
+  "AUTOMATON-PROTO_BEAM.description": "Deal {Damage:diff()} damage for every Status card in your [gold]Exhaust Pile[/gold].{InCombat:cond:\n(Hits {CalculatedHits:diff()} times)|}",
   "AUTOMATON-RECYCLE_BIN.title": "Recycle Bin",
   "AUTOMATON-RECYCLE_BIN.description": "At the end of your turn, gain {RecycleBinPower:diff()} [gold]Block[/gold] for each Status or Curse in your [gold]Hand[/gold].",
   "AUTOMATON-RECREATE.title": "Recreate",
