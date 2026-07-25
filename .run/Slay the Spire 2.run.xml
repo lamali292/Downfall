@@ -10,6 +10,7 @@
     <option name="USE_MONO" value="0" />
     <option name="RUNTIME_ARGUMENTS" value="" />
     <option name="AUTO_ATTACH_CHILDREN" value="0" />
+    <option name="RUNTIME_TYPE" value="coreclr" />
     <method v="2">
       <option name="Build" default="false" projectName="Downfall" projectPath="$PROJECT_DIR$/Downfall.csproj" />
     </method>
