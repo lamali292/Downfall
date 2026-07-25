@@ -8,7 +8,7 @@ namespace Champ.ChampCode.Powers;
 
 public class GloryPower : ChampPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
         if (Amount < 10) return;

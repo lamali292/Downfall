@@ -16,21 +16,23 @@ public class Endure : ChampCardModel
 {
     public Endure() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCalculatedBlock(7, BlockCalc, ValueProp.Move, 3);
+        WithCalculatedBlock(6, BlockCalc, ValueProp.Move, 2);
         this.WithTip<StrengthPower>();
         this.WithTip<DexterityPower>();
         this.WithEnterDefensive();
     }
-
+    
     protected override Artist Artist => Artist.Get<Opal>();
 
     private static decimal BlockCalc(CardModel card, Creature? creature)
     {
         return card.Owner.Creature.GetPowerAmount<StrengthPower>();
     }
-
+    
+    // todo : no dex scaling when unupgraded
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
         await CommonActions.CardBlock(this, cardPlay);
     }
 }
