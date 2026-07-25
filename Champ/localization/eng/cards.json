@@ -57,7 +57,7 @@
   "CHAMP-ENCHANT_SWORD.title": "Enchant Sword",
   "CHAMP-ENCIRCLE.description": "Deal {Damage:diff()} damage to ALL enemies.\nGain {GloryPower:diff()} [gold]Glory[/gold] for each enemy hit.",
   "CHAMP-ENCIRCLE.title": "Encircle",
-  "CHAMP-ENDURE.description": "Enter [gold]Defensive[/gold].\nGain {CalculatedBlock:diff()} [gold]Block[/gold], \nincreased by [gold]Strength[/gold]{IsUpgraded:show:| instead of [gold]Dexterity[/gold]}.",
+  "CHAMP-ENDURE.description": "Enter [gold]Defensive[/gold].\nGain {CalculatedBlock:diff()} [gold]Block[/gold], \nincreased by [gold]Strength[/gold]{IfUpgraded:show:| instead of [gold]Dexterity[/gold]}.",
   "CHAMP-ENDURE.title": "Endure",
   "CHAMP-ENRAGED_BASH.description": "Deal {Damage:diff()} damage{Repeat:plural:| {Repeat:diff()} times}.\n[gold]Berserker Combo[/gold]:\nThis card hits an additional time this combat.",
   "CHAMP-ENRAGED_BASH.title": "Enraged Bash",

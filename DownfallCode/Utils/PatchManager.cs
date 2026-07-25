@@ -56,7 +56,8 @@ public class DownfallPatchManager
             .Add(typeof(CardOverlayPatches))
             .Add(typeof(AncientSeaGlassConsolePatch))
             .Add(typeof(CreatureNavigationLinkPatch))
-            .Add(typeof(FindExistingInstanceForStackingPatch));
+            .Add(typeof(FindExistingInstanceForStackingPatch))
+            .Add(typeof(IgnoreDexterityPatch));
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
