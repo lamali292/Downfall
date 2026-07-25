@@ -3,11 +3,14 @@ using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -100,18 +103,25 @@ public class StashCmd
             await CardPileCmd.Add(overflow, PileType.Discard);
         }
     }
-
-
-    public static async Task DrawFromStash(CardModel card)
+    
+    public static Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(PlayerChoiceContext ctx, CardModel card)
     {
-        var cards = card.Owner.GetStash();
-        var n = card.DynamicVars.Cards.IntValue;
-        await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+        return DrawFromStash(ctx, card.Owner, card.DynamicVars.Cards.IntValue);
     }
 
-    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(Player player, int n = 1)
+    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(PlayerChoiceContext ctx, Player player, int n = 1)
     {
         var cards = player.GetStash();
-        return await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+        var result = await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+        foreach (var cardPileAddResult in result)
+        {
+            var drawn = cardPileAddResult.cardAdded;
+            var combatState = drawn.CombatState!;
+            CombatManager.Instance.History.Add(combatState,
+                new CardDrawnEntry(drawn, combatState.RoundNumber, combatState.CurrentSide, false,
+                    CombatManager.Instance.History, combatState.Players));
+            await Hook.AfterCardDrawn(combatState, ctx, drawn, false);
+        }
+        return result;
     }
 }

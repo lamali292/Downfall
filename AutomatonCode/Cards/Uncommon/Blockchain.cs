@@ -21,6 +21,6 @@ public class Blockchain : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await StashCmd.DrawFromStash(this);
+        await StashCmd.DrawFromStash(ctx, this);
     }
 }
