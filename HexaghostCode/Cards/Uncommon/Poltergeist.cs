@@ -10,6 +10,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Poltergeist : HexaghostCardModel
 {
+    //TODO Whenever you Advance or Retract, a random enemy loses 4 (6) HP.
     public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<PoltergeistPower>(4, 1, false);

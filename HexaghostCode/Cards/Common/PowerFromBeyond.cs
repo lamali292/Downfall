@@ -12,7 +12,6 @@ namespace Hexaghost.HexaghostCode.Cards.Common;
 [Pool(typeof(HexaghostCardPool))]
 public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
 {
-    //todo Ethereal. Afterlife. **Next turn, draw 1 card** and gain [E][E]([E]).
     public PowerFromBeyond() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         this.WithAfterlife();
