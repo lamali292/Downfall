@@ -3,11 +3,13 @@ using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Vfx;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -102,11 +104,12 @@ public class StashCmd
     }
 
 
-    public static async Task DrawFromStash(CardModel card)
+    public static async Task DrawFromStash(CardModel card, PlayerChoiceContext ctx, ICombatState combatState)
     {
         var cards = card.Owner.GetStash();
         var n = card.DynamicVars.Cards.IntValue;
         await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
+        await Hook.AfterCardDrawn(combatState, ctx, card, false);
     }
 
     public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(Player player, int n = 1)
