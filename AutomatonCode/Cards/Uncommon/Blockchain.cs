@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -21,6 +22,6 @@ public class Blockchain : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await StashCmd.DrawFromStash(this);
+        await StashCmd.DrawFromStash(this, ctx);
     }
 }
