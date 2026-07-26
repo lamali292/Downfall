@@ -14,6 +14,6 @@ public class RepulsePower : AutomatonPowerModel
         if (creator == null || creator.Creature != Owner || card.Type != CardType.Status)
             return;
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }

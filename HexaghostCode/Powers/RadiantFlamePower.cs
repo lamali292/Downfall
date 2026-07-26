@@ -13,6 +13,6 @@ public class RadiantFlamePower : HexaghostPowerModel, IAfterGhostflameIgnited
     {
         return player.Creature != Owner
             ? Task.CompletedTask
-            : CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+            : CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }

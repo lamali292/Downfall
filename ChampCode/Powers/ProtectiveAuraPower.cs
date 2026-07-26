@@ -15,7 +15,7 @@ public class ProtectiveAuraPower : ChampPowerModel
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Owner.Player == null || !Owner.Player.IsInChampStance<ChampNoStance>()) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         Flash();
     }
 }

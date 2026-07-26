@@ -37,7 +37,7 @@ public class InfernoGhostflame : GhostflameModel
             if (target == null) continue;
             SpawnVfx(target);
             if (!target.IsHittable) continue;
-            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
+            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Unpowered, Owner.Creature);
         }
 
         if (HexaghostCmd.AllIgnited(Owner))

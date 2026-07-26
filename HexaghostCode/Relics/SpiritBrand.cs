@@ -23,17 +23,9 @@ public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGho
         UsedThisTurn = true;
         Flash();
         Status = RelicStatus.Normal;
-        await CreatureCmd.GainBlock(Owner.Creature, 3, ValueProp.Move | ValueProp.Unpowered, null, true);
+        await CreatureCmd.GainBlock(Owner.Creature, 3, ValueProp.Unpowered, null, true);
     }
 
-    /*
-    public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
-    {
-        if (player != Owner) return;
-        Flash();
-        await CreatureCmd.GainBlock(Owner.Creature, 2, ValueProp.Move | ValueProp.Unpowered, null, true);
-    }
-    */
 
     public override RelicModel GetUpgradeReplacement()
     {
