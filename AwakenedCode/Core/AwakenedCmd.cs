@@ -121,7 +121,7 @@ public static class AwakenedCmd
     {
         spellbook.RemoveInternal(spell);
         spellbook.SetNextSpell(rng);
-        await CardPileCmd.Add(spell, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(spell, PileType.Hand, player);
 
         if (spellbook.Cards.Count == 0) spellbook.Refresh(player);
         AwakenedDisplay.Refresh(player);
