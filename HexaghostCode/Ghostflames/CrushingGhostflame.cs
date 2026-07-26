@@ -33,7 +33,7 @@ public class CrushingGhostflame : GhostflameModel
             if (target == null) return;
             SpawnVfx(target);
             if (!target.IsHittable) continue;
-            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Move | ValueProp.Unpowered, Owner.Creature);
+            await CreatureCmd.Damage(ctx, target, damage,  ValueProp.Unpowered, Owner.Creature);
         }
     }
 

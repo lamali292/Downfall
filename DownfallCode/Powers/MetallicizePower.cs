@@ -14,6 +14,6 @@ public class MetallicizePower : DownfallPowerModel
     {
         if (side != Owner.Side) return;
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }

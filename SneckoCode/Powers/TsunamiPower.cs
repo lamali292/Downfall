@@ -13,7 +13,7 @@ public class TsunamiPower : SneckoPowerModel, IAfterOverflowEffect
     public async Task AfterOverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {
         if (card.Owner.Creature != Owner) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         Flash();
     }
 }

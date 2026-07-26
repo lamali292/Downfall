@@ -12,6 +12,6 @@ public class NightmareVisionPower : HexaghostPowerModel
         bool causedByEthereal)
     {
         if (card.Owner.Creature != Owner || !causedByEthereal) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }
