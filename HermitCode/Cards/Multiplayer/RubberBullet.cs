@@ -23,6 +23,7 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
             RunState?.Rng.CombatTargets.NextItem(RunState.Players.Where(e => e.Creature.IsAlive && e != Owner));
         if (player == null) return;
 
+        // TODO: use CreateCloneForPlayer on main / beta merge
         var clone = CreateClone();
         clone._owner = player;
         clone.EnergyCost.AfterCardPlayedCleanup();

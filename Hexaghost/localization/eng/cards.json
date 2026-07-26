@@ -198,5 +198,11 @@
   "HEXAGHOST-FLOAT_CHOICE_RETRACT.title": "Float",
   "HEXAGHOST-FLOAT_CHOICE_RETRACT.description": "[gold]Retract[/gold].",
   "HEXAGHOST-FLOAT_CHOICE_ADVANCE.title": "Float",
-  "HEXAGHOST-FLOAT_CHOICE_ADVANCE.description": "[gold]Advance[/gold]."
+  "HEXAGHOST-FLOAT_CHOICE_ADVANCE.description": "[gold]Advance[/gold].",
+  "HEXAGHOST-CIRCLE_FLAME.title": "Circle Flame",
+  "HEXAGHOST-CIRCLE_FLAME.description": "[afterlife]Apply[/afterlife] {SoulBurnPower:diff()} [afterlife]Soulburn.[/afterlife]\nWhen this card is [gold]Exhausted[/gold], add a copy of it to another random player's [gold]Discard Pile[/gold].",
+  "HEXAGHOST-HEATING.title": "Heating",
+  "HEXAGHOST-HEATING.description": "Whenever you apply [gold]Soulburn[/gold] to an enemy, another random player gains {HeatingPower:diff()} [gold]Block[/gold].",
+  "HEXAGHOST-LEVITATE.title": "Levitate",
+  "HEXAGHOST-LEVITATE.description": "[afterlife]Give another player[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]"
 }

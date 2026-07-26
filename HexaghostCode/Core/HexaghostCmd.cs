@@ -1,5 +1,10 @@
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Events;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -198,5 +203,17 @@ public static class HexaghostCmd
         ghostflame.AssertCanonical();
         GetWheel(player)[GetCurrentIndex(player)] = ghostflame.ToMutable(player);
         HexaghostVisualsBridge.Refresh(player);
+    }
+    
+    public static AttackCommand AfterlifeAttack(CardModel card, CardPlay? cardPlay)
+    {
+        var a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue).FromCard(card, cardPlay);
+        if (cardPlay?.Target != null)
+        {
+            return a.Targeting(cardPlay.Target);
+        }
+        return card.CombatState != null ? 
+            a.TargetingRandomOpponents(card.CombatState) : 
+            throw new InvalidOperationException("Afterlife attack failed!");
     }
 }

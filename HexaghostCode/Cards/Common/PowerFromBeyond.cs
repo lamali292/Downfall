@@ -24,14 +24,14 @@ public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AfterlifeEffect(ctx, cardPlay);
+        await AfterlifeEffect(ctx, cardPlay, false);
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
     }
 }

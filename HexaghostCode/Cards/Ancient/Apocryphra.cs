@@ -1,6 +1,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
@@ -23,16 +24,15 @@ public class Apocryphra : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
-        await PowerCmd.Apply<SoulBurnPower>(ctx, CombatState!.HittableEnemies,
-            DynamicVars.Power<SoulBurnPower>().BaseValue, Owner.Creature, this);
+        await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
         await CardPileCmd.Add(this, PileType.Hand);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await AfterlifeEffect(ctx, cardPlay);
+        await AfterlifeEffect(ctx, cardPlay, false);
     }
 }
