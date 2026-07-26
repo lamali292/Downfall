@@ -25,7 +25,6 @@ public class PlatinumCore : AutomatonRelicModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        Flash();
         if (player != Owner) return;
         if (player.PlayerCombatState is { TurnNumber: 1 })
         {
@@ -41,6 +40,7 @@ public class PlatinumCore : AutomatonRelicModel
         var rng = Owner.RunState.Rng.CombatCardSelection;
         var choice = CardFactory.GetDistinctForCombat(Owner, cards, 1, rng).FirstOrDefault();
         if (choice == null) return;
-        await CardPileCmd.Add(choice, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(choice, PileType.Hand, player);
+        Flash();
     }
 }
