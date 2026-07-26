@@ -38,6 +38,7 @@
     "COLLECTOR-FINALIZE_POWER.title": "Finalizzato",
     "COLLECTOR-FINALIZE_POWER.description": "Quando questa creatura muore, curati.",
     "COLLECTOR-FINALIZE_POWER.smartDescription": "Quando [gold]{Owner}[/gold] muore, curati di [blue]{Amount}[/blue] PF.",
+    "COLLECTOR-KARMA_POWER.title": "Karma",
     "COLLECTOR-KARMA_POWER.description": "Alla fine del tuo turno, se un nemico è [gold]Afflitto[/gold], ottieni [gold]Blocco[/gold].",
     "COLLECTOR-KARMA_POWER.smartDescription": "Alla fine del tuo turno, se un nemico è [gold]Afflitto[/gold], ottieni [blue]{Amount}[/blue] [gold]Blocco[/gold].",
     "COLLECTOR-OMEN_POWER.title": "Presagio",

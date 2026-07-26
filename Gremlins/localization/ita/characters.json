@@ -1,6 +1,7 @@
 {
     "GREMLINS-GREMLINS.aromaPrinciple": "[sine][orange]Cibo. Tesoro. Cibo. Tesoro. [jitter]CIBO![/jitter][/orange][/sine]",
     "GREMLINS-GREMLINS.banter.alive.endTurnPing": "Sbrigati!!",
+    "GREMLINS-GREMLINS.banter.dead.endTurnPing": "...",
     "GREMLINS-GREMLINS.cardsModifierDescription": "Le carte Gremlin appariranno ora nelle ricompense e nei negozi.",
     "GREMLINS-GREMLINS.cardsModifierTitle": "Carte Gremlin",
     "GREMLINS-GREMLINS.description": "Una folla caotica di abitanti della Guglia riunita in cerca di cibo e tesori.",

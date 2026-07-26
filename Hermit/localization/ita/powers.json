@@ -31,6 +31,7 @@
     "HERMIT-HORROR_POWER.title": "Orrore",
     "HERMIT-COMBO_POWER.description": "La prima volta che attivi [gold]Nel Segno[/gold] ogni turno, quella carta torna nella tua [gold]Mano[/gold].",
     "HERMIT-COMBO_POWER.smartDescription": "Le prime {Amount:plural:volta|[blue]{Amount}[/blue] volte} che attivi [gold]Nel Segno[/gold] ogni turno, quella carta torna nella tua [gold]Mano[/gold].",
+    "HERMIT-COMBO_POWER.title": "Combo",
     "HERMIT-BRAWL_POWER.description": "All'inizio del tuo turno, applichi [blue]1[/blue] di [gold]Contusione[/gold] a TUTTI i nemici.",
     "HERMIT-BRAWL_POWER.smartDescription": "All'inizio del tuo turno, applichi [blue]{Amount}[/blue] di [gold]Contusione[/gold] a TUTTI i nemici.",
     "HERMIT-BRAWL_POWER.title": "Rissa",

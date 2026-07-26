@@ -1,6 +1,7 @@
 {
     "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]Sono vincolato. Sopporto. Sono vincolato. Sopporto. [jitter]Sono vincolato.[/jitter][/purple][/sine]",
     "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "...[jitter]gioca...[/jitter]",
+    "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "...",
     "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "Le carte Hexaghost appariranno ora nelle ricompense e nei negozi.",
     "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "Carte Hexaghost",
     "HEXAGHOST-HEXAGHOST.description": "Uno spirito maledetto della Torre.\nSigillato in un destino eterno come protettore.",
