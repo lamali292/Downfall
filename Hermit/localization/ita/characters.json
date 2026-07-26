@@ -11,5 +11,6 @@
     "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...sopravvivi, recupera, vai avanti...[/blue][/sine]",
     "HERMIT-HERMIT.cardsModifierTitle": "Carte dell'Eremita",
     "HERMIT-HERMIT.cardsModifierDescription": "Le carte dell'Eremita appariranno ora nelle ricompense e nei negozi.",
-    "HERMIT-HERMIT.banter.alive.endTurnPing": "Tic tac..."
+    "HERMIT-HERMIT.banter.alive.endTurnPing": "Tic tac...",
+    "HERMIT-HERMIT.banter.dead.endTurnPing": "..."
 }

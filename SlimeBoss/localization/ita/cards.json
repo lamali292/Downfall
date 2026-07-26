@@ -45,6 +45,7 @@
     "SLIMEBOSS-IT_LOOKS_TASTY.title": "Sembra Gustoso",
     "SLIMEBOSS-JUST_DESSERTS.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\n[gold]Sorseggia[/gold] {Slurp:diff()}.",
     "SLIMEBOSS-JUST_DESSERTS.title": "Giusto Dessert",
+    "SLIMEBOSS-LEAD_BY_EXAMPLE.description": "{LeadByExamplePower:plural:La prima |{LeadByExamplePower:diff()} Le prime } {LeadByExamplePower:plural:carta|{LeadByExamplePower:diff()} carte} che giochi ogni turno che bersagliano nemici [gold]Comandano[/gold]\n",
     "SLIMEBOSS-LEAD_BY_EXAMPLE.title": "Dare l'Esempio",
     "SLIMEBOSS-LEECHING_STRIKE.description": "Infliggi {Damage:diff()} di danno.\n[gold]Consuma[/gold]: Ottieni [gold]Blocco[/gold] equal to the enemy's [gold]Melma[/gold]. ",
     "SLIMEBOSS-LEECHING_STRIKE.title": "Colpo Sanguisuga",

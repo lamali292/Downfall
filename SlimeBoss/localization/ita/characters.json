@@ -1,5 +1,7 @@
 {
     "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]Siamo molti. Siamo uno. Siamo molti. Siamo uno. [jitter]Siamo molti.[/jitter][/green][/sine]",
+    "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "Squish squish...",
+    "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "...",
     "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "Le carte Slime Boss appariranno ora nelle ricompense e nei negozi.",
     "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "Carte Slime Boss",
     "SLIMEBOSS-SLIME_BOSS.description": "Il generale più melmoso del Cuore.\nPuò combattere come uno, o come molti.",

@@ -15,6 +15,7 @@
     "SLIMEBOSS-JEREMIAHS_BANNER.description": "At the start of each combat, gain 1 Slime slot and [gold]Dividi[/gold] into un/una casuale Slime.",
     "SLIMEBOSS-JEREMIAHS_BANNER.flavor": "Tu e l'esercito di melma.",
     "SLIMEBOSS-PROTECTIVE_GEAR.title": "Equipaggiamento Protettivo",
+    "SLIMEBOSS-PROTECTIVE_GEAR.description": "Riduci i danni che subisci dai Picchiaggi di [blue]{TackleReduce}[/blue].",
     "SLIMEBOSS-PROTECTIVE_GEAR.flavor": "La miglior difesa è un buon attacco.",
     "SLIMEBOSS-SCRAP_OOZE.title": "Melma di Scarto",
     "SLIMEBOSS-SCRAP_OOZE.description": "At the start of each combat, spawn Melma di Scarto (can be revived if Absorbed. At Rest Sites, you can donate a card to the Melma di Scarto, modifying suo +1 damage for Uncommons +2 damage for Rares -1 damage for Commons -2 damage for {{QueryLink|Cards|type:Curse|Curses}}",

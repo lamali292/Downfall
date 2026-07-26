@@ -1,6 +1,7 @@
 {
     "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]Direttiva: proteggere. Direttiva: proteggere. Direttiva: proteggere.[/blue][/sine]",
     "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "Efficienza di combattimento in calo. Muoviti.",
+    "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "...",
     "GUARDIAN-GUARDIAN.cardsModifierDescription": "Le carte del Guardiano appariranno ora nelle ricompense e nei negozi.",
     "GUARDIAN-GUARDIAN.cardsModifierTitle": "Carte del Guardiano",
     "GUARDIAN-GUARDIAN.description": "Un costrutto del Picco, programmato per difenderlo.\nIn grado di difendersi dal pericolo a comando.",

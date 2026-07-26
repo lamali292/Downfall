@@ -1,5 +1,6 @@
 {
     "GUARDIAN-GEM.description": "Le Gemme possono essere inserite negli [gold]Incavi[/gold] delle carte in un Sito di Riposo.",
     "GUARDIAN-GEM.title": "Gemma",
-    "GUARDIAN-VOLATILE.description": "Quando questa carta lascia lo [gold]Stasi[/gold], viene [gold]Esaurita[/gold]."
+    "GUARDIAN-VOLATILE.description": "Quando questa carta lascia lo [gold]Stasi[/gold], viene [gold]Esaurita[/gold].",
+    "GUARDIAN-VOLATILE.title": "Volatile"
 }
