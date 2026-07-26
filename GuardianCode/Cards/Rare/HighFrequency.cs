@@ -32,7 +32,7 @@ public class HighFrequency : GuardianCardModel
         while (GuardianCmd.CanPutIntoStasis(Owner, silent: true))
         {
             var a = card.CreateClone();
-            await CardPileCmd.Add(a, PileType.Play);
+            await CardPileCmd.AddGeneratedCardToCombat(a, PileType.Play, Owner);
             await GuardianCmd.PutIntoStasis(a, ctx, this, true);
         }
 

@@ -28,7 +28,7 @@ public class SentryBlast : GuardianCardModel
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
         var card = CombatState!.CreateCard<SentryWave>(Owner);
         if (IsUpgraded) CardCmd.Upgrade(card);
-        await CardPileCmd.Add(card, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         await GuardianCmd.PutIntoStasis(card, ctx, this);
     }
 }

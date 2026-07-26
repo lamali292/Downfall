@@ -23,6 +23,7 @@ public class LibraryPower : AutomatonPowerModel
             t.SetToFreeThisTurn();
             return t;
         });
-        await CardPileCmd.Add(choice, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardsToCombat(choice, PileType.Hand, player);
+        Flash();
     }
 }
