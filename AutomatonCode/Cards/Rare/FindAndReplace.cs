@@ -29,9 +29,7 @@ public class FindAndReplace : AutomatonCardModel
     {
         if (CombatState == null) return;
         var choices = Owner.GetStash().Concat(Owner.GetDraw()).Concat(Owner.GetDiscard()).ToList();
-        /*var selected =
-            (await DownfallCardCmd.SelectFromCards(ctx, choices, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this))
-            .FirstOrDefault();*/
+        
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
         var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();
 
@@ -41,6 +39,6 @@ public class FindAndReplace : AutomatonCardModel
         var index = sourcePile._cards.IndexOf(selected);
         await CardPileCmd.Add(selected, PileType.Hand);
         var error = CombatState.CreateCard<Error>(Owner);
-        await DownfallCardCmd.AddWithIndex(error, sourcePile, index);
+        await DownfallCardCmd.AddGeneratedCardToCombatAtIndex(error, sourcePile, index, Owner);
     }
 }

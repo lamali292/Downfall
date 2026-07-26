@@ -26,7 +26,7 @@ public class Convert : AutomatonCardModel
             .NextItem(Owner.GetStash(e => e.Type == CardType.Status));
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
-        if (IsUpgraded) fuel.UpgradeInternal();
+        if (IsUpgraded) CardCmd.Upgrade(fuel);
         await CardCmd.Transform(card, fuel);
     }
 }

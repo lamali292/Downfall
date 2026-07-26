@@ -252,20 +252,33 @@ public class DownfallCardCmd
     }
 
 
-    public static async Task AddWithIndex(CardModel card, CardPile cardPile, int index)
+    public static async Task AddGeneratedCardToCombatAtIndex(
+        CardModel card, CardPile cardPile, int index, Player? creator)
     {
+        if (!CombatManager.Instance.IsInProgress) return;
+        if (card.Pile != null)
+            throw new InvalidOperationException("You are not allowed to generate cards that already have a pile");
+        if (!cardPile.Type.IsCombatPile())
+            throw new InvalidOperationException("Generated cards must go to a combat pile");
+
+        var combatState = card.Owner.Creature.CombatState;
+        if (combatState == null) return;
+
+        CombatManager.Instance.History.CardGenerated(combatState, card, creator);
+        
         cardPile.AddInternal(card, index);
         cardPile.InvokeCardAddFinished();
-        await Hook.AfterCardChangedPiles(card.Owner.RunState, card.Owner.Creature.CombatState, card, PileType.None,
-            null);
-        var errorResult = new CardPileAddResult
-        {
-            cardAdded = card,
-            success = true,
-            oldPile = null,
-            modifyingModels = null
-        };
-        CardCmd.PreviewCardPileAdd(errorResult, 0.6f);
+
+        await Hook.AfterCardEnteredCombat(combatState, card);
+
+        await Hook.AfterCardChangedPiles(
+            card.Owner.RunState, combatState, card, PileType.None, null);
+        
+        await Hook.AfterCardGeneratedForCombat(combatState, card, creator);
+
+        CardCmd.PreviewCardPileAdd(
+            new CardPileAddResult { cardAdded = card, success = true, oldPile = null, modifyingModels = null },
+            0.6f);
     }
 
     private static Func<CardModel, PlayerChoiceContext, CardPlay, Task> BuildOnPlayDelegate()

@@ -57,7 +57,8 @@ public class DownfallPatchManager
             .Add(typeof(AncientSeaGlassConsolePatch))
             .Add(typeof(CreatureNavigationLinkPatch))
             .Add(typeof(FindExistingInstanceForStackingPatch))
-            .Add(typeof(IgnoreDexterityPatch));
+            .Add(typeof(IgnoreDexterityPatch))
+            .Add(typeof(InvokeSilentDisplayAmountChangedPatch));
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
