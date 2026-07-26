@@ -1,11 +1,14 @@
 using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
+using Automaton.AutomatonCode.Piles;
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Godot;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -28,5 +31,11 @@ public partial class AutomatonMainFile : Node
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
+
+        // todo: use actual stash pile icon.
+        PostInitRegistry.Register(() =>
+        {
+            MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash, "res://Automaton/images/character/character_icon.png", new LocString("card_selection", "AUTOMATON-STASH_PILE"));
+        });
     }
 }
