@@ -67,17 +67,36 @@ public static class MyCommonActions
             ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel, null);
     }
 
-    public static async Task<IReadOnlyList<T>> Apply<T>(
+    public static async Task<IReadOnlyList<T>> AutoApply<T>(
         PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
         where T : PowerModel
     {
-        var creature = model.GetCreature();
-        var amount = model.GetDynamicVars().Power<T>().BaseValue;
-        var card = model as CardModel;
-        var targets = model.MyGetTargets(target).ToList();
-        if (targets.Count != 1) return await PowerCmd.Apply<T>(ctx, targets, amount, creature, card);
-        var result = await PowerCmd.Apply<T>(ctx, targets[0], amount, creature, card);
-        return result is not null ? [result] : [];
+       return await Apply<T>(ctx, model, model.MyGetTargets(target).ToList());
+    }
+    
+    public static async Task<IReadOnlyList<T>> ApplyToAllEnemies<T>(
+        PlayerChoiceContext ctx, AbstractModel model)
+        where T : PowerModel
+    {
+        return await Apply<T>(ctx, model, model.GetCreature().CombatState?.HittableEnemies);
+    }
+    
+    
+    public static async Task<IReadOnlyList<T>> Apply<T>(
+        PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature>? targets)
+        where T : PowerModel
+    {
+        return await PowerCmd.Apply<T>(ctx, targets,
+            model.GetDynamicVars().Power<T>().BaseValue, model.GetCreature(), model as CardModel);
+    }
+    
+    public static async Task<T?> Apply<T>(
+        PlayerChoiceContext ctx, AbstractModel model, Creature? target)
+        where T : PowerModel
+    {
+        if (target == null) return null;
+        return await PowerCmd.Apply<T>(ctx, target,
+            model.GetDynamicVars().Power<T>().BaseValue, model.GetCreature(), model as CardModel);
     }
 
     public static async Task LoseHp(PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)

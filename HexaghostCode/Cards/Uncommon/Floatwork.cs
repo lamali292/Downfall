@@ -22,7 +22,7 @@ public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
         await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
     }
@@ -30,6 +30,6 @@ public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
-        await AfterlifeEffect(ctx, cardPlay);
+        await AfterlifeEffect(ctx, cardPlay, false);
     }
 }

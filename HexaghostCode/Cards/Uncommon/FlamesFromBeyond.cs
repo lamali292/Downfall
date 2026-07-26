@@ -1,9 +1,11 @@
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -19,14 +21,14 @@ public class FlamesFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
     }
 
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay.Target);
+        await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AfterlifeEffect(ctx, cardPlay);
-        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay.Target);
+        await AfterlifeEffect(ctx, cardPlay, false);
+        await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 }

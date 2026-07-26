@@ -23,5 +23,7 @@ public class GlitteringGambit : SneckoCardModel, IHasGift
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Add);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+
     public Gift? Gift { get; set; }
 }

@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,9 +23,9 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await HexaghostCmd.AfterlifeAttack(this, cardPlay).Execute(ctx);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
@@ -35,6 +36,6 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AfterlifeEffect(ctx, cardPlay);
+        await AfterlifeEffect(ctx, cardPlay, false);
     }
 }

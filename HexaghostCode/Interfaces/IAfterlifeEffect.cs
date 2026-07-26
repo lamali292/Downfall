@@ -5,5 +5,5 @@ namespace Hexaghost.HexaghostCode.Interfaces;
 
 public interface IHasAfterlifeEffect
 {
-    Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
+    Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted);
 }

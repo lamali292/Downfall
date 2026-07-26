@@ -67,5 +67,8 @@
   "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold] this turn, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to the enemy.",
   "HEXAGHOST-SIZZLE_POWER.title": "Sizzle",
   "HEXAGHOST-SIZZLE_POWER.description": "[gold]Exhaust[/gold] the next card you play this turn.",
-  "HEXAGHOST-SIZZLE_POWER.smartDescription": "[gold]Exhaust[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn."
+  "HEXAGHOST-SIZZLE_POWER.smartDescription": "[gold]Exhaust[/gold] the next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn.",
+  "HEXAGHOST-HEATING_POWER.title": "Heating",
+  "HEXAGHOST-HEATING_POWER.description": "Whenever you apply [gold]Soulburn[/gold] to an enemy, another random players [gold]Block[/gold].",
+  "HEXAGHOST-HEATING_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] to an enemy, another random player gains [blue]{Amount}[/blue] [gold]Block[/gold]."
 }
