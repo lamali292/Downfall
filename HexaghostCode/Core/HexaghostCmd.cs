@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Events;
@@ -207,7 +208,7 @@ public static class HexaghostCmd
     
     public static AttackCommand AfterlifeAttack(CardModel card, CardPlay? cardPlay)
     {
-        var a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue).FromCard(card, cardPlay);
+        var a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue).FromCardCompatibility(card, cardPlay);
         if (cardPlay?.Target != null)
         {
             return a.Targeting(cardPlay.Target);
