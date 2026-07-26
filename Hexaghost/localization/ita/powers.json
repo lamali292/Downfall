@@ -32,6 +32,7 @@
     "HEXAGHOST-NIGHTMARE_VISION_POWER.title": "Visione Incubo",
     "HEXAGHOST-NIGHTMARE_VISION_POWER.description": "Whenever an [gold]Eterea[/gold] card [gold]Esaurisce[/gold], ottieni [gold]Blocco[/gold].",
     "HEXAGHOST-NIGHTMARE_VISION_POWER.smartDescription": "Whenever an [gold]Eterea[/gold] card [gold]Esaurisce[/gold], gain [blue]{Amount}[/blue] [gold]Blocco[/gold].",
+    "HEXAGHOST-POLTERGEIST_POWER.title": "Poltergeist",
     "HEXAGHOST-POLTERGEIST_POWER.description": "Whenever you [gold]Esaurisci[/gold] a card, un nemico casuale loses HP.",
     "HEXAGHOST-POLTERGEIST_POWER.smartDescription": "Whenever you [gold]Esaurisci[/gold] a card, un nemico casuale loses [blue]{Amount}[/blue] HP.",
     "HEXAGHOST-TEMPORARY_INTENSITY_POWER.title": "Superbagliore",

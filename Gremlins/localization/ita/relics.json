@@ -10,6 +10,7 @@
     "GREMLINS-GREMLIN_GRAVESTONE.flavor": "Dove vanno i Gremlin quando muoiono? Non abbastanza lontano, dannazione.",
     "GREMLINS-GREMLIN_LEADERS_VOUCHER.title": "Voucher del Capo Gremlin",
     "GREMLINS-GREMLIN_LEADERS_VOUCHER.description": "Ottieni {Energy:energyIcons()} all'inizio del tuo turno.\nAll'ottenimento, perdi permanentemente un Gremlin.",
+    "GREMLINS-GREMLIN_LEADERS_VOUCHER.flavor": "Te ne devo una",
     "GREMLINS-IMPECCABLE_PECS.title": "Pettorali Impeccabili",
     "GREMLINS-IMPECCABLE_PECS.description": "Ogni volta che ottieni [gold]Forza[/gold], ottieni una quantità equivalente di [gold]HP Temporanei[/gold].\nInizia ogni combattimento con 1 di [gold]Forza[/gold].",
     "GREMLINS-IMPECCABLE_PECS.flavor": "Glorioso.",

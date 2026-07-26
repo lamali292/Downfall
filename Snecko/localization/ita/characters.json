@@ -1,6 +1,7 @@
 {
     "SNECKO-SNECKO.aromaPrinciple": "[sine][green]La confusssione è okay. La confusssione è casa. [jitter]La confusssione sono io.[/jitter][/green][/sine]",
     "SNECKO-SNECKO.banter.alive.endTurnPing": "[jitter]Prossstamente...[/jitter]",
+    "SNECKO-SNECKO.banter.dead.endTurnPing": "...",
     "SNECKO-SNECKO.cardsModifierDescription": "Le carte Snecko appariranno ora nelle ricompense e nei negozi.",
     "SNECKO-SNECKO.cardsModifierTitle": "Carte Snecko",
     "SNECKO-SNECKO.description": "Una creatura serpentina, nativa della Città.\nConosciuta per uno sguardo che confonde i predatori.",
