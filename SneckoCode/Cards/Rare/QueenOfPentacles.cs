@@ -28,7 +28,7 @@ public class QueenOfPentacles : SneckoCardModel, IHasGift
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay).ConfigureAwait(false);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<QueenOfPentaclesPower>(ctx, this);
     }
 }
