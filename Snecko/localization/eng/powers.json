@@ -28,7 +28,7 @@
   "SNECKO-TSUNAMI_POWER.smartDescription": "Whenever you [gold]Overflow[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "SNECKO-UNENDING_SUPPLY_POWER.title": "Unending Supply",
   "SNECKO-UNENDING_SUPPLY_POWER.description": "At the start of your turn, gain an [gold]Echo[/gold] of a random [gold]Offclass[/gold] card.",
-  "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:an [gold]Echo[/gold] of a|[gold]Echos[/gold] of [blue]{}[/blue]} random [gold]Offclass[/gold] card.",
+  "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "At the start of your turn, gain {Amount:plural:an [gold]Echo[/gold] of a|[gold]Echos[/gold] of [blue]{}[/blue]} random [gold]Offclass[/gold] {Amount:plural:card|cards}.",
   "SNECKO-SNECKO_CONSTRICT_POWER.title": "Constricted",
   "SNECKO-SNECKO_CONSTRICT_POWER.description": "At the end of its turn, this enemy takes damage.",
   "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "At the end of its turn, this enemy takes [blue]{Amount}[/blue] damage.",

@@ -86,6 +86,7 @@ public partial class DownfallMainFile : Node
             new PreviewValueFormatter(),
             new PlusIfUpgradedFormatter());
 
+        // mention downfall sts1 credits somewhere
         ModCredits.Register<DownfallMainFile>(
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
