@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
@@ -18,7 +19,9 @@ public class InfernoPotionPotion : HexaghostPotionModel
         WithTip<SoulBurnPower>();
         WithPower<InfernoPotionPower>(1, false);
     }
-
+    
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+    
     protected override Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         return MyCommonActions.ApplySelf<InfernoPotionPower>(choiceContext, this);
