@@ -23,7 +23,7 @@
     "SLIMEBOSS-GOOP_ARMOR_POWER.title": "黏质装甲",
     "SLIMEBOSS-GOOP_ARMOR_POWER.description": "每当你[gold]吞食[/gold]时，获得[gold]格挡[/gold]。",
     "SLIMEBOSS-GOOP_ARMOR_POWER.smartDescription": "每当你[gold]吞食[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
-    "SLIMEBOSS-RECYCLING_POWER.title": "循环再生",
+    "SLIMEBOSS-RECYCLING_POWER.title": "回收利用",
     "SLIMEBOSS-RECYCLING_POWER.description": "在你的回合开始时，[gold]汲取[/gold]。",
     "SLIMEBOSS-RECYCLING_POWER.smartDescription": "在你的回合开始时，[gold]汲取[/gold][blue]{Amount}[/blue]。",
     "SLIMEBOSS-GLUTTONY_POWER.title": "暴食",

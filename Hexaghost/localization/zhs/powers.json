@@ -1,7 +1,7 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "恶魔之舞",
-    "HEXAGHOST-DEVILS_DANCE_POWER.description": "你每回合首次[gold]步进[/gold]或[gold]回退[/gold]时，抽一张牌。",
-    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次[gold]步进[/gold]或[gold]回退[/gold]时，抽一张牌。",
+    "HEXAGHOST-DEVILS_DANCE_POWER.description": "你每回合首次[gold]步进[/gold]或[gold]回退[/gold]时，抽1张牌。",
+    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次[gold]步进[/gold]或[gold]回退[/gold]时，抽1张牌。",
     "HEXAGHOST-DOOMSDAY_POWER.title": "末日",
     "HEXAGHOST-DOOMSDAY_POWER.description": "下次所有鬼火都已[gold]点燃[/gold]时，获得一个额外回合。",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "下次所有鬼火都已[gold]点燃[/gold]时，获得[blue]{Amount}[/blue]个额外回合。",

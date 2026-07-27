@@ -15,7 +15,7 @@
     "COLLECTOR-BLIGHTNING.description": "给予{CollectorDoomPower:diff()}层[gold]魂劫[/gold]。\n造成{Damage:diff()}点伤害。\n从收藏堆抽{Cards:diff()}张牌。",
     "COLLECTOR-BLIND.title": "致盲",
     "COLLECTOR-BLIND.description": "给予{IfUpgraded:show:所有敌人|}{WeakPower:diff()}层[gold]虚弱[/gold]。",
-    "COLLECTOR-BONFIRE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n下回合，获得1[gold]储能[/gold]。",
+    "COLLECTOR-BONFIRE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n在下个回合，获得1[gold]储能[/gold]。",
     "COLLECTOR-BONFIRE.title": "篝火",
     "COLLECTOR-BRAIN_DRAIN.description": "目标失去{Damage:diff()}点生命。\n获得目标的藏品牌{IfUpgraded:show:+|}。",
     "COLLECTOR-BRAIN_DRAIN.title": "思维抽取",
