@@ -9,67 +9,81 @@ using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Screens.Credits;
 
-// =====================================================================
-//  PUBLIC API  -  other mods call this at load time to add credits.
-//
-//  All keys live in the vanilla "credits" loc table, namespaced by mod id:
-//      <MODID>-<SECTION>.header   and   <MODID>-<SECTION>.names
-//  e.g. registering from the Downfall namespace with Section("TEAM")
-//  looks up "DOWNFALL-TEAM.header" / "DOWNFALL-TEAM.names".
-//
-//  Register (id derived from your namespace, recommended) - pass any type
-//  from your mod assembly (plugin class, a card model, etc.):
-//      ModCredits.Register<DownfallMainFile>(
-//          new ModCredits.Section("TEAM"),
-//          new ModCredits.Section("ART", ModCredits.Layout.Roles),
-//          new ModCredits.Section("LOC", ModCredits.Layout.Columns3));
-//
-//  Register (explicit id) - if you'd rather name it yourself:
-//      ModCredits.Register("Downfall",
-//          new ModCredits.Section("TEAM"));
-//
-//  Body (.names) format by layout:
-//      Names     (1) - one name per line
-//      Roles     (2) - one "Role||Name" pair per line
-//      Columns3  (3) - one name per line, dealt across 3 columns
-// =====================================================================
+/// <summary>
+/// Public registry for adding mod credit sections to the vanilla credits screen.
+/// Mods call one of the <c>Register</c> overloads at load time; the sections are
+/// rendered later by <see cref="ModCreditsPatch"/> when the screen opens.
+/// </summary>
+/// <remarks>
+/// All text is resolved from the vanilla <c>credits</c> loc table, namespaced by
+/// mod id: <c>&lt;MODID&gt;-&lt;SECTION&gt;.header</c> and
+/// <c>&lt;MODID&gt;-&lt;SECTION&gt;.names</c>.
+/// </remarks>
 public static class ModCredits
 {
-    public enum Layout { Names = 1, Roles = 2, Columns3 = 3 }
+    /// <summary>Body layout of a section, determining how its <c>.names</c> value is parsed.</summary>
+    public enum Layout
+    {
+        /// <summary>One name per line.</summary>
+        Names = 1,
+        /// <summary>One <c>Role||Name</c> pair per line, rendered as two columns.</summary>
+        Roles = 2,
+        /// <summary>One name per line, dealt round-robin across three columns.</summary>
+        Columns3 = 3,
+    }
 
+    /// <summary>A single credits section belonging to a mod.</summary>
+    /// <param name="Name">
+    /// Section id; combined with the mod id to form the loc keys
+    /// <c>&lt;MODID&gt;-&lt;NAME&gt;.header</c> / <c>.names</c>.
+    /// </param>
+    /// <param name="Kind">How the section body is laid out.</param>
     public record Section(string Name, Layout Kind = Layout.Names);
 
+    /// <summary>A registered mod and its sections, in registration order.</summary>
     internal record Entry(string ModId, List<Section> Sections);
 
+    /// <summary>All registered mods, rendered in the order they registered.</summary>
     internal static readonly List<Entry> Entries = [];
 
-    /// <summary>Register sections; the mod id is derived from T's root namespace.</summary>
+    /// <summary>
+    /// Registers sections for the mod whose root namespace matches <typeparamref name="TFromMod"/>.
+    /// Pass any type from your mod assembly (plugin class, a card model, etc.).
+    /// </summary>
+    /// <typeparam name="TFromMod">A type in your mod; its root namespace becomes the mod id.</typeparam>
+    /// <param name="sections">The sections to display for this mod.</param>
     public static void Register<TFromMod>(params Section[] sections)
         => Entries.Add(new Entry(IdOf(typeof(TFromMod)), [.. sections]));
 
-    /// <summary>Register sections with an explicit mod id.</summary>
+    /// <summary>Registers sections under an explicit, upper-cased mod id.</summary>
+    /// <param name="modId">The mod id used to namespace loc keys.</param>
+    /// <param name="sections">The sections to display for this mod.</param>
     public static void Register(string modId, params Section[] sections)
         => Entries.Add(new Entry(modId.ToUpperInvariant(), [.. sections]));
 
-    // Matches the DOWNFALL- namespace BaseLib gives content IDs, minus the
-    // trailing dash (we add the '-' ourselves when building keys).
+    /// <summary>
+    /// Derives the mod id from a type's root namespace, matching the prefix
+    /// BaseLib assigns to content ids (minus its trailing dash).
+    /// </summary>
     private static string IdOf(Type type)
         => type.GetRootNamespace().ToUpperInvariant();
 
+    /// <summary>Looks up a key in the vanilla <c>credits</c> loc table.</summary>
     internal static string Resolve(string key)
         => new LocString("credits", key).GetRawText();
 }
 
-// =====================================================================
-//  RENDERER  -  injects everything registered above into the screen.
-// =====================================================================
+/// <summary>
+/// Harmony patch that injects every mod registered in <see cref="ModCredits"/>
+/// into the credits screen, after the last vanilla section and before the engine logos.
+/// </summary>
 [HarmonyPatch(typeof(NCreditsScreen), "_Ready")]
 public static class ModCreditsPatch
 {
-    // Shown ONCE above all modded content so it's clearly not vanilla.
     private static readonly Color BannerColor  = new(1f, 0.55f, 0.20f);    // orange
     private static readonly Color ModNameColor = new(0.53f, 0.81f, 0.92f); // blue
 
+    /// <summary>Builds and inserts the modded credit blocks once the screen is ready.</summary>
     [HarmonyPostfix]
     public static void Postfix(NCreditsScreen __instance)
     {
@@ -89,13 +103,11 @@ public static class ModCreditsPatch
         var anchor = vbox.GetNodeOrNull<Control>("Spacer3");
         var at = anchor?.GetIndex() ?? vbox.GetChildCount();
 
-        // Master banner: makes the whole block unmistakably modded.
         BuildHeader(vbox, ref at, ModCredits.Resolve("BASELIB-BANNER.name"), BannerColor, headerTpl, "Banner", null, 60);
 
         var m = 0;
         foreach (var e in ModCredits.Entries)
         {
-            // Which mod this block belongs to.
             BuildHeader(vbox, ref at, ModCredits.Resolve($"{e.ModId}-{e.ModId}.title"), ModNameColor, headerTpl, "Mod" + m, null, 44);
 
             var s = 0;
@@ -126,6 +138,10 @@ public static class ModCreditsPatch
         }
     }
 
+    /// <summary>
+    /// Clones the header template and inserts it, optionally overriding vertical
+    /// spacing (<paramref name="minHeight"/>) and text size (<paramref name="fontSize"/>).
+    /// </summary>
     private static void BuildHeader(VBoxContainer vbox, ref int at, string? text,
         Color? color, MegaLabel tpl, string tag, float? minHeight = null, int? fontSize = null)
     {
@@ -145,6 +161,7 @@ public static class ModCreditsPatch
         vbox.MoveChild(h, at++);
     }
 
+    /// <summary>Renders a single-column list of names (one per line).</summary>
     private static void BuildNames(VBoxContainer vbox, ref int at, string? body,
         MegaRichTextLabel tpl, string tag)
     {
@@ -156,6 +173,7 @@ public static class ModCreditsPatch
         vbox.MoveChild(n, at++);
     }
 
+    /// <summary>Renders a two-column roles/names block from <c>Role||Name</c> lines.</summary>
     private static void BuildRoles(VBoxContainer vbox, ref int at, string? body,
         HBoxContainer tpl, string tag)
     {
@@ -189,6 +207,7 @@ public static class ModCreditsPatch
         vbox.MoveChild(c, at++);
     }
 
+    /// <summary>Renders names across the three columns of the playtester template.</summary>
     private static void BuildMulti(VBoxContainer vbox, ref int at, string? body,
         HBoxContainer tpl, string tag)
     {
