@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,6 +18,9 @@ public class EctoCoolerPotion : HexaghostPotionModel
     {
         WithTip(HexaghostKeyword.Afterlife);
     }
+    
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {

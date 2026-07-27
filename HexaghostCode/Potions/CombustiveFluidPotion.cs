@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -14,6 +15,9 @@ public class CombustiveFluidPotion : HexaghostPotionModel
     {
         WithVar("Ignite", 3);
     }
+    
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
