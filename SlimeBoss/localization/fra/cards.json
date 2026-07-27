@@ -9,7 +9,7 @@
     "SLIMEBOSS-CORROSIVE_SPIT.title": "Crachat Corrosif",
     "SLIMEBOSS-DEFEND_SLIME_BOSS.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].",
     "SLIMEBOSS-DEFEND_SLIME_BOSS.title": "Défense",
-    "SLIMEBOSS-DIVIDE_CONQUER.description": "Infligez {Damage:diff()} dégâts à un ennemi aléatoire pour chaque Slime.\n[gold]Absorbez[/gold] tous les Slimes.{InCombat:cond:\n(Touche {Repeat:diff()} fois}",
+    "SLIMEBOSS-DIVIDE_CONQUER.description": "Infligez {Damage:diff()} dégâts à un ennemi aléatoire pour chaque Slime.\n[gold]Absorbez[/gold] tous les Slimes.{InCombat:cond:\n(Touche {Repeat:diff()} fois)|}",
     "SLIMEBOSS-DIVIDE_CONQUER.title": "Diviser pour Régner",
     "SLIMEBOSS-DOUBLE_LICK.description": "Appliquez {GoopPower:diff()} de [gold]Goop[/gold] {Repeat:diff()} fois.{IfUpgraded:show:\nPiochez une carte.}",
     "SLIMEBOSS-DOUBLE_LICK.title": "Double Léchouille",

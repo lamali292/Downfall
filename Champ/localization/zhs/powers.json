@@ -15,7 +15,7 @@
     "CHAMP-COUNTER_POWER.description": "下次你受到攻击伤害时，获得一张[gold]还击打击[/gold]，其伤害等同于你的反击层数。",
     "CHAMP-COUNTER_POWER.smartDescription": "下次你受到攻击伤害时，获得一张[gold]还击打击[/gold]，其伤害等同于[blue]{Amount}[/blue]。",
     "CHAMP-DANCING_MASTER_POWER.title": "战技大师",
-    "CHAMP-DANCING_MASTER_POWER.description": "每回合你第一次使用[gold]终结技[/gold]时，获得{energyPrefix:energyIcons(1)}并抽一张牌。",
+    "CHAMP-DANCING_MASTER_POWER.description": "每回合你第一次使用[gold]终结技[/gold]时，获得{energyPrefix:energyIcons(1)}并抽1张牌。",
     "CHAMP-DANCING_MASTER_POWER.smartDescription": "每回合你第一次使用[gold]终结技[/gold]时，获得{Amount:energyIcons()}并抽[blue]{Amount}[/blue]张牌。",
     "CHAMP-DEFENSIVE_STYLE_POWER.title": "防守战法",
     "CHAMP-DEFENSIVE_STYLE_POWER.description": "[gold]技术奖励[/gold]额外给予[gold]反击[/gold]。",
@@ -51,7 +51,7 @@
     "CHAMP-MAGNIFICENCE_POWER.description": "在你的回合开始时，获得[gold]荣耀[/gold]。",
     "CHAMP-MAGNIFICENCE_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]点[gold]荣耀[/gold]。",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.title": "护盾猛掷",
-    "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "下回合你无法从卡牌中获得[gold]格挡[/gold]。",
+    "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "在下个回合，你无法从卡牌中获得[gold]格挡[/gold]。",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.smartDescription": "下[blue]{Amount}[/blue]个回合内，你无法从卡牌中获得[gold]格挡[/gold]。",
     "CHAMP-PARRYING_POWER.title": "招架",
     "CHAMP-PARRYING_POWER.description": "若本回合触发了[gold]反击[/gold]，额外获得一张[gold]还击打击[/gold]。",
@@ -72,6 +72,6 @@
     "CHAMP-ULTIMATE_STANCE_POWER.description": "本回合你处于[gold]终极姿态[/gold]。",
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "本回合你处于[gold]终极姿态[/gold]。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "下回合活力",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "下回合，获得[gold]活力[/gold]。",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "下回合，获得[blue]{}[/blue]点[gold]活力[/gold]。"
+    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "在下个回合，获得[gold]活力[/gold]。",
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "在下个回合，获得[blue]{}[/blue]点[gold]活力[/gold]。"
 }
