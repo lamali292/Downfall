@@ -23,7 +23,7 @@ public class ToothAndClaw : SneckoCardModel, IHasGift
     }
 
     private int UniqueColorsInHand => Owner.GetHand()
-        .Select(e => e.Pool)
+        .Select(e => e.VisualCardPool)
         .Distinct()
         .Count();
 
