@@ -1,0 +1,8 @@
+{
+  "HEXAGHOST-ECTO_COOLER_POTION.title": "Ecto Cooler",
+  "HEXAGHOST-ECTO_COOLER_POTION.description": "Choose [blue]1[/blue] of [blue]3[/blue] [gold]Afterlife[/gold] cards to add to your [gold]Hand[/gold].\nIt's free to play this turn.",
+  "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Combustive Fluid",
+  "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "Ignite the current Ghostflame [blue]{Ignite:diff()}[/blue] times.",
+  "HEXAGHOST-INFERNO_POTION_POTION.title": "Inferno Potion",
+  "HEXAGHOST-INFERNO_POTION_POTION.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat."
+}

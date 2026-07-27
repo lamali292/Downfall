@@ -3,7 +3,6 @@ using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -21,26 +20,16 @@ public class BolsteringGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        if (Owner.Creature.CombatState == null) return;
+        if (!TryBeginIgnite()) return;
 
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-
+        var block = 4 + Intensity;
         var repeat = 1 + Repeat(GhostflameRepeatType.Block);
-        var block = Intensity;
         for (var i = 0; i < repeat; i++)
-            await CreatureCmd.GainBlock(Owner.Creature, 4 + block, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Unpowered, null);
 
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
     }
 
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (!IsActive || cardPlay.Card.Owner != Owner ||
-            LocalContext.NetId == null) return;
-        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
-        if (!(cardPlay.Card.Type == CardType.Power || shouldCount)) return;
-
-        if (!TryProgress()) return;
-        await Ignite(ctx);
-    }
+    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => TriggerOnCardType(ctx, cardPlay, CardType.Power);
 }

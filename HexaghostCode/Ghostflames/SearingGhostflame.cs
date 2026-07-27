@@ -23,27 +23,13 @@ public class SearingGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (target == null) return;
-        if (Owner.Creature.CombatState == null) return;
-
-        var intensity = Intensity;
+        if (!TryBeginIgnite()) return;
+        var soulburn = 3 + Intensity;
         var repeat = 2 + Repeat(GhostflameRepeatType.Soulburn);
-
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-        SpawnVfx(target);
-
-        for (var i = 0; i < repeat; i++)
-            await PowerCmd.Apply<SoulBurnPower>(ctx, target, 3 + intensity, Owner.Creature, null);
+        await RepeatOnTargets(ctx, repeat, GhostflameRepeatType.Soulburn,
+            targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));
     }
 
-
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (!IsActive || cardPlay.Card.Owner != Owner) return;
-        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
-        if (!(cardPlay.Card.Type == CardType.Attack || shouldCount)) return;
-        if (!TryProgress()) return;
-        await Ignite(ctx);
-    }
+    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => TriggerOnCardType(ctx, cardPlay, CardType.Attack);
 }

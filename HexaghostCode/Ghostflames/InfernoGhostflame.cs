@@ -1,10 +1,10 @@
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Powers;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -25,20 +25,13 @@ public class InfernoGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        if (Owner.Creature.CombatState == null) return;
-        var ignited = HexaghostCmd.GetIgnitedCount(Owner);
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
+        if (!TryBeginIgnite()) return;
 
-        var hitCount = ignited + Repeat(GhostflameRepeatType.Damage);
         var damage = 4 + Intensity;
-        for (var i = 0; i < hitCount; i++)
-        {
-            var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-            if (target == null) continue;
-            SpawnVfx(target);
-            if (!target.IsHittable) continue;
-            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Unpowered, Owner.Creature);
-        }
+        var hitCount = HexaghostCmd.GetIgnitedCount(Owner) + Repeat(GhostflameRepeatType.Damage);
+
+        await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
+            targets => CreatureCmd.Damage(ctx, targets, damage, ValueProp.Unpowered, Owner.Creature));
 
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
@@ -58,7 +51,7 @@ public class InfernoGhostflame : GhostflameModel
 
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
-        if (!IsActive || card.Owner != Owner || LocalContext.NetId == null) return;
+        if (!IsActive || card.Owner != Owner) return;
         if (!TryProgress(amount)) return;
         await Ignite(ctx);
     }
