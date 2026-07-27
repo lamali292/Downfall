@@ -59,7 +59,8 @@ public class DownfallPatchManager
             .Add(typeof(FindExistingInstanceForStackingPatch))
             .Add(typeof(IgnoreDexterityPatch))
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
-            .Add(typeof(ModCreditsPatch));
+            .Add(typeof(NCreditsScreenPatch));
+        
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
