@@ -85,6 +85,12 @@ public partial class DownfallMainFile : Node
             new PreviewPluralFormatter(),
             new PreviewValueFormatter(),
             new PlusIfUpgradedFormatter());
+
+        ModCredits.Register<DownfallMainFile>(
+            new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
+            new ModCredits.Section("HELP", ModCredits.Layout.Roles),
+            new ModCredits.Section("ART"),
+            new ModCredits.Section("LOC",  ModCredits.Layout.Roles));
     }
 
 

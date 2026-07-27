@@ -58,7 +58,8 @@ public class DownfallPatchManager
             .Add(typeof(CreatureNavigationLinkPatch))
             .Add(typeof(FindExistingInstanceForStackingPatch))
             .Add(typeof(IgnoreDexterityPatch))
-            .Add(typeof(InvokeSilentDisplayAmountChangedPatch));
+            .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
+            .Add(typeof(ModCreditsPatch));
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
