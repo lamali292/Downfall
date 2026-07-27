@@ -102,8 +102,8 @@ public static class ModCreditsPatch
             foreach (var sec in e.Sections)
             {
                 var tag  = "M" + m + "S" + s;
-                var head = ModCredits.Resolve(e.ModId + "-" + sec.Name + ".header");
-                var body = ModCredits.Resolve(e.ModId + "-" + sec.Name + ".names");
+                var head = ModCredits.Resolve(e.ModId + "-" + sec.Name.ToUpperInvariant() + ".header");
+                var body = ModCredits.Resolve(e.ModId + "-" + sec.Name.ToUpperInvariant() + ".names");
 
                 BuildHeader(vbox, ref at, head, null, headerTpl, tag + "H", 60f);
 
