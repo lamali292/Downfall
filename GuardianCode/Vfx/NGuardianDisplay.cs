@@ -6,30 +6,29 @@ using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 
 namespace Guardian.GuardianCode.Vfx;
 
 [GlobalClass]
 public partial class NGuardianDisplay : Control
 {
-    private const float SequencedCardScale = 1;
+    private const float SequencedCardScale = 1f;
     private const string DisplayScenePath = "res://Guardian/scenes/guardian_display.tscn";
     private const string StasisSlotScenePath = "res://Guardian/scenes/stasis_slot.tscn";
-    private readonly List<NCustomCardHolder> _cardHolders = [];
 
+    private readonly List<NCustomCardHolder> _cardHolders = [];
     private readonly List<NStasisSlot> _slots = [];
-    private float _bobTime;
+    
+    private readonly Dictionary<NCustomCardHolder, NCardHolder.PressedEventHandler> _pressedHandlers = [];
+
     private Control? _creatureHitbox;
     private int _currentMax = 3;
-    private bool _initialized;
-
     private HBoxContainer? _slotContainer;
     private PackedScene? _stasisSlotScene;
-
     private Player? _trackedPlayer;
 
     public static NGuardianDisplay Create(Player player, Control? creatureHitbox)
@@ -50,50 +49,35 @@ public partial class NGuardianDisplay : Control
 
     public override void _ExitTree()
     {
-        // Combat end / room teardown: unregister everything we put into the
-        // FindOnTable registry so it can never serve this display's dead nodes
-        // in a later combat (CardModels persist across fights).
         ReleaseAllCards();
     }
-
-    /// <summary>
-    ///     Display card nodes can be ADOPTED by the base game: when a stasis card
-    ///     moves to another pile, NCard.FindOnTable (via FindOnTablePatch) hands the
-    ///     engine our node and the engine reparents it into the hand/play flow.
-    ///     From that moment the node is no longer ours.
-    ///     So on cleanup we only destroy a node that is still under this display
-    ///     (IsAncestorOf). If it was reparented away, we just drop our references
-    ///     and let the game manage its lifecycle (it will pool-free it itself).
-    /// </summary>
     private void ReleaseHolder(NCustomCardHolder holder)
     {
-        if (holder.CardModel != null)
+        if (_pressedHandlers.Remove(holder, out var handler)
+            && IsInstanceValid(holder))
+            holder.Pressed -= handler;
+
+        if (IsInstanceValid(holder) && holder.CardModel != null)
             FindOnTablePatch.Unregister(holder.CardModel);
-
-        var cardNode = holder.CardNode;
-        if (cardNode == null || !IsInstanceValid(cardNode)) return;
-
-        var stillOwned = cardNode.IsInsideTree() && IsAncestorOf(cardNode);
-        if (!stillOwned) return; // adopted by the hand/play flow — hands off
-
-        cardNode.GetParent()?.RemoveChild(cardNode);
-        cardNode.QueueFree();
     }
 
     private void ReleaseAllCards()
     {
-        foreach (var h in _cardHolders) ReleaseHolder(h);
+        foreach (var h in _cardHolders)
+            ReleaseHolder(h);
         _cardHolders.Clear();
+        _pressedHandlers.Clear();
     }
-
+    
     private void EnsureSlotCount(int count)
     {
         if (_slotContainer == null || _stasisSlotScene == null) return;
+
         while (_slots.Count > count)
         {
-            var lastSlot = _slots[^1];
+            var last = _slots[^1];
             _slots.RemoveAt(_slots.Count - 1);
-            lastSlot.QueueFree(); // safe: runs after ReleaseAllCards, slots are empty
+            last.QueueFree();
         }
 
         while (_slots.Count < count)
@@ -104,18 +88,11 @@ public partial class NGuardianDisplay : Control
         }
     }
 
-    public Vector2 GetSlotGlobalPosition(int index)
-    {
-        var clamped = Math.Clamp(index, 0, _currentMax - 1);
-        return clamped < _slots.Count ? _slots[clamped].CardAnchorGlobal : GlobalPosition;
-    }
-
     public void RefreshCounters()
     {
         if (_trackedPlayer == null) return;
 
         var sequence = _trackedPlayer.GetStasis().ToList();
-
         for (var i = 0; i < _slots.Count && i < sequence.Count; i++)
             _slots[i].UpdateCounterDisplay(sequence[i]);
     }
@@ -126,42 +103,33 @@ public partial class NGuardianDisplay : Control
 
         var sequence = _trackedPlayer.GetStasis().ToList();
         _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
-        _initialized = true;
-
-        // Order matters:
-        // 1) unregister + destroy only the nodes we still own
+        
         ReleaseAllCards();
-        // 2) clear the (now empty) holders
-        foreach (var slot in _slots) slot.ClearCard();
-        // 3) only now shrink/grow — shrinking earlier could QueueFree a slot
-        //    that still contained a live card
+        foreach (var slot in _slots)
+            slot.ClearCard();
         EnsureSlotCount(_currentMax);
-
         for (var i = 0; i < _slots.Count; i++)
         {
             var slot = _slots[i];
             slot.Visible = i < _currentMax;
-
             if (i >= _currentMax || i >= sequence.Count) continue;
 
-            var cardNode = NCard.Create(sequence[i]);
+            var model = sequence[i];
+            var cardNode = NCard.Create(model);
             if (cardNode == null) continue;
 
             var holder = slot.SetCard(cardNode);
             if (holder == null)
             {
-                // fresh node, nothing else references it yet — safe to discard
-                cardNode.QueueFree();
+                cardNode.QueueFree(); 
                 continue;
             }
 
             holder.SetClickable(true);
-            var captured = i;
-            holder.Pressed += _ => NGame.Instance?.GetInspectCardScreen()
-                .Open(AllCardsForInspect(), captured);
+            WireInspect(holder);
 
             cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-            FindOnTablePatch.Register(sequence[i], cardNode);
+            FindOnTablePatch.Register(model, cardNode);
             _cardHolders.Add(holder);
         }
 
@@ -171,18 +139,43 @@ public partial class NGuardianDisplay : Control
 
         RefreshCounters();
     }
+    
+    private void WireInspect(NCustomCardHolder holder)
+    {
+        NCardHolder.PressedEventHandler handler = _ =>
+        {
+            if (!IsInstanceValid(holder) || holder.CardModel == null) return;
+
+            var cards = AllCardsForInspect();
+            var idx = cards.IndexOf(holder.CardModel);
+            if (idx < 0) return;
+
+            NGame.Instance?.GetInspectCardScreen().Open(cards, idx);
+        };
+
+        holder.Pressed += handler;
+        _pressedHandlers[holder] = handler;
+    }
 
     private List<CardModel> AllCardsForInspect()
     {
-        return _cardHolders.Where(h => h.CardModel != null).Select(h => h.CardModel!).ToList();
+        return _cardHolders
+            .Where(h => IsInstanceValid(h) && h.CardModel != null)
+            .Select(h => h.CardModel!)
+            .ToList();
+    }
+
+    private Vector2 GetSlotGlobalPosition(int index)
+    {
+        var clamped = Math.Clamp(index, 0, _currentMax - 1);
+        return clamped < _slots.Count
+            ? _slots[clamped].CardAnchorGlobal
+            : GlobalPosition;
     }
 
     public NCard? GetNCard(CardModel card)
     {
-        var cardNode = _cardHolders.Find(h => h.CardModel == card)?.CardNode;
-
-        // Also verify the model still matches: a pooled node can be alive but
-        // recycled to display a different card.
+        var cardNode = _cardHolders.Find(h => IsInstanceValid(h) && h.CardModel == card)?.CardNode;
         if (cardNode != null && IsInstanceValid(cardNode) && cardNode.Model == card)
             return cardNode;
 
@@ -194,13 +187,16 @@ public partial class NGuardianDisplay : Control
         if (_trackedPlayer == null) return GlobalPosition;
 
         var sequence = _trackedPlayer.GetStasis().ToList();
+
         var existingIndex = sequence.IndexOf(card);
         if (existingIndex >= 0)
             return existingIndex < _slots.Count ? _slots[existingIndex].CardAnchorGlobal : GlobalPosition;
-        var nextIndex = sequence.Count;
-        if (nextIndex >= _currentMax)
-            nextIndex = _currentMax - 1;
 
-        return nextIndex < _slots.Count ? _slots[nextIndex].CardAnchorGlobal : GlobalPosition;
+        var nextIndex = sequence.Count;
+        if (nextIndex >= _currentMax) nextIndex = _currentMax - 1;
+
+        return nextIndex >= 0 && nextIndex < _slots.Count
+            ? _slots[nextIndex].CardAnchorGlobal
+            : GlobalPosition;
     }
 }

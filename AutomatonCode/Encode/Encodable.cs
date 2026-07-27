@@ -53,6 +53,28 @@ public abstract class Encodable
 
     public void ApplyEncode(FunctionCard functionCard, CardModel sourceCard)
     {
-        DynamicVar(functionCard).BaseValue += DynamicVar(sourceCard).BaseValue;
+        DynamicVar(functionCard).BaseValue += EnchantedBase(DynamicVar(sourceCard), sourceCard);
+    }
+    
+    
+    private static decimal EnchantedBase(DynamicVar v, CardModel card)
+    {
+        var e = card.Enchantment;
+        if (e == null) return v.BaseValue;
+        switch (v)
+        {
+            case DamageVar d:
+            {
+                var val = d.BaseValue + e.EnchantDamageAdditive(d.BaseValue, d.Props);
+                return val * e.EnchantDamageMultiplicative(val, d.Props);
+            }
+            case BlockVar b:
+            {
+                var val = b.BaseValue + e.EnchantBlockAdditive(b.BaseValue);
+                return val * e.EnchantBlockMultiplicative(val);
+            }
+            default:
+                return v.BaseValue; 
+        }
     }
 }
