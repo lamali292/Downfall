@@ -26,8 +26,8 @@ public class Nope : SneckoCardModel
             .FirstOrDefault();
         if (card == null) return;
         await CardCmd.Exhaust(ctx, card);
-        if (!ModelDb.AllCharacterCardPools.Contains(card.Pool)) return;
-        var nopeCard = CardFactory.GetForCombat(Owner, card.Pool.AllCards, 1,
+        if (!ModelDb.AllCharacterCardPools.Contains(card.VisualCardPool)) return;
+        var nopeCard = CardFactory.GetForCombat(Owner, card.VisualCardPool.AllCards, 1,
             Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
         if (nopeCard == null) return;
         await CardPileCmd.AddGeneratedCardToCombat(nopeCard, PileType.Hand, Owner);
