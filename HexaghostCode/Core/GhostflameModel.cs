@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -49,7 +50,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     private int FlameIndex => Array.IndexOf(HexaghostCmd.GetWheel(Owner), this);
 
-    protected Player Owner
+    public Player Owner
     {
         get
         {
@@ -169,6 +170,44 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     protected virtual Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
         return Task.CompletedTask;
+    }
+    
+    
+    protected bool TryBeginIgnite(string sfx = "event:/sfx/characters/attack_fire")
+    {
+        if (Owner.Creature.CombatState == null) return false;
+        SfxCmd.Play(sfx);
+        return true;
+    }
+
+    protected async Task RepeatOnTargets(PlayerChoiceContext ctx, int count, GhostflameRepeatType repeatType,
+        Func<IReadOnlyList<Creature>, Task> action)
+    {
+        var hitAll = HexaghostHook.ShouldGhostflameTargetAll(CombatState, this, repeatType, out var matches);
+        await HexaghostHook.AfterShouldGhostflameTargetedAll(CombatState, ctx, this, matches);
+        for (var i = 0; i < count; i++)
+        {
+            IReadOnlyList<Creature> targets;
+            if (hitAll)
+                targets = CombatState.HittableEnemies;
+            else
+            {
+                var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+                targets = target == null ? [] : [target];
+            }
+            foreach (var creature in targets)
+                SpawnVfx(creature);
+            await action(targets);
+        }
+    }
+
+    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type)
+    {
+        if (!IsActive || cardPlay.Card.Owner != Owner) return;
+        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
+        if (cardPlay.Card.Type != type && !shouldCount) return;
+        if (!TryProgress()) return;
+        await Ignite(ctx);
     }
 }
 

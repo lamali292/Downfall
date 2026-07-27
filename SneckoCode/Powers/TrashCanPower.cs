@@ -14,7 +14,7 @@ public class TrashCanPower : SneckoPowerModel
     {
         if (!participants.Contains(Owner) || Owner.Player == null) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, Amount);
-        (await CardSelectCmd.FromHand(ctx, Owner.Player, prefs, null, this)).ToList()
-            .ForEach(e => CardCmd.Exhaust(ctx, e));
+        var cards = (await CardSelectCmd.FromHand(ctx, Owner.Player, prefs, null, this)).ToList();
+        await cards.ForEachAsync(e => CardCmd.Exhaust(ctx, e));
     }
 }

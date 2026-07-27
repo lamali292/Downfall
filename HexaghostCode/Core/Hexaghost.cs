@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -89,3 +90,6 @@ public abstract class HexaghostCardModel(
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 
 public class HexaghostCardPool : DownfallCardPool<Hexaghost>;
+
+public abstract class HexaghostPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<Hexaghost>(potionRarity, potionUsage, targetType);

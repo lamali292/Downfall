@@ -23,26 +23,15 @@ public class CrushingGhostflame : GhostflameModel
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
-        if (Owner.Creature.CombatState == null) return;
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-        var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
+        if (!TryBeginIgnite()) return;
+
         var damage = 3 + Intensity;
-        for (var i = 0; i < hitCount; i++)
-        {
-            var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-            if (target == null) return;
-            SpawnVfx(target);
-            if (!target.IsHittable) continue;
-            await CreatureCmd.Damage(ctx, target, damage,  ValueProp.Unpowered, Owner.Creature);
-        }
+        var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
+
+        await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
+            targets => CreatureCmd.Damage(ctx, targets, damage, ValueProp.Unpowered, Owner.Creature));
     }
 
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (!IsActive || cardPlay.Card.Owner != Owner) return;
-        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
-        if (!(cardPlay.Card.Type == CardType.Skill || shouldCount)) return;
-        if (!TryProgress()) return;
-        await Ignite(ctx);
-    }
+    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+        => TriggerOnCardType(ctx, cardPlay, CardType.Skill);
 }
