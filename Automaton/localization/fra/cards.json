@@ -169,7 +169,6 @@
     "AUTOMATON-PROTO_SHIELD.title": "Proto-Bouclier",
     "AUTOMATON-PROTO_SHIELD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nGagnez {PlatingPower:diff()} de [gold]Blindage[/gold].\nAjoutez {Cards:plural:une [gold]Erreur[/gold]|{Cards:diff()} [gold]Erreurs[/gold]} dans votre [gold]Défausse[/gold].",
     "AUTOMATON-PROTO_BEAM.title": "Proto-Laser",
-    "AUTOMATON-PROTO_BEAM.description": "Infligez {Damage:diff()} dégâts pour chaque carte Statut [gold]Épuisée[/gold].\n{InCombat:cond:\n(Touche {CalculatedHits:diff()} fois|}",
     "AUTOMATON-RECYCLE_BIN.title": "Corbeille",
     "AUTOMATON-RECYCLE_BIN.description": "À la fin de votre tour, gagnez {RecycleBinPower:diff()} [gold]d'Armure[/gold] pour chaque Statut ou Malédiction dans votre [gold]Main[/gold].",
     "AUTOMATON-RECREATE.title": "Restitution",

@@ -6,8 +6,5 @@
     "CHAMP-CHAMP_NO_STANCE.title": "Nessuna Posa",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Posa Suprema",
     "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]Bonus Abilità[/gold]: Ottieni [blue]{BerserkerSkill}[/blue] [gold]Vigore[/gold] e [blue]{DefensiveSkill}[/blue] [gold]Contrattacco[/gold].\n[gold]Finalizzatore[/gold]: Ottieni [blue]{BerserkerFinisher}[/blue] [gold]Forza[/gold] e [blue]{DefensiveFinisher}[/blue] [gold]Blocco[/gold].",
-    "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: Ottieni {BerserkerFinisher} [gold]Forza[/gold] e {DefensiveFinisher} [gold]Blocco[/gold].",
-    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finale[/gold]",
-    "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: Ottieni {BerserkerFinisher} [gold]Forza[/gold].",
-    "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: Ottieni {DefensiveFinisher} [gold]Blocco[/gold]."
+    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finale[/gold]"
 }
