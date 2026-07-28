@@ -73,7 +73,9 @@ public class ChampCmd
         await ChampModel.SetStance<ChampNoStance>(ctx, player);
     }
 
-    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, bool skipClear = false,
+    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, 
+        bool affectsAllPlayers = false, 
+        bool skipClear = false,
         int repeat = 1)
     {
         var player = cardPlay.Card.Owner;
@@ -82,7 +84,7 @@ public class ChampCmd
 
         for (var i = 0; i < repeat; i++)
         {
-            await m.Finisher(ctx);
+            await m.Finisher(ctx, affectsAllPlayers);
             await ChampHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
         }
 

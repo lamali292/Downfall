@@ -26,9 +26,12 @@ public class ChampBerserkerStance : ChampStanceModel
         await PowerCmd.Apply<VigorPower>(ctx, Owner.Creature, amount, Owner.Creature, null);
     }
 
-    public override async Task Finisher(PlayerChoiceContext ctx)
+    public override async Task Finisher(PlayerChoiceContext ctx, bool affectsAllPlayers)
     {
         var amount = (int)((BerserkerFinisherVar)DynamicVars["BerserkerFinisher"]).Calculate();
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, amount, Owner.Creature, null);
+        var targets = affectsAllPlayers
+            ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true })
+            : [Owner.Creature];
+        await PowerCmd.Apply<StrengthPower>(ctx, targets, amount, Owner.Creature, null);
     }
 }

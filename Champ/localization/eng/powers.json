@@ -73,5 +73,8 @@
   "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "You are in [gold]Ultimate Stance[/gold] this turn.",
   "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Next Turn Vigor",
   "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Next turn, gain [gold]Vigor[/gold].",
-  "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Next turn, gain [blue]{}[/blue] [gold]Vigor[/gold]."
+  "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Next turn, gain [blue]{}[/blue] [gold]Vigor[/gold].",
+  "CHAMP-CROWD_FAVORITE_POWER.title": "Crowd Favorite",
+  "CHAMP-CROWD_FAVORITE_POWER.description": "Whenever another player attacks an enemy, gain [gold]Vigor[/gold].",
+  "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Whenever another player attacks an enemy, gain [blue]{Amount}[/blue] [gold]Vigor[/gold]."
 }

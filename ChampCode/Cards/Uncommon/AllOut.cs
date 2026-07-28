@@ -20,6 +20,6 @@ public class AllOut : ChampCardModel
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.PlayFinisher(ctx, cardPlay, true, DynamicVars.Repeat.IntValue);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, false, true, DynamicVars.Repeat.IntValue);
     }
 }

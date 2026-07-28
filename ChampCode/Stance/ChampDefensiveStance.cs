@@ -26,9 +26,15 @@ public class ChampDefensiveStance : ChampStanceModel
         await PowerCmd.Apply<CounterPower>(ctx, Owner.Creature, amount, Owner.Creature, null);
     }
 
-    public override async Task Finisher(PlayerChoiceContext ctx)
+    public override async Task Finisher(PlayerChoiceContext ctx, bool affectsAllPlayers)
     {
         var amount = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
-        await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
+        var targets = affectsAllPlayers
+            ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true })
+            : [Owner.Creature];
+        await targets.ForEachAsync(e =>
+             CreatureCmd.GainBlock(e, amount, ValueProp.Unpowered, null)
+        );
+
     }
 }
