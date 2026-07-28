@@ -139,7 +139,6 @@
     "AUTOMATON-CONVERT.title": "변환",
     "AUTOMATON-PROTO_SHIELD.title": "프로토-실드",
     "AUTOMATON-PROTO_BEAM.title": "프로토-빔",
-    "AUTOMATON-PROTO_BEAM.description": "[gold]소멸된 카드 더미[/gold]에 있는 상태이상 카드 한 장당 {Damage:diff()}의 피해를 줍니다.\n{InCombat:cond:\n({CalculatedHits:diff()}번 타격)|}",
     "AUTOMATON-RECYCLE_BIN.title": "휴지통",
     "AUTOMATON-RECYCLE_BIN.description": "턴 종료 시, [gold]패[/gold]에 있는 상태이상이나 저주 카드 한 장당 방어도를 {RecycleBinPower:diff()} 얻습니다.",
     "AUTOMATON-RECREATE.title": "재창조",

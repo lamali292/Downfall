@@ -6,8 +6,5 @@
     "CHAMP-CHAMP_NO_STANCE.title": "无姿态",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "终极姿态",
     "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]技术奖励[/gold]：获得[blue]{BerserkerSkill}[/blue]层[gold]活力[/gold]和[blue]{DefensiveSkill}[/blue]层[gold]反击[/gold]。\n[gold]终结技[/gold]：获得[blue]{BerserkerFinisher}[/blue]点[gold]力量[/gold]和[blue]{DefensiveFinisher}[/blue]点[gold]格挡[/gold]。",
-    "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}：获得{BerserkerFinisher}点[gold]力量[/gold]和{DefensiveFinisher}点[gold]格挡[/gold]。",
-    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]终结技[/gold]",
-    "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}：获得{BerserkerFinisher}点[gold]力量[/gold]。",
-    "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}：获得{DefensiveFinisher}点[gold]格挡[/gold]。"
+    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]终结技[/gold]"
 }

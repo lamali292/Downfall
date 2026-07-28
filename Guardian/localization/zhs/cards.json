@@ -157,7 +157,7 @@
     "GUARDIAN-HIGH_FREQUENCY.description": "[gold]消耗[/gold]一张牌。\n用它的复制填满你的[gold]凝滞[/gold]栏位。",
     "GUARDIAN-BRONZE_BRAMBLES.title": "青铜荆棘",
     "GUARDIAN-BRONZE_BRAMBLES.description": "每当你获得负面状态时，获得{BronzeBramblesPower:diff()}点[gold]荆棘[/gold]。",
-    "GUARDIAN-MAXIMUM_OVERDRIVE.title": "最大过载",
+    "GUARDIAN-MAXIMUM_OVERDRIVE.title": "最大功率",
     "GUARDIAN-MAXIMUM_OVERDRIVE.description": "每当一张牌减少[gold]凝滞[/gold]计数时，在本回合中获得{MaximumOverdrivePower:diff()}点[gold]力量[/gold]。",
     "GUARDIAN-SHARED_FLUX.title": "共鸣能流",
     "GUARDIAN-SHARED_FLUX.description": "选择另一名玩家。\n该玩家可选择其[gold]抽牌堆[/gold]中的一张牌，将其[gold]凝滞[/gold]。",

@@ -114,7 +114,6 @@
     "HERMIT-LONE_WOLF.title": "Loup Solitaire",
     "HERMIT-LONE_WOLF.description": "Choisissez une carte.\nElle est gratuite à jouer ce tour\nDéfaussez le reste de votre [gold]Main[/gold].",
     "HERMIT-HIGH_NOON.title": "Midi",
-    "HERMIT-HIGH_NOON.description": "Les [gold]Frappes[/gold] {IfUpgraded:show:et les Défenses|} [gold]Basiques[/gold] obtiennent [gold]Rejouez[/gold] {HighNoonPower:diff()} fois.",
     "HERMIT-REPRIEVE.title": "Sursis",
     "HERMIT-REPRIEVE.description": "Soignez-vous de {Heal:diff()} PV.",
     "HERMIT-TAKE_AIM.title": "Ciblage",
