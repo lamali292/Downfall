@@ -16,6 +16,8 @@ public class Heating : HexaghostCardModel
         WithTip(StaticHoverTip.Block);
     }
     
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+    
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<HeatingPower>(ctx, this);
