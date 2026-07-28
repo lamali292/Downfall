@@ -11,7 +11,7 @@ namespace Awakened.AwakenedCode.Cards.Multiplayer;
 [Pool(typeof(AwakenedCardPool))]
 public class BookOfSecrets : AwakenedCardModel
 {
-    public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
         this.WithConjure();
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
