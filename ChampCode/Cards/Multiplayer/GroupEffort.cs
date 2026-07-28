@@ -1,0 +1,32 @@
+﻿using BaseLib.Utils;
+using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Champ.ChampCode.Cards.Multiplayer;
+
+[Pool(typeof(ChampCardPool))]
+public class GroupEffort : ChampCardModel
+{
+    public GroupEffort() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+        WithBlock(9, 3);
+        this.WithFinisher();
+    }
+
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+    
+    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await ChampCmd.PlayFinisher(ctx, cardPlay, true);
+    }
+    
+    public override bool AffectsAllPlayers => true;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
+    }
+}

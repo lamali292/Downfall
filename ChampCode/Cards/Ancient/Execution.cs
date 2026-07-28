@@ -28,6 +28,6 @@ public class Execution : ChampCardModel
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.PlayFinisher(ctx, cardPlay, true, 2);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, false, true, 2);
     }
 }

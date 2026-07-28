@@ -46,4 +46,6 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay);
     }
+
+    public virtual bool AffectsAllPlayers => false;
 }

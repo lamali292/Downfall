@@ -83,7 +83,7 @@ public abstract class ChampStanceModel : AbstractModel
         return Task.CompletedTask;
     }
 
-    public virtual Task Finisher(PlayerChoiceContext ctx)
+    public virtual Task Finisher(PlayerChoiceContext ctx, bool affectsAllPlayers)
     {
         return Task.CompletedTask;
     }

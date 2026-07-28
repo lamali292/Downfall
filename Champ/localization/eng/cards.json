@@ -187,5 +187,11 @@
   "CHAMP-WREATH_OF_VICTORY.title": "Wreath of Victory",
   "CHAMP-WREATH_OF_VICTORY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].",
   "CHAMP-REDIRECT.title": "Redirect",
-  "CHAMP-REDIRECT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut the next card you play this turn on top of your [gold]Draw Pile[/gold]. "
+  "CHAMP-REDIRECT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut the next card you play this turn on top of your [gold]Draw Pile[/gold]. ",
+  "CHAMP-INSPIRE.title": "Inspire",
+  "CHAMP-INSPIRE.description": "Give another player {VigorPower:diff()} [gold]Vigor[/gold].",
+  "CHAMP-CROWD_FAVORITE.title": "Crowd Favorite",
+  "CHAMP-CROWD_FAVORITE.description": "Whenever another player attacks an enemy, gain {CrowdFavoritePower:diff()} [gold]Vigor[/gold].",
+  "CHAMP-GROUP_EFFORT.title": "Group Effort",
+  "CHAMP-GROUP_EFFORT.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Finisher[/gold] effects on this card affect ALL players."
 }

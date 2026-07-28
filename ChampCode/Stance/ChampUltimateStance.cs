@@ -32,12 +32,16 @@ public class ChampUltimateStance : ChampStanceModel
         await PowerCmd.Apply<CounterPower>(ctx, Owner.Creature, counter, Owner.Creature, null);
     }
 
-    public override async Task Finisher(PlayerChoiceContext ctx)
+    public override async Task Finisher(PlayerChoiceContext ctx, bool affectsAllPlayers)
     {
         var strength = (int)((BerserkerFinisherVar)DynamicVars["BerserkerFinisher"]).Calculate();
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, strength, Owner.Creature, null);
-
         var block = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
-        await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Unpowered, null);
+        var targets = affectsAllPlayers
+            ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true }).ToList()
+            : [Owner.Creature];
+        await PowerCmd.Apply<StrengthPower>(ctx, targets, strength, Owner.Creature, null);
+        await targets.ForEachAsync(e =>
+            CreatureCmd.GainBlock(e, block, ValueProp.Unpowered, null)
+        );
     }
 }

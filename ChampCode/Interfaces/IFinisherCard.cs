@@ -6,4 +6,5 @@ namespace Champ.ChampCode.Interfaces;
 public interface IFinisherCard
 {
     Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
+    bool AffectsAllPlayers { get; }
 }
