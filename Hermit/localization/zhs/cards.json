@@ -114,6 +114,7 @@
     "HERMIT-LONE_WOLF.title": "孤狼",
     "HERMIT-LONE_WOLF.description": "选择一张牌。这张牌在本回合免费打出。\n丢弃其余所有[gold]手牌[/gold]。",
     "HERMIT-HIGH_NOON.title": "午时已到",
+    "HERMIT-HIGH_NOON.description": "[gold]打击[/gold]{IfUpgraded:show:和[gold]防御[/gold]|}获得[gold]重放[/gold]{HighNoonPower:diff()}。",
     "HERMIT-REPRIEVE.title": "延缓死亡",
     "HERMIT-REPRIEVE.description": "回复{Heal:diff()}点生命。",
     "HERMIT-TAKE_AIM.title": "举枪瞄准",

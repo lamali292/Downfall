@@ -20,6 +20,7 @@
     "AWAKENED-BLOODTHIRST.title": "血の渇き",
     "AWAKENED-BLOOD_RITE.description": "{Damage:diff()}ダメージを与える。\n[gold]セレモニー[/gold]を1枚得る。",
     "AWAKENED-BLOOD_RITE.title": "血の儀式",
+    "AWAKENED-BOOK_OF_SECRETS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n他のすべてのプレイヤーは、あなたの次の呪文のコピーを[gold]召喚[/gold]する。",
     "AWAKENED-BOOK_OF_SECRETS.title": "秘密の書",
     "AWAKENED-BRAINSHOCK.description": "{Damage:diff()}ダメージを与える。\n[gold]捨て札[/gold]に[gold]虚無[/gold]を1枚加える。",
     "AWAKENED-BRAINSHOCK.title": "ブレインショック",
@@ -52,6 +53,7 @@
     "AWAKENED-DARK_ECHO.description": "ターン終了時、すべての敵に[gold]筋力[/gold]分増加した4ダメージを与える。",
     "AWAKENED-DARK_ECHO.title": "ダークエコー",
     "AWAKENED-DARK_INCANTATION.title": "闇の詠唱",
+    "AWAKENED-DARK_INCANTATION.description": "他のプレイヤーを1人選び、[gold]儀式[/gold]{RitualPower:diff()}を与える。",
     "AWAKENED-DEATHCOIL.description": "[gold]マナバーン[/gold]{ManaburnPower:diff()}を付与する。\n次のターン、{Energy:energyIcons()}を失う。",
     "AWAKENED-DEATHCOIL.title": "死の螺旋",
     "AWAKENED-DEFEND_AWAKENED.description": "{Block:diff()}[gold]ブロック[/gold]を得る。",
@@ -103,6 +105,7 @@
     "AWAKENED-INTENSIFY.title": "増幅",
     "AWAKENED-KNIFES_EDGE.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]捨て札[/gold]に[gold]虚無[/gold]を2枚加える。",
     "AWAKENED-KNIFES_EDGE.title": "ナイフエッジ",
+    "AWAKENED-MAGICIANISM.description": "無色のカードをプレイするたび、{MagicianismPower:diff()}[gold]ブロック[/gold]を得る。",
     "AWAKENED-MAGICIANISM.title": "マジシャニズム",
     "AWAKENED-MANASTORM.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]召喚[/gold]を2回行う。",
     "AWAKENED-MANASTORM.title": "マナストーム",
@@ -204,5 +207,11 @@
     "AWAKENED-WAVE_OF_MIASMA.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nすべての敵に[gold]マナバーン[/gold]{ManaburnPower:diff()}を付与する。",
     "AWAKENED-WAVE_OF_MIASMA.title": "瘴気の波",
     "AWAKENED-ESP.description": "カードを{Cards:diff()}枚引く。",
-    "AWAKENED-ESP.title": "ESP"
+    "AWAKENED-ESP.title": "ESP",
+    "AWAKENED-CONGREGATION.title": "集会",
+    "AWAKENED-CONGREGATION.description": "すべてのプレイヤーは{Energy:energyIcons()}を得て、[gold]山札[/gold]に[gold]虚無[/gold]を1枚加える。",
+    "AWAKENED-BLESS.title": "祝福",
+    "AWAKENED-BLESS.description": "[gold]筋力[/gold]{StrengthPower:diff()}を失う。\n他のプレイヤー1人が[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
+    "AWAKENED-FEATHER_DANCE.title": "フェザーダンス",
+    "AWAKENED-FEATHER_DANCE.description": "すべてのプレイヤーの[gold]手札[/gold]に[gold]羽根撃ち[/gold]を{Cards:diff()}枚加える。"
 }

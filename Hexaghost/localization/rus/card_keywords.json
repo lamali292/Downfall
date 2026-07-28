@@ -1,0 +1,8 @@
+{
+    "HEXAGHOST-ADVANCE.description": "Вы переходите к следующему Огоньку и [gold]Тушите[/gold] его, если был [gold]Зажжен[/gold].",
+    "HEXAGHOST-ADVANCE.title": "Продвижение",
+    "HEXAGHOST-RETRACT.description": "Вы переходите к предыдущему Огоньку и [gold]Тушите[/gold] его, если был [gold]Зажжен[/gold].",
+    "HEXAGHOST-RETRACT.title": "Откат",
+    "HEXAGHOST-AFTERLIFE.description": "Эффект, выделенный зеленым текстом, срабатывает, когда эта карта [gold]сжигается[/gold].",
+    "HEXAGHOST-AFTERLIFE.title": "Посмертие"
+}

@@ -6,5 +6,8 @@
     "CHAMP-CHAMP_NO_STANCE.title": "スタンスなし",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "アルティメットスタンス",
     "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]スキルボーナス[/gold]:[gold]活力[/gold][blue]{BerserkerSkill}[/blue]と[gold]カウンター[/gold][blue]{DefensiveSkill}[/blue]を得る。\n[gold]フィニッシャー[/gold]:[gold]筋力[/gold][blue]{BerserkerFinisher}[/blue]と[blue]{DefensiveFinisher}[/blue][gold]ブロック[/gold]を得る。",
-    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()}[gold]フィニッシャー[/gold]"
+    "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}:{AffectsAllPlayers:すべてのプレイヤーは|}[gold]筋力[/gold]{BerserkerFinisher}と{DefensiveFinisher}[gold]ブロック[/gold]を得る。",
+    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()}[gold]フィニッシャー[/gold]",
+    "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}:{AffectsAllPlayers:すべてのプレイヤーは|}[gold]筋力[/gold]{BerserkerFinisher}を得る。",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}:{AffectsAllPlayers:すべてのプレイヤーは|}{DefensiveFinisher}[gold]ブロック[/gold]を得る。"
 }

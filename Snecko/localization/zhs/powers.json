@@ -28,6 +28,7 @@
     "SNECKO-TSUNAMI_POWER.smartDescription": "每当你触发[gold]溢出[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "无尽供给",
     "SNECKO-UNENDING_SUPPLY_POWER.description": "在你的回合开始时，获得一张随机[gold]异色牌[/gold]的[gold]回响[/gold]。",
+    "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]张随机[gold]异色[/gold]牌的[gold]回响[/gold]。",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "紧缠",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "在其回合结束时，该敌人受到伤害。",
     "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "在其回合结束时，该敌人受到[blue]{Amount}[/blue]点伤害。",
@@ -70,5 +71,7 @@
     "SNECKO-GAMBLE_POWER.title": "全押",
     "SNECKO-GAMBLE_POWER.description": "在下个回合，抽牌并[gold]混淆[/gold]它们。",
     "SNECKO-GAMBLE_POWER.smartDescription": "在下个回合，抽[blue]{Amount}[/blue]张牌并[gold]混淆[/gold]它们。",
-    "SNECKO-MULLIGAN_POWER.title": "重新来过"
+    "SNECKO-MULLIGAN_POWER.title": "重新来过",
+    "SNECKO-MULLIGAN_POWER.description": "每回合第一次打出一张耗能高于其原始值的牌时，获得{energyPrefix:energyIcons(1)}。",
+    "SNECKO-MULLIGAN_POWER.smartDescription": "每回合前[blue]{Amount}[/blue]次一次打出一张耗能高于其原始值的牌时，获得{energyPrefix:energyIcons(1)}。"
 }
