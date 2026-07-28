@@ -34,13 +34,23 @@ public static class ModCredits
         Columns3 = 3,
     }
 
-    /// <summary>A single credits section belonging to a mod.</summary>
+    /// <summary>
+    /// A credits section. A <b>leaf</b> renders a gold header plus its names. A
+    /// <b>group</b> (when <paramref name="Children"/> is non-empty) renders a green
+    /// header, then — if a <c>.names</c> key exists — its own names, then its child
+    /// sections. Groups may nest arbitrarily.
+    /// </summary>
     /// <param name="Name">
     /// Section id; combined with the mod id to form the loc keys
     /// <c>&lt;MODID&gt;-&lt;NAME&gt;.header</c> / <c>.names</c>.
     /// </param>
-    /// <param name="Kind">How the section body is laid out.</param>
-    public record Section(string Name, Layout Kind = Layout.Names);
+    /// <param name="Kind">How this section's body is laid out (applies to a group's own names too).</param>
+    /// <param name="Children">Child sections; supplying any makes this a group.</param>
+    public record Section(string Name, Layout Kind = Layout.Names, Section[]? Children = null)
+    {
+        /// <summary>True when this section owns child sections (renders as a green group header).</summary>
+        public bool IsGroup => Children is { Length: > 0 };
+    }
 
     /// <summary>A registered mod and its sections, in registration order.</summary>
     internal record Entry(string ModId, List<Section> Sections);
@@ -73,12 +83,17 @@ public static class ModCredits
     /// <summary>Looks up a key in the vanilla <c>credits</c> loc table.</summary>
     internal static string Resolve(string key)
         => new LocString("credits", key).GetRawText();
+
+    /// <summary>True when <paramref name="key"/> exists in the credits table.</summary>
+    internal static bool Has(string key)
+        => LocString.Exists("credits", key);
 }
 
 /// <summary>
 /// Rendering and navigation logic for the modded credits screen. Holds all the
-/// non-Harmony work: building the credit blocks, the fixed side-nav, jump-scrolling,
-/// focus seeding, and the controller confirm binding. Driven by <see cref="NCreditsScreenPatch"/>.
+/// non-Harmony work: building the (possibly nested) credit blocks, the fixed
+/// side-nav, jump-scrolling, focus seeding, and the controller confirm binding.
+/// Driven by <see cref="NCreditsScreenPatch"/>.
 /// </summary>
 internal static class CreditsNav
 {
@@ -91,7 +106,7 @@ internal static class CreditsNav
     private const float NavTopPadding = 200f;
 
     /// <summary>Confirm actions bound while the screen is open (last-wins over the screen's blockers).</summary>
-    private static readonly string[] ConfirmActions = [MegaInput.accept, MegaInput.select];
+    private static readonly string[] ConfirmActions = [(string)MegaInput.accept, (string)MegaInput.select];
 
     /// <summary>First side-nav button; used to seed controller/keyboard focus.</summary>
     private static Button? _firstNavButton;
@@ -114,6 +129,7 @@ internal static class CreditsNav
 
         var headerTpl = vbox.GetNodeOrNull<MegaLabel>("ModdingSupportHeader");
         var namesTpl  = vbox.GetNodeOrNull<MegaRichTextLabel>("ModdingSupportNames");
+        var greenTpl  = vbox.GetNodeOrNull<MegaLabel>("LocalizationHeader") ?? headerTpl;
         var rolesCTpl = vbox.GetNodeOrNull<HBoxContainer>("zhsContainer");
         var multiCTpl = vbox.GetNodeOrNull<HBoxContainer>("PlaytestersContainer");
         if (headerTpl == null || namesTpl == null) return;
@@ -128,6 +144,24 @@ internal static class CreditsNav
 
         BuildHeader(vbox, ref at, ModCredits.Resolve("BASELIB-BANNER.name"), BannerColor, headerTpl, "Banner", null, 60);
 
+        // Renders a section body (names) according to its layout.
+        void EmitBody(ModCredits.Layout kind, string body, string tag)
+        {
+            switch (kind)
+            {
+                case ModCredits.Layout.Roles when rolesCTpl != null:
+                    BuildRoles(vbox, ref at, body, rolesCTpl, tag);
+                    break;
+                case ModCredits.Layout.Columns3 when multiCTpl != null:
+                    BuildMulti(vbox, ref at, body, multiCTpl, tag);
+                    break;
+                case ModCredits.Layout.Names:
+                default:
+                    BuildNames(vbox, ref at, body, namesTpl, tag);
+                    break;
+            }
+        }
+
         var m = 0;
         foreach (var e in ModCredits.Entries)
         {
@@ -137,32 +171,36 @@ internal static class CreditsNav
 
             var s = 0;
             foreach (var sec in e.Sections)
-            {
-                var tag  = "M" + m + "S" + s;
-                var head = ModCredits.Resolve(e.ModId + "-" + sec.Name.ToUpperInvariant() + ".header");
-                var body = ModCredits.Resolve(e.ModId + "-" + sec.Name.ToUpperInvariant() + ".names");
+                Emit(sec, e.ModId, "M" + m + "S" + s++);
 
-                BuildHeader(vbox, ref at, head, null, headerTpl, tag + "H", 60f);
-
-                switch (sec.Kind)
-                {
-                    case ModCredits.Layout.Roles when rolesCTpl != null:
-                        BuildRoles(vbox, ref at, body, rolesCTpl, tag);
-                        break;
-                    case ModCredits.Layout.Columns3 when multiCTpl != null:
-                        BuildMulti(vbox, ref at, body, multiCTpl, tag);
-                        break;
-                    case ModCredits.Layout.Names:
-                    default:
-                        BuildNames(vbox, ref at, body, namesTpl, tag);
-                        break;
-                }
-                s++;
-            }
             m++;
         }
 
         BuildSideNav(screen, margin, headerTpl, navTargets);
+        return;
+
+        // Recursive section renderer. Leaves render gold header + names. Groups render
+        // a green header, optional own names (only if the .names key exists), then children.
+        void Emit(ModCredits.Section sec, string modId, string tag)
+        {
+            var baseKey = modId + "-" + sec.Name.ToUpperInvariant();
+
+            if (sec.IsGroup)
+            {
+                BuildHeader(vbox, ref at, ModCredits.Resolve(baseKey + ".header"), null, greenTpl, tag + "G", 60f);
+
+                if (ModCredits.Has(baseKey + ".names"))
+                    EmitBody(sec.Kind, ModCredits.Resolve(baseKey + ".names"), tag);
+
+                var ci = 0;
+                foreach (var child in sec.Children!)
+                    Emit(child, modId, tag + "_" + ci++);
+                return;
+            }
+
+            BuildHeader(vbox, ref at, ModCredits.Resolve(baseKey + ".header"), null, headerTpl, tag + "H", 60f);
+            EmitBody(sec.Kind, ModCredits.Resolve(baseKey + ".names"), tag);
+        }
     }
 
     /// <summary>
@@ -227,7 +265,6 @@ internal static class CreditsNav
             buttons.Add(b);
         }
 
-        // Vertical focus chain with wrap, so a controller/keyboard can move between entries.
         for (var i = 0; i < buttons.Count; i++)
         {
             var up   = buttons[(i - 1 + buttons.Count) % buttons.Count];
@@ -238,8 +275,6 @@ internal static class CreditsNav
             buttons[i].FocusNext           = buttons[i].GetPathTo(down);
         }
 
-        // Confirm: bound through NHotkeyManager (last-wins over the screen's blocking
-        // no-ops) because a bare Button only auto-fires on ui_accept, not ui_select.
         var viewport = ((Control)creditsScreen).GetViewport();
         _confirmBinding = () =>
         {
@@ -249,8 +284,6 @@ internal static class CreditsNav
         foreach (var a in ConfirmActions)
             NHotkeyManager.Instance?.PushHotkeyPressedBinding(a, _confirmBinding);
 
-        // Seed focus onto the nav (RedirectFocus handles the screen-side redirect;
-        // this deferred grab covers focus taken before that).
         _firstNavButton = buttons.Count > 0 ? buttons[0] : null;
         _firstNavButton?.CallDeferred(Control.MethodName.GrabFocus);
     }

@@ -3,14 +3,40 @@
   "SLAY_THE_SPIRE": "Slay the Spire 2",
   "DOWNFALL-DOWNFALL.title": "Downfall",
   "DOWNFALL-TEAM.header": "Team",
-  "DOWNFALL-TEAM.names": "Lead Developer||lamali\nConcept & Balance||Blue Guy\nOriginal Downfall Creator||MichaelMayhem",
+  "DOWNFALL-TEAM.names": "Lead Developer||lamali\nConcept & Balance||Blue Guy\nDownfall (StS1) Creator||MichaelMayhem",
 
   "DOWNFALL-HELP.header": "Programming & Bug Fixes",
-  "DOWNFALL-HELP.names": "Bug Fixes & Code Cleanup||Tsukimaru\nBug Fixes||Doobs",
+  "DOWNFALL-HELP.names": "Bug Fixes & Code Cleanup||Tsukimaru Oshawott\nBug Fixes||Doobs",
 
   "DOWNFALL-ART.header": "Art",
   "DOWNFALL-ART.names": "GoofballMcgee\nChimedragon\nNewGuyJack\nDawnablesAwakened",
 
   "DOWNFALL-LOC.header": "Localization",
-  "DOWNFALL-LOC.names": "Language||TODO\nLanguage||TODO\nLanguage||TODO"
+  
+  "DOWNFALL-LOC_FRA.header": "French",
+  "DOWNFALL-LOC_FRA.names": "MisterShaokahn",
+
+  "DOWNFALL-LOC_KOR.header": "Korean",
+  "DOWNFALL-LOC_KOR.names": "Donan\nCeeu",
+
+  "DOWNFALL-LOC_JPN.header": "Japanese",
+  "DOWNFALL-LOC_JPN.names": "Ynishi\nKoyo\nmakunekoze\nKlingegame",
+
+  "DOWNFALL-LOC_ZHS.header": "Simplified Chinese",
+  "DOWNFALL-LOC_ZHS.names": "Tsukimaru Oshawott\n郭杰\nMA2077\nOrange2007\nlijikang364-cloud",
+  
+  "DOWNFALL-LOC_ITA.header": "Italian",
+  "DOWNFALL-LOC_ITA.names": "Luca Galimberti",
+
+  "DOWNFALL-LOC_RUS.header": "Russian",
+  "DOWNFALL-LOC_RUS.names": "Nitablade\nDuhastovich",
+
+  "DOWNFALL-LOC_DEU.header": "German",
+  "DOWNFALL-LOC_DEU.names": "lamali",
+
+  "DOWNFALL-LOC_PTB.header": "Brazilian Portuguese",
+  "DOWNFALL-LOC_PTB.names": "Diego Lincoln",
+
+  "DOWNFALL-STS1.header": "Original Downfall Team",
+  "DOWNFALL-STS1.names": "Thank you to everyone who created and worked on Downfall for the original Slay the Spire 1."
 }
