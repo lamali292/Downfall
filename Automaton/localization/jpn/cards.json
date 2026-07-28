@@ -169,6 +169,7 @@
     "AUTOMATON-PROTO_SHIELD.title": "プロトシールド",
     "AUTOMATON-PROTO_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]プレート[/gold]{PlatingPower:diff()}を得る。\n[gold]捨て札[/gold]に[gold]エラー[/gold]を{Cards:diff()}枚加える。",
     "AUTOMATON-PROTO_BEAM.title": "プロトビーム",
+    "AUTOMATON-PROTO_BEAM.description": "[gold]廃棄札[/gold]にある状態異常カード1枚につき{Damage:diff()}ダメージを与える。\n{InCombat:cond:\n(攻撃回数は{CalculatedHits:diff()}回)|}",
     "AUTOMATON-RECYCLE_BIN.title": "ごみ箱",
     "AUTOMATON-RECYCLE_BIN.description": "ターン終了時、[gold]手札[/gold]の状態異常か呪い1枚につき{RecycleBinPower:diff()}[gold]ブロック[/gold]を得る。",
     "AUTOMATON-RECREATE.title": "再生成",

@@ -1,0 +1,8 @@
+{
+    "HEXAGHOST-ECTO_COOLER_POTION.title": "Экто-кулер",
+    "HEXAGHOST-ECTO_COOLER_POTION.description": "Вы выбираете [blue]1[/blue] из [blue]3[/blue] случайных карт с [gold]Посмертием[/gold] и добавляете ее в [gold]руку[/gold].\nВ этом ходу она бесплатна.",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Горючая жидкость",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "[gold]Зажигает[/gold] активный Огонек [blue]{Ignite:diff()}[/blue] {Ignite:plural(ru):раз|раза|раз}.",
+    "HEXAGHOST-INFERNO_POTION_POTION.title": "Адское зелье",
+    "HEXAGHOST-INFERNO_POTION_POTION.description": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою."
+}

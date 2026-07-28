@@ -114,6 +114,7 @@
     "HERMIT-LONE_WOLF.title": "一匹狼",
     "HERMIT-LONE_WOLF.description": "カードを1枚選ぶ。\nそれはこのターン、コスト0でプレイできる。\n残りの[gold]手札[/gold]を捨てる。",
     "HERMIT-HIGH_NOON.title": "真昼の決闘",
+    "HERMIT-HIGH_NOON.description": "[gold]基本[/gold][gold]ストライク{IfUpgraded:show: と防御|}[/gold]が[gold]リプレイ[/gold]{HighNoonPower:diff()}を得る。",
     "HERMIT-REPRIEVE.title": "救済",
     "HERMIT-REPRIEVE.description": "HPを{Heal:diff()}回復する。",
     "HERMIT-TAKE_AIM.title": "狙う",

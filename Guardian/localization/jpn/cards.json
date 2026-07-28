@@ -162,5 +162,11 @@
     "GUARDIAN-SHARED_FLUX.title": "共有フラックス",
     "GUARDIAN-SHARED_FLUX.description": "他のプレイヤーを1人選び、そのプレイヤーは自分の[gold]山札[/gold]のカード1枚を[gold]停滞[/gold]させる。",
     "GUARDIAN-OVERBLOCK.title": "オーバーブロック",
-    "GUARDIAN-OVERBLOCK.description": "[gold]防御態勢[/gold]に入るたび、[gold]ブロック[/gold]が最も少ない味方は{OverblockBlockPower:diff()}[gold]ブロック[/gold]と、このターン、[gold]トゲ[/gold]{OverblockThornsPower:diff()}を得る。"
+    "GUARDIAN-OVERBLOCK.description": "[gold]防御態勢[/gold]に入るたび、[gold]ブロック[/gold]が最も少ない味方は{OverblockBlockPower:diff()}[gold]ブロック[/gold]と、このターン、[gold]トゲ[/gold]{OverblockThornsPower:diff()}を得る。",
+    "GUARDIAN-REFRACTED_LIGHT.title": "リフレクトライト",
+    "GUARDIAN-REFRACTED_LIGHT.description": "{Damage:diff()}ダメージを与える。\nこのカードの[gold]ジェム[/gold]効果は、すべてのプレイヤーに適用される。",
+    "GUARDIAN-MULTI_TROPS.title": "マルチ-トロプス",
+    "GUARDIAN-MULTI_TROPS.description": "すべてのプレイヤーは[gold]トゲ[/gold]{ThornsPower:diff()}を得る。",
+    "GUARDIAN-BASTION.title": "バスティオン",
+    "GUARDIAN-BASTION.description": "[gold]制動[/gold]するたび、すべての味方は[gold]ブロック[/gold]{BastionPower:diff()}を得る。"
 }

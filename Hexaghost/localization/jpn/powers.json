@@ -45,8 +45,8 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "ゴーストフレイムを[gold]発火[/gold]するたびに、すべての敵に[gold]ソウルバーン[/gold]を付与する。",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "ゴーストフレイムを[gold]発火[/gold]するたびに、すべての敵に[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",
     "HEXAGHOST-WILDFIRE_POWER.title": "野火",
-    "HEXAGHOST-WILDFIRE_POWER.description": "敵に新しくデバフを付与するたび、[gold]ブロック[/gold]を得る。",
-    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "敵に新しくデバフを付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-WILDFIRE_POWER.description": "敵に付与されていないデバフを新しく付与するたび、[gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "敵に付与されていないデバフを新しく付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "今はここで",
     "HEXAGHOST-HERE_AND_NOW_POWER.description": "ターン終了時、現在のゴーストフレイムを[gold]滅却[/gold]する。",
     "HEXAGHOST-MORE_ENERGY_POWER.title": "モアエナジー",
@@ -67,5 +67,10 @@
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "このターン、カードが[gold]廃棄[/gold]されるたび、敵に[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",
     "HEXAGHOST-SIZZLE_POWER.title": "ジュージュー",
     "HEXAGHOST-SIZZLE_POWER.description": "このターン、次にプレイするカードを[gold]廃棄[/gold]する。",
-    "HEXAGHOST-SIZZLE_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚のカードを[gold]廃棄[/gold]する。"
+    "HEXAGHOST-SIZZLE_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚のカードを[gold]廃棄[/gold]する。",
+    "HEXAGHOST-HEATING_POWER.title": "加熱",
+    "HEXAGHOST-HEATING_POWER.description": "[gold]ソウルバーン[/gold]を付与するたびに、ランダムなプレイヤー1人は[gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-HEATING_POWER.smartDescription": "[gold]ソウルバーン[/gold]を付与するたびに、ランダムなプレイヤー1人は[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-INFERNO_POTION_POWER.title": "インフェルノ",
+    "HEXAGHOST-INFERNO_POTION_POWER.description": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与する。"
 }

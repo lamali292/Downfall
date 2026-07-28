@@ -1,3 +1,4 @@
 {
-    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.CARD_POOL∴HEXAGHOST-HEXAGHOST_CARD_POOL.title": "Фиолетовый"
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.CARD_POOL∴HEXAGHOST-HEXAGHOST_CARD_POOL.description": "Получить [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} Гексадуха.",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.CARD_POOL∴HEXAGHOST-HEXAGHOST_CARD_POOL.title": "Пурпурный"
 }

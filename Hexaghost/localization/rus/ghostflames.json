@@ -1,0 +1,10 @@
+{
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Укрепляющий огонек",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[gold]Зажигается[/gold] при разыгрывании [blue]1[/blue] Таланта, пока [gold]Активен[/gold].\n[gold]Зажигание[/gold] дает [blue]4[/blue] [gold]защиты[/gold] и [blue]1[/blue] [gold]силы[/gold].",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Сокрушающий огонек",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]Зажигается[/gold] при разыгрывании [blue]2[/blue] Навыков, пока [gold]Активен[/gold].\n[gold]Зажигание[/gold] наносит [blue]3[/blue] урона случайному врагу дважды.",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Адский огонек",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]Зажигается[/gold], когда вы тратите [blue]3[/blue] [gold]энергии[/gold], пока [gold]Активен[/gold].\n[gold]Зажигание[/gold] наносит [blue]4[/blue] урона случайному врагу за каждый [gold]Зажженый[/gold] Огонек, затем [gold]Тушит[/gold] остальные Огоньки.\\nДает [blue]2[/blue] [gold]Интенсивности[/gold], если все Огоньки были [gold]Зажжены[/gold].\n[gold]Затухает[/gold] в конце хода.",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "Обжигающий огонек",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]Зажигается[/gold] при разыгрывании [blue]2[/blue] Атак, пока [gold]Активен[/gold].\n[gold]Зажигание[/gold] накладывает [blue]3[/blue] [gold]Ожога души[/gold] на случайного врага дважды."
+}
