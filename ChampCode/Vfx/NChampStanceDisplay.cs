@@ -45,7 +45,7 @@ public partial class NChampStanceDisplay : Control
             _trackedPlayer = player,
             _bounds = creatureNode.Visuals.Bounds,
             ZIndex = creatureNode.ZIndex - 1,
-            _creatureHitbox = creatureNode?.Hitbox
+            _creatureHitbox = creatureNode.Hitbox
         };
 
         combatRoom?.CombatVfxContainer.AddChildSafely(display);
@@ -78,7 +78,7 @@ public partial class NChampStanceDisplay : Control
             _wrappers.Add(wrapper);
 
             var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, ReticleCenterOffset, ReticleVisualSize, 4f);
-            wrapper.SetReticle(reticle);
+            if (reticle != null) wrapper.SetReticle(reticle);
         }
 
         DownfallControllerNav.WireChain(_wrappers, true);
@@ -134,7 +134,7 @@ public partial class NChampStanceDisplay : Control
             _tipProvider = provider;
         }
 
-        public void SetReticle(NSelectionReticle reticle)
+        public void SetReticle(NSelectionReticle? reticle)
         {
             _reticle = reticle;
         }

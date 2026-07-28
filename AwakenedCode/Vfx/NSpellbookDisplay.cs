@@ -139,7 +139,7 @@ public partial class NSpellbookDisplay : Control
             _iconWrappers.Add(wrapper);
 
             var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, iconSize / 2f + new Vector2(-1, -3), iconSize, 1f);
-            wrapper.SetReticle(reticle);
+            if (reticle != null) wrapper.SetReticle(reticle);
         }
 
         DownfallControllerNav.WireChain(_iconWrappers, true);
@@ -149,7 +149,7 @@ public partial class NSpellbookDisplay : Control
 
     public override void _Process(double delta)
     {
-        if (_trackedPlayer == null || !CombatManager.Instance.IsInProgress) return;
+        if (_trackedPlayer == null || CombatManager.Instance is not { IsInProgress: true }) return;
 
         _bobTime += (float)delta;
         for (var i = 0; i < _bobOffsets.Length; i++)
@@ -176,7 +176,7 @@ public partial class NSpellbookDisplay : Control
             _tipProvider = provider;
         }
 
-        public void SetReticle(NSelectionReticle reticle)
+        public void SetReticle(NSelectionReticle? reticle)
         {
             _reticle = reticle;
         }

@@ -15,7 +15,6 @@ public static class DownfallControllerNav
 
     private const string SelectionReticleScenePath = "res://scenes/ui/selection_reticle.tscn";
     private static readonly StyleBoxEmpty BlankFocusStyle = new();
-    private static PackedScene? _reticleScene;
 
     // Anchor (creature Hitbox) -> currently-linked group above it. Needed because
     // NCombatRoom.UpdateCreatureNavigation() resets every Hitbox.FocusNeighborTop to a
@@ -62,6 +61,8 @@ public static class DownfallControllerNav
     /// </summary>
     public static void LinkAbove(IReadOnlyList<Control> controls, Control anchor, int entryIndex = 0)
     {
+        PruneDeadAnchors();
+
         if (controls.Count == 0)
         {
             AnchorLinks.Remove(anchor);
@@ -85,13 +86,39 @@ public static class DownfallControllerNav
         ApplyAnchorLink(anchor);
     }
 
+    // Drops anchors whose Hitbox has been freed. Without this, a creature that dies (or a
+    // room that ends) without a follow-up LinkAbove/ReapplyAnchorLink for its anchor leaves
+    // a stale key here forever — a static reference pinning the managed wrapper for the rest
+    // of the process. Same static-state-outliving-its-objects trap as the old _reticleScene
+    // cache; over a long multiplayer session these accumulate.
+    private static void PruneDeadAnchors()
+    {
+        List<Control>? dead = null;
+        foreach (var anchor in AnchorLinks.Keys)
+        {
+            if (GodotObject.IsInstanceValid(anchor)) continue;
+            (dead ??= new List<Control>()).Add(anchor);
+        }
+
+        if (dead == null) return;
+        foreach (var anchor in dead) AnchorLinks.Remove(anchor);
+    }
+
     private static void ApplyAnchorLink(Control anchor)
     {
         if (!AnchorLinks.TryGetValue(anchor, out var link)) return;
 
-        // A linked group can be freed out from under this 
+        // The anchor itself can be freed (creature died) while this is called from a
+        // deferred/patch path — bail rather than throwing on GetPath() below.
+        if (!GodotObject.IsInstanceValid(anchor))
+        {
+            AnchorLinks.Remove(anchor);
+            return;
+        }
+
+        // A linked group can be freed out from under this
         // (like Champ's icons when the stance ends)
-        // while the anchor itself (the creature's Hitbox) stays alive. 
+        // while the anchor itself (the creature's Hitbox) stays alive.
         // Validate and drop any stale entries so we don't throw an error downstream
         foreach (var control in link.Controls)
         {
@@ -157,12 +184,24 @@ public static class DownfallControllerNav
     ///     Instantiates the base game's own focus reticle (res://scenes/ui/selection_reticle.tscn,
     ///     the bracket Defect's orbs use) sized/positioned around an arbitrary hitbox. Caller
     ///     drives visibility via the returned reticle's OnSelect()/OnDeselect().
+    ///     <para />
+    ///     Loads per call rather than caching a static PackedScene: the reticle scene isn't in
+    ///     any PreloadManager asset set, so it gets unloaded on room transitions and a cached
+    ///     wrapper would be disposed out from under us (the original ObjectDisposedException).
+    ///     ResourceLoader.Load reuses the game's cached copy when it's still loaded, reloads it
+    ///     when it isn't.
     /// </summary>
-    public static NSelectionReticle AttachFocusReticle(Node parent, Vector2 center, Vector2 hitboxSize,
+    public static NSelectionReticle? AttachFocusReticle(Node parent, Vector2 center, Vector2 hitboxSize,
         float margin = 12f)
     {
-        _reticleScene ??= ResourceLoader.Load<PackedScene>(SelectionReticleScenePath);
-        var reticle = _reticleScene.Instantiate<NSelectionReticle>();
+        var scene = ResourceLoader.Load<PackedScene>(SelectionReticleScenePath);
+        if (scene == null)
+        {
+            GD.PushWarning($"[DownfallControllerNav] Failed to load reticle scene: {SelectionReticleScenePath}");
+            return null;
+        }
+
+        var reticle = scene.Instantiate<NSelectionReticle>();
         var half = hitboxSize / 2f + new Vector2(margin, margin);
         reticle.Position = center - half;
         reticle.Size = half * 2f;
