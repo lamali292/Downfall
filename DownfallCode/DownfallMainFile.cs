@@ -91,7 +91,19 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),
-            new ModCredits.Section("LOC",  ModCredits.Layout.Roles));
+            new ModCredits.Section("LOC", Children: [
+                new ModCredits.Section("LOC_ZHS"),
+                new ModCredits.Section("LOC_FRA"),
+                new ModCredits.Section("LOC_ITA"),
+                new ModCredits.Section("LOC_RUS"),
+                new ModCredits.Section("LOC_KOR"),
+           //     new ModCredits.Section("LOC_PTB"),
+           //     new ModCredits.Section("LOC_DEU"),
+                new ModCredits.Section("LOC_JPN")
+          
+            ]),
+            new ModCredits.Section("STS1")
+            );
     }
 
 
