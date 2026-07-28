@@ -2,8 +2,8 @@
   "BASELIB-BANNER.name": "— MODS —",
   "SLAY_THE_SPIRE": "Slay the Spire 2",
   "DOWNFALL-DOWNFALL.title": "Downfall",
-  "DOWNFALL-TEAM.header": "Team",
-  "DOWNFALL-TEAM.names": "Lead Developer||lamali\nConcept & Balance||Blue Guy\nDownfall (StS1) Creator||MichaelMayhem",
+  "DOWNFALL-TEAM.header": "Development",
+  "DOWNFALL-TEAM.names": "Lead Developer||lamali\nConcept & Balance||Blue Guy",
 
   "DOWNFALL-HELP.header": "Programming & Bug Fixes",
   "DOWNFALL-HELP.names": "Bug Fixes & Code Cleanup||Tsukimaru Oshawott\nBug Fixes||Doobs",
@@ -37,6 +37,6 @@
   "DOWNFALL-LOC_PTB.header": "Brazilian Portuguese",
   "DOWNFALL-LOC_PTB.names": "Diego Lincoln",
 
-  "DOWNFALL-STS1.header": "Original Downfall Team",
-  "DOWNFALL-STS1.names": "Thank you to everyone who created and worked on Downfall for the original Slay the Spire 1."
+  "DOWNFALL-STS1.header": "Original Downfall (StS 1)",
+  "DOWNFALL-STS1.names": "Created by MichaelMayhem\nThank you to everyone who created and worked on Downfall for the original Slay the Spire."
 }
