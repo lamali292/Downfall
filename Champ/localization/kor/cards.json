@@ -160,7 +160,6 @@
     "CHAMP-SWORD_THROW.description": "{Damage:diff()} 피해를 {Repeat:diff()}번 줍니다.\n[gold]광란[/gold] 태세가 아니라면, 다음 턴에 공격 카드를 사용할 수 없습니다.",
     "CHAMP-SWORD_THROW.title": "검 투척",
     "CHAMP-TAUNT.description": "{IfUpgraded:show:모든 적에게 |} {WeakPower:diff()} [gold]약화[/gold]와 {VulnerablePower:diff()} [gold]취약[/gold]을 적용합니다.",
-    "CHAMP-TAUNT.title": "도발",
     "CHAMP-TECHNICAL_JIG.description": "[gold]태세[/gold]에 진입할 때마다, {TechnicalJigPower:diff()} [gold]방어도[/gold]를 얻습니다.",
     "CHAMP-TECHNICAL_JIG.title": "지그 테크닉",
     "CHAMP-TORNADO_PUNCH.description": "모든 적에게 {Damage:diff()} 피해를 줍니다.\n[gold]철벽 연계[/gold]:\n적중한 적 한 마리당 {Block:diff()} [gold]방어도[/gold]를 얻습니다.",

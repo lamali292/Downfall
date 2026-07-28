@@ -23,7 +23,6 @@
     "SNECKO-TSUNAMI_POWER.smartDescription": "Whenever you [gold]Overflow[/gold], gain [blue]{Amount}[/blue] [gold]Blocco[/gold].",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "Fornitura Infinita",
     "SNECKO-UNENDING_SUPPLY_POWER.description": "All'inizio del tuo turno, gain an [gold]Eco[/gold] of un/una casuale [gold]FuoriClasse[/gold] card.",
-    "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "All'inizio del tuo turno, gain {Amount:plural:an [gold]Echo[/gold] of a|[gold]Echos[/gold] of [blue]{}[/blue]} casuale [gold]FuoriClasse[/gold] card.",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "Costretto",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "At the end of suo turn, this enemy takes damage.",
     "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "At the end of suo turn, this enemy takes [blue]{Amount}[/blue] damage.",

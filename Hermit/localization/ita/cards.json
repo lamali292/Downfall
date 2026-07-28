@@ -114,7 +114,6 @@
     "HERMIT-LONE_WOLF.title": "Lupo Solitario",
     "HERMIT-LONE_WOLF.description": "Scegli una carta.\nÈ gratuita da giocare in questo turno.\nScarta il resto della tua [gold]Mano[/gold].",
     "HERMIT-HIGH_NOON.title": "Mezzogiorno",
-    "HERMIT-HIGH_NOON.description": "I [gold]Colpi[/gold] [gold]Base{IfUpgraded:show: e Difendi|}[/gold] ottengono [gold]Riproduci[/gold] {HighNoonPower:diff()}.",
     "HERMIT-REPRIEVE.title": "Respiro",
     "HERMIT-REPRIEVE.description": "Guarisci {Heal:diff()} HP.",
     "HERMIT-TAKE_AIM.title": "Prendi la Mira",

@@ -28,7 +28,6 @@
     "SNECKO-TSUNAMI_POWER.smartDescription": "[gold]オーバーフロー[/gold]するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "無尽蔵の供給",
     "SNECKO-UNENDING_SUPPLY_POWER.description": "ターン開始時、ランダムな[gold]他クラス[/gold]カードの[gold]反響[/gold]を得る。",
-    "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "ターン開始時、ランダムな[gold]他クラス[/gold]カードの[gold]反響[/gold]を[blue]{Amount}[/blue]個得る。",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "締め付け",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "自身のターン終了時、この敵はダメージを受ける。",
     "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "自身のターン終了時、この敵は[blue]{Amount}[/blue]ダメージを受ける。",
@@ -71,6 +70,5 @@
     "SNECKO-GAMBLE_POWER.title": "ギャンブル",
     "SNECKO-GAMBLE_POWER.description": "次のターン、カードを引いて[gold]泥まみれ[/gold]にする。",
     "SNECKO-GAMBLE_POWER.smartDescription": "次のターン、カードを[blue]{Amount}[/blue]枚引いて[gold]泥まみれ[/gold]にする。",
-    "SNECKO-MULLIGAN_POWER.title": "マリガン",
-    "SNECKO-MULLIGAN_POWER.description": "毎ターン最初に元のコストより多いコストでカードを[blue]{Amount}[/blue]回プレイした時、{energyPrefix:energyIcons(1)}を得る。"
+    "SNECKO-MULLIGAN_POWER.title": "マリガン"
 }

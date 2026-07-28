@@ -59,7 +59,7 @@
     "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "青铜荆棘",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.description": "每当你获得负面状态时，获得[gold]荆棘[/gold]。",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.smartDescription": "每当你受到负面状态时，获得[blue]{Amount}[/blue]点[gold]荆棘[/gold]。",
-    "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "最大过载",
+    "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "最大功率",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.description": "每当一张牌减少[gold]凝滞[/gold]计数时，获得[blue]1[/blue]点[gold]力量[/gold]一回合。",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "每当一张牌减少[gold]凝滞[/gold]计数时，获得[blue]{Amount}[/blue]点[gold]力量[/gold]一回合。",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "过度防守：格挡",
