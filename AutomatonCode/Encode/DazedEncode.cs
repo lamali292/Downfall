@@ -20,7 +20,7 @@ public class DazedEncode : Encodable
         var player = model.GetCreature().Player;
         return player == null
             ? Task.CompletedTask
-            : DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, model.GetDynamicVars()["Dazed"].BaseValue);
+            : DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, model.GetDynamicVars()["Dazed"].BaseValue, CardPilePosition.Random);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
