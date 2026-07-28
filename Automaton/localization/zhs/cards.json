@@ -175,7 +175,6 @@
     "AUTOMATON-PROTO_SHIELD.title": "原型护盾",
     "AUTOMATON-PROTO_SHIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得{PlatingPower:diff()}层[gold]覆甲[/gold]。\n将{Cards:diff()}张[gold]错误[/gold]加入你的[gold]弃牌堆[/gold]。",
     "AUTOMATON-PROTO_BEAM.title": "原型光束",
-    "AUTOMATON-PROTO_BEAM.description": "你的[gold]消耗牌堆[/gold]中每有一张状态牌，造成{Damage:diff()}点伤害。\n{InCombat:cond:\n（命中{CalculatedHits:diff()}次）|}",
     "AUTOMATON-RECYCLE_BIN.title": "回收站",
     "AUTOMATON-RECYCLE_BIN.description": "在你的回合结束时，你[gold]手牌[/gold]中每有一张状态或诅咒牌，获得{RecycleBinPower:diff()}点[gold]格挡[/gold]。",
     "AUTOMATON-RECREATE.title": "重新生成",

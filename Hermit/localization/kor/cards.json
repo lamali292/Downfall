@@ -111,7 +111,6 @@
     "HERMIT-LONE_WOLF.title": "외로운 늑대",
     "HERMIT-LONE_WOLF.description": "카드 1장을 선택합니다.\n그 카드는 이번 턴 동안 비용이 0이 됩니다.\n나머지 [gold]손패[/gold]를 모두 버립니다.",
     "HERMIT-HIGH_NOON.title": "정오",
-    "HERMIT-HIGH_NOON.description": "[gold]기본[/gold] 타격이{IfUpgraded:show:와 수비가|} [gold]재사용[/gold] {HighNoonPower:diff()}를 얻습니다.",
     "HERMIT-REPRIEVE.title": "유예",
     "HERMIT-REPRIEVE.description": "{Heal:diff()} 체력을 회복합니다.",
     "HERMIT-TAKE_AIM.title": "조준",

@@ -169,7 +169,6 @@
     "AUTOMATON-PROTO_SHIELD.title": "Proto-Scudo",
     "AUTOMATON-PROTO_SHIELD.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nOttieni {PlatingPower:diff()} [gold]Placcatura[/gold].\nAggiungi {Cards:plural:un [gold]Errore[/gold]|{Cards:diff()} [gold]Errori[/gold]} al tuo [gold]Mazzo Scarti[/gold].",
     "AUTOMATON-PROTO_BEAM.title": "Proto-Raggio",
-    "AUTOMATON-PROTO_BEAM.description": "Infliggi {Damage:diff()} di danno per ogni carta Stato nel tuo [gold]Mazzo Esaurimento[/gold].\n{InCombat:cond:\n(Colpisce {CalculatedHits:diff()} volte)|}",
     "AUTOMATON-RECYCLE_BIN.title": "Cestino",
     "AUTOMATON-RECYCLE_BIN.description": "Alla fine del tuo turno, ottieni {RecycleBinPower:diff()} [gold]Blocco[/gold] per ogni Stato o Maledizione nella tua [gold]Mano[/gold].",
     "AUTOMATON-RECREATE.title": "Ricrea",
