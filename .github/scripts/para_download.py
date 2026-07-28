@@ -36,7 +36,7 @@ def get_translations(project_id, file_id, token):
             keys.append(item["key"])
             values.append(translation)
 
-    return keys, values
+    return keys, values, len(translations)
 
 
 def save_translation(mod_name, lang_code, filename, translated_dict):
@@ -66,13 +66,13 @@ def save_translation(mod_name, lang_code, filename, translated_dict):
             json.dump(translated_dict, f, ensure_ascii=False, indent=4, sort_keys=True)
 
 
-def process_file(project_id, file_id, paratranz_path, token):
-    keys, values = get_translations(project_id, file_id, token)
+def process_file(project_id, file_id, paratranz_path, token, index, total):
+    keys, values, raw_count = get_translations(project_id, file_id, token)
 
     parts = Path(paratranz_path).parts
     if len(parts) < 4 or parts[1] != "localization":
-        print(f"  Skip (unexpected path structure): {paratranz_path}")
-        return
+        print(f"  [{index}/{total}] Skip (unexpected path): {paratranz_path}")
+        return 0
 
     mod_name = parts[0]
     lang_code = parts[2]
@@ -84,10 +84,12 @@ def process_file(project_id, file_id, paratranz_path, token):
         translated_dict[k] = v
 
     save_translation(mod_name, lang_code, filename, translated_dict)
-    print(f"  {paratranz_path}")
+    print(f"  [{index}/{total}] {paratranz_path} ({len(translated_dict)}/{raw_count} translated)")
+    return len(translated_dict)
 
 
 def main():
+    grand_total = 0
     for lang_code, project_id in config["projects"].items():
         project_id = int(project_id)
         token = get_api_key(lang_code)
@@ -96,12 +98,18 @@ def main():
         files_url = f"https://paratranz.cn/api/projects/{project_id}/files/"
         files = fetch_json(files_url, token)
 
-        for f in files:
-            if "TM" in f["name"]:
-                continue
-            process_file(project_id, f["id"], f["name"], token)
+        files = [f for f in files if "TM" not in f["name"]]
+        total = len(files)
+        print(f"  {total} files to process")
 
-    print("\nDone.")
+        project_total = 0
+        for i, f in enumerate(files, start=1):
+            project_total += process_file(project_id, f["id"], f["name"], token, i, total)
+
+        print(f"  {lang_code}: {project_total} strings across {total} files")
+        grand_total += project_total
+
+    print(f"\nDone. {grand_total} strings written in total.")
 
 
 if __name__ == "__main__":
