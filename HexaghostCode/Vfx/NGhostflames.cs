@@ -34,7 +34,7 @@ public partial class NGhostflames : Control
     private List<Control> _reachableHitboxes = [];
     private NSelectionReticle?[] _reticles = [];
     private Control? _vfxContainer;
-    private NFire?[] AllFires => [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
+    private NFire?[] _allFires = [];
 
     public override void _Ready()
     {
@@ -44,29 +44,36 @@ public partial class NGhostflames : Control
         _fire4 = GetNode<NFire>("%fire4");
         _fire5 = GetNode<NFire>("%fire5");
         _fire6 = GetNode<NFire>("%fire6");
+        _allFires = [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
 
-        _intents = AllFires.Select((fire, i) =>
+        // Pre-size and index-assign (rather than .Select(...).ToArray()) so a throw partway
+        // through — e.g. AttachFocusReticle hitting an unloaded scene — can't leave these
+        // arrays at length 0 while _Process still iterates 6 slots. That mismatch was the
+        // original per-frame IndexOutOfRangeException storm.
+        _intents = new NIntent?[_allFires.Length];
+        _hitboxes = new Control?[_allFires.Length];
+        _reticles = new NSelectionReticle?[_allFires.Length];
+        _hitboxAnchors = new Node2D?[_allFires.Length];
+
+        for (var i = 0; i < _allFires.Length; i++)
         {
-            if (fire == null) return null;
+            if (_allFires[i] == null) continue;
+
             var intent = NIntent.Create(i * 0.3f);
             intent.Visible = false;
             intent.MouseFilter = MouseFilterEnum.Ignore;
             AddChild(intent);
-            return intent;
-        }).ToArray();
+            _intents[i] = intent;
 
-        _hitboxes = new Control?[AllFires.Length];
-        _reticles = new NSelectionReticle?[AllFires.Length];
-        _hitboxAnchors = AllFires.Select((fire, i) =>
-        {
-            if (fire == null) return null;
             var anchor = new Node2D();
             AddChild(anchor);
 
-            var hitbox = new Control();
-            hitbox.CustomMinimumSize = new Vector2(80, 80);
+            var hitbox = new Control
+            {
+                CustomMinimumSize = new Vector2(80, 80),
+                MouseFilter = MouseFilterEnum.Stop
+            };
             hitbox.Position = -hitbox.CustomMinimumSize / 2f;
-            hitbox.MouseFilter = MouseFilterEnum.Stop;
             anchor.AddChild(hitbox);
             _hitboxes[i] = hitbox;
 
@@ -75,8 +82,8 @@ public partial class NGhostflames : Control
             // Sized to the flame sprite itself, not the (deliberately oversized, for easier
             // targeting) 80x80 hitbox — otherwise the bracket reads as loose/oversized.
             _reticles[i] = DownfallControllerNav.AttachFocusReticle(anchor, ReticleCenterOffset, ReticleVisualSize, 4f);
-            return anchor;
-        }).ToArray();
+            _hitboxAnchors[i] = anchor;
+        }
 
         _reachableHitboxes = _hitboxes.Where(h => h != null).Cast<Control>().ToList();
 
@@ -138,12 +145,12 @@ public partial class NGhostflames : Control
         if (!_loggedTrackState)
         {
             _loggedTrackState = true;
-            GD.Print($"[Ghostflames] tracking={_creatureNode != null && IsInstanceValid(_creatureNode)}");
+            HexaghostMainFile.Logger.Info($"[Ghostflames] tracking={_creatureNode != null && IsInstanceValid(_creatureNode)}");
         }
 
-        for (var i = 0; i < _intents.Length; i++)
+        for (var i = 0; i < _allFires.Length; i++)
         {
-            var fire = AllFires[i];
+            var fire = _allFires[i];
             if (fire == null) continue;
 
             var worldPos = fire.GlobalPosition
@@ -157,14 +164,15 @@ public partial class NGhostflames : Control
                 intent.Rotation = -Rotation;
             }
 
-            if (_hitboxAnchors[i] != null)
+            var anchor = _hitboxAnchors[i];
+            if (anchor != null)
             {
-                _hitboxAnchors[i]!.GlobalPosition = fire.GlobalPosition;
+                anchor.GlobalPosition = fire.GlobalPosition;
                 // Counter-rotate, same as fire/intent above: the anchor is a child of this
                 // Control (which itself spins to bring the active flame to the top), so
                 // without this the hitbox + focus reticle riding on it would tilt with the
                 // wheel instead of staying flat.
-                _hitboxAnchors[i]!.Rotation = -Rotation;
+                anchor.Rotation = -Rotation;
             }
         }
     }
@@ -182,10 +190,11 @@ public partial class NGhostflames : Control
             .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.InOut);
 
-        foreach (var fire in AllFires)
-            _positionTween.TweenProperty(fire, "rotation", -newRot, duration)
-                .SetTrans(Tween.TransitionType.Sine)
-                .SetEase(Tween.EaseType.InOut);
+        foreach (var fire in _allFires)
+            if (fire != null)
+                _positionTween.TweenProperty(fire, "rotation", -newRot, duration)
+                    .SetTrans(Tween.TransitionType.Sine)
+                    .SetEase(Tween.EaseType.InOut);
 
         foreach (var intent in _intents)
             if (intent != null)
@@ -198,9 +207,9 @@ public partial class NGhostflames : Control
     {
         _currentWheel = wheel;
         _player = player;
-        for (var i = 0; i < wheel.Length; i++)
+        for (var i = 0; i < Math.Min(wheel.Length, _allFires.Length); i++)
         {
-            AllFires[i]?.SetState(wheel[i].FireColor, wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
+            _allFires[i]?.SetState(wheel[i].FireColor, wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
             if (_intents[i] == null) continue;
             _intents[i]!.UpdateIntent(wheel[i].Intent, [], player.Creature);
         }
@@ -228,12 +237,14 @@ public partial class NGhostflames : Control
 
     public void RefreshCurrentIntent(GhostflameModel[] wheel, int currentIndex, Player player)
     {
-        _intents[currentIndex]!.UpdateIntent(wheel[currentIndex].Intent, [], player.Creature);
+        if (currentIndex < 0 || currentIndex >= _intents.Length || currentIndex >= wheel.Length) return;
+        _intents[currentIndex]?.UpdateIntent(wheel[currentIndex].Intent, [], player.Creature);
     }
 
     public Vector2 GetFlameWorldPosition(int index)
     {
-        var fire = AllFires[index];
+        if (index < 0 || index >= _allFires.Length) return GlobalPosition;
+        var fire = _allFires[index];
         return fire?.GlobalPosition ?? GlobalPosition;
     }
 }

@@ -72,5 +72,6 @@
   "HEXAGHOST-HEATING_POWER.description": "Whenever you apply [gold]Soulburn[/gold] to an enemy, another random players [gold]Block[/gold].",
   "HEXAGHOST-HEATING_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] to an enemy, another random player gains [blue]{Amount}[/blue] [gold]Block[/gold].",
   "HEXAGHOST-INFERNO_POTION_POWER.title": "Infernal",
-  "HEXAGHOST-INFERNO_POTION_POWER.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat."
+  "HEXAGHOST-INFERNO_POTION_POWER.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat.",
+  "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat. "
 }

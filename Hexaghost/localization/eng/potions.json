@@ -4,6 +4,5 @@
   "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Combustive Fluid",
   "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "Ignite the current Ghostflame [blue]{Ignite:diff()}[/blue] times.",
   "HEXAGHOST-INFERNO_POTION_POTION.title": "Inferno Potion",
-  "HEXAGHOST-INFERNO_POTION_POTION.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat.",
-  "HEXAGHOST-INFERNO_POTION_POTION.selectionScreenPrompt": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat."
+  "HEXAGHOST-INFERNO_POTION_POTION.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat."
 }
