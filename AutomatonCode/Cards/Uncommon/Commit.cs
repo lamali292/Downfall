@@ -12,7 +12,6 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class Commit : AutomatonCardModel
 {
-    //todo fix description in game
     public Commit() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithBlock(6, 2);

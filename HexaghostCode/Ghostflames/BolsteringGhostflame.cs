@@ -14,7 +14,7 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 public class BolsteringGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new BolsteringIntent();
-    protected override int IgnitionRequirement => 1;
+    public override int IgnitionRequirement => 1;
 
     public override FireColor FireColor => FireColor.Blue;
 

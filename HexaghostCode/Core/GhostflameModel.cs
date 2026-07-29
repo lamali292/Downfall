@@ -29,8 +29,8 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     public abstract AbstractIntent Intent { get; }
     public bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
     public bool IsIgnited { get; set; }
-    private int IgnitionProgress { get; set; }
-    protected abstract int IgnitionRequirement { get; }
+    public int IgnitionProgress { get; set; }
+    public abstract int IgnitionRequirement { get; }
     public LocString Title => new("ghostflames", Id.Entry + ".title");
     public LocString Description => new("ghostflames", Id.Entry + ".description");
     public abstract FireColor FireColor { get; }

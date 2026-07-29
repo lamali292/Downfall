@@ -12,7 +12,7 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 
 public class SearingGhostflame : GhostflameModel
 {
-    protected override int IgnitionRequirement => 2;
+    public override int IgnitionRequirement => 2;
 
     public override FireColor FireColor => FireColor.Green;
 
