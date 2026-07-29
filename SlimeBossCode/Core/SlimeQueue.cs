@@ -29,6 +29,11 @@ public static class SlimeQueue
     {
         SlimeSlots[player] = amount;
     }
+    
+    public static int GetSlots(Player player)
+    {
+        return SlimeSlots[player];
+    }
 
     public static int GetCount(Player player)
     {
