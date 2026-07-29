@@ -17,7 +17,7 @@ public class CrushingGhostflame : GhostflameModel
         () => 2 * (1 + Repeat(GhostflameRepeatType.Damage))
     );
 
-    protected override int IgnitionRequirement => 2;
+    public override int IgnitionRequirement => 2;
 
     public override FireColor FireColor => FireColor.Pink;
 

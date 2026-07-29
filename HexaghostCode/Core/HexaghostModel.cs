@@ -22,7 +22,8 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
 
     internal static readonly SpireField<Player, int> CurrentIndex = new(() => 0);
-
+    
+    
     private static GhostflameModel[] StartingWheel(Player player)
     {
         return
@@ -85,27 +86,5 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         }
     }
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
-    {
-        var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);
-        if (!retract) return;
-        if (LocalContext.NetId == null) return;
-        var ctx = new HookPlayerChoiceContext(
-            cardPlay.Card.Owner,
-            LocalContext.NetId.Value,
-            Combat);
-
-        var task = HexaghostCmd.Retract(ctx, cardPlay.Card.Owner, cardPlay.Card);
-        await ctx.AssignTaskAndWaitForPauseOrCompletion(task);
-        //var advance = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Advance);
-        //if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner);
-    }
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        //var retract = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Retract);
-        //if (retract) await HexaghostCmd.Retract(ctx, cardPlay.Card.Owner);
-        var advance = cardPlay.Card.Keywords.Contains(HexaghostKeyword.Advance);
-        if (advance) await HexaghostCmd.Advance(ctx, cardPlay.Card.Owner, cardPlay.Card);
-    }
+   
 }

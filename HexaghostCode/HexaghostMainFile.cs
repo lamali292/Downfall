@@ -25,6 +25,8 @@ public partial class HexaghostMainFile : Node
     public static void Initialize()
     {
         RichTextEffectRegistry.Register<RichTextAfterlife>();
+        CardExecutionRegistry.RegisterBefore(HexaghostCardEffectHandler.DoBeforeOnPlayInternal);
+        CardExecutionRegistry.RegisterAfter(HexaghostCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
 

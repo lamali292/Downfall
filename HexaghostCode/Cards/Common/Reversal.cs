@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Ghostflames;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -8,13 +9,30 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class Reversal : HexaghostCardModel
 {
-    //todo iternal glow check AND if it's on a searing / inferno with 1/equiv tokens
     public Reversal() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
         this.WithRepeat(2);
     }
 
+    protected override bool ShouldGlowGoldInternal
+    {
+        get
+        {
+            var a = HexaghostCmd.GetCurrentFlame(Owner);
+            if (a.IsIgnited) return true;
+            switch (a)
+            {
+                case SearingGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= 1:
+                case InfernoGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= EnergyCost.GetResolved():
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+    
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (HexaghostCmd.IsIgnited(Owner))
