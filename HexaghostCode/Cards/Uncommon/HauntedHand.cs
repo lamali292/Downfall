@@ -25,7 +25,7 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
         while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
         {
             var drawn = await CardPileCmd.Draw(ctx, Owner);
-            drawn?.GiveSingleTurnRetain();
+            if (wasExhausted) drawn?.GiveSingleTurnRetain();
             if (drawn == null || !drawn.Keywords.Contains(CardKeyword.Ethereal)) return;
         }
     }
