@@ -1,6 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Ancient;
 using Hexaghost.HexaghostCode.Core;
@@ -26,7 +27,8 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
     {
-        await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        var target = cardPlay?.Target ?? CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+        await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);
     }
 
     public CardModel GetTranscendenceTransformedCard()

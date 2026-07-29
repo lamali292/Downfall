@@ -208,13 +208,22 @@ public static class HexaghostCmd
     
     public static AttackCommand AfterlifeAttack(CardModel card, CardPlay? cardPlay)
     {
-        var a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue).FromCardCompatibility(card, cardPlay);
+        AttackCommand a;
+        if (card.DynamicVars.ContainsKey("CalculatedDamage"))
+            a = DamageCmd.Attack(card.DynamicVars.CalculatedDamage);
+        else if (card.DynamicVars.ContainsKey("Damage"))
+            a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue);
+        else 
+            throw new Exception($"Card {card.Title} does not have a damage variable supported by CommonActions.CardAttack");
+        a = a.FromCardCompatibility(card, cardPlay);
         if (cardPlay?.Target != null)
         {
             return a.Targeting(cardPlay.Target);
         }
-        return card.CombatState != null ? 
-            a.TargetingRandomOpponents(card.CombatState) : 
-            throw new InvalidOperationException("Afterlife attack failed!");
+        if (card.CombatState != null)
+        {
+            return card.TargetType == TargetType.AllEnemies ? a.TargetingAllOpponents(card.CombatState) : a.TargetingRandomOpponents(card.CombatState);
+        }
+        throw new InvalidOperationException("Afterlife attack failed!");
     }
 }
