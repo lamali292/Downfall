@@ -72,5 +72,6 @@
     "HEXAGHOST-HEATING_POWER.description": "[gold]ソウルバーン[/gold]を付与するたびに、ランダムなプレイヤー1人は[gold]ブロック[/gold]を得る。",
     "HEXAGHOST-HEATING_POWER.smartDescription": "[gold]ソウルバーン[/gold]を付与するたびに、ランダムなプレイヤー1人は[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "HEXAGHOST-INFERNO_POTION_POWER.title": "インフェルノ",
-    "HEXAGHOST-INFERNO_POTION_POWER.description": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与する。"
+    "HEXAGHOST-INFERNO_POTION_POWER.description": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与する。",
+    "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与するようになる。"
 }

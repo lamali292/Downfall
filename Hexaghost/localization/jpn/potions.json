@@ -1,6 +1,6 @@
 {
     "HEXAGHOST-ECTO_COOLER_POTION.title": "エクトクーラー",
-    "HEXAGHOST-ECTO_COOLER_POTION.description": "ランダムな[blue]3[/blue]枚の[gold]死後[/gold]から[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。",
+    "HEXAGHOST-ECTO_COOLER_POTION.description": "ランダムな[blue]3[/blue]枚の[gold]死後[/gold]カードから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。",
     "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "発火液",
     "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "現在のゴーストフレイムを[blue]{Ignite:diff()}[/blue]回発火する。",
     "HEXAGHOST-INFERNO_POTION_POTION.title": "インフェルノポーション",
