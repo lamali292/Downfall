@@ -89,10 +89,6 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
 
-    public override void ModifyDescription(Creature? target, ref string description)
-    {
-    }
-
     public string GetFormattedText(bool cardText = false)
     {
         var stringBuilder = new StringBuilder();
