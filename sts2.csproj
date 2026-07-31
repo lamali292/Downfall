@@ -54,4 +54,5 @@
         <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
         <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
     </PropertyGroup>
+    <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')" />
 </Project>

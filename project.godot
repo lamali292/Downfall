@@ -542,11 +542,11 @@ config/logger_messages_as_breadcrumbs=false
 config/max_breadcrumbs=100
 options/auto_init=false
 options/debug_printing=0
+schema_version=4
 options/diagnostic_level=2
 options/attach_log=false
-logger/messages_as_breadcrumbs=false
-logger/events=9
-logger/breadcrumbs=11
+godot_logger/events=9
+godot_logger/breadcrumbs=11
 
 [xr]
 
