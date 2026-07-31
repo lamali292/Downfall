@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
@@ -52,8 +53,7 @@ public partial class NGemUpgradeSelectScreen :
     public static IEnumerable<string> AssetPaths => [ScenePath];
     private IEnumerable<Control> PeekButtonTargets => [_closeButton!, _confirmButton!];
 
-    private static bool UsingController =>
-        NControllerManager.Instance is { IsUsingController: true };
+    private static bool UsingController => ControllerCompat.IsUsingController;
 
     public async Task<IEnumerable<CardModel>> CardsSelected()
     {
@@ -287,7 +287,7 @@ public partial class NGemUpgradeSelectScreen :
     private void ShowCardDetail(CardModel card)
     {
         if (NControllerManager.Instance == null || NGame.Instance == null || _grid == null) return;
-        if (NControllerManager.Instance.IsUsingController)
+        if (ControllerCompat.IsUsingController)
             return;
 
         // Use correct context list depending on phase

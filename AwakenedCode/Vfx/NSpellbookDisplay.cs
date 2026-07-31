@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -188,7 +189,7 @@ public partial class NSpellbookDisplay : Control
 
         protected override void OnFocus()
         {
-            if (NControllerManager.Instance?.IsUsingController == true) _reticle?.OnSelect();
+            if (ControllerCompat.IsUsingController) _reticle?.OnSelect();
 
             _tip = _tipProvider?.Invoke();
             if (_tip == null) return;
