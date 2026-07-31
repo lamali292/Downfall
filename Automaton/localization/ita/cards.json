@@ -1,5 +1,4 @@
 {
-    "AUTOMATON-ALLOCATE.description": "Ottieni {energyPrefix:energyIcons(1)} per ogni Stato nel tuo [gold]Mazzo Pesca[/gold] e nel [gold]Deposito[/gold].{InCombat:cond:\n(Ottieni {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Alloca",
     "AUTOMATON-ASSEMBLY.description": "Pesca {Cards:diff()} carte.\n[gold]Codifica[/gold] qualsiasi carta pescata con [gold]Codifica[/gold].",
     "AUTOMATON-ASSEMBLY.title": "Assemblaggio",
@@ -14,7 +13,6 @@
     "AUTOMATON-BRANCH.title": "Biforcazione",
     "AUTOMATON-BRANCH_ATTACK.title": "Biforcazione: Attacco",
     "AUTOMATON-BRANCH_BLOCK.title": "Biforcazione: Blocco",
-    "AUTOMATON-BREAK.description": "Infliggi {Damage:diff()} di danno.\nAggiungi un [gold]Errore[/gold] alla tua [gold]Mano[/gold], [gold]Mazzo Pesca[/gold], [gold]Mazzo Scarti[/gold] e [gold]Deposito[/gold].",
     "AUTOMATON-BREAK.title": "Crollo",
     "AUTOMATON-BRONZE_ARMOR.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\n[gold]Deposita[/gold] {Stash:diff()} [gold]Errori[/gold].",
     "AUTOMATON-BRONZE_ARMOR.title": "Armatura di Bronzo",
@@ -47,7 +45,6 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Trova e Sostituisci",
     "AUTOMATON-FINE_TUNING.description": "Scegli {Cards:diff()} {Cards:plural:una carta|{} carte} nella tua [gold]Mano[/gold].\n[gold]Depositala[/gold], [gold]Potenziamento[/gold] e dagli [gold]Mantieni[/gold].",
     "AUTOMATON-FINE_TUNING.title": "Messa a Punto",
-    "AUTOMATON-FLAIL.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici due volte.\nRimuovi la tua [gold]Debolezza[/gold], [gold]Fragilità[/gold] e [gold]Vulnerabilità[/gold].\nTermina il tuo turno.",
     "AUTOMATON-FLAIL.title": "Flagello",
     "AUTOMATON-FORCE_SHIELD.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nCosta {Energy:energyIcons()} in meno per ogni carta che hai creato in questo combattimento.",
     "AUTOMATON-FORCE_SHIELD.title": "Scudo Forzato",
@@ -92,13 +89,11 @@
     "AUTOMATON-NULL_POINTER.title": "Puntatore Nullo",
     "AUTOMATON-OIL_SPILL.description": "[gold]Compila[/gold] - [gold]Deposita[/gold] un [gold]Errore[/gold].",
     "AUTOMATON-OIL_SPILL.title": "Fuoriuscita di Olio",
-    "AUTOMATON-OPTIMIZE.description": "Peschi una carta aggiuntiva dal tuo [gold]Deposito[/gold] all'inizio del tuo turno.",
     "AUTOMATON-OPTIMIZE.title": "Ottimizza",
     "AUTOMATON-OVERHEAT.description": "Infliggi {Damage:diff()} di danno.\nLa prossima volta che crei una carta, il nemico bersaglio perde {OverheatPower:diff()} PS.",
     "AUTOMATON-OVERHEAT.title": "Surriscaldamento",
     "AUTOMATON-PHILOSOPHIZE.description": "Quando peschi questa, ottieni {PhilosophizePower:diff()} [gold]Forza[/gold] in questo turno.",
     "AUTOMATON-PHILOSOPHIZE.title": "Filosofeggia",
-    "AUTOMATON-PIERCING_SHOT.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\n[gold]Potenziamento[/gold] di {Cards:diff()} {Cards:plural:una carta|{} carte} nel tuo [gold]Deposito[/gold].",
     "AUTOMATON-PIERCING_SHOT.title": "Colpo Perforante",
     "AUTOMATON-RECURSIVE_STRIKE.description": "Infliggi {Damage:diff()} di danno due volte.\n[gold]Codifica[/gold] 2 copie di [gold]Colpo{IfUpgraded:plus()}[/gold].",
     "AUTOMATON-RECURSIVE_STRIKE.title": "Colpo Ricorsivo",
@@ -185,6 +180,5 @@
     "AUTOMATON-EXPORT.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nUn altro giocatore ottiene {Energy:energyIcons()}.",
     "AUTOMATON-SHARE.title": "Condividi",
     "AUTOMATON-SHARE.description": "Ogni volta che ottieni [gold]Blocco[/gold] da una Funzione, l'alleato con meno [gold]Blocco[/gold] ottiene {SharePower:diff()} [gold]Blocco[/gold].",
-    "AUTOMATON-BLUESCREEN.title": "Schermata Blu",
-    "AUTOMATON-BLUESCREEN.description": "Dai a un altro giocatore {Block:diff()} [gold]Blocco[/gold].\nMetti un [gold]Errore[/gold] in cima al suo [gold]Mazzo Pesca[/gold]."
+    "AUTOMATON-BLUESCREEN.title": "Schermata Blu"
 }

@@ -54,8 +54,6 @@
     "AWAKENED-ENSORCELATE_POWER.description": "次の[gold]パワー[/gold]はコスト0でプレイできる。",
     "AWAKENED-ENSORCELATE_POWER.smartDescription": "次の[blue]{Amount}[/blue]枚の[gold]パワー[/gold]はコスト0でプレイできる。",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "熱烈な崇拝",
-    "AWAKENED-FERVENT_WORSHIP_POWER.description": "[gold]セレモニー[/gold]のコストが{energyPrefix:energyIcons(1)}増加し、追加で[blue]1[/blue]回プレイされる。",
-    "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "[gold]セレモニー[/gold]のコストが{Amount:energyIcons()}増加し、追加で[blue]{Amount}[/blue]回プレイされる。",
     "AWAKENED-FROM_WITHIN_POWER.title": "内より",
     "AWAKENED-FROM_WITHIN_POWER.description": "次に無色のカードをプレイした時、{energyPrefix:energyIcons(1)}を得る。",
     "AWAKENED-FROM_WITHIN_POWER.smartDescription": "次に[blue]{Amount}[/blue]回無色のカードをプレイした時、{energyPrefix:energyIcons(1)}を得る。",

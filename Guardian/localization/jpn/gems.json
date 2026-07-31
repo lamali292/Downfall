@@ -27,7 +27,6 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]洗練[/gold]{Gem:diff()}。",
     "GUARDIAN-OPAL_GEM.description": "カードを{Gem:diff()}枚引く。",
     "GUARDIAN-RUBY_GEM.description": "このターン、[gold]筋力[/gold]{Gem:diff()}を得る。",
-    "GUARDIAN-RUTILE_GEM.description": "すべての敵に[gold]脱力[/gold]{Gem:diff()}を付与する。",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]制動[/gold]{Gem:diff()}。",
     "GUARDIAN-TOURMALINE_GEM.description": "このターン、[gold]トゲ[/gold]{Gem:diff()}を得る。"
 }

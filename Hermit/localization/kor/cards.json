@@ -169,7 +169,6 @@
     "HERMIT-UNYIELDING.title": "불굴",
     "HERMIT-UNYIELDING.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n내가 [gold]취약[/gold] 상태라면, 이번 턴 동안 받는 피해가 50% 감소합니다.",
     "HERMIT-DEATHWISH.title": "죽음의 소원",
-    "HERMIT-DEATHWISH.description": "저주 카드와 인접한 카드는 [gold]정조준[/gold] 상태로 간주됩니다.",
     "HERMIT-RUBBER_BULLET.title": "고무탄",
     "HERMIT-RUBBER_BULLET.description": "{Damage:diff()} 피해를 줍니다.\n[gold]정조준[/gold]:\n이번 전투 동안 이 카드의 피해량이 {Increase:diff()} 증가하고, 무작위 다른 플레이어의 [gold]손패[/gold]로 넘어갑니다. ",
     "HERMIT-BIG_BRUISER.title": "덩치"
