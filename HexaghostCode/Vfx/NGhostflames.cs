@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Hexaghost.HexaghostCode.Core;
@@ -101,7 +102,7 @@ public partial class NGhostflames : Control
                 {
                     // Matches NOrb.OnFocus: the reticle is a controller-only affordance —
                     // mouse hover should still show the tooltip but never draw the bracket.
-                    if (ControllerCompat.IsUsingController) reticle?.OnSelect();
+                    if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true) reticle?.OnSelect();
                     var flame = _currentWheel?.ElementAtOrDefault(index);
                     if (flame == null) return;
                     NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.ShowHoverTips([flame.HoverTip]);

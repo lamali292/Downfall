@@ -1,5 +1,6 @@
 ﻿// NChampStanceDisplay.cs
 
+using BaseLib.Utils;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Compatibility;
@@ -147,7 +148,7 @@ public partial class NChampStanceDisplay : Control
 
         protected override void OnFocus()
         {
-            if (ControllerCompat.IsUsingController) _reticle?.OnSelect();
+            if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true) _reticle?.OnSelect();
 
             _tip = _tipProvider?.Invoke();
             if (_tip == null) return;
