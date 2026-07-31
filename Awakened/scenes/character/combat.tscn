@@ -6,6 +6,11 @@
 [node name="AwakenedCombat" type="Node2D"]
 script = ExtResource("2_a8i81")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" parent="." instance=ExtResource("1_qyr5i")]
 unique_name_in_owner = true
 position = Vector2(5, -30)

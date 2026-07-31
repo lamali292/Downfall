@@ -6,6 +6,11 @@
 [node name="SneckoCombat" type="Node2D"]
 script = ExtResource("2_3vjed")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(-1, 1)
 

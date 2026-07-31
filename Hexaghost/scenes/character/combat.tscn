@@ -6,6 +6,11 @@
 [node name="HexaghostCombat" type="Node2D"]
 script = ExtResource("1_qxg1r")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -216)

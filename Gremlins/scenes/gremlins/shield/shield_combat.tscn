@@ -6,6 +6,11 @@
 [node name="ShieldCombat" type="Node2D"]
 script = ExtResource("1_kpqvy")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" parent="." instance=ExtResource("2_4jb0q")]
 preview_animation = "idle"
 unique_name_in_owner = true

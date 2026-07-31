@@ -6,6 +6,11 @@
 [node name="NobCombat" type="Node2D"]
 script = ExtResource("2_8sd0i")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" parent="." instance=ExtResource("1_ee1nd")]
 unique_name_in_owner = true
 

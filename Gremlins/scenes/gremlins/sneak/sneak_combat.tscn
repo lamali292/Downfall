@@ -6,6 +6,11 @@
 [node name="SneakCombat" type="Node2D"]
 script = ExtResource("1_5p20n")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" parent="." instance=ExtResource("5_sl2ym")]
 preview_animation = "animation"
 unique_name_in_owner = true
