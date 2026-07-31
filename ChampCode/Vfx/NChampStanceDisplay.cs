@@ -2,6 +2,7 @@
 
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -146,7 +147,7 @@ public partial class NChampStanceDisplay : Control
 
         protected override void OnFocus()
         {
-            if (NControllerManager.Instance?.IsUsingController == true) _reticle?.OnSelect();
+            if (ControllerCompat.IsUsingController) _reticle?.OnSelect();
 
             _tip = _tipProvider?.Invoke();
             if (_tip == null) return;

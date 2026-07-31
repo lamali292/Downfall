@@ -106,7 +106,7 @@ internal static class CreditsNav
     private const float NavTopPadding = 200f;
 
     /// <summary>Confirm actions bound while the screen is open (last-wins over the screen's blockers).</summary>
-    private static readonly string[] ConfirmActions = [(string)MegaInput.accept, (string)MegaInput.select];
+    private static readonly string[] ConfirmActions = [MegaInput.select];
 
     /// <summary>First side-nav button; used to seed controller/keyboard focus.</summary>
     private static Button? _firstNavButton;
