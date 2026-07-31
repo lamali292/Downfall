@@ -107,7 +107,7 @@ public static class AwakenedCmd
     {
         if (!CanConjure(player)) return null;
         var spellbook = AwakenedModel.GetOrInitSpellbook(player);
-        var rng = sourceCard.CombatState!.RunState.Rng.CombatCardSelection;
+        var rng = sourceCard.CombatState!.RunState.Rng.CombatCardGeneration;
 
         if (!spellbook.Cards.Contains(selectedSpell)) return null;
         return await ConjureSpell(player, selectedSpell, spellbook, rng);
