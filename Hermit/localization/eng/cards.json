@@ -178,7 +178,7 @@
   "HERMIT-UNYIELDING.title": "Unyielding",
   "HERMIT-UNYIELDING.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you are [gold]Vulnerable[/gold], receive 50% less damage this turn.",
   "HERMIT-DEATHWISH.title": "Deathwish",
-  "HERMIT-DEATHWISH.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold].",
+  "HERMIT-DEATHWISH.description": "Cards adjacent to Curses are considered [gold]Dead On[/gold] and deal {DeathwishPower:diff()} additional damage.",
   "HERMIT-RUBBER_BULLET.title": "Rubber Bullet",
   "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Increase this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
   "HERMIT-BIG_BRUISER.title": "Big Bruiser",

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,7 +16,7 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
 {
     public Crackshot() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
+        WithDamage(8, 3);
     }
 
     public override bool GainsBlock => true;
@@ -30,8 +31,7 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
     public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (this is not IHasDeadOnEffect deadOnEffect) return 1;
-        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
+        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !HermitCmd.IsDeadOnActive(this))
             return 1;
         return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;
     }

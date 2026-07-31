@@ -20,14 +20,14 @@ public class Hexaguard : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AfterlifeEffect(ctx, cardPlay, false);
+        await AfterlifeEffect(ctx, cardPlay, false, false);
         await CommonActions.Draw(this, ctx);
     }
 }

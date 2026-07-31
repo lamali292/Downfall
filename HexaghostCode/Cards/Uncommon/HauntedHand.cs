@@ -20,12 +20,12 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
         {
             var drawn = await CardPileCmd.Draw(ctx, Owner);
-            if (wasExhausted) drawn?.GiveSingleTurnRetain();
+            if (wasExhausted && causedByEthereal) drawn?.GiveSingleTurnRetain();
             if (drawn == null || !drawn.Keywords.Contains(CardKeyword.Ethereal)) return;
         }
     }
@@ -33,6 +33,6 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await AfterlifeEffect(ctx, cardPlay, false);
+        await AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }

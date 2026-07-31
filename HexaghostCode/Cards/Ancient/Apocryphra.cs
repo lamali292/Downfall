@@ -24,15 +24,16 @@ public class Apocryphra : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
         await CardPileCmd.Add(this, PileType.Hand);
+        if (wasExhausted && causedByEthereal) GiveSingleTurnRetain();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await AfterlifeEffect(ctx, cardPlay, false);
+        await AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }
