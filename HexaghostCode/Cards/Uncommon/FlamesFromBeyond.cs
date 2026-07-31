@@ -21,14 +21,14 @@ public class FlamesFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
     }
 
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await AfterlifeEffect(ctx, cardPlay, false);
+        await AfterlifeEffect(ctx, cardPlay, false, false);
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 }

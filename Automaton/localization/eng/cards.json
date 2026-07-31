@@ -67,7 +67,7 @@
   "AUTOMATON-FIND_AND_REPLACE.title": "Find and Replace",
   "AUTOMATON-FINE_TUNING.description": "Choose {Cards:diff()} {Cards:plural:card|cards} in your [gold]Hand[/gold].\n[gold]Stash[/gold] it, [gold]Upgrade[/gold] it, and give it [gold]Retain[/gold].",
   "AUTOMATON-FINE_TUNING.title": "Fine Tuning",
-  "AUTOMATON-FLAIL.description": "Deal {Damage:diff()} damage to ALL enemies twice.\nRemove your [gold]Weak[/gold], [gold]Frail[/gold] and [gold]Vulnerable[/gold].\nEnd your turn.",
+  "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]Deal {Damage:diff()} damage to ALL enemies twice.\nGain {ArtifactPower:diff()} [gold]Artifact[/gold].",
   "AUTOMATON-FLAIL.title": "Flail",
   "AUTOMATON-FOLLOW_THROUGH.description": "",
   "AUTOMATON-FOLLOW_THROUGH.title": "",
@@ -220,5 +220,5 @@
   "AUTOMATON-SHARE.title": "Share",
   "AUTOMATON-SHARE.description": "Whenever you gain [gold]Block[/gold] from a Function, the ally with the least [gold]Block[/gold] gains {SharePower:diff()} [gold]Block[/gold].",
   "AUTOMATON-BLUESCREEN.title": "Bluescreen",
-  "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nPut an [gold]Error[/gold] on top of their [gold]Draw Pile[/gold]."
+  "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nPut an [gold]Error[/gold] on top of your [gold]Draw Pile[/gold]."
 }

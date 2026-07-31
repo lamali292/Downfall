@@ -72,7 +72,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if ( card is not IHasAfterlifeEffect afterlifeEffect) return;
-        await afterlifeEffect.AfterlifeEffect(ctx, null, true);
+        await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
     }
 
     internal static void SetupHexaghostCombatUi(CombatState state)

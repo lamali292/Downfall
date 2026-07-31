@@ -13,7 +13,7 @@ public class Sizzle : HexaghostCardModel
     public Sizzle() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<SizzlePower>(1, false);
-        WithBlock(11, 4);
+        WithBlock(12, 4);
         WithTip(CardKeyword.Exhaust);
     }
 

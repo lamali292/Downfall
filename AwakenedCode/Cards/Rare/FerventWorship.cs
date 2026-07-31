@@ -14,16 +14,16 @@ public class FerventWorship : AwakenedCardModel
 {
     public FerventWorship() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithEnergyTip();
-        this.WithTip<Ceremony>();
-        WithTip(StaticHoverTip.ReplayStatic);
+        WithPower<CuriosityPower>(1);
         WithCostUpgradeBy(-1);
+        this.WithPower<FerventWorshipPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FerventWorshipPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<CuriosityPower>(ctx, this);
+        await CommonActions.ApplySelf<FerventWorshipPower>(ctx, this);
     }
 }

@@ -22,5 +22,5 @@ public abstract class HermitCardModel
         WithTips(e => e is IHasDeadOnEffect ? [HoverTipFactory.FromKeyword(HermitKeywords.DeadOn)] : []);
     }
 
-    protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect { IsDeadOnInHand: true };
+    protected override bool ShouldGlowGoldInternal => this is IHasDeadOnEffect && HermitCmd.IsDeadOnInCurrentHandState(this);
 }

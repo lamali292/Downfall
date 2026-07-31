@@ -25,7 +25,7 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         var target = cardPlay?.Target ?? CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);
@@ -39,6 +39,6 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await AfterlifeEffect(ctx, cardPlay, false);
+        await AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }

@@ -2,6 +2,7 @@
 using Hermit.HermitCode.Cards.Rare;
 using Hermit.HermitCode.Events;
 using Hermit.HermitCode.History;
+using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,9 +29,33 @@ public static class HermitCmd
         return cardIndex == handSize / 2;
     }
 
-    public static bool IsDeadOn(CardModel card)
+    private static bool IsDeadOnInternal(CardModel card) => (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
+                                                    (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
+
+
+    private static bool WasThisPlayedDeadOn(CardModel card) => DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
+
+    public static bool IsAdjacentToCurse(CardModel card) => (card.Pile?.Type == PileType.Hand && IsAdjacentToCurseInCurrentHandState(card)) ||
+                                                            (card.Pile?.Type == PileType.Play && WasThisPlayedAdjacentToCurse(card));
+
+    private static bool WasThisPlayedAdjacentToCurse(CardModel card) =>
+        DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasAdjacentToCurse;
+
+    
+    public static bool IsAdjacentToCurseInCurrentHandState(CardModel cardModel)
     {
-        return card is IHasDeadOnEffect { IsDeadOn: true } ||
+        var hand = PileType.Hand.GetPile(cardModel.Owner).Cards.ToList();
+        var idx = hand.IndexOf(cardModel);
+        if (idx == -1) return false;
+
+        var leftIsCurse = idx > 0 && hand[idx - 1].Type == CardType.Curse;
+        var rightIsCurse = idx < hand.Count - 1 && hand[idx + 1].Type == CardType.Curse;
+        return leftIsCurse || rightIsCurse;
+    }
+    
+    public static bool IsDeadOnActive(CardModel card)
+    {
+        return IsDeadOnInternal(card) ||
                CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any(e => e.IsDeadOn);
     }
     
@@ -59,4 +84,6 @@ public static class HermitCmd
         CombatManager.Instance.History.Add(combatState, entry);
         await HermitHook.AfterDeadOnTrigger(combatState, ctx, card, cardPlay);
     }
+
+  
 }

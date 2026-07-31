@@ -24,11 +24,11 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return AfterlifeEffect(ctx, cardPlay, false);
+        return AfterlifeEffect(ctx, cardPlay, false, false);
     }
 
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
         var target = cardPlay?.Target ?? CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);

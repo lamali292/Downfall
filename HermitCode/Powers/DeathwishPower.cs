@@ -1,33 +1,32 @@
-﻿using Hermit.HermitCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn
+public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn, IModifyDamageAdditive
 {
-    public DeathwishPower() : base(PowerType.Buff, PowerStackType.Single)
+    public DeathwishPower()
     {
         WithTip(HermitKeywords.DeadOn);
     }
 
     public bool ShouldTriggerDeadOn(CardModel card)
     {
-        if (card.Owner.Creature != Owner) return false;
-        var hand = PileType.Hand.GetPile(card.Owner).Cards.ToList();
-        var idx = hand.IndexOf(card);
-        if (idx == -1) return false;
-
-        var leftIsCurse = idx > 0 && IsCurse(hand[idx - 1]);
-        var rightIsCurse = idx < hand.Count - 1 && IsCurse(hand[idx + 1]);
-        return leftIsCurse || rightIsCurse;
+        return card.Owner.Creature == Owner && HermitCmd.IsAdjacentToCurse(card);
     }
 
-    private static bool IsCurse(CardModel c)
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
     {
-        return c.Type == CardType.Curse;
+        if (dealer != Owner || cardSource is null || !HermitCmd.IsAdjacentToCurse(cardSource))
+            return 0;
+
+        return Amount;
     }
 }
