@@ -29,8 +29,8 @@ public static class HermitCmd
         return cardIndex == handSize / 2;
     }
 
-    private static bool IsDeadOnInternal(CardModel card) => (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
-                                                    (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
+    private static bool IsDeadOnInternal(CardModel card) => card is IHasDeadOnEffect && ( (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
+                                                            (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card)));
 
 
     private static bool WasThisPlayedDeadOn(CardModel card) => DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
@@ -71,14 +71,13 @@ public static class HermitCmd
         var combatState = card.CombatState!;
 
         var modify = HermitHook.ModifyDeadOnCount(combatState, 1, card, out var modifiers);
-        await HermitHook.AfterModifyingDeadOnCount(combatState, ctx, card, modifiers);
-
         var hasEffect = card is IHasDeadOnEffect;
         var hasReplayModifier = CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any();
         if (!hasEffect && !hasReplayModifier) return;
         if (card is IHasDeadOnEffect cardModel)
             for (var i = 0; i < modify; i++)
                 await cardModel.DeadOnEffect(ctx, cardPlay);
+        await HermitHook.AfterModifyingDeadOnCount(combatState, ctx, card, modifiers);
         var entry = new DeadOnEntry(cardPlay, card.Owner.Creature, combatState.RoundNumber,
             card.Owner.Creature.Side, CombatManager.Instance.History, combatState.Players);
         CombatManager.Instance.History.Add(combatState, entry);
