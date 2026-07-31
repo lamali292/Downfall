@@ -177,7 +177,6 @@
     "HERMIT-UNYIELDING.title": "Dur à Cuire",
     "HERMIT-UNYIELDING.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nSi vous êtes [gold]Vulnérable[/gold], recevez 50% de dégâts en moins ce tour.",
     "HERMIT-DEATHWISH.title": "Mourir d'Envie",
-    "HERMIT-DEATHWISH.description": "Les cartes adjacentes à des Malédictions sont considérées comme [gold]Dans le Mille[/gold].",
     "HERMIT-RUBBER_BULLET.title": "Balle en Caoutchouc",
     "HERMIT-RUBBER_BULLET.description": "Infligez {Damage:diff()} dégâts.\n[gold]Dans le Mille[/gold] : Augmentez les dégâts de cette carte de {Increase:diff()} ce combat, et mettez-là dans la [gold]Main[/gold] d'un autre joueur aléatoire.",
     "HERMIT-BIG_BRUISER.title": "Gros Cogneur",

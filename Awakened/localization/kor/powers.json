@@ -54,8 +54,6 @@
     "AWAKENED-ENSORCELATE_POWER.description": "다음에 사용하는 [gold]파워[/gold] 카드의 비용이 0이 됩니다.",
     "AWAKENED-ENSORCELATE_POWER.smartDescription": "다음에 사용하는 {Amount:plural:[gold]파워[/gold] 카드의|{Amount}장의 [gold]파워[/gold] 카드들의} 비용이 0이 됩니다.",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "열렬한 숭배",
-    "AWAKENED-FERVENT_WORSHIP_POWER.description": "의례 카드의 비용이 {energyPrefix:energyIcons(1)} 1 증가하고 두 번 시전됩니다.",
-    "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "의례 카드의 비용이 {energyPrefix:energyIcons(1)} {Amount} 증가하고 {Amount:plural:한 번|{Amount}번} 더 시전됩니다.",
     "AWAKENED-FROM_WITHIN_POWER.title": "내면으로부터",
     "AWAKENED-FROM_WITHIN_POWER.description": "다음에 무색 카드를 사용할 때, {energyPrefix:energyIcons(1)}를 얻습니다.",
     "AWAKENED-FROM_WITHIN_POWER.smartDescription": "다음에 무색 카드를 사용할 때 {Amount:plural:|([blue]{Amount}[/blue]번)}, {energyPrefix:energyIcons(1)}를 얻습니다.",

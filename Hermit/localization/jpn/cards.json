@@ -178,7 +178,6 @@
     "HERMIT-UNYIELDING.title": "不屈",
     "HERMIT-UNYIELDING.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]弱体[/gold]状態の場合、このターン受けるダメージが50%減少する。",
     "HERMIT-DEATHWISH.title": "死の願望",
-    "HERMIT-DEATHWISH.description": "呪いに隣接するカードは[gold]命中[/gold]とみなされる。",
     "HERMIT-RUBBER_BULLET.title": "ゴム弾",
     "HERMIT-RUBBER_BULLET.description": "{Damage:diff()}ダメージを与える。\n[gold]命中[/gold]：この戦闘中、このカードのダメージを{Increase:diff()}増加させ、別のランダムなプレイヤーの[gold]手札[/gold]に移す。",
     "HERMIT-BIG_BRUISER.title": "ビッグブルーザー",

@@ -27,7 +27,6 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]연마[/gold] {Gem:diff()}.",
     "GUARDIAN-OPAL_GEM.description": "카드를 {Gem:diff()}장 뽑습니다.",
     "GUARDIAN-RUBY_GEM.description": "이번 턴에 {Gem:diff()} [gold]힘[/gold]을 얻습니다.",
-    "GUARDIAN-RUTILE_GEM.description": "모든 적에게 {Gem:diff()} [gold]약화[/gold]를 부여합니다.",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]대비[/gold] {Gem:diff()}.",
     "GUARDIAN-TOURMALINE_GEM.description": "이번 턴에 {Gem:diff()} [gold]가시[/gold]를 얻습니다."
 }

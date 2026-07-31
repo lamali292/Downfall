@@ -177,7 +177,6 @@
     "HERMIT-UNYIELDING.title": "Inflessibile",
     "HERMIT-UNYIELDING.description": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nSe sei [gold]Vulnerabile[/gold], ricevi il 50% di danno in meno in questo turno.",
     "HERMIT-DEATHWISH.title": "Desiderio di Morte",
-    "HERMIT-DEATHWISH.description": "Le carte adiacenti a Maledizioni sono considerate [gold]Nel Segno[/gold].",
     "HERMIT-RUBBER_BULLET.title": "Proiettile di Gomma",
     "HERMIT-RUBBER_BULLET.description": "Infliggi {Damage:diff()} di danno.\n[gold]Nel Segno[/gold]: Aumenta il danno di questa carta di {Increase:diff()} in questo combattimento e spostala nella [gold]Mano[/gold] di un altro giocatore casuale.",
     "HERMIT-BIG_BRUISER.title": "Picchiatore",

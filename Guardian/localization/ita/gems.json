@@ -27,7 +27,6 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]Lucida[/gold] {Gem:diff()}.",
     "GUARDIAN-OPAL_GEM.description": "Pesca {Gem:diff()} carta.",
     "GUARDIAN-RUBY_GEM.description": "Ottieni {Gem:diff()} [gold]Forza[/gold] in questo turno.",
-    "GUARDIAN-RUTILE_GEM.description": "Applichi {Gem:diff()} di [gold]Debolezza[/gold] a TUTTI i nemici.",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]Irrobustisci[/gold] {Gem:diff()}.",
     "GUARDIAN-TOURMALINE_GEM.description": "Ottieni {Gem:diff()} [gold]Spine[/gold] in questo turno."
 }

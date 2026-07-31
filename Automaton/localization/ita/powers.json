@@ -24,8 +24,6 @@
     "AUTOMATON-MERGE_POWER.description": "La prossima volta che [gold]Codifichi[/gold] una carta, [gold]Codifica[/gold] copie aggiuntive.",
     "AUTOMATON-MERGE_POWER.smartDescription": "La prossima volta che [gold]Codifichi[/gold] una carta, [gold]Codifica[/gold] [blue]{Amount}[/blue] copie aggiuntive.",
     "AUTOMATON-OPTIMIZE_POWER.title": "Ottimizzato",
-    "AUTOMATON-OPTIMIZE_POWER.description": "Peschi una carta aggiuntiva dal tuo [gold]Deposito[/gold] all'inizio del tuo turno.",
-    "AUTOMATON-OPTIMIZE_POWER.smartDescription": "Peschi {Amount:plural:una carta aggiuntiva|[blue]{}[/blue] carte aggiuntive} dal tuo [gold]Deposito[/gold] all'inizio del tuo turno.",
     "AUTOMATON-REMOVE_ERRORS_POWER.title": "Rimuovi Errori",
     "AUTOMATON-REMOVE_ERRORS_POWER.description": "Rimuovi il prossimo [gold]Errore di Compilazione Codificato[/gold].",
     "AUTOMATON-REMOVE_ERRORS_POWER.smartDescription": "Rimuovi il prossimo [gold]Errore di Compilazione Codificato[/gold].",

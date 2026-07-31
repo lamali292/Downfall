@@ -54,8 +54,6 @@
     "AWAKENED-ENSORCELATE_POWER.description": "Il prossimo [gold]Potere[/gold] è gratuito da giocare.",
     "AWAKENED-ENSORCELATE_POWER.smartDescription": "I prossimi {Amount:plural:[gold]Potere[/gold] è|[blue]{Amount}[/blue] [gold]Poteri[/gold] sono} gratuiti da giocare.",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "Adorazione Fervente",
-    "AWAKENED-FERVENT_WORSHIP_POWER.description": "Le [gold]Cerimonie[/gold] costano {energyPrefix:energyIcons(1)} in più e vengono giocate [blue]1[/blue] volta extra.",
-    "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "Le [gold]Cerimonie[/gold] costano {Amount:energyIcons()} e vengono giocate [blue]{Amount}[/blue] {Amount:plural:volta|volte} extra.",
     "AWAKENED-FROM_WITHIN_POWER.title": "Dal Profondo",
     "AWAKENED-FROM_WITHIN_POWER.description": "La prossima volta che giochi una carta Incolore, ottieni {energyPrefix:energyIcons(1)}.",
     "AWAKENED-FROM_WITHIN_POWER.smartDescription": "Le prossime {Amount:plural:volta|[blue]{Amount}[/blue] volte} che giochi una carta Incolore, ottieni {energyPrefix:energyIcons(1)}.",
