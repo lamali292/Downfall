@@ -83,8 +83,6 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
     {
         _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);
-        foreach (var extraHoverTip in GuardianModelDb.Gem<T>().ExtraHoverTips)
-            WithTip(new TooltipSource(_ => extraHoverTip));
         CardModifier.AddModifier(this, GuardianModelDb.Gem<T>().ToMutable());
     }
 

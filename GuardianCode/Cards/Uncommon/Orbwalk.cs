@@ -16,6 +16,7 @@ public class Orbwalk : GuardianCardModel, ITickCard
     {
         WithPower<StrengthPower>(3);
         WithKeyword(GuardianKeyword.Volatile, UpgradeType.Remove);
+        WithTip(GuardianTip.Tick);
     }
 
     protected override Artist Artist => Artist.Get<Bukie>();
