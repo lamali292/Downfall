@@ -29,5 +29,9 @@ public partial class AwakenedMainFile : Node
 
         BundledSubmodLocRegistry.Register(ModId);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Awakened>("Eye");
+        FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");
+        FormBoneRegistry.RegisterReaperForm<Core.Awakened>("Shoulder_feathers");
     }
 }

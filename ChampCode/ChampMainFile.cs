@@ -33,5 +33,9 @@ public partial class ChampMainFile : Node
 
         BundledSubmodLocRegistry.Register(ModId);
         LocFormatterRegistry.Register(new FinisherFormatter());
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
+        FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");
+        FormBoneRegistry.RegisterReaperForm<Core.Champ>("Neck");
     }
 }

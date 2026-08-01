@@ -31,5 +31,9 @@ public partial class CollectorMainFile : Node
             if (player.Character is Core.Collector)
                 EssenceModel.AddEssence(player, 5);
         });
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
+        FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
+        FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");
     }
 }

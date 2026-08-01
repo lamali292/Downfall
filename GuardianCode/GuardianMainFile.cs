@@ -37,6 +37,10 @@ public partial class GuardianMainFile : Node
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
         CombatUiHooks.Register(GuardianCombatModel.SetupGuardianCombatUi);
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Guardian>("head");
+        FormBoneRegistry.RegisterSerpentForm<Core.Guardian>("body");
+        FormBoneRegistry.RegisterReaperForm<Core.Guardian>("head");
     }
 
     private static void CopyGemsToTranscendence(CardModel starter, CardModel result)

@@ -20,5 +20,9 @@ public partial class SneckoMainFile : Node
     {
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         BundledSubmodLocRegistry.Register(ModId);
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
+        FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");
+        FormBoneRegistry.RegisterReaperForm<Core.Snecko>("spine10");
     }
 }

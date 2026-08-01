@@ -74,6 +74,15 @@ public class DownfallPatchManager
             patcher.Add(typeof(ModifyCardPlayResultLocationOldPatch))
                 .Add(typeof(AfterModifyingLocationOldPatch));
 
+        // Todo : only for 0.110.1
+        // /*
+        // patcher.Add(typeof(VoidFormBonePatch))
+        //     .Add(typeof(ReaperFormBonePatch))
+        //     .Add(typeof(SerpentFormBonePatch))
+        //     .Add(typeof(EchoFormBonePatch));
+        //     */
+        FormBonePatcher.Apply(patcher.Harmony, DownfallMainFile.Logger);
+
         patcher.PatchAll();
     }
 }

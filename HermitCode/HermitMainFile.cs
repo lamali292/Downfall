@@ -32,5 +32,10 @@ public partial class HermitMainFile : Node
             .Add(typeof(TransformShineUpdateCardPatch))
             .Add(typeof(HandChangedPatches))
             .PatchAll();
+
+
+        FormBoneRegistry.RegisterVoidForm<Core.Hermit>("HEAD");
+        FormBoneRegistry.RegisterSerpentForm<Core.Hermit>("Waist");
+        FormBoneRegistry.RegisterReaperForm<Core.Hermit>("HEAD");
     }
 }
