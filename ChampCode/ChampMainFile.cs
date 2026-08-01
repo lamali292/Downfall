@@ -37,5 +37,6 @@ public partial class ChampMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
         FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");
         FormBoneRegistry.RegisterReaperForm<Core.Champ>("Neck");
+        FormBoneRegistry.RegisterEchoForm<Core.Champ>("Neck");
     }
 }

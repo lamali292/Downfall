@@ -24,5 +24,6 @@ public partial class SneckoMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");
         FormBoneRegistry.RegisterReaperForm<Core.Snecko>("spine10");
+        FormBoneRegistry.RegisterEchoForm<Core.Snecko>("spine10");
     }
 }

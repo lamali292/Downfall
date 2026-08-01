@@ -28,5 +28,6 @@ public partial class SlimeBossMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterSerpentForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterReaperForm<Core.SlimeBoss>("hat");
+        FormBoneRegistry.RegisterEchoForm<Core.SlimeBoss>("hat");
     }
 }
