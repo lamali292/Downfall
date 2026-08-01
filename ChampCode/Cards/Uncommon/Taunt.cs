@@ -24,14 +24,14 @@ public class Taunt : ChampCardModel
         {
             if (CombatState == null) return;
             var enemies = CombatState.HittableEnemies;
-            await CommonActions.Apply<VulnerablePower>(ctx, enemies, this);
             await CommonActions.Apply<WeakPower>(ctx, enemies, this);
+            await CommonActions.Apply<VulnerablePower>(ctx, enemies, this);
         }
         else
         {
             if (cardPlay.Target == null) return;
-            await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
             await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
+            await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
         }
     }
 }
