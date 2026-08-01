@@ -30,7 +30,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         if (_result == null) return;
-        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
+        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage + e.OverkillDamage);
 
         var hasSnipe = Owner.Creature.HasPower<SnipePower>() ? 2 : 1;
         for (var i = 0; i < hasSnipe; i++)
