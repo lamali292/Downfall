@@ -81,6 +81,7 @@ public static class SlimeQueue
             if (!oldest.IsAlive) continue;
             await CreatureCmd.Kill(oldest);
             player.PlayerCombatState?._pets.Remove(oldest);
+            player.Creature.CombatState?.RemoveCreature(oldest);
             evicted++;
         }
 

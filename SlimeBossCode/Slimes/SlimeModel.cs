@@ -56,6 +56,12 @@ public abstract class SlimeModel : CustomMonsterModel
             return _dynamicVars;
         }
     }
+    
+    protected override void DeepCloneFields()
+    {
+        _dynamicVars = DynamicVars.Clone(this);
+    }
+
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
 

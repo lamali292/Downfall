@@ -29,6 +29,6 @@ public class CultistSlime : SlimeModel
             .FromSlime(this)
             .TargetingRandomOpponents(CombatState)
             .Execute(ctx);
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        DynamicVars.Damage.BaseValue += DynamicVars["Increase"].BaseValue;
     }
 }
