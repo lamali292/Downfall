@@ -64,12 +64,16 @@ public abstract class GemModel : CardModifier, ICustomModel
         }
     }
 
+    public override void AddTips(List<IHoverTip> tips)
+    {
+        tips.AddRange(HoverTips);
+    }
+
     public IEnumerable<IHoverTip> HoverTips
     {
         get
         {
-            var hoverTips = new List<IHoverTip>();
-            hoverTips.Add(ToHoverTip(GetFormattedText()));
+            var hoverTips = new List<IHoverTip> { ToHoverTip(GetFormattedText()) };
             hoverTips.AddRange(ExtraHoverTips);
             return hoverTips;
         }
