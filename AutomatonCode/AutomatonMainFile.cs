@@ -37,5 +37,9 @@ public partial class AutomatonMainFile : Node
         {
             MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash, "res://Automaton/images/character/character_icon.png", new LocString("card_selection", "AUTOMATON-STASH_PILE"));
         });
+        
+        FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
+        FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
+        FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
     }
 }

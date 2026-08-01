@@ -24,5 +24,9 @@ public partial class SlimeBossMainFile : Node
             .Add(typeof(SlimeDeathPatches))
             .Add(typeof(SlimeHoverTipPatch))
             .PatchAll();
+        
+        FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
+        FormBoneRegistry.RegisterSerpentForm<Core.SlimeBoss>("hat");
+        FormBoneRegistry.RegisterReaperForm<Core.SlimeBoss>("hat");
     }
 }

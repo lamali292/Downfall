@@ -21,6 +21,7 @@ public sealed class ModPatcher
     /// Log every successfully patched method individually (verbose). Failures are always logged.
     public bool Verbose { get; set; }
 
+    public Harmony Harmony => _harmony;
     public static ModPatcher Create(string modId, Logger logger)
     {
         return new ModPatcher(modId, logger);
