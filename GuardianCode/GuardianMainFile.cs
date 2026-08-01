@@ -41,6 +41,7 @@ public partial class GuardianMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Guardian>("head");
         FormBoneRegistry.RegisterSerpentForm<Core.Guardian>("body");
         FormBoneRegistry.RegisterReaperForm<Core.Guardian>("head");
+        FormBoneRegistry.RegisterEchoForm<Core.Guardian>("head");
     }
 
     private static void CopyGemsToTranscendence(CardModel starter, CardModel result)

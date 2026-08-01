@@ -41,5 +41,6 @@ public partial class AutomatonMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
+        FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
     }
 }

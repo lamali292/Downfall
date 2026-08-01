@@ -35,5 +35,6 @@ public partial class CollectorMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");
+        FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
     }
 }

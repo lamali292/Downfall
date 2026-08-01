@@ -37,5 +37,6 @@ public partial class HermitMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Hermit>("HEAD");
         FormBoneRegistry.RegisterSerpentForm<Core.Hermit>("Waist");
         FormBoneRegistry.RegisterReaperForm<Core.Hermit>("HEAD");
+        FormBoneRegistry.RegisterEchoForm<Core.Hermit>("Waist");
     }
 }

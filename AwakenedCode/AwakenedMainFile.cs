@@ -33,5 +33,6 @@ public partial class AwakenedMainFile : Node
         FormBoneRegistry.RegisterVoidForm<Core.Awakened>("Eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");
         FormBoneRegistry.RegisterReaperForm<Core.Awakened>("Shoulder_feathers");
+        FormBoneRegistry.RegisterEchoForm<Core.Awakened>("Shoulder_feathers");
     }
 }
