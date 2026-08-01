@@ -10,16 +10,8 @@ using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage, IModifyDamageAdditive
+public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage
 {
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
-               props.HasFlag(ValueProp.Unpowered)
-            ? -amount
-            : 0;
-    }
 
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
