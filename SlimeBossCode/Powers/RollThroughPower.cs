@@ -24,8 +24,7 @@ public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage, IModifyD
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
         return model is CardModel card && card.Tags.Contains(SlimeBossTag.Tackle) && card.Owner.Creature == Owner
-            ? -
-                0
+            ? 0
             : amount;
     }
 
