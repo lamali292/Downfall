@@ -31,8 +31,8 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
 
 
     protected override bool ShouldGlowGoldInternal => false;
-    protected override bool ShouldGlowRedInternal => HermitCmd.IsDeadOnActive(this);
-    public override bool HasTurnEndInHandEffect => HermitCmd.IsDeadOnActive(this);
+    protected override bool ShouldGlowRedInternal => HermitCmd.HasActiveDeadOnEffect(this);
+    public override bool HasTurnEndInHandEffect => HermitCmd.HasActiveDeadOnEffect(this);
     public override bool CanBeGeneratedByModifiers => false;
 
     private static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;

@@ -39,7 +39,7 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipli
     public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !HermitCmd.IsDeadOnActive(this))
+        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !HermitCmd.HasActiveDeadOnEffect(this))
             return 1;
         return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;
     }
