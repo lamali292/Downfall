@@ -1,6 +1,8 @@
 using Hermit.HermitCode.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -42,15 +44,19 @@ public sealed class ClaspedLocket : HermitRelicModel
         if (card.Owner == Owner && card.Type == CardType.Curse && !_usedThisTurn)
         {
             _usedThisTurn = true;
+            Status = RelicStatus.Normal;
             Flash();
             await CardCmd.Exhaust(ctx, card);
             await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
         }
     }
 
-    public override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
+        if (!participants.Contains(Owner.Creature)) return Task.CompletedTask;
         _usedThisTurn = false;
+        Status = RelicStatus.Active;
         return Task.CompletedTask;
     }
 }
