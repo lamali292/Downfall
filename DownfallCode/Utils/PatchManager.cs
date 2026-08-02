@@ -59,7 +59,8 @@ public class DownfallPatchManager
             .Add(typeof(FindExistingInstanceForStackingPatch))
             .Add(typeof(IgnoreDexterityPatch))
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
-            .Add(typeof(NCreditsScreenPatch));
+            .Add(typeof(NCreditsScreenPatch))
+            .Add(typeof(CardCmdTransformTransformHook));
         
 
 
