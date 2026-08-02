@@ -1,10 +1,6 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Downfall.DownfallCode.Events;
+﻿using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 

@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Downfall.DownfallCode.Events;
 
@@ -37,7 +39,7 @@ public static class DownfallHook
     public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
         out IEnumerable<IModifySelfDamage> modifiers)
     {
-        return HookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers);
+        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers, MyHookUtils.HookScope.CombatRaw);
     }
 
     public static Task AfterModifyingSelfDamage(ICombatState cs, IEnumerable<IModifySelfDamage> modifiers,
