@@ -18,7 +18,7 @@ public static class HermitCardEffectHandler
 
     public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (HermitCmd.IsDeadOnActive(card))
+        if (HermitCmd.HasActiveDeadOnEffect(card))
             await HermitCmd.TriggerDeadOnEffect(ctx, card, cardPlay);
     }
 }

@@ -29,8 +29,8 @@ public static class HermitCmd
         return cardIndex == handSize / 2;
     }
 
-    private static bool IsDeadOnInternal(CardModel card) => card is IHasDeadOnEffect && ( (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
-                                                            (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card)));
+    public static bool IsInDeadOnState(CardModel card) => (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
+                                                          (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
 
 
     private static bool WasThisPlayedDeadOn(CardModel card) => DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
@@ -53,10 +53,9 @@ public static class HermitCmd
         return leftIsCurse || rightIsCurse;
     }
     
-    public static bool IsDeadOnActive(CardModel card)
+    public static bool HasActiveDeadOnEffect(CardModel card)
     {
-        return IsDeadOnInternal(card) ||
-               CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any(e => e.IsDeadOn);
+        return IsInDeadOnState(card) && HasDeadOn(card);
     }
     
     public static bool HasDeadOn(CardModel card)

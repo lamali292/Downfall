@@ -17,7 +17,7 @@ public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
         if (
             GetInternalData<Data>().DeadOnCardsPlayed >= Amount
             || card.Owner.Creature != Owner
-            || !HermitCmd.IsDeadOnActive(card)
+            || !HermitCmd.HasActiveDeadOnEffect(card)
             || card.Type is CardType.Power
             || card.Keywords.Contains(CardKeyword.Exhaust))
             return cardLocation;

@@ -44,31 +44,11 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
-    public bool IsDeadOn
-    {
-        get
-        {
-            var pileType = Owner?.Pile?.Type;
-            var inHand = pileType == PileType.Hand;
-            var inPlay = pileType == PileType.Play;
-
-            // only evaluate the relevant sub-condition, mirroring the original short-circuit
-            var isDeadOnInHand = inHand && IsDeadOnInHand;
-            var wasPlayedDeadOn = inPlay && WasThisPlayedDeadOn;
-
-            return Owner != null && (isDeadOnInHand || wasPlayedDeadOn);
-        }
-    }
-
-    private bool IsDeadOnInHand => Owner != null && HermitCmd.IsDeadOnInCurrentHandState(Owner);
-
-    private bool WasThisPlayedDeadOn => DeadOnPatch.LastPlayed == Owner && DeadOnPatch.LastWasDeadOn;
-
+    private bool IsDeadOn => Owner != null &&  HermitCmd.IsInDeadOnState(Owner);
     private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
-
     public override bool ShouldGlowGold => IsDeadOn;
     public int Value { get; set; } = 1;
-
+    
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         return card == Owner && IsDeadOn ? playCount + ModVal : playCount;
