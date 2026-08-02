@@ -1,0 +1,8 @@
+{
+    "HEXAGHOST-ECTO_COOLER_POTION.title": "幽灵冷饮",
+    "HEXAGHOST-ECTO_COOLER_POTION.description": "从[blue]3[/blue]张随机[gold]阴世[/gold]牌中选择[blue]1[/blue]张加入[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "可燃液体",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "点燃当前鬼火[blue]{Ignite:diff()}[/blue]次。",
+    "HEXAGHOST-INFERNO_POTION_POTION.title": "炼狱药水",
+    "HEXAGHOST-INFERNO_POTION_POTION.description": "鬼火的[gold]灼魂[/gold]和伤害效果作用于所有敌人。"
+}

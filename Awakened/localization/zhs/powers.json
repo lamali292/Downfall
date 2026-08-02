@@ -54,6 +54,8 @@
     "AWAKENED-ENSORCELATE_POWER.description": "你的下一张[gold]能力[/gold]牌可以免费打出。",
     "AWAKENED-ENSORCELATE_POWER.smartDescription": "你的下[blue]{Amount}[/blue]张[gold]能力[/gold]牌可以免费打出。",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "狂热崇拜",
+    "AWAKENED-FERVENT_WORSHIP_POWER.description": "在你的回合开始时失去[gold]力量[/gold]。",
+    "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "在你的回合开始时失去[blue]{Amount}[/blue]点[gold]力量[/gold]。",
     "AWAKENED-FROM_WITHIN_POWER.title": "由内而生",
     "AWAKENED-FROM_WITHIN_POWER.description": "你下一次打出无色牌时，获得{energyPrefix:energyIcons(1)}。",
     "AWAKENED-FROM_WITHIN_POWER.smartDescription": "你下[blue]{Amount}[/blue]次打出无色牌时，获得{energyPrefix:energyIcons(1)}。",

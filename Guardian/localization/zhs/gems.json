@@ -1,6 +1,6 @@
 {
     "GUARDIAN-EMPTY_SLOT.description": "❮[gold]槽位[/gold]❯",
-    "GUARDIAN-FRAGMENTED_GEM.title": "破碎宝石",
+    "GUARDIAN-FRAGMENTED_GEM.title": "宝石碎片",
     "GUARDIAN-RUBY_GEM.title": "红宝石",
     "GUARDIAN-SAPPHIRE_GEM.title": "蓝宝石",
     "GUARDIAN-TOURMALINE_GEM.title": "碧玺",
@@ -11,8 +11,8 @@
     "GUARDIAN-GARNET_GEM.title": "石榴石",
     "GUARDIAN-OPAL_GEM.title": "蛋白石",
     "GUARDIAN-CITRINE_GEM.title": "黄水晶",
-    "GUARDIAN-ONYX_GEM.title": "缟玛瑙",
-    "GUARDIAN-BISMUTH_GEM.title": "铋晶",
+    "GUARDIAN-ONYX_GEM.title": "黑玛瑙",
+    "GUARDIAN-BISMUTH_GEM.title": "虹彩晶",
     "GUARDIAN-DIAMOND_GEM.title": "钻石",
     "GUARDIAN-RUTILE_GEM.title": "金红石",
     "GUARDIAN-AQUAMARINE_GEM.description": "获得一张[gold]水晶守卫[/gold]。",
@@ -27,6 +27,7 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]抛光[/gold]{Gem:diff()}。",
     "GUARDIAN-OPAL_GEM.description": "抽{Gem:diff()}张牌。",
     "GUARDIAN-RUBY_GEM.description": "本回合获得{Gem:diff()}点[gold]力量[/gold]。",
+    "GUARDIAN-RUTILE_GEM.description": "给予随机敌人{Gem:diff()}层[gold]虚弱[/gold]。",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]提防[/gold]{Gem:diff()}。",
     "GUARDIAN-TOURMALINE_GEM.description": "获得{Gem:diff()}点临时[gold]荆棘[/gold]。"
 }

@@ -70,7 +70,7 @@
     "GUARDIAN-PRIMING_SHOT.description": "造成{Damage:diff()}点伤害。\n[gold]提防[/gold]{Brace:diff()}。",
     "GUARDIAN-PRIMING_SHOT.title": "预备射击",
     "GUARDIAN-PRISMATIC_BARRIER.description": "此牌中每有一颗[gold]宝石[/gold]，获得{CalculationExtra:diff()}点[gold]格挡[/gold]。",
-    "GUARDIAN-PRISMATIC_BARRIER.title": "缤纷护盾",
+    "GUARDIAN-PRISMATIC_BARRIER.title": "缤纷炫盾",
     "GUARDIAN-PRISMATIC_SPRAY.description": "此牌中每有一颗[gold]宝石[/gold]，造成{ExtraDamage:diff()}点伤害。{InCombat:cond:\n（造成{CalculatedDamage:diff()}点伤害|}",
     "GUARDIAN-PRISMATIC_SPRAY.title": "缤纷碎块",
     "GUARDIAN-RECOVER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]提防[/gold]{Brace:diff()}。\n[gold]凝滞[/gold]你[gold]弃牌堆[/gold]中的一张牌。",
@@ -102,7 +102,7 @@
     "GUARDIAN-SPHERIC_SHIELD.description": "[gold]提防[/gold]{Brace:diff()}。",
     "GUARDIAN-SPHERIC_SHIELD.title": "球面护盾",
     "GUARDIAN-SPIKER_PROTOCOL.description": "每当你进入[gold]防御模式[/gold]时，获得{SpikerProtocolPower:diff()}点[gold]荆棘[/gold]。\n[gold]提防[/gold]{Brace:diff()}。",
-    "GUARDIAN-SPIKER_PROTOCOL.title": "棘刺协议",
+    "GUARDIAN-SPIKER_PROTOCOL.title": "荆棘协议",
     "GUARDIAN-STASIS_ENGINE.description": "每回合你打出第三张{energyPrefix:energyIcons(0)}卡牌时，获得{energyPrefix:energyIcons(1)}并抽1张牌。",
     "GUARDIAN-STASIS_ENGINE.title": "凝滞引擎",
     "GUARDIAN-STASIS_FIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]凝滞[/gold]此牌。",
@@ -162,5 +162,10 @@
     "GUARDIAN-SHARED_FLUX.title": "共鸣能流",
     "GUARDIAN-SHARED_FLUX.description": "选择另一名玩家。\n该玩家可选择其[gold]抽牌堆[/gold]中的一张牌，将其[gold]凝滞[/gold]。",
     "GUARDIAN-OVERBLOCK.title": "过度防守",
-    "GUARDIAN-OVERBLOCK.description": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友在本回合中获得{OverblockBlockPower:diff()}点[gold]格挡[/gold]和{OverblockThornsPower:diff()}层[gold]荆棘[/gold]。"
+    "GUARDIAN-OVERBLOCK.description": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友在本回合中获得{OverblockBlockPower:diff()}点[gold]格挡[/gold]和{OverblockThornsPower:diff()}层[gold]荆棘[/gold]。",
+    "GUARDIAN-REFRACTED_LIGHT.title": "折射光线",
+    "GUARDIAN-REFRACTED_LIGHT.description": "造成{Damage:diff()}点伤害。\n这张牌的宝石效果作用于所有玩家。",
+    "GUARDIAN-MULTI_TROPS.description": "所有玩家获得{ThornsPower:diff()}层[gold]荆棘[/gold]。",
+    "GUARDIAN-BASTION.title": "堡垒",
+    "GUARDIAN-BASTION.description": "每当你[gold]提防[/gold]时，所有盟友获得{BastionPower:diff()}点[gold]格挡[/gold]。"
 }

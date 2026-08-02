@@ -162,5 +162,11 @@
     "GUARDIAN-SHARED_FLUX.title": "Совместный поток",
     "GUARDIAN-SHARED_FLUX.description": "Помещает выбранную карту из [gold]стопки добора[/gold] другого игрока в [gold]Стазис[/gold].",
     "GUARDIAN-OVERBLOCK.title": "Сверхзащита",
-    "GUARDIAN-OVERBLOCK.description": "Дает {OverblockBlockPower:diff()} [gold]защиты[/gold] и {OverblockThornsPower:diff()} [gold]шипов[/gold] на этот ход другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold]."
+    "GUARDIAN-OVERBLOCK.description": "Дает {OverblockBlockPower:diff()} [gold]защиты[/gold] и {OverblockThornsPower:diff()} [gold]шипов[/gold] на этот ход другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
+    "GUARDIAN-REFRACTED_LIGHT.title": "Преломляющий свет",
+    "GUARDIAN-REFRACTED_LIGHT.description": "Наносит {Damage:diff()} урона.\nЭффекты [gold]Самоцветов[/gold] в этой карте влияют на ВСЕХ игроков.",
+    "GUARDIAN-MULTI_TROPS.title": "Куча шипов",
+    "GUARDIAN-MULTI_TROPS.description": "Дает {ThornsPower:diff()} [gold]шипов[/gold] ВСЕМ игрокам.",
+    "GUARDIAN-BASTION.title": "Оплот",
+    "GUARDIAN-BASTION.description": "Дает другим игрокам {BastionPower:diff()} [gold]защиты[/gold], когда вы получаете [gold]Укрепление[/gold]."
 }

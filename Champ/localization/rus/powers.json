@@ -73,5 +73,8 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "В этом ходу вы находитесь в [gold]Совершенной стойке[/gold].",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Бодрость в след. ходу",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Вы получите [gold]бодрость[/gold] в следующем ходу.",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Вы получите [blue]{}[/blue] [gold]бодрости[/gold] в следующем ходу."
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Вы получите [blue]{}[/blue] [gold]бодрости[/gold] в следующем ходу.",
+    "CHAMP-CROWD_FAVORITE_POWER.title": "Любимчик толпы",
+    "CHAMP-CROWD_FAVORITE_POWER.description": "Дает [blue]1[/blue] [gold]бодрости[/gold], когда другой игрок атакует врага.",
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]бодрости[/gold], когда другой игрок атакует врага."
 }
