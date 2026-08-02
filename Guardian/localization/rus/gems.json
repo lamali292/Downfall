@@ -27,6 +27,7 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]Шлифовка[/gold] {Gem:diff()}.",
     "GUARDIAN-OPAL_GEM.description": "Вы добираете {Gem:diff()} {Gem:plural(ru):карту|карты|карт}.",
     "GUARDIAN-RUBY_GEM.description": "Дает {Gem:diff()} [gold]силы[/gold] на этот ход.",
+    "GUARDIAN-RUTILE_GEM.description": "Накладывает {Gem:diff()} [gold]слабости[/gold] случайному врагу.",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]Укрепление[/gold] {Gem:diff()}.",
     "GUARDIAN-TOURMALINE_GEM.description": "Дает {Gem:diff()} [gold]шипов[/gold] на этот ход."
 }

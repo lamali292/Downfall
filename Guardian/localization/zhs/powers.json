@@ -38,7 +38,7 @@
     "GUARDIAN-REVENGE_PROTOCOL_POWER.title": "危机协议",
     "GUARDIAN-REVENGE_PROTOCOL_POWER.description": "每当你进入[gold]防御模式[/gold]时，获得[gold]力量[/gold]。",
     "GUARDIAN-REVENGE_PROTOCOL_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，获得[blue]{Amount}[/blue]点[gold]力量[/gold]。",
-    "GUARDIAN-SPIKER_PROTOCOL_POWER.title": "棘刺协议",
+    "GUARDIAN-SPIKER_PROTOCOL_POWER.title": "荆棘协议",
     "GUARDIAN-SPIKER_PROTOCOL_POWER.description": "每当你的回合结束时，若你处在[gold]防御模式[/gold]，获得[gold]荆棘[/gold]。",
     "GUARDIAN-SPIKER_PROTOCOL_POWER.smartDescription": "每当你的回合结束时，若你处在[gold]防御模式[/gold]，获得[blue]{Amount}[/blue]点[gold]荆棘[/gold]。",
     "GUARDIAN-STASIS_ENGINE_POWER.title": "凝滞引擎",
@@ -67,5 +67,8 @@
     "GUARDIAN-OVERBLOCK_THORNS_POWER.title": "过度防守：荆棘",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.description": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友获得[gold]荆棘[/gold]一回合。",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友获得[blue]{Amount}[/blue]点[gold]荆棘[/gold]一回合。",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
+    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
+    "GUARDIAN-BASTION_POWER.title": "堡垒",
+    "GUARDIAN-BASTION_POWER.description": "每当你[gold]提防[/gold]时，所有盟友获得[gold]格挡[/gold]。",
+    "GUARDIAN-BASTION_POWER.smartDescription": "每当你[gold]提防[/gold]时，所有盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
 }

@@ -67,5 +67,8 @@
     "GUARDIAN-OVERBLOCK_THORNS_POWER.title": "Сверхзащита",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.description": "Дает [blue]1[/blue] [gold]шипов[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]шипов[/gold] на этот ход другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold]."
+    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
+    "GUARDIAN-BASTION_POWER.title": "Оплот",
+    "GUARDIAN-BASTION_POWER.description": "Дает другим игрокам [gold]защиту[/gold], когда вы получаете [gold]Укрепление[/gold].",
+    "GUARDIAN-BASTION_POWER.smartDescription": "Дает другим игрокам [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы получаете [gold]Укрепление[/gold]."
 }

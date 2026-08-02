@@ -44,6 +44,7 @@
     "GREMLINS-IRRITABILITY.title": "易怒",
     "GREMLINS-JEER.title": "嘲讽",
     "GREMLINS-KABLAMO.title": "轰天响！",
+    "GREMLINS-MAKESHIFT_ARMOR.description": "{IfUpgraded:show:获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。\n|}每当你打出7张攻击牌，获得1层[gold]人工制品[/gold]。",
     "GREMLINS-MAKESHIFT_ARMOR.title": "临时装甲",
     "GREMLINS-MOCKERY.title": "蔑视",
     "GREMLINS-NECROMANCY.title": "招魂",
