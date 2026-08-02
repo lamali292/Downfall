@@ -1,4 +1,5 @@
 {
+    "AUTOMATON-ALLOCATE.description": "你的[gold]抽牌堆[/gold]和[gold]储藏堆[/gold]中每有一张状态牌，获得{energyPrefix:energyIcons(1)}。{InCombat:cond:\n（获得{Status:diff()}{energyPrefix:energyIcons(1)})）|}",
     "AUTOMATON-ALLOCATE.title": "分配",
     "AUTOMATON-ASSEMBLY.description": "抽{Cards:diff()}张牌。\n[gold]编码[/gold]所有抽到的[gold]编码[/gold]牌。",
     "AUTOMATON-ASSEMBLY.title": "汇编",
@@ -14,6 +15,7 @@
     "AUTOMATON-BRANCH.title": "分支",
     "AUTOMATON-BRANCH_ATTACK.title": "分支：攻击",
     "AUTOMATON-BRANCH_BLOCK.title": "分支：防御",
+    "AUTOMATON-BREAK.description": "造成{Damage:diff()}点伤害。\n向你的[gold]手牌[/gold]、[gold]抽牌堆[/gold]、[gold]弃牌堆[/gold]和[gold]储藏堆[/gold]中各添加一张[gold]错误[/gold]。",
     "AUTOMATON-BREAK.title": "崩溃",
     "AUTOMATON-BRONZE_ARMOR.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]储藏[/gold]{Stash:diff()}张[gold]错误[/gold]。",
     "AUTOMATON-BRONZE_ARMOR.title": "铜制铠甲",
@@ -50,6 +52,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "查找替换",
     "AUTOMATON-FINE_TUNING.description": "选择[gold]手牌[/gold]中的{Cards:diff()}张牌。\n将其[gold]储藏[/gold]、[gold]升级[/gold]并添加[gold]保留[/gold]。",
     "AUTOMATON-FINE_TUNING.title": "微调",
+    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]对所有敌人造成{Damage:diff()}点伤害两次。\n获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
     "AUTOMATON-FLAIL.title": "乱击",
     "AUTOMATON-FORCE_SHIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n本场战斗中你每生成过一张牌，此牌费用减少{Energy:energyIcons()}。",
     "AUTOMATON-FORCE_SHIELD.title": "力场护盾",
@@ -95,11 +98,13 @@
     "AUTOMATON-NULL_POINTER.title": "空指针",
     "AUTOMATON-OIL_SPILL.description": "[gold]编译[/gold]：[gold]储藏[/gold]一张[gold]错误[/gold]。",
     "AUTOMATON-OIL_SPILL.title": "漏油",
+    "AUTOMATON-OPTIMIZE.description": "在你的回合开始时，额外从[gold]储藏堆[/gold]中抽1张牌。",
     "AUTOMATON-OPTIMIZE.title": "优化",
     "AUTOMATON-OVERHEAT.description": "造成{Damage:diff()}点伤害。\n下次你生成一张牌时，目标敌人失去{OverheatPower:diff()}点生命值。",
     "AUTOMATON-OVERHEAT.title": "过热",
     "AUTOMATON-PHILOSOPHIZE.description": "当你抽到这张牌时，获得{PhilosophizePower:diff()}点临时[gold]力量[/gold]。",
     "AUTOMATON-PHILOSOPHIZE.title": "哲理化",
+    "AUTOMATON-PIERCING_SHOT.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]升级[/gold]你[gold]储藏堆[/gold]中的{Cards:diff()}张牌。",
     "AUTOMATON-PIERCING_SHOT.title": "穿透射击",
     "AUTOMATON-RECURSIVE_STRIKE.description": "造成{Damage:diff()}点伤害两次。\n[gold]编码[/gold]2张[gold]打击{IfUpgraded:plus()}[/gold]的复制。",
     "AUTOMATON-RECURSIVE_STRIKE.title": "递归打击",
@@ -187,5 +192,6 @@
     "AUTOMATON-EXPORT.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n另一名玩家获得{Energy:energyIcons()}。",
     "AUTOMATON-SHARE.title": "分享",
     "AUTOMATON-SHARE.description": "每当你从方法中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得{SharePower:diff()}点[gold]格挡[/gold]。",
-    "AUTOMATON-BLUESCREEN.title": "蓝屏"
+    "AUTOMATON-BLUESCREEN.title": "蓝屏",
+    "AUTOMATON-BLUESCREEN.description": "给予另一名玩家{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]错误[/gold]放到你的[gold]抽牌堆[/gold]顶部。"
 }
