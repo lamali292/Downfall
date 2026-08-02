@@ -24,6 +24,8 @@
     "AUTOMATON-MERGE_POWER.description": "下次你[gold]编码[/gold]一张牌时，额外[gold]编码[/gold]一张复制。",
     "AUTOMATON-MERGE_POWER.smartDescription": "下次你[gold]编码[/gold]一张牌时，额外[gold]编码[/gold][blue]{Amount}[/blue]张复制。",
     "AUTOMATON-OPTIMIZE_POWER.title": "优化",
+    "AUTOMATON-OPTIMIZE_POWER.description": "回合开始时，额外从[gold]储藏堆[/gold]中抽1张牌。",
+    "AUTOMATON-OPTIMIZE_POWER.smartDescription": "回合开始时，额外从[gold]储藏堆[/gold]中抽[blue]{Amount}[/blue]张牌。",
     "AUTOMATON-REMOVE_ERRORS_POWER.title": "移除错误",
     "AUTOMATON-REMOVE_ERRORS_POWER.description": "移除下一次将要被编码的[gold]编译错误[/gold]。",
     "AUTOMATON-REMOVE_ERRORS_POWER.smartDescription": "移除下一次将要被编码的[gold]编译错误[/gold]。",

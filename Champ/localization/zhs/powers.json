@@ -73,5 +73,8 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "本回合你处于[gold]终极姿态[/gold]。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "下回合活力",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "在下个回合，获得[gold]活力[/gold]。",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "在下个回合，获得[blue]{}[/blue]点[gold]活力[/gold]。"
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "在下个回合，获得[blue]{}[/blue]点[gold]活力[/gold]。",
+    "CHAMP-CROWD_FAVORITE_POWER.title": "人气明星",
+    "CHAMP-CROWD_FAVORITE_POWER.description": "每当其他玩家攻击一名敌人时，获得[gold]活力[/gold]。",
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "每当其他玩家攻击一名敌人时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。"
 }

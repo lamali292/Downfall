@@ -9,6 +9,8 @@
     "GREMLINS-INFINITE_BLOCKS_POWER.title": "无限护甲",
     "GREMLINS-BANG_POWER.title": "砰",
     "GREMLINS-MAKESHIFT_ARMOR_POWER.title": "临时装甲",
+    "GREMLINS-MAKESHIFT_ARMOR_POWER.description": "每当你打出[blue]7[/blue]张攻击牌，获得一层[gold]人工制品[/gold]。",
+    "GREMLINS-MAKESHIFT_ARMOR_POWER.smartDescription": "打出[blue]{AttacksLeft}[/blue]张攻击牌后，获得[blue]{Amount}[/blue]层[gold]人工制品[/gold]。",
     "GREMLINS-POLISH_POWER.title": "抛光",
     "GREMLINS-SCATTER_POWER.title": "散开",
     "GREMLINS-MAKING_MAGIC_POWER.title": "获得法力",
