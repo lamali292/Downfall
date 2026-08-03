@@ -25,6 +25,6 @@ public sealed class LoneWolf : HermitCardModel
         if (chosen == null) return;
         chosen.SetToFreeThisTurn();
         var toDiscard = handPile.Cards.Where(c => c != chosen).ToList();
-        await CardPileCmd.Add(toDiscard, PileType.Discard);
+        await CardCmd.Discard(ctx, toDiscard);
     }
 }
