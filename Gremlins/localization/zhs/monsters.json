@@ -1,9 +1,8 @@
 {
-  "GREMLINS-MAD_GREMLIN.name": "Mad Gremlin",
-  "GREMLINS-WIZARD_GREMLIN.name": "Wizard Gremlin",
-  "GREMLINS-FAT_GREMLIN.name": "Fat Gremlin",
-  "GREMLINS-SHIELD_GREMLIN.name": "Shield Gremlin",
-  "GREMLINS-SNEAK_GREMLIN.name": "Sneak Gremlin",
-  "GREMLINS-GREMLIN_NOB.name": "Gremlin Nob",
-  "GREMLINS-GREMLIN_NOB.banter": "[jitter]ROOOAAARRR!!![/jitter]"
+    "GREMLINS-MAD_GREMLIN.name": "火大地精",
+    "GREMLINS-WIZARD_GREMLIN.name": "地精法师",
+    "GREMLINS-FAT_GREMLIN.name": "胖地精",
+    "GREMLINS-SHIELD_GREMLIN.name": "持盾地精",
+    "GREMLINS-SNEAK_GREMLIN.name": "卑鄙地精",
+    "GREMLINS-GREMLIN_NOB.name": "地精首领"
 }
