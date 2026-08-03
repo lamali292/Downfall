@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -16,6 +17,9 @@ public class Levitate : HexaghostCardModel, IHasAfterlifeEffect
         this.WithAfterlife();
         WithBlock(9, 3);
     }
+    
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+
     
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
