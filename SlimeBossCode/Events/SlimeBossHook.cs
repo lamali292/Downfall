@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,8 +14,8 @@ public static class SlimeBossHook
     public static Task AfterConsumeEffect(ICombatState cs, PlayerChoiceContext ctx, Creature creature,
         Creature attacker, int amount)
     {
-        return HookUtils.Dispatch<IAfterConsumeEffect>(cs,
-            e => e.AfterConsumeEffect(ctx, creature, attacker, amount));
+        return MyHookUtils.Dispatch<IAfterConsumeEffect>(cs,
+            e => e.AfterConsumeEffect(ctx, creature, attacker, amount), MyHookUtils.HookScope.CombatRaw);
     }
 
     public static int ModifyGoopConsume(ICombatState cs, int originalAmount,
