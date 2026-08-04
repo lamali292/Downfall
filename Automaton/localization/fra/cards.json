@@ -1,4 +1,5 @@
 {
+    "AUTOMATON-ALLOCATE.description": "Gagnez {energyPrefix:energyIcons(1)} pour chaque carte Statut dans votre [gold]Pioche[/gold] et votre [gold]Réserve[/gold].{InCombat:cond:\n(Gagnez {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Ventilation",
     "AUTOMATON-ASSEMBLY.description": "Piochez {Cards:diff()} cartes.\n[gold]Encodez[/gold] toutes les cartes avec [gold]Encodez[/gold].",
     "AUTOMATON-ASSEMBLY.title": "Assemblage",
@@ -13,6 +14,7 @@
     "AUTOMATON-BRANCH.title": "Branche",
     "AUTOMATON-BRANCH_ATTACK.title": "Branche : Attaque",
     "AUTOMATON-BRANCH_BLOCK.title": "Branche : Armure",
+    "AUTOMATON-BREAK.description": "Infligez {Damage:diff()} dégâts. \nAjoutez une [gold]Erreur[/gold] dans votre [gold]Main[/gold], votre [gold]Pioche[/gold], votre [gold]Défausse[/gold] et votre [gold]Réserve[/gold].",
     "AUTOMATON-BREAK.title": "Crash",
     "AUTOMATON-BRONZE_ARMOR.description": "Gagnez {Block:diff()}[gold]d'Armure[/gold].\n[gold]Réservez[/gold] {Stash:diff()} [gold]Erreurs[/gold].",
     "AUTOMATON-BRONZE_ARMOR.title": "Armure de Bronze",
@@ -45,6 +47,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Trouver et Remplacer",
     "AUTOMATON-FINE_TUNING.description": "Choisissez {Cards:diff()} {Cards:plural:carte|cartes} dans votre [gold]Main[/gold].\n{Cards:plural:[gold]Réservez-la[/gold], [gold]Améliorez-la[/gold], et rendez-la|[gold]Réservez-les[/gold], [gold]Améliorez-les[/gold], et rendez-les} Retenue.",
     "AUTOMATON-FINE_TUNING.title": "Réglage Précis",
+    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in] Infligez {Damage:diff()} dégâts à TOUS les ennemis deux fois.\nGagne {ArtifactPower:diff()} [gold]d'Artéfact[/gold].",
     "AUTOMATON-FLAIL.title": "Fléau",
     "AUTOMATON-FORCE_SHIELD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nCoûte {Energy:energyIcons()} de moins pour chaque carte créée ce combat.",
     "AUTOMATON-FORCE_SHIELD.title": "Bouclier de Force",
@@ -89,11 +92,13 @@
     "AUTOMATON-NULL_POINTER.title": "Pointeur zéro",
     "AUTOMATON-OIL_SPILL.description": "[gold]Compilez[/gold] - [gold]Réservez[/gold] une [gold]Erreur[/gold].",
     "AUTOMATON-OIL_SPILL.title": "Marée Noire",
+    "AUTOMATON-OPTIMIZE.description": "Vous piochez une carte supplémentaire de votre [gold]Réserve[/gold] au début de votre tour.",
     "AUTOMATON-OPTIMIZE.title": "Optimisation",
     "AUTOMATON-OVERHEAT.description": "Infligez {Damage:diff()} dégâts.\nLa prochaine fois que vous créez une carte, l'ennemi ciblé perd {OverheatPower:diff()} PV.",
     "AUTOMATON-OVERHEAT.title": "Surchauffe",
     "AUTOMATON-PHILOSOPHIZE.description": "Lorsque vous piochez ceci, gagnez {PhilosophizePower:diff()} de [gold]Force[/gold] ce tour.",
     "AUTOMATON-PHILOSOPHIZE.title": "Philosopher",
+    "AUTOMATON-PIERCING_SHOT.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\n[gold]Améliorez[/gold] {Cards:diff()} {Cards:plural:carte|cartes} dans votre [gold]Réserve[/gold].",
     "AUTOMATON-PIERCING_SHOT.title": "Tir Perçant",
     "AUTOMATON-RECURSIVE_STRIKE.description": "Infligez {Damage:diff()} dégâts deux fois.\n[gold]Encodez[/gold] 2 copies de [gold]Frappe{IfUpgraded:plus()}[/gold].",
     "AUTOMATON-RECURSIVE_STRIKE.title": "Frappe Récursive",
@@ -164,6 +169,7 @@
     "AUTOMATON-PROTO_SHIELD.title": "Proto-Bouclier",
     "AUTOMATON-PROTO_SHIELD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nGagnez {PlatingPower:diff()} de [gold]Blindage[/gold].\nAjoutez {Cards:plural:une [gold]Erreur[/gold]|{Cards:diff()} [gold]Erreurs[/gold]} dans votre [gold]Défausse[/gold].",
     "AUTOMATON-PROTO_BEAM.title": "Proto-Laser",
+    "AUTOMATON-PROTO_BEAM.description": "Infligez {Damage:diff()} dégâts pour chaque carte Statut [gold]Épuisée[/gold]. {InCombat:cond:\n(Touche {CalculatedHits:diff()} fois|}",
     "AUTOMATON-RECYCLE_BIN.title": "Corbeille",
     "AUTOMATON-RECYCLE_BIN.description": "À la fin de votre tour, gagnez {RecycleBinPower:diff()} [gold]d'Armure[/gold] pour chaque Statut ou Malédiction dans votre [gold]Main[/gold].",
     "AUTOMATON-RECREATE.title": "Restitution",
@@ -180,5 +186,6 @@
     "AUTOMATON-EXPORT.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nUn autre joueur gagne {Energy:energyIcons()}.",
     "AUTOMATON-SHARE.title": "Partage",
     "AUTOMATON-SHARE.description": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, l'allié avec le moins [gold]d'Armure[/gold] gagne {SharePower:diff()} [gold]d'Armure[/gold].",
-    "AUTOMATON-BLUESCREEN.title": "Écran Bleu"
+    "AUTOMATON-BLUESCREEN.title": "Écran Bleu",
+    "AUTOMATON-BLUESCREEN.description": "Donnez à un autre joueur {Block:diff()} [gold]d'Armure[/gold].\nMettez une [gold]Erreur[/gold] en haut de votre [gold]Pioche[/gold]."
 }
