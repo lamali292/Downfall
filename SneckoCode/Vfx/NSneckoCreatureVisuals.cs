@@ -14,11 +14,13 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float AttackMix = 0.1f;
     private const float CastMix = 0.1f;
     private const float HitMix = 0.05f;
+    private const float DeadMix = 0.35f;
 
     private const string CastAnim = "Attack";
     private const string IdleAnim = "Idle";
     private const string AttackAnim = "Attack_2";
     private const string HitAnim = "Hit";
+    private const string DeadAnim = "Dead";
     private MegaAnimationState? _animState;
 
     private MegaSprite? _sprite;
@@ -43,6 +45,7 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Dead":
+                _animState?.SetAnimationWithMix(DeadAnim, DeadMix);
                 break;
         }
     }
