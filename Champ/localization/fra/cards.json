@@ -56,6 +56,7 @@
     "CHAMP-ENCHANT_SWORD.title": "Épée enchantée",
     "CHAMP-ENCIRCLE.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis. \nGagnez {GloryPower:diff()} de [gold]Gloire[/gold] pour chaque ennemi touché.",
     "CHAMP-ENCIRCLE.title": "Encerclement",
+    "CHAMP-ENDURE.description": "Adoptez la [gold]Pose Défensive[/gold]. \nGagnez {CalculatedBlock:diff()} [gold]d'Armure[/gold],\naugmentée par la [gold]Force[/gold] {IfUpgraded:show:|au lieu de la [gold]Dextérité[/gold]}.",
     "CHAMP-ENDURE.title": "Endurance",
     "CHAMP-ENRAGED_BASH.description": "Infligez {Damage:diff()} dégâts {Repeat:plural:|{Repeat:diff()}fois}.\n[gold]Combo du Destructeur[/gold] : \nCette carte touche une fois supplémentaire ce combat.",
     "CHAMP-ENRAGED_BASH.title": "Fleuret enragé",
@@ -165,6 +166,7 @@
     "CHAMP-SWORD_THROW.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois.\nSi vous n'êtes pas en [gold]Pose du Destructeur[/gold], vous ne pourrez pas jouer d'Attaques lors de votre prochain tour.",
     "CHAMP-SWORD_THROW.title": "Lancer d'Épée",
     "CHAMP-TAUNT.description": "Appliquez {WeakPower:diff()} de [gold]Faiblesse[/gold] et {VulnerablePower:diff()} de [gold]Vulnérabilité[/gold] {IfUpgraded:show:à TOUS les ennemis|}.",
+    "CHAMP-TAUNT.title": "Provoc",
     "CHAMP-TECHNICAL_JIG.description": "Lorsque vous adoptez une [gold]Pose[/gold], gagnez {TechnicalJigPower:diff()} [gold]d'Armure[/gold].",
     "CHAMP-TECHNICAL_JIG.title": "Dispositif Technique",
     "CHAMP-TORNADO_PUNCH.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\n[gold]Combo Défensif[/gold] :\nGagnez {Block:diff()} [gold]d'Armure[/gold] pour chaque ennemi touché.",
@@ -184,5 +186,11 @@
     "CHAMP-WREATH_OF_VICTORY.title": "Lauriers Victorieux",
     "CHAMP-WREATH_OF_VICTORY.description": "Gagnez {VigorPower:diff()} de [gold]Vigueur[/gold].\nGagnez {CounterPower:diff()} de [gold]Contre[/gold].",
     "CHAMP-REDIRECT.title": "Redirection",
-    "CHAMP-REDIRECT.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nMettez la prochaine carte que vous jouez en haut de votre [gold]Pioche[/gold]."
+    "CHAMP-REDIRECT.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nMettez la prochaine carte que vous jouez en haut de votre [gold]Pioche[/gold].",
+    "CHAMP-INSPIRE.title": "Inspiration",
+    "CHAMP-INSPIRE.description": "Donnez {VigorPower:diff()} de [gold]Vigueur[/gold] à un autre joueur.",
+    "CHAMP-CROWD_FAVORITE.title": "Chouchou du Public",
+    "CHAMP-CROWD_FAVORITE.description": "Lorsqu'un autre joueur attaque un ennemi, gagnez {CrowdFavoritePower:diff()} de[gold]Vigueur[/gold].",
+    "CHAMP-GROUP_EFFORT.title": "Effort de Groupe",
+    "CHAMP-GROUP_EFFORT.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nLes effets [gold]Finisher[/gold] de cette carte affecte TOUS les joueurs."
 }

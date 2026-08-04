@@ -28,6 +28,7 @@
     "SNECKO-TSUNAMI_POWER.smartDescription": "Lorsque vous [gold]Excédez[/gold], gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "Source Inépuisable",
     "SNECKO-UNENDING_SUPPLY_POWER.description": "Au début de votre tour, obtenez un [gold]Écho[/gold] d'une carte [gold]Hors-classe[/gold] aléatoire.",
+    "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "Au début de votre tour, obtenez {Amount:plural:un [gold]Écho[/gold] d'une carte [gold]Hors-classe[/gold] aléatoire|des [gold]Échos[/gold] de [blue]{}[/blue] cartes [gold]Hors-classe[/gold] aléatoires.}",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "Constriction",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "À la fin de son tour, cet ennemi prend des dégâts.",
     "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "À la fin de son tour, cet ennemi prend [blue]{Amount}[/blue] dégâts.",
@@ -35,6 +36,7 @@
     "SNECKO-EXOTIC_FORM_POWER.description": "À la fin de votre tour, gagnez de la [gold]Force[/gold] pour chaque couleur unique jouée.",
     "SNECKO-EXOTIC_FORM_POWER.smartDescription": "À la fin de votre tour, gagnez [blue]{Amount}[/blue] de [gold]Force[/gold] pour chaque couleur unique jouée.",
     "SNECKO-FOUNTAIN_POWER.title": "Fontaine",
+    "SNECKO-MUD_SHIELD_POWER.title": "Bouclier de Boue",
     "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reine des Pentacles",
     "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Détective serpent"
 }

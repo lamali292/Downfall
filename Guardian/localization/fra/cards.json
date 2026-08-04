@@ -162,5 +162,11 @@
     "GUARDIAN-SHARED_FLUX.title": "Flux partagé",
     "GUARDIAN-SHARED_FLUX.description": "Choisissez un autre joueur pour choisir une carte dans leur [gold]Pioche[/gold] à placer en [gold]Stase[/gold]. ",
     "GUARDIAN-OVERBLOCK.title": "Surprotection",
-    "GUARDIAN-OVERBLOCK.description": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne {OverblockBlockPower:diff()} [gold]d'Armure[/gold] et {OverblockThornsPower:diff()} [gold]d'Épines[/gold] pour un tour. "
+    "GUARDIAN-OVERBLOCK.description": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne {OverblockBlockPower:diff()} [gold]d'Armure[/gold] et {OverblockThornsPower:diff()} [gold]d'Épines[/gold] pour un tour. ",
+    "GUARDIAN-REFRACTED_LIGHT.title": "Lumière réfractée",
+    "GUARDIAN-REFRACTED_LIGHT.description": "Infligez {Damage:diff()} dégâts.\nLes Gemmes dans cette carte affecte TOUS les joueurs.",
+    "GUARDIAN-MULTI_TROPS.title": "Multi-Trappes",
+    "GUARDIAN-MULTI_TROPS.description": "Tous les joueurs gagnent {ThornsPower:diff()} [gold]d'Épines[/gold].",
+    "GUARDIAN-BASTION.title": "Bastion",
+    "GUARDIAN-BASTION.description": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent {BastionPower:diff()} [gold]d'Armure[/gold]."
 }
