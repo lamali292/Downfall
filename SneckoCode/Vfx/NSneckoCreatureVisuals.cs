@@ -45,7 +45,7 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Dead":
-                _animState?.SetAnimationWithMix(DeadAnim, DeadMix);
+                _animState?.SetAnimationWithMix(DeadAnim, DeadMix, false);
                 break;
         }
     }
