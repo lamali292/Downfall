@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=4 format=3 uid="uid://xp3uuv0rcs0u"]
 
-[ext_resource type="SpineAtlasResource" path="res://Champ/scenes/character/champ.spatlas" id="1_swlh0"]
-[ext_resource type="SpineSkeletonFileResource" path="res://Champ/scenes/character/champ.spskel" id="2_j1kbm"]
+[ext_resource type="SpineAtlasResource" uid="uid://cf8p6tmrkpcrx" path="res://Champ/scenes/character/champ.spatlas" id="1_swlh0"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bvqjqoksq08fb" path="res://Champ/scenes/character/champ3.spskel" id="2_swlh0"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_xbnni"]
 atlas_res = ExtResource("1_swlh0")
-skeleton_file_res = ExtResource("2_j1kbm")
+skeleton_file_res = ExtResource("2_swlh0")
 
 [node name="Champ" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_xbnni")
 preview_skin = "Default"
-preview_animation = "-- Empty --"
+preview_animation = "Dead"
 preview_frame = false
 preview_time = 0.0

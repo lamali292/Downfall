@@ -20,6 +20,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
+    private const float DeathMix = 0.4f;
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
     private MegaSprite? _sprite;
@@ -34,10 +35,10 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         _ => "Idle"
     };
 
-    private string AttackAnim => CurrentStance switch
-    {
-        _ => "Attack"
-    };
+    private string AttackAnim => "Attack";
+
+    private string DeathAnim => "Dead";
+
 
     private string HitAnim => CurrentStance switch
     {
@@ -64,6 +65,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 break;
             case "Cast":
             case "Dead":
+                _animState?.SetAnimationWithMix(DeathAnim, DeathMix, false);
                 break;
         }
     }
