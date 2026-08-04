@@ -28,7 +28,7 @@ public class Deception : SneckoCardModel
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         return CombatManager.Instance.History.CardPlaysFinished.Count(e =>
-            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState));
+            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState) && SneckoCmd.IsOffclass(e.CardPlay.Card));
     }
     
 
