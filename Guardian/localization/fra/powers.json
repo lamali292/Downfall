@@ -67,5 +67,8 @@
     "GUARDIAN-OVERBLOCK_THORNS_POWER.title": "Surprotection",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.description": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne des [gold]Épines[/gold]. ",
     "GUARDIAN-OVERBLOCK_THORNS_POWER.smartDescription": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne [blue]{Amount}[/blue] [gold]d'Épines[/gold] pour ce tour. ",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne [blue]{Amount}[/blue] [gold]d'Armure[/gold]. "
+    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne [blue]{Amount}[/blue] [gold]d'Armure[/gold]. ",
+    "GUARDIAN-BASTION_POWER.title": "Bastion",
+    "GUARDIAN-BASTION_POWER.description": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent de [gold]l'Armure[/gold].",
+    "GUARDIAN-BASTION_POWER.smartDescription": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent [blue]{Amount}[/blue] [gold]d'Armure[/gold]."
 }
