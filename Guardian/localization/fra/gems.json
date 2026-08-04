@@ -27,6 +27,7 @@
     "GUARDIAN-ONYX_GEM.description": "[gold]Polissez[/gold] de {Gem:diff()}.",
     "GUARDIAN-OPAL_GEM.description": "Piochez {Gem:diff()} carte.",
     "GUARDIAN-RUBY_GEM.description": "Gagnez {Gem:diff()} de [gold]Force[/gold] ce tour.",
+    "GUARDIAN-RUTILE_GEM.description": "Appliquez {Gem:diff()} de [gold]Faiblesse[/gold] à un ennemi aléatoire.",
     "GUARDIAN-SAPPHIRE_GEM.description": "[gold]Ancrez-vous[/gold] de {Gem:diff()}.",
     "GUARDIAN-TOURMALINE_GEM.description": "Gagnez {Gem:diff()} [gold]d'Épines[/gold] ce tour."
 }

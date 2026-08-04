@@ -73,5 +73,8 @@
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "Vous êtes en [gold]Pose Ultime[/gold] ce tour.",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Vigueur au Prochain Tour",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Au prochain tour, gagnez de la [gold]Vigueur[/gold].",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Au prochain tour, gagnez [blue]{}[/blue] de [gold]Vigueur[/gold]."
+    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Au prochain tour, gagnez [blue]{}[/blue] de [gold]Vigueur[/gold].",
+    "CHAMP-CROWD_FAVORITE_POWER.title": "Chouchou du Public",
+    "CHAMP-CROWD_FAVORITE_POWER.description": "Lorsqu'un autre joueur attaque un ennemi, gagnez de la [gold]Vigueur[/gold].",
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Lorsqu'un autre joueur attaque un ennemi, gagnez [blue]{Amount}[/blue] de [gold]Vigueur[/gold]."
 }
