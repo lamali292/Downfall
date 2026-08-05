@@ -13,6 +13,7 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
+    private const float DeadMix = 0.05f;
     private MegaAnimationState? _animState;
 
     private MegaSprite? _sprite;
@@ -29,9 +30,11 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 _animState?.SetAnimationWithMix("Hit", HitMix, false);
                 _animState?.QueueAnimation("Idle", ToIdleMix);
                 break;
+            case "Dead":
+                _animState?.SetAnimationWithMix("Dead", DeadMix, false);
+                break;
             case "Attack":
             case "Cast":
-            case "Dead":
                 break;
         }
     }
