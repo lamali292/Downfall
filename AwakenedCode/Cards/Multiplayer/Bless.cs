@@ -22,13 +22,14 @@ public class Bless : AwakenedCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithPower<StrengthPower>(2, 1);
+        WithPower<StrengthPower>("StrengthLoss",2);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, -DynamicVars.Power<StrengthPower>().BaseValue,
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, -DynamicVars["StrengthLoss"].BaseValue,
             Owner.Creature, this);
         await CommonActions.Apply<StrengthPower>(ctx, this, cardPlay);
     }

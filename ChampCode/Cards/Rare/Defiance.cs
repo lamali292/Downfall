@@ -22,7 +22,7 @@ public class Defiance : ChampCardModel
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
-        return card.Owner.Creature.GetPowerAmount<CounterPower>();
+        return 2*card.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
