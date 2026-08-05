@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ceptmkybxvltg"]
 
-[ext_resource type="SpineAtlasResource" uid="uid://ct81irrlfuk5o" path="res://Snecko/scenes/character/snecko.atlas" id="1_8nk7s"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://dm4doh1od2gnk" path="res://Snecko/scenes/character/snecko.skel" id="2_gpfvs"]
+[ext_resource type="SpineAtlasResource" uid="uid://he3ot4637110" path="res://Snecko/scenes/character/spine/skeleton.atlas" id="1_8nk7s"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://0ed2p5pty0h5" path="res://Snecko/scenes/character/spine/skeleton.skel" id="2_gpfvs"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_8nk7s"]
 atlas_res = ExtResource("1_8nk7s")

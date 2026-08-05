@@ -13,6 +13,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
+    private const float DeadMix = 0.35f;
     private MegaAnimationState? _animState;
     private MegaSprite? _sprite;
 
@@ -21,6 +22,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
     private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
     private string HitAnim => "Hit";
+    private string DeadAnim => "Dead";
 
     public void OnAnimationTrigger(string trigger)
     {
@@ -37,8 +39,10 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
                 _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
                 _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
-            case "Cast":
             case "Dead":
+                _animState?.SetAnimationWithMix(DeadAnim, DeadMix, false);
+                break;
+            case "Cast":
                 break;
         }
     }

@@ -24,6 +24,7 @@ public class Mutator : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var selected = (await CardSelectCmd.FromHand(ctx, Owner, prefs, card => card.Type == CardType.Status, this))
