@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,8 +15,9 @@ public class Crashout : AutomatonCardModel
         this.WithPower<CrashoutPower>(10, 5, false);
     }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return CommonActions.ApplySelf<CrashoutPower>(ctx, this);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.ApplySelf<CrashoutPower>(ctx, this);
     }
 }
