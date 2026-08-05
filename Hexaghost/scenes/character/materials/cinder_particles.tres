@@ -1,0 +1,55 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 ]
+
+[sub_resource type="Curve" id="Curve_fpfhi"]
+_data = [Vector2(0, 1), 0.0, -0.4560595, 0, 0, Vector2(0.5964467, 0.8854064), -0.23888777, -0.23888777, 0, 0, Vector2(1, 0), -6.294914, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6j4b0"]
+curve = SubResource("Curve_fpfhi")
+
+[sub_resource type="Gradient" id="Gradient_2385f"]
+offsets = PackedFloat32Array(0.1875, 0.7907609, 1)
+colors = PackedColorArray(1, 0.6, 0.9666668, 1, 0.6, 0.22200002, 0.5181, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hpist"]
+gradient = SubResource("Gradient_2385f")
+
+[sub_resource type="Curve" id="Curve_7ri7j"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.4933777), 0.0, 1.5436146, 0, 0, Vector2(0.46274513, 0.2781458), -0.70818204, -0.70818204, 0, 0, Vector2(1, 0.10596037), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ecgqe"]
+curve = SubResource("Curve_7ri7j")
+
+[sub_resource type="Curve" id="Curve_6tiy6"]
+_data = [Vector2(0.00227273, 0.676672), 0.0, 0.968222, 0, 0, Vector2(0.506818, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1341821), -0.61211044, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7w77"]
+curve = SubResource("Curve_6tiy6")
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 180.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+inherit_velocity_ratio = 0.1
+direction = Vector3(0, 0, 0)
+spread = 12.0
+orbit_velocity_min = -0.49999994
+orbit_velocity_max = 0.1000001
+orbit_velocity_curve = SubResource("CurveTexture_ecgqe")
+radial_velocity_min = 14.999977
+radial_velocity_max = 29.999977
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_i7w77")
+color_ramp = SubResource("GradientTexture1D_hpist")
+alpha_curve = SubResource("CurveTexture_6j4b0")
+turbulence_noise_scale = 12.0
+turbulence_noise_speed_random = 0.0

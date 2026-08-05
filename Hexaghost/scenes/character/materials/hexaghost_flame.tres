@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 ]
+
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexaghost_flame.gdshader" id="1_06rf5"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/basic_fire_noise.png" id="2_i06ww"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/zigzag_fire_distortion.png" id="3_uox1n"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/fire_bottom_mask.png" id="4_g71n1"]
+
+[resource]
+shader = ExtResource("1_06rf5")
+shader_parameter/HueShift = 0.0
+shader_parameter/OuterColor = Color(0.831373, 0.87451, 0.294118, 1)
+shader_parameter/Noise1Texture = ExtResource("2_i06ww")
+shader_parameter/NoiseMask = ExtResource("4_g71n1")
+shader_parameter/Distortion2Texture = ExtResource("3_uox1n")
+shader_parameter/Distortion1Texture = ExtResource("2_i06ww")
+shader_parameter/DistortionMask = ExtResource("4_g71n1")
+shader_parameter/InnerColor = Color(1, 0.943, 0.62, 1)

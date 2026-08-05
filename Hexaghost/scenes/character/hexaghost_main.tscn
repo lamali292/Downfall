@@ -1,0 +1,955 @@
+[gd_scene load_steps=42 format=3 ]
+
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="1_ip2ae"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/inner_smoke.tres" id="1_qyw0t"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/middle_smoke.tres" id="2_tulu2"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/outer_smoke.tres" id="3_ffglx"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/cinder_particle.png" id="4_ru74u"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/cinder_particles.tres" id="5_egmal"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/smoke_vfx.png" id="6_c4fxh"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/hurt_particles.tres" id="7_4owsc"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/smoke_particles.tres" id="8_jwuea"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/glow_particles.tres" id="9_cosa4"]
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexa_core_glow.gdshader" id="10_00lm6"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_emission.png" id="11_0fsbu"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/basic_fire_noise.png" id="12_f14cq"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_glow.png" id="13_k4fx8"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_dead.png" id="14_nebrv"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qwwtv"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ygws"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7lyxx"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mo2l5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oc3wy"]
+shader = ExtResource("10_00lm6")
+shader_parameter/emission_mask = ExtResource("11_0fsbu")
+shader_parameter/noise_texture = ExtResource("12_f14cq")
+shader_parameter/emission_color = Color(0.9, 0.40499997, 0.81750005, 1)
+shader_parameter/emission_strength = 0.25
+shader_parameter/pulse_speed = 1.0000000475
+shader_parameter/pulse_depth = 0.90000004275
+shader_parameter/noise_scale = Vector2(0.75, 0.75)
+shader_parameter/phase_spread = 15.0
+shader_parameter/glow_radius = 15.0000007125
+shader_parameter/glow_intensity = 1.0000000475
+shader_parameter/white_core_threshold = 5.0
+shader_parameter/global_alpha = 1.0
+
+[sub_resource type="Animation" id="Animation_s10sj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.49999994, 0.1000001)]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HexaghostScene/HexaCoreGlow:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HexaghostScene/HexaCoreGlow:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HexaghostScene/HexaCoreGlow:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HexaghostScene/inner_smoke:material:shader_parameter/base_radius")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HexaghostScene/middle_smoke:material:shader_parameter/base_radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.41400003, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HexaghostScene/outer_smoke:material:shader_parameter/base_radius")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.45000002, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HexaghostScene/inner_smoke:material:shader_parameter/spin_speed")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.60000026, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HexaghostScene/middle_smoke:material:shader_parameter/spin_speed")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.40000024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HexaghostScene/outer_smoke:material:shader_parameter/spin_speed")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.27500024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HexaghostScene/CinderParticles:amount_ratio")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity:x")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.49999994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity:y")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1000001, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("HexaghostScene/CinderParticles:process_material:emission_ring_radius")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(180, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("HexaghostScene/CinderParticles:lifetime")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("HexaghostScene/HurtParticles:emitting")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("HexaghostScene/HurtParticles:amount_ratio")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("HexaghostScene/SmokeParticles:emitting")
+tracks/21/interp = 0
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("HexaghostScene/SmokeParticles:amount_ratio")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("HexaghostScene/GlowParticles:emitting")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/global_alpha")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_oc3wy"]
+resource_name = "attack"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 0, -25.741768, -0.04444445, 4.1588755, 0.01111111, -1.0397186, -23.725739, -0.029094767, -12.103304, 0.10370374, 43.140327, 170.82123, -0.12129623, -5.3125153, 0.2319048, 10.156935, -21.20577, -0.10378559, 24.360826, 0.028747678, -6.7477303, 0, -0.071252465, 0.13890314, 0, 0),
+"times": PackedFloat32Array(0, 0.08885224, 0.17770448, 0.377622, 0.726916, 0.9328236)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 0, 21.634949, -0.110461615, 9.355148, 0.058924317, -4.990383, -24.229755, -0.06507627, -11.975881, 0.06666666, 12.268557, 36.25112, -0.08401951, -24.739159, 0.03333336, 9.814854, 51.875343, -0.100042164, 0.61369234, 0.100000024, -0.61343384, -3, -0.09824739, 14.577052, 0.053747535, -7.9745693, 0, -0.037919044, -1.0879537, 0, 0),
+"times": PackedFloat32Array(0, 0.1110653, 0.24434364, 0.4220481, 0.55532646, 0.80413145, 0.9328236)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene/HexaCoreGlow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.13333334, -0.0009169632, -0.2, -0.049891416, 0, 0.12, 0, 0.31619143, -0.07245951, -0.00034345567, 0.2788486, 0.001321733, 0, -0.32267237, 0.0026889201, 0.19496426, -0.0016246923),
+"times": PackedFloat32Array(0, 0.20491457, 0.40550962, 0.9328238)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2, 2, 2),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0, 0, -0.049362253, 0.083333336, 0, 0, 2, -0.028478226, -0.33333334, 0, 0, 3, -0.014239113, -0.1666667, 0, 0, 0.35000002, -0.03180068, 0.19166669, 0, 0, 1.25, -0.014713755, -0.15, 0, 0, 0.5, -0.020884028, 0.125, 0, 0),
+"times": PackedFloat32Array(0, 0.25795814, 0.33534557, 0.43852884, 0.67797065, 0.78352064, 0.9333333)
+}
+
+[sub_resource type="Animation" id="Animation_2ygws"]
+resource_name = "cast"
+length = 1.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 0, 0, 0, 3, 2),
+"points": PackedFloat32Array(0, -0.028968923, 26.953953, 0.06666667, -62.02958, -38.944202, -0.041774355, -22.279655, 0.15, 80, 73.653145, -0.052777782, -23.374567, 0.018888887, 8.365633, 110, -0.013340354, -0.19434357, 0.0055555506, 2.2216024, 105, -0.0055555506, 0.27166823, 0.016666671, -0.8150056, 115, -0.0055555603, -1.7571372, 0.01111111, 3.5142713, 110.342155, -0.019444447, 9.524348, 0.030555557, -14.966832, -27.246517, -0.1017555, 40.937828, 0.1017555, -40.937828, 2.7534828, -0.10175538, -12.466812, 0, 0),
+"times": PackedFloat32Array(0, 0.15297157, 0.42067182, 0.49715763, 0.5289844, 0.592638, 0.6881185, 0.8711227, 1.1759689)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(3, 2, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.1, -4.103501, 0.1, 4.103501, 12.28, -0.05597013, -8.119957, 0.06666668, 9.671777, 29.106142, -0.05007203, -0.48707178, 0.099999994, 0.9727421, -24.139263, -0.050000004, 8.880189, 0.003174603, -0.56382143, -27.557917, -0.039779898, 4.748387, 0.07419139, -8.855967, -32.61847, -0.02222222, -1.2445016, 0.06388889, 3.5779426, 1.3767452, -0.2017554, 2.6773674, 0, 0),
+"times": PackedFloat32Array(0, 0.11472869, 0.22945738, 0.5608113, 0.578998, 0.6881185, 1.1759689)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene/HexaCoreGlow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.01961411, 0.02908882, 0.263, -0.05, 0, 0.1, 0, -0.117, -0.13333336, 0.016228624, 0.26332274, -0.032050237, 0.109, -0.118228026, -0.11709135, 0.10543507, 0.10442139, 0, -0.033513755, 0.01454441, 0, 0),
+"times": PackedFloat32Array(0, 0.09001203, 0.49715763, 0.9178294, 1.2333333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 2, 2),
+"points": PackedFloat32Array(0.25, 0, 0, 0.050000004, 0.083333336, 0.5, -0.25, 0, 0.25, 0, 2, -0.03333333, 0.083333336, 0, 0, 1, -0.01111111, 0.16666667, 0, 0, 2, -0.016666671, 0.16666669, 0, 0, 1.5, -0.01111111, 0.1375, 0.01111111, -0.1375, 0.35, -0.016666671, 0.25, 0, 0),
+"times": PackedFloat32Array(0, 0.22945735, 0.42067182, 0.49715757, 0.61188626, 0.6883721, 0.7648579)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7028638),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.49999994, 0.1000001), Vector2(-1, 0.3), Vector2(-0.49999994, 0.1000001)]
+}
+
+[sub_resource type="Animation" id="Animation_uyoov"]
+resource_name = "die"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.4, -97.55141, -160.8976, -0.20000005, 3.0641327, 0.5992829, -9.18141, -25, -1.12, -1.538, 0, 0, -25, -0.066023946, 0, 0, 0, -25, -0.017309388, 0, 0, 0, -25, -0.025000017, 0, 0, 0, -25, -0.025000017, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.8453214, 2.6, 2.9961436, 3.1, 3.25, 3.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2, 0, 3, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.46666667, 48.664673, 60.20805, -0.21614623, -1.1900591, 0.697, 6.834, -65, -0.91, 0, 0.25, 5, 160, -0.061111093, -37.461914, 0.05, -45, 100, -0.05, 0, 0.05, 0, 160, -0.05, -45, 0.05, -35, 120, -0.035, 0, 0.035, 0, 158.87073, -0.05, -35, 0, 0),
+"times": PackedFloat32Array(0, 0.640395, 2.7333333, 3.1, 3.25, 3.4, 3.5, 3.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene/HexaCoreGlow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 0, 0, 0, 0, 0, 0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.13333334, -0.14712231, -0.1895347, -0.36643246, -0.07328649, 0.1, 0.02, 0.08726646, -0.05, 0, 0.05, 0, -0.08726646, -0.05, 0, 0.05, 0, 0.08726646, -0.05, 0, 0.05, 0, -0.08726646, -0.05, 0, 0.05, 0, 0.08975154, -0.05, 0, 0.05, 0, -0.08726646, -0.05, 0, 0.05, 0, 0.08726646, -0.05, 0, 0.17371345, -0.03330024, -0.15080534, -0.8352864, -0.0019880682, 0, 0),
+"times": PackedFloat32Array(0, 0.59333336, 0.85899746, 0.9971278, 1.1611574, 1.2906544, 1.4833335, 1.6834624, 1.847492, 2.6205559)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HexaghostScene/HexaCoreGlow:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
+"points": PackedFloat32Array(10, -0.25, 0, 0, 0, -10.17094, -0.025, 5, 0.025, -5, 9.82906, -0.025, -5, 0.025, 5, -8.17094, -0.037499998, 4.5, 0.037499998, -4.5, 7.8290596, -0.0375, -4, 0.0375, 4, -6.1709404, -0.049999997, 3.5000002, 0.049999997, -3.5000002, 9.91453, -0.049999997, -3, 0.049999997, 3, -7.69231, -0.0625, 2.5, 0.0625, -2.5, 6.393162, -0.0625, -2, 0.0625, 2, -4.1709414, -0.07500002, 1.5000001, 0.07500002, -1.5000001, 5.8119664, -0.07499999, -1, 0.07499999, 1, -4.7863245, -0.07499999, 0.75, 0.07499999, -0.75, 2.279202, -0.087500036, -0.5, 0.087500036, 0.5, -1.2535614, -0.087499976, 0.25, 0.087499976, -0.25),
+"times": PackedFloat32Array(0, 0.12361112, 0.19777781, 0.3090278, 0.42027783, 0.56861115, 0.71694446, 0.9023612, 1.0877779, 1.3102779, 1.5327778, 1.7552779, 2.0148613, 2.2744446)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HexaghostScene/HexaCoreGlow:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.025, 0, 0.025, 0, 0, -0.025, 0, 0.025, 0, 0, -0.037499998, 0, 0.037499998, 0, 0, -0.0375, 0, 0.0375, 0, 0, -0.049999997, 0, 0.049999997, 0, 0, -0.049999997, 0, 0.049999997, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.0625, 0, 0.0625, 0, 0, -0.07500002, 0, 0.07500002, 0, 0, -0.07499999, 0, 0.07499999, 0, 0, -0.07499999, 0, 0.07499999, 0, 0, -0.087500036, 0, 0.087500036, 0, 0, -0.087499976, 0, 0.087499976, 0),
+"times": PackedFloat32Array(0, 0.07416667, 0.14833334, 0.25958335, 0.37083337, 0.5191667, 0.6675, 0.8529167, 1.0383334, 1.2608335, 1.4833335, 1.7058334, 1.9654169, 2.2250001)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HexaghostScene/inner_smoke:material:shader_parameter/base_radius")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.5, -0.25, 0, 1, 0, 0.14, -1, 0, 1.0166669, -0.012660101, 0, -0.09826386, 0.023333333, 0, 0),
+"times": PackedFloat32Array(0, 2.4104168, 3)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HexaghostScene/middle_smoke:material:shader_parameter/base_radius")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.4151709, -0.25, 0, 0.5, 0, 0.021937013, -0.5, 0, 0.5, 0, 0, -0.06736108, 0.003656169, 0, 0),
+"times": PackedFloat32Array(0, 2.5958335, 3)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HexaghostScene/outer_smoke:material:shader_parameter/base_radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.45000002, -0.25, 0, 1, 0, 0.057000004, -1, 0, 0.7519125, -0.09825, 0, -0.0055555105, 0.009500001, 0, 0),
+"times": PackedFloat32Array(0, 2.966667, 3)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HexaghostScene/inner_smoke:material:shader_parameter/spin_speed")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.60000026, -0.25, 0, 1, 0, 0.605, -0.667, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HexaghostScene/middle_smoke:material:shader_parameter/spin_speed")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.40000024, 0, 0, 1, 0, 0.405, -0.333, 0, 0, 0),
+"times": PackedFloat32Array(0, 3)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HexaghostScene/outer_smoke:material:shader_parameter/spin_speed")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0.25000024, 0, 0, 1, 0, 0.252, -0.333, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HexaghostScene/CinderParticles:amount_ratio")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 0),
+"points": PackedFloat32Array(0.2, 0, 0, 1.3333334, 0.031014219, 1, -0.33553225, -0.083333336, 0, 0, 1, -0.14633898, 0, 0, 0, 0, -0.030680936, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934, 2.6333334, 2.7666667)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-0.49999994, -0.25, 0, 0.25, 0, -2, -0.33553225, 0.25, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HexaghostScene/CinderParticles:process_material:orbit_velocity:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.1000001, -0.25, 0, 0.25, 0, 0.1000001, -0.33553225, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HexaghostScene/CinderParticles:process_material:emission_ring_radius")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(180, -0.25, 0, 0.25, 0, 110, -0.16446778, 8.333334, 0, 0),
+"times": PackedFloat32Array(0, 3)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HexaghostScene/CinderParticles:lifetime")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1.8, -0.25, 0, 0.25, 0, 0.6, -0.16666667, 0.19999999, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HexaghostScene/HurtParticles:emitting")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.099999994, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("HexaghostScene/HurtParticles:amount_ratio")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.2, -0.33333334, 0.13333334, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("HexaghostScene/SmokeParticles:emitting")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 2.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("HexaghostScene/SmokeParticles:amount_ratio")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0, 0.25, -0.375, 0.06666667, 0, 0),
+"times": PackedFloat32Array(0, 3.2333333)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0, 2),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 1.5000001, -0.083333336, -0.20833336, 0, 0, 0, -0.083333336, 0.25000003, 0, 0, 2, -0.2891955, -0.33333334, 0, 0, 0, -0.072222196, 0.33333334, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 2.6666667, 3.1)
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("HexaghostScene/GlowParticles:emitting")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(2.847913, 3.0211701),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("HexaghostScene/HexaCoreGlow:material:shader_parameter/global_alpha")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666665, 0.16666669, 0, 0),
+"times": PackedFloat32Array(2.4666667, 3.1)
+}
+
+[sub_resource type="Animation" id="Animation_d04wj"]
+resource_name = "hurt"
+length = 0.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.06666667, -44.70016, -74.84398, -0.08984279, 1.1302825, 0.14304778, -1.7996368, 0, -0.36666667, -0.10683791, 0, 0),
+"times": PackedFloat32Array(0, 0.22, 0.73333335)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.06666667, -15.747863, -29.853205, -0.075, 0, 0.075, 0, 17.83702, -0.07120562, 0.4959912, 0.20971441, -1.4607906, 0, -0.25695223, 1.2633822, 0, 0),
+"times": PackedFloat32Array(0, 0.12222223, 0.36666667, 0.73333335)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene/HexaCoreGlow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.033333335, -0.09074073, -0.32, -0.10060045, -0.0048150523, 0.16666667, 0.007977188, 0.108689465, -0.16666669, -0.16353276, 0.06314598, 0.06195861, 0, -0.099999964, -0.13062678, 0, 0),
+"times": PackedFloat32Array(0, 0.17111112, 0.44, 0.65999997)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HexaghostScene/HurtParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HexaghostScene/HurtParticles:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.2, -0.10000001, 0.13333334, 0, 0),
+"times": PackedFloat32Array(0, 0.5076923)
+}
+
+[sub_resource type="Animation" id="Animation_7lyxx"]
+resource_name = "idle"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HexaghostScene:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 3, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.4571315, -2.0611322, 10.195883, -0.8292584, 5.9709134, 1.1666665, -8.400355, -1.6075597, -0.9333329, -0.30238175, 0.9016206, 0.29210758, 3.2305489, -0.9237976, 0.30238175, 0.9237976, -0.30238175, 0, -0.57620144, 1.71864, 0, 0),
+"times": PackedFloat32Array(2.669128e-08, 2.9, 5.2, 6.88, 8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HexaghostScene:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.25, -3.5, -13.5516405, -0.9542785, 1.5532343, 1.3933333, -2.2678633, 14.267484, -1.0666666, 0, 1.4668543, 0, 0, -0.25, 3.5, 0, 0),
+"times": PackedFloat32Array(2.669128e-08, 1.84, 5.5666666, 8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HexaghostScene:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 2, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.73333335, 0.023184635, 0.10397346, -0.5999999, 0.009088747, 0.5999999, -0.009088747, -0.010140759, -0.7666669, -0.005049305, 0.7666669, 0.005049305, 0.051460724, -0.36666632, 0.0020197183, 0.7660197, -0.004219488, 0, -0.5666666, -0.016199917, 0.5666666, 0.016199917),
+"times": PackedFloat32Array(0, 2.5, 4.5, 6.133333, 8)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ygws"]
+_data = {
+&"RESET": SubResource("Animation_s10sj"),
+&"attack": SubResource("Animation_oc3wy"),
+&"cast": SubResource("Animation_2ygws"),
+&"die": SubResource("Animation_uyoov"),
+&"hurt": SubResource("Animation_d04wj"),
+&"idle": SubResource("Animation_7lyxx")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffglx"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ru74u"]
+animation = &"cast"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egmal"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c4fxh"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4owsc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jwuea"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cosa4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00lm6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fsbu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f14cq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k4fx8"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nebrv"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e2ocl"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oc3wy"]
+states/End/position = Vector2(592, 51)
+states/Start/position = Vector2(210, 51)
+states/attack/node = SubResource("AnimationNodeAnimation_ffglx")
+states/attack/position = Vector2(351, 170)
+states/cast/node = SubResource("AnimationNodeAnimation_ru74u")
+states/cast/position = Vector2(482, 170)
+states/die/node = SubResource("AnimationNodeAnimation_egmal")
+states/die/position = Vector2(482, -73)
+states/hurt/node = SubResource("AnimationNodeAnimation_c4fxh")
+states/hurt/position = Vector2(351, -73)
+states/idle/node = SubResource("AnimationNodeAnimation_4owsc")
+states/idle/position = Vector2(351, 51)
+transitions = ["idle", "hurt", SubResource("AnimationNodeStateMachineTransition_jwuea"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_cosa4"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_00lm6"), "idle", "cast", SubResource("AnimationNodeStateMachineTransition_0fsbu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_f14cq"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_k4fx8"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_nebrv"), "cast", "idle", SubResource("AnimationNodeStateMachineTransition_e2ocl")]
+graph_offset = Vector2(-203, -75)
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_ip2ae")
+
+[node name="HexaghostScene" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="inner_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+z_index = 4
+material = ExtResource("1_qyw0t")
+scale = Vector2(560, 560)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="middle_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+z_index = 2
+material = ExtResource("2_tulu2")
+position = Vector2(-8.999999, 0)
+scale = Vector2(840, 840)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="outer_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+z_index = 1
+material = ExtResource("3_ffglx")
+position = Vector2(-9, 0)
+scale = Vector2(1000, 1000)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="CinderParticles" type="GPUParticles2D" parent="HexaghostScene"]
+show_behind_parent = true
+z_index = 5
+amount = 100
+amount_ratio = 0.5
+texture = ExtResource("4_ru74u")
+lifetime = 1.8
+process_material = ExtResource("5_egmal")
+
+[node name="HurtParticles" type="GPUParticles2D" parent="HexaghostScene"]
+z_index = 3
+material = SubResource("CanvasItemMaterial_2ygws")
+position = Vector2(-70, 0)
+emitting = false
+amount = 70
+texture = ExtResource("6_c4fxh")
+lifetime = 1.2
+process_material = ExtResource("7_4owsc")
+
+[node name="SmokeParticles" type="GPUParticles2D" parent="HexaghostScene"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_7lyxx")
+position = Vector2(-9, 10)
+amount = 40
+amount_ratio = 0.5
+texture = ExtResource("6_c4fxh")
+lifetime = 1.8
+explosiveness = 0.15
+process_material = ExtResource("8_jwuea")
+
+[node name="GlowParticles" type="GPUParticles2D" parent="HexaghostScene"]
+show_behind_parent = true
+z_index = 6
+material = SubResource("CanvasItemMaterial_mo2l5")
+position = Vector2(5, 5)
+amount = 50
+amount_ratio = 0.5
+texture = ExtResource("4_ru74u")
+lifetime = 1.2
+process_material = ExtResource("9_cosa4")
+
+[node name="HexaCoreGlow" type="Sprite2D" parent="HexaghostScene"]
+z_index = 7
+material = SubResource("ShaderMaterial_oc3wy")
+position = Vector2(10, 0)
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("13_k4fx8")
+
+[node name="HexaCoreDead" type="Sprite2D" parent="HexaghostScene/HexaCoreGlow"]
+show_behind_parent = true
+texture = ExtResource("14_nebrv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2ygws")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_oc3wy")
+anim_player = NodePath("../AnimationPlayer")

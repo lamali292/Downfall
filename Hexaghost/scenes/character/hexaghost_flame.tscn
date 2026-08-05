@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 ]
+
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/hexaghost_flame.tres" id="1_ihdni"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexaghost_flame_shape.png" id="5_7dveh"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NFire.cs" id="5_qdrt8"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/cinder_particle.png" id="6_s34cx"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/flame_particles.tres" id="7_s34cx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("5_qdrt8")
+
+[node name="hexaghost_flame" type="TextureRect" parent="."]
+material = ExtResource("1_ihdni")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.000004
+offset_top = -58.0
+offset_right = 37.999996
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.74922, 2.06575)
+pivot_offset = Vector2(37, 58)
+texture = ExtResource("5_7dveh")
+
+[node name="hexaghost_flame_particles" type="GPUParticles2D" parent="."]
+visible = false
+show_behind_parent = true
+position = Vector2(-8, 4)
+amount = 20
+texture = ExtResource("6_s34cx")
+lifetime = 1.5
+process_material = ExtResource("7_s34cx")
