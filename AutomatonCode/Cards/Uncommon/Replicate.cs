@@ -14,7 +14,7 @@ public class Replicate : AutomatonCardModel,
 {
     public Replicate() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
+        WithDamage(6, 2);
     }
 
     public IEnumerable<Encodable> Encodings => [new DamageEncode()];

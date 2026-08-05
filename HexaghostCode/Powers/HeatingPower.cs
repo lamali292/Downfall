@@ -14,9 +14,10 @@ public class HeatingPower : HexaghostPowerModel
         CardModel? cardSource)
     {
         if (power is not SoulBurnPower || applier != Owner) return;
-        var teammates = CombatState.GetTeammatesOf(Owner)
-            .Where(e => e != Owner && e is { IsPlayer: true, IsAlive: true });
-        var player = CombatState.RunState.Rng.CombatTargets.NextItem(teammates);
+        var player = CombatState.GetTeammatesOf(Owner)
+            .Where(e => e != Owner && e is { IsPlayer: true, IsAlive: true })
+            .OrderBy(e => e.Block)
+            .FirstOrDefault();
         if (player == null) return;
         await CreatureCmd.GainBlock(player, Amount, ValueProp.Unpowered, null);
         Flash();

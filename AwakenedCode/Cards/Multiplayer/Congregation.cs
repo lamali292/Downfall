@@ -35,7 +35,7 @@ public class Congregation : AwakenedCardModel
             if (player == null) continue;
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
             var card = CombatState.CreateCard<Void>(player);
-            var combat = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Owner, CardPilePosition.Random);
+            var combat = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Owner);
             if (LocalContext.IsMe(creature))
                 CardCmd.PreviewCardPileAdd(combat);
             

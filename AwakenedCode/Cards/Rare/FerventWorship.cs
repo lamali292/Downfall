@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Cards.Rare;
 
@@ -17,6 +18,7 @@ public class FerventWorship : AwakenedCardModel
         WithPower<CuriosityPower>(1);
         WithCostUpgradeBy(-1);
         this.WithPower<FerventWorshipPower>(1, false);
+        this.WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();

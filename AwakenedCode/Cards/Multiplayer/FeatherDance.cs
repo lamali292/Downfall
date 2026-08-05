@@ -15,8 +15,9 @@ public class FeatherDance : AwakenedCardModel
 {
     public FeatherDance() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
-        WithCards(2, 1);
+        WithCards(2);
         this.WithTip<PlumeJab>();
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

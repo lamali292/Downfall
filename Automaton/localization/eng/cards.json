@@ -123,7 +123,7 @@
   "AUTOMATON-NULL_POINTER.title": "Null Pointer",
   "AUTOMATON-OIL_SPILL.description": "[gold]Compile[/gold] - [gold]Stash[/gold] an [gold]Error[/gold].",
   "AUTOMATON-OIL_SPILL.title": "Oil Spill",
-  "AUTOMATON-OPTIMIZE.description": "You draw an additional card from your [gold]Stash Pile[/gold] at the start of your turn.",
+  "AUTOMATON-OPTIMIZE.description": "At the start of your turn, draw an additional card from your [gold]Stash Pile[/gold].",
   "AUTOMATON-OPTIMIZE.title": "Optimize",
   "AUTOMATON-OVERHEAT.description": "Deal {Damage:diff()} damage.\nThe next time you create a card, the target enemy loses {OverheatPower:diff()} HP.",
   "AUTOMATON-OVERHEAT.title": "Overheat",

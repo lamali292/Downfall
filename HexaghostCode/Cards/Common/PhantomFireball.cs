@@ -12,7 +12,7 @@ public class PhantomFireball : HexaghostCardModel
 {
     public PhantomFireball() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
+        WithDamage(4, 3);
         this.WithTip<SoulBurnPower>();
     }
 
@@ -24,6 +24,6 @@ public class PhantomFireball : HexaghostCardModel
         if (cardPlay.Target == null || cardPlay.Target.IsDead || !cardPlay.Target.HasPower<SoulBurnPower>()) return;
         var power = cardPlay.Target.GetPower<SoulBurnPower>();
         if (power == null) return;
-        await power.Detonate(ctx, Owner.Creature, IsUpgraded);
+        await power.Detonate(ctx, Owner.Creature);
     }
 }
