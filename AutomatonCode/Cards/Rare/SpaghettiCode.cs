@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -27,8 +28,8 @@ public class SpaghettiCode : AutomatonCardModel
         var rng = Owner.RunState.Rng.CombatCardSelection;
 
 
-        var cards = CardFactory.FilterForCombat(Owner.Character.CardPool
-            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+        var cards = CardFactory.FilterForCombat(ModelDb.AllCharacterCardPools
+            .SelectMany(e => e.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint))
             .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
 
         FunctionCard? functionCard = null;

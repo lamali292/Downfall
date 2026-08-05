@@ -42,17 +42,7 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     public override void _Ready()
     {
         base._Ready();
-
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
-        _animState = _sprite?.GetAnimationState();
-
+        _animState = SpineBody?.GetAnimationState();
         _animState?.SetAnimationCompat("Idle");
     }
 }
