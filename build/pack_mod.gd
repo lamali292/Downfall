@@ -64,6 +64,9 @@ func _pack_folder_recursive(packer: PCKPacker, path: String) -> void:
 	if dir == null:
 		return
 
+	if FileAccess.file_exists(path + "/.gdignore"):
+		return
+	
 	dir.list_dir_begin()
 	var file_name: String = dir.get_next()
 
