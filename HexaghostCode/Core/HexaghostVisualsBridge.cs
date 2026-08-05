@@ -8,7 +8,6 @@ namespace Hexaghost.HexaghostCode.Core;
 
 public static class HexaghostVisualsBridge
 {
-    private const string GhostflamesScenePath = "res://Hexaghost/scenes/ui/ghostflames.tscn"; // adjust path
     private static readonly Dictionary<Player, NGhostflames> Displays = new();
 
     public static NGhostflames? GetVisuals(Player player)
@@ -32,8 +31,7 @@ public static class HexaghostVisualsBridge
         if (Displays.TryGetValue(player, out var old) && GodotObject.IsInstanceValid(old))
             old.QueueFree();
 
-        var scene = ResourceLoader.Load<PackedScene>(GhostflamesScenePath);
-        var display = scene.Instantiate<NGhostflames>();
+        var display = NGhostflames.Create(player);
 
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
@@ -60,7 +58,12 @@ public static class HexaghostVisualsBridge
 
         var wheel = HexaghostCmd.GetWheel(player);
         var index = HexaghostCmd.GetCurrentIndex(player);
-        visuals.RefreshWheel(wheel, index, player);
+        visuals.RefreshWheel(wheel, index);
+        
+        var ignited = wheel.Count(f => f.IsIgnited);
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        var bodyVisuals = creatureNode?.GetSpecialNode<NHexaghostVisuals>("%Hexaghost");
+        bodyVisuals?.SetIgnitedCount(ignited);
     }
 
     public static void RefreshCurrentIntent(Player player)

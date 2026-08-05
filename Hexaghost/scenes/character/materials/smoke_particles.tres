@@ -1,0 +1,60 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 ]
+
+[sub_resource type="Curve" id="Curve_fpfhi"]
+_data = [Vector2(0, 0.2081219), 0.0, 0.0, 0, 0, Vector2(0.4027027, 0.35989857), 0.0, 0.0, 0, 0, Vector2(0.8837837, 0), -1.3499374, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4f7p2"]
+curve = SubResource("Curve_fpfhi")
+
+[sub_resource type="Gradient" id="Gradient_6j4b0"]
+offsets = PackedFloat32Array(0.12771739, 0.79891306, 0.94836956)
+colors = PackedColorArray(0.4, 0.3, 0.36833334, 1, 0.2, 0.16000001, 0.18466668, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vgwcx"]
+gradient = SubResource("Gradient_6j4b0")
+
+[sub_resource type="Curve" id="Curve_4f7p2"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.082191706), 0.0, 0.0, 0, 0, Vector2(0.32702702, 0.54794526), 0.0, 0.0, 0, 0, Vector2(1, 0.082191706), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pbc20"]
+curve = SubResource("Curve_4f7p2")
+
+[sub_resource type="Curve" id="Curve_6tiy6"]
+_data = [Vector2(0, 0.75808024), 0.0, 0.12922403, 0, 0, Vector2(0.49746194, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3761018), 0.12286437, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7w77"]
+curve = SubResource("Curve_6tiy6")
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-80, 0, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 150.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+inherit_velocity_ratio = 0.1
+direction = Vector3(0, 0, 0)
+spread = 12.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_pbc20")
+radial_velocity_min = 49.999977
+radial_velocity_max = 79.99998
+gravity = Vector3(-50, -100, 0)
+scale_min = 0.75
+scale_curve = SubResource("CurveTexture_i7w77")
+color_ramp = SubResource("GradientTexture1D_vgwcx")
+alpha_curve = SubResource("CurveTexture_4f7p2")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+anim_offset_max = 1.0
+turbulence_noise_scale = 12.0
+turbulence_noise_speed_random = 0.0

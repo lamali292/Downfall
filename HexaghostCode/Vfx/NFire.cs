@@ -11,41 +11,31 @@ public partial class NFire : Node2D
         Small
     }
 
-    private const float LargeScale = 0.5f;
-    private const float SmallScale = 0.25f;
-    private Node2D? _blue;
+    private const float LargeScale = 1f;
+    private const float SmallScale = 0.5f;
+
+    private const string HueUniform = "HueShift";
+    private const string HueTweenPath = "shader_parameter/HueShift";
+
+    private TextureRect? _flame;
+    private ShaderMaterial? _flameMaterial;
+    private GpuParticles2D? _particles;
+    private Tween? _tween;
 
     private FireColor _currentColor = FireColor.Red;
-    private Node2D? _green;
-    private Node2D? _orange;
-    private Node2D? _pink;
-    private Node2D? _red;
-    private Node2D? _yellow;
-
     public FireSize CurrentSize { get; private set; } = FireSize.Small;
 
     public override void _Ready()
     {
-        _red = GetNode<Node2D>("%fire_red");
-        _green = GetNode<Node2D>("%fire_green");
-        _blue = GetNode<Node2D>("%fire_blue");
-        _yellow = GetNode<Node2D>("%fire_yellow");
-        _pink = GetNode<Node2D>("%fire_pink");
-        _orange = GetNode<Node2D>("%fire_orange");
-    }
+        _flame = GetNode<TextureRect>("hexaghost_flame");
+        _particles = GetNodeOrNull<GpuParticles2D>("hexaghost_flame_particles");
+        _flameMaterial = _flame.Material as ShaderMaterial;
+        if (_flameMaterial == null) return;
 
-    private Node2D? GetColorNode(FireColor color)
-    {
-        return color switch
-        {
-            FireColor.Red => _red,
-            FireColor.Green => _green,
-            FireColor.Blue => _blue,
-            FireColor.Yellow => _yellow,
-            FireColor.Pink => _pink,
-            FireColor.Orange => _orange,
-            _ => _red
-        };
+        _flameMaterial = (ShaderMaterial)_flameMaterial.Duplicate();
+        _flame.Material = _flameMaterial;
+
+        _flameMaterial.SetShaderParameter(HueUniform, HueFor(_currentColor));
     }
 
     public void SetState(FireColor color, FireSize size, bool instant = false)
@@ -53,44 +43,47 @@ public partial class NFire : Node2D
         _currentColor = color;
         CurrentSize = size;
 
-        var target = size == FireSize.Large ? LargeScale : SmallScale;
-        var showNode = size == FireSize.Large && color != FireColor.Green ? _green : GetColorNode(color);
-        var hideNodes = Enum.GetValues<FireColor>()
-            .Select(GetColorNode)
-            .Where(n => n != null && n != showNode)
-            .ToList();
+        var targetScale = size == FireSize.Large ? LargeScale : SmallScale;
+        
+        var displayColor = size == FireSize.Large ? FireColor.Green : color;
+        var targetHue = HueFor(displayColor);
 
-        if (showNode == null) return;
+        _tween?.Kill();
 
-        if (instant)
+        if (instant || _flameMaterial == null)
         {
-            Scale = new Vector2(target, target);
-            showNode.Visible = true;
-            showNode.Modulate = new Color(1, 1, 1);
-            foreach (var n in hideNodes)
-            {
-                n!.Visible = false;
-                n.Modulate = new Color(1, 1, 1);
-            }
+            Scale = new Vector2(targetScale, targetScale);
+            _flameMaterial?.SetShaderParameter(HueUniform, targetHue);
+            return;
         }
-        else
-        {
-            var tween = CreateTween().SetParallel();
-            tween.TweenProperty(this, "scale", new Vector2(target, target), 0.3f)
-                .SetTrans(Tween.TransitionType.Sine)
-                .SetEase(Tween.EaseType.Out);
 
-            showNode.Modulate = new Color(1, 1, 1, showNode.Visible ? 1 : 0);
-            showNode.Visible = true;
-            tween.TweenProperty(showNode, "modulate:a", 1f, 0.3f);
+        _tween = CreateTween().SetParallel();
 
-            foreach (var n in hideNodes.Where(n => n!.Visible))
-            {
-                tween.TweenProperty(n, "modulate:a", 0f, 0.3f);
-                tween.Chain().TweenCallback(Callable.From(() => n!.Visible = false));
-            }
-        }
+        _tween.TweenProperty(this, "scale", new Vector2(targetScale, targetScale), 0.3f)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.Out);
+
+        var currentHue = _flameMaterial.GetShaderParameter(HueUniform).AsSingle();
+        var delta = Mathf.Wrap(targetHue - currentHue, -0.5f, 0.5f);
+        var tweenTarget = currentHue + delta;
+
+        _tween.TweenProperty(_flameMaterial, HueTweenPath, tweenTarget, 0.3f)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.InOut);
     }
+    
+    private static float HueFor(FireColor color) => color switch
+    {
+        FireColor.Green => 0.0f,
+        FireColor.Pink => 0.6f,
+        FireColor.Blue => 0.25f,
+        FireColor.Red => 0.85f,
+        
+        
+        FireColor.Orange => 0.80f,
+        FireColor.Yellow => 0.95f,
+        _ => 0.0f
+    };
 }
 
 public enum FireColor

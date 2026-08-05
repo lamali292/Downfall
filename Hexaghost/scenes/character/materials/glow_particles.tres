@@ -1,0 +1,57 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 ]
+
+[sub_resource type="Curve" id="Curve_ajdbm"]
+_data = [Vector2(0, 0.21232879), 0.0, 0.0, 0, 0, Vector2(0.27297297, 0.5479452), 0.0, 0.0, 0, 0, Vector2(0.8405406, 0), 0.69115806, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_chl15"]
+curve = SubResource("Curve_ajdbm")
+
+[sub_resource type="Gradient" id="Gradient_bfjsw"]
+colors = PackedColorArray(1, 0.84000003, 0.9546667, 1, 0.85, 0.5525, 0.8004167, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajdbm"]
+gradient = SubResource("Gradient_bfjsw")
+
+[sub_resource type="Curve" id="Curve_dtmyg"]
+_limits = [-0.31733584, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 0.362621), 0.0, 0.0, 0, 0, Vector2(0.2969543, 0.47164637), 0.0, 0.0, 0, 0, Vector2(1, 0.11102402), 0.050050423, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fpfhi"]
+curve = SubResource("Curve_dtmyg")
+
+[sub_resource type="Curve" id="Curve_bfjsw"]
+_data = [Vector2(0, 0.6849315), 0.0, 0.0, 0, 0, Vector2(0.3837838, 0.8630137), 0.0, 0.0, 0, 0, Vector2(1, 0.33561647), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ajdbm"]
+curve = SubResource("Curve_bfjsw")
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 95.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+spread = 12.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.1000001
+orbit_velocity_curve = SubResource("CurveTexture_fpfhi")
+radial_velocity_min = 9.999977
+radial_velocity_max = 29.999977
+gravity = Vector3(-5, -30, 0)
+scale_min = 5.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_ajdbm")
+color_ramp = SubResource("GradientTexture1D_ajdbm")
+alpha_curve = SubResource("CurveTexture_chl15")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+turbulence_noise_scale = 12.0
+turbulence_noise_speed_random = 0.0

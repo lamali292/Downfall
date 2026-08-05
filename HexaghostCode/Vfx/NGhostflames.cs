@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Hexaghost.HexaghostCode.Core;
@@ -12,6 +11,22 @@ namespace Hexaghost.HexaghostCode.Vfx;
 
 public partial class NGhostflames : Control
 {
+    private static string FireScenePath => "res://Hexaghost/scenes/character/hexaghost_flame.tscn";
+
+    private static Vector2 FirePositionFor(int index, int count)
+    {
+        var angle = Mathf.Pi / 2f + Mathf.Pi / count - index * Mathf.Tau / count;
+        return new Vector2(
+            WheelRadius * Mathf.Cos(angle),
+            -WheelRadius * Mathf.Sin(angle)); // screen y is down
+    }
+
+    private const float WheelRadius = 180f;
+    private static readonly Vector2 FireScale = new(1, 1);
+
+    // Sized at Create() time from the wheel, not fixed at 6.
+    private NFire?[] _builtFires = [];
+
     private static readonly Vector2 ReticleVisualSize = new(44, 44);
 
     // Fire sprites are positioned with their origin at the base, not their visual center —
@@ -19,13 +34,8 @@ public partial class NGhostflames : Control
     private static readonly Vector2 ReticleCenterOffset = new(0, -22);
 
     private NCreature? _creatureNode;
+    private Node2D? _hexaCenter; // %HexaghostScene inside the creature visuals — the ring's center
     private GhostflameModel[]? _currentWheel;
-    private NFire? _fire1;
-    private NFire? _fire2;
-    private NFire? _fire3;
-    private NFire? _fire4;
-    private NFire? _fire5;
-    private NFire? _fire6;
     private Node2D?[] _hitboxAnchors = [];
     private Control?[] _hitboxes = [];
     private NIntent?[] _intents = [];
@@ -38,20 +48,39 @@ public partial class NGhostflames : Control
     private Control? _vfxContainer;
     private NFire?[] _allFires = [];
 
+    public static NGhostflames Create(Player player)
+    {
+        var root = new NGhostflames { Name = "Ghostflames" };
+        root._player = player;
+        root.ZIndex = 0;   
+        root.ZAsRelative = false;
+        var fireScene = ResourceLoader.Load<PackedScene>(FireScenePath);
+        if (fireScene == null)
+        {
+            HexaghostMainFile.Logger.Error($"[Ghostflames] failed to load {FireScenePath}");
+            return root;
+        }
+
+        var count = HexaghostModel.Wheel.Get(player)?.Length ?? 0;
+
+        var fires = new NFire?[count];
+        for (var i = 0; i < count; i++)
+        {
+            var fire = fireScene.Instantiate<NFire>();
+            fire.Name = $"fire{i + 1}";
+            fire.Position = FirePositionFor(i, count);
+            fire.Scale = FireScale;
+            root.AddChild(fire);
+            fires[i] = fire;
+        }
+        root._builtFires = fires;
+
+        return root;
+    }
+
     public override void _Ready()
     {
-        _fire1 = GetNode<NFire>("%fire1");
-        _fire2 = GetNode<NFire>("%fire2");
-        _fire3 = GetNode<NFire>("%fire3");
-        _fire4 = GetNode<NFire>("%fire4");
-        _fire5 = GetNode<NFire>("%fire5");
-        _fire6 = GetNode<NFire>("%fire6");
-        _allFires = [_fire1, _fire2, _fire3, _fire4, _fire5, _fire6];
-
-        // Pre-size and index-assign (rather than .Select(...).ToArray()) so a throw partway
-        // through — e.g. AttachFocusReticle hitting an unloaded scene — can't leave these
-        // arrays at length 0 while _Process still iterates 6 slots. That mismatch was the
-        // original per-frame IndexOutOfRangeException storm.
+        _allFires = _builtFires;
         _intents = new NIntent?[_allFires.Length];
         _hitboxes = new Control?[_allFires.Length];
         _reticles = new NSelectionReticle?[_allFires.Length];
@@ -123,6 +152,15 @@ public partial class NGhostflames : Control
         _creatureNode = creatureNode;
         _vfxContainer = vfxContainer;
 
+        // %HexaghostScene is nested inside %Visuals -> Hexaghost (instanced scene),
+        // so it isn't owned by the creature node — owned:false lets FindChild descend
+        // into that sub-scene. This is the true visual center; anchoring the ring to it
+        // keeps the flames riding the creature's idle bob / hurt shake / cast lunge
+        // instead of sitting at a fixed offset from the creature root.
+        _hexaCenter = creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
+        if (_hexaCenter == null)
+            HexaghostMainFile.Logger.Warn("[Ghostflames] HexaghostScene not found; falling back to creature-origin offset");
+
         DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
 
@@ -140,7 +178,16 @@ public partial class NGhostflames : Control
         if (IsInstanceValid(_creatureNode) && _vfxContainer != null)
         {
             Scale = new Vector2(scaleX, scaleY);
-            var globalCenter = _creatureNode.GlobalPosition + Vector2.Up * 216f * scaleY;
+
+            // Track may have run a frame before the visuals subtree finished entering the
+            // tree, so lazily retry the lookup if it's still unresolved.
+            if ((_hexaCenter == null || !IsInstanceValid(_hexaCenter)) && _creatureNode != null)
+                _hexaCenter = _creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
+
+            var globalCenter = _hexaCenter != null && IsInstanceValid(_hexaCenter)
+                ? _hexaCenter.GlobalPosition
+                : _creatureNode.GlobalPosition + Vector2.Up * 216f * scaleY;
+
             Position = _vfxContainer.GetGlobalTransform().AffineInverse() * globalCenter;
         }
 
@@ -181,8 +228,10 @@ public partial class NGhostflames : Control
 
     private void SetFirePosition(int fireIndex, float duration = 0.5f)
     {
+        if (_allFires.Length == 0) return;
+
         _positionTween?.Kill();
-        var targetRot = -(fireIndex - 0.5) * Mathf.Tau / 6f;
+        var targetRot = -(fireIndex - 0.5) * Mathf.Tau / _allFires.Length;
         var current = Rotation;
         var diff = Mathf.AngleDifference(current, targetRot);
         var newRot = current + diff;
@@ -205,15 +254,15 @@ public partial class NGhostflames : Control
                     .SetEase(Tween.EaseType.InOut);
     }
 
-    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex, Player player)
+    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex)
     {
+        if (_player == null) return;
         _currentWheel = wheel;
-        _player = player;
         for (var i = 0; i < Math.Min(wheel.Length, _allFires.Length); i++)
         {
             _allFires[i]?.SetState(wheel[i].FireColor, wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
             if (_intents[i] == null) continue;
-            _intents[i]!.UpdateIntent(wheel[i].Intent, [], player.Creature);
+            _intents[i]!.UpdateIntent(wheel[i].Intent, [], _player.Creature);
         }
 
         _intentTween?.Kill();

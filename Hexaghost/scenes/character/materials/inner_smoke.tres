@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 ]
+
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexaghost_smoke.gdshader" id="1_5ej2l"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/inner_smoke.png" id="2_rfshk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xvsy8"]
+frequency = 0.023
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yts1c"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_xvsy8")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_s3gco"]
+offsets = PackedFloat32Array(0, 0.85)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qwwtv"]
+frequency = 0.05
+fractal_octaves = 2
+fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xvsy8"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_qwwtv")
+color_ramp = SubResource("Gradient_s3gco")
+seamless = true
+seamless_blend_skirt = 0.15
+
+[resource]
+shader = ExtResource("1_5ej2l")
+shader_parameter/overall_alpha = 0.750000035625
+shader_parameter/custom_base_tint = Color(1, 1, 1, 1)
+shader_parameter/base_texture = ExtResource("2_rfshk")
+shader_parameter/texture_scale = 1.20000005374012
+shader_parameter/spin_speed = 0.60000026
+shader_parameter/base_radius = 0.5
+shader_parameter/inner_noise_tex = SubResource("NoiseTexture2D_yts1c")
+shader_parameter/flame_spread = 0.150000007125
+shader_parameter/turbulence_speed = 0.50000002375
+shader_parameter/noise_scale = Vector2(1, 1.25)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_xvsy8")
