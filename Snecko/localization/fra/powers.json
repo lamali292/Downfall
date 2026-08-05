@@ -36,7 +36,11 @@
     "SNECKO-EXOTIC_FORM_POWER.description": "À la fin de votre tour, gagnez de la [gold]Force[/gold] pour chaque couleur unique jouée.",
     "SNECKO-EXOTIC_FORM_POWER.smartDescription": "À la fin de votre tour, gagnez [blue]{Amount}[/blue] de [gold]Force[/gold] pour chaque couleur unique jouée.",
     "SNECKO-FOUNTAIN_POWER.title": "Fontaine",
+    "SNECKO-FOUNTAIN_POWER.description": "LorsqueLorsque vous [gold]Excédez[/gold], appliquez du [gold]Venin[/gold] à un ennemi aléatoire.",
+    "SNECKO-FOUNTAIN_POWER.smartDescription": "Lorsque vous [gold]Excédez[/gold], appliquez [blue]{Amount}[/blue] de [gold]Venin[/gold] à un ennemi aléatoire.",
     "SNECKO-MUD_SHIELD_POWER.title": "Bouclier de Boue",
+    "SNECKO-MUD_SHIELD_POWER.description": "Lorsque vous [gold]Confondez[/gold] une carte, gagnez de [gold]l'Armure[/gold].",
+    "SNECKO-MUD_SHIELD_POWER.smartDescription": "Lorsque vous [gold]Confondez[/gold] une carte, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reine des Pentacles",
-    "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Détective serpent"
+    "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Détective Serpent"
 }
