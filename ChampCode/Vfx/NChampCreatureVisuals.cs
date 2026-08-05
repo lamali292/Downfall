@@ -84,6 +84,6 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimationCompat("Idle");
+        _animState?.SetAnimationCompat(IdleAnim);
     }
 }

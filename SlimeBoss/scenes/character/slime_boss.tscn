@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/character/slimeboss.spatlas" id="1_l1fn0"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/character/slimeboss2.spskel" id="2_k5lqo"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/character/spine/skeleton.atlas" id="1_l1fn0"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/character/spine/skeleton.skel" id="2_k5lqo"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_4kq0j"]
 atlas_res = ExtResource("1_l1fn0")
