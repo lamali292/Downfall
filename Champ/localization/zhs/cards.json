@@ -41,7 +41,7 @@
     "CHAMP-DEFENSIVE_SHOUT.description": "获得{CounterPower:diff()}点[gold]反击[/gold]。\n进入[gold]防守[/gold]。",
     "CHAMP-DEFENSIVE_SHOUT.title": "防卫嘲讽",
     "CHAMP-DEFIANCE.title": "抗争",
-    "CHAMP-DEFIANCE.description": "获得等同于你的[gold]反击[/gold]数值的[gold]格挡[/gold]。\n失去所有[gold]反击[/gold]。{InCombat:cond:\n(获得{CalculatedBlock:diff()}点[gold]格挡[/gold])|}",
+    "CHAMP-DEFIANCE.description": "获得两倍于你的[gold]反击[/gold]层数的[gold]格挡[/gold]。\n失去所有[gold]反击[/gold]。{InCombat:cond:\n(获得{CalculatedBlock:diff()}点[gold]格挡[/gold])|}",
     "CHAMP-DEVASTATE.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。\n本场战斗中每打出过一张[gold]终结技[/gold]，此牌费用降低{energyPrefix:energyIcons(1)}。",
     "CHAMP-DEVASTATE.title": "坏灭",
     "CHAMP-DOUBLE_STYLE.description": "[gold]技术奖励[/gold]给予的[gold]活力[/gold]和[gold]反击[/gold]增加{DefensiveStylePower:diff()}点。",

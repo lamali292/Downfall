@@ -165,6 +165,7 @@
     "GUARDIAN-OVERBLOCK.description": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友在本回合中获得{OverblockBlockPower:diff()}点[gold]格挡[/gold]和{OverblockThornsPower:diff()}层[gold]荆棘[/gold]。",
     "GUARDIAN-REFRACTED_LIGHT.title": "折射光线",
     "GUARDIAN-REFRACTED_LIGHT.description": "造成{Damage:diff()}点伤害。\n这张牌的宝石效果作用于所有玩家。",
+    "GUARDIAN-MULTI_TROPS.title": "多重荆棘",
     "GUARDIAN-MULTI_TROPS.description": "所有玩家获得{ThornsPower:diff()}层[gold]荆棘[/gold]。",
     "GUARDIAN-BASTION.title": "堡垒",
     "GUARDIAN-BASTION.description": "每当你[gold]提防[/gold]时，所有盟友获得{BastionPower:diff()}点[gold]格挡[/gold]。"

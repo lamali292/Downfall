@@ -1,5 +1,5 @@
 {
-  "COMBAT_REWARD_ESSENCE": "Gain {essence} Essence.",
-  "COLLECTIBLE_REWARD": "Spend {essence} Essence to obtain {Card}.",
-  "COLLECTIBLE_REWARD_CANT_AFFORD": "Need {essence} Essence to obtain {Card}."
+    "COMBAT_REWARD_ESSENCE": "获得{essence}点魂粹。",
+    "COLLECTIBLE_REWARD": "消耗{essence}点魂粹来获得{Card}。",
+    "COLLECTIBLE_REWARD_CANT_AFFORD": "需要{essence}点魂粹来获得{Card}。"
 }

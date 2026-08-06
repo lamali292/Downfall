@@ -207,9 +207,6 @@
     "AWAKENED-ESP.description": "カードを{Cards:diff()}枚引く。",
     "AWAKENED-ESP.title": "ESP",
     "AWAKENED-CONGREGATION.title": "集会",
-    "AWAKENED-CONGREGATION.description": "すべてのプレイヤーは{Energy:energyIcons()}を得て、[gold]山札[/gold]に[gold]虚無[/gold]を1枚加える。",
     "AWAKENED-BLESS.title": "祝福",
-    "AWAKENED-BLESS.description": "[gold]筋力[/gold]{StrengthPower:diff()}を失う。\n他のプレイヤー1人が[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
-    "AWAKENED-FEATHER_DANCE.title": "フェザーダンス",
-    "AWAKENED-FEATHER_DANCE.description": "すべてのプレイヤーの[gold]手札[/gold]に[gold]羽根撃ち[/gold]を{Cards:diff()}枚加える。"
+    "AWAKENED-FEATHER_DANCE.title": "フェザーダンス"
 }
