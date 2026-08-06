@@ -41,7 +41,6 @@
     "CHAMP-DEFENSIVE_SHOUT.description": "{CounterPower:diff()} [gold]반격[/gold]을 얻습니다.\n[gold]철벽[/gold] 태세에 진입합니다.",
     "CHAMP-DEFENSIVE_SHOUT.title": "철벽의 함성",
     "CHAMP-DEFIANCE.title": "저항",
-    "CHAMP-DEFIANCE.description": "내 [gold]반격[/gold] 수치만큼 [gold]방어도[/gold]를 얻습니다.\n이후 모든 [gold]반격[/gold]을 잃습니다.{InCombat:cond:\n({CalculatedBlock:diff()} [gold]방어도[/gold] 획득)|}",
     "CHAMP-DEVASTATE.description": "{Damage:diff()} 피해를 {Repeat:diff()}번 줍니다.\n이번 전투에서 발동한 [gold]마무리[/gold] 카드 한 장당 비용이 {energyPrefix:energyIcons(1)} 1씩 감소합니다.",
     "CHAMP-DEVASTATE.title": "황폐화",
     "CHAMP-DOUBLE_STYLE.description": "[gold]스킬 보너스[/gold]가 {DefensiveStylePower:diff()}만큼의 [gold]활력[/gold]과 [gold]반격[/gold]을 추가로 부여합니다.",
