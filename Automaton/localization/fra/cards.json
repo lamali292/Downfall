@@ -92,7 +92,6 @@
     "AUTOMATON-NULL_POINTER.title": "Pointeur zéro",
     "AUTOMATON-OIL_SPILL.description": "[gold]Compilez[/gold] - [gold]Réservez[/gold] une [gold]Erreur[/gold].",
     "AUTOMATON-OIL_SPILL.title": "Marée Noire",
-    "AUTOMATON-OPTIMIZE.description": "Vous piochez une carte supplémentaire de votre [gold]Réserve[/gold] au début de votre tour.",
     "AUTOMATON-OPTIMIZE.title": "Optimisation",
     "AUTOMATON-OVERHEAT.description": "Infligez {Damage:diff()} dégâts.\nLa prochaine fois que vous créez une carte, l'ennemi ciblé perd {OverheatPower:diff()} PV.",
     "AUTOMATON-OVERHEAT.title": "Surchauffe",

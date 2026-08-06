@@ -1,4 +1,6 @@
 {
     "COLLECTOR-COLLECTED_PILE.title": "收藏堆",
-    "COLLECTOR-KINDLE.title": "点燃"
+    "COLLECTOR-COLLECTED_PILE.description": "这里存放着本场战斗中尚未抽取的已收藏卡牌。每回合开始时，你会从中抽一张牌。",
+    "COLLECTOR-KINDLE.title": "点燃",
+    "COLLECTOR-KINDLE.description": "召唤[gold]火炬头[/gold]。如果已被召唤，则改为在本场战斗中为其增加最大生命值。"
 }

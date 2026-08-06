@@ -60,8 +60,6 @@
     "HEXAGHOST-INFERNAL_FORM_POWER.description": "All'inizio del tuo turno, gain [gold]Intensità[/gold].",
     "HEXAGHOST-INFERNAL_FORM_POWER.smartDescription": "All'inizio del tuo turno, gain [blue]{Amount}[/blue] [gold]Intensità[/gold].",
     "HEXAGHOST-BROILING_FLAMES_POWER.title": "Fiamme Roventi",
-    "HEXAGHOST-BROILING_FLAMES_POWER.description": "This turn, whenever another player deals attack damage to this enemy, esso gains [gold]Brucianima[/gold]..",
-    "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "This turn, whenever another player deals attack damage to this enemy, esso gains [blue]{Amount}[/blue] [gold]Brucianima[/gold].",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "Sussurro dall'Oltretomba",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "Whenever a card is [gold]Esaurita[/gold] this turn, apply [gold]Brucianima[/gold] to the enemy.",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "Whenever a card is [gold]Esaurita[/gold] this turn, apply [blue]{Amount}[/blue] [gold]Brucianima[/gold] to the enemy.",

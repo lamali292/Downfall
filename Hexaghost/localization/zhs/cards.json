@@ -119,7 +119,7 @@
     "HEXAGHOST-OPPOSING_ACTION.title": "反骨",
     "HEXAGHOST-OUTFLARE.title": "爆焰",
     "HEXAGHOST-OUTFLARE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n在本回合获得{OutflarePower:diff()}点[gold]热烈[/gold]。",
-    "HEXAGHOST-PHANTOM_FIREBALL.description": "造成{Damage:diff()}点伤害。\n引爆目标的[gold]灼魂[/gold]{IfUpgraded:show:，但保留1层|}。",
+    "HEXAGHOST-PHANTOM_FIREBALL.description": "造成{Damage:diff()}点伤害。\n引爆目标的[gold]灼魂[/gold]。",
     "HEXAGHOST-PHANTOM_FIREBALL.title": "幻影火球",
     "HEXAGHOST-PHASE.title": "相位",
     "HEXAGHOST-PHASE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n你打出的下一张[gold]虚无[/gold]牌耗能变为{energyPrefix:energyIcons(0)}。",
@@ -200,7 +200,7 @@
     "HEXAGHOST-CIRCLE_FLAME.title": "炎环",
     "HEXAGHOST-CIRCLE_FLAME.description": "[afterlife]给予[/afterlife]{SoulBurnPower:diff()}层[afterlife]灼魂。[/afterlife]\n每当这张牌[gold]消耗[/gold]时，将一张复制加入随机玩家的[gold]弃牌堆[/gold]。",
     "HEXAGHOST-HEATING.title": "升温",
-    "HEXAGHOST-HEATING.description": "每当你给予[gold]灼魂[/gold]时，另一随机玩家获得{HeatingPower:diff()}点[gold]格挡[/gold]。",
+    "HEXAGHOST-HEATING.description": "每当你给予[gold]灼魂[/gold]时，[gold]格挡[/gold]值最少的盟友获得{HeatingPower:diff()}点[gold]格挡[/gold]。",
     "HEXAGHOST-LEVITATE.title": "升空",
     "HEXAGHOST-LEVITATE.description": "[afterlife]给予另一玩家[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]"
 }
