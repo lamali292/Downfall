@@ -41,7 +41,6 @@
     "CHAMP-DEFENSIVE_SHOUT.description": "Gagnez {CounterPower:diff()} de [gold]Contre[/gold].\nAdoptez la [gold]Pose Défensive[/gold].",
     "CHAMP-DEFENSIVE_SHOUT.title": "Cri Défensif",
     "CHAMP-DEFIANCE.title": "Défi",
-    "CHAMP-DEFIANCE.description": "Gagnez de [gold]l'Armure[/gold] égale à votre [gold]Contre[/gold].\nPerdez tout votre [gold]Contre[/gold].{InCombat:cond:\n(Gagnez {CalculatedBlock:diff()} [gold]d'Armure[/gold])|}",
     "CHAMP-DEVASTATE.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois. \nCoûte 1 {energyPrefix:energyIcons(1)} de moins pour chaque [gold]Finisher[/gold] joué ce combat.",
     "CHAMP-DEVASTATE.title": "Dévastation",
     "CHAMP-DOUBLE_STYLE.description": "Augmentez la valeur de la [gold]Vigueur[/gold] et du [gold]Contre[/gold] gagnée des [gold]Bonus de Compétence[/gold] de {DefensiveStylePower:diff()}.",

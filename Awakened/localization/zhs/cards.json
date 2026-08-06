@@ -209,9 +209,9 @@
     "AWAKENED-ESP.description": "抽{Cards:diff()}张牌。",
     "AWAKENED-ESP.title": "超感",
     "AWAKENED-CONGREGATION.title": "集会",
-    "AWAKENED-CONGREGATION.description": "所有玩家获得{Energy:energyIcons()}并在[gold]抽牌堆[/gold]中加入一张[gold]虚空[/gold]。",
+    "AWAKENED-CONGREGATION.description": "所有玩家获得{Energy:energyIcons()}并在[gold]抽牌堆[/gold]底部中加入一张[gold]虚空[/gold]。",
     "AWAKENED-BLESS.title": "蒙福",
-    "AWAKENED-BLESS.description": "失去失去{StrengthPower:diff()}点[gold]力量[/gold]。\n另一玩家获得{StrengthPower:diff()}点[gold]力量[/gold]。",
+    "AWAKENED-BLESS.description": "失去{StrengthLoss:diff()}点[gold]力量[/gold]。\n另一玩家获得{StrengthPower:diff()}点[gold]力量[/gold]。",
     "AWAKENED-FEATHER_DANCE.title": "落羽之舞",
     "AWAKENED-FEATHER_DANCE.description": "将{Cards:diff()}张[gold]羽刺[/gold]加入所有玩家的[gold]手牌[/gold]。"
 }

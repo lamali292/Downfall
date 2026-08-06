@@ -41,7 +41,6 @@
     "CHAMP-DEFENSIVE_SHOUT.description": "Ottieni {CounterPower:diff()} [gold]Contrattacco[/gold].\nEntra in [gold]Difensiva[/gold].",
     "CHAMP-DEFENSIVE_SHOUT.title": "Grido Difensivo",
     "CHAMP-DEFIANCE.title": "Provocazione",
-    "CHAMP-DEFIANCE.description": "Ottieni [gold]Blocco[/gold] pari al tuo [gold]Contrattacco[/gold].\nPerdi tutto il tuo [gold]Contrattacco[/gold].{InCombat:cond:\n(Ottieni {CalculatedBlock:diff()} [gold]Blocco[/gold])|}",
     "CHAMP-DEVASTATE.description": "Infliggi {Damage:diff()} danno {Repeat:diff()} volte.\nCosta 1 {energyPrefix:energyIcons(1)} in meno per ogni [gold]Finale[/gold] giocato in questo combattimento.",
     "CHAMP-DEVASTATE.title": "Devastare",
     "CHAMP-DOUBLE_STYLE.description": "Aumenta il valore di [gold]Vigore[/gold] e [gold]Contrattacco[/gold] dai [gold]Bonus Abilità[/gold] di {DefensiveStylePower:diff()}.",
