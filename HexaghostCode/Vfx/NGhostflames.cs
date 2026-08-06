@@ -181,7 +181,7 @@ public partial class NGhostflames : Control
 
             // Track may have run a frame before the visuals subtree finished entering the
             // tree, so lazily retry the lookup if it's still unresolved.
-            if ((_hexaCenter == null || !IsInstanceValid(_hexaCenter)) && _creatureNode != null)
+            if (_hexaCenter == null || !IsInstanceValid(_hexaCenter))
                 _hexaCenter = _creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
 
             var globalCenter = _hexaCenter != null && IsInstanceValid(_hexaCenter)

@@ -19,9 +19,8 @@ public class Rhythm : GremlinsCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await GremlinsCmd.SwapToNext(ctx, Owner);
-        var cards = Owner.GetDraw(e => e.Rarity == CardRarity.Basic).ToList();
         var selected =
-            (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.ToHandSelectionPrompt, this))
+            (await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Draw.GetPile(Owner), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, e => e.Rarity == CardRarity.Basic))
             .FirstOrDefault();
         if (selected == null) return;
         selected.EnergyCost.SetThisTurn(0);

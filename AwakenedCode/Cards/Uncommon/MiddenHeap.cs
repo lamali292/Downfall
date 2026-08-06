@@ -1,8 +1,10 @@
 using Awakened.AwakenedCode.Core;
+using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,11 +25,10 @@ public class MiddenHeap : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cardsToSelect = Owner.GetDiscard()
-            .Concat(Owner.GetDraw()).Where(c => c.Type is CardType.Status or CardType.Curse)
-            .ToList();
-        var selected = await DownfallCardCmd.SelectFromCards(ctx, cardsToSelect,
-            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
+
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, DynamicVars.Cards.IntValue);
+        var selected = await MultiPileCardSelect.Select(ctx, Owner, prefs, 
+            c => c.Type is CardType.Status or CardType.Curse, PileType.Draw, PileType.Discard);
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }
 }

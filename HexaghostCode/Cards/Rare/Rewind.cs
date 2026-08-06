@@ -24,8 +24,8 @@ public class Rewind : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
-            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, true);
+        var cards = await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Discard.GetPile(Owner),
+            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
         await CardPileCmd.Add(cards, PileType.Hand);
     }
 }
