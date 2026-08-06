@@ -25,7 +25,7 @@ public class Recover : GuardianCardModel
         await GuardianCmd.Brace(ctx, this);
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
 
-        var card = (await DownfallCardCmd.SelectFromCards(ctx, Owner.GetDiscard(),
+        var card = (await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Discard.GetPile(Owner),
             DownfallCardSelectorPrefs.StasisSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);

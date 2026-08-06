@@ -16,9 +16,6 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float DeadMix = 0.05f;
     private MegaAnimationState? _animState;
 
-    private MegaSprite? _sprite;
-
-
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
