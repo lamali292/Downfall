@@ -20,7 +20,7 @@ on:
     tags: ['v*']
 
 env:
-  MEGADOT_VERSION: 4.5.1-m.11
+  MEGADOT_VERSION: 4.5.1-m.14
   SPINE_VERSION: 4.2-4.5.1-stable
 
 jobs:
