@@ -24,6 +24,8 @@
     "AUTOMATON-MERGE_POWER.description": "La prochaine fois que vous [gold]Encodez[/gold] une carte, [gold]Encodez-en[/gold] des copies supplémentaires.",
     "AUTOMATON-MERGE_POWER.smartDescription": "La prochaine fois que vous [gold]Encodez[/gold] une carte, [gold]Encodez-en[/gold] [blue]{Amount}[/blue] copies supplémentaires.",
     "AUTOMATON-OPTIMIZE_POWER.title": "Optimisé",
+    "AUTOMATON-OPTIMIZE_POWER.description": "Au début de votre tour, piochez une carte supplémentaire de votre [gold]Réserve[/gold].",
+    "AUTOMATON-OPTIMIZE_POWER.smartDescription": "Au début de votre tour, piochez {Amount:plural:une carte supplémentaire|[blue]{}[/blue] cartes supplémentaires} de votre [gold]Réserve[/gold].",
     "AUTOMATON-REMOVE_ERRORS_POWER.title": "Retrait des Erreurs",
     "AUTOMATON-REMOVE_ERRORS_POWER.description": "Retirez la prochaine [gold]Erreur de Compilation Encodée[/gold].",
     "AUTOMATON-REMOVE_ERRORS_POWER.smartDescription": "Retirez la prochaine [gold]Erreur de Compilation Encodée[/gold].",

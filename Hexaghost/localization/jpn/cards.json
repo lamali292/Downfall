@@ -12,6 +12,7 @@
     "HEXAGHOST-BRIGHT_RITUAL.description": "ゴーストフレイムの進行を初期化する。\n[gold]滅却[/gold]したゴーストフレイム1つにつき、{Energy:energyIcons()}を得て、カードを{Cards:diff()}枚引く。",
     "HEXAGHOST-BRIGHT_RITUAL.title": "輝きの儀式",
     "HEXAGHOST-BROILING_FLAMES.title": "揺らめく炎",
+    "HEXAGHOST-BROILING_FLAMES.description": "このターン、他のプレイヤーがこの敵を攻撃するたび、その敵は{BroilingFlamesPower:diff()}[gold]ソウルバーン[/gold]を得る。",
     "HEXAGHOST-BURNING_QUESTION.description": "1つ選択。\n[gold]火力[/gold]{IntensityPower:diff()}を得る。\n[gold]金属化[/gold]{MetallicizePower:diff()}を得る。\n戦闘終了時、{RoyaltiesPower:diff()}[gold]ゴールド[/gold]を獲得する。",
     "HEXAGHOST-BURNING_QUESTION.title": "火急的問題",
     "HEXAGHOST-BURNING_QUESTION_CHOICE1.description": "[gold]火力[/gold]{IntensityPower:diff()}を得る。",
@@ -118,6 +119,7 @@
     "HEXAGHOST-OPPOSING_ACTION.title": "反抗",
     "HEXAGHOST-OUTFLARE.title": "炎の噴出",
     "HEXAGHOST-OUTFLARE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのターン、[gold]火力[/gold]{OutflarePower:diff()}を得る。",
+    "HEXAGHOST-PHANTOM_FIREBALL.description": "{Damage:diff()}ダメージを与える。\nその敵に[gold]ソウルバーン[/gold]が付与されている場合、炸裂させる。",
     "HEXAGHOST-PHANTOM_FIREBALL.title": "幻影の火球",
     "HEXAGHOST-PHASE.title": "位相",
     "HEXAGHOST-PHASE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次にプレイする[gold]エセリアル[/gold]のコストは{energyPrefix:energyIcons(0)}。",
@@ -199,6 +201,7 @@
     "HEXAGHOST-CIRCLE_FLAME.title": "大団炎",
     "HEXAGHOST-CIRCLE_FLAME.description": "[afterlife]ソウルバーン[/afterlife]{SoulBurnPower:diff()}[afterlife]を付与する。[/afterlife]\nこのカードが[gold]廃棄[/gold]されたとき、他のランダムなプレイヤー1人の[gold]捨て札[/gold]にこのカードのコピーを加える。",
     "HEXAGHOST-HEATING.title": "加熱",
+    "HEXAGHOST-HEATING.description": "[gold]ソウルバーン[/gold]を付与するたび、[gold]ブロック[/gold]が最も少ない味方が{HeatingPower:diff()}[gold]ブロック[/gold]を得る。",
     "HEXAGHOST-LEVITATE.title": "空中支援",
     "HEXAGHOST-LEVITATE.description": "[afterlife]他のプレイヤー1人が[/afterlife]{Block:diff()}[afterlife]ブロックを得る。[/afterlife]"
 }

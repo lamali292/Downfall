@@ -69,5 +69,9 @@
     "SNECKO-DICE_CASE_POWER.description": "Au début de votre tour, ajoutez un [gold]Lancer de l'Âme[/gold] dans la [gold]Main[/gold] d'un autre joueur.",
     "SNECKO-DICE_CASE_POWER.smartDescription": "Au début de votre tour, ajoutez {Amount:plural:un [gold]Lancer de l'Âme[/gold]|[blue]{}[/blue] [gold]Lancers de l'Âme[/gold]} dans la [gold]Main[/gold] de [orange]{OtherName}[/orange].",
     "SNECKO-GAMBLE_POWER.title": "Pari",
-    "SNECKO-GAMBLE_POWER.description": "Au prochain tour, piochez des cartes et [gold]Confondez-les[/gold]."
+    "SNECKO-GAMBLE_POWER.description": "Au prochain tour, piochez des cartes et [gold]Confondez-les[/gold].",
+    "SNECKO-GAMBLE_POWER.smartDescription": "Au prochain tour, piochez {Amount:plural:une carte|[blue]{}[/blue] cartes} et {Amount:plural:[gold]Confondez-la[/gold]|[gold]Confondez-les[/gold]}.",
+    "SNECKO-MULLIGAN_POWER.title": "Mulligan",
+    "SNECKO-MULLIGAN_POWER.description": "La première fois que vous jouez une carte qui coûte plus que son coût original, gagnez {energyPrefix:energyIcons(1)}.",
+    "SNECKO-MULLIGAN_POWER.smartDescription": "{Amount:plural:La première|Les [blue]{}[/blue] premières} fois que vous jouez une carte qui coûte plus que son coût original, gagnez {energyPrefix:energyIcons(1)}."
 }
