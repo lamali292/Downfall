@@ -41,7 +41,7 @@
     "HERMIT-MALICE.description": "[gold]消耗[/gold]一张牌。\n造成{Damage:diff()}点伤害。\n如果[gold]消耗[/gold]的是诅咒牌，改为攻击所有敌人。",
     "HERMIT-DEADEYE.title": "死神之眼",
     "HERMIT-DEADEYE.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：获得{StrengthPower:diff()}点[gold]力量[/gold]。",
-    "HERMIT-GHOSTLY_PRESENCE.title": "幽灵化",
+    "HERMIT-GHOSTLY_PRESENCE.title": "魂体",
     "HERMIT-GHOSTLY_PRESENCE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：给予所有敌人{WeakPower:diff()}层[gold]虚弱[/gold]。",
     "HERMIT-ADAPT.title": "适应",
     "HERMIT-ADAPT.description": "回合开始时，可以[gold]消耗[/gold]一张牌以获得8点[gold]格挡[/gold]。",
