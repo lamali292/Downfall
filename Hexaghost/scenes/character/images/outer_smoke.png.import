@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpt47krvp4tqw"
-valid=false
+uid="uid://bghmjdkvu8fin"
+path="res://.godot/imported/outer_smoke.png-ed17f8eb5de4af5be5b3da38e5a13933.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Hermit/scenes/character/Hermit.png"
+source_file="res://Hexaghost/scenes/character/images/outer_smoke.png"
+dest_files=["res://.godot/imported/outer_smoke.png-ed17f8eb5de4af5be5b3da38e5a13933.ctex"]
 
 [params]
 

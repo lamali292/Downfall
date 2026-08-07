@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpt47krvp4tqw"
-valid=false
+uid="uid://11qu2wes3ec7"
+path="res://.godot/imported/zigzag_fire_distortion.png-561d5e405d6f772659d49f52c5bfd082.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Hermit/scenes/character/Hermit.png"
+source_file="res://Hexaghost/scenes/character/images/zigzag_fire_distortion.png"
+dest_files=["res://.godot/imported/zigzag_fire_distortion.png-561d5e405d6f772659d49f52c5bfd082.ctex"]
 
 [params]
 

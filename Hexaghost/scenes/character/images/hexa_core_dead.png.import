@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpt47krvp4tqw"
-valid=false
+uid="uid://chg6tw45sm5fr"
+path="res://.godot/imported/hexa_core_dead.png-b888d477a79b4efd9108e5b9e24d74c3.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Hermit/scenes/character/Hermit.png"
+source_file="res://Hexaghost/scenes/character/images/hexa_core_dead.png"
+dest_files=["res://.godot/imported/hexa_core_dead.png-b888d477a79b4efd9108e5b9e24d74c3.ctex"]
 
 [params]
 

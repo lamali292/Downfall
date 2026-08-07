@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpt47krvp4tqw"
-valid=false
+uid="uid://bvo6bni063aag"
+path="res://.godot/imported/cinder_particle.png-0f5fcb6814fe7c00c24ae61ef32080ec.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Hermit/scenes/character/Hermit.png"
+source_file="res://Hexaghost/scenes/character/images/cinder_particle.png"
+dest_files=["res://.godot/imported/cinder_particle.png-0f5fcb6814fe7c00c24ae61ef32080ec.ctex"]
 
 [params]
 
