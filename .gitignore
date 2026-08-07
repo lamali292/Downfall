@@ -66,6 +66,7 @@ bin/*
 
 *.import
 !*/scenes/character/*.png.import
+!*/scenes/character/*/*.png.import
 !*/scenes/slimes/visuals/*.png.import
 !*/scenes/gremlins/*/*.png.import
 /dist/
