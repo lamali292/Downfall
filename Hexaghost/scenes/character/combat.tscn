@@ -13,10 +13,11 @@ anchors_preset = 0
 
 [node name="Visuals" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(2, -216)
+position = Vector2(2, -190)
 
 [node name="Hexaghost" parent="Visuals" instance=ExtResource("2_6yrk5")]
 unique_name_in_owner = true
+scale = Vector2(0.6, 0.6)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

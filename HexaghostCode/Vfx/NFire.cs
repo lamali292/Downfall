@@ -11,8 +11,8 @@ public partial class NFire : Node2D
         Small
     }
 
-    private const float LargeScale = 1f;
-    private const float SmallScale = 0.5f;
+    private const float LargeScale = 0.75f;
+    private const float SmallScale = 0.375f;
 
     private const string HueUniform = "HueShift";
     private const string HueTweenPath = "shader_parameter/HueShift";
