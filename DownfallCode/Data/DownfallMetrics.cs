@@ -45,16 +45,16 @@ public static class DownfallMetrics
             DownfallMainFile.Logger.Info("Skipping metrics upload, not enough progress.");
             return false;
         }
-        if (run.Players.All(e =>
-                e.CharacterId == null ||
-                ModelDb.GetById<CharacterModel>(e.CharacterId) is not DownfallCharacterModel))
-        {
-            DownfallMainFile.Logger.Info("Skipping metrics upload, no downfall character found active.");
-            return false;
-        }
-        if (run.Players.First(p => (long)p.NetId == (long)localPlayerId).CharacterId == null)
+
+        var localPlayer = run.Players.First(p => (long)p.NetId == (long)localPlayerId).CharacterId;
+        if (localPlayer == null)
         {
             DownfallMainFile.Logger.Info("Skipping metrics upload, no local player found.");
+            return false;
+        }
+        if (ModelDb.GetById<CharacterModel>(localPlayer) is not DownfallCharacterModel)
+        {
+            DownfallMainFile.Logger.Info("Skipping metrics upload, no downfall character found active.");
             return false;
         }
         return true;
