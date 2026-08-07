@@ -41,6 +41,7 @@
     "CHAMP-DEFENSIVE_SHOUT.description": "[gold]カウンター[/gold]{CounterPower:diff()}を得る。\n[gold]守護[/gold]スタンスに入る。",
     "CHAMP-DEFENSIVE_SHOUT.title": "守護の叫び",
     "CHAMP-DEFIANCE.title": "抵抗",
+    "CHAMP-DEFIANCE.description": "[gold]カウンター[/gold]の2倍に等しい[gold]ブロック[/gold]を得る。\n[gold]カウンター[/gold]をすべて失う。{InCombat:cond:\n({CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。)| }",
     "CHAMP-DEVASTATE.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\nこの戦闘中に使用した[gold]フィニッシャー[/gold]1枚につき、コストが1{energyPrefix:energyIcons(1)}減少する。",
     "CHAMP-DEVASTATE.title": "踏み荒らし",
     "CHAMP-DOUBLE_STYLE.description": "[gold]スキルボーナス[/gold]が付与する[gold]活力[/gold]と[gold]カウンター[/gold]の値が{DefensiveStylePower:diff()}増加する。",
