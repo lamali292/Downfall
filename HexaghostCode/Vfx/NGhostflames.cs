@@ -21,7 +21,7 @@ public partial class NGhostflames : Control
             -WheelRadius * Mathf.Sin(angle)); // screen y is down
     }
 
-    private const float WheelRadius = 180f;
+    private const float WheelRadius = 140f;
     private static readonly Vector2 FireScale = new(1, 1);
 
     // Sized at Create() time from the wheel, not fixed at 6.

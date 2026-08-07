@@ -1,7 +1,4 @@
-using System.Net.Http.Headers;
 using System.Reflection;
-using System.Text;
-using System.Text.Json;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
@@ -9,6 +6,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Data;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
@@ -19,9 +17,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
-using HttpClient = System.Net.Http.HttpClient;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode;
@@ -47,7 +43,7 @@ public partial class DownfallMainFile : Node
 
 
         NCustomCardHolder.InitPool();
-        ModManager.OnMetricsUpload += OnMetricsUpload;
+        ModManager.OnMetricsUpload += DownfallMetrics.OnMetricsUpload;
 
         CardTitleHooks.Register((card, title) =>
         {
@@ -105,44 +101,17 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("STS1")
             );
     }
-
-
-    private static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
+    
+    public static string GetDownfallVersion()
     {
-        if (!DownfallConfig.UploadMetrics) return;
-        if (run.Players.All(e =>
-                e.CharacterId == null ||
-                ModelDb.GetById<CharacterModel>(e.CharacterId) is not DownfallCharacterModel)) return;
-        var anonymized = run.Anonymized();
-        var json = JsonSerializer.Serialize(anonymized);
-        _ = SendToServer(json);
+        var mod = ModManager.GetLoadedMods().FirstOrDefault(m => m.manifest?.id == "Downfall");
+
+        return mod?.manifest?.version ?? "unknown";
     }
 
-    private static async Task SendToServer(string json)
-    {
-        var bytes = Encoding.UTF8.GetBytes(json);
-        using var client = new HttpClient();
-        client.Timeout = TimeSpan.FromSeconds(15);
-        var content = new ByteArrayContent(bytes);
-        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        try
-        {
-            // TODO
-            var response = await client.PutAsync("http://localhost:3000/runs", content);
-            if (response.IsSuccessStatusCode)
-                Logger.Info("Upload successful!");
-            else
-                Logger.Warn($"Upload failed: {response.StatusCode}");
-        }
-        catch (HttpRequestException ex)
-        {
-            Logger.Warn($"Upload failed due to network error: {ex.Message}");
-        }
-        catch (TaskCanceledException ex)
-        {
-            Logger.Warn($"Upload timed out: {ex.Message}");
-        }
-    }
+
+ 
+
 
 
     private static void LogRegisteredCounts()
