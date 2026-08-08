@@ -60,6 +60,7 @@ public class DownfallPatchManager
             .Add(typeof(IgnoreDexterityPatch))
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
             .Add(typeof(NCreditsScreenPatch))
+            //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook));
         
 

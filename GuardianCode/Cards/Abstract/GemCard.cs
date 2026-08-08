@@ -7,6 +7,7 @@ using Guardian.GuardianCode.Gems;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Cards.Abstract;
 
@@ -85,7 +86,7 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
         WithKeyword(GuardianKeyword.Gem);
         CardModifier.AddModifier(this, GuardianModelDb.Gem<T>().ToMutable());
     }
-
+    
     public override bool CanBeGeneratedInCombat => false;
 
     public override CardRarity Rarity => GuardianModelDb.Gem<T>().Rarity;
