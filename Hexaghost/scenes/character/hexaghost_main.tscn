@@ -16,17 +16,17 @@
 [ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_glow.png" id="13_k4fx8"]
 [ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_dead.png" id="14_nebrv"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_qwwtv"]
-subdivide_width = 20
-subdivide_depth = 20
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ygws"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7lyxx"]
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7lyxx"]
+[sub_resource type="QuadMesh" id="QuadMesh_qwwtv"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ygws"]
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
@@ -867,47 +867,8 @@ graph_offset = Vector2(-203, -75)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ip2ae")
 
-[node name="HexaghostScene" type="Node2D" parent="."]
+[node name="HexaghostScene" type="CanvasGroup" parent="."]
 unique_name_in_owner = true
-
-[node name="inner_smoke" type="MeshInstance2D" parent="HexaghostScene"]
-z_index = 4
-material = ExtResource("1_qyw0t")
-scale = Vector2(560, 560)
-mesh = SubResource("QuadMesh_qwwtv")
-
-[node name="middle_smoke" type="MeshInstance2D" parent="HexaghostScene"]
-z_index = 2
-material = ExtResource("2_tulu2")
-position = Vector2(-8.999999, 0)
-scale = Vector2(840, 840)
-mesh = SubResource("QuadMesh_qwwtv")
-
-[node name="outer_smoke" type="MeshInstance2D" parent="HexaghostScene"]
-z_index = 1
-material = ExtResource("3_ffglx")
-position = Vector2(-9, 0)
-scale = Vector2(1000, 1000)
-mesh = SubResource("QuadMesh_qwwtv")
-
-[node name="CinderParticles" type="GPUParticles2D" parent="HexaghostScene"]
-show_behind_parent = true
-z_index = 5
-amount = 100
-amount_ratio = 0.5
-texture = ExtResource("4_ru74u")
-lifetime = 1.8
-process_material = ExtResource("5_egmal")
-
-[node name="HurtParticles" type="GPUParticles2D" parent="HexaghostScene"]
-z_index = 3
-material = SubResource("CanvasItemMaterial_2ygws")
-position = Vector2(-70, 0)
-emitting = false
-amount = 70
-texture = ExtResource("6_c4fxh")
-lifetime = 1.2
-process_material = ExtResource("7_4owsc")
 
 [node name="SmokeParticles" type="GPUParticles2D" parent="HexaghostScene"]
 show_behind_parent = true
@@ -920,9 +881,42 @@ lifetime = 1.8
 explosiveness = 0.15
 process_material = ExtResource("8_jwuea")
 
+[node name="outer_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+material = ExtResource("3_ffglx")
+position = Vector2(-9, 0)
+scale = Vector2(999.9999, 999.9999)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="middle_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+material = ExtResource("2_tulu2")
+position = Vector2(-8.999999, 0)
+scale = Vector2(840, 840)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="HurtParticles" type="GPUParticles2D" parent="HexaghostScene"]
+material = SubResource("CanvasItemMaterial_2ygws")
+position = Vector2(-70, 0)
+emitting = false
+amount = 70
+texture = ExtResource("6_c4fxh")
+lifetime = 1.2
+process_material = ExtResource("7_4owsc")
+
+[node name="inner_smoke" type="MeshInstance2D" parent="HexaghostScene"]
+material = ExtResource("1_qyw0t")
+scale = Vector2(559.99994, 559.99994)
+mesh = SubResource("QuadMesh_qwwtv")
+
+[node name="CinderParticles" type="GPUParticles2D" parent="HexaghostScene"]
+show_behind_parent = true
+amount = 100
+amount_ratio = 0.5
+texture = ExtResource("4_ru74u")
+lifetime = 1.8
+process_material = ExtResource("5_egmal")
+
 [node name="GlowParticles" type="GPUParticles2D" parent="HexaghostScene"]
 show_behind_parent = true
-z_index = 6
 material = SubResource("CanvasItemMaterial_mo2l5")
 position = Vector2(5, 5)
 amount = 50
@@ -932,7 +926,6 @@ lifetime = 1.2
 process_material = ExtResource("9_cosa4")
 
 [node name="HexaCoreGlow" type="Sprite2D" parent="HexaghostScene"]
-z_index = 7
 material = SubResource("ShaderMaterial_oc3wy")
 position = Vector2(10, 0)
 scale = Vector2(0.23, 0.23)

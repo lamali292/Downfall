@@ -24,7 +24,7 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
             .Take(1)
             .FirstOrDefault()?
             .EnergyCost
-            .AddThisTurn(-DynamicVars["CostReduction"].IntValue, true);
+            .AddThisTurnOrUntilPlayed(-DynamicVars["CostReduction"].IntValue, true);
         return Task.CompletedTask;
     }
 

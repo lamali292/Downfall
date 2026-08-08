@@ -19,6 +19,17 @@ public static class HexaghostVisualsBridge
         return null;
     }
 
+    
+    public static void FadeFlamesOnDeath(Player player)
+    {
+        GetVisuals(player)?.FadeOutOnDeath();
+    }
+
+    public static void FadeFlamesOnRevive(Player player)
+    {
+        GetVisuals(player)?.FadeInOnRevive();
+    }
+    
     public static void DiscardDisplay(Player player)
     {
         if (Displays.TryGetValue(player, out var old) && GodotObject.IsInstanceValid(old))

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost2.tscn" id="1_xhr6f"]
 [ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostMerchantCharacter.cs" id="1_ytoje"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost_main.tscn" id="2_ytoje"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_ytoje")
@@ -9,4 +9,5 @@ script = ExtResource("1_ytoje")
 [node name="Visuals" type="Node2D" parent="."]
 position = Vector2(1, -234)
 
-[node name="Hexaghost" parent="Visuals" instance=ExtResource("1_xhr6f")]
+[node name="Hexaghost" parent="Visuals" instance=ExtResource("2_ytoje")]
+scale = Vector2(0.6, 0.6)

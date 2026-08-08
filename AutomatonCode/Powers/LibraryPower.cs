@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Powers;
 
@@ -15,9 +16,9 @@ public class LibraryPower : AutomatonPowerModel
         if (!participants.Contains(Owner) || Owner.Player == null) return;
         var player = Owner.Player;
         var rng = CombatState.RunState.Rng.CombatCardSelection;
-        var cards = player.Character.CardPool
-            .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token).ToList();
+        var cards = CardFactory.FilterForCombat(ModelDb.AllCharacterCardPools
+            .SelectMany(e => e.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint))
+            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
         var choice = CardFactory.GetDistinctForCombat(player, cards, Amount, rng).Select(t =>
         {
             t.SetToFreeThisTurn();

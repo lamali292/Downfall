@@ -163,6 +163,38 @@ public partial class NGhostflames : Control
 
         DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
+    
+    private Tween? _fadeTween;
+
+    public void FadeOutOnDeath(float duration = 0.4f)
+    {
+        _fadeTween?.Kill();
+
+        SetHitboxesEnabled(false);
+
+        _fadeTween = CreateTween();
+        _fadeTween.TweenProperty(this, "modulate:a", 0f, duration)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.Out);
+    }
+    
+    private void SetHitboxesEnabled(bool on)
+    {
+        foreach (var hb in _hitboxes)
+            if (hb != null)
+                hb.MouseFilter = on ? MouseFilterEnum.Stop : MouseFilterEnum.Ignore;
+    }
+
+    public void FadeInOnRevive(float duration = 0.4f)
+    {
+        _fadeTween?.Kill();
+
+        _fadeTween = CreateTween();
+        _fadeTween.TweenProperty(this, "modulate:a", 1f, duration)
+            .SetTrans(Tween.TransitionType.Sine)
+            .SetEase(Tween.EaseType.In)
+            .Finished += () => SetHitboxesEnabled(true);
+    }
 
     // TODO : make transition more clean for Shrinker Beetle scaling
     public override void _Process(double delta)
