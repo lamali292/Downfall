@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using Downfall.DownfallCode.Abstract;
@@ -57,7 +58,47 @@ public static class DownfallMetrics
             DownfallMainFile.Logger.Info("Skipping metrics upload, no downfall character found active.");
             return false;
         }
+        if (HasForeignContent(run))
+        {
+            DownfallMainFile.Logger.Info("Skipping metrics upload, foreign mod content detected.");
+            return false;
+        }
         return true;
+    }
+
+    
+    private static readonly HashSet<Assembly> AllowedAssemblies =
+    [
+        typeof(DownfallCharacterModel).Assembly,
+        typeof(CharacterModel).Assembly
+    ];
+    
+    private static bool IsAllowed<T>(ModelId? id) where T : AbstractModel
+    {
+        if (id is null || id == ModelId.none) return true;
+        var model = ModelDb.GetByIdOrNull<T>(id);
+        return model != null && AllowedAssemblies.Contains(model.GetType().Assembly);
+    }
+    
+    private static bool HasForeignContent(SerializableRun run)
+    {
+        foreach (var p in run.Players)
+        {
+            if (!IsAllowed<CharacterModel>(p.CharacterId)) return true;
+            if (p.Deck.Any(c => !IsAllowed<CardModel>(c.Id)))
+            {
+                return true;
+            }
+            if (p.Relics.Any(r => !IsAllowed<RelicModel>(r.Id)))
+            {
+                return true;
+            }
+            if (p.Potions.Any(r => !IsAllowed<PotionModel>(r.Id)))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -143,20 +184,20 @@ public static class DownfallMetrics
             var list1 = run.MapPointHistory
                 .SelectMany(logs =>
                     logs).ToList();
-            var list2 = list1
+            var encounters = list1
                 .Where(e =>
                     e.Rooms.Last().RoomType.IsCombatRoom())
                 .Select(e =>
                     new EncounterMetric((e.Rooms.Last().ModelId ?? ModelId.none).Entry,
                         int.Min(e.GetEntry(localPlayerId).DamageTaken, localPlayer.MaxHp),
                         e.Rooms.Last().TurnsTaken + 1)).ToList();
-            var list3 = list1
+            var cardChoices = list1
                 .Where(
                     (Func<MapPointHistoryEntry, bool>)(e => e.GetEntry(localPlayerId).CardChoices.Count > 0))
                 .Select(
                     (Func<MapPointHistoryEntry, CardChoiceMetric>)(e =>
                         new CardChoiceMetric(e.GetEntry(localPlayerId).CardChoices))).ToList();
-            var list4 = list1
+            var ancientChoices = list1
                 .Where(
                     (Func<MapPointHistoryEntry, bool>)(e => e.MapPointType == MapPointType.Ancient))
                 .Where(e => e.GetEntry(localPlayerId).AncientChoices.Count > 0)
@@ -202,10 +243,10 @@ public static class DownfallMetrics
                 Deck = localPlayer.Deck.Select<SerializableCard, ModelId>(c => c.Id ?? ModelId.none),
                 Relics = localPlayer.Relics.Select<SerializableRelic, ModelId>(r => r.Id ?? ModelId.none),
                 RunPlaytime = run.WinTime > 0L ? run.WinTime : run.RunTime,
-                Encounters = list2,
-                CardChoices = list3,
+                Encounters = encounters,
+                CardChoices = cardChoices,
                 EventChoices = eventChoiceMetricList,
-                AncientChoices = list4,
+                AncientChoices = ancientChoices,
                 ActWins = actWinMetricList,
                 CampfireUpgrades = list1
                     .Where(
