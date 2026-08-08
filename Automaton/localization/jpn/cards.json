@@ -1,4 +1,5 @@
 {
+    "AUTOMATON-ALLOCATE.description": "[gold]山札[/gold]と[gold]格納[/gold]にある状態異常1枚につき{energyPrefix:energyIcons(1)}を得る。{InCombat:cond:\n({Status:diff()}{energyPrefix:energyIcons(1)}を得る)|}",
     "AUTOMATON-ALLOCATE.title": "割り当て",
     "AUTOMATON-ASSEMBLY.description": "カードを{Cards:diff()}枚引く。\n引いたカードのうち[gold]エンコード[/gold]を持つものを[gold]エンコード[/gold]する。",
     "AUTOMATON-ASSEMBLY.title": "アセンブリ",
@@ -13,6 +14,7 @@
     "AUTOMATON-BRANCH.title": "ブランチ",
     "AUTOMATON-BRANCH_ATTACK.title": "ブランチ:アタック",
     "AUTOMATON-BRANCH_BLOCK.title": "ブランチ:ブロック",
+    "AUTOMATON-BREAK.description": "{Damage:diff()}ダメージを与える。\n[gold]手札[/gold]、[gold]山札[/gold]、[gold]捨て札[/gold]、[gold]格納[/gold]に[gold]エラー[/gold]を1枚ずつ加える。",
     "AUTOMATON-BREAK.title": "クラッシュ",
     "AUTOMATON-BRONZE_ARMOR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]エラー[/gold]を{Stash:diff()}枚[gold]格納[/gold]する。",
     "AUTOMATON-BRONZE_ARMOR.title": "ブロンズアーマー",
@@ -45,6 +47,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "見つけて置換",
     "AUTOMATON-FINE_TUNING.description": "[gold]手札[/gold]のカードを{Cards:diff()}枚選ぶ。\nそれを[gold]格納[/gold]し、[gold]アップグレード[/gold]し、[gold]保留[/gold]を与える。",
     "AUTOMATON-FINE_TUNING.title": "微調整",
+    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]すべての敵に{Damage:diff()}ダメージを2回与える。\n[gold]アーティファクト[/gold]{ArtifactPower:diff()}を得る。",
     "AUTOMATON-FLAIL.title": "フレイル",
     "AUTOMATON-FORCE_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこの戦闘中に作成したカード1枚につき、コストが{Energy:energyIcons()}減少する。",
     "AUTOMATON-FORCE_SHIELD.title": "フォースシールド",
@@ -89,11 +92,13 @@
     "AUTOMATON-NULL_POINTER.title": "Null Pointer",
     "AUTOMATON-OIL_SPILL.description": "[gold]コンパイル[/gold] - [gold]エラー[/gold]を1枚[gold]格納[/gold]する。",
     "AUTOMATON-OIL_SPILL.title": "オイル漏れ",
+    "AUTOMATON-OPTIMIZE.description": "ターン開始時、[gold]格納[/gold]から追加で1枚引く。",
     "AUTOMATON-OPTIMIZE.title": "最適化",
     "AUTOMATON-OVERHEAT.description": "{Damage:diff()}ダメージを与える。\n次にカードを作成する時、対象の敵はHPを{OverheatPower:diff()}失う。",
     "AUTOMATON-OVERHEAT.title": "熱暴走",
     "AUTOMATON-PHILOSOPHIZE.description": "このカードを引いた時、このターン[gold]筋力[/gold]{PhilosophizePower:diff()}を得る。",
     "AUTOMATON-PHILOSOPHIZE.title": "哲学する",
+    "AUTOMATON-PIERCING_SHOT.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]格納[/gold]のカードを{Cards:diff()}枚[gold]アップグレード[/gold]する。",
     "AUTOMATON-PIERCING_SHOT.title": "ピアッシングショット",
     "AUTOMATON-RECURSIVE_STRIKE.description": "{Damage:diff()}ダメージを2回与える。\n[gold]ストライク{IfUpgraded:plus()}[/gold]のコピーを2枚[gold]エンコード[/gold]する。",
     "AUTOMATON-RECURSIVE_STRIKE.title": "リ・ストライク",
@@ -181,5 +186,6 @@
     "AUTOMATON-EXPORT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n他のプレイヤー1人が{Energy:energyIcons()}を得る。",
     "AUTOMATON-SHARE.title": "共有",
     "AUTOMATON-SHARE.description": "関数から[gold]ブロック[/gold]を得るたび、最も[gold]ブロック[/gold]が少ない味方が{SharePower:diff()}[gold]ブロック[/gold]を得る。",
-    "AUTOMATON-BLUESCREEN.title": "ブルースクリーン"
+    "AUTOMATON-BLUESCREEN.title": "ブルースクリーン",
+    "AUTOMATON-BLUESCREEN.description": "他のプレイヤー1人に{Block:diff()}[gold]ブロック[/gold]を与える。\nそのプレイヤーの[gold]山札[/gold]の一番上に[gold]エラー[/gold]を1枚置く。"
 }

@@ -24,6 +24,8 @@
     "AUTOMATON-MERGE_POWER.description": "次にカードを[gold]エンコード[/gold]する時、追加でコピーを[gold]エンコード[/gold]する。",
     "AUTOMATON-MERGE_POWER.smartDescription": "次にカードを[gold]エンコード[/gold]する時、追加で[blue]{Amount}[/blue]枚のコピーを[gold]エンコード[/gold]する。",
     "AUTOMATON-OPTIMIZE_POWER.title": "最適化",
+    "AUTOMATON-OPTIMIZE_POWER.description": "ターン開始時、[gold]格納[/gold]から追加で1枚引く。",
+    "AUTOMATON-OPTIMIZE_POWER.smartDescription": "ターン開始時、[gold]格納[/gold]から追加で[blue]{Amount}[/blue]枚引く。",
     "AUTOMATON-REMOVE_ERRORS_POWER.title": "エラー除去",
     "AUTOMATON-REMOVE_ERRORS_POWER.description": "次にエンコードされる[gold]コンパイルエラー[/gold]を取り除く。",
     "AUTOMATON-REMOVE_ERRORS_POWER.smartDescription": "次にエンコードされる[gold]コンパイルエラー[/gold]を取り除く。",

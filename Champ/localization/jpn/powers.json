@@ -74,7 +74,7 @@
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "次のターンの活力",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "次のターン、[gold]活力[/gold]を得る。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]活力[/gold][blue]{}[/blue]を得る。",
-    "CHAMP-CROWD_FAVORITE_POWER.title": "観客の人気者",
+    "CHAMP-CROWD_FAVORITE_POWER.title": "人気者",
     "CHAMP-CROWD_FAVORITE_POWER.description": "他のプレイヤーが敵を攻撃するたび、[gold]活力[/gold]を得る。",
     "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "他のプレイヤーが敵を攻撃するたび、[gold]活力[/gold][blue]{Amount}[/blue]を得る。"
 }

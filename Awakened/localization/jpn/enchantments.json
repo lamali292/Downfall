@@ -1,4 +1,5 @@
 {
     "AWAKENED-CONJURATION.title": "召喚術",
-    "AWAKENED-CONJURATION.description": "このカードは[gold]召喚[/gold]を持つ。"
+    "AWAKENED-CONJURATION.description": "このカードは[gold]召喚[/gold]を持つ。",
+    "AWAKENED-CONJURATION.extraCardText": "[gold]召喚[/gold]。"
 }
