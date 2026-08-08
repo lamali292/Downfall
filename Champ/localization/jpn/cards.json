@@ -188,8 +188,8 @@
     "CHAMP-REDIRECT.title": "リダイレクト",
     "CHAMP-REDIRECT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのターン、次にプレイするカードを[gold]山札[/gold]の一番上に置く。",
     "CHAMP-INSPIRE.title": "鼓舞",
-    "CHAMP-INSPIRE.description": "他のプレイヤー1人に[gold]活力[/gold]{VigorPower:diff()}を与える。",
-    "CHAMP-CROWD_FAVORITE.title": "観客の人気者",
+    "CHAMP-INSPIRE.description": "他のプレイヤー1人に[gold]活力[/gold]{VigorPower:diff()}を付与する。",
+    "CHAMP-CROWD_FAVORITE.title": "人気者",
     "CHAMP-CROWD_FAVORITE.description": "他のプレイヤーが敵を攻撃するたび、[gold]活力[/gold]{CrowdFavoritePower:diff()}を得る。",
     "CHAMP-GROUP_EFFORT.title": "総力戦",
     "CHAMP-GROUP_EFFORT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのカードの[gold]フィニッシャー[/gold]効果は、すべてのプレイヤーに適用される。"

@@ -1,6 +1,6 @@
 {
     "GUARDIAN-GEM.description": "ジェムは、[gold]休憩所[/gold]でカードの[gold]ソケット[/gold]に埋め込むことができる。",
     "GUARDIAN-GEM.title": "ジェム",
-    "GUARDIAN-VOLATILE.description": "このカードが[gold]停滞[/gold]から解除された時、それを[gold]廃棄[/gold]する。",
+    "GUARDIAN-VOLATILE.description": "このカードが[gold]停滞[/gold]から解除された時、[gold]廃棄[/gold]する。",
     "GUARDIAN-VOLATILE.title": "揮発性"
 }
