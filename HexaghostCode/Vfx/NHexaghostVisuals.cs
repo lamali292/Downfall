@@ -29,16 +29,21 @@ public partial class NHexaghostVisuals : Node2D
 		_playback = (AnimationNodeStateMachinePlayback)_animTree.Get("parameters/playback");
 
 		var scene = GetNode<Node2D>("%HexaghostScene");
-		_innerSmoke = GetSmokeMaterial(scene, "inner_smoke");
-		_middleSmoke = GetSmokeMaterial(scene, "middle_smoke");
-		_outerSmoke = GetSmokeMaterial(scene, "outer_smoke");
+		_innerSmoke = MakeUniqueSmokeMaterial(scene, "inner_smoke");
+		_middleSmoke = MakeUniqueSmokeMaterial(scene, "middle_smoke");
+		_outerSmoke = MakeUniqueSmokeMaterial(scene, "outer_smoke");
 	}
 
-	private static ShaderMaterial? GetSmokeMaterial(Node2D scene, string nodeName)
-	{
-		var node = scene.GetNodeOrNull<MeshInstance2D>(nodeName);
-		return node?.Material as ShaderMaterial;
-	}
+    private static ShaderMaterial? MakeUniqueSmokeMaterial(Node2D scene, string nodeName)
+    {
+        var node = scene.GetNodeOrNull<MeshInstance2D>(nodeName);
+        if (node?.Material is not ShaderMaterial shared)
+            return null;
+
+        var unique = (ShaderMaterial)shared.Duplicate();  
+        node.Material = unique;
+        return unique;
+    }
 
 	/// <summary>Call whenever the wheel changes; count = number of ignited flames (0..6).</summary>
 	public void SetIgnitedCount(int count)

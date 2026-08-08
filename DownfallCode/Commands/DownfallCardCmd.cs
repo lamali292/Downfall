@@ -118,7 +118,7 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
         CardPile pile, LocString prompt, int count, CardModel cardSource, Func<CardModel, bool>? filter = null,
         bool optional = false)
-        => CardSelectCmd.FromCombatPile(ctx, pile, cardSource.Owner, Prefs(prompt, count, optional), filter);
+        => CardSelectCmd.FromCombatPile(ctx, pile, cardSource.Owner, Prefs(prompt, count, optional), filter ?? (_ => true));
 
     public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
         CardPile pile, LocString prompt, CardModel cardSource, Func<CardModel, bool>? filter = null,

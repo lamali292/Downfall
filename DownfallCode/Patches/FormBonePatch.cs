@@ -1,10 +1,8 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
-using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.DownfallCode.Patches;
@@ -19,9 +17,6 @@ public static class FormBonePatcher
         Ns + "NReaperFormVfx",
         Ns + "NEchoFormVfx",
     };
-
-    private const BindingFlags Ff =
-        BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
     public static void Apply(Harmony harmony, Logger logger)
     {
@@ -57,30 +52,43 @@ public static class FormBonePatcher
             }
         }
     }
-
-    // Single prefix for every form. Keyed off the method it was attached to,
-    // so it needs no compile-time reference to any specific form type.
-    private static bool Prefix(NFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode,
-                               MethodBase __originalMethod)
+    
+    private static bool Prefix(object __instance, object spineSprite, Node2D sourceNode,
+        MethodBase __originalMethod)
     {
-        var owner = __instance._owner;
-        if (owner?.Character == null) return true; // null-owner/test path -> original uses _testBoneName
-
-        var formName = __originalMethod.DeclaringType!.FullName!;
-        if (!FormBoneRegistry.TryGet(formName, owner.Character.GetType(), out var boneName) || boneName == null)
-            return true; // basegame / unregistered -> run original untouched
-
         var type = __instance.GetType();
 
-        // Echo runs a spine copier before the bone follower; other forms just don't have the field.
-        if (type.GetField("_spineCopier", Ff)?.GetValue(__instance) is NSpineSpriteCopier copier)
-            copier.Initialize(spineSprite, sourceNode);
+        var owner = AccessTools.Field(type, "_owner")?.GetValue(__instance);
+        var character = owner == null ? null : GetMember(owner, "Character");
+        if (character == null) return true; 
 
-        if (type.GetField("_boneFollower", Ff)?.GetValue(__instance) is NSpineSpriteBoneFollower follower)
-            follower.SetSpineSprite(spineSprite, boneName);
+        var formName = __originalMethod.DeclaringType!.FullName!;
+        if (!FormBoneRegistry.TryGet(formName, character.GetType(), out var boneName) || boneName == null)
+            return true;
+        
+        var megaSpriteType = AccessTools.TypeByName("MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite");
+        
+        var copier = AccessTools.Field(type, "_spineCopier")?.GetValue(__instance);
+        if (copier != null)
+            AccessTools.Method(copier.GetType(), "Initialize", [megaSpriteType, typeof(Node2D)])
+                ?.Invoke(copier, [spineSprite, sourceNode]);
+
+        // The follower's SetSpineSprite is overloaded; the Type[] picks (MegaSprite, string).
+        var follower = AccessTools.Field(type, "_boneFollower")?.GetValue(__instance);
+        if (follower != null)
+            AccessTools.Method(follower.GetType(), "SetSpineSprite", [megaSpriteType, typeof(string)])
+                ?.Invoke(follower, [spineSprite, boneName]);
 
         return false; // bone follower called exactly once
     }
+
+    private static object? GetMember(object obj, string name)
+    {
+        var t = obj.GetType();
+        var prop = AccessTools.Property(t, name);
+        return prop != null ? prop.GetValue(obj) : AccessTools.Field(t, name)?.GetValue(obj);
+    }
+
 }
 
 /*

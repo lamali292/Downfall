@@ -15,7 +15,7 @@ public class FuturePlansPower : GuardianPowerModel
         if (side != Owner.Side) return;
         var player = Owner.Player;
         if (player == null) return;
-        if (GuardianCmd.CanPutIntoStasis(player))
+        if (GuardianCmd.CanPutIntoStasis(player, silent: true))
         {
             var cards = await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this,
                 optional: true);

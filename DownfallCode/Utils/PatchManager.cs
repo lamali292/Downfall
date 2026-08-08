@@ -38,7 +38,6 @@ public class DownfallPatchManager
             .Add(typeof(PlayOneShotDictPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
             .Add(typeof(NCreatureAnimationPatch))
-            .Add(typeof(NCreatureDeathAnimationPatch))
             .Add(typeof(FakeMerchantAnimationPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))
