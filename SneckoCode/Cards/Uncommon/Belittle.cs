@@ -21,7 +21,7 @@ public class Belittle : SneckoCardModel, IHasGift
             Rarity = CardRarity.Uncommon,
             IsDebuff = true
         });
-        WithCalculatedDamage(0, 8, CalcDamage, ValueProp.Unblockable | ValueProp.Move | ValueProp.Unpowered, 0, 3);
+        WithCalculatedDamage(0, 8, CalcDamage, DamageProps.cardHpLoss, 0, 3);
     }
 
     public Gift? Gift { get; set; }

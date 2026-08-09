@@ -21,7 +21,7 @@ public class DefensiveFlair : SneckoCardModel, IHasGift
             Rarity = CardRarity.Uncommon
         });
         WithTip(SneckoTip.Offclass);
-        WithCalculatedBlock(8, 2, CalcBlock, ValueProp.Move, 1, 1);
+        WithCalculatedBlock(8, 2, CalcBlock, BlockProps.card, 1, 1);
     }
 
     public Gift? Gift { get; set; }

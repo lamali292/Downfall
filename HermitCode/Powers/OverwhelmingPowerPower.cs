@@ -18,6 +18,6 @@ public sealed class OverwhelmingPowerPower() : HermitPowerModel(PowerType.Debuff
         if (player?.PlayerCombatState?.Energy != 0) return;
         Flash();
         await DownfallCreatureCmd.Damage(ctx, Owner, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
+            DamageProps.nonCardHpLoss, Owner, null, null);
     }
 }

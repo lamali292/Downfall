@@ -41,7 +41,7 @@ public class ChampUltimateStance : ChampStanceModel
             : [Owner.Creature];
         await PowerCmd.Apply<StrengthPower>(ctx, targets, strength, Owner.Creature, null);
         await targets.ForEachAsync(e =>
-            CreatureCmd.GainBlock(e, block, ValueProp.Unpowered, null)
+            CreatureCmd.GainBlock(e, block, BlockProps.nonCardUnpowered, null)
         );
     }
 }

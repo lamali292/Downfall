@@ -23,7 +23,7 @@ public class LeechingStrike : SlimeBossCardModel, IHasConsumeEffect
 
     public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Move | ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner.Creature, amount, BlockProps.cardUnpowered, null);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

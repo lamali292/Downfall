@@ -21,7 +21,7 @@ public class Glut : SneckoCardModel, IHasOverflowEffect
         this.WithOverflow();
         WithDamage(12, 4);
         WithCalculatedVar("OverflowRepeat", 0, Calc);
-        WithVar(new DamageVar("OverflowDamage", 2, ValueProp.Move).WithUpgrade(1));
+        WithVar(new DamageVar("OverflowDamage", 2, DamageProps.card).WithUpgrade(1));
     }
 
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

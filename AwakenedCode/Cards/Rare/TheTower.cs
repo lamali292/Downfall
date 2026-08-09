@@ -16,7 +16,7 @@ public class TheTower : AwakenedCardModel
 {
     public TheTower() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithCalculatedDamage(2, 2, DamageCalc, ValueProp.Move, 1, 1);
+        WithCalculatedDamage(2, 2, DamageCalc, DamageProps.card, 1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

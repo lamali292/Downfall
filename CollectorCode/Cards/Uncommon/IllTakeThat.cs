@@ -28,7 +28,7 @@ public class IllTakeThat : CollectorCardModel
         if (stolenBlock > 0)
         {
             await CreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
-            await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, ValueProp.Move | ValueProp.Unpowered, cardPlay);
+            await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
 
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

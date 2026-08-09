@@ -15,6 +15,6 @@ public class WildfirePower : HexaghostPowerModel
         CardModel? cardSource)
     {
         if (applier != Owner || power.TypeForCurrentAmount != PowerType.Debuff || power.Amount != amount) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

@@ -14,7 +14,7 @@ public class DamageEncode : Encodable
 {
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Attack;
-    public override DynamicVar FunctionDynamicVar => new DamageVar(0, ValueProp.Move);
+    public override DynamicVar FunctionDynamicVar => new DamageVar(0, DamageProps.card);
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
@@ -24,7 +24,7 @@ public class DamageEncode : Encodable
                 .FromCardCompatibility(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
-        return DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().Damage.BaseValue, ValueProp.Unpowered,
+        return DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().Damage.BaseValue, DamageProps.nonCardUnpowered,
             model.GetCreature(), null, null);
     }
 

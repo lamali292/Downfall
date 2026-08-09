@@ -21,7 +21,7 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
 {
     public ImpendingDoom() : base(-2, CardType.Curse, CardRarity.Curse, DownfallTargetType.MeAndEnemies)
     {
-        WithVar(new DamageVar(13, ValueProp.Move | ValueProp.Unpowered));
+        WithVar(new DamageVar(13, DamageProps.cardUnpowered));
         WithKeyword(CardKeyword.Unplayable);
     }
 

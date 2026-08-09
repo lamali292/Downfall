@@ -13,7 +13,7 @@ public class RallyTheTroopsPower : SlimeBossPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner) return;
-        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, ValueProp.Unpowered);
+        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, false);
         Flash();
         await PowerCmd.Decrement(this);
     }

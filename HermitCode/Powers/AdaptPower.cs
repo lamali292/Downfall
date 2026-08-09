@@ -30,7 +30,7 @@ public sealed class AdaptPower : HermitPowerModel
         foreach (var card in selected)
         {
             await CardCmd.Exhaust(ctx, card);
-            await CreatureCmd.GainBlock(Owner, 8, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner, 8, BlockProps.nonCardUnpowered, null);
         }
     }
 }

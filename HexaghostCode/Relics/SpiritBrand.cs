@@ -23,7 +23,7 @@ public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGho
         UsedThisTurn = true;
         Flash();
         Status = RelicStatus.Normal;
-        await CreatureCmd.GainBlock(Owner.Creature, 3, ValueProp.Unpowered, null, true);
+        await CreatureCmd.GainBlock(Owner.Creature, 3, BlockProps.nonCardUnpowered, null, true);
     }
 
 

@@ -19,7 +19,7 @@ public class HeatingPower : HexaghostPowerModel
             .OrderBy(e => e.Block)
             .FirstOrDefault();
         if (player == null) return;
-        await CreatureCmd.GainBlock(player, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(player, Amount, BlockProps.nonCardUnpowered, null);
         Flash();
     }
 }

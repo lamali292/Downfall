@@ -31,6 +31,6 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
         await AwakenedHook.AfterModifyingManaburnDamage(CombatState, ctx, player, modifiers);
         await CreatureCmd.Damage(ctx,
             Owner, modifiedAmount,
-            ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, player.Creature);
+            DamageProps.nonCardHpLoss, player.Creature);
     }
 }

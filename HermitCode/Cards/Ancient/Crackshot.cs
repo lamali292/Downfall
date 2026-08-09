@@ -47,6 +47,6 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
             })
             .Execute(ctx);
         var unblockedDamage = result.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
-        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, BlockProps.card, cardPlay);
     }
 }

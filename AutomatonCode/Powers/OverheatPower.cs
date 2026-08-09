@@ -19,7 +19,7 @@ public class OverheatPower : AutomatonPowerModel
             return;
         Flash();
         await DownfallCreatureCmd.Damage(ctx, Owner, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, card.Owner.Creature, card, null);
+            DamageProps.nonCardHpLoss, card.Owner.Creature, card, null);
         await PowerCmd.Remove(this);
     }
 }

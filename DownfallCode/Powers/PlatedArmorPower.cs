@@ -24,6 +24,6 @@ public class PlatedArmorPower : DownfallPowerModel
         if (Owner.Player is { PlayerCombatState: not null } && side != Owner.Side)
             return;
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

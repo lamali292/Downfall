@@ -18,7 +18,7 @@ public class BrainDrain : CollectorCardModel
     public BrainDrain() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithVars(new DamageVar(6, ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered).WithUpgrade(1));
+        WithVars(new DamageVar(6, DamageProps.cardHpLoss).WithUpgrade(1));
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

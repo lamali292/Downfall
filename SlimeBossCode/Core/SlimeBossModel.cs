@@ -11,7 +11,7 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        return SlimeBossCmd.CommandAll(ctx, player, ValueProp.Unpowered);
+        return SlimeBossCmd.CommandAll(ctx, player, false);
     }
 
     public override Task BeforeCombatStart()

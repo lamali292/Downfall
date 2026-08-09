@@ -14,6 +14,6 @@ public class KarmaPower : CollectorPowerModel
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || !CombatState.Enemies.Any(e => e.IsAfflicted())) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

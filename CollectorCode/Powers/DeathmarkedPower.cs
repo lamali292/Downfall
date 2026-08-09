@@ -27,7 +27,7 @@ public class DeathmarkedPower() : CollectorPowerModel(PowerType.Debuff)
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Applier == null) return;
-        await CreatureCmd.Damage(ctx, Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, null, null);
         await PowerCmd.Remove(this);
     }
 }

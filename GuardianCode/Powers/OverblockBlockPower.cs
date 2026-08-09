@@ -29,6 +29,6 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
             ? lowest[0]
             : CombatState.RunState.Rng.CombatTargets.NextItem(lowest);
         if (target == null) return;
-        await CreatureCmd.GainBlock(target.Creature, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(target.Creature, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

@@ -24,7 +24,7 @@ public class BastionPower : GuardianPowerModel, IAfterBrace
         var allies = CombatState.GetTeammatesOf(Owner).Where(e => e != Owner);
         foreach (var ally in allies)
         {
-            await CreatureCmd.GainBlock(ally, Amount, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(ally, Amount, BlockProps.nonCardUnpowered, null);
         }
         Flash();
     }

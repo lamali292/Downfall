@@ -45,7 +45,7 @@ public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
             await Cmd.Wait(0.5f);
             var enemies = CombatState.Enemies.ToList();
             foreach (var enemy in enemies.Where(e => e.IsAlive))
-                await CreatureCmd.Damage(ctx, enemy, damageAmount, ValueProp.Unpowered, Owner);
+                await CreatureCmd.Damage(ctx, enemy, damageAmount, DamageProps.nonCardUnpowered, Owner);
         }
     }
 

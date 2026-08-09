@@ -56,15 +56,14 @@ public static class MyCommonActions
 
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)
     {
-        await DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel, null);
+        await LoseHpToTarget(ctx, model, [target]);
     }
 
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
         await DownfallCreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered, model.GetCreature(), model as CardModel, null);
+            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.GetCreature(), model as CardModel, null);
     }
 
     public static async Task<IReadOnlyList<T>> AutoApply<T>(

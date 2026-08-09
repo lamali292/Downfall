@@ -16,7 +16,7 @@ public class PrismaticBarrier : GuardianCardModel, IGemSocketCard
 {
     public PrismaticBarrier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCalculatedBlock(0, 2, CalcBlock, ValueProp.Move, 0, 1);
+        WithCalculatedBlock(0, 2, CalcBlock, BlockProps.card, 0, 1);
         WithTip(GuardianKeyword.Gem);
     }
 

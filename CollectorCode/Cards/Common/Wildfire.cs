@@ -15,7 +15,7 @@ public class Wildfire : CollectorCardModel
 {
     public Wildfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(0, 4, DamageCalc, ValueProp.Move, 0, 2);
+        WithCalculatedDamage(0, 4, DamageCalc, DamageProps.card, 0, 2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -18,7 +18,7 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
     public GhostLash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         this.WithAfterlife();
-        WithCalculatedDamage(8, 3, Calc, ValueProp.Move, 2, 2);
+        WithCalculatedDamage(8, 3, Calc, DamageProps.card, 2, 2);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

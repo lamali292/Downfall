@@ -78,7 +78,7 @@ public abstract class ConstructedPowerModel(
 
     protected ConstructedPowerModel WithBlock(decimal baseVal)
     {
-        _newDynamicVars.Add(new BlockVar(baseVal, ValueProp.Unpowered));
+        _newDynamicVars.Add(new BlockVar(baseVal, BlockProps.nonCardUnpowered));
         return this;
     }
 
@@ -98,7 +98,7 @@ public abstract class ConstructedPowerModel(
 
     protected ConstructedPowerModel WithDamage(decimal baseVal)
     {
-        _newDynamicVars.Add(new DamageVar(baseVal, ValueProp.Unpowered));
+        _newDynamicVars.Add(new DamageVar(baseVal, DamageProps.nonCardUnpowered));
         return this;
     }
 
