@@ -1,20 +1,5 @@
 name: Release
 
-# Stage 2 of 2. Triggered by any v* tag — whether pushed by release-prepare.yml
-# or by hand from a local clone.
-#
-# NOTE for hand-pushed tags: this workflow patches Downfall.json's version at build
-# time only, it does not commit anything. Bump build/mod.build.props and Downfall.json
-# yourself before tagging, or the repo will keep claiming the old version.
-#
-# Requires:
-#   environment `release`  - required reviewer: you, deployment tag: v*
-#   environment secrets on `release` (NOT repo secrets):
-#     STEAM_USERNAME       - builder account login name
-#     STEAM_PASSWORD       - builder account password
-#     STEAM_SHARED_SECRET  - that account's Steam Guard shared secret (for TOTP)
-#   repo variable STEAM_WORKSHOP_ID - the id from mod_id.txt
-
 on:
   push:
     tags: ['v*']
@@ -28,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: release
     permissions:
-      contents: write         # gh release create
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -43,8 +28,6 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
-      # Reads "steam=true|false" out of the annotated tag written by release-prepare.yml.
-      # Tags pushed by hand usually have no message -> defaults to true.
       - name: Read steam flag from tag
         run: |
           git fetch --force origin "refs/tags/${GITHUB_REF_NAME}:refs/tags/${GITHUB_REF_NAME}" --quiet || true
@@ -96,18 +79,11 @@ jobs:
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
 
-      # Patch the manifest's top-level "version" to match the tag (build-time only, not committed).
-      # min_game_version and the BaseLib min_version stay as committed in the repo.
       - name: Sync manifest version
         run: |
           sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' Downfall.json
           grep '"version"' Downfall.json
 
-      # Persist ImageGen's own incremental cache (hash-based, so CI-safe) plus the generated
-      # atlas outputs it diffs against. Keyed on the source images — any art change re-runs
-      # only the changed items, everything else is restored. No --repack (that flag forces a
-      # full rebuild by wiping the cache: `if (Force) groupCache = new JsonObject()`).
-      # NOTE: caching every submod images/ dir so no Pack* output subfolder is missed.
       - name: Cache image atlas outputs
         uses: actions/cache@v4
         with:
@@ -143,8 +119,6 @@ jobs:
             /p:AssemblyVersion="$VERSION.0" \
             /p:FileVersion="$VERSION.0"
 
-      # Zip ONLY the Downfall folder (BaseLib is a sibling in mods/ and is deliberately excluded),
-      # without .pdb files — mirrors what release.ps1's staging did.
       - name: Package zip
         run: |
           test -d output/mods/Downfall || { echo "Built mod folder missing"; exit 1; }
@@ -154,7 +128,6 @@ jobs:
           cd ../..
           unzip -l "Downfall-$VERSION.zip"
 
-      # Banner values come from the committed manifest instead of the local game install.
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -170,7 +143,6 @@ jobs:
             --generate-notes \
             --notes-file banner.md
 
-      # ---- Steam Workshop upload (opt-in via the annotated tag) ----
       - name: Generate Steam TOTP
         if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
         id: steam-totp
