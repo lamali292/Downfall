@@ -74,14 +74,14 @@ public partial class NFire : Node2D
     
     private static float HueFor(FireColor color) => color switch
     {
-        FireColor.Green => 0.0f,
+        FireColor.Green => 0.15f,
+        FireColor.Yellow => 0.0f,
         FireColor.Pink => 0.6f,
         FireColor.Blue => 0.25f,
         FireColor.Red => 0.85f,
         
         
         FireColor.Orange => 0.80f,
-        FireColor.Yellow => 0.95f,
         _ => 0.0f
     };
 }

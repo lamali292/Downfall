@@ -14,7 +14,7 @@ public class SearingGhostflame : GhostflameModel
 {
     public override int IgnitionRequirement => 2;
 
-    public override FireColor FireColor => FireColor.Green;
+    public override FireColor FireColor => FireColor.Yellow;
 
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
         () => 3 + Intensity,
