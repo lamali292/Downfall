@@ -1,15 +1,5 @@
 ﻿name: Prepare Release
 
-# Stage 1 of 2. Bumps versions, commits, and pushes a v* tag — nothing is built here.
-# The tag push is what starts release.yml.
-#
-# Requires:
-#   environment `release-prepare`  - required reviewer: you, deployment branch: main
-#   secret RELEASE_DEPLOY_KEY      - private half of a write-enabled deploy key,
-#                                    stored on that environment (NOT a repo secret).
-#                                    The key must be on the bypass list of both the
-#                                    `main` branch ruleset and the `v*` tag ruleset.
-
 on:
   workflow_dispatch:
     inputs:
