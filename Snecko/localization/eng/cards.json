@@ -5,7 +5,7 @@
   "SNECKO-BEHOLD.title": "Behold!",
   "SNECKO-BELITTLE.description": "Enemy loses {ExtraDamage:diff()} HP for each unique debuff they have.{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon Debuff.}{IsTargeting:cond:\n(Loses {CalculatedDamage:diff()} HP)|}",
   "SNECKO-BELITTLE.title": "Belittle",
-  "SNECKO-BEYOND_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} random [gold]Offclass[/gold] {Cards:plural:card|cards}.{InCombat:cond:|\n[gold]Gift[/gold]: Common.}",
+  "SNECKO-BEYOND_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} [gold]Offclass[/gold] {Cards:plural:card|cards}.{InCombat:cond:|\n[gold]Gift[/gold]: Common.}",
   "SNECKO-BEYOND_ARMOR.title": "Beyond Armor",
   "SNECKO-BLUNDERBUS.description": "Deal {Damage:diff()} damage to ALL enemies.\nRepeat for each card in [gold]Hand[/gold] that costs {Energy:energyIcons()} or more.",
   "SNECKO-BLUNDERBUS.title": "Blunderbus",
