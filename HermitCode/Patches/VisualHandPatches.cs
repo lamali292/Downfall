@@ -33,7 +33,9 @@ internal static class HandVisualSync
         var pile = FindHandPile(hand);
         if (pile == null) return;
 
-        if (!pile.Cards.Any(HermitCmd.HasDeadOn)) return;
+        var cards = pile.Cards;
+        if (cards.Count == 0) return;
+        if (!cards.Any(HermitCmd.HasDeadOn) && cards[0].Owner.Character is not Core.Hermit) return;
         
         
         IsSyncing = true;
