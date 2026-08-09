@@ -32,6 +32,6 @@ public class HeatShield : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = DynamicVars.CalculatedBlock.Calculate(cardPlay.Target);
-        await CreatureCmd.GainBlock(Owner.Creature, a, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, a, BlockProps.card, cardPlay);
     }
 }

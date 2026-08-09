@@ -15,7 +15,7 @@ public class Separator : AutomatonCardModel, IEncodable
     public Separator() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
-        WithVars(new DamageVar("ExtraDamage", 6, ValueProp.Move).WithUpgrade(2));
+        WithVars(new DamageVar("ExtraDamage", 6, DamageProps.card).WithUpgrade(2));
     }
 
     public IEnumerable<Encodable> Encodings => [new DamageEncode()];

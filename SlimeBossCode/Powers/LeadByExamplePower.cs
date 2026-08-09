@@ -26,7 +26,7 @@ public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } ||
             CardPlayCount > Amount) return;
-        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, ValueProp.Unpowered);
+        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, false);
         Flash();
         this.InvokeSecondAmountChanged();
     }

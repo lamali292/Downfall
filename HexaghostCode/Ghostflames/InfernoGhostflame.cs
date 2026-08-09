@@ -31,7 +31,7 @@ public class InfernoGhostflame : GhostflameModel
         var hitCount = HexaghostCmd.GetIgnitedCount(Owner) + Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
-            targets => CreatureCmd.Damage(ctx, targets, damage, ValueProp.Unpowered, Owner.Creature));
+            targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
 
         if (HexaghostCmd.AllIgnited(Owner))
             await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);

@@ -14,6 +14,6 @@ public class TechnicalJigPower : ChampPowerModel, IOnChampStanceChange
         ChampStanceModel newStance)
     {
         if (player.Creature != Owner || newStance is ChampNoStance) return;
-        await CreatureCmd.GainBlock(player.Creature, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(player.Creature, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

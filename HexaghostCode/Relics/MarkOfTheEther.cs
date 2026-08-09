@@ -16,6 +16,6 @@ public class MarkOfTheEther() : HexaghostRelicModel(RelicRarity.Starter), IAfter
     {
         if (player != Owner) return;
         Flash();
-        await CreatureCmd.GainBlock(Owner.Creature, 4, ValueProp.Unpowered, null, true);
+        await CreatureCmd.GainBlock(Owner.Creature, 4, BlockProps.nonCardUnpowered, null, true);
     }
 }

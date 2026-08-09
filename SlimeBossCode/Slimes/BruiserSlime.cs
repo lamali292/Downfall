@@ -14,7 +14,7 @@ public class BruiserSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3, ValueProp.Move),
+        new DamageVar(3, DamageProps.monsterMove),
         new RepeatVar(2)
     ];
 

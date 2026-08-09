@@ -24,7 +24,7 @@ public class Teamwork : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        await SlimeBossCmd.Command(ctx, Owner, x, ValueProp.Move, this);
+        await SlimeBossCmd.Command(ctx, Owner, x, true, this);
         for (var i = 0; i < x; i++) await CommonActions.CardBlock(this, cardPlay);
     }
 }

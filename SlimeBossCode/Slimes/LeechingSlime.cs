@@ -17,7 +17,7 @@ public class LeechingSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1, ValueProp.Move),
+        new DamageVar(1, DamageProps.monsterMove),
         new SlimeSecondaryVar(3)
     ];
 
@@ -38,6 +38,6 @@ public class LeechingSlime : SlimeModel
 
         var original = DynamicVars.Slime().IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await CreatureCmd.GainBlock(PetOwner, modified, ValueProp.Move, null);
+        await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.card, null);
     }
 }

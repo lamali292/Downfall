@@ -18,7 +18,7 @@ public class Endure : ChampCardModel, IIgnoreDexterityCard
 {
     public Endure() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCalculatedBlock(6, BlockCalc, ValueProp.Move, 2);
+        WithCalculatedBlock(6, BlockCalc, BlockProps.card, 2);
         this.WithTip<StrengthPower>();
         WithTips(e => e.IsUpgraded ? [] : [HoverTipFactory.FromPower<DexterityPower>()]);
         this.WithEnterDefensive();

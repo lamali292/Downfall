@@ -24,6 +24,6 @@ public class SharePower : AutomatonPowerModel
             .OrderBy(e => e.Block)
             .FirstOrDefault();
         if (teammate == null) return;
-        await CreatureCmd.GainBlock(teammate, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(teammate, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

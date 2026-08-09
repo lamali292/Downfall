@@ -26,6 +26,6 @@ public class Whack : SneckoCardModel
         var a = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var damage = a.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
         if (EnergyCost.GetResolved() == DynamicVars.Energy.IntValue) return;
-        await CreatureCmd.GainBlock(Owner.Creature, damage, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, damage, BlockProps.card, cardPlay);
     }
 }

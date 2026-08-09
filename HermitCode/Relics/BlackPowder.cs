@@ -18,7 +18,7 @@ public sealed class BlackPowder : HermitRelicModel, IAfterDeadOnTrigger
 {
     public BlackPowder() : base(RelicRarity.Common)
     {
-        WithVars(new DamageVar(2, ValueProp.Unpowered));
+        WithVars(new DamageVar(2, DamageProps.nonCardUnpowered));
         WithTip(HermitKeywords.DeadOn);
     }
 

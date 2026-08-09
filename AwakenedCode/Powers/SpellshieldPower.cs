@@ -17,7 +17,7 @@ public class SpellshieldPower : AwakenedPowerModel
         var a = Owner.Player.GetHand().Count(e => e.ShouldRetainThisTurn);
         for (var i = 0; i < a; i++)
         {
-            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
             Flash();
         }
     }
@@ -31,6 +31,6 @@ public class SpellshieldPower : AwakenedPowerModel
     {
         if (player.Creature != Owner) return;
         foreach (var card in retainedCards.Where(e => e.ShouldRetainThisTurn))
-            await CreatureCmd.GainBlock(card.Owner.Creature, Amount, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(card.Owner.Creature, Amount, BlockProps.nonCardUnpowered, null);
     }*/
 }

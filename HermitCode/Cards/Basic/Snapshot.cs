@@ -34,7 +34,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
 
         var hasSnipe = Owner.Creature.HasPower<SnipePower>() ? 2 : 1;
         for (var i = 0; i < hasSnipe; i++)
-            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, play);
+            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, BlockProps.card, play);
         _result = null;
     }
 

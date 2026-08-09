@@ -14,7 +14,7 @@ public class Stupend : GremlinsCardModel
 {
     public Stupend() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithCalculatedBlock(7, Calc, ValueProp.Move, 2);
+        WithCalculatedBlock(7, Calc, BlockProps.card, 2);
         WithDamage(7, 2);
     }
 

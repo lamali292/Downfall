@@ -24,7 +24,7 @@ public class Bluescreen : AutomatonCardModel
     {
         var player = cardPlay.Target?.Player;
         if (player == null) return;
-        await CreatureCmd.GainBlock(player.Creature, DynamicVars.Block.BaseValue, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(player.Creature, DynamicVars.Block.BaseValue, BlockProps.card, cardPlay);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw, CardPilePosition.Top);
     }
 }

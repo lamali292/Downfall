@@ -69,7 +69,7 @@ public class ShieldGremlin : GremlinsMonsterModel
 
     public override async Task TriggerGremlinBonus(PlayerChoiceContext ctx, Player player)
     {
-        await CreatureCmd.GainBlock(player.Creature, 2, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(player.Creature, 2, BlockProps.nonCardUnpowered, null);
     }
 }
 
@@ -101,7 +101,7 @@ public class SneakGremlin : GremlinsMonsterModel
         var combatState = player.Creature.CombatState;
         var randomEnemy = combatState?.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
         if (randomEnemy == null) return;
-        await CreatureCmd.Damage(ctx, randomEnemy, 2, ValueProp.Unpowered, player.Creature);
+        await CreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, player.Creature);
     }
 }
 

@@ -11,6 +11,6 @@ public class SerpentsNestPower : SneckoPowerModel
     protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Power) return;
-        await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount, ValueProp.Unpowered, Owner);
+        await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount, DamageProps.nonCardUnpowered, Owner);
     }
 }

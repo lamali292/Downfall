@@ -37,7 +37,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
             Owner,
             Applier,
             Amount,
-            ValueProp.Unpowered | ValueProp.Unblockable,
+            DamageProps.nonCardHpLoss,
             null,
             null,
             ModifyDamageHookType.All,
@@ -70,10 +70,10 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
         if (targetAll)
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, applier, null, null);
+                DamageProps.nonCardHpLoss, applier, null, null);
         else
             await DownfallCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, applier, null, null);
+                DamageProps.nonCardHpLoss, applier, null, null);
 
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);

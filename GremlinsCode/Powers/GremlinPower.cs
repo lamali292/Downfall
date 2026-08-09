@@ -68,13 +68,13 @@ public class GremlinPower()
                 break;
             case ShieldGremlin:
                 if (cardPlay.Card.Type != CardType.Skill) return;
-                await CreatureCmd.GainBlock(Owner, 2, ValueProp.Unpowered, null);
+                await CreatureCmd.GainBlock(Owner, 2, BlockProps.nonCardUnpowered, null);
                 break;
             case SneakGremlin:
                 if (cardPlay.Card.Type != CardType.Attack) return;
                 var randomEnemy = combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
                 if (randomEnemy == null) return;
-                await CreatureCmd.Damage(ctx, randomEnemy, 2, ValueProp.Unpowered, Owner);
+                await CreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, Owner);
                 break;
         }
     }

@@ -15,7 +15,7 @@ public class HeatCrush : HexaghostCardModel
 {
     public HeatCrush() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(8, Calc, ValueProp.Move, 4);
+        WithCalculatedDamage(8, Calc, DamageProps.card, 4);
         this.WithTip<SoulBurnPower>();
     }
 

@@ -18,7 +18,8 @@ public class RagingCallPower : CollectorPowerModel
     {
         if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
+            // TODO: torchhead shoudld deal the damage.
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
+                DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

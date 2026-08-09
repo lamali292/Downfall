@@ -33,7 +33,7 @@ public class ChampDefensiveStance : ChampStanceModel
             ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true })
             : [Owner.Creature];
         await targets.ForEachAsync(e =>
-             CreatureCmd.GainBlock(e, amount, ValueProp.Unpowered, null)
+             CreatureCmd.GainBlock(e, amount, BlockProps.nonCardUnpowered, null)
         );
 
     }

@@ -39,7 +39,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
 
     protected ConstructedRelicModel WithDamage(int i)
     {
-        WithVars(new DamageVar(i, ValueProp.Unpowered));
+        WithVars(new DamageVar(i, DamageProps.nonCardUnpowered));
         return this;
     }
 
@@ -53,7 +53,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
     protected ConstructedRelicModel WithBlock(int i)
     {
         WithTip(StaticHoverTip.Block);
-        WithVars(new BlockVar(i, ValueProp.Unpowered));
+        WithVars(new BlockVar(i, BlockProps.nonCardUnpowered));
         return this;
     }
 

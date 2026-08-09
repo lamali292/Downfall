@@ -20,7 +20,7 @@ public class BurnOutPower : AutomatonPowerModel
             var enemies = card.Owner.Creature.CombatState?.HittableEnemies;
             if (enemies == null) return;
             Flash();
-            await CreatureCmd.Damage(ctx, enemies, Amount, ValueProp.Unpowered, Owner);
+            await CreatureCmd.Damage(ctx, enemies, Amount, DamageProps.nonCardUnpowered, Owner);
         }
     }
 }

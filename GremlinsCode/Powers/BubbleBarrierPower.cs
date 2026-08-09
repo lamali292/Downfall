@@ -13,7 +13,7 @@ public class BubbleBarrierPower : GremlinsPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player) return;
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,

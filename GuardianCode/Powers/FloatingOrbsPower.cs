@@ -15,6 +15,6 @@ public class FloatingOrbsPower : GuardianPowerModel
         if (cardPlay.Resources.EnergySpent != 0 || cardPlay.Resources.StarsSpent != 0) return;
         var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (target == null) return;
-        await CreatureCmd.Damage(choiceContext, target, Amount, ValueProp.Unpowered, Owner);
+        await CreatureCmd.Damage(choiceContext, target, Amount, DamageProps.nonCardUnpowered, Owner);
     }
 }

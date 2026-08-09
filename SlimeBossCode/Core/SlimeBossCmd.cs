@@ -70,11 +70,11 @@ public static class SlimeBossCmd
         }
     }
 
-    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, ValueProp props,
+    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, bool canBeModified,
         CardModel? cardSource = null, CommandType commandType = CommandType.First)
     {
         var modified = amount;
-        if (!props.HasFlag(ValueProp.Unpowered))
+        if (canBeModified)
         {
             var cs = player.Creature.CombatState;
             if (cs == null) return;
@@ -85,20 +85,20 @@ public static class SlimeBossCmd
         for (var i = 0; i < modified; i++) await CommandInternal(ctx, player, commandType);
     }
 
-    public static Task Command(PlayerChoiceContext ctx, CardModel card, ValueProp props = ValueProp.Move)
+    public static Task Command(PlayerChoiceContext ctx, CardModel card, bool canBeModified = true)
     {
-        return Command(ctx, card.Owner, card.DynamicVars["Command"].IntValue, props, card);
+        return Command(ctx, card.Owner, card.DynamicVars["Command"].IntValue, canBeModified, card);
     }
 
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel card, ValueProp props)
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel card, bool canBeModified)
     {
-        return Command(ctx, player, card.DynamicVars["Command"].IntValue, props, card, CommandType.All);
+        return Command(ctx, player, card.DynamicVars["Command"].IntValue, canBeModified, card, CommandType.All);
     }
 
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, ValueProp props, int amount = 1,
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, bool canBeModified, int amount = 1,
         CardModel? cardSource = null)
     {
-        return Command(ctx, player, amount, props, cardSource, CommandType.All);
+        return Command(ctx, player, amount, canBeModified, cardSource, CommandType.All);
     }
 
     public static async Task SlurpAll(CardModel card)

@@ -14,6 +14,6 @@ public class CrashoutPower : AutomatonPowerModel
         if (player.Creature != Owner || cardPlay.Card.Type != CardType.Status) return;
         var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
-        await DownfallCreatureCmd.Damage(ctx, enemy, Amount, ValueProp.Unpowered, Owner, null, null);
+        await DownfallCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

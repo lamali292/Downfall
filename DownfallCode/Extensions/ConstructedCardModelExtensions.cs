@@ -51,12 +51,12 @@ public static class ConstructedCardModelExtensions
 
     public static ConstructedCardModel WithSelfDamage(this ConstructedCardModel card, int baseVal, int upgrade = 0)
     {
-        return card.WithVar(new SelfDamageVar(baseVal, ValueProp.Move | ValueProp.Unpowered).WithUpgrade(upgrade));
+        return card.WithVar(new SelfDamageVar(baseVal, DamageProps.cardUnpowered).WithUpgrade(upgrade));
     }
 
     public static ConstructedCardModel WithEnemyDamage(this ConstructedCardModel card, int baseValue, int upgrade = 0)
     {
-        return card.WithVars(new EnemyDamageVar(baseValue, ValueProp.Move).WithUpgrade(upgrade));
+        return card.WithVars(new EnemyDamageVar(baseValue, DamageProps.monsterMove).WithUpgrade(upgrade));
     }
 
     public static ConstructedCardModel WithUpgradedCardTip<T>(this ConstructedCardModel cons,

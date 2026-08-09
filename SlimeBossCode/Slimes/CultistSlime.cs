@@ -12,7 +12,7 @@ public class CultistSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move),
+        new DamageVar(6, DamageProps.monsterMove),
         new("Increase", 1)
     ];
 

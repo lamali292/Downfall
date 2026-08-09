@@ -15,7 +15,7 @@ public class Constructor : AutomatonCardModel, IEncodable
     public Constructor() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithBlock(5, 2);
-        WithVars(new BlockVar("ExtraBlock", 5, ValueProp.Move).WithUpgrade(2));
+        WithVars(new BlockVar("ExtraBlock", 5, BlockProps.card).WithUpgrade(2));
     }
 
     public IEnumerable<Encodable> Encodings => [new BlockEncode()];

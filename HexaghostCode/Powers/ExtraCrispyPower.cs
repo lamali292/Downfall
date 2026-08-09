@@ -13,7 +13,7 @@ public class ExtraCrispyPower : HexaghostPowerModel, IAfterSoulburnDetonate
     public async Task AfterSoulburnDetonate(PlayerChoiceContext ctx, Creature creature)
     {
         if (Owner.CombatState == null || !Owner.CombatState.Enemies.Contains(creature)) return;
-        await CreatureCmd.Damage(ctx, creature, Amount, ValueProp.Unpowered | ValueProp.Unblockable,
+        await CreatureCmd.Damage(ctx, creature, Amount, DamageProps.nonCardHpLoss,
             Owner);
         await PowerCmd.Apply<SoulBurnPower>(ctx, creature, Amount, Owner, null);
     }

@@ -29,7 +29,7 @@ public class CrushingGhostflame : GhostflameModel
         var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
-            targets => CreatureCmd.Damage(ctx, targets, damage, ValueProp.Unpowered, Owner.Creature));
+            targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)

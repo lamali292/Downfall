@@ -22,7 +22,7 @@ public class SongOfSorrowPower : AwakenedPowerModel
                 await CreatureCmd.Damage(ctx,
                     enemy,
                     Amount,
-                    ValueProp.Unblockable | ValueProp.Unpowered,
+                    DamageProps.nonCardHpLoss,
                     Owner);
     }
 }

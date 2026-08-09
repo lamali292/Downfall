@@ -17,6 +17,6 @@ public class ProtectingCallPower : CollectorPowerModel
     {
         if (command.Attacker == null || Owner.PetOwner == null || !Owner.IsAlive) return;
         if (Owner.PetOwner == command.Attacker.Player)
-            await CreatureCmd.GainBlock(Owner.PetOwner.Creature, Amount, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner.PetOwner.Creature, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

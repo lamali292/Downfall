@@ -13,7 +13,7 @@ public class Amass : SneckoCardModel
 {
     public Amass() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCalculatedBlock(12, Calc, ValueProp.Move, 4);
+        WithCalculatedBlock(12, Calc, DamageProps.card, 4);
     }
 
     private static decimal Calc(CardModel card, Creature? creature)

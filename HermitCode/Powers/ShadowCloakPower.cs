@@ -14,7 +14,7 @@ public sealed class ShadowCloakPower : HermitPowerModel
         if (card.Owner.Creature != Owner || card.Type != CardType.Curse)
             return;
         await CreatureCmd.TriggerAnim(Owner, "Cast", Owner.Player!.Character.CastAnimDelay);
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
@@ -23,6 +23,6 @@ public sealed class ShadowCloakPower : HermitPowerModel
         if (card.Owner.Creature != Owner || card.Type != CardType.Curse)
             return;
         await CreatureCmd.TriggerAnim(Owner, "Cast", Owner.Player!.Character.CastAnimDelay);
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

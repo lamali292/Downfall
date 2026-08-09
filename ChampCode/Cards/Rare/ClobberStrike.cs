@@ -23,6 +23,6 @@ public class ClobberStrike : ChampCardModel
     {
         var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var unblockedDamage = attackCommand.Results.SelectMany(r => r).Sum(x => x.UnblockedDamage);
-        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, BlockProps.card, cardPlay);
     }
 }

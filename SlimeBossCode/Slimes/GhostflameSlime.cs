@@ -18,7 +18,7 @@ public class GhostflameSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
+        new DamageVar(4, DamageProps.monsterMove),
         new SlimeSecondaryVar(6)
     ];
 

@@ -16,7 +16,7 @@ public class CrystalRay : GuardianCardModel
     public CrystalRay() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTip(GuardianKeyword.Gem);
-        WithCalculatedDamage(12, 2, Calc, ValueProp.Move, 4, 1);
+        WithCalculatedDamage(12, 2, Calc, DamageProps.card, 4, 1);
     }
 
     private static decimal Calc(CardModel card, Creature? creature)

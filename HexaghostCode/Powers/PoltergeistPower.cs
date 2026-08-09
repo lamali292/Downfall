@@ -14,7 +14,7 @@ public class PoltergeistPower : HexaghostPowerModel
         var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (creature == null) return;
         await DownfallCreatureCmd.Damage(ctx, creature, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
+            DamageProps.nonCardHpLoss, Owner, null, null);
         Flash();
     }
 }
