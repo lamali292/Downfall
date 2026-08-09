@@ -19,12 +19,18 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        Owner.GetHand()
-            .OrderByDescending(e => e.EnergyCost.GetResolved())
-            .Take(1)
-            .FirstOrDefault()?
-            .EnergyCost
-            .AddThisTurnOrUntilPlayed(-DynamicVars["CostReduction"].IntValue, true);
+        var candidates = Owner.GetHand()
+            .Where(c => c.EnergyCost.GetWithModifiers(CostModifiers.None) > 0)
+            .ToList();
+
+        if (candidates.Count <= 0) return Task.CompletedTask;
+        var maxResolved = candidates.Max(c => c.EnergyCost.GetResolved());
+        var topCost = candidates
+                .Where(c => c.EnergyCost.GetResolved() == maxResolved)
+                .ToList();
+
+        var chosen = Owner.RunState.Rng.CombatCardSelection.NextItem(topCost);
+        chosen?.EnergyCost.AddThisTurnOrUntilPlayed(-DynamicVars["CostReduction"].IntValue, true);
         return Task.CompletedTask;
     }
 
