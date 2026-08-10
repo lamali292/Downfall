@@ -31,7 +31,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
             if (_isAwakened == value) return;
             _isAwakened = value;
 
-            _animState?.SetAnimationWithMix(IdleAnim, 0.1f);
+            _animState?.SetAnimationWithMix(IdleAnim, 0.5f);
             SetParticles(value);
         }
     }
