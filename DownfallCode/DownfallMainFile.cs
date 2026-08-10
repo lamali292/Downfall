@@ -32,6 +32,7 @@ public partial class DownfallMainFile : Node
 
     public static void Initialize()
     {
+        PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
@@ -52,15 +53,6 @@ public partial class DownfallMainFile : Node
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
-        PostInitRegistry.Register(() =>
-        {
-            CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,
-                (target, player) =>
-                    target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
-            LogRegisteredCounts();
-            CustomPowerInstanceType.RegisterAll();
-        });
-
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
@@ -101,7 +93,16 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("STS1")
             );
     }
-    
+
+    private static void PostModelInit()
+    {
+        CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,
+            (target, player) =>
+                target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);
+        LogRegisteredCounts();
+        CustomPowerInstanceType.RegisterAll();
+    }
+
     public static string GetDownfallVersion()
     {
         var mod = ModManager.GetLoadedMods().FirstOrDefault(m => m.manifest?.id == "Downfall");

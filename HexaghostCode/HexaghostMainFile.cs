@@ -24,6 +24,7 @@ public partial class HexaghostMainFile : Node
 
     public static void Initialize()
     {
+        PostInitRegistry.Register(PostModelInit);
         RichTextEffectRegistry.Register<RichTextAfterlife>();
         CardExecutionRegistry.RegisterBefore(HexaghostCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(HexaghostCardEffectHandler.DoAfterOnPlayInternal);
@@ -31,13 +32,12 @@ public partial class HexaghostMainFile : Node
         HexaghostSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-
-        PostInitRegistry.Register(() =>
-        {
-            CardKeywordSubRegistry.Register(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
-            KeywordColorRegistry.Register(HexaghostKeyword.Afterlife, "afterlife");
-        });
-
         CombatUiHooks.Register(HexaghostModel.SetupHexaghostCombatUi);
+    }
+
+    private static void PostModelInit()
+    {
+        CardKeywordSubRegistry.Register(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
+        KeywordColorRegistry.Register(HexaghostKeyword.Afterlife, "afterlife");
     }
 }
