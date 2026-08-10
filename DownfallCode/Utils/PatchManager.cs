@@ -60,7 +60,8 @@ public class DownfallPatchManager
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
             .Add(typeof(NCreditsScreenPatch))
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
-            .Add(typeof(CardCmdTransformTransformHook));
+            .Add(typeof(CardCmdTransformTransformHook))
+            .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 
 

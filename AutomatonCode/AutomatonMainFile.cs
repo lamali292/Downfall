@@ -25,22 +25,22 @@ public partial class AutomatonMainFile : Node
 
     public static void Initialize()
     {
+        PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
         CardExecutionRegistry.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
-
-        // todo: use actual stash pile icon.
-        PostInitRegistry.Register(() =>
-        {
-            MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash, "res://Automaton/images/character/character_icon.png", new LocString("card_selection", "AUTOMATON-STASH_PILE"));
-        });
-        
         FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
+    }
+
+    private static void PostModelInit()
+    {
+        // todo: use actual stash pile icon.
+        MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash, "res://Automaton/images/character/character_icon.png", new LocString("card_selection", "AUTOMATON-STASH_PILE"));
     }
 }

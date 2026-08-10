@@ -1,4 +1,5 @@
 using Awakened.AwakenedCode.Cards;
+using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
 using BaseLib.Utils;
@@ -8,6 +9,7 @@ using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Awakened.AwakenedCode;
@@ -22,6 +24,7 @@ public partial class AwakenedMainFile : Node
 
     public static void Initialize()
     {
+        PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("chants");
         CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
@@ -34,5 +37,15 @@ public partial class AwakenedMainFile : Node
         FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");
         FormBoneRegistry.RegisterReaperForm<Core.Awakened>("Shoulder_feathers");
         FormBoneRegistry.RegisterEchoForm<Core.Awakened>("Shoulder_feathers");
+    }
+
+    private static void PostModelInit()
+    {
+        CustomBundleRegistry.Register<Core.Awakened>(new CustomPackage {
+            ChancePercent = 2,
+            Card1 = ModelDb.Card<Caw>(),
+            Card2 = ModelDb.Card<Caw>(),
+            Card3 = ModelDb.Card<Caw>(),
+        });
     }
 }
