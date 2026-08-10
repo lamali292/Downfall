@@ -18,6 +18,30 @@ Write-Host "=== Generating images (ImageGen) ==="
 dotnet run --project ImageGen/ImageGen.csproj
 if ($LASTEXITCODE -ne 0) { throw "ImageGen failed" }
 
+Write-Host "=== Fetching spine-godot extension ===" -ForegroundColor Cyan
+$spineUrl = "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-4.2-4.5.1-stable.zip"
+$spineZip = Join-Path $env:TEMP "spine-godot-extension.zip"
+$spineTmp = Join-Path $env:TEMP "spine-godot-extract"
+
+# Skip if the extension is already installed
+if (Test-Path "bin\*.gdextension") {
+    Write-Host "spine-godot extension already present, skipping download"
+} else {
+    $ProgressPreference = "SilentlyContinue"   # makes Invoke-WebRequest much faster
+    Invoke-WebRequest -Uri $spineUrl -OutFile $spineZip
+
+    if (Test-Path $spineTmp) { Remove-Item -Recurse -Force $spineTmp }
+    Expand-Archive -Path $spineZip -DestinationPath $spineTmp -Force
+
+    # The zip has a top-level bin/ folder — merge its contents into ProjectRoot\bin
+    New-Item -ItemType Directory -Force -Path "bin" | Out-Null
+    Copy-Item -Path (Join-Path $spineTmp "bin\*") -Destination "bin" -Recurse -Force
+
+    Remove-Item $spineZip -Force
+    Remove-Item -Recurse -Force $spineTmp
+    Write-Host "spine-godot extension installed to bin\" -ForegroundColor Green
+}
+
 Write-Host "=== Building Downfall ==="
 dotnet build Downfall.csproj --nologo -v q
 if ($LASTEXITCODE -ne 0) {
