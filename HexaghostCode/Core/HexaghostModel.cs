@@ -57,6 +57,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     }
     
     // we use AfterSideTurnEnd instead of BeforeSideTurnEnd so thermal stone triggers on cards that got ethereal exhausted
+    // we have to care about order with HereAndNowPower
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
