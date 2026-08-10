@@ -92,7 +92,7 @@ public class BurningQuestionChoice3 : BurningQuestionChoiceBase
 {
     public BurningQuestionChoice3()
     {
-        WithPower<RoyaltiesPower>(30, 10);
+        WithPower<RoyaltiesPower>(40, 10);
     }
 
     public static BurningQuestionChoice3 Create(Player owner)

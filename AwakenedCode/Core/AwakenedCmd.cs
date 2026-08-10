@@ -60,7 +60,6 @@ public static class AwakenedCmd
             var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
             if (creatureNode?.Visuals is not NAwakenedCreatureVisuals awakenedVisuals) return;
             awakenedVisuals.IsAwakened = true;
-            awakenedVisuals.OnAnimationTrigger("Idle");
         }).CallDeferred();
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }

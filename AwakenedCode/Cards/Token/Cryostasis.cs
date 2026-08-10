@@ -34,6 +34,7 @@ public class Cryostasis : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaqu
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, DynamicVars.Block, cardPlay);
     }
 }

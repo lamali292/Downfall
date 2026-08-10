@@ -12,15 +12,33 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
+    private const float CastMix = 0.1f;
     private const float HitMix = 0.05f;
     private const float DeadMix = 0.35f;
+
     private MegaAnimationState? _animState;
     private MegaSprite? _sprite;
 
-    public bool IsAwakened { get; set; }
+    private Node2D? _eyeFlare;
+    private Node2D? _wingFlare;
+
+    private bool _isAwakened;
+    public bool IsAwakened
+    {
+        get => _isAwakened;
+        set
+        {
+            if (_isAwakened == value) return;
+            _isAwakened = value;
+
+            _animState?.SetAnimationWithMix(IdleAnim, 1.0f);
+            SetParticles(value);
+        }
+    }
 
     private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
-    private string AttackAnim => IsAwakened ? "Attack_2" : "Attack_1";
+    private string AttackAnim => "Attack";
+    private string CastAnim => "Attack_2";
     private string HitAnim => "Hit";
     private string DeadAnim => "Dead";
 
@@ -41,8 +59,11 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
                 break;
             case "Dead":
                 _animState?.SetAnimationWithMix(DeadAnim, DeadMix, false);
+                SetParticles(false);
                 break;
             case "Cast":
+                _animState?.SetAnimationWithMix(CastAnim, CastMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
         }
     }
@@ -60,7 +81,43 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _sprite?.SetNormalMaterial(premultMat);
 
         _animState = _sprite?.GetAnimationState();
-
         _animState?.SetAnimationCompat("Idle_1");
+
+        _eyeFlare = Body.GetNodeOrNull<Node2D>("%EyeFlare");
+        _wingFlare = Body.GetNodeOrNull<Node2D>("%WingFlare");
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (_sprite == null) return;
+
+        if (_eyeFlare != null)
+        {
+            var eye = _sprite.GetGlobalBoneTransform("Eye");
+            if (eye.HasValue)
+                _eyeFlare.GlobalPosition = eye.Value.Origin;
+        }
+
+        if (_wingFlare == null) return;
+        var hips = _sprite.GetGlobalBoneTransform("Hips");
+        if (!hips.HasValue) return;
+        var t = hips.Value;
+        _wingFlare.GlobalPosition = t.Origin;
+        _wingFlare.GlobalRotation = t.Rotation;
+    }
+
+    private void SetParticles(bool on)
+    {
+        SetFlare(_eyeFlare, on);
+        SetFlare(_wingFlare, on);
+    }
+
+    private static void SetFlare(Node2D? flare, bool on)
+    {
+        if (flare == null) return;
+        foreach (var child in flare.GetChildren())
+            if (child is GpuParticles2D p)
+                p.Emitting = on;
     }
 }
