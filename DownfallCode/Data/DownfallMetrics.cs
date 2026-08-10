@@ -24,7 +24,7 @@ public static class DownfallMetrics
             EndpointUrl = "https://wxememsxgrgrfvntulgr.supabase.co/rest/v1/runs",
             ApiKey = "sb_publishable_XJRuWuyy0fJwKVFUQ8L3Dw_JrokGm_i",
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
-            IsOwnCharacter = c => c is DownfallCharacterModel or Silent or Regent or Ironclad or Defect or Necrobinder,
+            IsOwnCharacter = MetricsPredicates.CharacterOfType<DownfallCharacterModel>(),
             AllowedAssemblies = new HashSet<Assembly>
             {
                 typeof(DownfallCharacterModel).Assembly,
