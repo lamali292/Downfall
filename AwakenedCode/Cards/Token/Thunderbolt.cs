@@ -40,6 +40,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaq
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_lightning")
             .Execute(ctx);
