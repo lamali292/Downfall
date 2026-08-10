@@ -20,7 +20,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private MegaSprite? _sprite;
 
     private Node2D? _eyeFlare;
-    private Node2D? _wingFlare;
+    private WingFlare? _wingFlare;
 
     private bool _isAwakened;
     public bool IsAwakened
@@ -31,7 +31,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
             if (_isAwakened == value) return;
             _isAwakened = value;
 
-            _animState?.SetAnimationWithMix(IdleAnim, 1.0f);
+            _animState?.SetAnimationWithMix(IdleAnim, 0.1f);
             SetParticles(value);
         }
     }
@@ -84,7 +84,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState?.SetAnimationCompat("Idle_1");
 
         _eyeFlare = Body.GetNodeOrNull<Node2D>("%EyeFlare");
-        _wingFlare = Body.GetNodeOrNull<Node2D>("%WingFlare");
+        _wingFlare = Body.GetNodeOrNull<WingFlare>("%WingFlare");
     }
 
     public override void _Process(double delta)
@@ -99,18 +99,18 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
                 _eyeFlare.GlobalPosition = eye.Value.Origin;
         }
 
-        if (_wingFlare == null) return;
-        var hips = _sprite.GetGlobalBoneTransform("Hips");
-        if (!hips.HasValue) return;
-        var t = hips.Value;
-        _wingFlare.GlobalPosition = t.Origin;
-        _wingFlare.GlobalRotation = t.Rotation;
+        if (_wingFlare != null)
+        {
+            var hips = _sprite.GetGlobalBoneTransform("Hips");
+            if (hips.HasValue)
+                _wingFlare.GlobalPosition = hips.Value.Origin + new Vector2(WingPos.wingPosX, WingPos.wingPosY);
+        }
     }
 
     private void SetParticles(bool on)
     {
         SetFlare(_eyeFlare, on);
-        SetFlare(_wingFlare, on);
+        _wingFlare?.SetActive(on);
     }
 
     private static void SetFlare(Node2D? flare, bool on)
@@ -121,3 +121,10 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
                 p.Emitting = on;
     }
 }
+
+
+public static class WingPos
+{
+    public static float wingPosX => 10;
+    public static float wingPosY => -20;
+} 

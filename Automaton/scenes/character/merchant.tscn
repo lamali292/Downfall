@@ -8,4 +8,4 @@ script = ExtResource("1_j2063")
 
 [node name="Automaton" parent="." instance=ExtResource("2_ssl3a")]
 position = Vector2(0, -9)
-scale = Vector2(1.2546632, 1.2546632)
+scale = Vector2(-1.255, 1.255)
