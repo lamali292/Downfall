@@ -91,12 +91,13 @@ public static class AwakenedCmd
     {
         if (!CanConjure(player)) return null;
         var spellbook = AwakenedModel.GetOrInitSpellbook(player);
-        var rng = player.RunState.Rng.CombatCardSelection;
-
-        var spell = spellbook.NextSpell ?? (spellbook.Cards.Count > 0 ? spellbook.Cards[0] : null);
+        while (spellbook.NextSpell == null)
+        {
+            spellbook.SetNextSpell(player);   
+        }
+        var spell = spellbook.NextSpell;
         if (spell == null) return null;
-
-        return await ConjureSpell(player, spell, spellbook, rng);
+        return await ConjureSpell(player, spell, spellbook);
     }
 
     public static async Task<CardModel?> ConjureSelected(
@@ -106,23 +107,29 @@ public static class AwakenedCmd
     {
         if (!CanConjure(player)) return null;
         var spellbook = AwakenedModel.GetOrInitSpellbook(player);
-        var rng = sourceCard.CombatState!.RunState.Rng.CombatCardGeneration;
-
         if (!spellbook.Cards.Contains(selectedSpell)) return null;
-        return await ConjureSpell(player, selectedSpell, spellbook, rng);
+        return await ConjureSpell(player, selectedSpell, spellbook);
     }
 
     private static async Task<CardModel?> ConjureSpell(
         Player player,
         CardModel spell,
-        AwakenedPile spellbook,
-        Rng rng)
+        AwakenedPile spellbook)
     {
         spellbook.RemoveInternal(spell);
-        spellbook.SetNextSpell(rng);
-        await CardPileCmd.AddGeneratedCardToCombat(spell, PileType.Hand, player);
 
-        if (spellbook.Cards.Count == 0) spellbook.Refresh(player);
+        await CardPileCmd.AddGeneratedCardToCombat(
+            spell,
+            PileType.Hand,
+            player);
+
+        if (spellbook.Cards.Count == 0)
+        {
+            spellbook.Refresh(player);
+        }
+
+        spellbook.SetNextSpell(player);
+
         AwakenedDisplay.Refresh(player);
         return spell;
     }

@@ -18,9 +18,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
     [CustomEnum] public static PileType Spellbook;
 
     private readonly List<CardModel> _dynamicTypes = [];
-
-    public CardModel? NextSpell { get; private set; }
-
+    
 
     public void AddPersistentType(CardModel type)
     {
@@ -38,33 +36,43 @@ public class AwakenedPile() : CustomPile(Spellbook)
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
         return creatureNode?.GlobalPosition ?? Vector2.Zero;
     }
+    
+    private Type? _nextSpellType;
 
+    public CardModel? NextSpell { get; private set; }
 
-    public void SetNextSpell(Rng rng)
+    public void SetNextSpell(Player player)
     {
-        var available = Cards.Where(c => c != NextSpell).ToList();
+        var available = Cards
+            .Where(c => c.GetType() != _nextSpellType)
+            .ToList();
+
         NextSpell = available.Count > 0
-            ? rng.NextItem(available)
+            ? player.RunState.Rng.Niche.NextItem(available)
             : Cards.Count > 0
                 ? Cards[0]
                 : null;
+
+        _nextSpellType = NextSpell?.GetType();
     }
 
     public void Refresh(Player owner)
     {
         var state = owner.Creature.CombatState;
         if (state == null) return;
-
-        var rng = state.RunState.Rng.CombatCardGeneration;
+        var previousType = _nextSpellType ?? NextSpell?.GetType();
 
         foreach (var card in Cards.ToList())
             card.RemoveFromState();
 
         AddBaseSpells(owner, state);
 
-        foreach (var type in _dynamicTypes) CreateAndAddSpell(owner, state, type);
-
-        SetNextSpell(rng);
+        foreach (var type in _dynamicTypes)
+            CreateAndAddSpell(owner, state, type);
+        
+        if (previousType == null) return;
+        NextSpell = Cards.FirstOrDefault(c => c.GetType() == previousType);
+        _nextSpellType = NextSpell?.GetType();
     }
 
     private void AddBaseSpells(Player owner, ICombatState state)
