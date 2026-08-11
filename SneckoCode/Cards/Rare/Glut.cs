@@ -44,12 +44,14 @@ public class Glut : SneckoCardModel
             {
                 var dmg  = (DamageVar)DynamicVars["OverflowDamage"];
                 var hits = (int)((CalculatedVar)DynamicVars["OverflowRepeat"]).Calculate(null);
-                var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
                 for (var i = 0; i < hits; i++)
+                {
+                    var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
+                    if (targets.Count == 0) break; 
                     context.AddHit(await CreatureCmd.Damage(
-                            ctx, targets, dmg.BaseValue,
-                            DamageProps.card, Owner.Creature, this, cardPlay));
-
+                        ctx, targets, dmg.BaseValue,
+                        DamageProps.card, Owner.Creature, this, cardPlay));
+                }
                 await SneckoHook.AfterOverflowEffect(Owner, cardPlay, this);
             }
         }
