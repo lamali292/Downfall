@@ -6,4 +6,5 @@ namespace Snecko.SneckoCode.Interfaces;
 public interface IHasOverflowEffect
 {
     Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
+    bool HandlesOverflowSelf => false; 
 }

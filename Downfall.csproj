@@ -52,7 +52,8 @@
     <PropertyGroup>
         <ModOutputFolder>Downfall</ModOutputFolder>
         <!-- Every asset folder to bundle into the single Downfall.pck -->
-        <PackFolders>Downfall;Automaton;Awakened;Champ;Collector;Gremlins;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders>
+        <PackFolders>Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders>
+        <!--PackFolders>Downfall;Automaton;Awakened;Champ;Collector;Gremlins;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders-->
     </PropertyGroup>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
