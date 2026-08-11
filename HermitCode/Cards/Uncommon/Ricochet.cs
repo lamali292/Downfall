@@ -56,7 +56,7 @@ public sealed class Ricochet : HermitCardModel
                     if (target is not { IsHittable: true }) continue;
                     context.AddHit(await CreatureCmd.Damage(
                         ctx, target, DynamicVars.Damage.BaseValue,
-                        DamageProps.card, // powered => Vigor-eligible
+                        DamageProps.card,
                         Owner.Creature, this, play));
                 }
             }
