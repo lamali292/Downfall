@@ -16,7 +16,7 @@ using Snecko.SneckoCode.Interfaces;
 namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class Glut : SneckoCardModel, IHasOverflowEffect
+public class Glut : SneckoCardModel
 {
     public Glut() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -25,18 +25,11 @@ public class Glut : SneckoCardModel, IHasOverflowEffect
         WithCalculatedVar("OverflowRepeat", 0, Calc);
         WithVar(new DamageVar("OverflowDamage", 2, DamageProps.card).WithUpgrade(1));
     }
-
-    public Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return Task.CompletedTask;
-    }
-
+    
     private static decimal Calc(CardModel card, Creature? _)
     {
         return card.Owner.GetHand().Count(e => e != card);
     }
-
-    public bool HandlesOverflowSelf => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

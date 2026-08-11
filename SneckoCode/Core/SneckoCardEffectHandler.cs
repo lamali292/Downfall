@@ -11,7 +11,7 @@ public static class SneckoCardEffectHandler
 {
     public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (card is IHasOverflowEffect { HandlesOverflowSelf: false } overflow
+        if (card is IHasOverflowEffect overflow
             && card.Keywords.Contains(SneckoKeywords.Overflow)
             && SneckoCmd.OverflowActive(card))
         {
