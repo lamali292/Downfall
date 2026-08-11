@@ -48,7 +48,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
             .ToList();
 
         NextSpell = available.Count > 0
-            ? player.RunState.Rng.Niche.NextItem(available)
+            ? player.RunState.Rng.CombatCardSelection.NextItem(available)
             : Cards.Count > 0
                 ? Cards[0]
                 : null;
