@@ -10,6 +10,12 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class ExtraCrispyPower : HexaghostPowerModel, IAfterSoulburnDetonate
 {
+    public ExtraCrispyPower()
+    {
+        WithTip<SoulBurnPower>();
+    }
+    
+    
     public async Task AfterSoulburnDetonate(PlayerChoiceContext ctx, Creature creature)
     {
         if (Owner.CombatState == null || !Owner.CombatState.Enemies.Contains(creature)) return;
