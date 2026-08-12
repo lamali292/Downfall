@@ -68,7 +68,7 @@
     "HEXAGHOST-SIZZLE_POWER.title": "高温",
     "HEXAGHOST-SIZZLE_POWER.description": "[gold]消耗[/gold]本回合你打出的下一张牌。",
     "HEXAGHOST-SIZZLE_POWER.smartDescription": "[gold]消耗[/gold]本回合你打出的下[blue]{Amount}[/blue]张牌。",
-    "HEXAGHOST-HEATING_POWER.title": "升温",
+    "HEXAGHOST-HEATING_POWER.title": "温养",
     "HEXAGHOST-HEATING_POWER.description": "每当你给予[gold]灼魂[/gold]时，[gold]格挡[/gold]值最少的盟友获得[gold]格挡[/gold]。",
     "HEXAGHOST-HEATING_POWER.smartDescription": "每当你给予[gold]灼魂[/gold]时，[gold]格挡[/gold]值最少的盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "HEXAGHOST-INFERNO_POTION_POWER.title": "炼狱",

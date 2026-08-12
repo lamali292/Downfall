@@ -148,7 +148,7 @@
     "GUARDIAN-SERRATE.title": "鋸歯",
     "GUARDIAN-SERRATE.description": "{CalculatedDamage:diff()}ダメージを与える。\n自身に付与されている[gold]トゲ[/gold]1につき、追加で{ExtraDamage:diff()}ダメージを与える。",
     "GUARDIAN-TEMPORAL_REFRACTION.title": "時間屈折",
-    "GUARDIAN-TEMPORAL_REFRACTION.description": "毎ターン、最初に発動する[gold]ジェム[/gold]の効果を2倍にする。",
+    "GUARDIAN-TEMPORAL_REFRACTION.description": "毎ターン、最初に発動する[gold]ジェム[/gold]の効果をもう一度発動する。",
     "GUARDIAN-BRILLIANT_SCALES.title": "輝く鱗",
     "GUARDIAN-BRILLIANT_SCALES.description": "カードの使用時とターン開始時、このカードに埋め込まれたジェムの効果を発動する。",
     "GUARDIAN-ROCK_SLIDE.title": "岩雪崩",
