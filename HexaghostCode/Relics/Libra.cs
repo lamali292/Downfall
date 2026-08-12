@@ -13,7 +13,7 @@ public class Libra() : HexaghostRelicModel(RelicRarity.Shop), IGhostflameConditi
 {
     public bool GhostflameConditionOverwrites(Player player, GhostflameModel ghostflame, CardPlay cardPlay)
     {
-        return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame &&
+        return player == Owner && ghostflame is SearingGhostflame or CrushingGhostflame or OffclassSearingGhostflame or OffclassCrushingGhostflame &&
                cardPlay.Card.IsBasicStrikeOrDefend;
     }
 }

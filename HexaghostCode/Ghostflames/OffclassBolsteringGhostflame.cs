@@ -9,10 +9,11 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
+using Snecko.SneckoCode.Core;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
 
-public class BolsteringGhostflame : GhostflameModel
+public class OffclassBolsteringGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new BolsteringIntent();
     public override int IgnitionRequirement => 1;
@@ -23,7 +24,7 @@ public class BolsteringGhostflame : GhostflameModel
     {
         if (!TryBeginIgnite()) return;
 
-        var block = 4 + Intensity;
+        var block = 1 + Intensity;
         var repeat = 1 + Repeat(GhostflameRepeatType.Block);
         for (var i = 0; i < repeat; i++)
             await CreatureCmd.GainBlock(Owner.Creature, block, BlockProps.nonCardUnpowered, null);
@@ -32,10 +33,10 @@ public class BolsteringGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Power);
-
+        => TriggerOnCardType(ctx, cardPlay, CardType.Power, SneckoCmd.IsOffclass);
+    
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Attack && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Attack && SneckoCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

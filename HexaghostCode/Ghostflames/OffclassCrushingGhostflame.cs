@@ -1,5 +1,4 @@
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,13 +7,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
+using Snecko.SneckoCode.Core;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
 
-public class CrushingGhostflame : GhostflameModel
+public class OffclassCrushingGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new CustomAttackIntent(
-        () => 3 + Intensity,
+        () => 2 + Intensity,
         () => 2 * (1 + Repeat(GhostflameRepeatType.Damage))
     );
 
@@ -34,10 +34,10 @@ public class CrushingGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Skill);
+        => TriggerOnCardType(ctx, cardPlay, CardType.Skill, SneckoCmd.IsOffclass);
     
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Skill && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Skill && SneckoCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

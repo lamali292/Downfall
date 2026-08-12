@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
+using Hexaghost.HexaghostCode.Cards.Uncommon;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
@@ -90,7 +91,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     protected bool TryProgress(int amount = 1)
     {
-        if (IsIgnited) return false;
+        if (IsIgnited || !HexaghostCmd.IsGhostwheelActivated(Owner)) return false;
         IgnitionProgress += amount;
         UpdateVisuals();
         return IgnitionProgress >= IgnitionRequirement;
@@ -201,14 +202,16 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         }
     }
 
-    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type)
+    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type, Func<CardModel, bool>? cond = null)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || (cond != null && !cond.Invoke(cardPlay.Card))) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (cardPlay.Card.Type != type && !shouldCount) return;
         if (!TryProgress()) return;
         await Ignite(ctx);
     }
+
+    public abstract bool AboutToIgnite(CardModel card);
 }
 
 public enum GhostflameRepeatType

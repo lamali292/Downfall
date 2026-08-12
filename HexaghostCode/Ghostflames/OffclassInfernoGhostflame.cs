@@ -10,16 +10,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
+using Snecko.SneckoCode.Core;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
 
-public class InfernoGhostflame : GhostflameModel
+public class OffclassInfernoGhostflame : GhostflameModel
 {
     public override int IgnitionRequirement => 3;
     public override FireColor FireColor => FireColor.Red;
 
     public override AbstractIntent Intent => new CustomAttackIntent(
-        () => 4 + Intensity,
+        () => 3 + Intensity,
         () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * (1 + Repeat(GhostflameRepeatType.Damage))
     );
 
@@ -32,9 +33,6 @@ public class InfernoGhostflame : GhostflameModel
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
-
-        if (HexaghostCmd.AllIgnited(Owner))
-            await PowerCmd.Apply<IntensityPower>(ctx, Owner.Creature, 2, Owner.Creature, null);
 
         await Cmd.Wait(0.2f);
         await HexaghostCmd.ExtinguishAllExceptThis(ctx, Owner, this);
@@ -51,13 +49,13 @@ public class InfernoGhostflame : GhostflameModel
 
     protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
     {
-        if (!IsActive || card.Owner != Owner) return;
+        if (!IsActive || card.Owner != Owner || !SneckoCmd.IsOffclass(card)) return;
         if (!TryProgress(amount)) return;
         await Ignite(ctx);
     }
 
     public override bool AboutToIgnite(CardModel card)
     {
-        return IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetResolved();
+        return SneckoCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetResolved();
     }
 }
