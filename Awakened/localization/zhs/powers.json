@@ -77,7 +77,7 @@
     "AWAKENED-PRIMACY_POWER.title": "教主至上",
     "AWAKENED-PRIMACY_POWER.description": "每回合你第一次获得[gold]力量[/gold]时，抽1张牌。",
     "AWAKENED-PRIMACY_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次获得[gold]力量[/gold]时，抽1张牌。",
-    "AWAKENED-RAZOR_SHARP_POWER.title": "锋利如刃",
+    "AWAKENED-RAZOR_SHARP_POWER.title": "羽翼锋锐",
     "AWAKENED-RAZOR_SHARP_POWER.description": "羽刺额外命中1次。",
     "AWAKENED-RAZOR_SHARP_POWER.smartDescription": "羽刺额外命中[blue]{Amount}[/blue]次。",
     "AWAKENED-RISING_CHORUS_POWER.title": "渐强合唱",

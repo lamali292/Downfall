@@ -1,6 +1,6 @@
 {
     "AWAKENED-AWAKEN.title": "覚醒",
-    "AWAKENED-AWAKEN.description": "この戦闘中に[gold]パワー[/gold]カードを[blue]7[/blue]枚プレイすると、[gold]覚醒[/gold]する。\n[gold]覚醒[/gold]している間、この戦闘が終わるまで[gold]召喚[/gold]した[gold]呪文[/gold]カードをすべて[gold]アップグレード[/gold]する。",
+    "AWAKENED-AWAKEN.description": "この戦闘中、[gold]パワー[/gold]を[blue]7[/blue]枚プレイすると、[gold]覚醒[/gold]する。\n[gold]覚醒[/gold]している間、戦闘終了まで[gold]召喚[/gold]した[gold]呪文[/gold]カードをすべて[gold]アップグレード[/gold]する。",
     "AWAKENED-CONJURE.title": "召喚",
     "AWAKENED-CONJURE.description": "呪文書の次のカードを[gold]手札[/gold]に生成する。",
     "AWAKENED-CHANT.title": "詠唱",

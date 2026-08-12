@@ -163,7 +163,7 @@
     "GUARDIAN-SHARED_FLUX.description": "选择另一名玩家。\n该玩家可选择其[gold]抽牌堆[/gold]中的一张牌，将其[gold]凝滞[/gold]。",
     "GUARDIAN-OVERBLOCK.title": "过度防守",
     "GUARDIAN-OVERBLOCK.description": "每当你进入[gold]防御模式[/gold]时，拥有最少[gold]格挡[/gold]的另一位盟友在本回合中获得{OverblockBlockPower:diff()}点[gold]格挡[/gold]和{OverblockThornsPower:diff()}层[gold]荆棘[/gold]。",
-    "GUARDIAN-REFRACTED_LIGHT.title": "折射光线",
+    "GUARDIAN-REFRACTED_LIGHT.title": "折射光",
     "GUARDIAN-REFRACTED_LIGHT.description": "造成{Damage:diff()}点伤害。\n这张牌的宝石效果作用于所有玩家。",
     "GUARDIAN-MULTI_TROPS.title": "多重荆棘",
     "GUARDIAN-MULTI_TROPS.description": "所有玩家获得{ThornsPower:diff()}层[gold]荆棘[/gold]。",

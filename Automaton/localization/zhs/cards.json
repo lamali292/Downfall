@@ -54,7 +54,7 @@
     "AUTOMATON-FINE_TUNING.title": "微调",
     "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]对所有敌人造成{Damage:diff()}点伤害两次。\n获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
     "AUTOMATON-FLAIL.title": "乱击",
-    "AUTOMATON-FORCE_SHIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n本场战斗中你每生成过一张牌，此牌费用减少{Energy:energyIcons()}。",
+    "AUTOMATON-FORCE_SHIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n本场战斗中你每生成过一张牌，此牌耗能减少{Energy:energyIcons()}。",
     "AUTOMATON-FORCE_SHIELD.title": "力场护盾",
     "AUTOMATON-FORMAT.description": "[gold]编码[/gold]{IfUpgraded:show:X+1|X}张[gold]碎片+[/gold]。\n获得{Energy:energyIcons()}。",
     "AUTOMATON-FORMAT.title": "格式化",

@@ -25,7 +25,7 @@
     "HEXAGHOST-BURNING_TOUCH.title": "灼热接触",
     "HEXAGHOST-CATCH_UP.description": "[gold]点燃[/gold]上一个鬼火{IgniteCount:diff()}次。",
     "HEXAGHOST-CATCH_UP.title": "追赶",
-    "HEXAGHOST-CAUTERIZE.title": "烧灼",
+    "HEXAGHOST-CAUTERIZE.title": "烙刻",
     "HEXAGHOST-CAUTERIZE.description": "造成{Damage:diff()}点伤害X次。\n给予等量于所造成伤害的[gold]灼魂[/gold]。",
     "HEXAGHOST-CHARGED_BARRAGE.description": "每有一个已[gold]点燃[/gold]的鬼火，就给予{SoulBurnPower:diff()}层[gold]灼魂[/gold]一次。",
     "HEXAGHOST-CHARGED_BARRAGE.title": "蓄能焰幕",
@@ -199,7 +199,7 @@
     "HEXAGHOST-FLOAT_CHOICE_ADVANCE.description": "[gold]步进[/gold]。",
     "HEXAGHOST-CIRCLE_FLAME.title": "炎环",
     "HEXAGHOST-CIRCLE_FLAME.description": "[afterlife]给予[/afterlife]{SoulBurnPower:diff()}层[afterlife]灼魂。[/afterlife]\n每当这张牌[gold]消耗[/gold]时，将一张复制加入随机玩家的[gold]弃牌堆[/gold]。",
-    "HEXAGHOST-HEATING.title": "升温",
+    "HEXAGHOST-HEATING.title": "温养",
     "HEXAGHOST-HEATING.description": "每当你给予[gold]灼魂[/gold]时，[gold]格挡[/gold]值最少的盟友获得{HeatingPower:diff()}点[gold]格挡[/gold]。",
     "HEXAGHOST-LEVITATE.title": "升空",
     "HEXAGHOST-LEVITATE.description": "[afterlife]给予另一玩家[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]"
