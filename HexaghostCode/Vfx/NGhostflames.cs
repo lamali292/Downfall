@@ -52,7 +52,7 @@ public partial class NGhostflames : Control
     {
         var root = new NGhostflames { Name = "Ghostflames" };
         root._player = player;
-        root.ZIndex = 0;   
+        root.ZIndex = 0;
         root.ZAsRelative = false;
         var fireScene = ResourceLoader.Load<PackedScene>(FireScenePath);
         if (fireScene == null)
@@ -73,6 +73,7 @@ public partial class NGhostflames : Control
             root.AddChild(fire);
             fires[i] = fire;
         }
+
         root._builtFires = fires;
 
         return root;
@@ -108,18 +109,24 @@ public partial class NGhostflames : Control
             anchor.AddChild(hitbox);
             _hitboxes[i] = hitbox;
 
-            // Sibling of the hitbox, centered on the same anchor origin (matches how
-            // orb.tscn positions its own SelectionReticle relative to the orb's hitbox).
-            // Sized to the flame sprite itself, not the (deliberately oversized, for easier
-            // targeting) 80x80 hitbox — otherwise the bracket reads as loose/oversized.
+            // A mouse click grabs focus on this hitbox; because WireHover latches on
+            // (isHovered || isFocused), that lingering focus both keeps the tip up after
+            // the mouse leaves and blocks onFocus from re-firing when it returns. Drop
+            // focus on mouse-up so the hover tip is driven purely by mouse enter/exit.
+            // Controller focus (d-pad/stick) is unaffected.
+            var hb = hitbox;
+            hb.GuiInput += (InputEvent ev) =>
+            {
+                if (ev is InputEventMouseButton { Pressed: false })
+                    hb.ReleaseFocus();
+            };
+
             _reticles[i] = DownfallControllerNav.AttachFocusReticle(anchor, ReticleCenterOffset, ReticleVisualSize, 4f);
             _hitboxAnchors[i] = anchor;
         }
 
         _reachableHitboxes = _hitboxes.Where(h => h != null).Cast<Control>().ToList();
 
-        // Each hitbox gets its own hover callback keyed to its wheel index (not the
-        // wheel's rotation, which only ever changes fire/anchor positions, never identity).
         for (var i = 0; i < _hitboxes.Length; i++)
         {
             var hitbox = _hitboxes[i];
@@ -129,8 +136,6 @@ public partial class NGhostflames : Control
             DownfallControllerNav.WireHover(hitbox,
                 () =>
                 {
-                    // Matches NOrb.OnFocus: the reticle is a controller-only affordance —
-                    // mouse hover should still show the tooltip but never draw the bracket.
                     if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true) reticle?.OnSelect();
                     var flame = _currentWheel?.ElementAtOrDefault(index);
                     if (flame == null) return;
@@ -143,7 +148,6 @@ public partial class NGhostflames : Control
                 });
         }
 
-        // Ring topology: the wheel wraps around, so left/right should too.
         DownfallControllerNav.WireChain(_reachableHitboxes, true);
     }
 
@@ -159,11 +163,12 @@ public partial class NGhostflames : Control
         // instead of sitting at a fixed offset from the creature root.
         _hexaCenter = creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
         if (_hexaCenter == null)
-            HexaghostMainFile.Logger.Warn("[Ghostflames] HexaghostScene not found; falling back to creature-origin offset");
+            HexaghostMainFile.Logger.Warn(
+                "[Ghostflames] HexaghostScene not found; falling back to creature-origin offset");
 
         DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
-    
+
     private Tween? _fadeTween;
 
     public void FadeOutOnDeath(float duration = 0.4f)
@@ -177,7 +182,7 @@ public partial class NGhostflames : Control
             .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.Out);
     }
-    
+
     private void SetHitboxesEnabled(bool on)
     {
         foreach (var hb in _hitboxes)
@@ -226,7 +231,8 @@ public partial class NGhostflames : Control
         if (!_loggedTrackState)
         {
             _loggedTrackState = true;
-            HexaghostMainFile.Logger.Info($"[Ghostflames] tracking={_creatureNode != null && IsInstanceValid(_creatureNode)}");
+            HexaghostMainFile.Logger.Info(
+                $"[Ghostflames] tracking={_creatureNode != null && IsInstanceValid(_creatureNode)}");
         }
 
         for (var i = 0; i < _allFires.Length; i++)
@@ -292,7 +298,8 @@ public partial class NGhostflames : Control
         _currentWheel = wheel;
         for (var i = 0; i < Math.Min(wheel.Length, _allFires.Length); i++)
         {
-            _allFires[i]?.SetState(wheel[i].FireColor, wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
+            _allFires[i]?.SetState(wheel[i].FireColor,
+                wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
             if (_intents[i] == null) continue;
             _intents[i]!.UpdateIntent(wheel[i].Intent, [], _player.Creature);
         }

@@ -1,11 +1,11 @@
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
@@ -32,4 +32,9 @@ public class SearingGhostflame : GhostflameModel
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
         => TriggerOnCardType(ctx, cardPlay, CardType.Attack);
+
+    public override bool AboutToIgnite(CardModel card)
+    {
+        return card.Type == CardType.Power && IgnitionRequirement - IgnitionProgress <= 1;
+    }
 }

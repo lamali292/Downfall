@@ -5,6 +5,7 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -32,4 +33,9 @@ public class BolsteringGhostflame : GhostflameModel
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
         => TriggerOnCardType(ctx, cardPlay, CardType.Power);
+
+    public override bool AboutToIgnite(CardModel card)
+    {
+        return card.Type == CardType.Attack && IgnitionRequirement - IgnitionProgress <= 1;
+    }
 }

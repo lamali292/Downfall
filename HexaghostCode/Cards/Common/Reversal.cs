@@ -20,15 +20,7 @@ public class Reversal : HexaghostCardModel
         get
         {
             var a = HexaghostCmd.GetCurrentFlame(Owner);
-            if (a.IsIgnited) return true;
-            switch (a)
-            {
-                case SearingGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= 1:
-                case InfernoGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= EnergyCost.GetResolved():
-                    return true;
-                default:
-                    return false;
-            }
+            return a.IsIgnited || a.AboutToIgnite(this);
         }
     }
     

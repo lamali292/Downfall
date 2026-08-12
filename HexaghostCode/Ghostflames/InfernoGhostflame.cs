@@ -45,7 +45,7 @@ public class InfernoGhostflame : GhostflameModel
     {
         if (!participants.Contains(Owner.Creature) || !IsIgnited) return Task.CompletedTask;
         Extinguish();
-        HexaghostVisualsBridge.Refresh(Owner);
+        HexaghostCmd.Refresh(Owner);
         return Task.CompletedTask;
     }
 
@@ -54,5 +54,10 @@ public class InfernoGhostflame : GhostflameModel
         if (!IsActive || card.Owner != Owner) return;
         if (!TryProgress(amount)) return;
         await Ignite(ctx);
+    }
+
+    public override bool AboutToIgnite(CardModel card)
+    {
+        return IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetResolved();
     }
 }
