@@ -28,7 +28,6 @@ public class Extension : AwakenedCardModel
         if (cardPlay.Card.Owner != Owner) return;
         if (cardPlay.Card.Type != CardType.Power) return;
         if (Pile is not { Type: PileType.Discard }) return;
-        var result = await CardPileCmd.Add(this, PileType.Hand);
-        CardCmd.PreviewCardPileAdd(result, 0.3f);
+        await CardPileCmd.Add(this, PileType.Hand);
     }
 }

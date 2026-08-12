@@ -7,13 +7,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.DynamicVars;
 
-public class GemVar : DynamicVar
+public class GemVar : EnergyVar
 {
-    public GemVar(string name, decimal baseValue) : base(name, baseValue)
+    public GemVar(string name, int baseValue) : base(name, baseValue)
     {
     }
 
-    public GemVar(decimal baseValue) : base("Gem", baseValue)
+    public GemVar(int baseValue) : base("Gem", baseValue)
     {
     }
 

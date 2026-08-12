@@ -11,7 +11,7 @@ public sealed class Roulette : HermitCardModel
 {
     public Roulette() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(16, 4);
+        WithDamage(16, 6);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

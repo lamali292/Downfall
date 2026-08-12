@@ -12,8 +12,8 @@ public class PreciseThrust : ChampCardModel, IBerserkerComboCard, IDefensiveComb
 {
     public PreciseThrust() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
-        WithBlock(6, 2);
+        WithDamage(5, 2);
+        WithBlock(5, 2);
     }
 
     public Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -20,8 +20,8 @@ public class BismuthGem : GemModel
 {
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<ArtifactPower>(),
-        HoverTipFactory.Static(GuardianTip.Aggravate)
+        HoverTipFactory.Static(GuardianTip.Aggravate),
+        HoverTipFactory.Static(GuardianTip.Stasis)
     ];
 
     public override Color GemColor => new(0xD8786AFF);
@@ -33,7 +33,7 @@ public class BismuthGem : GemModel
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         foreach (var player in targetPlayers)
         {
-            await PowerCmd.Apply<ArtifactPower>(ctx, player.Creature, effect, Player.Creature, Card);
+            GuardianCmd.AddMaxStasisSlots(player, (int)effect);
         }
     }
     

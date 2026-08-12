@@ -15,6 +15,7 @@ public class RefractedBeam : GuardianCardModel, IGemSocketCard
         WithDamage(3);
         this.WithRepeat(3, 1);
         WithTip(GuardianKeyword.Gem);
+        WithTip(GuardianTip.Socket);
     }
 
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;

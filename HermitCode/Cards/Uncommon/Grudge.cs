@@ -14,7 +14,7 @@ public sealed class Grudge : HermitCardModel
 {
     public Grudge() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithCalculatedDamage(9, 2, CountCurses, DamageProps.card, 0, 1);
+        WithCalculatedDamage(9, 3, CountCurses, DamageProps.card, 0, 1);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

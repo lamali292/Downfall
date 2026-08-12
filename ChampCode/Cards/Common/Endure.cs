@@ -33,8 +33,8 @@ public class Endure : ChampCardModel, IIgnoreDexterityCard
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.EnterDefensiveStance(ctx, Owner);
         await CommonActions.CardBlock(this, cardPlay);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
 
     public bool ShouldIgnoreDexterity => !IsUpgraded;
