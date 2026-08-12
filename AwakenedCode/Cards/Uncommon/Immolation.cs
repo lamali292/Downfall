@@ -18,6 +18,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
     {
         WithBlock(13, 4);
         WithKeywords(CardKeyword.Retain);
+        WithEnergy(1);
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
     }
 
@@ -25,7 +26,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
 
     public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
-        if (player == Owner) EnergyCost.AddUntilPlayed(-amount);
+        if (player == Owner) EnergyCost.AddUntilPlayed(-amount*DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
 

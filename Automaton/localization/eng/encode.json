@@ -7,7 +7,7 @@
   "AUTOMATON-SOULBURN_ENCODE.encode": "Apply {SoulBurnPower:diff()} [gold]Soulburn[/gold] to ALL enemies.",
   "AUTOMATON-ENERGY_ENCODE.encode": "Gain {Energy:energyIcons()}.",
   "AUTOMATON-DAZED_ENCODE.encode": "Add {Dazed:plural:an|{}} [gold]Dazed[/gold] to your [gold]Draw Pile[/gold].",
-  "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|Now and at the start of your turn:}",
+  "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|At the start of your turn:}",
   "AUTOMATON-FULL_RELEASE.encode": "The Function is a Power with \"Now and at the start of your turn...\".",
   "AUTOMATON-REPLICATE.functionPrefix": "copying",
   "AUTOMATON-REPLICATE.functionName": "Copy",

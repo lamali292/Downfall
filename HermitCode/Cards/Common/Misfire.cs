@@ -13,7 +13,7 @@ public sealed class Misfire : HermitCardModel
 {
     public Misfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12, 4);
+        WithDamage(13, 4);
         this.WithTip<Clumsy>();
     }
 

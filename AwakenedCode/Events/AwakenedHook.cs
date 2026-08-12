@@ -9,9 +9,9 @@ namespace Awakened.AwakenedCode.Events;
 
 public static class AwakenedHook
 {
-    public static Task OnDrained(ICombatState cs, PlayerChoiceContext ctx, Player player, int amount)
+    public static Task OnDrained(ICombatState? cs, PlayerChoiceContext ctx, Player player, int amount)
     {
-        return HookUtils.Dispatch<IOnDrained>(cs, ctx, m => m.OnDrained(ctx, player, amount));
+        return HookUtils.Dispatch<IOnDrained>(cs, m => m.OnDrained(ctx, player, amount));
     }
 
     public static Task OnCardChanted(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay,

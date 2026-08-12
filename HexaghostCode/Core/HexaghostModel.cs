@@ -44,6 +44,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         foreach (var player in state.Players)
         {
             ResetWheel(player);
+            if (player.Character is not Hexaghost) continue;
             HexaghostVisualsBridge.Refresh(player);
         }
 
@@ -64,7 +65,6 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.State?.Players ?? [])
         {
-            if (player.Character is not Hexaghost) continue;
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
                 await HexaghostCmd.Advance(ctx, player, null, true, true);
         }

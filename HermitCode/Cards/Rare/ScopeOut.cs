@@ -10,7 +10,7 @@ public class ScopeOut : HermitCardModel
 {
     public ScopeOut() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<StrengthPower>(2, 1);
+        WithPower<StrengthPower>(1, 2);
         this.WithPower<ScopeOutPower>(1, false);
     }
 

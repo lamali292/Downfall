@@ -1,7 +1,10 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -14,7 +17,7 @@ public class PiercingShot : AutomatonCardModel
 {
     public PiercingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(7, 2);
+        WithDamage(8, 3);
         WithCards(1, 1);
     }
 
@@ -25,8 +28,11 @@ public class PiercingShot : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        var cards = Owner.GetStash()
-            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
+       
+        var cards = (await CardSelectCmd.FromCombatPile(ctx, StashPile.Stash.GetPile(Owner), Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, DynamicVars.Cards.IntValue), card => card.IsUpgradable)).ToList();
         foreach (var card in cards) CardCmd.Upgrade(card);
+        if (cards.Count != 0)
+            NStashDisplay.GetDisplay(Owner)?.Refresh(true);
     }
 }

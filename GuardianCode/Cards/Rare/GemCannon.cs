@@ -16,9 +16,9 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class GemCannon : GuardianCardModel
 {
-    public GemCannon() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public GemCannon() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(16, 4);
+        WithDamage(24, 8);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(GuardianKeyword.Gem);
     }

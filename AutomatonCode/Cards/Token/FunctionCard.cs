@@ -53,7 +53,12 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     {
         foreach (var encodable in Encodable.All)
             if (encodable.DynamicVar(this).BaseValue > 0)
+            {
                 await encodable.OnPlay(this, ctx, cardPlay.Target, cardPlay);
+                if (encodable is PowerEncode)
+                    break;
+            }
+               
     }
 
     private CardType CalcType()
@@ -68,7 +73,10 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
 
     private TargetType CalcTarget()
     {
-        var targetTypes = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).Select(e => e.Target).Distinct()
+        var encoded = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).ToList();
+        if (encoded.Any(e => e is PowerEncode)) return TargetType.Self;
+        
+        var targetTypes = encoded.Select(e => e.Target).Distinct()
             .ToList();
         if (targetTypes.Contains(TargetType.AnyEnemy)) return TargetType.AnyEnemy;
         if (targetTypes.Contains(TargetType.AllEnemies)) return TargetType.AllEnemies;

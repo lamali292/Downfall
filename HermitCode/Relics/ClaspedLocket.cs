@@ -22,7 +22,7 @@ public sealed class ClaspedLocket : HermitRelicModel
 
     public ClaspedLocket() : base(RelicRarity.Starter)
     {
-        WithVars(new CardsVar(2));
+        WithVars(new CardsVar(3));
         WithVar("Curses", 2);
         WithTip<Injury>();
     }

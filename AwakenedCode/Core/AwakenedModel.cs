@@ -65,13 +65,14 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     }
 
 
+    /*
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         if (card is not Void) return;
         var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
         if (combatState == null) return;
         await AwakenedHook.OnDrained(combatState, choiceContext, card.Owner, 1);
-    }
+    }*/
 
     internal static void SetupAwakenedCombatUi(CombatState state)
     {

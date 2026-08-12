@@ -1,4 +1,5 @@
 ﻿using Champ.ChampCode.Core;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,6 +11,11 @@ namespace Champ.ChampCode.Powers;
 
 public class StrikeOfGeniusPlusPower : ChampPowerModel
 {
+    public StrikeOfGeniusPlusPower()
+    {
+        WithTip(DownfallKeyword.Echo);
+    }
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
@@ -22,7 +28,7 @@ public class StrikeOfGeniusPlusPower : ChampPowerModel
         foreach (var c in cards)
         {
             CardCmd.Upgrade(c);
-            c.EnergyCost.SetUntilPlayed(0);
+            c.SetToFreeThisTurn();
             c.ToEcho();
         }
 
