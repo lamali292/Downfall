@@ -1,10 +1,11 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -21,7 +22,7 @@ public class BeyondArmor : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
 
     public Gift? Gift { get; set; }
@@ -31,7 +32,7 @@ public class BeyondArmor : SneckoCardModel, IHasGift
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cards = Owner.GetDraw()
-            .Where(SneckoCmd.IsOffclass)
+            .Where(DownfallCmd.IsOffclass)
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
         await CardPileCmd.Add(cards, PileType.Hand);
     }

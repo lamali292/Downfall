@@ -1,8 +1,5 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Events;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -99,15 +96,17 @@ public static class HexaghostCmd
     public static Task ReplaceCurrentWithRandom(Player player)
     {
         var wheel = GetWheel(player);
-        var current = GetCurrentIndex(player);
+        var currentIdx = GetCurrentIndex(player);
         var rng = player.RunState.Rng.Niche;
 
-        var currentType = wheel[current].GetType();
-        var candidates = HexaghostModelDb.AllGhostflames.Where(f => f.GetType() != currentType).ToArray();
+        var current = wheel[currentIdx];
+        var isOffclass = current.IsOffclass;
+        var currentType = current.GetType();
+        var candidates = HexaghostModelDb.AllGhostflames.Where(f => f.GetType() != currentType && f.IsOffclass == isOffclass).ToArray();
         var randomFlame = rng.NextItem(candidates);
 
         if (randomFlame == null) return Task.CompletedTask;
-        wheel[current] = randomFlame.ToMutable(player);
+        wheel[currentIdx] = randomFlame.ToMutable(player);
         Refresh(player);
         return Task.CompletedTask;
     }
@@ -217,6 +216,7 @@ public static class HexaghostCmd
     public static void SetCurrentGhostflame(Player player, GhostflameModel ghostflame)
     {
         ghostflame.AssertCanonical();
+        ActivateGhostwheel(player);
         GetWheel(player)[GetCurrentIndex(player)] = ghostflame.ToMutable(player);
         Refresh(player);
     }

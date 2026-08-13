@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Patches.Features;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,6 +23,7 @@ public static class AbstractModelExtensions
             AfflictionModel affliction => affliction.Card.GetCreature(),
             CardModifier cardModifier => cardModifier.Owner?.GetCreature() ??
                                          throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
+            GhostflameModel ghostflameModel => ghostflameModel.Owner.Creature,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }
@@ -37,6 +39,7 @@ public static class AbstractModelExtensions
             EnchantmentModel enchantment => enchantment.DynamicVars,
             AfflictionModel affliction => affliction.Card.DynamicVars,
             CardModifier cardModifier => cardModifier.DynamicVars,
+            GhostflameModel ghostflameModel => ghostflameModel.DynamicVars,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
     }

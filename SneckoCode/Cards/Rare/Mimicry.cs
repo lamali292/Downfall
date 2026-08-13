@@ -1,9 +1,9 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Rare;
@@ -15,7 +15,7 @@ public class Mimicry : SneckoCardModel
     {
         this.WithPower<MimicryPower>(2, 1, false);
         this.WithTip<StrengthPower>();
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

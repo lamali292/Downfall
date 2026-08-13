@@ -15,6 +15,7 @@ public class HereAndNow : HexaghostCardModel
         WithCostUpgradeBy(-1);
         this.WithPower<MoreEnergyPower>(1, false);
         this.WithPower<HereAndNowPower>(1, false);
+        WithEnergyTip();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

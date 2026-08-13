@@ -16,6 +16,7 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
     {
         WithPower<SoulBurnPower>(3, 2);
         WithTip(HexaghostKeyword.Retract);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override bool ShouldGlowGoldInternal

@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Ghostflames;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,6 +13,7 @@ public class Reversal : HexaghostCardModel
     {
         WithDamage(5, 1);
         this.WithRepeat(2);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override bool ShouldGlowGoldInternal

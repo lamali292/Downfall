@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -16,6 +17,7 @@ public class Flashbang : HexaghostCardModel
         WithDamage(5, 1);
         this.WithPower<FlashbangPower>(2, 1, false);
         this.WithTip<StrengthPower>();
+        WithTip(HexaghostTip.Ignite);
         WithPower<WeakPower>(1);
     }
 

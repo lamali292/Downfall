@@ -1,6 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 using Awakened.AwakenedCode.Displays;
-using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
@@ -11,9 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Awakened.AwakenedCode.Core;
 

@@ -194,7 +194,7 @@
   "AUTOMATON-EXPLODE.title": "Explode",
   "AUTOMATON-EXPLODE.description": "[gold]Compile[/gold] - Add {Cards:plural:a [gold]Burn[/gold]|{Cards:diff()} [gold]Burns[/gold]} into your [gold]Draw Pile[/gold].",
   "AUTOMATON-PUNCH_TICKET.title": "Punch Ticket",
-  "AUTOMATON-PUNCH_TICKET.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].\nAdd an [gold]Error[/gold] intto your [gold]Hand[/gold].",
+  "AUTOMATON-PUNCH_TICKET.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].\nAdd an [gold]Error[/gold] into your [gold]Hand[/gold].",
   "AUTOMATON-CRASHOUT.title": "Debug",
   "AUTOMATON-CRASHOUT.description": "Whenever you play a Status card, deal {CrashoutPower:diff()} damage to a random enemy.",
   "AUTOMATON-CONVERT.title": "Convert",

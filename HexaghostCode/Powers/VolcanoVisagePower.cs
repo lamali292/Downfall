@@ -1,5 +1,6 @@
 ﻿using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -12,6 +13,7 @@ public class VolcanoVisagePower : HexaghostPowerModel, IAfterGhostflameIgnited
     public VolcanoVisagePower()
     {
         WithTip<SoulBurnPower>();
+        WithTip(HexaghostTip.Ignite);
     }
 
 

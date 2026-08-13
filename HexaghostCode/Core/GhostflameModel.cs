@@ -1,6 +1,7 @@
+using System.Text;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
-using Hexaghost.HexaghostCode.Cards.Uncommon;
+using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
@@ -14,9 +15,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 using Vector2 = Godot.Vector2;
 
 namespace Hexaghost.HexaghostCode.Core;
@@ -28,23 +31,87 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
     public abstract AbstractIntent Intent { get; }
-    public bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
+    protected bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
     public bool IsIgnited { get; set; }
-    public int IgnitionProgress { get; set; }
-    public abstract int IgnitionRequirement { get; }
+    protected int IgnitionProgress { get; set; }
+    protected abstract int IgnitionRequirement { get; }
     public LocString Title => new("ghostflames", Id.Entry + ".title");
-    public LocString Description => new("ghostflames", Id.Entry + ".description");
+    private LocString Description => new("ghostflames", Id.Entry + ".description");
     public abstract FireColor FireColor { get; }
-    protected ICombatState CombatState => Owner.Creature.CombatState!;
+    private ICombatState CombatState => Owner.Creature.CombatState!;
+    public virtual bool IsOffclass => false;
 
-    public HoverTip HoverTip
+
+    private DynamicVarSet? _dynamicVars;
+    public DynamicVarSet DynamicVars
     {
         get
         {
-            var tip = new HoverTip(Title, Description);
-            tip.SetCanonicalModel(CanonicalInstance);
-            return tip;
+            if (_dynamicVars != null)
+                return _dynamicVars;
+            _dynamicVars = new DynamicVarSet(CanonicalVars);
+            _dynamicVars.InitializeWithOwner(this);
+            return _dynamicVars;
         }
+    }
+    
+    protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
+
+
+    private HoverTip HoverTip => ToHoverTip(GetFormattedText());
+
+    private string GetFormattedText()
+    {
+        var stringBuilder = new StringBuilder();
+        var locString = Description;
+        var prefix = Owner.Character.CardPool.EnergyColorName;
+        locString.Add("energyPrefix", prefix);
+        UpdateDynamicVarPreview();
+        DynamicVars.AddTo(locString);
+        var formatted = locString.GetFormattedText();
+        if (!formatted.Equals(""))
+            stringBuilder.Append(formatted);
+        return stringBuilder.ToString();
+    }
+    
+    protected override void DeepCloneFields()
+    {
+        _dynamicVars = DynamicVars.Clone(this);
+    }
+
+    
+    protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
+    
+    
+    public IEnumerable<IHoverTip> HoverTips
+    {
+        get
+        {
+            var hoverTips = new List<IHoverTip> { HoverTip };
+            hoverTips.AddRange(ExtraHoverTips);
+            return hoverTips.Distinct();
+        }
+    }
+    
+    private HoverTip ToHoverTip(string description)
+    {
+        return new HoverTip
+        {
+            CanonicalModel = null,
+            ShouldOverrideTextOverflow = false,
+            Id = Id.ToString(),
+            Title = Title.GetFormattedText(),
+            Description = description,
+            IsSmart = true
+        };
+    }
+
+    protected IRunState RunState => Owner.RunState;
+
+    private void UpdateDynamicVarPreview()
+    {
+        foreach (var dynamicVar in DynamicVars.Values.OfType<GhostflameVar>().ToList())
+            dynamicVar.UpdateGhostflamePreview(this, true);
     }
 
     protected int Intensity => HexaghostHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState!, Owner, this);
@@ -193,7 +260,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
                 targets = CombatState.HittableEnemies;
             else
             {
-                var target = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+                var target = RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
                 targets = target == null ? [] : [target];
             }
             foreach (var creature in targets)

@@ -8,8 +8,6 @@ using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Characters;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 

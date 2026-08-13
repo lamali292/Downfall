@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,8 +14,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class SpiritBrand() : HexaghostRelicModel(RelicRarity.Starter), IAfterGhostflameIgnited
+public class SpiritBrand: HexaghostRelicModel, IAfterGhostflameIgnited
 {
+
+    public SpiritBrand() : base(RelicRarity.Starter)
+    {
+        WithTip(HexaghostTip.Ignite);
+    }
+    
+    
     private bool UsedThisTurn { get; set; }
 
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)

@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Powers;
 
@@ -17,7 +16,7 @@ public class UnendingSupplyPower : SneckoPowerModel
         WithTip(DownfallKeyword.Echo);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
