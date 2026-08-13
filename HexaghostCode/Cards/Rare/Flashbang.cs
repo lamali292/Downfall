@@ -7,18 +7,18 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+namespace Hexaghost.HexaghostCode.Cards.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
 public class Flashbang : HexaghostCardModel
 {
-    public Flashbang() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Flashbang() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(5, 1);
+        WithDamage(6, 1);
+        WithPower<WeakPower>(1, 1);
         this.WithPower<FlashbangPower>(2, 1, false);
         this.WithTip<StrengthPower>();
         WithTip(HexaghostTip.Ignite);
-        WithPower<WeakPower>(1);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

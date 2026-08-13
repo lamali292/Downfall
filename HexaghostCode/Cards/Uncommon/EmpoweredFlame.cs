@@ -5,14 +5,14 @@ using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hexaghost.HexaghostCode.Cards.Rare;
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class EmpoweredFlame : HexaghostCardModel
 {
-    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public EmpoweredFlame() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<IntensityPower>(2, 1);
+        WithPower<IntensityPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Claude27A>();

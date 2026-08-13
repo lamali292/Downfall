@@ -13,7 +13,7 @@ public class ShieldOfNight : HexaghostCardModel
 {
     public ShieldOfNight() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(12, 3);
+        WithBlock(12, 4);
         this.WithScry(3, 1);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);

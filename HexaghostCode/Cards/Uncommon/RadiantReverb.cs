@@ -14,7 +14,7 @@ public class RadiantReverb : HexaghostCardModel
     public RadiantReverb() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(14, 4);
-        this.WithPower<RadiantReverbPower>(3, 2, false);
+        this.WithPower<RadiantReverbPower>(4, 2, false);
         this.WithTip<IntensityPower>();
     }
 
