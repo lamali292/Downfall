@@ -1,6 +1,6 @@
 {
     "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.title": "碱式制剂",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "你下一个生成的方法可以免费打出。",
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POTION.description": "你生成的下一个方法可以免费打出。",
     "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.title": "Kio快乐水",
     "AUTOMATON-KIOS_CLEVER_CONCOCTION_POTION.description": "从[blue]3[/blue]张随机牌中选择[blue]1[/blue]张牌[gold]编码[/gold]，重复直到你生成一个方法。",
     "AUTOMATON-VEXING_DRAUGHT_POTION.title": "恼人饮品",
