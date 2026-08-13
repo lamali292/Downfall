@@ -28,13 +28,15 @@ public class BismuthGem : GemModel
     public override CardRarity Rarity => CardRarity.Rare;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         foreach (var player in targetPlayers)
         {
             GuardianCmd.AddMaxStasisSlots(player, (int)effect);
         }
+
+        return Task.CompletedTask;
     }
     
 
