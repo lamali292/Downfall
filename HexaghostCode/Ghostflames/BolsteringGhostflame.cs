@@ -24,11 +24,13 @@ public class BolsteringGhostflame : GhostflameModel
         if (!TryBeginIgnite()) return;
 
         var block = 4 + Intensity;
-        var repeat = 1 + Repeat(GhostflameRepeatType.Block);
+        var repeat = Repeat(GhostflameRepeatType.Block);
         for (var i = 0; i < repeat; i++)
+        {
             await CreatureCmd.GainBlock(Owner.Creature, block, BlockProps.nonCardUnpowered, null);
-
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
+            await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
+        }
+           
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -15,7 +15,7 @@ public class OffclassCrushingGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 2 + Intensity,
-        () => 2 * (1 + Repeat(GhostflameRepeatType.Damage))
+        () => 2 * Repeat(GhostflameRepeatType.Damage)
     );
 
     public override int IgnitionRequirement => 2;
@@ -27,7 +27,7 @@ public class OffclassCrushingGhostflame : GhostflameModel
         if (!TryBeginIgnite()) return;
 
         var damage = 3 + Intensity;
-        var hitCount = 2 + Repeat(GhostflameRepeatType.Damage);
+        var hitCount = 2 * Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));

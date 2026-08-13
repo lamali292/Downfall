@@ -21,7 +21,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
 
     public override AbstractIntent Intent => new CustomAttackIntent(
         () => 3 + Intensity,
-        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * (1 + Repeat(GhostflameRepeatType.Damage))
+        () => HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1) * Repeat(GhostflameRepeatType.Damage)
     );
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
@@ -29,7 +29,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
         if (!TryBeginIgnite()) return;
 
         var damage = 4 + Intensity;
-        var hitCount = HexaghostCmd.GetIgnitedCount(Owner) + Repeat(GhostflameRepeatType.Damage);
+        var hitCount = HexaghostCmd.GetIgnitedCount(Owner) * Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
@@ -38,7 +38,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
         await HexaghostCmd.ExtinguishAllExceptThis(ctx, Owner, this);
     }
 
-    public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+    public override Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner.Creature) || !IsIgnited) return Task.CompletedTask;
