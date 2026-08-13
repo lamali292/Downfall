@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,6 +13,7 @@ public class Kindle : HexaghostCardModel
     public Kindle() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithBlock(2, 3);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

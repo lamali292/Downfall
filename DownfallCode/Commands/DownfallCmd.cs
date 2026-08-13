@@ -16,6 +16,16 @@ namespace Downfall.DownfallCode.Commands;
 
 public class DownfallCmd
 {
+    
+    /// <summary>
+    /// True if the card doesn't belong to the owner's character pool, i.e. it's a
+    /// Status, Colorless, or Curse card, or a card from another character.
+    /// </summary>
+    public static bool IsOffclass(CardModel card)
+    {
+        return card.VisualCardPool != card.Owner.Character.CardPool;
+    }
+    
     public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card)
     {
         return GainTempHp(ctx, card, card.DynamicVars["TempHP"].BaseValue);

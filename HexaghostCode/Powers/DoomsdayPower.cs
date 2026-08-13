@@ -1,4 +1,5 @@
 ﻿using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -8,6 +9,12 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class DoomsdayPower : HexaghostPowerModel, IAfterGhostwheelAllIgnited
 {
+
+    public DoomsdayPower()
+    {
+        WithTip(HexaghostTip.Ignite);
+    }
+     
     public async Task AfterGhostwheelAllIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame,
         int index)
     {

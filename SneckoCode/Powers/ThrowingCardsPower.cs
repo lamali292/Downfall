@@ -1,12 +1,11 @@
-﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Powers;
 
@@ -16,7 +15,7 @@ public class ThrowingCardsPower : SneckoPowerModel
     {
         WithDamage(6);
         WithCards(1);
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
     
     
@@ -24,7 +23,7 @@ public class ThrowingCardsPower : SneckoPowerModel
     {
         if (cardPlay.Card.Owner.Creature != Owner) return;
         var card = cardPlay.Card;
-        if (!SneckoCmd.IsOffclass(card)) return;
+        if (!DownfallCmd.IsOffclass(card)) return;
         var a = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         Flash();
         await PowerCmd.Decrement(this);

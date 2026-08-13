@@ -12,16 +12,14 @@ public abstract class CustomIntent : AbstractIntent, ICustomModel
     protected override string IntentPrefix => GetType().GetPrefix() + GetType().Name.ToSnakeCase().ToUpperInvariant();
     protected override string? SpritePath => null;
 
-    protected abstract string IntentSpritePath { get; }
-
+    protected virtual string? IntentSpritePath => null;
+    
     private void EnsureRegistered()
     {
         var key = IntentPrefix.ToLowerInvariant();
         if (IntentAnimData._data.ContainsKey(key)) return;
-        IntentAnimData._data[key] = new IntentAnimData.InternalData
-        {
-            frames = [IntentSpritePath]
-        };
+        if (IntentSpritePath == null) return; 
+        IntentAnimData._data[key] = new IntentAnimData.InternalData { frames = [IntentSpritePath] };
     }
 
     public override string GetAnimation(IEnumerable<Creature> targets, Creature owner)

@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Events;
 using Snecko.SneckoCode.Extensions;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 

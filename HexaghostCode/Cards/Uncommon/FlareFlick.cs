@@ -20,6 +20,7 @@ public class FlareFlick : HexaghostCardModel
     {
         WithKeyword(HexaghostKeyword.Advance, UpgradeType.Remove);
         WithDamage(10, 4);
+        WithTip(HexaghostTip.Ignite);
         WithTips(c => c.IsUpgraded
             ?
             [

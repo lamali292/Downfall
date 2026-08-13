@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +15,7 @@ public class OverwhelmingPower : SneckoPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || _usedThisTurn || Owner.Player == null ||
-            !SneckoCmd.IsOffclass(cardPlay.Card)) return;
+            !DownfallCmd.IsOffclass(cardPlay.Card)) return;
         _usedThisTurn = true;
         await CardPileCmd.Draw(ctx, Amount, Owner.Player);
         Flash();

@@ -1,8 +1,6 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
 using Godot;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;

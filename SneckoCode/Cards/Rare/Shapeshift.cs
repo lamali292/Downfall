@@ -1,9 +1,9 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -12,7 +12,7 @@ public class Shapeshift : SneckoCardModel
 {
     public Shapeshift() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

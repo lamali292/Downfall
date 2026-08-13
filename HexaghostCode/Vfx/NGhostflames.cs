@@ -139,7 +139,7 @@ public partial class NGhostflames : Control
                     if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true) reticle?.OnSelect();
                     var flame = _currentWheel?.ElementAtOrDefault(index);
                     if (flame == null) return;
-                    NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.ShowHoverTips([flame.HoverTip]);
+                    NCombatRoom.Instance?.GetCreatureNode(_player!.Creature)?.ShowHoverTips(flame.HoverTips);
                 },
                 () =>
                 {

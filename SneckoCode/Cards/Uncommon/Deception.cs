@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,7 +10,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -21,14 +22,14 @@ public class Deception : SneckoCardModel
         WithKeyword(CardKeyword.Exhaust);
         this.WithTip<WeakPower>();
         this.WithTip<VulnerablePower>();
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
         WithCalculatedVar("CalculatedPower", 1, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         return CombatManager.Instance.History.CardPlaysFinished.Count(e =>
-            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState) && SneckoCmd.IsOffclass(e.CardPlay.Card));
+            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState) && DownfallCmd.IsOffclass(e.CardPlay.Card));
     }
     
 
