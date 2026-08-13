@@ -18,14 +18,14 @@ public class SearingGhostflame : GhostflameModel
 
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
         () => 3 + Intensity,
-        2 * (1 + Repeat(GhostflameRepeatType.Soulburn))
+        2 * Repeat(GhostflameRepeatType.Soulburn)
     );
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
         var soulburn = 3 + Intensity;
-        var repeat = 2 + Repeat(GhostflameRepeatType.Soulburn);
+        var repeat = 2 * Repeat(GhostflameRepeatType.Soulburn);
         await RepeatOnTargets(ctx, repeat, GhostflameRepeatType.Soulburn,
             targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));
     }

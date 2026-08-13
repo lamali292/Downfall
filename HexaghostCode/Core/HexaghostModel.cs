@@ -59,8 +59,9 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         CurrentIndex[player] = 0;
     }
     
-    // we use AfterSideTurnEnd instead of BeforeSideTurnEnd so thermal stone triggers on cards that got ethereal exhausted
+    // we use AfterSideTurnEndLate instead of BeforeSideTurnEnd so thermal stone triggers on cards that got ethereal exhausted
     // we have to care about order with HereAndNowPower
+    // has to be before AfterSideTurnEndLate for inferno ghostflamse
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

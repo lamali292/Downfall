@@ -79,7 +79,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     protected int Repeat(GhostflameRepeatType repeatType)
     {
-        return HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
+        return 1+HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
     }
 
 
