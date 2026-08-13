@@ -1,7 +1,7 @@
 {
     "AWAKENED-ALTAR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを1枚[gold]廃棄[/gold]する。\n[gold]召喚[/gold]する。",
     "AWAKENED-ALTAR.title": "祭壇",
-    "AWAKENED-ANCESTRAL_GROUNDS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次の{AncestralGroundsPower:diff()}ターンの開始時、{Energy:energyIcons()}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
+    "AWAKENED-ANCESTRAL_GROUNDS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次の{AncestralGroundsPower:diff()}ターン開始時、{Energy:energyIcons()}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
     "AWAKENED-ANCESTRAL_GROUNDS.title": "祖霊の地",
     "AWAKENED-APHOTIC_FOUNT.description": "[gold]召喚[/gold]する。\n[gold]氷結[/gold]をプレイするたび、[gold]プレート[/gold]{AphoticFountPower:diff()}を得る。",
     "AWAKENED-APHOTIC_FOUNT.title": "暗黒の泉",
