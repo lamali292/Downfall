@@ -13,7 +13,7 @@ public class SwordOfNight : HexaghostCardModel
 {
     public SwordOfNight() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(14, 4);
+        WithDamage(15, 5);
         this.WithScry(3, 1);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
