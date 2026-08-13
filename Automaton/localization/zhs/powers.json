@@ -65,9 +65,9 @@
     "AUTOMATON-RECYCLE_BIN_POWER.title": "回收站",
     "AUTOMATON-RECYCLE_BIN_POWER.description": "在你的回合结束时，[gold]手牌[/gold]中每有一张状态或诅咒牌，获得[gold]格挡[/gold]。",
     "AUTOMATON-RECYCLE_BIN_POWER.smartDescription": "在你的回合结束时，[gold]手牌[/gold]中每有一张状态或诅咒牌，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
-    "AUTOMATON-RECREATE_POWER.title": "重新生成",
+    "AUTOMATON-RECREATE_POWER.title": "重建",
     "AUTOMATON-RECREATE_POWER.description": "你每回合生成的第一张状态牌会[gold]变化[/gold]为[gold]燃料[/gold]。",
-    "AUTOMATON-RECREATE_PLUS_POWER.title": "重新生成",
+    "AUTOMATON-RECREATE_PLUS_POWER.title": "重建",
     "AUTOMATON-RECREATE_PLUS_POWER.description": "你每回合生成的第一张状态牌会[gold]变化[/gold]为[gold]燃料+[/gold]。",
     "AUTOMATON-RECREATE_POWER.smartDescription": "你每回合生成的前[blue]{Amount}[/blue]张状态牌会[gold]变化[/gold]为[gold]燃料[/gold]。",
     "AUTOMATON-RECREATE_PLUS_POWER.smartDescription": "你每回合生成的前[blue]{Amount}[/blue]张状态牌会[gold]变化[/gold]为[gold]燃料+[/gold]。",
@@ -77,7 +77,7 @@
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "炼金药剂",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "你下一个生成的方法可以免费打出。",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "你下[blue]{Amount}[/blue]个生成的方法可以免费打出。",
-    "AUTOMATON-SHARE_POWER.title": "分享",
+    "AUTOMATON-SHARE_POWER.title": "共享",
     "AUTOMATON-SHARE_POWER.description": "每当你从方法中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得[gold]格挡[/gold]。",
     "AUTOMATON-SHARE_POWER.smartDescription": "每当你从方法中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
 }
