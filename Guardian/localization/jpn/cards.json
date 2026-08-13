@@ -103,7 +103,7 @@
     "GUARDIAN-SPHERIC_SHIELD.title": "球状シールド",
     "GUARDIAN-SPIKER_PROTOCOL.description": "[gold]防御態勢[/gold]に入るたび、[gold]トゲ[/gold]{SpikerProtocolPower:diff()}を得る。\n[gold]制動[/gold]{Brace:diff()}。",
     "GUARDIAN-SPIKER_PROTOCOL.title": "反撃プロトコル",
-    "GUARDIAN-STASIS_ENGINE.description": "毎ターン、3枚のコスト{energyPrefix:energyIcons(0)}のカードをプレイした時、{energyPrefix:energyIcons(1)}を得てカードを1枚引く。",
+    "GUARDIAN-STASIS_ENGINE.description": "毎ターン、最初に3枚のコスト{energyPrefix:energyIcons(0)}のカードをプレイした時、{energyPrefix:energyIcons(1)}を得てカードを1枚引く。",
     "GUARDIAN-STASIS_ENGINE.title": "停滞エンジン",
     "GUARDIAN-STASIS_FIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのカードを[gold]停滞[/gold]させる。",
     "GUARDIAN-STASIS_FIELD.title": "停滞フィールド",
