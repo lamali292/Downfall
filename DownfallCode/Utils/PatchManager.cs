@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Audio;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
 
 namespace Downfall.DownfallCode.Utils;
@@ -61,6 +62,7 @@ public class DownfallPatchManager
             .Add(typeof(NCreditsScreenPatch))
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook))
+            .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 

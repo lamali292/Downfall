@@ -1,4 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Random;
+﻿using BaseLib.Audio;
+using Downfall.DownfallCode.Audio;
+using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.DownfallCode.Utils.Sound;
 
@@ -25,21 +28,36 @@ public class ModSoundEffect
 
     public void Play()
     {
+        FmodStudioServer.TryLogLoadedStudioBankEvents("res://Downfall/audio/Guardian.bank");
+        float sfx = SaveManager.Instance.SettingsSave.VolumeSfx;
+        if (FmodStudioGuidPathTable.TryGetStudioGuidForEventPath("event:/guardian/guardian_select", out var guid))
+        {
+            DownfallMainFile.Logger.Info($"[Downfall] guid={guid}");
+            if (FmodStudioGuidInterop.TryNormalizeForAddon(guid, out var normalized))
+            {
+                DownfallMainFile.Logger.Info($"[Downfall] normalized={normalized}");
+                var ok = FmodStudioGateway.TryCall(FmodStudioMethodNames.PlayOneShotUsingGuid, normalized, 1f);
+                DownfallMainFile.Logger.Info($"[Downfall] play returned={ok}");
+            }
+            else DownfallMainFile.Logger.Warn("[Downfall] normalize FAILED");
+        }
+        else DownfallMainFile.Logger.Warn("[Downfall] path not in guid table");
+        /*
         PlayOn(e =>
         {
-            MyModAudio.PlaySound(
+            ModAudio.PlaySound(
                 e.Sound,
                 _globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,
                 basePitch: e.BasePitch);
-        });
+        });*/
     }
 
     public void PlayInRun()
     {
         PlayOn(e =>
         {
-            MyModAudio.PlaySoundInRun(
+            ModAudio.PlaySoundInRun(
                 e.Sound,
                 _globalVolumeAdd + e.VolumeAdd,
                 pitchVariation: _globalPitchVariation + e.PitchVariation,

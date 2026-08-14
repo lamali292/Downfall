@@ -38,6 +38,6 @@ public class LeechingSlime : SlimeModel
 
         var original = DynamicVars.Slime().IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.card, null);
+        await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.nonCardUnpowered, null);
     }
 }

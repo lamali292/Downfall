@@ -61,15 +61,7 @@ public class Gremlins : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<GremlinsCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<GremlinsPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GremlinsRelicPool>();
-
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinAngry_1a.ogg", 25, 0.1f, 1, 10),
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinCalm_1a.ogg", 25, 0.1f, 1, 10),
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinDopey_1a.ogg", 25, 0.1f, 1, 10),
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinFat_1a.ogg", 25, 0.1f, 1, 10),
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinNob_1a_v3.ogg", 5, 0.1f, 1, 10)
-    );
-
+    
     public override NCreatureVisuals? CreateCustomVisuals()
     {
         return GD.Load<PackedScene>("res://Gremlins/scenes/character/combat.tscn")
