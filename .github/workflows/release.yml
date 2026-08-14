@@ -54,14 +54,7 @@ jobs:
           path: ~/.nuget/packages
           key: nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
           restore-keys: nuget-
-
-      - name: Cache Godot import results
-        uses: actions/cache@v4
-        with:
-          path: .godot/imported
-          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
-          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
-
+          
       - name: Download MegaDot
         if: steps.cache-engine.outputs.cache-hit != 'true'
         run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
