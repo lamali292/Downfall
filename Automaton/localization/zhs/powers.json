@@ -33,6 +33,8 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "方法获得[gold]重放[/gold][blue]1[/blue]",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "方法获得[gold]重放[/gold][blue]{Amount}[/blue]",
     "AUTOMATON-SUMMON_ORB_POWER.title": "召唤铜球",
+    "AUTOMATON-SUMMON_ORB_POWER.description": "[gold]储藏[/gold]你每回合打出的第一张攻击或技能牌。",
+    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "[gold]储藏[/gold]你每回合打出的前[blue]{Amount}[/blue]张攻击或技能牌。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "反冲器",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "每回合你第一次抽到状态或诅咒牌时，[gold]消耗[/gold]它并抽1张牌。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "每回合你前[blue]{Amount}[/blue]次抽到状态或诅咒牌时，[gold]消耗[/gold]它并抽1张牌。",
