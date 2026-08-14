@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -45,7 +46,7 @@ public sealed class ClaspedLocket : HermitRelicModel
             _usedThisTurn = true;
             Status = RelicStatus.Normal;
             Flash();
-            await CardCmd.Exhaust(ctx, card);
+            await CardCmdCompatibility.Exhaust(ctx, card);
             await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
         }
     }

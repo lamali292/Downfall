@@ -22,6 +22,6 @@ public class GremlinBomb : GremlinsRelicModel
         var combatState = Owner.Creature.CombatState;
         if (combatState == null) return;
         VfxCmd.PlayOnCreatureCenters(combatState.HittableEnemies, "vfx/vfx_attack_slash");
-        await CreatureCmd.Damage(ctx, combatState.HittableEnemies, DynamicVars.Damage, Owner.Creature);
+        await DownfallCreatureCmd.Damage(ctx, combatState.HittableEnemies, DynamicVars.Damage, Owner.Creature);
     }
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -34,7 +35,7 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
 
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1, 1);
         var exhausted = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
-        if (exhausted != null) await CardCmd.Exhaust(ctx, exhausted);
+        if (exhausted != null) await CardCmdCompatibility.Exhaust(ctx, exhausted);
         await CommonActions.Draw(this, ctx);
     }
 }

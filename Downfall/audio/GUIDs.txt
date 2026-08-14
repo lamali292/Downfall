@@ -16,6 +16,8 @@
 {7bc9ba42-5a1e-4001-b748-46f87bc4187d} event:/sfx/characters/hermit-hermit/hermit-hermit_reload
 {e3b71b00-93bb-4732-9301-29485a7a7886} event:/sfx/characters/hermit-hermit/hermit-hermit_select
 {9b9f1d85-7073-4eac-ab9b-f8d9985147da} event:/sfx/characters/hermit-hermit/hermit-hermit_spin
+{78a990aa-db9f-40f0-b692-8693a604f029} event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_afterlife
 {a2890b16-0629-4042-a317-f879eca05127} event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_select
+{f2e7223d-f7d7-478f-be11-60e44887e5a0} event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn
 {04a6a6d4-75e5-45f8-aac7-0a55411bb852} event:/sfx/characters/slimeboss-slime_boss/slimeboss-slime_boss_select
 {c4798b33-1f25-4db3-8971-0e21e125d014} event:/sfx/characters/snecko-snecko/snecko-snecko_select

@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Piles;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,7 @@ public class BurnOutPower : AutomatonPowerModel
         if (card.Owner.Creature == Owner && card.Type is CardType.Status or CardType.Curse &&
             card.Pile?.Type == StashPile.Stash)
         {
-            await CardCmd.Exhaust(ctx, card);
+            await CardCmdCompatibility.Exhaust(ctx, card);
             var enemies = card.Owner.Creature.CombatState?.HittableEnemies;
             if (enemies == null) return;
             Flash();

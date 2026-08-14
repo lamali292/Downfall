@@ -19,7 +19,7 @@ public class CollectorCmd
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1, 1);
         var pyred = (await CardSelectCmd.FromHand(ctx, card.Owner, prefs, e => e != card, card)).FirstOrDefault();
         if (pyred == null || card.CombatState == null) return pyred;
-        await CardCmd.Exhaust(ctx, pyred);
+        await CardCmdCompatibility.Exhaust(ctx, pyred);
         await CollectorHook.OnPyre(card.CombatState, ctx, card, pyred);
         return pyred;
     }

@@ -31,7 +31,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         if (side != Owner.Side || Owner.CombatState == null) return;
 
         var damage = CollectorHook.ModifyCollectorDoomDamage(Owner.CombatState, Owner, Amount);
-        var results = await CreatureCmd.Damage(ctx, Owner, damage,
+        var results = await DownfallCreatureCmd.Damage(ctx, Owner, damage,
             DamageProps.nonCardHpLoss, null, null);
 
         if (results.Any(r => r.WasTargetKilled)) SfxCmd.Play("event:/sfx/ui/relics/relic_prayer_bowl", 3);

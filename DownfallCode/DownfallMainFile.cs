@@ -80,6 +80,7 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),
+            new ModCredits.Section("SOUND"),
             new ModCredits.Section("LOC", Children: [
                 new ModCredits.Section("LOC_ZHS"),
                 new ModCredits.Section("LOC_FRA"),

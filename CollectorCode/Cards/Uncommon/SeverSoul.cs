@@ -23,7 +23,7 @@ public class SeverSoul : CollectorCardModel
     {
         var cardsToExhaust = GetCards().ToList();
 
-        foreach (var card in cardsToExhaust) await CardCmd.Exhaust(ctx, card);
+        foreach (var card in cardsToExhaust) await CardCmdCompatibility.Exhaust(ctx, card);
 
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }

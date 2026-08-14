@@ -17,7 +17,7 @@ public class BashedPower : GremlinsPowerModel
         ValueProp props, CardModel? cardSource)
     {
         if (creature != Applier) return;
-        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, creature);
+        await DownfallCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, creature);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,

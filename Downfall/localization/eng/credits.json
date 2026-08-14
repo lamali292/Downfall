@@ -1,6 +1,4 @@
 ﻿{
-  "BASELIB-BANNER.name": "— MODS —",
-  "SLAY_THE_SPIRE": "Slay the Spire 2",
   "DOWNFALL-DOWNFALL.title": "Downfall",
   "DOWNFALL-TEAM.header": "Development",
   "DOWNFALL-TEAM.names": "Lead Developer||lamali\nConcept & Balance||Blue Guy",
@@ -11,6 +9,9 @@
   "DOWNFALL-ART.header": "Art",
   "DOWNFALL-ART.names": "GoofballMcgee\nChimedragon\nNewGuyJack\nDawnablesAwakened",
 
+  "DOWNFALL-SOUND.header": "Sound",
+  "DOWNFALL-SOUND.names": "Hundotte",
+  
   "DOWNFALL-LOC.header": "Localization",
   
   "DOWNFALL-LOC_FRA.header": "French",
