@@ -34,7 +34,7 @@ public class Glut : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var context = await AttackCommand.CreateContextAsync(CombatState!, ctx, cardPlay);
+        var context = await AttackContextCompatibility.CreateContextAsync(CombatState!, ctx, cardPlay);
         try
         {
             context.AddHit(await DownfallCreatureCmd.Damage(

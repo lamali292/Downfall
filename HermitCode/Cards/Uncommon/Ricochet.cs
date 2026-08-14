@@ -37,7 +37,7 @@ public sealed class Ricochet : HermitCardModel
         if (play.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var extraHitCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(play.Target);
-        var context = await AttackCommand.CreateContextAsync(CombatState!, ctx, play);
+        var context = await AttackContextCompatibility.CreateContextAsync(CombatState!, ctx, play);
         try
         {
             HermitSfx.PlayGun2();
