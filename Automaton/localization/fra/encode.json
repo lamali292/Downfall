@@ -7,7 +7,6 @@
     "AUTOMATON-SOULBURN_ENCODE.encode": "Appliquez {SoulBurnPower:diff()} de [gold]Brûlure[/gold] à TOUS les ennemis.",
     "AUTOMATON-ENERGY_ENCODE.encode": "Gagnez {Energy:energyIcons()}.",
     "AUTOMATON-DAZED_ENCODE.encode": "Ajoutez {Dazed:plural:un|{}} [gold]Hébété[/gold] dans votre [gold]Pioche[/gold].",
-    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|Maintenant et au début de votre tour : }",
     "AUTOMATON-FULL_RELEASE.encode": "La Fonction est un Pouvoir avec \"Maintenant et au début de votre tour...\".",
     "AUTOMATON-REPLICATE.functionPrefix": "copie",
     "AUTOMATON-REPLICATE.functionName": "Copie",

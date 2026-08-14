@@ -23,7 +23,6 @@
     "SNECKO-TSUNAMI_POWER.description": "과류 효과가 [gold]방어도[/gold]도 부여합니다.",
     "SNECKO-TSUNAMI_POWER.smartDescription": "과류 효과가 [blue]{Amount}[/blue]의 [gold]방어도[/gold]도 부여합니다.",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "끝없는 공급",
-    "SNECKO-UNENDING_SUPPLY_POWER.description": "내 턴이 시작될 때, 무작위 [gold]타직업[/gold] 카드의 메아리(Echo) 1장을 얻습니다.",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "속박됨",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "턴이 끝날 때, 이 적은 피해를 받습니다",
     "SNECKO-SNECKO_CONSTRICT_POWER.smartDescription": "턴이 끝날 때, 이 적은 [blue]{Amount}[/blue] 피해를 받습니다.",

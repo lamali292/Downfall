@@ -13,7 +13,6 @@
     "HERMIT-HORSESHOE.description": "Вы получаете на [blue]1[/blue] меньше [gold]слабости[/gold], [gold]уязвимости[/gold] и [gold]хрупкости[/gold].",
     "HERMIT-SPYGLASS.title": "Подзорная труба",
     "HERMIT-SPYGLASS.flavor": "Собственность Кестина Хайфина.",
-    "HERMIT-SPYGLASS.description": "[gold]Концентрация[/gold] не сбрасывается между ходами.",
     "HERMIT-RED_SCARF.title": "Красный шарф",
     "HERMIT-RED_SCARF.flavor": "Меховой и теплый.",
     "HERMIT-RED_SCARF.description": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы накладываете отрицательный эффект на врага.",

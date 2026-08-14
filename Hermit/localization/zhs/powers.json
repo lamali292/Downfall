@@ -68,7 +68,6 @@
     "HERMIT-MAGAZINE_POWER.title": "杂志",
     "HERMIT-MAGAZINE_POWER.description": "[gold]打击[/gold]和[gold]防御[/gold]获得[gold]保留[/gold]。\n你每回合打出的第一张[gold]打击[/gold]造成额外伤害。",
     "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]打击[/gold]和[gold]防御[/gold]获得[gold]保留[/gold]。\n你每回合打出的第一张[gold]打击[/gold]额外造成[blue]{Amount}[/blue]点伤害。",
-    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "午时已到",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]防御[/gold]获得[gold]重放[/gold]。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]防御[/gold]获得[gold]重放[/gold][blue]{Amount}[/blue]。",
     "HERMIT-HAIR_TRIGGER_POWER.title": "一触即发",

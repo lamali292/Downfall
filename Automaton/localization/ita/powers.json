@@ -31,8 +31,6 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "Le Funzioni ottengono [gold]Replay[/gold] [blue]1[/blue].",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "Le Funzioni ottengono [gold]Replay[/gold] [blue]{Amount}[/blue].",
     "AUTOMATON-SUMMON_ORB_POWER.title": "Globo Evocato",
-    "AUTOMATON-SUMMON_ORB_POWER.description": "Il primo Attacco o Abilità che giochi ogni turno viene messo nel tuo [gold]Mucchio Deposito[/gold].",
-    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "I{Amount:plural:l primo Attacco o Abilità| [blue]{}[/blue] primi Attacchi o Abilità} che giochi ogni turno {Amount:plural:viene|vengono} messi nel tuo [gold]Deposito[/gold].",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Respingi",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "Quando peschi la prima carta Stato o Maledizione ogni turno, [gold]Esauriscila[/gold] e pesca una carta.",
     "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "Quando peschi {Amount:plural:la prima|[blue]{Amount}[/blue]} {Amount:plural:carta Stato o Maledizione|prime carte Stato o Maledizione} ogni turno, [gold]Esauriscile[/gold] e pesca una carta.",

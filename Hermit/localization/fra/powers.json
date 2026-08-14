@@ -68,7 +68,6 @@
     "HERMIT-MAGAZINE_POWER.title": "Cartouchière",
     "HERMIT-MAGAZINE_POWER.description": "Les [gold]Frappes[/gold] et [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Retenue[/gold].\nLa première [gold]Frappe[/gold] [gold]Basique[/gold] que vous jouez chaque tour inflige des dégâts supplémentaires.",
     "HERMIT-MAGAZINE_POWER.smartDescription": "Les [gold]Frappes[/gold] et [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Retenue[/gold].\nLa première [gold]Frappe[/gold] [gold]Basique[/gold] que vous jouez chaque tour inflige [blue]{Amount}[/blue] dégâts supplémentaires.",
-    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "Midi",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "Les [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Rejouez[/gold].",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "Les [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Rejouez[/gold] [blue]{Amount}[/blue] [gold]fois[/gold].",
     "HERMIT-HAIR_TRIGGER_POWER.title": "Gâchette Facile",

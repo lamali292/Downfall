@@ -2,7 +2,6 @@
     "AWAKENED-RECITATION.chant": "攻击两次。",
     "AWAKENED-CAW.chant": "本场战斗中，所有[gold]咔咔[/gold]的伤害提高{Caw:diff()}点。",
     "AWAKENED-FEATHER_FLARE.chant": "在下个回合，抽1张牌。",
-    "AWAKENED-GATHER.chant": "将[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。",
     "AWAKENED-GREAT_HEX.chant": "该敌人在其每个回合结束时获得{GreatHexPower:diff()}层[gold]魔力灼烧[/gold]。",
     "AWAKENED-NIHIL.chant": "所有敌人失去等同于其[gold]魔力灼烧[/gold]层数的生命。",
     "AWAKENED-RAVEN_STRIKE.chant": "打出你[gold]抽牌堆[/gold]顶部的牌。",

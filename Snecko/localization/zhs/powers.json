@@ -27,7 +27,6 @@
     "SNECKO-TSUNAMI_POWER.description": "每当你触发[gold]溢出[/gold]时，获得[gold]格挡[/gold]。",
     "SNECKO-TSUNAMI_POWER.smartDescription": "每当你触发[gold]溢出[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "无尽供给",
-    "SNECKO-UNENDING_SUPPLY_POWER.description": "在你的回合开始时，获得一张随机[gold]异色牌[/gold]的[gold]回响[/gold]。",
     "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]张随机[gold]异色[/gold]牌的[gold]回响[/gold]。",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "紧缠",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "在其回合结束时，该敌人受到伤害。",

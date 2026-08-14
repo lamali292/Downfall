@@ -27,7 +27,6 @@
     "SNECKO-TSUNAMI_POWER.description": "[gold]オーバーフロー[/gold]するたび、[gold]ブロック[/gold]を得る。",
     "SNECKO-TSUNAMI_POWER.smartDescription": "[gold]オーバーフロー[/gold]するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "無尽蔵の供給",
-    "SNECKO-UNENDING_SUPPLY_POWER.description": "ターン開始時、ランダムな[gold]他クラス[/gold]カードの[gold]反響[/gold]を得る。",
     "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "ターン開始時、ランダムな[gold]他クラス[/gold]カードの[gold]反響[/gold]を[blue]{Amount}[/blue]個得る。",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "締め付け",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "自身のターン終了時、この敵はダメージを受ける。",

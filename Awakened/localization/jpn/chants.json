@@ -2,7 +2,6 @@
     "AWAKENED-RECITATION.chant": "さらに{Damage:diff()}ダメージを与える。",
     "AWAKENED-CAW.chant": "この戦闘中、すべての《カァ！》のダメージが{Caw:diff()}増加する。",
     "AWAKENED-FEATHER_FLARE.chant": "次のターン、カードを1枚引く。",
-    "AWAKENED-GATHER.chant": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。",
     "AWAKENED-GREAT_HEX.chant": "自身のターン終了時、対象の敵は[gold]マナバーン[/gold]{GreatHexPower:diff()}を得る。",
     "AWAKENED-NIHIL.chant": "すべての敵は付与されている[gold]マナバーン[/gold]に等しいHPを失う。",
     "AWAKENED-RAVEN_STRIKE.chant": "[gold]山札[/gold]の一番上のカードをプレイする。",

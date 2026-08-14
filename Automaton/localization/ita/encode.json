@@ -7,7 +7,6 @@
     "AUTOMATON-SOULBURN_ENCODE.encode": "Applichi {SoulBurnPower:diff()} di [gold]Ustione dell'Anima[/gold] a TUTTI i nemici.",
     "AUTOMATON-ENERGY_ENCODE.encode": "Ottieni {Energy:energyIcons()}.",
     "AUTOMATON-DAZED_ENCODE.encode": "Aggiungi {Dazed:plural:una|{}} [gold]Stordita[/gold] al tuo [gold]Mazzo Pesca[/gold].",
-    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|Ora e all'inizio del tuo turno:}",
     "AUTOMATON-FULL_RELEASE.encode": "La Funzione è un Potere con \"Ora e all'inizio del tuo turno...\".",
     "AUTOMATON-REPLICATE.functionPrefix": "copia",
     "AUTOMATON-REPLICATE.functionName": "Copia",

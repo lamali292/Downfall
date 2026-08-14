@@ -1,7 +1,6 @@
 {
     "AWAKENED-RECITATION.chant": "다시 {Damage:diff()}의 피해를 줍니다.",
     "AWAKENED-FEATHER_FLARE.chant": "다음 턴에 카드를 1장 더 뽑습니다.",
-    "AWAKENED-GATHER.chant": "[gold]버린 카드 더미[/gold]에서 카드를 1장 [gold]패[/gold]로 가져옵니다.",
     "AWAKENED-GREAT_HEX.chant": "대상 적은 매 턴 종료 시 {GreatHexPower:diff()}의 [gold]마나 연소[/gold]를 얻습니다.",
     "AWAKENED-NIHIL.chant": "모든 적이 자신의 [gold]마나 연소[/gold]만큼 체력을 잃습니다.",
     "AWAKENED-RAVEN_STRIKE.chant": "[gold]뽑을 카드 더미[/gold]의 맨 위 카드를 사용합니다.",
