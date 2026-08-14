@@ -1,6 +1,7 @@
 using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ public class SwordOfNight : HexaghostCardModel
 {
     public SwordOfNight() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(14, 4);
+        WithDamage(15, 5);
         this.WithScry(3, 1);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
@@ -26,6 +27,6 @@ public class SwordOfNight : HexaghostCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var result = await ScryCmd.Execute(ctx, this);
         foreach (var cardModel in result.Discarded.Where(card => card.Keywords.Contains(CardKeyword.Ethereal)))
-            await CardCmd.Exhaust(ctx, cardModel);
+            await CardCmdCompatibility.Exhaust(ctx, cardModel);
     }
 }

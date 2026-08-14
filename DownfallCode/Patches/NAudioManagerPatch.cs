@@ -1,4 +1,5 @@
 ﻿using BaseLib.Audio;
+using Downfall.DownfallCode.Audio;
 using Downfall.DownfallCode.Utils.Sound;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,24 +9,13 @@ namespace Downfall.DownfallCode.Patches;
 
 public static class SfxOverrideRegistry
 {
-    private static readonly Dictionary<string, ModSoundEffect> Overrides = new();
-
-    public static void Register(string path, ModSoundEffect effect)
-    {
-        Overrides[path] = effect;
-    }
-
     public static bool TryHandleResPath(string path)
     {
-        if (!path.StartsWith("res://")) return false;
-
-        if (Overrides.GetValueOrDefault(path) is { } effect)
-        {
-            effect.Play();
-            return true;
-        }
-
-        ModAudio.PlaySoundGlobal(new ModSound(path));
+        if (string.IsNullOrEmpty(path))
+            return false;
+        if (!FmodStudioGuidPathTable.TryGetStudioGuidForEventPath(path, out var guid)
+            || !FmodStudioGuidInterop.TryNormalizeForAddon(guid, out var normalized)) return false;
+        FmodStudioGateway.TryCall(FmodStudioMethodNames.PlayOneShotUsingGuid, normalized, 1f);
         return true;
     }
 }

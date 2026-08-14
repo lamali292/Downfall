@@ -4,6 +4,7 @@ using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Audio;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
@@ -79,6 +80,7 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),
+            new ModCredits.Section("SOUND"),
             new ModCredits.Section("LOC", Children: [
                 new ModCredits.Section("LOC_ZHS"),
                 new ModCredits.Section("LOC_FRA"),
@@ -92,6 +94,10 @@ public partial class DownfallMainFile : Node
             ]),
             new ModCredits.Section("STS1")
             );
+        //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
+        FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.strings.bank");
+        FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Downfall.bank");
+        FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings("res://Downfall/audio/GUIDs.txt");
     }
 
     private static void PostModelInit()
@@ -132,9 +138,5 @@ public partial class DownfallMainFile : Node
 
         var powers = ModelDb.AllPowers.Count(p => p.GetType().Assembly == modAssembly);
         Logger.Info($"Powers: {powers}");
-
-        foreach (var character in ModelDb.AllCharacters.OfType<DownfallCharacterModel>())
-            if (character.CharacterSelectSfxEntry is { } effect)
-                SfxOverrideRegistry.Register(character.CharacterSelectSfx, effect);
     }
 }

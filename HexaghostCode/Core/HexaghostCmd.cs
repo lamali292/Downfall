@@ -1,14 +1,16 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Powers;
+using Godot;
 using Hexaghost.HexaghostCode.Events;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -16,12 +18,36 @@ public static class HexaghostCmd
 {
     public static GhostflameModel[] GetWheel(Player player)
     {
-        return HexaghostModel.Wheel[player] ?? [];
+        return HexaghostModel.Wheel.Get(player) ?? [];
+    }
+
+    public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
+    {
+        if(creature == null)   return Task.CompletedTask;
+        var child = NGroundFireVfx.Create(creature, VfxColor.Green);
+        if (child == null)
+            return Task.CompletedTask;
+        if (!silent)
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+        child.Scale = Vector2.One * scale;
+        var instance = NCombatRoom.Instance;
+        instance?.CombatVfxContainer.AddChildSafely((Godot.Node) child);
+        return Task.CompletedTask;
+    }
+    
+    public static void ActivateGhostwheel(Player player)
+    {
+        HexaghostModel.Active.Set(player, true);
+    }
+
+    public static bool IsGhostwheelActivated(Player player)
+    {
+        return HexaghostModel.Active.Get(player);
     }
 
     public static int GetCurrentIndex(Player player)
     {
-        return HexaghostModel.CurrentIndex[player];
+        return HexaghostModel.CurrentIndex.Get(player);
     }
 
     public static GhostflameModel GetCurrentFlame(Player player)
@@ -89,28 +115,31 @@ public static class HexaghostCmd
     public static Task ReplaceCurrentWithRandom(Player player)
     {
         var wheel = GetWheel(player);
-        var current = GetCurrentIndex(player);
+        var currentIdx = GetCurrentIndex(player);
         var rng = player.RunState.Rng.Niche;
 
-        var currentType = wheel[current].GetType();
-        var candidates = HexaghostModelDb.AllGhostflames.Where(f => f.GetType() != currentType).ToArray();
+        var current = wheel[currentIdx];
+        var isOffclass = current.IsOffclass;
+        var currentType = current.GetType();
+        var candidates = HexaghostModelDb.AllGhostflames.Where(f => f.GetType() != currentType && f.IsOffclass == isOffclass).ToArray();
         var randomFlame = rng.NextItem(candidates);
 
         if (randomFlame == null) return Task.CompletedTask;
-        wheel[current] = randomFlame.ToMutable(player);
-        HexaghostVisualsBridge.Refresh(player);
+        wheel[currentIdx] = randomFlame.ToMutable(player);
+        Refresh(player);
         return Task.CompletedTask;
     }
 
 
     private static Task MoveTo(Player player, int index, bool silent = false)
     {
+        ActivateGhostwheel(player);
         HexaghostModel.CurrentIndex[player] = index;
         var flame = GetCurrentFlame(player);
         flame.Extinguish();
         flame.UpdateVisuals();
         if (silent) return Task.CompletedTask;
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
         return Task.CompletedTask;
     }
 
@@ -146,6 +175,7 @@ public static class HexaghostCmd
 
     public static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
     {
+        ActivateGhostwheel(player);
         await Cmd.Wait(0.05f);
         var flame = GetWheel(player)[index];
         if (!flame.IsIgnited)
@@ -153,15 +183,12 @@ public static class HexaghostCmd
 
         var allIgnited = AllIgnited(player);
         flame.SetIgniteProgress();
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
         await flame.OnIgnite(ctx);
         await HexaghostHook.AfterGhostwheelIgnited(player.Creature.CombatState!, ctx, player, flame, index);
         await Cmd.Wait(0.05f);
         if (allIgnited)
             await HexaghostHook.AfterGhostwheelAllIgnited(player.Creature.CombatState!, ctx, player, flame, index);
-        /*foreach (var f in GetWheel(player).Where(f => !f.IsActive))
-                f.Extinguish();
-            HexaghostVisualsBridge.Refresh(player);*/
     }
 
 
@@ -175,7 +202,7 @@ public static class HexaghostCmd
     {
         foreach (var f in GetWheel(player).Where(e => e != model))
             f.Extinguish();
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
         return Task.CompletedTask;
     }
 
@@ -184,8 +211,14 @@ public static class HexaghostCmd
     {
         GetCurrentFlame(player).Extinguish();
         if (silent) return Task.CompletedTask;
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
         return Task.CompletedTask;
+    }
+
+    public static void Refresh(Player player)
+    {
+        if (!IsGhostwheelActivated(player)) return;
+        HexaghostVisualsBridge.Refresh(player);
     }
 
     public static Task<int> ResetWheel(Player player)
@@ -195,15 +228,16 @@ public static class HexaghostCmd
         Cmd.Wait(0.1f);
         HexaghostModel.ResetWheel(player);
         Cmd.Wait(0.1f);
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
         return Task.FromResult(a);
     }
 
     public static void SetCurrentGhostflame(Player player, GhostflameModel ghostflame)
     {
         ghostflame.AssertCanonical();
+        ActivateGhostwheel(player);
         GetWheel(player)[GetCurrentIndex(player)] = ghostflame.ToMutable(player);
-        HexaghostVisualsBridge.Refresh(player);
+        Refresh(player);
     }
     
     public static AttackCommand AfterlifeAttack(CardModel card, CardPlay? cardPlay)

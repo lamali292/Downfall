@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Events;

@@ -1,13 +1,9 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 

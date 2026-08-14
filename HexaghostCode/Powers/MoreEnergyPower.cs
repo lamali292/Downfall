@@ -6,6 +6,11 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class MoreEnergyPower : HexaghostPowerModel
 {
+    public MoreEnergyPower()
+    {
+        WithEnergyTip();
+    }
+    
     public override async Task AfterEnergyReset(Player player)
     {
         if (player.Creature != Owner) return;

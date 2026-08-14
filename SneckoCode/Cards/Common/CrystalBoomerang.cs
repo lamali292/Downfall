@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -16,7 +15,7 @@ public class CrystalBoomerang : SneckoCardModel
     {
         WithBlock(5, 3);
         WithCards(1);
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -25,7 +24,7 @@ public class CrystalBoomerang : SneckoCardModel
             DownfallCardSelectorPrefs.ToHandSelectionPrompt, this)).FirstOrDefault();
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
-        if (SneckoCmd.IsOffclass(card))
+        if (DownfallCmd.IsOffclass(card))
             await CommonActions.CardBlock(this, cardPlay);
     }
 }

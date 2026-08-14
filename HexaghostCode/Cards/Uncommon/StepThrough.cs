@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,6 +14,7 @@ public class StepThrough : HexaghostCardModel
     public StepThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 3);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

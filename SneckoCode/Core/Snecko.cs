@@ -45,11 +45,6 @@ public class Snecko : DownfallCharacterModel
         ModelDb.Card<TailWhip>()
     ];
 
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Snecko/audio/character_select/STS_SFX_SneckoGlareWave_v1.ogg", 1, 0.3f, 1, 8)
-    );
-
-
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<SneckoSoul>()
@@ -62,32 +57,6 @@ public class Snecko : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<SneckoCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<SneckoPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<SneckoRelicPool>();
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        GD.Print("[Downfall] GenerateAnimator called");
-
-        var animState = new AnimState("Idle", true);
-        var state1 = new AnimState("Idle");
-        var state2 = new AnimState("Attack");
-        var state3 = new AnimState("Hit");
-        var state4 = new AnimState("Idle");
-        var state5 = new AnimState("Idle");
-        state1.NextState = animState;
-        state2.NextState = animState;
-        state3.NextState = animState;
-        state5.NextState = animState;
-        state5.AddBranch("Idle", animState);
-        var animator = new CreatureAnimator(animState, controller);
-        animator.AddAnyState("Idle", animState);
-        animator.AddAnyState("Dead", state4);
-        animator.AddAnyState("Hit", state3);
-        animator.AddAnyState("Attack", state2);
-        animator.AddAnyState("Cast", state1);
-        animator.AddAnyState("Relaxed", state5);
-
-        return animator;
-    }
 }
 
 public class SneckoRelicPool : DownfallRelicPool<Snecko>;

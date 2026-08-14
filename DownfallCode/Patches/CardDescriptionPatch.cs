@@ -2,7 +2,6 @@
 using System.Reflection.Emit;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Localization;
-using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

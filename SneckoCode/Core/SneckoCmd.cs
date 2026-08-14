@@ -84,10 +84,7 @@ public static class SneckoCmd
         return card.Owner.GetHand().Count(e => e != card) >= 5;
     }
 
-    public static bool IsOffclass(CardModel card)
-    {
-        return card.VisualCardPool != card.Owner.Character.CardPool;
-    }
+  
 
     public static bool IsDebuff(CardModel card)
     {

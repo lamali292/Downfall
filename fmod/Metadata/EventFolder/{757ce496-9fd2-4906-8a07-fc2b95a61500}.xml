@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EventFolder" id="{757ce496-9fd2-4906-8a07-fc2b95a61500}">
+		<property name="name">
+			<value>hexaghost-hexaghost</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8086330e-f162-4855-acaa-a9f190deae65}</destination>
+		</relationship>
+	</object>
+</objects>

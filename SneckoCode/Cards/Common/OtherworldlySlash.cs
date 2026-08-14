@@ -1,9 +1,10 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -18,7 +19,7 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
         WithDamage(7, 2);
     }
 
@@ -26,7 +27,7 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
     protected override bool ShouldGlowGoldInternal => PlayedOffClassThisTurn;
 
     private bool PlayedOffClassThisTurn => CombatManager.Instance.History.CardPlaysFinished.Any(e =>
-        e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && SneckoCmd.IsOffclass(e.CardPlay.Card));
+        e.Actor == Owner.Creature && e.HappenedThisTurn(CombatState) && DownfallCmd.IsOffclass(e.CardPlay.Card));
 
     public Gift? Gift { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Events;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Extensions.Powers;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,7 +25,7 @@ public class ManaburnPower : AwakenedPowerModel, IOnDrained
 
     public async Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
-        if (Applier != player.Creature || LocalContext.NetId == null) return;
+        if (Applier != player.Creature) return;
         var originalAmount = Amount * amount;
         var modifiedAmount = AwakenedHook.ModifyManaburnDamage(CombatState, originalAmount, player, out var modifiers);
         await AwakenedHook.AfterModifyingManaburnDamage(CombatState, ctx, player, modifiers);

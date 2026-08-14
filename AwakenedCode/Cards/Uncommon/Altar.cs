@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public class Altar : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
         var card = await CommonActions.SelectSingleCard(this, CardSelectorPrefs.ExhaustSelectionPrompt, ctx,
             PileType.Hand);
-        if (card != null) await CardCmd.Exhaust(ctx, card);
+        if (card != null) await CardCmdCompatibility.Exhaust(ctx, card);
         await AwakenedCmd.Conjure(Owner);
     }
 }

@@ -1,9 +1,9 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -14,7 +14,7 @@ public class SoulDraw : SneckoCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithCards(2);
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
         WithTip(CardKeyword.Retain);
         WithCostUpgradeBy(-1);
     }

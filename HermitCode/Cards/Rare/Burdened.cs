@@ -11,7 +11,7 @@ public class Burdened : HermitCardModel
 {
     public Burdened() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<BurdenedPower>(8, 2, false);
+        this.WithPower<BurdenedPower>(8, 3, false);
         this.WithTip<VigorPower>();
         this.WithTip<Decay>();
     }

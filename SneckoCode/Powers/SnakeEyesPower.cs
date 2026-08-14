@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +12,7 @@ public class SnakeEyesPower : SneckoPowerModel
 {
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card.Owner.Creature == Owner && SneckoCmd.IsOffclass(card) ? playCount + 1 : playCount;
+        return card.Owner.Creature == Owner && DownfallCmd.IsOffclass(card) ? playCount + 1 : playCount;
     }
 
     public override async Task AfterModifyingCardPlayCount(CardModel card)

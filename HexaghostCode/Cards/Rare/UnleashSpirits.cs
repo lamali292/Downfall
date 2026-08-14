@@ -34,6 +34,11 @@ public class UnleashSpirits : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeat = ((CustomCalculatedVar)DynamicVars["Repeat"]).Calculate(null);
-        await CommonActions.CardAttack(this, cardPlay, (int)repeat).Execute(ctx);
+        var scale = 0.8f;
+        await CommonActions.CardAttack(this, cardPlay, (int)repeat).BeforeDamage(async () =>
+        {
+            await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+            scale += 0.1f;
+        }).Execute(ctx);
     }
 }

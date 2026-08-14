@@ -22,6 +22,7 @@ public class QueenOfPentaclesPower : SneckoPowerModel
         CardModel? cardSource)
     {
         if (applier != Owner || power.GetTypeForAmount(amount) != PowerType.Debuff || power.Owner == Owner) return;
+        Flash();
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

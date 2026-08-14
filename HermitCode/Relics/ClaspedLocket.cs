@@ -1,9 +1,9 @@
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,7 +22,7 @@ public sealed class ClaspedLocket : HermitRelicModel
 
     public ClaspedLocket() : base(RelicRarity.Starter)
     {
-        WithVars(new CardsVar(2));
+        WithVars(new CardsVar(3));
         WithVar("Curses", 2);
         WithTip<Injury>();
     }
@@ -46,7 +46,7 @@ public sealed class ClaspedLocket : HermitRelicModel
             _usedThisTurn = true;
             Status = RelicStatus.Normal;
             Flash();
-            await CardCmd.Exhaust(ctx, card);
+            await CardCmdCompatibility.Exhaust(ctx, card);
             await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
         }
     }

@@ -16,7 +16,6 @@ public static class HexaghostSubscriber
     {
         foreach (var player in combatState.Players)
         {
-            if (player.Character is not Core.Hexaghost) continue;
             foreach (var ghostflame in HexaghostModel.Wheel[player] ?? []) yield return ghostflame;
         }
     }

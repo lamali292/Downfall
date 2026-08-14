@@ -3,7 +3,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;

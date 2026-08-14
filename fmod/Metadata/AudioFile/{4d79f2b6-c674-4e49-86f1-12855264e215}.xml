@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{4d79f2b6-c674-4e49-86f1-12855264e215}">
+		<property name="assetPath">
+			<value>chant_activatev2.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.5949659863945578</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{45c91dab-3678-4bc8-a8c0-dbc4c23da560}</destination>
+		</relationship>
+	</object>
+</objects>

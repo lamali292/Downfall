@@ -12,10 +12,9 @@ namespace Guardian.GuardianCode.Cards.Multiplayer;
 [Pool(typeof(GuardianCardPool))]
 public class SharedFlux : GuardianCardModel
 {
-    public SharedFlux() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
+    public SharedFlux() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
-        WithCostUpgradeBy(-1);
-        WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

@@ -51,7 +51,7 @@ public static class GuardianHook
             (m, val) => m.ModifyGemEffect(gem, val, card));
     }
 
-    public static Task AfterGemPlayed(ICombatState cs, PlayerChoiceContext ctx, GemModel gemModel, CardPlay? cardPlay)
+    public static Task AfterGemPlayed(ICombatState? cs, PlayerChoiceContext ctx, GemModel gemModel, CardPlay? cardPlay)
     {
         return HookUtils.Dispatch<Alias>(cs, ctx,
             m => m.AfterGemPlayed(ctx, gemModel, cardPlay));

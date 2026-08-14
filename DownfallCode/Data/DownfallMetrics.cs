@@ -2,10 +2,8 @@
 using System.Text.Json;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Debug;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs.History;

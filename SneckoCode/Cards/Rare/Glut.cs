@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,7 +12,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Events;
 using Snecko.SneckoCode.Extensions;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -37,7 +37,7 @@ public class Glut : SneckoCardModel
         var context = await AttackCommand.CreateContextAsync(CombatState!, ctx, cardPlay);
         try
         {
-            context.AddHit(await CreatureCmd.Damage(
+            context.AddHit(await DownfallCreatureCmd.Damage(
                 ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
                 DamageProps.card, this, cardPlay));
             if (SneckoCmd.OverflowActive(this))
@@ -48,7 +48,7 @@ public class Glut : SneckoCardModel
                 {
                     var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
                     if (targets.Count == 0) break; 
-                    context.AddHit(await CreatureCmd.Damage(
+                    context.AddHit(await DownfallCreatureCmd.Damage(
                         ctx, targets, dmg.BaseValue,
                         DamageProps.card, Owner.Creature, this, cardPlay));
                 }

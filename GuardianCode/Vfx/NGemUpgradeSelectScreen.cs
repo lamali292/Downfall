@@ -1,6 +1,5 @@
 using System.Runtime.InteropServices;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;

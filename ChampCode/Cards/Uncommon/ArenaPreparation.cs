@@ -1,8 +1,9 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Champ.ChampCode.Cards.Uncommon;
@@ -12,25 +13,17 @@ public class ArenaPreparation : ChampCardModel
 {
     public ArenaPreparation() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeywords(CardKeyword.Exhaust);
         WithTip(CardKeyword.Retain);
         WithCards(2);
-        WithCostUpgradeBy(-1);
     }
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var list = Owner.Character.CardPool
-            .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-            .Where(c => c.Rarity != CardRarity.Basic && c.Rarity != CardRarity.Ancient && c.Type == CardType.Skill)
-            .ToList();
-        if (list.Count <= 0)
-            return;
-        var combatCardGeneration = Owner.RunState.Rng.CombatCardGeneration;
-        var a = CardFactory.GetDistinctForCombat(Owner, list, DynamicVars.Cards.IntValue, combatCardGeneration)
-            .ToList();
-        foreach (var cardModel in a) CardCmd.ApplyKeyword(cardModel, CardKeyword.Retain);
-        var result = await CardPileCmd.AddGeneratedCardsToCombat(a, PileType.Hand, Owner);
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, DynamicVars.Cards.IntValue);
+        var cards = await CardSelectCmd.FromHand(ctx, Owner, prefs, c => !c.Keywords.Contains(CardKeyword.Retain), this);
+        foreach (var cardModel in cards) CardCmd.ApplyKeyword(cardModel, CardKeyword.Retain);
     }
 }

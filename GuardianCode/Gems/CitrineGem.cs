@@ -1,6 +1,8 @@
 using Godot;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.DynamicVars;
 using Guardian.GuardianCode.Events;
+using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,13 +15,13 @@ namespace Guardian.GuardianCode.Gems;
 public class CitrineGem : GemModel
 {
     public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Energy)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override Color GemColor => new(0xA55B08FF);
     public override CardRarity Rarity => CardRarity.Rare;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
-        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Energy.BaseValue, Card);
+        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
         foreach (var player in targetPlayers)
         {
             await PlayerCmd.GainEnergy(effect, player);

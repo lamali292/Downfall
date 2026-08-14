@@ -60,7 +60,6 @@ public static class HexaghostVisualsBridge
         var visuals = GetVisuals(player);
         if (visuals == null)
         {
-            if (player.Character is not Hexaghost) return;
             if (NCombatRoom.Instance is not { } room) return;
             Setup(room, player);
             visuals = GetVisuals(player);

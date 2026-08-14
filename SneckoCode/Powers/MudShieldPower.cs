@@ -21,6 +21,7 @@ public class MudShieldPower : SneckoPowerModel, IAfterCardMuddled
     public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card.Owner.Creature != Owner) return;
+        Flash();
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

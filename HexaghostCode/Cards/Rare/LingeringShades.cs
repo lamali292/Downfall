@@ -21,6 +21,7 @@ public class LingeringShades : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        await HexaghostCmd.SoulburnEffect(cardPlay.Target);
         await CardPileCmd.Add(
             Owner.GetDiscard().Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),
             PileType.Hand);

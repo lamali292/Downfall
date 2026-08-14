@@ -11,7 +11,7 @@ public interface IGemSocketCard : IModifyReplayCount, ICardOverlay
     int GemSlots { get; }
     int GemReplayCount => 1;
     bool GemsAffectAllPlayers => false;
-    
+    bool ShouldPlayGems => true;
     IReadOnlyList<GemModel> Gems =>
         this is CardModel card
             ? CardModifier.Modifiers(card).OfType<GemModel>().ToList()
