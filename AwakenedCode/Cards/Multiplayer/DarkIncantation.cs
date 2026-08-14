@@ -23,7 +23,6 @@ public class DarkIncantation : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var a = cardPlay.Card.Owner.GetRelic<Akabeko>();
         if (cardPlay.Target == null) return;
         await CommonActions.Apply<RitualPower>(ctx, cardPlay.Target, this);
     }

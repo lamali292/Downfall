@@ -30,7 +30,7 @@ public class ChampBerserkerStance : ChampStanceModel
     {
         var amount = (int)((BerserkerFinisherVar)DynamicVars["BerserkerFinisher"]).Calculate();
         var targets = affectsAllPlayers
-            ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true })
+            ? Owner.GetAllPlayers().Select(e => e.Creature)
             : [Owner.Creature];
         await PowerCmd.Apply<StrengthPower>(ctx, targets, amount, Owner.Creature, null);
     }

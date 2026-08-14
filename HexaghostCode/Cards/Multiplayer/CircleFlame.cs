@@ -34,9 +34,7 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);
         await HexaghostCmd.SoulburnEffect(target);
         if (!wasExhausted) return;
-        var teammates = CombatState?.GetTeammatesOf(Owner.Creature)
-            .Where(e => e != Owner.Creature && e is { IsPlayer: true, IsAlive: true }) ?? [];
-        var player = CombatState?.RunState.Rng.CombatTargets.NextItem(teammates)?.Player;
+        var player = Owner.GetRandomOtherPlayer();
         if (player == null) return;
         // TODO: use CreateCloneForPlayer on main / beta merge
         var clone = CreateClone();

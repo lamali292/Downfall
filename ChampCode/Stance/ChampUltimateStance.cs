@@ -2,6 +2,8 @@
 using Champ.ChampCode.DynamicVars;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -37,7 +39,7 @@ public class ChampUltimateStance : ChampStanceModel
         var strength = (int)((BerserkerFinisherVar)DynamicVars["BerserkerFinisher"]).Calculate();
         var block = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
         var targets = affectsAllPlayers
-            ? CombatState.GetTeammatesOf(Owner.Creature).Where(e => e is { IsAlive: true, IsPlayer: true }).ToList()
+            ? Owner.GetAllPlayers().Select(e => e.Creature).ToList()
             : [Owner.Creature];
         await PowerCmd.Apply<StrengthPower>(ctx, targets, strength, Owner.Creature, null);
         await targets.ForEachAsync(e =>

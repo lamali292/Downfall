@@ -94,7 +94,7 @@
   "HERMIT-OVERWHELMING_POWER.title": "Overwhelming Power",
   "HERMIT-OVERWHELMING_POWER.description": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} cards.\nWhenever you end your turn with {energyPrefix:energyIcons(0)}, lose {OverwhelmingPowerPower:diff()} HP.",
   "HERMIT-MAINTENANCE.title": "Maintenance",
-  "HERMIT-MAINTENANCE.description": "[gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} more damage this combat.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nIncrease the cost of this card by 1.",
+  "HERMIT-MAINTENANCE.description": "[gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} additional damage.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nIncrease the cost of this card by 1.",
   "HERMIT-ETERNAL_FORM.title": "Eternal Form",
   "HERMIT-ETERNAL_FORM.description": "The first 4 playable cards drawn at the start of each turn cost 1 less {energyPrefix:energyIcons(1)} that turn.",
   "HERMIT-FULLY_LOADED.title": "Fully Loaded",
@@ -182,5 +182,11 @@
   "HERMIT-RUBBER_BULLET.title": "Rubber Bullet",
   "HERMIT-RUBBER_BULLET.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Increase this card's damage by {Increase:diff()} this combat and move it to another random player's [gold]Hand[/gold]. ",
   "HERMIT-BIG_BRUISER.title": "Big Bruiser",
-  "HERMIT-BIG_BRUISER.description": "Other players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. "
+  "HERMIT-BIG_BRUISER.description": "Other players benefit from [gold]Bruise[/gold] you apply to enemies.\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies. ",
+  "HERMIT-FADE_OUT.title": "Fade Out",
+  "HERMIT-FADE_OUT.description": "Gain {Block:diff()} [gold]Block[/gold].\nALL players add a [gold]Clumsy[/gold] into their [gold]Discard Pile[/gold].",
+  "HERMIT-SHARE_THE_LOAD.title": "Share the Load",
+  "HERMIT-SHARE_THE_LOAD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]: ALL other players gain {Energy:energyIcons()} and draw {Cards:diff()} cards.",
+  "HERMIT-TECHNIQUE.title": "Technique",
+  "HERMIT-TECHNIQUE.description": "EVERYONE'S [gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} additional damage."
 }

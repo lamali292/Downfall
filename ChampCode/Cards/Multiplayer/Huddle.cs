@@ -20,8 +20,7 @@ public class Huddle : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        foreach (var creature in CombatState.GetTeammatesOf(Owner.Creature)
-                     .Where(c => c is { IsAlive: true, IsPlayer: true }))
-            await CommonActions.Apply<VigorPower>(ctx, creature, this);
+        foreach (var creature in Owner.GetAllPlayers())
+            await CommonActions.Apply<VigorPower>(ctx, creature.Creature, this);
     }
 }
