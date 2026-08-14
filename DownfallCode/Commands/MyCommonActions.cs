@@ -85,6 +85,7 @@ public static class MyCommonActions
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature>? targets)
         where T : PowerModel
     {
+        if (targets == null) return new List<T>();
         return await PowerCmd.Apply<T>(ctx, targets,
             model.GetDynamicVars().Power<T>().BaseValue, model.GetCreature(), model as CardModel);
     }

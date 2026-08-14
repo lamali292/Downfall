@@ -83,8 +83,8 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState = _sprite?.GetAnimationState();
         _animState?.SetAnimationCompat("Idle_1");
 
-        _eyeFlare = Body.GetNodeOrNull<Node2D>("%EyeFlare");
-        _wingFlare = Body.GetNodeOrNull<WingFlare>("%WingFlare");
+        _eyeFlare = _body.GetNodeOrNull<Node2D>("%EyeFlare");
+        _wingFlare = _body.GetNodeOrNull<WingFlare>("%WingFlare");
     }
 
     public override void _Process(double delta)
@@ -94,14 +94,14 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
         if (_eyeFlare != null)
         {
-            var eye = _sprite.GetGlobalBoneTransform("Eye");
+            var eye = _sprite.GetGlobalBoneTransformCompat("Eye");
             if (eye.HasValue)
                 _eyeFlare.GlobalPosition = eye.Value.Origin;
         }
 
         if (_wingFlare != null)
         {
-            var hips = _sprite.GetGlobalBoneTransform("Hips");
+            var hips = _sprite.GetGlobalBoneTransformCompat("Hips");
             if (hips.HasValue)
                 _wingFlare.GlobalPosition = hips.Value.Origin + new Vector2(WingPos.wingPosX, WingPos.wingPosY);
         }
