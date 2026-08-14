@@ -4,7 +4,7 @@ namespace Downfall.DownfallCode.Audio;
 
 internal static class FmodStudioGateway
 {
-    internal static readonly StringName ServerName = new("FmodServer");
+    private static readonly StringName ServerName = new("FmodServer");
 
     public static GodotObject? TryGetServer()
     {

@@ -2,203 +2,92 @@
 
 namespace Downfall.DownfallCode.Audio;
 
-  internal static class FmodStudioGuidPathTable
+internal static class FmodStudioGuidPathTable
+{
+    private static readonly Lock Gate = new();
+    private static Dictionary<string, string> _eventPathToGuid = [];
+    
+    internal static bool TryLoadFromResourceFile(string resourcePath, out int parsedEventMappings)
     {
-        private static readonly Lock Gate = new();
-        private static readonly Lock ParseGate = new();
-        private static Dictionary<string, string> _eventPathToGuid = [];
+        parsedEventMappings = 0;
+        if (string.IsNullOrWhiteSpace(resourcePath) || !FileAccess.FileExists(resourcePath))
+            return false;
 
-        internal static int EventMappingCount
+        try
         {
-            get
-            {
-                lock (Gate)
-                {
-                    return _eventPathToGuid.Count;
-                }
-            }
-        }
-
-        internal static void Clear()
-        {
-            lock (ParseGate)
-            lock (Gate)
-            {
-                _eventPathToGuid = [];
-            }
-        }
-
-        internal static bool TryLoadFromResourceFile(string resourcePath, out int parsedEventMappings)
-        {
-            parsedEventMappings = 0;
-            if (string.IsNullOrWhiteSpace(resourcePath) || !FileAccess.FileExists(resourcePath))
+            using var file = FileAccess.Open(resourcePath, FileAccess.ModeFlags.Read);
+            if (file is null)
                 return false;
 
-            try
-            {
-                using var file = FileAccess.Open(resourcePath, FileAccess.ModeFlags.Read);
-                if (file is null)
-                    return false;
-
-                parsedEventMappings = ParseAndMerge(file.GetAsText(), resourcePath);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                DownfallMainFile.Logger.Error(
-                    $"[Audio] Failed to load FMOD GUID mappings from '{resourcePath}': {ex}");
-                return false;
-            }
+            parsedEventMappings = ParseAndMerge(file.GetAsText(), resourcePath);
+            return true;
         }
-
-        internal static int ParseAndMerge(string text, string? sourceLabel = null)
+        catch (Exception ex)
         {
-            lock (ParseGate)
-            {
-                return ParseAndMergeCore(text, sourceLabel);
-            }
+            DownfallMainFile.Logger.Error($"[Audio] Failed to load FMOD GUID mappings from '{resourcePath}': {ex.Message}");
+            return false;
         }
+    }
 
-        private static int ParseAndMergeCore(string text, string? sourceLabel)
+    private static int ParseAndMerge(string text, string? sourceLabel = null)
+    {
+        var lines = text.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
+        var prefix = string.IsNullOrEmpty(sourceLabel) ? "[Audio] guids.txt" : $"[Audio] guids.txt ({sourceLabel})";
+        var parsed = 0;
+
+        lock (Gate)
         {
-            var lines = text.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
-            Dictionary<string, string> next;
-            lock (Gate)
+            var next = new Dictionary<string, string>(_eventPathToGuid, StringComparer.Ordinal);
+
+            for (var i = 0; i < lines.Length; i++)
             {
-                next = new(_eventPathToGuid, StringComparer.Ordinal);
-            }
-
-            var guidKeyToFirstPath = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var kv in next)
-            {
-                if (!TryParseStoredGuid(kv.Value, out var parsed))
-                    continue;
-
-                guidKeyToFirstPath.TryAdd(parsed.ToString("N"), kv.Key);
-            }
-
-            var prefix = string.IsNullOrEmpty(sourceLabel) ? "[Audio] guids.txt" : $"[Audio] guids.txt ({sourceLabel})";
-            var parsedEventMappings = 0;
-
-            for (var lineIndex = 0; lineIndex < lines.Length; lineIndex++)
-            {
-                var raw = lines[lineIndex];
-                var line = raw.Trim();
+                var line = lines[i].Trim();
                 if (line.Length == 0 || line[0] == '#')
                     continue;
 
                 var close = line.IndexOf('}', StringComparison.Ordinal);
-                if (close <= 1 || line[0] != '{')
+                if (line[0] != '{' || close <= 1)
                 {
-                    DownfallMainFile.Logger.Warn(
-                        $"{prefix} line {lineIndex + 1}: expected '{{guid}} …' format, skipped.");
+                    DownfallMainFile.Logger.Warn($"{prefix} line {i + 1}: expected '{{guid}} …', skipped.");
                     continue;
                 }
 
-                var guidSpan = line.AsSpan(1, close - 1).Trim();
-                if (guidSpan.IsEmpty)
+                var guidFragment = line.AsSpan(1, close - 1).Trim();
+                if (guidFragment.IsEmpty)
                     continue;
 
-                var guidFragment = guidSpan.ToString();
-                if (!Guid.TryParse(guidFragment, out var parsed))
+                if (!Guid.TryParse(guidFragment, out var guid))
                 {
-                    DownfallMainFile.Logger.Warn(
-                        $"{prefix} line {lineIndex + 1}: invalid GUID '{guidFragment}', skipped.");
+                    DownfallMainFile.Logger.Warn($"{prefix} line {i + 1}: invalid GUID, skipped.");
                     continue;
                 }
 
                 var pathPart = close + 1 < line.Length ? line[(close + 1)..].TrimStart() : string.Empty;
-                if (pathPart.Length == 0)
-                    continue;
-
                 if (!pathPart.StartsWith("event:", StringComparison.Ordinal))
                     continue;
 
-                var braced = parsed.ToString("B");
-                var dedupeKey = parsed.ToString("N");
-
-                if (next.TryGetValue(pathPart, out var existingForPath) &&
-                    !string.Equals(existingForPath, braced, StringComparison.OrdinalIgnoreCase))
-                {
-                    DownfallMainFile.Logger.Warn(
-                        $"{prefix} line {lineIndex + 1}: duplicate event path '{pathPart}' was already mapped to " +
-                        $"'{existingForPath}'; overwriting with '{braced}'.");
-                    RemoveReplacedReverseMapping(existingForPath, pathPart);
-                }
-
-                if (guidKeyToFirstPath.TryGetValue(dedupeKey, out var firstPath) &&
-                    !string.Equals(firstPath, pathPart, StringComparison.Ordinal))
-                    DownfallMainFile.Logger.Warn(
-                        $"{prefix} line {lineIndex + 1}: GUID '{braced}' is also used for '{firstPath}'; " +
-                        $"additional path '{pathPart}' (same GUID, multiple events — verify export).");
-                else
-                    guidKeyToFirstPath.TryAdd(dedupeKey, pathPart);
-
-                next[pathPart] = braced;
-                parsedEventMappings++;
+                next[pathPart] = guid.ToString("B");
+                parsed++;
             }
 
-            lock (Gate)
-            {
-                _eventPathToGuid = next;
-            }
-
-            return parsedEventMappings;
-
-            void RemoveReplacedReverseMapping(string oldGuid, string replacedPath)
-            {
-                if (!TryParseStoredGuid(oldGuid, out var oldParsed))
-                    return;
-
-                var oldKey = oldParsed.ToString("N");
-                if (!guidKeyToFirstPath.TryGetValue(oldKey, out var recordedPath) ||
-                    !string.Equals(recordedPath, replacedPath, StringComparison.Ordinal))
-                    return;
-
-                guidKeyToFirstPath.Remove(oldKey);
-                foreach (var candidate in next)
-                {
-                    if (string.Equals(candidate.Key, replacedPath, StringComparison.Ordinal) ||
-                        !TryParseStoredGuid(candidate.Value, out var candidateGuid) ||
-                        candidateGuid != oldParsed)
-                        continue;
-
-                    guidKeyToFirstPath.Add(oldKey, candidate.Key);
-                    break;
-                }
-            }
+            _eventPathToGuid = next;
         }
 
-        private static bool TryParseStoredGuid(string stored, out Guid parsed)
-        {
-            var s = stored.AsSpan().Trim();
-            if (s.Length >= 3 && s[0] == '{' && s[^1] == '}' && Guid.TryParse(s[1..^1], out parsed))
-                return true;
+        return parsed;
+    }
+    
+    internal static bool TryGetGuidForEventPath(string eventPath, out string guid)
+    {
+        guid = string.Empty;
+        if (string.IsNullOrEmpty(eventPath))
+            return false;
 
-            return Guid.TryParse(s, out parsed);
-        }
-
-        internal static IReadOnlyList<KeyValuePair<string, string>> SnapshotEventMappings()
+        lock (Gate)
         {
-            lock (Gate)
-            {
-                return [.. _eventPathToGuid];
-            }
-        }
-
-        internal static bool TryGetStudioGuidForEventPath(string eventPath, out string guid)
-        {
-            guid = string.Empty;
-            if (string.IsNullOrEmpty(eventPath))
+            if (!_eventPathToGuid.TryGetValue(eventPath, out var v) || v is null)
                 return false;
-
-            lock (Gate)
-            {
-                if (!_eventPathToGuid.TryGetValue(eventPath, out var v) || v is null)
-                    return false;
-
-                guid = v;
-                return true;
-            }
+            guid = v;
+            return true;
         }
     }
+}

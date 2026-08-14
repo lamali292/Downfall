@@ -223,7 +223,7 @@ public partial class NGhostflames : Control
 
             var globalCenter = _hexaCenter != null && IsInstanceValid(_hexaCenter)
                 ? _hexaCenter.GlobalPosition
-                : _creatureNode.GlobalPosition + Vector2.Up * 216f * scaleY;
+                : _creatureNode.GlobalPosition + Vector2.Up * 170f * scaleY;
 
             Position = _vfxContainer.GetGlobalTransform().AffineInverse() * globalCenter;
         }
@@ -242,7 +242,7 @@ public partial class NGhostflames : Control
 
             var worldPos = fire.GlobalPosition
                            + Vector2.Up * 130f * scaleY
-                           + Vector2.Left * 25f * scaleX;
+                           + Vector2.Left * 33f * scaleX;
 
             var intent = _intents[i];
             if (intent != null)

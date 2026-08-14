@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Audio;
-using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
 
 namespace Downfall.DownfallCode.Utils;
@@ -34,7 +33,7 @@ public class DownfallPatchManager
             .Add(typeof(LocManagerPatch))
             .Add(typeof(ModifyCardDescriptionPatch))
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
-            .Add(typeof(SfxOverridePatch))
+            .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PlayOneShotPatch))
             .Add(typeof(PlayOneShotDictPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))

@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs.History;
@@ -22,7 +23,7 @@ public static class DownfallMetrics
             EndpointUrl = "https://wxememsxgrgrfvntulgr.supabase.co/rest/v1/runs",
             ApiKey = "sb_publishable_XJRuWuyy0fJwKVFUQ8L3Dw_JrokGm_i",
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
-            IsOwnCharacter = MetricsPredicates.CharacterOfType<DownfallCharacterModel>(),
+            IsOwnCharacter = e => e is DownfallCharacterModel or Silent or Ironclad or Regent or Necrobinder or Defect,
             AllowedAssemblies = new HashSet<Assembly>
             {
                 typeof(DownfallCharacterModel).Assembly,
