@@ -298,6 +298,7 @@ public partial class NGhostflames : Control
         _currentWheel = wheel;
         for (var i = 0; i < Math.Min(wheel.Length, _allFires.Length); i++)
         {
+            wheel[i].UpdateVisuals();
             _allFires[i]?.SetState(wheel[i].FireColor,
                 wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
             if (_intents[i] == null) continue;
