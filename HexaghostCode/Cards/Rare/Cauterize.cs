@@ -24,7 +24,13 @@ public class Cauterize : HexaghostCardModel
     {
         if (cardPlay.Target == null) return;
         var hits = ResolveEnergyXValue();
-        var attack = await CommonActions.CardAttack(this, cardPlay, hits).Execute(ctx);
+        var scale = 0.8f;
+        var attack = await CommonActions.CardAttack(this, cardPlay, hits).BeforeDamage(async () =>
+            {
+                await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+                scale += 0.1f;
+            })
+            .Execute(ctx);
         var amount = attack.Results.SelectMany(r => r).Sum(x => x.TotalDamage);
         await CommonActions.Apply<SoulBurnPower>(ctx, cardPlay.Target, this, amount);
     }

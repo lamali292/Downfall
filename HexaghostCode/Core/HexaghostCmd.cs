@@ -1,11 +1,16 @@
 using BaseLib.Utils;
+using Godot;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -14,6 +19,20 @@ public static class HexaghostCmd
     public static GhostflameModel[] GetWheel(Player player)
     {
         return HexaghostModel.Wheel.Get(player) ?? [];
+    }
+
+    public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
+    {
+        if(creature == null)   return Task.CompletedTask;
+        var child = NGroundFireVfx.Create(creature, VfxColor.Green);
+        if (child == null)
+            return Task.CompletedTask;
+        if (!silent)
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+        child.Scale = Vector2.One * scale;
+        var instance = NCombatRoom.Instance;
+        instance?.CombatVfxContainer.AddChildSafely((Godot.Node) child);
+        return Task.CompletedTask;
     }
     
     public static void ActivateGhostwheel(Player player)

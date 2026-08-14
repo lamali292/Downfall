@@ -22,7 +22,14 @@ public class ChargedBarrage : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = HexaghostCmd.GetIgnitedCount(Owner);
+
+        var scale = 0.8f;
         for (var i = 0; i < count; i++)
+        {
+            await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+            scale *= 0.9f;
             await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        }
+           
     }
 }

@@ -34,7 +34,6 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
         IEnumerable<Creature> participants)
     {
         if (participants.Contains(Owner)) return;
-        if (Owner.Player?.GetRelic<Spyglass>() != null) return;
         await PowerCmd.Remove(this);
     }
 }

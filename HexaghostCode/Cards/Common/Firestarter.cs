@@ -20,7 +20,8 @@ public class Firestarter : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).BeforeDamage(() =>
+            HexaghostCmd.SoulburnEffect(cardPlay.Target)).Execute(ctx);
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

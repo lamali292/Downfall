@@ -25,7 +25,12 @@ public class Apocryphra : HexaghostCardModel, IHasAfterlifeEffect
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
+        foreach (var soulBurnPower in CombatState!.HittableEnemies)
+        {
+            await HexaghostCmd.SoulburnEffect(soulBurnPower);
+        }
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
+       
         await CardPileCmd.Add(this, PileType.Hand);
         if (wasExhausted && causedByEthereal) GiveSingleTurnRetain();
     }
