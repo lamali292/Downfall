@@ -3,6 +3,7 @@ using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
+using Hexaghost.HexaghostCode.Interfaces;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -271,7 +272,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type, Func<CardModel, bool>? cond = null)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || (cond != null && !cond.Invoke(cardPlay.Card))) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card is IDoesNotTriggerGhostflame || (cond != null && !cond.Invoke(cardPlay.Card))) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (cardPlay.Card.Type != type && !shouldCount) return;
         if (!TryProgress()) return;
