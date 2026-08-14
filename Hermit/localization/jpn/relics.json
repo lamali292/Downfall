@@ -13,7 +13,6 @@
     "HERMIT-HORSESHOE.description": "[gold]脱力[/gold]、[gold]脆弱[/gold]、[gold]弱体[/gold]を得る時、その量が[blue]1[/blue]減少する。",
     "HERMIT-SPYGLASS.title": "スパイグラス",
     "HERMIT-SPYGLASS.flavor": "ケスティン・ハイフィンの所有物。",
-    "HERMIT-SPYGLASS.description": "[gold]集中[/gold]がターンをまたいで持続する。",
     "HERMIT-RED_SCARF.title": "赤いスカーフ",
     "HERMIT-RED_SCARF.flavor": "暖かくてふわふわだ。",
     "HERMIT-RED_SCARF.description": "敵に新たなデバフを付与するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",

@@ -68,7 +68,6 @@
     "HERMIT-MAGAZINE_POWER.title": "弾倉",
     "HERMIT-MAGAZINE_POWER.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン最初にプレイした[gold]基本[/gold][gold]ストライク[/gold]は追加ダメージを与える。",
     "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン最初にプレイした[gold]基本[/gold][gold]ストライク[/gold]は追加で[blue]{Amount}[/blue]ダメージを与える。",
-    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "日盛り",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]基本[/gold][gold]防御[/gold]が[gold]リプレイ[/gold]を得る。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]基本[/gold][gold]防御[/gold]が[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
     "HERMIT-HAIR_TRIGGER_POWER.title": "ヘアトリガー",

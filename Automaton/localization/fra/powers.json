@@ -33,8 +33,6 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "Les Fonctions gagnent [gold]Rejouez[/gold] [blue]1[/blue] fois.",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "Les Fonctions gagnent [gold]Rejouez[/gold] [blue]{Amount}[/blue] fois.",
     "AUTOMATON-SUMMON_ORB_POWER.title": "Invocation d'Orbe",
-    "AUTOMATON-SUMMON_ORB_POWER.description": "La première Attaque ou Compétence que vous jouez chaque tour est placée dans votre [gold]Réserve[/gold].",
-    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "{Amount:plural:La première Attaque ou Compétence|Les [blue]{}[/blue] premières Attaques ou Compétences} que vous jouez chaque tour {Amount:plural:est placée|sont placées} dans votre [gold]Réserve[/gold].",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Répulseur",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "Lorsque vous piochez la première carte Statut ou Malédiction chaque tour, [gold]Épuisez-la[/gold] et piochez une carte.",
     "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "Lorsque vous piochez {Amount:plural:la première carte|les [blue]{Amount}[/blue] premières cartes} Statut ou Malédiction chaque tour, {Amount:plural:[gold]Épuisez-la[/gold]|[gold]Épuisez-les[/gold]} et piochez une carte.",

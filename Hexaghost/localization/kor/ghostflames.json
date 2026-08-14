@@ -1,9 +1,6 @@
 {
     "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "부채의 유령불꽃",
-    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 [gold]파워[/gold] 카드를 [blue]1[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n[gold]방어도[/gold] [blue]4[/blue]와 [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "파쇄의 유령불꽃",
-    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 [gold]스킬[/gold] 카드를 [blue]2[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 피해를 [blue]3[/blue]만큼 2번 줍니다.",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "지옥의 유령불꽃",
-    "HEXAGHOST-SEARING_GHOSTFLAME.title": "작열의 유령불꽃",
-    "HEXAGHOST-SEARING_GHOSTFLAME.description": "유령불꽃에 머무는 동안 공격 카드를 [blue]2[/blue]장 사용하면 [gold]점화[/gold]됩니다.\n무작위 적에게 [gold]영혼 화상[/gold]을 [blue]3[/blue]만큼 2번 부여합니다."
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "작열의 유령불꽃"
 }

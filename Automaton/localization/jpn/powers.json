@@ -33,8 +33,6 @@
     "AUTOMATON-SENTIENT_FORM_POWER.description": "関数が[gold]リプレイ[/gold][blue]1[/blue]を得る。",
     "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "関数が[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
     "AUTOMATON-SUMMON_ORB_POWER.title": "サモンオーブ",
-    "AUTOMATON-SUMMON_ORB_POWER.description": "毎ターン最初にプレイしたアタックかスキルは[gold]格納の山[/gold]に置かれる。",
-    "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "毎ターン最初にプレイした[blue]{Amount}[/blue]枚のアタックかスキルは[gold]格納[/gold]に置かれる。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.title": "撃退",
     "AUTOMATON-EXHAUST_STATUSES_POWER.description": "毎ターン、最初に状態異常か呪いを引いた時、それを[gold]廃棄[/gold]してカードを1枚引く。",
     "AUTOMATON-EXHAUST_STATUSES_POWER.smartDescription": "毎ターン、最初に引いた[blue]{Amount}[/blue]枚の状態異常か呪いを[gold]廃棄[/gold]し、カードを1枚引く。",

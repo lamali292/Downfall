@@ -7,7 +7,6 @@
     "AUTOMATON-SOULBURN_ENCODE.encode": "给予所有敌人{SoulBurnPower:diff()}层[gold]灼魂[/gold]。",
     "AUTOMATON-ENERGY_ENCODE.encode": "获得{Energy:energyIcons()}。",
     "AUTOMATON-DAZED_ENCODE.encode": "将{Dazed}张[gold]晕眩[/gold]加入你的[gold]抽牌堆[/gold]。",
-    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|现在和在你的回合开始时：}",
     "AUTOMATON-FULL_RELEASE.encode": "方法变为能力牌，效果为“现在和在你的回合开始时……”。",
     "AUTOMATON-REPLICATE.functionPrefix": "反复",
     "AUTOMATON-REPLICATE.functionName": "拷贝",

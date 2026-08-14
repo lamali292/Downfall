@@ -62,7 +62,6 @@
     "HERMIT-MAGAZINE_POWER.title": "탄창",
     "HERMIT-MAGAZINE_POWER.description": "[gold]기본[/gold] 타격과 수비가 [gold]보존[/gold]을 얻습니다.\n매 턴 처음으로 사용하는 [gold]기본[/gold] 타격이 추가 피해를 줍니다. ",
     "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]기본[/gold] 타격과 수비가 [gold]보존[/gold]을 얻습니다.\n매 턴 처음으로 사용하는 [gold]기본[/gold] 타격이 [blue]{Amount}[/blue]의 추가 피해를 줍니다. ",
-    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "정오",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]기본[/gold] [gold]수비[/gold]가 [gold]재사용[/gold]을 얻습니다. ",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]기본[/gold] [gold]수비[/gold]가 [gold]재사용[/gold] [blue]{Amount}[/blue]를 얻습니다. ",
     "HERMIT-HAIR_TRIGGER_POWER.title": "예민한 방아쇠",

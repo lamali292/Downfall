@@ -68,7 +68,6 @@
     "HERMIT-MAGAZINE_POWER.title": "Caricatore",
     "HERMIT-MAGAZINE_POWER.description": "I [gold]Colpi[/gold] [gold]Base[/gold] e [gold]Difendi[/gold] Base ottengono [gold]Mantieni[/gold].\nIl primo [gold]Colpo[/gold] [gold]Base[/gold] che giochi ogni turno infligge danno aggiuntivo.",
     "HERMIT-MAGAZINE_POWER.smartDescription": "I [gold]Colpi[/gold] [gold]Base[/gold] e [gold]Difendi[/gold] Base ottengono [gold]Mantieni[/gold].\nIl primo [gold]Colpo[/gold] [gold]Base[/gold] che giochi ogni turno infligge [blue]{Amount}[/blue] danno aggiuntivo.",
-    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "Mezzogiorno",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "I [gold]Difendi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold].",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "I [gold]Difendi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold] [blue]{Amount}[/blue].",
     "HERMIT-HAIR_TRIGGER_POWER.title": "Grilletto Sensibile",
