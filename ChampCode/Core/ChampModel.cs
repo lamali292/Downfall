@@ -7,6 +7,7 @@ using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Champ.ChampCode.Vfx;
+using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +19,7 @@ namespace Champ.ChampCode.Core;
 
 public class ChampModel() : CustomSingletonModel(HookType.Combat)
 {
-    private static readonly SpireField<Player, ChampStanceModel> ActiveStance =
+    private static readonly PlayerField<ChampStanceModel> ActiveStance =
         new(ChampModelDb.ChampStance<ChampNoStance>);
 
     private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();

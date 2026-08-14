@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,11 +13,11 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class CardResource : CustomSingletonModel
 {
-    private readonly SpireField<Player, int> _current;
+    private readonly PlayerField<int> _current;
 
     protected CardResource() : base(HookType.Combat)
     {
-        _current = new SpireField<Player, int>(() => 0);
+        _current = new PlayerField<int>(() => 0);
         CardResourceRegistry.Register(this);
     }
 

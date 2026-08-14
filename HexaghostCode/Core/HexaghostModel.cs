@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Core;
 using Hexaghost.HexaghostCode.Ghostflames;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
@@ -15,9 +16,9 @@ namespace Hexaghost.HexaghostCode.Core;
 
 public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 {
-    internal static readonly SpireField<Player, GhostflameModel[]> Wheel = new(StartingWheel);
-    internal static readonly SpireField<Player, bool> Active = new(() => false);
-    internal static readonly SpireField<Player, int> CurrentIndex = new(() => 0);
+    internal static readonly PlayerField<GhostflameModel[]> Wheel = new(() => []);
+    internal static readonly PlayerField<bool> Active = new(() => false);
+    internal static readonly PlayerField<int> CurrentIndex = new(() => 0);
     
     
     private static GhostflameModel[] StartingWheel(Player player)
@@ -56,6 +57,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 
     public static void ResetWheel(Player player)
     {
+        if (player.PlayerCombatState == null) return;
         Wheel[player] = StartingWheel(player);
         CurrentIndex[player] = 0;
     }
@@ -80,17 +82,5 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_afterlife");
         await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
     }
-
-    internal static void SetupHexaghostCombatUi(CombatState state)
-    {
-        if (NCombatRoom.Instance is not { } combatRoom) return;
-        foreach (var player in state.Players)
-        {
-            if (player.Character is not Hexaghost) continue;
-            HexaghostVisualsBridge.DiscardDisplay(player);
-            HexaghostVisualsBridge.Setup(combatRoom, player);
-        }
-    }
-
    
 }

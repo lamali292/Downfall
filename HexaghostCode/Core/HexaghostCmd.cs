@@ -31,7 +31,7 @@ public static class HexaghostCmd
             SfxCmd.Play("event:/sfx/characters/attack_fire");
         child.Scale = Vector2.One * scale;
         var instance = NCombatRoom.Instance;
-        instance?.CombatVfxContainer.AddChildSafely((Godot.Node) child);
+        instance?.CombatVfxContainer.AddChildSafely(child);
         return Task.CompletedTask;
     }
     
@@ -133,6 +133,7 @@ public static class HexaghostCmd
 
     private static Task MoveTo(Player player, int index, bool silent = false)
     {
+        if (player.PlayerCombatState == null) return Task.CompletedTask;
         ActivateGhostwheel(player);
         HexaghostModel.CurrentIndex[player] = index;
         var flame = GetCurrentFlame(player);

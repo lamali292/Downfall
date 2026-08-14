@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Core;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Displays;
 using Guardian.GuardianCode.Events;
@@ -22,10 +23,10 @@ namespace Guardian.GuardianCode.Core;
 public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 {
     // SpireFields
-    internal static readonly SpireField<Player, GuardianModeModel> ActiveMode =
+    internal static readonly PlayerField<GuardianModeModel> ActiveMode =
         new(GuardianModelDb.GuardianMode<GuardianNormalMode>);
 
-    internal static readonly SpireField<Player, int> StasisSlots = new(() => -1);
+    internal static readonly PlayerField<int> StasisSlots = new(() => -1);
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
     // Hooks
@@ -36,8 +37,6 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
             await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
             await GuardianCmd.LeaveDefensiveMode(ctx, player);
         }
-
-        ;
         await GuardianCmd.TickAll(player, ctx);
         GuardianDisplay.Refresh(player);
     }
