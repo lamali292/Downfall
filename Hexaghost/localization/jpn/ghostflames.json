@@ -1,6 +1,18 @@
 {
     "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "加護のゴーストフレイム",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]発火条件：\n[/b]- パワーを1回プレイ。[b]\n\n発火効果：\n[/b]- {Block:diff()}[gold]ブロック[/gold]を得る。\n- [gold]筋力[/gold]{StrengthPower:diff()}を得る。",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "炎砕のゴーストフレイム",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]発火条件：\n[/b]- スキルを2回プレイ。\n\n[b]発火効果：[/b]\n- ランダムな敵に{Damage:diff()}ダメージを2回与える。",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "インフェルノ・ゴーストフレイム",
-    "HEXAGHOST-SEARING_GHOSTFLAME.title": "灼熱のゴーストフレイム"
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[b]発火条件：[/b]\n- {energyPrefix:energyIcons(3)}を消費。\n\n[b]発火効果：[/b]\n- [gold]発火[/gold]しているゴーストフレイム1つにつき、ランダムな敵に{Damage:diff()}ダメージを与える。\n- 他のゴーストフレイムがすべて[gold]発火[/gold]している場合、[gold]火力[/gold]{IntensityPower:diff()}を得る。\n- 他のゴーストフレイムをすべて[gold]滅却[/gold]する。\n\n[b]ターン終了時：[/b]\n- このゴーストフレイムを[gold]滅却[/gold]する。",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "灼熱のゴーストフレイム",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]発火条件：\n[/b]- アタックを2回プレイ。\n\n[b]発火効果：\n[/b]- ランダムな敵に[gold]ソウルバーン[/gold]{Soulburn:diff()}を2回付与する。",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "加護のゴーストフレイム（オフクラス）",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]発火条件：[/b][gold]\n[/gold]- [gold]他クラス[/gold]のパワーを1回プレイ。[gold]\n\n[/gold][b]発火効果：[/b][gold]\n[/gold]- {Block:diff()}[gold]ブロック[/gold]を得る。\n- [gold]筋力[/gold]{StrengthPower:diff()}を得る。",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "炎砕のゴーストフレイム（他クラス）",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]発火条件：[/b][gold]\n[/gold]- [gold]他クラス[/gold]のスキルを2回プレイ。[gold]\n\n[/gold][b]発火効果：[/b]\n- ランダムな敵に{Damage:diff()}ダメージを2回与える。",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "インフェルノ・ゴーストフレイム（他クラス）",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]発火条件：\n[/b]- [gold]他クラス[/gold]のカードで{energyPrefix:energyIcons(3)}を消費。[b]\n\n発火効果：\n[/b]- [gold]発火[/gold]しているゴーストフレイム1つにつき、ランダムな敵に{Damage:diff()}ダメージを与える。\n- 他のゴーストフレイムをすべて[gold]滅却[/gold]する。\n\n[b]ターン終了時：\n[/b]- このゴーストフレイムを[gold]滅却[/gold]する。",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "灼熱のゴーストフレイム（他クラス）",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]発火条件：\n[/b]- [gold]他クラス[/gold]のアタックを2回プレイ。\n\n[b]発火効果：\n[/b]- ランダムな敵に[gold]ソウルバーン[/gold]{Soulburn:diff()}を2回付与する。"
 }
