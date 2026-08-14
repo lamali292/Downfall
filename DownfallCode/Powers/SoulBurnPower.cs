@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using BaseLib.Audio;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Compatibility;
@@ -68,6 +69,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var combatState = Owner.CombatState;
         var owner = Owner;
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
+        ModAudio.PlaySoundInRun(new ModSound("res://Hexaghost/audio/character_select/HexaghostCharacterSelect.ogg"));
         if (targetAll)
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, applier, null, null);

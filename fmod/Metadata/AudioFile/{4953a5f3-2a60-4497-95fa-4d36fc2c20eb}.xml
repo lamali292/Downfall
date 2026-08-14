@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{4953a5f3-2a60-4497-95fa-4d36fc2c20eb}">
+		<property name="assetPath">
+			<value>hermit_gun2.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{45c91dab-3678-4bc8-a8c0-dbc4c23da560}</destination>
+		</relationship>
+	</object>
+</objects>

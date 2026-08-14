@@ -45,11 +45,6 @@ public class Snecko : DownfallCharacterModel
         ModelDb.Card<TailWhip>()
     ];
 
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Snecko/audio/character_select/STS_SFX_SneckoGlareWave_v1.ogg", 1, 0.3f, 1, 8)
-    );
-
-
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<SneckoSoul>()

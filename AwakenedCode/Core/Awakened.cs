@@ -56,12 +56,7 @@ public class Awakened : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<AwakenedCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AwakenedPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
-
-
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Awakened/audio/chant_activatev2.ogg", 1, 0.1f, 1, 10)
-    );
-
+    
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
