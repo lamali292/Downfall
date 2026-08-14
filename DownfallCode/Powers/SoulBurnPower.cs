@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Godot;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -69,13 +70,24 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var combatState = Owner.CombatState;
         var owner = Owner;
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
+    
         SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn");
         if (targetAll)
+        {
+            foreach (var target in CombatState.HittableEnemies)
+            {
+                await HexaghostCmd.SoulburnEffect(target, silent: true);
+            }
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, applier, null, null);
+        }
         else
+        {
+            await HexaghostCmd.SoulburnEffect(Owner, silent: true);
             await DownfallCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, applier, null, null);
+        }
+            
 
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);
