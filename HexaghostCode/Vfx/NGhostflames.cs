@@ -60,9 +60,8 @@ public partial class NGhostflames : Control
             HexaghostMainFile.Logger.Error($"[Ghostflames] failed to load {FireScenePath}");
             return root;
         }
-
         var count = HexaghostModel.Wheel.Get(player)?.Length ?? 0;
-
+        
         var fires = new NFire?[count];
         for (var i = 0; i < count; i++)
         {

@@ -32,7 +32,6 @@ public partial class HexaghostMainFile : Node
         HexaghostSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-        CombatUiHooks.Register(HexaghostModel.SetupHexaghostCombatUi);
     }
 
     private static void PostModelInit()

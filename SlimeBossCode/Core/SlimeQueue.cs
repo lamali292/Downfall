@@ -1,5 +1,7 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Core;
 using Godot;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -13,16 +15,11 @@ namespace SlimeBoss.SlimeBossCode.Core;
 
 public static class SlimeQueue
 {
-    private static readonly SpireField<Player, int> SlimeSlots = new(_ => 1);
+    private static readonly PlayerField<int> SlimeSlots = new(_ => 1);
 
     private static List<Creature> GetSlimes(Player player)
     {
         return player.PlayerCombatState?.Pets.Where(e => e.Monster is SlimeModel).ToList() ?? [];
-    }
-
-    public static void ResetAllSlots()
-    {
-        SlimeSlots._table.Clear();
     }
 
     public static void SetSlots(Player player, int amount)

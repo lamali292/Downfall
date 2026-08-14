@@ -14,9 +14,6 @@ public static class HexaghostSubscriber
 
     private static IEnumerable<AbstractModel> CollectModels2(CombatState combatState)
     {
-        foreach (var player in combatState.Players)
-        {
-            foreach (var ghostflame in HexaghostModel.Wheel[player] ?? []) yield return ghostflame;
-        }
+        return combatState.Players.SelectMany(player => HexaghostModel.Wheel.Get(player) ?? []);
     }
 }
