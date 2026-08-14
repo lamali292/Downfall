@@ -95,9 +95,9 @@ public partial class DownfallMainFile : Node
             new ModCredits.Section("STS1")
             );
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
-        FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.strings.bank");
-        FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Downfall.bank");
-        FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings("res://Downfall/audio/GUIDs.txt");
+        FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
+        FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
+        FmodStudio.RegisterGuidMappings("res://Downfall/audio/GUIDs.txt");
     }
 
     private static void PostModelInit()

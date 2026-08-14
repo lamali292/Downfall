@@ -22,7 +22,7 @@ public class ThermalTransfer : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var hasSoulburn = !cardPlay.Target.HasPower<SoulBurnPower>();
+        var hasSoulburn = cardPlay.Target.HasPower<SoulBurnPower>();
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!hasSoulburn) return;
         await CommonActions.CardBlock(this, cardPlay);

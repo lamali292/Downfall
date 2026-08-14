@@ -1,7 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;

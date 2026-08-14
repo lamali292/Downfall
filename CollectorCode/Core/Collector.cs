@@ -3,7 +3,6 @@ using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
-using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;

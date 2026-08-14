@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils.Sound;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
@@ -43,7 +42,7 @@ public class Automaton : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<AutomatonCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AutomatonPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AutomatonRelicPool>();
-    
+
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
