@@ -69,7 +69,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var combatState = Owner.CombatState;
         var owner = Owner;
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
-        ModAudio.PlaySoundInRun(new ModSound("res://Hexaghost/audio/character_select/HexaghostCharacterSelect.ogg"));
+        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn");
         if (targetAll)
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, applier, null, null);

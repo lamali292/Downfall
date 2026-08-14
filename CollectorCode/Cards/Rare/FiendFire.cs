@@ -32,7 +32,7 @@ public class FiendFire : CollectorCardModel
         var list = Owner.GetHand().ToList();
         var cardCount = list.Count;
         foreach (var card2 in list)
-            await CardCmd.Exhaust(ctx, card2);
+            await CardCmdCompatibility.Exhaust(ctx, card2);
         var scale = 0.8f;
         await CommonActions.CardAttack(this, cardPlay, cardCount).BeforeDamage(() =>
         {

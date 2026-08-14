@@ -59,7 +59,6 @@ public class DownfallPatchManager
             .Add(typeof(FindExistingInstanceForStackingPatch))
             .Add(typeof(IgnoreDexterityPatch))
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
-            .Add(typeof(NCreditsScreenPatch))
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))

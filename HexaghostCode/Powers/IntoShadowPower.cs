@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
@@ -81,7 +82,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CardSource != cardPlay.Card) return;
-        await CardCmd.Exhaust(ctx, cardPlay.Card);
+        await CardCmdCompatibility.Exhaust(ctx, cardPlay.Card);
     }
 
 

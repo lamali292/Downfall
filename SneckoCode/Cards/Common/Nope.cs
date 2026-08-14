@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,7 +26,7 @@ public class Nope : SneckoCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, exhaustOnePrefs, e => e != this, this))
             .FirstOrDefault();
         if (card == null) return;
-        await CardCmd.Exhaust(ctx, card);
+        await CardCmdCompatibility.Exhaust(ctx, card);
         if (!ModelDb.AllCharacterCardPools.Contains(card.VisualCardPool)) return;
         var nopeCard = CardFactory.GetForCombat(Owner, card.VisualCardPool.AllCards, 1,
             Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();

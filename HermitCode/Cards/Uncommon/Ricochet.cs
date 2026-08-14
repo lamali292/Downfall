@@ -1,4 +1,5 @@
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
@@ -40,7 +41,7 @@ public sealed class Ricochet : HermitCardModel
         try
         {
             HermitSfx.PlayGun2();
-            var mainHits = (await CreatureCmd.Damage(
+            var mainHits = (await DownfallCreatureCmd.Damage(
                 ctx, play.Target, DynamicVars.Damage.BaseValue,
                 DamageProps.card,
                 this, play)).ToList();
@@ -53,7 +54,7 @@ public sealed class Ricochet : HermitCardModel
                 {
                     var target = RunState!.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
                     if (target is not { IsHittable: true }) continue;
-                    context.AddHit(await CreatureCmd.Damage(
+                    context.AddHit(await DownfallCreatureCmd.Damage(
                         ctx, target, DynamicVars.Damage.BaseValue,
                         DamageProps.card,
                         Owner.Creature, this, play));
