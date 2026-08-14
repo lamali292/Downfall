@@ -6,6 +6,27 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class PlayerExtensions
 {
+    
+    public static IReadOnlyList<Player> GetAllPlayers(this Player player)
+    {
+        return player.Creature.CombatState!.GetTeammatesOf(player.Creature)
+            .Where(e => e.IsAlive)
+            .Select(c => c.Player)
+            .OfType<Player>()
+            .ToArray();
+    }
+
+    public static IReadOnlyList<Player> GetOtherPlayers(this Player player)
+    {
+        return player.GetAllPlayers().Where(p => p != player).ToArray();;
+    }
+
+    public static Player? GetRandomOtherPlayer(this Player player)
+    {
+        return player.RunState.Rng.CombatTargets.NextItem(player.GetOtherPlayers());
+    }
+    
+    
     public static IReadOnlyList<CardModel> GetHand(this Player player, Func<CardModel, bool>? filter = null)
     {
         var cards = PileType.Hand.GetPile(player).Cards;

@@ -19,11 +19,10 @@ public class SharePower : AutomatonPowerModel
     {
         if (creature != Owner || creature.Player == null || cardSource is not FunctionCard)
             return;
-        var teammate = CombatState.GetTeammatesOf(Owner)
-            .Where(e => e.IsAlive && e != Owner)
-            .OrderBy(e => e.Block)
+        var player = Owner.Player?.GetOtherPlayers()
+            .OrderBy(e => e.Creature.Block)
             .FirstOrDefault();
-        if (teammate == null) return;
-        await CreatureCmd.GainBlock(teammate, Amount, BlockProps.nonCardUnpowered, null);
+        if (player == null) return;
+        await CreatureCmd.GainBlock(player.Creature, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

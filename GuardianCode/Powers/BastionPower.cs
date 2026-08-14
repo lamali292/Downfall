@@ -21,11 +21,11 @@ public class BastionPower : GuardianPowerModel, IAfterBrace
     public async Task AfterBrace(Player player, decimal amount)
     {
         if (player.Creature != Owner) return;
-        var allies = CombatState.GetTeammatesOf(Owner).Where(e => e != Owner);
+        var allies = player.GetOtherPlayers();
+        Flash();
         foreach (var ally in allies)
         {
-            await CreatureCmd.GainBlock(ally, Amount, BlockProps.nonCardUnpowered, null);
+            await CreatureCmd.GainBlock(ally.Creature, Amount, BlockProps.nonCardUnpowered, null);
         }
-        Flash();
     }
 }

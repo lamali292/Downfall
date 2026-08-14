@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,15 +24,12 @@ public class Congregation : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var players = CombatState!.GetTeammatesOf(Owner.Creature).Where(c => c is { IsAlive: true, IsPlayer: true });
-        foreach (var creature in players)
+        foreach (var player in Owner.GetAllPlayers())
         {
-            var player = creature.Player;
-            if (player == null) continue;
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
-            var card = CombatState.CreateCard<Void>(player);
+            var card = CombatState!.CreateCard<Void>(player);
             var combat = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Owner);
-            if (LocalContext.IsMe(creature))
+            if (LocalContext.IsMe(player))
                 CardCmd.PreviewCardPileAdd(combat);
             
         }

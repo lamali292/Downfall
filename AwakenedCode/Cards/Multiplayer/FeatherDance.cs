@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -24,18 +25,15 @@ public class FeatherDance : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var players = CombatState!.GetTeammatesOf(Owner.Creature).Where(c => c is { IsAlive: true, IsPlayer: true });
-        foreach (var creature in players)
+        foreach (var player in Owner.GetAllPlayers())
         {
-            var player = creature.Player;
-            if (player == null) continue;
             var cards = new List<CardModel>();
             for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
             {
-                cards.Add(CombatState.CreateCard<PlumeJab>(player));
+                cards.Add(CombatState!.CreateCard<PlumeJab>(player));
             }
             var combat = await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
-            if (LocalContext.IsMe(creature))
+            if (LocalContext.IsMe(player))
                 CardCmd.PreviewCardPileAdd(combat);
             
         }
