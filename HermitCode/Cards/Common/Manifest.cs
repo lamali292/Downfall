@@ -16,7 +16,7 @@ public sealed class Manifest : HermitCardModel
     public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(16, 4);
-        this.WithTip<Decay>();
+        this.WithTip<Injury>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -25,6 +25,6 @@ public sealed class Manifest : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, play);
-        await DownfallCardCmd.GiveCard<Decay>(Owner, PileType.Hand);
+        await DownfallCardCmd.GiveCard<Injury>(Owner, PileType.Hand);
     }
 }

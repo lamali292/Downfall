@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -29,7 +30,7 @@ public sealed class AdaptPower : HermitPowerModel
         );
         foreach (var card in selected)
         {
-            await CardCmd.Exhaust(ctx, card);
+            await CardCmdCompatibility.Exhaust(ctx, card);
             await CreatureCmd.GainBlock(Owner, 8, BlockProps.nonCardUnpowered, null);
         }
     }

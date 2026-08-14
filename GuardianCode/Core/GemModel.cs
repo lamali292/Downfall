@@ -10,7 +10,6 @@ using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -167,6 +166,7 @@ public abstract class GemModel : CardModifier, ICustomModel
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
+        if (cardPlay?.Card is IGemSocketCard {ShouldPlayGems: false}) return;
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
         var targetPlayers = TargetPlayers(affectsAll).ToList();

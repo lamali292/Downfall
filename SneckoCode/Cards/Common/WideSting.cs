@@ -1,10 +1,11 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
@@ -19,7 +20,7 @@ public class WideSting : SneckoCardModel, IHasGift
         {
             Rarity = CardRarity.Common
         });
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
         WithDamage(7, 3);
     }
 
@@ -31,7 +32,7 @@ public class WideSting : SneckoCardModel, IHasGift
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         foreach (var card in Owner.GetHand()
-                     .Where(e => e.IsUpgradable && SneckoCmd.IsOffclass(e)))
+                     .Where(e => e.IsUpgradable && DownfallCmd.IsOffclass(e)))
             CardCmd.Upgrade(card);
     }
 }

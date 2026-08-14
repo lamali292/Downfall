@@ -1,4 +1,5 @@
-﻿using Hexaghost.HexaghostCode.Core;
+﻿using Downfall.DownfallCode.Compatibility;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public class SizzlePower : HexaghostPowerModel
 
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner) return;
-        await CardCmd.Exhaust(ctx, card);
+        await CardCmdCompatibility.Exhaust(ctx, card);
         Flash();
         await PowerCmd.Decrement(this);
     }

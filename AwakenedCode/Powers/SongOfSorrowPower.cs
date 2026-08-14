@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;

@@ -1,13 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
-using Snecko.SneckoCode.Events;
-using Snecko.SneckoCode.History;
 
 namespace Snecko.SneckoCode.Powers;
 

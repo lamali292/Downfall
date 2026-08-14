@@ -3,11 +3,9 @@ using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
-using Hexaghost.HexaghostCode.Ghostflames;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
@@ -18,6 +16,7 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
     {
         WithPower<SoulBurnPower>(3, 2);
         WithTip(HexaghostKeyword.Retract);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override bool ShouldGlowGoldInternal
@@ -25,15 +24,7 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
         get
         {
             var a = HexaghostCmd.GetCurrentFlame(Owner);
-            if (a.IsIgnited) return true;
-            switch (a)
-            {
-                case CrushingGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= 1:
-                case InfernoGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= EnergyCost.GetResolved():
-                    return true;
-                default:
-                    return false;
-            }
+            return a.IsIgnited || a.AboutToIgnite(this);
         }
     }
 

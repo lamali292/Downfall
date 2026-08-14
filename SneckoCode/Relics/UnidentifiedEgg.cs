@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -25,7 +26,7 @@ public class UnidentifiedEgg : SneckoRelicModel
     public override Task AfterObtained()
     {
         foreach (var card in PileType.Deck.GetPile(Owner)
-                     .Cards.Where(c => SneckoCmd.IsOffclass(c) && c.IsUpgradable)
+                     .Cards.Where(c => DownfallCmd.IsOffclass(c) && c.IsUpgradable)
                      .ToList()
                      .StableShuffle(Owner.RunState.Rng.Niche)
                      .Take(DynamicVars.Cards.IntValue))
@@ -40,7 +41,7 @@ public class UnidentifiedEgg : SneckoRelicModel
     {
         if (player != Owner || options.Flags.HasFlag(CardCreationFlags.NoHookUpgrades))
             return false;
-        UpgradeValidCards(cardRewards, SneckoCmd.IsOffclass, this);
+        UpgradeValidCards(cardRewards, DownfallCmd.IsOffclass, this);
         return true;
     }
 
@@ -50,13 +51,13 @@ public class UnidentifiedEgg : SneckoRelicModel
     {
         if (player != Owner)
             return;
-        UpgradeValidCards(cards, SneckoCmd.IsOffclass, this);
+        UpgradeValidCards(cards, DownfallCmd.IsOffclass, this);
     }
 
     public override bool TryModifyCardBeingAddedToDeck(CardModel card, out CardModel? newCard)
     {
         newCard = null;
-        if (card.Owner != Owner || !SneckoCmd.IsOffclass(card) || !card.IsUpgradable)
+        if (card.Owner != Owner || !DownfallCmd.IsOffclass(card) || !card.IsUpgradable)
             return false;
         newCard = Owner.RunState.CloneCard(card);
         CardCmd.Upgrade(newCard, CardPreviewStyle.None);

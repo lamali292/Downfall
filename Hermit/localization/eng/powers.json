@@ -68,7 +68,7 @@
   "HERMIT-MAGAZINE_POWER.title": "Magazine",
   "HERMIT-MAGAZINE_POWER.description": "[gold]Basic[/gold] [gold]Strikes[/gold] and [gold]Defends[/gold] gain [gold]Retain[/gold].\nThe first [gold]Basic[/gold] [gold]Strike[/gold] you play each turn deals additional damage. ",
   "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]Basic[/gold] [gold]Strikes[/gold] and [gold]Defends[/gold] gain [gold]Retain[/gold].\nThe first [gold]Basic[/gold] [gold]Strike[/gold] you play each turn deals [blue]{Amount}[/blue] additional damage. ",
-  "HERMIT-HIGH_NOON_DEFEND_POWER.title": "High Noon",
+  "HERMIT-HIGH_NOON_DEFEND_POWER.title": "High Noon+",
   "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]Basic[/gold] [gold]Defends[/gold] gain [gold]Replay[/gold]. ",
   "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]Basic[/gold] [gold]Defends[/gold] gain [gold]Replay[/gold] [blue]{Amount}[/blue]. ",
   "HERMIT-HAIR_TRIGGER_POWER.title": "Hair Trigger",

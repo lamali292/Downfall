@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Ghostflames;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,6 +13,7 @@ public class Reversal : HexaghostCardModel
     {
         WithDamage(5, 1);
         this.WithRepeat(2);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override bool ShouldGlowGoldInternal
@@ -20,15 +21,7 @@ public class Reversal : HexaghostCardModel
         get
         {
             var a = HexaghostCmd.GetCurrentFlame(Owner);
-            if (a.IsIgnited) return true;
-            switch (a)
-            {
-                case SearingGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= 1:
-                case InfernoGhostflame when a.IgnitionRequirement - a.IgnitionProgress <= EnergyCost.GetResolved():
-                    return true;
-                default:
-                    return false;
-            }
+            return a.IsIgnited || a.AboutToIgnite(this);
         }
     }
     

@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Events;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;

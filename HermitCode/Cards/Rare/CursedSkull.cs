@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
-using Hermit.HermitCode.Patches;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;

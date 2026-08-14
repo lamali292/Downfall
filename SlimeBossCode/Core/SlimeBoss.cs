@@ -1,8 +1,6 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils.Sound;
 using Godot;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -45,12 +43,7 @@ public class SlimeBoss : DownfallCharacterModel
         ModelDb.Card<Split>(),
         ModelDb.Card<Tackle>()
     ];
-
-
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://SlimeBoss/audio/character_select/SOTE_SFX_SlimeSplit_v1.ogg", 1, 0.3f, 1, 10)
-    );
-
+    
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<HeartOfGoo>()

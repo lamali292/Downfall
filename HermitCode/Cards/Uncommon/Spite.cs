@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +24,7 @@ public sealed class Spite : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await Owner.GetHand()
             .Where(c => c.Keywords.Contains(CardKeyword.Unplayable))
-            .ForEachAsync(card => CardCmd.Exhaust(ctx, card));
+            .ForEachAsync(card => CardCmdCompatibility.Exhaust(ctx, card));
         await CommonActions.CardBlock(this, play);
         await CommonActions.Draw(this, ctx);
     }

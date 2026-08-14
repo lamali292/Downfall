@@ -83,17 +83,6 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     //public override string CustomCastSfx => "res://";
     public override string CustomDeathSfx => "event:/sfx/characters/ironclad/ironclad_die";
 
-    public override string CharacterSelectSfx => $"res://{ModId}/audio/character_select.ogg";
-
-
-    public virtual ModSoundEffect? CharacterSelectSfxEntry => null;
-
-    private string EnergyCounterPaths(int i)
-    {
-        return $"res://{ModId}/images/character/orb_layer_{i}.png";
-    }
-
-
     public override List<string> GetArchitectAttackVfx()
     {
         return

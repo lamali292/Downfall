@@ -2,6 +2,7 @@ using Awakened.AwakenedCode.Cards;
 using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
+using Awakened.AwakenedCode.Patches;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
@@ -32,6 +33,11 @@ public partial class AwakenedMainFile : Node
 
         BundledSubmodLocRegistry.Register(ModId);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
+        
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(PlayerCmdLoseEnergyPatch))
+            .PatchAll();
+
         
         FormBoneRegistry.RegisterVoidForm<Core.Awakened>("Eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");

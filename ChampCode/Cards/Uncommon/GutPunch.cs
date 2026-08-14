@@ -12,7 +12,7 @@ public class GutPunch : ChampCardModel
 {
     public GutPunch() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(9, 3);
+        WithDamage(10, 3);
         this.WithGlory(3, 1);
     }
 

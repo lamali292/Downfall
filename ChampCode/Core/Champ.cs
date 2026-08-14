@@ -60,12 +60,7 @@ public class Champ : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<ChampCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ChampPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
-
-    public override ModSoundEffect CharacterSelectSfxEntry => new(
-        new ModSoundEntry("res://Champ/audio/character_select/STS_VO_TheChamp_3a.ogg", 1, 0.1f, 1, 10),
-        new ModSoundEntry("res://Champ/audio/character_select/STS_VO_TheChamp_3b.ogg", 1, 0.1f, 1, 10)
-    );
-
+    
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {

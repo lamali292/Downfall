@@ -1,16 +1,36 @@
 ﻿using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
+using Hexaghost.HexaghostCode.Events;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class PoltergeistPower : HexaghostPowerModel
+public class PoltergeistPower : HexaghostPowerModel, IWheelMoved
 {
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+
+    public PoltergeistPower()
     {
-        if (card.Owner.Creature != Owner) return;
+        WithTip(HexaghostKeyword.Advance);
+        WithTip(HexaghostKeyword.Retract);
+    }
+ 
+    public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+        => DamageAction(ctx, player);
+
+    public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame,
+        int ghostflameIndex, bool silent)
+        => DamageAction(ctx, player);
+
+    private async Task DamageAction(PlayerChoiceContext ctx, Player player)
+    {
+        if (player.Creature != Owner) return;
         var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (creature == null) return;
         await DownfallCreatureCmd.Damage(ctx, creature, Amount,

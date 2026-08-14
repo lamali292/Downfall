@@ -12,7 +12,7 @@ public class BacktrackSmack : HexaghostCardModel
     public BacktrackSmack() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(HexaghostKeyword.Retract);
-        WithDamage(5, 2);
+        WithDamage(6, 2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

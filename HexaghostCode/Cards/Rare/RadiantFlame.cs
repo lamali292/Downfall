@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,7 @@ public class RadiantFlame : HexaghostCardModel
     {
         this.WithPower<RadiantFlamePower>(2, 1, false);
         WithTip(StaticHoverTip.Block);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

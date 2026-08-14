@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
 

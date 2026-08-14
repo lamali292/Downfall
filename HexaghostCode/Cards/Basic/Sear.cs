@@ -3,13 +3,18 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
+using Godot;
 using Hexaghost.HexaghostCode.Cards.Ancient;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Hexaghost.HexaghostCode.Cards.Basic;
 
@@ -38,7 +43,10 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (cardPlay.Target == null) return;
+    
+        await CommonActions.CardAttack(this, cardPlay).BeforeDamage(() =>
+            HexaghostCmd.SoulburnEffect(cardPlay.Target)).Execute(ctx);
         await AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }

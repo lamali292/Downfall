@@ -13,7 +13,8 @@ public class Unleash : AwakenedCardModel
 {
     public Unleash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(5, DamageCalc, bonusUpgrade: 1);
+        WithCalculatedDamage(7, DamageCalc, bonusUpgrade: 1);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

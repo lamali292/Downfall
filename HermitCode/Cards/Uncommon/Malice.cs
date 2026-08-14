@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,7 +13,7 @@ public sealed class Malice : HermitCardModel
 {
     public Malice() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(16, 4);
+        WithDamage(20, 4);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -21,7 +22,7 @@ public sealed class Malice : HermitCardModel
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
-        if (card != null) await CardCmd.Exhaust(ctx, card);
+        if (card != null) await CardCmdCompatibility.Exhaust(ctx, card);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         HermitSfx.PlayGun1();
         if (card?.Type == CardType.Curse)

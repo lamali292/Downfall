@@ -1,0 +1,3 @@
+﻿namespace Hexaghost.HexaghostCode.Interfaces;
+
+public interface IDoesNotTriggerGhostflame;

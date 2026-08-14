@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -15,6 +16,6 @@ public class TrashCanPower : SneckoPowerModel
         if (!participants.Contains(Owner) || Owner.Player == null) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, Amount);
         var cards = (await CardSelectCmd.FromHand(ctx, Owner.Player, prefs, null, this)).ToList();
-        await cards.ForEachAsync(e => CardCmd.Exhaust(ctx, e));
+        await cards.ForEachAsync(e => CardCmdCompatibility.Exhaust(ctx, e));
     }
 }

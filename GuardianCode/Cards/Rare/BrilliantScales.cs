@@ -11,16 +11,17 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class BrilliantScales : GuardianCardModel, IGemSocketCard
 {
-    public BrilliantScales() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public BrilliantScales() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         this.WithPower<BrilliantScalesPower>(1, false);
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
     public override bool CanBeGeneratedInCombat => false;
 
-    public int GemSlots => IsUpgraded ? 3 : 2;
+    public int GemSlots => 3;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

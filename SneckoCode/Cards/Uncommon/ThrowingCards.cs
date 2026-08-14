@@ -1,11 +1,8 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Cards;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Powers;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -15,7 +12,7 @@ public class ThrowingCards : SneckoCardModel
 {
     public ThrowingCards() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(SneckoTip.Offclass);
+        WithTip(DownfallTip.Offclass);
     }
 
     protected override bool HasEnergyCostX => true;

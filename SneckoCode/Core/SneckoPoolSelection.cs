@@ -32,17 +32,7 @@ public static class SneckoPoolSelection
             .TakeRandom(6, state.Rng.UpFront)
             .ToList();
     }
-
-    private static async Task<NSneckoCharacterSelect?> TryShowSelectionScreen(Player snecko)
-    {
-        if (!LocalContext.IsMe(snecko) || NOverlayStack.Instance == null || NGame.Instance == null)
-            return null;
-
-        var selectScene = new NSneckoCharacterSelect();
-        NOverlayStack.Instance.Push(selectScene);
-        await NGame.Instance.ToSignal(NGame.Instance.GetTree(), SceneTree.SignalName.ProcessFrame);
-        return selectScene;
-    }
+    
 
     private static async Task<List<CharacterModel>> SyncSelections(
         Player snecko,
@@ -106,12 +96,5 @@ public static class SneckoPoolSelection
             GD.PrintErr($"SelectOne failed: {e.Message}");
             return 0;
         }
-    }
-
-    private static void TearDownSelectionScreen(NSneckoCharacterSelect? selectScene)
-    {
-        if (selectScene == null) return;
-        NOverlayStack.Instance?.Remove(selectScene);
-        selectScene.QueueFree();
     }
 }

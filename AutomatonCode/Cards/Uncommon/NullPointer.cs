@@ -13,14 +13,14 @@ public class NullPointer : AutomatonCardModel,
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithTip(CardKeyword.Unplayable);
         WithDamage(12, 3);
         WithBlock(12, 3);
+        WithEnergy(3);
     }
 
     public void ApplyEncode(FunctionCard function, FunctionPosition position)
     {
-        function.AddKeyword(CardKeyword.Unplayable);
+        function.EnergyCost.SetCustomBaseCost(DynamicVars.Energy.IntValue);
     }
 
     public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];

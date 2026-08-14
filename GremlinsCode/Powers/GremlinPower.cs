@@ -74,7 +74,7 @@ public class GremlinPower()
                 if (cardPlay.Card.Type != CardType.Attack) return;
                 var randomEnemy = combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
                 if (randomEnemy == null) return;
-                await CreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, Owner);
+                await DownfallCreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, Owner);
                 break;
         }
     }
