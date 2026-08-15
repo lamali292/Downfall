@@ -27,6 +27,7 @@
     "SNECKO-TSUNAMI_POWER.description": "Lorsque vous [gold]Excédez[/gold], gagnez de [gold]l'Armure[/gold].",
     "SNECKO-TSUNAMI_POWER.smartDescription": "Lorsque vous [gold]Excédez[/gold], gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "SNECKO-UNENDING_SUPPLY_POWER.title": "Source Inépuisable",
+    "SNECKO-UNENDING_SUPPLY_POWER.description": "Au début de votre tour, ajoutez un [gold]Écho[/gold] d'une carte [gold]Hors-classe[/gold] aléatoire dans votre [gold]Main[/gold].",
     "SNECKO-UNENDING_SUPPLY_POWER.smartDescription": "Au début de votre tour, obtenez {Amount:plural:un [gold]Écho[/gold] d'une carte [gold]Hors-classe[/gold] aléatoire|des [gold]Échos[/gold] de [blue]{}[/blue] cartes [gold]Hors-classe[/gold] aléatoires.}",
     "SNECKO-SNECKO_CONSTRICT_POWER.title": "Constriction",
     "SNECKO-SNECKO_CONSTRICT_POWER.description": "À la fin de son tour, cet ennemi prend des dégâts.",
