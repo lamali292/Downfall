@@ -1,4 +1,4 @@
 {
-    "DOWNFALL-SCRY.description": "[gold]山札[/gold]を上からX枚見て、その中から好きなだけカードを捨てる。",
-    "DOWNFALL-SCRY.title": "占術"
+    "DOWNFALL-OFFCLASS.title": "他クラス",
+    "DOWNFALL-OFFCLASS.description": "プレイしているキャラクターの通常のカード報酬に含まれないカード。"
 }
