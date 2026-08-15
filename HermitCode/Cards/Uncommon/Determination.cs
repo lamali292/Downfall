@@ -4,6 +4,7 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
@@ -13,6 +14,7 @@ public sealed class Determination : HermitCardModel
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         this.WithPower<DeterminationPower>(1, false);
+        this.WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

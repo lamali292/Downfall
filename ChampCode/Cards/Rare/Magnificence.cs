@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,7 @@ public class Magnificence : ChampCardModel
     {
         this.WithPower<MagnificencePower>(3, 1, false);
         this.WithTip<GloryPower>();
+        this.WithUltimateTip();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

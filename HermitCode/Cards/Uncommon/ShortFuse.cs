@@ -14,6 +14,7 @@ public sealed class ShortFuse : HermitCardModel
     public ShortFuse() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(13, 4);
+        WithEnergyTip();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

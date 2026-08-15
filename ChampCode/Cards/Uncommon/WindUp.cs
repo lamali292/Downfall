@@ -15,6 +15,7 @@ public class WindUp : ChampCardModel
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip(ChampTip.Stance);
+        WithTip(ChampTip.Finisher);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

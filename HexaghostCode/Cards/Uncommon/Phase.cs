@@ -15,6 +15,8 @@ public class Phase : HexaghostCardModel
         WithBlock(6, 3);
         this.WithPower<VeilpiercerPower>(1, false);
         WithTip(CardKeyword.Ethereal);
+        WithTip(CardKeyword.Exhaust);
+        WithEnergyTip();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

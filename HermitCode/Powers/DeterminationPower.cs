@@ -10,6 +10,11 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class DeterminationPower : HermitPowerModel
 {
+    public DeterminationPower()
+    {
+        WithTip<StrengthPower>();
+    }
+    
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {

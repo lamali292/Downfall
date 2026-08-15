@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,6 +14,7 @@ public class GiftsFromBeyond : HexaghostCardModel
     {
         WithCostUpgradeBy(-1);
         this.WithPower<GiftsFromBeyondPower>(1, false);
+        WithTip(HexaghostKeyword.Afterlife);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

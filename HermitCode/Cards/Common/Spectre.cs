@@ -14,6 +14,7 @@ public class Spectre : HermitCardModel
     {
         WithBlock(2, 2);
         WithTip(CardKeyword.Ethereal);
+        WithTip(CardKeyword.Exhaust);
     }
     
     protected override Artist Artist => Artist.Get<DawnablesAwakened>();

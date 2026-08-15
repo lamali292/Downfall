@@ -22,6 +22,7 @@ public class TripleStrike : ChampCardModel
         WithTip(new TooltipSource(StrikeTip));
         WithTip(DownfallKeyword.Echo);
         WithTip(ChampKeyword.TriggerSkillBonus);
+        WithEnergyTip();
         WithCards(2);
     }
 

@@ -11,6 +11,7 @@ public sealed class Gambit : HermitCardModel
     public Gambit() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCards(2, 1);
+        WithEnergyTip();
         WithKeyword(CardKeyword.Exhaust);
     }
 

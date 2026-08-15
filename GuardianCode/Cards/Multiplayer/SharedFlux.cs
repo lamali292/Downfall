@@ -2,6 +2,7 @@
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,7 @@ public class SharedFlux : GuardianCardModel
     public SharedFlux() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
+        WithTip(GuardianTip.Stasis);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

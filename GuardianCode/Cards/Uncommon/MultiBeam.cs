@@ -16,6 +16,7 @@ public class MultiBeam : GuardianCardModel, ITickCard, ICustomTickDuration
         WithDamage(3, 3);
         WithVar("Increase", 2, 1);
         WithTip(GuardianTip.Tick);
+        WithTip(GuardianTip.Stasis);
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

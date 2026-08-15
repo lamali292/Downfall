@@ -11,6 +11,11 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class GiftsFromBeyondPower : HexaghostPowerModel
 {
+    public GiftsFromBeyondPower()
+    {
+        WithTip(HexaghostKeyword.Afterlife);
+    }
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
