@@ -67,7 +67,7 @@
     "SLIMEBOSS-MINION_MASTER.title": "史莱姆元帅",
     "SLIMEBOSS-NIBBLE_AND_LICK.description": "造成{Damage:diff()}点伤害。\n获得一张[gold]舔舐[/gold]。{IfUpgraded:show:\n抽1张牌。|}",
     "SLIMEBOSS-NIBBLE_AND_LICK.title": "轻咬舔舐",
-    "SLIMEBOSS-ONE_TWO_COMBO.description": "造成{Damage:diff()}点伤害。[gold]命令[/gold]{Command:plural:|{Command:diff()}次}。\n[gold]分裂[/gold]时，将这张卡从[gold]弃牌堆[/gold]返回你的[gold]手牌[/gold]。",
+    "SLIMEBOSS-ONE_TWO_COMBO.description": "造成{Damage:diff()}点伤害。\n[gold]命令[/gold]{Command:plural:|{Command:diff()}次}。\n[gold]分裂[/gold]时，将这张卡从[gold]弃牌堆[/gold]返回你的[gold]手牌[/gold]。",
     "SLIMEBOSS-ONE_TWO_COMBO.title": "连续拳",
     "SLIMEBOSS-OOZE_BATH.description": "每当敌人的回合开始时，给予其{OozeBathPower:diff()}层[gold]黏液[/gold]。",
     "SLIMEBOSS-OOZE_BATH.title": "黏浆浴",

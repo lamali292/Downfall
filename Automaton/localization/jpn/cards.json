@@ -156,7 +156,7 @@
     "AUTOMATON-EXPLODE.title": "エクスプロード",
     "AUTOMATON-PUNCH_TICKET.title": "パンチチケット",
     "AUTOMATON-CRASHOUT.title": "デバッグ",
-    "AUTOMATON-CRASHOUT.description": "状態異常カードをプレイするたび、ランダムな敵1体に{CrashoutPower:diff()}ダメージを与える。",
+    "AUTOMATON-CRASHOUT.description": "状態異常カードをプレイするたび、ランダムな敵に{CrashoutPower:diff()}ダメージを与える。",
     "AUTOMATON-CONVERT.title": "コンバート",
     "AUTOMATON-CONVERT.description": "{Damage:diff()}ダメージを与える。\n[gold]格納の山[/gold]のランダムな状態異常を1枚、[gold]燃料{IfUpgraded:plus()}[/gold]に[gold]変化[/gold]させる。",
     "AUTOMATON-PROTO_SHIELD.title": "プロトシールド",
