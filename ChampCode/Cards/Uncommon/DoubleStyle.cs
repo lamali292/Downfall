@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,7 @@ public class DoubleStyle : ChampCardModel
         this.WithPower<BerserkerStylePower>(1, 1, false);
         this.WithTip<VigorPower>();
         this.WithTip<CounterPower>();
+        WithTip(ChampKeyword.TriggerSkillBonus);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Powers;
@@ -15,6 +16,7 @@ public class VolcanoVisage : HexaghostCardModel
     {
         this.WithPower<VolcanoVisagePower>(4, 2, false);
         WithTip(HexaghostTip.Ignite);
+        this.WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

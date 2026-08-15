@@ -187,7 +187,7 @@
   "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Whisper from Beyond",
   "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Wildfire",
   "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a debuff to an enemy that doesn't already have it, gain {WildfirePower:diff()} [gold]Block[/gold].",
-  "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.[gold]\n[/gold]Add 1 random {IfUpgraded:show:[gold]Upgraded[/gold] |}card of the opposite type into your [gold]Hand[/gold] for each card [gold]Exhausted[/gold].",
+  "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.[gold]\n[/gold]Add a random {IfUpgraded:show:[gold]Upgraded[/gold] |}card of the opposite type into your [gold]Hand[/gold] for each Attack or Skill [gold]Exhausted[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
   "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",
   "HEXAGHOST-TEMPORAL_LEAP.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",

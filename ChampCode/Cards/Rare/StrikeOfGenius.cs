@@ -15,7 +15,6 @@ public class StrikeOfGenius : ChampCardModel
 {
     public StrikeOfGenius() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithEnergyTip();
         WithTip(DownfallKeyword.Echo);
         WithTags(CardTag.Strike);
     }
