@@ -19,8 +19,8 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
-        var player =
-            RunState?.Rng.CombatTargets.NextItem(RunState.Players.Where(e => e.Creature.IsAlive && e != Owner));
+
+        var player = Owner.GetRandomOtherPlayer();
         if (player == null) return;
 
         // TODO: use CreateCloneForPlayer on main / beta merge

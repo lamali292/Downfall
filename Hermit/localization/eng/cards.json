@@ -74,7 +74,7 @@
   "HERMIT-SPITE.title": "Spiteful",
   "HERMIT-SPITE.description": "[gold]Exhaust[/gold] all [gold]Unplayable[/gold] cards in your [gold]Hand[/gold].\nGain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} cards.",
   "HERMIT-MANIFEST.title": "Manifest",
-  "HERMIT-MANIFEST.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Injury[/gold] into your [gold]Hand[/gold].",
+  "HERMIT-MANIFEST.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Injury[/gold] into your [gold]Hand[/gold].",
   "HERMIT-FEINT.title": "Feint",
   "HERMIT-FEINT.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies.",
   "HERMIT-LOW_PROFILE.title": "Low Profile",
