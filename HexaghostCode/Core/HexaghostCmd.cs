@@ -1,11 +1,14 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using Godot;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -20,7 +23,16 @@ public static class HexaghostCmd
     {
         return HexaghostModel.Wheel.Get(player) ?? [];
     }
+    
+    /// <summary>
+    /// All Afterlife-keyworded cards available to the player. Hexaghost players draw only from
+    /// their own pool; other characters draw Afterlife cards from every pool.
+    /// </summary>
+    public static IEnumerable<CardModel> GetAfterlifeCards(Player player, int amount) =>
+        DownfallCardCmd.GetSpecificCards<Hexaghost>(player, c => c.Keywords.Contains(HexaghostKeyword.Afterlife), amount);
+    
 
+    
     public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
     {
         if(creature == null)   return Task.CompletedTask;

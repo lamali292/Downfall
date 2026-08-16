@@ -15,11 +15,7 @@ public class LibraryPower : AutomatonPowerModel
     {
         if (!participants.Contains(Owner) || Owner.Player == null) return;
         var player = Owner.Player;
-        var rng = CombatState.RunState.Rng.CombatCardSelection;
-        var cards = CardFactory.FilterForCombat(ModelDb.AllCharacterCardPools
-            .SelectMany(e => e.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint))
-            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
-        var choice = CardFactory.GetDistinctForCombat(player, cards, Amount, rng).Select(t =>
+        var choice = AutomatonCmd.GetEncodableCards(player, Amount).Select(t =>
         {
             t.SetToFreeThisTurn();
             return t;

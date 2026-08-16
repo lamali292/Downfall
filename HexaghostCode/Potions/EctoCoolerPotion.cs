@@ -14,7 +14,7 @@ namespace Hexaghost.HexaghostCode.Potions;
 [Pool(typeof(HexaghostPotionPool))]
 public class EctoCoolerPotion : HexaghostPotionModel
 {
-    public EctoCoolerPotion() : base( PotionRarity.Common, PotionUsage.CombatOnly, TargetType.Self)
+    public EctoCoolerPotion() : base( PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyPlayer)
     {
         WithTip(HexaghostKeyword.Afterlife);
     }
@@ -27,7 +27,8 @@ public class EctoCoolerPotion : HexaghostPotionModel
         AssertValidForTargetedPotion(target);
         var player = target.Player;
         if (player == null) return;
-        var card = await CardSelectCmd.FromChooseACardScreen(ctx, CardFactory.GetDistinctForCombat(player, player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint).Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife)), 3, player.RunState.Rng.CombatCardGeneration).ToList(), player, true);
+        var cards = HexaghostCmd.GetAfterlifeCards(player, 3).ToList();
+        var card = await CardSelectCmd.FromChooseACardScreen(ctx, cards, player, true);
         if (card == null)
             return;
         card.SetToFreeThisTurn();

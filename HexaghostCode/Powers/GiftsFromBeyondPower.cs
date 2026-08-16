@@ -20,10 +20,7 @@ public class GiftsFromBeyondPower : HexaghostPowerModel
         ICombatState combatState)
     {
         if (player.Creature != Owner) return;
-        var cards = player.Character.CardPool
-            .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(c => c.Keywords.Contains(HexaghostKeyword.Afterlife));
-        var card = CardFactory.GetDistinctForCombat(player, cards, Amount, player.RunState.Rng.CombatCardGeneration);
-        await CardPileCmd.AddGeneratedCardsToCombat(card, PileType.Hand, player);
+        var cards = HexaghostCmd.GetAfterlifeCards(player, Amount);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, player);
     }
 }
