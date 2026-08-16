@@ -21,6 +21,7 @@ public class GiftsFromBeyondPower : HexaghostPowerModel
     {
         if (player.Creature != Owner) return;
         var cards = HexaghostCmd.GetAfterlifeCards(player, Amount);
+        Flash();
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, player);
     }
 }
