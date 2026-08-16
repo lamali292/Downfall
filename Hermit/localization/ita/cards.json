@@ -87,7 +87,6 @@
     "HERMIT-OVERWHELMING_POWER.title": "Potere Travolgente",
     "HERMIT-OVERWHELMING_POWER.description": "Ottieni {Energy:energyIcons()}.\nPesca {Cards:diff()} carte.\nOgni volta che termini il tuo turno con {energyPrefix:energyIcons(0)}, perdi {OverwhelmingPowerPower:diff()} HP.",
     "HERMIT-MAINTENANCE.title": "Manutenzione",
-    "HERMIT-MAINTENANCE.description": "I [gold]Colpi[/gold] [gold]Base[/gold] infliggono {MaintenanceStrikePower:diff()} danno in più in questo combattimento.\nOttieni {DexterityPower:diff()} [gold]Destrezza[/gold].\nAumenta il costo di questa carta di 1.",
     "HERMIT-ETERNAL_FORM.title": "Forma Eterna",
     "HERMIT-ETERNAL_FORM.description": "Le prime 4 carte giocabili pescate all'inizio di ogni turno costano 1 in meno {energyPrefix:energyIcons(1)} in quel turno.",
     "HERMIT-FULLY_LOADED.title": "Caricato",

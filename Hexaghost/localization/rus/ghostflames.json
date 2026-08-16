@@ -1,6 +1,8 @@
 {
     "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Укрепляющий огонек",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании [blue]1[/blue] Таланта.[b]\n\nЗажигание:\n[/b]- дает [blue]{Block:diff()}[/blue] [gold]защиты[/gold].\n- дает [blue]{StrengthPower:diff()}[/blue] [gold]силы[/gold].",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Сокрушающий огонек",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании [blue]2[/blue] Навыков.\n\n[b]Зажигание:[/b]\n- наносит [blue]{Damage:diff()}[/blue] урона дважды.",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Адский огонек",
     "HEXAGHOST-SEARING_GHOSTFLAME.title": "Обжигающий огонек"
 }

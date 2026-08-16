@@ -20,7 +20,14 @@
     "COLLECTOR-PRISMATIC_TORCH.title": "多彩火炬",
     "COLLECTOR-PRISMATIC_TORCH.description": "替换[aqua]翠绿火炬[/aqua]。在每场战斗开始时，获得一张[gold]余烬[/gold]与[blue]1[/blue]点[gold]储能[/gold]。你每回合第一次消耗[gold]余烬[/gold]时，获得[blue]1[/blue]点[gold]储能[/gold]。",
     "COLLECTOR-PRISMATIC_TORCH.flavor": "各色斑斓的火焰昭示着命运的眷顾。",
+    "COLLECTOR-SOUL_LIT_LAMP.title": "燃魂灯",
     "COLLECTOR-SOUL_LIT_LAMP.description": "拾起时，获得[blue]3[/blue]点[gold]魂粹[/gold]。在每场战斗开始时，将一张[gold]余烬[/gold]加入[gold]手牌[/gold]。",
+    "COLLECTOR-SOUL_LIT_LAMP.flavor": "一件十分阴间的装饰品，从内部传来的不是燃料的燃爆声，而是嘈杂的哀嚎。",
+    "COLLECTOR-THE_CONTRACT.title": "交易契约",
     "COLLECTOR-THE_CONTRACT.description": "拾起时，获得[blue]10[/blue]点[gold]魂粹[/gold]。",
+    "COLLECTOR-THE_CONTRACT.flavor": "以血落成。",
+    "COLLECTOR-THIMBLE_HELM.title": "顶针帽",
+    "COLLECTOR-THIMBLE_HELM.description": "在每场战斗开始时，[gold]点燃[/gold][blue]3[/blue]。当[gold]火炬头[/gold]存活时，从牌中获得额外[blue]1[/blue]点[gold]格挡[/gold]。",
+    "COLLECTOR-THIMBLE_HELM.flavor": "被尖塔中最迷你的英雄们穿戴着。",
     "SEA_GLASS.COLLECTOR-COLLECTOR.title": "贪欲玻璃"
 }
