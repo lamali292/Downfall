@@ -74,6 +74,7 @@
     "HERMIT-SPITE.title": "執念深い",
     "HERMIT-SPITE.description": "[gold]手札[/gold]のすべての[gold]プレイ不可[/gold]カードを[gold]廃棄[/gold]する。\n{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを{Cards:diff()}枚引く。",
     "HERMIT-MANIFEST.title": "マニフェスト",
+    "HERMIT-MANIFEST.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]怪我[/gold]を1枚[gold]手札[/gold]に加える。",
     "HERMIT-FEINT.title": "フェイント",
     "HERMIT-FEINT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nすべての敵に[gold]打撲[/gold]{BruisePower:diff()}を付与する。",
     "HERMIT-LOW_PROFILE.title": "気配を消す",
@@ -93,6 +94,7 @@
     "HERMIT-OVERWHELMING_POWER.title": "圧倒的な力",
     "HERMIT-OVERWHELMING_POWER.description": "{Energy:energyIcons()}を得る。\nカードを{Cards:diff()}枚引く。\n{energyPrefix:energyIcons(0)}を残してターンを終了するたび、HPを{OverwhelmingPowerPower:diff()}失う。",
     "HERMIT-MAINTENANCE.title": "メンテナンス",
+    "HERMIT-MAINTENANCE.description": "[gold]基本[/gold][gold]ストライク[/gold]が追加で{MaintenanceStrikePower:diff()}ダメージを与える。\n[gold]敏捷[/gold]{DexterityPower:diff()}を得る。\nこのカードのコストを1増加させる。",
     "HERMIT-ETERNAL_FORM.title": "永遠化",
     "HERMIT-ETERNAL_FORM.description": "各ターン開始時に引いた、プレイ可能な最初の4枚のカードは、そのターンのコストが{energyPrefix:energyIcons(1)}減少する。",
     "HERMIT-FULLY_LOADED.title": "満載",
@@ -180,5 +182,11 @@
     "HERMIT-RUBBER_BULLET.title": "ゴム弾",
     "HERMIT-RUBBER_BULLET.description": "{Damage:diff()}ダメージを与える。\n[gold]命中[/gold]：この戦闘中、このカードのダメージを{Increase:diff()}増加させ、別のランダムなプレイヤーの[gold]手札[/gold]に移す。",
     "HERMIT-BIG_BRUISER.title": "ビッグブルーザー",
-    "HERMIT-BIG_BRUISER.description": "あなたが敵に付与した[gold]打撲[/gold]の恩恵を、他のプレイヤーが受ける。\nすべての敵に[gold]打撲[/gold]{BruisePower:diff()}を付与する。"
+    "HERMIT-BIG_BRUISER.description": "あなたが敵に付与した[gold]打撲[/gold]の恩恵を、他のプレイヤーが受ける。\nすべての敵に[gold]打撲[/gold]{BruisePower:diff()}を付与する。",
+    "HERMIT-FADE_OUT.title": "フェードアウト",
+    "HERMIT-FADE_OUT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nすべてのプレイヤーは[gold]不器用[/gold]を1枚[gold]捨て札[/gold]に加える。",
+    "HERMIT-SHARE_THE_LOAD.title": "負担の分担",
+    "HERMIT-SHARE_THE_LOAD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]命中[/gold]：すべてのプレイヤーは{Energy:energyIcons()}を得てカードを{Cards:diff()}枚引く。",
+    "HERMIT-TECHNIQUE.title": "業",
+    "HERMIT-TECHNIQUE.description": "すべてのプレイヤーの[gold]基本[/gold][gold]ストライク[/gold]が追加で{MaintenanceStrikePower:diff()}ダメージを与える。"
 }

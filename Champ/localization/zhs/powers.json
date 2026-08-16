@@ -35,7 +35,7 @@
     "CHAMP-GLORY_POWER.title": "荣耀",
     "CHAMP-GLORY_POWER.description": "在你的回合开始时，若你拥有[blue]10[/blue]点或更多[gold]荣耀[/gold]，进入[gold]终极[/gold]。",
     "CHAMP-GLORY_POWER.smartDescription": "在你的回合开始时，若你拥有[blue]10[/blue]点或更多[gold]荣耀[/gold]，进入[gold]终极[/gold]。",
-    "CHAMP-HONE_BLADE_POWER.title": "磨刀",
+    "CHAMP-HONE_BLADE_POWER.title": "磨刃",
     "CHAMP-HONE_BLADE_POWER.description": "你的[gold]“打击”[/gold]牌造成额外伤害。",
     "CHAMP-HONE_BLADE_POWER.smartDescription": "你的[gold]“打击”[/gold]牌造成[blue]{Amount}[/blue]点额外伤害。",
     "CHAMP-IGNORE_PAIN_POWER.title": "无视伤痛",
@@ -65,7 +65,7 @@
     "CHAMP-STRIKE_OF_GENIUS_POWER.title": "打击天才",
     "CHAMP-STRIKE_OF_GENIUS_POWER.description": "在你的回合开始时，获得一张随机“打击”牌的[gold]回响[/gold]。\n它在那个回合可以免费打出。",
     "CHAMP-STRIKE_OF_GENIUS_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]张随机“打击”[gold]回响[/gold]。\n它在那个回合可以免费打出。",
-    "CHAMP-TECHNICAL_JIG_POWER.title": "技巧之舞",
+    "CHAMP-TECHNICAL_JIG_POWER.title": "战斗跃舞",
     "CHAMP-TECHNICAL_JIG_POWER.description": "每当你进入[gold]姿态[/gold]时，获得[gold]格挡[/gold]。",
     "CHAMP-TECHNICAL_JIG_POWER.smartDescription": "每当你进入[gold]姿态[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "CHAMP-ULTIMATE_STANCE_POWER.title": "终极姿态",
@@ -74,7 +74,7 @@
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "下回合活力",
     "CHAMP-VIGOR_NEXT_TURN_POWER.description": "在下个回合，获得[gold]活力[/gold]。",
     "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "在下个回合，获得[blue]{}[/blue]点[gold]活力[/gold]。",
-    "CHAMP-CROWD_FAVORITE_POWER.title": "人气明星",
+    "CHAMP-CROWD_FAVORITE_POWER.title": "观众的最爱",
     "CHAMP-CROWD_FAVORITE_POWER.description": "每当其他玩家攻击一名敌人时，获得[gold]活力[/gold]。",
     "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "每当其他玩家攻击一名敌人时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。"
 }

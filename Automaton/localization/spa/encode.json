@@ -1,0 +1,4 @@
+{
+    "AUTOMATON-BLOCK_ENCODE.encode": "Obtén {Block:diff()} de [gold]Bloqueo[/gold].",
+    "AUTOMATON-DAMAGE_ENCODE.encode": "Inflige {Damage:diff()} de daño."
+}

@@ -92,7 +92,7 @@
     "SNECKO-QUEEN_OF_PENTACLES.description": "每当你给予一个敌人负面状态时，获得{QueenOfPentaclesPower:diff()}点[gold]格挡[/gold]。{InCombat:cond:|\n[gold]赠礼[/gold]：负面状态牌。}",
     "SNECKO-QUEEN_OF_PENTACLES.title": "五角星皇后",
     "SNECKO-QUICK_MOVE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]溢出[/gold]：给予所有敌人{VulnerablePower:diff()}层[gold]易伤[/gold]。",
-    "SNECKO-QUICK_MOVE.title": "迅捷步伐",
+    "SNECKO-QUICK_MOVE.title": "游身闪躲",
     "SNECKO-RAIN_OF_DICE.description": "造成{Damage:diff()}点伤害。\n[gold]混淆[/gold]一张牌。\n将一张[gold]骰子雨{IfUpgraded:show:+|}[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-RAIN_OF_DICE.title": "骰子雨",
     "SNECKO-RESTOCK.description": "丢弃你的[gold]手牌[/gold]。\n抽{Cards:diff()}张牌。\n[gold]混淆[/gold]你的[gold]手牌[/gold]。",
