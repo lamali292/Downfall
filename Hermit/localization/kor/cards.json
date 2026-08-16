@@ -84,7 +84,6 @@
     "HERMIT-OVERWHELMING_POWER.title": "압도적인 힘",
     "HERMIT-OVERWHELMING_POWER.description": "{Energy:energyIcons()}를 얻습니다.\n카드를 {Cards:diff()}장 뽑습니다.\n{energyPrefix:energyIcons(0)}인 상태로 턴을 끝낼 때마다, {OverwhelmingPowerPower:diff()} 체력을 잃습니다.",
     "HERMIT-MAINTENANCE.title": "유지보수",
-    "HERMIT-MAINTENANCE.description": "이번 전투 동안 [gold]기본[/gold] 타격이 {MaintenanceStrikePower:diff()}의 추가 피해를 줍니다.\n{DexterityPower:diff()} [gold]민첩[/gold]을 얻습니다.\n이 카드의 비용이 1 증가합니다.",
     "HERMIT-ETERNAL_FORM.title": "영원한 형상",
     "HERMIT-ETERNAL_FORM.description": "매 턴 시작 시 처음으로 뽑은 4장의 사용 가능한 카드의 비용이 이번 턴 동안 1 {energyPrefix:energyIcons(1)} 감소합니다.",
     "HERMIT-FULLY_LOADED.title": "장전 완료",

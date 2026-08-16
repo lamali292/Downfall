@@ -2,7 +2,7 @@
     "GUARDIAN-ACCELERATE.title": "加速",
     "GUARDIAN-ACCELERATE.description": "减少[gold]凝滞[/gold]栏位中最右端的牌的计数。",
     "GUARDIAN-AGGRAVATE.title": "激化",
-    "GUARDIAN-AGGRAVATE.description": "当此牌进入战斗时，其耗能增加[blue]1[/blue]。",
+    "GUARDIAN-AGGRAVATE.description": "进入战斗时，此牌耗能增加[blue]1[/blue]。",
     "GUARDIAN-BRACE.title": "提防",
     "GUARDIAN-BRACE.description": "降低进入[gold]防御模式[/gold]所需的计数。",
     "GUARDIAN-DEFENSIVE_MODE.title": "防御模式",

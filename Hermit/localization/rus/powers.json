@@ -68,6 +68,7 @@
     "HERMIT-MAGAZINE_POWER.title": "Журнал",
     "HERMIT-MAGAZINE_POWER.description": "[gold]Стартовые[/gold] [gold]«Удары»[/gold] и [gold]«Обороны»[/gold] [gold]оставляются[/gold].\nПервый разыгранный [gold]стартовый[/gold] [gold]«Удар»[/gold] за ход наносит дополнительный урон.",
     "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]Стартовые[/gold] [gold]«Удары»[/gold] и [gold]«Обороны»[/gold] [gold]оставляются[/gold].\nПервый разыгранный [gold]стартовый[/gold] [gold]«Удар»[/gold] за ход наносит на [blue]{Amount}[/blue] урона больше.",
+    "HERMIT-HIGH_NOON_DEFEND_POWER.title": "Полдень+",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]Стартовые[/gold] [gold]«Обороны»[/gold] получают [gold]повтор[/gold].",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]Стартовые[/gold] [gold]«Обороны»[/gold] получают [gold]повтор[/gold] [blue]{Amount}[/blue].",
     "HERMIT-HAIR_TRIGGER_POWER.title": "В пол-оборота",

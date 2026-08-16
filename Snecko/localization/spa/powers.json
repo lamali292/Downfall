@@ -1,13 +1,12 @@
 {
-  "SNECKO-CHEAP_STOCK_POWER.title": "Acciones Baratas",
-  "SNECKO-EXOTIC_FORM_POWER.title": "Forma Exótica",
-  "SNECKO-FOUNTAIN_POWER.title": "Fuente",
-  "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reina de Pentáculos",
-  "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Sabuesa Serpentina",
-  "SNECKO-SERPENTS_NEST_POWER.title": "Nido de Serpientes",
-  "SNECKO-SNAKE_EYES_POWER.title": "Ojos de Serpiente",
-  "SNECKO-TRASH_CAN_POWER.title": "Bote de Basura",
-  "SNECKO-TSUNAMI_POWER.title": "Tsunami",
-  "SNECKO-UNENDING_SUPPLY_POWER.title": "Suministro Infinito",
-  "SNECKO-VENOM_POWER.title": "Tóxico"
+    "SNECKO-VENOM_POWER.title": "Tóxico",
+    "SNECKO-CHEAP_STOCK_POWER.title": "Acciones Baratas",
+    "SNECKO-SERPENTS_NEST_POWER.title": "Nido de Serpientes",
+    "SNECKO-TRASH_CAN_POWER.title": "Bote de Basura",
+    "SNECKO-UNENDING_SUPPLY_POWER.title": "Suministro Infinito",
+    "SNECKO-EXOTIC_FORM_POWER.title": "Forma Exótica",
+    "SNECKO-FOUNTAIN_POWER.title": "Fuente",
+    "SNECKO-QUEEN_OF_PENTACLES_POWER.title": "Reina de Pentáculos",
+    "SNECKO-SERPENTINE_SLEUTH_POWER.title": "Sabuesa Serpentina",
+    "SNECKO-SNAKE_EYES_POWER.title": "Ojos de Serpiente"
 }
