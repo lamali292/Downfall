@@ -75,7 +75,6 @@
     "GUARDIAN-PRISMATIC_SPRAY.title": "プリズムスプレー",
     "GUARDIAN-RECOVER.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]制動[/gold]{Brace:diff()}。\n[gold]捨て札[/gold]のカードを1枚[gold]停滞[/gold]させる。",
     "GUARDIAN-RECOVER.title": "リカバー",
-    "GUARDIAN-REFRACTED_BEAM.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\nこのカードは何度でも[gold]アップグレード[/gold]できる。\nアップグレードするたび、[gold]ソケット[/gold]1つ追加する。",
     "GUARDIAN-REFRACTED_BEAM.title": "リフレクトビーム",
     "GUARDIAN-REPULSOR_GUARDIAN.description": "毎ターン、最初に状態異常か呪いを引いた時、それを[gold]廃棄[/gold]してカードを1枚引く。",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "リパルサー",
