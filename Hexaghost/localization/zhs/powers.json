@@ -8,7 +8,7 @@
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "末日降临",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "在你的回合结束时，立即开始另一个回合。",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "在你的回合结束时，立即开始另[blue]{Amount}[/blue]个回合。",
-    "HEXAGHOST-EXTRA_CRISPY_POWER.title": "脆烤",
+    "HEXAGHOST-EXTRA_CRISPY_POWER.title": "格外酥脆",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "每当敌人的[gold]灼魂[/gold]引爆时，该敌人失去生命并获得[gold]灼魂[/gold]。",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "每当敌人的[gold]灼魂[/gold]引爆时，该敌人失去[blue]{Amount}[/blue]点生命并获得[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
     "HEXAGHOST-GHOSTFLAME_BARRIER_POWER.title": "鬼火屏障",

@@ -15,6 +15,7 @@
     "GREMLINS-IMPECCABLE_PECS.description": "每当你获得[gold]力量[/gold]时，获得等量[gold]临时生命[/gold]。\n每场战斗开始时，获得1点[gold]力量[/gold]。",
     "GREMLINS-IMPECCABLE_PECS.flavor": "完美。",
     "GREMLINS-MAGIC_MALLET.title": "魔槌",
+    "GREMLINS-MAGIC_MALLET.description": "每回合，你前[blue]3[/blue]次给予[gold]虚弱[/gold]时，获得[blue]{WizPower}[/blue]点[gold]法力[/gold]。",
     "GREMLINS-MOB_LEADERS_CROWN.title": "首领之冠",
     "GREMLINS-MOB_LEADERS_STAFF.title": "首领之角",
     "GREMLINS-SHORT_STATUE.title": "小个子雕像",

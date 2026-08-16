@@ -1,0 +1,8 @@
+{
+    "AUTOMATON-ENCODE.title": "Codificar",
+    "AUTOMATON-ENCODE.description": "Coloca esta carta en tu [gold]Secuencia[/gold].\nCuando contenga [blue]3[/blue] cartas, sus efectos anteriores a esta palabra clave se combinan en una Función que cuesta [blue]1[/blue].",
+    "AUTOMATON-STASH.title": "Reserva",
+    "AUTOMATON-STASH.description": "Coloca una carta dentro de tu [gold]Pila de Reserva[/gold], hasta un máximo de [blue]5[/blue]. Robas la carta más antigua de esta al inicio de cada turno.",
+    "AUTOMATON-COMPILE.title": "compilado",
+    "AUTOMATON-COMPILE.description": "Un efecto que se activa cuando esta carta se fusiona en una Función."
+}

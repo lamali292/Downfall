@@ -4,5 +4,6 @@
     "GREMLINS-FAT_GREMLIN.name": "胖地精",
     "GREMLINS-SHIELD_GREMLIN.name": "持盾地精",
     "GREMLINS-SNEAK_GREMLIN.name": "卑鄙地精",
-    "GREMLINS-GREMLIN_NOB.name": "地精首领"
+    "GREMLINS-GREMLIN_NOB.name": "地精首领",
+    "GREMLINS-GREMLIN_NOB.banter": "[jitter]吼啊啊啊啊！！！[/jitter]"
 }

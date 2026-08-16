@@ -41,7 +41,7 @@
     "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.title": "身先士卒",
     "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.description": "每回合你打出第一张指向敌人的牌时，[gold]命令[/gold]一次。",
     "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.smartDescription": "每回合你打出前[blue]{Amount}[/blue]张指向敌人的牌时，[gold]命令[/gold]一次。",
-    "SLIMEBOSS-MINION_MASTER_POWER.title": "史莱姆元帅",
+    "SLIMEBOSS-MINION_MASTER_POWER.title": "史莱姆之主",
     "SLIMEBOSS-MINION_MASTER_POWER.description": "每当你打出一张带有[gold]命令[/gold]的牌时，再[gold]命令[/gold]1次。",
     "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "每当你打出一张带有[gold]命令[/gold]的牌时，再[gold]命令[/gold][blue]{Amount}[/blue]次。",
     "SLIMEBOSS-RALLY_THE_TROOPS_POWER.title": "集结小弟",

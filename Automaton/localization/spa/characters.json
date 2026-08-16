@@ -1,0 +1,16 @@
+{
+    "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]No se detectaron errores. No se detectaron errores.[/blue][/sine]",
+    "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Advertencia: Tiempo de respuesta del aliado excedido.[/red]",
+    "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Las cartas de Autómata ahora aparecerán en las recompensas y tiendas.",
+    "AUTOMATON-AUTOMATON.cardsModifierTitle": "Cartas de Autómata",
+    "AUTOMATON-AUTOMATON.description": "El guardián mecánico de la ciudad.\nSe adapta a cualquier situación de combate.",
+    "AUTOMATON-AUTOMATON.eventDeathPrevention": "Apagamiento denegado. Misión incompleta.",
+    "AUTOMATON-AUTOMATON.goldMonologue": "[sine]Calculando valor... suficiente para adquirir los componentes necesarios...[/sine]",
+    "AUTOMATON-AUTOMATON.possessiveAdjective": "su",
+    "AUTOMATON-AUTOMATON.pronounObject": "ello",
+    "AUTOMATON-AUTOMATON.pronounPossessive": "su",
+    "AUTOMATON-AUTOMATON.pronounSubject": "ello",
+    "AUTOMATON-AUTOMATON.title": "El Autómata",
+    "AUTOMATON-AUTOMATON.titleObject": "El Autómata"
+}
