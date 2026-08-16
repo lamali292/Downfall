@@ -16,6 +16,7 @@ on:
           - rus
           - ita
           - ptb
+          - spa
 
 jobs:
   upload:
