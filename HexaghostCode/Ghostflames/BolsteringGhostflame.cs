@@ -57,6 +57,6 @@ public class BolsteringGhostflame : GhostflameModel
 
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Attack && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Power && IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

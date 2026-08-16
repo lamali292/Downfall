@@ -58,6 +58,6 @@ public class OffclassBolsteringGhostflame : GhostflameModel
     
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Attack && DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Power && DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
     }
 }
