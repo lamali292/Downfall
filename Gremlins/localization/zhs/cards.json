@@ -46,7 +46,7 @@
     "GREMLINS-FEEL_THE_AUDIENCE.description": "对所有敌人造成{Damage:diff()}点伤害。\n每个打算攻击的敌人使你获得{WizPower:diff()}点[gold]法力[/gold]。",
     "GREMLINS-FEEL_THE_AUDIENCE.title": "察言观色",
     "GREMLINS-FLEX.description": "本回合获得{FlexPower:diff()}点[gold]力量[/gold]。",
-    "GREMLINS-FLEX.title": "力量下降",
+    "GREMLINS-FLEX.title": "活动肌肉",
     "GREMLINS-FLIP_OUT.description": "造成{Damage:diff()}点伤害。\n本回合中每当你本应获得[gold]格挡[/gold]时，改为对所有敌人造成等量伤害。",
     "GREMLINS-FLIP_OUT.title": "发疯",
     "GREMLINS-FLURRY.description": "本回合每打出一张牌，造成{Damage:diff()}点伤害。{InCombat:cond:\n（命中{Repeat} {Repeat:plural:次|次}）|}",

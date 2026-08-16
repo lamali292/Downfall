@@ -21,7 +21,7 @@
     "AUTOMATON-MAKESHIFT_BATTERY.description": "在你的回合开始时，获得{Energy:energyIcons()}并将一张[gold]粘液[/gold]加入你的[gold]弃牌堆[/gold]。",
     "AUTOMATON-MAKESHIFT_BATTERY.flavor": "足足有8.9伏特。",
     "AUTOMATON-MALLET.title": "铁锤",
-    "AUTOMATON-MALLET.description": "每当你[gold]储藏[/gold]一张牌时，将其[gold]升级[/gold]。",
+    "AUTOMATON-MALLET.description": "每当你[gold]暂存[/gold]一张牌时，将其[gold]升级[/gold]。",
     "AUTOMATON-MALLET.flavor": "够了！我拿我的铁锤去！",
     "AUTOMATON-PLATINUM_CORE.title": "铂金核心",
     "AUTOMATON-PLATINUM_CORE.description": "在每场战斗开始时，[gold]编码[/gold]一张[gold]打击[/gold]和一张[gold]防御[/gold]。\n在你的回合开始时，将一张随机[gold]编码[/gold]牌加入你的[gold]手牌[/gold]。",

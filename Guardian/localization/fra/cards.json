@@ -75,7 +75,6 @@
     "GUARDIAN-PRISMATIC_SPRAY.title": "Spray prismatique",
     "GUARDIAN-RECOVER.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold]. \n[gold]Ancrez-vous[/gold] de {Brace:diff()}. \nPlacez une carte de votre [gold]Défausse[/gold] en [gold]Stase[/gold].",
     "GUARDIAN-RECOVER.title": "Rétablissement",
-    "GUARDIAN-REFRACTED_BEAM.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois. \nPeut être [gold]Améliorée[/gold] à l'infini.\nPour chaque Amélioration, +1 Emplacement de [gold]Gemme[/gold].",
     "GUARDIAN-REFRACTED_BEAM.title": "Rayon rétracté",
     "GUARDIAN-REPULSOR_GUARDIAN.description": "Lorsque vous piochez la première carte Statut ou Malédiction chaque tour, [gold]Épuisez-la[/gold] et piochez une carte.",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "Répulseur",

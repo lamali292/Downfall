@@ -186,7 +186,6 @@
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "彼方からの囁き",
     "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "ワイルドファイア",
     "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "敵に付与されていないデバフを新しく付与するたび、{WildfirePower:diff()}[gold]ブロック[/gold]を得る。",
-    "HEXAGHOST-WORTHY_SACRIFICE.description": "カードを{Cards:diff()}枚[gold]廃棄[/gold]する。[gold]\n[/gold][gold]廃棄[/gold]したカード１枚につき、ランダムな{IfUpgraded:show:[gold]アップグレード[/gold]済みの|}反対タイプのカードを１枚[gold]手札[/gold]に加える。",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "価値ある犠牲",
     "HEXAGHOST-TEMPORAL_LEAP.title": "時間転移",
     "HEXAGHOST-TEMPORAL_LEAP.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを{Cards:diff()}枚引く。",

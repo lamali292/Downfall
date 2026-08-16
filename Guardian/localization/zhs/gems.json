@@ -20,7 +20,7 @@
     "GUARDIAN-AMETHYST_GEM.description": "本回合所有敌人失去{Gem:diff()}点[gold]力量[/gold]。",
     "GUARDIAN-BISMUTH_GEM.description": "获得{Gem:diff()}个[gold]凝滞[/gold]栏位。[gold]激化[/gold]。",
     "GUARDIAN-CITRINE_GEM.description": "获得{Gem:energyIcons()}。",
-    "GUARDIAN-DIAMOND_GEM.description": "每场战斗[gold]重放[/gold]1次。[gold]激化[/gold]。",
+    "GUARDIAN-DIAMOND_GEM.description": "每场战斗[gold]重放[/gold]1次。\n[gold]激化[/gold]。",
     "GUARDIAN-EMERALD_GEM.description": "本回合获得{Gem:diff()}点[gold]敏捷[/gold]。",
     "GUARDIAN-FRAGMENTED_GEM.description": "获得一张[gold]水晶小刀[/gold]。",
     "GUARDIAN-GARNET_GEM.description": "给予所有敌人{Gem:diff()}层[gold]易伤[/gold]。",

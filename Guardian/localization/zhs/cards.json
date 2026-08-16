@@ -75,7 +75,6 @@
     "GUARDIAN-PRISMATIC_SPRAY.title": "缤纷碎块",
     "GUARDIAN-RECOVER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]提防[/gold]{Brace:diff()}。\n[gold]凝滞[/gold]你[gold]弃牌堆[/gold]中的一张牌。",
     "GUARDIAN-RECOVER.title": "恢复",
-    "GUARDIAN-REFRACTED_BEAM.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。\n可以被[gold]升级[/gold]任意次。\n每次升级增加一个[gold]宝石槽位[/gold]。",
     "GUARDIAN-REFRACTED_BEAM.title": "折射光束",
     "GUARDIAN-REPULSOR_GUARDIAN.description": "每回合你第一次抽到状态或诅咒牌时，[gold]消耗[/gold]它并抽1张牌。",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "反冲协议",
