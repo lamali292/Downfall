@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EventFolder" id="{0ad7996a-4fdd-4d56-a321-10bfa545d4ce}">
+		<property name="name">
+			<value>snecko_spirit</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b2e65907-09c1-45a2-99db-ef8a3e341276}</destination>
+		</relationship>
+	</object>
+</objects>
