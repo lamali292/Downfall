@@ -25,16 +25,10 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-
-        var cards = CardFactory.FilterForCombat(ModelDb.AllCharacterCardPools
-            .SelectMany(e => e.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint))
-            .Where(c => AutomatonCmd.IsEncodable(c) && c.Rarity != CardRarity.Token)).ToList();
-
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {
-            var choices = CardFactory.GetDistinctForCombat(Owner, cards, 3, rng).ToList();
+            var choices = AutomatonCmd.GetEncodableCards(Owner, 3).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
             functionCard = await AutomatonCmd.EncodeCard(selected, ctx);

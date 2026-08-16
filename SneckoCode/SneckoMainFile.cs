@@ -18,6 +18,7 @@ public partial class SneckoMainFile : Node
 
     public static void Initialize()
     {
+        CardExecutionRegistry.RegisterBefore(SneckoCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         BundledSubmodLocRegistry.Register(ModId);
         

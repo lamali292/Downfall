@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
@@ -239,5 +240,25 @@ public class DownfallCardCmd
         var result = new List<CardPileAddResult>();
         for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
         return result;
+    }
+    
+    /// <summary>
+    /// Finds unlocked cards matching <paramref name="cond"/>.
+    /// If the player's character is <typeparamref name="T"/>, only that character's own
+    /// card pool is searched; otherwise every character pool is searched.
+    /// </summary>
+    /// <typeparam name="T">Character type that scopes the search to a single pool when the player matches it.</typeparam>
+    /// <param name="player">The player whose unlock state, run constraints, and character determine which cards are searched.</param>
+    /// <param name="cond">Predicate each card must satisfy to be included.</param>
+    /// <param name="count">Maximum number of distinct combat-legal cards to return.</param>
+    public static IEnumerable<CardModel> GetSpecificCards<T>(Player player, Func<CardModel, bool> cond, int count = 1) where T : CharacterModel
+    {
+        var constraint = player.RunState.CardMultiplayerConstraint;
+        var cards = player.Character is T
+            ? player.Character.CardPool.GetUnlockedCards(player.UnlockState, constraint)
+            : ModelDb.AllCharacterCardPools
+                .SelectMany(e => e.GetUnlockedCards(player.UnlockState, constraint));
+        
+        return CardFactory.GetDistinctForCombat(player, cards.Where(cond), count, player.RunState.Rng.CombatCardGeneration);
     }
 }
