@@ -11,7 +11,7 @@ with open(".github/configs/paratranz.json", encoding="utf-8") as f:
 
 
 def get_api_key(lang_code):
-    env_name = f"PARATRANZ_API_KEY_{lang_code.upper()}"
+    env_name = f"PARATRANZ_API_KEY"
     token = os.environ.get(env_name)
     if not token:
         raise EnvironmentError(f"Environment variable {env_name} is not set.")
