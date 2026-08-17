@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
@@ -19,6 +20,9 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
         WithPower<SoulBurnPower>(14, 4);
         WithTip(CardKeyword.Exhaust);
     }
+    
+    protected override Artist Artist => Artist.Get<Chimedragon>();
+
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
