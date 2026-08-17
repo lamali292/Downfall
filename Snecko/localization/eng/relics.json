@@ -32,5 +32,8 @@
   "SNECKO-UNIDENTIFIED_EGG.title": "Unidentified Egg",
   "SNECKO-UNIDENTIFIED_EGG.description": "Whenever you add an [gold]Offclass[/gold] card to your [gold]Deck[/gold], [gold]Upgrade[/gold] it.\nUpon pickup, [gold]Upgrade[/gold] [blue]{Cards}[/blue] random [gold]Offclass[/gold] cards.",
   "SNECKO-UNIDENTIFIED_EGG.flavor": "What will hatch? Pay $1000 to see.",
-  "SEA_GLASS.SNECKO-SNECKO.title": "Prism Glass"
+  "SEA_GLASS.SNECKO-SNECKO.title": "Prism Glass",
+  "SNECKO-SNECKO_CHOICE.title": "{character}'s Blessing",
+  "SNECKO-SNECKO_CHOICE.description": "",
+  "SNECKO-SNECKO_CHOICE.flavor": ""
 }

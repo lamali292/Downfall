@@ -1,11 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://bb2hlmle8qdso"]
+[gd_scene load_steps=31 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://dwle1ee8g136j" path="res://Snecko/images/ancients/snecko_spirit_background.png" id="1_64sve"]
-[ext_resource type="Texture2D" uid="uid://gvoysorwhaiq" path="res://images/vfx/monsters/the_insatiable/sand_cloud.png" id="2_n23ox"]
-[ext_resource type="Texture2D" uid="uid://bukyhsjanpsnl" path="res://images/vfx/monsters/queen/false_queen_light.png" id="3_cro1o"]
-[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://themes/canvas_item_material_additive_shared.tres" id="4_o2lx8"]
-[ext_resource type="Texture2D" uid="uid://dydejju6qx4gr" path="res://images/packed/vfx/generic/square_speck.png" id="5_88oj4"]
-[ext_resource type="Texture2D" uid="uid://bh4h4ty5mcsj" path="res://images/packed/vfx/generic/twinkle_star.png" id="6_t0g61"]
+[ext_resource type="Texture2D" path="res://Snecko/images/ancients/snecko_spirit_background.png" id="1_64sve"]
+[ext_resource type="Texture2D" path="res://images/vfx/monsters/the_insatiable/sand_cloud.png" id="2_n23ox"]
+[ext_resource type="Texture2D" path="res://images/vfx/monsters/queen/false_queen_light.png" id="3_cro1o"]
+[ext_resource type="Material" path="res://themes/canvas_item_material_additive_shared.tres" id="4_o2lx8"]
+[ext_resource type="Texture2D" path="res://images/packed/vfx/generic/square_speck.png" id="5_88oj4"]
+[ext_resource type="Texture2D" path="res://images/packed/vfx/generic/twinkle_star.png" id="6_t0g61"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u0axj"]
 blend_mode = 1

@@ -1,7 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://cvjjipt5jo6ik"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 ]
 
-[ext_resource type="Shader" uid="uid://dxdiu8gahebbv" path="res://Hexaghost/shaders/hexaghost_smoke.gdshader" id="1_vgxj6"]
-[ext_resource type="Texture2D" uid="uid://bghmjdkvu8fin" path="res://Hexaghost/scenes/character/images/outer_smoke.png" id="2_pvxo6"]
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexaghost_smoke.gdshader" id="1_vgxj6"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/outer_smoke.png" id="2_pvxo6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xvsy8"]
 frequency = 0.023

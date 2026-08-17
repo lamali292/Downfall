@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Patches;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -27,11 +28,16 @@ public partial class SneckoMainFile : Node
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SneckoSpiritDialoguePatch))
             .Add(typeof(SneckoSpiritOptionIconPatch))
+            .Add(typeof(SneckoSpiritEntryPatch))
+            .Add(typeof(SneckoSpiritGateResetPatch))
+            .Add(typeof(SneckoSpiritAutoSkipPatch))
             .PatchAll();
         
         FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");
         FormBoneRegistry.RegisterReaperForm<Core.Snecko>("spine10");
         FormBoneRegistry.RegisterEchoForm<Core.Snecko>("spine10");
+        
+        RunManager.Instance.RunStarted += _ => SneckoSpiritGate.Reset();
     }
 }
