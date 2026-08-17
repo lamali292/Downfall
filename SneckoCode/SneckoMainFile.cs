@@ -4,6 +4,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Patches;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Snecko.SneckoCode;
@@ -21,6 +22,12 @@ public partial class SneckoMainFile : Node
         CardExecutionRegistry.RegisterBefore(SneckoCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         BundledSubmodLocRegistry.Register(ModId);
+        
+        
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(SneckoSpiritDialoguePatch))
+            .Add(typeof(SneckoSpiritOptionIconPatch))
+            .PatchAll();
         
         FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");

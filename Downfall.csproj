@@ -23,6 +23,7 @@
         <AdditionalFiles Include="Hermit/localization/**/*.json"/>
         <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
         <AdditionalFiles Include="Snecko/localization/**/*.json"/>
+        <Compile Include="Snecko\Patches\SneckoSpiritDialoguePatch.cs" />
 
         <EmbeddedResource Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
         <None Include="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
@@ -47,6 +48,11 @@
 
         <!--Compile Include="GremlinsCode/**/*.cs"/-->
         <!--Compile Include="CollectorCode/**/*.cs"/-->
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Snecko\images\ancient\" />
+      <Folder Include="Snecko\scenes\ancient\" />
     </ItemGroup>
 
     <PropertyGroup>
