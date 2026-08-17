@@ -184,7 +184,6 @@
     "HERMIT-BIG_BRUISER.title": "莽汉",
     "HERMIT-BIG_BRUISER.description": "给予所有敌人{BruisePower:diff()}层[gold]瘀伤[/gold]。\n[gold]瘀伤[/gold]现在对所有玩家生效。\n",
     "HERMIT-FADE_OUT.title": "悄然离场",
-    "HERMIT-FADE_OUT.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n在所有玩家的[gold]弃牌堆[/gold]中加入一张[gold]笨拙[/gold]。",
     "HERMIT-SHARE_THE_LOAD.title": "策应",
     "HERMIT-SHARE_THE_LOAD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：所有盟友获得{Energy:energyIcons()}，并抽{Cards:diff()}张牌。",
     "HERMIT-TECHNIQUE.title": "手法",
