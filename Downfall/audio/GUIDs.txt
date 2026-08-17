@@ -21,3 +21,4 @@
 {f2e7223d-f7d7-478f-be11-60e44887e5a0} event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn
 {04a6a6d4-75e5-45f8-aac7-0a55411bb852} event:/sfx/characters/slimeboss-slime_boss/slimeboss-slime_boss_select
 {c4798b33-1f25-4db3-8971-0e21e125d014} event:/sfx/characters/snecko-snecko/snecko-snecko_select
+{c8c9808e-df43-4247-aed0-59daff7d9779} event:/sfx/npcs/snecko_spirit/hiss

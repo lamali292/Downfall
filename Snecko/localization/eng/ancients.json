@@ -2,5 +2,18 @@
   "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.char": "I am angry at the architect",
   "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SNECKO-SNECKO.0-1r.ancient": "You die",
-  "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Both"
+  "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Both",
+
+
+  "SNECKO-SNECKO_SPIRIT.title" : "Sethiru",
+  "SNECKO-SNECKO_SPIRIT.epithet" : "The Borrower",
+  "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.ancient": "[jitter]Sss[/jitter]... a new face. So many wanderer[jitter]sss[/jitter] pass through, and what they carried gather[jitter]sss[/jitter] here in my hoard. Come, take what they left.",
+  "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.sfx": "event:/sfx/npcs/snecko_spirit/hiss",
+  "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.0-0.ancient": "You have no path of your own, hmm? Only the hunger to borrow. Choo[jitter]sss[/jitter]e whose gear you'll bear.",
+  "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.1-0.ancient": "Ye[jitter]sss[/jitter]... theirs i[jitter]sss[/jitter] yours now. Another still hi[jitter]sss[/jitter]es your name. Choo[jitter]sss[/jitter]e again.",
+  "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.2-0.ancient": "Two taken. One remain[jitter]sss[/jitter]. Choo[jitter]sss[/jitter]e, little [jitter]sss[/jitter]nake, and be bound to all three.",
+
+  "SNECKO-SNECKO_SPIRIT.talk.ECHO.0-0.char": "I'll take {char}'s.",
+  "SNECKO-SNECKO_SPIRIT.talk.ECHO.1-0.char": "And {char}'s, too.",
+  "SNECKO-SNECKO_SPIRIT.talk.ECHO.2-0.char": "And {char}'s. Let it all be mine."
 }
