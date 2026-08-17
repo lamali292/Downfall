@@ -15,16 +15,18 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float CastMix = 0.1f;
     private const float HitMix = 0.05f;
     private const float DeadMix = 0.35f;
-
-    private const string CastAnim = "Attack";
-    private const string IdleAnim = "Idle";
-    private const string AttackAnim = "Attack_2";
-    private const string HitAnim = "Hit";
-    private const string DeadAnim = "Dead";
+    
     private MegaAnimationState? _animState;
 
     private MegaSprite? _sprite;
 
+    
+    private string IdleAnim =>"idle_loop";
+    private string AttackAnim => "attack";
+    private string CastAnim => "cast";
+    private string HitAnim => "hurt";
+    private string DeadAnim => "die";
+    
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
@@ -50,6 +52,8 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
         }
     }
 
+    
+    
     public override void _Ready()
     {
         base._Ready();
@@ -64,6 +68,6 @@ public partial class NSneckoCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimationCompat("Idle");
+        _animState?.SetAnimationCompat(IdleAnim);
     }
 }

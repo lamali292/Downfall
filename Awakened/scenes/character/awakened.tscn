@@ -31,7 +31,7 @@ color_ramp = SubResource("GradientTexture1D_fade")
 [node name="Awakened" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_kdtgo")
 preview_skin = "Default"
-preview_animation = "Idle_1"
+preview_animation = "idle_loop"
 preview_frame = false
 preview_time = 0.0
 

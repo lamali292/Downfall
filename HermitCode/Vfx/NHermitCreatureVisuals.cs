@@ -10,25 +10,33 @@ namespace Hermit.HermitCode.Vfx;
 public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private const float DefaultMix = 0.2f;
+    private const float DeathMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
     private const float HitMix = 0.05f;
     private const float DeadMix = 0.05f;
     private MegaAnimationState? _animState;
 
+    
+    private string IdleAnim =>"idle_loop";
+    private string AttackAnim => "attack";
+    private string CastAnim => "cast";
+    private string HitAnim => "hurt";
+    private string DeadAnim => "die";
+    
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)
         {
             case "Idle":
-                _animState?.SetAnimationWithMix("Idle", DefaultMix);
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Hit":
-                _animState?.SetAnimationWithMix("Hit", HitMix, false);
-                _animState?.QueueAnimation("Idle", ToIdleMix);
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
                 break;
             case "Dead":
-                _animState?.SetAnimationWithMix("Dead", DeadMix, false);
+                _animState?.SetAnimationWithMix(DeadAnim, DeathMix, false);
                 break;
             case "Attack":
             case "Cast":
@@ -40,6 +48,6 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     {
         base._Ready();
         _animState = SpineBody?.GetAnimationState();
-        _animState?.SetAnimationCompat("Idle");
+        _animState?.SetAnimationCompat(IdleAnim);
     }
 }

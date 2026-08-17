@@ -19,10 +19,10 @@ public partial class NAutomatonCreatureVisuals : NCreatureVisuals, IAnimatedVisu
     private const float HitMix = 0.05f;
     private const float DeadMix = 0.35f;
 
-    private const string HitAnim = "hit";
+    private const string HitAnim = "hurt";
     private const string CastAnim = "cast";
-    private const string DeadAnim = "dead";
-    private string IdleAnim => "idle";
+    private const string DeadAnim = "die";
+    private string IdleAnim => "idle_loop";
 
     public void OnAnimationTrigger(string trigger)
     {

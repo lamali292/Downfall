@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://Guardian/scenes/character/guardian4.spatlas" id="1_0t7wh"]
-[ext_resource type="SpineSkeletonFileResource" path="res://Guardian/scenes/character/guardian4.spskel" id="2_da666"]
+[ext_resource type="SpineAtlasResource" path="res://Guardian/scenes/character/spine/skeleton.atlas" id="1_0t7wh"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Guardian/scenes/character/spine/skeleton.skel" id="2_da666"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_h1uyr"]
 atlas_res = ExtResource("1_0t7wh")
@@ -10,6 +10,6 @@ skeleton_file_res = ExtResource("2_da666")
 [node name="Guardian2" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_h1uyr")
 preview_skin = "Default"
-preview_animation = "idle"
+preview_animation = "idle_loop"
 preview_frame = false
 preview_time = 0.0

@@ -6,5 +6,5 @@ namespace Snecko.SneckoCode.Vfx;
 [GlobalClass]
 public partial class NSneckoMerchantCharacter : NSpineMerchantCharacter
 {
-    protected override string IdleName => "Idle";
+    protected override string IdleName => "idle_loop";
 }

@@ -10,6 +10,6 @@ skeleton_file_res = ExtResource("2_j1kbm")
 [node name="Champ" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_xbnni")
 preview_skin = "Default"
-preview_animation = "Dead"
+preview_animation = "die"
 preview_frame = false
 preview_time = 0.0

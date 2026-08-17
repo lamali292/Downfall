@@ -6,5 +6,5 @@ namespace Awakened.AwakenedCode.Vfx;
 [GlobalClass]
 public partial class NAwakenedMerchantCharacter : NSpineMerchantCharacter
 {
-    protected override string IdleName => "Idle_1";
+    protected override string IdleName => "idle_loop";
 }

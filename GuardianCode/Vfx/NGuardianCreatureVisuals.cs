@@ -19,8 +19,8 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
     public bool IsDefensive { get; set; }
 
-    private string IdleAnim => IsDefensive ? "defensive" : "idle";
-
+    private string IdleAnim => IsDefensive ? "idle_loop_defensive" : "idle_loop";
+    private string DeathAnim => "die";
 
     public void OnAnimationTrigger(string trigger)
     {
@@ -32,7 +32,9 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
             case "Attack":
             case "Hit":
             case "Cast":
+                break;
             case "Dead":
+                _animState?.SetAnimationWithMix(DeathAnim, DefaultMix);
                 break;
         }
     }
@@ -51,6 +53,6 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
         _animState = _sprite?.GetAnimationState();
 
-        _animState?.SetAnimationCompat("idle");
+        _animState?.SetAnimationCompat(IdleAnim);
     }
 }
