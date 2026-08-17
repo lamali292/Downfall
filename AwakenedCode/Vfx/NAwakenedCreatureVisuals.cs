@@ -36,11 +36,11 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         }
     }
 
-    private string IdleAnim => IsAwakened ? "Idle_2" : "Idle_1";
-    private string AttackAnim => "Attack";
-    private string CastAnim => "Attack_2";
-    private string HitAnim => "Hit";
-    private string DeadAnim => "Dead";
+    private string IdleAnim => IsAwakened ? "idle_loop_awakened" : "idle_loop";
+    private string AttackAnim => "attack";
+    private string CastAnim => "cast";
+    private string HitAnim => "hurt";
+    private string DeadAnim => "die";
 
     public void OnAnimationTrigger(string trigger)
     {
@@ -81,7 +81,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _sprite?.SetNormalMaterial(premultMat);
 
         _animState = _sprite?.GetAnimationState();
-        _animState?.SetAnimationCompat("Idle_1");
+        _animState?.SetAnimationCompat(IdleAnim);
 
         _eyeFlare = _body.GetNodeOrNull<Node2D>("%EyeFlare");
         _wingFlare = _body.GetNodeOrNull<WingFlare>("%WingFlare");

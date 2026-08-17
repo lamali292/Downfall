@@ -29,22 +29,22 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 
     private string IdleAnim => CurrentStance switch
     {
-        Stance.Berserker => "IdleBerserker",
-        Stance.Defensive => "IdleDefensive",
-        Stance.Ultimate => "IdleUltimate",
-        _ => "Idle"
+        Stance.Berserker => "idle_loop_berserker",
+        Stance.Defensive => "idle_loop_defensive",
+        Stance.Ultimate => "idle_loop_ultimate",
+        _ => "idle_loop"
     };
 
-    private string AttackAnim => "Attack";
+    private string AttackAnim => "attack";
 
-    private string DeathAnim => "Dead";
+    private string DeathAnim => "die";
 
 
     private string HitAnim => CurrentStance switch
     {
-        Stance.Berserker => "HitBerserker",
-        Stance.Defensive => "HitDefensive",
-        _ => "Hit"
+        Stance.Berserker => "hurt_berserker",
+        Stance.Defensive => "hurt_defensive",
+        _ => "hurt"
     };
 
 

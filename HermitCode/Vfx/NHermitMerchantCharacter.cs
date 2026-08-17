@@ -6,5 +6,5 @@ namespace Hermit.HermitCode.Vfx;
 [GlobalClass]
 public partial class NHermitMerchantCharacter : NSpineMerchantCharacter
 {
-    protected override string IdleName => "Idle";
+    protected override string IdleName => "idle_loop";
 }

@@ -6,5 +6,5 @@ namespace Guardian.GuardianCode.Vfx;
 [GlobalClass]
 public partial class NGuardianMerchantCharacter : NSpineMerchantCharacter
 {
-    protected override string IdleName => "idle";
+    protected override string IdleName => "idle_loop";
 }

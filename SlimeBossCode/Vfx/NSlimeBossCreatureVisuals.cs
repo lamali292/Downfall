@@ -41,11 +41,12 @@ public partial class NSlimeBossCreatureVisuals : NCreatureVisuals, IAnimatedVisu
         
         _animState?.SetAnimationCompat(IdleAnim);
     }
-
-
-    private string IdleAnim => "idle";
-    private string DeathAnim => "dead";
-
+    
+    private string IdleAnim =>"idle_loop";
+    private string AttackAnim => "attack";
+    private string CastAnim => "cast";
+    private string HitAnim => "hurt";
+    private string DeadAnim => "die";
 
     public void OnAnimationTrigger(string trigger)
     {
@@ -55,7 +56,7 @@ public partial class NSlimeBossCreatureVisuals : NCreatureVisuals, IAnimatedVisu
                 _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
             case "Dead":
-                _animState?.SetAnimationWithMix(DeathAnim, DeathMix, false);
+                _animState?.SetAnimationWithMix(DeadAnim, DeathMix, false);
                 break;
             case "Attack":
             case "Hit":
