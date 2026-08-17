@@ -1,5 +1,4 @@
 using BaseLib.Abstracts;
-using BaseLib.Audio;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Compatibility;
@@ -70,7 +69,8 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var combatState = Owner.CombatState;
         var owner = Owner;
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
-    
+
+        var aliveApplier = applier?.IsAlive == true ? applier : null;
         SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn");
         if (targetAll)
         {
@@ -79,18 +79,18 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
                 await HexaghostCmd.SoulburnEffect(target, silent: true);
             }
             await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
-                DamageProps.nonCardHpLoss, applier, null, null);
+                DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
         else
         {
             await HexaghostCmd.SoulburnEffect(Owner, silent: true);
             await DownfallCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
-                DamageProps.nonCardHpLoss, applier, null, null);
+                DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
             
 
         if (keepOne)
-            await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, applier, null);
+            await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, aliveApplier, null);
         else
             await PowerCmd.Remove(this);
         await DownfallHook.AfterSoulburnDetonate(combatState, ctx, owner);

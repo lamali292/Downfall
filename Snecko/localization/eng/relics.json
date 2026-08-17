@@ -34,6 +34,6 @@
   "SNECKO-UNIDENTIFIED_EGG.flavor": "What will hatch? Pay $1000 to see.",
   "SEA_GLASS.SNECKO-SNECKO.title": "Prism Glass",
   "SNECKO-SNECKO_CHOICE.title": "{character}'s Blessing",
-  "SNECKO-SNECKO_CHOICE.description": "",
+  "SNECKO-SNECKO_CHOICE.description": "You now gain cards from [blue]{borrowed}[/blue] in [gold]Gift[/gold] rewards.",
   "SNECKO-SNECKO_CHOICE.flavor": ""
 }

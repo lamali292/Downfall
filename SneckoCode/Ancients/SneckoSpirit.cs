@@ -4,25 +4,21 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ancients;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Extensions;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Runs;
-using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Relics;
 
 namespace Snecko.SneckoCode.Ancients;
 
-public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
+public class SneckoSpirit : CustomAncientModel
 {
     private List<(CharacterModel left, CharacterModel right)> _pairs = [];
     private List<CharacterModel> _chosen = [];
-    public Dictionary<EventOption, CharacterModel> OptionCharacters = new();
     
     public override bool IsValidForAct(ActModel act) => false;
 
     protected override OptionPools MakeOptionPools => new(MakePool(Array.Empty<RelicModel>()));
-    public override IEnumerable<EventOption> AllPossibleOptions => Array.Empty<EventOption>();
+    public override IEnumerable<EventOption> AllPossibleOptions => [];
 
     public override string CustomScenePath => "res://Snecko/scenes/ancient/snecko_spirit.tscn";
     public override string CustomMapIconPath => "res://Snecko/images/ancients/snecko_spirit_node.png";
@@ -31,7 +27,7 @@ public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
     public override string CustomRunHistoryIconOutlinePath => "res://Snecko/images/ancients/snecko_spirit_history_outline.png";
 
     public override Godot.Color ButtonColor => new(0.06f, 0.0f, 0.08f, 0.5f);
-    public override Godot.Color DialogueColor => new("512E66");
+    public override Godot.Color DialogueColor => new("662E2E");
     
 
     public IReadOnlyList<AncientDialogueLine> CurrentTranscriptLines => BuildTranscript();
@@ -41,7 +37,7 @@ public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
         if (!IsSnecko)
-            return []; // empty -> StartPreFinished() finishes it with the DONE page
+            return [];
 
         var others = ModelDb.AllCharacters.Where(c => c != Owner!.Character).ToList();
         if (others.Count < 6)
@@ -64,22 +60,21 @@ public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
 
     private EventOption CharOption(CharacterModel c, int page)
     {
-        var opt = new EventOption(
-            this,
-            () => OnPicked(c, page),
-            c.Title,
-            c.CardsModifierDescription,
-            $"pool_{page}_{c.Id.Entry}",
-            []);
-        OptionCharacters[opt] = c;
+        var relic = ModelDb.Relic<SneckoChoice>().ToMutable();
+        ((SneckoChoice) relic).InitCharacter(c);
+
+        var title = relic.Title;
+        var desc = relic.Description;
+        desc.Add("borrowed", c.Title);
+        var opt = new EventOption(this, () => OnPicked(c, page), title, desc, OptionKey($"PAGE_{page}", relic.Id.Entry), relic.HoverTipsExcludingRelic)
+            .WithRelic(relic);
         return opt;
     }
 
     private async Task OnPicked(CharacterModel c, int page)
     {
         _chosen.Add(c);
-
-        // Grant the relic for THIS choice, right now.
+        
         var relic = (SneckoChoice) ModelDb.Relic<SneckoChoice>().ToMutable();
         relic.InitCharacter(c);
         await RelicCmd.Obtain(relic, Owner!);
@@ -100,7 +95,7 @@ public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
         var set = base.DefineDialogues();
         return new AncientDialogueSet
         {
-            FirstVisitEverDialogue = new AncientDialogue(new[] { "event:/sfx/npcs/snecko_spirit/hiss" }),
+            FirstVisitEverDialogue = new AncientDialogue("event:/sfx/npcs/snecko_spirit/hiss"),
             CharacterDialogues = set.CharacterDialogues,
             AgnosticDialogues = set.AgnosticDialogues,
         };
@@ -122,9 +117,8 @@ public class SneckoSpirit() : CustomAncientModel(logDialogueLoad: true)
     protected override void AfterCloned()
     {
         base.AfterCloned();
-        _pairs = new();
-        _chosen = new();
-        OptionCharacters = new();
+        _pairs = [];
+        _chosen = [];
     }
     
     private void AppendDialogue(List<AncientDialogueLine> into, string charEntry, int index, CharacterModel? picked)
