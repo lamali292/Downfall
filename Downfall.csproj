@@ -51,7 +51,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Snecko\images\ancient\" />
       <Folder Include="Snecko\scenes\ancient\" />
     </ItemGroup>
 

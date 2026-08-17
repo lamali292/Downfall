@@ -61,7 +61,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task Dispatch<THook>(ICombatState? combatState, Func<THook, Task> action,
-        HookScope scope, IRunState? runState = null)
+        HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         foreach (var model in ResolveListeners(scope, combatState, runState).OfType<THook>())
@@ -87,7 +87,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task Dispatch<THook>(ICombatState? combatState, PlayerChoiceContext ctx,
-        Func<THook, Task> action, HookScope scope, IRunState? runState = null)
+        Func<THook, Task> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         foreach (var model in ResolveListeners(scope, combatState, runState).OfType<THook>())
@@ -126,7 +126,7 @@ public static class MyHookUtils
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task DispatchWithContext<THook>(Player player,
         Func<THook, PlayerChoiceContext, Task> action,
-        HookScope scope, IRunState? runState = null)
+        HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         var combatState = player.Creature.CombatState;
@@ -155,7 +155,7 @@ public static class MyHookUtils
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     /// <returns>The final aggregated value after all listeners have been processed.</returns>
     public static TResult Aggregate<THook, TResult>(ICombatState? combatState, TResult initial,
-        Func<THook, TResult, TResult> action, HookScope scope, IRunState? runState = null)
+        Func<THook, TResult, TResult> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
         => ResolveListeners(scope, combatState, runState).OfType<THook>()
             .Aggregate(initial, (current, model) => action(model, current));
@@ -170,7 +170,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool All<THook>(ICombatState? combatState, Func<THook, bool> predicate,
-        HookScope scope, IRunState? runState = null)
+        HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
         => ResolveListeners(scope, combatState, runState).OfType<THook>().All(predicate);
 
@@ -191,7 +191,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool All<THook>(ICombatState? combatState, Func<THook, bool> predicate,
-        out IEnumerable<THook> nonMatches, HookScope scope, IRunState? runState = null)
+        out IEnumerable<THook> nonMatches, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         var list = ResolveListeners(scope, combatState, runState).OfType<THook>()
@@ -210,7 +210,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool Any<THook>(ICombatState? combatState, Func<THook, bool> predicate,
-        HookScope scope, IRunState? runState = null)
+        HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
         => ResolveListeners(scope, combatState, runState).OfType<THook>().Any(predicate);
 
@@ -229,7 +229,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool Any<THook>(ICombatState? combatState, Func<THook, bool> predicate,
-        out IEnumerable<THook> matches, HookScope scope, IRunState? runState = null)
+        out IEnumerable<THook> matches, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         var list = ResolveListeners(scope, combatState, runState).OfType<THook>()
@@ -265,7 +265,7 @@ public static class MyHookUtils
         TValue originalAmount,
         Func<THook, TValue, TValue> amountModifier,
         out IEnumerable<THook> modifiers,
-        HookScope scope,
+        HookScope scope = HookScope.Combat,
         IRunState? runState = null)
         where THook : class
         where TValue : IEquatable<TValue>
@@ -303,7 +303,7 @@ public static class MyHookUtils
     /// <param name="scope">Which listener population to iterate. Use the same scope that produced <paramref name="modifiers" />.</param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task AfterModifying<THook>(ICombatState? cs, IEnumerable<THook> modifiers,
-        Func<THook, Task> action, HookScope scope, IRunState? runState = null)
+        Func<THook, Task> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
     {
         var modifierSet = new HashSet<THook>(modifiers);
@@ -345,7 +345,7 @@ public static class MyHookUtils
         TValue value,
         Func<THook, TValue, bool> amountModifier,
         out IEnumerable<THook> modifiers,
-        HookScope scope,
+        HookScope scope = HookScope.Combat,
         IRunState? runState = null)
         where THook : class
     {
@@ -354,124 +354,28 @@ public static class MyHookUtils
         modifiers = list;
         return value;
     }
-
     
-    
-    // Combat-scoped shorthands.
-    // because of backwards compatibility, we can't use `HookScope scope = HookScope.Combat` as the default value above
-    // as this would change signature.
-
     /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Dispatch{THook}(ICombatState,Func{THook,Task},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
+    ///     Projects each hook listener of type <typeparamref name="THook" /> into a value of
+    ///     type <typeparamref name="TItem" /> and returns the resulting sequence.
     /// </summary>
-    public static Task Dispatch<THook>(ICombatState? combatState, Func<THook, Task> action)
-        where THook : class
-        => Dispatch(combatState, action, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Dispatch{THook}(ICombatState,PlayerChoiceContext,Func{THook,Task},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static Task Dispatch<THook>(ICombatState? combatState, PlayerChoiceContext ctx,
-        Func<THook, Task> action)
-        where THook : class
-        => Dispatch(combatState, ctx, action, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="DispatchWithContext{THook}(Player,Func{THook,PlayerChoiceContext,Task},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static Task DispatchWithContext<THook>(Player player,
-        Func<THook, PlayerChoiceContext, Task> action)
-        where THook : class
-        => DispatchWithContext(player, action, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Aggregate{THook,TResult}(ICombatState,TResult,Func{THook,TResult,TResult},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static TResult Aggregate<THook, TResult>(ICombatState combatState, TResult initial,
-        Func<THook, TResult, TResult> action)
-        where THook : class
-        => Aggregate(combatState, initial, action, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="All{THook}(ICombatState,Func{THook,bool},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static bool All<THook>(ICombatState combatState, Func<THook, bool> predicate)
-        where THook : class
-        => All(combatState, predicate, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="All{THook}(ICombatState,Func{THook,bool},out IEnumerable{THook},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static bool All<THook>(ICombatState combatState, Func<THook, bool> predicate,
-        out IEnumerable<THook> nonMatches)
-        where THook : class
-        => All(combatState, predicate, out nonMatches, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Any{THook}(ICombatState,Func{THook,bool},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static bool Any<THook>(ICombatState combatState, Func<THook, bool> predicate)
-        where THook : class
-        => Any(combatState, predicate, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Any{THook}(ICombatState,Func{THook,bool},out IEnumerable{THook},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static bool Any<THook>(ICombatState combatState, Func<THook, bool> predicate,
-        out IEnumerable<THook> matches)
-        where THook : class
-        => Any(combatState, predicate, out matches, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static TValue Modify<THook, TValue>(
+    /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
+    /// <typeparam name="TItem">The type of elements collected from listeners.</typeparam>
+    /// <param name="combatState">The current combat state to iterate listeners from.</param>
+    /// <param name="collector">A function that extracts a value from a matching listener.</param>
+    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
+    /// <returns>A sequence containing the collected item from each matching listener.</returns>
+    public static IEnumerable<TItem> Collect<THook, TItem>(
         ICombatState? combatState,
-        TValue originalAmount,
-        Func<THook, TValue, TValue> amountModifier,
-        out IEnumerable<THook> modifiers)
+        Func<THook, TItem?> collector,
+        HookScope scope,
+        IRunState? runState = null)
         where THook : class
-        where TValue : IEquatable<TValue>
-        => Modify(combatState, originalAmount, amountModifier, out modifiers, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="AfterModifying{THook}(ICombatState,IEnumerable{THook},Func{THook,Task},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static Task AfterModifying<THook>(ICombatState cs, IEnumerable<THook> modifiers,
-        Func<THook, Task> action)
-        where THook : class
-        => AfterModifying(cs, modifiers, action, HookScope.Combat);
-
-    /// <summary>
-    ///     Combat-scoped shorthand for
-    ///     <see cref="ModifyMutable{THook,TValue}(ICombatState,TValue,Func{THook,TValue,bool},out IEnumerable{THook},HookScope,IRunState)" />
-    ///     with <see cref="HookScope.Combat" />.
-    /// </summary>
-    public static TValue ModifyMutable<THook, TValue>(
-        ICombatState combatState,
-        TValue value,
-        Func<THook, TValue, bool> amountModifier,
-        out IEnumerable<THook> modifiers)
-        where THook : class
-        => ModifyMutable(combatState, value, amountModifier, out modifiers, HookScope.Combat);
+    {
+        return ResolveListeners(scope, combatState, runState)
+            .OfType<THook>()
+            .Select(collector)
+            .OfType<TItem>();
+    }
 }

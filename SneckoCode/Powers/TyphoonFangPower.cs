@@ -46,7 +46,7 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
         var freshDupe = Source?.CreateDupeCompat();
         Dupe = freshDupe;
         if (enemy == null || freshDupe == null || LocalContext.NetId == null) return;
-
+        Flash();
         await CardCmd.AutoPlay(ctx, freshDupe, enemy);
     }
 

@@ -1,35 +1,19 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Multiplayer.Serialization;
-using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
-    public static SavedSpireField<Player, List<ModelId>> SneckoPools =
-        new(() => [], "SneckoPools")
-        {
-            Serializer = (list, writer) => writer.WriteFullModelIdList(list),
-            Deserializer = reader => reader.ReadFullModelIdList()
-        };
-
-    private static void SetSneckoPools(Player player, IEnumerable<CardPoolModel> pools)
-    {
-        var pool = SneckoPools.Get(player);
-        if (pool is null) return;
-        pool.Clear();
-        pool.AddRange(pools.Select(e => e.Id));
-    }
-
     private static IEnumerable<CardPoolModel> GetSneckoPools(Player player)
     {
-        return SneckoPools.Get(player)?.Select(ModelDb.GetById<CardPoolModel>) ?? [];
+        return MyHookUtils.Collect<ISneckoPoolSupplier, CardPoolModel>(null, supplier => supplier.AddSneckoPool(),
+            MyHookUtils.HookScope.Run, player.RunState);
     }
 
     public static IEnumerable<CardModel> GetSneckoCards(Player player)
@@ -62,34 +46,15 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             player.RunState.Rng.CombatCardGeneration);
     }
 
-
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (card.Pile?.Type == PileType.Deck &&
             card is IHasGift { Gift: { } gift })
             await SneckoCmd.GetGift(card.Owner, gift);
     }
-
-
-    public override async Task AfterActEntered()
-    {
-        var state = RunManager.Instance.State;
-        if (state is not { CurrentActIndex: 0 }) return;
-
-        var sneckos = state.Players.Where(e => e.Character is Snecko).ToList();
-        var choiceIds = sneckos.ToDictionary(
-            snecko => snecko,
-            snecko => Enumerable.Range(0, 3)
-                .Select(_ => RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(snecko))
-                .ToArray()
-        );
-        var tasks = sneckos.Select(async snecko =>
-        {
-            var pools = await SneckoPoolSelection.DoOffclassSelection(snecko, state, choiceIds[snecko]);
-            return (snecko, pools);
-        });
-        var results = await Task.WhenAll(tasks);
-        foreach (var (snecko, pools) in results)
-            SetSneckoPools(snecko, pools);
-    }
 }
+
+
+
+
+
