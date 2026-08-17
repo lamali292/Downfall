@@ -45,7 +45,7 @@
     "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]暂存[/gold]本回合你打出的下一张牌。",
     "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]暂存[/gold]本回合你打出的下[blue]{Amount}[/blue]张牌。",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "合并冲突",
-    "AUTOMATON-MERGE_CONFLICT_POWER.description": "下次你生成一个方法时，额外生成一个它的复制。",
+    "AUTOMATON-MERGE_CONFLICT_POWER.description": "下一张生成的方法会额外生成一张。",
     "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "下[blue]{Amount}[/blue]次你生成一个方法时，额外生成一个它的复制。",
     "AUTOMATON-CLEAN_CODE_POWER.title": "简明代码",
     "AUTOMATON-CLEAN_CODE_POWER.description": "在你的回合结束时，你可以[gold]暂存[/gold]一张牌。",
