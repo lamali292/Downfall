@@ -27,7 +27,6 @@ public partial class SneckoMainFile : Node
         
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SneckoSpiritDialoguePatch))
-            .Add(typeof(SneckoSpiritOptionIconPatch))
             .Add(typeof(SneckoSpiritEntryPatch))
             .Add(typeof(SneckoSpiritGateResetPatch))
             .Add(typeof(SneckoSpiritAutoSkipPatch))

@@ -45,24 +45,6 @@ public static class SneckoSpiritDialoguePatch
     }
 }
 
-[HarmonyPatch(typeof(NEventOptionButton), nameof(NEventOptionButton._Ready))]
-public static class SneckoSpiritOptionIconPatch
-{
-    private static void Postfix(NEventOptionButton __instance)
-    {
-        if (__instance.Event is not SneckoSpirit spirit) return;
-        if (!spirit.OptionCharacters.TryGetValue(__instance.Option, out var character)) return;
-
-        // reuse the ancient button's relic-icon slot for the character portrait
-        var icon = __instance.GetNode<TextureRect>("%RelicIcon");
-        if (icon == null) return;
-
-        icon.SetTexture(character.IconTexture);
-        icon.GetNode<TextureRect>("%Outline")?.SetTexture(character.IconOutlineTexture);
-        icon.Visible = true;
-    }
-}
-
 public static class SneckoSpiritGate
 {
     public static bool Done;
