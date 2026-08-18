@@ -34,6 +34,7 @@ There are two ways to set up the project. Pick the one that matches what you wan
 
 #### Requirements
 
+- C# .Net 10
 - A Slay the Spire 2 installation
 - A Godot executable - [MegaDot v4.5.1](https://megadot.megacrit.com/) *(preferred)* or [Godot v4.5.1](https://godotengine.org/download/archive/4.5.1-stable/)
 
@@ -84,6 +85,7 @@ dotnet publish Downfall.csproj
 
 #### Requirements
 
+- C# .Net 10
 - A Slay the Spire 2 installation
 - A Godot executable - [MegaDot v4.5.1](https://megadot.megacrit.com/) *(preferred)* or [Godot v4.5.1](https://godotengine.org/download/archive/4.5.1-stable/)
 - Extracted Slay the Spire 2 assets via [GDRE](https://github.com/GDRETools/gdsdecomp)
