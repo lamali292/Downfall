@@ -53,8 +53,14 @@ async def upload_file(api_client, project_id, file_path, local_file, existing_fi
 
 
 async def main():
-    repos = sorted(d for d in Path(".").iterdir() if d.is_dir() and (d / "localization" / "eng").is_dir())
-
+    EXCLUDED_REPOS = {"collector", "gremlins"}
+    
+    repos = sorted(
+        d for d in Path(".").iterdir()
+        if d.is_dir()
+        and d.name.lower() not in EXCLUDED_REPOS
+        and (d / "localization" / "eng").is_dir()
+    )
     if not repos:
         print("No mod directories with localization/eng/ found.")
         return
