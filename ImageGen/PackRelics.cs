@@ -9,13 +9,11 @@ namespace ImageGen;
 public class PackRelics(string scriptDir, bool force)
     : ImagePipeline(scriptDir, ".relics_cache.json", force)
 {
-    private const int ImgSize = 93;
-    private const int Inset = 4;
-    private const int RegionSize = 85;
-    private const int OutlineRadius = 10;
+    private const int BigSize = 256;
+    private const int ImgSize = 85;
+    private const float ContentScale = 0.9f; // leaves room for the outline inside the frame
+    private const int OutlineRadiusBig = 10; // radius at BigSize (256px)
     private const float OutlineSigma = 0.5f;
-
-    private static readonly Rectangle CropBox = new(56, 56, 144, 144); // x,y,w,h (200-56=144)
 
     protected override IEnumerable<string> DiscoverCharacters()
     {
@@ -103,10 +101,10 @@ public class PackRelics(string scriptDir, bool force)
         {
             var (stem, _, _, _, _) = entries[i];
             var (x, y) = places[i];
-            Utils.WriteTres(Path.Join(outTres, $"{stem}.tres"), atlasRes, x + Inset, y + Inset, RegionSize, RegionSize,
+            Utils.WriteTres(Path.Join(outTres, $"{stem}.tres"), atlasRes, x, y, ImgSize, ImgSize,
                 $"{charId}_{stem}");
-            Utils.WriteTres(Path.Join(outTres, $"{stem}_outline.tres"), outlineRes, x + Inset, y + Inset, RegionSize,
-                RegionSize, $"{charId}_{stem}_outline");
+            Utils.WriteTres(Path.Join(outTres, $"{stem}_outline.tres"), outlineRes, x, y, ImgSize, ImgSize,
+                $"{charId}_{stem}_outline");
         }
 
         foreach (var (_, big, outlineDs, imageDs, _) in entries)
@@ -125,15 +123,26 @@ public class PackRelics(string scriptDir, bool force)
     private (Image<Rgba32> Big, Image<Rgba32> OutlineDs, Image<Rgba32> ImageDs) ProcessRelic(string path)
     {
         using var raw = Image.Load<Rgba32>(path);
-        using var cropped = raw.Clone(ctx => ctx.Crop(CropBox));
-        using var upscaled = cropped.Clone(ctx => ctx.Resize(256, 256, KnownResamplers.Lanczos3));
+        using var scaled = ScaleCentered(raw, BigSize); // any input size -> 256, content at 0.9, padded
 
-        var big = Outline.ApplyOutline(upscaled, OutlineRadius, OutlineSigma);
-        var outlineFull = Outline.WhiteOutlineImage(upscaled, OutlineRadius, OutlineSigma);
+        var big = Outline.ApplyOutline(scaled, OutlineRadiusBig, OutlineSigma);
+        using var outlineFull = Outline.WhiteOutlineImage(scaled, OutlineRadiusBig, OutlineSigma);
         var outlineDs = outlineFull.Clone(ctx => ctx.Resize(ImgSize, ImgSize, KnownResamplers.Lanczos3));
-        var imageDs = cropped.Clone(ctx => ctx.Resize(ImgSize, ImgSize, KnownResamplers.Lanczos3));
+        var imageDs = scaled.Clone(ctx => ctx.Resize(ImgSize, ImgSize, KnownResamplers.Lanczos3));
 
-        outlineFull.Dispose();
         return (big, outlineDs, imageDs);
+    }
+
+    private static Image<Rgba32> ScaleCentered(Image<Rgba32> src, int full)
+    {
+        var inner = Math.Max(1, (int)MathF.Round(full * ContentScale));
+        return src.Clone(ctx => ctx
+            .Resize(inner, inner, KnownResamplers.Lanczos3)
+            .Resize(new ResizeOptions
+            {
+                Size = new Size(full, full),
+                Mode = ResizeMode.BoxPad,
+                Position = AnchorPositionMode.Center
+            }));
     }
 }
