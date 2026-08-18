@@ -26,7 +26,7 @@ public class StashCmd
 
     private static int RemainingSpace(Player player)
     {
-        return Math.Max(0, MaxStashSize - player.GetStash().Count);
+        return Math.Max(0, MaxStashSize - player.StashPile.Count);
     }
 
     public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
@@ -111,7 +111,7 @@ public class StashCmd
 
     public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromStash(PlayerChoiceContext ctx, Player player, int n = 1)
     {
-        var cards = player.GetStash();
+        var cards = player.StashPile;
         var result = await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
         foreach (var cardPileAddResult in result)
         {

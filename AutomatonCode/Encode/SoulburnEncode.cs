@@ -19,11 +19,11 @@ public class SoulburnEncode : Encodable
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
-        var creature = model.GetCreature();
+        var creature = model.Creature;
         var combatState = creature.CombatState;
         if (combatState == null) return Task.CompletedTask;
         return PowerCmd.Apply<SoulBurnPower>(ctx, combatState.HittableEnemies,
-            model.GetDynamicVars().Power<SoulBurnPower>().BaseValue, creature, model as CardModel);
+            model.DynamicVars.Power<SoulBurnPower>().BaseValue, creature, model as CardModel);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -33,6 +33,6 @@ public class SoulburnEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Power<SoulBurnPower>();
+        return model.DynamicVars.Power<SoulBurnPower>();
     }
 }

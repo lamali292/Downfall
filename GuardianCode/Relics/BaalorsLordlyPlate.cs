@@ -20,7 +20,7 @@ public class BaalorsLordlyPlate : GuardianRelicModel, IModifyBraceAmount
 
     public decimal ModifyBraceAmount(Player player, decimal amount)
     {
-        return player == Owner ? amount + DynamicVars.Brace().BaseValue : amount;
+        return player == Owner ? amount + DynamicVars.Brace.BaseValue : amount;
     }
 
     public Task AfterModifyingBraceAmount(Player player, decimal modifiedAmount)

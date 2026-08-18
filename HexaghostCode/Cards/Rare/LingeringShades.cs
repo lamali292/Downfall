@@ -23,7 +23,7 @@ public class LingeringShades : HexaghostCardModel
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await HexaghostCmd.SoulburnEffect(cardPlay.Target);
         await CardPileCmd.Add(
-            Owner.GetDiscard().Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),
+            Owner.DiscardPile.Where(c => c.Keywords.Contains(CardKeyword.Ethereal)),
             PileType.Hand);
     }
 }

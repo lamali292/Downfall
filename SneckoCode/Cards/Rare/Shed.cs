@@ -16,7 +16,7 @@ public class Shed : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = Owner.GetHand();
+        var cards = Owner.Hand;
         await SneckoCmd.Muddle(ctx, cards, this);
         var nowNull = cards.Count(e => e.EnergyCost.GetResolved() == 0);
         for (var i = 0; i < nowNull; i++) await CommonActions.CardBlock(this, cardPlay);

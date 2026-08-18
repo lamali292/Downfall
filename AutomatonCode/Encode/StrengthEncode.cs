@@ -17,8 +17,8 @@ public class StrengthEncode : Encodable
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
-        return PowerCmd.Apply<StrengthPower>(ctx, model.GetCreature(),
-            model.GetDynamicVars().Strength.BaseValue, model.GetCreature(), model as CardModel);
+        return PowerCmd.Apply<StrengthPower>(ctx, model.Creature,
+            model.DynamicVars.Strength.BaseValue, model.Creature, model as CardModel);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -28,6 +28,6 @@ public class StrengthEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Strength;
+        return model.DynamicVars.Strength;
     }
 }

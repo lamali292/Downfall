@@ -21,7 +21,7 @@ public class PerfecterStrike : ChampCardModel
 
     private static decimal CalculateStrikeCount(CardModel card, Creature? creatures)
     {
-        return card.Owner.GetAllCards().Count(c => c.Tags.Contains(CardTag.Strike));
+        return card.Owner.GetAllCombatCards.Count(c => c.Tags.Contains(CardTag.Strike));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

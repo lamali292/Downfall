@@ -22,6 +22,6 @@ public class KillingSpree : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<KillingSpreePower>(ctx, this);
-        for (var i = 0; i < DynamicVars["Skill"].IntValue; i++) await Owner.ChampStance().SkillBonus(ctx);
+        for (var i = 0; i < DynamicVars["Skill"].IntValue; i++) await Owner.ChampStance.SkillBonus(ctx);
     }
 }

@@ -19,7 +19,7 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
 
     public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
-        var candidates = Owner.GetHand()
+        var candidates = Owner.Hand
             .Where(c => c.EnergyCost.GetWithModifiers(CostModifiers.None) > 0)
             .ToList();
 

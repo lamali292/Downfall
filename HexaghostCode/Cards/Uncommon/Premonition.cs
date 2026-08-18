@@ -28,14 +28,14 @@ public class Premonition : HexaghostCardModel
         var cardType = await GetCardType(ctx);
         if (cardType == null) return;
         var card = CombatState.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.GetDraw(e => e.Type == cardType));
+            .NextItem(Owner.DrawPile.Where(e => e.Type == cardType));
         if (card == null) return;
         await CardCmd.AutoPlay(ctx, card, null);
     }
 
     private async Task<CardType?> GetCardType(PlayerChoiceContext ctx)
     {
-        var choices = Owner.GetDraw().Select(c => c.Type).Distinct()
+        var choices = Owner.DrawPile.Select(c => c.Type).Distinct()
             .Select(f => PremonitionChoice.Create(f, Owner))
             .ToList();
         switch (choices.Count)

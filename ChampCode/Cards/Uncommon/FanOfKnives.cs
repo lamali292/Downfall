@@ -25,7 +25,7 @@ public class FanOfKnives : ChampCardModel, IBerserkerComboCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.ShouldBerserkerComboTrigger()) return;
+        if (Owner.ShouldBerserkerComboTrigger) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

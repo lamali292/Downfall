@@ -14,5 +14,5 @@ public abstract class CollectorCardModel(
     : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
     protected override bool IsPlayable =>
-        this is not IHasPyre || (this is IHasPyre && Owner.GetHand().Any(e => e != this));
+        this is not IHasPyre || (this is IHasPyre && Owner.Hand.Any(e => e != this));
 }

@@ -2,8 +2,12 @@
 
 internal static class StringExtensions
 {
-    public static string GemPath(this string path)
+    extension(string path)
     {
-        return Path.Join(GuardianMainFile.ModId, "images", "gems", path);
+        public string GemPath()
+        {
+            return Path.Join(GuardianMainFile.ModId, "images", "gems", path);
+        }
     }
+   
 }

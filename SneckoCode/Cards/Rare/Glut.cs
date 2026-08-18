@@ -28,7 +28,7 @@ public class Glut : SneckoCardModel
     
     private static decimal Calc(CardModel card, Creature? _)
     {
-        return card.Owner.GetHand().Count(e => e != card);
+        return card.Owner.Hand.Count(e => e != card);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

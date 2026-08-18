@@ -24,7 +24,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
     public override FireColor FireColor => FireColor.Red;
 
     public override AbstractIntent Intent => new CustomAttackIntent(
-        () => DynamicVars.GhostflameDamage(),
+        () => DynamicVars.GhostflameDamage,
         () => (HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1)) * Repeat(GhostflameRepeatType.Damage)
     );
     
@@ -43,7 +43,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
     {
         if (!TryBeginIgnite()) return;
 
-        var damage = DynamicVars.GhostflameDamage();
+        var damage = DynamicVars.GhostflameDamage;
         var hitCount = HexaghostCmd.GetIgnitedCount(Owner) * Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,

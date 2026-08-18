@@ -22,7 +22,7 @@ public class ProtoBeam : AutomatonCardModel
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
-        return card.Owner.GetExhaust().Count(e => e.Type == CardType.Status);
+        return card.Owner.ExhaustPile.Count(e => e.Type == CardType.Status);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

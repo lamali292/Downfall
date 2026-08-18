@@ -20,7 +20,7 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
     {
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
 
-        var player = Owner.GetRandomOtherPlayer();
+        var player = Owner.RandomOtherTeammate;
         if (player == null) return;
 
         // TODO: use CreateCloneForPlayer on main / beta merge

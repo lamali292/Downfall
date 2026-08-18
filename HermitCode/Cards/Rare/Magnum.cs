@@ -20,7 +20,7 @@ public sealed class Magnum : HermitCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        var handCount = Owner.GetHand().Count;
+        var handCount = Owner.Hand.Count;
         var maxDiscard = Math.Min(DynamicVars.Cards.IntValue, handCount);
         if (maxDiscard == 0) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, maxDiscard, maxDiscard);

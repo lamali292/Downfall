@@ -132,7 +132,7 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
         int count, AbstractModel source,
         Func<CardModel, bool>? filter = null, bool optional = false)
-        => CardSelectCmd.FromHand(ctx, source.GetCreature().Player!, Prefs(prompt, count, optional), filter, source);
+        => CardSelectCmd.FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), filter, source);
 
 
     /// <summary>

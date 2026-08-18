@@ -55,7 +55,7 @@ public class DiamondGem : GemModel
         var combatState = owner.Creature.CombatState;
         if (combatState == null) return originalPlayCount;
         return originalPlayCount +
-               (int)GuardianHook.ModifyGemEffect(combatState, this, DynamicVars.Gem().BaseValue, Card);
+               (int)GuardianHook.ModifyGemEffect(combatState, this, DynamicVars.Gem.BaseValue, Card);
     }
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)

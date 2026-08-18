@@ -21,7 +21,7 @@ public sealed class Gambit : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var combatCardSelection = Owner.RunState.Rng.CombatCardSelection;
-        var cards = Owner.GetDiscard()
+        var cards = Owner.DiscardPile
             .Where(c => c.Type == CardType.Attack)
             .TakeRandom(DynamicVars.Cards.IntValue, combatCardSelection)
             .ToList();

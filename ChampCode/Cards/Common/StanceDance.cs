@@ -19,7 +19,7 @@ public class StanceDance : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.SelectStanceToEnter(ctx, Owner);
-        var stance = Owner.ChampStance();
+        var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
         if (IsUpgraded) await stance.SkillBonus(ctx);
     }

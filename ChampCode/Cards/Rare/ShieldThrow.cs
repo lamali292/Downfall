@@ -26,7 +26,7 @@ public class ShieldThrow : ChampCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger;
 
     private static decimal BlockDamage(CardModel card, Creature? creature)
     {
@@ -36,7 +36,7 @@ public class ShieldThrow : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
-        if (Owner.ShouldDefensiveComboTrigger()) return;
+        if (Owner.ShouldDefensiveComboTrigger) return;
         await CommonActions.ApplySelf<NoBlockNextTurnPower>(ctx, this);
     }
 }

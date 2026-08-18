@@ -17,13 +17,13 @@ public class Convert : AutomatonCardModel
         WithUpgradingCardTip<Fuel>();
     }
 
-    protected override bool ShouldGlowGoldInternal => Owner.GetStash(e => e.Type == CardType.Status).Any();
+    protected override bool ShouldGlowGoldInternal => Owner.StashPile.Any(e => e.Type == CardType.Status);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = Owner.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.GetStash(e => e.Type == CardType.Status));
+            .NextItem(Owner.StashPile.Where(e => e.Type == CardType.Status));
         var fuel = card?.CardScope?.CreateCard<Fuel>(card.Owner);
         if (fuel == null || card == null) return;
         if (IsUpgraded) CardCmd.Upgrade(fuel);

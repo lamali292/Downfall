@@ -30,7 +30,7 @@ public class ChampDefensiveStance : ChampStanceModel
     {
         var amount = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
         var targets = affectsAllPlayers
-            ? Owner.GetAllPlayers().Select(e => e.Creature)
+            ? Owner.AllTeammates.Select(e => e.Creature)
             : [Owner.Creature];
         await targets.ForEachAsync(e =>
              CreatureCmd.GainBlock(e, amount, BlockProps.nonCardUnpowered, null)

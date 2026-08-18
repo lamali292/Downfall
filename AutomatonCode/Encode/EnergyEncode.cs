@@ -16,10 +16,10 @@ public class EnergyEncode : Encodable
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
-        var player = model.GetCreature().Player;
+        var player = model.Creature.Player;
         return player == null
             ? Task.CompletedTask
-            : PlayerCmd.GainEnergy(model.GetDynamicVars().Energy.IntValue, player);
+            : PlayerCmd.GainEnergy(model.DynamicVars.Energy.IntValue, player);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -41,6 +41,6 @@ public class EnergyEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Energy;
+        return model.DynamicVars.Energy;
     }
 }

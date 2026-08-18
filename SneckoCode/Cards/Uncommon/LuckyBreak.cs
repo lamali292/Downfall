@@ -17,7 +17,7 @@ public class LuckyBreak : SneckoCardModel
     }
 
 
-    private int TwoCostInHand => Owner.GetHand()
+    private int TwoCostInHand => Owner.Hand
         .Count(e => e.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

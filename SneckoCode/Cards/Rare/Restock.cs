@@ -20,9 +20,9 @@ public class Restock : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = Owner.GetHand();
+        var cards = Owner.Hand;
         await CardCmd.DiscardAndDraw(ctx, cards, DynamicVars.Cards.IntValue);
-        var newCards = Owner.GetHand();
+        var newCards = Owner.Hand;
         await SneckoCmd.Muddle(ctx, newCards, this);
     }
 }

@@ -24,7 +24,7 @@ public class OffclassSearingGhostflame : GhostflameModel
     public override FireColor FireColor => FireColor.Yellow;
     public override bool IsOffclass => true;
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
-        () => DynamicVars.GhostflameSoulburn(),
+        () => DynamicVars.GhostflameSoulburn,
         2 * Repeat(GhostflameRepeatType.Soulburn)
     );
 
@@ -43,7 +43,7 @@ public class OffclassSearingGhostflame : GhostflameModel
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
-        var soulburn = DynamicVars.GhostflameSoulburn();
+        var soulburn = DynamicVars.GhostflameSoulburn;
         var repeat = 2 * Repeat(GhostflameRepeatType.Soulburn);
         await RepeatOnTargets(ctx, repeat, GhostflameRepeatType.Soulburn,
             targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));

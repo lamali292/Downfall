@@ -22,6 +22,6 @@ public class ViciousMockery : ChampCardModel
     {
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target!, this);
-        await Owner.ChampStance().SkillBonus(ctx);
+        await Owner.ChampStance.SkillBonus(ctx);
     }
 }

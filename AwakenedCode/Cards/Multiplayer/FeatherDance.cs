@@ -25,7 +25,7 @@ public class FeatherDance : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        foreach (var player in Owner.GetAllPlayers())
+        foreach (var player in Owner.AllTeammates)
         {
             var cards = new List<CardModel>();
             for (var i = 0; i < DynamicVars.Cards.IntValue; i++)

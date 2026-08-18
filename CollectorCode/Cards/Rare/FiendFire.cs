@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,7 +30,7 @@ public class FiendFire : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var list = Owner.GetHand().ToList();
+        var list = Owner.Hand.ToList();
         var cardCount = list.Count;
         foreach (var card2 in list)
             await CardCmdCompatibility.Exhaust(ctx, card2);

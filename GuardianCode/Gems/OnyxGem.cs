@@ -23,7 +23,7 @@ public class OnyxGem : GemModel
     {
         var card = Card;
         if (card == null) return;
-        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, card);
+        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, card);
         foreach (var player in targetPlayers)
         {
             await GuardianCmd.Polish(ctx, player.Creature, effect, Card);

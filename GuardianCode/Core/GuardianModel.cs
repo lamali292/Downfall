@@ -115,7 +115,7 @@ public class GuardianRunModel() : CustomSingletonModel(HookType.Run)
     {
         if (options.Any(option => option.OptionId == GemRestSiteOption.Id)) return false;
 
-        var deck = player.GetDeck();
+        var deck = player.DeckPile;
         var hasGems = deck.Any(e => e is IGemCard);
         var hasSlots = deck.Any(e => e is IGemSocketCard { FreeSlots: > 0 });
         if (!hasSlots || !hasGems) return false;

@@ -38,7 +38,7 @@ public class MireSlime : SlimeModel
         var cmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
             .TargetingRandomOpponents(CombatState).Execute(ctx);
         var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
-        var original = DynamicVars.Slime().IntValue;
+        var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         await PowerCmd.Apply<GoopPower>(ctx, target, modified, PetOwner, null);
     }

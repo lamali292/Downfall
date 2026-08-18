@@ -10,35 +10,20 @@ namespace Collector.CollectorCode.Extensions;
 
 internal static class PlayerExtensions
 {
-    public static Creature? Torchhead(this Player player)
+    extension(Player player)
     {
-        return player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
-    }
+        public Creature? Torchhead() => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
 
-    
-    public static IReadOnlyList<CardModel> GetCollectibles(this Player player)
-    {
-        return CustomPiles.GetCustomPile(player.PlayerCombatState, CollectorPile.Collected)?.Cards
-               ?? [];
-    }
+        public IReadOnlyList<CardModel> CollectiblesPile =>
+            CustomPiles.GetCustomPile(player.PlayerCombatState, CollectorPile.Collected)?.Cards
+            ?? [];
 
-    public static int GetEssence(this Player player)
-    {
-        return EssenceModel.GetEssence(player);
-    }
+        public int Essence => EssenceModel.GetEssence(player);
 
-    public static bool CanAffordEssence(this Player player, int amount)
-    {
-        return EssenceModel.CanAfford(player, amount);
-    }
+        public bool CanAffordEssence(int amount) => EssenceModel.CanAfford(player, amount);
 
-    public static void AddEssence(this Player player, int amount)
-    {
-        EssenceModel.AddEssence(player, amount);
-    }
+        public void AddEssence(int amount) => EssenceModel.AddEssence(player, amount);
 
-    public static bool SpendEssence(this Player player, int amount)
-    {
-        return EssenceModel.SpendEssence(player, amount);
+        public bool SpendEssence(int amount) => EssenceModel.SpendEssence(player, amount);
     }
 }

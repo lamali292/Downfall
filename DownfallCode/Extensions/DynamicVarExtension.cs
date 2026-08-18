@@ -5,8 +5,13 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class DynamicVarExtension
 {
-    public static decimal Calculate(this DynamicVar var, Creature? target)
+    extension(DynamicVar var)
     {
-        return var is CalculatedVar calculatedVar ? calculatedVar.Calculate(target) : 0;
+        public decimal Calculate(Creature? target)
+        {
+            return var is CalculatedVar calculatedVar ? calculatedVar.Calculate(target) : 0;
+        }
     }
+    
+  
 }

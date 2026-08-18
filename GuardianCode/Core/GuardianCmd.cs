@@ -87,7 +87,7 @@ public static class GuardianCmd
     public static async Task<bool> PutIntoStasis(CardModel card, PlayerChoiceContext ctx, AbstractModel source,
         bool silent = false)
     {
-        var cs = source.GetCreature().CombatState;
+        var cs = source.Creature.CombatState;
         if (cs == null) return false;
         var player = card.Owner;
         var pile = GuardianCombatModel.GetOrInitStasis(player);
@@ -157,7 +157,7 @@ public static class GuardianCmd
 
     public static async Task TickAll(Player player, PlayerChoiceContext ctx)
     {
-        var stasisCards = player.GetStasis().ToList();
+        var stasisCards = player.StasisPile.ToList();
         foreach (var card in stasisCards)
             await TickCard(card, player, ctx);
         GuardianDisplay.Refresh(player);
@@ -166,7 +166,7 @@ public static class GuardianCmd
     // Gems
     public static List<GemModel> GetAllCombatGems(Player player)
     {
-        return player.GetAllCards()
+        return player.GetAllCombatCards
             .SelectMany(card => card switch
             {
                 IGemCard gem => [gem.GemModel],
@@ -210,12 +210,12 @@ public static class GuardianCmd
 
     public static Task Brace(PlayerChoiceContext ctx, CardModel card)
     {
-        return Brace(ctx, card.Owner, card.DynamicVars.Brace().IntValue);
+        return Brace(ctx, card.Owner, card.DynamicVars.Brace.IntValue);
     }
 
     public static async Task AccelerateUntilExit(PlayerChoiceContext ctx, Player player)
     {
-        var stasisCards = player.GetStasis().ToList();
+        var stasisCards = player.StasisPile.ToList();
         foreach (var card in stasisCards)
             while (GuardianCombatModel.StasisCounter[card] > 0)
             {
@@ -230,7 +230,7 @@ public static class GuardianCmd
     public static async Task Accelerate(PlayerChoiceContext ctx, Player player, int amount = 1,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        var cards = player.GetStasis().ToList();
+        var cards = player.StasisPile.ToList();
         foreach (var card in cards)
         {
             var ticks = accelerateType == AccelerateType.First
@@ -259,22 +259,22 @@ public static class GuardianCmd
     public static Task Accelerate(PlayerChoiceContext ctx, AbstractModel source,
         AccelerateType accelerateType = AccelerateType.First)
     {
-        var player = source.GetCreature().Player;
+        var player = source.Creature.Player;
         return player == null
             ? Task.CompletedTask
-            : Accelerate(ctx, player, source.GetDynamicVars().Accelerate().IntValue, accelerateType);
+            : Accelerate(ctx, player, source.DynamicVars.Accelerate.IntValue, accelerateType);
     }
 
 
     public static async Task Polish(PlayerChoiceContext ctx, AbstractModel source)
     {
-        var amount = source.GetDynamicVars().Polish().IntValue;
+        var amount = source.DynamicVars.Polish.IntValue;
         await Polish(ctx, source, amount);
     }
 
     public static async Task Polish(PlayerChoiceContext ctx, AbstractModel source, decimal amount)
     {
-        await Polish(ctx, source.GetCreature(), amount, source as CardModel);
+        await Polish(ctx, source.Creature, amount, source as CardModel);
     }
 
     public static async Task Polish(PlayerChoiceContext ctx, Creature target, decimal amount, CardModel? cardSource)

@@ -27,6 +27,6 @@ public class PowerEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Power<FullReleasePower>();
+        return model.DynamicVars.Power<FullReleasePower>();
     }
 }

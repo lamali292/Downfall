@@ -24,7 +24,7 @@ public class TemporalStrike : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (Owner.GetStasis().Count == 0) return;
+        if (Owner.StasisPile.Count == 0) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }

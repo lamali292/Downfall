@@ -92,7 +92,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return;
 
-        var sequence = _trackedPlayer.GetStasis().ToList();
+        var sequence = _trackedPlayer.StasisPile.ToList();
         for (var i = 0; i < _slots.Count && i < sequence.Count; i++)
             _slots[i].UpdateCounterDisplay(sequence[i]);
     }
@@ -101,7 +101,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return;
 
-        var sequence = _trackedPlayer.GetStasis().ToList();
+        var sequence = _trackedPlayer.StasisPile.ToList();
         _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
         
         ReleaseAllCards();
@@ -186,7 +186,7 @@ public partial class NGuardianDisplay : Control
     {
         if (_trackedPlayer == null) return GlobalPosition;
 
-        var sequence = _trackedPlayer.GetStasis().ToList();
+        var sequence = _trackedPlayer.StasisPile.ToList();
 
         var existingIndex = sequence.IndexOf(card);
         if (existingIndex >= 0)

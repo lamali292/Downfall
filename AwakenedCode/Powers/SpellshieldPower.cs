@@ -14,7 +14,7 @@ public class SpellshieldPower : AwakenedPowerModel
         IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner) || Owner.Player == null) return;
-        var a = Owner.Player.GetHand().Count(e => e.ShouldRetainThisTurn);
+        var a = Owner.Player.Hand.Count(e => e.ShouldRetainThisTurn);
         for (var i = 0; i < a; i++)
         {
             await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);

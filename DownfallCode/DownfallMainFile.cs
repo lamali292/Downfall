@@ -49,7 +49,7 @@ public partial class DownfallMainFile : Node
 
         CardTitleHooks.Register((card, title) =>
         {
-            if (!card.IsEcho()) return title;
+            if (!card.IsEcho) return title;
             var echoLoc = new LocString("card_keywords", "DOWNFALL-ECHO.card_title");
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();

@@ -19,7 +19,7 @@ public class Flurry : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var cards = Owner.GetDraw().Where(c => c.IsUpgradable)
+        var cards = Owner.DrawPile.Where(c => c.IsUpgradable)
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection).ToList();
         foreach (var card2 in cards)
         {

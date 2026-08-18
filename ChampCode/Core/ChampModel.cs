@@ -28,7 +28,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     {
         var card = cardPlay.Card;
         var owner = card.Owner;
-        var stance = owner.ChampStance();
+        var stance = owner.ChampStance;
         var ignoreChargeCap = ChampHook.IgnoreChargeCap(owner.Creature.CombatState!, owner);
         if (card.Type == CardType.Skill && (ignoreChargeCap || stance.Charges > 0))
         {

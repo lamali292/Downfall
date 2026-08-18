@@ -26,7 +26,7 @@ public class ShowOff : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await Owner.ChampStance().SkillBonus(ctx);
+        await Owner.ChampStance.SkillBonus(ctx);
         if (cardPlay.Target?.Player == null) return;
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue, cardPlay.Target.Player);
     }

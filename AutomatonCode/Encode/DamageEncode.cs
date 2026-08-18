@@ -24,12 +24,12 @@ public class DamageEncode : Encodable
                 .FromCardCompatibility(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
-        return DownfallCreatureCmd.Damage(ctx, target, model.GetDynamicVars().Damage.BaseValue, DamageProps.nonCardUnpowered,
-            model.GetCreature(), null, null);
+        return DownfallCreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered,
+            model.Creature, null, null);
     }
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Damage;
+        return model.DynamicVars.Damage;
     }
 }

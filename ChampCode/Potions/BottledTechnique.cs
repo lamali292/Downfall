@@ -28,7 +28,7 @@ public class BottledTechnique : ChampPotionModel
         {
             if (!CombatManager.Instance.IsInProgress || Owner.RunState.CurrentRoom is not CombatRoom)
                 return false;
-            return Owner.ChampStance() is not ChampNoStance;
+            return Owner.ChampStance is not ChampNoStance;
         }
     }
 

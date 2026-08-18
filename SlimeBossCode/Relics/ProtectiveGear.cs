@@ -27,7 +27,7 @@ public class ProtectiveGear : SlimeBossRelicModel, IModifySelfDamage
 
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
-        var creature = model.GetCreature();
+        var creature = model.Creature;
         return creature != Owner.Creature ? amount : Math.Max(0, amount - DynamicVars["TackleReduce"].BaseValue);
     }
 

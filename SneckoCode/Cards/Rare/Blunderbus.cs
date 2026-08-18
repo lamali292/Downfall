@@ -14,7 +14,7 @@ public class Blunderbus : SneckoCardModel
         WithEnergy(3);
     }
 
-    private int ThreeCostInHand => Owner.GetHand().Count(e => e.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue);
+    private int ThreeCostInHand => Owner.Hand.Count(e => e.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -6,26 +6,22 @@ namespace Champ.ChampCode.Extensions;
 
 internal static class PlayerExtensions
 {
-    public static ChampStanceModel ChampStance(this Player player)
+    extension(Player player)
     {
-        return ChampModel.GetStanceModel(player);
-    }
+        public ChampStanceModel ChampStance => ChampModel.GetStanceModel(player);
 
-    public static bool IsInChampStance<T>(this Player player)
-        where T : ChampStanceModel
-    {
-        return ChampModel.IsInStance<T>(player);
-    }
+        public bool IsInChampStance<T>()
+            where T : ChampStanceModel
+        {
+            return ChampModel.IsInStance<T>(player);
+        }
 
-    public static bool ShouldDefensiveComboTrigger(this Player player)
-    {
-        return ChampModel.IsInStance<ChampDefensiveStance>(player) ||
-               ChampModel.IsInStance<ChampUltimateStance>(player);
-    }
+        public bool ShouldDefensiveComboTrigger => ChampModel.IsInStance<ChampDefensiveStance>(player) ||
+                                                     ChampModel.IsInStance<ChampUltimateStance>(player);
 
-    public static bool ShouldBerserkerComboTrigger(this Player player)
-    {
-        return ChampModel.IsInStance<ChampBerserkerStance>(player) ||
-               ChampModel.IsInStance<ChampUltimateStance>(player);
+        public bool ShouldBerserkerComboTrigger => ChampModel.IsInStance<ChampBerserkerStance>(player) ||
+                                                     ChampModel.IsInStance<ChampUltimateStance>(player);
     }
+    
+   
 }

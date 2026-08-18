@@ -29,14 +29,14 @@ public class DevTools : AutomatonCardModel
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
-        return card.Owner.GetEncode().Count;
+        return card.Owner.EncodePile.Count;
     }
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = ((CalculatedVar)DynamicVars["Dev"]).Calculate(null);
-        var cards = Owner.GetEncode().ToList();
+        var cards = Owner.EncodePile.ToList();
         foreach (var card in cards)
             await CardCmdCompatibility.Exhaust(ctx, card);
         await PlayerCmd.GainEnergy(count, Owner);

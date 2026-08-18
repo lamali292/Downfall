@@ -25,7 +25,7 @@ public class ShareTheLoad : HermitCardModel,IHasDeadOnEffect
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        foreach (var player in Owner.GetOtherPlayers())
+        foreach (var player in Owner.OtherTeammates)
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
             // TODO : use DrawWithoutBlockingOnOtherPlayers here on main/beta merge.

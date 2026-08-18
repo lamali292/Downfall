@@ -23,8 +23,7 @@ public class TongueLash : SlimeBossCardModel
 
     private static decimal Calc(CardModel card, Creature? _)
     {
-        return card.Owner.GetExhaust()
-            .Count(e => e.Tags.Contains(SlimeBossTag.Lick));
+        return card.Owner.ExhaustPile.Count(e => e.Tags.Contains(SlimeBossTag.Lick));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

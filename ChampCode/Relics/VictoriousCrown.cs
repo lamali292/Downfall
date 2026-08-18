@@ -47,7 +47,7 @@ public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinish
         if (Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await ChampCmd.EnterDifferentStance(ctx, player);
-        var stance = Owner.ChampStance();
+        var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
         await stance.SkillBonus(ctx);
     }

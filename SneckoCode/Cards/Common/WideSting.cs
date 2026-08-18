@@ -31,7 +31,7 @@ public class WideSting : SneckoCardModel, IHasGift
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        foreach (var card in Owner.GetHand()
+        foreach (var card in Owner.Hand
                      .Where(e => e.IsUpgradable && DownfallCmd.IsOffclass(e)))
             CardCmd.Upgrade(card);
     }

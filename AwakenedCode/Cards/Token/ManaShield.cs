@@ -22,7 +22,7 @@ public class ManaShield : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await AwakenedCmd.Conjure(Owner);
         var card = Owner.RunState.Rng.CombatCardGeneration
-            .NextItem(Owner.GetHand(c => c is ISpell && c.EnergyCost.GetResolved() > 0));
+            .NextItem(Owner.Hand.Where(c => c is ISpell && c.EnergyCost.GetResolved() > 0));
         card?.EnergyCost.AddThisCombat(-1);
     }
 }

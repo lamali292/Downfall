@@ -7,16 +7,14 @@ namespace Automaton.AutomatonCode.Extensions;
 
 public static class PlayerExtensions
 {
-    public static IReadOnlyList<CardModel> GetStash(this Player player, Func<CardModel, bool>? filter = null)
+    extension(Player player)
     {
-        var cards = CustomPiles.GetCustomPile(player.PlayerCombatState, StashPile.Stash)?.Cards
-                    ?? [];
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
+        public IReadOnlyList<CardModel> StashPile =>
+            CustomPiles.GetCustomPile(player.PlayerCombatState, StashPile.Stash)?.Cards
+            ?? [];
 
-    public static IReadOnlyList<CardModel> GetEncode(this Player player)
-    {
-        return CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence)?.Cards
-               ?? [];
+        public IReadOnlyList<CardModel> EncodePile =>
+            CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence)?.Cards
+            ?? [];
     }
 }

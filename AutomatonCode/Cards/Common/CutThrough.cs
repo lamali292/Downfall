@@ -25,7 +25,7 @@ public class CutThrough : AutomatonCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitFx("vfx/vfx_attack_slash").Execute(ctx);
         await ScryCmd.Execute(ctx, this);
-        var cards = Owner.GetDraw();
+        var cards = Owner.DrawPile;
         if (cards.Count == 0) return;
         await StashCmd.Stash(cards[0]);
     }

@@ -30,7 +30,7 @@ public class Levitate : HexaghostCardModel, IHasAfterlifeEffect
 
     public Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
     {
-        var target = cardPlay?.Target ?? Owner.GetRandomOtherPlayer()?.Creature;
+        var target = cardPlay?.Target ?? Owner.RandomOtherTeammate?.Creature;
         return target == null ? Task.CompletedTask : CreatureCmd.GainBlock(target, DynamicVars.Block, cardPlay);
     }
 }

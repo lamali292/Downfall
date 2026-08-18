@@ -24,7 +24,7 @@ public class Congregation : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        foreach (var player in Owner.GetAllPlayers())
+        foreach (var player in Owner.AllTeammates)
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
             var card = CombatState!.CreateCard<Void>(player);

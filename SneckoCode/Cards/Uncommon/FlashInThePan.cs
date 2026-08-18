@@ -18,7 +18,7 @@ public class FlashInThePan : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cards = Owner.GetHand();
+        var cards = Owner.Hand;
         var amount = cards.Count;
         if (amount == 0) return;
         await CardCmd.Discard(ctx, cards);

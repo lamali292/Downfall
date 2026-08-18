@@ -5,13 +5,18 @@ namespace SlimeBoss.SlimeBossCode.Extensions;
 
 public static class AttackCommandExtensions
 {
-    public static AttackCommand FromSlime(this AttackCommand command, SlimeModel slime)
+    extension(AttackCommand command)
     {
-        command.Attacker = command.Attacker == null
-            ? slime.Creature
-            : throw new InvalidOperationException("Attacker has already been set.");
-        command._attackerAnimName = "Attack";
-        command._sourceType = AttackCommand.SourceType.None;
-        return command;
+        public AttackCommand FromSlime(SlimeModel slime)
+        {
+            command.Attacker = command.Attacker == null
+                ? slime.Creature
+                : throw new InvalidOperationException("Attacker has already been set.");
+            command._attackerAnimName = "Attack";
+            command._sourceType = AttackCommand.SourceType.None;
+            return command;
+        }
     }
+    
+    
 }

@@ -20,7 +20,7 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 public class BolsteringGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new BolsteringIntent(
-        () => DynamicVars.GhostflameBlock());
+        () => DynamicVars.GhostflameBlock);
     protected override int IgnitionRequirement => 1;
 
     public override FireColor FireColor => FireColor.Blue;
@@ -42,7 +42,7 @@ public class BolsteringGhostflame : GhostflameModel
     {
         if (!TryBeginIgnite()) return;
 
-        var block = DynamicVars.GhostflameBlock();
+        var block = DynamicVars.GhostflameBlock;
         var repeat = Repeat(GhostflameRepeatType.Block);
         for (var i = 0; i < repeat; i++)
         {

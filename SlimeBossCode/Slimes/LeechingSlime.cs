@@ -36,7 +36,7 @@ public class LeechingSlime : SlimeModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
             .Execute(ctx);
 
-        var original = DynamicVars.Slime().IntValue;
+        var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.nonCardUnpowered, null);
     }
