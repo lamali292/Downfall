@@ -33,13 +33,13 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
 
     protected override bool ShouldGlowRedInternal =>
-        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance().HasFinisher;
+        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance.HasFinisher;
 
     protected override bool ShouldGlowGoldInternal =>
-        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger())
-        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger());
+        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger)
+        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger);
 
-    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance().HasFinisher ||
+    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance.HasFinisher ||
                                           Enchantment is Signature;
 
     public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

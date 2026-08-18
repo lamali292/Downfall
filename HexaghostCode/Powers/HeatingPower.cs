@@ -21,7 +21,7 @@ public class HeatingPower : HexaghostPowerModel
         CardModel? cardSource)
     {
         if (power is not SoulBurnPower || applier != Owner) return;
-        var player = Owner.Player?.GetOtherPlayers()
+        var player = Owner.Player?.OtherTeammates
             .OrderBy(e => e.Creature.Block)
             .FirstOrDefault();
         if (player == null) return;

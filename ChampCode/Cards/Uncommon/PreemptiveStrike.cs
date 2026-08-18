@@ -24,7 +24,7 @@ public class PreemptiveStrike : ChampCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger();
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldDefensiveComboTrigger;
 
     private static decimal CalcDamage(CardModel arg1, Creature? arg2)
     {
@@ -34,7 +34,7 @@ public class PreemptiveStrike : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (Owner.ShouldDefensiveComboTrigger()) return;
+        if (Owner.ShouldDefensiveComboTrigger) return;
         var a = -Owner.Creature.GetPowerAmount<CounterPower>() / 2;
         if (a >= 0) return;
         await CommonActions.ApplySelf<CounterPower>(ctx, this, a);

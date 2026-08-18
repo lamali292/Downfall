@@ -29,7 +29,7 @@ public class Spectre : HermitCardModel
                     this, c => !c.Keywords.Contains(CardKeyword.Ethereal)))
                 .FirstOrDefault();
         else
-            card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.GetHand(e => e != this && !e.Keywords.Contains(CardKeyword.Ethereal)));
+            card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e => e != this && !e.Keywords.Contains(CardKeyword.Ethereal)));
         card?.AddKeyword(CardKeyword.Ethereal);
     }
 }

@@ -59,16 +59,6 @@ public class Collector : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<CollectorCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<CollectorPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<CollectorRelicPool>();
-
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        return SetupAnimationState(
-            controller,
-            "idle",
-            hitName: "Hit"
-        );
-    }
 }
 
 public class CollectorRelicPool : DownfallRelicPool<Collector>;

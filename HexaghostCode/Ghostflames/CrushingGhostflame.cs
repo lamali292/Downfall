@@ -16,7 +16,7 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 public class CrushingGhostflame : GhostflameModel
 {
     public override AbstractIntent Intent => new CustomAttackIntent(
-        () => DynamicVars.GhostflameDamage(),
+        () => DynamicVars.GhostflameDamage,
         () => 2 * Repeat(GhostflameRepeatType.Damage)
     );
 
@@ -33,7 +33,7 @@ public class CrushingGhostflame : GhostflameModel
     {
         if (!TryBeginIgnite()) return;
 
-        var damage = DynamicVars.GhostflameDamage();
+        var damage = DynamicVars.GhostflameDamage;
         var hitCount = 2 * Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,

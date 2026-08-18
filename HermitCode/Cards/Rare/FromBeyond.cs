@@ -23,7 +23,7 @@ public sealed class FromBeyond : HermitCardModel
 
     private static decimal CountCardsInExhaust(CardModel card, Creature? _)
     {
-        return card.Owner.GetExhaust().Count;
+        return card.Owner.ExhaustPile.Count;
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)

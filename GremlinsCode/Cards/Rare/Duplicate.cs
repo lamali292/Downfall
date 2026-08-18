@@ -20,7 +20,7 @@ public class Duplicate : GremlinsCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ApplySelectionPrompt, this,
-            e => e.Type == CardType.Attack && !e.IsEcho())).FirstOrDefault();
+            e => e.Type == CardType.Attack && !e.IsEcho)).FirstOrDefault();
         if (card == null) return;
         var copies = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ =>

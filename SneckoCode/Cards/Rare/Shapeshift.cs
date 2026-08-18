@@ -23,7 +23,7 @@ public class Shapeshift : SneckoCardModel
             .GroupBy(c => c.Rarity)
             .ToDictionary(g => g.Key, g => g.ToList());
 
-        var cards = Owner.GetHand().ToList();
+        var cards = Owner.Hand.ToList();
         foreach (var card in cards)
         {
             if (!byRarity.TryGetValue(card.Rarity, out var choices) || choices.Count == 0) continue;

@@ -5,23 +5,14 @@ namespace Guardian.GuardianCode.Extensions;
 
 public static class DynamicVarsExtension
 {
-    public static BraceVar Brace(this DynamicVarSet vard)
+    extension(DynamicVarSet vars)
     {
-        return (BraceVar)vard._vars[nameof(Brace)];
-    }
+        public BraceVar Brace => (BraceVar)vars._vars["Brace"];
 
-    public static AccelerateVar Accelerate(this DynamicVarSet vard)
-    {
-        return (AccelerateVar)vard._vars[nameof(Accelerate)];
-    }
+        public AccelerateVar Accelerate => (AccelerateVar)vars._vars["Accelerate"];
 
-    public static PolishVar Polish(this DynamicVarSet vard)
-    {
-        return (PolishVar)vard._vars[nameof(Polish)];
-    }
+        public PolishVar Polish => (PolishVar)vars._vars["Polish"];
 
-    public static GemVar Gem(this DynamicVarSet vard)
-    {
-        return (GemVar)vard._vars[nameof(Gem)];
+        public GemVar Gem => (GemVar)vars._vars["Gem"];
     }
 }

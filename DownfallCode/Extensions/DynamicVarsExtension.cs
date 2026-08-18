@@ -5,13 +5,12 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class DynamicVarsExtension
 {
-    public static EnemyDamageVar EnemyDamage(this DynamicVarSet vard)
+    extension(DynamicVarSet vars)
     {
-        return (EnemyDamageVar)vard._vars[nameof(EnemyDamage)];
-    }
+        public EnemyDamageVar EnemyDamage
+            => (EnemyDamageVar)vars._vars["EnemyDamage"];
 
-    public static SelfDamageVar SelfDamage(this DynamicVarSet vard)
-    {
-        return (SelfDamageVar)vard._vars[nameof(SelfDamage)];
+        public SelfDamageVar SelfDamage
+            => (SelfDamageVar)vars._vars["SelfDamage"];
     }
 }

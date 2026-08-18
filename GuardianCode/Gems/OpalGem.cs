@@ -19,7 +19,7 @@ public class OpalGem : GemModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
-        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
+        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
         foreach (var player in targetPlayers)
         {
             await CardPileCmd.Draw(ctx, effect, player);

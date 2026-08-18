@@ -26,7 +26,7 @@ public class Virus : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        var hand = Owner.GetHand();
+        var hand = Owner.Hand;
         var size = hand.Count;
         await CardCmd.Discard(ctx, hand);
         await DownfallCardCmd.GiveCards<MinorBeam>(Owner, PileType.Hand, size, upgraded: IsUpgraded);

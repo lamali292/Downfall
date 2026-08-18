@@ -36,7 +36,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
                 : new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
             desc.Add("Card", card.Title);
             desc.Add("essence", 3);
-            desc.Add("current", Player.GetEssence());
+            desc.Add("current", Player.Essence);
             return desc;
         }
     }

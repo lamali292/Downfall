@@ -26,7 +26,7 @@ public sealed class Roulette : HermitCardModel
                 return Task.CompletedTask;
             })
             .Execute(ctx);
-        var hand = Owner.GetHand();
+        var hand = Owner.Hand;
         var handSize = hand.Count;
         await CardCmd.DiscardAndDraw(ctx, hand, handSize);
     }

@@ -26,7 +26,7 @@ public class Pinprick : GremlinsCardModel
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card != this || !IsUpgraded || this.IsEcho()) return;
+        if (card != this || !IsUpgraded || this.IsEcho) return;
         var copy = card.CreateEcho();
         await CardPileCmd.Add(copy, PileType.Hand);
     }

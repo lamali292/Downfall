@@ -30,14 +30,14 @@ public class QuantumElixir : GuardianPotionModel
 
         while (GuardianCmd.CanPutIntoStasis(Owner, silent: true))
         {
-            var countBefore = Owner.GetStasis().Count;
+            var countBefore = Owner.StasisPile.Count;
 
             var choices = CardFactory.GetDistinctForCombat(Owner, cards, DynamicVars.Cards.IntValue, rng).ToList();
             var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
             if (selected == null) break;
             await GuardianCmd.PutIntoStasis(selected, ctx, this);
 
-            var countAfter = Owner.GetStasis().Count;
+            var countAfter = Owner.StasisPile.Count;
             if (countAfter < countBefore + 1)
                 return;
         }

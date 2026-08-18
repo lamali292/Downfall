@@ -26,7 +26,7 @@ public class ChampionsCrown() : ChampRelicModel(RelicRarity.Starter)
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await ChampCmd.EnterDifferentStance(ctx, player);
-        var stance = Owner.ChampStance();
+        var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
         await stance.SkillBonus(ctx);
     }

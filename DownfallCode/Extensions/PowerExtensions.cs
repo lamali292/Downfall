@@ -5,10 +5,14 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class PowerExtensions
 {
-    public static void InvokeSilentDisplayAmountChanged(this PowerModel power)
+    extension(PowerModel power)
     {
-        if (!UpdateAmountRegistry.RefreshActions.TryGetValue(power, out var action))
-            return;
-        action();
+        public void InvokeSilentDisplayAmountChanged()
+        {
+            if (!UpdateAmountRegistry.RefreshActions.TryGetValue(power, out var action))
+                return;
+            action();
+        }
     }
+    
 }

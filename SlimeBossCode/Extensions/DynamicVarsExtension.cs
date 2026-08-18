@@ -5,8 +5,10 @@ namespace SlimeBoss.SlimeBossCode.Extensions;
 
 public static class DynamicVarsExtension
 {
-    public static SlimeSecondaryVar Slime(this DynamicVarSet vard)
+    extension(DynamicVarSet vars)
     {
-        return (SlimeSecondaryVar)vard._vars[nameof(Slime)];
+        public SlimeSecondaryVar Slime => (SlimeSecondaryVar)vars._vars["Slime"];
     }
+    
+    
 }

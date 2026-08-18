@@ -17,12 +17,12 @@ public class BlockEncode : Encodable
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
-        return CreatureCmd.GainBlock(model.GetCreature(), model.GetDynamicVars().Block.BaseValue,
+        return CreatureCmd.GainBlock(model.Creature, model.DynamicVars.Block.BaseValue,
             model is CardModel ? BlockProps.card : BlockProps.nonCardUnpowered, cardPlay);
     }
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Block;
+        return model.DynamicVars.Block;
     }
 }

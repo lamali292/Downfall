@@ -13,7 +13,7 @@ public class KarmaPower : CollectorPowerModel
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side || !CombatState.Enemies.Any(e => e.IsAfflicted())) return;
+        if (side != Owner.Side || !CombatState.Enemies.Any(e => e.IsAfflicted)) return;
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

@@ -19,15 +19,13 @@ public static class MyCommonActions
     public static Task<T?> ApplySelf<T>(PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
-        var creature = model.GetCreature();
-        var dynamicVars = model.GetDynamicVars();
-        return PowerCmd.Apply<T>(ctx, creature, dynamicVars.Power<T>().BaseValue, creature, model as CardModel);
+        return PowerCmd.Apply<T>(ctx, model.Creature,  model.DynamicVars.Power<T>().BaseValue, model.Creature, model as CardModel);
     }
 
     public static Task Block(AbstractModel model, CardPlay? play = null)
     {
-        var dynamicVars = model.GetDynamicVars();
-        var creature = model.GetCreature();
+        var dynamicVars = model.DynamicVars;
+        var creature = model.Creature;
 
         if (dynamicVars.TryGetValue("CalculatedBlock", out var calculatedVar) &&
             calculatedVar is CalculatedBlockVar calculatedBlock)
@@ -44,14 +42,14 @@ public static class MyCommonActions
 
     public static async Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, AbstractModel model)
     {
-        var creature = model.GetCreature();
+        var creature = model.Creature;
         var combatState = creature.CombatState;
         if (combatState == null) return [];
-        var damage = model.GetDynamicVars().SelfDamage();
+        var damage = model.DynamicVars.SelfDamage;
         var modified = DownfallHook.ModifySelfDamage(combatState, damage.BaseValue, model, out var mod);
         await DownfallHook.AfterModifyingSelfDamage(combatState, mod, model);
         if (modified <= 0) return [];
-        return await CreatureCmd.Damage(ctx, model.GetCreature(), modified, damage.Props, model.GetCreature());
+        return await CreatureCmd.Damage(ctx, model.Creature, modified, damage.Props, model.Creature);
     }
 
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)
@@ -62,8 +60,8 @@ public static class MyCommonActions
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
-        await DownfallCreatureCmd.Damage(ctx, targets, model.GetDynamicVars().HpLoss.BaseValue,
-            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.GetCreature(), model as CardModel, null);
+        await DownfallCreatureCmd.Damage(ctx, targets, model.DynamicVars.HpLoss.BaseValue,
+            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.Creature, model as CardModel, null);
     }
 
     public static async Task<IReadOnlyList<T>> AutoApply<T>(
@@ -77,7 +75,7 @@ public static class MyCommonActions
         PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
-        return await Apply<T>(ctx, model, model.GetCreature().CombatState?.HittableEnemies);
+        return await Apply<T>(ctx, model, model.Creature.CombatState?.HittableEnemies);
     }
     
     
@@ -87,7 +85,7 @@ public static class MyCommonActions
     {
         if (targets == null) return new List<T>();
         return await PowerCmd.Apply<T>(ctx, targets,
-            model.GetDynamicVars().Power<T>().BaseValue, model.GetCreature(), model as CardModel);
+            model.DynamicVars.Power<T>().BaseValue, model.Creature, model as CardModel);
     }
     
     public static async Task<T?> Apply<T>(
@@ -96,7 +94,7 @@ public static class MyCommonActions
     {
         if (target == null) return null;
         return await PowerCmd.Apply<T>(ctx, target,
-            model.GetDynamicVars().Power<T>().BaseValue, model.GetCreature(), model as CardModel);
+            model.DynamicVars.Power<T>().BaseValue, model.Creature, model as CardModel);
     }
 
     public static async Task LoseHp(PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
@@ -108,7 +106,7 @@ public static class MyCommonActions
         TargetType? targetTypeOverride = null,
         int hitCount = 1, string? vfx = null, string? sfx = null, string? tmpSfx = null)
     {
-        var dynamicVars = model.GetDynamicVars();
+        var dynamicVars = model.DynamicVars;
         AttackCommand cmd;
         if (dynamicVars.ContainsKey("CalculatedDamage"))
             cmd = DamageCmd.Attack(dynamicVars.CalculatedDamage).WithValueProp(dynamicVars.CalculatedDamage.Props);
@@ -127,7 +125,7 @@ public static class MyCommonActions
         switch (targets.Count)
         {
             case 0:
-                var combatState = model.GetCreature().CombatState;
+                var combatState = model.Creature.CombatState;
                 if (combatState == null)
                     throw new InvalidOperationException(
                         $"{model.GetType().Name} requested an AllEnemies attack with no combat state.");
@@ -154,7 +152,7 @@ public static class MyCommonActions
         if (cmd.Attacker != null)
             throw new InvalidOperationException("Attacker has already been set.");
 
-        cmd.Attacker = model.GetCreature();
+        cmd.Attacker = model.Creature;
         cmd.ModelSource = model;
 
         cmd._attackerAnimName = "Attack";
@@ -164,8 +162,8 @@ public static class MyCommonActions
     
     public static async Task<IEnumerable<CardModel>> Draw(AbstractModel card, PlayerChoiceContext context)
     {
-        var player = card.GetCreature().Player;
+        var player = card.Creature.Player;
         if (player == null) return [];
-        return await CardPileCmd.Draw(context, card.GetDynamicVars().Cards.BaseValue, player);
+        return await CardPileCmd.Draw(context, card.DynamicVars.Cards.BaseValue, player);
     }
 }

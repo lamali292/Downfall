@@ -16,7 +16,7 @@ public class SharpenBlades : GremlinsCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
-        Owner.GetHand()
+        Owner.Hand
             .Where(e => e.Type == CardType.Attack).ToList()
             .ForEach(e => e.EnergyCost.SetThisTurn(0));
     }

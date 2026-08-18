@@ -28,7 +28,7 @@ public class SlitherThrough : SneckoCardModel, IHasGift
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        Owner.GetHand()
+        Owner.Hand
             .Where(DownfallCmd.IsOffclass)
             .ToList().ForEach(e => e.EnergyCost.AddThisTurn(-1));
     }

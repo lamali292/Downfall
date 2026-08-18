@@ -26,8 +26,8 @@ public class Allocate : AutomatonCardModel
 
     private static decimal Calc(CardModel card, Creature? _)
     {
-        return card.Owner.GetDraw().Count(c => c.Type == CardType.Status) +
-               card.Owner.GetStash().Count(c => c.Type == CardType.Status);
+        return card.Owner.DrawPile.Count(c => c.Type == CardType.Status) +
+               card.Owner.StashPile.Count(c => c.Type == CardType.Status);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -27,9 +27,9 @@ public class Preprogram : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (!GuardianCmd.CanPutIntoStasis(Owner)) return;
-        if (!Owner.GetDraw().Any())
+        if (!Owner.DrawPile.Any())
             await CardPileCmd.Shuffle(ctx, Owner);
-        var cards = Owner.GetDraw().Take(DynamicVars.Cards.IntValue).ToList();
+        var cards = Owner.DrawPile.Take(DynamicVars.Cards.IntValue).ToList();
         var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
             1,
             this)).FirstOrDefault();

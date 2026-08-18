@@ -21,7 +21,7 @@ public class DarkApotheosis : CollectorCardModel
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        foreach (var cardModel in Owner.GetCollectibles()) CardCmd.Upgrade(cardModel);
+        foreach (var cardModel in Owner.CollectiblesPile) CardCmd.Upgrade(cardModel);
         return Task.CompletedTask;
     }
 }

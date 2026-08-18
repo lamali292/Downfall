@@ -31,7 +31,7 @@ public class BeyondArmor : SneckoCardModel, IHasGift
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cards = Owner.GetDraw()
+        var cards = Owner.DrawPile
             .Where(DownfallCmd.IsOffclass)
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection);
         await CardPileCmd.Add(cards, PileType.Hand);

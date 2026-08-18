@@ -12,7 +12,7 @@ public static class ChampCardEffectHandler
     public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = card.Owner;
-        var stance = owner.ChampStance();
+        var stance = owner.ChampStance;
 
 
         if (card.Keywords.Contains(ChampKeyword.TriggerSkillBonus))
@@ -24,9 +24,9 @@ public static class ChampCardEffectHandler
         else if (card.Tags.Contains(ChampTag.EnterDefensive))
             await ChampCmd.EnterDefensiveStance(ctx, owner);
 
-        if (card is IBerserkerComboCard berserkerCombo && owner.ShouldBerserkerComboTrigger())
+        if (card is IBerserkerComboCard berserkerCombo && owner.ShouldBerserkerComboTrigger)
             await berserkerCombo.BerserkerComboEffect(ctx, cardPlay);
-        if (card is IDefensiveComboCard defensiveCombo && owner.ShouldDefensiveComboTrigger())
+        if (card is IDefensiveComboCard defensiveCombo && owner.ShouldDefensiveComboTrigger)
             await defensiveCombo.DefensiveComboEffect(ctx, cardPlay);
 
         if (card.Tags.Contains(ChampTag.Finisher) && card is IFinisherCard finisherCard)

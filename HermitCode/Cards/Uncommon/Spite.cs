@@ -22,7 +22,7 @@ public sealed class Spite : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await Owner.GetHand()
+        await Owner.Hand
             .Where(c => c.Keywords.Contains(CardKeyword.Unplayable))
             .ForEachAsync(card => CardCmdCompatibility.Exhaust(ctx, card));
         await CommonActions.CardBlock(this, play);

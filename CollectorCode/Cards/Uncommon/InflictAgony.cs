@@ -23,7 +23,7 @@ public class InflictAgony : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!cardPlay.Target?.IsAfflicted() ?? false)
+        if (!cardPlay.Target?.IsAfflicted ?? false)
         {
             await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
             await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);

@@ -25,7 +25,7 @@ public class SecondVolley : GremlinsCardModel
     {
         var cardsPlayed = CombatManager.Instance.History.CardPlaysFinished.Count(e =>
             e.HappenedThisTurn(card.CombatState) && e.Actor == card.Owner.Creature);
-        var maxDraw = CardPile.MaxCardsInHand - card.Owner.GetHand().Count(e => e != card);
+        var maxDraw = CardPile.MaxCardsInHand - card.Owner.Hand.Count(e => e != card);
         return Math.Min(maxDraw, cardsPlayed);
     }
 

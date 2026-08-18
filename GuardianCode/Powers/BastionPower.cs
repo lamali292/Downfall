@@ -21,7 +21,7 @@ public class BastionPower : GuardianPowerModel, IAfterBrace
     public async Task AfterBrace(Player player, decimal amount)
     {
         if (player.Creature != Owner) return;
-        var allies = player.GetOtherPlayers();
+        var allies = player.OtherTeammates;
         Flash();
         foreach (var ally in allies)
         {

@@ -19,7 +19,7 @@ public class WeakEncode : Encodable
     {
         if (target == null) return Task.CompletedTask;
         return PowerCmd.Apply<WeakPower>(ctx, target,
-            model.GetDynamicVars().Weak.BaseValue, model.GetCreature(), model as CardModel);
+            model.DynamicVars.Weak.BaseValue, model.Creature, model as CardModel);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -29,6 +29,6 @@ public class WeakEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Weak;
+        return model.DynamicVars.Weak;
     }
 }

@@ -39,7 +39,7 @@ public class ChampUltimateStance : ChampStanceModel
         var strength = (int)((BerserkerFinisherVar)DynamicVars["BerserkerFinisher"]).Calculate();
         var block = (int)((DefensiveFinisherVar)DynamicVars["DefensiveFinisher"]).Calculate();
         var targets = affectsAllPlayers
-            ? Owner.GetAllPlayers().Select(e => e.Creature).ToList()
+            ? Owner.AllTeammates.Select(e => e.Creature).ToList()
             : [Owner.Creature];
         await PowerCmd.Apply<StrengthPower>(ctx, targets, strength, Owner.Creature, null);
         await targets.ForEachAsync(e =>

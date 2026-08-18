@@ -57,7 +57,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     protected override IReadOnlyList<CardModel> GetSlotCards()
     {
-        return _trackedPlayer?.GetEncode() ?? [];
+        return _trackedPlayer?.EncodePile ?? [];
     }
 
     protected override int GetMaxSlots()

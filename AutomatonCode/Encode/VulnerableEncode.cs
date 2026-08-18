@@ -19,7 +19,7 @@ public class VulnerableEncode : Encodable
     {
         if (target == null) return Task.CompletedTask;
         return PowerCmd.Apply<VulnerablePower>(ctx, target,
-            model.GetDynamicVars().Vulnerable.BaseValue, model.GetCreature(), model as CardModel);
+            model.DynamicVars.Vulnerable.BaseValue, model.Creature, model as CardModel);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -29,6 +29,6 @@ public class VulnerableEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Vulnerable;
+        return model.DynamicVars.Vulnerable;
     }
 }

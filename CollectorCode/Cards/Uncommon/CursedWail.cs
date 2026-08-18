@@ -31,7 +31,7 @@ public class CursedWail : CollectorCardModel
         await CommonActions.Apply<CursedWailPower>(ctx, CombatState.Enemies, this);
         ;
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
-        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.Enemies.Where(e => e.IsAfflicted()), amount,
+        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.Enemies.Where(e => e.IsAfflicted), amount,
             Owner.Creature,
             this);
     }

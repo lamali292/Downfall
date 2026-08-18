@@ -22,7 +22,7 @@ public class ToothAndClaw : SneckoCardModel, IHasGift
         WithUpgradingCardTip<Shiv>();
     }
 
-    private int UniqueColorsInHand => Owner.GetHand()
+    private int UniqueColorsInHand => Owner.Hand
         .Select(e => e.VisualCardPool)
         .Distinct()
         .Count();

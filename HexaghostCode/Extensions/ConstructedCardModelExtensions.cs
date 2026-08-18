@@ -6,9 +6,14 @@ namespace Hexaghost.HexaghostCode.Extensions;
 
 public static class ConstructedCardModelExtensions
 {
-    public static ConstructedCardModel WithAfterlife(this ConstructedCardModel card)
+    extension(ConstructedCardModel card)
     {
-        card.WithKeywords(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
-        return card;
+        public ConstructedCardModel WithAfterlife()
+        {
+            card.WithKeywords(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);
+            return card;
+        }
     }
+    
+    
 }

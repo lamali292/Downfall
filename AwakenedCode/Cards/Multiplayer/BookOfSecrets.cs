@@ -30,7 +30,7 @@ public class BookOfSecrets : AwakenedCardModel
         var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
         var nextSpell = spellbook.NextSpell;
         if (nextSpell == null) return;
-        foreach (var player in Owner.GetOtherPlayers())
+        foreach (var player in Owner.OtherTeammates)
         {
             var a = nextSpell.CreateClone();
             a._owner = player;

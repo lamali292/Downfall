@@ -19,7 +19,7 @@ public class SludgeBomb : AwakenedCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override bool IsPlayable => Owner.GetExhaust().Any(c => c is Void);
+    protected override bool IsPlayable => Owner.ExhaustPile.Any(c => c is Void);
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

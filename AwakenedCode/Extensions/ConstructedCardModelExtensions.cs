@@ -8,21 +8,27 @@ namespace Awakened.AwakenedCode.Extensions;
 
 public static class ConstructedCardModelExtensions
 {
-    public static ConstructedCardModel WithConjure(this ConstructedCardModel card, Func<CardModel, bool>? a = null)
-    {
-        if (a == null)
-            card.WithTip(AwakenedTip.Conjure);
-        else
-            card.WithTips(e => a.Invoke(e) ? [HoverTipFactory.Static(AwakenedTip.Conjure)] : []);
 
-        card.WithTags(AwakenedTag.Conjure);
-        return card;
-    }
-
-    public static ConstructedCardModel WithDrained(this ConstructedCardModel card, int baseVal, int upgrade = 0)
+    extension(ConstructedCardModel card)
     {
-        card.WithPower<DrainedPower>(baseVal, upgrade, false);
-        card.WithEnergy(baseVal, upgrade);
-        return card;
+        public ConstructedCardModel WithConjure(Func<CardModel, bool>? a = null)
+        {
+            if (a == null)
+                card.WithTip(AwakenedTip.Conjure);
+            else
+                card.WithTips(e => a.Invoke(e) ? [HoverTipFactory.Static(AwakenedTip.Conjure)] : []);
+
+            card.WithTags(AwakenedTag.Conjure);
+            return card;
+        }
+
+        public ConstructedCardModel WithDrained(int baseVal, int upgrade = 0)
+        {
+            card.WithPower<DrainedPower>(baseVal, upgrade, false);
+            card.WithEnergy(baseVal, upgrade);
+            return card;
+        }
     }
+    
+  
 }

@@ -23,6 +23,6 @@ public class WoundPoker : GremlinsRelicModel
         if (!participants.Contains(Owner.Creature)) return;
         var combatState = Owner.Creature.CombatState;
         if (combatState == null) return;
-        await DownfallCreatureCmd.Damage(ctx, combatState.HittableEnemies.Where(e => e.HasPower<WeakPower>()), DynamicVars.Damage, Owner.Creature);
+        await CreatureCmd.Damage(ctx, combatState.HittableEnemies.Where(e => e.HasPower<WeakPower>()), DynamicVars.Damage, Owner.Creature);
     }
 }

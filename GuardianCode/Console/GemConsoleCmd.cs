@@ -78,7 +78,7 @@ public class GemConsoleCmd : AbstractConsoleCmd
             // Second arg = hand index
             case 2 when RunManager.Instance.IsInProgress && player != null:
             {
-                var count = player.GetHand().Count;
+                var count = player.Hand.Count;
                 if (count > 0)
                     return CompleteArgument(
                         Enumerable.Range(0, count).Select(i => i.ToString()).ToList(),

@@ -10,13 +10,16 @@ public static class DynamicVarSetExtension
     {
         return vard._vars.TryGetValue(key, out var v) ? v as T : null;
     }
+    
+    extension(DynamicVarSet vars)
+    {
+        public int GhostflameBlock => GhostflameVarOrNull<GhostflameBlockVar>(vars, "Block")?.IntensityValue ?? 0;
 
-    public static int GhostflameBlock(this DynamicVarSet vard)
-        => GhostflameVarOrNull<GhostflameBlockVar>(vard, "Block")?.IntensityValue ?? 0;
+        public int GhostflameDamage
+            => GhostflameVarOrNull<GhostflameDamageVar>(vars, "Damage")?.IntensityValue ?? 0;
 
-    public static int GhostflameDamage(this DynamicVarSet vard)
-        => GhostflameVarOrNull<GhostflameDamageVar>(vard, "Damage")?.IntensityValue ?? 0;
-
-    public static int GhostflameSoulburn(this DynamicVarSet vard)
-        => GhostflameVarOrNull<GhostflameSoulburnVar>(vard, "Soulburn")?.IntensityValue ?? 0;
+        public int GhostflameSoulburn
+            => GhostflameVarOrNull<GhostflameSoulburnVar>(vars, "Soulburn")?.IntensityValue ?? 0;
+    }
+ 
 }

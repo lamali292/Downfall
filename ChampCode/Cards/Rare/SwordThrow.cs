@@ -22,12 +22,12 @@ public class SwordThrow : ChampCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger();
+    protected override bool ShouldGlowRedInternal => !Owner.ShouldBerserkerComboTrigger;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.Repeat.IntValue).Execute(ctx);
-        if (Owner.ShouldBerserkerComboTrigger()) return;
+        if (Owner.ShouldBerserkerComboTrigger) return;
         await CommonActions.ApplySelf<EntangledNextTurnPower>(ctx, this);
     }
 }

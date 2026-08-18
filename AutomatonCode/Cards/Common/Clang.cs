@@ -13,7 +13,7 @@ public class Clang : AutomatonCardModel
         WithDamage(14, 4);
     }
 
-    protected override bool IsPlayable => Owner.GetHand().Any(e => e.Type is CardType.Curse or CardType.Status);
+    protected override bool IsPlayable => Owner.Hand.Any(e => e.Type is CardType.Curse or CardType.Status);
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

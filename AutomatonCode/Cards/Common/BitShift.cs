@@ -21,7 +21,7 @@ public class BitShift : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var cards = Owner.GetDraw();
+        var cards = Owner.DrawPile;
         if (cards.Count == 0) return;
         await StashCmd.Stash(cards[0]);
     }

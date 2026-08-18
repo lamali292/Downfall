@@ -8,21 +8,31 @@ namespace Downfall.DownfallCode.Extensions.Cards
 {
     public static class StaticHoverTipCardExtensions
     {
-        public static TooltipSource WithVars(this StaticHoverTip staticTip, params DynamicVar[] vars)
+        extension(StaticHoverTip staticTip)
         {
-            return new TooltipSource(_ => HoverTipFactory.Static(staticTip, vars));
+            public TooltipSource WithVars(params DynamicVar[] vars)
+            {
+                return new TooltipSource(_ => HoverTipFactory.Static(staticTip, vars));
+            }
         }
+        
+        
     }
 }
 
 namespace Downfall.DownfallCode.Extensions.Relics
 {
+    
+   
+
     public static class StaticHoverTipPowerExtensions
     {
-        public static AbstractTooltipSource<RelicModel> WithVars(this StaticHoverTip staticTip,
-            params DynamicVar[] vars)
+        extension(StaticHoverTip staticTip)
         {
-            return new AbstractTooltipSource<RelicModel>(_ => HoverTipFactory.Static(staticTip, vars));
+            public AbstractTooltipSource<RelicModel> WithVars(params DynamicVar[] vars)
+            {
+                return new AbstractTooltipSource<RelicModel>(_ => HoverTipFactory.Static(staticTip, vars));
+            }
         }
     }
 }
@@ -32,10 +42,12 @@ namespace Downfall.DownfallCode.Extensions.Powers
 {
     public static class StaticHoverTipRelicExtensions
     {
-        public static AbstractTooltipSource<PowerModel> WithVars(this StaticHoverTip staticTip,
-            params DynamicVar[] vars)
+        extension(StaticHoverTip staticTip)
         {
-            return new AbstractTooltipSource<PowerModel>(_ => HoverTipFactory.Static(staticTip, vars));
+            public AbstractTooltipSource<PowerModel> WithVars(params DynamicVar[] vars)
+            {
+                return new AbstractTooltipSource<PowerModel>(_ => HoverTipFactory.Static(staticTip, vars));
+            }
         }
     }
 }

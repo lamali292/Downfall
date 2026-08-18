@@ -6,60 +6,23 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class PlayerExtensions
 {
-    
-    public static IReadOnlyList<Player> GetAllPlayers(this Player player)
+    extension(Player player)
     {
-        return player.Creature.CombatState!.GetTeammatesOf(player.Creature)
-            .Where(e => e.IsAlive)
-            .Select(c => c.Player)
-            .OfType<Player>()
-            .ToArray();
-    }
+        public IReadOnlyList<Player> AllTeammates
+            => player.Creature.CombatState!.GetTeammatesOf(player.Creature)
+                .Where(e => e.IsAlive)
+                .Select(c => c.Player)
+                .OfType<Player>().ToArray();
 
-    public static IReadOnlyList<Player> GetOtherPlayers(this Player player)
-    {
-        return player.GetAllPlayers().Where(p => p != player).ToArray();;
-    }
+        public IReadOnlyList<Player> OtherTeammates => player.AllTeammates.Where(p => p != player).ToArray();
+        public Player? RandomOtherTeammate => player.RunState.Rng.CombatTargets.NextItem(player.OtherTeammates);
 
-    public static Player? GetRandomOtherPlayer(this Player player)
-    {
-        return player.RunState.Rng.CombatTargets.NextItem(player.GetOtherPlayers());
-    }
-    
-    
-    public static IReadOnlyList<CardModel> GetHand(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = PileType.Hand.GetPile(player).Cards;
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
+        public IReadOnlyList<CardModel> DeckPile => PileType.Deck.GetPile(player).Cards;
+        public IReadOnlyList<CardModel> Hand => PileType.Hand.GetPile(player).Cards;
+        public IReadOnlyList<CardModel> DiscardPile => PileType.Discard.GetPile(player).Cards;
+        public IReadOnlyList<CardModel> DrawPile => PileType.Draw.GetPile(player).Cards;
+        public IReadOnlyList<CardModel> ExhaustPile => PileType.Exhaust.GetPile(player).Cards;
 
-    public static IReadOnlyList<CardModel> GetDiscard(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = PileType.Discard.GetPile(player).Cards;
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
-
-    public static IReadOnlyList<CardModel> GetDraw(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = PileType.Draw.GetPile(player).Cards;
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
-
-    public static IReadOnlyList<CardModel> GetDeck(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = PileType.Deck.GetPile(player).Cards;
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
-
-    public static IReadOnlyList<CardModel> GetExhaust(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = PileType.Exhaust.GetPile(player).Cards;
-        return filter == null ? cards : cards.Where(filter).ToList();
-    }
-
-    public static IEnumerable<CardModel> GetAllCards(this Player player, Func<CardModel, bool>? filter = null)
-    {
-        var cards = player.PlayerCombatState?.AllCards ?? [];
-        return filter == null ? cards : cards.Where(filter);
+        public IEnumerable<CardModel> GetAllCombatCards => player.PlayerCombatState?.AllCards ?? [];
     }
 }

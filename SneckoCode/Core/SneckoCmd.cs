@@ -81,7 +81,7 @@ public static class SneckoCmd
 
     public static bool OverflowActive(CardModel card)
     {
-        return card.Owner.GetHand().Count(e => e != card) >= 5;
+        return card.Owner.Hand.Count(e => e != card) >= 5;
     }
 
   

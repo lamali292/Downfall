@@ -24,12 +24,12 @@ public class Shatter : ChampCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool ShouldGlowGoldInternal =>
-        Owner.ShouldBerserkerComboTrigger() || Owner.ShouldDefensiveComboTrigger();
+        Owner.ShouldBerserkerComboTrigger || Owner.ShouldDefensiveComboTrigger;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if ((!Owner.ShouldDefensiveComboTrigger() && !Owner.ShouldBerserkerComboTrigger()) ||
+        if ((!Owner.ShouldDefensiveComboTrigger && !Owner.ShouldBerserkerComboTrigger) ||
             cardPlay.Target == null) return;
         await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);

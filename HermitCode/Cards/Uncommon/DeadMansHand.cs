@@ -31,9 +31,9 @@ public sealed class DeadMansHand : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var handCards = Owner.GetHand();
+        var handCards = Owner.Hand;
         if (handCards.Count > 0) await CardCmd.Discard(ctx, handCards);
-        var rarest = Owner.GetDraw()
+        var rarest = Owner.DrawPile
             .OrderByDescending(c => RarityLevel(c.Rarity))
             .Take(3)
             .ToList();

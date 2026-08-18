@@ -25,7 +25,7 @@ public sealed class Showdown : HermitCardModel
                 return Task.CompletedTask;
             })
             .Execute(ctx);
-        await Owner.GetHand(c => c.Tags.Contains(CardTag.Strike) && c.Rarity == CardRarity.Basic)
+        await Owner.Hand.Where(c => c.Tags.Contains(CardTag.Strike) && c.Rarity == CardRarity.Basic)
             .ForEachAsync(card => CardCmd.AutoPlay(ctx, card, null));
     }
 }

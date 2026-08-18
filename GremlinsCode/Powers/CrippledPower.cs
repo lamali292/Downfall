@@ -18,6 +18,6 @@ public class CrippledPower : GremlinsPowerModel
         CardModel? cardSource)
     {
         if (Applier == null || applier != Applier || power.Owner != Owner || power is not WeakPower) return;
-        await DownfallCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Applier);
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Applier);
     }
 }

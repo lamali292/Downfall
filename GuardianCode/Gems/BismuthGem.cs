@@ -28,7 +28,7 @@ public class BismuthGem : GemModel
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
     {
-        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem().BaseValue, Card);
+        var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
         foreach (var player in targetPlayers)
         {
             GuardianCmd.AddMaxStasisSlots(player, (int)effect);

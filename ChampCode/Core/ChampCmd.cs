@@ -18,7 +18,7 @@ public class ChampCmd
 {
     public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        if (!force && player.ChampStance() is ChampUltimateStance stance)
+        if (!force && player.ChampStance is ChampUltimateStance stance)
             stance.ResetCharges();
         else
             await ChampModel.SetStance<ChampBerserkerStance>(ctx, player);
@@ -26,7 +26,7 @@ public class ChampCmd
 
     public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player, bool force = false)
     {
-        if (!force && player.ChampStance() is ChampUltimateStance stance)
+        if (!force && player.ChampStance is ChampUltimateStance stance)
             stance.ResetCharges();
         else
             await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
@@ -44,7 +44,7 @@ public class ChampCmd
 
     public static async Task EnterDifferentStance(PlayerChoiceContext ctx, Player owner)
     {
-        var stance = owner.ChampStance();
+        var stance = owner.ChampStance;
         switch (stance)
         {
             case ChampBerserkerStance:
@@ -79,7 +79,7 @@ public class ChampCmd
         int repeat = 1)
     {
         var player = cardPlay.Card.Owner;
-        var m = player.ChampStance();
+        var m = player.ChampStance;
         if (!m.HasFinisher) return;
 
         for (var i = 0; i < repeat; i++)

@@ -17,10 +17,10 @@ public class DazedEncode : Encodable
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
-        var player = model.GetCreature().Player;
+        var player = model.Creature.Player;
         return player == null
             ? Task.CompletedTask
-            : DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, model.GetDynamicVars()["Dazed"].BaseValue, CardPilePosition.Random);
+            : DownfallCardCmd.GiveCards<Dazed>(player, PileType.Draw, model.DynamicVars["Dazed"].BaseValue, CardPilePosition.Random);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -30,6 +30,6 @@ public class DazedEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars()["Dazed"];
+        return model.DynamicVars["Dazed"];
     }
 }

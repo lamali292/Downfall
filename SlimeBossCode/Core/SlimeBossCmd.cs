@@ -102,7 +102,7 @@ public static class SlimeBossCmd
 
     public static async Task SlurpAll(CardModel card)
     {
-        var licks = card.Owner.GetExhaust()
+        var licks = card.Owner.ExhaustPile
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList();
         await CardPileCmd.Add(licks, PileType.Hand);
@@ -111,7 +111,7 @@ public static class SlimeBossCmd
 
     public static async Task Slurp(Player player, int amount)
     {
-        var licks = player.GetExhaust()
+        var licks = player.ExhaustPile
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList();
 

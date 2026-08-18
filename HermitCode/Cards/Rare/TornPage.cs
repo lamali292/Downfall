@@ -20,7 +20,7 @@ public class TornPage : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         await CommonActions.CardBlock(this, cardPlay);
-        var curses = Owner.GetHand().Where(e => e.Type == CardType.Curse);
+        var curses = Owner.Hand.Where(e => e.Type == CardType.Curse);
         foreach (var cardModel in curses) await CardCmd.Afflict<Necromantic>(cardModel, 1);
     }
 }

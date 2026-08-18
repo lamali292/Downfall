@@ -25,8 +25,8 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 
     public override string CustomIconPath => "rest_site_option_gem.png".RestSitePath<Core.Guardian>();
 
-    public override bool IsEnabled => Owner.GetDeck().Any(c => c is IGemCard) &&
-                                      Owner.GetDeck().Any(c => c is IGemSocketCard { FreeSlots: > 0 });
+    public override bool IsEnabled => Owner.DeckPile.Any(c => c is IGemCard) &&
+                                      Owner.DeckPile.Any(c => c is IGemSocketCard { FreeSlots: > 0 });
 
     public override async Task<bool> OnSelect()
     {
@@ -41,8 +41,8 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(Owner);
         if (CardSelectCmd.ShouldSelectLocalCard(Owner))
         {
-            var gems = Owner.GetDeck(c => c is IGemCard);
-            var gemHolder = Owner.GetDeck(c => c is IGemSocketCard { FreeSlots: > 0 });
+            var gems = Owner.DeckPile.Where(c => c is IGemCard).ToList();
+            var gemHolder = Owner.DeckPile.Where(c => c is IGemSocketCard { FreeSlots: > 0 }).ToList();
             if (NOverlayStack.Instance == null) return false;
 
             cardModel = (await NGemUpgradeSelectScreen.ShowScreen(gems, gemHolder, prefs).CardsSelected()).ToList();

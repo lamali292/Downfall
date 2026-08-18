@@ -106,7 +106,7 @@ public partial class NChampStanceDisplay : Control
         if (IsQueuedForDeletion()) return;
         if (_trackedPlayer == null || _icons.Count == 0) return;
 
-        var stance = _trackedPlayer.ChampStance();
+        var stance = _trackedPlayer.ChampStance;
 
         if (stance is ChampNoStance or null)
         {

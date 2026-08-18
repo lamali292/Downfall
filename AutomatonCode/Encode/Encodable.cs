@@ -47,7 +47,7 @@ public abstract class Encodable
         description.Add("IsOnCard", card is CardModel and not FunctionCard);
         description.Add("IsOnFunction", card is FunctionCard);
         description.Add("IsOnPower", card is PowerModel);
-        card.GetDynamicVars().AddTo(description);
+        card.DynamicVars.AddTo(description);
         return description;
     }
 

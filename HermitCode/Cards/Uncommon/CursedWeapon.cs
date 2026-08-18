@@ -50,8 +50,8 @@ public sealed class CursedWeapon : HermitCardModel
     
     private List<CursedWeapon> GetCursedWeapons()
     {
-        return Owner.GetAllCards().OfType<CursedWeapon>()
-            .Concat(Owner.GetDeck().OfType<CursedWeapon>())
+        return Owner.GetAllCombatCards.OfType<CursedWeapon>()
+            .Concat(Owner.DeckPile.OfType<CursedWeapon>())
             .Distinct()
             .ToList();
     }

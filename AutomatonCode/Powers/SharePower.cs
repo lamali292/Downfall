@@ -19,7 +19,7 @@ public class SharePower : AutomatonPowerModel
     {
         if (creature != Owner || creature.Player == null || cardSource is not FunctionCard)
             return;
-        var player = Owner.Player?.GetOtherPlayers()
+        var player = Owner.Player?.OtherTeammates
             .OrderBy(e => e.Creature.Block)
             .FirstOrDefault();
         if (player == null) return;

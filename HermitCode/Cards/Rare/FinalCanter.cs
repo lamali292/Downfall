@@ -23,7 +23,7 @@ public sealed class FinalCanter : HermitCardModel
 
     private static decimal CountCursesInHand(CardModel card, Creature? _)
     {
-        return card.Owner.GetHand().Count(c => c.Type == CardType.Curse);
+        return card.Owner.Hand.Count(c => c.Type == CardType.Curse);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)

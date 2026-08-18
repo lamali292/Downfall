@@ -18,7 +18,7 @@ public class ShowOfHands : GremlinsCardModel
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
-        return card.Owner.GetHand().Count(e => card != e);
+        return card.Owner.Hand.Count(e => card != e);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

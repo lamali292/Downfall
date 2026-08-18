@@ -58,7 +58,7 @@ public class DownfallCmd
         var attacker = monster.Creature;
         await Cmd.Wait(0.5f);
 
-        var enemyDamage = card.DynamicVars.EnemyDamage();
+        var enemyDamage = card.DynamicVars.EnemyDamage;
         var attack = DamageCmd.Attack(enemyDamage.BaseValue);
         attack.Attacker = attacker;
         attack._attackerAnimName = "Attack";

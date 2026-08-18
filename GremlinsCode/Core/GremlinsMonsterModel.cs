@@ -101,7 +101,7 @@ public class SneakGremlin : GremlinsMonsterModel
         var combatState = player.Creature.CombatState;
         var randomEnemy = combatState?.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
         if (randomEnemy == null) return;
-        await DownfallCreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, player.Creature);
+        await CreatureCmd.Damage(ctx, randomEnemy, 2, DamageProps.nonCardUnpowered, player.Creature);
     }
 }
 

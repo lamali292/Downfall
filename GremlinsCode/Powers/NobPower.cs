@@ -17,11 +17,7 @@ public class NobPower()
     : GremlinsPowerModel(PowerType.Buff, PowerStackType.Single), IShouldGremlinSwap, IAfterGremlinSwap
 {
     private static readonly LocString GremlinNobDialogue = new("monsters", "GREMLINS-GREMLIN_NOB.banter");
-
-    private static ModSoundEffect SoundEffect => new(
-        new ModSoundEntry("res://Gremlins/audio/character_select/STS_VO_GremlinNob_1a_v3.ogg", 5, 0.1f, 1, 10)
-    );
-
+    
     public async Task AfterGremlinSwap(PlayerChoiceContext ctx, Player player, GremlinSwapType gremlinSwapType)
     {
         if (gremlinSwapType != GremlinSwapType.Death) return;
@@ -43,7 +39,7 @@ public class NobPower()
         var a = GremlinsCmd.GetCurrentGremlin(player);
         if (a == null) return;
         TalkCmd.Play(GremlinNobDialogue, a, VfxColor.Red);
-        SoundEffect.Play();
+        SfxCmd.Play("event:/sfx/characters/gremlins-gremlins/nob");
     }
 
 

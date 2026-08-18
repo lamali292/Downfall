@@ -28,7 +28,7 @@ public class FindAndReplace : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        var choices = Owner.GetStash().Concat(Owner.GetDraw()).Concat(Owner.GetDiscard()).ToList();
+        var choices = Owner.StashPile.Concat(Owner.DrawPile).Concat(Owner.DiscardPile).ToList();
         
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
         var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();

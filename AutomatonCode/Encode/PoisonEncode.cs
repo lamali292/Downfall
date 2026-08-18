@@ -19,7 +19,7 @@ public class PoisonEncode : Encodable
     {
         if (target == null) return Task.CompletedTask;
         return PowerCmd.Apply<PoisonPower>(ctx, target,
-            model.GetDynamicVars().Poison.BaseValue, model.GetCreature(), model as CardModel);
+            model.DynamicVars.Poison.BaseValue, model.Creature, model as CardModel);
     }
 
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
@@ -29,6 +29,6 @@ public class PoisonEncode : Encodable
 
     public override DynamicVar DynamicVar(AbstractModel model)
     {
-        return model.GetDynamicVars().Poison;
+        return model.DynamicVars.Poison;
     }
 }

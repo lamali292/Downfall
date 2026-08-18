@@ -27,7 +27,7 @@ public class Forgery : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (Owner.Creature.CombatState == null) return;
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        var cards = Owner.GetCollectibles();
+        var cards = Owner.CollectiblesPile;
 
         if (cards.Count == 0) return;
         CardModel? chosenCard;

@@ -18,7 +18,7 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
 
         var stance = card.IsCanonical || card._owner == null || card.CombatState == null
             ? ChampModelDb.ChampStance<ChampNoStance>()
-            : card.Owner.ChampStance();
+            : card.Owner.ChampStance;
 
         var locString = new LocString("champ_stances", $"{stance.GetType().GetPrefix()}{stance.Id.Entry}.finisher");
         stance.DynamicVars.AddTo(locString);

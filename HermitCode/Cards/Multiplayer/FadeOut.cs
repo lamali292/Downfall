@@ -21,7 +21,7 @@ public class FadeOut : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        foreach (var player in Owner.GetAllPlayers())
+        foreach (var player in Owner.AllTeammates)
         {
             await CreatureCmd.GainBlock(player.Creature, DynamicVars.Block.IntValue, DynamicVars.Block.Props, cardPlay);
             await DownfallCardCmd.GiveCard<Clumsy>(player, PileType.Discard, creator: Owner);

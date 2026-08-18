@@ -38,7 +38,7 @@ public class SpikySlime : SlimeModel
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
             .Execute(ctx);
-        var original = DynamicVars.Slime().IntValue;
+        var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         await PowerCmd.Apply<SpikySlimePower>(ctx, PetOwner, modified, Creature, null);
     }
