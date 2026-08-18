@@ -41,7 +41,7 @@
     "HERMIT-MALICE.description": "[gold]消耗[/gold]一张牌。\n造成{Damage:diff()}点伤害。\n如果[gold]消耗[/gold]的是诅咒牌，改为攻击所有敌人。",
     "HERMIT-DEADEYE.title": "死神之眼",
     "HERMIT-DEADEYE.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：获得{StrengthPower:diff()}点[gold]力量[/gold]。",
-    "HERMIT-GHOSTLY_PRESENCE.title": "幽灵现身",
+    "HERMIT-GHOSTLY_PRESENCE.title": "魂体",
     "HERMIT-GHOSTLY_PRESENCE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：给予所有敌人{WeakPower:diff()}层[gold]虚弱[/gold]。",
     "HERMIT-ADAPT.title": "适应",
     "HERMIT-ADAPT.description": "回合开始时，可以[gold]消耗[/gold]一张牌以获得8点[gold]格挡[/gold]。",
@@ -183,9 +183,10 @@
     "HERMIT-RUBBER_BULLET.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：本场战斗中此牌伤害增加{Increase:diff()}点，然后将其移至另一名随机玩家的[gold]手牌[/gold]。",
     "HERMIT-BIG_BRUISER.title": "莽汉",
     "HERMIT-BIG_BRUISER.description": "给予所有敌人{BruisePower:diff()}层[gold]瘀伤[/gold]。\n[gold]瘀伤[/gold]现在对所有玩家生效。\n",
-    "HERMIT-FADE_OUT.title": "悄然离场",
-    "HERMIT-SHARE_THE_LOAD.title": "策应",
-    "HERMIT-SHARE_THE_LOAD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：所有盟友获得{Energy:energyIcons()}，并抽{Cards:diff()}张牌。",
-    "HERMIT-TECHNIQUE.title": "手法",
+    "HERMIT-FADE_OUT.title": "渐隐",
+    "HERMIT-FADE_OUT.description": "所有玩家获得{Block:diff()}点[gold]格挡[/gold]，并在[gold]弃牌堆[/gold]中加入一张[gold]笨拙[/gold]。",
+    "HERMIT-SHARE_THE_LOAD.title": "同担重负",
+    "HERMIT-SHARE_THE_LOAD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：所有盟友获得{Energy:energyIcons()}并抽{Cards:diff()}张牌。",
+    "HERMIT-TECHNIQUE.title": "绝技",
     "HERMIT-TECHNIQUE.description": "所有人的[gold]打击[/gold]额外造成{MaintenanceStrikePower:diff()}点伤害。"
 }

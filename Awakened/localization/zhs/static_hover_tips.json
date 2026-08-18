@@ -4,7 +4,7 @@
     "AWAKENED-CONJURE.title": "念咒",
     "AWAKENED-CONJURE.description": "从法术书中将下一张法术牌加入你的[gold]手牌[/gold]。",
     "AWAKENED-CHANT.title": "吟唱",
-    "AWAKENED-CHANT.description": "若打出的上一张是能力牌，则在本场战斗中激活吟唱效果。",
+    "AWAKENED-CHANT.description": "带有该关键词的牌被打出时，如果打出的上一张牌是能力牌，则会在本场战斗中激活吟唱效果。",
     "AWAKENED-CHANTED.title": "已吟唱",
     "AWAKENED-CHANTED.description": "这张卡的效果已被强化。",
     "AWAKENED-DRAINED.title": "力竭",

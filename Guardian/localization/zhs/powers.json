@@ -56,7 +56,7 @@
     "GUARDIAN-BRILLIANT_SCALES_POWER.title": "辉光鳞片",
     "GUARDIAN-BRILLIANT_SCALES_POWER.description": "在你的回合开始时，触发镶嵌的[gold]宝石[/gold]效果。",
     "GUARDIAN-BRILLIANT_SCALES_POWER.smartDescription": "在你的回合开始时：\n{effects}",
-    "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "铜色荆棘",
+    "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "青铜荆棘",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.description": "每当你获得负面状态时，获得[gold]荆棘[/gold]。",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.smartDescription": "每当你受到负面状态时，获得[blue]{Amount}[/blue]点[gold]荆棘[/gold]。",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "最大功率",
