@@ -71,7 +71,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
 
         var aliveApplier = applier?.IsAlive == true ? applier : null;
-        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_soulburn");
+        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");
         if (targetAll)
         {
             foreach (var target in CombatState.HittableEnemies)
