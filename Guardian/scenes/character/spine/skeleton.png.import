@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmn7ts01tncvt"
-path="res://.godot/imported/guardian4.png-d37ce1fb76ef6148bd2a7e6c0e04bf6c.ctex"
+uid="uid://cs1nfx88bjx1v"
+path="res://.godot/imported/skeleton.png-01fd4fa433545e21181e1dd1e1079deb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Guardian/scenes/character/guardian4.png"
-dest_files=["res://.godot/imported/guardian4.png-d37ce1fb76ef6148bd2a7e6c0e04bf6c.ctex"]
+source_file="res://Guardian/scenes/character/spine/skeleton.png"
+dest_files=["res://.godot/imported/skeleton.png-01fd4fa433545e21181e1dd1e1079deb.ctex"]
 
 [params]
 
