@@ -48,7 +48,7 @@
     "AWAKENED-DRAINED_POWER.description": "在下个回合，失去{energyPrefix:energyIcons(1)}。",
     "AWAKENED-DRAINED_POWER.smartDescription": "在下个回合，失去[blue]{Amount}[/blue]{energyPrefix:energyIcons(1)}。",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "日蚀之拥",
-    "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，在下回合获得{energyPrefix:energyIcons(1)}并抽1张牌。",
+    "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，在下个回合获得{energyPrefix:energyIcons(1)}并抽1张牌。",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，下回合获得{Amount:energyIcons()}并抽[blue]{Amount}[/blue]张牌。",
     "AWAKENED-ENSORCELATE_POWER.title": "妖惑",
     "AWAKENED-ENSORCELATE_POWER.description": "你的下一张[gold]能力[/gold]牌可以免费打出。",

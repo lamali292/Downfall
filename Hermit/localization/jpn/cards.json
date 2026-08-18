@@ -184,8 +184,9 @@
     "HERMIT-BIG_BRUISER.title": "ビッグブルーザー",
     "HERMIT-BIG_BRUISER.description": "あなたが敵に付与した[gold]打撲[/gold]の恩恵を、他のプレイヤーが受ける。\nすべての敵に[gold]打撲[/gold]{BruisePower:diff()}を付与する。",
     "HERMIT-FADE_OUT.title": "フェードアウト",
+    "HERMIT-FADE_OUT.description": "すべてのプレイヤーは{Block:diff()}[gold]ブロック[/gold]を得る。\nすべてのプレイヤーは[gold]不器用[/gold]を1枚[gold]捨て札[/gold]に加える。",
     "HERMIT-SHARE_THE_LOAD.title": "負担の分担",
-    "HERMIT-SHARE_THE_LOAD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]命中[/gold]：すべてのプレイヤーは{Energy:energyIcons()}を得てカードを{Cards:diff()}枚引く。",
+    "HERMIT-SHARE_THE_LOAD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]命中[/gold]：他のすべてのプレイヤーは{Energy:energyIcons()}を得てカードを{Cards:diff()}枚引く。",
     "HERMIT-TECHNIQUE.title": "業",
     "HERMIT-TECHNIQUE.description": "すべてのプレイヤーの[gold]基本[/gold][gold]ストライク[/gold]が追加で{MaintenanceStrikePower:diff()}ダメージを与える。"
 }

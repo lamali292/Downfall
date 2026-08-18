@@ -7,6 +7,7 @@
     "AUTOMATON-SOULBURN_ENCODE.encode": "すべての敵に[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を付与する。",
     "AUTOMATON-ENERGY_ENCODE.encode": "{Energy:energyIcons()}を得る。",
     "AUTOMATON-DAZED_ENCODE.encode": "[gold]山札[/gold]に[gold]めまい[/gold]を{Dazed}枚加える。",
+    "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|ターン開始時：}",
     "AUTOMATON-FULL_RELEASE.encode": "この関数は、「今すぐ、およびターン開始時に……」を持つパワーになる。",
     "AUTOMATON-REPLICATE.functionPrefix": "複製の",
     "AUTOMATON-REPLICATE.functionName": "コピー",
