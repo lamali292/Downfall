@@ -99,6 +99,7 @@ public static class HexaghostCmd
     public static async Task Advance(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false,
         bool autoAdvance = false)
     {
+        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/advance");
         await MoveTo(player, GetNextIndex(player));
         if (!autoAdvance)
             await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source,
@@ -108,6 +109,7 @@ public static class HexaghostCmd
 
     public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
     {
+        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/retract");
         await MoveTo(player, GetPreviousIndex(player));
         await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),

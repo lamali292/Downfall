@@ -79,7 +79,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if ( card is not IHasAfterlifeEffect afterlifeEffect) return;
-        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/hexaghost-hexaghost_afterlife");
+        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/afterlife");
         await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
     }
    
