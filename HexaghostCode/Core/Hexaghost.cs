@@ -1,4 +1,5 @@
 ﻿using BaseLib.Audio;
+using BaseLib.Patches.UI;
 using Downfall.DownfallCode.Abstract;
 
 using Godot;
@@ -48,7 +49,9 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<Float>(),
         ModelDb.Card<Kindle>()
     ];
-    
+
+  
+
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<SpiritBrand>()
