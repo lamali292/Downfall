@@ -1,0 +1,12 @@
+{
+    "SLIMEBOSS-BRONZE_SLIME.name": "Slime de Bronze",
+    "SLIMEBOSS-CULTIST_SLIME.name": "Slime Cultista",
+    "SLIMEBOSS-DARKLING_SLIME.name": "Slime Sombrio",
+    "SLIMEBOSS-GREED_SLIME.name": "Gosma da Ganância",
+    "SLIMEBOSS-SCRAP_SLIME.name": "Gosma de Sucata",
+    "SLIMEBOSS-TORCHHEAD_SLIME.name": "Slime Cabeça de Tocha",
+    "SLIMEBOSS-LEECHING_SLIME.name": "Slime Sanguessuga",
+    "SLIMEBOSS-ANCIENT_SLIME.name": "Slime Ancião",
+    "SLIMEBOSS-SPIKY_SLIME.name": "Slime Protetor",
+    "SLIMEBOSS-ANCIENT_SLIME.description": "Dá[blue]{Damage:diff()}[/blue]de dano.\nTe faz comprar{Cards:plural:uma carta adicional|[blue]{Cards:diff()}[/blue]cartas adicionais}a cada turno.\nA compra não escala com [gold]Potência[/gold]."
+}
