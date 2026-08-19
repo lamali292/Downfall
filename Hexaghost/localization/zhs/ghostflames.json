@@ -4,7 +4,7 @@
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "湮灭鬼火",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n打出2张技能牌。\n\n[gold]点燃[/gold]效果：\n造成{Damage:diff()}点伤害两次。",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "狱焱鬼火",
-    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n花费{energyPrefix:energyIcons(3)}。\n\n[gold]点燃[/gold]效果：\n每有一个已[gold]点燃[/gold]的鬼火，对随机敌人造成{Damage:diff()}点伤害。\n若所有鬼火都已[gold]点燃[/gold]，获得{IntensityPower:diff()}点[gold]热烈[/gold]。\n[gold]熄灭[/gold]其他鬼火。\n\n回合结束时：\n[gold]熄灭[/gold]该鬼火。",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n花费{energyPrefix:energyIcons(3)}。\n\n[gold]点燃[/gold]效果：\n每有一枚已[gold]点燃[/gold]的[gold]鬼火[/gold]，对随机敌人造成{Damage:diff()}点伤害。\n若所有[gold]鬼火[/gold]均已[gold]点燃[/gold]，获得{IntensityPower:diff()}点[gold]热烈[/gold]。\n[gold]熄灭[/gold]其他[gold]鬼火[/gold]。\n\n回合结束时：\n[gold]熄灭[/gold]该[gold]鬼火[/gold]。",
     "HEXAGHOST-SEARING_GHOSTFLAME.title": "焚灼鬼火",
     "HEXAGHOST-SEARING_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n打出2张攻击牌。\n\n[gold]点燃[/gold]效果：\n给予{Soulburn:diff()}层[gold]灼魂[/gold]两次。",
     "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "异色聚能鬼火",
@@ -12,7 +12,7 @@
     "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "异色湮灭鬼火",
     "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n打出2张[gold]异色[/gold]技能牌。\n\n[gold]点燃[/gold]效果：\n造成{Damage:diff()}点伤害两次。",
     "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "异色狱焱鬼火",
-    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n花费{energyPrefix:energyIcons(3)}在[gold]异色[/gold]牌上。\n\n[gold]点燃[/gold]效果：\n每有一个已[gold]点燃[/gold]的鬼火，对随机敌人造成{Damage:diff()}点伤害。\n[gold]熄灭[/gold]其他鬼火。\n\n回合结束时：\n[gold]熄灭[/gold]该鬼火。",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[gold]点燃[/gold]条件：\n花费{energyPrefix:energyIcons(3)}在[gold]异色[/gold]牌上。\n\n[gold]点燃[/gold]效果：\n每有一枚已[gold]点燃[/gold]的[gold]鬼火[/gold]，对随机敌人造成{Damage:diff()}点伤害。\n[gold]熄灭[/gold]其他[gold]鬼火[/gold]。\n\n回合结束时：\n[gold]熄灭[/gold]该[gold]鬼火[/gold]。",
     "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "异色焚灼鬼火",
     "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[gold]点燃[/gold]条件[/gold]：\n打出2张[gold]异色[/gold]攻击牌。\n\n[gold]点燃[/gold]效果：\n给予{Soulburn:diff()}层[gold]灼魂[/gold]两次。"
 }

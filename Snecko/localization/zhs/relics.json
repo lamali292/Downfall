@@ -9,7 +9,7 @@
     "SNECKO-MYSTICAL_OCTAHEDRON.description": "拾起时，选择一张[gold]溢出[/gold]牌，[gold]附魔[/gold]：[purple]注料[/purple]。",
     "SNECKO-MYSTICAL_OCTAHEDRON.flavor": "它似乎偏向一侧。",
     "SNECKO-RARE_BOOSTER_BOX.title": "稀有补充箱",
-    "SNECKO-RARE_BOOSTER_BOX.description": "拾起时，获得一张稀有[gold]异色[/gold]牌。",
+    "SNECKO-RARE_BOOSTER_BOX.description": "拾起时，选择一张稀有[gold]异色[/gold]牌加入你的[gold]牌组[/gold]。",
     "SNECKO-RARE_BOOSTER_BOX.flavor": "全新未拆封。",
     "SNECKO-RING_OF_THE_SNEK.title": "异蛇戒指",
     "SNECKO-RING_OF_THE_SNEK.description": "每当你触发[blue]{Cards}[/blue]次[gold]溢出[/gold]时，给予随机敌人[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]和[blue]{VulnerablePower}[/blue]层[gold]易伤[/gold]。",
@@ -30,7 +30,7 @@
     "SNECKO-SUPER_SNECKO_SOUL.description": "每场战斗回合开始时，获得一张[gold]灵魂骰掷[/gold]。\n在你的回合开始时，抽1张牌并将其[gold]混淆[/gold]。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "未知之蛋",
-    "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。\n拾起时，随机[gold]升级[/gold][blue]{Cards}[/blue]张[gold]异色牌[/gold]。",
+    "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。\n拾起时，随机[gold]升级[/gold][blue]{Cards}[/blue]张[gold]异色[/gold]牌。",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "会孵化出什么？付1000金币来看看。",
     "SEA_GLASS.SNECKO-SNECKO.title": "多彩玻璃"
 }

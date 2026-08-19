@@ -1,6 +1,6 @@
 {
     "AUTOMATON-ENCODE.title": "编码",
-    "AUTOMATON-ENCODE.description": "将此牌置入[gold]编码序列[/gold]。\n当[gold]编码序列[/gold]中拥有[blue]3[/blue]张牌时，这些牌在该关键[gold]编码[/gold]上方的效果将被合并为一个耗能为[blue]1[/blue]的[gold]方法[/gold]，并加入你的[gold]手牌[/gold]。",
+    "AUTOMATON-ENCODE.description": "将此牌置入[gold]编码序列[/gold]。\n当[gold]编码序列[/gold]中拥有[blue]3[/blue]张牌时，这些牌的在[gold]编码[/gold]上方的效果将被合并为一个耗能为[blue]1[/blue]的[gold]方法[/gold]，并加入你的[gold]手牌[/gold]。",
     "AUTOMATON-STASH.title": "暂存",
     "AUTOMATON-STASH.description": "将一张牌放入[gold]暂存区[/gold]（最多[blue]5[/blue]张）。\n在每个回合开始时，你会从[gold]暂存区[/gold]顶部抽一张牌。",
     "AUTOMATON-COMPILE.title": "编译",
