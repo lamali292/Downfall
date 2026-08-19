@@ -14,7 +14,7 @@
     "GUARDIAN-SOCKET.title": "槽位",
     "GUARDIAN-SOCKET.description": "[gold]宝石[/gold]能够被镶嵌至有槽位的牌上。",
     "GUARDIAN-STASIS.title": "凝滞",
-    "GUARDIAN-STASIS.description": "将牌挂起并从其耗能+[blue]1[/blue]开始倒计时。\n在你的回合开始时，所有凝滞卡牌的计时减[blue]1[/blue]。\n计时归零时，将其返回手牌且下次打出前耗能变为[blue]0[/blue]。",
+    "GUARDIAN-STASIS.description": "将牌挂起并从其耗能+[blue]1[/blue]开始倒计时。\n在你的回合开始时，所有凝滞牌的计时减[blue]1[/blue]。\n计时归零时，将其返回手牌且下次打出前耗能变为[blue]0[/blue]。",
     "GUARDIAN-TICK.title": "滴答",
     "GUARDIAN-TICK.description": "被[gold]凝滞[/gold]的牌计时减少时，触发该效果。"
 }
