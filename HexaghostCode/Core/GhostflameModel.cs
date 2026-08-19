@@ -1,6 +1,7 @@
 using System.Text;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Interfaces;

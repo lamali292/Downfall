@@ -14,6 +14,7 @@ public class FleetingFlare : HexaghostCardModel
     {
         WithCostUpgradeBy(-1);
         WithTip(HexaghostTip.Ignite);
+        WithTip(HexaghostTip.Extinguish);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
