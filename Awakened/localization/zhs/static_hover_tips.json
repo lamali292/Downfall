@@ -6,7 +6,7 @@
     "AWAKENED-CHANT.title": "吟唱",
     "AWAKENED-CHANT.description": "带有该关键词的牌被打出时，如果打出的上一张牌是能力牌，则会在本场战斗中激活吟唱效果。",
     "AWAKENED-CHANTED.title": "已吟唱",
-    "AWAKENED-CHANTED.description": "这张卡的效果已被强化。",
+    "AWAKENED-CHANTED.description": "这张牌的效果已被强化。",
     "AWAKENED-DRAINED.title": "力竭",
-    "AWAKENED-DRAINED.description": "除打出卡牌外，任何令你失去{Energy:energyIcons()}的效果视为力竭。能量为0{Energy:energyIcons()}时仍能触发。\n"
+    "AWAKENED-DRAINED.description": "除打出牌外，任何令你失去{Energy:energyIcons()}的效果视为力竭。能量为0{Energy:energyIcons()}时仍能触发。\n"
 }

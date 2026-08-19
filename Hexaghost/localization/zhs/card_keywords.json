@@ -1,7 +1,7 @@
 {
-    "HEXAGHOST-ADVANCE.description": "移动至下枚鬼火。移动至一枚鬼火会导致其[gold]熄灭[/gold]。",
+    "HEXAGHOST-ADVANCE.description": "移动至下枚[gold]鬼火[/gold]。移动至一枚[gold]鬼火[/gold]会导致其[gold]熄灭[/gold]。",
     "HEXAGHOST-ADVANCE.title": "步进",
-    "HEXAGHOST-RETRACT.description": "移动至上枚鬼火。移动至一枚鬼火会导致其[gold]熄灭[/gold]。",
+    "HEXAGHOST-RETRACT.description": "移动至上枚[gold]鬼火[/gold]。移动至一枚[gold]鬼火[/gold]会导致其[gold]熄灭[/gold]。",
     "HEXAGHOST-RETRACT.title": "回退",
     "HEXAGHOST-AFTERLIFE.description": "本牌被[gold]消耗[/gold]时触发绿色效果。",
     "HEXAGHOST-AFTERLIFE.title": "阴世"
