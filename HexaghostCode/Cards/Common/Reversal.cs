@@ -14,6 +14,7 @@ public class Reversal : HexaghostCardModel
         WithDamage(5, 1);
         this.WithRepeat(2);
         WithTip(HexaghostTip.Ignite);
+        WithTip(HexaghostTip.Extinguish);
     }
 
     protected override bool ShouldGlowGoldInternal

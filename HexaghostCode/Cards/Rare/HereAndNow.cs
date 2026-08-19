@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,7 @@ public class HereAndNow : HexaghostCardModel
         this.WithPower<MoreEnergyPower>(1, false);
         this.WithPower<HereAndNowPower>(1, false);
         WithEnergyTip();
+        WithTip(HexaghostTip.Extinguish);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

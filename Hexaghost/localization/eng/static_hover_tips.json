@@ -1,4 +1,8 @@
 ﻿{
   "HEXAGHOST-IGNITE.title": "Ignite",
-  "HEXAGHOST-IGNITE.description": "Triggers the Ignition effect described on a Ghostflame."
+  "HEXAGHOST-IGNITE.description": "Triggers the Ignition effect described on a Ghostflame.",
+  "HEXAGHOST-WHEEL.title": "Ghostflame Wheel",
+  "HEXAGHOST-WHEEL.description": "Holds 6 Ghostflames. The top Ghostflame is active. Fulfilling its condition [gold]Ignites[/gold] it. At end of turn, if the active Ghostflame is [gold]Ignited[/gold], [gold]Advance[/gold].",
+  "HEXAGHOST-EXTINGUISH.title": "Extinguish",
+  "HEXAGHOST-EXTINGUISH.description": "Resets an [gold]Ignited[/gold] Ghostflame so it can be [gold]Ignited[/gold] again."
 }

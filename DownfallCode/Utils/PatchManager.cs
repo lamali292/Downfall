@@ -1,5 +1,6 @@
 ﻿using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
+using Hexaghost.HexaghostCode.CustomEnums;
 
 namespace Downfall.DownfallCode.Utils;
 
@@ -61,6 +62,7 @@ public class DownfallPatchManager
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
+            .Add(typeof(PatchCreatureHoverTips))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 
