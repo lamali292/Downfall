@@ -7,10 +7,11 @@ using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Relics;
 
+[Obsolete]
 [Pool(typeof(SneckoRelicPool))]
 public class SnakeCharmersFlute : SneckoRelicModel, IShouldAllowMuddleCost
 {
-    public SnakeCharmersFlute() : base(RelicRarity.Ancient)
+    public SnakeCharmersFlute() : base(RelicRarity.Ancient, false)
     {
         WithTip(SneckoKeywords.Muddle);
     }
