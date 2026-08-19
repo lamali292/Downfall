@@ -9,10 +9,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Relics;
 
+[Obsolete]
 [Pool(typeof(GuardianRelicPool))]
 public class WanderBots : GuardianRelicModel
 {
-    public WanderBots() : base(RelicRarity.Ancient)
+    public WanderBots() : base(RelicRarity.Ancient, false)
     {
         WithEnergy(1);
     }

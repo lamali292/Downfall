@@ -7,10 +7,11 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Relics;
 
+[Obsolete]
 [Pool(typeof(SlimeBossRelicPool))]
 public class TarrBlob : SlimeBossRelicModel
 {
-    public TarrBlob() : base(RelicRarity.Ancient)
+    public TarrBlob() : base(RelicRarity.Ancient, false)
     {
         WithEnergy(1);
         WithVar("Decrease", 1);
