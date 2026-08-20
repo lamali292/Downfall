@@ -120,6 +120,12 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         if (sourceCards.Count == 0)
             return new LocString("cards", Id.Entry + ".title").GetFormattedText();
 
+        if (sourceCards is [Constructor, Separator, Terminator] or [Constructor, Separator, Separator, Terminator])
+        {
+            var perfection = new LocString("encode", "AUTOMATON-PERFECTION.functionName").GetFormattedText();
+            return perfection;
+        }
+        
         var prefix = Encode(0, ".functionPrefix", card => card.Title.ToLowerInvariant());
         var name = Encode(1, ".functionName", card => card.Title);
         var end3 = Encode(2, ".functionEnd", card => card.Title[0].ToString());
