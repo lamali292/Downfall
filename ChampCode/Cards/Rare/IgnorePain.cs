@@ -12,7 +12,7 @@ public class IgnorePain : ChampCardModel
 {
     public IgnorePain() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeywords(CardKeyword.Exhaust);
         this.WithFinisher();
         this.WithPower<IgnorePainPower>(1, false);

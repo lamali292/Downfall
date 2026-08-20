@@ -13,7 +13,7 @@ public class ShieldSpikes : GuardianCardModel
 {
     public ShieldSpikes() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(12, 4);
+        WithBlock(11, 4);
         WithPower<ThornsPower>(3, 1);
         this.WithBrace(8);
         WithTip(GuardianTip.DefensiveMode);

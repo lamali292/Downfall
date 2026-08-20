@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Compatibility;
 
-public static class DownfallCreatureCmd
+public static class CompatibilityCreatureCmd
 {
     private static readonly SingleDealerDel SingleWithDealer = Build<SingleDealerDel>(
         typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal),

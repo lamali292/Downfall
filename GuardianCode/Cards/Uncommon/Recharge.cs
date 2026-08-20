@@ -12,8 +12,8 @@ public class Recharge : GuardianCardModel
 {
     public Recharge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(7, 2);
-        this.WithBrace(6, 2);
+        WithBlock(7, 3);
+        this.WithBrace(8, 2);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

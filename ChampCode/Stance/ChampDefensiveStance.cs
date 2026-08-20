@@ -12,6 +12,7 @@ public class ChampDefensiveStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
     public override bool HasFinisher => true;
+    protected override int MaxCharges => 2;
     public override string ChargeIconPath => "res://Champ/images/ui/stance_charge_defensive.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

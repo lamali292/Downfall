@@ -37,7 +37,7 @@ public class Glut : SneckoCardModel
         var context = await AttackContextCompatibility.CreateContextAsync(CombatState!, ctx, cardPlay);
         try
         {
-            context.AddHit(await DownfallCreatureCmd.Damage(
+            context.AddHit(await CompatibilityCreatureCmd.Damage(
                 ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
                 DamageProps.card, this, cardPlay));
             if (SneckoCmd.OverflowActive(this))
@@ -48,7 +48,7 @@ public class Glut : SneckoCardModel
                 {
                     var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
                     if (targets.Count == 0) break; 
-                    context.AddHit(await DownfallCreatureCmd.Damage(
+                    context.AddHit(await CompatibilityCreatureCmd.Damage(
                         ctx, targets, dmg.BaseValue,
                         DamageProps.card, Owner.Creature, this, cardPlay));
                 }

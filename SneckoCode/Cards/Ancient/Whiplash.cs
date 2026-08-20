@@ -21,7 +21,7 @@ public class Whiplash : SneckoCardModel, IHasOverflowEffect
         WithDamage(12, 4);
         this.WithTip<WeakPower>();
         this.WithTip<VulnerablePower>();
-        WithCalculatedVar("PowerVar", 0, Calc, 1);
+        WithCalculatedVar("PowerVar", 1, Calc, 1);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

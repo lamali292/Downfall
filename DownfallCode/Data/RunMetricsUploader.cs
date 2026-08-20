@@ -194,6 +194,7 @@ public sealed class RunMetricsUploader<TPayload>
     /// </summary>
     private bool HasForeignContent(SerializableRun run)
     {
+        if (run.Ascension is < 0 or > 10) return true;
         if (run.Acts.Any(c => !IsAllowed<ActModel>(c.Id))) return true;
         foreach (var p in run.Players)
         {

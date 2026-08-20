@@ -10,15 +10,19 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class WreathOfVictory : ChampCardModel
 {
-    public WreathOfVictory() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public WreathOfVictory() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<VigorPower>(6, 2);
-        WithPower<CounterPower>(6, 2);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithKeyword(CardKeyword.Exhaust);
+        this.WithTip<VigorPower>();
+        this.WithTip<CounterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<VigorPower>(ctx, this);
-        await CommonActions.ApplySelf<CounterPower>(ctx, this);
+        var vigor = Owner.Creature.GetPowerAmount<VigorPower>();
+        var counter = Owner.Creature.GetPowerAmount<CounterPower>();
+        await CommonActions.ApplySelf<VigorPower>(ctx, this, vigor);
+        await CommonActions.ApplySelf<CounterPower>(ctx, this, counter);
     }
 }

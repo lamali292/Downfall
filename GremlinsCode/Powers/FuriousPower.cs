@@ -17,7 +17,7 @@ public class FuriousPower() : GremlinsPowerModel(PowerType.Buff, PowerStackType.
         CardModel? cardSource)
     {
         if (creature != Owner || amount <= 0 || Owner.Player == null) return;
-        await DownfallCreatureCmd.LoseBlock(ctx, Owner, amount, Owner);
+        await CompatibilityCreatureCmd.LoseBlock(ctx, Owner, amount, Owner);
         var attack = DamageCmd.Attack(amount);
         attack.Attacker = Owner;
         attack._attackerAnimName = "Attack";

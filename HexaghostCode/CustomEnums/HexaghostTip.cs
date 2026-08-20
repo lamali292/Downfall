@@ -1,5 +1,6 @@
 ﻿using BaseLib.Patches.Content;
 using HarmonyLib;
+using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 
@@ -17,7 +18,8 @@ public static class PatchCreatureHoverTips
 {
     public static void Postfix(Creature __instance, ref IEnumerable<IHoverTip> __result)
     {
-        if (__instance.Player?.Character is not Core.Hexaghost) 
+      
+        if (__instance.Player == null || !HexaghostCmd.IsGhostwheelActivated(__instance.Player)) 
             return;
         __result = __result.Concat(
         [

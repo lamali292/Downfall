@@ -12,7 +12,7 @@ public class Divider : HexaghostCardModel
 {
     public Divider() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 2);
+        WithDamage(5, 2);
         WithTip(HexaghostTip.Ignite);
     }
 

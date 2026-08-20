@@ -13,8 +13,7 @@ public class RisingStrike : ChampCardModel
 {
     public RisingStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithKeywords(CardKeyword.Retain);
-        WithDamage(8, 3);
+        WithDamage(7, 3);
         WithTags(CardTag.Strike);
         WithTip(ChampTip.Finisher);
     }

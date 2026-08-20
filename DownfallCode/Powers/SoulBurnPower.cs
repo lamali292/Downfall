@@ -78,13 +78,13 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
             {
                 await HexaghostCmd.SoulburnEffect(target, silent: true);
             }
-            await DownfallCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
+            await CompatibilityCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
         else
         {
             await HexaghostCmd.SoulburnEffect(Owner, silent: true);
-            await DownfallCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
+            await CompatibilityCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
             

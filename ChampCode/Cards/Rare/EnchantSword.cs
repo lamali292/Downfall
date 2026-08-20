@@ -14,21 +14,24 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class EnchantSword : ChampCardModel
 {
-    public EnchantSword() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public EnchantSword() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithTip<Instinct>();
-        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        this.WithEnchantment<Sharp>(8);
+        
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
+    protected override bool ShouldGlowRedInternal => !Owner.Hand.Any(ModelDb.Enchantment<Sharp>().CanEnchant);
+
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selectorPrefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ApplySelectionPrompt, 1, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Instinct>().CanEnchant,
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, selectorPrefs, ModelDb.Enchantment<Sharp>().CanEnchant,
             this)).FirstOrDefault();
         if (card == null) return;
-        CardCmd.Enchant<Instinct>(card, 1);
+        CardCmd.Enchant<Sharp>(card, DynamicVars.Enchantment<Sharp>().BaseValue);
     }
 }
