@@ -24,7 +24,7 @@ public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn, IModifyDam
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (dealer != Owner || cardSource is null || !HermitCmd.IsAdjacentToCurse(cardSource))
+        if (dealer != Owner || cardSource is null || !props.IsPoweredAttack() || !HermitCmd.IsAdjacentToCurse(cardSource))
             return 0;
 
         return Amount;
