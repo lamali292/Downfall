@@ -40,6 +40,11 @@
           "name": "functionName",
           "file": "encode.json",
           "optional": true
+        },
+        {
+          "name": "functionEnd",
+          "file": "encode.json",
+          "optional": true
         }
       ]
     },

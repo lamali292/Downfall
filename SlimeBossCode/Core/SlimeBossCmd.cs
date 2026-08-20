@@ -33,7 +33,7 @@ public static class SlimeBossCmd
     public static async Task<bool> Absorb(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {
         var a = await SlimeQueue.RemoveLeadingSlime(player);
-        await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, 1, player.Creature, card);
+        if (a) await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, 1, player.Creature, card);
         return a;
     }
 
@@ -41,7 +41,7 @@ public static class SlimeBossCmd
     public static async Task<int> AbsorbAll(PlayerChoiceContext ctx, Player player, CardModel? card = null)
     {
         var a = await SlimeQueue.RemoveAll(player);
-        await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, a, player.Creature, card);
+        if (a > 0 ) await PowerCmd.Apply<StrengthPower>(ctx, player.Creature, a, player.Creature, card);
         return a;
     }
 

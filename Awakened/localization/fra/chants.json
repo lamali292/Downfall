@@ -1,0 +1,12 @@
+{
+    "AWAKENED-RECITATION.chant": "Inflige à nouveau {Damage:diff()} dégâts.",
+    "AWAKENED-CAW.chant": "Augmente les dégâts de TOUTES les cartes [gold]Caw[/gold] de {Caw:diff()} pour ce combat.",
+    "AWAKENED-FEATHER_FLARE.chant": "Au tour suivant, piochez 1 carte supplémentaire.",
+    "AWAKENED-GATHER.chant": "Placez une carte de votre [gold]pile de défausse[/gold] dans votre [gold]main[/gold].",
+    "AWAKENED-GREAT_HEX.chant": "L'ennemi ciblé gagne {GreatHexPower:diff()} [gold]Brûlure de mana[/gold] à la fin de chacun de ses tours.",
+    "AWAKENED-NIHIL.chant": "TOUS les ennemis perdent des PV égaux à leur [gold]Brûlure de mana[/gold].",
+    "AWAKENED-RAVEN_STRIKE.chant": "Jouez la carte du dessus de votre [gold]pile de pioche[/gold].",
+    "AWAKENED-TAKE_FLIGHT.chant": "L'[gold]Armure[/gold] n'est pas retirée au début de votre prochain tour.",
+    "AWAKENED-VICTUALS.chant": "Gagnez {Energy:energyIcons()}.",
+    "AWAKENED-SIPHON.chant": "Volez {SiphonPower:diff()} [gold]Force[/gold] ce tour-ci."
+}

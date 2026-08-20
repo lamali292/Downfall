@@ -1,0 +1,18 @@
+{
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Flamme fantôme renforçante",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]Pour Enflammer :\n[/b]- Jouez une carte Pouvoir.[b]\n\nUne fois Enflammée :\n[/b]- Gagnez {Block:diff()} [gold]Armure[/gold].\n- Gagnez {StrengthPower:diff()} [gold]Force[/gold].",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Flamme fantôme écrasante",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]Pour Enflammer :\n[/b]- Jouez 2 cartes Compétence.\n\n[b]Une fois Enflammée :[/b]\n- Infligez {Damage:diff()} dégâts deux fois.",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Flamme fantôme infernale",
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[b]Pour Enflammer :[/b]\n- Dépensez {energyPrefix:energyIcons(3)}.\n\n[b]Une fois Enflammée :[/b]\n- Infligez {Damage:diff()} dégâts pour chaque Flamme fantôme [gold]Enflammée[/gold].\n- Si toutes les Flammes fantômes sont [gold]Enflammées[/gold], gagnez {IntensityPower:diff()} [gold]Intensité[/gold].\n- [gold]Éteignez[/gold] toutes les autres Flammes fantômes. \n\n[b]Fin du tour :[/b]\n- S'[gold]Éteint[/gold] elle-même.",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "Flamme fantôme cuisante",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]Pour Enflammer :\n[/b]- Jouez 2 cartes Attaque.\n\n[b]Une fois Enflammée :\n[/b]- Appliquez {Soulburn:diff()} [gold]Brûlure d'âme[/gold] deux fois.",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "Flamme fantôme renforçante hors-classe",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]Pour Enflammer :[/b][gold]\n[/gold]- Jouez une carte Pouvoir [gold]Hors-classe[/gold].[gold]\n\n[/gold][b]Une fois Enflammée :[/b][gold]\n[/gold]- Gagnez {Block:diff()} [gold]Armure[/gold].\n- Gagnez {StrengthPower:diff()} [gold]Force[/gold].",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "Flamme fantôme écrasante hors-classe",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]Pour Enflammer :[/b][gold]\n[/gold]- Jouez 2 cartes Compétence [gold]Hors-classe[/gold].[gold]\n\n[/gold][b]Une fois Enflammée :[/b]\n- Infligez {Damage:diff()} dégâts deux fois.",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "Flamme fantôme infernale hors-classe",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]Pour Enflammer :\n[/b]- Dépensez {energyPrefix:energyIcons(3)} sur des cartes [gold]Hors-classe[/gold].[b]\n\nUne fois Enflammée :\n[/b]- Infligez {Damage:diff()} dégâts pour chaque Flamme fantôme [gold]Enflammée[/gold].\n- [gold]Éteignez[/gold] toutes les autres Flammes fantômes.\n\n[b]Fin du tour :\n[/b]- S'[gold]Éteint[/gold] elle-même.",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "Flamme fantôme cuisante hors-classe",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]Pour Enflammer :\n[/b]- Jouez 2 cartes Attaque [gold]Hors-classe[/gold].\n\n[b]Une fois Enflammée :\n[/b]- Appliquez {Soulburn:diff()} [gold]Brûlure d'âme[/gold] deux fois."
+}
