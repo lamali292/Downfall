@@ -12,8 +12,11 @@ using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using Godot;
 using Godot.Bridge;
+using MegaCrit.Sts2.Core.AutoSlay;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -54,6 +57,21 @@ public partial class DownfallMainFile : Node
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
+        
+        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
+        {
+            Label = "Auto Slay",
+            IsVisible = () => DownfallConfig.DevMode,
+            SubmenuType = null,
+            CreateSubmenu = null,
+            OnPress = stack =>
+            {
+                var slayer = new AutoSlayer();
+                slayer.Start(SeedHelper.GetRandomSeed(), "autoslay.log");
+            }
+        });
+        
+     
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {

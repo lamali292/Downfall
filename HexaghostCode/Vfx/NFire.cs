@@ -27,13 +27,13 @@ public partial class NFire : Node2D
 
     public override void _Ready()
     {
-        _flame = GetNode<TextureRect>("hexaghost_flame");
+        _flame = GetNodeOrNull<TextureRect>("hexaghost_flame");
         _particles = GetNodeOrNull<GpuParticles2D>("hexaghost_flame_particles");
-        _flameMaterial = _flame.Material as ShaderMaterial;
+        _flameMaterial = _flame?.Material as ShaderMaterial;
         if (_flameMaterial == null) return;
 
         _flameMaterial = (ShaderMaterial)_flameMaterial.Duplicate();
-        _flame.Material = _flameMaterial;
+        _flame?.Material = _flameMaterial;
 
         _flameMaterial.SetShaderParameter(HueUniform, HueFor(_currentColor));
     }
