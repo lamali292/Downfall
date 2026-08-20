@@ -63,6 +63,8 @@ public class DownfallPatchManager
             .Add(typeof(CardCmdTransformTransformHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PatchCreatureHoverTips))
+            .Add(typeof(MainMenuButtonsPatch))
+            .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 
