@@ -21,8 +21,9 @@
   "DARV.talk.HEXAGHOST-HEXAGHOST.1-0r.ancient": "Back to the ol' haunting grounds, spooky one? \nMaybe one of these will help those poltergeisty desires?",
   
   "DARV.talk.HEXAGHOST-HEXAGHOST.2-0.ancient": "Found some real spooky stuff for ya this time, spooky one.\nSee this carving?",
-  "DARV.talk.HEXAGHOST-HEXAGHOST.2-1.ancient": "[i][font_size=22]The carving emanates an infernal heat.[/font_size=22][/i]",
   "DARV.talk.HEXAGHOST-HEXAGHOST.2-0.next": "Continue",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-1.ancient": "[i][font_size=22]The carving emanates an infernal heat.[/font_size][/i]",
+  "DARV.talk.HEXAGHOST-HEXAGHOST.2-1.next": "Continue",
   "DARV.talk.HEXAGHOST-HEXAGHOST.2-2.ancient": "Maybe... this one's better in your hands!\nDon't want to get cursed myself!\nYou should definitely take it!",
 
   "NEOW.talk.HEXAGHOST-HEXAGHOST.0-0.ancient": "[sine]...arise... bound one...[/sine]",

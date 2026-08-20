@@ -186,7 +186,7 @@
   "HERMIT-FADE_OUT.title": "Fade Out",
   "HERMIT-FADE_OUT.description": "ALL players gain {Block:diff()} [gold]Block[/gold] and add a [gold]Clumsy[/gold] into their [gold]Discard Pile[/gold].",
   "HERMIT-SHARE_THE_LOAD.title": "Share the Load",
-  "HERMIT-SHARE_THE_LOAD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]: ALL other players gain {Energy:energyIcons()} and draw {Cards:diff()} cards.",
+  "HERMIT-SHARE_THE_LOAD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]: ALL allies gain {Energy:energyIcons()} and draw {Cards:diff()} cards.",
   "HERMIT-TECHNIQUE.title": "Technique",
   "HERMIT-TECHNIQUE.description": "EVERYONE'S [gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} additional damage."
 }
