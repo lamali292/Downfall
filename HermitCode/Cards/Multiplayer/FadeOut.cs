@@ -9,9 +9,9 @@ namespace Hermit.HermitCode.Cards.Multiplayer;
 
 public class FadeOut : HermitCardModel
 {
-    public FadeOut() : base(0, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
+    public FadeOut() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
-        WithBlock(12, 4);
+        WithBlock(9, 3);
         this.WithTip<Clumsy>();
     }
 

@@ -11,7 +11,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class BlackWind : HermitCardModel
 {
-    public BlackWind() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public BlackWind() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithKeyword(CardKeyword.Exhaust);
