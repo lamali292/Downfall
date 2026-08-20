@@ -3,7 +3,7 @@
     "SNECKO-LOADED_DIE.description": "每当你[gold]混淆[/gold]一张牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "SNECKO-LOADED_DIE.flavor": "灌了奶酪。",
     "SNECKO-LUCKY_HORSESHOE.title": "幸运马蹄",
-    "SNECKO-LUCKY_HORSESHOE.description": "拾起时，从[blue]3[/blue]个角色中选择[blue]1[/blue]个，获得来自该角色的[blue]3[/blue]组已[gold]升级[/gold]的[gold]罕见[/gold]牌奖励和[blue]2[/blue]组[gold]稀有[/gold]牌奖励。每次战斗结束后，额外掉落一组该角色的卡牌奖励。",
+    "SNECKO-LUCKY_HORSESHOE.description": "拾起时，从[blue]3[/blue]个角色中选择[blue]1[/blue]个，获得来自该角色的[blue]3[/blue]组[gold]升级过的[/gold][gold]罕见[/gold]牌奖励和[blue]2[/blue]组[gold]稀有[/gold]牌奖励。每次战斗结束后，额外掉落一组该角色的卡牌奖励。",
     "SNECKO-LUCKY_HORSESHOE.flavor": "一路顺风。",
     "SNECKO-MYSTICAL_OCTAHEDRON.title": "神秘八面体",
     "SNECKO-MYSTICAL_OCTAHEDRON.description": "拾起时，选择一张[gold]溢出[/gold]牌，[gold]附魔[/gold]：[purple]注料[/purple]。",
