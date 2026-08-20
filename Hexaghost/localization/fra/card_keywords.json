@@ -1,4 +1,8 @@
 {
-    "HEXAGHOST-ADVANCE.description": "Passez au Feu Follet suivant. Passer un Feu Follet l'[gold]Éteint[/gold].",
-    "HEXAGHOST-RETRACT.description": "Passez au Feu Follet précédent. Passer un Feu Follet l'[gold]Éteint[/gold]."
+  "HEXAGHOST-ADVANCE.description": "Avance jusqu'à la prochaine Flamme fantôme. Avancer sur une Flamme fantôme l'[gold]Éteint[/gold].",
+  "HEXAGHOST-ADVANCE.title": "Avancer",
+  "HEXAGHOST-RETRACT.description": "Recule jusqu'à la Flamme fantôme précédente. Reculer sur une Flamme fantôme l'[gold]Éteint[/gold].",
+  "HEXAGHOST-RETRACT.title": "Reculer",
+  "HEXAGHOST-AFTERLIFE.description": "L'effet vert se déclenchera aussi lorsque cette carte est [gold]Épuisée[/gold].",
+  "HEXAGHOST-AFTERLIFE.title": "Au-delà"
 }

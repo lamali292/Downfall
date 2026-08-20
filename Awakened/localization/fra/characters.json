@@ -1,0 +1,16 @@
+{
+  "AWAKENED-AWAKENED.aromaPrinciple": "[sine][purple]Le Void appelle. Je réponds. Le Void appelle. Je réponds. [jitter]Je réponds toujours.[/jitter][/purple][/sine]",
+  "AWAKENED-AWAKENED.banter.alive.endTurnPing": "L'éternité attend.",
+  "AWAKENED-AWAKENED.banter.dead.endTurnPing": "...",
+  "AWAKENED-AWAKENED.cardsModifierDescription": "Les cartes de l'Éveillé apparaîtront désormais dans les récompenses et les boutiques.",
+  "AWAKENED-AWAKENED.cardsModifierTitle": "Cartes de l'Éveillé",
+  "AWAKENED-AWAKENED.description": "Le triomphe du Culte, sombre sorcier immortel de l'Au-delà.\nPossède le pouvoir sur le Void et tous les autres éléments.",
+  "AWAKENED-AWAKENED.eventDeathPrevention": "Je suis immortel. Je ne peux pas être terrassé par quelque chose d'aussi insignifiant.",
+  "AWAKENED-AWAKENED.goldMonologue": "[sine]La richesse ne signifie rien pour celui qui a transcendé la mortalité... et pourtant...[/sine]",
+  "AWAKENED-AWAKENED.possessiveAdjective": "son",
+  "AWAKENED-AWAKENED.pronounObject": "lui",
+  "AWAKENED-AWAKENED.pronounPossessive": "son",
+  "AWAKENED-AWAKENED.pronounSubject": "il",
+  "AWAKENED-AWAKENED.title": "L'Éveillé",
+  "AWAKENED-AWAKENED.titleObject": "L'Éveillé"
+}
