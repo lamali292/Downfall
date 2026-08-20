@@ -64,8 +64,10 @@ async def main():
     project_id = int(config["projects"][LANG_CODE])
     token = get_api_key(LANG_CODE)
 
+    EXCLUDED_REPOS = {"collector", "gremlins"}
     repos = sorted(
         d for d in Path(".").iterdir()
+        and d.name.lower() not in EXCLUDED_REPOS
         if d.is_dir() and (d / "localization" / "eng").is_dir()
     )
 
