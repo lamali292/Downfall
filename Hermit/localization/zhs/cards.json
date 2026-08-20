@@ -56,7 +56,7 @@
     "HERMIT-GLARE.title": "怒视",
     "HERMIT-GLARE.description": "给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n给予{VulnerablePower:diff()}层[gold]易伤[/gold]。",
     "HERMIT-TAKE_COVER.title": "快找掩护",
-    "HERMIT-TAKE_COVER.description": "将一张[gold]防御+X{IfUpgraded:show:+1|}[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "HERMIT-TAKE_COVER.description": "将一张[gold]{IfUpgraded:show:防御+X+1|防御+X}[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
     "HERMIT-MISFIRE.title": "擦枪走火",
     "HERMIT-MISFIRE.description": "造成{Damage:diff()}点伤害。\n将一张[gold]笨拙[/gold]加入你的[gold]抽牌堆[/gold]。",
     "HERMIT-SPRAY_PRAY.title": "倾泻火力",

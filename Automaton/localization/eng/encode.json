@@ -61,7 +61,5 @@
   "AUTOMATON-DEFEND_AUTOMATON.functionName": "Defend",
   "AUTOMATON-STRENGTH_ENCODE.encode": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "AUTOMATON-OIL_SPILL.functionPrefix": "leaky",
-  "AUTOMATON-OIL_SPILL.functionName": "Spill",
-  "AUTOMATON-PERFECTION.functionName": "perfection",
-  "AUTOMATON-FUNCTION_CARD.functionEnd": "()"
+  "AUTOMATON-OIL_SPILL.functionName": "Spill"
 }

@@ -9,10 +9,20 @@
     "CHAMP-GLADIATOR_FORM_POWER.title": "Gladiatorenform",
     "CHAMP-HONE_BLADE_POWER.title": "Geschliffene Klinge",
     "CHAMP-IGNORE_PAIN_POWER.title": "Analgesie",
+    "CHAMP-IGNORE_PAIN_POWER.description": "Du kannst diesen Zug keine TP verlieren.",
     "CHAMP-IMPROVISING_POWER.title": "Improvisieren",
+    "CHAMP-KILLING_SPREE_POWER.title": "Amoklauf",
+    "CHAMP-KILLING_SPREE_POWER.description": "[gold]Haltungen[/gold] haben keine Obergrenze mehr für [gold]Fertigkeitsboni[/gold].",
+    "CHAMP-KILLING_SPREE_POWER.smartDescription": "[gold]Haltungen[/gold] haben keine Obergrenze mehr für [gold]Fertigkeitsboni[/gold].",
+    "CHAMP-MAGNIFICENCE_POWER.description": "Erhalte immer zu Beginn deines Zuges [gold]Ruhm[/gold].",
+    "CHAMP-MAGNIFICENCE_POWER.smartDescription": "Erhalte zu Beginn deines Zuges [blue]{Amount}[/blue] [gold]Ruhm[/gold].",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.title": "Schild verloren",
     "CHAMP-PARRYING_POWER.title": "Parieren",
+    "CHAMP-PROTECTIVE_AURA_POWER.description": "Immer wenn du deinen Zug beendest, während du dich in keiner [gold]Haltung[/gold] befindest, erhalte [gold]Block[/gold].",
+    "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "Immer wenn du deinen Zug beendest, während du dich in keiner [gold]Haltung[/gold] befindest, erhalte [blue]{Amount}[/blue] [gold]Block[/gold].",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "Genieschlag+",
     "CHAMP-STRIKE_OF_GENIUS_POWER.title": "Schlagfertig",
-    "CHAMP-TECHNICAL_JIG_POWER.title": "Launiges Zappeln"
+    "CHAMP-TECHNICAL_JIG_POWER.title": "Launiges Zappeln",
+    "CHAMP-CROWD_FAVORITE_POWER.description": "Immer wenn ein Mitspieler einen Gegner angreift, erhalte [gold]Elan[/gold].",
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Immer wenn ein Mitspieler einen Gegner angreift, erhalte [blue]{Amount}[/blue] [gold]Elan[/gold]."
 }
