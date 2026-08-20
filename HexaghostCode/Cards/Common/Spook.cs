@@ -11,11 +11,13 @@ public class Spook : HexaghostCardModel
 {
     public Spook() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(6, 3);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithPower<SoulBurnPower>(6);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await HexaghostCmd.SoulburnEffect(cardPlay.Target);
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }

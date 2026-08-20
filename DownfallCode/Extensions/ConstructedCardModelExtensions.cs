@@ -25,6 +25,15 @@ public static class ConstructedCardModelExtensions
             return card;
         }
         
+        public ConstructedCardModel WithEnchantment<T>(int amount = 1, bool showTooltip = true) where T : EnchantmentModel
+        {
+            card._constructedDynamicVars.Add(new EnchantmentVar<T>(amount));
+            if (showTooltip)
+                return card.WithTips(e => HoverTipFactory.FromEnchantment<T>(e.DynamicVars.Enchantment<T>().IntValue));
+            return card;
+        }
+
+        
         public ConstructedCardModel WithPower<T>(int baseVal, bool showTooltip)
             where T : PowerModel
         {
@@ -112,6 +121,12 @@ public static class ConstructedCardModelExtensions
             return card.WithTip(typeof(T));
         }
         
+        public ConstructedCardModel WithEnchantmentTip<T>(int amount = 1) where T : EnchantmentModel
+        {
+            return card.WithTips(e => HoverTipFactory.FromEnchantment<T>(amount));
+        }
+        
+      
         public ConstructedCardModel WithArtist<T>() where T : Artist, new()
         {
             return card.WithTips(_ => [Artist.Get<T>().HoverTip]);

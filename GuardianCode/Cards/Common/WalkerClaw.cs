@@ -10,9 +10,9 @@ namespace Guardian.GuardianCode.Cards.Common;
 [Pool(typeof(GuardianCardPool))]
 public class WalkerClaw : GuardianCardModel, IGemSocketCard
 {
-    public WalkerClaw() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public WalkerClaw() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(26, 6);
+        WithDamage(18, 5);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

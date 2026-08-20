@@ -121,29 +121,37 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
             return new LocString("cards", Id.Entry + ".title").GetFormattedText();
 
         var sb = new StringBuilder();
-
-        for (var i = 0; i < sourceCards.Count; i++)
+        if (sourceCards is [Constructor, Separator, Terminator] or [Constructor, Separator, Separator, Terminator])
         {
-            var card = sourceCards[i];
-            switch (i)
+            var perfection = new LocString("encode", "AUTOMATON-PERFECTION.functionName").GetFormattedText();
+            sb.Append(perfection);
+        }
+        else
+        {
+            for (var i = 0; i < sourceCards.Count; i++)
             {
-                case 0:
-                    var prefix = new LocString("encode", card.Id.Entry + ".functionPrefix");
-                    sb.Append(prefix.Exists() ? prefix.GetFormattedText() : "");
-                    break;
-                case 1:
-                    var name = new LocString("encode", card.Id.Entry + ".functionName");
-                    sb.Append(name.Exists() ? name.GetFormattedText() : "");
-                    break;
-                case 2:
-                case 3:
-                    // Don't use id for this, lol
-                    sb.Append(card.Title[0]);
-                    break;
+                var card = sourceCards[i];
+                switch (i)
+                {
+                    case 0:
+                        var prefix = new LocString("encode", card.Id.Entry + ".functionPrefix");
+                        sb.Append(prefix.Exists() ? prefix.GetFormattedText() : "");
+                        break;
+                    case 1:
+                        var name = new LocString("encode", card.Id.Entry + ".functionName");
+                        sb.Append(name.Exists() ? name.GetFormattedText() : "");
+                        break;
+                    case 2:
+                    case 3:
+                        // Don't use id for this, lol
+                        sb.Append(card.Title[0]);
+                        break;
+                }
             }
         }
-
-        sb.Append("()");
+        
+        var functionEnd = new LocString("encode", "AUTOMATON-FUNCTION_CARD.functionEnd").GetFormattedText();
+        sb.Append(functionEnd);
         return sb.ToString();
     }
 

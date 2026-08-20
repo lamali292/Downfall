@@ -15,7 +15,7 @@ public class Recover : GuardianCardModel
     public Recover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(5, 3);
-        this.WithBrace(3, 1);
+        this.WithBrace(2, 1);
         WithTip(GuardianTip.Stasis);
     }
 

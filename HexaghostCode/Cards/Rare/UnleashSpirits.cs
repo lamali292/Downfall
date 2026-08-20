@@ -14,9 +14,9 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class UnleashSpirits : HexaghostCardModel
 {
-    public UnleashSpirits() : base(2, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
+    public UnleashSpirits() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
     {
-        WithDamage(10, 3);
+        WithDamage(5, 2);
         WithTip(CardKeyword.Exhaust);
         WithCalculatedVar("Repeat", 1, Calc);
     }

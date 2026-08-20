@@ -7,6 +7,8 @@
 {967dc07c-40a1-4ead-a074-05b054215d2f} event:/sfx/characters/automaton-automaton/automaton-automaton_select
 {48552819-831a-439c-bbec-9fb3c6ea95ec} event:/sfx/characters/awakened-awakened/awakened-awakened_select
 {f59162b4-57c4-458a-b36c-fbceca9a6f47} event:/sfx/characters/champ-champ/champ-champ_select
+{05f286d9-dfac-4123-9792-a9fd84752d1b} event:/sfx/characters/champ-champ/charge
+{403eeedb-b80c-42dd-b93c-c894f8583d33} event:/sfx/characters/champ-champ/mockery
 {3ed0bf54-e012-4649-8887-f51716bc0388} event:/sfx/characters/collector-collector/collector-collector_select
 {9b1e3102-5504-415f-b8d8-9a0e701166d3} event:/sfx/characters/gremlins-gremlins/gremlins-gremlins_select
 {78fc6a59-4a4a-4aa9-ae68-dc210c06a35d} event:/sfx/characters/gremlins-gremlins/nob

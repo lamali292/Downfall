@@ -15,6 +15,7 @@ public abstract class ChampStanceModel : AbstractModel
 
     private Player? _player;
 
+    protected virtual int MaxCharges => 3;
     public int Charges;
 
     public DynamicVarSet DynamicVars
@@ -62,7 +63,7 @@ public abstract class ChampStanceModel : AbstractModel
 
     public void ResetCharges()
     {
-        Charges = 3;
+        Charges = MaxCharges;
         ChampModel.RefreshDisplay(Owner);
     }
 

@@ -41,7 +41,7 @@ public sealed class Ricochet : HermitCardModel
         try
         {
             HermitSfx.PlayGun2();
-            var mainHits = (await DownfallCreatureCmd.Damage(
+            var mainHits = (await CompatibilityCreatureCmd.Damage(
                 ctx, play.Target, DynamicVars.Damage.BaseValue,
                 DamageProps.card,
                 this, play)).ToList();
@@ -54,7 +54,7 @@ public sealed class Ricochet : HermitCardModel
                 {
                     var target = RunState!.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
                     if (target is not { IsHittable: true }) continue;
-                    context.AddHit(await DownfallCreatureCmd.Damage(
+                    context.AddHit(await CompatibilityCreatureCmd.Damage(
                         ctx, target, DynamicVars.Damage.BaseValue,
                         DamageProps.card,
                         Owner.Creature, this, play));

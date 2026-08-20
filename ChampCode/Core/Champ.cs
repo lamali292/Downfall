@@ -41,6 +41,7 @@ public class Champ : DownfallCharacterModel
         ModelDb.Card<DefendChamp>(),
         ModelDb.Card<DefendChamp>(),
         ModelDb.Card<DefendChamp>(),
+        ModelDb.Card<DefendChamp>(),
         ModelDb.Card<BerserkersShout>(),
         ModelDb.Card<DefensiveShout>(),
         ModelDb.Card<Execute>()

@@ -16,20 +16,14 @@ namespace Champ.ChampCode.Core;
 
 public class ChampCmd
 {
-    public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player, bool force = false)
+    public static async Task EnterBerserkerStance(PlayerChoiceContext ctx, Player player)
     {
-        if (!force && player.ChampStance is ChampUltimateStance stance)
-            stance.ResetCharges();
-        else
-            await ChampModel.SetStance<ChampBerserkerStance>(ctx, player);
+        await ChampModel.SetStance<ChampBerserkerStance>(ctx, player);
     }
 
-    public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player, bool force = false)
+    public static async Task EnterDefensiveStance(PlayerChoiceContext ctx, Player player)
     {
-        if (!force && player.ChampStance is ChampUltimateStance stance)
-            stance.ResetCharges();
-        else
-            await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
+        await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
     }
 
     public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)
@@ -37,7 +31,7 @@ public class ChampCmd
         await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
     }
 
-    public static async Task EnterStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
+    private static async Task EnterStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
         await ChampModel.SetStance<T>(ctx, player);
     }

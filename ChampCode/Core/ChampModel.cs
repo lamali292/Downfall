@@ -81,7 +81,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     private static async Task SetStance(PlayerChoiceContext ctx, Player player, ChampStanceModel newCanonical)
     {
         var current = ActiveStance[player];
-        if (current?.GetType() == newCanonical.GetType()) return;
+        if (current?.GetType() == newCanonical.GetType() || current == newCanonical) return;
 
         if (current != null)
             await current.OnExit(ctx);

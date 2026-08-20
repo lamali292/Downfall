@@ -9,7 +9,7 @@
   "CHAMP-BLACK_KNIGHTS_HELM.description": "The first time you enter each [gold]Stance[/gold] each combat: [gold]Defensive[/gold]: Gain [blue]2[/blue] [gold]Dexterity[/gold] and lose [blue]1[/blue] [gold]Strength[/gold]. [gold]Berserker[/gold]: Gain [blue]2[/blue] [gold]Strength[/gold] and lose [blue]1[/blue] [gold]Dexterity[/gold].",
   "CHAMP-BLACK_KNIGHTS_HELM.flavor": "Only a flesh wound.",
   "CHAMP-CHAMPIONS_CROWN.title": "Champion's Crown",
-  "CHAMP-CHAMPIONS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], and then trigger that [gold]Stance[/gold]'s [gold]Skill Bonus[/gold] twice.",
+  "CHAMP-CHAMPIONS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], trigger it's [gold]Skill Bonus[/gold], and draw a card.",
   "CHAMP-CHAMPIONS_CROWN.flavor": "A WINNER IS YOU!",
   "CHAMP-DEFENSIVE_THESIS.title": "Defensive Thesis",
   "CHAMP-DEFENSIVE_THESIS.description": "[gold]Defensive Stance[/gold]'s [gold]Finisher[/gold] Bonus grants [blue]3[/blue] more [gold]Block[/gold].",
@@ -30,10 +30,10 @@
   "CHAMP-SIGNATURE_FINISHER.description": "Upon pickup, [gold]Enchant[/gold] a [gold]Finisher[/gold] with [purple]Signature[/purple].",
   "CHAMP-SIGNATURE_FINISHER.flavor": "And now, it's time for my ULTIMATE MOVE!",
   "CHAMP-SPECTRES_HAND.title": "Spectre's Hand",
-  "CHAMP-SPECTRES_HAND.description": "Whenever you enter a [gold]Stance[/gold], gain an [gold]Echo[/gold] of a [gold]Basic[/gold] [gold]Strike[/gold] or [gold]Defend[/gold].\nIt's free to play this turn.",
+  "CHAMP-SPECTRES_HAND.description": "Whenever you enter a [gold]Stance[/gold], add an [gold]Echo[/gold] of a [gold]Basic[/gold] [gold]Strike[/gold] or [gold]Defend[/gold] into your [gold]Hand[/gold].\nIt's free to play this turn.",
   "CHAMP-SPECTRES_HAND.flavor": "Some victories stay with you.",
   "CHAMP-VICTORIOUS_CROWN.title": "Victorious Crown",
-  "CHAMP-VICTORIOUS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], and then trigger that [gold]Stance[/gold]'s [gold]Skill Bonus[/gold] twice.\nThe first time you play a [gold]Finisher[/gold] each turn, draw [blue]2[/blue] cards and enter a random [gold]Stance[/gold].",
+  "CHAMP-VICTORIOUS_CROWN.description": "Start each combat in a random [gold]Stance[/gold], trigger it's [gold]Skill Bonus[/gold], and draw a card.\nThe first time you play a [gold]Finisher[/gold] each turn, draw [blue]2[/blue] cards and enter a random [gold]Stance[/gold].",
   "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! You are the greatest winner.",
   "SEA_GLASS.CHAMP-CHAMP.title": "Gladiator Glass"
 }

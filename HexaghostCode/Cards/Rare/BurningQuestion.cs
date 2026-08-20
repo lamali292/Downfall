@@ -15,11 +15,11 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class BurningQuestion : HexaghostCardModel
 {
-    public BurningQuestion() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public BurningQuestion() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<IntensityPower>(3, 1);
-        WithPower<MetallicizePower>(6, 2);
-        this.WithPower<RoyaltiesPower>(40, 10, false);
+        WithPower<IntensityPower>(2, 1);
+        WithPower<MetallicizePower>(4, 2);
+        this.WithPower<RoyaltiesPower>(35, 10, false);
     }
 
     public override bool CanBeGeneratedInCombat => false;

@@ -11,7 +11,7 @@ public class StasisField : GuardianCardModel
 {
     public StasisField() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(6, 2);
+        WithBlock(5, 3);
         WithTip(GuardianTip.Stasis);
     }
 

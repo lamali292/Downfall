@@ -12,7 +12,7 @@ public class RainOfEmbers : HexaghostCardModel
 {
     public RainOfEmbers() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(6, 3);
+        WithDamage(6, 2);
         WithPower<WeakPower>(1);
     }
 

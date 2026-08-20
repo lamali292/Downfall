@@ -13,8 +13,8 @@ public class ChainLash : ChampCardModel
 {
     public ChainLash() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(3, 2);
-        this.WithPower<ChainLashPower>(2, 1, false);
+        WithDamage(5, 2);
+        this.WithPower<ChainLashPower>(1, 1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 

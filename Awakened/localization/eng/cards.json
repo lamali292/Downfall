@@ -181,7 +181,7 @@
   "AWAKENED-SPELLSHIELD.title": "Spellshield",
   "AWAKENED-SPEW.description": "Deal {Damage:diff()} damage.\n{energyPrefix:energyIcons(1)} spent on this card counts as being [gold]Drained[/gold].",
   "AWAKENED-SPEW.title": "Spew",
-  "AWAKENED-SPLIT_WIDE.description": "Deal {Damage:diff()} damage.\nWhenever you attack this enemy, gain {SplitWidePower:diff()} [gold]Strength[/gold] for one turn.",
+  "AWAKENED-SPLIT_WIDE.description": "Deal {Damage:diff()} damage.\nWhenever you attack this enemy, gain {SplitWidePower:diff()} [gold]Strength[/gold] that turn.",
   "AWAKENED-SPLIT_WIDE.title": "Split Wide",
   "AWAKENED-SPREADING_SPORES.description": "Gain {ThornsPower:diff()} [gold]Thorns[/gold].\nShuffle a copy of this into your [gold]Draw Pile[/gold].",
   "AWAKENED-SPREADING_SPORES.title": "Spreading Spores",
