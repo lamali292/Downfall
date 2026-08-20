@@ -58,7 +58,6 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
                 if (encodable is PowerEncode)
                     break;
             }
-               
     }
 
     private CardType CalcType()
@@ -75,7 +74,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     {
         var encoded = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).ToList();
         if (encoded.Any(e => e is PowerEncode)) return TargetType.Self;
-        
+
         var targetTypes = encoded.Select(e => e.Target).Distinct()
             .ToList();
         if (targetTypes.Contains(TargetType.AnyEnemy)) return TargetType.AnyEnemy;
@@ -115,36 +114,36 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
     }
 
+
     private string GetDynamicTitle(IReadOnlyList<CardModel> sourceCards)
     {
         if (sourceCards.Count == 0)
             return new LocString("cards", Id.Entry + ".title").GetFormattedText();
 
-        var sb = new StringBuilder();
+        var prefix = Encode(0, ".functionPrefix", card => card.Title.ToLowerInvariant());
+        var name = Encode(1, ".functionName", card => card.Title);
+        var end3 = Encode(2, ".functionEnd", card => card.Title[0].ToString());
+        var end4 = Encode(3, ".functionEnd", card => card.Title[0].ToString());
+        var parenthesesLoc = new LocString("encode", "AUTOMATON-FUNCTION.functionParentheses");
+        var parentheses = parenthesesLoc.Exists() ? parenthesesLoc.GetFormattedText() : "()";
 
-        for (var i = 0; i < sourceCards.Count; i++)
+        var functionName = new LocString("encode", "AUTOMATON-FUNCTION.title");
+        
+        functionName.Add("prefix", prefix);
+        functionName.Add("name", name);
+        functionName.Add("end3", end3);
+        functionName.Add("end4", end4);
+        functionName.Add("parentheses", parentheses);
+        return functionName.GetFormattedText();
+
+        string Encode(int index, string suffix, Func<CardModel, string>? fallback = null)
         {
-            var card = sourceCards[i];
-            switch (i)
-            {
-                case 0:
-                    var prefix = new LocString("encode", card.Id.Entry + ".functionPrefix");
-                    sb.Append(prefix.Exists() ? prefix.GetFormattedText() : "");
-                    break;
-                case 1:
-                    var name = new LocString("encode", card.Id.Entry + ".functionName");
-                    sb.Append(name.Exists() ? name.GetFormattedText() : "");
-                    break;
-                case 2:
-                case 3:
-                    // Don't use id for this, lol
-                    sb.Append(card.Title[0]);
-                    break;
-            }
-        }
+            if (sourceCards.Count <= index)
+                return "";
 
-        sb.Append("()");
-        return sb.ToString();
+            var loc = new LocString("encode", sourceCards[index].Id.Entry + suffix);
+            return loc.Exists() ? loc.GetFormattedText() : fallback?.Invoke(sourceCards[index]) ?? "";
+        }
     }
 
 
