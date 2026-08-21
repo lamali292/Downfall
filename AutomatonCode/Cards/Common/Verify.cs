@@ -27,6 +27,6 @@ public class Verify : AutomatonCardModel
             Owner,
             new CardSelectorPrefs(StashCmd.StashSelectionPrompt, 1))).FirstOrDefault();
         if (card == null) return;
-        await StashCmd.Stash(card);
+        await StashCmd.Stash(ctx, card);
     }
 }

@@ -23,7 +23,7 @@ public sealed class OldLocket : HermitRelicModel
 
     public override RelicModel GetUpgradeReplacement()
     {
-        return ModelDb.Relic<ClaspedLocket>();
+        return ModelDb.Relic<ScorchedLocket>();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,

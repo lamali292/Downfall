@@ -20,7 +20,7 @@ public class SummonOrbPower : AutomatonPowerModel
                         e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState));
 
         if (playedThisTurn > Amount) return;
-        await StashCmd.Stash(cardPlay.Card);
+        await StashCmd.Stash(ctx, cardPlay.Card);
         Flash();
     }
 }

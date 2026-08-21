@@ -80,6 +80,17 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         _hoverTips.Add(tipSource);
         return this;
     }
+    
+    protected ConstructedRelicModel WithCardTip<T>(Action<T, RelicModel>? modifyTipCard = null)
+        where T : CardModel
+    {
+        return WithTip(new RelicTooltipSource(relic =>
+        {
+            var mutable = ModelDb.Card<T>().ToMutable();
+            if (mutable is T obj2) modifyTipCard?.Invoke(obj2, relic);
+            return HoverTipFactory.FromCard(mutable);
+        }));
+    }
 
     protected ConstructedRelicModel WithTips(
         Func<RelicModel, IEnumerable<IHoverTip>> multiTipSource)

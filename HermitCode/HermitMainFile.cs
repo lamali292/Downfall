@@ -31,7 +31,6 @@ public static class HermitMainFile
 
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(DeadOnPatch))
-            .Add(typeof(ShotglassLimitPatch))
             .Add(typeof(HandRefreshLayoutPatch))
             .Add(typeof(TransformShineUpdateCardPatch))
             .Add(typeof(HandChangedPatches))
