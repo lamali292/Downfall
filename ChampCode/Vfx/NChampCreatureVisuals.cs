@@ -65,6 +65,10 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
                 break;
             case "Cast":
                 break;
+            case "jumpAttack":
+                _animState?.SetAnimationWithMix("attack_jump", HitMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
             case "Dead":
                 _animState?.SetAnimationWithMix(DeathAnim, DeathMix, false);
                 break;
