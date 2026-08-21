@@ -14,7 +14,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Champ.ChampCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class ChampMainFile : Node
+public static class ChampMainFile
 {
     public const string ModId = "Champ"; //At the moment, this is used only for the Logger and harmony names.
 

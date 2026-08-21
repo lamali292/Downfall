@@ -10,7 +10,7 @@ namespace Guardian.GuardianCode.Cards.Rare;
 [Pool(typeof(GuardianCardPool))]
 public class SphericShield : GuardianCardModel
 {
-    public SphericShield() : base(4, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SphericShield() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         this.WithBrace(10, 3);
         WithKeyword(CardKeyword.Exhaust);
