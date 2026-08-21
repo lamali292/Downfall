@@ -6,6 +6,7 @@ using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace Champ.ChampCode.Cards.Basic;
 
@@ -25,6 +26,8 @@ public class Execute : ChampCardModel, ITranscendenceCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 2, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+            .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character), Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
+            .Execute(ctx);
     }
 }

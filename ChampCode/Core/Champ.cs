@@ -53,7 +53,7 @@ public class Champ : DownfallCharacterModel
         ModelDb.Relic<ChampionsCrown>()
     ];
 
-    public override float AttackAnimDelay => 0.15f;
+    public override float AttackAnimDelay => 0.4f;
 
     public override float CastAnimDelay => 0.25f;
 
@@ -61,73 +61,15 @@ public class Champ : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ChampPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
     
-    /*
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public static string GetJumpAnimIfApplicable(CharacterModel character)
     {
-        var idleNone = new AnimState("Idle", true);
-        var idleBerserker = new AnimState("IdleBerserker", true);
-        var idleDefensive = new AnimState("IdleDefensive", true);
-        var idleUltimate = new AnimState("IdleUltimate", true);
-        var idleGladiator = new AnimState("IdleGladiator", true);
-
-        var hitNone = new AnimState("Hit");
-        var hitBerserker = new AnimState("HitBerserker");
-        var hitDefensive = new AnimState("HitDefensive");
-        var hitUltimate = new AnimState("IdleUltimate");
-        var hitGladiator = new AnimState("HitGladiator");
-
-        hitNone.NextState = idleNone;
-        hitBerserker.NextState = idleBerserker;
-        hitDefensive.NextState = idleDefensive;
-        hitUltimate.NextState = idleUltimate;
-        hitGladiator.NextState = idleGladiator;
-
-        var attackNone = new AnimState("Attack");
-        var attackBerserker = new AnimState("Attack");
-        var attackDefensive = new AnimState("Attack");
-        var attackUltimate = new AnimState("Attack");
-        var attackGladiator = new AnimState("Attack");
-
-        attackNone.NextState = idleNone;
-        attackBerserker.NextState = idleBerserker;
-        attackDefensive.NextState = idleDefensive;
-        attackUltimate.NextState = idleUltimate;
-        attackGladiator.NextState = idleGladiator;
-
-        var deadState = new AnimState("Idle");
-
-        var animator = new CreatureAnimator(idleNone, controller);
-
-        animator.AddAnyState("Dead", deadState);
-
-        animator.AddAnyState("Attack", attackNone, IsInStance<ChampNoStance>);
-        animator.AddAnyState("Attack", attackBerserker, IsInStance<ChampBerserkerStance>);
-        animator.AddAnyState("Attack", attackDefensive, IsInStance<ChampDefensiveStance>);
-        animator.AddAnyState("Attack", attackUltimate, IsInStance<ChampUltimateStance>);
-        animator.AddAnyState("Attack", attackGladiator, IsInStance<ChampGladiatorStance>);
-
-        animator.AddAnyState("Idle", idleNone, IsInStance<ChampNoStance>);
-        animator.AddAnyState("Idle", idleBerserker, IsInStance<ChampBerserkerStance>);
-        animator.AddAnyState("Idle", idleDefensive, IsInStance<ChampDefensiveStance>);
-        animator.AddAnyState("Idle", idleUltimate, IsInStance<ChampUltimateStance>);
-        animator.AddAnyState("Idle", idleGladiator, IsInStance<ChampGladiatorStance>);
-
-        animator.AddAnyState("Hit", hitNone, IsInStance<ChampNoStance>);
-        animator.AddAnyState("Hit", hitBerserker, IsInStance<ChampBerserkerStance>);
-        animator.AddAnyState("Hit", hitDefensive, IsInStance<ChampDefensiveStance>);
-        animator.AddAnyState("Hit", hitUltimate, IsInStance<ChampUltimateStance>);
-        animator.AddAnyState("Hit", hitGladiator, IsInStance<ChampGladiatorStance>);
-
-
-        return animator;
-
-        bool IsInStance<T>() where T : ChampStanceModel
-        {
-            return ControllerToPlayer.TryGetValue(controller, out var player)
-                   && ChampModel.IsInStance<T>(player);
-        }
+        return character is not Champ ? "Attack" : "jumpAttack";
     }
-    */
+
+    public static float GetJumpAttackDelayIfApplicable(CharacterModel character)
+    {
+        return character is not Champ ? character.AttackAnimDelay : 0.5f;
+    }
 }
 
 public class ChampRelicPool : DownfallRelicPool<Champ>;
