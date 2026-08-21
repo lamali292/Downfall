@@ -31,7 +31,6 @@ public class DownfallPatchManager
             .Add(typeof(FindOnTablePatch))
             .Add(typeof(FromChooseACardScreenPatch))
             .Add(typeof(GetModdedLocTablesPatch))
-            .Add(typeof(LocManagerPatch))
             .Add(typeof(ModifyCardDescriptionPatch))
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))

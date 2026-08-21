@@ -8,7 +8,6 @@ using Downfall.DownfallCode.Audio;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
-using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -86,12 +85,6 @@ public partial class DownfallMainFile : Node
                 stack?.PushSubmenuType<NArtVotingScreen>();
             }
         });*/
-
-        LocFormatterRegistry.Register(
-            new PowerIconFormatter(),
-            new PreviewPluralFormatter(),
-            new PreviewValueFormatter(),
-            new PlusIfUpgradedFormatter());
 
         // mention downfall sts1 credits somewhere
         ModCredits.Register<DownfallMainFile>(

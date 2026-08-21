@@ -1,8 +1,9 @@
-﻿using SmartFormat.Core.Extensions;
+﻿using BaseLib.Abstracts;
+using SmartFormat.Core.Extensions;
 
 namespace Champ.ChampCode.Localization;
 
-public class FinisherFormatter : IFormatter
+public class FinisherFormatter : IAutoRegisterFormatSpecifier
 {
     public string Name
     {
