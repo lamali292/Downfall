@@ -18,7 +18,7 @@ public class OverheatPower : AutomatonPowerModel
         if (creator == null || creator.Creature != Applier)
             return;
         Flash();
-        await DownfallCreatureCmd.Damage(ctx, Owner, Amount,
+        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount,
             DamageProps.nonCardHpLoss, card.Owner.Creature, card, null);
         await PowerCmd.Remove(this);
     }

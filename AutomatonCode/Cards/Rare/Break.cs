@@ -28,6 +28,6 @@ public class Break : AutomatonCardModel
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Hand);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Draw, CardPilePosition.Random);
         await DownfallCardCmd.GiveCard<Error>(Owner, PileType.Discard);
-        await StashCmd.Stash<Error>(Owner);
+        await StashCmd.Stash<Error>(ctx, Owner);
     }
 }

@@ -1,0 +1,5 @@
+{
+  "HERMIT-SEETHING.title": "Seething",
+  "HERMIT-SEETHING.description": "The first time you play this card each turn, return it to your [gold]Hand[/gold], gain {Energy:energyIcons()}, and draw {Cards:plural:a card|{} cards}.",
+  "HERMIT-SEETHING.extraCardText": "Return this card to your [gold]Hand[/gold].\nGain {Energy:energyIcons()}.\nDraw {Cards:plural:a card|{} cards}. "
+}

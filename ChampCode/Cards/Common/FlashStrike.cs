@@ -13,15 +13,13 @@ public class FlashStrike : ChampCardModel, IDefensiveComboCard
     public FlashStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithBlock(5, 2);
-        WithPower<CounterPower>(4, 2);
+        WithPower<CounterPower>(6, 3);
         WithTags(CardTag.Strike);
     }
 
     public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<CounterPower>(ctx, this);
-        await CommonActions.CardBlock(this, cardPlay);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

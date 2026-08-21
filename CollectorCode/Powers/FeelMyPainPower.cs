@@ -15,7 +15,7 @@ public class FeelMyPainPower : CollectorPowerModel
         if (card.Owner.Creature != Owner) return;
         var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (creature == null) return;
-        await DownfallCreatureCmd.Damage(ctx, creature, Amount,
+        await CompatibilityCreatureCmd.Damage(ctx, creature, Amount,
             DamageProps.nonCardHpLoss, Owner, null, null);
         Flash();
     }

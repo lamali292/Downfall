@@ -12,7 +12,7 @@
   "GUARDIAN-POLISH.title": "Polish",
   "GUARDIAN-POLISH.description": "Reduce your [gold]Weak[/gold], [gold]Frail[/gold], and [gold]Vulnerable[/gold] by X each.\nConvert X stacks of temporary buffs into permanent buffs.",
   "GUARDIAN-SOCKET.title": "Socket",
-  "GUARDIAN-SOCKET.description": "[gold]Gems[/gold] can be placed into this Socket at a Rest Site.",
+  "GUARDIAN-SOCKET.description": "Can be forged with a [gold]Gem[/gold] at a Rest Site to permanently absorb its effect.",
   "GUARDIAN-STASIS.title": "Stasis",
   "GUARDIAN-STASIS.description": "A card in [gold]Stasis[/gold] stays for turns equal to its cost +[blue]1[/blue]. When it exits, it returns to your [gold]Hand[/gold] and is free until played.",
   "GUARDIAN-TICK.title": "Tick",

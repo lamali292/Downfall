@@ -12,9 +12,10 @@ namespace Hermit.HermitCode.Relics;
 ///     First 1 times you use a potion each combat, gain a random potion.
 ///     You can only use 1 potions each combat.
 /// </summary>
+[Obsolete]
 public sealed class Shotglass : HermitRelicModel
 {
-    public Shotglass() : base(RelicRarity.Shop)
+    public Shotglass() : base(RelicRarity.Shop, false)
     {
         WithVar("Limit", 1);
     }

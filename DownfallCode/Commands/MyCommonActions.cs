@@ -60,7 +60,7 @@ public static class MyCommonActions
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
-        await DownfallCreatureCmd.Damage(ctx, targets, model.DynamicVars.HpLoss.BaseValue,
+        await CompatibilityCreatureCmd.Damage(ctx, targets, model.DynamicVars.HpLoss.BaseValue,
             model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.Creature, model as CardModel, null);
     }
 

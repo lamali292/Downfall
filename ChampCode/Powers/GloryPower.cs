@@ -13,6 +13,7 @@ public class GloryPower : ChampPowerModel
     public GloryPower()
     {
         WithTip(new PowerTooltipSource(_ => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip));
+        WithCards(1);
     }
     
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
@@ -20,6 +21,7 @@ public class GloryPower : ChampPowerModel
         if (player.Creature != Owner) return;
         if (Amount < 10) return;
         await PowerCmd.Apply<UltimateStancePower>(ctx, Owner, 1, Owner, null);
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue, player);
         await PowerCmd.ModifyAmount(ctx, this, -10, Owner, null);
     }
 }

@@ -16,7 +16,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Automaton.AutomatonCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class AutomatonMainFile : Node
+public static class AutomatonMainFile
 {
     public const string ModId = "Automaton"; //At the moment, this is used only for the Logger and harmony names.
 

@@ -35,7 +35,7 @@ public static class HexaghostCmd
     
     public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
     {
-        if(creature == null)   return Task.CompletedTask;
+        if(creature == null) return Task.CompletedTask;
         var child = NGroundFireVfx.Create(creature, VfxColor.Green);
         if (child == null)
             return Task.CompletedTask;

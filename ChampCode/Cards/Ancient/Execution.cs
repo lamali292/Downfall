@@ -23,7 +23,9 @@ public class Execution : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 4).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, 4, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+            .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character), Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
+          .Execute(ctx);
     }
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

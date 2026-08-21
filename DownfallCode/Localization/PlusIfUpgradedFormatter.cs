@@ -1,10 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Localization;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using SmartFormat.Core.Extensions;
 
 namespace Downfall.DownfallCode.Localization;
 
-public class PlusIfUpgradedFormatter : IFormatter
+public class PlusIfUpgradedFormatter : IAutoRegisterFormatSpecifier
 {
     public string Name
     {

@@ -6,9 +6,10 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
+[Obsolete]
 public class ScopeOut : HermitCardModel
 {
-    public ScopeOut() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public ScopeOut() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
         WithPower<StrengthPower>(1, 2);
         this.WithPower<ScopeOutPower>(1, false);

@@ -1,15 +1,18 @@
 ﻿using Champ.ChampCode.Core;
+using Champ.ChampCode.Events;
+using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Powers;
 
-public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single)
+public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single), IOnChampStanceChange
 {
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
@@ -26,5 +29,12 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
         if (side == Owner.Side || Owner.Player == null) return;
         await ChampCmd.ClearStance(ctx, Owner.Player);
         await PowerCmd.Remove(this);
+    }
+
+    public Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance)
+    {
+        if (Owner.Player != player || newStance is ChampUltimateStance) return Task.CompletedTask;
+        return ChampCmd.EnterUltimateStance(ctx, player);
     }
 }

@@ -11,6 +11,7 @@ public class ChampBerserkerStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
 
+    protected override int MaxCharges => 2;
     public override bool HasFinisher => true;
     public override string ChargeIconPath => "res://Champ/images/ui/stance_charge_berserker.png";
 

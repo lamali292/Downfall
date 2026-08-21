@@ -13,7 +13,7 @@ public class FierceBash : GuardianCardModel, ITickCard
 {
     public FierceBash() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(18, 4);
+        WithDamage(16, 4);
         WithVar("Increase", 2);
         WithTip(GuardianTip.Stasis);
         WithTip(GuardianTip.Tick);

@@ -15,11 +15,11 @@ namespace Hexaghost.HexaghostCode.Cards.Rare;
 [Pool(typeof(HexaghostCardPool))]
 public class BurningQuestion : HexaghostCardModel
 {
-    public BurningQuestion() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public BurningQuestion() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<IntensityPower>(3, 1);
-        WithPower<MetallicizePower>(6, 2);
-        this.WithPower<RoyaltiesPower>(40, 10, false);
+        WithPower<IntensityPower>(2, 1);
+        WithPower<MetallicizePower>(4, 2);
+        this.WithPower<RoyaltiesPower>(35, 10, false);
     }
 
     public override bool CanBeGeneratedInCombat => false;
@@ -55,7 +55,7 @@ public class BurningQuestionChoice1 : BurningQuestionChoiceBase
 {
     public BurningQuestionChoice1()
     {
-        WithPower<IntensityPower>(3, 1);
+        WithPower<IntensityPower>(2, 1);
     }
 
     public static BurningQuestionChoice1 Create(Player owner)
@@ -73,7 +73,7 @@ public class BurningQuestionChoice2 : BurningQuestionChoiceBase
 {
     public BurningQuestionChoice2()
     {
-        WithPower<MetallicizePower>(6, 2);
+        WithPower<MetallicizePower>(4, 2);
     }
 
     public static BurningQuestionChoice2 Create(Player owner)
@@ -92,7 +92,7 @@ public class BurningQuestionChoice3 : BurningQuestionChoiceBase
 {
     public BurningQuestionChoice3()
     {
-        WithPower<RoyaltiesPower>(40, 10);
+        WithPower<RoyaltiesPower>(35, 10);
     }
 
     public static BurningQuestionChoice3 Create(Player owner)

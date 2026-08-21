@@ -18,11 +18,11 @@ public class BitShift : AutomatonCardModel
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         var cards = Owner.DrawPile;
         if (cards.Count == 0) return;
-        await StashCmd.Stash(cards[0]);
+        await StashCmd.Stash(ctx, cards[0]);
     }
 }

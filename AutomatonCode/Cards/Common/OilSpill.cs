@@ -24,9 +24,9 @@ public class OilSpill : AutomatonCardModel, IEncodable, ICompilable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public Task OnCompile(PlayerChoiceContext context)
+    public Task OnCompile(PlayerChoiceContext ctx)
     {
-        return StashCmd.Stash<Error>(Owner);
+        return StashCmd.Stash<Error>(ctx, Owner);
     }
 
     public IEnumerable<Encodable> Encodings => [new DamageEncode(), new PoisonEncode()];

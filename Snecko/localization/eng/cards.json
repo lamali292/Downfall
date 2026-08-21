@@ -174,7 +174,7 @@
   "SNECKO-SSSHARING.title": "Sssharing",
   "SNECKO-SSSHARING.description": "ALL players add {Cards:diff()} random [gold]Offclass[/gold] {Cards:plural:card|cards} into their [gold]Hand[/gold].\n{Cards:plural:It's|They're} free to play this turn.",
   "SNECKO-MIMICRY.title": "Mimicry",
-  "SNECKO-MIMICRY.description": "Whenever you play an [gold]Offclass[/gold] card, gain {MimicryPower:diff()} [gold]Strength[/gold] for one turn.",
+  "SNECKO-MIMICRY.description": "Whenever you play an [gold]Offclass[/gold] card, gain {MimicryPower:diff()} [gold]Strength[/gold] that turn.",
   "SNECKO-WHIPLASH.title": "Whiplash",
   "SNECKO-WHIPLASH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Overflow[/gold]: Apply {PowerVar:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies, increased by the cost of this card.",
   "SNECKO-SNATCH.title": "Snatch",

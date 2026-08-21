@@ -25,6 +25,6 @@ public class WildStrike : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await StashCmd.Stash<Wound>(Owner);
+        await StashCmd.Stash<Wound>(ctx, Owner);
     }
 }

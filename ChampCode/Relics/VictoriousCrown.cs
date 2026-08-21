@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,8 +14,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
-public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinisher
+public class VictoriousCrown : ChampRelicModel, IOnFinisher
 {
+
+    public VictoriousCrown() : base(RelicRarity.Starter)
+    {
+        WithTip(ChampTip.Stance);
+        WithTip(ChampKeyword.TriggerSkillBonus);
+        WithTip(ChampTip.Finisher);
+        WithCards(1);
+    }
+    
     private CardPlay? _triggeringCardPlay;
     private bool _usedThisTurn;
 
@@ -49,6 +60,6 @@ public class VictoriousCrown() : ChampRelicModel(RelicRarity.Starter), IOnFinish
         await ChampCmd.EnterDifferentStance(ctx, player);
         var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
-        await stance.SkillBonus(ctx);
+        await MyCommonActions.Draw(this, ctx);
     }
 }

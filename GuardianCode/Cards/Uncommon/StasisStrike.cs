@@ -12,7 +12,7 @@ public class StasisStrike : GuardianCardModel
 {
     public StasisStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(16, 4);
+        WithDamage(15, 5);
         WithVar("StasisSlots", 1);
         WithTags(CardTag.Strike);
         WithTip(GuardianTip.Stasis);

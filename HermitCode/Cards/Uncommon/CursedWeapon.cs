@@ -84,7 +84,7 @@ public sealed class CursedWeapon : HermitCardModel
 
 protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
 {
-    await DownfallCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+    await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
         DamageProps.cardHpLoss, Owner.Creature, this, play);
 
     await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
