@@ -10,7 +10,7 @@
     "GUARDIAN-PACKAGE.title": "组件",
     "GUARDIAN-PACKAGE.description": "一个组件包含三张卡牌，灵感来自于尖塔造物。",
     "GUARDIAN-POLISH.title": "抛光",
-    "GUARDIAN-POLISH.description": "移除你的[gold]虚弱[/gold]、[gold]脆弱[/gold]和[gold]易伤[/gold]各X层。\n将X层临时增益转化为永久增益。",
+    "GUARDIAN-POLISH.description": "移除相应层数的[gold]虚弱[/gold]、[gold]脆弱[/gold]和[gold]易伤[/gold]。\n将相应层数的临时增益转化为永久增益。",
     "GUARDIAN-SOCKET.title": "槽位",
     "GUARDIAN-SOCKET.description": "[gold]宝石[/gold]能够被镶嵌至有槽位的牌上。",
     "GUARDIAN-STASIS.title": "凝滞",
