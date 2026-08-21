@@ -14,9 +14,9 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class CharredGlove : HermitRelicModel
 {
-    public CharredGlove() : base(RelicRarity.Rare)
+    public CharredGlove() : base(RelicRarity.Uncommon)
     {
-        WithPower<VigorPower>(4);
+        WithPower<VigorPower>(3);
     }
 
     protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)

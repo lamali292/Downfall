@@ -30,7 +30,7 @@ public class Hexaghost : DownfallCharacterModel
     public override float CardColorV => 0.8f;
     public override Color MapDrawingColor => Color;
 
-    public override CharacterGender Gender => CharacterGender.Neutral;
+    public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 66;
     public override int StartingGold => 99;

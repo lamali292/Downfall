@@ -24,7 +24,7 @@ public class SignInBlood : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
-        await DownfallCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue, DamageProps.cardHpLoss, this, cardPlay);
+        await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue, DamageProps.cardHpLoss, this, cardPlay);
         await CommonActions.Draw(this, ctx);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }

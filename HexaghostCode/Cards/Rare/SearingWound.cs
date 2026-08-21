@@ -30,7 +30,7 @@ public class SearingWound : HexaghostCardModel
             if (amount <= 0) continue;
             await HexaghostCmd.SoulburnEffect(enemy, scale);
             scale *= 0.9f;
-            await DownfallCreatureCmd.Damage(ctx, enemy, amount,
+            await CompatibilityCreatureCmd.Damage(ctx, enemy, amount,
                 DamageProps.cardHpLoss,
                 Owner.Creature, this, cardPlay);
         }

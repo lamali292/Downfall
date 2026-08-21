@@ -15,6 +15,10 @@ public static class AutomatonHook
         return HookUtils.Dispatch<IOnEncode>(cs, ctx, m => m.OnCardEncoded(ctx, card));
     }
 
+    public static Task AfterCardsStashed(ICombatState? cs,  PlayerChoiceContext ctx, Player player, IEnumerable<CardModel> stashedCards, IEnumerable<CardModel> overflowCards)
+    {
+        return HookUtils.Dispatch<IAfterCardStashed>(cs, ctx, m => m.AfterCardsStashed(ctx, player, stashedCards, overflowCards));
+    }
 
     public static int ModifyStashDraw(ICombatState cs, int orignal, Player player,
         out IEnumerable<IModifyStashDraw> modifiers)
@@ -43,3 +47,4 @@ public static class AutomatonHook
             m => m.AfterCompilingFunction(ctx, player, result));
     }
 }
+

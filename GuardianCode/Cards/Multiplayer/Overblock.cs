@@ -15,7 +15,8 @@ public class Overblock : GuardianCardModel
 {
     public Overblock() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        WithKeyword(CardKeyword.Ethereal);
+        WithCostUpgradeBy(-1);
         WithTip(GuardianTip.DefensiveMode);
         WithTip(StaticHoverTip.Block);
         this.WithTip<ThornsPower>();

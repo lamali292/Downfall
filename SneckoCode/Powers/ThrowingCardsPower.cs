@@ -28,7 +28,7 @@ public class ThrowingCardsPower : SneckoPowerModel
         Flash();
         await PowerCmd.Decrement(this);
         if (a != null)
-            await DownfallCreatureCmd.Damage(ctx, a, DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered, 
+            await CompatibilityCreatureCmd.Damage(ctx, a, DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered, 
                 Owner, null, null);
         await MyCommonActions.Draw( this, ctx);
     }

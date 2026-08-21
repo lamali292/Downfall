@@ -1,9 +1,10 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Abstract;
 using SmartFormat.Core.Extensions;
 
 namespace Downfall.DownfallCode.Localization;
 
-public class PowerIconFormatter : IFormatter
+public class PowerIconFormatter : IAutoRegisterFormatSpecifier
 {
     public string Name
     {

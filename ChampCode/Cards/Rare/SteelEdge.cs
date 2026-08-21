@@ -24,7 +24,9 @@ public class SteelEdge : ChampCardModel
     {
         var x = ResolveEnergyXValue();
         if (x > 0)
-            await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
+            await CommonActions.CardAttack(this, cardPlay, x, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+                .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character), Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
+                .Execute(ctx);
     }
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

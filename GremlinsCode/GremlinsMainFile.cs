@@ -18,7 +18,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Gremlins.GremlinsCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class GremlinsMainFile : Node
+public static class GremlinsMainFile
 {
     public const string ModId = "Gremlins"; //At the moment, this is used only for the Logger and harmony names.
 

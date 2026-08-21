@@ -31,12 +31,12 @@ public class DownfallPatchManager
             .Add(typeof(FindOnTablePatch))
             .Add(typeof(FromChooseACardScreenPatch))
             .Add(typeof(GetModdedLocTablesPatch))
-            .Add(typeof(LocManagerPatch))
             .Add(typeof(ModifyCardDescriptionPatch))
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PlayOneShotPatch))
             .Add(typeof(PlayOneShotDictPatch))
+            .Add(typeof(SfxPlayPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
             .Add(typeof(NCreatureAnimationPatch))
             .Add(typeof(FakeMerchantAnimationPatch))
@@ -63,6 +63,8 @@ public class DownfallPatchManager
             .Add(typeof(CardCmdTransformTransformHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PatchCreatureHoverTips))
+            .Add(typeof(MainMenuButtonsPatch))
+            .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 

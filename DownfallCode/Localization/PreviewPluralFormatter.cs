@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using SmartFormat.Core.Extensions;
 using SmartFormat.Core.Formatting;
@@ -6,7 +7,7 @@ using SmartFormat.Utilities;
 
 namespace Downfall.DownfallCode.Localization;
 
-public class PreviewPluralFormatter : IFormatter
+public class PreviewPluralFormatter : IAutoRegisterFormatSpecifier
 {
     public string Name { get; set; } = "pplural";
     public bool CanAutoDetect { get; set; } = false;

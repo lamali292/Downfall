@@ -16,11 +16,12 @@ namespace Hermit.HermitCode.Relics;
 ///     Replaces [gold]Old Locket[/gold]. First time you draw a curse each turn, [gold]Exhaust[/gold] it and draw 2 cards.
 ///     Upon pickup, obtain 2 [gold]Injuries[/gold].
 /// </summary>
+[Obsolete]
 public sealed class ClaspedLocket : HermitRelicModel
 {
     private bool _usedThisTurn;
 
-    public ClaspedLocket() : base(RelicRarity.Starter)
+    public ClaspedLocket() : base(RelicRarity.Starter, false)
     {
         WithVars(new CardsVar(3));
         WithVar("Curses", 2);

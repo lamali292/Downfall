@@ -13,8 +13,8 @@ public class
 {
     public WinnersCircle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(7, 3);
-        this.WithGlory(2, 1);
+        WithBlock(8, 2);
+        this.WithGlory(3, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

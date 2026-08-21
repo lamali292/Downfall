@@ -59,12 +59,13 @@ public partial class NSpellbookDisplay : Control
     public void Refresh()
     {
         if (_trackedPlayer == null) return;
-
-        foreach (var icon in _iconNodes) icon.QueueFree();
-        _iconNodes.Clear();
-
-        foreach (var wrapper in _iconWrappers) wrapper.QueueFree();
+        if (!IsInstanceValid(this) || !IsInsideTree()) return;
+        foreach (var wrapper in _iconWrappers.Where(IsInstanceValid))
+        {
+            wrapper.QueueFree();
+        }
         _iconWrappers.Clear();
+        _iconNodes.Clear();
 
         var spellbook = AwakenedCmd.GetSpellbookOrThrow(_trackedPlayer);
 

@@ -24,7 +24,7 @@ public class DamageEncode : Encodable
                 .FromCardCompatibility(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
-        return DownfallCreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered,
+        return CompatibilityCreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered,
             model.Creature, null, null);
     }
 

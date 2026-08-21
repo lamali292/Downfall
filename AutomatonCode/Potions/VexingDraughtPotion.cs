@@ -24,6 +24,6 @@ public class VexingDraughtPotion : AutomatonPotionModel
     {
         await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
         await MyCommonActions.ApplySelf<DexterityPower>(ctx, this);
-        await StashCmd.Stash<Burn>(Owner, 2);
+        await StashCmd.Stash<Burn>(ctx, Owner, 2);
     }
 }

@@ -14,6 +14,6 @@ public class DaggerstormPower : AwakenedPowerModel
         if (card.Owner.Creature != Owner) return;
         var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.Enemies);
         if (enemy == null) return;
-        await DownfallCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
+        await CompatibilityCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

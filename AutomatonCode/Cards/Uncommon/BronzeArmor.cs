@@ -22,6 +22,6 @@ public class BronzeArmor : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await StashCmd.Stash<Error>(Owner, DynamicVars["Stash"].IntValue);
+        await StashCmd.Stash<Error>(ctx, Owner, DynamicVars["Stash"].IntValue);
     }
 }

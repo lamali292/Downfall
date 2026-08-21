@@ -11,7 +11,7 @@ public class TemporalShield : GuardianCardModel
 {
     public TemporalShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(8, 3);
+        WithBlock(7, 3);
         this.WithAccelerate(1);
     }
 

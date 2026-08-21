@@ -8,12 +8,14 @@ using Downfall.DownfallCode.Audio;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
-using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using Godot;
 using Godot.Bridge;
+using MegaCrit.Sts2.Core.AutoSlay;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -24,7 +26,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Downfall.DownfallCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class DownfallMainFile : Node
+public static class DownfallMainFile
 {
     public const string ModId = "Downfall"; //At the moment, this is used only for the Logger and harmony names.
 
@@ -54,6 +56,21 @@ public partial class DownfallMainFile : Node
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
+        
+        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
+        {
+            Label = "Auto Slay",
+            IsVisible = () => DownfallConfig.DevMode,
+            SubmenuType = null,
+            CreateSubmenu = null,
+            OnPress = stack =>
+            {
+                var slayer = new AutoSlayer();
+                slayer.Start(SeedHelper.GetRandomSeed(), "autoslay.log");
+            }
+        });
+        
+     
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
@@ -69,14 +86,8 @@ public partial class DownfallMainFile : Node
             }
         });*/
 
-        LocFormatterRegistry.Register(
-            new PowerIconFormatter(),
-            new PreviewPluralFormatter(),
-            new PreviewValueFormatter(),
-            new PlusIfUpgradedFormatter());
-
         // mention downfall sts1 credits somewhere
-        ModCredits.Register<DownfallMainFile>(
+        ModCredits.Register(ModId,
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),

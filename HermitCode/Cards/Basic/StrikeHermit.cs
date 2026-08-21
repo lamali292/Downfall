@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.Relics;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,9 @@ public class StrikeHermit : HermitCardModel
         WithDamage(6, 3);
         WithTags(CardTag.Strike);
     }
+
+    public override TargetType TargetType => _owner == null ||
+        Owner.GetRelic<Horseshoe>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
