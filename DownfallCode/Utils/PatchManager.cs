@@ -36,6 +36,7 @@ public class DownfallPatchManager
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PlayOneShotPatch))
             .Add(typeof(PlayOneShotDictPatch))
+            .Add(typeof(SfxPlayPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
             .Add(typeof(NCreatureAnimationPatch))
             .Add(typeof(FakeMerchantAnimationPatch))
