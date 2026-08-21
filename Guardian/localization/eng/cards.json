@@ -153,7 +153,7 @@
   "GUARDIAN-BRILLIANT_SCALES.description": "At the start of your turn:",
   "GUARDIAN-GEM_CARD.description": "",
   "GUARDIAN-ROCK_SLIDE.title": "Rock Slide",
-  "GUARDIAN-ROCK_SLIDE.description": "Deal {Damage:diff()} damage.\nPresocketed with a [gold]Common[/gold], [gold]Uncommon[/gold], and [gold]Rare[/gold] [gold]Gem[/gold].",
+  "GUARDIAN-ROCK_SLIDE.description": "Deal {Damage:diff()} damage.{InCombat:cond:|\\nPresocketed with a [gold]Common[/gold], [gold]Uncommon[/gold], and [gold]Rare[/gold] [gold]Gem[/gold].}",
   "GUARDIAN-HIGH_FREQUENCY.title": "High Frequency",
   "GUARDIAN-HIGH_FREQUENCY.description": "[gold]Exhaust[/gold] a card.\nFill your [gold]Stasis[/gold] slots with copies of it.",
   "GUARDIAN-BRONZE_BRAMBLES.title": "Bronze Brambles",

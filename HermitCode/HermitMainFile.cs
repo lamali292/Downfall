@@ -14,7 +14,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Hermit.HermitCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class HermitMainFile : Node
+public static class HermitMainFile
 {
     public const string ModId = "Hermit";
 

@@ -26,7 +26,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Downfall.DownfallCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class DownfallMainFile : Node
+public static class DownfallMainFile
 {
     public const string ModId = "Downfall"; //At the moment, this is used only for the Logger and harmony names.
 
@@ -87,7 +87,7 @@ public partial class DownfallMainFile : Node
         });*/
 
         // mention downfall sts1 credits somewhere
-        ModCredits.Register<DownfallMainFile>(
+        ModCredits.Register(ModId,
             new ModCredits.Section("TEAM", ModCredits.Layout.Roles),
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),

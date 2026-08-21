@@ -16,7 +16,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Awakened.AwakenedCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class AwakenedMainFile : Node
+public static class AwakenedMainFile
 {
     public const string ModId = "Awakened"; //At the moment, this is used only for the Logger and harmony names.
 

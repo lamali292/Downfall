@@ -11,7 +11,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 namespace Collector.CollectorCode;
 
 [ModInitializer(nameof(Initialize))]
-public partial class CollectorMainFile : Node
+public static class CollectorMainFile
 {
     public const string ModId = "Collector"; //At the moment, this is used only for the Logger and harmony names.
 
