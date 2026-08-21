@@ -18,7 +18,7 @@ public sealed class OldLocket : HermitRelicModel
 {
     public OldLocket() : base(RelicRarity.Starter)
     {
-        WithTips(e => HoverTipFactory.FromCardWithCardHoverTips<MementoCard>());
+        WithCardTip<MementoCard>();
     }
 
     public override RelicModel GetUpgradeReplacement()
