@@ -87,7 +87,7 @@
     "HEXAGHOST-HEAT_METAL.title": "高热金属",
     "HEXAGHOST-HEAT_SHIELD.description": "获得等同于目标[gold]灼魂[/gold]层数的[gold]格挡[/gold]。{IsTargeting:cond:\n（获得{CalculatedBlock:diff()}点[gold]格挡[/gold]）|}",
     "HEXAGHOST-HEAT_SHIELD.title": "高热护盾",
-    "HEXAGHOST-HERE_AND_NOW.description": "回合开始时，获得{energyPrefix:energyIcons(1)}。\n回合结束时，[gold]熄灭[/gold]当前[gold]鬼火[/gold]。",
+    "HEXAGHOST-HERE_AND_NOW.description": "在回合开始时，获得{energyPrefix:energyIcons(1)}。\n在回合结束时，[gold]熄灭[/gold]当前[gold]鬼火[/gold]。",
     "HEXAGHOST-HERE_AND_NOW.title": "此刻",
     "HEXAGHOST-HEXAGUARD.description": "[afterlife]获得[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]\n抽{Cards:diff()}张牌。",
     "HEXAGHOST-HEXAGUARD.title": "六角防护",
