@@ -23,6 +23,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
+        if (player.Creature != Owner) return;
         if (silent) return;
         if (UsesThisTurn <= Amount) await CardPileCmd.Draw(ctx, player);
         UsesThisTurn++;
@@ -33,6 +34,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
         GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
     {
+        if (player.Creature != Owner) return;
         if (silent) return;
         if (UsesThisTurn <= Amount) await CardPileCmd.Draw(ctx, player);
         UsesThisTurn++;
@@ -42,7 +44,7 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved, IHasSecondAmou
     public override Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) return Task.CompletedTask;
+        if (!participants.Contains(Owner)) return Task.CompletedTask;
         UsesThisTurn = 0;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
