@@ -1,6 +1,6 @@
 {
   "HERMIT-OLD_LOCKET.title": "Old Locket",
-  "HERMIT-OLD_LOCKET.flavor": "There's a faded picture inside.",
+  "HERMIT-OLD_LOCKET.flavor": "A faded picture is inside, full of strangely familiar people. And you.",
   "HERMIT-OLD_LOCKET.description": "At the start of each combat, add a [gold]Memento[/gold] into your [gold]Hand[/gold].",
   "HERMIT-RYE_STALK.title": "Rye Stalk",
   "HERMIT-RYE_STALK.flavor": "Still in mint condition, despite being chewed on for so long.",
@@ -44,5 +44,5 @@
   "SEA_GLASS.HERMIT-HERMIT.title": "Drifter Glass",
   "HERMIT-SCORCHED_LOCKET.title": "Scorched Locket",
   "HERMIT-SCORCHED_LOCKET.description": "At the start of each combat, add a [purple]Seething[/purple] [gold]Memento[/gold] into your [gold]Hand[/gold].",
-  "HERMIT-SCORCHED_LOCKET.flavor": "It won't open anymore."
+  "HERMIT-SCORCHED_LOCKET.flavor": "The locket has begun to burn from the inside, emitting black smoke. It never stops."
 }
