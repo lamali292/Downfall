@@ -35,7 +35,7 @@ public class HyperBeamAutomaton : AutomatonCardModel
             .BeforeDamage(BeforeDamageAction)
             .Execute(ctx);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await StashCmd.Stash<Void>(Owner, DynamicVars.Cards.IntValue);
+        await StashCmd.Stash<Void>(ctx, Owner, DynamicVars.Cards.IntValue);
     }
 
     private async Task BeforeDamageAction()

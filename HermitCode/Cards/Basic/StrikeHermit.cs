@@ -16,7 +16,7 @@ public class StrikeHermit : HermitCardModel
         WithTags(CardTag.Strike);
     }
 
-    public override TargetType TargetType =>
+    public override TargetType TargetType => _owner == null ||
         Owner.GetRelic<Horseshoe>() == null ? TargetType.AnyEnemy : TargetType.AllEnemies;
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

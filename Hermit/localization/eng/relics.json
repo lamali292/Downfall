@@ -41,5 +41,8 @@
   "HERMIT-BROKEN_TOOTH.title": "Broken Tooth",
   "HERMIT-BROKEN_TOOTH.flavor": "Appears too large to have come from a human jaw...",
   "HERMIT-BROKEN_TOOTH.description": "Whenever you defeat an Elite encounter, heal [blue]{Heal}[/blue] HP and gain [blue]{Gold}[/blue] gold.",
-  "SEA_GLASS.HERMIT-HERMIT.title": "Drifter Glass"
+  "SEA_GLASS.HERMIT-HERMIT.title": "Drifter Glass",
+  "HERMIT-SCORCHED_LOCKET.title": "Scorched Locket",
+  "HERMIT-SCORCHED_LOCKET.description": "At the start of each combat, add a [purple]Seething[/purple] [gold]Memento[/gold] into your [gold]Hand[/gold].",
+  "HERMIT-SCORCHED_LOCKET.flavor": "It won't open anymore."
 }

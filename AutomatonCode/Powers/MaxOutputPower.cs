@@ -15,11 +15,11 @@ public class MaxOutputPower : AutomatonPowerModel
         WithTip<Error>();
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx,
         ICombatState combatState)
     {
         if (Owner.Player != player || Owner.Player == null) return;
         Flash();
-        await StashCmd.Stash<Error>(player, Amount);
+        await StashCmd.Stash<Error>(ctx, player, Amount);
     }
 }
