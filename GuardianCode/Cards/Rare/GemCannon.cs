@@ -18,7 +18,7 @@ public class GemCannon : GuardianCardModel
 {
     public GemCannon() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(24, 8);
+        WithDamage(16, 6);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(GuardianKeyword.Gem);
     }
