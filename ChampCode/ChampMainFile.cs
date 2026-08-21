@@ -32,7 +32,6 @@ public partial class ChampMainFile : Node
         ChampSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-        LocFormatterRegistry.Register(new FinisherFormatter());
         
         FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
         FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");

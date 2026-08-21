@@ -1,8 +1,6 @@
-using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
-using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -18,17 +16,17 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
 {
-    private const int TriggerOnCardNumber = 4;
 
     private int _cardsPlayedThisTurn;
 
-    public Spyglass() : base(RelicRarity.Uncommon)
+    public Spyglass() : base(RelicRarity.Shop)
     {
         WithTip(HermitKeywords.DeadOn);
+        WithCards(3);
     }
 
     public override bool ShowCounter =>
-        CombatManager.Instance.IsInProgress && CardsPlayedThisTurn <= TriggerOnCardNumber;
+        CombatManager.Instance.IsInProgress && CardsPlayedThisTurn <= DynamicVars.Cards.IntValue;
 
     // How many cards until the Dead On card. Shows the count-up toward 4.
     public override int DisplayAmount => _cardsPlayedThisTurn;
@@ -48,7 +46,7 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
     {
         // Light up when the NEXT card played will be the Dead On one.
         var next = _cardsPlayedThisTurn + 1;
-        Status = next == TriggerOnCardNumber ? RelicStatus.Active : RelicStatus.Normal;
+        Status = next == DynamicVars.Cards.IntValue ? RelicStatus.Active : RelicStatus.Normal;
         InvokeDisplayAmountChanged();
     }
 
@@ -80,7 +78,7 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
 
     public bool ShouldTriggerDeadOn(CardModel card)
     {
-        return _cardsPlayedThisTurn + 1 == TriggerOnCardNumber;
+        return _cardsPlayedThisTurn + 1 == DynamicVars.Cards.IntValue;
     }
 
     public override Task AfterCombatEnd(CombatRoom _)

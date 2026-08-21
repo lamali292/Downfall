@@ -36,7 +36,7 @@
   "HERMIT-GAMBIT.title": "All In",
   "HERMIT-GAMBIT.description": "Put {Cards:diff()} random Attacks from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].\nThey cost 1 less {energyPrefix:energyIcons(1)} this turn.",
   "HERMIT-ROUGHHOUSE.title": "Roughhouse",
-  "HERMIT-ROUGHHOUSE.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Gain {Block:diff()} [gold]Block[/gold].",
+  "HERMIT-ROUGHHOUSE.description": "Deal {Damage:diff()} damage.\n[gold]Dead On[/gold]: Gain [gold]Block[/gold] equal to damage dealt.",
   "HERMIT-MALICE.title": "Malice",
   "HERMIT-MALICE.description": "[gold]Exhaust[/gold] a card.\nDeal {Damage:diff()} damage.\nIf you [gold]Exhaust[/gold] a Curse, deal {Damage:diff()} damage to ALL enemies instead.",
   "HERMIT-DEADEYE.title": "Deadeye",
@@ -188,5 +188,7 @@
   "HERMIT-SHARE_THE_LOAD.title": "Share the Load",
   "HERMIT-SHARE_THE_LOAD.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Dead On[/gold]: ALL allies gain {Energy:energyIcons()} and draw {Cards:diff()} cards.",
   "HERMIT-TECHNIQUE.title": "Technique",
-  "HERMIT-TECHNIQUE.description": "EVERYONE'S [gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} additional damage."
+  "HERMIT-TECHNIQUE.description": "EVERYONE'S [gold]Basic[/gold] [gold]Strikes[/gold] deal {MaintenanceStrikePower:diff()} additional damage.",
+  "HERMIT-LONG_SHADOWS.title": "Long Shadows",
+  "HERMIT-LONG_SHADOWS.description": "Whenever you draw a Curse, draw {LongShadowsPower:plural:a card|{LongShadowsPower:diff()} cards}."
 }

@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Logging;
+﻿using MegaCrit.Sts2.Core.AutoSlay;
+using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace Downfall.DownfallCode.Data;
@@ -143,12 +144,19 @@ public sealed class RunMetricsUploader<TPayload>
 
         if (!MetricUtilities.ShouldUploadMetrics()) return false;
 
+        
         if (_config.SkipAbandonedRuns && RunManager.Instance.IsAbandoned)
         {
             log?.Info($"[{mod}] Skipping metrics upload, run was abandoned.");
             return false;
         }
-
+        
+        if (AutoSlayer.IsActive)
+        {
+            log?.Info($"[{mod}] Skipping metrics upload, AutoSlay run.");
+            return false;
+        }
+        
         if (_config.RequireStandardGameMode && run.GameMode != GameMode.Standard)
         {
             log?.Info($"[{mod}] Skipping metrics upload, custom mode detected.");

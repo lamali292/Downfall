@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
+[Obsolete]
 public class ScopeOutPower() : HermitPowerModel(PowerType.Buff, PowerStackType.Single)
 {
     public override Task BeforeAttack(AttackCommand command)
