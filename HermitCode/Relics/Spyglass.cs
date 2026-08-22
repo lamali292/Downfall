@@ -78,6 +78,7 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
 
     public bool ShouldTriggerDeadOn(CardModel card)
     {
+        if (card.Owner != Owner) return false;
         return _cardsPlayedThisTurn + 1 == DynamicVars.Cards.IntValue;
     }
 
