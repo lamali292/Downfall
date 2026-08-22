@@ -74,6 +74,7 @@
     "HERMIT-SPITE.title": "Неприязнь",
     "HERMIT-SPITE.description": "Вы [gold]сжигаете[/gold] все [gold]Неиграбельные[/gold] карты в руке.\nДает {Block:diff()} [gold]защиты[/gold].\nВы добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
     "HERMIT-MANIFEST.title": "Явиться",
+    "HERMIT-MANIFEST.description": "Дает {Block:diff()} [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] [gold]«Травму»[/gold].",
     "HERMIT-FEINT.title": "Уловка",
     "HERMIT-FEINT.description": "Дает {Block:diff()} [gold]защиты[/gold].\nНакладывает {BruisePower:diff()} [gold]{BruisePower:plural(ru):Ушиб|Ушиба|Ушибов}[/gold] на ВСЕХ врагов.",
     "HERMIT-LOW_PROFILE.title": "Пригнуться",
@@ -93,6 +94,7 @@
     "HERMIT-OVERWHELMING_POWER.title": "Ошеломляющая мощь",
     "HERMIT-OVERWHELMING_POWER.description": "Дает {Energy:energyIcons()}.\nВы добираете {Cards:diff()} карты.\nВы теряете {OverwhelmingPowerPower:diff()} ОЗ, когда завершаете ход с {energyPrefix:energyIcons(0)}.",
     "HERMIT-MAINTENANCE.title": "Обслуживание",
+    "HERMIT-MAINTENANCE.description": "Ваши [gold]стартовые[/gold] [gold]«Удары»[/gold] наносят на {MaintenanceStrikePower:diff()} урона больше до конца боя.\nДает {DexterityPower:diff()} [gold]ловкости[/gold].\\nПовышает свою стоимость на 1.",
     "HERMIT-ETERNAL_FORM.title": "Облик вечности",
     "HERMIT-ETERNAL_FORM.description": "Первые 4 карты, которые вы добираете в начале хода, стоят на 1 {energyPrefix:energyIcons(1)} меньше до конца хода.",
     "HERMIT-FULLY_LOADED.title": "Полная обойма",
@@ -180,5 +182,11 @@
     "HERMIT-RUBBER_BULLET.title": "Резиновая пуля",
     "HERMIT-RUBBER_BULLET.description": "Наносит {Damage:diff()} урона.\n[gold]В яблочко[/gold]:\nПовышает свой урон на {Increase:diff()} до конца боя и перемещается в [gold]руку[/gold] другого игрока.",
     "HERMIT-BIG_BRUISER.title": "Здоровяк",
-    "HERMIT-BIG_BRUISER.description": "Другие игроки также наносят дополнительный урон по врагам с [gold]Ушибами[/gold].\nНакладывает {BruisePower:diff()} [gold]{BruisePower:plural(ru):Ушиб|Ушиба|Ушибов}[/gold] на ВСЕХ врагов."
+    "HERMIT-BIG_BRUISER.description": "Другие игроки также наносят дополнительный урон по врагам с [gold]Ушибами[/gold].\nНакладывает {BruisePower:diff()} [gold]{BruisePower:plural(ru):Ушиб|Ушиба|Ушибов}[/gold] на ВСЕХ врагов.",
+    "HERMIT-FADE_OUT.title": "Затухание",
+    "HERMIT-FADE_OUT.description": "Дает {Block:diff()} [gold]защиты[/gold] ВСЕМ игрокам и замешивает [red]«Неуклюжесть»[/red] в их [gold]стопки сброса[/gold].",
+    "HERMIT-SHARE_THE_LOAD.title": "Раздать указания",
+    "HERMIT-SHARE_THE_LOAD.description": "Дает {Block:diff()} [gold]защиты[/gold].\n[gold]В яблочко[/gold]: Другие игроки получают {Energy:energyIcons()} и добирают {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
+    "HERMIT-TECHNIQUE.title": "Техничность",
+    "HERMIT-TECHNIQUE.description": "[gold]Стартовые[/gold] [gold]«Удары»[/gold] ВСЕХ игроков наносят на {MaintenanceStrikePower:diff()} урона больше."
 }
