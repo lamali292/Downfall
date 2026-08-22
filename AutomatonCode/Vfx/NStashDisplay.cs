@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
@@ -19,21 +20,15 @@ public partial class NStashDisplay : NSlotRevealDisplay
     private const float StashDisplayScale = 0.28f;
     private const string DisplayScenePath = "res://Automaton/scenes/ui/stash_display.tscn";
 
-    private static readonly Dictionary<Player, NStashDisplay> Displays = new();
+    // The only collection. Keyed on PlayerCombatState under the hood, weakly held, so
+    // entries evaporate with the combat that owns them. No static combat-end sweep: this
+    // display is parented under the per-combat room UI, so it dies with it, and _ExitTree
+    // (base call restored) releases its cards. Nothing here needs to enumerate all displays.
+    private static readonly PlayerField<NStashDisplay> Displays = new(() => null);
 
     private CombatManager? _combatManager;
     private CardPile? _stashPile;
     private Player? _trackedPlayer;
-
-    static NStashDisplay()
-    {
-        CombatManager.Instance.CombatEnded += _ =>
-        {
-            foreach (var d in Displays.Values.Where(IsInstanceValid))
-                d.QueueFree();
-            Displays.Clear();
-        };
-    }
 
     protected override float SlotSeparation => -100f;
     protected override float PreviewGap => 0f;
@@ -92,9 +87,9 @@ public partial class NStashDisplay : NSlotRevealDisplay
 
     public static NStashDisplay? GetDisplay(Player owner)
     {
-        if (Displays.TryGetValue(owner, out var display) && IsInstanceValid(display))
-            return display;
-        Displays.Remove(owner);
+        var display = Displays[owner];
+        if (IsInstanceValid(display)) return display;
+        if (display != null) Displays[owner] = null;
         return null;
     }
 
@@ -119,41 +114,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
         return GetSlotGlobalPosition(pileIndex - 1);
     }
 
-    public static bool HasDisplay(Player player)
-    {
-        var display = Displays.GetValueOrDefault(player);
-        return display != null && IsInstanceValid(display);
-    }
-
-/*
-    public static void SetupFor(NCombatRoom combatRoom, Player player)
-    {
-        if (HasDisplay(player)) return;
-        var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
-        var display = scene.Instantiate<NStashDisplay>();
-        display._trackedPlayer = player;
-        display.Scale = Vector2.One * (LocalContext.IsMe(player) ? StashDisplayScale : StashDisplayScale * 0.5f);
-        display.Direction = RevealDirection.Left;
-        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;
-        var vfxContainer = combatRoom.CombatVfxContainer;
-        vfxContainer.AddChildSafely(display);
-
-        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
-        if (creatureNode != null)
-        {
-            var globalTopPos = creatureNode.GetTopOfHitbox();
-            var localPos = vfxContainer.GetGlobalTransform().AffineInverse() * globalTopPos;
-            var x = LocalContext.IsMe(player) ? -90 : -50;
-            var y = LocalContext.IsMe(player) ? -100 : -40;
-            display.Position = localPos + new Vector2(x, y);
-        }
-
-        Displays[player] = display;
-        display.SubscribeToStash(player);
-        display.Refresh(true);
-    }
-    */
-
+    public static bool HasDisplay(Player player) => IsInstanceValid(Displays[player]);
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {
@@ -180,6 +141,7 @@ public partial class NStashDisplay : NSlotRevealDisplay
         if (combatRoom != null)
             SetupFor(combatRoom, player);
     }
+
     // --- Lifecycle / pile subscription ---
 
     public override void _Ready()
@@ -203,9 +165,18 @@ public partial class NStashDisplay : NSlotRevealDisplay
 
     public override void _ExitTree()
     {
-        if (_stashPile == null) return;
-        _stashPile.CardAdded -= OnPileChanged;
-        _stashPile.CardRemoved -= OnPileChanged;
-        _stashPile = null;
+        // base first: releases slot + preview cards and kills the reveal tween. The old
+        // override skipped this (and early-returned on a null pile), leaking that cleanup.
+        base._ExitTree();
+
+        if (_stashPile != null)
+        {
+            _stashPile.CardAdded -= OnPileChanged;
+            _stashPile.CardRemoved -= OnPileChanged;
+            _stashPile = null;
+        }
+
+        if (_trackedPlayer != null && Displays[_trackedPlayer] == this)
+            Displays[_trackedPlayer] = null;
     }
 }

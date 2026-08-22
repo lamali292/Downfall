@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Core;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Godot;
@@ -25,26 +26,15 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     // --- Static lifecycle ---
 
-    private static readonly Dictionary<Player, NSequenceDisplay> Displays = new();
+    // The only collection. Keyed on PlayerCombatState under the hood, weakly held: a new
+    // combat is a new state, so nothing carries between combats and the weak table drops
+    // the old entry on its own. No static combat-end sweep — the display lives under the
+    // per-combat CombatVfxContainer, so it's freed at combat end and _ExitTree releases its
+    // cards (unregistering FindOnTablePatch via OnSlotCardCleared) as it goes.
+    private static readonly PlayerField<NSequenceDisplay> Displays = new(() => null);
 
     private CombatManager? _combatManager;
     private Player? _trackedPlayer;
-
-    static NSequenceDisplay()
-    {
-        CombatManager.Instance.CombatEnded += _ =>
-        {
-            foreach (var d in Displays.Values.Where(IsInstanceValid))
-            {
-                // Release BEFORE QueueFree: base implementation unregisters via
-                // OnSlotCardCleared and destroys only nodes still under the display.
-                d.ReleaseAllSlotCards();
-                d.QueueFree();
-            }
-
-            Displays.Clear();
-        };
-    }
 
     protected override bool IsActive =>
         _trackedPlayer != null && _combatManager is { IsInProgress: true };
@@ -97,23 +87,19 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
 
     public static NSequenceDisplay? GetDisplay(Player player)
     {
-        var display = Displays.GetValueOrDefault(player);
-        if (display != null && IsInstanceValid(display)) return display;
-        Displays.Remove(player);
+        var display = Displays[player];
+        if (IsInstanceValid(display)) return display;
+        if (display != null) Displays[player] = null;
         return null;
     }
 
-    public static bool HasDisplay(Player player)
-    {
-        var display = Displays.GetValueOrDefault(player);
-        return display != null && IsInstanceValid(display);
-    }
+    public static bool HasDisplay(Player player) => IsInstanceValid(Displays[player]);
 
     public override void _ExitTree()
     {
         base._ExitTree(); // releases slot + preview cards (unregisters via OnSlotCardCleared)
-        if (_trackedPlayer != null && Displays.GetValueOrDefault(_trackedPlayer) == this)
-            Displays.Remove(_trackedPlayer);
+        if (_trackedPlayer != null && Displays[_trackedPlayer] == this)
+            Displays[_trackedPlayer] = null;
     }
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
@@ -153,6 +139,6 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
             return;
         }
 
-        Displays[player].Refresh(force);
+        Displays[player]!.Refresh(force);
     }
 }
