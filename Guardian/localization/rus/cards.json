@@ -75,6 +75,7 @@
     "GUARDIAN-PRISMATIC_SPRAY.title": "Призматический всплеск",
     "GUARDIAN-RECOVER.description": "Дает {Block:diff()} [gold]защиты[/gold].\n[gold]Укрепление[/gold] {Brace:diff()}.\nПомещает выбранную карту из [gold]стопки сброса[/gold] в [gold]Стазис[/gold].",
     "GUARDIAN-RECOVER.title": "Восстановить",
+    "GUARDIAN-REFRACTED_BEAM.description": "Наносит {Damage:diff()} урона {Repeat:diff()} {Repeat:plural(ru):раз|раза|раз}.\nМожет быть [gold]улучшена[/gold] любое количество раз. \nДает +1 [gold]Гнездо[/gold] для [gold]Самоцвета[/gold] при каждом [gold]улучшении[/gold].",
     "GUARDIAN-REFRACTED_BEAM.title": "Преломляющий луч",
     "GUARDIAN-REPULSOR_GUARDIAN.description": "Когда вы добираете карту Статуса или [red]Проклятия[/red] первый раз за ход, она [gold]сжигается[/gold] и вы добираете 1 карту.",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "Репульсор",
