@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Core;
 using Godot;
 using Guardian.GuardianCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,49 +11,47 @@ namespace Guardian.GuardianCode.Displays;
 
 public class GuardianDisplay
 {
-    private static readonly Dictionary<Player, NGuardianDisplay> Displays = new();
+    private static readonly PlayerField<NGuardianDisplay> Displays = new(() => null);
 
-    public static bool HasDisplay(Player player)
-    {
-        return Displays.TryGetValue(player, out var display) && GodotObject.IsInstanceValid(display);
-    }
+    public static bool HasDisplay(Player player) => GodotObject.IsInstanceValid(Displays[player]);
 
     public static void Refresh(Player creature)
     {
-        var display = Displays.GetValueOrDefault(creature);
+        var display = Displays[creature];
         if (GodotObject.IsInstanceValid(display))
             display!.Refresh();
-        else
-            Displays.Remove(creature);
+        else if (display != null)
+            Displays[creature] = null;
     }
 
     public static void RefreshCounters(Player creature)
     {
-        var display = Displays.GetValueOrDefault(creature);
+        var display = Displays[creature];
         if (GodotObject.IsInstanceValid(display))
             display!.RefreshCounters();
-        else
-            Displays.Remove(creature);
+        else if (display != null)
+            Displays[creature] = null;
     }
 
-    public static void Register(Player creature, NGuardianDisplay display)
+    private static void Register(Player creature, NGuardianDisplay display)
     {
-        if (Displays.TryGetValue(creature, out var old) && GodotObject.IsInstanceValid(old))
-            old.QueueFree();
+        var old = Displays[creature];
+        if (GodotObject.IsInstanceValid(old))
+            old!.QueueFree();
 
         Displays[creature] = display;
     }
 
     public static NCard? GetNCard(CardModel card)
     {
-        var display = Displays.GetValueOrDefault(card.Owner);
+        var display = Displays[card.Owner];
         return GodotObject.IsInstanceValid(display) ? display!.GetNCard(card) : null;
     }
 
     public static Vector2? GetPosition(CardModel model)
     {
-        var display = Displays.GetValueOrDefault(model.Owner);
-        return GodotObject.IsInstanceValid(display) ? display.GetTargetPosition(model) : null;
+        var display = Displays[model.Owner];
+        return GodotObject.IsInstanceValid(display) ? display!.GetTargetPosition(model) : null;
     }
 
     public static void SetupGuardianUi(NCombatRoom combatRoom, Player player)

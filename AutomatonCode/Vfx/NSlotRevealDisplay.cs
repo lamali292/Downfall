@@ -36,6 +36,12 @@ public abstract partial class NSlotRevealDisplay : Control
     private NCustomCardHolder? _previewHolder;
     private Tween? _revealTween;
     private bool _slotsRevealed;
+
+    // A Refresh that arrived before _Ready built the slots (AddChildSafely can defer the
+    // add). Replayed once at the end of _Ready; see the guard in Refresh for why.
+    private bool _refreshPending;
+    private bool _pendingForce;
+
     protected Label? CountLabel;
     protected int CurrentMax = 3;
     protected CardModel? PreviewModel;
@@ -131,6 +137,17 @@ public abstract partial class NSlotRevealDisplay : Control
         }
 
         ComputeHomes();
+
+        // Replay a Refresh that arrived before the slots existed (deferred AddChildSafely).
+        // Subclass data (_trackedPlayer / _stashPile) is set in SetupFor before the add, so
+        // it's available here even though the rest of the subclass _Ready runs after base.
+        if (_refreshPending)
+        {
+            _refreshPending = false;
+            var force = _pendingForce;
+            _pendingForce = false;
+            Refresh(force);
+        }
     }
 
     public override void _ExitTree()
@@ -223,6 +240,18 @@ public abstract partial class NSlotRevealDisplay : Control
 
     public void Refresh(bool force = false)
     {
+        // If SetupFor's AddChildSafely deferred our add, _Ready hasn't run yet: Slots is
+        // empty and PreviewSlot is null. Running now renders nothing but still sets
+        // _initialized and caches _lastDirtyCards, so the next Refresh with unchanged data
+        // early-outs and the display stays blank until something changes. Defer and replay
+        // from _Ready once the slots are built.
+        if (PreviewSlot == null)
+        {
+            _refreshPending = true;
+            _pendingForce |= force;
+            return;
+        }
+
         var slotCards = GetSlotCards();
         var dirtyCards = GetDirtyCheckCards();
         var newMax = GetMaxSlots();

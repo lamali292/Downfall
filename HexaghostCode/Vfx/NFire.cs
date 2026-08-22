@@ -29,11 +29,22 @@ public partial class NFire : Node2D
     {
         _flame = GetNodeOrNull<TextureRect>("hexaghost_flame");
         _particles = GetNodeOrNull<GpuParticles2D>("hexaghost_flame_particles");
-        _flameMaterial = _flame?.Material as ShaderMaterial;
-        if (_flameMaterial == null) return;
 
-        _flameMaterial = (ShaderMaterial)_flameMaterial.Duplicate();
-        _flame?.Material = _flameMaterial;
+        if (_flame == null)
+        {
+            HexaghostMainFile.Logger.Error(
+                $"[NFire] '{Name}': child 'hexaghost_flame' not found — flame will not render correctly");
+            return;
+        }
+
+        if (_flame.Material is not ShaderMaterial baseMaterial)
+        {
+            HexaghostMainFile.Logger.Error(
+                $"[NFire] '{Name}': flame has no ShaderMaterial to duplicate");
+            return;
+        }
+        _flameMaterial = (ShaderMaterial)baseMaterial.Duplicate();
+        _flame.Material = _flameMaterial; // non-conditional: this must actually take effect
 
         _flameMaterial.SetShaderParameter(HueUniform, HueFor(_currentColor));
     }

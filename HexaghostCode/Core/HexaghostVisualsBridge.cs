@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Core;
 using Godot;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -8,50 +9,46 @@ namespace Hexaghost.HexaghostCode.Core;
 
 public static class HexaghostVisualsBridge
 {
-    private static readonly Dictionary<Player, NGhostflames> Displays = new();
+    private static readonly PlayerField<NGhostflames> Displays = new(() => null);
 
-    public static NGhostflames? GetVisuals(Player player)
+    public static NGhostflames? GetVisuals(Player? player)
     {
-        var display = Displays.GetValueOrDefault(player);
+        var display = Displays[player];
         if (GodotObject.IsInstanceValid(display))
             return display;
-        Displays.Remove(player); // stale entry from a previous combat
+        if (display != null)
+            Displays[player] = null;
         return null;
     }
 
-    
-    public static void FadeFlamesOnDeath(Player player)
-    {
-        GetVisuals(player)?.FadeOutOnDeath();
-    }
+    public static void FadeFlamesOnDeath(Player player) => GetVisuals(player)?.FadeOutOnDeath();
 
-    public static void FadeFlamesOnRevive(Player player)
-    {
-        GetVisuals(player)?.FadeInOnRevive();
-    }
-    
-    public static void DiscardDisplay(Player player)
-    {
-        if (Displays.TryGetValue(player, out var old) && GodotObject.IsInstanceValid(old))
-            old.QueueFree();
-        Displays.Remove(player);
-    }
+    public static void FadeFlamesOnRevive(Player player) => GetVisuals(player)?.FadeInOnRevive();
 
-    public static void Setup(NCombatRoom combatRoom, Player player)
+    private static void Setup(NCombatRoom combatRoom, Player player)
     {
-        if (Displays.TryGetValue(player, out var old) && GodotObject.IsInstanceValid(old))
-            old.QueueFree();
+        var existing = Displays[player];
+        if (GodotObject.IsInstanceValid(existing))
+        {
+            HexaghostMainFile.Logger.Info(
+                $"[Ghostflames] Setup: freeing previous display #{existing!.GetInstanceId()} for player");
+            existing.QueueFree();
+        }
 
         var display = NGhostflames.Create(player);
+        Displays[player] = display;
 
         var vfxContainer = combatRoom.CombatVfxContainer;
+  
         vfxContainer.AddChildSafely(display);
 
         var creatureNode = combatRoom.GetCreatureNode(player.Creature);
         if (creatureNode != null)
             display.Track(creatureNode, vfxContainer);
+        else
+            HexaghostMainFile.Logger.Warn(
+                "[Ghostflames] Setup: creature node not found; flames won't track until next Refresh");
 
-        Displays[player] = display;
         Refresh(player);
     }
 
@@ -60,16 +57,19 @@ public static class HexaghostVisualsBridge
         var visuals = GetVisuals(player);
         if (visuals == null)
         {
-            if (NCombatRoom.Instance is not { } room) return;
+            if (NCombatRoom.Instance is not { } room)
+            {
+                HexaghostMainFile.Logger.Warn("[Ghostflames] Refresh: no combat room, skipping");
+                return;
+            }
             Setup(room, player);
-            visuals = GetVisuals(player);
-            if (visuals == null) return;
+            return;
         }
 
         var wheel = HexaghostCmd.GetWheel(player);
         var index = HexaghostCmd.GetCurrentIndex(player);
         visuals.RefreshWheel(wheel, index);
-        
+
         var ignited = wheel.Count(f => f.IsIgnited);
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
         var bodyVisuals = creatureNode?.GetSpecialNode<NHexaghostVisuals>("%Hexaghost");

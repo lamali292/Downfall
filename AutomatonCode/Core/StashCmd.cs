@@ -71,7 +71,7 @@ public class StashCmd
 
     // Placement primitive for cards already registered in combat.
     private static Task<IReadOnlyList<CardPileAddResult>> PlaceExisting(List<CardModel> cards, PileType target)
-        => CardPileCmd.Add(cards, target);
+        => CardPileCmd.Add(cards, target, skipVisuals: true);
 
     // ---- entry points -------------------------------------------------------
 
