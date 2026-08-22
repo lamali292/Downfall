@@ -2,11 +2,15 @@
     "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Ошибок не обнаружено. Ошибок не обнаружено.[/blue][/sine]",
     "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Внимание: превышено время отклика союзника.[/red]",
     "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
-    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Карты Автоматона теперь будут появляться в наградах и магазинах.",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Карты Автоматона теперь могут появляться в наградах и магазинах.",
     "AUTOMATON-AUTOMATON.cardsModifierTitle": "Карты Автоматона",
-    "AUTOMATON-AUTOMATON.description": "Механических страж Города.\nАдаптируется к любым боевым ситуациям.",
-    "AUTOMATON-AUTOMATON.eventDeathPrevention": "Отключение отклонено. Задача не выполнена.",
+    "AUTOMATON-AUTOMATON.description": "Механический страж Города.\nАдаптируется к любым боевым ситуациям.",
+    "AUTOMATON-AUTOMATON.eventDeathPrevention": "Отключение прервано. Задача еще не выполнена.",
     "AUTOMATON-AUTOMATON.goldMonologue": "[sine]Расчёт стоимости... достаточно для приобретения необходимых компонентов...[/sine]",
+    "AUTOMATON-AUTOMATON.possessiveAdjective": "его",
+    "AUTOMATON-AUTOMATON.pronounObject": "его",
+    "AUTOMATON-AUTOMATON.pronounPossessive": "его",
+    "AUTOMATON-AUTOMATON.pronounSubject": "он",
     "AUTOMATON-AUTOMATON.title": "Автоматон",
-    "AUTOMATON-AUTOMATON.titleObject": "Автоматон"
+    "AUTOMATON-AUTOMATON.titleObject": "Автоматона"
 }

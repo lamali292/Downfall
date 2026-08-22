@@ -1,6 +1,8 @@
 {
-    "AUTOMATON-ENCODE.title": "Кодировать",
-    "AUTOMATON-ENCODE.description": "Поместите эту карту в вашу [gold]Последовательность[/gold].\nКогда в ней [blue]3[/blue] карты, их эффекты выше этого ключевого слова объединяются в Функцию стоимостью [blue]1[/blue].",
+    "AUTOMATON-ENCODE.title": "Программирование",
+    "AUTOMATON-ENCODE.description": "Помещает эту карту в [gold]Код[/gold].\nКогда в нем [blue]3[/blue] карты, их эффекты, описанные выше, объединяются в Функцию стоимостью [blue]1[/blue].",
     "AUTOMATON-STASH.title": "Запас",
-    "AUTOMATON-COMPILE.title": "Скомпилировать"
+    "AUTOMATON-STASH.description": "Помещает карту в [gold]стопку Запаса[/gold] (максимум [blue]5[/blue] карт). Вы добираете карту с низа [gold]стопки Запаса[/gold] в начале хода.",
+    "AUTOMATON-COMPILE.title": "Компиляция",
+    "AUTOMATON-COMPILE.description": "Этот эффект срабатывает, когда карта становится частью Функции."
 }
