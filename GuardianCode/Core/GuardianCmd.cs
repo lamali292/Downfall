@@ -97,7 +97,6 @@ public static class GuardianCmd
                 ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
             return false;
         }
-
         await GuardianHook.BeforeCardEntersStasis(cs, ctx, card, source);
         await CardPileCmd.Add(card, pile, skipVisuals: silent);
         SetStasisCounter(card);
@@ -112,6 +111,8 @@ public static class GuardianCmd
 
     public static void SetStasisCounter(CardModel card)
     {
+        card.EnergyCost.EndOfTurnCleanup();
+        card.EnergyCost.AfterCardPlayedCleanup();
         GuardianCombatModel.StasisCounter[card] = CalculateStasisCounter(card);
         GuardianDisplay.Refresh(card.Owner);
     }
@@ -134,7 +135,7 @@ public static class GuardianCmd
         }
 
         await CardPileCmd.Add(card, PileType.Hand.GetPile(player));
-        card.EnergyCost.SetUntilPlayed(0);
+        card.SetToFreeThisTurn();
     }
 
     private static async Task<bool> TickCard(CardModel card, Player player, PlayerChoiceContext ctx)
