@@ -65,6 +65,7 @@ public class DownfallPatchManager
             .Add(typeof(PatchCreatureHoverTips))
             .Add(typeof(MainMenuButtonsPatch))
             .Add(typeof(CustomSubmenuPatch))
+            .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
         
 
