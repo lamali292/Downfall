@@ -1,5 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
-
+using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
@@ -25,6 +25,9 @@ public class SlimeBoss : DownfallCharacterModel
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideSlimeboss;
+    public override bool HideInCompendium => DownfallConfig.HideSlimeboss;
+    
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 65;

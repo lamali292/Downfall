@@ -1,7 +1,7 @@
 ﻿using BaseLib.Audio;
 using BaseLib.Patches.UI;
 using Downfall.DownfallCode.Abstract;
-
+using Downfall.DownfallCode.Config;
 using Godot;
 using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Relics;
@@ -30,6 +30,9 @@ public class Hexaghost : DownfallCharacterModel
     public override float CardColorV => 0.8f;
     public override Color MapDrawingColor => Color;
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideHexaghost;
+    public override bool HideInCompendium => DownfallConfig.HideHexaghost;
+    
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 66;

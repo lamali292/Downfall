@@ -1,6 +1,6 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
-
+using Downfall.DownfallCode.Config;
 using Godot;
 using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Relics;
@@ -29,7 +29,10 @@ public class Hermit : DownfallCharacterModel
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => new(0x7A4900FF);
 
-    public override CharacterGender Gender => CharacterGender.Neutral;
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideHermit;
+    public override bool HideInCompendium => DownfallConfig.HideHermit;
+    
+    public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;
     public override int StartingGold => 99;
