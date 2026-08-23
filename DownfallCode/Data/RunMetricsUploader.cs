@@ -144,6 +144,11 @@ public sealed class RunMetricsUploader<TPayload>
 
         if (!MetricUtilities.ShouldUploadMetrics()) return false;
 
+        if (string.IsNullOrEmpty(_config.ApiKey))
+        {
+            log?.Info($"[{mod}] Skipping metrics upload, no API key in this build.");
+            return false;
+        }
         
         if (_config.SkipAbandonedRuns && RunManager.Instance.IsAbandoned)
         {

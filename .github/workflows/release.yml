@@ -101,6 +101,15 @@ jobs:
           "$GODOT_PATH" --headless --audio-driver Dummy --import || true
           "$GODOT_PATH" --headless --audio-driver Dummy --import
 
+      - name: Inject metrics key
+        env:
+          METRICS_API_KEY: ${{ secrets.METRICS_API_KEY }}
+        run: |
+          cat > DownfallCode/Data/BuildSecrets.cs <<EOF
+          namespace Downfall.DownfallCode.Data;
+          internal static class BuildSecrets { public const string? MetricsApiKey = "$METRICS_API_KEY"; }
+          EOF
+
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
