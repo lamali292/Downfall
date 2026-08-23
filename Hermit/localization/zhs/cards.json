@@ -70,7 +70,7 @@
     "HERMIT-SHORT_FUSE.title": "快速引信",
     "HERMIT-SHORT_FUSE.description": "造成{Damage:diff()}点伤害。\n你在本回合中每打出过一张[gold]基础[/gold]牌，耗能减少1{energyPrefix:energyIcons(1)}。",
     "HERMIT-GRUDGE.title": "积怨",
-    "HERMIT-GRUDGE.description": "对所有敌人造成{CalculatedDamage:diff()}点伤害。\n你在[gold]消耗牌堆[/gold]之外每有一张诅咒牌，伤害增加{ExtraDamage:diff()}。",
+    "HERMIT-GRUDGE.description": "对所有敌人造成{CalculatedDamage:diff()}点伤害。\n你每有一张诅咒牌，伤害增加{ExtraDamage:diff()}。",
     "HERMIT-SPITE.title": "恶意",
     "HERMIT-SPITE.description": "[gold]消耗[/gold][gold]手牌[/gold]中所有[gold]不能被打出[/gold]的牌。\n获得{Block:diff()}点[gold]格挡[/gold]。\n抽{Cards:diff()}张牌。",
     "HERMIT-MANIFEST.title": "恶灵现身",
