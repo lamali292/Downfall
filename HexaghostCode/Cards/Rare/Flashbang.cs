@@ -16,7 +16,7 @@ public class Flashbang : HexaghostCardModel
     {
         WithDamage(6, 1);
         WithPower<WeakPower>(1, 1);
-        this.WithPower<FlashbangPower>(2, 1, false);
+        this.WithPower<FlashbangPower>(3, 1, false);
         this.WithTip<StrengthPower>();
         WithTip(HexaghostTip.Ignite);
     }

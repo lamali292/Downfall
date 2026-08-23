@@ -70,5 +70,8 @@
   "HEXAGHOST-HEATING_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] to an enemy, the ally with the least [gold]Block[/gold] gains [blue]{Amount}[/blue] [gold]Block[/gold].",
   "HEXAGHOST-INFERNO_POTION_POWER.title": "Infernal",
   "HEXAGHOST-INFERNO_POTION_POWER.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat.",
-  "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat. "
+  "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat. ",
+  "HEXAGHOST-PREMONITION_POWER.title": "Premonition",
+  "HEXAGHOST-PREMONITION_POWER.description": "At the start of your turn, if at least [blue]2[/blue] cards were Exhausted last turn, draw additional cards.",
+  "HEXAGHOST-PREMONITION_POWER.smartDescription": "At the start of your turn, if at least [blue]2[/blue] cards were Exhausted last turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards}."
 }

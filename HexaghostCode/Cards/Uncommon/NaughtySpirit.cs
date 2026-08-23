@@ -14,7 +14,7 @@ public class NaughtySpirit : HexaghostCardModel, IModifyCardPlayResultLocation
 {
     public NaughtySpirit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(3, 2);
+        WithPower<SoulBurnPower>(4, 2);
         WithTip(HexaghostKeyword.Retract);
         WithTip(HexaghostTip.Ignite);
     }

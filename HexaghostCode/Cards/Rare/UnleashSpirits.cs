@@ -16,7 +16,8 @@ public class UnleashSpirits : HexaghostCardModel
 {
     public UnleashSpirits() : base(1, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)
     {
-        WithDamage(5, 2);
+        WithDamage(6, 2);
+        WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
         WithCalculatedVar("Repeat", 1, Calc);
     }
@@ -25,10 +26,7 @@ public class UnleashSpirits : HexaghostCardModel
 
     private static decimal Calc(CardModel card, Creature? target)
     {
-        var combatState = card.CombatState;
-        if (combatState == null) return 0;
-        return CombatManager.Instance.History.Entries.OfType<CardExhaustedEntry>().Count(e =>
-            e.RoundNumber == combatState.RoundNumber - 1 && e.Actor == card.Owner.Creature);
+        return card.Owner.ExhaustPile.Count(e => e.Keywords.Contains(CardKeyword.Ethereal));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
