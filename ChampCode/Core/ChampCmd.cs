@@ -4,6 +4,7 @@ using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,10 +26,10 @@ public class ChampCmd
     {
         await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
     }
-
-    public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)
+    
+    public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player, AbstractModel source, int turns = 1)
     {
-        await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
+        await PowerCmd.Apply<UltimateStancePower>(ctx, player.Creature, turns, player.Creature, source as CardModel);
     }
 
     private static async Task EnterStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel

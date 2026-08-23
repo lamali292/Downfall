@@ -33,11 +33,13 @@ public class CounterPower : ChampPowerModel
         if (target != Owner || dealer == Owner || Owner.Player == null || !props.IsCardOrMonsterMove()) return;
         var player = Owner.Player;
         var strikeCount = ChampHook.ModifyCounterStrikeCount(CombatState, player, 1);
-        var cards = new List<CardModel>();
+        var cards = new List<RiposteStrike>();
         for (var i = 0; i < strikeCount; i++)
         {
-            var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<RiposteStrike>(), player);
+            var card = (RiposteStrike)CombatState.CreateCard(ModelDb.Card<RiposteStrike>(), player);
             card.DynamicVars.Damage.BaseValue = Amount;
+            card = ChampHook.ModifyCounterStrike(CombatState, player, card, out var strikes);
+            await ChampHook.AfterModifyingCounterStrike(CombatState, player, card, strikes);
             cards.Add(card);
         }
 

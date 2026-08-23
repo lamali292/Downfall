@@ -53,7 +53,7 @@ public class Champ : DownfallCharacterModel
         ModelDb.Relic<ChampionsCrown>()
     ];
 
-    public override float AttackAnimDelay => 0.4f;
+    public override float AttackAnimDelay => 0.2f;
 
     public override float CastAnimDelay => 0.25f;
 

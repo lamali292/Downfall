@@ -13,8 +13,8 @@ public class AdrenalArmor : ChampCardModel
 {
     public AdrenalArmor() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(7, 2);
-        this.WithPower<AdrenalArmorPower>(2, 1, false);
+        WithBlock(6, 2);
+        this.WithPower<AdrenalArmorPower>(3, 1, false);
         this.WithTip<StrengthPower>();
     }
 

@@ -19,7 +19,12 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
         CardModel? cardSource)
     {
         if (power != this || amount <= 0 || Owner.Player == null || LocalContext.NetId == null) return;
-        await ChampCmd.EnterUltimateStance(ctx, Owner.Player);
+        await EnterUltimateStance(ctx, Owner.Player);
+    }
+
+    private static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player)
+    {
+        await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
     }
 
 
@@ -35,6 +40,6 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
         ChampStanceModel newStance)
     {
         if (Owner.Player != player || newStance is ChampUltimateStance) return Task.CompletedTask;
-        return ChampCmd.EnterUltimateStance(ctx, player);
+        return EnterUltimateStance(ctx, player);
     }
 }
