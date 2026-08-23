@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
@@ -25,6 +26,9 @@ public class Automaton : DownfallCharacterModel
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => new(0xFFFF00FF);
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideAutomaton;
+    public override bool HideInCompendium => DownfallConfig.HideAutomaton;
+    
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;

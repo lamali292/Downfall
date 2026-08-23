@@ -1,5 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
-
+using Downfall.DownfallCode.Config;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
@@ -26,6 +26,9 @@ public class Guardian : DownfallCharacterModel
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideGuardian;
+    public override bool HideInCompendium => DownfallConfig.HideGuardian;
+    
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 80;

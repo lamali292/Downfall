@@ -28,7 +28,7 @@ public sealed class CustomPackage
 
 public static class CustomBundleRegistry
 {
-    public static readonly List<CustomPackage> Packages = new List<CustomPackage>();
+    public static readonly List<CustomPackage> Packages = [];
  
     /// <summary>Register a package for EVERY character.</summary>
     public static void Register(CustomPackage package) => Packages.Add(package);

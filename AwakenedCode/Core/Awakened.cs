@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -23,6 +24,9 @@ public class Awakened : DownfallCharacterModel
     public override float CardColorV => 1f;
     public override Color MapDrawingColor => Color;
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideAwakened;
+    public override bool HideInCompendium => DownfallConfig.HideAwakened;
+    
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;

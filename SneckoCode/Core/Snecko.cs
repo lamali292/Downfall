@@ -1,5 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
-
+using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -26,6 +26,9 @@ public class Snecko : DownfallCharacterModel
     public override float CardColorV => 1.3f;
     public override Color MapDrawingColor => Color;
 
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideSnecko;
+    public override bool HideInCompendium => DownfallConfig.HideSnecko;
+    
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 85;
