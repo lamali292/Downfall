@@ -1,86 +1,25 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
-using MegaCrit.Sts2.Core.Commands;
+using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class Premonition : HexaghostCardModel
 {
-    public Premonition() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Premonition() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
+        this.WithPower<PremonitionPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-        var cardType = await GetCardType(ctx);
-        if (cardType == null) return;
-        var card = CombatState.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.DrawPile.Where(e => e.Type == cardType));
-        if (card == null) return;
-        await CardCmd.AutoPlay(ctx, card, null);
-    }
-
-    private async Task<CardType?> GetCardType(PlayerChoiceContext ctx)
-    {
-        var choices = Owner.DrawPile.Select(c => c.Type).Distinct()
-            .Select(f => PremonitionChoice.Create(f, Owner))
-            .ToList();
-        switch (choices.Count)
-        {
-            case 0:
-                return null;
-            case 1:
-                return choices[0].Type;
-            case > 1:
-            {
-                var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
-                if (chosen is PremonitionChoice { Type : var cardType }) return cardType;
-                return null;
-            }
-            default:
-                return null;
-        }
-    }
-}
-
-[Pool(typeof(TokenCardPool))]
-public class PremonitionChoice : HexaghostCardModel
-{
-    public PremonitionChoice() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
-    {
-    }
-
-    public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
-
-    public override CardType Type => MyType;
-    private CardType MyType { get; set; } = CardType.Skill;
-
-
-    public override string CustomPortraitPath => ModelDb.Card<Premonition>().CustomPortraitPath;
-
-
-    public static PremonitionChoice Create(CardType cardType, Player owner)
-    {
-        var card = owner.Creature.CombatState!.CreateCard<PremonitionChoice>(owner);
-        card.MyType = cardType;
-        return card;
-    }
-
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("Type", MyType.ToLocString());
+        await CommonActions.ApplySelf<PremonitionPower>(ctx, this);
     }
 }
