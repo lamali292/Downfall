@@ -21,7 +21,7 @@ public static class DownfallMetrics
         {
             ModName = "Downfall",
             EndpointUrl = "https://wxememsxgrgrfvntulgr.supabase.co/rest/v1/runs",
-            ApiKey = "sb_publishable_XJRuWuyy0fJwKVFUQ8L3Dw_JrokGm_i",
+            ApiKey = BuildSecrets.MetricsApiKey,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
             IsOwnCharacter = e => e is DownfallCharacterModel,
             AllowedAssemblies = new HashSet<Assembly>
