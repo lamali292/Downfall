@@ -25,7 +25,7 @@
   "AUTOMATON-BREAK.title": "Crash",
   "AUTOMATON-BRONZE_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] {Stash:diff()} [gold]Errors[/gold].",
   "AUTOMATON-BRONZE_ARMOR.title": "Bronze Armor",
-  "AUTOMATON-BRONZE_ORB.description": "Deal {Damage:diff()} damage.\n[gold]Stash[/gold] the next card you play this turn.",
+  "AUTOMATON-BRONZE_ORB.description": "Deal {Damage:diff()} damage.\n[gold]Stash[/gold] the next Attack or Skill you play this turn.",
   "AUTOMATON-BRONZE_ORB.title": "Bronze Orb",
   "AUTOMATON-BUGGY_MESS.description": "",
   "AUTOMATON-BUGGY_MESS.title": "Buggy Mess",

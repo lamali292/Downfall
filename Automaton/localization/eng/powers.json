@@ -33,7 +33,7 @@
   "AUTOMATON-SENTIENT_FORM_POWER.description": "Functions gain [gold]Replay[/gold] [blue]1[/blue].",
   "AUTOMATON-SENTIENT_FORM_POWER.smartDescription": "Functions gain [gold]Replay[/gold] [blue]{Amount}[/blue].",
   "AUTOMATON-SUMMON_ORB_POWER.title": "Summon Orb",
-  "AUTOMATON-SUMMON_ORB_POWER.description": "[gold]Stash[/gold] the first card you play each turn.",
+  "AUTOMATON-SUMMON_ORB_POWER.description": "[gold]Stash[/gold] the first Attack or Skill you play each turn.",
   "AUTOMATON-SUMMON_ORB_POWER.smartDescription": "[gold]Stash[/gold] the first {Amount:plural:Attack or Skill|[blue]{}[/blue] Attacks or Skills} you play each turn.",
   "AUTOMATON-EXHAUST_STATUSES_POWER.title": "Repulse",
   "AUTOMATON-EXHAUST_STATUSES_POWER.description": "When you draw the first Status or Curse cards each turn, [gold]Exhaust[/gold] it and draw a card.",
