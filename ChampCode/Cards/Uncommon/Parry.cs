@@ -5,6 +5,7 @@ using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -16,7 +17,12 @@ public class Parry : ChampCardModel
         WithBlock(8, 4);
         WithPower<CounterPower>(4, 2);
         this.WithPower<ParryingPower>(1, false);
-        this.WithTip<RiposteStrike>();
+        this.WithCardTip<RiposteStrike>((e, p) =>
+        {
+            if (p._owner == null) return; 
+            e.DynamicVars.Damage.BaseValue = p.Owner.Creature.GetPowerAmount<CounterPower>();
+        });
+        WithTip(StaticHoverTip.ReplayStatic);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

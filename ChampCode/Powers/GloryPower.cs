@@ -20,7 +20,7 @@ public class GloryPower : ChampPowerModel
     {
         if (player.Creature != Owner) return;
         if (Amount < 10) return;
-        await PowerCmd.Apply<UltimateStancePower>(ctx, Owner, 1, Owner, null);
+        await ChampCmd.EnterUltimateStance(ctx, player, this);
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue, player);
         await PowerCmd.ModifyAmount(ctx, this, -10, Owner, null);
     }

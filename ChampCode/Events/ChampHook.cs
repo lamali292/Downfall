@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Champ.ChampCode.Cards.Common;
 using Champ.ChampCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -38,6 +39,19 @@ public static class ChampHook
             (m, current) => m.ModifyCounterStrikeCount(player, current));
     }
 
+    
+    public static RiposteStrike ModifyCounterStrike(ICombatState cs, Player player, RiposteStrike card, out IEnumerable<IModifyCounterStrike> modifiers)
+    {
+        return HookUtils.ModifyMutable(cs, card, 
+            (m, value) => m.ModifyCounterStrike(player, value),
+            out modifiers);
+    }
+    
+    public static Task AfterModifyingCounterStrike(ICombatState cs, Player player, RiposteStrike card, IEnumerable<IModifyCounterStrike> modifiers)
+    {
+        return HookUtils.AfterModifying(cs, modifiers, m => m.AfterModifyingCounterStrike(player, card));
+    }
+    
     public static bool IgnoreChargeCap(ICombatState cs, Player player)
     {
         return HookUtils.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));
@@ -54,4 +68,6 @@ public static class ChampHook
         return HookUtils.Aggregate<IModifyDefensiveFinisherBonus, int>(cs, baseAmount,
             (m, current) => m.ModifyDefensiveFinisherBonus(stanceModel, current));
     }
+
 }
+

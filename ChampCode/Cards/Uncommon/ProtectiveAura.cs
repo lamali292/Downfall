@@ -14,7 +14,7 @@ public class ProtectiveAura : ChampCardModel
 {
     public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ProtectiveAuraPower>(4, 2, false);
+        this.WithPower<ProtectiveAuraPower>(5, 2, false);
         WithTip(StaticHoverTip.Block);
         WithTip(ChampTip.Stance);
     }
