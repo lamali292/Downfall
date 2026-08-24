@@ -10,7 +10,7 @@ using Snecko.SneckoCode.Relics;
 
 namespace Snecko.SneckoCode.Ancients;
 
-public class SneckoSpirit : CustomAncientModel
+public class SneckoSpirit() : CustomAncientModel(false)
 {
     private List<(CharacterModel left, CharacterModel right)> _pairs = [];
     private List<CharacterModel> _chosen = [];
