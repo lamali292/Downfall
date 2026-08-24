@@ -1,7 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,21 +9,21 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Hexaghost.HexaghostCode.Cards.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Rewind : HexaghostCardModel
+public class StepThrough : HexaghostCardModel
 {
-    public Rewind() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public StepThrough() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithKeywords(CardKeyword.Exhaust);
-        WithCards(1, 1);
-        WithKeyword(HexaghostKeyword.Retract);
+        WithDamage(8, 3);
+        WithTip(HexaghostTip.Ignite);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Discard.GetPile(Owner),
-            DownfallCardSelectorPrefs.ToHandSelectionPrompt, this);
-        await CardPileCmd.Add(cards, PileType.Hand);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var ignited = HexaghostCmd.GetIgnitedCount(Owner);
+        if (ignited == 0) return;
+        await CardPileCmd.Draw(ctx, ignited, Owner);
     }
 }
