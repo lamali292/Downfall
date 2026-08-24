@@ -23,12 +23,10 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         if (this is IBerserkerComboCard)
         {
             WithTip(ChampTip.Combo);
-            this.WithBerserkerTip();
         }
 
         if (this is not IDefensiveComboCard) return;
         WithTip(ChampTip.Combo);
-        this.WithDefensiveTip();
     }
 
 

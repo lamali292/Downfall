@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Utils.UI;
@@ -26,8 +27,8 @@ public partial class NChampStanceDisplay : NClickableControl
     private Label? _label;
     public bool IsExiting => _isExiting;
     private NSelectionReticle? _reticle;
-    private IHoverTip? _tip;
-    private Func<IHoverTip>? _tipProvider;
+    private IEnumerable<IHoverTip>? _tips;
+    private Func<IEnumerable<IHoverTip>>? _tipProvider;
 
     private Vector2 RelativeOffset => new Vector2(60f, -60f);
     private Vector2 HideOffset => new Vector2(-480f, 128f);
@@ -133,7 +134,8 @@ public partial class NChampStanceDisplay : NClickableControl
     public override void _Ready()
     {
         ConnectSignals();
-
+        AnchorTop = 1f;
+        AnchorBottom = 1f;
         _fill = GetNode<TextureProgressBar>("%Fill");
         _label = GetNode<Label>("Label");
 
@@ -184,9 +186,18 @@ public partial class NChampStanceDisplay : NClickableControl
         if (stance.LabelOutlineColor is { } color)
             _label!.AddThemeColorOverride("font_outline_color", color);
 
-        _label!.Text = $"{charges}/{maxCharges}";
+        if (_trackedPlayer.Creature.CombatState != null &&
+            ChampHook.IgnoreChargeCap(_trackedPlayer.Creature.CombatState, _trackedPlayer))
+        {
+            _label!.Text = "∞";
+        }
+        else
+        {
+            _label!.Text = $"{charges}/{maxCharges}";
+        }
+        
 
-        _tipProvider = () => stance.HoverTip;
+        SetTipProvider(() => stance.HoverTips.Reverse());
     }
     
     public void SetReticle(NSelectionReticle? reticle)
@@ -194,7 +205,7 @@ public partial class NChampStanceDisplay : NClickableControl
         _reticle = reticle;
     }
 
-    public void SetTipProvider(Func<IHoverTip> provider)
+    public void SetTipProvider(Func<IEnumerable<IHoverTip>> provider)
     {
         _tipProvider = provider;
     }
@@ -204,13 +215,18 @@ public partial class NChampStanceDisplay : NClickableControl
         if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true)
             _reticle?.OnSelect();
 
-        _tip = _tipProvider?.Invoke();
+        _tips = _tipProvider?.Invoke();
 
-        if (_tip == null)
+        if (_tips == null)
             return;
 
-        NHoverTipSet.CreateAndShow(this, _tip)
-            ?.SetGlobalPosition(GlobalPosition + new Vector2(0f, Size.Y + 20f));
+        var tipSet = NHoverTipSet.CreateAndShow(this, _tips);
+        if (tipSet == null)
+            return;
+
+        // Position above the display node and anchor to bottom so it expands upward
+        float containerHeight = tipSet.TextHoverTipDimensions.Y;
+        tipSet.GlobalPosition = GlobalPosition + new Vector2(0f, -containerHeight - 10f);
     }
 
     protected override void OnUnfocus()

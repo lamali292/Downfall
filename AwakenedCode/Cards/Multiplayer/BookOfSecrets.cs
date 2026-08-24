@@ -27,7 +27,7 @@ public class BookOfSecrets : AwakenedCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
-        var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
+        var spellbook = AwakenedCmd.GetSpellbook(Owner);
         var nextSpell = spellbook.NextSpell;
         if (nextSpell == null) return;
         foreach (var player in Owner.OtherTeammates)

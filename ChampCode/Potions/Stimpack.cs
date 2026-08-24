@@ -15,7 +15,7 @@ public class Stimpack : ChampPotionModel
 {
     public Stimpack() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.Self)
     {
-        WithTips(e => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
+        WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
     }
 
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)

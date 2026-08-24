@@ -1,4 +1,5 @@
 ﻿using BaseLib.Extensions;
+using Champ.ChampCode.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -30,6 +31,10 @@ public abstract class ChampStanceModel : AbstractModel
         }
     }
 
+    public IEnumerable<IHoverTip> HoverTips => [HoverTip, ..ExtraHoverTips];
+
+    protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
+    
     public IHoverTip HoverTip
     {
         get
@@ -37,6 +42,14 @@ public abstract class ChampStanceModel : AbstractModel
             var title = new LocString("champ_stances", $"{GetType().GetPrefix()}{Id.Entry}.title");
             var description = new LocString("champ_stances", $"{GetType().GetPrefix()}{Id.Entry}.description");
             DynamicVars.AddTo(description);
+            if(IsMutable)
+            {
+                description.Add("Infinite",   _player is { Creature.CombatState: not null } && ChampHook.IgnoreChargeCap(_player.Creature.CombatState, _player));
+                description.Add("Charges", Charges);
+            } else {
+                description.Add("Infinite",   false);
+                description.Add("Charges", MaxCharges);
+            }
             return new HoverTip(title, description);
         }
     }

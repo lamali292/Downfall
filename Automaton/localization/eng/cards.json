@@ -1,7 +1,7 @@
 {
   "AUTOMATON-ALLOCATE.description": "Gain {energyPrefix:energyIcons(1)} for each Status in your [gold]Draw Pile[/gold] and [gold]Stash Pile[/gold].{InCombat:cond:\n(Gain {Status:diff()}{energyPrefix:energyIcons(1)})|}",
   "AUTOMATON-ALLOCATE.title": "Allocate",
-  "AUTOMATON-ASSEMBLY.description": "Draw {Cards:diff()} cards.\n[gold]Encode[/gold] any drawn cards with [gold]Encode[/gold].",
+  "AUTOMATON-ASSEMBLY.description": "Draw {Cards:plural:a card|{Cards:diff()} cards} and [gold]Encode[/gold] {Cards:plural:it|them}, if possible.",
   "AUTOMATON-ASSEMBLY.title": "Assembly",
   "AUTOMATON-AUTOMATON_CARD_MODEL.description": "",
   "AUTOMATON-AUTOMATON_CARD_MODEL.title": "",

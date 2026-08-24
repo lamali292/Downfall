@@ -19,7 +19,7 @@ public class BottledTechnique : ChampPotionModel
     {
         WithRepeat(5);
         WithTip(ChampKeyword.TriggerSkillBonus);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     public override bool PassesCustomUsabilityCheck

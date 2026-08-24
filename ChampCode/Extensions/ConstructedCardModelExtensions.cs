@@ -13,17 +13,17 @@ public static class ConstructedCardModelExtensions
     {
         public ConstructedCardModel WithDefensiveTip()
         {
-            return card.WithTips(e => [ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTip]);
+            return card.WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
         }
 
         public ConstructedCardModel WithBerserkerTip()
         {
-            return card.WithTips(e => [ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTip]);
+            return card.WithTips(e => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
         }
 
         public ConstructedCardModel WithUltimateTip()
         {
-            return card.WithTips(e => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
+            return card.WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
         }
 
         public ConstructedCardModel WithFinisher()
@@ -51,7 +51,7 @@ public static class ConstructedCardModelExtensions
         public ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
         {
             card.WithPower<GloryPower>(baseVal, upgrade);
-            card.WithUltimateTip();
+            //card.WithUltimateTip();
             return card;
         }
     }

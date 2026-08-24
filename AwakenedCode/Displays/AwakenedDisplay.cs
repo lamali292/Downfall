@@ -1,32 +1,64 @@
 ﻿using Awakened.AwakenedCode.Vfx;
 using Downfall.DownfallCode.Core;
 using Godot;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Awakened.AwakenedCode.Displays;
 
-public static class AwakenedDisplay
+public class AwakenedDisplay
 {
-    private static readonly PlayerField<NSpellbookDisplay> Displays = new(() => null);
-
-    public static bool HasDisplay(Player player)
+    private static readonly PlayerField<NSpellbookDisplay> AwakenSpellDisplays = new(() => null);
+    private static readonly PlayerField<NAwakenMeter> AwakenMeterDisplays = new(() => null);
+    
+    public static void RefreshSpellDisplays(Player player)  
     {
-        return GodotObject.IsInstanceValid(Displays.Get(player));
+        if (!LocalContext.IsMe(player)) return;;
+        Callable.From(() =>
+        {
+            var existing = AwakenSpellDisplays.Get(player);
+            if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
+            {
+                AwakenSpellDisplays.Set(player, null);
+                existing = null;
+            }
+
+            if (existing == null)
+            {
+                var display = NSpellbookDisplay.Create(player);
+                if (display == null) return;
+                AwakenSpellDisplays.Set(player, display);
+            }
+            else
+            {
+                existing.Refresh();
+            }
+        }).CallDeferred();
     }
-
-    public static void Register(Player player, NSpellbookDisplay display)
+    
+    public static void RefreshAwakenMeter(Player player, int value)
     {
-        var old = Displays.Get(player);
-        if (GodotObject.IsInstanceValid(old))
-            old.QueueFree();
+        if (!LocalContext.IsMe(player)) return;;
+        Callable.From(() =>
+        {
+            var existing = AwakenMeterDisplays.Get(player);
+            if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
+            {
+                AwakenMeterDisplays.Set(player, null);
+                existing = null;
+            }
 
-        Displays[player] = display;
-    }
-
-    public static void Refresh(Player player)
-    {
-        var display = Displays.Get(player);
-        if (GodotObject.IsInstanceValid(display))
-            display!.Refresh();
+            if (existing == null)
+            {
+                var display = NAwakenMeter.Create(player);
+                if (display == null) return;
+                display.SetProgress(value);
+                AwakenMeterDisplays.Set(player, display);
+            }
+            else
+            {
+                existing.Refresh(value);
+            }
+        }).CallDeferred();
     }
 }

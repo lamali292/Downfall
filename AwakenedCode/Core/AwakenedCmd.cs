@@ -20,9 +20,14 @@ namespace Awakened.AwakenedCode.Core;
 
 public static class AwakenedCmd
 {
-    public static AwakenedPile GetSpellbookOrThrow(Player player)
+    public static AwakenedPile GetSpellbook(Player player)
     {
         return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
+    }
+    
+    public static void RefreshSpellbook(Player player)
+    {
+        GetSpellbook(player).Refresh(player);
     }
 
     public static bool WasLastCardPlayedPower(CardModel card)
@@ -89,7 +94,7 @@ public static class AwakenedCmd
         Player player)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = AwakenedModel.GetOrInitSpellbook(player);
+        var spellbook = AwakenedCmd.GetSpellbook(player);
         while (spellbook.NextSpell == null)
         {
             spellbook.SetNextSpell(player);   
@@ -105,7 +110,7 @@ public static class AwakenedCmd
         CardModel selectedSpell)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = AwakenedModel.GetOrInitSpellbook(player);
+        var spellbook = GetSpellbook(player);
         if (!spellbook.Cards.Contains(selectedSpell)) return null;
         return await ConjureSpell(player, selectedSpell, spellbook);
     }
@@ -124,12 +129,12 @@ public static class AwakenedCmd
 
         if (spellbook.Cards.Count == 0)
         {
-            spellbook.Refresh(player);
+            RefreshSpellbook(player);
         }
 
         spellbook.SetNextSpell(player);
 
-        AwakenedDisplay.Refresh(player);
+        AwakenedDisplay.RefreshSpellDisplays(player);
         return spell;
     }
 }

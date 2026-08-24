@@ -13,7 +13,7 @@ public class SigilOfVictory : ChampCardModel
     public SigilOfVictory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(ChampKeyword.TriggerSkillBonus);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
         this.WithRepeat(3, 1);
     }
 

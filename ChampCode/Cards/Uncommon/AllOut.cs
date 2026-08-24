@@ -15,7 +15,7 @@ public class AllOut : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         this.WithRepeat(2, 1);
         this.WithFinisher();
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

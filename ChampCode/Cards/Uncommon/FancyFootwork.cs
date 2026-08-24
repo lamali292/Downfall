@@ -14,7 +14,7 @@ public class FancyFootwork : ChampCardModel
     public FancyFootwork() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<FancyFootworkPower>(10, 5, false);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
         WithTip(ChampTip.Finisher);
     }
 

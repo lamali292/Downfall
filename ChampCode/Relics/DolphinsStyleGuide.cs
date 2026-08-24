@@ -17,7 +17,7 @@ public class DolphinsStyleGuide : ChampRelicModel
 {
     public DolphinsStyleGuide() : base(RelicRarity.Uncommon)
     {
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
