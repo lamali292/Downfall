@@ -1,13 +1,18 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.DynamicVars;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Snecko.SneckoCode.Cards;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Interfaces;
@@ -22,20 +27,18 @@ public class SneckoChoice : CustomRelicModel, ISneckoPoolSupplier
         [HoverTipFactory.Static(SneckoTip.Gift)];
     protected override IEnumerable<DynamicVar> CanonicalVars 
     
-        =>  [new FuncStringVar("borrowed", () => Character?.Title.GetFormattedText() ?? "")];
+        =>  [new FuncStringVar("borrowed", () => Character?.Title.GetFormattedText() ?? "???")];
 
     [SavedProperty]
     // ReSharper disable once MemberCanBePrivate.Global
     public ModelId? CharacterId { get; private set; }
-    
     
     public override LocString Title
     {
         get
         {
             var title = base.Title;
-            if (Character != null)
-                title.Add("character", Character.Title);
+            title.Add("character", Character?.Title.GetFormattedText() ?? "???");
             return title;
         }
     }
@@ -46,18 +49,33 @@ public class SneckoChoice : CustomRelicModel, ISneckoPoolSupplier
     {
         AssertMutable();   
         CharacterId = character.Id;
+        RefreshNRelicNodes();
     }
     
-    public override string PackedIconPath => Character?.IconTexturePath ?? base.PackedIconPath;
-    protected override string PackedIconOutlinePath => Character?.IconOutlineTexturePath ?? base.PackedIconOutlinePath;
-    protected override string BigIconPath => Character?.IconTexturePath ?? base.BigIconPath;
+    private void RefreshNRelicNodes()
+    {
+        NRun.Instance?.GlobalUi.RelicInventory.RelicNodes
+            .FirstOrDefault(holder => holder.Relic.Model == this)
+            ?.Relic
+            .Reload();    
+    }
+
+    
+    private string IconName => Id.Entry
+        .RemovePrefix()
+        .ToLowerInvariant();
+    
+
+    public override string PackedIconPath => Character?.IconTexturePath ?? $"{IconName}.tres".TresRelicImagePath<Core.Snecko>();
+    protected override string PackedIconOutlinePath => Character?.IconOutlineTexturePath ??$"{IconName}_outline.tres".TresRelicImagePath<Core.Snecko>();
+    protected override string BigIconPath => Character?.IconTexturePath ?? "{IconName}.png".BigRelicImagePath<Core.Snecko>();
    
 
     private CharacterModel? Character => CharacterId == null ? null : ModelDb.GetByIdOrNull<CharacterModel>(CharacterId);
     
-    public CardPoolModel? AddSneckoPool()
+    public CharacterModel? AddSneckoChar()
     {
-        return Character?.CardPool;
+        return Character;
     }
     
 }
