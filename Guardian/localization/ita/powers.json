@@ -27,8 +27,6 @@
     "GUARDIAN-FUTURE_PLANS_POWER.description": "Alla fine del tuo turno, puoi mettere [blue]1[/blue] carta nello [gold]Stasi[/gold].",
     "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "Alla fine del tuo turno, puoi mettere {Amount} {Amount:plural:carta|carte} nello [gold]Stasi[/gold].",
     "GUARDIAN-GEM_FINDER_POWER.title": "Cercatore di Gemme",
-    "GUARDIAN-GEM_FINDER_POWER.description": "Ogni volta che giochi una carta con una [gold]Gemma[/gold], [gold]Irrobustisci[/gold].",
-    "GUARDIAN-GEM_FINDER_POWER.smartDescription": "Ogni volta che giochi una carta con una [gold]Gemma[/gold], [gold]Irrobustisci[/gold] [blue]{Amount}[/blue].",
     "GUARDIAN-MODE_SHIFT_POWER.title": "Cambio Modalità",
     "GUARDIAN-MODE_SHIFT_POWER.description": "Quando perdi HP ottieni [blue]16[/blue] di [gold]Blocco[/gold], entri in [gold]Modalità Difensiva[/gold] fino al prossimo turno, e aumenti questa quantità richiesta per attivare di nuovo questo effetto di [blue]10[/blue], fino a un massimo di [blue]50[/blue].",
     "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "Quando perdi [blue]{Amount}[/blue] HP ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold], entri in [gold]Modalità Difensiva[/gold] fino al prossimo turno, e aumenti questa quantità richiesta per attivare di nuovo questo effetto di [blue]{Increase:diff()}[/blue], fino a un massimo di [blue]{MaxLimit:diff()}[/blue].",

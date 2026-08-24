@@ -12,7 +12,6 @@
     "GUARDIAN-POLISH.title": "연마",
     "GUARDIAN-POLISH.description": "[gold]약화[/gold], [gold]취약[/gold], [gold]손상[/gold] 수치를 각각 X만큼 줄입니다.\n일시적인 버프 스택을 영구적인 버프로 변환합니다.",
     "GUARDIAN-SOCKET.title": "소켓",
-    "GUARDIAN-SOCKET.description": "휴식터에서 이 소켓에 [gold]보석[/gold]을 장착할 수 있습니다.",
     "GUARDIAN-STASIS.title": "정지장",
     "GUARDIAN-STASIS.description": "[gold]정지장[/gold] 상태의 카드는 비용 +[blue]1[/blue]만큼의 턴 동안 머무릅니다. 정지장 상태에서 벗어나면 [gold]패[/gold]로 돌아오며, 사용하기 전까지는 비용이 들지 않습니다.",
     "GUARDIAN-TICK.title": "틱",

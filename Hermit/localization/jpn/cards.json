@@ -36,7 +36,6 @@
     "HERMIT-GAMBIT.title": "オールイン",
     "HERMIT-GAMBIT.description": "[gold]捨て札[/gold]からランダムなアタックを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、それらのコストが{energyPrefix:energyIcons(1)}減少する。",
     "HERMIT-ROUGHHOUSE.title": "乱闘",
-    "HERMIT-ROUGHHOUSE.description": "{Damage:diff()}ダメージを与える。\n[gold]命中[/gold]：{Block:diff()}[gold]ブロック[/gold]を得る。",
     "HERMIT-MALICE.title": "悪意",
     "HERMIT-MALICE.description": "カードを1枚[gold]廃棄[/gold]する。\n{Damage:diff()}ダメージを与える。\n呪いを[gold]廃棄[/gold]した場合、代わりにすべての敵に{Damage:diff()}ダメージを与える。",
     "HERMIT-DEADEYE.title": "デッド-アイ",
@@ -186,7 +185,6 @@
     "HERMIT-FADE_OUT.title": "フェードアウト",
     "HERMIT-FADE_OUT.description": "すべてのプレイヤーは{Block:diff()}[gold]ブロック[/gold]を得る。\nすべてのプレイヤーは[gold]不器用[/gold]を1枚[gold]捨て札[/gold]に加える。",
     "HERMIT-SHARE_THE_LOAD.title": "負担の分担",
-    "HERMIT-SHARE_THE_LOAD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]命中[/gold]：他のすべてのプレイヤーは{Energy:energyIcons()}を得てカードを{Cards:diff()}枚引く。",
     "HERMIT-TECHNIQUE.title": "業",
     "HERMIT-TECHNIQUE.description": "すべてのプレイヤーの[gold]基本[/gold][gold]ストライク[/gold]が追加で{MaintenanceStrikePower:diff()}ダメージを与える。"
 }

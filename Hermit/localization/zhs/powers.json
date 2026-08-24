@@ -89,5 +89,8 @@
     "HERMIT-BURDENED_POWER.title": "背负",
     "HERMIT-BURDENED_POWER.description": "在你的回合开始时，获得[gold]活力[/gold]并将一张[gold]腐朽[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-BURDENED_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]并将[blue]{Cards}[/blue]张[gold]腐朽[/gold]加入你的[gold]手牌[/gold]。",
-    "HERMIT-BRUISE_POWER.remoteDescription": "本回合{HasBigBruiser:|[orange]{ApplierName}[/orange]的}攻击对目标造成[blue]{Amount}[/blue]点额外伤害。"
+    "HERMIT-BRUISE_POWER.remoteDescription": "本回合{HasBigBruiser:|[orange]{ApplierName}[/orange]的}攻击对目标造成[blue]{Amount}[/blue]点额外伤害。",
+    "HERMIT-LONG_SHADOWS_POWER.title": "漫长阴影",
+    "HERMIT-LONG_SHADOWS_POWER.description": "每当你抽到一张诅咒牌时，抽[blue]1[/blue]张牌。",
+    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "每当你抽到一张诅咒牌时，抽[blue]{Amount}[/blue]张牌。"
 }

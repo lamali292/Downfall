@@ -6,8 +6,6 @@
     "HEXAGHOST-DOOMSDAY_POWER.description": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain an additional turn.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "Arrivo del Destino",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "Alla fine del tuo turno, immediatly start another turn.",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "Alla fine del tuo turno, immediatly start another {Amount:plural:turn|[blue]{Amount}[/blue] turns}.",
     "HEXAGHOST-EXTRA_CRISPY_POWER.title": "Extra Croccante",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "Whenever [gold]Brucianima[/gold] detonates, the enemy loses HP and gains [gold]Brucianima[/gold].",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "Whenever [gold]Brucianima[/gold] detonates, the enemy loses [blue]{Amount}[/blue] HP and gains [blue]{Amount}[/blue] [gold]Brucianima[/gold].",

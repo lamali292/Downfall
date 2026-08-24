@@ -11,7 +11,6 @@
     "GUARDIAN-CHARGE_UP.title": "Carica",
     "GUARDIAN-CLONE.description": "Scegli una carta.\nMetti una copia di quella carta nello [gold]Stasi[/gold].{IfUpgraded:show:\n[gold]Accelera[/gold].|}",
     "GUARDIAN-CLONE.title": "Clona",
-    "GUARDIAN-COMPILE_PACKAGE.description": "Scegli 1 di {Cards:diff()} {IfUpgraded:show:[gold]Potenziate[/gold] |}[gold]Pacchetti[/gold] casuali da mettere nello [gold]Stasi[/gold].",
     "GUARDIAN-COMPILE_PACKAGE.title": "Compila Pacchetto",
     "GUARDIAN-CONSTRUCTION_FORM.description": "Ottieni {BufferPower:diff()} [gold]Buffer[/gold].\nAll'inizio del tuo turno, se hai [gold]Buffer[/gold], ottieni {ConstructionFormPower:diff()} [gold]Forza[/gold].",
     "GUARDIAN-CONSTRUCTION_FORM.title": "Forma di Costruzione",
@@ -41,7 +40,6 @@
     "GUARDIAN-GEAR_UP.description": "[gold]Irrobustisci[/gold] {Brace:diff()}.",
     "GUARDIAN-GEM_CANNON.description": "Infliggi {Damage:diff()} di danno.\nAttiva TUTTE le tue [gold]Gemme[/gold].",
     "GUARDIAN-GEM_CANNON.title": "Cannone di Gemme",
-    "GUARDIAN-GEM_FINDER.description": "Ogni volta che giochi una carta con una [gold]Gemma[/gold], [gold]Irrobustisci[/gold] X{IfUpgraded:show:+1|}.",
     "GUARDIAN-GEM_FINDER.title": "Cercatore di Gemme",
     "GUARDIAN-GIGA_BEAM.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\nLa [gold]Forza[/gold] influenza questa carta {StrengthEffect:diff()} volte.\nSalta il tuo prossimo turno.",
     "GUARDIAN-GIGA_BEAM.title": "Giga Raggio",
@@ -69,7 +67,6 @@
     "GUARDIAN-PREPROGRAM.title": "Preprogramma",
     "GUARDIAN-PRIMING_SHOT.description": "Infliggi {Damage:diff()} di danno.\n[gold]Irrobustisci[/gold] {Brace:diff()}.",
     "GUARDIAN-PRIMING_SHOT.title": "Colpo di Innesto",
-    "GUARDIAN-PRISMATIC_BARRIER.description": "Ottieni {CalculationExtra:diff()} di [gold]Blocco[/gold] per ogni [gold]Gemma[/gold] in questa carta.",
     "GUARDIAN-PRISMATIC_BARRIER.title": "Barriera Prismatica",
     "GUARDIAN-PRISMATIC_SPRAY.description": "Infliggi {ExtraDamage:diff()} di danno per ogni [gold]Gemma[/gold] in questa carta.{InCombat:cond:\n(Infliggi {CalculatedDamage:diff()} di danno)|}",
     "GUARDIAN-PRISMATIC_SPRAY.title": "Spruzzo Prismatico",
@@ -97,7 +94,6 @@
     "GUARDIAN-SHIELD_SPIKES.title": "Spine dello Scudo",
     "GUARDIAN-SPEED_BOOST.description": "[gold]Accelera[/gold] {Accelerate:diff()} volte.",
     "GUARDIAN-SPEED_BOOST.title": "Acceleratore",
-    "GUARDIAN-SPHERIC_SHIELD.description": "[gold]Irrobustisci[/gold] {Brace:diff()}.",
     "GUARDIAN-SPHERIC_SHIELD.title": "Scudo Sferico",
     "GUARDIAN-SPIKER_PROTOCOL.description": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], ottieni {SpikerProtocolPower:diff()} [gold]Spine[/gold].\n[gold]Irrobustisci [/gold]{Brace:diff()}.",
     "GUARDIAN-SPIKER_PROTOCOL.title": "Protocollo Pungente",
@@ -154,9 +150,7 @@
     "GUARDIAN-BRONZE_BRAMBLES.title": "Rovi di Bronzo",
     "GUARDIAN-BRONZE_BRAMBLES.description": "Ogni volta che una penalità ti viene applicata, ottieni {BronzeBramblesPower:diff()} [gold]Spine[/gold].",
     "GUARDIAN-MAXIMUM_OVERDRIVE.title": "Massimo Overdrive",
-    "GUARDIAN-MAXIMUM_OVERDRIVE.description": "Ogni volta che una carta conta alla rovescia in [gold]Stasi[/gold], ottieni {MaximumOverdrivePower:diff()} [gold]Forza[/gold] per un turno.",
     "GUARDIAN-SHARED_FLUX.title": "Flusso Condiviso",
     "GUARDIAN-SHARED_FLUX.description": "Scegli un altro giocatore per scegliere una carta nel suo [gold]Mazzo Pesca[/gold] da mettere nello [gold]Stasi[/gold].",
-    "GUARDIAN-OVERBLOCK.title": "Superblocco",
-    "GUARDIAN-OVERBLOCK.description": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], l'alleato con meno [gold]Blocco[/gold] ottiene {OverblockBlockPower:diff()} di [gold]Blocco[/gold] e {OverblockThornsPower:diff()} [gold]Spine[/gold] per un turno."
+    "GUARDIAN-OVERBLOCK.title": "Superblocco"
 }

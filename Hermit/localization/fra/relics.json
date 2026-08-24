@@ -1,6 +1,5 @@
 {
     "HERMIT-OLD_LOCKET.title": "Vieux Médaillon",
-    "HERMIT-OLD_LOCKET.flavor": "Une photo délavée se trouve à l'intérieur.",
     "HERMIT-OLD_LOCKET.description": "Au début de chaque combat, ajoutez un [gold]Mémento[/gold] dans votre [gold]Main[/gold].",
     "HERMIT-RYE_STALK.title": "Tige de Seigle",
     "HERMIT-RYE_STALK.flavor": "Toujours en parfait état, malgré le fait qu'elle ait été mâchouillée pendant si longtemps.",
@@ -10,10 +9,8 @@
     "HERMIT-SHOTGLASS.description": "{Limit:plural:La première fois|Les [blue]{}[/blue] premières fois} que vous utilisez une potion chaque combat, obtenez une potion aléatoire. Vous ne pouvez utiliser {Limit:plural:qu'une potion|que [blue]{Limit}[/blue] potions} chaque combat.",
     "HERMIT-HORSESHOE.title": "Fer à Cheval",
     "HERMIT-HORSESHOE.flavor": "Porte-bonheur. Ça va manquer à quelqu'un.",
-    "HERMIT-HORSESHOE.description": "Lorsque vous gagnez de la [gold]Faiblesse[/gold], de la [gold]Fragilité[/gold] ou de la [gold]Vulnérabilité[/gold], gagnez-en [blue]1[/blue] de moins.",
     "HERMIT-SPYGLASS.title": "Longue-Vue",
     "HERMIT-SPYGLASS.flavor": "Propriété de Kestin Highfin.",
-    "HERMIT-SPYGLASS.description": "La [blue]4ème[/blue] carte que vous jouez chaque tour déclenche son effet [gold]Dans le Mille[/gold] peu importe sa position.",
     "HERMIT-RED_SCARF.title": "Écharpe Rouge",
     "HERMIT-RED_SCARF.flavor": "Chaude et confortable.",
     "HERMIT-RED_SCARF.description": "Lorsque vous appliquez un nouveau débuff à un ennemi, gagnez [blue]{Block}[/blue] [gold]d'Armure[/gold].",

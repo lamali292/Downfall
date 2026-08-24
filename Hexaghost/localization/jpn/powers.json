@@ -6,8 +6,6 @@
     "HEXAGHOST-DOOMSDAY_POWER.description": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを得る。",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを{Amount}回得る。",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "終末の時",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "ターン終了時、すぐに追加のターンを開始する。",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "ターン終了時、すぐに追加のターンを[blue]{Amount}[/blue]回開始する。",
     "HEXAGHOST-EXTRA_CRISPY_POWER.title": "黒コゲ",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "[gold]ソウルバーン[/gold]が炸裂するたび、その敵はHPを失い、追加で[gold]ソウルバーン[/gold]を付与する。",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "[gold]ソウルバーン[/gold]が炸裂するたび、その敵はHPを[blue]{Amount}[/blue]失い、追加で[[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",

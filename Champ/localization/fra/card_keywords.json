@@ -1,5 +1,4 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "Bonus de Compétence",
-    "CHAMP-TRIGGERSKILLBONUS.description": "Lorsque vous jouez une [gold]Compétence[/gold] alors que vous êtes en [gold]Pose[/gold], déclenchez l'effet bonus de cette Pose, jusqu'à [blue]3[/blue] fois maximum.\nLes Bonus de Compétences déclenchés par des effets de cartes ne sont pas pris en compte dans cette limite.",
     "CHAMP-TRIGGERSKILLBONUS.card": "Déclenchez le [gold]Bonus de Compétence[/gold] de votre [gold]Pose[/gold] actuelle."
 }

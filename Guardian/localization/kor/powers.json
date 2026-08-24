@@ -27,8 +27,6 @@
     "GUARDIAN-FUTURE_PLANS_POWER.description": "턴 종료 시, 카드를 [blue]1[/blue]장 [gold]정지장[/gold] 상태로 만들 수 있습니다.",
     "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "턴 종료 시, {Amount}장의 {Amount:plural:카드를|카드들을} [gold]정지장[/gold] 상태로 만들 수 있습니다.",
     "GUARDIAN-GEM_FINDER_POWER.title": "보석 탐지기",
-    "GUARDIAN-GEM_FINDER_POWER.description": "[gold]보석[/gold]이 포함된 카드를 낼 때마다, [gold]대비[/gold]합니다.",
-    "GUARDIAN-GEM_FINDER_POWER.smartDescription": "[gold]보석[/gold]이 포함된 카드를 낼 때마다, [gold]대비[/gold] [blue]{Amount}[/blue] 합니다.",
     "GUARDIAN-MODE_SHIFT_POWER.title": "모드 전환",
     "GUARDIAN-MODE_SHIFT_POWER.description": "HP를 잃으면 [blue]16[/blue] [gold]방어도[/gold]를 얻고 다음 턴까지 [gold]방어 모드[/gold]에 진입하며, 이 효과를 다시 발동하는 데 필요한 수치가 [blue]10[/blue]만큼 증가하여 최대 [blue]50[/blue]까지 늘어납니다.",
     "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "[blue]{Amount}[/blue] HP를 잃으면 [blue]{Block:diff()}[/blue] [gold]방어도[/gold]를 얻고 다음 턴까지 [gold]방어 모드[/gold]에 진입하며, 이 효과를 다시 발동하는 데 필요한 수치가 [blue]{Increase:diff()}[/blue]만큼 증가하여 최대 [blue]{MaxLimit:diff()}[/blue]까지 늘어납니다.",

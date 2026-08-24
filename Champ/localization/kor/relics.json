@@ -8,7 +8,6 @@
     "CHAMP-BLACK_KNIGHTS_HELM.description": "전투 시작 시 각 [gold]태세[/gold]를 처음으로 취할 때: 철벽: [gold]민첩[/gold] 2를 얻고 [gold]힘[/gold] 1을 잃습니다. 광란: [gold]힘[/gold] 2를 얻고 [gold]민첩[/gold] 1을 잃습니다.",
     "CHAMP-BLACK_KNIGHTS_HELM.flavor": "살점만 조금 베였을 뿐이다.",
     "CHAMP-CHAMPIONS_CROWN.title": "챔피언의 왕관",
-    "CHAMP-CHAMPIONS_CROWN.description": "전투 시작 시 무작위 태세로 시작하며, 해당 태세의 스킬 보너스를 두 번 발동합니다.",
     "CHAMP-CHAMPIONS_CROWN.flavor": "당신이 승리자입니다!",
     "CHAMP-DEFENSIVE_THESIS.title": "방어 논문",
     "CHAMP-DEFENSIVE_THESIS.description": "철벽 태세의 마무리 보너스가 [blue]3[/blue]의 [gold]방어도[/gold]를 추가로 부여합니다.",
@@ -31,6 +30,5 @@
     "CHAMP-SPECTRES_HAND.title": "망령의 손",
     "CHAMP-SPECTRES_HAND.flavor": "어떤 승리는 당신과 함께 남는다.",
     "CHAMP-VICTORIOUS_CROWN.title": "승리의 왕관",
-    "CHAMP-VICTORIOUS_CROWN.description": "전투 시작 시 무작위 [gold]태세[/gold]로 시작하며, 해당 [gold]태세[/gold]의 [gold]스킬 보너스[/gold]를 두 번 발동합니다.\n매 턴 처음으로 [gold]마무리[/gold]를 사용하면, 카드를 [blue]2[/blue]장 뽑고 무작위 [gold]태세[/gold]를 취합니다.",
     "CHAMP-VICTORIOUS_CROWN.flavor": "축하합니다!! 당신은 가장 위대한 승리자입니다."
 }

@@ -12,7 +12,7 @@
     "GUARDIAN-POLISH.title": "抛光",
     "GUARDIAN-POLISH.description": "移除相应层数的[gold]虚弱[/gold]、[gold]脆弱[/gold]和[gold]易伤[/gold]。\n将相应层数的临时增益转化为永久增益。",
     "GUARDIAN-SOCKET.title": "槽位",
-    "GUARDIAN-SOCKET.description": "[gold]宝石[/gold]能够被镶嵌至有槽位的牌上。",
+    "GUARDIAN-SOCKET.description": "能够在休息处镶嵌一张[gold]宝石[/gold]牌，永久获得对应效果。",
     "GUARDIAN-STASIS.title": "凝滞",
     "GUARDIAN-STASIS.description": "将牌挂起并从其耗能+[blue]1[/blue]开始倒计时。\n在你的回合开始时，所有凝滞牌的计时减[blue]1[/blue]。\n计时归零时，将其返回手牌且下次打出前耗能变为[blue]0[/blue]。",
     "GUARDIAN-TICK.title": "滴答",

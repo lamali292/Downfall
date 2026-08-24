@@ -6,8 +6,6 @@
     "HEXAGHOST-DOOMSDAY_POWER.description": "Вы получите дополнительный ход, когда в следующий раз [gold]Зажжете[/gold] все [blue]6[/blue] Огоньков.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "Вы получите {Amount:plural(ru):дополнительный ход|{Amount} дополнительных хода|{Amount} дополнительных ходов}, когда в следующий раз [gold]Зажжете[/gold] все [blue]6[/blue] Огоньков.",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "Судный день",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "Вы получите дополнительный ход в конце этого хода.",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "Вы получите {Amount:plural(ru):дополнительный ход|[blue]{Amount}[/blue] дополнительного хода|[blue]{Amount}[/blue] дополнительных ходов} в конце этого хода.",
     "HEXAGHOST-EXTRA_CRISPY_POWER.title": "Хрустящая корочка",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "Когда [gold]Ожог души[/gold] срабатывает, враг теряет ОЗ и получает [gold]Ожог души[/gold].",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "Когда [gold]Ожог души[/gold] срабатывает, враг теряет [blue]{Amount}[/blue] ОЗ и получает [blue]{Amount}[/blue] [gold]Ожога души[/gold].",

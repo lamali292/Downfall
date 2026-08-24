@@ -36,7 +36,6 @@
     "HERMIT-GAMBIT.title": "All In",
     "HERMIT-GAMBIT.description": "Placez {Cards:diff()} Attaques aléatoires de votre [gold]Défausse[/gold] à votre [gold]Main[/gold].\nElles coûtent 1 {energyPrefix:energyIcons(1)} de moins ce tour.",
     "HERMIT-ROUGHHOUSE.title": "Baston",
-    "HERMIT-ROUGHHOUSE.description": "Infligez {Damage:diff()} dégâts. \n[gold]Dans le Mille[/gold] : Gagnez {Block:diff()} [gold]d'Armure[/gold].",
     "HERMIT-MALICE.title": "Malice",
     "HERMIT-MALICE.description": "[gold]Épuisez[/gold] une carte.\nInfligez {Damage:diff()} dégâts.\nSi vous [gold]Épuisez[/gold] une Malédiction, infligez {Damage:diff()} dégâts à TOUS les ennemis à la place.",
     "HERMIT-DEADEYE.title": "Fine Gâchette",
@@ -186,7 +185,6 @@
     "HERMIT-FADE_OUT.title": "Disparition",
     "HERMIT-FADE_OUT.description": "TOUS les joueurs gagnent {Block:diff()} [gold]d'Armure[/gold] et ajoutent une [gold]Maladresse[/gold] dans leur [gold]Défausse[/gold].",
     "HERMIT-SHARE_THE_LOAD.title": "Partager la Charge",
-    "HERMIT-SHARE_THE_LOAD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\n[gold]Dans le Mille[/gold] : TOUS les autres joueurs gagnent {Energy:energyIcons()} et piochent {Cards:diff()} cartes.",
     "HERMIT-TECHNIQUE.title": "Technique",
     "HERMIT-TECHNIQUE.description": "Les [gold]Frappes[/gold] [gold]Basiques[/gold] de TOUT LE MONDE infligent {MaintenanceStrikePower:diff()} dégâts supplémentaires."
 }

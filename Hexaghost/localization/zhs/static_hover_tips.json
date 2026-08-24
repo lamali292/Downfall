@@ -1,4 +1,8 @@
 {
     "HEXAGHOST-IGNITE.title": "点燃",
-    "HEXAGHOST-IGNITE.description": "触发当前[gold]鬼火[/gold]的点燃效果"
+    "HEXAGHOST-IGNITE.description": "触发当前[gold]鬼火[/gold]的点燃效果",
+    "HEXAGHOST-WHEEL.title": "鬼火轮盘",
+    "HEXAGHOST-WHEEL.description": "持有6枚[gold]鬼火[/gold]，顶部的[gold]鬼火[/gold]会被[gold]点燃[/gold]。\n需要达成对应条件以[gold]点燃[/gold]这枚[gold]鬼火[/gold]。\n在你的回合结束时，如果顶部的[gold]鬼火[/gold]已[gold]点燃[/gold]，[gold]步进[/gold]。",
+    "HEXAGHOST-EXTINGUISH.title": "熄灭",
+    "HEXAGHOST-EXTINGUISH.description": "重置1枚已[gold]点燃[/gold]的[gold]鬼火[/gold]，其可以再次被[gold]点燃[/gold]。"
 }

@@ -1,6 +1,5 @@
 {
     "HERMIT-OLD_LOCKET.title": "古いロケット",
-    "HERMIT-OLD_LOCKET.flavor": "中には色褪せた写真が入っている。",
     "HERMIT-OLD_LOCKET.description": "各戦闘開始時、[gold]メメント[/gold]を[gold]手札[/gold]に加える。",
     "HERMIT-RYE_STALK.title": "ライ麦の茎",
     "HERMIT-RYE_STALK.flavor": "長い間噛まれ続けているのに、いまだに新品同様だ。",
@@ -10,10 +9,8 @@
     "HERMIT-SHOTGLASS.description": "各戦闘でポーションを最初に使った時、ランダムなポーションを1つ入手する。各戦闘でポーションは[blue]{Limit}[/blue]個までしか使用できない。",
     "HERMIT-HORSESHOE.title": "蹄鉄",
     "HERMIT-HORSESHOE.flavor": "幸運のお守り。誰かがこれを失くして困っているだろう。",
-    "HERMIT-HORSESHOE.description": "[gold]脱力[/gold]、[gold]脆弱[/gold]、[gold]弱体[/gold]を得る時、その量が[blue]1[/blue]減少する。",
     "HERMIT-SPYGLASS.title": "スパイグラス",
     "HERMIT-SPYGLASS.flavor": "ケスティン・ハイフィンの所有物。",
-    "HERMIT-SPYGLASS.description": "各ターンにプレイする[blue]4[/blue]枚目のカードは、位置に関係なく[gold]命中[/gold]効果を発動する。",
     "HERMIT-RED_SCARF.title": "赤いスカーフ",
     "HERMIT-RED_SCARF.flavor": "暖かくてふわふわだ。",
     "HERMIT-RED_SCARF.description": "敵に新たなデバフを付与するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",

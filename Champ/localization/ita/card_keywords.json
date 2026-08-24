@@ -1,5 +1,4 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "Bonus Abilità",
-    "CHAMP-TRIGGERSKILLBONUS.description": "Ogni volta che giochi un'[gold]Abilità[/gold] mentre sei in una [gold]Posa[/gold], innesca l'effetto bonus di quella Posa, fino a [blue]3[/blue] volte.\nI Bonus Abilità innescati da effetti di carte non contano verso questo limite.",
     "CHAMP-TRIGGERSKILLBONUS.card": "Innesca il [gold]Bonus Abilità[/gold] della tua [gold]Posa[/gold] attuale."
 }

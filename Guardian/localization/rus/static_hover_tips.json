@@ -12,7 +12,6 @@
     "GUARDIAN-POLISH.title": "Шлифовка",
     "GUARDIAN-POLISH.description": "Понижает вашу [gold]слабость[/gold], [gold]хрупкость[/gold] и [gold]уязвимость[/gold] на [blue]X[/blue].\nПреобразует [blue]X[/blue] стаков временных положительных эффектов в постоянные.",
     "GUARDIAN-SOCKET.title": "Гнездо",
-    "GUARDIAN-SOCKET.description": "В гнездо карты можно [gold]Инкрустировать[/gold] [gold]Самоцвет[/gold], находясь в Лагере.",
     "GUARDIAN-STASIS.title": "Стазис",
     "GUARDIAN-STASIS.description": "Карта, помещенная в [gold]Стазис[/gold], остается в нем на [blue]N+1[/blue] ходов, где [blue]N[/blue] - стоимость карты.\nПри выходе из [gold]Стазиса[/gold], карта возвращается в [gold]руку[/gold] и стоит [blue]0[/blue], пока не разыграна.",
     "GUARDIAN-TICK.title": "Тик",

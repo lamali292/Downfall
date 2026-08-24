@@ -34,7 +34,6 @@
     "HERMIT-GAMBIT.title": "Tutto Dentro",
     "HERMIT-GAMBIT.description": "Metti {Cards:diff()} Attacchi casuali dal tuo [gold]Mazzo Scarti[/gold] nella tua [gold]Mano[/gold].\nCostano 1 in meno {energyPrefix:energyIcons(1)} in questo turno.",
     "HERMIT-ROUGHHOUSE.title": "Rissa",
-    "HERMIT-ROUGHHOUSE.description": "Infliggi {Damage:diff()} di danno.\n[gold]Nel Segno[/gold]: Ottieni {Block:diff()} di [gold]Blocco[/gold].",
     "HERMIT-MALICE.title": "Malizia",
     "HERMIT-MALICE.description": "[gold]Esaurisci[/gold] una carta.\nInfliggi {Damage:diff()} di danno.\nSe [gold]Esaurisci[/gold] una Maledizione, infliggi invece {Damage:diff()} di danno a TUTTI i nemici.",
     "HERMIT-DEADEYE.title": "Mira Infalibile",

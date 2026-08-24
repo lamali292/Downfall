@@ -36,7 +36,6 @@
     "HERMIT-GAMBIT.title": "Гамбит",
     "HERMIT-GAMBIT.description": "Вы кладете {Cards:diff()} {Cards:plural(ru):случайную Атаку|случайные Атаки|случайных Атак} из [gold]стопки сброса[/gold] в [gold]руку[/gold].\nОни стоят на 1 {energyPrefix:energyIcons(1)} меньше в этом ходу.",
     "HERMIT-ROUGHHOUSE.title": "Хулиганство",
-    "HERMIT-ROUGHHOUSE.description": "Наносит {Damage:diff()} урона.\n[gold]В яблочко[/gold]:\nДает {Block:diff()} [gold]защиты[/gold].",
     "HERMIT-MALICE.title": "Злость",
     "HERMIT-MALICE.description": "Вы [gold]сжигаете[/gold] 1 карту.\nНаносит {Damage:diff()} урона.\nЕсли вы [gold]сожгли[/gold] [red]Проклятие[/red], вместо этого наносит урон ВСЕМ врагам.",
     "HERMIT-DEADEYE.title": "Меткий глаз",
@@ -186,7 +185,6 @@
     "HERMIT-FADE_OUT.title": "Затухание",
     "HERMIT-FADE_OUT.description": "Дает {Block:diff()} [gold]защиты[/gold] ВСЕМ игрокам и замешивает [red]«Неуклюжесть»[/red] в их [gold]стопки сброса[/gold].",
     "HERMIT-SHARE_THE_LOAD.title": "Раздать указания",
-    "HERMIT-SHARE_THE_LOAD.description": "Дает {Block:diff()} [gold]защиты[/gold].\n[gold]В яблочко[/gold]: Другие игроки получают {Energy:energyIcons()} и добирают {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
     "HERMIT-TECHNIQUE.title": "Техничность",
     "HERMIT-TECHNIQUE.description": "[gold]Стартовые[/gold] [gold]«Удары»[/gold] ВСЕХ игроков наносят на {MaintenanceStrikePower:diff()} урона больше."
 }

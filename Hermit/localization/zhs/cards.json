@@ -36,7 +36,7 @@
     "HERMIT-GAMBIT.title": "开场白",
     "HERMIT-GAMBIT.description": "将[gold]弃牌堆[/gold]中{Cards:diff()}张随机攻击牌加入你的[gold]手牌[/gold]。\n本回合内其耗能减少{energyPrefix:energyIcons(1)}。",
     "HERMIT-ROUGHHOUSE.title": "肉搏",
-    "HERMIT-ROUGHHOUSE.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：获得{Block:diff()}点[gold]格挡[/gold]。",
+    "HERMIT-ROUGHHOUSE.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：获得等量于所造成伤害的[gold]格挡[/gold]。",
     "HERMIT-MALICE.title": "歹念",
     "HERMIT-MALICE.description": "[gold]消耗[/gold]一张牌。\n造成{Damage:diff()}点伤害。\n如果[gold]消耗[/gold]的是诅咒牌，改为攻击所有敌人。",
     "HERMIT-DEADEYE.title": "死神之眼",
@@ -188,5 +188,7 @@
     "HERMIT-SHARE_THE_LOAD.title": "同甘共苦",
     "HERMIT-SHARE_THE_LOAD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：所有盟友获得{Energy:energyIcons()}并抽{Cards:diff()}张牌。",
     "HERMIT-TECHNIQUE.title": "绝技",
-    "HERMIT-TECHNIQUE.description": "所有人的[gold]打击[/gold]额外造成{MaintenanceStrikePower:diff()}点伤害。"
+    "HERMIT-TECHNIQUE.description": "所有人的[gold]打击[/gold]额外造成{MaintenanceStrikePower:diff()}点伤害。",
+    "HERMIT-LONG_SHADOWS.title": "漫长阴影",
+    "HERMIT-LONG_SHADOWS.description": "每当你抽到一张诅咒牌时，抽{LongShadowsPower:diff()}张牌。"
 }

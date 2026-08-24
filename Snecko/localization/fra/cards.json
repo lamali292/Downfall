@@ -174,7 +174,6 @@
     "SNECKO-SSSHARING.title": "Sssolidarité",
     "SNECKO-SSSHARING.description": "TOUS les joueurs ajoutent {Cards:diff()} {Cards:plural:carte [gold]Hors-classe[/gold] aléatoire|cartes [gold]Hors-classe[/gold] aléatoires} dans leurs [gold]Mains[/gold].\n{Cards:plural:Elle est gratuite|Elles sont gratuites} à jouer ce tour.",
     "SNECKO-MIMICRY.title": "Mimétisme",
-    "SNECKO-MIMICRY.description": "Lorsque vous jouez une carte [gold]Hors-classe[/gold], gagnez {MimicryPower:diff()} de [gold]Force[/gold] pour un tour.",
     "SNECKO-WHIPLASH.title": "Coup de Fouet",
     "SNECKO-WHIPLASH.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\n[gold]Excédent[/gold]: Appliquez {PowerVar:diff()} de [gold]Faiblesse[/gold] et de [gold]Vulnérabilité[/gold] à TOUS les ennemis, augmenté par le coût de cette carte.",
     "SNECKO-SNATCH.title": "Saisie",

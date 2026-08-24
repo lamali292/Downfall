@@ -34,7 +34,6 @@
     "HERMIT-GAMBIT.title": "승부수",
     "HERMIT-GAMBIT.description": "[gold]버린 카드 더미[/gold]에서 무작위 공격 카드 {Cards:diff()}장을 [gold]손패[/gold]로 가져옵니다.\n그 카드들은 이번 턴 동안 비용이 1 감소합니다.",
     "HERMIT-ROUGHHOUSE.title": "난동",
-    "HERMIT-ROUGHHOUSE.description": "{Damage:diff()} 피해를 줍니다.\n[gold]정조준[/gold]:\n{Block:diff()} [gold]방어도[/gold]를 얻습니다.",
     "HERMIT-MALICE.title": "악의",
     "HERMIT-MALICE.description": "카드 1장을 [gold]소멸[/gold]시킵니다.\n{Damage:diff()} 피해를 줍니다.\n저주 카드를 [gold]소멸[/gold]시켰다면, 대신 모든 적에게 {Damage:diff()} 피해를 줍니다.",
     "HERMIT-DEADEYE.title": "데드아이",

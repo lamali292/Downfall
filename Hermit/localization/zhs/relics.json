@@ -1,6 +1,6 @@
 {
     "HERMIT-OLD_LOCKET.title": "老旧小盒",
-    "HERMIT-OLD_LOCKET.flavor": "里面有一张褪色的老照片。",
+    "HERMIT-OLD_LOCKET.flavor": "里面有一张褪色的老照片。上面尽是些似曾相识的面孔——你自己也在。",
     "HERMIT-OLD_LOCKET.description": "在每场战斗开始时，将一张[gold]纪念品[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-RYE_STALK.title": "黑麦茎",
     "HERMIT-RYE_STALK.flavor": "被反复咀嚼过，却依然没有折断。",
@@ -10,10 +10,10 @@
     "HERMIT-SHOTGLASS.description": "每场战斗你最多能使用[blue]{Limit}[/blue]瓶药水。你在战斗中使用药水时，获取[blue]1[/blue]瓶随机药水。",
     "HERMIT-HORSESHOE.title": "马蹄铁",
     "HERMIT-HORSESHOE.flavor": "幸运符。某人肯定会想念它的。",
-    "HERMIT-HORSESHOE.description": "每当你获得[gold]虚弱[/gold]、[gold]脆弱[/gold]或[gold]易伤[/gold]时，获得的层数减[blue]1[/blue]。",
+    "HERMIT-HORSESHOE.description": "[gold]打击[/gold]现在会攻击所有敌人。",
     "HERMIT-SPYGLASS.title": "望远镜",
     "HERMIT-SPYGLASS.flavor": "凯瑟琳·海芬的财产。",
-    "HERMIT-SPYGLASS.description": "你在每回合打出的第[blue]4[/blue]张牌必定触发[gold]精准[/gold]。",
+    "HERMIT-SPYGLASS.description": "你在每回合打出的第[blue]3[/blue]张牌必定触发[gold]精准[/gold]。",
     "HERMIT-RED_SCARF.title": "红围巾",
     "HERMIT-RED_SCARF.flavor": "温暖又舒适。",
     "HERMIT-RED_SCARF.description": "每当你给予敌人一种新的负面状态时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
@@ -41,5 +41,8 @@
     "HERMIT-BROKEN_TOOTH.title": "兽牙战利品",
     "HERMIT-BROKEN_TOOTH.flavor": "看起来太大了，不像是人类的牙齿……",
     "HERMIT-BROKEN_TOOTH.description": "每当你击败精英敌人时，回复[green]{Heal}[/green]点生命并获得[blue]{Gold}[/blue]金币。",
-    "SEA_GLASS.HERMIT-HERMIT.title": "流浪者玻璃"
+    "SEA_GLASS.HERMIT-HERMIT.title": "流浪者玻璃",
+    "HERMIT-SCORCHED_LOCKET.title": "熏黑小盒",
+    "HERMIT-SCORCHED_LOCKET.description": "在每场战斗开始时，将一张附有[purple]怒火[/purple]的[gold]纪念品[/gold]加入你的[gold]手牌[/gold]。",
+    "HERMIT-SCORCHED_LOCKET.flavor": "火焰自内而外。火焰腾起黑烟。火焰永不停息。"
 }

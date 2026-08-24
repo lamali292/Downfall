@@ -1,6 +1,5 @@
 {
     "HERMIT-OLD_LOCKET.title": "낡은 로켓",
-    "HERMIT-OLD_LOCKET.flavor": "내부에 빛바랜 사진이 있습니다.",
     "HERMIT-OLD_LOCKET.description": "전투가 시작될 때마다 [gold]유품[/gold] 1장을 [gold]손패[/gold]에 추가합니다.",
     "HERMIT-RYE_STALK.title": "호밀 줄기",
     "HERMIT-RYE_STALK.flavor": "오랫동안 씹혔음에도 보존 상태가 완벽합니다.",
@@ -9,7 +8,6 @@
     "HERMIT-SHOTGLASS.flavor": "안에 담긴 모든 액체가 다른 것으로 변합니다.",
     "HERMIT-HORSESHOE.title": "편자",
     "HERMIT-HORSESHOE.flavor": "행운의 부적입니다. 누군가는 이걸 잃어버려서 아쉬워하겠군요.",
-    "HERMIT-HORSESHOE.description": "[gold]약화[/gold], [gold]손상(Frail)[/gold] 또는 [gold]취약[/gold]을 얻을 때마다, 그 수치가 [blue]1[/blue] 감소합니다.",
     "HERMIT-SPYGLASS.title": "망원경",
     "HERMIT-SPYGLASS.flavor": "케스틴 하이핀의 소유물입니다.",
     "HERMIT-RED_SCARF.title": "붉은 스카프",
