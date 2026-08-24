@@ -54,6 +54,8 @@
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "在下个回合，你无法从卡牌中获得[gold]格挡[/gold]。",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.smartDescription": "下[blue]{Amount}[/blue]个回合内，你无法从卡牌中获得[gold]格挡[/gold]。",
     "CHAMP-PARRYING_POWER.title": "招架",
+    "CHAMP-PARRYING_POWER.description": "若本回合触发了[gold]反击[/gold]，[gold]还击打击[/gold]获得[gold]重放[/gold][blue]1[/blue]。",
+    "CHAMP-PARRYING_POWER.smartDescription": "若本回合触发了[gold]反击[/gold]，[gold]还击打击[/gold]获得[gold]重放[/gold][blue]{Amount}[/blue]。",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "守护光环",
     "CHAMP-PROTECTIVE_AURA_POWER.description": "每当你在没有[gold]姿态[/gold]时结束回合，获得[gold]格挡[/gold]。",
     "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "每当你在没有[gold]姿态[/gold]时结束回合，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
