@@ -15,7 +15,7 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
+        var state = CombatManager.Instance._state;
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players.Where(e => e.Character is SlimeBoss)) SlimeQueue.SetSlots(player, 3);
         return Task.CompletedTask;

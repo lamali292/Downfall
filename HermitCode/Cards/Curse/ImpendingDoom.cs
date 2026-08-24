@@ -35,7 +35,7 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
     public override bool HasTurnEndInHandEffect => HermitCmd.HasActiveDeadOnEffect(this);
     public override bool CanBeGeneratedByModifiers => false;
 
-    private static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;
+    private static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

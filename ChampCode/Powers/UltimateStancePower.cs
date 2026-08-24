@@ -39,7 +39,7 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
     public Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
-        if (Owner.Player != player || newStance is ChampUltimateStance) return Task.CompletedTask;
+        if (Owner.Player != player || newStance is ChampUltimateStance or ChampNoStance) return Task.CompletedTask;
         return EnterUltimateStance(ctx, player);
     }
 }

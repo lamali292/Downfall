@@ -170,7 +170,7 @@ public static class GremlinsCmd
     // GremlinsCmd
     public static void AddGremlin(Player player, MonsterModel model, int hp, int maxHp)
     {
-        var combatState = CombatManager.Instance.DebugOnlyGetState();
+        var combatState = CombatManager.Instance._state;
         if (combatState == null) return;
         if (player.PlayerCombatState == null) return;
 

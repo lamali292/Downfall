@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 ]
+
+[ext_resource type="Script" path="res://ChampCode/Vfx/NChampStanceDisplay.cs" id="1"]
+[ext_resource type="Texture2D" path="res://Champ/images/ui/stance_ultimate_under.png" id="2_yxjbl"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_shared.tres" id="3"]
+[ext_resource type="Texture2D" path="res://Champ/images/ui/stance_ultimate_over.png" id="3_om6xy"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="4"]
+[ext_resource type="Texture2D" path="res://Champ/images/ui/stance_ultimate_progress.png" id="4_prsc7"]
+
+[sub_resource type="FontVariation" id="FontVariation_ctn1f"]
+base_font = ExtResource("3")
+spacing_glyph = 2
+
+[node name="StanceDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 1
+script = ExtResource("1")
+
+[node name="Fill" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_yxjbl")
+texture_over = ExtResource("3_om6xy")
+texture_progress = ExtResource("4_prsc7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -29.0
+offset_right = -16.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.37, 0.22200002, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_ctn1f")
+theme_override_font_sizes/font_size = 32
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4")
+MinFontSize = 28
+MaxFontSize = 30
+theme_override_colors/font_outline_color = Color(0.37, 0.22200002, 0, 1)

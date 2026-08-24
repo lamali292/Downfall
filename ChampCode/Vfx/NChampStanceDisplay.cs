@@ -1,10 +1,9 @@
-﻿// NChampStanceDisplay.cs
-
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -13,152 +12,210 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Champ.ChampCode.Vfx;
 
-public partial class NChampStanceDisplay : Control
+public partial class NChampStanceDisplay : NClickableControl
 {
-    private const string InactiveChargePath = "res://Champ/images/ui/stance_charge_inactive.png";
-    private const int ChargeIconSize = 70;
-    private const int Separation = 6;
-    private const int IconCount = 3;
-    private const int TotalWidth = IconCount * ChargeIconSize + (IconCount - 1) * Separation;
-    private const int TotalHeight = ChargeIconSize;
-    private const int MarginAboveHead = 20;
+    private const string DisplayScenePath = "res://Champ/scenes/ui/stance_display.tscn";
 
-    private static readonly Vector2 ReticleCenterOffset = new(ChargeIconSize / 2f, ChargeIconSize / 2f);
-    private static readonly Vector2 ReticleVisualSize = new(ChargeIconSize, ChargeIconSize);
-
-    private readonly List<TextureRect> _icons = new();
-    private readonly List<StanceIconControl> _wrappers = new();
-    private Control? _bounds;
-    private Control? _creatureHitbox;
     private Player? _trackedPlayer;
+
+    private TextureProgressBar? _fill;
+    private Label? _label;
+    public bool IsExiting => _isExiting;
+    private NSelectionReticle? _reticle;
+    private IHoverTip? _tip;
+    private Func<IHoverTip>? _tipProvider;
+
+    private Vector2 RelativeOffset => new Vector2(60f, -60f);
+    private Vector2 HideOffset => new Vector2(-480f, 128f);
+
+    private Tween? _activeTween;
+    private bool _isExiting;
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CombatManager.Instance.CombatEnded += OnCombatEnded;
+    }
+    
+    
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CombatManager.Instance.CombatEnded -= OnCombatEnded;
+    }
+
+    private void OnCombatEnded(CombatRoom room)
+    {
+        AnimOutAndFree();
+    }
+
+    public void AnimIn()
+    {
+        if (_isExiting) return;
+
+        var targetPos = GetTargetShowPosition();
+        var startPos = targetPos + HideOffset;
+
+        _activeTween?.Kill();
+        Position = startPos;
+
+        _activeTween = CreateTween();
+        _activeTween.TweenProperty(this, "position", targetPos, 0.6f)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Expo);
+    }
+
+    public void AnimOutAndFree()
+    {
+        if (_isExiting) return;
+        _isExiting = true;
+
+        _activeTween?.Kill();
+
+        var targetPos = Position + HideOffset;
+
+        _activeTween = CreateTween();
+        _activeTween.TweenProperty(this, "position", targetPos, 0.5f)
+            .SetEase(Tween.EaseType.In)
+            .SetTrans(Tween.TransitionType.Back);
+
+        _activeTween.Finished += OnExitAnimFinished;
+    }
+
+    private void OnExitAnimFinished()
+    {
+        if (IsInstanceValid(this) && !IsQueuedForDeletion())
+        {
+            QueueFree();
+        }
+    }
+
+    private Vector2 GetTargetShowPosition()
+    {
+        var ui = NCombatRoom.Instance?.Ui;
+        var energyNode = ui?._energyCounter;
+
+        if (energyNode != null && ui != null)
+        {
+            Vector2 uiLocalPos = energyNode.GlobalPosition - ui.GlobalPosition;
+            return uiLocalPos + RelativeOffset;
+        }
+
+        return new Vector2(228f, 678f);
+    }
 
     public static NChampStanceDisplay? Show(Player player)
     {
         var combatRoom = NCombatRoom.Instance;
-        var creatureNode = combatRoom?.GetCreatureNode(player.Creature);
-        if (creatureNode == null) return null;
+        if (combatRoom?.Ui == null)
+            return null;
 
-        var display = new NChampStanceDisplay
+        var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
+        if (scene == null)
         {
-            _trackedPlayer = player,
-            _bounds = creatureNode.Visuals.Bounds,
-            ZIndex = creatureNode.ZIndex - 1,
-            _creatureHitbox = creatureNode.Hitbox
-        };
+            GD.PrintErr($"[Champ] Could not load {DisplayScenePath}");
+            return null;
+        }
 
-        combatRoom?.CombatVfxContainer.AddChildSafely(display);
+        var display = scene.Instantiate<NChampStanceDisplay>();
+        display._trackedPlayer = player;
+
+        combatRoom.Ui.AddChildSafely(display);
+
         return display;
     }
 
     public override void _Ready()
     {
-        Size = new Vector2(TotalWidth, TotalHeight);
+        ConnectSignals();
 
-        for (var i = 0; i < IconCount; i++)
-        {
-            var icon = new TextureRect
-            {
-                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
-                Size = new Vector2(ChargeIconSize, ChargeIconSize),
-                MouseFilter = MouseFilterEnum.Ignore
-            };
+        _fill = GetNode<TextureProgressBar>("%Fill");
+        _label = GetNode<Label>("Label");
 
-            var wrapper = new StanceIconControl
-            {
-                Size = new Vector2(ChargeIconSize, ChargeIconSize),
-                Position = new Vector2(i * (ChargeIconSize + Separation), 0),
-                MouseFilter = MouseFilterEnum.Stop
-            };
-
-            wrapper.AddChild(icon);
-            AddChild(wrapper);
-            _icons.Add(icon);
-            _wrappers.Add(wrapper);
-
-            var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, ReticleCenterOffset, ReticleVisualSize, 4f);
-            if (reticle != null) wrapper.SetReticle(reticle);
-        }
-
-        DownfallControllerNav.WireChain(_wrappers, true);
-        if (_creatureHitbox != null)
-            // Entry point is the rightmost icon, since that's the "first" stance charge
-            DownfallControllerNav.LinkAbove(_wrappers, _creatureHitbox, _wrappers.Count - 1);
-        Reposition();
-        Refresh();
-    }
-
-    private void Reposition()
-    {
-        if (_bounds == null) return;
-
-        GlobalPosition = new Vector2(
-            _bounds.GlobalPosition.X + _bounds.Size.X / 2f - TotalWidth / 2f,
-            _bounds.GlobalPosition.Y - TotalHeight - MarginAboveHead
-        );
-    }
-
-    public void Refresh()
-    {
-        if (!IsInstanceValid(this)) return;
-        if (IsQueuedForDeletion()) return;
-        if (_trackedPlayer == null || _icons.Count == 0) return;
-
-        var stance = _trackedPlayer.ChampStance;
-
-        if (stance is ChampNoStance or null)
+        // Check initial stance before triggering entrance animation
+        var initialStance = _trackedPlayer?.ChampStance;
+        if (initialStance is ChampNoStance or null)
         {
             QueueFree();
             return;
         }
 
-        var activePath = stance.ChargeIconPath ?? InactiveChargePath;
-
-        for (var i = 0; i < _icons.Count; i++)
-        {
-            var isActive = i < stance.Charges;
-            _icons[i].Texture = ResourceLoader.Load<Texture2D>(isActive ? activePath : InactiveChargePath);
-            _wrappers[i].SetTipProvider(() => stance.HoverTip);
-        }
+        AnimIn();
+        Refresh();
     }
 
-    private partial class StanceIconControl : NClickableControl
+    public void Refresh()
     {
-        private NSelectionReticle? _reticle;
-        private IHoverTip? _tip;
-        private Func<IHoverTip>? _tipProvider;
+        if (!IsInstanceValid(this) || IsQueuedForDeletion() || _trackedPlayer == null || _isExiting)
+            return;
 
-        public void SetTipProvider(Func<IHoverTip> provider)
+        var stance = _trackedPlayer.ChampStance;
+
+        if (stance is ChampNoStance or null)
         {
-            _tipProvider = provider;
+            AnimOutAndFree();
+            return;
         }
 
-        public void SetReticle(NSelectionReticle? reticle)
-        {
-            _reticle = reticle;
-        }
+        // Pointer-equality check skips unnecessary Godot C++ interop setters
+        var texProgress = stance.ChargeTextureProgress;
+        if (_fill!.TextureProgress != texProgress)
+            _fill.TextureProgress = texProgress;
 
-        public override void _Ready()
-        {
-            ConnectSignals();
-        }
+        var texOver = stance.ChargeTextureOver;
+        if (_fill.TextureOver != texOver)
+            _fill.TextureOver = texOver;
 
-        protected override void OnFocus()
-        {
-            if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true) _reticle?.OnSelect();
+        var texUnder = stance.ChargeTextureUnder;
+        if (_fill.TextureUnder != texUnder)
+            _fill.TextureUnder = texUnder;
 
-            _tip = _tipProvider?.Invoke();
-            if (_tip == null) return;
-            NHoverTipSet.CreateAndShow(this, _tip)
-                ?.SetGlobalPosition(GlobalPosition + new Vector2(0f, Size.Y + 20f));
-        }
+        var maxCharges = stance.MaxCharges;
+        var charges = stance.Charges;
 
-        protected override void OnUnfocus()
-        {
-            _reticle?.OnDeselect();
-            NHoverTipSet.Remove(this);
-        }
+        _fill.MaxValue = maxCharges;
+        _fill.Value = charges;
+
+        if (stance.LabelOutlineColor is { } color)
+            _label!.AddThemeColorOverride("font_outline_color", color);
+
+        _label!.Text = $"{charges}/{maxCharges}";
+
+        _tipProvider = () => stance.HoverTip;
+    }
+    
+    public void SetReticle(NSelectionReticle? reticle)
+    {
+        _reticle = reticle;
+    }
+
+    public void SetTipProvider(Func<IHoverTip> provider)
+    {
+        _tipProvider = provider;
+    }
+
+    protected override void OnFocus()
+    {
+        if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true)
+            _reticle?.OnSelect();
+
+        _tip = _tipProvider?.Invoke();
+
+        if (_tip == null)
+            return;
+
+        NHoverTipSet.CreateAndShow(this, _tip)
+            ?.SetGlobalPosition(GlobalPosition + new Vector2(0f, Size.Y + 20f));
+    }
+
+    protected override void OnUnfocus()
+    {
+        _reticle?.OnDeselect();
+        NHoverTipSet.Remove(this);
     }
 }
