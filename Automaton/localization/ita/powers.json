@@ -38,8 +38,6 @@
     "AUTOMATON-OVERHEAT_POWER.description": "La prossima volta che crei una carta, il nemico bersaglio perde PS.",
     "AUTOMATON-OVERHEAT_POWER.smartDescription": "La prossima volta che crei una carta, questo nemico perde [blue]{Amount}[/blue] PS.",
     "AUTOMATON-BRONZE_ORB_POWER.title": "Globo di Bronzo",
-    "AUTOMATON-BRONZE_ORB_POWER.description": "[gold]Deposita[/gold] la prossima carta che giochi in questo turno.",
-    "AUTOMATON-BRONZE_ORB_POWER.smartDescription": "[gold]Deposita[/gold] {Amount:plural:la prossima carta|[blue]{}[/blue] prossime carte} che giochi in questo turno.",
     "AUTOMATON-MERGE_CONFLICT_POWER.title": "Conflitto di Fusione",
     "AUTOMATON-MERGE_CONFLICT_POWER.description": "La prossima volta che crei una Funzione, creane una copia aggiuntiva.",
     "AUTOMATON-MERGE_CONFLICT_POWER.smartDescription": "Le prossime {Amount:plural:volta|[blue]{}[/blue] volte} che crei una Funzione, creane una copia aggiuntiva.",

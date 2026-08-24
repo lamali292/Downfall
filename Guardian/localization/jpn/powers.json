@@ -27,8 +27,6 @@
     "GUARDIAN-FUTURE_PLANS_POWER.description": "ターン終了時、カードを[blue]1[/blue]枚[gold]停滞[/gold]させてもよい。",
     "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "ターン終了時、カードを[blue]{Amount}[/blue]枚[gold]停滞[/gold]させてもよい。",
     "GUARDIAN-GEM_FINDER_POWER.title": "ジェム探査",
-    "GUARDIAN-GEM_FINDER_POWER.description": "[gold]ジェム[/gold]が埋め込まれたカードをプレイするたび、[gold]制動[/gold]。",
-    "GUARDIAN-GEM_FINDER_POWER.smartDescription": "[gold]ジェム[/gold]が埋め込まれたカードをプレイするたび、[gold]制動[/gold][blue]{Amount}[/blue]。",
     "GUARDIAN-MODE_SHIFT_POWER.title": "モードシフト",
     "GUARDIAN-MODE_SHIFT_POWER.description": "HPを失った時、[blue]16[/blue][gold]ブロック[/gold]を得て、次のターンまで[gold]防御態勢[/gold]に入る。そして、この効果を再び発動するのに必要な量を[blue]10[/blue]増加させる（最大[blue]50[/blue]まで）。",
     "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "[blue]{Amount}[/blue]HPを失った時、[blue]{Block:diff()}[/blue][gold]ブロック[/gold]を得て、次のターンまで[gold]防御態勢[/gold]に入る。そして、この効果を再び発動するのに必要な量を[blue]{Increase:diff()}[/blue]増加させる（最大[blue]{MaxLimit:diff()}[/blue]まで）。",

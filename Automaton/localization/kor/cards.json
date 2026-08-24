@@ -13,7 +13,6 @@
     "AUTOMATON-BREAK.title": "크래시",
     "AUTOMATON-BRONZE_ARMOR.description": "방어도를 {Block:diff()} 얻습니다.\n[gold]오류[/gold]를 {Stash:diff()}장 [gold]보관[/gold]합니다.",
     "AUTOMATON-BRONZE_ARMOR.title": "청동 갑옷",
-    "AUTOMATON-BRONZE_ORB.description": "피해를 {Damage:diff()} 줍니다.\n이번 턴에 다음으로 내는 카드를 [gold]보관[/gold]합니다.",
     "AUTOMATON-BRONZE_ORB.title": "청동 구체",
     "AUTOMATON-BUGGY_MESS.title": "버그 투성이",
     "AUTOMATON-BUG_BARRAGE.description": "[gold]패[/gold]에 [gold]오류[/gold]를 {Cards:diff()}장 추가합니다.\n[gold]패[/gold]에 있는 모든 상태이상 카드를 버린 후, 그 수만큼 카드를 뽑고, 각각 피해를 {Damage:diff()} 줍니다.",

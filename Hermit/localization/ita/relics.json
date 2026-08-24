@@ -1,6 +1,5 @@
 {
     "HERMIT-OLD_LOCKET.title": "Medaglione Vecchio",
-    "HERMIT-OLD_LOCKET.flavor": "C'è una foto sbiadita dentro.",
     "HERMIT-OLD_LOCKET.description": "All'inizio di ogni combattimento, aggiungi una [gold]Memoria[/gold] nella tua [gold]Mano[/gold].",
     "HERMIT-RYE_STALK.title": "Stelo di Segale",
     "HERMIT-RYE_STALK.flavor": "Ancora in perfette condizioni, nonostante sia stato masticato per così tanto tempo.",
@@ -10,7 +9,6 @@
     "HERMIT-SHOTGLASS.description": "La {Limit:plural:prima volta|[blue]{}[/blue] volte} che usi una pozione in ogni combattimento, procurati una pozione casuale. Puoi usare solo [blue]{Limit} [/blue]{Limit:plural:pozione|pozioni} per combattimento.",
     "HERMIT-HORSESHOE.title": "Ferro di Cavallo",
     "HERMIT-HORSESHOE.flavor": "Portafortuna. Qualcuno lo sentirà la mancanza.",
-    "HERMIT-HORSESHOE.description": "Ogni volta che ottieni [gold]Debolezza[/gold], [gold]Fragilità[/gold] o [gold]Vulnerabilità[/gold], ne ottieni [blue]1[/blue] in meno.",
     "HERMIT-SPYGLASS.title": "Cannocchiale",
     "HERMIT-SPYGLASS.flavor": "Proprietà di Kestin Highfin.",
     "HERMIT-RED_SCARF.title": "Sciarpa Rossa",

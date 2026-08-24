@@ -2,5 +2,16 @@
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.char": "我对建筑师感到生气",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.next": "继续",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-1r.ancient": "死吧",
-    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "都"
+    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "都",
+    "SNECKO-SNECKO_SPIRIT.title": "塞西鲁",
+    "SNECKO-SNECKO_SPIRIT.epithet": "借取者",
+    "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.ancient": "[jitter]嘶嘶嘶[/jitter]……一个新面孔。如此[jitter]此此此此[/jitter]多的人漫游而过，他们所背负的都成为我的密藏。来吧，来取走他们所遗[jitter]失失失失失[/jitter]…",
+    "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.sfx": "event:/sfx/npcs/snecko_spirit/hiss",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.0-0.ancient": "你无所[jitter]适适适适适[/jitter]从吗？嗯？只有借取的渴望。来选择吧，选择你想负起谁的所有。",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.1-0.ancient": "[jitter]是是是是[/jitter]的……他们的就[jitter]是是是是[/jitter]你的了。其他的还在[jitter]嘶嘶嘶[/jitter]着你的名。再选择一次。",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.2-0.ancient": "两个。还[jitter]差[/jitter]一个。再选一[jitter]次次次次[/jitter]，小[jitter]蛇[/jitter]。这三者会约[jitter]束束束束[/jitter]着你。",
+    "SNECKO-SNECKO_SPIRIT.talk.ANY.0-0r.ancient": "你无所[jitter]适适适适适[/jitter]从吗？嗯？只有借取的渴望。来选择吧，选择你想负起谁的所有。",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.0-0.char": "我要{char}的。",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.1-0.char": "{char}的我也要。",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.2-0.char": "还有{char}的。它也是我的。"
 }

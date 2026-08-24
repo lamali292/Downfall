@@ -1,0 +1,5 @@
+{
+    "HERMIT-SEETHING.title": "怒火",
+    "HERMIT-SEETHING.description": "你每回合第一次打出这张牌时，将其放回你的[gold]手牌[/gold]，获得{Energy:energyIcons()}，抽{Cards:diff()}张牌。",
+    "HERMIT-SEETHING.extraCardText": "放回你的[gold]手牌[/gold]。\n获得{Energy:energyIcons()}。\n抽{Cards:diff()}张牌。"
+}

@@ -12,7 +12,6 @@
     "GUARDIAN-POLISH.title": "洗練",
     "GUARDIAN-POLISH.description": "[gold]脱力[/gold]、[gold]脆弱[/gold]、[gold]弱体[/gold]をそれぞれX回減少させる。\n一時的なバフをXスタック分、永続的なバフに変換する。",
     "GUARDIAN-SOCKET.title": "ソケット",
-    "GUARDIAN-SOCKET.description": "ジェムは、[gold]休憩所[/gold]でカードの[gold]ソケット[/gold]に埋め込むことができる。",
     "GUARDIAN-STASIS.title": "停滞",
     "GUARDIAN-STASIS.description": "カードのコスト＋[blue]1[/blue]ターンの間、[gold]停滞[/gold]スロットに配置される。\nカウントが[blue]0[/blue]になると[gold]手札[/gold]に戻り、プレイするまでこのカードのコストは0。",
     "GUARDIAN-TICK.title": "ティック",

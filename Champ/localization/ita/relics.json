@@ -9,7 +9,6 @@
     "CHAMP-BLACK_KNIGHTS_HELM.description": "La prima volta che entri in ogni [gold]Posa[/gold] ogni combattimento: [gold]Difensiva[/gold]: Ottieni [blue]2[/blue] [gold]Destrezza[/gold] e perdi [blue]1[/blue] [gold]Forza[/gold]. [gold]Berserker[/gold]: Ottieni [blue]2[/blue] [gold]Forza[/gold] e perdi [blue]1[/blue] [gold]Destrezza[/gold].",
     "CHAMP-BLACK_KNIGHTS_HELM.flavor": "Solo una ferita superficiale.",
     "CHAMP-CHAMPIONS_CROWN.title": "Corona del Campione",
-    "CHAMP-CHAMPIONS_CROWN.description": "Inizia ogni combattimento in una [gold]Posa[/gold] casuale, poi innesca il [gold]Bonus Abilità[/gold] di quella [gold]Posa[/gold] due volte.",
     "CHAMP-CHAMPIONS_CROWN.flavor": "UN VINCITORE SEI TU!",
     "CHAMP-DEFENSIVE_THESIS.title": "Tesi Difensiva",
     "CHAMP-DEFENSIVE_THESIS.description": "Il bonus [gold]Finalizzatore[/gold] della [gold]Posa Difensiva[/gold] concede [blue]3[/blue] [gold]Blocco[/gold] in più.",
@@ -30,10 +29,8 @@
     "CHAMP-SIGNATURE_FINISHER.description": "Al raccoglimento, [gold]Incanta[/gold] un [gold]Finalizzatore[/gold] con [purple]Firma[/purple].",
     "CHAMP-SIGNATURE_FINISHER.flavor": "E ora, è il momento della mia MOSSA FINALE!",
     "CHAMP-SPECTRES_HAND.title": "Mano dello Spettro",
-    "CHAMP-SPECTRES_HAND.description": "Ogni volta che entri in una [gold]Posa[/gold], ottieni un [gold]Eco[/gold] di un [gold]Colpo[/gold] [gold]Base[/gold] o [gold]Difendi[/gold].\nÈ gratuito da giocare in questo turno.",
     "CHAMP-SPECTRES_HAND.flavor": "Alcune vittorie restano con te.",
     "CHAMP-VICTORIOUS_CROWN.title": "Corona Vittoriosa",
-    "CHAMP-VICTORIOUS_CROWN.description": "Inizia ogni combattimento in una [gold]Posa[/gold] casuale, poi innesca il [gold]Bonus Abilità[/gold] di quella [gold]Posa[/gold] due volte.\nLa prima volta che giochi un [gold]Finalizzatore[/gold] ogni turno, pesca [blue]2[/blue] carte ed entra in una [gold]Posa[/gold] casuale.",
     "CHAMP-VICTORIOUS_CROWN.flavor": "Congratulazioni!! Sei il più grande vincitore.",
     "SEA_GLASS.CHAMP-CHAMP.title": "Vetro del Gladiatore"
 }

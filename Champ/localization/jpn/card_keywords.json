@@ -1,5 +1,4 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "スキルボーナス",
-    "CHAMP-TRIGGERSKILLBONUS.description": "[gold]スタンス[/gold]中に[gold]スキル[/gold]を使用するたび、そのスタンスのボーナス効果が発動する。\n1つの[gold]スタンス[/gold]につき最大[blue]3[/blue]回発動する。\nカードの効果によって発動したスキルボーナスは、この回数制限に含まれない。",
     "CHAMP-TRIGGERSKILLBONUS.card": "現在の[gold]スタンス[/gold]の[gold]スキルボーナス[/gold]を発動する。"
 }

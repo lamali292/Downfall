@@ -168,7 +168,6 @@
     "SNECKO-SHAPESHIFT.description": "[gold]Transform[/gold] your [gold]Mano[/gold] into casuale {IfUpgraded:show:[gold]Upgraded[/gold] |}[gold]FuoriClasse[/gold] cards of the same rarity.",
     "SNECKO-SSSHARING.title": "Condivisione",
     "SNECKO-MIMICRY.title": "Mimetismo",
-    "SNECKO-MIMICRY.description": "Ogniqualvolta giochi una carta [gold]Fuori Classe[/gold], ottieni {MimicryPower:diff()} [gold]Forza[/gold] per un turno.",
     "SNECKO-WHIPLASH.title": "Colpo di Frusta",
     "SNECKO-WHIPLASH.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\n[gold]Straborda[/gold]: Applica{PowerVar:diff()}[gold]Debolezza[/gold] e [gold]Vulnerabilità[/gold] a TUTTI i nemici, incrementa il valore dal costo di questa carta.",
     "SNECKO-SNATCH.title": "Ruba",

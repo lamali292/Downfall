@@ -6,8 +6,6 @@
     "HEXAGHOST-DOOMSDAY_POWER.description": "La prochaine fois que vous [gold]Enflammez[/gold] TOUTES les Flammes fantômes, gagnez un tour supplémentaire.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "La prochaine fois que vous [gold]Enflammez[/gold] TOUTES les Flammes fantômes, gagnez {Amount:plural:un tour supplémentaire|{Amount} tours supplémentaires}.",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "L'Arrivée du destin",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "À la fin de votre tour, commencez immédiatement un autre tour.",
-    "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "À la fin de votre tour, commencez immédiatement {Amount:plural:un autre tour|[blue]{Amount}[/blue] autres tours}.",
     "HEXAGHOST-EXTRA_CRISPY_POWER.title": "Ultra grillé",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "Chaque fois que [gold]Brûlure d'âme[/gold] se déclenche, l'ennemi perd des PV et gagne [gold]Brûlure d'âme[/gold].",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "Chaque fois que [gold]Brûlure d'âme[/gold] se déclenche, l'ennemi perd [blue]{Amount}[/blue] PV et gagne [blue]{Amount}[/blue] [gold]Brûlure d'âme[/gold].",

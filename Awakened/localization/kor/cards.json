@@ -31,7 +31,6 @@
     "AWAKENED-CAW.title": "까악",
     "AWAKENED-CEREMONY.description": "{StrengthPower:diff()}의 [gold]힘[/gold]을 얻습니다.",
     "AWAKENED-CEREMONY.title": "의례",
-    "AWAKENED-CHOSEN_VERSE.description": "이번 턴에 [blue]2[/blue]번, 공격이 아닌 카드를 사용할 때, 카드를 1장 뽑고 [gold]방어도[/gold]를 {ChosenVersePower:diff()} 얻습니다.",
     "AWAKENED-CHOSEN_VERSE.title": "선택된 구절",
     "AWAKENED-CLARION_CALL.description": "{Damage:diff()}의 피해를 줍니다.\n다음에 [gold]고갈[/gold]될 때, {energyPrefix:energyIcons(1)}를 얻습니다.",
     "AWAKENED-CLARION_CALL.title": "요란한 부름",

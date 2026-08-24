@@ -9,7 +9,6 @@
     "CHAMP-BLACK_KNIGHTS_HELM.description": "各戦闘で初めてそれぞれの[gold]スタンス[/gold]に入ったとき、以下の効果を得る。[gold]守護[/gold]:[gold]敏捷[/gold][blue]2[/blue]を得て[gold]筋力[/gold][blue]1[/blue]を失う。[gold]狂化[/gold]:[gold]筋力[/gold][blue]2[/blue]を得て[gold]敏捷[/gold][blue]1[/blue]を失う。",
     "CHAMP-BLACK_KNIGHTS_HELM.flavor": "かすり傷だ。",
     "CHAMP-CHAMPIONS_CROWN.title": "チャンピオンの王冠",
-    "CHAMP-CHAMPIONS_CROWN.description": "戦闘開始時、ランダムな[gold]スタンス[/gold]に入り、その[gold]スタンス[/gold]の[gold]スキルボーナス[/gold]を2回発動する。",
     "CHAMP-CHAMPIONS_CROWN.flavor": "お前が勝者だ！",
     "CHAMP-DEFENSIVE_THESIS.title": "防御の神髄",
     "CHAMP-DEFENSIVE_THESIS.description": "[gold]守護[/gold]スタンスの[gold]フィニッシャー[/gold]が追加で[blue]3[/blue][gold]ブロック[/gold]を与える。",
@@ -30,10 +29,8 @@
     "CHAMP-SIGNATURE_FINISHER.description": "取得時、[gold]フィニッシャー[/gold]1枚に[purple]奥義[/purple]を[gold]エンチャント[/gold]する。",
     "CHAMP-SIGNATURE_FINISHER.flavor": "さあ、俺のアルティメットムーブの出番だ！",
     "CHAMP-SPECTRES_HAND.title": "幽霊の手",
-    "CHAMP-SPECTRES_HAND.description": "[gold]スタンス[/gold]に入るたび、[gold]ストライク[/gold]または[gold]防御[/gold]の[gold]反響[/gold]を得る。\nこのターン、それはコストを支払わずにプレイできる。",
     "CHAMP-SPECTRES_HAND.flavor": "心に残る勝利もある。",
     "CHAMP-VICTORIOUS_CROWN.title": "皇帝の冠",
-    "CHAMP-VICTORIOUS_CROWN.description": "戦闘開始時、ランダムな[gold]スタンス[/gold]に入り、[gold]スキルボーナス[/gold]を2回発動する。\n各ターン、初めて[gold]フィニッシャー[/gold]をプレイした時、カードを[blue]2[/blue]枚引いてランダムな[gold]スタンス[/gold]に入る。",
     "CHAMP-VICTORIOUS_CROWN.flavor": "Conglaturation!! あなたは最高の勝者だ。",
     "SEA_GLASS.CHAMP-CHAMP.title": "グラディエーターグラス"
 }
