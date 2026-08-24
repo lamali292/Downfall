@@ -75,7 +75,7 @@ public abstract class CardResource : CustomSingletonModel
     {
         if (!ResetOnCombatStart) return Task.CompletedTask;
 
-        var state = CombatManager.Instance._state;
+        var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
             Reset(player);

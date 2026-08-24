@@ -18,7 +18,7 @@ public class ChampionsCrown : ChampRelicModel
 
     public ChampionsCrown() : base(RelicRarity.Starter)
     {
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithCards(1);
     }

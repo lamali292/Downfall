@@ -16,7 +16,7 @@ public class ProtectiveAura : ChampCardModel
     {
         this.WithPower<ProtectiveAuraPower>(5, 2, false);
         WithTip(StaticHoverTip.Block);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

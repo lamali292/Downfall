@@ -39,7 +39,7 @@ public class Inscribe : AwakenedCardModel
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
         if (chosen == null) return;
 
-        var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
+        var spellbook = AwakenedCmd.GetSpellbook(Owner);
 
         spellbook.AddPersistentType(chosen);
         spellbook.AddPersistentType(chosen);
@@ -47,7 +47,6 @@ public class Inscribe : AwakenedCardModel
         var dupe = chosen.CreateClone();
         spellbook.AddInternal(chosen);
         spellbook.AddInternal(dupe);
-
-        AwakenedDisplay.Refresh(Owner);
+        AwakenedDisplay.RefreshSpellDisplays(Owner);
     }
 }

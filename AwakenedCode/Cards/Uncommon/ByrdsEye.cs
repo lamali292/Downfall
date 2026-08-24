@@ -21,8 +21,8 @@ public class ByrdsEye : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var spellbook = AwakenedModel.GetOrInitSpellbook(Owner);
-        if (IsUpgraded) spellbook.Refresh(Owner);
+        var spellbook = AwakenedCmd.GetSpellbook(Owner);
+        if (IsUpgraded) AwakenedCmd.RefreshSpellbook(Owner);
 
         var cards = spellbook.Cards;
         var selected =

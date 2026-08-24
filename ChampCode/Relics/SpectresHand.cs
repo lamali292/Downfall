@@ -19,7 +19,6 @@ public class SpectresHand : ChampRelicModel, IOnChampStanceChange
 {
     public SpectresHand() : base(RelicRarity.Rare)
     {
-        WithTip(ChampTip.Stance);
         WithTip(DownfallKeyword.Echo);
     }
 

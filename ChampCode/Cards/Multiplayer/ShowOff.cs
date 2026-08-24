@@ -16,7 +16,7 @@ public class ShowOff : ChampCardModel
     {
         WithCards(3, 1);
         WithTip(ChampKeyword.TriggerSkillBonus);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

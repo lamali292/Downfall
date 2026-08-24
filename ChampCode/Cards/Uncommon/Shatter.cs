@@ -17,7 +17,7 @@ public class Shatter : ChampCardModel
         WithDamage(14, 2);
         WithPower<VulnerablePower>(1, 1);
         WithPower<WeakPower>(1, 1);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
         WithTip(ChampTip.Combo);
     }
 

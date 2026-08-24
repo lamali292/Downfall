@@ -18,7 +18,7 @@ public class ShieldThrow : ChampCardModel
     {
         WithCalculatedDamage(0, BlockDamage);
         WithCostUpgradeBy(-1);
-        this.WithDefensiveTip();
+        // this.WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
         this.WithPower<NoBlockNextTurnPower>(1, false);
     }

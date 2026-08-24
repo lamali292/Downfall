@@ -1,5 +1,5 @@
 ﻿{
   "CHAMP-TRIGGERSKILLBONUS.title": "Skill Bonus",
-  "CHAMP-TRIGGERSKILLBONUS.description": "Whenever you play a [gold]Skill[/gold] while in a [gold]Stance[/gold], trigger that Stance's bonus effect, up to [blue]2[/blue] times.\nSkill Bonuses triggered by card effects do not count towards this limit.",
+  "CHAMP-TRIGGERSKILLBONUS.description": "The bonus effect triggered by your current [gold]Stance[/gold] when you play a [gold]Skill[/gold].",
   "CHAMP-TRIGGERSKILLBONUS.card": "Trigger your current [gold]Stance[/gold]'s [gold]Skill Bonus[/gold]."
 }

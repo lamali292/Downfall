@@ -16,7 +16,7 @@ public class Execution : ChampCardModel
         WithDamage(6, 3);
         this.WithRepeat(4);
         this.WithFinisher();
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

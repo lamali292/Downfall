@@ -8,9 +8,11 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Awakened.AwakenedCode.Vfx;
 
@@ -32,16 +34,107 @@ public partial class NSpellbookDisplay : Control
 
     private Player? _trackedPlayer;
     private Control? _creatureHitbox;
-    public static NSpellbookDisplay Create(Player player)
+
+    public bool IsExiting => _isExiting;
+    private Vector2 _restPosition;
+    private Vector2 RelativeOffset => new Vector2(-40f, -650f);
+    private Vector2 HideOffset => new Vector2(-120f, 0f);
+    private Tween? _moveTween;
+    private bool _isExiting;
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CombatManager.Instance.CombatEnded += OnCombatEnded;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CombatManager.Instance.CombatEnded -= OnCombatEnded;
+    }
+
+    private void OnCombatEnded(CombatRoom room) => AnimOutAndFree();
+
+    public static NSpellbookDisplay? Create(Player player)
     {
         var combatRoom = NCombatRoom.Instance;
-        var creatureNode = combatRoom?.GetCreatureNode(player.Creature);
-        return new NSpellbookDisplay
+        if (combatRoom?.Ui == null)
+            return null;
+
+        var creatureNode = combatRoom.GetCreatureNode(player.Creature);
+        var display = new NSpellbookDisplay
         {
             _trackedPlayer = player,
-            Position = Vector2.Zero,
             _creatureHitbox = creatureNode?.Hitbox
         };
+        combatRoom.Ui.AddChildSafely(display);
+        return display;
+    }
+
+    public override void _Ready()
+    {
+        Modulate = new Color(Modulate, 0f); // hidden until positioned
+        Refresh();                          // build icons now
+
+        var timer = GetTree().CreateTimer(0.7);
+        timer.Timeout += () =>
+        {
+            if (!IsInstanceValid(this)) return;
+            _restPosition = GetTargetShowPosition();
+            AnimIn();
+        };
+    }
+
+    private Vector2 GetTargetShowPosition()
+    {
+        var ui = NCombatRoom.Instance?.Ui;
+        var energyNode = ui?._energyCounter;
+        if (energyNode == null || ui == null) return Position;
+        var localPos = energyNode.GlobalPosition - ui.GlobalPosition;
+        return localPos + RelativeOffset;
+    }
+
+    private void AnimIn()
+    {
+        if (_isExiting) return;
+
+        _moveTween?.Kill();
+
+        Position = _restPosition + HideOffset;
+        Modulate = new Color(Modulate, 0f);
+
+        _moveTween = CreateTween().SetParallel();
+        _moveTween.TweenProperty(this, "position", _restPosition, 0.5f)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Expo);
+        _moveTween.TweenProperty(this, "modulate:a", 1f, 0.5f)
+            .SetEase(Tween.EaseType.Out);
+    }
+
+    private void AnimOutAndFree()
+    {
+        if (_isExiting) return;
+        _isExiting = true;
+
+        _moveTween?.Kill();
+
+        var targetPos = Position + HideOffset;
+
+        _moveTween = CreateTween().SetParallel();
+        _moveTween.TweenProperty(this, "position", targetPos, 0.4f)
+            .SetEase(Tween.EaseType.In)
+            .SetTrans(Tween.TransitionType.Back);
+        _moveTween.TweenProperty(this, "modulate:a", 0f, 0.4f)
+            .SetEase(Tween.EaseType.In);
+
+        _moveTween.Finished += OnExitAnimFinished;
+    }
+
+    private void OnExitAnimFinished()
+    {
+        if (IsInstanceValid(this) && !IsQueuedForDeletion())
+            QueueFree();
     }
 
     private static StyleBoxFlat BuildNextSpellBorderStyle()
@@ -58,7 +151,7 @@ public partial class NSpellbookDisplay : Control
 
     public void Refresh()
     {
-        if (_trackedPlayer == null) return;
+        if (_trackedPlayer == null || _isExiting) return;
         if (!IsInstanceValid(this) || !IsInsideTree()) return;
         foreach (var wrapper in _iconWrappers.Where(IsInstanceValid))
         {
@@ -67,7 +160,7 @@ public partial class NSpellbookDisplay : Control
         _iconWrappers.Clear();
         _iconNodes.Clear();
 
-        var spellbook = AwakenedCmd.GetSpellbookOrThrow(_trackedPlayer);
+        var spellbook = AwakenedCmd.GetSpellbook(_trackedPlayer);
 
         var groupedCards = spellbook.Cards
             .GroupBy(c => c.Id)
@@ -111,7 +204,7 @@ public partial class NSpellbookDisplay : Control
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Bottom,
                     Size = icon.CustomMinimumSize,
-                    Position = new Vector2(4, 4) // Offset slightly from the corner
+                    Position = new Vector2(4, 4)
                 };
 
                 label.AddThemeColorOverride("font_outline_color", Colors.Black);
@@ -151,7 +244,7 @@ public partial class NSpellbookDisplay : Control
 
     public override void _Process(double delta)
     {
-        if (_trackedPlayer == null || CombatManager.Instance is not { IsInProgress: true }) return;
+        if (_trackedPlayer == null || _isExiting || CombatManager.Instance is not { IsInProgress: true }) return;
 
         _bobTime += (float)delta;
         for (var i = 0; i < _bobOffsets.Length; i++)
@@ -159,7 +252,7 @@ public partial class NSpellbookDisplay : Control
 
         for (var i = 0; i < _iconWrappers.Count; i++)
         {
-            var isNext = _iconWrappers[i].CustomMinimumSize.X > IconSize; // Check if it's the "Next" spell
+            var isNext = _iconWrappers[i].CustomMinimumSize.X > IconSize;
             _iconWrappers[i].Position = new Vector2(
                 i * IconDistance - (isNext ? 6 : 0),
                 (i < _bobOffsets.Length ? _bobOffsets[i] : 0f) - (isNext ? 6 : 0)
@@ -173,20 +266,10 @@ public partial class NSpellbookDisplay : Control
         private IHoverTip? _tip;
         private Func<IHoverTip>? _tipProvider;
 
-        public void SetTipProvider(Func<IHoverTip> provider)
-        {
-            _tipProvider = provider;
-        }
+        public void SetTipProvider(Func<IHoverTip> provider) => _tipProvider = provider;
+        public void SetReticle(NSelectionReticle? reticle) => _reticle = reticle;
 
-        public void SetReticle(NSelectionReticle? reticle)
-        {
-            _reticle = reticle;
-        }
-
-        public override void _Ready()
-        {
-            ConnectSignals();
-        }
+        public override void _Ready() => ConnectSignals();
 
         protected override void OnFocus()
         {

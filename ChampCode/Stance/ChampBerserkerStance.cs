@@ -1,8 +1,11 @@
 ﻿using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.DynamicVars;
+using Champ.ChampCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -24,6 +27,13 @@ public class ChampBerserkerStance : ChampStanceModel
         new BerserkerFinisherVar(1)
     ];
 
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<VigorPower>(),
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.Static(ChampTip.Finisher)
+    ];
+    
     public override async Task SkillBonus(PlayerChoiceContext ctx)
     {
         var amount = (int)((BerserkerSkillVar)DynamicVars["BerserkerSkill"]).Calculate();

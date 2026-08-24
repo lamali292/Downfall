@@ -12,7 +12,7 @@ public class GloryPower : ChampPowerModel
 {
     public GloryPower()
     {
-        WithTip(new PowerTooltipSource(_ => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip));
+        //WithTips(_ => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
         WithCards(1);
     }
     

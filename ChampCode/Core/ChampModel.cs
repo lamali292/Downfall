@@ -10,6 +10,7 @@ using Champ.ChampCode.Vfx;
 using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -56,23 +57,8 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     {
         return ActiveStance[player] is T;
     }
-
-    private static NChampStanceDisplay? GetDisplay(Player player)
-    {
-        return StanceDisplays.Get(player);
-    }
-
-    private static void RegisterDisplay(Player player, NChampStanceDisplay display)
-    {
-        StanceDisplays.Set(player, display);
-    }
-
-    public static void RefreshDisplay(Player player)
-    {
-        GetDisplay(player)?.Refresh();
-    }
-
-
+    
+   
     public static async Task SetStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
         await SetStance(ctx, player, ChampModelDb.ChampStance<T>());
@@ -99,7 +85,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
-        var state = CombatManager.Instance._state;
+        var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
             ActiveStance[player] = ChampModelDb.ChampStance<ChampNoStance>();
@@ -126,31 +112,32 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         }).CallDeferred();
     }
 
-    private static void RemoveDisplay(Player player)
+    public static void RefreshDisplay(Player player)
     {
-        StanceDisplays.Set(player, null);
+        StanceDisplays.Get(player)?.Refresh();
     }
 
+
+    
     private static void RefreshStanceDisplay(Player player, ChampStanceModel newCanonical)
     {
+        if (!LocalContext.IsMe(player)) return;;
         Callable.From(() =>
         {
-            var existing = GetDisplay(player);
+            var existing = StanceDisplays.Get(player);
 
             // If the current display is running its exit tween, treat it as dead
             if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
             {
-                RemoveDisplay(player);
+                StanceDisplays.Set(player, null);
                 existing = null;
             }
 
             if (newCanonical is ChampNoStance)
             {
-                if (existing != null)
-                {
-                    existing.AnimOutAndFree();
-                    RemoveDisplay(player);
-                }
+                if (existing == null) return;
+                existing.AnimOutAndFree();
+                StanceDisplays.Set(player, null);
                 return;
             }
 
@@ -158,7 +145,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
             {
                 var display = NChampStanceDisplay.Show(player);
                 if (display != null) 
-                    RegisterDisplay(player, display);
+                    StanceDisplays.Set(player, display);
             }
             else
             {

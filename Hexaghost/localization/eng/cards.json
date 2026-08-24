@@ -127,7 +127,7 @@
   "HEXAGHOST-POLTERGEIST.title": "Poltergeist",
   "HEXAGHOST-POWER_FROM_BEYOND.description": "[afterlife]Gain[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]\nNext turn, gain {Energy:energyIcons()}.",
   "HEXAGHOST-POWER_FROM_BEYOND.title": "Power from Beyond",
-  "HEXAGHOST-PREMONITION.description": "At the start of your turn, if at least 2 cards were [gold]Exhausted[/gold] last turn, draw {PremonitionPower:diff()} additional {PremonitionPower:plural:card|cards}.",
+  "HEXAGHOST-PREMONITION.description": "At the start of your turn, if at least 2 cards were [gold]Exhausted[/gold] during the previous turn, draw {PremonitionPower:diff()} additional {PremonitionPower:plural:card|cards}.",
   "HEXAGHOST-PREMONITION.title": "Premonition",
   "HEXAGHOST-PREMONITION_CHOICE.description": "{Type}",
   "HEXAGHOST-PREMONITION_CHOICE.title": "Premonition",

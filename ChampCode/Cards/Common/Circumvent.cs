@@ -16,7 +16,7 @@ public class Circumvent : ChampCardModel
     {
         WithBlock(6, 3);
         WithCards(2);
-        this.WithDefensiveTip();
+        //this.WithDefensiveTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

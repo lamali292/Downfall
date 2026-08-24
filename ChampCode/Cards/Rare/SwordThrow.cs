@@ -16,7 +16,7 @@ public class SwordThrow : ChampCardModel
         WithDamage(9, 4);
         this.WithRepeat(2);
         this.WithPower<EntangledNextTurnPower>(1, false);
-        this.WithBerserkerTip();
+        //this.WithBerserkerTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

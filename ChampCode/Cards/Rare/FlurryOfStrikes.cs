@@ -17,7 +17,7 @@ public class FlurryOfStrikes : ChampCardModel, IOnChampStanceChange
     {
         WithDamage(6, 2);
         WithTags(CardTag.Strike);
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
     }
 
 

@@ -19,7 +19,7 @@ public class VictoriousCrown : ChampRelicModel, IOnFinisher
 
     public VictoriousCrown() : base(RelicRarity.Starter)
     {
-        WithTip(ChampTip.Stance);
+        // WithTip(ChampTip.Stance);
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithTip(ChampTip.Finisher);
         WithCards(1);
