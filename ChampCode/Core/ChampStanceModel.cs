@@ -1,4 +1,5 @@
 ﻿using BaseLib.Extensions;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +16,7 @@ public abstract class ChampStanceModel : AbstractModel
 
     private Player? _player;
 
-    protected virtual int MaxCharges => 3;
+    public virtual int MaxCharges => 3;
     public int Charges;
 
     public DynamicVarSet DynamicVars
@@ -43,7 +44,25 @@ public abstract class ChampStanceModel : AbstractModel
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
     public abstract bool HasFinisher { get; }
-    public virtual string? ChargeIconPath => null;
+    public virtual string? ChargeIconPathOver => null;
+    public virtual string? ChargeIconPathProgress => null;
+    public virtual string? ChargeIconPathUnder => null;
+    
+    private Lazy<Texture2D?>? _lazyProgress;
+    private Lazy<Texture2D?>? _lazyOver;
+    private Lazy<Texture2D?>? _lazyUnder;
+    public Texture2D? ChargeTextureProgress => (_lazyProgress ??= CreateLazyTexture(ChargeIconPathProgress)).Value;
+    public Texture2D? ChargeTextureOver => (_lazyOver ??= CreateLazyTexture(ChargeIconPathOver)).Value;
+    public Texture2D? ChargeTextureUnder => (_lazyUnder ??= CreateLazyTexture(ChargeIconPathUnder)).Value;
+    
+    private static Lazy<Texture2D?> CreateLazyTexture(string? path)
+    {
+        return new Lazy<Texture2D?>(() =>
+            !string.IsNullOrEmpty(path) ? ResourceLoader.Load<Texture2D>(path) : null);
+    }
+    
+    public virtual Color? LabelOutlineColor => null;
+    
     public Player Owner => _player ?? throw new InvalidOperationException("Not a mutable instance");
 
     public ICombatState CombatState => Owner.Creature.CombatState ??

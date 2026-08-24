@@ -43,7 +43,7 @@ public class CollectibleRewardMessage : ICustomMessage
     public void HandleMessage(ulong senderId)
     {
         if (WasSkipped || Card == null) return;
-        var player = RunManager.Instance.DebugOnlyGetState()?.GetPlayer(senderId);
+        var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
 
         player.SpendEssence(EssenceCost);

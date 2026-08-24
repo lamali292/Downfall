@@ -25,7 +25,7 @@ public sealed class MementoCard : HermitCardModel
     public override int MaxUpgradeLevel => 0;
     public override bool CanBeGeneratedByModifiers => false;
 
-    private static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;
+    private static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {

@@ -13,7 +13,7 @@ public class AutomatonRunModel() : CustomSingletonModel(HookType.Run)
 {
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
+        var state = CombatManager.Instance._state;
         var combatRoomNode = NCombatRoom.Instance;
         if (state == null || combatRoomNode == null) return Task.CompletedTask;
         foreach (var player in state.Players)

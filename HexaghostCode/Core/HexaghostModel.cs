@@ -43,7 +43,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
+        var state = CombatManager.Instance._state;
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
         {

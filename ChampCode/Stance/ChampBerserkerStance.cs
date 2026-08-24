@@ -1,5 +1,6 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.DynamicVars;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -11,10 +12,12 @@ public class ChampBerserkerStance : ChampStanceModel
 {
     public override bool ShouldReceiveCombatHooks => true;
 
-    protected override int MaxCharges => 2;
+    public override int MaxCharges => 2;
     public override bool HasFinisher => true;
-    public override string ChargeIconPath => "res://Champ/images/ui/stance_charge_berserker.png";
-
+    public override string ChargeIconPathProgress => "res://Champ/images/ui/stance_berserker_progress.png";
+    public override string ChargeIconPathOver => "res://Champ/images/ui/stance_berserker_over.png";
+    public override string ChargeIconPathUnder => "res://Champ/images/ui/stance_berserker_under.png";
+    public override Color? LabelOutlineColor => new("700000");
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BerserkerSkillVar(2),

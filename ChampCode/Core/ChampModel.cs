@@ -22,7 +22,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     private static readonly PlayerField<ChampStanceModel> ActiveStance =
         new(ChampModelDb.ChampStance<ChampNoStance>);
 
-    private static readonly ConditionalWeakTable<Player, NChampStanceDisplay> StanceDisplays = new();
+    private static readonly PlayerField<NChampStanceDisplay> StanceDisplays = new(() => null);
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
@@ -59,12 +59,12 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
 
     private static NChampStanceDisplay? GetDisplay(Player player)
     {
-        return StanceDisplays.TryGetValue(player, out var d) ? d : null;
+        return StanceDisplays.Get(player);
     }
 
     private static void RegisterDisplay(Player player, NChampStanceDisplay display)
     {
-        StanceDisplays.AddOrUpdate(player, display);
+        StanceDisplays.Set(player, display);
     }
 
     public static void RefreshDisplay(Player player)
@@ -99,7 +99,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
-        var state = CombatManager.Instance.DebugOnlyGetState();
+        var state = CombatManager.Instance._state;
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
             ActiveStance[player] = ChampModelDb.ChampStance<ChampNoStance>();
@@ -128,7 +128,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
 
     private static void RemoveDisplay(Player player)
     {
-        StanceDisplays.Remove(player);
+        StanceDisplays.Set(player, null);
     }
 
     private static void RefreshStanceDisplay(Player player, ChampStanceModel newCanonical)
@@ -137,18 +137,28 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         {
             var existing = GetDisplay(player);
 
+            // If the current display is running its exit tween, treat it as dead
+            if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
+            {
+                RemoveDisplay(player);
+                existing = null;
+            }
+
             if (newCanonical is ChampNoStance)
             {
-                if (existing != null && GodotObject.IsInstanceValid(existing))
-                    existing.QueueFree();
-                RemoveDisplay(player);
+                if (existing != null)
+                {
+                    existing.AnimOutAndFree();
+                    RemoveDisplay(player);
+                }
                 return;
             }
 
-            if (existing == null || !GodotObject.IsInstanceValid(existing))
+            if (existing == null)
             {
                 var display = NChampStanceDisplay.Show(player);
-                if (display != null) RegisterDisplay(player, display);
+                if (display != null) 
+                    RegisterDisplay(player, display);
             }
             else
             {
