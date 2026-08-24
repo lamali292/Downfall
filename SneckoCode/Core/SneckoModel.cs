@@ -1,26 +1,43 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using Downfall.DownfallCode.Events;
+using Godot;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Runs;
+using Snecko.SneckoCode.Cards;
 using Snecko.SneckoCode.Interfaces;
+using Snecko.SneckoCode.Relics;
 
 namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
+    
+    public static IEnumerable<CharacterModel> GetSneckoCharacterModels(Player player)
+    {
+        return MyHookUtils.Collect<ISneckoPoolSupplier, CharacterModel>(null, supplier => supplier.AddSneckoChar(),
+            MyHookUtils.HookScope.Run, player.RunState);
+    }
+
+    
     private static IEnumerable<CardPoolModel> GetSneckoPools(Player player)
     {
-        return MyHookUtils.Collect<ISneckoPoolSupplier, CardPoolModel>(null, supplier => supplier.AddSneckoPool(),
-            MyHookUtils.HookScope.Run, player.RunState);
+        return GetSneckoCharacterModels(player).Select(e => e.CardPool);
     }
 
     public static IEnumerable<CardModel> GetSneckoCards(Player player)
     {
         var cards = GetSneckoPools(player)
-            .SelectMany(e => CardFactory.FilterForPlayerCount(player.RunState, e.AllCards));
-        if (cards != null && cards.Any()) return cards;
+            .SelectMany(e => CardFactory.FilterForPlayerCount(player.RunState, e.AllCards)).ToList();
+        if (cards.Count > 0) return cards;
         return ModelDb.AllCharacters
             .Where(e => e != player.Character)
             .ToList().Select(c => c.CardPool).ToList().SelectMany(e => e.AllCards);
@@ -52,9 +69,12 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             card is IHasGift { Gift: { } gift })
             await SneckoCmd.GetGift(card.Owner, gift);
     }
+
+    public override async Task AfterActEntered()
+    {
+        await SneckoPoolSelection.RunActEntry(RunManager.Instance.State!);
+    }
+
+ 
+
 }
-
-
-
-
-

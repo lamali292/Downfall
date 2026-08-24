@@ -25,18 +25,19 @@ public static class SneckoMainFile
         BundledSubmodLocRegistry.Register(ModId);
         
         
+        /*
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SneckoSpiritDialoguePatch))
             .Add(typeof(SneckoSpiritEntryPatch))
             .Add(typeof(SneckoSpiritGateResetPatch))
             .Add(typeof(SneckoSpiritAutoSkipPatch))
-            .PatchAll();
+            .PatchAll();*/
         
         FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");
         FormBoneRegistry.RegisterReaperForm<Core.Snecko>("spine10");
         FormBoneRegistry.RegisterEchoForm<Core.Snecko>("spine10");
         
-        RunManager.Instance.RunStarted += _ => SneckoSpiritGate.Reset();
+        //RunManager.Instance.RunStarted += _ => SneckoSpiritGate.Reset();
     }
 }

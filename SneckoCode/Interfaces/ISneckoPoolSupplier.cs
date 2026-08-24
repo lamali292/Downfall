@@ -4,5 +4,5 @@ namespace Snecko.SneckoCode.Interfaces;
 
 internal interface ISneckoPoolSupplier
 {
-    CardPoolModel? AddSneckoPool();
+    CharacterModel? AddSneckoChar();
 }
