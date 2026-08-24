@@ -16,7 +16,6 @@ public class IntoShadow : HexaghostCardModel
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip(CardKeyword.Exhaust);
         WithTip(HexaghostKeyword.Retract);
-        WithCostUpgradeBy(-1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
