@@ -30,18 +30,30 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     private Player? _player;
 
     protected abstract override PileType Pile { get; }
-    public abstract Func<Player, bool> CanUsePile { get; }
     public abstract string ScenePath { get; }
     protected abstract Vector2 HideOffset { get; }
 
     protected abstract Vector2 HoverTipOffset { get; }
     protected abstract HoverTip BuildHoverTip();
     protected abstract LocString BuildEmptyPileMessage();
+    protected abstract Vector2 ButtonOffsets { get; } 
 
+    
+    
+    protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
+    
     public override void _Ready()
     {
         ConnectSignals();
         _emptyPileMessage = BuildEmptyPileMessage();
+        
+        var size = Size;
+        OffsetTop = ButtonOffsets.Y;
+        OffsetLeft = ButtonOffsets.X;
+        OffsetRight = ButtonOffsets.X + size.X;
+        OffsetBottom = ButtonOffsets.Y + size.Y;
+
+        RefreshAnimPositions(); 
     }
 
     protected override void SetAnimInOutPositions()
@@ -56,28 +68,27 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         _hidePosition = Position + HideOffset;
     }
 
+    protected virtual bool StartHidden(Player player) => false;
+    
     public override void Initialize(Player player)
     {
         _player = player;
-
         var pile = Pile.GetPile(player);
         PileField.SetValue(this, pile);
 
         var countLabel = GetNode<MegaLabel>("CountContainer/Count");
-
-
-        pile.CardAddFinished += () =>
-        {
-            if (!IsInstanceValid(countLabel)) return;
-            UpdateCount(pile.Cards.Count, countLabel);
-        };
-        pile.CardRemoveFinished += () =>
-        {
-            if (!IsInstanceValid(countLabel)) return;
-            UpdateCount(pile.Cards.Count, countLabel);
-        };
-
+        pile.CardAddFinished    += () => { if (IsInstanceValid(countLabel)) UpdateCount(pile.Cards.Count, countLabel); };
+        pile.CardRemoveFinished += () => { if (IsInstanceValid(countLabel)) UpdateCount(pile.Cards.Count, countLabel); };
         UpdateCount(pile.Cards.Count, countLabel);
+
+        if (StartHidden(player)) Visible = false;
+    }
+
+    public void Reveal()
+    {
+        if (Visible) return;
+        Visible = true;
+        AnimIn();
     }
 
     private void UpdateCount(int count, MegaLabel label)
@@ -117,8 +128,8 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     {
         NHoverTipSet.Remove(this);
 
-        var tip = NHoverTipSet.CreateAndShow(this, BuildHoverTip());
-        if (tip != null) tip.GlobalPosition = GlobalPosition + HoverTipOffset;
+        var tip = NHoverTipSet.CreateAndShow(this, [BuildHoverTip(), ..ExtraHoverTips], HoverTipAlignment.Right);
+        tip?.GlobalPosition = GlobalPosition + HoverTipOffset;
 
 
         _ownBumpTween?.Kill();
@@ -173,9 +184,9 @@ internal static class CombatPileButtonRegistry
         return results;
     }
 
-    internal static (string scenePath, Func<Player, bool> canUse) ReadMetadata(Type type)
+    internal static string ReadMetadata(Type type)
     {
         var probe = (NCustomCombatCardPile)RuntimeHelpers.GetUninitializedObject(type);
-        return (probe.ScenePath, probe.CanUsePile);
+        return probe.ScenePath;
     }
 }

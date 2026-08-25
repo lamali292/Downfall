@@ -16,9 +16,7 @@ internal class CombatPilesContainerPatch
     {
         foreach (var type in CombatPileButtonRegistry.Types)
         {
-            var (scenePath, canUse) = CombatPileButtonRegistry.ReadMetadata(type);
-            if (!canUse(player)) continue;
-
+            var scenePath = CombatPileButtonRegistry.ReadMetadata(type);
             var scene = ResourceLoader.Load<PackedScene>(scenePath);
             if (scene == null) continue;
 
@@ -26,8 +24,7 @@ internal class CombatPilesContainerPatch
             __instance.AddChildSafely(button);
             button.Initialize(player);
 
-            var capturedButton = button;
-            Callable.From(() => capturedButton.RefreshAnimPositions()).CallDeferred();
+            Callable.From(() => button.RefreshAnimPositions()).CallDeferred();
         }
     }
 
@@ -36,7 +33,7 @@ internal class CombatPilesContainerPatch
     private static void AnimInAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            btn.AnimIn();
+            if (btn.Visible) btn.AnimIn();
     }
 
     [HarmonyPostfix]
