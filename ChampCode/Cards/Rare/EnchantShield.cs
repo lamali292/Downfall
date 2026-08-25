@@ -20,6 +20,7 @@ public class EnchantShield : ChampCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         this.WithEnchantment<Nimble>(8);
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

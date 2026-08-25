@@ -18,6 +18,7 @@ public class EnchantSword : ChampCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         this.WithEnchantment<Sharp>(8);
+        WithCostUpgradeBy(-1);
         
     }
 
