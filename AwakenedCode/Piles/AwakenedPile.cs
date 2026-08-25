@@ -1,6 +1,7 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Events;
+using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using Godot;
@@ -32,8 +33,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(model.Owner.Creature);
-        return creatureNode?.GlobalPosition ?? Vector2.Zero;
+        return NSpellbookButton.GetPositionFor();
     }
     
     private Type? _nextSpellType;

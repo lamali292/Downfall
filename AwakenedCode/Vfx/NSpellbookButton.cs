@@ -1,4 +1,5 @@
-﻿using Awakened.AwakenedCode.Piles;
+﻿using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.Piles;
 using Downfall.DownfallCode.Core;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
@@ -7,6 +8,8 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Vfx;
 
@@ -15,8 +18,69 @@ public partial class NSpellbookButton : NCustomCombatCardPile
     protected override PileType Pile => AwakenedPile.Spellbook;
     public override string ScenePath => "res://Awakened/scenes/ui/spellbook_pile.tscn";
     protected override Vector2 HideOffset => new(-160f, 100f);
-    protected override Vector2 HoverTipOffset => new(20f, -850f);
+    protected override Vector2 HoverTipOffset => new(30f, -850f);
     protected override Vector2 ButtonOffsets => new(20f, -360f);
+
+    private static readonly PlayerField<bool> Revealed = new(() => false);
+
+    public override void Initialize(Player player)
+    {
+        base.Initialize(player);
+        if (Revealed[player]) Visible = true; 
+        RefreshSpellIcon();
+    }
+    
+   
+    public static Vector2 GetPositionFor()
+    {
+        var btn = Live;
+        return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
+    }
+
+    public static void RevealFor(Player player)
+    {
+        Revealed[player] = true;
+        var btn = Live;
+        if (btn == null) return;
+        btn.Reveal();
+        btn.RefreshSpellIcon();  
+    }
+
+    private static NSpellbookButton? Live
+    {
+        get
+        {
+            var container = NCombatRoom.Instance?.Ui._combatPilesContainer;
+            if (container == null || !IsInstanceValid(container)) return null;
+            return container.GetChildren()
+                .OfType<NSpellbookButton>()
+                .FirstOrDefault(IsInstanceValid);
+        }
+    }
+    public void RefreshSpellIcon()
+    {
+        var slot = GetNodeOrNull<TextureRect>("%Spell");
+        if (slot == null) return;
+
+        if (Next is ISpell spell && ResourceLoader.Exists(spell.SpellIconPath))
+        {
+            slot.Texture = ResourceLoader.Load<Texture2D>(spell.SpellIconPath);
+            slot.Visible = true;
+        }
+        else
+        {
+            slot.Texture = null;
+            slot.Visible = false;
+        }
+    }
+    
+    protected override bool StartHidden(Player player) => player.Character is not Core.Awakened;
+
+    private CardModel? Next => (_pile as AwakenedPile)?.NextSpell;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        Next == null ? [] : [HoverTipFactory.FromCard(Next), ..Next.HoverTips];
+
     protected override HoverTip BuildHoverTip()
     {
         var description = new LocString("static_hover_tips", "AWAKENED-SPELLBOOK.description");
@@ -25,37 +89,9 @@ public partial class NSpellbookButton : NCustomCombatCardPile
         if (hasNextSpell) description.Add("Spell", Next!.Title);
         return new HoverTip(
             new LocString("static_hover_tips", "AWAKENED-SPELLBOOK.title"),
-            description
-        );
+            description);
     }
-    
-    private static readonly PlayerField<NSpellbookButton> Instance = new(() => null);
-
-    public override void Initialize(Player player)
-    {
-        base.Initialize(player);
-        Instance[player] = this;
-    }
-
-    public static void RevealFor(Player player)
-    {
-        var btn = Instance[player];
-        if (btn != null && IsInstanceValid(btn)) btn.Reveal();
-    }
-    
-    protected override bool StartHidden(Player player)
-    {
-        return player.Character is not Core.Awakened;
-    }
-
-    private CardModel? Next => (_pile as AwakenedPile)?.NextSpell;
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Next == null ?  [] : [HoverTipFactory.FromCard(Next), ..Next.HoverTips];
 
     protected override LocString BuildEmptyPileMessage()
-    {
-        return new LocString("combat_messages", "OPEN_EMPTY_SPELLBOOK");
-    }
-
-  
+        => new("combat_messages", "OPEN_EMPTY_SPELLBOOK");
 }
