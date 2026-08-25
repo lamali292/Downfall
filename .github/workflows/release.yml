@@ -77,22 +77,6 @@ jobs:
           sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' Downfall.json
           grep '"version"' Downfall.json
 
-      - name: Cache image atlas outputs
-        uses: actions/cache@v4
-        with:
-          path: |
-            ImageGen/.cards_cache.json
-            ImageGen/.powers_cache.json
-            ImageGen/.relics_cache.json
-            ImageGen/.potions_cache.json
-            ImageGen/.enchantments_cache.json
-            */images/atlases
-            */images/powers
-            */images/relics
-            */images/enchantments
-          key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
-          restore-keys: atlases-
-
       - name: Build image atlases
         run: dotnet run --project ImageGen -c Release
 
