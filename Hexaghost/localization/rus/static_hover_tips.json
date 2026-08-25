@@ -1,4 +1,8 @@
 {
     "HEXAGHOST-IGNITE.title": "Зажигание",
-    "HEXAGHOST-IGNITE.description": "Активирует описанный эффект Огонька."
+    "HEXAGHOST-IGNITE.description": "Активирует описанный эффект Огонька.",
+    "HEXAGHOST-WHEEL.title": "Круг из Огоньков",
+    "HEXAGHOST-WHEEL.description": "Состоит из 6 Огоньков. Верхний Огонек считается [gold]Активным[/gold].\nОгонек [gold]Зажигается[/gold] при выполнении указанного условия.\nДает [gold]Продвижение[/gold] в конце хода, если [gold]Активный[/gold] Огонек [gold]зажжен[/gold].",
+    "HEXAGHOST-EXTINGUISH.title": "Затухание",
+    "HEXAGHOST-EXTINGUISH.description": "Сбрасывает [gold]Зажигание[/gold] Огонька, чтобы его можно было [gold]зажечь[/gold] снова."
 }

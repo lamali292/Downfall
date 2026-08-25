@@ -1,6 +1,5 @@
 {
     "AUTOMATON-ALLOCATE.title": "할당",
-    "AUTOMATON-ASSEMBLY.description": "카드를 {Cards:diff()}장 뽑습니다.\n뽑은 카드 중 [gold]부호화[/gold]를 가진 카드를 [gold]부호화[/gold]합니다.",
     "AUTOMATON-ASSEMBLY.title": "어셈블리",
     "AUTOMATON-BACKTRACE.title": "역추적",
     "AUTOMATON-BIT_SHIFT.title": "비트 시프트",

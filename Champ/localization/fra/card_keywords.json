@@ -1,4 +1,5 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "Bonus de Compétence",
+    "CHAMP-TRIGGERSKILLBONUS.description": "L'effet bonus déclenché par votre [gold]Pose[/gold] actuelle lorsque vous jouez une [gold]Compétence[/gold].",
     "CHAMP-TRIGGERSKILLBONUS.card": "Déclenchez le [gold]Bonus de Compétence[/gold] de votre [gold]Pose[/gold] actuelle."
 }

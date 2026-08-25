@@ -1,5 +1,6 @@
 {
     "HERMIT-OLD_LOCKET.title": "Старый кулон",
+    "HERMIT-OLD_LOCKET.flavor": "Внутри выцветшая фотография, полная странных знакомых людей. Вы тоже на ней.",
     "HERMIT-OLD_LOCKET.description": "Добавляет в [gold]руку[/gold] [gold]«Напоминание»[/gold] в начале боя.",
     "HERMIT-RYE_STALK.title": "Стебель пшеницы",
     "HERMIT-RYE_STALK.flavor": "Все еще свежий, несмотря на то, что его так долго пережевывали.",
@@ -9,8 +10,10 @@
     "HERMIT-SHOTGLASS.description": "Дает случайное зелье, когда вы используете зелье ({Limit:plural(ru):раз|[blue]{}[/blue] раза|[blue]{}[/blue] раз} за бой). Вы можете использовать не более [blue]{Limit}[/blue] {Limit:plural:зелья|зелий} в каждом бою.",
     "HERMIT-HORSESHOE.title": "Подкова",
     "HERMIT-HORSESHOE.flavor": "Символ удачи. Кому-то он не помог.",
+    "HERMIT-HORSESHOE.description": "Ваши [gold]стартовые[/gold] [gold]«Удары»[/gold] наносят урон ВСЕМ врагам.",
     "HERMIT-SPYGLASS.title": "Подзорная труба",
     "HERMIT-SPYGLASS.flavor": "Собственность Кестина Хайфина.",
+    "HERMIT-SPYGLASS.description": "Когда вы разыгрываете [blue]3ью[/blue] карту за ход, ее эффект [gold]В яблочко[/gold] срабатывает вне зависимости от положения карты в руке.",
     "HERMIT-RED_SCARF.title": "Красный шарф",
     "HERMIT-RED_SCARF.flavor": "Меховой и теплый.",
     "HERMIT-RED_SCARF.description": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы накладываете отрицательный эффект на врага.",
@@ -38,5 +41,8 @@
     "HERMIT-BROKEN_TOOTH.title": "Сломанный зуб",
     "HERMIT-BROKEN_TOOTH.flavor": "Выглядит слишком большим, чтобы выпасть из человеческой челюсти...",
     "HERMIT-BROKEN_TOOTH.description": "За победу над элитными врагами восполняет [blue]{Heal}[/blue] ОЗ и дает [blue]{Gold}[/blue] [gold]золота[/gold].",
-    "SEA_GLASS.HERMIT-HERMIT.title": "Скитающееся стеклышко"
+    "SEA_GLASS.HERMIT-HERMIT.title": "Скитающееся стеклышко",
+    "HERMIT-SCORCHED_LOCKET.title": "Опаленный кулон",
+    "HERMIT-SCORCHED_LOCKET.description": "Добавляет в [gold]руку[/gold] [gold]«Напоминание»[/gold] в начале боя и [gold]чарует[/gold] его на [purple]Вспыльчивость[/purple].",
+    "HERMIT-SCORCHED_LOCKET.flavor": "Кулон загорелся изнутри, источая вокруг черный дым. Он никак не закончится."
 }

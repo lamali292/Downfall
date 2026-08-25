@@ -1,0 +1,5 @@
+{
+    "HERMIT-SEETHING.title": "憤怒",
+    "HERMIT-SEETHING.description": "毎ターン、このカードを最初にプレイした時、{Energy:energyIcons()}を得て、カードを{Amount}枚引き、このカードを[gold]手札[/gold]に戻す。",
+    "HERMIT-SEETHING.extraCardText": "{Energy:energyIcons()}を得る。\nカードを{Amount}枚引く。\nこのカードを[gold]手札[/gold]に戻す。"
+}

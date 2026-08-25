@@ -2,7 +2,5 @@
     "CHAMP-COMBO.title": "Combo",
     "CHAMP-COMBO.description": "Effet extra quand cette carte est jouée dans la [gold]Pose[/gold] indiquée.",
     "CHAMP-FINISHER.title": "Finisher",
-    "CHAMP-FINISHER.description": "Requiert une [gold]Pose[/gold].\nAprès avoir joué un Finisher, quittez votre [gold]Pose[/gold] et déclenchez son bonus de Finisher.",
-    "CHAMP-STANCE.title": "Pose",
-    "CHAMP-STANCE.description": "Vous ne pouvez avoir qu'une seule Pose à la fois."
+    "CHAMP-FINISHER.description": "Requiert une [gold]Pose[/gold].\nAprès avoir joué un Finisher, quittez votre [gold]Pose[/gold] et déclenchez son effet de Finisher."
 }

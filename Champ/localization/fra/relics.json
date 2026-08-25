@@ -9,6 +9,7 @@
     "CHAMP-BLACK_KNIGHTS_HELM.description": "La première fois que vous adoptez une [gold]Pose[/gold] chaque combat: [gold]Défensive[/gold]: Gagnez [blue]2[/blue] de [gold]Dextérité[/gold] et perdez [blue]1[/blue] de [gold]Force[/gold]. [gold]Destructeur[/gold] Gagnez [blue]2[/blue] de [gold]Force[/gold] et perdez [blue]1[/blue] de [gold]Dextérité[/gold].",
     "CHAMP-BLACK_KNIGHTS_HELM.flavor": "Ce n'est qu'une blessure superficielle.",
     "CHAMP-CHAMPIONS_CROWN.title": "Couronne du Champion",
+    "CHAMP-CHAMPIONS_CROWN.description": "Commencez chaque combat dans une [gold]Pose[/gold] aléatoire, déclenchez son [gold]Bonus de Compétence[/gold], et piochez une carte.",
     "CHAMP-CHAMPIONS_CROWN.flavor": "VOUS ÊTES LE GAGNANT !",
     "CHAMP-DEFENSIVE_THESIS.title": "Thèse Défensive",
     "CHAMP-DEFENSIVE_THESIS.description": "Le Bonus de [gold]Finisher[/gold] de la [gold]Pose Défensive[/gold] donne [blue]3[/blue] [gold]d'Armure[/gold] supplémentaire.",
@@ -29,8 +30,10 @@
     "CHAMP-SIGNATURE_FINISHER.description": "Lorsque vous la récupérez, [gold]Enchantez[/gold] un [gold]Finisher[/gold] avec [purple]Signature[/purple].",
     "CHAMP-SIGNATURE_FINISHER.flavor": "Et maintenant, il est l'heure d'utiliser mon ATTAQUE LA PLUS PUISSANTE !",
     "CHAMP-SPECTRES_HAND.title": "Main du Spectre",
+    "CHAMP-SPECTRES_HAND.description": "Lorsque vous Adoptez une [gold]Pose[/gold], ajoutez un [gold]Écho[/gold] d'une [gold]Frappe[/gold] ou d'une [gold]Défense Basique[/gold] dans votre [gold]Main[/gold].\nElle est gratuite ce tour.",
     "CHAMP-SPECTRES_HAND.flavor": "Certaines victoires restent avec vous.",
     "CHAMP-VICTORIOUS_CROWN.title": "Couronne du Victorieux",
+    "CHAMP-VICTORIOUS_CROWN.description": "Commencez chaque combat dans une [gold]Pose[/gold] aléatoire, déclenchez son [gold]Bonus de Compétence[/gold], et piochez une carte.\nLa prochaine fois que vous jouez un [gold]Finisher[/gold] à chaque tour, piochez [blue]2[/blue] cartes et entrez dans une [gold]Pose[/gold] aléatoire.",
     "CHAMP-VICTORIOUS_CROWN.flavor": "Félissitations!! Vous êtes le plus grand vainqueur.",
     "SEA_GLASS.CHAMP-CHAMP.title": "Verre Gladiateur"
 }

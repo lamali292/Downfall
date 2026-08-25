@@ -8,5 +8,7 @@
     "AWAKENED-CHANTED.title": "詠唱済み",
     "AWAKENED-CHANTED.description": "このカードの効果が強化された。",
     "AWAKENED-DRAINED.title": "ドレイン",
-    "AWAKENED-DRAINED.description": "{Energy:energyIcons()}を失う原因となったあらゆる効果（失う分が無くても発生する）。\n（カードのプレイに使った{Energy:energyIcons()}は含まない。）"
+    "AWAKENED-DRAINED.description": "{Energy:energyIcons()}を失う原因となったあらゆる効果（失う分が無くても発生する）。\n（カードのプレイに使った{Energy:energyIcons()}は含まない。）",
+    "AWAKENED-SPELLBOOK.title": "呪文書",
+    "AWAKENED-SPELLBOOK.description": "呪文のコレクション。{HasSpell:cond:\n次の呪文は[gold]{Spell}[/gold]。|}"
 }

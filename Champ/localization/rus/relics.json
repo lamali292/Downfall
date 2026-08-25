@@ -9,6 +9,7 @@
     "CHAMP-BLACK_KNIGHTS_HELM.description": "При первом переходе в [gold]Стойку Рыцаря[/gold]: дает [blue]2[/blue] [gold]ловкости[/gold] и отнимает [blue]1[/blue] [gold]силы[/gold].\nПри первом переходе в [gold]Стойку Берсерка[/gold]: дает [blue]2[/blue] [gold]силы[/gold] и отнимает [blue]1[/blue] [gold]ловкости[/gold].",
     "CHAMP-BLACK_KNIGHTS_HELM.flavor": "У прежнего владельца остались лишь открытые раны.",
     "CHAMP-CHAMPIONS_CROWN.title": "Корона чемпиона",
+    "CHAMP-CHAMPIONS_CROWN.description": "Вы начинаете бой в [gold]Стойке Рыцаря[/gold] или [gold]Стойке Берсерка[/gold], затем активируете [gold]Бонус стойки[/gold] и добираете [blue]1[/blue] карту.",
     "CHAMP-CHAMPIONS_CROWN.flavor": "ТЫ ПОБЕДИТЕЛЬ!",
     "CHAMP-DEFENSIVE_THESIS.title": "Защитный тезис",
     "CHAMP-DEFENSIVE_THESIS.description": "[gold]Бонус Финишера[/gold] в [gold]Стойке Рыцаря[/gold] дает на [blue]3[/blue] [gold]защиты[/gold] больше.",
@@ -29,8 +30,10 @@
     "CHAMP-SIGNATURE_FINISHER.description": "При получении [gold]чарует[/gold] выбранный [gold]Финишер[/gold] из [gold]колоды[/gold] на [purple]«Фирменный стиль»[/purple].",
     "CHAMP-SIGNATURE_FINISHER.flavor": "А теперь, время для моего СОВЕРШЕННОГО ДВИЖЕНИЯ!",
     "CHAMP-SPECTRES_HAND.title": "Фантомная рука",
+    "CHAMP-SPECTRES_HAND.description": "Добавляет в [gold]руку[/gold] [gold]Эхо[/gold] [gold]стартового[/gold] [gold]«Удара»[/gold] или [gold]«Обороны»[/gold] при переходе в [gold]Стойку[/gold].\nВ этом ходу оно бесплатно.",
     "CHAMP-SPECTRES_HAND.flavor": "Некоторые победы оставляют осадок.",
     "CHAMP-VICTORIOUS_CROWN.title": "Победоносная корона",
+    "CHAMP-VICTORIOUS_CROWN.description": "Вы начинаете бой в [gold]Стойке Рыцаря[/gold] или [gold]Стойке Берсерка[/gold], затем активируете [gold]Бонус стойки[/gold] и добираете [blue]1[/blue] карту.\nВы добираете [blue]2[/blue] карты и переходите в случайную [gold]Стойку[/gold] при первом разыгрывании [gold]Финишера[/gold] за ход.",
     "CHAMP-VICTORIOUS_CROWN.flavor": "Поздравляю!! Вы величайший победитель.",
     "SEA_GLASS.CHAMP-CHAMP.title": "Защитное стеклышко"
 }

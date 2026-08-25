@@ -1,7 +1,6 @@
 {
     "AUTOMATON-ALLOCATE.description": "你的[gold]抽牌堆[/gold]和[gold]暂存区[/gold]中每有一张状态牌，获得{energyPrefix:energyIcons(1)}。{InCombat:cond:\n（获得{Status:diff()}{energyPrefix:energyIcons(1)}）|}",
     "AUTOMATON-ALLOCATE.title": "分配",
-    "AUTOMATON-ASSEMBLY.description": "抽{Cards:diff()}张牌。\n[gold]编码[/gold]抽到的[gold]编码[/gold]牌。",
     "AUTOMATON-ASSEMBLY.title": "汇编",
     "AUTOMATON-BACKTRACE.title": "回溯",
     "AUTOMATON-BATCH.title": "",

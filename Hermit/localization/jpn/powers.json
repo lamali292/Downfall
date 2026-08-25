@@ -89,5 +89,8 @@
     "HERMIT-BURDENED_POWER.title": "重荷",
     "HERMIT-BURDENED_POWER.description": "ターン開始時、[gold]活力[/gold]を得て、[gold]腐敗[/gold]を[gold]手札[/gold]に加える。",
     "HERMIT-BURDENED_POWER.smartDescription": "ターン開始時、[gold]活力[/gold][blue]{Amount}[/blue]を得て、[gold]腐敗[/gold]を[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。",
-    "HERMIT-BRUISE_POWER.remoteDescription": "このターン、{HasBigBruiser:|[orange]{ApplierName}[/orange]の}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。"
+    "HERMIT-BRUISE_POWER.remoteDescription": "このターン、{HasBigBruiser:|[orange]{ApplierName}[/orange]の}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "HERMIT-LONG_SHADOWS_POWER.title": "伸びる影",
+    "HERMIT-LONG_SHADOWS_POWER.description": "呪いを引くたび、カードを1枚引く。",
+    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "呪いを引くたび、カードを引く。"
 }

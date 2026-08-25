@@ -88,7 +88,6 @@
     "CHAMP-HEADBUTT.title": "头槌",
     "CHAMP-HOLD_FIRM.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得{CounterPower:diff()}点[gold]反击[/gold]。\n你的下一回合开始时[gold]格挡[/gold]不会消失。",
     "CHAMP-HOLD_FIRM.title": "固守",
-    "CHAMP-HONE_BLADE.description": "你的“打击”牌额外造成{HoneBladePower:diff()}点伤害。",
     "CHAMP-HONE_BLADE.title": "磨刃",
     "CHAMP-HUDDLE.title": "集结",
     "CHAMP-HUDDLE.description": "所有玩家获得{VigorPower:diff()}点[gold]活力[/gold]。",

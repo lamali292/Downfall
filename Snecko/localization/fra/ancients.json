@@ -2,5 +2,16 @@
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.char": "Je suis en colère contre l'architecte",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.next": "Continuer",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-1r.ancient": "Vous êtes mort",
-    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Les deux"
+    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Les deux",
+    "SNECKO-SNECKO_SPIRIT.title": "Sethiru",
+    "SNECKO-SNECKO_SPIRIT.epithet": "L'Emprunteur",
+    "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.ancient": "[jitter]Sss[/jitter]... un nouveau [jitter]vissssage[/jitter]. Tant de voyageurs [jitter]passssent[/jitter] par [jitter]issssi[/jitter], et tout [jitter]ssse[/jitter] qu'ils [jitter]transsssportent[/jitter] finit [jitter]issssssi[/jitter], dans mon trésor. Approche, prends [jitter]ssse[/jitter] qu'ils ont [jitter]laisssssé[/jitter].",
+    "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.sfx": "event:/sfx/npcs/snecko_spirit/hiss",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.0-0.ancient": "Tu n'as pas de voie à toi, hmm ? [jitter]Sssseulement[/jitter] le [jitter]déssssir[/jitter] d'emprunter. [jitter]Choissssis[/jitter] l'équipement que tu porteras.",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.1-0.ancient": "Ouiiiii... le leur est [jitter]désssssormais[/jitter] tien. Un autre [jitter]sssiffle[/jitter] encore ton nom. [jitter]Choissssis[/jitter] à nouveau.",
+    "SNECKO-SNECKO_SPIRIT.talk.SPIRIT.2-0.ancient": "Deux de pris. Il en [jitter]resssste[/jitter] un. [jitter]Choissssis[/jitter], petit [jitter]ssserpent[/jitter], et [jitter]ssssois[/jitter] lié aux trois.",
+    "SNECKO-SNECKO_SPIRIT.talk.ANY.0-0r.ancient": "Tu n'as pas de voie à toi, hmm ? [jitter]Sssseulement[/jitter] le [jitter]déssssir[/jitter] d'emprunter. [jitter]Choissssis[/jitter] l'équipement que tu porteras.",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.0-0.char": "Je vais prendre celui de/du {char}",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.1-0.char": "Et celui de/du {char}, également.",
+    "SNECKO-SNECKO_SPIRIT.talk.ECHO.2-0.char": "Et celui de/du {char}. Que tout cela soit à moi."
 }

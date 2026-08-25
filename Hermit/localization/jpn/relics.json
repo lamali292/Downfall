@@ -1,6 +1,7 @@
 {
     "HERMIT-OLD_LOCKET.title": "古いロケット",
-    "HERMIT-OLD_LOCKET.description": "各戦闘開始時、[gold]メメント[/gold]を[gold]手札[/gold]に加える。",
+    "HERMIT-OLD_LOCKET.flavor": "中には色褪せた写真が入っており、妙に見覚えのある人々が写っている。あなたも。",
+    "HERMIT-OLD_LOCKET.description": "戦闘開始時、[gold]メメント[/gold]を1枚[gold]手札[/gold]に加える。",
     "HERMIT-RYE_STALK.title": "ライ麦の茎",
     "HERMIT-RYE_STALK.flavor": "長い間噛まれ続けているのに、いまだに新品同様だ。",
     "HERMIT-RYE_STALK.description": "[blue]{Turn}[/blue]ターン目の開始時、[gold]堅牢[/gold][blue]{RuggedPower:diff()}[/blue]を得る。",
@@ -9,8 +10,10 @@
     "HERMIT-SHOTGLASS.description": "各戦闘でポーションを最初に使った時、ランダムなポーションを1つ入手する。各戦闘でポーションは[blue]{Limit}[/blue]個までしか使用できない。",
     "HERMIT-HORSESHOE.title": "蹄鉄",
     "HERMIT-HORSESHOE.flavor": "幸運のお守り。誰かがこれを失くして困っているだろう。",
+    "HERMIT-HORSESHOE.description": "[gold]基本[/gold][gold]ストライク[/gold]はすべての敵にダメージを与えるようになる。",
     "HERMIT-SPYGLASS.title": "スパイグラス",
     "HERMIT-SPYGLASS.flavor": "ケスティン・ハイフィンの所有物。",
+    "HERMIT-SPYGLASS.description": "各ターンにプレイする[blue]3[/blue]枚目のカードは、位置に関係なく[gold]命中[/gold]効果を発動する。",
     "HERMIT-RED_SCARF.title": "赤いスカーフ",
     "HERMIT-RED_SCARF.flavor": "暖かくてふわふわだ。",
     "HERMIT-RED_SCARF.description": "敵に新たなデバフを付与するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
@@ -38,5 +41,8 @@
     "HERMIT-BROKEN_TOOTH.title": "折れた歯",
     "HERMIT-BROKEN_TOOTH.flavor": "人間の顎から来たにしては大きすぎるようだ……",
     "HERMIT-BROKEN_TOOTH.description": "エリートの遭遇を倒すたび、HPを[blue]{Heal}[/blue]回復し、[blue]{Gold}[/blue]ゴールドを得る。",
-    "SEA_GLASS.HERMIT-HERMIT.title": "放浪者グラス"
+    "SEA_GLASS.HERMIT-HERMIT.title": "放浪者グラス",
+    "HERMIT-SCORCHED_LOCKET.title": "焼け焦げたロケット",
+    "HERMIT-SCORCHED_LOCKET.description": "戦闘開始時、[purple]憤怒[/purple]がエンチャントされた[gold]メメント[/gold]を1枚[gold]手札[/gold]に加える。",
+    "HERMIT-SCORCHED_LOCKET.flavor": "ロケットは内側から燃え、黒い煙を吐き出している。もう決して止まることはない。"
 }

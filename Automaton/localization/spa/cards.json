@@ -1,7 +1,6 @@
 {
     "AUTOMATON-ALLOCATE.description": "Gana {energyPrefix:energyIcons(1)} por cada Estado en tu [gold]Pila de robo[/gold] y [gold]Pila de alijo[/gold].{InCombat:cond:\n(Gana {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Asignar",
-    "AUTOMATON-ASSEMBLY.description": "Roba {Cards:diff()} cartas.\n [gold]Codifica[/gold] cualquier carta robada con [gold]Codifica[/gold].",
     "AUTOMATON-ASSEMBLY.title": "Ensamblar",
     "AUTOMATON-BACKTRACE.title": "Retroceso",
     "AUTOMATON-BIT_SHIFT.description": "Gana {Block:diff()} [gold]Bloqueo[/gold].\n [gold]Guarda[/gold] la carta superior de tu [gold]Pila de robo[/gold].",

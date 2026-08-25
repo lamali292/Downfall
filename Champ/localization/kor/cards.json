@@ -80,7 +80,6 @@
     "CHAMP-HEADBUTT.title": "박치기",
     "CHAMP-HOLD_FIRM.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n{CounterPower:diff()} [gold]반격[/gold]을 얻습니다.\n다음 턴이 시작될 때 [gold]방어도[/gold]가 사라지지 않습니다.",
     "CHAMP-HOLD_FIRM.title": "굳건히 버티기",
-    "CHAMP-HONE_BLADE.description": "내 \"타격\" 카드들이 {HoneBladePower:diff()}의 추가 피해를 줍니다.",
     "CHAMP-HONE_BLADE.title": "날 갈기",
     "CHAMP-HUDDLE.title": "동료 모으기",
     "CHAMP-IGNORE_PAIN.description": "다음 턴까지 체력이 감소하지 않습니다.",

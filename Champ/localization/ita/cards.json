@@ -80,7 +80,6 @@
     "CHAMP-HEADBUTT.title": "Capocciata",
     "CHAMP-HOLD_FIRM.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nOttieni {CounterPower:diff()} [gold]Contrattacco[/gold].\nIl [gold]Blocco[/gold] non viene rimosso all'inizio del tuo prossimo turno.",
     "CHAMP-HOLD_FIRM.title": "Saldo",
-    "CHAMP-HONE_BLADE.description": "Le tue carte \"Colpo\" infliggono {HoneBladePower:diff()} danno in più.",
     "CHAMP-HONE_BLADE.title": "Affila Lama",
     "CHAMP-HUDDLE.title": "Raggruppa",
     "CHAMP-HUDDLE.description": "TUTTI i giocatori ottengono {VigorPower:diff()} [gold]Vigore[/gold].",

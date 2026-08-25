@@ -27,6 +27,8 @@
     "GUARDIAN-FUTURE_PLANS_POWER.description": "À la fin de votre tour, vous pouvez placer [blue]1[/blue] carte en [gold]Stasis[/gold].",
     "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "À la fin de votre tour, vous pouvez placer {Amount} {Amount:plural:carte|cartes} en [gold]Stasis[/gold].",
     "GUARDIAN-GEM_FINDER_POWER.title": "Détecteur de Gemmes",
+    "GUARDIAN-GEM_FINDER_POWER.description": "Lorsque vous jouez une [gold]Gemme[/gold] qui n'est pas [gold]Forgée[/gold] dans une carte, piochez [blue]1[/blue] carte supplémentaire au prochain tour.",
+    "GUARDIAN-GEM_FINDER_POWER.smartDescription": "Lorsque vous jouez une [gold]Gemme[/gold] qui n'est pas [gold]Forgée[/gold] dans une carte, piochez [blue]{Amount}[/blue] {Amount:plural:carte supplémentaire|cartes supplémentaires} au prochain tour.",
     "GUARDIAN-MODE_SHIFT_POWER.title": "Changement de Mode",
     "GUARDIAN-MODE_SHIFT_POWER.description": "Lorsque vous perdez des PV gagnez [blue]16[/blue] [gold]d'Armure[/gold], entrez en [gold]Mode Défensif[/gold] jusqu'au prochain tour, et augmentez  de [blue]10[/blue] la valeur nécessaire pour déclencher à nouveau cet effet, jusqu'à un maximum de [blue]50[/blue].",
     "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "Lorsque vous perdez [blue]{Amount}[/blue] PV gagnez [blue]16[/blue] [gold]d'Armure[/gold], entrez en [gold]Mode Défensif[/gold] jusqu'au prochain tour, et augmentez  de [blue]10[/blue] la valeur nécessaire pour déclencher à nouveau cet effet, jusqu'à un maximum de [blue]50[/blue].",

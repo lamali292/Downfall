@@ -1,4 +1,8 @@
 {
     "HEXAGHOST-IGNITE.title": "発火",
-    "HEXAGHOST-IGNITE.description": "ゴーストフレイムの発火効果を発動する。"
+    "HEXAGHOST-IGNITE.description": "ゴーストフレイムの発火効果を発動する。",
+    "HEXAGHOST-WHEEL.title": "ゴーストフレイムの輪",
+    "HEXAGHOST-WHEEL.description": "ゴーストフレイムを6個宿す。\n条件を満たすと[gold]発火[/gold]する。\nターン終了時、現在のゴーストフレイムが[gold]発火[/gold]している場合、[gold]前進[/gold]する。",
+    "HEXAGHOST-EXTINGUISH.title": "滅却",
+    "HEXAGHOST-EXTINGUISH.description": "[gold]発火[/gold]中のゴーストフレイムをリセットし、再び[gold]発火[/gold]できるようにする。"
 }
