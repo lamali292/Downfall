@@ -60,6 +60,7 @@ public class Awakened : DownfallCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<AwakenedPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<AwakenedRelicPool>();
     
+    
     /*
     public override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {

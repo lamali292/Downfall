@@ -25,6 +25,9 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
 
     public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
+
+    protected override IEnumerable<string> ExtraRunAssetPaths => [(this as ISpell).SpellIconPath];
+
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {
         if (player != Owner) return Task.CompletedTask;
