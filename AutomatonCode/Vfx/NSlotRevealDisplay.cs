@@ -150,10 +150,23 @@ public abstract partial class NSlotRevealDisplay : Control
         }
     }
 
+    public NCard? GetNCard(CardModel card)
+    {
+        var node = CardHolders.Find(h => IsInstanceValid(h) && h.CardModel == card)?.CardNode;
+        if (node != null && IsInstanceValid(node) && node.Model == card)
+            return node;
+
+        // also check the preview slot — the next-draw card lives there, not in CardHolders
+        if (_previewHolder != null && IsInstanceValid(_previewHolder)
+                                   && _previewHolder.CardModel == card && _previewHolder.CardNode?.Model == card)
+            return _previewHolder.CardNode;
+
+        return null;
+    }
+    
     public override void _ExitTree()
     {
-        // Room teardown / combat end: release everything BEFORE the subtree is freed,
-        // so no pooled node dies while some registry or the game still points at it.
+        // Room teardown / combat end: release everything BEFORE the subtree is freed.
         ReleaseAllSlotCards();
         ReleasePreviewCard();
         _revealTween?.Kill();
@@ -161,40 +174,48 @@ public abstract partial class NSlotRevealDisplay : Control
     }
 
     /// <summary>
-    ///     Card nodes shown in slots can be ADOPTED by the base game: FindOnTable
-    ///     (via FindOnTablePatch) can hand the engine our node, which then reparents
-    ///     it into the hand/play flow. From that moment the node is not ours.
-    ///     So cleanup only destroys a node still parented under this display;
-    ///     otherwise it just drops the reference. Destroying an adopted node causes
-    ///     ObjectDisposedException inside CardPileCmd.Add/UpdateVisuals on the next
-    ///     pile move (Stash, DrawFromStash, ...) and desyncs multiplayer.
+    ///     Disposes ONE slot's contents the way the base game does it (see
+    ///     NPlayerHand.RemoveCardHolder / OnSelectModeSourceFinished): the holder is
+    ///     freed, but the pooled NCard inside it is NEVER freed by us. NCard nodes come
+    ///     from NodePool.Get and are reused across the run — the base game detaches the
+    ///     card and frees only the holder, letting the card node live on (it may be
+    ///     adopted into the hand via FindOnTable). QueueFreeing the NCard ourselves
+    ///     destroys a node NPlayerHand/FindOnTablePatch may still reference, which surfaces
+    ///     as a disposed node in the hand on the next pile move.
+    ///
+    ///     ClearCard() already does exactly this: detach the NCard, QueueFree the holder.
+    ///     So disposal is just: fire the unregister hook, then ClearCard the slot. We never
+    ///     touch the card node.
     /// </summary>
-    private void ReleaseCardNode(CardModel? model, NCard? cardNode)
+    private static void ReleaseSlot(NAutomatonSlot slot)
     {
-        if (model != null)
-            OnSlotCardCleared(model); // subclass unregisters (FindOnTablePatch etc.)
-
-        if (cardNode == null || !IsInstanceValid(cardNode)) return;
-
-        var stillOwned = cardNode.IsInsideTree() && IsAncestorOf(cardNode);
-        if (!stillOwned) return; // adopted by the game — hands off
-
-        cardNode.GetParent()?.RemoveChild(cardNode);
-        cardNode.QueueFree();
+        slot.ClearCard();
     }
 
     protected void ReleaseAllSlotCards()
     {
+        // Fire the unregister hook for every model we placed, THEN let each slot detach its
+        // card and free its holder. Never QueueFree the NCard — the slot detaches it and the
+        // game owns its lifetime from here.
         foreach (var holder in CardHolders)
-            ReleaseCardNode(holder.CardModel, holder.CardNode);
+        {
+            var model = holder.CardModel;
+            if (model != null)
+                OnSlotCardCleared(model);
+        }
         CardHolders.Clear();
+
+        foreach (var slot in Slots)
+            ReleaseSlot(slot);
     }
 
     private void ReleasePreviewCard()
     {
-        // The preview model is display-only (never registered), but its node is
-        // still a pooled NCard living under us — same release rules apply.
-        ReleaseCardNode(null, _previewHolder?.CardNode);
+        // Preview model is display-only (never registered), so no unregister hook. Its node
+        // is a pooled NCard owned by PreviewSlot — detach + free-holder via ClearCard, and
+        // leave the card node itself alone.
+        if (PreviewSlot != null)
+            ReleaseSlot(PreviewSlot);
         _previewHolder = null;
         PreviewModel = null;
     }
@@ -275,10 +296,10 @@ public abstract partial class NSlotRevealDisplay : Control
 
     private void RefreshSlots(IReadOnlyList<CardModel> slotCards)
     {
-        // Release (unregister + destroy only owned nodes) BEFORE clearing slots,
-        // so ClearCard can never free a node something else still references.
+        // Unregister hooks + detach/free holders for every slot. ReleaseAllSlotCards already
+        // ClearCards every slot, so there is no separate clear loop here (the old double
+        // clear detached the card twice and raced the deferred holder free).
         ReleaseAllSlotCards();
-        foreach (var slot in Slots) slot.ClearCard();
 
         for (var i = 0; i < Slots.Count; i++)
         {
@@ -299,7 +320,9 @@ public abstract partial class NSlotRevealDisplay : Control
             var holder = slot.SetCard(cardNode);
             if (holder == null)
             {
-                cardNode.QueueFree(); // fresh node, nothing references it yet
+                // SetCard couldn't take ownership. Detach + free the holder (if any) via the
+                // slot; do NOT QueueFree the card node — the slot/game own its lifetime.
+                slot.ClearCard();
                 continue;
             }
 
@@ -315,18 +338,21 @@ public abstract partial class NSlotRevealDisplay : Control
     private void RefreshPreview(IReadOnlyList<CardModel> slotCards)
     {
         ReleasePreviewCard();
-        PreviewSlot?.ClearCard();
 
         PreviewModel = CreatePreviewModel(slotCards);
         if (PreviewModel == null || PreviewSlot == null) return;
 
         var cardNode = NCard.Create(PreviewModel);
-        if (cardNode == null) return;
+        if (cardNode == null)
+        {
+            PreviewModel = null;
+            return;
+        }
 
         _previewHolder = PreviewSlot.SetCard(cardNode, PreviewCardScale);
         if (_previewHolder == null)
         {
-            cardNode.QueueFree();
+            PreviewSlot.ClearCard();
             PreviewModel = null;
             return;
         }
