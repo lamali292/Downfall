@@ -133,8 +133,9 @@ public static class AwakenedCmd
         }
 
         spellbook.SetNextSpell(player);
-
-        AwakenedDisplay.RefreshSpellDisplays(player);
+        
+        Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
+        //AwakenedDisplay.RefreshSpellDisplays(player);
         return spell;
     }
 }

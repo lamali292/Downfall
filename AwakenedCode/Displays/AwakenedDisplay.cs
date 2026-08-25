@@ -8,34 +8,10 @@ namespace Awakened.AwakenedCode.Displays;
 
 public class AwakenedDisplay
 {
-    private static readonly PlayerField<NSpellbookDisplay> AwakenSpellDisplays = new(() => null);
+   
     private static readonly PlayerField<NAwakenMeter> AwakenMeterDisplays = new(() => null);
     
-    public static void RefreshSpellDisplays(Player player)  
-    {
-        if (!LocalContext.IsMe(player)) return;;
-        Callable.From(() =>
-        {
-            var existing = AwakenSpellDisplays.Get(player);
-            if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
-            {
-                AwakenSpellDisplays.Set(player, null);
-                existing = null;
-            }
-
-            if (existing == null)
-            {
-                var display = NSpellbookDisplay.Create(player);
-                if (display == null) return;
-                AwakenSpellDisplays.Set(player, display);
-            }
-            else
-            {
-                existing.Refresh();
-            }
-        }).CallDeferred();
-    }
-    
+   
     public static void RefreshAwakenMeter(Player player, int value)
     {
         if (!LocalContext.IsMe(player)) return;;
@@ -61,4 +37,33 @@ public class AwakenedDisplay
             }
         }).CallDeferred();
     }
+    
+    
+    /*
+   private static readonly PlayerField<NSpellbookDisplay> AwakenSpellDisplays = new(() => null);
+   public static void RefreshSpellDisplays(Player player)
+   {
+       if (!LocalContext.IsMe(player)) return;;
+       Callable.From(() =>
+       {
+           var existing = AwakenSpellDisplays.Get(player);
+           if (existing != null && (!GodotObject.IsInstanceValid(existing) || existing.IsExiting))
+           {
+               AwakenSpellDisplays.Set(player, null);
+               existing = null;
+           }
+
+           if (existing == null)
+           {
+               var display = NSpellbookDisplay.Create(player);
+               if (display == null) return;
+               AwakenSpellDisplays.Set(player, display);
+           }
+           else
+           {
+               existing.Refresh();
+           }
+       }).CallDeferred();
+   }
+   */
 }

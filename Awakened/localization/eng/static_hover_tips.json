@@ -8,5 +8,7 @@
   "AWAKENED-CHANTED.title": "Chanted",
   "AWAKENED-CHANTED.description": "This card's effects have grown stronger.",
   "AWAKENED-DRAINED.title": "Drained",
-  "AWAKENED-DRAINED.description": "Any effect that caused you to lose {Energy:energyIcons()}, even if you had none to lose.\n(Does not include {Energy:energyIcons()} spent playing cards.)"
+  "AWAKENED-DRAINED.description": "Any effect that caused you to lose {Energy:energyIcons()}, even if you had none to lose.\n(Does not include {Energy:energyIcons()} spent playing cards.)",
+  "AWAKENED-SPELLBOOK.title" : "Spellbook",
+  "AWAKENED-SPELLBOOK.description": "A collection of Spells.{HasSpell:cond:\nYour next Spell is [gold]{Spell}[/gold].|}"
 }

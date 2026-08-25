@@ -47,6 +47,6 @@ public class Inscribe : AwakenedCardModel
         var dupe = chosen.CreateClone();
         spellbook.AddInternal(chosen);
         spellbook.AddInternal(dupe);
-        AwakenedDisplay.RefreshSpellDisplays(Owner);
+        //AwakenedDisplay.RefreshSpellDisplays(Owner);
     }
 }

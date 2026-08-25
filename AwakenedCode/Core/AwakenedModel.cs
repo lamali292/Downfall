@@ -64,7 +64,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         foreach (var player in state.Players)
         {
             if (player.Character is not Awakened) continue;
-            AwakenedDisplay.RefreshSpellDisplays(player);
+            //AwakenedDisplay.RefreshSpellDisplays(player);
             AwakenedDisplay.RefreshAwakenMeter(player, 0);
         }
     }

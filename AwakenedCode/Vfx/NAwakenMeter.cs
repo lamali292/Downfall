@@ -20,7 +20,7 @@ public partial class NAwakenMeter : Control
     private Func<IEnumerable<IHoverTip>>? _tipProvider;
     private IEnumerable<IHoverTip>? _tips;
     private Vector2 _restPosition;
-    private Vector2 RelativeOffset => new Vector2(-80f, 100f);
+    private Vector2 RelativeOffset => new Vector2(-80f, -100f);
     private Vector2 HideOffset => new Vector2(-120f, 0f);
 
     private Tween? _sizeTween;
