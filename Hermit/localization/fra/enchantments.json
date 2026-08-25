@@ -1,0 +1,5 @@
+{
+    "HERMIT-SEETHING.title": "Fulminant",
+    "HERMIT-SEETHING.description": "La première fois que vous jouez cette carte chaque tour, remettez-la dans votre [gold]Main[/gold], gagnez {Energy:energyIcons()}, et piochez {Cards:plural:une carte|{} cartes}.",
+    "HERMIT-SEETHING.extraCardText": "Remettez cette carte dans votre [gold]Main[/gold].\nGagnez {Energy:energyIcons()}.\nPiochez {Cards:plural:une carte|{} cartes}. "
+}

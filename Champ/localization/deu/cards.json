@@ -36,7 +36,6 @@
     "CHAMP-GUT_PUNCH.title": "Ultimativer Hieb",
     "CHAMP-HEADBUTT.title": "Kopfnuss",
     "CHAMP-HOLD_FIRM.title": "Einstecken",
-    "CHAMP-HONE_BLADE.description": "Deine \"Schlag\" Karten fügen {HoneBladePower:diff()} mehr Schaden zu.",
     "CHAMP-HONE_BLADE.title": "Klinge schleifen",
     "CHAMP-HUDDLE.description": "ALLE Spieler erhalten {VigorPower:diff()} [gold]Elan[/gold].",
     "CHAMP-IGNORE_PAIN.title": "Analgesie",

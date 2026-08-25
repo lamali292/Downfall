@@ -12,6 +12,7 @@
     "GUARDIAN-POLISH.title": "Polissage",
     "GUARDIAN-POLISH.description": "Réduisez de X votre [gold]Faiblesse[/gold], votre [gold]Fragilité[/gold] et votre [gold]Vulnérabilité[/gold].\nConvertissez X piles de buffs temporaires en buffs permanents.",
     "GUARDIAN-SOCKET.title": "Cavité",
+    "GUARDIAN-SOCKET.description": "Peut être forgée avec une [gold]Gemme[/gold] dans un Site de Repos pour absorber de façon permanente son effet.",
     "GUARDIAN-STASIS.title": "Stase",
     "GUARDIAN-STASIS.description": "Une carte en [gold]Stase[/gold] reste pour autant de tours que de son coût for +[blue]1[/blue]. Quand elle la quitte, elle retourne dans votre [gold]Main[/gold] et est gratuite jusqu'à ce qu'elle soit jouée.",
     "GUARDIAN-TICK.title": "Tic",

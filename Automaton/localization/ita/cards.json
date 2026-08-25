@@ -1,6 +1,5 @@
 {
     "AUTOMATON-ALLOCATE.title": "Alloca",
-    "AUTOMATON-ASSEMBLY.description": "Pesca {Cards:diff()} carte.\n[gold]Codifica[/gold] qualsiasi carta pescata con [gold]Codifica[/gold].",
     "AUTOMATON-ASSEMBLY.title": "Assemblaggio",
     "AUTOMATON-BACKTRACE.title": "Retrotraccia",
     "AUTOMATON-BIT_SHIFT.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\n[gold]Deposita[/gold] la carta in cima al tuo [gold]Mazzo Pesca[/gold].",

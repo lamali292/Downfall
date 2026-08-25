@@ -174,6 +174,7 @@
     "SNECKO-SSSHARING.title": "シェアリング",
     "SNECKO-SSSHARING.description": "すべてのプレイヤーは、ランダムな[gold]他クラス[/gold]のカードを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、{Cards:plural:それは|それらは}コストを支払わずにプレイできる。",
     "SNECKO-MIMICRY.title": "擬態",
+    "SNECKO-MIMICRY.description": "[gold]他クラス[/gold]のカードをプレイするたび、そのターン、[gold]筋力[/gold]{MimicryPower:diff()}を得る。",
     "SNECKO-WHIPLASH.title": "むち打ち",
     "SNECKO-WHIPLASH.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]オーバーフロー[/gold]：すべての敵に[gold]脱力[/gold]と[gold]弱体[/gold]を{PowerVar:diff()}付与する。このカードのコスト分増加する。",
     "SNECKO-SNATCH.title": "ひったくり",

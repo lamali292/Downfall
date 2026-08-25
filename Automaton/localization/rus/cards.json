@@ -1,4 +1,5 @@
 {
+    "AUTOMATON-ALLOCATE.description": "Дает {energyPrefix:energyIcons(1)} за каждый Статус в [gold]стопке добора[/gold] и [gold]стопке Запаса[/gold].{InCombat:cond:\n(Дает {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Распределить",
     "AUTOMATON-ASSEMBLY.title": "Собрать",
     "AUTOMATON-BACKTRACE.title": "Трассировка",

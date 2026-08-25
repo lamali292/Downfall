@@ -1,4 +1,5 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "スキルボーナス",
+    "CHAMP-TRIGGERSKILLBONUS.description": "[gold]スタンス[/gold]中に[gold]スキル[/gold]を使用するたび、そのスタンスのボーナス効果が発動する。",
     "CHAMP-TRIGGERSKILLBONUS.card": "現在の[gold]スタンス[/gold]の[gold]スキルボーナス[/gold]を発動する。"
 }

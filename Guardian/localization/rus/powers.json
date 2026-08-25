@@ -27,6 +27,8 @@
     "GUARDIAN-FUTURE_PLANS_POWER.description": "Вы можете поместить [blue]1[/blue] карту из [gold]руки[/gold] в [gold]Стазис[/gold] в конце хода.",
     "GUARDIAN-FUTURE_PLANS_POWER.smartDescription": "Вы можете поместить [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт} из [gold]руки[/gold] в [gold]Стазис[/gold] в конце хода.",
     "GUARDIAN-GEM_FINDER_POWER.title": "Искатель самоцветов",
+    "GUARDIAN-GEM_FINDER_POWER.description": "Вы добираете [blue]1[/blue] карту в начале следующего хода, за каждый разыгранный не-[gold]инкрустированный[/gold] [gold]Самоцвет[/gold] в текущем. ",
+    "GUARDIAN-GEM_FINDER_POWER.smartDescription": "Вы добираете [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт} в начале следующего хода, за каждый разыгранный не-[gold]инкрустированный[/gold] [gold]Самоцвет[/gold] в текущем. ",
     "GUARDIAN-MODE_SHIFT_POWER.title": "Смена режима",
     "GUARDIAN-MODE_SHIFT_POWER.description": "Потеряв ОЗ, вы получите [blue]16[/blue] [gold]защиты[/gold] и перейдете в [gold]Оборонительный режим[/gold] до начала следующего хода.\nПовторая активация потребует на [blue]10[/blue] потерянного ОЗ больше (не более [blue]50[/blue]).",
     "GUARDIAN-MODE_SHIFT_POWER.smartDescription": "Потеряв [blue]{Amount}[/blue] ОЗ, вы получите [blue]{Block:diff()}[/blue] [blue]16[/blue] [gold]защиты[/gold] и перейдете в [gold]Оборонительный режим[/gold] до начала следующего хода.\nПовторая активация потребует на [blue]{Increase:diff()}[/blue] потерянного ОЗ больше (не более [blue]{MaxLimit:diff()}[/blue]).",

@@ -1,0 +1,5 @@
+{
+    "HERMIT-SEETHING.title": "Вспыльчивость",
+    "HERMIT-SEETHING.description": "Когда вы впервые за ход разыгрываете эту карту, она возвращается в [gold]руку[/gold], вы получаете {Energy:energyIcons()} и добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
+    "HERMIT-SEETHING.extraCardText": "Возвращается в [gold]руку[/gold].\nВы получаете {Energy:energyIcons()} и добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}."
+}

@@ -89,5 +89,8 @@
     "HERMIT-BURDENED_POWER.title": "Тяжелое бремя",
     "HERMIT-BURDENED_POWER.description": "Дает [blue]1[/blue] [gold]бодрости[/gold] и добавляет в [gold]руку[/gold] [red]«Гниение»[/red] в начале хода.",
     "HERMIT-BURDENED_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]бодрости[/gold] и добавляет в [gold]руку[/gold] {Cards:plural(ru):[red]«Гниение»[/red]|[blue]{}[/blue] [red]«Гниения»[/red]|[blue]{}[/blue] [red]«Гниений»[/red]}.",
-    "HERMIT-BRUISE_POWER.remoteDescription": "Это существо получает на [blue]{Amount}[/blue] урона больше от Атак{HasBigBruiser:| [orange]{ApplierName}[/orange]} в этот ход."
+    "HERMIT-BRUISE_POWER.remoteDescription": "Это существо получает на [blue]{Amount}[/blue] урона больше от Атак{HasBigBruiser:| [orange]{ApplierName}[/orange]} в этот ход.",
+    "HERMIT-LONG_SHADOWS_POWER.title": "Длинные тени",
+    "HERMIT-LONG_SHADOWS_POWER.description": "Вы добираете [blue]1[/blue] карту, когда добираете [red]Проклятие[/red].",
+    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "Вы добираете {Amount} {Amount:plural(ru):карту|карты|карт}, когда добираете [red]Проклятие[/red]."
 }

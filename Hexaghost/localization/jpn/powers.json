@@ -6,6 +6,8 @@
     "HEXAGHOST-DOOMSDAY_POWER.description": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを得る。",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを{Amount}回得る。",
     "HEXAGHOST-DOOMS_ARRIVAL_POWER.title": "終末の時",
+    "HEXAGHOST-DOOMS_ARRIVAL_POWER.description": "ターン終了時、すぐに追加のターンを開始する。",
+    "HEXAGHOST-DOOMS_ARRIVAL_POWER.smartDescription": "ターン終了時、すぐに追加のターンを[blue]{Amount}[/blue]回開始する。",
     "HEXAGHOST-EXTRA_CRISPY_POWER.title": "黒コゲ",
     "HEXAGHOST-EXTRA_CRISPY_POWER.description": "[gold]ソウルバーン[/gold]が炸裂するたび、その敵はHPを失い、追加で[gold]ソウルバーン[/gold]を付与する。",
     "HEXAGHOST-EXTRA_CRISPY_POWER.smartDescription": "[gold]ソウルバーン[/gold]が炸裂するたび、その敵はHPを[blue]{Amount}[/blue]失い、追加で[[gold]ソウルバーン[/gold][blue]{Amount}[/blue]を付与する。",
@@ -68,5 +70,8 @@
     "HEXAGHOST-HEATING_POWER.smartDescription": "[gold]ソウルバーン[/gold]を付与するたび、[gold]ブロック[/gold]が最も少ない味方が[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "HEXAGHOST-INFERNO_POTION_POWER.title": "インフェルノ",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与する。",
-    "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与するようになる。"
+    "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与するようになる。",
+    "HEXAGHOST-PREMONITION_POWER.title": "前兆",
+    "HEXAGHOST-PREMONITION_POWER.description": "1ターンの間にカードが[blue]2[/blue]枚以上[gold]廃棄[/gold]された場合、次のターン開始時、カードを引く。",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "1ターンの間にカードが[blue]2[/blue]枚以上[gold]廃棄[/gold]された場合、次のターン開始時、カードを[blue]{Amount}[/blue]枚引く。"
 }

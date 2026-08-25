@@ -32,5 +32,7 @@
     "SNECKO-UNIDENTIFIED_EGG.title": "Œuf inconnu",
     "SNECKO-UNIDENTIFIED_EGG.description": "Lorsque vous ajoutez une carte [gold]Hors-Classe[/gold] dans votre [gold]Deck[/gold], [gold]Améliorez-la[/gold]. \nLorsque vous le récupérez, [gold]Améliorez[/gold] [blue]{Cards}[/blue] cartes [gold]Hors-Classe[/gold] aléatoires.",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "Qu'en sortira-t-il ? Payez 1000€ pour le voir.",
-    "SEA_GLASS.SNECKO-SNECKO.title": "Verre prismé"
+    "SEA_GLASS.SNECKO-SNECKO.title": "Verre prismé",
+    "SNECKO-SNECKO_CHOICE.title": "Bénédiction de/du {character}",
+    "SNECKO-SNECKO_CHOICE.description": "Vous pouvez désormais obtenir des cartes de/du [blue]{borrowed}[/blue] dans les récompenses des [gold]Cadeaux[/gold]."
 }
