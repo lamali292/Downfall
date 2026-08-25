@@ -2,12 +2,16 @@ using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Extensions;
+using Awakened.AwakenedCode.Piles;
+using Awakened.AwakenedCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
@@ -45,8 +49,8 @@ public class Inscribe : AwakenedCardModel
         spellbook.AddPersistentType(chosen);
 
         var dupe = chosen.CreateClone();
-        spellbook.AddInternal(chosen);
-        spellbook.AddInternal(dupe);
+        var a = await CardPileCmd.Add([chosen, dupe], AwakenedPile.Spellbook);
+        CardCmd.PreviewCardPileAdd(a, 0.2f);
         //AwakenedDisplay.RefreshSpellDisplays(Owner);
     }
 }
