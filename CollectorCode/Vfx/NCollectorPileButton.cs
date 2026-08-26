@@ -16,9 +16,12 @@ public partial class NCollectorPileButton : NCustomCombatCardPile
     protected override PileType Pile => CollectorPile.Collected;
     protected override Vector2 HideOffset => new(-160f, 100f);
     protected override Vector2 HoverTipOffset => new(14f, -310f);
+    protected override Vector2 ButtonOffsets=> new(0f, -170f);
 
-    public override Func<Player, bool> CanUsePile =>
-        player => player.Character == ModelDb.Character<Core.Collector>();
+    protected override bool StartHidden(Player player)
+    {
+        return player.Character is not Core.Collector;
+    }
 
     protected override LocString BuildEmptyPileMessage()
     {

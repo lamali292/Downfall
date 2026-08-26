@@ -26,11 +26,11 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         );
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.CombatState == null) return;
-
+        var ctx = new BlockingPlayerChoiceContext();
         var damage = CollectorHook.ModifyCollectorDoomDamage(Owner.CombatState, Owner, Amount);
         var results = await CreatureCmd.Damage(ctx, Owner, damage,
             DamageProps.nonCardHpLoss, null, null);
