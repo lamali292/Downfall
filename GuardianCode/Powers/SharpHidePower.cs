@@ -10,10 +10,11 @@ namespace Guardian.GuardianCode.Powers;
 
 public class SharpHidePower : GuardianPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await PowerCmd.Apply<SharpHideThornsPower>(ctx, Owner, Amount, Owner, null, true);
     }
 }

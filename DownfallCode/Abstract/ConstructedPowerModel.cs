@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -8,7 +9,7 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class ConstructedPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType stackType = PowerStackType.Counter) : HookedPowerModel
+    PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel
 {
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
     private readonly List<Func<PowerModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];

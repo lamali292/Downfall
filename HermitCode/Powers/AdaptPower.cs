@@ -12,7 +12,7 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class AdaptPower : HermitPowerModel
 {
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != CombatSide.Player) return;
@@ -21,6 +21,7 @@ public sealed class AdaptPower : HermitPowerModel
         var hand = PileType.Hand.GetPile(Owner.Player);
         if (!hand.Cards.Any()) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, Amount);
+        var ctx = new BlockingPlayerChoiceContext();
         var selected = await CardSelectCmd.FromHand(
             ctx,
             Owner.Player,

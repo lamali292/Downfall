@@ -16,9 +16,10 @@ public class DefensiveModePower : GuardianPowerModel
         WithPower<ThornsPower>(3);
     }
 
-    protected override async Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
+    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         if (Owner.Player == null) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await GuardianCmd.EnterDefensiveMode(ctx, Owner.Player);
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }
@@ -28,14 +29,15 @@ public class DefensiveModePower : GuardianPowerModel
         return creature != Owner;
     }
 
-    protected override async Task AfterRemoved(PlayerChoiceContext ctx, Creature oldOwner)
+    public override async Task AfterRemoved(Creature oldOwner)
     {
         if (oldOwner.Player == null) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await GuardianCmd.LeaveDefensiveMode(ctx, oldOwner.Player);
         await PowerCmd.Apply<ThornsPower>(ctx, Owner, -DynamicVars.Power<ThornsPower>().BaseValue, Owner, null);
     }
 
-    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
+    public override async Task AfterEnergyReset(Player player)
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Decrement(this);

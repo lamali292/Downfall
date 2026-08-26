@@ -13,12 +13,12 @@ public class OverheatPower : AutomatonPowerModel
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (creator == null || creator.Creature != Applier)
             return;
         Flash();
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount,
+        await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner, Amount,
             DamageProps.nonCardHpLoss, card.Owner.Creature, card, null);
         await PowerCmd.Remove(this);
     }

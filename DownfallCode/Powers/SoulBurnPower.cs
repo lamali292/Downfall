@@ -52,7 +52,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         );
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side)
@@ -60,6 +60,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         DynamicVars["Turns"].UpgradeValueBy(-1);
         InvokeDisplayAmountChanged();
         if (DynamicVars["Turns"].BaseValue > 0) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await Detonate(ctx, Applier);
     }
 

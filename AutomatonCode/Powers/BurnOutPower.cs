@@ -13,12 +13,6 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class BurnOutPower : AutomatonPowerModel, IAfterCardStashed
 {
-    protected override async Task AfterCardChangedPiles(PlayerChoiceContext ctx, CardModel card, PileType oldPileType,
-        AbstractModel? clonedBy)
-    {
-      
-    }
-
     public  async Task AfterCardsStashed(PlayerChoiceContext ctx, Player player, IEnumerable<CardModel> stashedCards, IEnumerable<CardModel> overflowCards)
     {
         foreach (var card in stashedCards)
