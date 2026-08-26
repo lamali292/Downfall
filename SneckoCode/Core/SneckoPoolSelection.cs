@@ -1,4 +1,5 @@
 ﻿using BaseLib.Extensions;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -14,13 +15,11 @@ namespace Snecko.SneckoCode.Core;
 
 public static class SneckoPoolSelection
 {
-    public static async Task RunActEntry(IRunState runstate)
+    public static void RunActEntry(IRunState runstate)   // no await left here → not async
     {
-        if (runstate.Act.ActNumber() > 1) return;
-
         var sneckos = runstate.Players.Where(p => p.Character is Snecko).ToList();
 
-        // PHASE 1 — reserve ALL ids first, deterministic, no UI. This is the non-negotiable part.
+        // PHASE 1 — reserve ids synchronously (unchanged, keeps MP in sync)
         var plans = new List<(Player player, SneckoChoice[] relics, uint[] choiceIds)>();
         foreach (var player in sneckos)
         {
@@ -34,10 +33,22 @@ public static class SneckoPoolSelection
             plans.Add((player, relics, ids));
         }
 
-        // PHASE 2 — parallel across players; within each player, select→init→obtain per relic.
-        await Task.WhenAll(plans.Select(RunPlayer));
+        // PHASE 2 — void-returning lambda; discard the Task so it binds to Action, not Func<Task>.
+        Callable.From(() => { _ = RunPicks(plans); }).CallDeferred();
     }
 
+    
+    private static async Task RunPicks(
+        List<(Player player, SneckoChoice[] relics, uint[] choiceIds)> plans)
+    {
+        try
+        {
+            await Task.WhenAll(plans.Select(RunPlayer));
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception e) { SneckoMainFile.Logger.Error($"[Snecko] deferred selection failed: {e}"); }
+    }
+    
     private static async Task RunPlayer(
         (Player player, SneckoChoice[] relics, uint[] choiceIds) plan)
     {

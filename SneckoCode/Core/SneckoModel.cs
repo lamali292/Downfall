@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Cards;
 using Snecko.SneckoCode.Interfaces;
@@ -70,11 +71,12 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             await SneckoCmd.GetGift(card.Owner, gift);
     }
 
-    public override async Task AfterActEntered()
+   
+    public override Task AfterRoomEntered(AbstractRoom room)
     {
-        await SneckoPoolSelection.RunActEntry(RunManager.Instance.State!);
+        var state = RunManager.Instance.State!;
+        if (state.Act.ActNumber() > 1 || state.ActFloor > 1) return Task.CompletedTask;
+        SneckoPoolSelection.RunActEntry(RunManager.Instance.State!);
+        return Task.CompletedTask;
     }
-
- 
-
 }
