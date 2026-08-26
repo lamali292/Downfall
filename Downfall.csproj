@@ -14,16 +14,15 @@
 
         <ModOutputFolder>Downfall</ModOutputFolder>
 
-        <!-- Comes from local.props -->
+        <!-- Default submods when none are specified -->
+        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
+
+        <!-- Use selected submods for packing -->
         <PackFolders>$(Submods)</PackFolders>
 
         <DefineConstants>$(DefineConstants);V107</DefineConstants>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector</Submods>
-    </PropertyGroup>
-    
     <ItemGroup>
         <Submod Include="$(Submods)">
             <Visible>false</Visible>
