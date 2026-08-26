@@ -22,7 +22,7 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
         GuardianModeModel newMode)
     {
         if (player.Creature != Owner || newMode is not GuardianDefensiveMode) return;
-        var candidates = CombatState.Players.Where(e => e != player).ToList();
+        var candidates = player.OtherTeammates;
         var minBlock = candidates.Min(e => e.Creature.Block);
         var lowest = candidates.Where(e => e.Creature.Block == minBlock).ToList();
         var target = lowest.Count == 1
