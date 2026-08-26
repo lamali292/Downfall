@@ -28,7 +28,8 @@ public partial class NTopBarEssenceDisplay : NCustomTopBarDisplayElement
 
     protected override int? GetCount()
     {
-        return Player?.Essence;
+        return null;
+            //Player?.Essence;
     }
 
     public static void RefreshDisplay()

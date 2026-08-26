@@ -56,7 +56,7 @@ public class EssenceReward(int amount, Player player) : CustomReward(player)
 
     protected override Task<bool> OnSelect()
     {
-        Player.AddEssence(Amount);
+        //Player.AddEssence(Amount);
         CustomMessageWrapper.Send(new EssenceRewardMessage
         {
             WasSkipped = false,
