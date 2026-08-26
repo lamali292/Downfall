@@ -29,6 +29,13 @@ public class StashCmd
     {
         return Math.Max(0, MaxStashSize - player.StashPile.Count);
     }
+    
+    public static bool IsFull(Player player, bool silent = false)
+    {
+        var full = RemainingSpace(player) == 0;
+        if (!silent && full) NotifyFullStash(player);
+        return full;
+    }
 
     private static void NotifyFullStash(Player player)
     {
