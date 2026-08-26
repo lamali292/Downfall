@@ -1,5 +1,4 @@
-﻿using Guardian.GuardianCode.DynamicVars;
-using Hexaghost.HexaghostCode.DynamicVars;
+﻿using Hexaghost.HexaghostCode.DynamicVars;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Hexaghost.HexaghostCode.Extensions;
