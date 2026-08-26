@@ -13,7 +13,7 @@ public class DrainedPower : AwakenedPowerModel
         WithEnergyTip();
     }
 
-    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
+    public override async Task AfterEnergyReset(Player player)
     {
         if (player != Owner.Player || Owner.CombatState == null)
             return;

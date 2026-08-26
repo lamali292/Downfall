@@ -10,7 +10,7 @@ namespace Champ.ChampCode.Powers;
 
 public class KillingSpreePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single), IIgnoreChampChargeCap
 {
-    protected override Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         if (applier?.Player == null || applier != Owner) return Task.CompletedTask;
         ChampModel.GetStanceModel(applier.Player).ResetCharges();

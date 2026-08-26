@@ -11,10 +11,11 @@ public class OozeBathPower : SlimeBossPowerModel
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await PowerCmd.Apply<GoopPower>(ctx, Owner, Amount, Applier, null);
     }
 }
