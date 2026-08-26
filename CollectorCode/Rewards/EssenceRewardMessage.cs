@@ -39,7 +39,7 @@ public class EssenceRewardMessage : ICustomMessage
         if (WasSkipped) return;
         var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
-        player.AddEssence(Amount);
+        //player.AddEssence(Amount);
         if (LocalContext.IsMe(player)) return;
 
         var stateNode = NRun.Instance?.GlobalUi.MultiplayerPlayerContainer

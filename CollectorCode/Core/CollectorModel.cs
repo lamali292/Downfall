@@ -79,7 +79,7 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
             _ => 0
         };*/
         
-        foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector) && (RoomType.Elite || RoomType.Boss))
+        foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector && (room.RoomType is RoomType.Elite or RoomType.Boss)))
         {
             //if (essenceAmount > 0) room.AddExtraReward(player, new EssenceReward(essenceAmount, player));
             foreach (var cardModel in enemyCards) room.AddExtraReward(player, new CollectibleReward(cardModel.ToMutable(), player));

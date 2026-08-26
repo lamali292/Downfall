@@ -27,14 +27,14 @@ public class CollectibleRewardMessage : ICustomMessage
     public void Serialize(PacketWriter writer)
     {
         writer.WriteBool(WasSkipped);
-        writer.WriteInt(EssenceCost);
+        //writer.WriteInt(EssenceCost);
         Card!.Serialize(writer);
     }
 
     public void Deserialize(PacketReader reader)
     {
         WasSkipped = reader.ReadBool();
-        EssenceCost = reader.ReadInt();
+        //EssenceCost = reader.ReadInt();
         var card = new SerializableCard();
         card.Deserialize(reader);
         Card = card;
