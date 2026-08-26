@@ -31,33 +31,16 @@ public partial class NSpellbookButton : NCustomCombatCardPile
         RefreshSpellIcon();
     }
     
-   
-    public static Vector2 GetPositionFor()
-    {
-        var btn = Live;
-        return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
-    }
-
     public static void RevealFor(Player player)
     {
         Revealed[player] = true;
-        var btn = Live;
+        var btn = GetPileNode<NSpellbookButton>();
         if (btn == null) return;
         btn.Reveal();
         btn.RefreshSpellIcon();  
     }
 
-    private static NSpellbookButton? Live
-    {
-        get
-        {
-            var container = NCombatRoom.Instance?.Ui._combatPilesContainer;
-            if (container == null || !IsInstanceValid(container)) return null;
-            return container.GetChildren()
-                .OfType<NSpellbookButton>()
-                .FirstOrDefault(IsInstanceValid);
-        }
-    }
+ 
     public void RefreshSpellIcon()
     {
         var slot = GetNodeOrNull<TextureRect>("Icon");

@@ -30,7 +30,7 @@ public class PiercingShot : AutomatonCardModel
         var cards = (await CardSelectCmd.FromCombatPile(ctx, StashPile.Stash.GetPile(Owner), Owner,
             new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, DynamicVars.Cards.IntValue), card => card.IsUpgradable)).ToList();
         foreach (var card in cards) CardCmd.Upgrade(card);
-        if (cards.Count != 0)
-            NStashDisplay.GetDisplay(Owner)?.Refresh(true);
+        // if (cards.Count != 0) NStashDisplay.GetDisplay(Owner)?.Refresh(true);
+        
     }
 }

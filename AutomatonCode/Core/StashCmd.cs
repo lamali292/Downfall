@@ -48,7 +48,7 @@ public class StashCmd
         if (cards.Count == 0)
             return;
 
-        NStashDisplay.EnsureFor(player);
+        //NStashDisplay.EnsureFor(player);
 
         var space = RemainingSpace(player);
         var toStash = cards.Take(space).ToList();
@@ -56,16 +56,14 @@ public class StashCmd
 
         if (toStash.Count > 0)
         {
-            var a = await place(toStash, StashPile.Stash);
-            CardCmd.PreviewCardPileAdd(a, 0.2f);
+            await place(toStash, StashPile.Stash);
         }
           
 
         if (overflow.Count > 0)
         {
             NotifyFullStash(player);
-            var a = await place(overflow, PileType.Discard);
-            CardCmd.PreviewCardPileAdd(a, 0.2f);
+            await place(overflow, PileType.Discard);
         }
         await AutomatonHook.AfterCardsStashed(player.Creature.CombatState, ctx, player, toStash, overflow);
     }
@@ -73,13 +71,7 @@ public class StashCmd
     // Placement primitive for cards already registered in combat.
     private static Task<IReadOnlyList<CardPileAddResult>> PlaceExisting(List<CardModel> cards, PileType target)
     {
-        var hand = NCombatRoom.Instance?.Ui.Hand;
-        if (hand == null) return CardPileCmd.Add(cards, target, skipVisuals: true);
-        foreach (var card in cards)
-            if (hand.GetCard(card) != null)   // it has a hand node
-                hand.Remove(card);
-
-        return CardPileCmd.Add(cards, target, skipVisuals: true);
+        return CardPileCmd.Add(cards, target);
     }
 
     // ---- entry points -------------------------------------------------------
@@ -94,8 +86,13 @@ public class StashCmd
         where TCard : CardModel
     {
         var cards = BuildCards<TCard>(player, amount);
-        return Run(ctx, player, cards, (list, target)
-            => CardPileCmd.AddGeneratedCardsToCombat(list, target, player));
+        return Run(ctx, player, cards, async (list, target)
+            =>
+        {
+            var a = await CardPileCmd.AddGeneratedCardsToCombat(list, target, player);
+            CardCmd.PreviewCardPileAdd(a, 0.2f);
+            return a;
+        });
     }
 
     // Creation loop lifted out of DownfallCardCmd.GiveCards.
