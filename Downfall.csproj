@@ -22,7 +22,7 @@
 
         <DefineConstants>$(DefineConstants);V107</DefineConstants>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <Submod Include="$(Submods)">
             <Visible>false</Visible>
