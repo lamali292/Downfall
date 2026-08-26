@@ -16,6 +16,7 @@ public class WildStrike : AutomatonCardModel
         WithDamage(14, 5);
         this.WithTip<Wound>();
         WithTip(AutomatonTip.Stash);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
