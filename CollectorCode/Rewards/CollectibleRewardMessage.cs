@@ -18,7 +18,7 @@ public class CollectibleRewardMessage : ICustomMessage
 {
     public bool WasSkipped { get; set; }
     public SerializableCard? Card { get; set; }
-    public int EssenceCost { get; set; }
+    //public int EssenceCost { get; set; }
 
     public bool ShouldBroadcast => false;
     public NetTransferMode Mode => NetTransferMode.Reliable;
@@ -46,7 +46,7 @@ public class CollectibleRewardMessage : ICustomMessage
         var player = RunManager.Instance.State?.GetPlayer(senderId);
         if (player == null) return;
 
-        player.SpendEssence(EssenceCost);
+        //player.SpendEssence(EssenceCost);
         var cardModel = CardModel.FromSerializable(Card);
         CollectiblesModel.AddCollectible(player, cardModel);
 

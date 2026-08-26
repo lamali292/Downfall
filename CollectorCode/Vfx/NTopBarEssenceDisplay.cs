@@ -43,7 +43,8 @@ public partial class NTopBarEssenceDisplay : NCustomTopBarDisplayElement
 
         public bool CanUse(Player player)
         {
-            return player.Character == ModelDb.Character<Core.Collector>();
+            return false;
+            //player.Character == ModelDb.Character<Core.Collector>();
         }
     }
 }

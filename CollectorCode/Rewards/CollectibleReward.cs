@@ -31,9 +31,9 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     {
         get
         {
-            var desc = Player.CanAffordEssence(3)
-                ? new LocString("gameplay_ui", "COLLECTIBLE_REWARD")
-                : new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
+            var desc = //Player.CanAffordEssence(3)
+                 new LocString("gameplay_ui", "COLLECTIBLE_REWARD")
+                //: new LocString("gameplay_ui", "COLLECTIBLE_REWARD_CANT_AFFORD");
             desc.Add("Card", card.Title);
             desc.Add("essence", 3);
             desc.Add("current", Player.Essence);
@@ -55,7 +55,7 @@ public class CollectibleReward(CardModel card, Player player) : CustomReward(pla
     protected override Task<bool> OnSelect()
     {
         if (!Player.CanAffordEssence(3)) return Task.FromResult(false);
-        CollectiblesModel.SyncAdd(Player, card, 3);
+        CollectiblesModel.SyncAdd(Player, card);
         _wasTaken = true;
         return Task.FromResult(true);
     }

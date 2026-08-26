@@ -31,6 +31,8 @@ public class Collector : DownfallCharacterModel
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 65;
     public override int StartingGold => 99;
+    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideCollector;
+    public override bool HideInCompendium => DownfallConfig.HideCollector;
 
     public override IEnumerable<CardModel> StartingDeck =>
     [

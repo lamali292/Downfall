@@ -29,7 +29,7 @@ public class Automaton : DownfallCharacterModel
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideAutomaton;
     public override bool HideInCompendium => DownfallConfig.HideAutomaton;
     
-    public override CharacterGender Gender => CharacterGender.Feminine;
+    public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;
     public override int StartingGold => 99;

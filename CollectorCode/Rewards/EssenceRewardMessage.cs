@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Rewards;
 
+[Obsolete("Not used any more", false)]
 public class EssenceRewardMessage : ICustomMessage
 {
     public bool WasSkipped { get; set; }

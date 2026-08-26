@@ -18,12 +18,9 @@ internal static class PlayerExtensions
             CustomPiles.GetCustomPile(player.PlayerCombatState, CollectorPile.Collected)?.Cards
             ?? [];
 
-        public int Essence => EssenceModel.GetEssence(player);
-
-        public bool CanAffordEssence(int amount) => EssenceModel.CanAfford(player, amount);
-
-        public void AddEssence(int amount) => EssenceModel.AddEssence(player, amount);
-
-        public bool SpendEssence(int amount) => EssenceModel.SpendEssence(player, amount);
+        //public int Essence => EssenceModel.GetEssence(player);
+        //public bool CanAffordEssence(int amount) => EssenceModel.CanAfford(player, amount);
+        //public void AddEssence(int amount) => EssenceModel.AddEssence(player, amount);
+        //public bool SpendEssence(int amount) => EssenceModel.SpendEssence(player, amount);
     }
 }

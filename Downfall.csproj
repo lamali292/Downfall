@@ -48,7 +48,7 @@
         <Compile Include="SneckoCode/**/*.cs"/>
 
         <!--Compile Include="GremlinsCode/**/*.cs"/-->
-        <!--Compile Include="CollectorCode/**/*.cs"/-->
+        <Compile Include="CollectorCode/**/*.cs"/>
     </ItemGroup>
 
     <ItemGroup>
