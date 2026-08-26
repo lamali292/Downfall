@@ -4,6 +4,7 @@ using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,7 +34,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        return NSpellbookButton.GetPositionFor();
+        return NCustomCombatCardPile.GetPositionFor<NSpellbookButton>();
     }
     
     private Type? _nextSpellType;

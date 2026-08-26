@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.DownfallCode.Utils.UI;
 
@@ -45,6 +46,22 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         ApplyAnimPositions();
     }
 
+    public static Vector2 GetPositionFor<T>()  where T : NCustomCombatCardPile
+    {
+        var btn = GetPileNode<T>();
+        return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
+    }
+
+
+    protected static T? GetPileNode<T>() where T : NCustomCombatCardPile
+    {
+        var container = NCombatRoom.Instance?.Ui._combatPilesContainer;
+        if (container == null || !IsInstanceValid(container)) return null;
+        return container.GetChildren()
+            .OfType<T>()
+            .FirstOrDefault(IsInstanceValid);
+    }
+    
     private void ApplyAnimPositions()
     {
         var show = _hasCachedShow ? _cachedShow : Position;

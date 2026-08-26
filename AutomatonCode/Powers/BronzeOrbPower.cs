@@ -18,7 +18,7 @@ public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
         ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
         if (!IsCardWeWant(card)) return cardLocation;
-        NStashDisplay.EnsureFor(card.Owner);
+        //NStashDisplay.EnsureFor(card.Owner);
         return new CardLocationCompatiblity(card.Owner, StashPile.Stash, CardPilePosition.Top);
     }
 

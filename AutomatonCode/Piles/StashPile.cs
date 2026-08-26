@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Vfx;
+using Awakened.AwakenedCode.Vfx;
 using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
@@ -18,15 +20,15 @@ public class StashPile() : CustomPile(Stash)
     // cards are NOT visible in the pile itself
     public override bool CardShouldBeVisible(CardModel card) => false;
 
+    /*
     public override NCard? GetNCard(CardModel card)
     {
         var display = NStashDisplay.GetDisplay(card.Owner);
         return display?.GetNCard(card);
-    }
+    }*/
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        var display = NStashDisplay.GetDisplay(model.Owner);
-        return display?.GlobalPosition ?? Vector2.Zero;
+        return NCustomCombatCardPile.GetPositionFor<NStashPile>();
     }
 }
