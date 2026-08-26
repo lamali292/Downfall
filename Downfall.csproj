@@ -1,100 +1,107 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="build/mod.build.props"/>
+
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <LangVersion>14</LangVersion>
+
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+
         <AssemblyName>Downfall</AssemblyName>
         <IsPublishAll>true</IsPublishAll>
-        <!--NoWarn>$(NoWarn);STS002</NoWarn-->
+
+        <ModOutputFolder>Downfall</ModOutputFolder>
+
+        <!-- Comes from local.props -->
+        <PackFolders>$(Submods)</PackFolders>
+
+        <DefineConstants>$(DefineConstants);V107</DefineConstants>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector</Submods>
+    </PropertyGroup>
+    
     <ItemGroup>
-        <!-- Localization/asset files for every submod, so the pck picker below can find them -->
-        <AdditionalFiles Include="Downfall/localization/**/*.json"/>
-        <AdditionalFiles Include="Automaton/localization/**/*.json"/>
-        <AdditionalFiles Include="Awakened/localization/**/*.json"/>
-        <AdditionalFiles Include="Champ/localization/**/*.json"/>
-        <AdditionalFiles Include="Collector/localization/**/*.json"/>
-        <AdditionalFiles Include="Gremlins/localization/**/*.json"/>
-        <AdditionalFiles Include="Guardian/localization/**/*.json"/>
-        <AdditionalFiles Include="Hexaghost/localization/**/*.json"/>
-        <AdditionalFiles Include="Hermit/localization/**/*.json"/>
-        <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
-        <AdditionalFiles Include="Snecko/localization/**/*.json"/>
-        <Compile Include="Snecko\Patches\SneckoSpiritDialoguePatch.cs" />
+        <Submod Include="$(Submods)">
+            <Visible>false</Visible>
+        </Submod>
 
-        <EmbeddedResource Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
-        <None Include="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
-        <Compile Remove="Downfall/**;Automaton/**;Awakened/**;Champ/**;Collector/**;Gremlins/**;Guardian/**;Hexaghost/**;Hermit/**;SlimeBoss/**;Snecko/**"/>
-        <None Include="DownfallCode/**;AutomatonCode/**;AwakenedCode/**;ChampCode/**;CollectorCode/**;GremlinsCode/**;GuardianCode/**;HexaghostCode/**;HermitCode/**;SlimeBossCode/**;SneckoCode/**"/>
-
-        <!-- Only Downfall.json ships as the mod manifest -->
         <None Include="Downfall.json"/>
         <None Include="local.props"/>
         <None Include="local.props.example"/>
         <None Include=".gitignore"/>
-        <!-- All submod source compiled into one assembly: Downfall.dll -->
-        <Compile Include="DownfallCode/**/*.cs"/>
-        <Compile Include="AutomatonCode/**/*.cs"/>
-        <Compile Include="AwakenedCode/**/*.cs"/>
-        <Compile Include="ChampCode/**/*.cs"/>
-        <Compile Include="GuardianCode/**/*.cs"/>
-        <Compile Include="HexaghostCode/**/*.cs"/>
-        <Compile Include="HermitCode/**/*.cs"/>
-        <Compile Include="SlimeBossCode/**/*.cs"/>
-        <Compile Include="SneckoCode/**/*.cs"/>
-
-        <!--Compile Include="GremlinsCode/**/*.cs"/-->
-        <!--Compile Include="CollectorCode/**/*.cs"/-->
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Snecko\scenes\ancient\" />
-    </ItemGroup>
-
-    <PropertyGroup>
-        <ModOutputFolder>Downfall</ModOutputFolder>
-        <!-- Every asset folder to bundle into the single Downfall.pck -->
-        <PackFolders>Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders>
-        <!--PackFolders>Downfall;Automaton;Awakened;Champ;Collector;Gremlins;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</PackFolders-->
-    </PropertyGroup>
+    <Target Name="CollectSubmodFiles" BeforeTargets="CoreCompile">
+        <ItemGroup>
+            <Compile Include="%(Submod.Identity)Code/**/*.cs" />
+            <None Include="%(Submod.Identity)/**" />
+            <AdditionalFiles Include="%(Submod.Identity)/localization/**/*.json" />
+        </ItemGroup>
+        <Message
+                Text="Compiling submod '%(Submod.Identity)'"
+                Importance="high" />
+    </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
-              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
-              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+        <Copy
+                SourceFiles="$(TargetPath)"
+                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
 
-        <Message Text="Copying BaseLib dependencies..." Importance="high"/>
+        <Copy
+                SourceFiles="Downfall.json"
+                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+
+        <Copy
+                SourceFiles="$(TargetDir)$(TargetName).pdb"
+                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+                Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+
+        <Message
+                Text="Copying BaseLib dependencies..."
+                Importance="high"/>
+
         <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
-            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.json;"/>
+            <BaseLibFiles Include="
+                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/lib/**/BaseLib.dll;
+                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.pck;
+                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.json;
+            "/>
         </ItemGroup>
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+
+        <Copy
+                SourceFiles="@(BaseLibFiles)"
+                DestinationFolder="$(ModsPath)BaseLib/"/>
     </Target>
 
-    <Target Name="GodotImport" BeforeTargets="GodotPublish"
+    <Target
+            Name="GodotImport"
+            BeforeTargets="GodotPublish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="true"
-              IgnoreStandardErrorWarningFormat="true"/>
+
+        <Exec
+                Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
+                EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+                IgnoreExitCode="true"
+                IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
-    <Target Name="GodotPublish" AfterTargets="Publish"
+    <Target
+            Name="GodotPublish"
+            AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="false"
-              IgnoreStandardErrorWarningFormat="true"/>
+
+        <Message
+                Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---"
+                Importance="high"/>
+
+        <Exec
+                Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
+                EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+                IgnoreExitCode="false"
+                IgnoreStandardErrorWarningFormat="true"/>
     </Target>
-
-
-    <PropertyGroup>
-        <DefineConstants>$(DefineConstants);V107</DefineConstants>
-    </PropertyGroup>
 </Project>
