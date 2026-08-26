@@ -2,6 +2,8 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Powers;
 
@@ -13,13 +15,14 @@ public class BlunderGuard : SneckoCardModel
     public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         this.WithPower<BlunderGuardPower>(6, 2, false);
-        this.WithPower<BlunderGuardTwoPower>(2, 1, false);
+        WithVar("BlunderGuardTwoPower", 2, 1);
+        WithTip(StaticHoverTip.Block);
+        this.WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CommonActions.ApplySelf<BlunderGuardPower>(ctx, this);
-        await CommonActions.ApplySelf<BlunderGuardTwoPower>(ctx, this);
+        (await CommonActions.ApplySelf<BlunderGuardPower>(ctx, this))?.IncrementStrength(DynamicVars["BlunderGuardTwoPower"].BaseValue);
     }
 }
