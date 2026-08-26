@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Collector.CollectorCode.Rewards;
 
+[Obsolete("Not used any more", false)]
 public class EssenceReward(int amount, Player player) : CustomReward(player)
 {
     [CustomEnum] public static RewardType EssenceRewardType;

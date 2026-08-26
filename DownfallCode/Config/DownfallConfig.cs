@@ -10,7 +10,7 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideAutomaton { get; set; } = false;
     public static bool HideAwakened { get; set; } = false;
     public static bool HideChamp { get; set; } = false;
-    //public static bool HideCollector { get; set; } = false;
+    public static bool HideCollector { get; set; } = false;
     //public static bool HideGremlins { get; set; } = false;
     public static bool HideGuardian { get; set; } = false;
     public static bool HideHermit { get; set; } = false;

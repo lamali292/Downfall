@@ -26,10 +26,9 @@ public static class CollectorMainFile
         
         RunHooks.OnNewRunPerPlayer(player =>
         {
-            EssenceModel.ClearEssence(player);
+            //EssenceModel.ClearEssence(player);
             CollectiblesModel.ClearCollectibles(player);
-            if (player.Character is Core.Collector)
-                EssenceModel.AddEssence(player, 5);
+            //if (player.Character is Core.Collector) EssenceModel.AddEssence(player, 5);
         });
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");

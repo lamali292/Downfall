@@ -46,9 +46,9 @@ public static class CollectiblesModel
     ///     The only safe way to add a collectible.
     ///     Handles local state, network sync, and animation.
     /// </summary>
-    public static void SyncAdd(Player player, CardModel card, int essenceCost)
+    public static void SyncAdd(Player player, CardModel card)
     {
-        player.SpendEssence(essenceCost);
+        //player.SpendEssence(essenceCost);
         AddCollectible(player, card);
 
         _ = TaskHelper.RunSafely(DownfallCardCmd.AnimateCardFromRewardScreen(CollectorPile.Collected, card, player));
@@ -57,7 +57,7 @@ public static class CollectiblesModel
         {
             WasSkipped = false,
             Card = card.ToSerializable(),
-            EssenceCost = essenceCost
+            //EssenceCost = essenceCost
         });
     }
 

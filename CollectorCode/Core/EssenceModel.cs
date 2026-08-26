@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Collector.CollectorCode.Core;
 
+[Obsolete("Not used any more", true)]
 public static class EssenceModel
 {
     public static SavedSpireField<Player, int> Essence = new(() => 0, "CollectorEssence");
@@ -16,7 +17,7 @@ public static class EssenceModel
     public static void AddEssence(Player player, int amount)
     {
         Essence.Set(player, Essence.Get(player) + amount);
-        NTopBarEssenceDisplay.RefreshDisplay();
+        //NTopBarEssenceDisplay.RefreshDisplay();
     }
 
     public static void ClearEssence(Player player)
@@ -30,7 +31,7 @@ public static class EssenceModel
         if (essence < amount) return false;
         essence -= amount;
         Essence.Set(player, essence);
-        NTopBarEssenceDisplay.RefreshDisplay();
+        //NTopBarEssenceDisplay.RefreshDisplay();
         return true;
     }
 

@@ -27,7 +27,7 @@ public class Awakened : DownfallCharacterModel
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideAwakened;
     public override bool HideInCompendium => DownfallConfig.HideAwakened;
     
-    public override CharacterGender Gender => CharacterGender.Neutral;
+    public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;
     public override int StartingGold => 99;

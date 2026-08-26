@@ -23,7 +23,7 @@ public class SoulLitLamp : CollectorRelicModel
 
     public override Task AfterObtained()
     {
-        EssenceModel.AddEssence(Owner, 3);
+        //EssenceModel.AddEssence(Owner, 3);
         return Task.CompletedTask;
     }
 

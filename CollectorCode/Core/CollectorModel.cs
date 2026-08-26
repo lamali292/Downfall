@@ -70,18 +70,19 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
             .Select(e => cards.FirstOrDefault(c => c.GetMonsterModel().Id == e.Id))
             .OfType<CardModel>()
             .ToList();
-        var essenceAmount = room.RoomType switch
+        
+        /*var essenceAmount = room.RoomType switch
         {
             RoomType.Monster => 1,
             RoomType.Elite => 2,
             RoomType.Boss => 3,
             _ => 0
-        };
-        foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector))
+        };*/
+        
+        foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector) && (RoomType.Elite || RoomType.Boss))
         {
-            if (essenceAmount > 0) room.AddExtraReward(player, new EssenceReward(essenceAmount, player));
-            foreach (var cardModel in enemyCards)
-                room.AddExtraReward(player, new CollectibleReward(cardModel.ToMutable(), player));
+            //if (essenceAmount > 0) room.AddExtraReward(player, new EssenceReward(essenceAmount, player));
+            foreach (var cardModel in enemyCards) room.AddExtraReward(player, new CollectibleReward(cardModel.ToMutable(), player));
         }
 
         return Task.CompletedTask;
