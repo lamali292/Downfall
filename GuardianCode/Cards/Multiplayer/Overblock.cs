@@ -21,7 +21,7 @@ public class Overblock : GuardianCardModel
         WithTip(StaticHoverTip.Block);
         this.WithTip<ThornsPower>();
         this.WithPower<OverblockBlockPower>(16, false);
-        this.WithPower<OverblockThornsPower>(3, false);
+        WithVar("OverblockThornsPower", 3);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -29,7 +29,6 @@ public class Overblock : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this);
-        await CommonActions.ApplySelf<OverblockThornsPower>(ctx, this);
+        (await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this))?.IncrementThorns(DynamicVars["OverblockThornsPower"].BaseValue);
     }
 }
