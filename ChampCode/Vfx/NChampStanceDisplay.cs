@@ -30,7 +30,7 @@ public partial class NChampStanceDisplay : NClickableControl
     private IEnumerable<IHoverTip>? _tips;
     private Func<IEnumerable<IHoverTip>>? _tipProvider;
 
-    private Vector2 RelativeOffset => new Vector2(60f, -60f);
+    private Vector2 RelativeOffset => new Vector2(-70f, -10f);
     private Vector2 HideOffset => new Vector2(-480f, 128f);
 
     private Tween? _activeTween;

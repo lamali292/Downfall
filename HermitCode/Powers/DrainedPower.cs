@@ -13,7 +13,7 @@ public sealed class DrainedPower : HermitPowerModel
         WithEnergyTip();
     }
 
-    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
+    public override async Task AfterEnergyReset(Player player)
     {
         if (player != Owner.Player) return;
         await PlayerCmd.LoseEnergy(Amount, player);

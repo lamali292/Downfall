@@ -10,8 +10,7 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class SharePower : AutomatonPowerModel
 {
-    protected override async Task AfterBlockGained(
-        PlayerChoiceContext ctx,
+    public override async Task AfterBlockGained(
         Creature creature,
         decimal amount,
         ValueProp props,

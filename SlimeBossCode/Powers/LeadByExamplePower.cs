@@ -30,7 +30,7 @@ public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
         this.InvokeSecondAmountChanged();
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+    public override Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {

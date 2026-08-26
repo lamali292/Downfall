@@ -12,10 +12,11 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class SongOfSorrowPower : AwakenedPowerModel
 {
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (card is not Void || card.Owner != Owner.Player || LocalContext.NetId == null)
             return;
+        var ctx = new BlockingPlayerChoiceContext();
         Flash();
         var currentEnemies = CombatState.Enemies.ToList();
         foreach (var enemy in currentEnemies)

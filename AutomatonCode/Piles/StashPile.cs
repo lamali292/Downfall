@@ -16,21 +16,12 @@ public class StashPile() : CustomPile(Stash)
     public override bool NeedsCustomTransitionVisual => false;
 
     // cards are NOT visible in the pile itself
-    public override bool CardShouldBeVisible(CardModel card)
-    {
-        return false;
-    }
-
-    /*
-    public override LocString Name => new("card_selection", "AUTOMATON-STASH_PILE");
-
-    public override string IconPath =>
-        ImageHelper.GetImagePath($"atlases/power_atlas.sprites/strength_power.tres");
-    */
+    public override bool CardShouldBeVisible(CardModel card) => false;
 
     public override NCard? GetNCard(CardModel card)
     {
-        return null;
+        var display = NStashDisplay.GetDisplay(card.Owner);
+        return display?.GetNCard(card);
     }
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)

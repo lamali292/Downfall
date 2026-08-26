@@ -17,7 +17,7 @@ public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackTyp
         return player.Creature == Owner ? 0 : count;
     }
 
-    protected override async Task AfterEnergyReset(PlayerChoiceContext ctx, Player player)
+    public override async Task AfterEnergyReset(Player player)
     {
         if (player.Creature != Owner) return;
         Flash();

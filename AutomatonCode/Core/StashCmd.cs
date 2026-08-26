@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Core;
 
@@ -71,7 +72,15 @@ public class StashCmd
 
     // Placement primitive for cards already registered in combat.
     private static Task<IReadOnlyList<CardPileAddResult>> PlaceExisting(List<CardModel> cards, PileType target)
-        => CardPileCmd.Add(cards, target, skipVisuals: true);
+    {
+        var hand = NCombatRoom.Instance?.Ui.Hand;
+        if (hand == null) return CardPileCmd.Add(cards, target, skipVisuals: true);
+        foreach (var card in cards)
+            if (hand.GetCard(card) != null)   // it has a hand node
+                hand.Remove(card);
+
+        return CardPileCmd.Add(cards, target, skipVisuals: true);
+    }
 
     // ---- entry points -------------------------------------------------------
 
