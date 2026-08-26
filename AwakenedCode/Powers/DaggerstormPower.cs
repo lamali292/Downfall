@@ -9,11 +9,11 @@ namespace Awakened.AwakenedCode.Powers;
 
 public class DaggerstormPower : AwakenedPowerModel
 {
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (card.Owner.Creature != Owner) return;
         var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.Enemies);
         if (enemy == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
+        await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

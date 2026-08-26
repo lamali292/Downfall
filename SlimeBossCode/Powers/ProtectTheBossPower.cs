@@ -19,9 +19,10 @@ public class ProtectTheBossPower : SlimeBossPowerModel
         return target != Owner || Owner.Player == null || SlimeQueue.GetCount(Owner.Player) == 0 ? amount : 0M;
     }
 
-    protected override async Task AfterModifyingHpLostAfterOsty(PlayerChoiceContext ctx)
+    public override async Task AfterModifyingHpLostAfterOsty()
     {
         if (Owner.Player == null) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await PowerCmd.Decrement(this);
         await SlimeBossCmd.Absorb(ctx, Owner.Player);
     }

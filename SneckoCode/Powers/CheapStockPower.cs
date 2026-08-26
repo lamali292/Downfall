@@ -13,12 +13,13 @@ public class CheapStockPower : SneckoPowerModel
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
         var cards = Owner.Player.Hand.OrderByDescending(e => e.EnergyCost.GetResolved())
             .Take(Amount);
+        var ctx = new BlockingPlayerChoiceContext();
         await SneckoCmd.Muddle(ctx, cards, this);
     }
 }

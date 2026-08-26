@@ -9,9 +9,10 @@ namespace Snecko.SneckoCode.Powers;
 
 public class SerpentsNestPower : SneckoPowerModel
 {
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Power) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, Amount, DamageProps.nonCardUnpowered, Owner);
     }
 }

@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Piles;
 using Downfall.DownfallCode.Core;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -59,18 +60,12 @@ public partial class NSpellbookButton : NCustomCombatCardPile
     }
     public void RefreshSpellIcon()
     {
-        var slot = GetNodeOrNull<TextureRect>("%Spell");
+        var slot = GetNodeOrNull<TextureRect>("Icon");
         if (slot == null) return;
 
         if (Next is ISpell spell && ResourceLoader.Exists(spell.SpellIconPath))
         {
-            slot.Texture = ResourceLoader.Load<Texture2D>(spell.SpellIconPath);
-            slot.Visible = true;
-        }
-        else
-        {
-            slot.Texture = null;
-            slot.Visible = false;
+            slot.Texture = PreloadManager.Cache.GetTexture2D(spell.SpellIconPath);
         }
     }
     

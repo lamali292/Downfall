@@ -29,7 +29,7 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
     {
         _defeatedEnemies.Clear();
 
-        var combatState = CombatManager.Instance._state;
+        var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return Task.CompletedTask;
 
         foreach (var player in combatState.Players.Where(p => p.Character is Collector))

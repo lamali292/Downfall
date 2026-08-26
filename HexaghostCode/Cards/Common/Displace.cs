@@ -12,7 +12,7 @@ namespace Hexaghost.HexaghostCode.Cards.Common;
 [Pool(typeof(HexaghostCardPool))]
 public class Displace : HexaghostCardModel
 {
-    public Displace() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public Displace() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 1);
         WithCards(1, 1);

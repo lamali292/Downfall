@@ -2,16 +2,17 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
 public class LongShadowsPower : HermitPowerModel
 {
-    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
-        var card = cardPlay.Card;
         var player = card.Owner;
         if (player.Creature != Owner || card.Type != CardType.Curse) return Task.CompletedTask;
+        Flash();
         return CardPileCmd.Draw(ctx, Amount, player);
     }
 }
