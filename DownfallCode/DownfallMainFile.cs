@@ -55,21 +55,7 @@ public static class DownfallMainFile
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
-
-        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
-        {
-            Label = "Auto Slay",
-            IsVisible = () => DownfallConfig.DevMode,
-            SubmenuType = null,
-            CreateSubmenu = null,
-            OnPress = stack =>
-            {
-                var slayer = new AutoSlayer();
-                slayer.Start(SeedHelper.GetRandomSeed(), "autoslay.log");
-            }
-        });
-
-
+        
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
