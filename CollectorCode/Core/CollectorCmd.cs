@@ -1,5 +1,4 @@
-﻿using BaseLib.Patches.Content;
-using Collector.CollectorCode.Events;
+﻿using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Piles;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;

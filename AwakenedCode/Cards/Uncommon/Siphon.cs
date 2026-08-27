@@ -16,8 +16,8 @@ public class Siphon : AwakenedCardModel, IChantable
     public Siphon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9, 2);
-        this.WithTip<StrengthPower>();
-        this.WithPower<SiphonPower>(2, 1, false);
+        WithTip<StrengthPower>();
+        WithPower<SiphonPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

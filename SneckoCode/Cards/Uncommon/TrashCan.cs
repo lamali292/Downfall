@@ -12,7 +12,7 @@ public class TrashCan : SneckoCardModel
 {
     public TrashCan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<TrashCanPower>(1, false);
+        WithPower<TrashCanPower>(1, false);
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Exhaust);
     }

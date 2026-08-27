@@ -1,13 +1,10 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;

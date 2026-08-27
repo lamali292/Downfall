@@ -13,8 +13,8 @@ public class ExtraCrispy : HexaghostCardModel
 {
     public ExtraCrispy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ExtraCrispyPower>(6, 2, false);
-        this.WithTip<SoulBurnPower>();
+        WithPower<ExtraCrispyPower>(6, 2, false);
+        WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

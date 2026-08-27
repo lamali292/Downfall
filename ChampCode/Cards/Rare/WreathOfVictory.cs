@@ -14,8 +14,8 @@ public class WreathOfVictory : ChampCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<VigorPower>();
-        this.WithTip<CounterPower>();
+        WithTip<VigorPower>();
+        WithTip<CounterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

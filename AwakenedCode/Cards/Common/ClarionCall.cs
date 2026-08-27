@@ -16,7 +16,7 @@ public class ClarionCall : AwakenedCardModel
     public ClarionCall() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(8, 3);
-        this.WithPower<ClarionCallPower>(1, false);
+        WithPower<ClarionCallPower>(1, false);
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
     }
 

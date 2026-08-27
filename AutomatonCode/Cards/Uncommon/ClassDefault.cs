@@ -14,7 +14,7 @@ public class ClassDefault : AutomatonCardModel
 {
     public ClassDefault() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ClassDefaultPower>(3, 1, false);
+        WithPower<ClassDefaultPower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 

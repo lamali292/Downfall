@@ -15,7 +15,7 @@ public class Planeswalk : AwakenedCardModel
     public Planeswalk() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithEnergy(2, 1);
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

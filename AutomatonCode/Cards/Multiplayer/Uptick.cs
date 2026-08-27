@@ -12,8 +12,8 @@ public class Uptick : AutomatonCardModel
     public Uptick() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
         WithKeyword(CardKeyword.Exhaust);
-        this.WithPower<DrawCardsNextTurnPower>(2, 1, false);
-        this.WithPower<EnergyNextTurnPower>(1, false);
+        WithPower<DrawCardsNextTurnPower>(2, 1, false);
+        WithPower<EnergyNextTurnPower>(1, false);
         WithEnergy(1);
     }
 

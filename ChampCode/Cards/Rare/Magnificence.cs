@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,8 +12,8 @@ public class Magnificence : ChampCardModel
 {
     public Magnificence() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<MagnificencePower>(3, 1, false);
-        this.WithTip<GloryPower>();
+        WithPower<MagnificencePower>(3, 1, false);
+        WithTip<GloryPower>();
         //this.WithUltimateTip();
     }
 

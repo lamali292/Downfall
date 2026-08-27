@@ -12,6 +12,6 @@ public static class ModifyCardDescriptionPatch
     {
         if (__instance is not IModfyCardDescription card) return true;
         __result = card.ModifyDescription(__result);
-        return __result ==  null;
+        return __result == null;
     }
 }

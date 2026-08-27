@@ -17,16 +17,15 @@ public class EnchantSword : ChampCardModel
     public EnchantSword() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithEnchantment<Sharp>(8);
+        WithEnchantment<Sharp>(8);
         WithCostUpgradeBy(-1);
-        
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool ShouldGlowRedInternal => !Owner.Hand.Any(ModelDb.Enchantment<Sharp>().CanEnchant);
 
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selectorPrefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ApplySelectionPrompt, 1, 1);

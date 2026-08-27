@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +13,7 @@ public class BerserkersShout : ChampCardModel
     public BerserkersShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithPower<VigorPower>(2, 2);
-        this.WithEnterBerserker();
+        WithEnterBerserker();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -13,7 +13,7 @@ public class KillingSpree : ChampCardModel
 {
     public KillingSpree() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<KillingSpreePower>(1, false);
+        WithPower<KillingSpreePower>(1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);
         // WithTip(ChampTip.Stance);
         WithVar("Skill", 3, 2);

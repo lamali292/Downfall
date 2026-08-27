@@ -23,7 +23,8 @@ public class ArenaPreparation : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, DynamicVars.Cards.IntValue);
-        var cards = await CardSelectCmd.FromHand(ctx, Owner, prefs, c => !c.Keywords.Contains(CardKeyword.Retain), this);
+        var cards = await CardSelectCmd.FromHand(ctx, Owner, prefs, c => !c.Keywords.Contains(CardKeyword.Retain),
+            this);
         foreach (var cardModel in cards) CardCmd.ApplyKeyword(cardModel, CardKeyword.Retain);
     }
 }

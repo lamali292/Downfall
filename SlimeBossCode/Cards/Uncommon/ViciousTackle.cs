@@ -15,7 +15,7 @@ public class ViciousTackle : SlimeBossCardModel, IDoubleGoopBonus
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(17, 7);
-        this.WithSelfDamage(3);
+        WithSelfDamage(3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

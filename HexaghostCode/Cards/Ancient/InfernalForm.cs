@@ -12,9 +12,9 @@ public class InfernalForm : HexaghostCardModel
 {
     public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        this.WithPower<InfernalFormPower>(2, 1, false);
+        WithPower<InfernalFormPower>(2, 1, false);
         WithKeyword(CardKeyword.Innate);
-        this.WithTip<IntensityPower>();
+        WithTip<IntensityPower>();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

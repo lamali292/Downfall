@@ -63,11 +63,6 @@ public abstract class GemModel : CardModifier, ICustomModel
         }
     }
 
-    public override void AddTips(List<IHoverTip> tips)
-    {
-        tips.AddRange(HoverTips);
-    }
-
     public IEnumerable<IHoverTip> HoverTips
     {
         get
@@ -91,6 +86,11 @@ public abstract class GemModel : CardModifier, ICustomModel
         .Where(c => c.CanonicalGemModel.GetType() == GetType()).Cast<CardModel>().First();
 
     public virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
+
+    public override void AddTips(List<IHoverTip> tips)
+    {
+        tips.AddRange(HoverTips);
+    }
 
     public string GetFormattedText(bool cardText = false)
     {
@@ -160,20 +160,21 @@ public abstract class GemModel : CardModifier, ICustomModel
         description.Add("energyPrefix", EnergyIconHelper.GetPrefix(ModelDb.Card<StrikeGuardian>()));
     }
 
-    protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers);
+    protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
+        IEnumerable<Player> targetPlayers);
 
 
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
         GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
-        if (cardPlay?.Card is IGemSocketCard {ShouldPlayGems: false}) return;
+        if (cardPlay?.Card is IGemSocketCard { ShouldPlayGems: false }) return;
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
         var targetPlayers = TargetPlayers(affectsAll).ToList();
         for (var i = 0; i < replay; i++) await OnPlayInternal(ctx, cardPlay, targetPlayers);
         await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
-    
+
     protected IEnumerable<Player> TargetPlayers(bool affectAllPlayers)
     {
         yield return Player;
@@ -181,7 +182,7 @@ public abstract class GemModel : CardModifier, ICustomModel
         foreach (var other in CombatState.Players.Where(p => p != Player))
             yield return other;
     }
-    
+
     public virtual int ModifyPlayCount(int originalPlayCount)
     {
         return originalPlayCount;

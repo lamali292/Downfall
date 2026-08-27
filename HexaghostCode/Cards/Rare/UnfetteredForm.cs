@@ -15,7 +15,7 @@ public class UnfetteredForm : HexaghostCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip(HexaghostTip.Ignite);
-        this.WithPower<UnfetteredFormPower>(1, false);
+        WithPower<UnfetteredFormPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

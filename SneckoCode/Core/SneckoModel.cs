@@ -1,34 +1,25 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Events;
-using Godot;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Factories;
-using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using Snecko.SneckoCode.Cards;
 using Snecko.SneckoCode.Interfaces;
-using Snecko.SneckoCode.Relics;
 
 namespace Snecko.SneckoCode.Core;
 
 public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
-    
     public static IEnumerable<CharacterModel> GetSneckoCharacterModels(Player player)
     {
         return MyHookUtils.Collect<ISneckoPoolSupplier, CharacterModel>(null, supplier => supplier.AddSneckoChar(),
             MyHookUtils.HookScope.Run, player.RunState);
     }
 
-    
+
     private static IEnumerable<CardPoolModel> GetSneckoPools(Player player)
     {
         return GetSneckoCharacterModels(player).Select(e => e.CardPool);
@@ -71,7 +62,7 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
             await SneckoCmd.GetGift(card.Owner, gift);
     }
 
-   
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         var state = RunManager.Instance.State!;

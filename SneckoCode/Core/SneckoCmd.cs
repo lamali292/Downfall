@@ -84,7 +84,6 @@ public static class SneckoCmd
         return card.Owner.Hand.Count(e => e != card) >= 5;
     }
 
-  
 
     public static bool IsDebuff(CardModel card)
     {

@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +12,7 @@ public class UltimateStance : ChampCardModel
 {
     public UltimateStance() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithGlory(10);
+        WithGlory(10);
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
     }

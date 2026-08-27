@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -13,7 +12,7 @@ public class GlopChop : SlimeBossCardModel
     public GlopChop() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(12);
-        this.WithCommand(2, 1);
+        WithCommand(2, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

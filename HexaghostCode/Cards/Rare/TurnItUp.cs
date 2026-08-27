@@ -14,12 +14,12 @@ public class TurnItUp : HexaghostCardModel
 {
     public TurnItUp() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<TurnItUpStrengthPower>(2, 1, false);
-        this.WithPower<TurnItUpDexterityPower>(2, 1, false);
-        this.WithPower<TurnItUpIntensityPower>(2, 1, false);
-        this.WithTip<StrengthPower>();
-        this.WithTip<DexterityPower>();
-        this.WithTip<IntensityPower>();
+        WithPower<TurnItUpStrengthPower>(2, 1, false);
+        WithPower<TurnItUpDexterityPower>(2, 1, false);
+        WithPower<TurnItUpIntensityPower>(2, 1, false);
+        WithTip<StrengthPower>();
+        WithTip<DexterityPower>();
+        WithTip<IntensityPower>();
         WithKeyword(CardKeyword.Retain);
     }
 

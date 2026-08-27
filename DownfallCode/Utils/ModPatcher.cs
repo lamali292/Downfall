@@ -7,21 +7,21 @@ namespace Downfall.DownfallCode.Utils;
 
 public sealed class ModPatcher
 {
-    private readonly Harmony _harmony;
     private readonly Logger _logger;
     private readonly List<Type> _types = [];
     private bool _applied;
 
     private ModPatcher(string modId, Logger logger)
     {
-        _harmony = new Harmony(modId);
+        Harmony = new Harmony(modId);
         _logger = logger;
     }
 
     /// Log every successfully patched method individually (verbose). Failures are always logged.
     public bool Verbose { get; set; }
 
-    public Harmony Harmony => _harmony;
+    public Harmony Harmony { get; }
+
     public static ModPatcher Create(string modId, Logger logger)
     {
         return new ModPatcher(modId, logger);
@@ -102,7 +102,7 @@ public sealed class ModPatcher
     {
         try
         {
-            var patched = _harmony.CreateClassProcessor(patchClass).Patch();
+            var patched = Harmony.CreateClassProcessor(patchClass).Patch();
 
             if (patched == null || patched.Count == 0)
                 return (0, "patched ZERO methods (TargetMethod(s) returned null, or wrong signature?)");

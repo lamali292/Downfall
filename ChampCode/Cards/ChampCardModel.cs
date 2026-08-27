@@ -23,10 +23,7 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is IBerserkerComboCard)
-        {
-            WithTip(ChampTip.Combo);
-        }
+        if (this is IBerserkerComboCard) WithTip(ChampTip.Combo);
 
         if (this is not IDefensiveComboCard) return;
         WithTip(ChampTip.Combo);
@@ -49,10 +46,8 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     }
 
     public virtual bool AffectsAllPlayers => false;
-    
-    
-    
-    
+
+
     public ConstructedCardModel WithDefensiveTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);

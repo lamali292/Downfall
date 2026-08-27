@@ -9,12 +9,13 @@ namespace Downfall.DownfallCode.Patches;
 public static class FormBonePatcher
 {
     private const string Ns = "MegaCrit.Sts2.Core.Nodes.Vfx.Forms.";
+
     private static readonly string[] FormTypeNames =
     {
         Ns + "NVoidFormVfx",
         Ns + "NSerpentFormVfx",
         Ns + "NReaperFormVfx",
-        Ns + "NEchoFormVfx",
+        Ns + "NEchoFormVfx"
     };
 
     public static void Apply(Harmony harmony, Logger logger)
@@ -24,8 +25,14 @@ public static class FormBonePatcher
         foreach (var name in FormTypeNames)
         {
             Type? formType;
-            try { formType = AccessTools.TypeByName(name); }
-            catch { formType = null; }
+            try
+            {
+                formType = AccessTools.TypeByName(name);
+            }
+            catch
+            {
+                formType = null;
+            }
 
             if (formType == null)
             {
@@ -42,7 +49,7 @@ public static class FormBonePatcher
 
             try
             {
-                harmony.Patch(method, prefix: prefix);
+                harmony.Patch(method, prefix);
                 logger.Info($"[FormBone] patched {formType.Name}");
             }
             catch (Exception ex)
@@ -51,7 +58,7 @@ public static class FormBonePatcher
             }
         }
     }
-    
+
     private static bool Prefix(object __instance, object spineSprite, Node2D sourceNode,
         MethodBase __originalMethod)
     {
@@ -59,14 +66,14 @@ public static class FormBonePatcher
 
         var owner = AccessTools.Field(type, "_owner")?.GetValue(__instance);
         var character = owner == null ? null : GetMember(owner, "Character");
-        if (character == null) return true; 
+        if (character == null) return true;
 
         var formName = __originalMethod.DeclaringType!.FullName!;
         if (!FormBoneRegistry.TryGet(formName, character.GetType(), out var boneName) || boneName == null)
             return true;
-        
+
         var megaSpriteType = AccessTools.TypeByName("MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite");
-        
+
         var copier = AccessTools.Field(type, "_spineCopier")?.GetValue(__instance);
         if (copier != null)
             AccessTools.Method(copier.GetType(), "Initialize", [megaSpriteType, typeof(Node2D)])
@@ -87,7 +94,6 @@ public static class FormBonePatcher
         var prop = AccessTools.Property(t, name);
         return prop != null ? prop.GetValue(obj) : AccessTools.Field(t, name)?.GetValue(obj);
     }
-
 }
 
 /*

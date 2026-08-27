@@ -13,7 +13,7 @@ public class NightmareVision : HexaghostCardModel
 {
     public NightmareVision() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<NightmareVisionPower>(4, 2, false);
+        WithPower<NightmareVisionPower>(4, 2, false);
         WithTip(StaticHoverTip.Block);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);

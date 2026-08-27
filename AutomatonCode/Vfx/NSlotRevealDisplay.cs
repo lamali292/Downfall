@@ -33,14 +33,14 @@ public abstract partial class NSlotRevealDisplay : Control
     private bool _initialized;
     private List<CardModel> _lastDirtyCards = [];
     private float _lastPreviewBob;
+    private bool _pendingForce;
     private NCustomCardHolder? _previewHolder;
-    private Tween? _revealTween;
-    private bool _slotsRevealed;
 
     // A Refresh that arrived before _Ready built the slots (AddChildSafely can defer the
     // add). Replayed once at the end of _Ready; see the guard in Refresh for why.
     private bool _refreshPending;
-    private bool _pendingForce;
+    private Tween? _revealTween;
+    private bool _slotsRevealed;
 
     protected Label? CountLabel;
     protected int CurrentMax = 3;
@@ -163,7 +163,7 @@ public abstract partial class NSlotRevealDisplay : Control
 
         return null;
     }
-    
+
     public override void _ExitTree()
     {
         // Room teardown / combat end: release everything BEFORE the subtree is freed.
@@ -182,7 +182,6 @@ public abstract partial class NSlotRevealDisplay : Control
     ///     adopted into the hand via FindOnTable). QueueFreeing the NCard ourselves
     ///     destroys a node NPlayerHand/FindOnTablePatch may still reference, which surfaces
     ///     as a disposed node in the hand on the next pile move.
-    ///
     ///     ClearCard() already does exactly this: detach the NCard, QueueFree the holder.
     ///     So disposal is just: fire the unregister hook, then ClearCard the slot. We never
     ///     touch the card node.
@@ -203,6 +202,7 @@ public abstract partial class NSlotRevealDisplay : Control
             if (model != null)
                 OnSlotCardCleared(model);
         }
+
         CardHolders.Clear();
 
         foreach (var slot in Slots)

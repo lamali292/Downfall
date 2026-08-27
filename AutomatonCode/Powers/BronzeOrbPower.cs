@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Piles;
-using Automaton.AutomatonCode.Vfx;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,19 +21,19 @@ public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
         return new CardLocationCompatiblity(card.Owner, StashPile.Stash, CardPilePosition.Top);
     }
 
-    private bool IsCardWeWant(CardModel card)
-    {
-        var player = card.Owner;
-        return player.Creature == Owner && 
-               card.Type is CardType.Attack or CardType.Skill && 
-               !card.Keywords.Contains(CardKeyword.Exhaust) &&
-               !AutomatonCmd.IsEncodable(card);
-    }
-    
-    
+
     public Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
     {
         return PowerCmd.Decrement(this);
+    }
+
+    private bool IsCardWeWant(CardModel card)
+    {
+        var player = card.Owner;
+        return player.Creature == Owner &&
+               card.Type is CardType.Attack or CardType.Skill &&
+               !card.Keywords.Contains(CardKeyword.Exhaust) &&
+               !AutomatonCmd.IsEncodable(card);
     }
 
 

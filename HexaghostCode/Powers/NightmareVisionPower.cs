@@ -16,7 +16,7 @@ public class NightmareVisionPower : HexaghostPowerModel
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
         bool causedByEthereal)
     {

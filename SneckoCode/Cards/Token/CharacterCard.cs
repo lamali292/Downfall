@@ -18,14 +18,14 @@ public class CharacterCard : ConstructedCardModel,
     IModfyCardDescription
 #pragma warning restore
 {
-    
-    public  CharacterCard() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    private string? _portraitPath;
+
+    internal CharacterModel? CharacterModel;
+
+    public CharacterCard() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         WithTip(SneckoTip.Gift);
     }
-    
-    internal CharacterModel? CharacterModel;
-    private string? _portraitPath;
 
     public override CardPoolModel VisualCardPool => CharacterModel?.CardPool ?? base.VisualCardPool;
     public override string PortraitPath => _portraitPath ?? base.PortraitPath;
@@ -35,7 +35,7 @@ public class CharacterCard : ConstructedCardModel,
         ? "???"
         : new LocString("characters", CharacterModel.CharacterSelectTitle)
             .GetFormattedText();
-    
+
 
     public LocString ModifyDescription(LocString oldLocString)
     {
@@ -51,7 +51,9 @@ public class CharacterCard : ConstructedCardModel,
         var a = ModelDb.Card<CharacterCard>().ToMutable();
         if (a is not CharacterCard characterCard) throw new Exception("CharacterCard model is not a CharacterCard");
         characterCard.CharacterModel = characterModel;
-        characterCard._portraitPath = Rng.Chaotic.NextItem(characterModel.CardPool.AllCards.Where(e => e.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare))!.PortraitPath;
+        characterCard._portraitPath =
+            Rng.Chaotic.NextItem(characterModel.CardPool.AllCards.Where(e =>
+                e.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare))!.PortraitPath;
         NCard.FindOnTable(characterCard)?.Reload();
         return characterCard;
     }

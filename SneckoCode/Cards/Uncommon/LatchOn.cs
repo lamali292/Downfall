@@ -13,7 +13,7 @@ public class LatchOn : SneckoCardModel
     public LatchOn() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithDamage(7, 3);
-        this.WithTip<ViperEssence>();
+        WithTip<ViperEssence>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

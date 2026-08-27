@@ -14,7 +14,7 @@ public class Challenge : ChampCardModel
     {
         WithBlock(8, 3);
         WithDamage(8, 3);
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

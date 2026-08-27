@@ -1,6 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +15,7 @@ public class Congregation : AwakenedCardModel
     {
         WithEnergy(3, 1);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -31,8 +30,6 @@ public class Congregation : AwakenedCardModel
             var combat = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Owner);
             if (LocalContext.IsMe(player))
                 CardCmd.PreviewCardPileAdd(combat);
-            
         }
-     
     }
 }

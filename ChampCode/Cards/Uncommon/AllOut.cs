@@ -1,7 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,8 +11,8 @@ public class AllOut : ChampCardModel
     public AllOut() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithRepeat(2, 1);
-        this.WithFinisher();
+        WithRepeat(2, 1);
+        WithFinisher();
         // WithTip(ChampTip.Stance);
     }
 

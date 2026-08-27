@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,17 +11,17 @@ public class GroupEffort : ChampCardModel
     public GroupEffort() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(9, 3);
-        this.WithFinisher();
+        WithFinisher();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-    
+
+    public override bool AffectsAllPlayers => true;
+
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await ChampCmd.PlayFinisher(ctx, cardPlay, true);
     }
-    
-    public override bool AffectsAllPlayers => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

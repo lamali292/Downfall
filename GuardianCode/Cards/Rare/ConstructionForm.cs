@@ -15,8 +15,8 @@ public class ConstructionForm : GuardianCardModel
     {
         WithPower<BufferPower>(2);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        this.WithTip<StrengthPower>();
-        this.WithPower<ConstructionFormPower>(1, false);
+        WithTip<StrengthPower>();
+        WithPower<ConstructionFormPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

@@ -14,8 +14,8 @@ public class ItsAFeature : AutomatonCardModel
 {
     public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ItsAFeaturePower>(3, 2, false);
-        this.WithTip<VigorPower>();
+        WithPower<ItsAFeaturePower>(3, 2, false);
+        WithTip<VigorPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

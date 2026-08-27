@@ -14,11 +14,11 @@ public class PrepareCrush : SlimeBossCardModel
     public PrepareCrush() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithUpgradingCardTip<SlimeCrush>();
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
         WithKeyword(CardKeyword.Exhaust);
         WithEnergy(3, 1);
-        this.WithPower<StrengthNextTurnPower>(3, 2, false);
-        this.WithPower<EnergyNextTurnPower>(3, 1, false);
+        WithPower<StrengthNextTurnPower>(3, 2, false);
+        WithPower<EnergyNextTurnPower>(3, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

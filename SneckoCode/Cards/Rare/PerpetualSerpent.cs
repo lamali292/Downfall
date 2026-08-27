@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
@@ -15,7 +14,7 @@ public class PerpetualSerpent : SneckoCardModel, IHasOverflowEffect
     {
         WithDamage(20, 5);
         WithEnergy(2);
-        this.WithOverflow();
+        WithOverflow();
     }
 
     public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

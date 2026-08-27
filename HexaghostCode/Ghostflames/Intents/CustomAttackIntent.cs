@@ -11,14 +11,16 @@ public class CustomAttackIntent(Func<int> damage, Func<int> repeat) : CustomInte
     public override IntentType IntentType => IntentType.Attack;
 
     public override string GetAnimation(IEnumerable<Creature> targets, Creature owner)
-        => damage() switch
+    {
+        return damage() switch
         {
-            < 5  => IntentAnimData.attack1,
+            < 5 => IntentAnimData.attack1,
             < 10 => IntentAnimData.attack2,
             < 20 => IntentAnimData.attack3,
             < 40 => IntentAnimData.attack4,
-            _    => IntentAnimData.attack5
+            _ => IntentAnimData.attack5
         };
+    }
 
     public override LocString GetIntentLabel(IEnumerable<Creature> targets, Creature owner)
     {

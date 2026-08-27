@@ -15,7 +15,7 @@ public class CombustiveFluidPotion : HexaghostPotionModel
     {
         WithVar("Ignite", 3);
     }
-    
+
     protected override Artist Artist => Artist.Get<Chimedragon>();
 
 
@@ -24,9 +24,6 @@ public class CombustiveFluidPotion : HexaghostPotionModel
         var player = target?.Player;
         if (player == null) return;
         var a = DynamicVars["Ignite"].IntValue;
-        for (var i = 0; i < a; i++)
-        {
-            await HexaghostCmd.Ignite(ctx, player);
-        }
+        for (var i = 0; i < a; i++) await HexaghostCmd.Ignite(ctx, player);
     }
 }

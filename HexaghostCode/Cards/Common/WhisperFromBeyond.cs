@@ -14,9 +14,9 @@ public class WhisperFromBeyond : HexaghostCardModel
     public WhisperFromBeyond() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(12, 3);
-        this.WithPower<WhisperFromBeyondPower>(6, 2, false);
+        WithPower<WhisperFromBeyondPower>(6, 2, false);
         WithTip(CardKeyword.Exhaust);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

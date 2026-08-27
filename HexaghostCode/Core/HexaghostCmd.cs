@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -23,19 +22,21 @@ public static class HexaghostCmd
     {
         return HexaghostModel.Wheel.Get(player) ?? [];
     }
-    
-    /// <summary>
-    /// All Afterlife-keyworded cards available to the player. Hexaghost players draw only from
-    /// their own pool; other characters draw Afterlife cards from every pool.
-    /// </summary>
-    public static IEnumerable<CardModel> GetAfterlifeCards(Player player, int amount) =>
-        DownfallCardCmd.GetSpecificCards<Hexaghost>(player, c => c.Keywords.Contains(HexaghostKeyword.Afterlife), amount);
-    
 
-    
+    /// <summary>
+    ///     All Afterlife-keyworded cards available to the player. Hexaghost players draw only from
+    ///     their own pool; other characters draw Afterlife cards from every pool.
+    /// </summary>
+    public static IEnumerable<CardModel> GetAfterlifeCards(Player player, int amount)
+    {
+        return DownfallCardCmd.GetSpecificCards<Hexaghost>(player, c => c.Keywords.Contains(HexaghostKeyword.Afterlife),
+            amount);
+    }
+
+
     public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
     {
-        if(creature == null) return Task.CompletedTask;
+        if (creature == null) return Task.CompletedTask;
         var child = NGroundFireVfx.Create(creature, VfxColor.Green);
         if (child == null)
             return Task.CompletedTask;
@@ -46,7 +47,7 @@ public static class HexaghostCmd
         instance?.CombatVfxContainer.AddChildSafely(child);
         return Task.CompletedTask;
     }
-    
+
     public static void ActivateGhostwheel(Player player)
     {
         HexaghostModel.Active.Set(player, true);
@@ -135,7 +136,8 @@ public static class HexaghostCmd
         var current = wheel[currentIdx];
         var isOffclass = current.IsOffclass;
         var currentType = current.GetType();
-        var candidates = HexaghostModelDb.AllGhostflames.Where(f => f.GetType() != currentType && f.IsOffclass == isOffclass).ToArray();
+        var candidates = HexaghostModelDb.AllGhostflames
+            .Where(f => f.GetType() != currentType && f.IsOffclass == isOffclass).ToArray();
         var randomFlame = rng.NextItem(candidates);
 
         if (randomFlame == null) return Task.CompletedTask;
@@ -254,7 +256,7 @@ public static class HexaghostCmd
         GetWheel(player)[GetCurrentIndex(player)] = ghostflame.ToMutable(player);
         Refresh(player);
     }
-    
+
     public static AttackCommand AfterlifeAttack(CardModel card, CardPlay? cardPlay)
     {
         AttackCommand a;
@@ -262,17 +264,15 @@ public static class HexaghostCmd
             a = DamageCmd.Attack(card.DynamicVars.CalculatedDamage);
         else if (card.DynamicVars.ContainsKey("Damage"))
             a = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue);
-        else 
-            throw new Exception($"Card {card.Title} does not have a damage variable supported by CommonActions.CardAttack");
+        else
+            throw new Exception(
+                $"Card {card.Title} does not have a damage variable supported by CommonActions.CardAttack");
         a = a.FromCardCompatibility(card, cardPlay);
-        if (cardPlay?.Target != null)
-        {
-            return a.Targeting(cardPlay.Target);
-        }
+        if (cardPlay?.Target != null) return a.Targeting(cardPlay.Target);
         if (card.CombatState != null)
-        {
-            return card.TargetType == TargetType.AllEnemies ? a.TargetingAllOpponents(card.CombatState) : a.TargetingRandomOpponents(card.CombatState);
-        }
+            return card.TargetType == TargetType.AllEnemies
+                ? a.TargetingAllOpponents(card.CombatState)
+                : a.TargetingRandomOpponents(card.CombatState);
         throw new InvalidOperationException("Afterlife attack failed!");
     }
 }

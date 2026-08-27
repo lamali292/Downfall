@@ -9,17 +9,17 @@ public class ForkedTonguePower : SneckoPowerModel
 {
     private const int CostThreshold = 3;
 
+    private int PlayedThisTurn => CombatManager.Instance.History.CardPlaysStarted.Count(e =>
+        e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) &&
+        IsHighCost(e.CardPlay.Card)
+    );
+
     private static bool IsHighCost(CardModel card)
     {
         return card.EnergyCost.GetResolved() >= CostThreshold;
     }
 
-    private int PlayedThisTurn => CombatManager.Instance.History.CardPlaysStarted.Count(e =>
-        e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) &&
-        IsHighCost(e.CardPlay.Card)
-    );
-    
- 
+
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         return card.Owner.Creature != Owner || !IsHighCost(card) ||
@@ -33,5 +33,4 @@ public class ForkedTonguePower : SneckoPowerModel
         Flash();
         return Task.CompletedTask;
     }
-
 }

@@ -1,8 +1,6 @@
 ﻿// ChampModel.cs
 
-using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
-using BaseLib.Utils;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
@@ -57,8 +55,8 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     {
         return ActiveStance[player] is T;
     }
-    
-   
+
+
     public static async Task SetStance<T>(PlayerChoiceContext ctx, Player player) where T : ChampStanceModel
     {
         await SetStance(ctx, player, ChampModelDb.ChampStance<T>());
@@ -118,10 +116,10 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     }
 
 
-    
     private static void RefreshStanceDisplay(Player player, ChampStanceModel newCanonical)
     {
-        if (!LocalContext.IsMe(player)) return;;
+        if (!LocalContext.IsMe(player)) return;
+        ;
         Callable.From(() =>
         {
             var existing = StanceDisplays.Get(player);
@@ -144,7 +142,7 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
             if (existing == null)
             {
                 var display = NChampStanceDisplay.Show(player);
-                if (display != null) 
+                if (display != null)
                     StanceDisplays.Set(player, display);
             }
             else

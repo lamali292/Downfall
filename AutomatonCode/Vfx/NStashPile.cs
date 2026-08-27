@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Automaton.AutomatonCode.Piles;
+﻿using Automaton.AutomatonCode.Piles;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,12 +13,12 @@ namespace Automaton.AutomatonCode.Vfx;
 public partial class NStashPile : NCustomCombatCardPile
 {
     private const float CardScale = 0.4f;
-    private const float HoverMul  = 1.25f; // matches the base icon hover scale
+    private const float HoverMul = 1.25f; // matches the base icon hover scale
+    private Tween? _cardBumpTween;
 
     private NCard? _cardVisual;
     private CardModel? _shownModel;
-    private Tween? _cardBumpTween;
-    
+
     protected override PileType Pile => StashPile.Stash;
     public override string ScenePath => "res://Automaton/scenes/ui/stash_pile.tscn";
     protected override Vector2 HideOffset => new(-160f, 100f);
@@ -55,9 +54,11 @@ public partial class NStashPile : NCustomCombatCardPile
         _cardBumpTween.TweenProperty(_cardVisual, "scale", Vector2.One * CardScale, 0.5)
             .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
     }
-    
+
     protected override LocString BuildEmptyPileMessage()
-        => new("combat_messages", "OPEN_EMPTY_STASH");
+    {
+        return new LocString("combat_messages", "OPEN_EMPTY_STASH");
+    }
 
     // --- Card visual ---
 
@@ -70,7 +71,7 @@ public partial class NStashPile : NCustomCombatCardPile
         // CardAdded fires immediately on the logical add — which is why the card popped in early.
         if (_pile != null)
         {
-            _pile.CardAddFinished    += RefreshCardVisual;
+            _pile.CardAddFinished += RefreshCardVisual;
             _pile.CardRemoveFinished += RefreshCardVisual;
         }
 
@@ -80,7 +81,7 @@ public partial class NStashPile : NCustomCombatCardPile
     private void RefreshCardVisual()
     {
         var next = _pile?.Cards.FirstOrDefault(); // next-draw = pile front (as the old preview used)
-        if (next == _shownModel) return;          // front unchanged (e.g. add went to the bottom) -> keep node
+        if (next == _shownModel) return; // front unchanged (e.g. add went to the bottom) -> keep node
 
         ClearCardVisual();
         _shownModel = next;
@@ -94,16 +95,16 @@ public partial class NStashPile : NCustomCombatCardPile
         }
 
         _cardVisual = node;
-   
+
         node.Scale = Vector2.One * CardScale;
 
         AddChild(node);
         node.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-     
+
         var iconCenter = _icon.Position + _icon.Size * 0.5f;
         var cardOffset = new Vector2(0, -300);
         node.Position = iconCenter + cardOffset;
-        
+
         node.PivotOffset = iconCenter - node.Position;
     }
 
@@ -121,9 +122,10 @@ public partial class NStashPile : NCustomCombatCardPile
 
         if (_pile != null)
         {
-            _pile.CardAddFinished    -= RefreshCardVisual;
+            _pile.CardAddFinished -= RefreshCardVisual;
             _pile.CardRemoveFinished -= RefreshCardVisual;
         }
+
         _cardBumpTween?.Kill();
         _cardBumpTween = null;
         ClearCardVisual();

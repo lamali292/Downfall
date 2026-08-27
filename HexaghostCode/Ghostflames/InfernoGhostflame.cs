@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Extensions;
@@ -13,7 +12,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -35,12 +33,12 @@ public class InfernoGhostflame : GhostflameModel
         new PowerVar<IntensityPower>(2)
     ];
 
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<IntensityPower>()
     ];
-    
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;

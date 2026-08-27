@@ -15,8 +15,8 @@ public sealed class RoundhouseKick : HermitCardModel
     {
         WithDamage(13, 5);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithPower<RoundhouseKickPower>(10, 2, false);
-        this.WithTip<StrengthPower>();
+        WithPower<RoundhouseKickPower>(10, 2, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

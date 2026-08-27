@@ -1,15 +1,11 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using Downfall.DownfallCode.Abstract;
+﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
-using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Relics;
 
 namespace SlimeBoss.SlimeBossCode.Core;
@@ -30,7 +26,7 @@ public class SlimeBoss : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideSlimeboss;
     public override bool HideInCompendium => DownfallConfig.HideSlimeboss;
-    
+
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 65;
@@ -49,7 +45,7 @@ public class SlimeBoss : DownfallCharacterModel
         ModelDb.Card<Split>(),
         ModelDb.Card<Tackle>()
     ];
-    
+
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<HeartOfGoo>()

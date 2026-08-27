@@ -23,8 +23,8 @@ public class Displace : HexaghostCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.Draw(this, ctx);
-        var cards = await DownfallCardCmd.SelectFromHand(ctx, 
-            DownfallCardSelectorPrefs.ToTopSelectionPrompt,  DynamicVars["Place"].IntValue, this);
+        var cards = await DownfallCardCmd.SelectFromHand(ctx,
+            DownfallCardSelectorPrefs.ToTopSelectionPrompt, DynamicVars["Place"].IntValue, this);
         await CardPileCmd.Add(cards, PileType.Draw, CardPilePosition.Top);
     }
 }

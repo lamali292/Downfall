@@ -1,15 +1,11 @@
 using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Core;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Relics;
-
 
 public sealed class Horseshoe() : HermitRelicModel(RelicRarity.Rare)
 {

@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
 
@@ -14,12 +13,12 @@ public class SerpentineSleuth : SneckoCardModel, IHasGift
 {
     public SerpentineSleuth() : base(4, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             Rarity = CardRarity.Rare,
             Type = CardType.Power
         });
-        this.WithPower<SerpentineSleuthPower>(1, 1, false);
+        WithPower<SerpentineSleuthPower>(1, 1, false);
         WithEnergy(1, 1);
         WithKeyword(CardKeyword.Ethereal);
     }

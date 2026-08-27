@@ -1,6 +1,4 @@
 ﻿using Champ.ChampCode.Core;
-using Champ.ChampCode.Stance;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,7 +13,7 @@ public class GloryPower : ChampPowerModel
         //WithTips(_ => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
         WithCards(1);
     }
-    
+
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;

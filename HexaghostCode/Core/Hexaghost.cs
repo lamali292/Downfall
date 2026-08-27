@@ -1,11 +1,7 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Audio;
-using BaseLib.Patches.UI;
-using Downfall.DownfallCode.Abstract;
+﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
 using Hexaghost.HexaghostCode.Cards.Basic;
-using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
@@ -34,7 +30,7 @@ public class Hexaghost : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideHexaghost;
     public override bool HideInCompendium => DownfallConfig.HideHexaghost;
-    
+
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 66;
@@ -55,7 +51,6 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<Kindle>()
     ];
 
-  
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [

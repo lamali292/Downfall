@@ -22,7 +22,8 @@ public class ChampDefensiveStance : ChampStanceModel
     public override Color? LabelOutlineColor => new("1745b0");
 
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<CounterPower>(),
         HoverTipFactory.Static(StaticHoverTip.Block),
         HoverTipFactory.Static(ChampTip.Finisher)
@@ -48,8 +49,7 @@ public class ChampDefensiveStance : ChampStanceModel
             ? Owner.AllTeammates.Select(e => e.Creature)
             : [Owner.Creature];
         await targets.ForEachAsync(e =>
-             CreatureCmd.GainBlock(e, amount, BlockProps.nonCardUnpowered, null)
+            CreatureCmd.GainBlock(e, amount, BlockProps.nonCardUnpowered, null)
         );
-
     }
 }

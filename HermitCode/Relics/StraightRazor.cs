@@ -20,19 +20,19 @@ public sealed class StraightRazor : HermitRelicModel, IAfterCardTransformed
         WithTip(StaticHoverTip.Transform);
     }
 
+    public async Task AfterCardTransformed(CardModel replacement)
+    {
+        if (replacement.Owner != Owner) return;
+        if (replacement.Pile?.Type != PileType.Deck) return;
+        Flash();
+        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+    }
+
 
     public override async Task BeforeCardRemoved(CardModel card)
     {
         if (card.Owner != Owner) return;
         if (card.Pile?.Type != PileType.Deck) return;
-        Flash();
-        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
-    }
-
-    public async Task AfterCardTransformed(CardModel replacement)
-    {
-        if (replacement.Owner != Owner) return;
-        if (replacement.Pile?.Type != PileType.Deck) return;
         Flash();
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
     }

@@ -114,7 +114,10 @@ public partial class NStashDisplay : NSlotRevealDisplay
         return GetSlotGlobalPosition(pileIndex - 1);
     }
 
-    public static bool HasDisplay(Player player) => IsInstanceValid(Displays[player]);
+    public static bool HasDisplay(Player player)
+    {
+        return IsInstanceValid(Displays[player]);
+    }
 
     public static void SetupFor(NCombatRoom combatRoom, Player player)
     {

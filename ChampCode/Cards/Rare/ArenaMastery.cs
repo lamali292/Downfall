@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,12 +14,12 @@ public class ArenaMastery : ChampCardModel
 {
     public ArenaMastery() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<ArenaMasteryBerserkerPower>(1, false);
-        this.WithPower<ArenaMasteryDefensivePower>(3, 1, false);
+        WithPower<ArenaMasteryBerserkerPower>(1, false);
+        WithPower<ArenaMasteryDefensivePower>(3, 1, false);
         //this.WithBerserkerTip();
         //this.WithDefensiveTip();
         WithTip(ChampTip.Finisher);
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
         WithTip(StaticHoverTip.Block);
     }
 

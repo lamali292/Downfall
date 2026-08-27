@@ -11,7 +11,7 @@ public class SpreadingSlime : SlimeBossCardModel
 {
     public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<SlimyTonguePower>(2, 1, false);
+        WithPower<SlimyTonguePower>(2, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

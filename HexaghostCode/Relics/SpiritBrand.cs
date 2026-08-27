@@ -14,15 +14,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Hexaghost.HexaghostCode.Relics;
 
 [Pool(typeof(HexaghostRelicPool))]
-public class SpiritBrand: HexaghostRelicModel, IAfterGhostflameIgnited
+public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
 {
-
     public SpiritBrand() : base(RelicRarity.Starter)
     {
         WithTip(HexaghostTip.Ignite);
     }
-    
-    
+
+
     private bool UsedThisTurn { get; set; }
 
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)

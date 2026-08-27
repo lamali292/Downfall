@@ -12,7 +12,7 @@ public class ScopeOut : HermitCardModel
     public ScopeOut() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
         WithPower<StrengthPower>(1, 2);
-        this.WithPower<ScopeOutPower>(1, false);
+        WithPower<ScopeOutPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

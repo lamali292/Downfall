@@ -16,7 +16,7 @@ public class Hurting : CollectorCardModel
     {
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(10, 3);
-        this.WithTip<GreaterHurting>();
+        WithTip<GreaterHurting>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

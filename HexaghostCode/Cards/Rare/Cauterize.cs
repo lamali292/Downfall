@@ -13,7 +13,7 @@ public class Cauterize : HexaghostCardModel
     public Cauterize() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     protected override bool HasEnergyCostX => true;

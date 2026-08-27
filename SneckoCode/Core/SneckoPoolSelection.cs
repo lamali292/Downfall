@@ -1,5 +1,4 @@
-﻿using BaseLib.Extensions;
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,7 +14,7 @@ namespace Snecko.SneckoCode.Core;
 
 public static class SneckoPoolSelection
 {
-    public static void RunActEntry(IRunState runstate)   // no await left here → not async
+    public static void RunActEntry(IRunState runstate) // no await left here → not async
     {
         var sneckos = runstate.Players.Where(p => p.Character is Snecko).ToList();
 
@@ -24,12 +23,13 @@ public static class SneckoPoolSelection
         foreach (var player in sneckos)
         {
             var relics = new SneckoChoice[3];
-            var ids    = new uint[3];
+            var ids = new uint[3];
             for (var i = 0; i < 3; i++)
             {
                 relics[i] = (SneckoChoice)ModelDb.Relic<SneckoChoice>().ToMutable();
-                ids[i]    = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
+                ids[i] = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
             }
+
             plans.Add((player, relics, ids));
         }
 
@@ -37,7 +37,7 @@ public static class SneckoPoolSelection
         Callable.From(() => { _ = RunPicks(plans); }).CallDeferred();
     }
 
-    
+
     private static async Task RunPicks(
         List<(Player player, SneckoChoice[] relics, uint[] choiceIds)> plans)
     {
@@ -45,10 +45,15 @@ public static class SneckoPoolSelection
         {
             await Task.WhenAll(plans.Select(RunPlayer));
         }
-        catch (OperationCanceledException) { }
-        catch (Exception e) { SneckoMainFile.Logger.Error($"[Snecko] deferred selection failed: {e}"); }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception e)
+        {
+            SneckoMainFile.Logger.Error($"[Snecko] deferred selection failed: {e}");
+        }
     }
-    
+
     private static async Task RunPlayer(
         (Player player, SneckoChoice[] relics, uint[] choiceIds) plan)
     {
@@ -61,14 +66,14 @@ public static class SneckoPoolSelection
 
         for (var i = 0; i < 3; i++)
         {
-            var left  = six[i * 2];
+            var left = six[i * 2];
             var right = six[i * 2 + 1];
             var index = await SyncOneChoice(player, left, right, choiceIds[i]);
             relics[i].InitCharacter(index == 0 ? left : right);
-            await RelicCmd.Obtain(relics[i], player);   // obtain right after this pick
+            await RelicCmd.Obtain(relics[i], player); // obtain right after this pick
         }
     }
-    
+
     private static async Task<int> SyncOneChoice(
         Player snecko, CharacterModel left, CharacterModel right, uint choiceId)
     {
@@ -84,6 +89,7 @@ public static class SneckoPoolSelection
             chosenIndex = (await RunManager.Instance.PlayerChoiceSynchronizer
                 .WaitForRemoteChoice(snecko, choiceId)).AsIndex();
         }
+
         return chosenIndex;
     }
 

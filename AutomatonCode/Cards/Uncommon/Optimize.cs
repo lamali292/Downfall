@@ -15,7 +15,7 @@ public class Optimize : AutomatonCardModel
     public Optimize() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        this.WithPower<OptimizePower>(1, false);
+        WithPower<OptimizePower>(1, false);
         WithTip(AutomatonTip.Stash);
     }
 

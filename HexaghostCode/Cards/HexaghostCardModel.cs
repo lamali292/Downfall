@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Hexaghost.HexaghostCode.Cards;
 
-
 public abstract class HexaghostCardModel(
     int cost,
     CardType type,

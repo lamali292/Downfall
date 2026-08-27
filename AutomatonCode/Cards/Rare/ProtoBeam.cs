@@ -3,9 +3,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
@@ -21,13 +19,13 @@ public class ProtoBeam : AutomatonCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-    
+
     public override Task AfterCardDrawn(
         PlayerChoiceContext choiceContext,
         CardModel card,

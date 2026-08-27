@@ -88,7 +88,7 @@ public abstract class ConstructedPowerModel(
         _newDynamicVars.Add(new CardsVar(baseVal));
         return this;
     }
-    
+
     public ConstructedPowerModel WithEnergy(int baseVal)
     {
         _newDynamicVars.Add(new EnergyVar(baseVal));
@@ -123,9 +123,7 @@ public abstract class ConstructedPowerModel(
         return this;
     }
 
-    
-  
-    
+
     public ConstructedPowerModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));

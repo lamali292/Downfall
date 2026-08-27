@@ -19,9 +19,12 @@ public class ChosenVersePower : AwakenedPowerModel, IHasSecondAmount
         WithBlock(4);
     }
 
-    public string GetSecondAmount() => $"{DynamicVars.Block.IntValue}";
-    
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+
+    public string GetSecondAmount()
+    {
+        return $"{DynamicVars.Block.IntValue}";
+    }
 
     public void SetBlock(decimal block)
     {
@@ -45,6 +48,4 @@ public class ChosenVersePower : AwakenedPowerModel, IHasSecondAmount
     {
         await PowerCmd.Remove(this);
     }
-
-   
 }

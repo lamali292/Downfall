@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
@@ -15,7 +14,7 @@ public class OtherworldlySlash : SneckoCardModel, IHasGift
 {
     public OtherworldlySlash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             Rarity = CardRarity.Common
         });

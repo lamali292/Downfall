@@ -17,11 +17,11 @@ public class LastStand : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithPower<StrengthPower>(6);
-        this.WithTip<WeakPower>();
-        this.WithTip<VulnerablePower>();
-        this.WithTip<FrailPower>();
+        WithTip<WeakPower>();
+        WithTip<VulnerablePower>();
+        WithTip<FrailPower>();
     }
-    
+
     private IEnumerable<LocString> Banter =>
     [
         new("cards", Id.Entry + ".banter.1"),
@@ -35,7 +35,7 @@ public class LastStand : ChampCardModel
         SfxCmd.Play("event:/sfx/characters/champ-champ/charge");
         // calling runstate rng? hm. idc. it's prettier because its mp synced in comparison to Rng.Chaotic
         var banter = RunState?.Rng.Niche.NextItem(Banter);
-        if (banter != null ) TalkCmd.Play(banter, Owner.Creature, VfxColor.DarkGray);
+        if (banter != null) TalkCmd.Play(banter, Owner.Creature, VfxColor.DarkGray);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await PowerCmd.Remove<WeakPower>(Owner.Creature);
         await PowerCmd.Remove<VulnerablePower>(Owner.Creature);

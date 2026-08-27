@@ -16,7 +16,7 @@ public class Procession : AwakenedCardModel
     public Procession() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<Void>();
+        WithTip<Void>();
         WithCostUpgradeBy(-1);
     }
 

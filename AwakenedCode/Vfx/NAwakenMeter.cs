@@ -1,5 +1,4 @@
 ﻿using Awakened.AwakenedCode.CustomEnums;
-using Champ.ChampCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -14,18 +13,18 @@ namespace Awakened.AwakenedCode.Vfx;
 public partial class NAwakenMeter : Control
 {
     private const string DisplayScenePath = "res://Awakened/scenes/ui/awaken_meter.tscn";
-    public bool IsExiting => _isExiting;
-    private NinePatchRect? _bar;
     private const int MaxProgress = 7;
-    private Func<IEnumerable<IHoverTip>>? _tipProvider;
-    private IEnumerable<IHoverTip>? _tips;
+    private NinePatchRect? _bar;
+    private Tween? _moveTween;
     private Vector2 _restPosition;
-    private Vector2 RelativeOffset => new Vector2(-80f, -100f);
-    private Vector2 HideOffset => new Vector2(-120f, 0f);
 
     private Tween? _sizeTween;
-    private Tween? _moveTween;
-    private bool _isExiting;
+    private Func<IEnumerable<IHoverTip>>? _tipProvider;
+    private IEnumerable<IHoverTip>? _tips;
+    public bool IsExiting { get; private set; }
+
+    private Vector2 RelativeOffset => new(-80f, -100f);
+    private Vector2 HideOffset => new(-120f, 0f);
 
     public override void _EnterTree()
     {
@@ -39,7 +38,10 @@ public partial class NAwakenMeter : Control
         CombatManager.Instance.CombatEnded -= OnCombatEnded;
     }
 
-    private void OnCombatEnded(CombatRoom room) => AnimOutAndFree();
+    private void OnCombatEnded(CombatRoom room)
+    {
+        AnimOutAndFree();
+    }
 
     public override void _Ready()
     {
@@ -50,7 +52,7 @@ public partial class NAwakenMeter : Control
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
         Modulate = new Color(Modulate, 0f);
-        
+
         var timer = GetTree().CreateTimer(0.7);
         timer.Timeout += () =>
         {
@@ -61,19 +63,22 @@ public partial class NAwakenMeter : Control
         SetTipProvider(() => [HoverTipFactory.Static(AwakenedTip.Awaken)]);
     }
 
-    
-    public void SetTipProvider(Func<IEnumerable<IHoverTip>> provider) => _tipProvider = provider;
+
+    public void SetTipProvider(Func<IEnumerable<IHoverTip>> provider)
+    {
+        _tipProvider = provider;
+    }
 
     private void OnMouseEntered()
     {
-        if (_isExiting) return;
+        if (IsExiting) return;
         _tips = _tipProvider?.Invoke();
         if (_tips == null) return;
 
         var tipSet = NHoverTipSet.CreateAndShow(this, _tips);
         if (tipSet == null) return;
 
-        float h = tipSet.TextHoverTipDimensions.Y;
+        var h = tipSet.TextHoverTipDimensions.Y;
         tipSet.GlobalPosition = GlobalPosition + new Vector2(70f, -h - 100f);
     }
 
@@ -81,7 +86,7 @@ public partial class NAwakenMeter : Control
     {
         NHoverTipSet.Remove(this);
     }
-    
+
     private Vector2 GetTargetShowPosition()
     {
         var ui = NCombatRoom.Instance?.Ui;
@@ -92,7 +97,6 @@ public partial class NAwakenMeter : Control
         if (energyNode == null || ui == null) return Position;
         var uiLocalPos = energyNode.GlobalPosition - ui.GlobalPosition;
         return uiLocalPos + RelativeOffset;
-
     }
 
     public static NAwakenMeter? Create(Player player)
@@ -116,7 +120,7 @@ public partial class NAwakenMeter : Control
 
     private void AnimIn()
     {
-        if (_isExiting) return;
+        if (IsExiting) return;
 
         _moveTween?.Kill();
 
@@ -133,8 +137,8 @@ public partial class NAwakenMeter : Control
 
     private void AnimOutAndFree()
     {
-        if (_isExiting) return;
-        _isExiting = true;
+        if (IsExiting) return;
+        IsExiting = true;
 
         _moveTween?.Kill();
         _sizeTween?.Kill();
@@ -159,7 +163,7 @@ public partial class NAwakenMeter : Control
 
     public void SetProgress(int progress)
     {
-        if (_bar == null || _isExiting)
+        if (_bar == null || IsExiting)
             return;
 
         progress = Mathf.Clamp(progress, 0, MaxProgress);
@@ -177,7 +181,7 @@ public partial class NAwakenMeter : Control
 
     public void Refresh(int value)
     {
-        if (!IsInstanceValid(this) || IsQueuedForDeletion() || _isExiting)
+        if (!IsInstanceValid(this) || IsQueuedForDeletion() || IsExiting)
             return;
         SetProgress(value);
     }

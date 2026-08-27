@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
@@ -15,7 +14,7 @@ public class QuickMove : SneckoCardModel, IHasOverflowEffect
     public QuickMove() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
         WithBlock(7, 3);
-        this.WithOverflow();
+        WithOverflow();
         WithPower<VulnerablePower>(1);
     }
 

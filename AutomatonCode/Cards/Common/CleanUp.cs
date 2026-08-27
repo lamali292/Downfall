@@ -33,6 +33,7 @@ public class CleanUp : AutomatonCardModel
             await CardCmdCompatibility.Exhaust(ctx, card);
             hitCount = card is { Type: CardType.Curse or CardType.Status } ? 2 : 1;
         }
+
         await CommonActions.CardAttack(this, cardPlay, hitCount).Execute(ctx);
     }
 }

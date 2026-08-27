@@ -1,7 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,8 +12,8 @@ public class Execution : ChampCardModel
     public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        this.WithRepeat(4);
-        this.WithFinisher();
+        WithRepeat(4);
+        WithFinisher();
         // WithTip(ChampTip.Stance);
     }
 
@@ -24,8 +22,9 @@ public class Execution : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, 4, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
-            .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character), Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
-          .Execute(ctx);
+            .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
+                Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
+            .Execute(ctx);
     }
 
     public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)

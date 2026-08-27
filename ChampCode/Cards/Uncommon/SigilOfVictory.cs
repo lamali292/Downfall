@@ -14,7 +14,7 @@ public class SigilOfVictory : ChampCardModel
     {
         WithTip(ChampKeyword.TriggerSkillBonus);
         // WithTip(ChampTip.Stance);
-        this.WithRepeat(3, 1);
+        WithRepeat(3, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

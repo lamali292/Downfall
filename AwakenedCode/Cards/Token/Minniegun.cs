@@ -13,8 +13,8 @@ public class Minniegun : AwakenedCardModel
     public Minniegun() : base(2, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithDamage(2);
-        this.WithRepeat(5, 1);
-        this.WithTip<Void>();
+        WithRepeat(5, 1);
+        WithTip<Void>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

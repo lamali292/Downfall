@@ -14,7 +14,7 @@ public class TakeFlight : AwakenedCardModel, IChantable
     public TakeFlight() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
-        this.WithPower<BlurPower>(1, false);
+        WithPower<BlurPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();

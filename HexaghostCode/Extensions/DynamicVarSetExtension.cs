@@ -9,7 +9,7 @@ public static class DynamicVarSetExtension
     {
         return vard._vars.TryGetValue(key, out var v) ? v as T : null;
     }
-    
+
     extension(DynamicVarSet vars)
     {
         public int GhostflameBlock => GhostflameVarOrNull<GhostflameBlockVar>(vars, "Block")?.IntensityValue ?? 0;
@@ -20,5 +20,4 @@ public static class DynamicVarSetExtension
         public int GhostflameSoulburn
             => GhostflameVarOrNull<GhostflameSoulburnVar>(vars, "Soulburn")?.IntensityValue ?? 0;
     }
- 
 }

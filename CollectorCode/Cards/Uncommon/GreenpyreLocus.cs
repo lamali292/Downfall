@@ -67,7 +67,9 @@ public class GreenpyreLocus : CollectorCardModel
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
             var copy = chosenCard.CreateClone();
-            var result = await CardPileCmd.AddGeneratedCardToCombat(copy, CollectorPile.Collected, Owner, CardPilePosition.Random);
+            var result =
+                await CardPileCmd.AddGeneratedCardToCombat(copy, CollectorPile.Collected, Owner,
+                    CardPilePosition.Random);
             CardCmd.PreviewCardPileAdd(result, 0.2f);
         }
     }

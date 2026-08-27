@@ -17,7 +17,7 @@ public class Tackle : SlimeBossCardModel, ITranscendenceCard
     public Tackle() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(13, 4);
-        this.WithSelfDamage(3);
+        WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
     }
 

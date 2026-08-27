@@ -37,7 +37,8 @@ public static class DownfallHook
     public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
         out IEnumerable<IModifySelfDamage> modifiers)
     {
-        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers, MyHookUtils.HookScope.CombatRaw);
+        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers,
+            MyHookUtils.HookScope.CombatRaw);
     }
 
     public static Task AfterModifyingSelfDamage(ICombatState cs, IEnumerable<IModifySelfDamage> modifiers,

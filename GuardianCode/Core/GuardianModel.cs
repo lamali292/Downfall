@@ -37,6 +37,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
             await PowerCmd.Apply<ModeShiftPower>(ctx, player.Creature, 20, player.Creature, null, true);
             await GuardianCmd.LeaveDefensiveMode(ctx, player);
         }
+
         await GuardianCmd.TickAll(player, ctx);
         GuardianDisplay.Refresh(player);
     }
