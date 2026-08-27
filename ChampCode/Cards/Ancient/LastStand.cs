@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Champ.ChampCode.Cards.Ancient;
 
@@ -32,7 +33,7 @@ public class LastStand : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        SfxCmd.Play("event:/sfx/characters/champ-champ/charge");
+        if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/champ-champ/charge");
         // calling runstate rng? hm. idc. it's prettier because its mp synced in comparison to Rng.Chaotic
         var banter = RunState?.Rng.Niche.NextItem(Banter);
         if (banter != null) TalkCmd.Play(banter, Owner.Creature, VfxColor.DarkGray);

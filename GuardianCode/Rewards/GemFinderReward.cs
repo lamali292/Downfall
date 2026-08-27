@@ -11,11 +11,13 @@ using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Guardian.GuardianCode.Rewards;
 
@@ -100,14 +102,29 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
 
         if (LocalContext.IsMe(Player))
         {
-            // Screen exists only on the owning client, like CardReward.
             var prefs = new CardSelectorPrefs(
                 DownfallCardSelectorPrefs.ToDeckSelectionPrompt, 0, choosable);
-            _currentlyShownScreen = NSimpleCardSelectScreen.Create(cards, prefs);
-            NOverlayStack.Instance?.Push(_currentlyShownScreen);
+            // Screen exists only on the owning client, like CardReward.
+            IEnumerable<CardModel> selectedCards;
+            if (TestMode.IsOn)
+            {
+                if (CardSelectCmd.Selector == null)
+                    selectedCards = [];
+                else
+                    selectedCards = await CardSelectCmd.Selector.GetSelectedCards(cards,
+                            prefs.MinSelect,
+                            prefs.MaxSelect);
+            }
+            else
+            {
+                _currentlyShownScreen = NSimpleCardSelectScreen.Create(cards, prefs);
+                NOverlayStack.Instance?.Push(_currentlyShownScreen);
 
-            var selectedCards = (await _currentlyShownScreen.CardsSelected()).ToList();
-            CleanupScreen();
+                selectedCards = (await _currentlyShownScreen.CardsSelected()).ToList();
+                CleanupScreen();
+            }
+         
+         
 
             foreach (var idx in selectedCards.Select(card => cards.IndexOf(card)))
                 if (idx >= 0)

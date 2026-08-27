@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Powers;
@@ -72,7 +73,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
 
         var aliveApplier = applier?.IsAlive == true ? applier : null;
-        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");
+        if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");
         if (targetAll)
         {
             foreach (var target in CombatState.HittableEnemies) await HexaghostCmd.SoulburnEffect(target, silent: true);

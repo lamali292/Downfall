@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
@@ -33,8 +34,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         var damage = CollectorHook.ModifyCollectorDoomDamage(Owner.CombatState, Owner, Amount);
         var results = await CreatureCmd.Damage(ctx, Owner, damage,
             DamageProps.nonCardHpLoss, null, null);
-
-        if (results.Any(r => r.WasTargetKilled)) SfxCmd.Play("event:/sfx/ui/relics/relic_prayer_bowl", 3);
+        if (TestMode.IsOff && results.Any(r => r.WasTargetKilled)) SfxCmd.Play("event:/sfx/ui/relics/relic_prayer_bowl", 3);
 
 
         if (Owner.IsAlive)

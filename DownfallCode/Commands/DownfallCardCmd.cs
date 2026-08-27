@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Content;
+﻿using BaseLib.Commands;
+using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -17,6 +18,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -282,4 +284,54 @@ public class DownfallCardCmd
         return CardFactory.GetDistinctForCombat(player, cards.Where(cond), count,
             player.RunState.Rng.CombatCardGeneration);
     }
+    
+    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
+        PlayerChoiceContext ctx,
+        Player player,
+        CardSelectorPrefs prefs,
+        List<CardModel> cards,
+        PileType[]? pileTypes = null)
+    {
+        if (!TestMode.IsOn)
+            return await MultiPileCardSelect.Select(
+                ctx,
+                player,
+                prefs,
+                cards,
+                pileTypes);
+        if (CardSelectCmd.Selector == null)
+            return [];
+
+        return await CardSelectCmd.Selector.GetSelectedCards(
+            cards,
+            prefs.MinSelect,
+            prefs.MaxSelect);
+
+    }
+    
+    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
+        PlayerChoiceContext ctx,
+        Player player,
+        CardSelectorPrefs prefs,
+        Func<CardModel, bool>? filter = null,
+        params PileType[] pileTypes)
+    {
+        if (!TestMode.IsOn)
+            return await MultiPileCardSelect.Select(
+                ctx,
+                player,
+                prefs,
+                filter,
+                pileTypes);
+        if (CardSelectCmd.Selector == null)
+            return [];
+
+        return await CardSelectCmd.Selector.GetSelectedCards(
+            pileTypes.SelectMany(e => e.GetPile(player).Cards),
+            prefs.MinSelect,
+            prefs.MaxSelect);
+
+    }
+    
+    
 }
