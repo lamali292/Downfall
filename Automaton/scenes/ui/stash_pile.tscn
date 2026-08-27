@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 ]
 
 [ext_resource type="Script" path="res://AutomatonCode/Vfx/NStashPile.cs" id="1_b4b5x"]
-[ext_resource type="Texture2D" path="res://Awakened/images/spell_icons/spellbook_outline.png" id="2_mr4r5"]
+[ext_resource type="Texture2D" path="res://Automaton/images/ui/orb.png" id="2_b4b5x"]
 [ext_resource type="Texture2D" path="res://images/packed/combat_ui/pile_button_count.png" id="3_u0hwd"]
 [ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="4_qikbi"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_ofq2u"]
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(40, 40)
 mouse_filter = 2
-texture = ExtResource("2_mr4r5")
+texture = ExtResource("2_b4b5x")
 expand_mode = 2
 stretch_mode = 5
 
