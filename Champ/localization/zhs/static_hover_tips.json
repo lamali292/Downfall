@@ -1,5 +1,6 @@
 {
     "CHAMP-COMBO.title": "连段",
     "CHAMP-COMBO.description": "处于特定[gold]姿态[/gold]触发额外效果。",
-    "CHAMP-FINISHER.title": "终结技"
+    "CHAMP-FINISHER.title": "终结技",
+    "CHAMP-FINISHER.description": "处于[gold]姿态[/gold]时才能打出。\n打出终结技后，退出当前[gold]姿态[/gold]并触发终结技效果。"
 }

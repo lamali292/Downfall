@@ -1,7 +1,8 @@
 {
+    "HEXAGHOST-ECTO_COOLER_POTION.title": "Ecto-Fraîcheur",
     "HEXAGHOST-ECTO_COOLER_POTION.description": "Choisissez [blue]1[/blue] carte parmi [blue]3[/blue] cartes [gold]Au-delà[/gold] à ajouter à votre [gold]Main[/gold].\nElle est gratuite à jouer ce tour-ci.",
-    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Fluide combustible",
-    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "Enflammez la Flamme fantôme actuelle [blue]{Ignite:diff()}[/blue] fois.",
-    "HEXAGHOST-INFERNO_POTION_POTION.title": "Potion d'enfer",
-    "HEXAGHOST-INFERNO_POTION_POTION.description": "Les Flammes fantômes appliquent [gold]Brûlure d'âme[/gold] et infligent des dégâts à TOUS les ennemis pour ce combat."
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Fluide Combustible",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "Enflammez le Feu Follet actuel [blue]{Ignite:diff()}[/blue] fois.",
+    "HEXAGHOST-INFERNO_POTION_POTION.title": "Potion d'Enfer",
+    "HEXAGHOST-INFERNO_POTION_POTION.description": "Les Feux Follets appliquent de la [gold]Calcination[/gold] et infligent des dégâts à TOUS les ennemis ce combat."
 }

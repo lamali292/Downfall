@@ -127,6 +127,7 @@
     "HEXAGHOST-POLTERGEIST.title": "鬼哭神嚎",
     "HEXAGHOST-POWER_FROM_BEYOND.description": "[afterlife]获得[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]\n下个回合，获得{Energy:energyIcons()}。",
     "HEXAGHOST-POWER_FROM_BEYOND.title": "彼岸之力",
+    "HEXAGHOST-PREMONITION.description": "在你的回合开始时，如果上回合[gold]消耗[/gold]了至少2张牌，额外抽{PremonitionPower:diff()}张牌。",
     "HEXAGHOST-PREMONITION.title": "预兆",
     "HEXAGHOST-PREMONITION_CHOICE.title": "预兆",
     "HEXAGHOST-RADIANT_REVERB.description": "造成{Damage:diff()}点伤害。\n在本回合获得{RadiantReverbPower:diff()}点[gold]热烈[/gold]。",

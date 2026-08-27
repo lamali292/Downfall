@@ -71,5 +71,7 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "炼狱",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
-    "HEXAGHOST-PREMONITION_POWER.title": "预兆"
+    "HEXAGHOST-PREMONITION_POWER.title": "预兆",
+    "HEXAGHOST-PREMONITION_POWER.description": "在你的回合开始时，如果上回合[gold]消耗[/gold]了至少[blue]2[/blue]张牌，额外抽牌。",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "在你的回合开始时，如果上回合[gold]消耗[/gold]了至少[blue]2[/blue]张牌，额外抽[blue]{Amount}[/blue]张牌。"
 }
