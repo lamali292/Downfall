@@ -113,7 +113,6 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         display._trackedPlayer = player;
         display.Scale = Vector2.One * (LocalContext.IsMe(player) ? SequencedCardScale : SequencedCardScale * 0.5f);
         display.Direction = RevealDirection.Right;
-        display.ZIndex = LocalContext.IsMe(player) ? 1 : 0;
         var vfxContainer = combatRoom.CombatVfxContainer;
         vfxContainer.AddChildSafely(display);
 
