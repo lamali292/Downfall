@@ -1,4 +1,5 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "技术奖励",
+    "CHAMP-TRIGGERSKILLBONUS.description": "每当你打出一张技能牌时，触发当前[gold]姿态[/gold]的技术奖励。",
     "CHAMP-TRIGGERSKILLBONUS.card": "触发你当前[gold]姿态[/gold]的[gold]技术奖励[/gold]。"
 }

@@ -71,5 +71,7 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "Адское зелье",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
-    "HEXAGHOST-PREMONITION_POWER.title": "Предчувствие"
+    "HEXAGHOST-PREMONITION_POWER.title": "Предчувствие",
+    "HEXAGHOST-PREMONITION_POWER.description": "Вы добираете [blue]1[/blue] карту в начале хода, если [gold]сожгли[/gold] не менее [blue]2[/blue] карт в предыдущем ходу.",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Вы добираете [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт} в начале хода, если [gold]сожгли[/gold] не менее [blue]2[/blue] карт в предыдущем ходу."
 }

@@ -59,8 +59,5 @@
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "Ogni volta che una carta conta alla rovescia in [gold]Stasi[/gold], ottieni [blue]{Amount}[/blue] [gold]Forza[/gold] in questo turno.",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "Superblocco",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.description": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], l'alleato con meno [gold]Blocco[/gold] ottiene [gold]Blocco[/gold].",
-    "GUARDIAN-OVERBLOCK_THORNS_POWER.title": "Superblocco",
-    "GUARDIAN-OVERBLOCK_THORNS_POWER.description": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], l'alleato con meno [gold]Blocco[/gold] ottiene [gold]Spine[/gold] in questo turno.",
-    "GUARDIAN-OVERBLOCK_THORNS_POWER.smartDescription": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], l'alleato con meno [gold]Blocco[/gold] ottiene[blue] {Amount}[/blue] [gold]Spine[/gold] in questo turno.",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], l'alleato con meno [gold]Blocco[/gold] ottiene[blue] {Amount}[/blue] di [gold]Blocco[/gold]."
 }

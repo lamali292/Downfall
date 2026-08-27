@@ -1,4 +1,5 @@
 {
     "CHAMP-TRIGGERSKILLBONUS.title": "Бонус стойки",
+    "CHAMP-TRIGGERSKILLBONUS.description": "Бонусный эффект текущей [gold]Стойки[/gold] срабатывает, когда вы разыгрываете [gold]Навык[/gold].",
     "CHAMP-TRIGGERSKILLBONUS.card": "Активирует [gold]Бонус стойки[/gold]."
 }

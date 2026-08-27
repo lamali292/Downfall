@@ -1,5 +1,6 @@
 {
     "CHAMP-COMBO.title": "Комбо",
     "CHAMP-COMBO.description": "Дополнительный эффект при розыгрыше в указанной [gold]Стойке[/gold].",
-    "CHAMP-FINISHER.title": "Финишер"
+    "CHAMP-FINISHER.title": "Финишер",
+    "CHAMP-FINISHER.description": "Требует нахождения в [gold]Стойке[/gold].\nРазыграв Финишер, вы активируете его [gold]Бонусный эффект[/gold] и выйдете из [gold]Стойки[/gold]."
 }

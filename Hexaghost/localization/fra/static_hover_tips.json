@@ -1,4 +1,8 @@
 {
     "HEXAGHOST-IGNITE.title": "Enflammer",
-    "HEXAGHOST-IGNITE.description": "Déclenche l'effet d'Inflammation décrit sur une Flamme fantôme."
+    "HEXAGHOST-IGNITE.description": "Déclenche l'effet d'Inflammation décrit sur un Feu Follet.",
+    "HEXAGHOST-WHEEL.title": "Roue des Feux Follets",
+    "HEXAGHOST-WHEEL.description": "Contient 6 Feux Follets. Le Feu Follet du haut est actif.\nRemplir sa condition [gold]l'Enflamme[/gold].\nÀ la fin du tour, si le Feu Follet actif est [gold]Enflammé[/gold], [gold]Avancez[/gold].",
+    "HEXAGHOST-EXTINGUISH.title": "Éteindre",
+    "HEXAGHOST-EXTINGUISH.description": "Réinitialise un Feu Follet [gold]Enflammé[/gold] pour qu'il puisse de nouveau être [gold]Enflammé[/gold]."
 }
