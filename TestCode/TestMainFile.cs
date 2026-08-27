@@ -1,6 +1,4 @@
-﻿using Downfall.DownfallCode.Config;
-using Downfall.DownfallCode.Voting;
-using MegaCrit.Sts2.Core.AutoSlay;
+﻿using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -24,7 +22,7 @@ public static class TestMainFile
             IsVisible = () => true,
             SubmenuType = null,
             CreateSubmenu = null,
-            OnPress = stack =>
+            OnPress = _ =>
             {
                 var cts = new CancellationTokenSource(TimeSpan.FromMinutes(10));
                 var harness = new CardTestRunner();
