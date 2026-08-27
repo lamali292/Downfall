@@ -1,4 +1,6 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
+using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Relics;
 
 namespace SlimeBoss.SlimeBossCode.Core;
@@ -69,15 +72,6 @@ public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = tru
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType);
-
-public abstract class SlimeBossCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : DownfallCardModel<SlimeBoss>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 

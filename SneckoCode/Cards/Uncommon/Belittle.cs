@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
+
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;

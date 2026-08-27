@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Cards.Ancient;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
+
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Basic;

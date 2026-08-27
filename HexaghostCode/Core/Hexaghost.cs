@@ -1,9 +1,11 @@
-﻿using BaseLib.Audio;
+﻿using BaseLib.Abstracts;
+using BaseLib.Audio;
 using BaseLib.Patches.UI;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
 using Hexaghost.HexaghostCode.Cards.Basic;
+using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
@@ -78,15 +80,6 @@ public abstract class HexaghostRelicModel(RelicRarity rarity, bool autoAdd = tru
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hexaghost>(powerType, powerStackType);
-
-public abstract class HexaghostCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : DownfallCardModel<Hexaghost>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 

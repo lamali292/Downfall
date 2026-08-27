@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
+
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
