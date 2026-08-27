@@ -4,7 +4,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
@@ -37,7 +36,7 @@ public static class GuardianMainFile
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
         CombatUiHooks.Register(GuardianCombatModel.SetupGuardianCombatUi);
-        
+
         FormBoneRegistry.RegisterVoidForm<Core.Guardian>("head");
         FormBoneRegistry.RegisterSerpentForm<Core.Guardian>("body");
         FormBoneRegistry.RegisterReaperForm<Core.Guardian>("head");

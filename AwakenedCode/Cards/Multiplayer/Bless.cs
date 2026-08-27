@@ -14,7 +14,7 @@ public class Bless : AwakenedCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithPower<StrengthPower>(2, 1);
-        WithPower<StrengthPower>("StrengthLoss",2);
+        WithPower<StrengthPower>("StrengthLoss", 2);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

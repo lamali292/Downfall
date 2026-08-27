@@ -14,8 +14,8 @@ public class AdrenalArmor : ChampCardModel
     public AdrenalArmor() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 2);
-        this.WithPower<AdrenalArmorPower>(3, 1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<AdrenalArmorPower>(3, 1, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

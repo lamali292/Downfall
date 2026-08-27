@@ -12,7 +12,7 @@ public class ProtectTheBoss : SlimeBossCardModel
 {
     public ProtectTheBoss() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ProtectTheBossPower>(1, false);
+        WithPower<ProtectTheBossPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

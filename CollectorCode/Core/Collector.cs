@@ -2,10 +2,7 @@
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Config;
 using Godot;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -16,7 +13,7 @@ namespace Collector.CollectorCode.Core;
 public class Collector : DownfallCharacterModel
 {
     private static readonly Color Color = new(0x0D9D82FF);
-    public override Color EnergyLabelOutlineColor  => new(0x004f04FF);
+    public override Color EnergyLabelOutlineColor => new(0x004f04FF);
     public override string CharId => "Collector";
     public override string ModId => CollectorMainFile.ModId;
     public override Color NameColor => Color;
@@ -51,7 +48,7 @@ public class Collector : DownfallCharacterModel
     [
         ModelDb.Relic<EmeraldTorch>()
     ];
-    
+
     public override float AttackAnimDelay => 0.15f;
 
     public override float CastAnimDelay => 0.25f;
@@ -63,7 +60,8 @@ public class Collector : DownfallCharacterModel
 
 public class CollectorRelicPool : DownfallRelicPool<Collector>;
 
-public abstract class CollectorRelicModel(RelicRarity rarity, bool autoAdd = true) : DownfallRelicModel<Collector>(rarity, autoAdd);
+public abstract class CollectorRelicModel(RelicRarity rarity, bool autoAdd = true)
+    : DownfallRelicModel<Collector>(rarity, autoAdd);
 
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,

@@ -16,7 +16,7 @@ public class Spectre : HermitCardModel
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override Artist Artist => Artist.Get<DawnablesAwakened>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -29,7 +29,8 @@ public class Spectre : HermitCardModel
                     this, c => !c.Keywords.Contains(CardKeyword.Ethereal)))
                 .FirstOrDefault();
         else
-            card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e => e != this && !e.Keywords.Contains(CardKeyword.Ethereal)));
+            card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e =>
+                e != this && !e.Keywords.Contains(CardKeyword.Ethereal)));
         card?.AddKeyword(CardKeyword.Ethereal);
     }
 }

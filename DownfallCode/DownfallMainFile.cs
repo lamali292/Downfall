@@ -12,7 +12,6 @@ using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
-using Godot;
 using Godot.Bridge;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Helpers;
@@ -56,7 +55,7 @@ public static class DownfallMainFile
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
-        
+
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Auto Slay",
@@ -69,8 +68,8 @@ public static class DownfallMainFile
                 slayer.Start(SeedHelper.GetRandomSeed(), "autoslay.log");
             }
         });
-        
-     
+
+
         /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
@@ -92,19 +91,19 @@ public static class DownfallMainFile
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),
             new ModCredits.Section("SOUND"),
-            new ModCredits.Section("LOC", Children: [
+            new ModCredits.Section("LOC", Children:
+            [
                 new ModCredits.Section("LOC_ZHS"),
                 new ModCredits.Section("LOC_FRA"),
                 new ModCredits.Section("LOC_ITA"),
                 new ModCredits.Section("LOC_RUS"),
                 new ModCredits.Section("LOC_KOR"),
-           //     new ModCredits.Section("LOC_PTB"),
-           //     new ModCredits.Section("LOC_DEU"),
+                //     new ModCredits.Section("LOC_PTB"),
+                //     new ModCredits.Section("LOC_DEU"),
                 new ModCredits.Section("LOC_JPN")
-          
             ]),
             new ModCredits.Section("STS1")
-            );
+        );
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
@@ -126,10 +125,6 @@ public static class DownfallMainFile
 
         return mod?.manifest?.version ?? "unknown";
     }
-
-
- 
-
 
 
     private static void LogRegisteredCounts()

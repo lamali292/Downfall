@@ -16,14 +16,14 @@ public class ProtoShield : AutomatonCardModel
     public ProtoShield() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithPower<PlatingPower>(3, 2);
-        this.WithTip<Error>();
+        WithTip<Error>();
         WithCards(1);
         WithKeyword(CardKeyword.Ethereal);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    
+
     public override async Task AfterCardDrawn(
         PlayerChoiceContext ctx,
         CardModel card,

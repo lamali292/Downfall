@@ -1,7 +1,6 @@
 using System.Text;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
-using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -30,6 +29,9 @@ namespace Hexaghost.HexaghostCode.Core;
 public abstract class GhostflameModel : AbstractModel, ICustomModel
 {
     private GhostflameModel? _canonicalInstance;
+
+
+    private DynamicVarSet? _dynamicVars;
     private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
     public abstract AbstractIntent Intent { get; }
@@ -43,8 +45,6 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     private ICombatState CombatState => Owner.Creature.CombatState!;
     public virtual bool IsOffclass => false;
 
-
-    private DynamicVarSet? _dynamicVars;
     public DynamicVarSet DynamicVars
     {
         get
@@ -56,35 +56,16 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
             return _dynamicVars;
         }
     }
-    
+
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];
 
 
     private HoverTip HoverTip => ToHoverTip(GetFormattedText());
 
-    private string GetFormattedText()
-    {
-        var stringBuilder = new StringBuilder();
-        var locString = Description;
-        var prefix = Owner.Character.CardPool.EnergyColorName;
-        locString.Add("energyPrefix", prefix);
-        UpdateDynamicVarPreview();
-        DynamicVars.AddTo(locString);
-        var formatted = locString.GetFormattedText();
-        if (!formatted.Equals(""))
-            stringBuilder.Append(formatted);
-        return stringBuilder.ToString();
-    }
-    
-    protected override void DeepCloneFields()
-    {
-        _dynamicVars = DynamicVars.Clone(this);
-    }
 
-    
     protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
-    
-    
+
+
     public IEnumerable<IHoverTip> HoverTips
     {
         get
@@ -94,27 +75,8 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
             return hoverTips.Distinct();
         }
     }
-    
-    private HoverTip ToHoverTip(string description)
-    {
-        return new HoverTip
-        {
-            CanonicalModel = null,
-            ShouldOverrideTextOverflow = false,
-            Id = Id.ToString(),
-            Title = Title.GetFormattedText(),
-            Description = description,
-            IsSmart = true
-        };
-    }
 
     protected IRunState RunState => Owner.RunState;
-
-    private void UpdateDynamicVarPreview()
-    {
-        foreach (var dynamicVar in DynamicVars.Values.OfType<GhostflameVar>().ToList())
-            dynamicVar.UpdateGhostflamePreview(this, true);
-    }
 
     protected int Intensity => HexaghostHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState!, Owner, this);
 
@@ -146,9 +108,47 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         }
     }
 
+    private string GetFormattedText()
+    {
+        var stringBuilder = new StringBuilder();
+        var locString = Description;
+        var prefix = Owner.Character.CardPool.EnergyColorName;
+        locString.Add("energyPrefix", prefix);
+        UpdateDynamicVarPreview();
+        DynamicVars.AddTo(locString);
+        var formatted = locString.GetFormattedText();
+        if (!formatted.Equals(""))
+            stringBuilder.Append(formatted);
+        return stringBuilder.ToString();
+    }
+
+    protected override void DeepCloneFields()
+    {
+        _dynamicVars = DynamicVars.Clone(this);
+    }
+
+    private HoverTip ToHoverTip(string description)
+    {
+        return new HoverTip
+        {
+            CanonicalModel = null,
+            ShouldOverrideTextOverflow = false,
+            Id = Id.ToString(),
+            Title = Title.GetFormattedText(),
+            Description = description,
+            IsSmart = true
+        };
+    }
+
+    private void UpdateDynamicVarPreview()
+    {
+        foreach (var dynamicVar in DynamicVars.Values.OfType<GhostflameVar>().ToList())
+            dynamicVar.UpdateGhostflamePreview(this, true);
+    }
+
     protected int Repeat(GhostflameRepeatType repeatType)
     {
-        return 1+HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
+        return 1 + HexaghostHook.ModifyGhostflameRepeatAdditive(Owner.Creature.CombatState!, Owner, repeatType, this);
     }
 
 
@@ -241,8 +241,8 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     {
         return Task.CompletedTask;
     }
-    
-    
+
+
     protected bool TryBeginIgnite(string sfx = "event:/sfx/characters/attack_fire")
     {
         if (Owner.Creature.CombatState == null) return false;
@@ -259,21 +259,26 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         {
             IReadOnlyList<Creature> targets;
             if (hitAll)
+            {
                 targets = CombatState.HittableEnemies;
+            }
             else
             {
                 var target = RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
                 targets = target == null ? [] : [target];
             }
+
             foreach (var creature in targets)
                 SpawnVfx(creature);
             await action(targets);
         }
     }
 
-    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type, Func<CardModel, bool>? cond = null)
+    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type,
+        Func<CardModel, bool>? cond = null)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card is IDoesNotTriggerGhostflame || (cond != null && !cond.Invoke(cardPlay.Card))) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card is IDoesNotTriggerGhostflame ||
+            (cond != null && !cond.Invoke(cardPlay.Card))) return;
         var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
         if (cardPlay.Card.Type != type && !shouldCount) return;
         if (!TryProgress()) return;

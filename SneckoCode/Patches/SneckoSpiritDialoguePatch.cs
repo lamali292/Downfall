@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Snecko.SneckoCode.Ancients;
-using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Patches;
 
@@ -22,21 +21,21 @@ public static class SneckoSpiritDialoguePatch
             return true;
 
         if (__instance.Layout is not NAncientEventLayout layout)
-            return true;                       // layout not ready yet -> let stock run
+            return true; // layout not ready yet -> let stock run
 
         var lines = spirit.CurrentTranscriptLines;
         if (lines.Count == 0)
-            return true;                       // nothing to show yet -> stock path
+            return true; // nothing to show yet -> stock path
 
         __instance.SetDescription(__instance.GetDescriptionOrFallback());
         layout.ClearDialogue();
         layout.SetDialogue(lines);
         __instance.SetOptions(eventModel);
 
-        int last = lines.Count - 1;
+        var last = lines.Count - 1;
         Callable.From(() =>
         {
-            for (int i = 0; i <= last; i++)
+            for (var i = 0; i <= last; i++)
                 layout._dialogueContainer.GetChild<NAncientDialogueLine>(i)?.SetSpeakerIconVisible();
             layout.SetDialogueLineAndAnimate(last);
         }).CallDeferred();
@@ -48,9 +47,12 @@ public static class SneckoSpiritDialoguePatch
 public static class SneckoSpiritGate
 {
     public static bool Done;
-    public static void Reset() => Done = false;
-}
 
+    public static void Reset()
+    {
+        Done = false;
+    }
+}
 
 [HarmonyPatch(typeof(RunManager), nameof(RunManager.EnterMapCoord))]
 public static class SneckoSpiritEntryPatch
@@ -79,7 +81,10 @@ public static class SneckoSpiritEntryPatch
 [HarmonyPatch(typeof(RunManager), nameof(RunManager.CleanUp))]
 public static class SneckoSpiritGateResetPatch
 {
-    private static void Postfix() => SneckoSpiritGate.Reset();
+    private static void Postfix()
+    {
+        SneckoSpiritGate.Reset();
+    }
 }
 
 [HarmonyPatch(typeof(NEventRoom), "SetOptions")]
@@ -90,7 +95,7 @@ public static class SneckoSpiritAutoSkipPatch
         if (eventModel is not SneckoSpirit) return true;
         if (!eventModel.IsFinished) return true;
         if (eventModel.Owner?.Character is Core.Snecko) return true;
-        
+
         TaskHelper.RunSafely(NEventRoom.Proceed());
         return false;
     }

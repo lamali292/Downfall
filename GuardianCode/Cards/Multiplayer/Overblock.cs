@@ -19,8 +19,8 @@ public class Overblock : GuardianCardModel
         WithCostUpgradeBy(-1);
         WithTip(GuardianTip.DefensiveMode);
         WithTip(StaticHoverTip.Block);
-        this.WithTip<ThornsPower>();
-        this.WithPower<OverblockBlockPower>(16, false);
+        WithTip<ThornsPower>();
+        WithPower<OverblockBlockPower>(16, false);
         WithVar("OverblockThornsPower", 3);
     }
 
@@ -29,6 +29,7 @@ public class Overblock : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        (await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this))?.IncrementThorns(DynamicVars["OverblockThornsPower"].BaseValue);
+        (await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this))?.IncrementThorns(
+            DynamicVars["OverblockThornsPower"].BaseValue);
     }
 }

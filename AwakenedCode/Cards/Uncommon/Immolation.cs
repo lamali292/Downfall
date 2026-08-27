@@ -26,7 +26,7 @@ public class Immolation : AwakenedCardModel, IOnDrained
 
     public Task OnDrained(PlayerChoiceContext ctx, Player player, int amount)
     {
-        if (player == Owner) EnergyCost.AddUntilPlayed(-amount*DynamicVars.Energy.IntValue);
+        if (player == Owner) EnergyCost.AddUntilPlayed(-amount * DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
 

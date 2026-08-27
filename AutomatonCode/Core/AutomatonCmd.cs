@@ -6,7 +6,6 @@ using Automaton.AutomatonCode.Relics;
 using Automaton.AutomatonCode.Vfx;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
-using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,14 +22,15 @@ public static class AutomatonCmd
     {
         return creature.GetRelic<ElectromagneticCoil>() == null ? 3 : 4;
     }
-    
-    /// <summary>
-    /// All Encodable cards available to the player. Automaton players draw only from
-    /// their own pool; other characters draw Encodable cards from every pool.
-    /// </summary>
-    public static IEnumerable<CardModel> GetEncodableCards(Player player, int amount) =>
-        DownfallCardCmd.GetSpecificCards<Automaton>(player, IsEncodable, amount);
 
+    /// <summary>
+    ///     All Encodable cards available to the player. Automaton players draw only from
+    ///     their own pool; other characters draw Encodable cards from every pool.
+    /// </summary>
+    public static IEnumerable<CardModel> GetEncodableCards(Player player, int amount)
+    {
+        return DownfallCardCmd.GetSpecificCards<Automaton>(player, IsEncodable, amount);
+    }
 
 
     public static async Task<FunctionCard?> EncodeCard(

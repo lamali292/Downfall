@@ -13,7 +13,7 @@ public class BuggyMess : AutomatonCardModel, IEncodable
     public BuggyMess() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithEnergyTip();
-        this.WithTip<Dazed>();
+        WithTip<Dazed>();
         WithCostUpgradeBy(-1);
         WithEnergy(1);
         WithVar("Dazed", 1);

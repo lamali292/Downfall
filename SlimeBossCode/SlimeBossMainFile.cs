@@ -1,6 +1,5 @@
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using SlimeBoss.SlimeBossCode.Patches;
@@ -24,7 +23,7 @@ public static class SlimeBossMainFile
             .Add(typeof(SlimeDeathPatches))
             .Add(typeof(SlimeHoverTipPatch))
             .PatchAll();
-        
+
         FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterSerpentForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterReaperForm<Core.SlimeBoss>("hat");

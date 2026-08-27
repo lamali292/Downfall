@@ -13,7 +13,7 @@
         <IsPublishAll>true</IsPublishAll>
 
         <ModOutputFolder>Downfall</ModOutputFolder>
-        
+
         <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
 
         <PackFolders>$(Submods)</PackFolders>
@@ -33,44 +33,44 @@
          files) gated by whether it's in $(Submods). To add a new submod,
          add one block. To (de)select for a build, edit Submods in local.props. -->
     <ItemGroup Condition="$(Submods.Contains('Downfall'))">
-        <Compile Include="DownfallCode/**/*.cs" />
-        <AdditionalFiles Include="Downfall/localization/**/*.json" />
+        <Compile Include="DownfallCode/**/*.cs"/>
+        <AdditionalFiles Include="Downfall/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Automaton'))">
-        <Compile Include="AutomatonCode/**/*.cs" />
-        <AdditionalFiles Include="Automaton/localization/**/*.json" />
+        <Compile Include="AutomatonCode/**/*.cs"/>
+        <AdditionalFiles Include="Automaton/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Awakened'))">
-        <Compile Include="AwakenedCode/**/*.cs" />
-        <AdditionalFiles Include="Awakened/localization/**/*.json" />
+        <Compile Include="AwakenedCode/**/*.cs"/>
+        <AdditionalFiles Include="Awakened/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Champ'))">
-        <Compile Include="ChampCode/**/*.cs" />
-        <AdditionalFiles Include="Champ/localization/**/*.json" />
+        <Compile Include="ChampCode/**/*.cs"/>
+        <AdditionalFiles Include="Champ/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Guardian'))">
-        <Compile Include="GuardianCode/**/*.cs" />
-        <AdditionalFiles Include="Guardian/localization/**/*.json" />
+        <Compile Include="GuardianCode/**/*.cs"/>
+        <AdditionalFiles Include="Guardian/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Hexaghost'))">
-        <Compile Include="HexaghostCode/**/*.cs" />
-        <AdditionalFiles Include="Hexaghost/localization/**/*.json" />
+        <Compile Include="HexaghostCode/**/*.cs"/>
+        <AdditionalFiles Include="Hexaghost/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Hermit'))">
-        <Compile Include="HermitCode/**/*.cs" />
-        <AdditionalFiles Include="Hermit/localization/**/*.json" />
+        <Compile Include="HermitCode/**/*.cs"/>
+        <AdditionalFiles Include="Hermit/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('SlimeBoss'))">
-        <Compile Include="SlimeBossCode/**/*.cs" />
-        <AdditionalFiles Include="SlimeBoss/localization/**/*.json" />
+        <Compile Include="SlimeBossCode/**/*.cs"/>
+        <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Snecko'))">
-        <Compile Include="SneckoCode/**/*.cs" />
-        <AdditionalFiles Include="Snecko/localization/**/*.json" />
+        <Compile Include="SneckoCode/**/*.cs"/>
+        <AdditionalFiles Include="Snecko/localization/**/*.json"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Collector'))">
-        <Compile Include="CollectorCode/**/*.cs" />
-        <AdditionalFiles Include="Collector/localization/**/*.json" />
+        <Compile Include="CollectorCode/**/*.cs"/>
+        <AdditionalFiles Include="Collector/localization/**/*.json"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -78,7 +78,7 @@
     </ItemGroup>
 
     <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
-        <Message Text="Building submods: '$(Submods)'" Importance="high" />
+        <Message Text="Building submods: '$(Submods)'" Importance="high"/>
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">

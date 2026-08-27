@@ -6,7 +6,6 @@ using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -32,7 +31,7 @@ public static class ChampMainFile
         ChampSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-        
+
         FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
         FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");
         FormBoneRegistry.RegisterReaperForm<Core.Champ>("Neck");

@@ -93,7 +93,10 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         return null;
     }
 
-    public static bool HasDisplay(Player player) => IsInstanceValid(Displays[player]);
+    public static bool HasDisplay(Player player)
+    {
+        return IsInstanceValid(Displays[player]);
+    }
 
     public override void _ExitTree()
     {

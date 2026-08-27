@@ -4,7 +4,6 @@ using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -14,7 +13,7 @@ public class SlitherThrough : SneckoCardModel, IHasGift
 {
     public SlitherThrough() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon
         });

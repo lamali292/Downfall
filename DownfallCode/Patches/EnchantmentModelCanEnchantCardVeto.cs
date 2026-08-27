@@ -13,10 +13,6 @@ public static class EnchantmentModelCanEnchantCardVeto
         if (!__result) return;
         if (card is IEnchantRestrictedCard restricted &&
             !restricted.CanBeEnchantedWith(__instance))
-        {
             __result = false;
-        }
     }
 }
-
-

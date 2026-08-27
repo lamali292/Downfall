@@ -16,7 +16,7 @@ public class StickyShield : AutomatonCardModel
     {
         WithBlock(9, 3);
         WithKeywords(CardKeyword.Retain);
-        this.WithTip<Slimed>();
+        WithTip<Slimed>();
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

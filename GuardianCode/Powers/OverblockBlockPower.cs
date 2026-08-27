@@ -1,7 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using BaseLib.Patches.Localization;
-using Downfall.DownfallCode.DynamicVars;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Events;
@@ -9,7 +7,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -23,9 +20,8 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange,
         WithTip(StaticHoverTip.Block);
         WithPower<ThornsPower>(0);
     }
-    
+
     private int ThornsAmount => DynamicVars.Power<ThornsPower>().IntValue;
-    public string GetSecondAmount() => $"{ThornsAmount}";
 
     public async Task AfterGuardianModeChange(PlayerChoiceContext ctx, Player player, GuardianModeModel oldMode,
         GuardianModeModel newMode)
@@ -40,6 +36,11 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange,
         if (target == null) return;
         await CreatureCmd.GainBlock(target.Creature, Amount, BlockProps.nonCardUnpowered, null);
         await PowerCmd.Apply<ThornsPower>(ctx, target.Creature, ThornsAmount, Owner, null);
+    }
+
+    public string GetSecondAmount()
+    {
+        return $"{ThornsAmount}";
     }
 
 

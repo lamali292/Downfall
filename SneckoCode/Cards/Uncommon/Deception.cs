@@ -20,8 +20,8 @@ public class Deception : SneckoCardModel
     {
         WithBlock(8, 3);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<WeakPower>();
-        this.WithTip<VulnerablePower>();
+        WithTip<WeakPower>();
+        WithTip<VulnerablePower>();
         WithTip(DownfallTip.Offclass);
         WithCalculatedVar("CalculatedPower", 1, Calc);
     }
@@ -29,9 +29,10 @@ public class Deception : SneckoCardModel
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         return CombatManager.Instance.History.CardPlaysFinished.Count(e =>
-            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState) && DownfallCmd.IsOffclass(e.CardPlay.Card));
+            e.Actor == card.Owner.Creature && e.HappenedThisTurn(card.CombatState) &&
+            DownfallCmd.IsOffclass(e.CardPlay.Card));
     }
-    
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

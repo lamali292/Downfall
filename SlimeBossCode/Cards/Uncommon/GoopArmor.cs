@@ -13,7 +13,7 @@ public class GoopArmor : SlimeBossCardModel
 {
     public GoopArmor() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<GoopArmorPower>(3, 1, false);
+        WithPower<GoopArmorPower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
         WithTip(SlimeBossTip.Consume);
     }

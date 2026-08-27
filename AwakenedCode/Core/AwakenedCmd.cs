@@ -1,5 +1,4 @@
 ﻿using Awakened.AwakenedCode.Cards.Uncommon;
-using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
@@ -24,7 +23,7 @@ public static class AwakenedCmd
     {
         return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
     }
-    
+
     public static void RefreshSpellbook(Player player)
     {
         GetSpellbook(player).Refresh(player);
@@ -94,11 +93,8 @@ public static class AwakenedCmd
         Player player)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = AwakenedCmd.GetSpellbook(player);
-        while (spellbook.NextSpell == null)
-        {
-            spellbook.SetNextSpell(player);   
-        }
+        var spellbook = GetSpellbook(player);
+        while (spellbook.NextSpell == null) spellbook.SetNextSpell(player);
         var spell = spellbook.NextSpell;
         if (spell == null) return null;
         return await ConjureSpell(player, spell, spellbook);
@@ -127,13 +123,10 @@ public static class AwakenedCmd
             PileType.Hand,
             player);
 
-        if (spellbook.Cards.Count == 0)
-        {
-            RefreshSpellbook(player);
-        }
+        if (spellbook.Cards.Count == 0) RefreshSpellbook(player);
 
         spellbook.SetNextSpell(player);
-        
+
         Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
         //AwakenedDisplay.RefreshSpellDisplays(player);
         return spell;

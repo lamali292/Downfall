@@ -33,7 +33,8 @@ internal class CombatPilesContainerPatch
     private static void AnimInAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            if (btn.Visible) btn.AnimIn();
+            if (btn.Visible)
+                btn.AnimIn();
     }
 
     [HarmonyPostfix]

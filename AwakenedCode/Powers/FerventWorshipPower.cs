@@ -15,7 +15,8 @@ public class FerventWorshipPower : AwakenedPowerModel
         WithTip<StrengthPower>();
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return;
         await PowerCmd.Apply<StrengthPower>(new BlockingPlayerChoiceContext(), Owner, -Amount, Owner, null);

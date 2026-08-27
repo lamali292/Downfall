@@ -1,5 +1,3 @@
-using BaseLib.Audio;
-
 using MegaCrit.Sts2.Core.Commands;
 
 namespace Hermit.HermitCode.Utils;

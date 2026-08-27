@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
 
@@ -14,12 +13,12 @@ public class SerpentsNest : SneckoCardModel, IHasGift
 {
     public SerpentsNest() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             Rarity = CardRarity.Uncommon,
             Type = CardType.Power
         });
-        this.WithPower<SerpentsNestPower>(7, 3, false);
+        WithPower<SerpentsNestPower>(7, 3, false);
     }
 
     public Gift? Gift { get; set; }

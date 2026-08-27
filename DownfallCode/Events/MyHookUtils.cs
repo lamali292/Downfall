@@ -22,17 +22,15 @@ public static class MyHookUtils
         /// Run-level: hooks on things that live across the whole run, plus combat models when
         /// in combat.
         Run,
- 
+
         /// Combat-level, the normal choice. Runs combat hooks, but skips everything once combat
         /// has started ending (someone won/lost) so hooks don't fire on an already-finished
         /// combat. Combat setup is exempt. Hooks still fire while combat is starting.
         Combat,
- 
+
         /// Combat-level, but without the "is combat ending?" check. hooks fire even while combat
         /// is ending. Important for on kill/death/combat-end logic that needs to run during that window.
-        CombatRaw,
-
-
+        CombatRaw
     }
 
     private static IEnumerable<AbstractModel> ResolveListeners(
@@ -50,7 +48,6 @@ public static class MyHookUtils
     }
 
 
-
     /// <summary>
     ///     Dispatches an action to all hook listeners of type <typeparamref name="THook" />.
     ///     No-op when <paramref name="combatState" /> is <see langword="null" /> (outside combat).
@@ -58,7 +55,10 @@ public static class MyHookUtils
     /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="action">The async action to invoke on each matching listener.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task Dispatch<THook>(ICombatState? combatState, Func<THook, Task> action,
         HookScope scope = HookScope.Combat, IRunState? runState = null)
@@ -69,14 +69,14 @@ public static class MyHookUtils
     }
 
 
-
     /// <summary>
     ///     Dispatches an action to all combat hook listeners of type <typeparamref name="THook" />,
     ///     pushing and popping each listener onto the provided <see cref="PlayerChoiceContext" />.
     ///     Silently skips listeners that are not <see cref="AbstractModel" /> instances.
     ///     <para>
     ///         No-op when <paramref name="combatState" /> is <see langword="null" />. Unlike
-    ///         <see cref="DispatchWithContext{THook}(Player,Func{THook,PlayerChoiceContext,Task},HookScope,IRunState)" />, does not raise
+    ///         <see cref="DispatchWithContext{THook}(Player,Func{THook,PlayerChoiceContext,Task},HookScope,IRunState)" />,
+    ///         does not raise
     ///         <see cref="AbstractModel.InvokeExecutionFinished" /> — callers or listeners own that.
     ///     </para>
     /// </summary>
@@ -84,7 +84,10 @@ public static class MyHookUtils
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="ctx">The player choice context to push/pop each model onto.</param>
     /// <param name="action">The async action to invoke on each matching listener.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task Dispatch<THook>(ICombatState? combatState, PlayerChoiceContext ctx,
         Func<THook, Task> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
@@ -122,7 +125,10 @@ public static class MyHookUtils
     ///     The async action to invoke on each matching listener, receiving that listener's
     ///     <see cref="PlayerChoiceContext" />.
     /// </param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task DispatchWithContext<THook>(Player player,
         Func<THook, PlayerChoiceContext, Task> action,
@@ -151,14 +157,19 @@ public static class MyHookUtils
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="initial">The initial value for the aggregation.</param>
     /// <param name="action">A function that takes a listener and the current value and returns the new value.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     /// <returns>The final aggregated value after all listeners have been processed.</returns>
     public static TResult Aggregate<THook, TResult>(ICombatState? combatState, TResult initial,
         Func<THook, TResult, TResult> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
-        => ResolveListeners(scope, combatState, runState).OfType<THook>()
+    {
+        return ResolveListeners(scope, combatState, runState).OfType<THook>()
             .Aggregate(initial, (current, model) => action(model, current));
+    }
 
     /// <summary>
     ///     Returns <see langword="true" /> if all hook listeners of type <typeparamref name="THook" />
@@ -167,13 +178,17 @@ public static class MyHookUtils
     /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="predicate">The condition to test each listener against.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool All<THook>(ICombatState? combatState, Func<THook, bool> predicate,
         HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
-        => ResolveListeners(scope, combatState, runState).OfType<THook>().All(predicate);
-
+    {
+        return ResolveListeners(scope, combatState, runState).OfType<THook>().All(predicate);
+    }
 
 
     /// <summary>
@@ -188,7 +203,10 @@ public static class MyHookUtils
     ///     The listeners that did <b>not</b> satisfy the predicate; empty when the result is
     ///     <see langword="true" />.
     /// </param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool All<THook>(ICombatState? combatState, Func<THook, bool> predicate,
         out IEnumerable<THook> nonMatches, HookScope scope = HookScope.Combat, IRunState? runState = null)
@@ -207,12 +225,17 @@ public static class MyHookUtils
     /// <typeparam name="THook">The hook interface to filter listeners by.</typeparam>
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="predicate">The condition to test each listener against.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool Any<THook>(ICombatState? combatState, Func<THook, bool> predicate,
         HookScope scope = HookScope.Combat, IRunState? runState = null)
         where THook : class
-        => ResolveListeners(scope, combatState, runState).OfType<THook>().Any(predicate);
+    {
+        return ResolveListeners(scope, combatState, runState).OfType<THook>().Any(predicate);
+    }
 
     /// <summary>
     ///     Returns <see langword="true" /> if any hook listener of type <typeparamref name="THook" />
@@ -226,7 +249,10 @@ public static class MyHookUtils
     ///     All listeners that satisfied the predicate; empty when the result is
     ///     <see langword="false" />.
     /// </param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static bool Any<THook>(ICombatState? combatState, Func<THook, bool> predicate,
         out IEnumerable<THook> matches, HookScope scope = HookScope.Combat, IRunState? runState = null)
@@ -253,7 +279,10 @@ public static class MyHookUtils
     ///     excluded; listeners whose changes later cancel out are <b>included</b>, so this set can
     ///     be non-empty even when the returned value equals <paramref name="originalAmount" />.
     /// </param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     /// <returns>
     ///     The final modified value. When <paramref name="combatState" /> is
@@ -286,7 +315,9 @@ public static class MyHookUtils
 
     /// <summary>
     ///     Invokes a follow-up action on the listeners that previously modified a value via
-    ///     <see cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />, iterating in current hook-listener order (not the
+    ///     <see
+    ///         cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />
+    ///     , iterating in current hook-listener order (not the
     ///     order of <paramref name="modifiers" />). Listeners no longer present in the combat
     ///     state's iteration are silently skipped.
     ///     <see cref="AbstractModel.InvokeExecutionFinished" /> is raised after each action for
@@ -297,10 +328,15 @@ public static class MyHookUtils
     /// <param name="cs">The current combat state to iterate listeners from.</param>
     /// <param name="modifiers">
     ///     The set of listeners that modified the value, as returned by
-    ///     <see cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />.
+    ///     <see
+    ///         cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />
+    ///     .
     /// </param>
     /// <param name="action">The async action to invoke on each modifier.</param>
-    /// <param name="scope">Which listener population to iterate. Use the same scope that produced <paramref name="modifiers" />.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Use the same scope that produced
+    ///     <paramref name="modifiers" />.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     public static async Task AfterModifying<THook>(ICombatState? cs, IEnumerable<THook> modifiers,
         Func<THook, Task> action, HookScope scope = HookScope.Combat, IRunState? runState = null)
@@ -322,9 +358,14 @@ public static class MyHookUtils
     ///     exactly once (the enumeration is fully materialized); each returns
     ///     <see langword="true" /> to declare that it modified the value.
     ///     <para>
-    ///         Unlike <see cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />, modification tracking is
+    ///         Unlike
+    ///         <see
+    ///             cref="Modify{THook,TValue}(ICombatState,TValue,Func{THook,TValue,TValue},out IEnumerable{THook},HookScope,IRunState)" />
+    ///         , modification tracking is
     ///         <b>self-reported</b> — nothing verifies the value actually changed, so listeners
-    ///         must return honestly or the <see cref="AfterModifying{THook}(ICombatState,IEnumerable{THook},Func{THook,Task},HookScope,IRunState)" /> follow-up will
+    ///         must return honestly or the
+    ///         <see cref="AfterModifying{THook}(ICombatState,IEnumerable{THook},Func{THook,Task},HookScope,IRunState)" />
+    ///         follow-up will
     ///         target the wrong set. The same <paramref name="value" /> instance is returned;
     ///         it is passed back for call-site fluency, not copied.
     ///     </para>
@@ -337,7 +378,10 @@ public static class MyHookUtils
     ///     Invoked per listener with the shared instance; returns whether this listener modified it.
     /// </param>
     /// <param name="modifiers">The listeners that reported modifying the value.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     /// <returns>The same <paramref name="value" /> instance, after all listeners ran.</returns>
     public static TValue ModifyMutable<THook, TValue>(
@@ -354,7 +398,7 @@ public static class MyHookUtils
         modifiers = list;
         return value;
     }
-    
+
     /// <summary>
     ///     Projects each hook listener of type <typeparamref name="THook" /> into a value of
     ///     type <typeparamref name="TItem" /> and returns the resulting sequence.
@@ -363,7 +407,10 @@ public static class MyHookUtils
     /// <typeparam name="TItem">The type of elements collected from listeners.</typeparam>
     /// <param name="combatState">The current combat state to iterate listeners from.</param>
     /// <param name="collector">A function that extracts a value from a matching listener.</param>
-    /// <param name="scope">Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope behavior.</param>
+    /// <param name="scope">
+    ///     Which listener population to iterate. Pass <see cref="HookScope.Combat" /> for the pre-scope
+    ///     behavior.
+    /// </param>
     /// <param name="runState">Required only for <see cref="HookScope.Run" />; ignored otherwise.</param>
     /// <returns>A sequence containing the collected item from each matching listener.</returns>
     public static IEnumerable<TItem> Collect<THook, TItem>(

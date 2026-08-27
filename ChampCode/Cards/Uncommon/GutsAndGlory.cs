@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +12,7 @@ public class GutsAndGlory : ChampCardModel
 {
     public GutsAndGlory() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithGlory(4, 2);
+        WithGlory(4, 2);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

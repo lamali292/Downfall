@@ -14,7 +14,7 @@ public class Initiation : AwakenedCardModel
     public Initiation() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(11, 3);
-        this.WithTip<Ceremony>();
+        WithTip<Ceremony>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -13,8 +13,8 @@ public sealed class Determination : HermitCardModel
     public Determination() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        this.WithPower<DeterminationPower>(1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<DeterminationPower>(1, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

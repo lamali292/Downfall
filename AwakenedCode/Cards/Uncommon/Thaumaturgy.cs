@@ -15,8 +15,8 @@ public class Thaumaturgy : AwakenedCardModel
     public Thaumaturgy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(1);
-        this.WithPower<ThaumaturgyPower>(2, 1, false);
-        this.WithTip<Ceremony>();
+        WithPower<ThaumaturgyPower>(2, 1, false);
+        WithTip<Ceremony>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

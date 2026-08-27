@@ -14,7 +14,7 @@ public class FeatherFlare : AwakenedCardModel, IChantable
     public FeatherFlare() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 3);
-        this.WithPower<DrawCardsNextTurnPower>(1, false);
+        WithPower<DrawCardsNextTurnPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

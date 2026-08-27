@@ -13,7 +13,7 @@ public class StasisEngine : GuardianCardModel
     {
         WithEnergyTip();
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        this.WithPower<StasisEnginePower>(1, false);
+        WithPower<StasisEnginePower>(1, false);
     }
 
 

@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Piles;
 
@@ -19,7 +18,11 @@ public class AwakenedPile() : CustomPile(Spellbook)
     [CustomEnum] public static PileType Spellbook;
 
     private readonly List<CardModel> _dynamicTypes = [];
-    
+
+    private Type? _nextSpellType;
+
+    public CardModel? NextSpell { get; private set; }
+
 
     public void AddPersistentType(CardModel type)
     {
@@ -36,10 +39,6 @@ public class AwakenedPile() : CustomPile(Spellbook)
     {
         return NCustomCombatCardPile.GetPositionFor<NSpellbookButton>();
     }
-    
-    private Type? _nextSpellType;
-
-    public CardModel? NextSpell { get; private set; }
 
     public void SetNextSpell(Player player)
     {
@@ -69,7 +68,7 @@ public class AwakenedPile() : CustomPile(Spellbook)
 
         foreach (var type in _dynamicTypes)
             CreateAndAddSpell(owner, state, type);
-        
+
         if (previousType == null) return;
         NextSpell = Cards.FirstOrDefault(c => c.GetType() == previousType);
         _nextSpellType = NextSpell?.GetType();

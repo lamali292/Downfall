@@ -14,7 +14,7 @@ public sealed class Combo : HermitCardModel
     public Combo() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(HermitKeywords.DeadOn);
-        this.WithPower<ComboPower>(1, 1, false);
+        WithPower<ComboPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

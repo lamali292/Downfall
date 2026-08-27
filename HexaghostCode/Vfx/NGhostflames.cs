@@ -26,7 +26,11 @@ internal static class GhostflameLayout
 
     public static readonly Vector2 HitboxSize = new(80, 80);
 
-    /// Position of fire <paramref name="index"/> on a wheel of <paramref name="count"/> flames.
+    /// Position of fire
+    /// <paramref name="index" />
+    /// on a wheel of
+    /// <paramref name="count" />
+    /// flames.
     public static Vector2 FirePosition(int index, int count)
     {
         if (count <= 0) return Vector2.Zero;
@@ -36,29 +40,40 @@ internal static class GhostflameLayout
             -WheelRadius * Mathf.Sin(angle)); // screen y is down
     }
 
-    /// Target wheel rotation that brings <paramref name="fireIndex"/> to the top.
+    /// Target wheel rotation that brings
+    /// <paramref name="fireIndex" />
+    /// to the top.
     public static double WheelRotation(int fireIndex, int count)
     {
         if (count <= 0) return 0.0;
         return -(fireIndex - 0.5) * Mathf.Tau / count;
     }
 
-    /// Shortest-path rotation from <paramref name="current"/> to the target for a flame.
+    /// Shortest-path rotation from
+    /// <paramref name="current" />
+    /// to the target for a flame.
     public static float ShortestRotationTo(float current, double target)
     {
         var diff = Mathf.AngleDifference(current, (float)target);
         return current + diff;
     }
 
-    public static float IntentAlpha(int index, int currentIndex) => index == currentIndex ? 1f : 0f;
+    public static float IntentAlpha(int index, int currentIndex)
+    {
+        return index == currentIndex ? 1f : 0f;
+    }
 
     /// Where a fire's intent icon sits relative to the fire, given the current scale.
     public static Vector2 IntentOffset(float scaleX, float scaleY)
-        => Vector2.Up * 130f * scaleY + Vector2.Left * 33f * scaleX;
+    {
+        return Vector2.Up * 130f * scaleY + Vector2.Left * 33f * scaleX;
+    }
 
     /// Fallback ring centre when the HexaghostScene node can't be found.
     public static Vector2 FallbackCenter(Vector2 creatureGlobal, float scaleY)
-        => creatureGlobal + Vector2.Up * 170f * scaleY;
+    {
+        return creatureGlobal + Vector2.Up * 170f * scaleY;
+    }
 
     public static float ExtraScale(float creatureScale, float containerScale, float tempScale)
     {
@@ -73,30 +88,29 @@ internal static class GhostflameLayout
 // ─────────────────────────────────────────────────────────────────────────────
 public partial class NGhostflames : Control
 {
-    private static string FireScenePath => "res://Hexaghost/scenes/character/hexaghost_flame.tscn";
+    private NCreature? _creatureNode;
+    private GhostflameModel[]? _currentWheel;
+    private bool _dead; // FadeOutOnDeath ran and no revive yet — suppresses invariant reset
+    private Tween? _fadeTween;
 
     // Built lazily/idempotently from the wheel length, never assumed to be 6.
     private NFire?[] _fires = [];
-    private NIntent?[] _intents = [];
+
+    private PackedScene? _fireScene;
+    private Node2D? _hexaCenter; // %HexaghostScene inside the creature visuals — the ring's centre
     private Node2D?[] _hitboxAnchors = [];
     private Control?[] _hitboxes = [];
-    private NSelectionReticle?[] _reticles = [];
-    private List<Control> _reachableHitboxes = [];
-
-    private NCreature? _creatureNode;
-    private Node2D? _hexaCenter; // %HexaghostScene inside the creature visuals — the ring's centre
-    private Control? _vfxContainer;
-    private GhostflameModel[]? _currentWheel;
+    private NIntent?[] _intents = [];
+    private Tween? _intentTween;
+    private bool _loggedTrackState;
     private Player? _player;
 
     private Tween? _positionTween;
-    private Tween? _intentTween;
-    private Tween? _fadeTween;
-
-    private PackedScene? _fireScene;
-    private bool _dead;            // FadeOutOnDeath ran and no revive yet — suppresses invariant reset
-    private bool _loggedTrackState;
+    private List<Control> _reachableHitboxes = [];
+    private NSelectionReticle?[] _reticles = [];
     private double _ungatedProcessTime; // seconds _Process has early-returned for want of Track
+    private Control? _vfxContainer;
+    private static string FireScenePath => "res://Hexaghost/scenes/character/hexaghost_flame.tscn";
 
     private ulong Id => GetInstanceId();
 
@@ -118,7 +132,7 @@ public partial class NGhostflames : Control
 
         var count = HexaghostModel.Wheel.Get(player)?.Length ?? 0;
         HexaghostMainFile.Logger.Info($"[Ghostflames #{root.Id}] Create: wheel count={count}");
-        
+
         root.EnsureBuilt(count);
         return root;
     }
@@ -144,7 +158,7 @@ public partial class NGhostflames : Control
 
         if (_fires.Length == count && _fires.All(f => f != null && IsInstanceValid(f)))
             return; // already correct
-        
+
         TearDownBuilt();
 
         _fireScene ??= ResourceLoader.Load<PackedScene>(FireScenePath);
@@ -176,7 +190,7 @@ public partial class NGhostflames : Control
         DownfallControllerNav.WireChain(_reachableHitboxes, true);
 
         // A fresh build is a fresh combat presentation — clear any stale death state.
-        ResetVisibilityInvariants(force: true);
+        ResetVisibilityInvariants(true);
 
         // Re-link controller nav if we already know the creature.
         if (_creatureNode != null && IsInstanceValid(_creatureNode))
@@ -257,7 +271,7 @@ public partial class NGhostflames : Control
         if (_dead && !force) return;
         _dead = false;
         _fadeTween?.Kill();
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 1f);
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B);
         SetHitboxesEnabled(true);
     }
 
@@ -275,7 +289,7 @@ public partial class NGhostflames : Control
         _creatureNode = creatureNode;
         _vfxContainer = vfxContainer;
         _ungatedProcessTime = 0;
-        
+
         _hexaCenter = creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
         if (_hexaCenter == null)
             HexaghostMainFile.Logger.Warn(
@@ -307,10 +321,10 @@ public partial class NGhostflames : Control
             .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.In)
             .Finished += () =>
-            {
-                _dead = false;
-                SetHitboxesEnabled(true);
-            };
+        {
+            _dead = false;
+            SetHitboxesEnabled(true);
+        };
     }
 
     // ── Per-frame ───────────────────────────────────────────────────────────────
@@ -327,6 +341,7 @@ public partial class NGhostflames : Control
                     $"creature={_creatureNode != null}, vfx={_vfxContainer != null}");
             return;
         }
+
         _ungatedProcessTime = 0;
 
         if (!IsInstanceValid(_creatureNode))
@@ -352,10 +367,7 @@ public partial class NGhostflames : Control
 
         Position = _vfxContainer.GetGlobalTransform().AffineInverse() * globalCenter;
 
-        if (!_loggedTrackState)
-        {
-            _loggedTrackState = true;
-        }
+        if (!_loggedTrackState) _loggedTrackState = true;
 
         var intentOffset = GhostflameLayout.IntentOffset(scaleX, scaleY);
         for (var i = 0; i < _fires.Length; i++)

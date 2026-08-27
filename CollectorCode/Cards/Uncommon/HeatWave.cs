@@ -14,7 +14,7 @@ public class HeatWave : CollectorCardModel
     public HeatWave() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithDamage(5, 3);
-        this.WithTip<Ember>();
+        WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

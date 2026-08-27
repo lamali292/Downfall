@@ -16,6 +16,8 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class VictoriousCrown : ChampRelicModel, IOnFinisher
 {
+    private CardPlay? _triggeringCardPlay;
+    private bool _usedThisTurn;
 
     public VictoriousCrown() : base(RelicRarity.Starter)
     {
@@ -24,9 +26,6 @@ public class VictoriousCrown : ChampRelicModel, IOnFinisher
         WithTip(ChampTip.Finisher);
         WithCards(1);
     }
-    
-    private CardPlay? _triggeringCardPlay;
-    private bool _usedThisTurn;
 
     public async Task OnFinisher(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

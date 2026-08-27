@@ -12,7 +12,7 @@ public sealed class Horror : HermitCardModel
     public Horror() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithPower<BruisePower>(3, 2);
-        this.WithPower<HorrorPower>(1, false);
+        WithPower<HorrorPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

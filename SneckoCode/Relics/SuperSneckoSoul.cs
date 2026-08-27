@@ -27,10 +27,7 @@ public class SuperSneckoSoul : SneckoRelicModel
         if (player != Owner) return;
         if (player.PlayerCombatState == null) return;
         var turnNumber = player.PlayerCombatState.TurnNumber;
-        if (turnNumber  == 1)
-        {
-            await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
-        }
+        if (turnNumber == 1) await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
         var card = await CardPileCmd.Draw(ctx, Owner);
         if (card == null) return;
         await SneckoCmd.Muddle(ctx, card, this);

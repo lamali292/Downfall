@@ -7,7 +7,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -41,6 +40,8 @@ public static class AutomatonMainFile
     private static void PostModelInit()
     {
         // todo: use actual stash pile icon.
-        MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash, "res://Automaton/images/character/character_icon.png", new LocString("card_selection", "AUTOMATON-STASH_PILE"));
+        MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash,
+            "res://Automaton/images/character/character_icon.png",
+            new LocString("card_selection", "AUTOMATON-STASH_PILE"));
     }
 }

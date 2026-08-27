@@ -14,7 +14,7 @@ public class CleanCode : AutomatonCardModel
 {
     public CleanCode() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<CleanCodePower>(1, 1, false);
+        WithPower<CleanCodePower>(1, 1, false);
         WithTip(AutomatonTip.Stash);
     }
 

@@ -19,7 +19,8 @@ public static class MyCommonActions
     public static Task<T?> ApplySelf<T>(PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
-        return PowerCmd.Apply<T>(ctx, model.Creature,  model.DynamicVars.Power<T>().BaseValue, model.Creature, model as CardModel);
+        return PowerCmd.Apply<T>(ctx, model.Creature, model.DynamicVars.Power<T>().BaseValue, model.Creature,
+            model as CardModel);
     }
 
     public static Task Block(AbstractModel model, CardPlay? play = null)
@@ -61,24 +62,25 @@ public static class MyCommonActions
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
         await CompatibilityCreatureCmd.Damage(ctx, targets, model.DynamicVars.HpLoss.BaseValue,
-            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.Creature, model as CardModel, null);
+            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.Creature, model as CardModel,
+            null);
     }
 
     public static async Task<IReadOnlyList<T>> AutoApply<T>(
         PlayerChoiceContext ctx, AbstractModel model, Creature? target = null)
         where T : PowerModel
     {
-       return await Apply<T>(ctx, model, model.MyGetTargets(target).ToList());
+        return await Apply<T>(ctx, model, model.MyGetTargets(target).ToList());
     }
-    
+
     public static async Task<IReadOnlyList<T>> ApplyToAllEnemies<T>(
         PlayerChoiceContext ctx, AbstractModel model)
         where T : PowerModel
     {
         return await Apply<T>(ctx, model, model.Creature.CombatState?.HittableEnemies);
     }
-    
-    
+
+
     public static async Task<IReadOnlyList<T>> Apply<T>(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature>? targets)
         where T : PowerModel
@@ -87,7 +89,7 @@ public static class MyCommonActions
         return await PowerCmd.Apply<T>(ctx, targets,
             model.DynamicVars.Power<T>().BaseValue, model.Creature, model as CardModel);
     }
-    
+
     public static async Task<T?> Apply<T>(
         PlayerChoiceContext ctx, AbstractModel model, Creature? target)
         where T : PowerModel
@@ -159,7 +161,7 @@ public static class MyCommonActions
         cmd._sourceType = AttackCommand.SourceType.Card;
         return cmd;
     }
-    
+
     public static async Task<IEnumerable<CardModel>> Draw(AbstractModel card, PlayerChoiceContext context)
     {
         var player = card.Creature.Player;

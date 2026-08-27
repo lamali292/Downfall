@@ -2,7 +2,6 @@
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
-using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;

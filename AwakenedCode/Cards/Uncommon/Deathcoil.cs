@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -16,7 +15,7 @@ public class Deathcoil : AwakenedCardModel
     public Deathcoil() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<ManaburnPower>(8, 3);
-        this.WithDrained(1);
+        WithDrained(1);
     }
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();

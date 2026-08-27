@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +13,7 @@ public class ProtectiveAura : ChampCardModel
 {
     public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ProtectiveAuraPower>(5, 2, false);
+        WithPower<ProtectiveAuraPower>(5, 2, false);
         WithTip(StaticHoverTip.Block);
         // WithTip(ChampTip.Stance);
     }

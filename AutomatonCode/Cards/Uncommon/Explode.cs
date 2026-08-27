@@ -18,7 +18,7 @@ public class Explode : AutomatonCardModel, IEncodable, ICompilable
     {
         WithCards(1);
         WithPower<SoulBurnPower>(15, 5);
-        this.WithTip<Burn>();
+        WithTip<Burn>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

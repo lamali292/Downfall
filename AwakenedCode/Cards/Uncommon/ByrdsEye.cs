@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -14,7 +13,7 @@ public class ByrdsEye : AwakenedCardModel
 {
     public ByrdsEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithConjure();
+        WithConjure();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -9,7 +9,7 @@ public class LongShadows : HermitCardModel
 {
     public LongShadows() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<LongShadowsPower>(1, false);
+        WithPower<LongShadowsPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

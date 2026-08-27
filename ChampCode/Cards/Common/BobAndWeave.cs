@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +14,7 @@ public class BobAndWeave : ChampCardModel
     {
         WithBlock(4, 2);
         WithPower<VigorPower>(4, 1);
-        this.WithEnterBerserker();
+        WithEnterBerserker();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -12,7 +12,7 @@ public class CrowdFavoritePower : ChampPowerModel
     {
         WithTip<VigorPower>();
     }
-    
+
     public override Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (command.Attacker is not { IsPlayer: true } || command.Attacker == Owner)

@@ -12,8 +12,8 @@ public class Recklessness : SlimeBossCardModel
 {
     public Recklessness() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<FlameTacklePower>(7, 4, false);
-        this.WithPower<RecklessnessPower>(1, false);
+        WithPower<FlameTacklePower>(7, 4, false);
+        WithPower<RecklessnessPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

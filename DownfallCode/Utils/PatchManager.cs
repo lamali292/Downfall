@@ -67,7 +67,6 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
-        
 
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait

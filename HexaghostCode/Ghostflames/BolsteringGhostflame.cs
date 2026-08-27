@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Extensions;
@@ -19,8 +18,8 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 
 public class BolsteringGhostflame : GhostflameModel
 {
-    public override AbstractIntent Intent => new BolsteringIntent(
-        () => DynamicVars.GhostflameBlock);
+    public override AbstractIntent Intent => new BolsteringIntent(() => DynamicVars.GhostflameBlock);
+
     protected override int IgnitionRequirement => 1;
 
     public override FireColor FireColor => FireColor.Blue;
@@ -37,7 +36,7 @@ public class BolsteringGhostflame : GhostflameModel
         HoverTipFactory.Static(StaticHoverTip.Block),
         HoverTipFactory.FromPower<StrengthPower>()
     ];
-    
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
@@ -49,11 +48,12 @@ public class BolsteringGhostflame : GhostflameModel
             await CreatureCmd.GainBlock(Owner.Creature, block, BlockProps.nonCardUnpowered, null);
             await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
         }
-           
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Power);
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Power);
+    }
 
     public override bool AboutToIgnite(CardModel card)
     {

@@ -28,7 +28,11 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
                 : [HoverTipFactory.Static(AwakenedTip.Chant)]
             : []);
     }
-    
+
+    protected override bool ShouldGlowGoldInternal => this is IChantable chantable &&
+                                                      (AwakenedCmd.WasLastCardPlayedPower(this) ||
+                                                       chantable.HasChanted);
+
     public ConstructedCardModel WithConjure(Func<CardModel, bool>? a = null)
     {
         if (a == null)
@@ -46,8 +50,4 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
         WithEnergy(baseVal, upgrade);
         return this;
     }
-
-    protected override bool ShouldGlowGoldInternal => this is IChantable chantable &&
-                                                      (AwakenedCmd.WasLastCardPlayedPower(this) ||
-                                                       chantable.HasChanted);
 }

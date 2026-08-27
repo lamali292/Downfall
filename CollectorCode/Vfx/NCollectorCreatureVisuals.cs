@@ -9,11 +9,44 @@ namespace Collector.CollectorCode.Vfx;
 [GlobalClass]
 public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
+    private const float DefaultMix = 0.2f;
+    private const float ToIdleMix = 0.35f;
+    private const float AttackMix = 0.1f;
+    private const float CastMix = 0.1f;
+    private const float HitMix = 0.05f;
+    private const float DeadMix = 0.35f;
+
+    private MegaAnimationState? _animState;
     private bool _eyeSetupDone;
     private Control? _leftEye;
     private MegaBone? _leftEyeBone;
     private Control? _rightEye;
     private MegaBone? _rightEyeBone;
+
+
+    private string IdleAnim => "idle";
+    private string AttackAnim => "attack";
+    private string CastAnim => "cast";
+    private string HitAnim => "Hit";
+    private string DeadAnim => "die";
+
+    public void OnAnimationTrigger(string trigger)
+    {
+        switch (trigger)
+        {
+            case "Idle":
+                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
+                break;
+            case "Hit":
+                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Attack":
+            case "Dead":
+            case "Cast":
+                break;
+        }
+    }
 
     public override void _Ready()
     {
@@ -40,7 +73,7 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
 
         _animState = SpineBody?.GetAnimationState();
         _animState?.SetAnimationCompat(IdleAnim);
-        
+
         _rightEye = GetNodeOrNull<Control>("Visuals/RightEye");
         _leftEye = GetNodeOrNull<Control>("Visuals/LeftEye");
 
@@ -77,38 +110,5 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
         var wx = bone.BoundObject.Call("get_world_x").As<float>();
         var wy = bone.BoundObject.Call("get_world_y").As<float>();
         eye.Position = new Vector2(wx * 0.7f + 52, wy - 60);
-    }
-
-    private MegaAnimationState? _animState;
-    
-    
-    private string IdleAnim => "idle";
-    private string AttackAnim => "attack";
-    private string CastAnim => "cast";
-    private string HitAnim => "Hit";
-    private string DeadAnim => "die";
-    private const float DefaultMix = 0.2f;
-    private const float ToIdleMix = 0.35f;
-    private const float AttackMix = 0.1f;
-    private const float CastMix = 0.1f;
-    private const float HitMix = 0.05f;
-    private const float DeadMix = 0.35f;
-    
-    public void OnAnimationTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case "Idle":
-                _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
-                break;
-            case "Hit":
-                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
-                break;
-            case "Attack":
-            case "Dead":
-            case "Cast":
-                break;
-        }
     }
 }

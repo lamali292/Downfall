@@ -29,19 +29,30 @@ public static class HermitCmd
         return cardIndex == handSize / 2;
     }
 
-    public static bool IsInDeadOnState(CardModel card) => (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
-                                                          (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
+    public static bool IsInDeadOnState(CardModel card)
+    {
+        return (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
+               (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
+    }
 
 
-    private static bool WasThisPlayedDeadOn(CardModel card) => DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
+    private static bool WasThisPlayedDeadOn(CardModel card)
+    {
+        return DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
+    }
 
-    public static bool IsAdjacentToCurse(CardModel card) => (card.Pile?.Type == PileType.Hand && IsAdjacentToCurseInCurrentHandState(card)) ||
-                                                            (card.Pile?.Type == PileType.Play && WasThisPlayedAdjacentToCurse(card));
+    public static bool IsAdjacentToCurse(CardModel card)
+    {
+        return (card.Pile?.Type == PileType.Hand && IsAdjacentToCurseInCurrentHandState(card)) ||
+               (card.Pile?.Type == PileType.Play && WasThisPlayedAdjacentToCurse(card));
+    }
 
-    private static bool WasThisPlayedAdjacentToCurse(CardModel card) =>
-        DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasAdjacentToCurse;
+    private static bool WasThisPlayedAdjacentToCurse(CardModel card)
+    {
+        return DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasAdjacentToCurse;
+    }
 
-    
+
     public static bool IsAdjacentToCurseInCurrentHandState(CardModel cardModel)
     {
         var hand = PileType.Hand.GetPile(cardModel.Owner).Cards.ToList();
@@ -52,12 +63,12 @@ public static class HermitCmd
         var rightIsCurse = idx < hand.Count - 1 && hand[idx + 1].Type == CardType.Curse;
         return leftIsCurse || rightIsCurse;
     }
-    
+
     public static bool HasActiveDeadOnEffect(CardModel card)
     {
         return IsInDeadOnState(card) && HasDeadOn(card);
     }
-    
+
     public static bool HasDeadOn(CardModel card)
     {
         return card is IHasDeadOnEffect ||
@@ -82,6 +93,4 @@ public static class HermitCmd
         CombatManager.Instance.History.Add(combatState, entry);
         await HermitHook.AfterDeadOnTrigger(combatState, ctx, card, cardPlay);
     }
-
-  
 }

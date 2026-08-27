@@ -15,7 +15,7 @@ public class Darkstorm : CollectorCardModel
     {
         WithCards(2, 2);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<Blightning>();
+        WithTip<Blightning>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

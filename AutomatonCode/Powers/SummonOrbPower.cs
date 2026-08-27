@@ -13,7 +13,8 @@ public class SummonOrbPower : AutomatonPowerModel
     private int PlayedThisTurn => CombatManager.Instance.History.CardPlaysStarted
         .Count(e => e.Actor == Owner && IsCardWeWant(e.CardPlay) && e.HappenedThisTurn(CombatState));
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
@@ -28,7 +29,7 @@ public class SummonOrbPower : AutomatonPowerModel
         if (!IsCardWeWant(cardPlay)) return;
         if (PlayedThisTurn > Amount) return;
         InvokeDisplayAmountChanged();
-        if (StashCmd.IsFull(cardPlay.Card.Owner)) { return;}
+        if (StashCmd.IsFull(cardPlay.Card.Owner)) return;
         await StashCmd.Stash(ctx, cardPlay.Card);
         //Flash();
     }
@@ -36,8 +37,8 @@ public class SummonOrbPower : AutomatonPowerModel
     private bool IsCardWeWant(CardPlay cardPlay)
     {
         var card = cardPlay.Card;
-        return cardPlay.IsFirstInSeries && 
-               card.Type is CardType.Attack or CardType.Skill && 
+        return cardPlay.IsFirstInSeries &&
+               card.Type is CardType.Attack or CardType.Skill &&
                !card.Keywords.Contains(CardKeyword.Exhaust) &&
                !AutomatonCmd.IsEncodable(card);
     }

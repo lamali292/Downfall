@@ -12,7 +12,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 
 namespace Hexaghost.HexaghostCode.Ghostflames;
@@ -23,6 +22,7 @@ public class OffclassSearingGhostflame : GhostflameModel
 
     public override FireColor FireColor => FireColor.Yellow;
     public override bool IsOffclass => true;
+
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
         () => DynamicVars.GhostflameSoulburn,
         2 * Repeat(GhostflameRepeatType.Soulburn)
@@ -33,13 +33,13 @@ public class OffclassSearingGhostflame : GhostflameModel
         new GhostflameSoulburnVar(2)
     ];
 
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(DownfallTip.Offclass),
         HoverTipFactory.FromPower<SoulBurnPower>()
     ];
-    
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
@@ -50,10 +50,13 @@ public class OffclassSearingGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Attack, DownfallCmd.IsOffclass);
-    
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Attack, DownfallCmd.IsOffclass);
+    }
+
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Attack && DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Attack && DownfallCmd.IsOffclass(card) &&
+               IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

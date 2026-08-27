@@ -14,7 +14,7 @@ public class Tsunami : SneckoCardModel
 {
     public Tsunami() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<TsunamiPower>(4, 1, false);
+        WithPower<TsunamiPower>(4, 1, false);
         WithTip(SneckoKeywords.Overflow);
         WithTip(StaticHoverTip.Block);
     }

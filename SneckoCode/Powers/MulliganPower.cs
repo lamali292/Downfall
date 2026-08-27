@@ -8,7 +8,6 @@ namespace Snecko.SneckoCode.Powers;
 
 public class MulliganPower : SneckoPowerModel
 {
-    
     private static bool CostMoreThanNormal(CardPlay? play)
     {
         if (play?.Card == null) return false;
@@ -16,7 +15,7 @@ public class MulliganPower : SneckoPowerModel
         return play.Resources.EnergyValue > play.Card.EnergyCost.GetWithModifiers(default);
     }
 
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = cardPlay.Card.Owner;

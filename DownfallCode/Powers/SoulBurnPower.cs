@@ -75,10 +75,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");
         if (targetAll)
         {
-            foreach (var target in CombatState.HittableEnemies)
-            {
-                await HexaghostCmd.SoulburnEffect(target, silent: true);
-            }
+            foreach (var target in CombatState.HittableEnemies) await HexaghostCmd.SoulburnEffect(target, silent: true);
             await CompatibilityCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
@@ -88,7 +85,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
             await CompatibilityCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
-            
+
 
         if (keepOne)
             await PowerCmd.ModifyAmount(ctx, this, 1 - Amount, aliveApplier, null);

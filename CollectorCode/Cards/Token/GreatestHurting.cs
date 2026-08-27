@@ -15,7 +15,7 @@ public class GreatestHurting : CollectorCardModel
     {
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(30, 9);
-        this.WithTip<Ember>();
+        WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

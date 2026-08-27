@@ -14,8 +14,8 @@ public class RazorSharp : AwakenedCardModel
 {
     public RazorSharp() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithTip<PlumeJab>();
-        this.WithPower<RazorSharpPower>(1, 1, false);
+        WithTip<PlumeJab>();
+        WithPower<RazorSharpPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

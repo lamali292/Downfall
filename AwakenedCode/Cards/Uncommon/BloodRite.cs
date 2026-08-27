@@ -14,7 +14,7 @@ public class BloodRite : AwakenedCardModel
     public BloodRite() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(8, 3);
-        this.WithTip<Ceremony>();
+        WithTip<Ceremony>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

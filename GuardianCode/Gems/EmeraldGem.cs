@@ -22,14 +22,13 @@ public class EmeraldGem : GemModel
     public override Color GemColor => new(0x319028FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
+        IEnumerable<Player> targetPlayers)
     {
         var owner = Player.Creature;
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
         foreach (var player in targetPlayers)
-        {
             await PowerCmd.Apply<EmeraldGemPower>(ctx, player.Creature, effect, owner, Card);
-        }
     }
 }
 

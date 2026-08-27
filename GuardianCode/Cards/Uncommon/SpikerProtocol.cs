@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,9 +14,9 @@ public class SpikerProtocol : GuardianCardModel
 {
     public SpikerProtocol() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<SpikerProtocolPower>(2, 1, false);
-        this.WithBrace(6, 3);
-        this.WithTip<ThornsPower>();
+        WithPower<SpikerProtocolPower>(2, 1, false);
+        WithBrace(6, 3);
+        WithTip<ThornsPower>();
         WithTip(GuardianTip.DefensiveMode);
     }
 

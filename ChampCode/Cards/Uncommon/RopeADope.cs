@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,10 +12,10 @@ public class RopeADope : ChampCardModel
 {
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithFinisher();
+        WithFinisher();
         WithBlock(8, 4);
         WithEnergy(1);
-        this.WithPower<DrawCardsNextTurnPower>(2, false);
+        WithPower<DrawCardsNextTurnPower>(2, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

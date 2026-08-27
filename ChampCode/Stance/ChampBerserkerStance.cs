@@ -1,7 +1,6 @@
 ﻿using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.DynamicVars;
-using Champ.ChampCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,19 +20,21 @@ public class ChampBerserkerStance : ChampStanceModel
     public override string ChargeIconPathOver => "res://Champ/images/ui/stance_berserker_over.png";
     public override string ChargeIconPathUnder => "res://Champ/images/ui/stance_berserker_under.png";
     public override Color? LabelOutlineColor => new("700000");
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BerserkerSkillVar(2),
         new BerserkerFinisherVar(1)
     ];
 
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<VigorPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.Static(ChampTip.Finisher)
     ];
-    
+
     public override async Task SkillBonus(PlayerChoiceContext ctx)
     {
         var amount = (int)((BerserkerSkillVar)DynamicVars["BerserkerSkill"]).Calculate();

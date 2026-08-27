@@ -1,7 +1,6 @@
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using Hermit.HermitCode.Cards.Uncommon;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -45,11 +44,12 @@ public static class HermitMainFile
 
     private static void PostModelInit()
     {
-        CustomBundleRegistry.Register<Core.Hermit>(new CustomPackage {
+        CustomBundleRegistry.Register<Core.Hermit>(new CustomPackage
+        {
             ChancePercent = 2,
             Card1 = ModelDb.Card<CursedWeapon>(),
             Card2 = ModelDb.Card<CursedWeapon>(),
-            Card3 = ModelDb.Card<CursedWeapon>(),
+            Card3 = ModelDb.Card<CursedWeapon>()
         });
     }
 }

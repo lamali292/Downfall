@@ -5,10 +5,9 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof (NPower))]
+[HarmonyPatch(typeof(NPower))]
 public static class InvokeSilentDisplayAmountChangedPatch
 {
-
     [HarmonyPatch("SubscribeToModelEvents")]
     [HarmonyPostfix]
     public static void Subscribe(NPower __instance)
@@ -42,4 +41,3 @@ public static class UpdateAmountRegistry
         RefreshActions.Remove(power);
     }
 }
-

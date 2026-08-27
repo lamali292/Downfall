@@ -80,7 +80,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         _hoverTips.Add(tipSource);
         return this;
     }
-    
+
     protected ConstructedRelicModel WithCardTip<T>(Action<T, RelicModel>? modifyTipCard = null)
         where T : CardModel
     {

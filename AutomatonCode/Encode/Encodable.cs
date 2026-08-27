@@ -55,8 +55,8 @@ public abstract class Encodable
     {
         DynamicVar(functionCard).BaseValue += EnchantedBase(DynamicVar(sourceCard), sourceCard);
     }
-    
-    
+
+
     private static decimal EnchantedBase(DynamicVar v, CardModel card)
     {
         var e = card.Enchantment;
@@ -74,7 +74,7 @@ public abstract class Encodable
                 return val * e.EnchantBlockMultiplicative(val);
             }
             default:
-                return v.BaseValue; 
+                return v.BaseValue;
         }
     }
 }

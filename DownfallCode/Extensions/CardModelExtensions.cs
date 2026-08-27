@@ -9,12 +9,12 @@ public static class CardModelExtensions
     extension(CardModel card)
     {
         public bool IsEcho => card.Keywords.Contains(DownfallKeyword.Echo);
-        
+
         public CardModel CreateEcho()
         {
             return card.CreateClone().ToEcho();
         }
-        
+
         public CardModel ToEcho()
         {
             if (card.IsEcho)
@@ -25,10 +25,4 @@ public static class CardModelExtensions
             return card;
         }
     }
-    
-
-
-  
-
-   
 }

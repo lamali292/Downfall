@@ -11,13 +11,13 @@ public class Magazine : HermitCardModel
 {
     public Magazine() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<MagazinePower>(6, false);
+        WithPower<MagazinePower>(6, false);
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Retain);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

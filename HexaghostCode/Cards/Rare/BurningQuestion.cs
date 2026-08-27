@@ -19,7 +19,7 @@ public class BurningQuestion : HexaghostCardModel
     {
         WithPower<IntensityPower>(2, 1);
         WithPower<MetallicizePower>(4, 2);
-        this.WithPower<RoyaltiesPower>(35, 10, false);
+        WithPower<RoyaltiesPower>(35, 10, false);
     }
 
     public override bool CanBeGeneratedInCombat => false;

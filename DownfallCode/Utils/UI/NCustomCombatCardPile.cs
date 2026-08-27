@@ -13,32 +13,35 @@ namespace Downfall.DownfallCode.Utils.UI;
 
 public abstract partial class NCustomCombatCardPile : NCombatCardPile
 {
-    private Tween? _ownBumpTween;
-    private Tween? _revealTween;
-
     private Vector2 _cachedShow;
     private bool _hasCachedShow;
+    private Tween? _ownBumpTween;
+    private Tween? _revealTween;
 
     protected abstract override PileType Pile { get; }
     public abstract string ScenePath { get; }
     protected abstract Vector2 HideOffset { get; }
     protected abstract Vector2 HoverTipOffset { get; }
     protected abstract Vector2 ButtonOffsets { get; }
+
+    protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
     protected abstract HoverTip BuildHoverTip();
     protected abstract LocString BuildEmptyPileMessage();
 
-    protected virtual IEnumerable<IHoverTip> ExtraHoverTips => [];
-    protected virtual bool StartHidden(Player player) => false;
+    protected virtual bool StartHidden(Player player)
+    {
+        return false;
+    }
 
     public override void _Ready()
     {
-        ConnectSignals();                 // base populates _icon and _countLabel here
+        ConnectSignals(); // base populates _icon and _countLabel here
         _emptyPileMessage = BuildEmptyPileMessage();
 
         var size = Size;
-        OffsetLeft   = ButtonOffsets.X;
-        OffsetTop    = ButtonOffsets.Y;
-        OffsetRight  = ButtonOffsets.X + size.X;
+        OffsetLeft = ButtonOffsets.X;
+        OffsetTop = ButtonOffsets.Y;
+        OffsetRight = ButtonOffsets.X + size.X;
         OffsetBottom = ButtonOffsets.Y + size.Y;
 
         _cachedShow = Position;
@@ -46,7 +49,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         ApplyAnimPositions();
     }
 
-    public static Vector2 GetPositionFor<T>()  where T : NCustomCombatCardPile
+    public static Vector2 GetPositionFor<T>() where T : NCustomCombatCardPile
     {
         var btn = GetPileNode<T>();
         return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
@@ -61,7 +64,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
             .OfType<T>()
             .FirstOrDefault(IsInstanceValid);
     }
-    
+
     private void ApplyAnimPositions()
     {
         var show = _hasCachedShow ? _cachedShow : Position;
@@ -69,12 +72,19 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         _hidePosition = show + HideOffset;
     }
 
-    protected override void SetAnimInOutPositions() => ApplyAnimPositions();
-    public void RefreshAnimPositions() => ApplyAnimPositions();
+    protected override void SetAnimInOutPositions()
+    {
+        ApplyAnimPositions();
+    }
+
+    public void RefreshAnimPositions()
+    {
+        ApplyAnimPositions();
+    }
 
     public override void Initialize(Player player)
     {
-        base.Initialize(player);          // sets _localPlayer, _pile, _currentCount, label, base handlers
+        base.Initialize(player); // sets _localPlayer, _pile, _currentCount, label, base handlers
         if (StartHidden(player)) Visible = false;
     }
 
@@ -89,7 +99,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
     public void Reveal()
     {
-        RefreshCount(); 
+        RefreshCount();
         if (Visible) return;
         Visible = true;
 
@@ -103,7 +113,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Expo);
     }
-    
+
 
     protected override void OnFocus()
     {

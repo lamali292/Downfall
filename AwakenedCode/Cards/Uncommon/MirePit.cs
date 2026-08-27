@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
@@ -16,9 +15,9 @@ public class MirePit : AwakenedCardModel
     public MirePit() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithPower<MirePitPower>(6, 2, false);
-        this.WithTip<StrengthPower>();
-        this.WithDrained(1);
+        WithPower<MirePitPower>(6, 2, false);
+        WithTip<StrengthPower>();
+        WithDrained(1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

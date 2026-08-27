@@ -20,10 +20,8 @@ public abstract class SneckoCardModel(
 {
     protected override bool ShouldGlowGoldInternal =>
         Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(this);
-    
-    
-    
-    
+
+
     public ConstructedCardModel WithMuddle(decimal val, decimal upgrade = 0)
     {
         WithVars(new MuddleVar(val).WithUpgrade(upgrade));
