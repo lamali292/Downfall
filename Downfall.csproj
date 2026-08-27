@@ -69,9 +69,15 @@
         <AdditionalFiles Include="Collector/**/*"/>
     </ItemGroup>
 
+    <ItemGroup Condition="$(Submods.Contains('Test'))">
+        <Compile Include="TestCode/**/*.cs"/>
+        <AdditionalFiles Include="Test/**/*"/>
+    </ItemGroup>
     <ItemGroup>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
+
+
 
     <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
         <Message Text="Building submods: '$(Submods)'" Importance="high"/>
