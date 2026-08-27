@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -78,7 +79,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card is not IHasAfterlifeEffect afterlifeEffect) return;
-        SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/afterlife");
+        if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/afterlife");
         await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
     }
 }

@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -60,6 +61,7 @@ public static class HexaghostVisualsBridge
 
     public static void Refresh(Player player)
     {
+        if (TestMode.IsOn) return;
         var visuals = GetVisuals(player);
         if (visuals == null)
         {

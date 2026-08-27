@@ -21,6 +21,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.TestSupport;
 using Vector2 = Godot.Vector2;
 
 namespace Hexaghost.HexaghostCode.Core;
@@ -246,7 +247,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
     protected bool TryBeginIgnite(string sfx = "event:/sfx/characters/attack_fire")
     {
         if (Owner.Creature.CombatState == null) return false;
-        SfxCmd.Play(sfx);
+        if (TestMode.IsOff) SfxCmd.Play(sfx);
         return true;
     }
 
