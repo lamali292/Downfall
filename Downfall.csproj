@@ -27,50 +27,46 @@
         <None Include="local.props.example"/>
         <None Include=".gitignore"/>
     </ItemGroup>
-
-    <!-- The universe of submods. Each block is one submod: a literal glob
-         (so it expands at evaluation time -> builds + IDE can delete the
-         files) gated by whether it's in $(Submods). To add a new submod,
-         add one block. To (de)select for a build, edit Submods in local.props. -->
+    
     <ItemGroup Condition="$(Submods.Contains('Downfall'))">
         <Compile Include="DownfallCode/**/*.cs"/>
-        <AdditionalFiles Include="Downfall/localization/**/*.json"/>
+        <AdditionalFiles Include="Downfall/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Automaton'))">
         <Compile Include="AutomatonCode/**/*.cs"/>
-        <AdditionalFiles Include="Automaton/localization/**/*.json"/>
+        <AdditionalFiles Include="Automaton/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Awakened'))">
         <Compile Include="AwakenedCode/**/*.cs"/>
-        <AdditionalFiles Include="Awakened/localization/**/*.json"/>
+        <AdditionalFiles Include="Awakened/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Champ'))">
         <Compile Include="ChampCode/**/*.cs"/>
-        <AdditionalFiles Include="Champ/localization/**/*.json"/>
+        <AdditionalFiles Include="Champ/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Guardian'))">
         <Compile Include="GuardianCode/**/*.cs"/>
-        <AdditionalFiles Include="Guardian/localization/**/*.json"/>
+        <AdditionalFiles Include="Guardian/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Hexaghost'))">
         <Compile Include="HexaghostCode/**/*.cs"/>
-        <AdditionalFiles Include="Hexaghost/localization/**/*.json"/>
+        <AdditionalFiles Include="Hexaghost/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Hermit'))">
         <Compile Include="HermitCode/**/*.cs"/>
-        <AdditionalFiles Include="Hermit/localization/**/*.json"/>
+        <AdditionalFiles Include="Hermit/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('SlimeBoss'))">
         <Compile Include="SlimeBossCode/**/*.cs"/>
-        <AdditionalFiles Include="SlimeBoss/localization/**/*.json"/>
+        <AdditionalFiles Include="SlimeBoss/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Snecko'))">
         <Compile Include="SneckoCode/**/*.cs"/>
-        <AdditionalFiles Include="Snecko/localization/**/*.json"/>
+        <AdditionalFiles Include="Snecko/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Collector'))">
         <Compile Include="CollectorCode/**/*.cs"/>
-        <AdditionalFiles Include="Collector/localization/**/*.json"/>
+        <AdditionalFiles Include="Collector/**/*"/>
     </ItemGroup>
 
     <ItemGroup>
