@@ -1,8 +1,11 @@
-﻿using Champ.ChampCode.Core;
+﻿using BaseLib.Abstracts;
+using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
+using Champ.ChampCode.Powers;
+using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -46,4 +49,51 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     }
 
     public virtual bool AffectsAllPlayers => false;
+    
+    
+    
+    
+    public ConstructedCardModel WithDefensiveTip()
+    {
+        return WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
+    }
+
+    public ConstructedCardModel WithBerserkerTip()
+    {
+        return WithTips(e => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
+    }
+
+    public ConstructedCardModel WithUltimateTip()
+    {
+        return WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
+    }
+
+    public ConstructedCardModel WithFinisher()
+    {
+        WithTags(ChampTag.Finisher);
+        WithTip(ChampTip.Finisher);
+        return this;
+    }
+
+
+    public ConstructedCardModel WithEnterBerserker()
+    {
+        WithTags(ChampTag.EnterBerserker);
+        WithBerserkerTip();
+        return this;
+    }
+
+    public ConstructedCardModel WithEnterDefensive()
+    {
+        WithTags(ChampTag.EnterDefensive);
+        WithDefensiveTip();
+        return this;
+    }
+
+    public ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
+    {
+        WithPower<GloryPower>(baseVal, upgrade);
+        //card.WithUltimateTip();
+        return this;
+    }
 }
