@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Awakened.AwakenedCode.Core;
 
@@ -71,7 +72,7 @@ public static class AwakenedCmd
     {
         if (card is not IChantable chantable) return;
         var firstTime = !chantable.HasChanted;
-        if (firstTime && card is not Caw)
+        if (firstTime && card is not Caw && TestMode.IsOff)
         {
             // TODO : change voice lines
             TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature,
