@@ -37,7 +37,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
     /// Hook for subclasses to run logic after Initialize sets up visibility/position.
     protected virtual void AfterInitialize(Player player) { }
-
+    protected virtual bool SelfPositions => false;
     public override void _Ready()
     {
         ConnectSignals(); // base populates _icon and _countLabel here
@@ -76,6 +76,8 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         _hidePosition = show + HideOffset;
     }
 
+    public virtual void PlayAnimOut() { AnimOut(); }   
+    
     protected override void SetAnimInOutPositions()
     {
         ApplyAnimPositions();
@@ -93,7 +95,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         var hidden = StartHidden(player);
         Visible = !hidden;
 
-        if (!hidden)
+        if (!hidden && !SelfPositions)
         {
             ApplyAnimPositions();
             // Park off-screen if requested, so Reveal() can slide it in; otherwise show in place.
@@ -105,17 +107,23 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
     /// Resync the count label to the true pile size. Call after AddInternal/RemoveInternal,
     /// which bypass the CardAddFinished/CardRemoveFinished events the base listens to.
-    public void RefreshCount()
+    private void RefreshCount()
     {
         if (_pile == null) return;
         _currentCount = _pile.Cards.Count;
         _countLabel.SetTextAutoSize(_currentCount.ToString());
     }
 
-    public void Reveal()
+    protected void Reveal()
     {
         RefreshCount();
-        if (Visible && Position == _showPosition) return;   // already shown in place
+        if (SelfPositions)
+        {
+            Visible = true; 
+            
+            return;
+        }   
+        if (Visible && Position == _showPosition) return;
         Visible = true;
 
         ApplyAnimPositions();

@@ -22,10 +22,7 @@ public class SpaghettiCode : AutomatonCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-
-
+    { 
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {

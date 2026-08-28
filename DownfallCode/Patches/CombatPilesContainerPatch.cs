@@ -12,10 +12,9 @@ namespace Downfall.DownfallCode.Patches;
 internal class CombatPilesContainerPatch
 {
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
-    private static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
+    [HarmonyPatch(nameof(NCombatPilesContainer._Ready))]
+    private static void AddRegisteredPiles(NCombatPilesContainer __instance)
     {
-        if(!LocalContext.IsMe(player)) return;
         foreach (var type in CombatPileButtonRegistry.Types)
         {
             var scenePath = CombatPileButtonRegistry.ReadMetadata(type);
@@ -24,10 +23,16 @@ internal class CombatPilesContainerPatch
 
             var button = (NCustomCombatCardPile)scene.Instantiate();
             __instance.AddChildSafely(button);
-            button.Initialize(player);
-
-            Callable.From(() => button.RefreshAnimPositions()).CallDeferred();
         }
+    }
+
+    // Phase 2: initialize them alongside the built-in piles (like _drawPile.Initialize(player))
+    [HarmonyPostfix]
+    [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
+    private static void InitializeRegisteredPiles(NCombatPilesContainer __instance, Player player)
+    {
+        foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
+            btn.Initialize(player);
     }
 
     [HarmonyPostfix]
@@ -44,6 +49,6 @@ internal class CombatPilesContainerPatch
     private static void AnimOutAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            btn.AnimOut();
+            btn.PlayAnimOut();
     }
 }

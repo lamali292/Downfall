@@ -1,11 +1,16 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
 using Automaton.AutomatonCode.Vfx;
+using Awakened.AwakenedCode.Vfx;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.Utils.UI;
+using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,33 +38,38 @@ public static class AutomatonCmd
     }
 
 
+    public static async Task<FunctionCard?> EncodeCard<T>(
+        Player player,
+        PlayerChoiceContext ctx, Action<CardModel>? func = null) where T : CardModel
+    {
+        var card = player.Creature.CombatState!.CreateCard<T>(player);
+        func?.Invoke(card);
+        return await EncodeCard(card, ctx);
+    }
+
+
     public static async Task<FunctionCard?> EncodeCard(
         CardModel card,
         PlayerChoiceContext ctx)
     {
-        var creature = card.Owner;
-        var pile = CustomPiles.GetCustomPile(creature.PlayerCombatState, EncodePile.FunctionSequence);
-        if (pile == null) return null;
-        var isMe = LocalContext.IsMe(creature);
-
-
-        if (isMe && card.Pile?.Type == PileType.Hand)
-        {
-            var hand = NCombatRoom.Instance?.Ui.Hand;
-            hand?.Remove(card);
-        }
-
-        //if (isMe) await AutomatonDisplay.AnimateCardToSequence(card, pile, creature);
-        await Cmd.Wait(0.2f);
-        await CardPileCmd.Add(card, pile);
-        await Cmd.Wait(0.2f);
-        NSequenceDisplay.Refresh(creature);
+        var player = card.Owner;
+        if (LocalContext.IsMe(player))
+            Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
+        await Cmd.Wait(0.1f);
+        await CardPileCmd.Add(card, EncodePile.FunctionSequence);
+        await Cmd.Wait(0.1f);
+        EncodePile.FunctionSequence.GetPile(player).InvokeContentsChanged();
+        //NSequenceDisplay.Refresh(creature);
 
         FunctionCard? functionCard = null;
-        if (pile.Cards.Count >= GetMax(creature))
-            functionCard = await CompileFunctionCard(creature, ctx);
+        if (player.EncodePile.Count >= GetMax(player))
+        {
+            await Cmd.Wait(0.2f);
+            functionCard = await CompileFunctionCard(player, ctx);
+        }
 
-        await AutomatonHook.OnCardEncoded(creature.Creature.CombatState!, ctx, card);
+
+        await AutomatonHook.OnCardEncoded(player.Creature.CombatState!, ctx, card);
         return functionCard;
     }
 
@@ -74,9 +84,9 @@ public static class AutomatonCmd
         var combatState = player.Creature.CombatState;
         if (combatState == null) return null;
         var snapshot = pile.Cards.ToList();
-        pile.Clear(true);
+        pile.Clear();
 
-        NSequenceDisplay.Refresh(player);
+        //NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
             if (cardModel is ICompilable compilable)
                 await compilable.OnCompile(ctx);

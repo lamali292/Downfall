@@ -1,30 +1,30 @@
 [gd_scene load_steps=11 format=3 ]
 
-[ext_resource type="Script" path="res://AutomatonCode/Vfx/NStashPile.cs" id="1_b4b5x"]
-[ext_resource type="Texture2D" path="res://Automaton/images/ui/orb.png" id="2_b4b5x"]
-[ext_resource type="Texture2D" path="res://images/packed/combat_ui/pile_button_count.png" id="3_u0hwd"]
-[ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="4_qikbi"]
-[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_ofq2u"]
-[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="6_0fqun"]
-[ext_resource type="Texture2D" path="res://images/ui/placeholder_controller_icon.png" id="7_i8ld7"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NEncodePile.cs" id="1_e72vy"]
+[ext_resource type="Texture2D" path="res://Automaton/images/ui/orb.png" id="2_gfmky"]
+[ext_resource type="Texture2D" path="res://images/packed/combat_ui/pile_button_count.png" id="3_h4dxv"]
+[ext_resource type="FontFile" path="res://fonts/kreon_bold.ttf" id="4_4yhsd"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_8xyv2"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="6_ailnj"]
+[ext_resource type="Texture2D" path="res://images/ui/placeholder_controller_icon.png" id="7_livxo"]
 
 [sub_resource type="FontVariation" id="FontVariation_6h88g"]
-base_font = ExtResource("4_qikbi")
+base_font = ExtResource("4_4yhsd")
 spacing_glyph = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vonc"]
-shader = ExtResource("6_0fqun")
+shader = ExtResource("6_ailnj")
 shader_parameter/h = 1.0
 shader_parameter/s = 1.0
 shader_parameter/v = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_27f8l"]
-shader = ExtResource("6_0fqun")
+shader = ExtResource("6_ailnj")
 shader_parameter/h = 1.0
 shader_parameter/s = 1.0
 shader_parameter/v = 1.0
 
-[node name="StashPile" type="Control"]
+[node name="EncodePile" type="Control"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -33,7 +33,7 @@ offset_top = -150.0
 offset_right = 150.0
 grow_vertical = 0
 pivot_offset = Vector2(75, 75)
-script = ExtResource("1_b4b5x")
+script = ExtResource("1_e72vy")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -46,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(75, 75)
 mouse_filter = 2
-texture = ExtResource("2_b4b5x")
+texture = ExtResource("2_gfmky")
 expand_mode = 2
 stretch_mode = 5
 
@@ -74,7 +74,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_u0hwd")
+texture = ExtResource("3_h4dxv")
 expand_mode = 2
 stretch_mode = 5
 
@@ -101,7 +101,7 @@ theme_override_font_sizes/font_size = 26
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("5_ofq2u")
+script = ExtResource("5_8xyv2")
 theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1254902)
 theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
@@ -133,7 +133,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(256, 128)
 mouse_filter = 2
-texture = ExtResource("7_i8ld7")
+texture = ExtResource("7_livxo")
 expand_mode = 1
 stretch_mode = 5
 
@@ -156,6 +156,6 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(256, 128)
 mouse_filter = 2
-texture = ExtResource("7_i8ld7")
+texture = ExtResource("7_livxo")
 expand_mode = 1
 stretch_mode = 5
