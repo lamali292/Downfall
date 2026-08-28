@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Core;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -14,7 +15,6 @@ namespace Awakened.AwakenedCode.Vfx;
 
 public partial class NSpellbookButton : NCustomCombatCardPile
 {
-    private static readonly PlayerField<bool> Revealed = new(() => false);
     protected override PileType Pile => AwakenedPile.Spellbook;
     public override string ScenePath => "res://Awakened/scenes/ui/spellbook_pile.tscn";
     protected override Vector2 HideOffset => new(-160f, 100f);
@@ -28,22 +28,20 @@ public partial class NSpellbookButton : NCustomCombatCardPile
 
     public override void Initialize(Player player)
     {
-        base.Initialize(player);
-        if (Revealed[player]) Visible = true;
+        base.Initialize(player);   // base sets Visible = false when StartHidden(player)
         RefreshSpellIcon();
     }
 
     public static void RevealFor(Player player)
     {
-        Revealed[player] = true;
+        if (!LocalContext.IsMe(player)) return;   // only the local player's pile reveals
         var btn = GetPileNode<NSpellbookButton>();
         if (btn == null) return;
         btn.Reveal();
         btn.RefreshSpellIcon();
     }
 
-
-    public void RefreshSpellIcon()
+    private void RefreshSpellIcon()
     {
         var slot = GetNodeOrNull<TextureRect>("Icon");
         if (slot == null) return;
@@ -54,7 +52,7 @@ public partial class NSpellbookButton : NCustomCombatCardPile
 
     protected override bool StartHidden(Player player)
     {
-        return player.Character is not Core.Awakened;
+        return !LocalContext.IsMe(player) || player.Character is not Core.Awakened;
     }
 
     protected override HoverTip BuildHoverTip()

@@ -1,6 +1,7 @@
 ﻿using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -14,6 +15,7 @@ internal class CombatPilesContainerPatch
     [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
     private static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
     {
+        if(!LocalContext.IsMe(player)) return;
         foreach (var type in CombatPileButtonRegistry.Types)
         {
             var scenePath = CombatPileButtonRegistry.ReadMetadata(type);

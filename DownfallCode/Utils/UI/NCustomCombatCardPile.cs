@@ -28,10 +28,15 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     protected abstract HoverTip BuildHoverTip();
     protected abstract LocString BuildEmptyPileMessage();
 
-    protected virtual bool StartHidden(Player player)
-    {
-        return false;
-    }
+    /// If true, the pile is not rendered for this player (Visible = false).
+    protected virtual bool StartHidden(Player player) => false;
+
+    /// If true (and not StartHidden), the pile starts parked off-screen at _hidePosition
+    /// and only slides in when Reveal() is called. If false, it sits at _showPosition immediately.
+    protected virtual bool StartParkedOffScreen(Player player) => false;
+
+    /// Hook for subclasses to run logic after Initialize sets up visibility/position.
+    protected virtual void AfterInitialize(Player player) { }
 
     public override void _Ready()
     {
@@ -54,7 +59,6 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         var btn = GetPileNode<T>();
         return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
     }
-
 
     protected static T? GetPileNode<T>() where T : NCustomCombatCardPile
     {
@@ -84,8 +88,19 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
     public override void Initialize(Player player)
     {
-        base.Initialize(player); // sets _localPlayer, _pile, _currentCount, label, base handlers
-        if (StartHidden(player)) Visible = false;
+        base.Initialize(player);
+
+        var hidden = StartHidden(player);
+        Visible = !hidden;
+
+        if (!hidden)
+        {
+            ApplyAnimPositions();
+            // Park off-screen if requested, so Reveal() can slide it in; otherwise show in place.
+            Position = StartParkedOffScreen(player) ? _hidePosition : _showPosition;
+        }
+
+        AfterInitialize(player);
     }
 
     /// Resync the count label to the true pile size. Call after AddInternal/RemoveInternal,
@@ -100,7 +115,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     public void Reveal()
     {
         RefreshCount();
-        if (Visible) return;
+        if (Visible && Position == _showPosition) return;   // already shown in place
         Visible = true;
 
         ApplyAnimPositions();
@@ -113,7 +128,6 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Expo);
     }
-
 
     protected override void OnFocus()
     {
@@ -138,6 +152,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     }
 }
 
+// CombatPileButtonRegistry unchanged
 internal static class CombatPileButtonRegistry
 {
     private static List<Type>? _types;
@@ -150,20 +165,13 @@ internal static class CombatPileButtonRegistry
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             IEnumerable<Type> types;
-            try
-            {
-                types = assembly.GetTypes();
-            }
-            catch (ReflectionTypeLoadException ex)
-            {
-                types = ex.Types.Where(t => t != null)!;
-            }
+            try { types = assembly.GetTypes(); }
+            catch (ReflectionTypeLoadException ex) { types = ex.Types.Where(t => t != null)!; }
 
             results.AddRange(types.Where(t =>
                 t is { IsClass: true, IsAbstract: false } &&
                 t.IsSubclassOf(typeof(NCustomCombatCardPile))));
         }
-
         return results;
     }
 
