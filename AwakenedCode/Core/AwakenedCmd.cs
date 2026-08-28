@@ -7,6 +7,7 @@ using Awakened.AwakenedCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -128,7 +129,8 @@ public static class AwakenedCmd
 
         spellbook.SetNextSpell(player);
 
-        Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
+        if (LocalContext.IsMe(player))
+            Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
         //AwakenedDisplay.RefreshSpellDisplays(player);
         return spell;
     }
