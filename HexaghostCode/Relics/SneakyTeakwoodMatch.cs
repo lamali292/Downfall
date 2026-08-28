@@ -41,7 +41,7 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
             await HexaghostCmd.Retract(ctx, Owner, this);
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {

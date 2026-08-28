@@ -39,7 +39,7 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
         return ModelDb.Relic<MarkOfTheEther>();
     }
 
-    protected override Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
