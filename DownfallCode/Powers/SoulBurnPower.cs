@@ -70,7 +70,7 @@ public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
         if (Owner.CombatState == null) return;
         var combatState = Owner.CombatState;
         var owner = Owner;
-        var targetAll = await DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
+        var targetAll = DownfallHook.ShouldSoulburnDetonateTargetAll(Owner.CombatState, ctx, Owner);
 
         var aliveApplier = applier?.IsAlive == true ? applier : null;
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");

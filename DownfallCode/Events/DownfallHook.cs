@@ -28,10 +28,9 @@ public static class DownfallHook
         return HookUtils.Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));
     }
 
-    public static Task<bool> ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
+    public static bool ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
     {
-        return Task.FromResult(
-            HookUtils.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
+        return HookUtils.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner));
     }
 
     public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
