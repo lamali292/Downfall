@@ -19,12 +19,7 @@ public class CardTestRunner
 {
     private readonly List<(string testName, Exception ex)> _failures = [];
     private RunState _run = null!;
-
-    // Backing field for the private RunManager.State property, nulled between runs
-    // to release the run (otherwise the next SetUpTest throws "RunRng has already been set!").
-    private static readonly PropertyInfo? _runStateProp =
-        typeof(RunManager).GetProperty("State", BindingFlags.Instance | BindingFlags.NonPublic);
-
+    
     public async Task RunAllTestsAsync(string seed, CancellationToken ct)
     {
         var wasTestMode = TestMode.IsOn;
@@ -52,7 +47,7 @@ public class CardTestRunner
                     if (typeof(Task).IsAssignableFrom(method.ReturnType))
                     {
                         // Single-combat test: one combat, run the method, tear down.
-                        await RunSingleTest(method, testName, seed, attr, ct);
+                        await RunSingleTest(method, testName, seed, attr);
                     }
                     else if (typeof(IEnumerable<CardTestCase>).IsAssignableFrom(method.ReturnType))
                     {
@@ -82,7 +77,7 @@ public class CardTestRunner
     }
 
     private async Task RunSingleTest(MethodInfo method, string testName, string seed,
-                                     CardTestAttribute attr, CancellationToken ct)
+                                     CardTestAttribute attr)
     {
         var (combat, player) = await NewCombatAsync(seed, attr.CharacterType, attr.EncounterType);
         var context = new TestContext(combat, player);
@@ -103,9 +98,7 @@ public class CardTestRunner
                                    CardTestAttribute attr, CancellationToken ct)
     {
         AutoSlayLog.Info($"Running: {testName}");
-
-        // Enumerate cases once. The generator only needs a CharacterModel, not a live combat,
-        // so build it from the attribute's character type.
+        
         var characterType = attr.CharacterType ?? typeof(Ironclad);
         var characterModel = (CharacterModel)ModelDb.Get(characterType);
 
@@ -115,8 +108,7 @@ public class CardTestRunner
         foreach (var testCase in cases)
         {
             ct.ThrowIfCancellationRequested();
-
-            // Fresh run + combat per card — the old NewCombatAsync path.
+            
             var (combat, player) = await NewCombatAsync(seed, attr.CharacterType, attr.EncounterType);
             var context = new TestContext(combat, player);
 
@@ -201,12 +193,10 @@ public class CardTestRunner
     private void EndCombat()
     {
         try { CombatManager.Instance.Reset(true); } catch { /* best effort */ }
-
-        // Release the run so the next NewCombatAsync's SetUpTest / CreateForTest
-        // doesn't throw "RunRng has already been set!". This is the field CleanUp() nulls.
+        
         try
         {
-            _runStateProp?.SetValue(RunManager.Instance, null);
+            RunManager.Instance.State = null;
             LocalContext.NetId = null;
         }
         catch { /* best effort */ }
@@ -221,7 +211,7 @@ public class FirstCardSelector : ICardSelector
         IEnumerable<CardModel> options, int minSelect, int maxSelect)
     {
         var list = options.ToList();
-        var count = Math.Min(Math.Max(minSelect, 0), Math.Min(maxSelect, list.Count));
+        //var count = Math.Min(Math.Max(minSelect, 0), Math.Min(maxSelect, list.Count));
         IEnumerable<CardModel> chosen = list.Take(maxSelect).ToList();
         return Task.FromResult(chosen);
     }
