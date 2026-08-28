@@ -20,7 +20,7 @@ public class NightmareVisionPower : HexaghostPowerModel
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
         bool causedByEthereal)
     {
-        if (card.Owner.Creature != Owner || !causedByEthereal) return;
+        if (card.Owner.Creature != Owner || !card.Keywords.Contains(CardKeyword.Ethereal)) return;
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }
