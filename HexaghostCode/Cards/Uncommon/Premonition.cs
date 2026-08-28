@@ -12,7 +12,6 @@ public class Premonition : HexaghostCardModel
 {
     public Premonition() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
         WithPower<PremonitionPower>(1, 1, false);
     }
 
