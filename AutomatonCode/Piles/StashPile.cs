@@ -12,22 +12,7 @@ public class StashPile() : CustomPile(Stash)
 {
     [CustomEnum] public static PileType Stash;
 
-    // no custom transition, no GetNCard
-    public override bool NeedsCustomTransitionVisual => false;
-
-    // cards are NOT visible in the pile itself
-    public override bool CardShouldBeVisible(CardModel card)
-    {
-        return false;
-    }
-
-    /*
-    public override NCard? GetNCard(CardModel card)
-    {
-        var display = NStashDisplay.GetDisplay(card.Owner);
-        return display?.GetNCard(card);
-    }*/
-
+    public override bool CardShouldBeVisible(CardModel card) => true;
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
         return NCustomCombatCardPile.GetPositionFor<NStashPile>();

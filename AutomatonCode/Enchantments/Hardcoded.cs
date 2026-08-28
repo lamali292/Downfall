@@ -20,7 +20,7 @@ public class Hardcoded : AutomatonEnchantmentModel
 
     public override bool CanEnchant(CardModel card)
     {
-        return base.CanEnchant(card) && AutomatonCmd.IsEncodable(card);
+        return base.CanEnchant(card) && !AutomatonCmd.IsEncodable(card);
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

@@ -29,10 +29,13 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
-offset_right = 100.0
+offset_top = -150.0
+offset_right = 150.0
 grow_vertical = 0
+pivot_offset = Vector2(75, 75)
 script = ExtResource("1_b4b5x")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -41,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(40, 40)
+pivot_offset = Vector2(75, 75)
 mouse_filter = 2
 texture = ExtResource("2_b4b5x")
 expand_mode = 2

@@ -27,10 +27,8 @@ public class PlatinumCore : AutomatonRelicModel
         if (player != Owner) return;
         if (player.PlayerCombatState is { TurnNumber: 1 })
         {
-            var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
-            var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
-            await AutomatonCmd.EncodeCard(card1, ctx);
-            await AutomatonCmd.EncodeCard(card2, ctx);
+            await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
+            await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
         }
 
         var card = AutomatonCmd.GetEncodableCards(player, 1).FirstOrDefault();

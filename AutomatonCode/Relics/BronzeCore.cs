@@ -1,8 +1,13 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,13 +30,14 @@ public class BronzeCore : AutomatonRelicModel
         return ModelDb.Relic<PlatinumCore>();
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext ctx, CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
-        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
+        if (!participants.Contains(Owner.Creature) || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
-        var card1 = player.Creature.CombatState!.CreateCard(ModelDb.Card<DefendAutomaton>(), player);
-        var card2 = player.Creature.CombatState!.CreateCard(ModelDb.Card<StrikeAutomaton>(), player);
-        await AutomatonCmd.EncodeCard(card1, ctx);
-        await AutomatonCmd.EncodeCard(card2, ctx);
+        await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
     }
+    
 }

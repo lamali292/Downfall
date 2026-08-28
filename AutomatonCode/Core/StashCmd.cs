@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
+using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -58,7 +60,9 @@ public class StashCmd
         var space = RemainingSpace(player);
         var toStash = cards.Take(space).ToList();
         var overflow = cards.Skip(space).ToList();
-
+        if (LocalContext.IsMe(player))
+            Callable.From(() => NStashPile.RevealFor(player)).CallDeferred();
+        
         if (toStash.Count > 0) await place(toStash, StashPile.Stash);
 
 
@@ -94,12 +98,7 @@ public class StashCmd
     {
         var cards = BuildCards<TCard>(player, amount);
         return Run(ctx, player, cards, async (list, target)
-            =>
-        {
-            var a = await CardPileCmd.AddGeneratedCardsToCombat(list, target, player);
-            CardCmd.PreviewCardPileAdd(a, 0.2f);
-            return a;
-        });
+            => await CardPileCmd.AddGeneratedCardsToCombat(list, target, player));
     }
 
     // Creation loop lifted out of DownfallCardCmd.GiveCards.
