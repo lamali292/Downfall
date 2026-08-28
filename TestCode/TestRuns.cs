@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -12,6 +13,8 @@ namespace Downfall.TestCode;
 
 public class TestRuns
 {
+    // ---- single-combat tests: return Task, take TestContext ----
+
     [CardTest]
     public async Task ExecutionNormalTargetDealsBaseDamage(TestContext ctx)
     {
@@ -28,107 +31,83 @@ public class TestRuns
         await ctx.AddCardToTopOfDraw<ProtoShield>();
         var card = await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), ctx.Player);
         Assert.IsTrue(card is ProtoShield);
-        Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Energy should be refunded on kill/low HP.");
+        Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(),
+            "Energy should be refunded on kill/low HP.");
     }
-    
+
+    // ---- pool tests: return IEnumerable<CardTestCase>, take CharacterModel ----
+    // NOTE: plain (non-async) generators — the runner drives each case in its own combat.
+
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
-    public async Task PlayAutomatonCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlayAutomatonCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
-    public async Task PlayAwakenedCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlayAwakenedCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Champ.ChampCode.Core.Champ))]
-    public async Task PlayChampCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlayChampCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
-    public async Task PlayGuardianCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlayGuardianCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
-    public async Task PlayHermitCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlayHermitCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
-    public async Task PlayHexaghostCards(TestContext ctx) => await PlayAllCard(ctx);
+    public IEnumerable<CardTestCase> PlayHexaghostCards(CharacterModel character) => PlayAllCards(character);
 
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task PlaySlimeBossCards(TestContext ctx) => await PlayAllCard(ctx);
-    
+    public IEnumerable<CardTestCase> PlaySlimeBossCards(CharacterModel character) => PlayAllCards(character);
+
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
-    public async Task PlaySneckoCards(TestContext ctx) => await PlayAllCard(ctx);
-    
-    private async Task PlayAllCard(TestContext ctx)
+    public IEnumerable<CardTestCase> PlaySneckoCards(CharacterModel character) => PlayAllCards(character);
+
+    private IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
-        var champPool = ctx.Player.Character.CardPool;
-        var relicPool = ctx.Player.Character.RelicPool;
-        var relicsToTest = relicPool.AllRelics.ToList();
-        
-        foreach (var relicModel in relicsToTest)
+        return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
         {
-            await RelicCmd.Obtain(relicModel.ToMutable(), ctx.Player);
-        }
-        
-        var cardsToTest = champPool.AllCards.ToList();
-        var failedCards = new List<(string CardName, Exception Exception)>();
-        foreach (var cardModel in cardsToTest)
-        {
-            try
-            {
-                var card = ctx.Combat.CreateCard(cardModel, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, ctx.Player);
-                var target = card.TargetType switch
-                {
-                    TargetType.AnyEnemy => ctx.Combat.HittableEnemies.FirstOrDefault(),
-                    _ => null
-                };
-                target?.MaxHp = 999;
-                target?.CurrentHp = 999;
+            TestMainFile.Logger.Info($"CardTestCase : {model.Title}");
+            // combat is already fresh (runner called FreshCombat); relics already granted once.
+            var card = ctx.Combat.CreateCard(model, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, ctx.Player);
+            var target = card.TargetType == TargetType.AnyEnemy
+                ? ctx.Combat.HittableEnemies.FirstOrDefault()
+                : null;
+            if (target != null) { target.MaxHp = 9999; target.CurrentHp = 9999; }
+
+            await ctx.PlayCard(card, target);
+
+            PlayerCmd.EndTurn(ctx.Player, false);
             
-                
-                // play card
-                TestMainFile.Logger.Info($"[{card.Title}] played");
-                await ctx.PlayCard(card, target);
-                
-                // draw card
-                TestMainFile.Logger.Info($"[{card.Title}] drawed");
-                var card2 = ctx.Combat.CreateCard(cardModel, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(card2, PileType.Draw, ctx.Player, CardPilePosition.Top);
-                await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), ctx.Player);
-                
-                // exhaust card
-                TestMainFile.Logger.Info($"[{card.Title}] exhausted");
-                var card3 = ctx.Combat.CreateCard(cardModel, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(card3, PileType.Hand, ctx.Player);
-                await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card3);
-                
-                // discard card
-                TestMainFile.Logger.Info($"[{card.Title}] discarded");
-                var card4 = ctx.Combat.CreateCard(cardModel, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(card4, PileType.Hand, ctx.Player);
-                await CardCmd.Discard(new BlockingPlayerChoiceContext(), card4);
-                
-                // play some other other cards
-                var strike = ctx.Combat.CreateCard(ModelDb.Card<StrikeIronclad>(), ctx.Player);
-                var defend = ctx.Combat.CreateCard(ModelDb.Card<DefendIronclad>(), ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(strike, PileType.Hand, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(defend, PileType.Hand, ctx.Player);
-                await ctx.PlayCard(strike, target);
-                await ctx.PlayCard(defend, target);
-                
-                var card5 = ctx.Combat.CreateCard(cardModel, ctx.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(card5, PileType.Hand, ctx.Player);
-                
-                // next turn
-                PlayerCmd.EndTurn(ctx.Player, false);
-            }
-            catch (Exception ex)
-            {
-                failedCards.Add((cardModel.GetType().Name, ex.InnerException ?? ex));
-            }
-        }
-        
-        if (failedCards.Count > 0)
-        {
-            var summary = string.Join("\n", failedCards.Select(f => $"  - {f.CardName}: {f.Exception.Message}"));
-            Assert.IsTrue(false, $"{failedCards.Count} card(s) failed during playback:\n{summary}");
-        }
+            var card2 = ctx.Combat.CreateCard(model, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(card2, PileType.Draw, ctx.Player, CardPilePosition.Top);
+            var a = await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), ctx.Player);
+            if (a != null) Assert.AreEqual(card2, a);
+
+            PlayerCmd.EndTurn(ctx.Player, false);
+            
+            var card3 = ctx.Combat.CreateCard(model, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(card3, PileType.Hand, ctx.Player);
+            var b = await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card3);
+            if (b.HasValue) Assert.AreEqual(card3, b.Value.cardAdded);
+
+            PlayerCmd.EndTurn(ctx.Player, false);
+            
+            var card4 = ctx.Combat.CreateCard(model, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(card4, PileType.Hand, ctx.Player);
+            await CardCmd.Discard(new BlockingPlayerChoiceContext(), card4);
+
+            PlayerCmd.EndTurn(ctx.Player, false);
+            
+            var strike = ctx.Combat.CreateCard(ModelDb.Card<StrikeIronclad>(), ctx.Player);
+            var defend = ctx.Combat.CreateCard(ModelDb.Card<DefendIronclad>(), ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(strike, PileType.Hand, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(defend, PileType.Hand, ctx.Player);
+            await ctx.PlayCard(strike, target);
+            await ctx.PlayCard(defend, target);
+
+            var card5 = ctx.Combat.CreateCard(model, ctx.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(card5, PileType.Hand, ctx.Player);
+        }));
     }
 }

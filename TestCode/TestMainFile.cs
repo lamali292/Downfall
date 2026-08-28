@@ -18,7 +18,7 @@ public static class TestMainFile
     {
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
-            Label = "Auto Slay",
+            Label = "Unit Test",
             IsVisible = () => true,
             SubmenuType = null,
             CreateSubmenu = null,

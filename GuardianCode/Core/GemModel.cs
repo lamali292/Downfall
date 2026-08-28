@@ -18,6 +18,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Guardian.GuardianCode.Core;
 
@@ -166,7 +167,7 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
-        GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
+        if (TestMode.IsOff) GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
         if (cardPlay?.Card is IGemSocketCard { ShouldPlayGems: false }) return;
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
