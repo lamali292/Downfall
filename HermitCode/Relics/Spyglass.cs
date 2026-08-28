@@ -62,8 +62,7 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
         return Task.CompletedTask;
     }
 
-    protected override Task AfterSideTurnStart(
-        PlayerChoiceContext ctx,
+    public override Task AfterSideTurnStart(
         CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)

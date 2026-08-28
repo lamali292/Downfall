@@ -23,6 +23,6 @@ public class SentientForm : AutomatonCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
-        NSequenceDisplay.Refresh(Owner, true);
+        // NSequenceDisplay.Refresh(Owner, true);
     }
 }
