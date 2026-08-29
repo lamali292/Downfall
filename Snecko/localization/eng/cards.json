@@ -156,7 +156,7 @@
   "SNECKO-VIPER_ESSENCE.title": "Viper Essence",
   "SNECKO-VIPER_ESSENCE.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "SNECKO-REROLL.title": "Reroll",
-  "SNECKO-REROLL.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Muddle[/gold] {Muddle:diff()} {Muddle:plural:card|cards}.",
+  "SNECKO-REROLL.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Muddle[/gold] the most expensive card in your [gold]Hand[/gold]. ",
   "SNECKO-SPREAD_THE_CHAOS.title": "Spread the Chaos",
   "SNECKO-SPREAD_THE_CHAOS.description": "Another player [gold]Muddles[/gold] their {Muddle:plural:|{Muddle:diff()} }most expensive {Muddle:plural:card|cards} in their [gold]Hand[/gold].",
   "SNECKO-ALL_IN.title": "Gamble",
