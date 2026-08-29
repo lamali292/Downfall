@@ -20,11 +20,11 @@ public class RefractedLight : GuardianCardModel, IGemSocketCard
 
     public bool GemsAffectAllPlayers => true;
 
+    public int GemSlots => IsUpgraded ? 3 : 2;
+
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-    public int GemSlots => IsUpgraded ? 3 : 2;
 }

@@ -11,13 +11,12 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class RadiantFlamePower : HexaghostPowerModel, IAfterGhostflameIgnited
 {
-
     public RadiantFlamePower()
     {
         WithTip(HexaghostTip.Ignite);
         WithTip(StaticHoverTip.Block);
     }
-    
+
     public Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
         return player.Creature != Owner

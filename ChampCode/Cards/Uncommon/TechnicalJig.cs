@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +13,7 @@ public class TechnicalJig : ChampCardModel
 {
     public TechnicalJig() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<TechnicalJigPower>(3, 1, false);
+        WithPower<TechnicalJigPower>(3, 1, false);
         // WithTip(ChampTip.Stance);
         WithTip(StaticHoverTip.Block);
     }

@@ -15,8 +15,8 @@ public class FerventWorship : AwakenedCardModel
     {
         WithPower<CuriosityPower>(1);
         WithCostUpgradeBy(-1);
-        this.WithPower<FerventWorshipPower>(1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<FerventWorshipPower>(1, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();

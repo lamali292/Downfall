@@ -14,7 +14,7 @@ public class ChainLash : ChampCardModel
     public ChainLash() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        this.WithPower<ChainLashPower>(3, 1, false);
+        WithPower<ChainLashPower>(3, 1, false);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 

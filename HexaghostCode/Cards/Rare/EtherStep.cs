@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +15,7 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
 {
     public EtherStep() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithAfterlife();
+        WithAfterlife();
         WithDamage(10, 3);
         WithCards(1, 1);
         WithTip(CardKeyword.Exhaust);
@@ -24,7 +23,8 @@ public class EtherStep : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         await HexaghostCmd.AfterlifeAttack(this, cardPlay).Execute(ctx);
     }

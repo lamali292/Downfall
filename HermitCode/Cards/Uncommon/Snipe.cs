@@ -15,7 +15,7 @@ public sealed class Snipe : HermitCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
         WithTip(HermitKeywords.DeadOn);
-        this.WithPower<SnipePower>(1, false);
+        WithPower<SnipePower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

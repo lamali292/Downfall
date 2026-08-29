@@ -8,8 +8,10 @@ namespace Downfall.DownfallCode.Patches;
 
 internal static class SfxOverride
 {
-    public static bool ShouldRunOriginal(string path) =>
-        string.IsNullOrEmpty(path) || !FmodStudio.TryPlayEvent(path);
+    public static bool ShouldRunOriginal(string path)
+    {
+        return string.IsNullOrEmpty(path) || !FmodStudio.TryPlayEvent(path);
+    }
 }
 
 // SfxCmd.Play and NAudioManager.PlayOneShot can each get inlined by the JIT, so a
@@ -37,14 +39,20 @@ internal static class DeferredInitializationFmodFlushPatch
 internal static class SfxPlayPatch
 {
     [HarmonyPrefix]
-    public static bool Prefix(string sfx) => SfxOverride.ShouldRunOriginal(sfx);
+    public static bool Prefix(string sfx)
+    {
+        return SfxOverride.ShouldRunOriginal(sfx);
+    }
 }
 
 [HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), typeof(string), typeof(float))]
 internal static class PlayOneShotPatch
 {
     [HarmonyPrefix]
-    public static bool Prefix(string path) => SfxOverride.ShouldRunOriginal(path);
+    public static bool Prefix(string path)
+    {
+        return SfxOverride.ShouldRunOriginal(path);
+    }
 }
 
 [HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot),
@@ -52,5 +60,8 @@ internal static class PlayOneShotPatch
 internal static class PlayOneShotDictPatch
 {
     [HarmonyPrefix]
-    public static bool Prefix(string path) => SfxOverride.ShouldRunOriginal(path);
+    public static bool Prefix(string path)
+    {
+        return SfxOverride.ShouldRunOriginal(path);
+    }
 }

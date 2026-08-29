@@ -14,7 +14,7 @@ public class Break : AutomatonCardModel
     public Break() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(20, 5);
-        this.WithTip<Error>();
+        WithTip<Error>();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

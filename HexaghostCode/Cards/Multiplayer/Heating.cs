@@ -14,16 +14,16 @@ public class Heating : HexaghostCardModel
 {
     public Heating() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<HeatingPower>(1, 1, false);
+        WithPower<HeatingPower>(1, 1, false);
         WithTip(StaticHoverTip.Block);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
-    
+
     protected override Artist Artist => Artist.Get<Chimedragon>();
 
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-    
+
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<HeatingPower>(ctx, this);

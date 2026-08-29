@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Basic;
 
@@ -26,20 +27,12 @@ public class Branch : AutomatonCardModel
     {
         // Create two temporary cards representing each branch
         if (CombatState == null) return;
-        var attackOption = CombatState.CreateCard<BranchAttack>(cardPlay.Card.Owner);
-        var blockOption = CombatState.CreateCard<BranchBlock>(cardPlay.Card.Owner);
-
-        if (IsUpgraded)
-        {
-            CardCmd.Upgrade(attackOption);
-            CardCmd.Upgrade(blockOption);
-        }
-        //todo make options reflect enchantments, sharp 3 / instinct etc branch will make the attack option stronger
-        // and nimble 3 / sturdy will increase the block option and so on
-
-        // Copy upgraded values across
-        //attackOption.DynamicVars.Damage.BaseValue = DynamicVars.Damage.BaseValue;
-        //blockOption.DynamicVars.Block.BaseValue = DynamicVars.Block.BaseValue;
+        var attackOption = ModelDb.Card<BranchAttack>().ToMutable();
+        var blockOption = ModelDb.Card<BranchBlock>().ToMutable();
+        attackOption.Owner = Owner;
+        blockOption.Owner = Owner;
+        Action(attackOption);
+        Action(blockOption);
 
         var chosen = await CardSelectCmd.FromChooseACardScreen(
             ctx,
@@ -50,12 +43,22 @@ public class Branch : AutomatonCardModel
         if (chosen == attackOption)
         {
             await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-            await AutomatonCmd.EncodeCard(blockOption, ctx);
+            await AutomatonCmd.EncodeCard<BranchBlock>(Owner, ctx, Action);
         }
         else
         {
             await CommonActions.CardBlock(this, cardPlay);
-            await AutomatonCmd.EncodeCard(attackOption, ctx);
+            await AutomatonCmd.EncodeCard<BranchAttack>(Owner, ctx, Action);
         }
+    }
+
+    private void Action(CardModel card)
+    {
+        if (IsUpgraded)
+            card.UpgradeInternal();
+        var a = (EnchantmentModel?)Enchantment?.MutableClone();
+        if (a == null) return;
+        if (a.CanEnchant(card)) 
+            card.EnchantInternal(a, a.Amount);
     }
 }

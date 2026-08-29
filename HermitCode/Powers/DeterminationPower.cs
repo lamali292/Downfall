@@ -14,7 +14,7 @@ public sealed class DeterminationPower : HermitPowerModel
     {
         WithTip<StrengthPower>();
     }
-    
+
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {

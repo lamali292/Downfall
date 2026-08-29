@@ -19,11 +19,11 @@ public sealed class RyeStalk : HermitRelicModel
         WithVar("Turn", 4);
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (!participants.Contains(Owner.Creature) ||
             Owner.PlayerCombatState?.TurnNumber != DynamicVars["Turn"].IntValue) return;
-        await MyCommonActions.ApplySelf<RuggedPower>(ctx, this);
+        await MyCommonActions.ApplySelf<RuggedPower>(new BlockingPlayerChoiceContext(), this);
     }
 }

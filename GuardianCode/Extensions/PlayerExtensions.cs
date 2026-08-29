@@ -9,9 +9,8 @@ public static class PlayerExtensions
 {
     extension(Player player)
     {
-        public IReadOnlyList<CardModel> StasisPile => CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis)?.Cards
-                                                      ?? [];
+        public IReadOnlyList<CardModel> StasisPile =>
+            CustomPiles.GetCustomPile(player.PlayerCombatState, GuardianPile.Stasis)?.Cards
+            ?? [];
     }
-    
-    
 }

@@ -16,7 +16,7 @@ public class HeatCrush : HexaghostCardModel
     public HeatCrush() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(8, Calc, DamageProps.card, 4);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<Claude27A>();

@@ -15,7 +15,7 @@ public class Spellshield : AwakenedCardModel
     {
         WithTip(CardKeyword.Retain);
         WithTip(StaticHoverTip.Block);
-        this.WithPower<SpellshieldPower>(2, 1, false);
+        WithPower<SpellshieldPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

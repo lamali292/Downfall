@@ -19,7 +19,7 @@ public class BellowCollector : CollectorCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithCalculatedVar("UnusedBlock", 0, Calc);
-        this.WithTip<CollectorDoomPower>();
+        WithTip<CollectorDoomPower>();
         WithTip(StaticHoverTip.Block);
     }
 

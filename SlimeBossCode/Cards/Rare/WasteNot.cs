@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -11,7 +10,7 @@ public class WasteNot : SlimeBossCardModel
 {
     public WasteNot() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithSlurp(1);
+        WithSlurp(1);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 

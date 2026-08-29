@@ -14,7 +14,7 @@ public class Brainshock : AwakenedCardModel
     public Brainshock() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(12, 4);
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();

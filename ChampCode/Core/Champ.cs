@@ -30,7 +30,7 @@ public class Champ : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideChamp;
     public override bool HideInCompendium => DownfallConfig.HideChamp;
-    
+
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 80;
@@ -64,7 +64,7 @@ public class Champ : DownfallCharacterModel
     public override CardPoolModel CardPool => ModelDb.CardPool<ChampCardPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ChampPotionPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ChampRelicPool>();
-    
+
     public static string GetJumpAnimIfApplicable(CharacterModel character)
     {
         return character is not Champ ? "Attack" : "jumpAttack";

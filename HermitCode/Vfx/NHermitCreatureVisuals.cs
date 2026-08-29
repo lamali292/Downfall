@@ -17,13 +17,13 @@ public partial class NHermitCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     private const float DeadMix = 0.05f;
     private MegaAnimationState? _animState;
 
-    
-    private string IdleAnim =>"idle_loop";
+
+    private string IdleAnim => "idle_loop";
     private string AttackAnim => "attack";
     private string CastAnim => "cast";
     private string HitAnim => "hurt";
     private string DeadAnim => "die";
-    
+
     public void OnAnimationTrigger(string trigger)
     {
         switch (trigger)

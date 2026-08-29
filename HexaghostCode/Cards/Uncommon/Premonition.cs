@@ -12,8 +12,7 @@ public class Premonition : HexaghostCardModel
 {
     public Premonition() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeywords(CardKeyword.Exhaust);
-        this.WithPower<PremonitionPower>(1, 1, false);
+        WithPower<PremonitionPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

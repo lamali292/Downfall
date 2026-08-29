@@ -11,9 +11,9 @@ public class Burdened : HermitCardModel
 {
     public Burdened() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<BurdenedPower>(8, 3, false);
-        this.WithTip<VigorPower>();
-        this.WithTip<Decay>();
+        WithPower<BurdenedPower>(8, 3, false);
+        WithTip<VigorPower>();
+        WithTip<Decay>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

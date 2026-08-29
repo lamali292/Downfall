@@ -4,7 +4,6 @@ using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,14 +14,13 @@ namespace Champ.ChampCode.Relics;
 [Pool(typeof(ChampRelicPool))]
 public class ChampionsCrown : ChampRelicModel
 {
-
     public ChampionsCrown() : base(RelicRarity.Starter)
     {
         // WithTip(ChampTip.Stance);
         WithTip(ChampKeyword.TriggerSkillBonus);
         WithCards(1);
     }
-    
+
     public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<VictoriousCrown>();

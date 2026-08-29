@@ -15,7 +15,7 @@ public class AshenStrike : CollectorCardModel
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(10, 3);
-        this.WithTip<Ember>();
+        WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

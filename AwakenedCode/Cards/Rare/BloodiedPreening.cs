@@ -14,8 +14,8 @@ public class BloodiedPreening : AwakenedCardModel
 {
     public BloodiedPreening() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithTip<StrengthPower>();
-        this.WithTip<PlumeJab>();
+        WithTip<StrengthPower>();
+        WithTip<PlumeJab>();
         WithVar("StrengthLoss", 2);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }

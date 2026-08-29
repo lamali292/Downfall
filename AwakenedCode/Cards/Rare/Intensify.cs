@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -13,9 +12,9 @@ public class Intensify : AwakenedCardModel
 {
     public Intensify() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<IntensifyPower>(1, false);
-        this.WithPower<BurnoutPower>(1, false);
-        this.WithConjure();
+        WithPower<IntensifyPower>(1, false);
+        WithPower<BurnoutPower>(1, false);
+        WithConjure();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

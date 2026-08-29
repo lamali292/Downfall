@@ -14,8 +14,8 @@ public class HereAndNow : HexaghostCardModel
     public HereAndNow() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        this.WithPower<MoreEnergyPower>(1, false);
-        this.WithPower<HereAndNowPower>(1, false);
+        WithPower<MoreEnergyPower>(1, false);
+        WithPower<HereAndNowPower>(1, false);
         WithEnergyTip();
         WithTip(HexaghostTip.Extinguish);
     }

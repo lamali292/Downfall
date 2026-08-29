@@ -1,6 +1,8 @@
-﻿using Downfall.DownfallCode.Utils.UI;
+﻿using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -11,8 +13,8 @@ namespace Downfall.DownfallCode.Patches;
 internal class CombatPilesContainerPatch
 {
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
-    private static void AddRegisteredPiles(NCombatPilesContainer __instance, Player player)
+    [HarmonyPatch(nameof(NCombatPilesContainer._Ready))]
+    private static void AddRegisteredPiles(NCombatPilesContainer __instance)
     {
         foreach (var type in CombatPileButtonRegistry.Types)
         {
@@ -22,10 +24,16 @@ internal class CombatPilesContainerPatch
 
             var button = (NCustomCombatCardPile)scene.Instantiate();
             __instance.AddChildSafely(button);
-            button.Initialize(player);
-
-            Callable.From(() => button.RefreshAnimPositions()).CallDeferred();
         }
+    }
+
+    // Phase 2: initialize them alongside the built-in piles (like _drawPile.Initialize(player))
+    [HarmonyPostfix]
+    [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
+    private static void InitializeRegisteredPiles(NCombatPilesContainer __instance, Player player)
+    {
+        foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
+            btn.Initialize(player);
     }
 
     [HarmonyPostfix]
@@ -33,7 +41,8 @@ internal class CombatPilesContainerPatch
     private static void AnimInAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            if (btn.Visible) btn.AnimIn();
+            if (btn.Visible)
+                btn.AnimIn();
     }
 
     [HarmonyPostfix]
@@ -41,6 +50,6 @@ internal class CombatPilesContainerPatch
     private static void AnimOutAll(NCombatPilesContainer __instance)
     {
         foreach (var btn in __instance.GetChildren().OfType<NCustomCombatCardPile>())
-            btn.AnimOut();
+            btn.PlayAnimOut();
     }
 }

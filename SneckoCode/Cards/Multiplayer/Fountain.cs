@@ -13,14 +13,14 @@ public class Fountain : SneckoCardModel
 {
     public Fountain() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithTip<VenomPower>();
-        this.WithPower<FountainPower>(4, 2, false);
+        WithTip<VenomPower>();
+        WithPower<FountainPower>(4, 2, false);
         WithTip(SneckoKeywords.Overflow);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

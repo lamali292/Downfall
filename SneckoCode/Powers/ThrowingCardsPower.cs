@@ -17,8 +17,8 @@ public class ThrowingCardsPower : SneckoPowerModel
         WithCards(1);
         WithTip(DownfallTip.Offclass);
     }
-    
-    
+
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner) return;
@@ -28,8 +28,8 @@ public class ThrowingCardsPower : SneckoPowerModel
         Flash();
         await PowerCmd.Decrement(this);
         if (a != null)
-            await CompatibilityCreatureCmd.Damage(ctx, a, DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered, 
+            await CompatibilityCreatureCmd.Damage(ctx, a, DynamicVars.Damage.BaseValue, DamageProps.nonCardUnpowered,
                 Owner, null, null);
-        await MyCommonActions.Draw( this, ctx);
+        await MyCommonActions.Draw(this, ctx);
     }
 }

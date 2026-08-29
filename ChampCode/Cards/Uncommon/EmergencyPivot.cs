@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,7 +12,7 @@ public class EmergencyPivot : ChampCardModel
     {
         WithKeywords(CardKeyword.Retain);
         WithBlock(10, 4);
-        this.WithFinisher();
+        WithFinisher();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

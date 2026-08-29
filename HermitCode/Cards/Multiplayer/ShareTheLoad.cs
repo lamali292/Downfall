@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Multiplayer;
 
-public class ShareTheLoad : HermitCardModel,IHasDeadOnEffect
+public class ShareTheLoad : HermitCardModel, IHasDeadOnEffect
 {
     public ShareTheLoad() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -17,12 +17,6 @@ public class ShareTheLoad : HermitCardModel,IHasDeadOnEffect
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardBlock(this, cardPlay);
-    }
-
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         foreach (var player in Owner.OtherTeammates)
@@ -31,6 +25,11 @@ public class ShareTheLoad : HermitCardModel,IHasDeadOnEffect
             // TODO : use DrawWithoutBlockingOnOtherPlayers here on main/beta merge.
             await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, player);
         }
-            
+    }
+
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }

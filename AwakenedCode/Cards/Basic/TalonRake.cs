@@ -1,6 +1,5 @@
 ﻿using Awakened.AwakenedCode.Cards.Ancient;
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -16,7 +15,7 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        this.WithConjure();
+        WithConjure();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -1,8 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +9,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Events;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -20,12 +17,12 @@ public class Glut : SneckoCardModel
 {
     public Glut() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithOverflow();
+        WithOverflow();
         WithDamage(12, 4);
         WithCalculatedVar("OverflowRepeat", 0, Calc);
         WithVar(new DamageVar("OverflowDamage", 2, DamageProps.card).WithUpgrade(1));
     }
-    
+
     private static decimal Calc(CardModel card, Creature? _)
     {
         return card.Owner.Hand.Count(e => e != card);
@@ -42,16 +39,17 @@ public class Glut : SneckoCardModel
                 DamageProps.card, this, cardPlay));
             if (SneckoCmd.OverflowActive(this))
             {
-                var dmg  = (DamageVar)DynamicVars["OverflowDamage"];
+                var dmg = (DamageVar)DynamicVars["OverflowDamage"];
                 var hits = (int)((CalculatedVar)DynamicVars["OverflowRepeat"]).Calculate(null);
                 for (var i = 0; i < hits; i++)
                 {
                     var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
-                    if (targets.Count == 0) break; 
+                    if (targets.Count == 0) break;
                     context.AddHit(await CompatibilityCreatureCmd.Damage(
                         ctx, targets, dmg.BaseValue,
                         DamageProps.card, Owner.Creature, this, cardPlay));
                 }
+
                 await SneckoHook.AfterOverflowEffect(Owner, cardPlay, this);
             }
         }

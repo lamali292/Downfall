@@ -1,17 +1,12 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Displays;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Piles;
-using Awakened.AwakenedCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
@@ -20,7 +15,7 @@ public class Inscribe : AwakenedCardModel
 {
     public Inscribe() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithConjure(e => e.IsUpgraded);
+        WithConjure(e => e.IsUpgraded);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

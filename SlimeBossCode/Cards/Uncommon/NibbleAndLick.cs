@@ -17,7 +17,7 @@ public class NibbleAndLick : SlimeBossCardModel
         WithDamage(4);
         WithCards(0, 1);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<Lick>();
+        WithTip<Lick>();
         WithTags(SlimeBossTag.Lick);
     }
 

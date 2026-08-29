@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -12,7 +11,7 @@ public class Teamwork : SlimeBossCardModel
 {
     public Teamwork() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithCommand(0);
+        WithCommand(0);
         WithBlock(5, 3);
     }
 

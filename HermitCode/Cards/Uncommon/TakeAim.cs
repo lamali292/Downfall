@@ -14,7 +14,7 @@ public sealed class TakeAim : HermitCardModel
     {
         WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
         WithTip(HermitKeywords.Concentrate);
-        this.WithPower<TakeAimPower>(1, false);
+        WithPower<TakeAimPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

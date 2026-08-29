@@ -7,12 +7,11 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class UnfetteredFormPower : HexaghostPowerModel, IModifyGhostflameRepeatAdditive
 {
-
     public UnfetteredFormPower()
     {
         WithTip(HexaghostTip.Ignite);
     }
-    
+
     public int ModifyGhostflameRepeatAdditive(Player owner, GhostflameRepeatType repeatType,
         GhostflameModel bolsteringGhostflame)
     {

@@ -26,8 +26,9 @@ public class ChampCmd
     {
         await ChampModel.SetStance<ChampDefensiveStance>(ctx, player);
     }
-    
-    public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player, AbstractModel source, int turns = 1)
+
+    public static async Task EnterUltimateStance(PlayerChoiceContext ctx, Player player, AbstractModel source,
+        int turns = 1)
     {
         await PowerCmd.Apply<UltimateStancePower>(ctx, player.Creature, turns, player.Creature, source as CardModel);
     }
@@ -68,8 +69,8 @@ public class ChampCmd
         await ChampModel.SetStance<ChampNoStance>(ctx, player);
     }
 
-    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, 
-        bool affectsAllPlayers = false, 
+    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay,
+        bool affectsAllPlayers = false,
         bool skipClear = false,
         int repeat = 1)
     {

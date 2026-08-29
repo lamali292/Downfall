@@ -16,17 +16,18 @@ public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn, IModifyDam
         WithTip(HermitKeywords.DeadOn);
     }
 
-    public bool ShouldTriggerDeadOn(CardModel card)
-    {
-        return card.Owner.Creature == Owner && HermitCmd.IsAdjacentToCurse(card);
-    }
-
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (dealer != Owner || cardSource is null || !props.IsPoweredAttack() || !HermitCmd.IsAdjacentToCurse(cardSource))
+        if (dealer != Owner || cardSource is null || !props.IsPoweredAttack() ||
+            !HermitCmd.IsAdjacentToCurse(cardSource))
             return 0;
 
         return Amount;
+    }
+
+    public bool ShouldTriggerDeadOn(CardModel card)
+    {
+        return card.Owner.Creature == Owner && HermitCmd.IsAdjacentToCurse(card);
     }
 }

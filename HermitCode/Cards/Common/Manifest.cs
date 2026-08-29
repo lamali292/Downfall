@@ -16,7 +16,7 @@ public sealed class Manifest : HermitCardModel
     public Manifest() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(16, 4);
-        this.WithTip<Injury>();
+        WithTip<Injury>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

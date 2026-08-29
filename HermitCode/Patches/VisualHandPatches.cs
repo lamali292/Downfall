@@ -36,8 +36,8 @@ internal static class HandVisualSync
         var cards = pile.Cards;
         if (cards.Count == 0) return;
         if (!cards.Any(HermitCmd.HasDeadOn) && cards[0].Owner.Character is not Core.Hermit) return;
-        
-        
+
+
         IsSyncing = true;
         try
         {

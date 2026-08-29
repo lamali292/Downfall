@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
@@ -12,7 +11,7 @@ public class DiscountSale : SneckoCardModel
     public DiscountSale() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCards(2);
-        this.WithMuddle(1, 1);
+        WithMuddle(1, 1);
         WithKeyword(CardKeyword.Exhaust);
     }
 

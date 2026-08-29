@@ -17,8 +17,8 @@ public class Philosophize : AutomatonCardModel
     public Philosophize() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal);
-        this.WithPower<PhilosophizePower>(3, 2, false);
-        this.WithTip<StrengthPower>();
+        WithPower<PhilosophizePower>(3, 2, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

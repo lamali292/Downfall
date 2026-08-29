@@ -18,7 +18,7 @@ public class PreemptiveStrike : ChampCardModel
         WithCalculatedDamage(0, CalcDamage);
         WithTags(CardTag.Strike);
         //this.WithDefensiveTip();
-        this.WithTip<CounterPower>();
+        WithTip<CounterPower>();
         WithCostUpgradeBy(-1);
     }
 

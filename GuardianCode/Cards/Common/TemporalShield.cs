@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
-using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,7 +11,7 @@ public class TemporalShield : GuardianCardModel
     public TemporalShield() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 3);
-        this.WithAccelerate(1);
+        WithAccelerate(1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

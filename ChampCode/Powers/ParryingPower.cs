@@ -12,18 +12,17 @@ namespace Champ.ChampCode.Powers;
 
 public class ParryingPower : ChampPowerModel, IModifyCounterStrike
 {
-
     public ParryingPower()
     {
         WithTip<CounterPower>();
         WithCardTip<RiposteStrike>((e, p) =>
         {
-            if (p._owner == null) return; 
+            if (p._owner == null) return;
             e.DynamicVars.Damage.BaseValue = p.Owner.GetPowerAmount<CounterPower>();
         });
         WithTip(StaticHoverTip.ReplayStatic);
     }
-    
+
     public bool ModifyCounterStrike(Player player, RiposteStrike card)
     {
         if (player.Creature != Owner) return false;

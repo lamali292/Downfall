@@ -16,33 +16,8 @@ public partial class NSlimeBossCreatureVisuals : NCreatureVisuals, IAnimatedVisu
     private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
     private MegaSprite? _sprite;
-    
-    public override void _Ready()
-    {
-        base._Ready();
 
-        // Fix dark seams: atlas uses premultiplied alpha data,
-        // so the spine sprite must use PremultAlpha blend mode
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-        
-        
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
-        _animState = _sprite?.GetAnimationState();
-
-        if (_sprite != null)
-            _sprite.SetNormalMaterial(premultMat);
-        else
-            GetCurrentBody().Material = premultMat;
-        
-        _animState?.SetAnimationCompat(IdleAnim);
-    }
-    
-    private string IdleAnim =>"idle_loop";
+    private string IdleAnim => "idle_loop";
     private string AttackAnim => "attack";
     private string CastAnim => "cast";
     private string HitAnim => "hurt";
@@ -62,7 +37,31 @@ public partial class NSlimeBossCreatureVisuals : NCreatureVisuals, IAnimatedVisu
             case "Hit":
             case "Cast":
                 break;
-        
         }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // Fix dark seams: atlas uses premultiplied alpha data,
+        // so the spine sprite must use PremultAlpha blend mode
+        var premultMat = new CanvasItemMaterial
+        {
+            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
+        };
+
+
+        _sprite = SpineBody;
+        _sprite?.SetNormalMaterial(premultMat);
+
+        _animState = _sprite?.GetAnimationState();
+
+        if (_sprite != null)
+            _sprite.SetNormalMaterial(premultMat);
+        else
+            GetCurrentBody().Material = premultMat;
+
+        _animState?.SetAnimationCompat(IdleAnim);
     }
 }

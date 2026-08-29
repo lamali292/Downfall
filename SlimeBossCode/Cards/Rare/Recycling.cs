@@ -14,7 +14,7 @@ public class Recycling : SlimeBossCardModel
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(SlimeBossTip.Slurp);
-        this.WithPower<RecyclingPower>(1, false);
+        WithPower<RecyclingPower>(1, false);
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

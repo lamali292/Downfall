@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -13,7 +12,7 @@ public class RainOfDice : SneckoCardModel
     public RainOfDice() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
-        this.WithMuddle(1);
+        WithMuddle(1);
         WithKeyword(CardKeyword.Exhaust);
     }
 

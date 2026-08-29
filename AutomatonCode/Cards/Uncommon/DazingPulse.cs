@@ -18,7 +18,7 @@ public class DazingPulse : AutomatonCardModel, IEncodable, ICompilable
         WithBlock(7, 2);
         WithDamage(7, 2);
         WithCards(2);
-        this.WithTip<Dazed>();
+        WithTip<Dazed>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

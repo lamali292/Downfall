@@ -14,7 +14,7 @@ public class LivingBomb : HexaghostCardModel
     public LivingBomb() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<SoulBurnPower>(5, 3);
-        this.WithPower<LivingBombPower>(1, false);
+        WithPower<LivingBombPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

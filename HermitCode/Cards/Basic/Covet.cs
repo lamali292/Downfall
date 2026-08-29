@@ -32,9 +32,7 @@ public sealed class Covet : HermitCardModel
         )).ToList();
         await CardCmd.Discard(ctx, selected);
         foreach (var card in selected.Where(e => e.Type == CardType.Curse))
-        {
             await CardCmdCompatibility.Exhaust(ctx, card);
-        }
         await CommonActions.Draw(this, ctx);
     }
 }

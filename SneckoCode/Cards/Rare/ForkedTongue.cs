@@ -12,7 +12,7 @@ public class ForkedTongue : SneckoCardModel
     public ForkedTongue() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        this.WithPower<ForkedTonguePower>(1, false);
+        WithPower<ForkedTonguePower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

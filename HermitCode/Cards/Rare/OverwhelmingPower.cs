@@ -13,7 +13,7 @@ public sealed class OverwhelmingPower : HermitCardModel
     {
         WithCards(3, 1);
         WithEnergy(3);
-        this.WithPower<OverwhelmingPowerPower>(4, -1, false);
+        WithPower<OverwhelmingPowerPower>(4, -1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

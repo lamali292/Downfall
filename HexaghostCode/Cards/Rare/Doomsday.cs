@@ -13,7 +13,7 @@ public class Doomsday : HexaghostCardModel
 {
     public Doomsday() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<DoomsdayPower>(1, false);
+        WithPower<DoomsdayPower>(1, false);
         WithCostUpgradeBy(-1);
         WithTip(HexaghostTip.Ignite);
     }

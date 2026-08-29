@@ -14,9 +14,9 @@ public class InfiniteBeams : AutomatonCardModel
 {
     public InfiniteBeams() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithTip<MinorBeam>();
+        WithTip<MinorBeam>();
         WithCostUpgradeBy(-1);
-        this.WithPower<InfiniteBeamsPower>(1, false);
+        WithPower<InfiniteBeamsPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Content;
+﻿using BaseLib.Commands;
+using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -17,6 +18,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -106,7 +108,9 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
         IReadOnlyList<CardModel> cards, LocString prompt, int count, CardModel cardSource,
         bool optional = false)
-        => CardSelectCmd.FromSimpleGrid(ctx, cards, cardSource.Owner, Prefs(prompt, count, optional));
+    {
+        return CardSelectCmd.FromSimpleGrid(ctx, cards, cardSource.Owner, Prefs(prompt, count, optional));
+    }
 
     /// <summary>
     ///     Select from given cards with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
@@ -114,17 +118,24 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
         IReadOnlyList<CardModel> cards, LocString prompt, CardModel cardSource,
         bool optional = false)
-        => SelectFromCards(ctx, cards, prompt, GetCardCount(cardSource), cardSource, optional);
+    {
+        return SelectFromCards(ctx, cards, prompt, GetCardCount(cardSource), cardSource, optional);
+    }
 
     public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
         CardPile pile, LocString prompt, int count, CardModel cardSource, Func<CardModel, bool>? filter = null,
         bool optional = false)
-        => CardSelectCmd.FromCombatPile(ctx, pile, cardSource.Owner, Prefs(prompt, count, optional), filter ?? (_ => true));
+    {
+        return CardSelectCmd.FromCombatPile(ctx, pile, cardSource.Owner, Prefs(prompt, count, optional),
+            filter ?? (_ => true));
+    }
 
     public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
         CardPile pile, LocString prompt, CardModel cardSource, Func<CardModel, bool>? filter = null,
         bool optional = false)
-        => SelectFromCombatPile(ctx, pile, prompt, GetCardCount(cardSource), cardSource, filter, optional);
+    {
+        return SelectFromCombatPile(ctx, pile, prompt, GetCardCount(cardSource), cardSource, filter, optional);
+    }
 
     /// <summary>
     ///     Select cards from hand with count manually specified.
@@ -132,7 +143,9 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
         int count, AbstractModel source,
         Func<CardModel, bool>? filter = null, bool optional = false)
-        => CardSelectCmd.FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), filter, source);
+    {
+        return CardSelectCmd.FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), filter, source);
+    }
 
 
     /// <summary>
@@ -141,7 +154,9 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
         CardModel cardSource,
         Func<CardModel, bool>? filter = null, bool optional = false)
-        => SelectFromHand(ctx, prompt, GetCardCount(cardSource), cardSource, filter, optional);
+    {
+        return SelectFromHand(ctx, prompt, GetCardCount(cardSource), cardSource, filter, optional);
+    }
 
     /// <summary>
     ///     Select cards from hand with count determined by <c>Amount</c>.
@@ -149,7 +164,9 @@ public class DownfallCardCmd
     public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
         PowerModel powerSource,
         Func<CardModel, bool>? filter = null, bool optional = false)
-        => SelectFromHand(ctx, prompt, powerSource.Amount, powerSource, filter, optional);
+    {
+        return SelectFromHand(ctx, prompt, powerSource.Amount, powerSource, filter, optional);
+    }
 
     public static void ForceUpgrade(CardModel card, int upgrade = 1)
     {
@@ -186,11 +203,15 @@ public class DownfallCardCmd
             0.6f);
     }
 
-    private static int GetCardCount(CardModel cardSource) =>
-        cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
+    private static int GetCardCount(CardModel cardSource)
+    {
+        return cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
+    }
 
-    private static CardSelectorPrefs Prefs(LocString prompt, int count, bool optional) =>
-        new(prompt, optional ? 0 : count, count);
+    private static CardSelectorPrefs Prefs(LocString prompt, int count, bool optional)
+    {
+        return new CardSelectorPrefs(prompt, optional ? 0 : count, count);
+    }
 
 
     public static async Task AnimateCardFromRewardScreen(PileType pile, CardModel card, Player player)
@@ -241,24 +262,76 @@ public class DownfallCardCmd
         for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
         return result;
     }
-    
+
     /// <summary>
-    /// Finds unlocked cards matching <paramref name="cond"/>.
-    /// If the player's character is <typeparamref name="T"/>, only that character's own
-    /// card pool is searched; otherwise every character pool is searched.
+    ///     Finds unlocked cards matching <paramref name="cond" />.
+    ///     If the player's character is <typeparamref name="T" />, only that character's own
+    ///     card pool is searched; otherwise every character pool is searched.
     /// </summary>
     /// <typeparam name="T">Character type that scopes the search to a single pool when the player matches it.</typeparam>
     /// <param name="player">The player whose unlock state, run constraints, and character determine which cards are searched.</param>
     /// <param name="cond">Predicate each card must satisfy to be included.</param>
     /// <param name="count">Maximum number of distinct combat-legal cards to return.</param>
-    public static IEnumerable<CardModel> GetSpecificCards<T>(Player player, Func<CardModel, bool> cond, int count = 1) where T : CharacterModel
+    public static IEnumerable<CardModel> GetSpecificCards<T>(Player player, Func<CardModel, bool> cond, int count = 1)
+        where T : CharacterModel
     {
         var constraint = player.RunState.CardMultiplayerConstraint;
         var cards = player.Character is T
             ? player.Character.CardPool.GetUnlockedCards(player.UnlockState, constraint)
             : ModelDb.AllCharacterCardPools
                 .SelectMany(e => e.GetUnlockedCards(player.UnlockState, constraint));
-        
-        return CardFactory.GetDistinctForCombat(player, cards.Where(cond), count, player.RunState.Rng.CombatCardGeneration);
+
+        return CardFactory.GetDistinctForCombat(player, cards.Where(cond), count,
+            player.RunState.Rng.CombatCardGeneration);
     }
+    
+    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
+        PlayerChoiceContext ctx,
+        Player player,
+        CardSelectorPrefs prefs,
+        List<CardModel> cards,
+        PileType[]? pileTypes = null)
+    {
+        if (!TestMode.IsOn)
+            return await MultiPileCardSelect.Select(
+                ctx,
+                player,
+                prefs,
+                cards,
+                pileTypes);
+        if (CardSelectCmd.Selector == null)
+            return [];
+
+        return await CardSelectCmd.Selector.GetSelectedCards(
+            cards,
+            prefs.MinSelect,
+            prefs.MaxSelect);
+
+    }
+    
+    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
+        PlayerChoiceContext ctx,
+        Player player,
+        CardSelectorPrefs prefs,
+        Func<CardModel, bool>? filter = null,
+        params PileType[] pileTypes)
+    {
+        if (!TestMode.IsOn)
+            return await MultiPileCardSelect.Select(
+                ctx,
+                player,
+                prefs,
+                filter,
+                pileTypes);
+        if (CardSelectCmd.Selector == null)
+            return [];
+
+        return await CardSelectCmd.Selector.GetSelectedCards(
+            pileTypes.SelectMany(e => e.GetPile(player).Cards),
+            prefs.MinSelect,
+            prefs.MaxSelect);
+
+    }
+    
+    
 }

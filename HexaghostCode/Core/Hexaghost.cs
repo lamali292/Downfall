@@ -1,6 +1,4 @@
-﻿using BaseLib.Audio;
-using BaseLib.Patches.UI;
-using Downfall.DownfallCode.Abstract;
+﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
 using Hexaghost.HexaghostCode.Cards.Basic;
@@ -32,7 +30,7 @@ public class Hexaghost : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideHexaghost;
     public override bool HideInCompendium => DownfallConfig.HideHexaghost;
-    
+
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 66;
@@ -53,7 +51,6 @@ public class Hexaghost : DownfallCharacterModel
         ModelDb.Card<Kindle>()
     ];
 
-  
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
@@ -78,15 +75,6 @@ public abstract class HexaghostRelicModel(RelicRarity rarity, bool autoAdd = tru
 public abstract class HexaghostPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hexaghost>(powerType, powerStackType);
-
-public abstract class HexaghostCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : DownfallCardModel<Hexaghost>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class HexaghostPotionPool : DownfallPotionPool<Hexaghost>;
 

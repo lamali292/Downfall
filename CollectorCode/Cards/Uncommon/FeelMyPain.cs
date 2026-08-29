@@ -12,7 +12,7 @@ public class FeelMyPain : CollectorCardModel
 {
     public FeelMyPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<FeelMyPainPower>(4, 1, false);
+        WithPower<FeelMyPainPower>(4, 1, false);
         WithTip(CardKeyword.Exhaust);
     }
 

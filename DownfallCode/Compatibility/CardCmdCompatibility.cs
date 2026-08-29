@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,8 +12,8 @@ public static class CardCmdCompatibility
     private static readonly ExhaustDel ExhaustImpl = BuildExhaust();
 
     /// <summary>
-    /// Exhaust a card. Returns the CardPileAddResult on new game versions,
-    /// or null on old versions (which don't return one).
+    ///     Exhaust a card. Returns the CardPileAddResult on new game versions,
+    ///     or null on old versions (which don't return one).
     /// </summary>
     public static Task<CardPileAddResult?> Exhaust(
         PlayerChoiceContext choiceContext,
@@ -45,9 +44,7 @@ public static class CardCmdCompatibility
 
         // New version: returns Task<CardPileAddResult?> — use as-is.
         if (method.ReturnType == typeof(Task<CardPileAddResult?>))
-        {
             return Expression.Lambda<ExhaustDel>(call, ctx, card, ethereal, skipVisuals).Compile();
-        }
 
         // Old version: returns plain Task — wrap it so we still return Task<CardPileAddResult?> (null).
         if (typeof(Task).IsAssignableFrom(method.ReturnType))

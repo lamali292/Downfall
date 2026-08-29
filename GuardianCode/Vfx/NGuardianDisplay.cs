@@ -21,9 +21,9 @@ public partial class NGuardianDisplay : Control
     private const string StasisSlotScenePath = "res://Guardian/scenes/stasis_slot.tscn";
 
     private readonly List<NCustomCardHolder> _cardHolders = [];
-    private readonly List<NStasisSlot> _slots = [];
-    
+
     private readonly Dictionary<NCustomCardHolder, NCardHolder.PressedEventHandler> _pressedHandlers = [];
+    private readonly List<NStasisSlot> _slots = [];
 
     private Control? _creatureHitbox;
     private int _currentMax = 3;
@@ -51,6 +51,7 @@ public partial class NGuardianDisplay : Control
     {
         ReleaseAllCards();
     }
+
     private void ReleaseHolder(NCustomCardHolder holder)
     {
         if (_pressedHandlers.Remove(holder, out var handler)
@@ -68,7 +69,7 @@ public partial class NGuardianDisplay : Control
         _cardHolders.Clear();
         _pressedHandlers.Clear();
     }
-    
+
     private void EnsureSlotCount(int count)
     {
         if (_slotContainer == null || _stasisSlotScene == null) return;
@@ -103,7 +104,7 @@ public partial class NGuardianDisplay : Control
 
         var sequence = _trackedPlayer.StasisPile.ToList();
         _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
-        
+
         ReleaseAllCards();
         foreach (var slot in _slots)
             slot.ClearCard();
@@ -121,7 +122,7 @@ public partial class NGuardianDisplay : Control
             var holder = slot.SetCard(cardNode);
             if (holder == null)
             {
-                cardNode.QueueFree(); 
+                cardNode.QueueFree();
                 continue;
             }
 
@@ -139,7 +140,7 @@ public partial class NGuardianDisplay : Control
 
         RefreshCounters();
     }
-    
+
     private void WireInspect(NCustomCardHolder holder)
     {
         NCardHolder.PressedEventHandler handler = _ =>

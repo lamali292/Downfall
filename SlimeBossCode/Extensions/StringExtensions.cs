@@ -9,7 +9,4 @@ public static class StringExtensions
             return Downfall.DownfallCode.Extensions.StringExtensions.ScenePath(SlimeBossMainFile.ModId, "slimes", path);
         }
     }
-    
-    
-   
 }

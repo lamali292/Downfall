@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,14 +13,15 @@ public class GhostShield : HexaghostCardModel, IHasAfterlifeEffect
 {
     public GhostShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithAfterlife();
+        WithAfterlife();
         WithBlock(7, 3);
-        this.WithPower<BlurPower>(1, false);
+        WithPower<BlurPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         await CommonActions.CardBlock(this, cardPlay);
     }

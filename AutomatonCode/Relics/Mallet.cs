@@ -18,7 +18,7 @@ public class Mallet : AutomatonRelicModel
         WithTip(AutomatonTip.Stash);
     }
 
-    protected override Task AfterCardChangedPiles(PlayerChoiceContext ctx, CardModel card, PileType oldPileType,
+    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType,
         AbstractModel? clonedBy)
     {
         if (card.Owner != Owner || card.Pile?.Type != StashPile.Stash) return Task.CompletedTask;

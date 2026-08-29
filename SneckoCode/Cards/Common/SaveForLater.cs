@@ -11,7 +11,7 @@ public class SaveForLater : SneckoCardModel
 {
     public SaveForLater() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        this.WithPower<SaveForLaterPower>(1, 1, false);
+        WithPower<SaveForLaterPower>(1, 1, false);
         WithDamage(8, 3);
         WithTip(CardKeyword.Retain);
     }

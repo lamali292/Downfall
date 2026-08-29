@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -15,7 +14,7 @@ public class Recover : GuardianCardModel
     public Recover() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(5, 3);
-        this.WithBrace(2, 1);
+        WithBrace(2, 1);
         WithTip(GuardianTip.Stasis);
     }
 

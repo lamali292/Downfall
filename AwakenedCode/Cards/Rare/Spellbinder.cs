@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -13,8 +12,8 @@ public class Spellbinder : AwakenedCardModel
 {
     public Spellbinder() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<SpellbinderPower>(1, false);
-        this.WithConjure();
+        WithPower<SpellbinderPower>(1, false);
+        WithConjure();
         WithCostUpgradeBy(-1);
     }
 

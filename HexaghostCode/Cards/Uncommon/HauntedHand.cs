@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,13 +13,14 @@ public class HauntedHand : HexaghostCardModel, IHasAfterlifeEffect
 {
     public HauntedHand() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithAfterlife();
+        WithAfterlife();
         WithBlock(5, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         while (CardPile.GetCards(Owner, PileType.Hand).Count() < 10)
         {

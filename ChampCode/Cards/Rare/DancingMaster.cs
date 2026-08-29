@@ -15,7 +15,7 @@ public class DancingMaster : ChampCardModel
     {
         WithTip(ChampTip.Finisher);
         WithEnergy(1);
-        this.WithPower<DancingMasterPower>(1, false);
+        WithPower<DancingMasterPower>(1, false);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
 

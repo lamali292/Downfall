@@ -24,7 +24,7 @@ public class CrushingGhostflame : GhostflameModel
     [
         new GhostflameDamageVar(3)
     ];
-    
+
     protected override int IgnitionRequirement => 2;
 
     public override FireColor FireColor => FireColor.Pink;
@@ -41,8 +41,10 @@ public class CrushingGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Skill);
-    
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Skill);
+    }
+
     public override bool AboutToIgnite(CardModel card)
     {
         return card.Type == CardType.Skill && IgnitionRequirement - IgnitionProgress <= 1;

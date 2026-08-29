@@ -25,7 +25,10 @@ internal static class FmodServer
         }
     }
 
-    public static bool Call(StringName method, params Variant[] args) => Call(method, out _, args);
+    public static bool Call(StringName method, params Variant[] args)
+    {
+        return Call(method, out _, args);
+    }
 
     private static bool Call(StringName method, out Variant result, params Variant[] args)
     {
@@ -44,7 +47,7 @@ internal static class FmodServer
             return false;
         }
     }
-    
+
     public static GodotObject? LoadBank(string resourcePath)
     {
         if (string.IsNullOrWhiteSpace(resourcePath) || !FileAccess.FileExists(resourcePath))
