@@ -55,7 +55,7 @@
   "CHAMP-ENCHANT_SHIELD.title": "Enchant Shield",
   "CHAMP-ENCHANT_SWORD.description": "[gold]Enchant[/gold] a card in your [gold]Hand[/gold] with [purple]Sharp[/purple] {Sharp:diff()}.",
   "CHAMP-ENCHANT_SWORD.title": "Enchant Sword",
-  "CHAMP-ENCIRCLE.description": "Deal {Damage:diff()} damage to ALL enemies.\nGain {GloryPower:diff()} [gold]Glory[/gold] for each enemy hit.",
+  "CHAMP-ENCIRCLE.description": "Deal {Damage:diff()} damage to ALL enemies.\nNext turn, gain {Energy:energyIcons()}.",
   "CHAMP-ENCIRCLE.title": "Encircle",
   "CHAMP-ENDURE.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold], \nincreased by [gold]Strength[/gold]{IfUpgraded:show:| instead of [gold]Dexterity[/gold]}.\nEnter [gold]Defensive[/gold].",
   "CHAMP-ENDURE.title": "Endure",
