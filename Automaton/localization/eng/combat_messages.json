@@ -1,4 +1,5 @@
 {
-  "FULL_STASH": "My [gold]Stash Pile[/gold] is [red]full[/red].",
-  "OPEN_EMPTY_STASH": "My [gold]Stash Pile[/gold] is [red]empty[/red]."
+  "FULL_STASH": "My [gold]Stash Orb[/gold] is [red]full[/red].",
+  "OPEN_EMPTY_STASH": "My [gold]Stash Orb[/gold] is [red]empty[/red].",
+  "OPEN_EMPTY_ENCODE": "My [gold]Encode Orb[/gold] is [red]empty[/red]."
 }

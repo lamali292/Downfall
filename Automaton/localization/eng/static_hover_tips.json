@@ -1,8 +1,16 @@
 ﻿{
   "AUTOMATON-ENCODE.title": "Encode",
-  "AUTOMATON-ENCODE.description": "Place this card into your [gold]Sequence[/gold].\nWhen it holds [blue]3[/blue] cards, their effects above this keyword are merged into a Function that costs [blue]1[/blue].",
+  "AUTOMATON-ENCODE.description": "Place this card into your [gold]Encode Orb[/gold]. At [blue]3[/blue] cards, merge their effects above this keyword into a [blue]1[/blue]-cost Function card.",
+
   "AUTOMATON-STASH.title": "Stash",
-  "AUTOMATON-STASH.description": "Place a card inside of your [gold]Stash Pile[/gold], up to a maximum of [blue]5[/blue]. You draw the oldest card from it at the start of each turn.",
+  "AUTOMATON-STASH.description": "Place a card into your [gold]Stash Orb[/gold]. Holds up to [blue]5[/blue] cards.",
+
   "AUTOMATON-COMPILE.title": "Compile",
-  "AUTOMATON-COMPILE.description": "An effect that triggers when this card is merged into a Function."
+  "AUTOMATON-COMPILE.description": "Triggers when this card merges into a Function.",
+
+  "AUTOMATON-ENCODE_PILE.title": "Encode Orb",
+  "AUTOMATON-ENCODE_PILE.description": "An Orb holding up to [blue]3[/blue] cards. When full, compiles effects above [gold]Encode[/gold] into a [blue]1[/blue]-cost Function card.",
+
+  "AUTOMATON-STASH_PILE.title": "Stash Orb",
+  "AUTOMATON-STASH_PILE.description": "An Orb holding up to [blue]5[/blue] cards. At turn start, draw the oldest card."
 }

@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Utils.UI;
+﻿using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Context;
