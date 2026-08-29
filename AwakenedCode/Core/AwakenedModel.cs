@@ -33,6 +33,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         var dispatched = AwakenDispatched.Get(player);
         if (dispatched) return false;
         AwakenDispatched.Set(player, true);
+        AwakenMeter.Set(player, 7);
         AwakenedDisplay.RefreshAwakenMeter(player, 7);
         return true;
     }
