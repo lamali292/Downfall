@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -12,25 +13,34 @@ namespace Automaton.AutomatonCode.Vfx;
 
 public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
 {
-    private const float CardScale = 0.4f;
-    private const float HoverMul = 1.25f;
-    private const float IdleRightSpacing = 22f;
-    private const float HoverStepDeg = 12f;
-    private const float HoverRightSpacing = 40f;
-    private static readonly Vector2 BaseCardOffset = new(0, -300);
-
-    private Tween? _cardBumpTween;
     private readonly List<NCard> _cardVisuals = new();
     private readonly List<CardModel> _shownModels = new();
+    private double _bobTime;
+
+    private Tween? _cardBumpTween;
     private NCreature? _creatureNode;
 
-    // ---- the only things subclasses differ on ----
-    /// Extra offset applied when following the creature (encode vs stash sit on opposite sides).
+    private bool _followActive = true;
+    protected virtual Vector2 BaseCardOffset => new(0, -250);
+    protected virtual float IdleRightSpacing => 22f;
+    protected virtual float HoverStepDeg => 12f;
+    protected virtual float HoverRightSpacing => 40f;
+    
+    protected virtual float BigScale => 0.8f;
+    protected virtual float SmallScale => 0.25f;
+
     protected abstract Vector2 FollowOffset { get; }
 
     protected override bool SelfPositions => true;
 
-    // ---- lifecycle ----
+    protected virtual float BobAmplitude => 8f;
+    protected virtual float BobSpeed => 2f;
+    protected virtual float BobPhase => 0f;
+
+    private Vector2 IconCenter =>
+        IsInstanceValid(_icon) ? _icon.Position + _icon.Size * 0.5f : Vector2.Zero;
+
+    private Vector2 BasePos => IconCenter + BaseCardOffset;
 
     public override void Initialize(Player player)
     {
@@ -40,40 +50,10 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             _pile.CardAddFinished += RefreshCardVisual;
             _pile.CardRemoveFinished += RefreshCardVisual;
         }
+
         RefreshCardVisual();
     }
-
-    protected virtual float BobAmplitude => 8f;    
-    protected virtual float BobSpeed => 2f;       
-    protected virtual float BobPhase => 0f; 
-    private double _bobTime;
     
-    private bool _followActive = true;   
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-
-        if (!_followActive) return;
-        if (!IsInstanceValid(this)) return;
-        if (!Visible) return;                    
-        if (!CombatManager.Instance.IsInProgress) return;
-        if (_localPlayer == null) return;
-
-        if (_creatureNode == null || !IsInstanceValid(_creatureNode))
-        {
-            _creatureNode = NCombatRoom.Instance?.GetCreatureNode(_localPlayer.Creature);
-            if (_creatureNode == null || !IsInstanceValid(_creatureNode)) return;
-        }
-        if (!IsInstanceValid(_creatureNode.Visuals)) return;
-
-        _bobTime += delta;
-        var bob = new Vector2(0f, Mathf.Sin((float)_bobTime * BobSpeed + BobPhase) * BobAmplitude);
-
-        GlobalPosition = _creatureNode.GlobalPosition + (new Vector2(-75, -75) + FollowOffset + bob) * _creatureNode.Visuals.Scale;
-        Scale = _creatureNode.Visuals.Scale;
-    }
-
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -84,32 +64,24 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             _pile.CardRemoveFinished -= RefreshCardVisual;
             _pile = null;
         }
+
         _cardBumpTween?.Kill();
         _cardBumpTween = null;
         _creatureNode = null;
         ClearCardVisuals();
     }
 
-    // ---- hover ----
-
     protected override void OnFocus()
     {
         base.OnFocus();
-        AnimateTo(fanned: true, CardScale * HoverMul, 0.12, Tween.EaseType.Out, Tween.TransitionType.Cubic);
+        AnimateTo(true, 0.12, Tween.EaseType.Out, Tween.TransitionType.Cubic);
     }
 
     protected override void OnUnfocus()
     {
         base.OnUnfocus();
-        AnimateTo(fanned: false, CardScale, 0.5, Tween.EaseType.Out, Tween.TransitionType.Expo);
+        AnimateTo(false, 0.5, Tween.EaseType.Out, Tween.TransitionType.Expo);
     }
-
-    // ---- layout / visuals (shared) ----
-
-    private Vector2 IconCenter =>
-        (IsInstanceValid(_icon)) ? _icon.Position + _icon.Size * 0.5f : Vector2.Zero;
-
-    private Vector2 BasePos => IconCenter + BaseCardOffset;
 
     private (Vector2 pos, float rot) CardLayout(int index, bool fanned)
     {
@@ -124,6 +96,8 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
 
     private void RefreshCardVisual()
     {
+        RefreshCount();
+
         if (!IsInstanceValid(this) || !IsInstanceValid(_icon))
             return;
 
@@ -138,8 +112,8 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             var node = NCard.Create(models[i]);
             if (node == null) continue;
 
-            node.Scale = Vector2.One * CardScale * 0.5f;
-            var (pos, rot) = CardLayout(i, fanned: false);
+            node.Scale = Vector2.One * SmallScale;
+            var (pos, rot) = CardLayout(i, false);
             node.Position = pos;
             node.Rotation = rot;
             node.PivotOffset = IconCenter - pos;
@@ -150,8 +124,21 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         {
             var node = _cardVisuals[i];
             if (!IsInstanceValid(node)) continue;
+            
             AddChild(node);
-            node.UpdateVisuals(Pile, CardPreviewMode.None);   // Pile is the abstract from NCustomCombatCardPile
+            node.UpdateVisuals(Pile, CardPreviewMode.None);
+        }
+
+        var fanned = IsFocused;
+        for (var i = 0; i < _cardVisuals.Count; i++)
+        {
+            var card = _cardVisuals[i];
+            if (!IsInstanceValid(card)) continue;
+            var (pos, rot) = CardLayout(i, fanned);
+            card.Position = pos;
+            card.Rotation = rot;
+            card.PivotOffset = IconCenter - pos;
+            card.Scale = fanned ? Vector2.One * BigScale : Vector2.One * SmallScale;
         }
     }
 
@@ -160,7 +147,9 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         return _pile?.Cards.ToList() ?? [];
     }
 
-    private void AnimateTo(bool fanned, float scale, double time,
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => GetCards().SelectMany(e => e.HoverTips);
+
+    private void AnimateTo(bool fanned, double time,
         Tween.EaseType ease, Tween.TransitionType trans)
     {
         if (_cardVisuals.Count == 0) return;
@@ -177,7 +166,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             _cardBumpTween.TweenProperty(card, "position", pos, time).SetEase(ease).SetTrans(trans);
             _cardBumpTween.TweenProperty(card, "rotation", rot, time).SetEase(ease).SetTrans(trans);
             _cardBumpTween.TweenProperty(card, "pivot_offset", IconCenter - pos, time).SetEase(ease).SetTrans(trans);
-            var scale2 = fanned ? (Vector2.One * scale) : (Vector2.One * scale * 0.5f);
+            var scale2 = fanned ? Vector2.One * BigScale : Vector2.One * SmallScale;
             _cardBumpTween.TweenProperty(card, "scale", scale2, time).SetEase(ease).SetTrans(trans);
         }
     }
@@ -189,23 +178,60 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         _cardVisuals.Clear();
         _shownModels.Clear();
     }
-    
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (!_followActive) return;
+        if (!IsInstanceValid(this)) return;
+        if (!Visible) return;
+        if (!CombatManager.Instance.IsInProgress) return;
+        if (_localPlayer == null) return;
+
+        if (_creatureNode == null || !IsInstanceValid(_creatureNode))
+        {
+            _creatureNode = NCombatRoom.Instance?.GetCreatureNode(_localPlayer.Creature);
+            if (_creatureNode == null || !IsInstanceValid(_creatureNode)) return;
+        }
+
+        if (!IsInstanceValid(_creatureNode.Visuals)) return;
+
+        _bobTime += delta;
+        var bob = new Vector2(0f, Mathf.Sin((float)_bobTime * BobSpeed + BobPhase) * BobAmplitude);
+
+        GlobalPosition = _creatureNode.GlobalPosition +
+                         (new Vector2(-75, -75) + FollowOffset + ButtonOffsets + bob) * _creatureNode.Visuals.Scale;
+        Scale = _creatureNode.Visuals.Scale;
+    }
+
     public override void AnimIn()
     {
         if (!IsInstanceValid(this)) return;
+        Visible = true;
         _followActive = false;
 
         var target = CurrentFollowPosition();
-        if (target == null) { _followActive = true; return; }
+        if (target == null)
+        {
+            _followActive = true;
+            return;
+        }
 
-        GlobalPosition = target.Value + new Vector2(-160f, 100f);
+        GlobalPosition = target.Value + HideOffset;
+
         _positionTween?.Kill();
         _positionTween = CreateTween();
         _positionTween.TweenProperty(this, "global_position", target.Value, 0.5)
-            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Expo);
+
         _positionTween.Finished += () =>
         {
-            if (IsInstanceValid(this)) _followActive = true;   // already guarded — good
+            if (IsInstanceValid(this))
+            {
+                _followActive = true;
+            }
         };
     }
 
@@ -215,15 +241,20 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         _followActive = false;
         _positionTween?.Kill();
         _positionTween = CreateTween();
-        _positionTween.TweenProperty(this, "global_position", GlobalPosition + new Vector2(-160f, 100f), 0.5)
+
+        _positionTween.TweenProperty(this, "global_position", GlobalPosition + HideOffset, 0.5)
             .SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back);
+        _positionTween.Finished += () =>
+        {
+            if (IsInstanceValid(this)) Visible = false;
+        };
     }
-    
+
     private Vector2? CurrentFollowPosition()
     {
         if (_localPlayer == null) return null;
         var c = NCombatRoom.Instance?.GetCreatureNode(_localPlayer.Creature);
         if (c == null || !IsInstanceValid(c) || !IsInstanceValid(c.Visuals)) return null;
-        return c.GlobalPosition + (new Vector2(-75, -75) + FollowOffset) * c.Visuals.Scale;
+        return c.GlobalPosition + (new Vector2(-75, -75) + FollowOffset + ButtonOffsets) * c.Visuals.Scale;
     }
 }

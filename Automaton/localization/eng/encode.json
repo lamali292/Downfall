@@ -92,5 +92,6 @@
   "AUTOMATON-TERMINATOR.functionName": "End",
   "AUTOMATON-TERMINATOR.functionPrefix": "sad",
   "AUTOMATON-FUNCTION.functionParentheses": "()",
-  "AUTOMATON-FUNCTION.title": "{prefix}{name}{end3}{end4}{parentheses}"
+  "AUTOMATON-FUNCTION.title": "{prefix}{name}{end3}{end4}{parentheses}",
+  "AUTOMATON-PERFECTION.functionName": "perfection()"
 }

@@ -15,17 +15,17 @@ public partial class NEncodePile : NCreatureFollowingCardPile
 {
     protected override PileType Pile => EncodePile.FunctionSequence;
     public override string ScenePath => "res://Automaton/scenes/ui/encode_pile.tscn";
-    protected override Vector2 HideOffset => new(-160f, 100f);
-    protected override Vector2 HoverTipOffset => new(30f, -850f);
-    protected override Vector2 ButtonOffsets => new(115f, -360f);
+    protected override Vector2 HideOffset => new(-0, 0);
+    protected override Vector2 HoverTipOffset => new(0, 0);
+    protected override Vector2 ButtonOffsets => new(0, 0);
     protected override Vector2 FollowOffset => new(150f, -250f);
     protected override float BobSpeed => 1.8f;       
     protected override bool StartHidden(Player player)
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
 
     protected override HoverTip BuildHoverTip()
-        => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE.title"),
-            new LocString("static_hover_tips", "AUTOMATON-ENCODE.description"));
+        => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"),
+            new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description"));
 
     protected override LocString BuildEmptyPileMessage()
         => new("combat_messages", "OPEN_EMPTY_ENCODE");
