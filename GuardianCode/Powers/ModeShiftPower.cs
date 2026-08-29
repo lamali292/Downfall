@@ -14,9 +14,9 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
     public ModeShiftPower()
     {
         WithVar("CurrentLimit", 20);
-        WithVar("MaxLimit", 50);
+        WithVar("MaxLimit", 40);
         WithVar("Increase", 10);
-        WithBlock(16);
+        WithBlock(12);
     }
 
     public override bool ShouldRemoveDueToZero => false;
