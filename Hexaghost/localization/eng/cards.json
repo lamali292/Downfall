@@ -71,7 +71,7 @@
   "HEXAGHOST-FORKED_FLAME.title": "Forked Flame",
   "HEXAGHOST-GHOSTFLAME_BARRIER.title": "Ghostflame Barrier",
   "HEXAGHOST-GHOSTFLAME_BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold].\nWhenever you are attacked this turn, apply {GhostflameBarrierPower:diff()} [gold]Soulburn[/gold] back.",
-  "HEXAGHOST-GHOST_LASH.description": "[afterlife]Deal[/afterlife] {CalculatedDamage:diff()} [afterlife]damage.[/afterlife]\nDeal {ExtraDamage:diff()} additional damage for each other [gold]Ethereal[/gold] card in [gold]Hand[/gold].",
+  "HEXAGHOST-GHOST_LASH.description": "[afterlife]Deal[/afterlife] {CalculatedDamage:diff()} [afterlife]damage.[/afterlife]\nDeals {ExtraDamage:diff()} additional damage for each other [gold]Ethereal[/gold] card in [gold]Hand[/gold].",
   "HEXAGHOST-GHOST_LASH.title": "Ghost Lash",
   "HEXAGHOST-GHOST_SHIELD.description": "[afterlife]Gain[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]\n[gold]Block[/gold] is not removed at the start of your next turn.",
   "HEXAGHOST-GHOST_SHIELD.title": "Ghost Shield",
