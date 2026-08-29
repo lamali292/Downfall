@@ -15,7 +15,7 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class WorthySacrifice : HexaghostCardModel
 {
-    public WorthySacrifice() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public WorthySacrifice() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(2);
         WithKeywords(CardKeyword.Exhaust);
