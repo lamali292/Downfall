@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -15,7 +14,7 @@ public class ShieldSpikes : GuardianCardModel
     {
         WithBlock(11, 4);
         WithPower<ThornsPower>(3, 1);
-        this.WithBrace(8);
+        WithBrace(8);
         WithTip(GuardianTip.DefensiveMode);
     }
 

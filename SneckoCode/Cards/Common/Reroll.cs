@@ -2,7 +2,6 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
@@ -12,7 +11,7 @@ public class Reroll : SneckoCardModel
     public Reroll() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);
-        this.WithMuddle(1, 1);
+        WithMuddle(1, 1);
     }
 
 

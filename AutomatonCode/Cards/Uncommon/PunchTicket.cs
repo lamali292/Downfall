@@ -15,7 +15,7 @@ public class PunchTicket : AutomatonCardModel
     {
         WithDamage(6, 2);
         WithPower<WeakPower>(1, 1);
-        this.WithTip<Error>();
+        WithTip<Error>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

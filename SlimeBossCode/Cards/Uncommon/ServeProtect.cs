@@ -17,7 +17,7 @@ public class ServeProtect : SlimeBossCardModel
     {
         WithCalculatedBlock(0, 10, Calc, BlockProps.card, 0, 5);
         WithCalculatedVar("Blur", 0, Calc);
-        this.WithTip<BlurPower>();
+        WithTip<BlurPower>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

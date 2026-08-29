@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,13 +15,14 @@ public class GhostLash : HexaghostCardModel, IHasAfterlifeEffect
 {
     public GhostLash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        this.WithAfterlife();
+        WithAfterlife();
         WithCalculatedDamage(8, 3, Calc, DamageProps.card, 2, 2);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         await HexaghostCmd.AfterlifeAttack(this, cardPlay).Execute(ctx);
     }

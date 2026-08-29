@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
@@ -16,7 +15,7 @@ public class Snatch : SneckoCardModel, IHasOverflowEffect
 {
     public Snatch() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, false)
     {
-        this.WithOverflow();
+        WithOverflow();
         WithCards(1, 1);
         WithVar(new CardsVar("OverflowCards", 1));
     }

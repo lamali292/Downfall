@@ -14,8 +14,8 @@ public class SlimeSpikes : SlimeBossCardModel
     public SlimeSpikes() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 2);
-        this.WithPower<SlimeSpikesPower>(3, 1, false);
-        this.WithTip<ThornsPower>();
+        WithPower<SlimeSpikesPower>(3, 1, false);
+        WithTip<ThornsPower>();
     }
 
     protected override Artist Artist => Artist.Get<HalfGoblinHankins>();

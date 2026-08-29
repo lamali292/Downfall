@@ -9,5 +9,4 @@ internal static class StringExtensions
             return Path.Join(GuardianMainFile.ModId, "images", "gems", path);
         }
     }
-   
 }

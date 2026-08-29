@@ -1,7 +1,7 @@
-﻿using HarmonyLib;
-using MegaCrit.Sts2.Core.Models.Powers;
-using Downfall.DownfallCode.Interfaces;
+﻿using Downfall.DownfallCode.Interfaces;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 [HarmonyPatch(typeof(DexterityPower), nameof(DexterityPower.ModifyBlockAdditive))]
 public static class IgnoreDexterityPatch

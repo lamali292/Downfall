@@ -12,6 +12,4 @@ public static class DynamicVarExtension
             return var is CalculatedVar calculatedVar ? calculatedVar.Calculate(target) : 0;
         }
     }
-    
-  
 }

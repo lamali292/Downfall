@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Abstract;
 
-
 public interface IInstancedPerTarget
 {
     Creature? TargetCreature { get; }
@@ -14,7 +13,7 @@ public interface IInstancedPerTarget
 public static class CustomPowerInstanceType
 {
     [CustomEnum] public static PowerInstanceType InstancedPerTarget;
-    
+
     internal static readonly Dictionary<PowerInstanceType, Func<PowerModel, Creature, Creature?, PowerModel, bool>>
         PowerInstanceTypes = new();
 
@@ -33,7 +32,4 @@ public static class CustomPowerInstanceType
                                          otherPower is IInstancedPerTarget b &&
                                          a.TargetCreature == b.TargetCreature);
     }
-
-  
 }
-

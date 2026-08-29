@@ -13,8 +13,8 @@ public class Prepare : SlimeBossCardModel
     {
         WithBlock(10, 5);
         WithEnergy(1);
-        this.WithPower<EnergyNextTurnPower>(1, false);
-        this.WithPower<DrawCardsNextTurnPower>(2, false);
+        WithPower<EnergyNextTurnPower>(1, false);
+        WithPower<DrawCardsNextTurnPower>(2, false);
         WithKeyword(CardKeyword.Exhaust);
     }
 

@@ -30,14 +30,14 @@ public class DownfallCreatureCmd
             SfxCmd.Play("event:/sfx/block_gain");
             VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_block");
             creature.GainBlockInternal(modifiedAmount);
-            CombatManager.Instance.History.BlockGained(combatState, creature, (int) modifiedAmount, props, null);
+            CombatManager.Instance.History.BlockGained(combatState, creature, (int)modifiedAmount, props, null);
             if (fast)
                 await Cmd.CustomScaledWait(0.0f, 0.03f);
             else
                 await Cmd.CustomScaledWait(0.1f, 0.25f);
         }
+
         await Hook.AfterBlockGained(combatState, creature, modifiedAmount, props, card);
         return modifiedAmount;
     }
-
 }

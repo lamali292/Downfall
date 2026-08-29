@@ -14,7 +14,7 @@ public class SentientForm : AutomatonCardModel
 {
     public SentientForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<SentientFormPower>(1, false);
+        WithPower<SentientFormPower>(1, false);
         WithTip(StaticHoverTip.ReplayStatic);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
     }
@@ -23,6 +23,6 @@ public class SentientForm : AutomatonCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<SentientFormPower>(ctx, this);
-        NSequenceDisplay.Refresh(Owner, true);
+        // NSequenceDisplay.Refresh(Owner, true);
     }
 }

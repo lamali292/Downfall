@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
@@ -13,7 +12,7 @@ public class MarkedCard : SneckoCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithMuddle(1);
+        WithMuddle(1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

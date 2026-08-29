@@ -1,8 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +12,7 @@ public class BookOfSecrets : AwakenedCardModel
 {
     public BookOfSecrets() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
-        this.WithConjure();
+        WithConjure();
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithBlock(6);
     }

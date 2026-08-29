@@ -15,7 +15,7 @@ public sealed class NoHoldsBarred : HermitCardModel
         WithDamage(19, 4);
         WithPower<BruisePower>(5, 1);
         WithEnergy(1);
-        this.WithPower<DrainedPower>(1, false);
+        WithPower<DrainedPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

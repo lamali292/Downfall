@@ -1,5 +1,4 @@
 ﻿using Awakened.AwakenedCode.Cards.Uncommon;
-using Awakened.AwakenedCode.Displays;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
@@ -8,6 +7,7 @@ using Awakened.AwakenedCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Awakened.AwakenedCode.Core;
 
@@ -24,7 +25,7 @@ public static class AwakenedCmd
     {
         return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
     }
-    
+
     public static void RefreshSpellbook(Player player)
     {
         GetSpellbook(player).Refresh(player);
@@ -72,7 +73,7 @@ public static class AwakenedCmd
     {
         if (card is not IChantable chantable) return;
         var firstTime = !chantable.HasChanted;
-        if (firstTime && card is not Caw)
+        if (firstTime && card is not Caw && TestMode.IsOff)
         {
             // TODO : change voice lines
             TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature,
@@ -94,11 +95,8 @@ public static class AwakenedCmd
         Player player)
     {
         if (!CanConjure(player)) return null;
-        var spellbook = AwakenedCmd.GetSpellbook(player);
-        while (spellbook.NextSpell == null)
-        {
-            spellbook.SetNextSpell(player);   
-        }
+        var spellbook = GetSpellbook(player);
+        while (spellbook.NextSpell == null) spellbook.SetNextSpell(player);
         var spell = spellbook.NextSpell;
         if (spell == null) return null;
         return await ConjureSpell(player, spell, spellbook);
@@ -127,14 +125,12 @@ public static class AwakenedCmd
             PileType.Hand,
             player);
 
-        if (spellbook.Cards.Count == 0)
-        {
-            RefreshSpellbook(player);
-        }
+        if (spellbook.Cards.Count == 0) RefreshSpellbook(player);
 
         spellbook.SetNextSpell(player);
-        
-        Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
+
+        if (LocalContext.IsMe(player))
+            Callable.From(() => NSpellbookButton.RevealFor(player)).CallDeferred();
         //AwakenedDisplay.RefreshSpellDisplays(player);
         return spell;
     }

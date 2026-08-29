@@ -1,8 +1,6 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;

@@ -12,7 +12,7 @@ public class DevilsDance : HexaghostCardModel
 {
     public DevilsDance() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<DevilsDancePower>(1, 1, false);
+        WithPower<DevilsDancePower>(1, 1, false);
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
     }

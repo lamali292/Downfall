@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
@@ -14,7 +13,7 @@ public class Serpentscale : SneckoCardModel, IHasOverflowEffect
     public Serpentscale() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9);
-        this.WithOverflow();
+        WithOverflow();
         WithPower<PlatedArmorPower>(2, 1);
     }
 

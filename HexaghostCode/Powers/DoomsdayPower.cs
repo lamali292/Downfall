@@ -9,12 +9,11 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class DoomsdayPower : HexaghostPowerModel, IAfterGhostwheelAllIgnited
 {
-
     public DoomsdayPower()
     {
         WithTip(HexaghostTip.Ignite);
     }
-     
+
     public async Task AfterGhostwheelAllIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame,
         int index)
     {

@@ -23,7 +23,7 @@ public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
         return player == Owner && Owner.PlayerCombatState?.TurnNumber <= 4;
     }
 
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {

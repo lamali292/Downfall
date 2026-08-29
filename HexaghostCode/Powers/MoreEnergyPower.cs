@@ -10,7 +10,7 @@ public class MoreEnergyPower : HexaghostPowerModel
     {
         WithEnergyTip();
     }
-    
+
     public override async Task AfterEnergyReset(Player player)
     {
         if (player.Creature != Owner) return;

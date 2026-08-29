@@ -14,8 +14,8 @@ public class ItMattersNot : CollectorCardModel
     public ItMattersNot() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(13, 4);
-        this.WithTip<VulnerablePower>();
-        this.WithTip<WeakPower>();
+        WithTip<VulnerablePower>();
+        WithTip<WeakPower>();
         WithVar("ItMattersNot", 1);
     }
 

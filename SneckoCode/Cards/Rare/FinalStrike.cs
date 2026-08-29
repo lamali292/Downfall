@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
@@ -15,7 +14,7 @@ public class FinalStrike : SneckoCardModel, IHasGift
 {
     public FinalStrike() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             IsStrike = true
         });

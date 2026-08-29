@@ -15,7 +15,7 @@ public class SearingWound : HexaghostCardModel
     public SearingWound() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

@@ -13,7 +13,7 @@ public class FeatherWhirl : AwakenedCardModel
 {
     public FeatherWhirl() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithTip<PlumeJab>();
+        WithTip<PlumeJab>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

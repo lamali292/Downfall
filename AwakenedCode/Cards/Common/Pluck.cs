@@ -14,7 +14,7 @@ public class Pluck : AwakenedCardModel
     public Pluck() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithDamage(2, 3);
-        this.WithTip<PlumeJab>();
+        WithTip<PlumeJab>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

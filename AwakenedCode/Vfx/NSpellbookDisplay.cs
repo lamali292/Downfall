@@ -4,12 +4,12 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
@@ -31,16 +31,16 @@ public partial class NSpellbookDisplay : Control
     private readonly List<TextureRect> _iconNodes = [];
     private readonly List<SpellIconControl> _iconWrappers = new();
     private float _bobTime;
+    private Control? _creatureHitbox;
+    private Tween? _moveTween;
+    private Vector2 _restPosition;
 
     private Player? _trackedPlayer;
-    private Control? _creatureHitbox;
 
-    public bool IsExiting => _isExiting;
-    private Vector2 _restPosition;
-    private Vector2 RelativeOffset => new Vector2(-40f, -650f);
-    private Vector2 HideOffset => new Vector2(-120f, 0f);
-    private Tween? _moveTween;
-    private bool _isExiting;
+    public bool IsExiting { get; private set; }
+
+    private Vector2 RelativeOffset => new(-40f, -650f);
+    private Vector2 HideOffset => new(-120f, 0f);
 
     public override void _EnterTree()
     {
@@ -54,7 +54,10 @@ public partial class NSpellbookDisplay : Control
         CombatManager.Instance.CombatEnded -= OnCombatEnded;
     }
 
-    private void OnCombatEnded(CombatRoom room) => AnimOutAndFree();
+    private void OnCombatEnded(CombatRoom room)
+    {
+        AnimOutAndFree();
+    }
 
     public static NSpellbookDisplay? Create(Player player)
     {
@@ -75,7 +78,7 @@ public partial class NSpellbookDisplay : Control
     public override void _Ready()
     {
         Modulate = new Color(Modulate, 0f); // hidden until positioned
-        Refresh();                          // build icons now
+        Refresh(); // build icons now
 
         var timer = GetTree().CreateTimer(0.7);
         timer.Timeout += () =>
@@ -97,7 +100,7 @@ public partial class NSpellbookDisplay : Control
 
     private void AnimIn()
     {
-        if (_isExiting) return;
+        if (IsExiting) return;
 
         _moveTween?.Kill();
 
@@ -114,8 +117,8 @@ public partial class NSpellbookDisplay : Control
 
     private void AnimOutAndFree()
     {
-        if (_isExiting) return;
-        _isExiting = true;
+        if (IsExiting) return;
+        IsExiting = true;
 
         _moveTween?.Kill();
 
@@ -151,12 +154,9 @@ public partial class NSpellbookDisplay : Control
 
     public void Refresh()
     {
-        if (_trackedPlayer == null || _isExiting) return;
+        if (_trackedPlayer == null || IsExiting) return;
         if (!IsInstanceValid(this) || !IsInsideTree()) return;
-        foreach (var wrapper in _iconWrappers.Where(IsInstanceValid))
-        {
-            wrapper.QueueFree();
-        }
+        foreach (var wrapper in _iconWrappers.Where(IsInstanceValid)) wrapper.QueueFree();
         _iconWrappers.Clear();
         _iconNodes.Clear();
 
@@ -233,7 +233,8 @@ public partial class NSpellbookDisplay : Control
             _iconNodes.Add(icon);
             _iconWrappers.Add(wrapper);
 
-            var reticle = DownfallControllerNav.AttachFocusReticle(wrapper, iconSize / 2f + new Vector2(-1, -3), iconSize, 1f);
+            var reticle =
+                DownfallControllerNav.AttachFocusReticle(wrapper, iconSize / 2f + new Vector2(-1, -3), iconSize, 1f);
             if (reticle != null) wrapper.SetReticle(reticle);
         }
 
@@ -244,7 +245,7 @@ public partial class NSpellbookDisplay : Control
 
     public override void _Process(double delta)
     {
-        if (_trackedPlayer == null || _isExiting || CombatManager.Instance is not { IsInProgress: true }) return;
+        if (_trackedPlayer == null || IsExiting || CombatManager.Instance is not { IsInProgress: true }) return;
 
         _bobTime += (float)delta;
         for (var i = 0; i < _bobOffsets.Length; i++)
@@ -266,10 +267,20 @@ public partial class NSpellbookDisplay : Control
         private IHoverTip? _tip;
         private Func<IHoverTip>? _tipProvider;
 
-        public void SetTipProvider(Func<IHoverTip> provider) => _tipProvider = provider;
-        public void SetReticle(NSelectionReticle? reticle) => _reticle = reticle;
+        public void SetTipProvider(Func<IHoverTip> provider)
+        {
+            _tipProvider = provider;
+        }
 
-        public override void _Ready() => ConnectSignals();
+        public void SetReticle(NSelectionReticle? reticle)
+        {
+            _reticle = reticle;
+        }
+
+        public override void _Ready()
+        {
+            ConnectSignals();
+        }
 
         protected override void OnFocus()
         {

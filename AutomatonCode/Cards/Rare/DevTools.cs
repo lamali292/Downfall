@@ -41,6 +41,6 @@ public class DevTools : AutomatonCardModel
             await CardCmdCompatibility.Exhaust(ctx, card);
         await PlayerCmd.GainEnergy(count, Owner);
         await CardPileCmd.Draw(ctx, count, Owner);
-        NSequenceDisplay.Refresh(Owner);
+        // NSequenceDisplay.Refresh(Owner);
     }
 }

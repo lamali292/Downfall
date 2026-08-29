@@ -22,7 +22,7 @@ public static class NCreatureAnimationPatch
     {
         if (__instance.Visuals is IAnimatedVisuals downfallAnimation)
             downfallAnimation.OnAnimationTrigger("Dead");
-        
+
         if (__instance.Entity.Player is { } player)
             HexaghostVisualsBridge.FadeFlamesOnDeath(player);
     }
@@ -33,7 +33,7 @@ public static class NCreatureAnimationPatch
     {
         if (__instance.Visuals is IAnimatedVisuals downfallAnimation)
             downfallAnimation.OnAnimationTrigger("Revive");
-        
+
         if (__instance.Entity.Player is { } player)
             HexaghostVisualsBridge.FadeFlamesOnRevive(player);
     }

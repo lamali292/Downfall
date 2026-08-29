@@ -63,16 +63,18 @@ public static class GuardianHook
             m => m.AfterCardTick(ctx, card, player));
     }
 
-    public static decimal ModifyBraceAmount(ICombatState cs, Player player, decimal amount, out IEnumerable<IModifyBraceAmount> modifiers)
+    public static decimal ModifyBraceAmount(ICombatState cs, Player player, decimal amount,
+        out IEnumerable<IModifyBraceAmount> modifiers)
     {
         return HookUtils.Modify(cs, amount,
             (m, val) => m.ModifyBraceAmount(player, val), out modifiers);
     }
-    
-    public static Task AfterModifyingBraceAmount(ICombatState cs, Player player, decimal modifiedAmount, IEnumerable<IModifyBraceAmount> modifiers)
+
+    public static Task AfterModifyingBraceAmount(ICombatState cs, Player player, decimal modifiedAmount,
+        IEnumerable<IModifyBraceAmount> modifiers)
     {
         return HookUtils.AfterModifying(cs, modifiers,
-            m=> m.AfterModifyingBraceAmount(player, modifiedAmount));
+            m => m.AfterModifyingBraceAmount(player, modifiedAmount));
     }
 
     public static Task AfterBrace(ICombatState cs, Player player, decimal amount)
@@ -80,4 +82,3 @@ public static class GuardianHook
         return HookUtils.Dispatch<IAfterBrace>(cs, m => m.AfterBrace(player, amount));
     }
 }
-

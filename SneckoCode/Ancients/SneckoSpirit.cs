@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ancients;
 using MegaCrit.Sts2.Core.Events;
@@ -12,10 +13,8 @@ namespace Snecko.SneckoCode.Ancients;
 
 public class SneckoSpirit() : CustomAncientModel(false)
 {
-    private List<(CharacterModel left, CharacterModel right)> _pairs = [];
     private List<CharacterModel> _chosen = [];
-    
-    public override bool IsValidForAct(ActModel act) => false;
+    private List<(CharacterModel left, CharacterModel right)> _pairs = [];
 
     protected override OptionPools MakeOptionPools => new(MakePool(Array.Empty<RelicModel>()));
     public override IEnumerable<EventOption> AllPossibleOptions => [];
@@ -24,15 +23,22 @@ public class SneckoSpirit() : CustomAncientModel(false)
     public override string CustomMapIconPath => "res://Snecko/images/ancients/snecko_spirit_node.png";
     public override string CustomMapIconOutlinePath => "res://Snecko/images/ancients/snecko_spirit_node_outline.png";
     public override string CustomRunHistoryIconPath => "res://Snecko/images/ancients/snecko_spirit_history.png";
-    public override string CustomRunHistoryIconOutlinePath => "res://Snecko/images/ancients/snecko_spirit_history_outline.png";
 
-    public override Godot.Color ButtonColor => new(0.06f, 0.0f, 0.08f, 0.5f);
-    public override Godot.Color DialogueColor => new("662E2E");
-    
+    public override string CustomRunHistoryIconOutlinePath =>
+        "res://Snecko/images/ancients/snecko_spirit_history_outline.png";
+
+    public override Color ButtonColor => new(0.06f, 0.0f, 0.08f, 0.5f);
+    public override Color DialogueColor => new("662E2E");
+
 
     public IReadOnlyList<AncientDialogueLine> CurrentTranscriptLines => BuildTranscript();
 
     private bool IsSnecko => Owner!.Character is Core.Snecko;
+
+    public override bool IsValidForAct(ActModel act)
+    {
+        return false;
+    }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
@@ -61,12 +67,13 @@ public class SneckoSpirit() : CustomAncientModel(false)
     private EventOption CharOption(CharacterModel c, int page)
     {
         var relic = ModelDb.Relic<SneckoChoice>().ToMutable();
-        ((SneckoChoice) relic).InitCharacter(c);
+        ((SneckoChoice)relic).InitCharacter(c);
 
         var title = relic.Title;
         var desc = relic.Description;
         desc.Add("borrowed", c.Title);
-        var opt = new EventOption(this, () => OnPicked(c, page), title, desc, OptionKey($"PAGE_{page}", relic.Id.Entry), relic.HoverTipsExcludingRelic)
+        var opt = new EventOption(this, () => OnPicked(c, page), title, desc, OptionKey($"PAGE_{page}", relic.Id.Entry),
+                relic.HoverTipsExcludingRelic)
             .WithRelic(relic);
         return opt;
     }
@@ -74,22 +81,19 @@ public class SneckoSpirit() : CustomAncientModel(false)
     private async Task OnPicked(CharacterModel c, int page)
     {
         _chosen.Add(c);
-        
-        var relic = (SneckoChoice) ModelDb.Relic<SneckoChoice>().ToMutable();
+
+        var relic = (SneckoChoice)ModelDb.Relic<SneckoChoice>().ToMutable();
         relic.InitCharacter(c);
         await RelicCmd.Obtain(relic, Owner!);
 
         if (page + 1 < _pairs.Count)
-        {
             SetEventState(
                 L10NLookup($"{Id.Entry}.pages.PAGE_{page + 1}.description"),
                 BuildPage(page + 1));
-        }
         else
-        {
             Done();
-        }
     }
+
     protected override AncientDialogueSet DefineDialogues()
     {
         var set = base.DefineDialogues();
@@ -97,7 +101,7 @@ public class SneckoSpirit() : CustomAncientModel(false)
         {
             FirstVisitEverDialogue = new AncientDialogue("event:/sfx/npcs/snecko_spirit/hiss"),
             CharacterDialogues = set.CharacterDialogues,
-            AgnosticDialogues = set.AgnosticDialogues,
+            AgnosticDialogues = set.AgnosticDialogues
         };
     }
 
@@ -111,6 +115,7 @@ public class SneckoSpirit() : CustomAncientModel(false)
             if (page < _chosen.Count)
                 AppendDialogue(lines, "ECHO", page, _chosen[page]);
         }
+
         return lines;
     }
 
@@ -120,7 +125,7 @@ public class SneckoSpirit() : CustomAncientModel(false)
         _pairs = [];
         _chosen = [];
     }
-    
+
     private void AppendDialogue(List<AncientDialogueLine> into, string charEntry, int index, CharacterModel? picked)
     {
         try
@@ -139,5 +144,8 @@ public class SneckoSpirit() : CustomAncientModel(false)
         }
     }
 
-    private string SpiritSfxForPage(int page) => "event:/sfx/npcs/snecko_spirit/hiss";
+    private string SpiritSfxForPage(int page)
+    {
+        return "event:/sfx/npcs/snecko_spirit/hiss";
+    }
 }

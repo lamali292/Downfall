@@ -15,7 +15,7 @@ public class KnifesEdge : AwakenedCardModel
     public KnifesEdge() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<StrengthPower>(2, 1);
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

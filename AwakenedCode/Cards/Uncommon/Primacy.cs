@@ -13,8 +13,8 @@ public class Primacy : AwakenedCardModel
 {
     public Primacy() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<PrimacyPower>(1, 1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<PrimacyPower>(1, 1, false);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

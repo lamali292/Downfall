@@ -15,7 +15,7 @@ public class StrikeOfGeniusPower : ChampPowerModel
     {
         WithTip(DownfallKeyword.Echo);
     }
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {

@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -14,9 +13,9 @@ public class ForwardTackle : SlimeBossCardModel
     public ForwardTackle() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(18, 4);
-        this.WithSelfDamage(3);
+        WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
-        this.WithCommand(2, 1);
+        WithCommand(2, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

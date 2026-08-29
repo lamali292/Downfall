@@ -17,8 +17,9 @@ public class SaveForLaterPower : SneckoPowerModel
     {
         WithTip(CardKeyword.Retain);
     }
-    
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
         var player = Owner.Player;
@@ -31,7 +32,7 @@ public class SaveForLaterPower : SneckoPowerModel
             cardModel.GiveSingleTurnRetain();
         await PowerCmd.Remove(this);
     }
-    
+
 
     private static bool RetainFilter(CardModel card)
     {

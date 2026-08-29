@@ -19,14 +19,14 @@ public class Cower : SneckoCardModel, IAfterCardMuddled
         WithTip(SneckoKeywords.Muddle);
     }
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardBlock(this, cardPlay);
-    }
-
     public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
     {
         if (card != this) return;
         await CommonActions.ApplySelf<WeakPower>(ctx, this);
+    }
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardBlock(this, cardPlay);
     }
 }

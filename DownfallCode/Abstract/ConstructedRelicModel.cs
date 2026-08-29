@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Relics;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -6,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = true) : HookedRelicModel(autoAdd)
+public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = true) : CustomRelicModel(autoAdd)
 {
     private readonly List<AbstractTooltipSource<RelicModel>> _hoverTips = [];
     private readonly List<Func<RelicModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
@@ -80,7 +81,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         _hoverTips.Add(tipSource);
         return this;
     }
-    
+
     protected ConstructedRelicModel WithCardTip<T>(Action<T, RelicModel>? modifyTipCard = null)
         where T : CardModel
     {

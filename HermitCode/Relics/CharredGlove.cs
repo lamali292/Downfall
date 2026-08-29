@@ -19,11 +19,11 @@ public sealed class CharredGlove : HermitRelicModel
         WithPower<VigorPower>(3);
     }
 
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? player)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (player != Owner || card.Type != CardType.Curse) return;
         Flash();
-        await MyCommonActions.ApplySelf<VigorPower>(ctx, this);
+        await MyCommonActions.ApplySelf<VigorPower>(new BlockingPlayerChoiceContext(), this);
     }
 
     public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)

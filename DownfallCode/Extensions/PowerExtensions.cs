@@ -14,5 +14,4 @@ public static class PowerExtensions
             action();
         }
     }
-    
 }

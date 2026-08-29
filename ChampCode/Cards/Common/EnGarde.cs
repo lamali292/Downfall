@@ -13,7 +13,7 @@ public class EnGarde : ChampCardModel
     public EnGarde() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 3);
-        this.WithPower<EnGardePower>(7, 3, false);
+        WithPower<EnGardePower>(7, 3, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

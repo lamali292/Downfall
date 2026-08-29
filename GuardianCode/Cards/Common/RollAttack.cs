@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
-using Guardian.GuardianCode.Extensions;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +14,7 @@ public class RollAttack : GuardianCardModel, IGemSocketCard
     public RollAttack() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(16, 4);
-        this.WithBrace(8);
+        WithBrace(8);
         WithTip(GuardianTip.DefensiveMode);
     }
 

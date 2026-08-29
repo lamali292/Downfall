@@ -5,22 +5,21 @@ namespace Hexaghost.HexaghostCode.Vfx;
 [GlobalClass]
 public partial class NHexaghostVisuals : Node2D
 {
-	private static readonly StringName SpinParam = "shader_parameter/spin_speed";
-
 	private const float InnerBase = 0.6f;
 	private const float MiddleBase = 0.4f;
 	private const float OuterBase = 0.275f;
 
 	private const float SpinPerIgnited = 0.4f;
+	private static readonly StringName SpinParam = "shader_parameter/spin_speed";
 
 	private AnimationTree? _animTree;
-	private AnimationNodeStateMachinePlayback? _playback;
+
+	private int _ignitedCount;
 
 	private ShaderMaterial? _innerSmoke;
 	private ShaderMaterial? _middleSmoke;
 	private ShaderMaterial? _outerSmoke;
-
-	private int _ignitedCount;
+	private AnimationNodeStateMachinePlayback? _playback;
 
 	public override void _Ready()
 	{

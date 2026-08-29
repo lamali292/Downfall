@@ -12,7 +12,7 @@ public class FloatingOrbs : GuardianCardModel
 {
     public FloatingOrbs() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<FloatingOrbsPower>(3, 1, false);
+        WithPower<FloatingOrbsPower>(3, 1, false);
         WithEnergyTip();
     }
 

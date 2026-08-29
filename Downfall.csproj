@@ -14,54 +14,83 @@
 
         <ModOutputFolder>Downfall</ModOutputFolder>
 
-        <!-- Default submods when none are specified -->
         <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
 
-        <!-- Use selected submods for packing -->
         <PackFolders>$(Submods)</PackFolders>
 
         <DefineConstants>$(DefineConstants);V107</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
-        <Submod Include="$(Submods)">
-            <Visible>false</Visible>
-        </Submod>
-
         <None Include="Downfall.json"/>
         <None Include="local.props"/>
         <None Include="local.props.example"/>
         <None Include=".gitignore"/>
     </ItemGroup>
+    
+    <ItemGroup Condition="$(Submods.Contains('Downfall'))">
+        <Compile Include="DownfallCode/**/*.cs"/>
+        <AdditionalFiles Include="Downfall/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Automaton'))">
+        <Compile Include="AutomatonCode/**/*.cs"/>
+        <AdditionalFiles Include="Automaton/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Awakened'))">
+        <Compile Include="AwakenedCode/**/*.cs"/>
+        <AdditionalFiles Include="Awakened/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Champ'))">
+        <Compile Include="ChampCode/**/*.cs"/>
+        <AdditionalFiles Include="Champ/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Guardian'))">
+        <Compile Include="GuardianCode/**/*.cs"/>
+        <AdditionalFiles Include="Guardian/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Hexaghost'))">
+        <Compile Include="HexaghostCode/**/*.cs"/>
+        <AdditionalFiles Include="Hexaghost/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Hermit'))">
+        <Compile Include="HermitCode/**/*.cs"/>
+        <AdditionalFiles Include="Hermit/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('SlimeBoss'))">
+        <Compile Include="SlimeBossCode/**/*.cs"/>
+        <AdditionalFiles Include="SlimeBoss/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Snecko'))">
+        <Compile Include="SneckoCode/**/*.cs"/>
+        <AdditionalFiles Include="Snecko/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Collector'))">
+        <Compile Include="CollectorCode/**/*.cs"/>
+        <AdditionalFiles Include="Collector/**/*"/>
+    </ItemGroup>
 
-    <Target Name="CollectSubmodFiles" BeforeTargets="CoreCompile">
-        <ItemGroup>
-            <Compile Include="%(Submod.Identity)Code/**/*.cs" />
-            <None Include="%(Submod.Identity)/**" />
-            <AdditionalFiles Include="%(Submod.Identity)/localization/**/*.json" />
-        </ItemGroup>
-        <Message
-                Text="Compiling submod '%(Submod.Identity)'"
-                Importance="high" />
+    <ItemGroup Condition="$(Submods.Contains('Test'))">
+        <Compile Include="TestCode/**/*.cs"/>
+        <AdditionalFiles Include="Test/**/*"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+
+
+
+    <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
+        <Message Text="Building submods: '$(Submods)'" Importance="high"/>
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
-        <Copy
-                SourceFiles="$(TargetPath)"
-                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
 
-        <Copy
-                SourceFiles="Downfall.json"
-                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-
-        <Copy
-                SourceFiles="$(TargetDir)$(TargetName).pdb"
-                DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
-                Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
-
-        <Message
-                Text="Copying BaseLib dependencies..."
-                Importance="high"/>
+        <Message Text="Copying BaseLib dependencies..." Importance="high"/>
 
         <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
             <BaseLibFiles Include="
@@ -71,36 +100,21 @@
             "/>
         </ItemGroup>
 
-        <Copy
-                SourceFiles="@(BaseLibFiles)"
-                DestinationFolder="$(ModsPath)BaseLib/"/>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
     </Target>
 
-    <Target
-            Name="GodotImport"
-            BeforeTargets="GodotPublish"
+    <Target Name="GodotImport" BeforeTargets="GodotPublish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
-
-        <Exec
-                Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
-                EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-                IgnoreExitCode="true"
-                IgnoreStandardErrorWarningFormat="true"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
-    <Target
-            Name="GodotPublish"
-            AfterTargets="Publish"
+    <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-
-        <Message
-                Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---"
-                Importance="high"/>
-
-        <Exec
-                Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
-                EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-                IgnoreExitCode="false"
-                IgnoreStandardErrorWarningFormat="true"/>
+        <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 </Project>

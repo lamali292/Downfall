@@ -14,7 +14,7 @@ public class SummonOrb : AutomatonCardModel
 {
     public SummonOrb() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<SummonOrbPower>(1, false);
+        WithPower<SummonOrbPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(AutomatonTip.Stash);
     }

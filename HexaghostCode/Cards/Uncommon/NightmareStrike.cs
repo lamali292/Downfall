@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Cards.Token;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,12 +17,13 @@ public class NightmareStrike : HexaghostCardModel, IHasAfterlifeEffect
         WithUpgradingCardTip<ShadowStrike>();
         WithDamage(4, 2);
         WithTags(CardTag.Strike);
-        this.WithAfterlife();
+        WithAfterlife();
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         await DownfallCardCmd.GiveCard<ShadowStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }

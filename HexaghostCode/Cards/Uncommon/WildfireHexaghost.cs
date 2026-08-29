@@ -12,7 +12,7 @@ public class WildfireHexaghost : HexaghostCardModel
 {
     public WildfireHexaghost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<WildfirePower>(3, 2, false);
+        WithPower<WildfirePower>(3, 2, false);
         WithTip(StaticHoverTip.Block);
     }
 

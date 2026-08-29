@@ -12,7 +12,7 @@ public class Reversal : HexaghostCardModel
     public Reversal() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 1);
-        this.WithRepeat(2);
+        WithRepeat(2);
         WithTip(HexaghostTip.Ignite);
         WithTip(HexaghostTip.Extinguish);
     }
@@ -25,8 +25,8 @@ public class Reversal : HexaghostCardModel
             return a.IsIgnited || a.AboutToIgnite(this);
         }
     }
-    
-    
+
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (HexaghostCmd.IsIgnited(Owner))

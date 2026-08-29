@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Guardian.GuardianCode.Powers;
 
-
 public class BastionPower : GuardianPowerModel, IAfterBrace
 {
     public BastionPower()
@@ -24,8 +23,6 @@ public class BastionPower : GuardianPowerModel, IAfterBrace
         var allies = player.OtherTeammates;
         Flash();
         foreach (var ally in allies)
-        {
             await CreatureCmd.GainBlock(ally.Creature, Amount, BlockProps.nonCardUnpowered, null);
-        }
     }
 }

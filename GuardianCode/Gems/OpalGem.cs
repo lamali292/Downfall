@@ -17,12 +17,10 @@ public class OpalGem : GemModel
     public override Color GemColor => new(0xC7C7C7FF);
     public override CardRarity Rarity => CardRarity.Uncommon;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
+        IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
-        foreach (var player in targetPlayers)
-        {
-            await CardPileCmd.Draw(ctx, effect, player);
-        }
+        foreach (var player in targetPlayers) await CardPileCmd.Draw(ctx, effect, player);
     }
 }

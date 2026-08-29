@@ -11,22 +11,25 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class PoltergeistPower : HexaghostPowerModel, IWheelMoved
 {
-
     public PoltergeistPower()
     {
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
     }
- 
+
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
-        => DamageAction(ctx, player);
+    {
+        return DamageAction(ctx, player);
+    }
 
     public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
         int ghostflameIndex, bool silent)
-        => DamageAction(ctx, player);
+    {
+        return DamageAction(ctx, player);
+    }
 
     private async Task DamageAction(PlayerChoiceContext ctx, Player player)
     {

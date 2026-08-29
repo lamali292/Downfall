@@ -16,7 +16,7 @@ public class Lacerate : SneckoCardModel
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VenomPower>(ctx, this, cardPlay);

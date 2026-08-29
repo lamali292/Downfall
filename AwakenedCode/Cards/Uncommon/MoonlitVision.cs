@@ -13,7 +13,7 @@ public class MoonlitVision : AwakenedCardModel
     public MoonlitVision() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithEnergy(1);
-        this.WithPower<MoonlitVisionPower>(1, false);
+        WithPower<MoonlitVisionPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

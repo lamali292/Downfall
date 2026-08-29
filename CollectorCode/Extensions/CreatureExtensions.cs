@@ -5,11 +5,8 @@ namespace Collector.CollectorCode.Extensions;
 
 public static class CreatureExtensions
 {
-
     extension(Creature creature)
     {
         public bool IsAfflicted => creature.HasPower<VulnerablePower>() && creature.HasPower<WeakPower>();
     }
-
-  
 }

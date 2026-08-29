@@ -25,8 +25,14 @@ public static class CardDescriptionPatch
     private static string Name(CardModel? card)
     {
         if (card == null) return "<null>";
-        try { return card.ToString() ?? card.GetType().Name; }
-        catch { return card.GetType().Name; }
+        try
+        {
+            return card.ToString() ?? card.GetType().Name;
+        }
+        catch
+        {
+            return card.GetType().Name;
+        }
     }
 
     private static MethodBase TargetMethod()
@@ -58,8 +64,8 @@ public static class CardDescriptionPatch
             DownfallMainFile.Logger.Error($"Postfix description failed for '{Name(__instance)}': {e}");
         }
     }
-    
-    
+
+
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
@@ -80,12 +86,14 @@ public static class CardDescriptionPatch
                 if (codes[i].opcode == OpCodes.Stloc_S && codes[i].operand is LocalBuilder { LocalIndex: 5 })
                 {
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, injectMethod));
-                    codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.BelowMainText));
+                    codes.Insert(i + 1,
+                        new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.BelowMainText));
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldloc_S, (byte)5));
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldarg_0));
 
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, injectMethod));
-                    codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.AboveMainText));
+                    codes.Insert(i + 1,
+                        new CodeInstruction(OpCodes.Ldc_I4, (int)DescriptionInjectionPoint.AboveMainText));
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldloc_S, (byte)5));
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldarg_0));
                     break;

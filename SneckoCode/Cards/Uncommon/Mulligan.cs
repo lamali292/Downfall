@@ -11,7 +11,7 @@ public class Mulligan : SneckoCardModel
 {
     public Mulligan() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        this.WithPower<MulliganPower>(1, 1, false);
+        WithPower<MulliganPower>(1, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

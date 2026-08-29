@@ -25,6 +25,8 @@ loc_editor_settings.json
 *.TMP
 *.dll
 *.kra
+*.kra~
+*.png~
 local.props
 bin/*
 fmod/.cache/

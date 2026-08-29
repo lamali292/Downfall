@@ -14,7 +14,7 @@ public sealed class Quickdraw : HermitCardModel
     {
         WithDamage(9, 2);
         WithCards(2, 1);
-        this.WithPower<DrawFewerCardsNextTurnPower>(1, false);
+        WithPower<DrawFewerCardsNextTurnPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

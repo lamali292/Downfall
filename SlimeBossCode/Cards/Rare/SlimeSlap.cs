@@ -12,10 +12,10 @@ public class SlimeSlap : SlimeBossCardModel
 {
     public SlimeSlap() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithPower<DouseInSlimePower>(1, false);
+        WithPower<DouseInSlimePower>(1, false);
         WithDamage(8);
         WithCostUpgradeBy(-1);
-        this.WithTip<GoopPower>();
+        WithTip<GoopPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

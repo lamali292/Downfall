@@ -11,7 +11,6 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class AbstractModelExtensions
 {
-    
     extension(AbstractModel model)
     {
         public DynamicVarSet DynamicVars => model switch
@@ -26,7 +25,7 @@ public static class AbstractModelExtensions
             GhostflameModel ghostflameModel => ghostflameModel.DynamicVars,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
-        
+
         public Creature Creature => model switch
         {
             RelicModel relic => relic.Owner.Creature,
@@ -42,13 +41,13 @@ public static class AbstractModelExtensions
         };
 
         private TargetType GetTargetType => model switch
-            {
-                CardModel card => card.TargetType,
-                PotionModel potion => potion.TargetType,
-                CardModifier cardModifier => cardModifier.Owner?.TargetType ?? TargetType.None,
-                _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
-            };
-        
+        {
+            CardModel card => card.TargetType,
+            PotionModel potion => potion.TargetType,
+            CardModifier cardModifier => cardModifier.Owner?.TargetType ?? TargetType.None,
+            _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
+        };
+
         public IEnumerable<Creature> MyGetTargets(Creature? singleTarget = null)
         {
             if (model is not CardModel card) return model.ResolveTargets(model.GetTargetType, singleTarget);
@@ -58,6 +57,7 @@ public static class AbstractModelExtensions
                 return singleTarget is not null ? [singleTarget] : [];
             return card.GetTargets();
         }
+
         public IEnumerable<Creature> MyGetTargets(Creature? singleTarget, TargetType targetTypeOverride)
         {
             return model.ResolveTargets(targetTypeOverride, singleTarget);
@@ -84,7 +84,5 @@ public static class AbstractModelExtensions
                     $"Unsupported TargetType {type} for {model.GetType().Name}")
             };
         }
-        
     }
-   
 }

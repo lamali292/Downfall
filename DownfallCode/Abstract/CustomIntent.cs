@@ -13,12 +13,12 @@ public abstract class CustomIntent : AbstractIntent, ICustomModel
     protected override string? SpritePath => null;
 
     protected virtual string? IntentSpritePath => null;
-    
+
     private void EnsureRegistered()
     {
         var key = IntentPrefix.ToLowerInvariant();
         if (IntentAnimData._data.ContainsKey(key)) return;
-        if (IntentSpritePath == null) return; 
+        if (IntentSpritePath == null) return;
         IntentAnimData._data[key] = new IntentAnimData.InternalData { frames = [IntentSpritePath] };
     }
 

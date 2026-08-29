@@ -14,10 +14,10 @@ public class Rebirth : AwakenedCardModel
 {
     public Rebirth() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        this.WithPower<AwakeningPower>(8, 3, false);
-        this.WithTip<VulnerablePower>();
-        this.WithTip<WeakPower>();
-        this.WithTip<FrailPower>();
+        WithPower<AwakeningPower>(8, 3, false);
+        WithTip<VulnerablePower>();
+        WithTip<WeakPower>();
+        WithTip<FrailPower>();
         WithTip(AwakenedTip.Awaken);
     }
 

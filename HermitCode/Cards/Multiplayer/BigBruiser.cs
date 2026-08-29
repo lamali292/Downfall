@@ -10,7 +10,7 @@ public class BigBruiser : HermitCardModel
 {
     public BigBruiser() : base(2, CardType.Power, CardRarity.Rare, TargetType.AllEnemies)
     {
-        this.WithPower<BigBruiserPower>(1, false);
+        WithPower<BigBruiserPower>(1, false);
         WithPower<BruisePower>(3, 3);
     }
 

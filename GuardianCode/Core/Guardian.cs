@@ -28,7 +28,7 @@ public class Guardian : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideGuardian;
     public override bool HideInCompendium => DownfallConfig.HideGuardian;
-    
+
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 80;

@@ -30,6 +30,5 @@ public class ChargedBarrage : HexaghostCardModel
             scale *= 0.9f;
             await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         }
-           
     }
 }

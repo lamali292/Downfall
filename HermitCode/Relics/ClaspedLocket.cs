@@ -52,7 +52,8 @@ public sealed class ClaspedLocket : HermitRelicModel
         }
     }
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!participants.Contains(Owner.Creature)) return Task.CompletedTask;

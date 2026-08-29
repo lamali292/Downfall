@@ -4,8 +4,6 @@ using Downfall.DownfallCode.Config;
 using Godot;
 using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Relics;
-using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Potions;
@@ -31,7 +29,7 @@ public class Hermit : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideHermit;
     public override bool HideInCompendium => DownfallConfig.HideHermit;
-    
+
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 70;
@@ -50,7 +48,7 @@ public class Hermit : DownfallCharacterModel
         ModelDb.Card<Covet>(),
         ModelDb.Card<Snapshot>()
     ];
-    
+
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
