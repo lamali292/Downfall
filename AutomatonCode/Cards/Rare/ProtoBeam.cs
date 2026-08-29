@@ -13,7 +13,7 @@ public class ProtoBeam : AutomatonCardModel
 {
     public ProtoBeam() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(9, 3);
+        WithDamage(9, 4);
         WithEnergy(1);
         WithKeyword(CardKeyword.Ethereal);
     }
