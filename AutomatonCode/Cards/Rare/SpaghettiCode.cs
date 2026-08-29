@@ -16,7 +16,6 @@ public class SpaghettiCode : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -31,7 +30,6 @@ public class SpaghettiCode : AutomatonCardModel
             if (selected == null) break;
             functionCard = await AutomatonCmd.EncodeCard(selected, ctx);
         }
-
-        functionCard?.SetToFreeThisTurn();
+        if (IsUpgraded) functionCard?.SetToFreeThisTurn();
     }
 }
