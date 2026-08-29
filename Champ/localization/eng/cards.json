@@ -89,7 +89,7 @@
   "CHAMP-HEADBUTT.title": "Headbutt",
   "CHAMP-HOLD_FIRM.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].\n[gold]Block[/gold] is not removed at the start of your next turn.",
   "CHAMP-HOLD_FIRM.title": "Hold Firm",
-  "CHAMP-HONE_BLADE.description": "Your \"Strike\" cards deal {HoneBladePower:diff()} additional damage. ",
+  "CHAMP-HONE_BLADE.description": "Whenever you play 3 \"Strike\" cards, gain {Energy:energyIcons()}.",
   "CHAMP-HONE_BLADE.title": "Hone Blade",
   "CHAMP-HUDDLE.title": "Huddle",
   "CHAMP-HUDDLE.description": "ALL players gain {VigorPower:diff()} [gold]Vigor[/gold].",
