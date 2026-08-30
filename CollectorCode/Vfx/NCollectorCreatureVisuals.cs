@@ -52,15 +52,7 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
     {
         base._Ready();
 
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        if (SpineBody != null)
-            SpineBody.SetNormalMaterial(premultMat);
-        else
-            GetCurrentBody().Material = premultMat;
+       
 
         GetTree().ProcessFrame += SetupEyes;
     }
@@ -74,8 +66,8 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
         _animState = SpineBody?.GetAnimationState();
         _animState?.SetAnimationCompat(IdleAnim);
 
-        _rightEye = GetNodeOrNull<Control>("Visuals/RightEye");
-        _leftEye = GetNodeOrNull<Control>("Visuals/LeftEye");
+        _rightEye = GetNodeOrNull<Control>("%RightEye");
+        _leftEye = GetNodeOrNull<Control>("%LeftEye");
 
         if (SpineBody == null) return;
 
@@ -106,9 +98,8 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
         var skeleton = SpineBody!.GetSkeleton();
         var bone = skeleton?.FindBone(boneName);
         if (bone == null) return;
-
         var wx = bone.BoundObject.Call("get_world_x").As<float>();
         var wy = bone.BoundObject.Call("get_world_y").As<float>();
-        eye.Position = new Vector2(wx * 0.7f + 52, wy - 60);
+        eye.Position = new Vector2(wx-10, wy-10) + spineNode.GlobalPosition  - GlobalPosition;
     }
 }
