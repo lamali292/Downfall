@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=3 ]
+[gd_scene load_steps=13 format=3 uid="uid://mjsbbq8nwpxt"]
 
-[ext_resource type="Script" path="res://CollectorCode/Vfx/NCollectorMerchantCharacter.cs" id="1_itnq2"]
-[ext_resource type="PackedScene" path="res://Collector/scenes/character/collector.tscn" id="1_vkos4"]
-[ext_resource type="Shader" path="res://shaders/vfx/fire/fire_shader_1.tres" id="2_pms8p"]
-[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_4.png" id="3_itnq2"]
-[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_1.png" id="4_mdb4y"]
-[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_2.png" id="5_2goet"]
-[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/fire_shape_1.png" id="6_xg3x0"]
-[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="7_wafat"]
+[ext_resource type="Script" uid="uid://cgfughfjce7ip" path="res://CollectorCode/Vfx/NCollectorMerchantCharacter.cs" id="1_itnq2"]
+[ext_resource type="PackedScene" uid="uid://4ij4mn40m1pr" path="res://Collector/scenes/character/collector.tscn" id="1_vkos4"]
+[ext_resource type="Shader" uid="uid://b3mjsdna22bkv" path="res://shaders/vfx/fire/fire_shader_1.tres" id="2_pms8p"]
+[ext_resource type="Texture2D" uid="uid://bid56elmy6fr6" path="res://images/vfx/tileable_noise_4.png" id="3_itnq2"]
+[ext_resource type="Texture2D" uid="uid://dtaovewempx07" path="res://images/vfx/tileable_noise_1.png" id="4_mdb4y"]
+[ext_resource type="Texture2D" uid="uid://8u0ij0tgmrfb" path="res://images/vfx/tileable_noise_2.png" id="5_2goet"]
+[ext_resource type="Texture2D" uid="uid://dhrgww7uebqa7" path="res://images/vfx/environment/fire/fire_shape_1.png" id="6_xg3x0"]
+[ext_resource type="Texture2D" uid="uid://ctia3rua3hmm8" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="7_wafat"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_peulf"]
 shader = ExtResource("2_pms8p")
@@ -88,25 +88,27 @@ shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_itnq2")
 
-[node name="Collector" parent="." instance=ExtResource("1_vkos4")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Collector" parent="Node2D" instance=ExtResource("1_vkos4")]
 scale = Vector2(1.3507653, 1.3507653)
 
-[node name="RightEye" type="Control" parent="Collector"]
+[node name="RightEye" type="Control" parent="Node2D/Collector"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 28.87252
-offset_top = -287.24457
-offset_right = 48.87252
-offset_bottom = -207.24457
+offset_left = 7.4032116
+offset_top = -304.27194
+offset_right = 27.40321
+offset_bottom = -224.27194
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_r" type="ColorRect" parent="Collector/RightEye"]
+[node name="eye_fire_r" type="ColorRect" parent="Node2D/Collector/RightEye"]
 material = SubResource("ShaderMaterial_peulf")
 layout_mode = 1
 anchors_preset = 15
@@ -115,7 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Collector/RightEye"]
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Node2D/Collector/RightEye"]
 material = SubResource("ShaderMaterial_uyhow")
 layout_mode = 1
 anchors_preset = 15
@@ -124,22 +126,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftEye" type="Control" parent="Collector"]
+[node name="LeftEye" type="Control" parent="Node2D/Collector"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 8.143531
-offset_top = -279.84134
-offset_right = 28.143532
-offset_bottom = -199.84134
+offset_left = -18.508024
+offset_top = -294.64777
+offset_right = 1.4919758
+offset_bottom = -214.64777
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_l" type="ColorRect" parent="Collector/LeftEye"]
+[node name="eye_fire_l" type="ColorRect" parent="Node2D/Collector/LeftEye"]
 material = SubResource("ShaderMaterial_kwr5l")
 layout_mode = 1
 anchors_preset = 15
@@ -148,7 +150,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Collector/LeftEye"]
+[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Node2D/Collector/LeftEye"]
 material = SubResource("ShaderMaterial_lvglx")
 layout_mode = 1
 anchors_preset = 15
