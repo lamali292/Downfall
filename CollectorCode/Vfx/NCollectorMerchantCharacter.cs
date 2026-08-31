@@ -6,5 +6,5 @@ namespace Collector.CollectorCode.Vfx;
 [GlobalClass]
 public partial class NCollectorMerchantCharacter : NSpineMerchantCharacter
 {
-    protected override string IdleName => "idle";
+    protected override string IdleName => "idle_loop";
 }
