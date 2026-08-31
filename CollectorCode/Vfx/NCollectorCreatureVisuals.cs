@@ -24,7 +24,7 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
     private MegaBone? _rightEyeBone;
 
 
-    private string IdleAnim => "idle";
+    private string IdleAnim => "idle_loop";
     private string AttackAnim => "attack";
     private string CastAnim => "cast";
     private string HitAnim => "Hit";
@@ -37,13 +37,15 @@ public partial class NCollectorCreatureVisuals : NCreatureVisuals, IAnimatedVisu
             case "Idle":
                 _animState?.SetAnimationWithMix(IdleAnim, DefaultMix);
                 break;
-            case "Hit":
-                _animState?.SetAnimationWithMix(HitAnim, HitMix, false);
-                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+            case "Dead":
+                _animState?.SetAnimationWithMix(DeadAnim, DeadMix, false);
                 break;
             case "Attack":
-            case "Dead":
             case "Cast":
+                _animState?.SetAnimationWithMix(CastAnim, CastMix, false);
+                _animState?.QueueAnimation(IdleAnim, ToIdleMix);
+                break;
+            case "Hit":
                 break;
         }
     }
