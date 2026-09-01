@@ -1,0 +1,308 @@
+[gd_scene load_steps=26 format=3 ]
+
+[ext_resource type="Script" path="res://DownfallCode/Voting/NVotingFilter.cs" id="1_3jy3k"]
+[ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="1_fnpnn"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_3jy3k"]
+[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="3_prsbn"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/CardLibrary/NClearSearchButton.cs" id="4_poe7j"]
+[ext_resource type="Texture2D" path="res://images/atlases/compressed.sprites/back_button_x.tres" id="5_48ftl"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/library_pool_toggle.tscn" id="6_le4e1"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="7_06xf1"]
+[ext_resource type="Texture2D" path="res://Automaton/images/character/character_icon.png" id="8_5fsaj"]
+[ext_resource type="Texture2D" path="res://Awakened/images/character/character_icon.png" id="9_syt53"]
+[ext_resource type="Texture2D" path="res://Champ/images/character/character_icon.png" id="10_mmqtd"]
+[ext_resource type="Texture2D" path="res://Guardian/images/character/character_icon.png" id="11_uvvii"]
+[ext_resource type="Texture2D" path="res://Hermit/images/character/character_icon.png" id="12_eeuuv"]
+[ext_resource type="Texture2D" path="res://Hexaghost/images/character/character_icon.png" id="13_80od1"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/character/character_icon.png" id="14_xhasr"]
+[ext_resource type="Texture2D" path="res://Snecko/images/character/character_icon.png" id="15_ph7w6"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/library_sort_button.tscn" id="16_2qm8c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20spm"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ge7tf"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o01pq"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nq11s"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ea3g0"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chcdx"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gro3l"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8jc3"]
+resource_local_to_scene = true
+shader = ExtResource("7_06xf1")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[node name="SubmissionHeader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3jy3k")
+
+[node name="Sidebar" type="Control" parent="."]
+custom_minimum_size = Vector2(0.04, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 288.0
+grow_vertical = 2
+
+[node name="Panel" type="ColorRect" parent="Sidebar"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.182, 0.2604, 0.28, 0.501961)
+
+[node name="Shadow" type="ColorRect" parent="Sidebar/Panel"]
+show_behind_parent = true
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.2346, 0.325947, 0.34, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TopVBox" type="VBoxContainer" parent="Sidebar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SearchBar" type="Control" parent="Sidebar/MarginContainer/TopVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+script = ExtResource("1_fnpnn")
+
+[node name="TextArea" type="LineEdit" parent="Sidebar/MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ClearButton")
+focus_neighbor_bottom = NodePath("../../PoolFilters/IroncladPool")
+theme_override_fonts/font = ExtResource("2_3jy3k")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "NOT_SET"
+script = ExtResource("3_prsbn")
+theme_override_fonts/font = ExtResource("2_3jy3k")
+theme_override_font_sizes/font_size = 24
+
+[node name="ClearButton" type="Control" parent="Sidebar/MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("4_poe7j")
+
+[node name="Image" type="TextureRect" parent="Sidebar/MarginContainer/TopVBox/SearchBar/ClearButton"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+texture = ExtResource("5_48ftl")
+expand_mode = 1
+
+[node name="Spacer2" type="Control" parent="Sidebar/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="PoolFilters" type="GridContainer" parent="Sidebar/MarginContainer/TopVBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="IroncladPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/IroncladPool" index="0"]
+material = SubResource("ShaderMaterial_20spm")
+texture = ExtResource("8_5fsaj")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/IroncladPool/Image" index="0"]
+texture = ExtResource("8_5fsaj")
+
+[node name="SilentPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/SilentPool" index="0"]
+material = SubResource("ShaderMaterial_ge7tf")
+texture = ExtResource("9_syt53")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/SilentPool/Image" index="0"]
+texture = ExtResource("9_syt53")
+
+[node name="RegentPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/RegentPool" index="0"]
+material = SubResource("ShaderMaterial_o01pq")
+texture = ExtResource("10_mmqtd")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/RegentPool/Image" index="0"]
+texture = ExtResource("10_mmqtd")
+
+[node name="NecrobinderPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/NecrobinderPool" index="0"]
+material = SubResource("ShaderMaterial_nq11s")
+texture = ExtResource("11_uvvii")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/NecrobinderPool/Image" index="0"]
+texture = ExtResource("11_uvvii")
+
+[node name="DefectPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/DefectPool" index="0"]
+material = SubResource("ShaderMaterial_ea3g0")
+texture = ExtResource("12_eeuuv")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/DefectPool/Image" index="0"]
+texture = ExtResource("12_eeuuv")
+
+[node name="ColorlessPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/ColorlessPool" index="0"]
+material = SubResource("ShaderMaterial_chcdx")
+texture = ExtResource("13_80od1")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/ColorlessPool/Image" index="0"]
+texture = ExtResource("13_80od1")
+
+[node name="AncientsPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/AncientsPool" index="0"]
+material = SubResource("ShaderMaterial_gro3l")
+texture = ExtResource("14_xhasr")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/AncientsPool/Image" index="0"]
+texture = ExtResource("14_xhasr")
+
+[node name="MiscPool" parent="Sidebar/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("6_le4e1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/MiscPool" index="0"]
+material = SubResource("ShaderMaterial_y8jc3")
+texture = ExtResource("15_ph7w6")
+
+[node name="Shadow" parent="Sidebar/MarginContainer/TopVBox/PoolFilters/MiscPool/Image" index="0"]
+texture = ExtResource("15_ph7w6")
+
+[node name="Spacer" type="Control" parent="Sidebar/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="AlphabetSorter" parent="Sidebar/MarginContainer/TopVBox" instance=ExtResource("16_2qm8c")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/IroncladPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/SilentPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/RegentPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/NecrobinderPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/DefectPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/ColorlessPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/AncientsPool"]
+[editable path="Sidebar/MarginContainer/TopVBox/PoolFilters/MiscPool"]

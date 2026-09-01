@@ -56,11 +56,11 @@ public static class DownfallMainFile
             return echoLoc.GetFormattedText();
         });
         
-        /*
+        
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting",
-            IsVisible = () => DownfallConfig.DevMode,
+            IsVisible = () => true,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>
@@ -69,7 +69,7 @@ public static class DownfallMainFile
                     stack?.GetTree().Root.AddChild(new VotingApi());
                 stack?.PushSubmenuType<NArtVotingScreen>();
             }
-        });*/
+        });
 
         // mention downfall sts1 credits somewhere
         ModCredits.Register(ModId,

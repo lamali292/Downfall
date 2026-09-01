@@ -1,12 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Platform.Steam;
+﻿using System.Security.Cryptography;
+using System.Text;
+using MegaCrit.Sts2.Core.Platform.Steam;
 using Steamworks;
 
 namespace Downfall.DownfallCode.Voting;
 
 public static class UserIdentity
 {
-    private static string? _id;
-
     private static TaskCompletionSource<string?>? _ticketTcs;
     private static Callback<GetTicketForWebApiResponse_t>? _cb;
     private static bool IsAvailable => SteamInitializer.Initialized;
@@ -15,10 +15,15 @@ public static class UserIdentity
     {
         get
         {
-            if (_id != null) return _id;
+            if (field != null) return field;
             if (!IsAvailable) return null;
-            _id = SteamUser.GetSteamID().m_SteamID.ToString();
-            return _id;
+            var steamId = SteamUser.GetSteamID().m_SteamID.ToString();
+
+            field = Convert.ToHexString(
+                SHA256.HashData(Encoding.UTF8.GetBytes(steamId))
+            )[..16];
+
+            return field;
         }
     }
 
@@ -34,7 +39,7 @@ public static class UserIdentity
 
     private static void OnTicket(GetTicketForWebApiResponse_t r)
     {
-        var hex = BitConverter.ToString(r.m_rgubTicket, 0, r.m_cubTicket).Replace("-", "");
+        var hex = Convert.ToHexString(r.m_rgubTicket, 0, r.m_cubTicket);
         _ticketTcs?.TrySetResult(hex);
         _cb?.Dispose();
         _cb = null;

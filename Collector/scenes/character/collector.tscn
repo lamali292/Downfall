@@ -10,6 +10,6 @@ skeleton_file_res = ExtResource("2_l45cq")
 [node name="Collector" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_teaa0")
 preview_skin = "Default"
-preview_animation = "idle"
+preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
