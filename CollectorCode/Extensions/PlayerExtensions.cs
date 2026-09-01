@@ -17,11 +17,8 @@ internal static class PlayerExtensions
 
         public int Essence => EssenceModel.GetEssence(player);
 
-        public Creature? Torchhead()
-        {
-            return player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
-        }
-
+        public Creature? Torchhead => player.PlayerCombatState?.GetPet<TorchheadMonsterModel>();
+       
         public bool CanAffordEssence(int amount)
         {
             return EssenceModel.CanAfford(player, amount);

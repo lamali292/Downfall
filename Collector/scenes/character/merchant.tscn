@@ -88,25 +88,27 @@ shader_parameter/Shape_Mask = ExtResource("6_xg3x0")
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_itnq2")
 
-[node name="Collector" parent="." instance=ExtResource("1_vkos4")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Collector" parent="Node2D" instance=ExtResource("1_vkos4")]
 scale = Vector2(1.3507653, 1.3507653)
 
-[node name="RightEye" type="Control" parent="Collector"]
+[node name="RightEye" type="Control" parent="Node2D/Collector"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 28.87252
-offset_top = -287.24457
-offset_right = 48.87252
-offset_bottom = -207.24457
+offset_left = 7.4032116
+offset_top = -304.27194
+offset_right = 27.40321
+offset_bottom = -224.27194
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_r" type="ColorRect" parent="Collector/RightEye"]
+[node name="eye_fire_r" type="ColorRect" parent="Node2D/Collector/RightEye"]
 material = SubResource("ShaderMaterial_peulf")
 layout_mode = 1
 anchors_preset = 15
@@ -115,7 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Collector/RightEye"]
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Node2D/Collector/RightEye"]
 material = SubResource("ShaderMaterial_uyhow")
 layout_mode = 1
 anchors_preset = 15
@@ -124,22 +126,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftEye" type="Control" parent="Collector"]
+[node name="LeftEye" type="Control" parent="Node2D/Collector"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 8.143531
-offset_top = -279.84134
-offset_right = 28.143532
-offset_bottom = -199.84134
+offset_left = -18.508024
+offset_top = -294.64777
+offset_right = 1.4919758
+offset_bottom = -214.64777
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_l" type="ColorRect" parent="Collector/LeftEye"]
+[node name="eye_fire_l" type="ColorRect" parent="Node2D/Collector/LeftEye"]
 material = SubResource("ShaderMaterial_kwr5l")
 layout_mode = 1
 anchors_preset = 15
@@ -148,7 +150,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Collector/LeftEye"]
+[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Node2D/Collector/LeftEye"]
 material = SubResource("ShaderMaterial_lvglx")
 layout_mode = 1
 anchors_preset = 15
