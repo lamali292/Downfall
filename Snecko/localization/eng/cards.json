@@ -162,7 +162,7 @@
   "SNECKO-ALL_IN.title": "Gamble",
   "SNECKO-ALL_IN.description": "Deal {Damage:diff()} damage X times.\nNext turn, draw X{IfUpgraded:show:+1|} cards and [gold]Muddle[/gold] them.",
   "SNECKO-GLUT.title": "Glut",
-  "SNECKO-GLUT.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]: Deal {OverflowDamage:diff()} damage to ALL enemies for each other card in your [gold]Hand[/gold].{InCombat:cond:\n(Hits {OverflowRepeat:diff()} {OverflowRepeat:plural:time|times})|}",
+  "SNECKO-GLUT.description": "Deal {Damage:diff()} damage for each other card in your [gold]Hand[/gold].{InCombat:cond:\n(Hits {Repeat:diff()} {Repeat:plural:time|times})|}",
   "SNECKO-WEIGHTED_DICE.title": "Weighted Dice",
   "SNECKO-WEIGHTED_DICE.description": "Whenever you play a card that costs more than its original cost, play it twice.",
   "SNECKO-FORKED_TONGUE.title": "Forked Tongue",
