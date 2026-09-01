@@ -13,8 +13,8 @@ public class NullPointer : AutomatonCardModel,
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(12, 3);
-        WithBlock(12, 3);
+        WithDamage(10, 3);
+        WithBlock(10, 3);
         WithEnergy(3);
     }
 
