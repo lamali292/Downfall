@@ -12,9 +12,10 @@ namespace Awakened.AwakenedCode.Cards.Rare;
 [Pool(typeof(AwakenedCardPool))]
 public class RazorSharp : AwakenedCardModel
 {
-    public RazorSharp() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public RazorSharp() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip<PlumeJab>();
+        WithCards(2);
         WithPower<RazorSharpPower>(1, 1, false);
     }
 
@@ -22,7 +23,7 @@ public class RazorSharp : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, 2, CardPilePosition.Random);
+        await DownfallCardCmd.GiveCards<PlumeJab>(Owner, PileType.Draw, DynamicVars.Cards.BaseValue, CardPilePosition.Random);
         await CommonActions.ApplySelf<RazorSharpPower>(ctx, this);
     }
 }

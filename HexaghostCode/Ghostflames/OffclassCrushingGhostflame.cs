@@ -34,7 +34,7 @@ public class OffclassCrushingGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameDamageVar(2)
+        new GhostflameDamageVar(3)
     ];
 
     public override async Task OnIgnite(PlayerChoiceContext ctx)

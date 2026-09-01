@@ -4,7 +4,6 @@ using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Cards.Uncommon;
 
@@ -13,9 +12,11 @@ public class ProtectiveAura : ChampCardModel
 {
     public ProtectiveAura() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<ProtectiveAuraPower>(5, 2, false);
-        WithTip(StaticHoverTip.Block);
-        // WithTip(ChampTip.Stance);
+        WithPower<ProtectiveAuraPower>(1, false);
+        WithCards(4);
+        WithEnergy(1);
+        WithCostUpgradeBy(-1);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

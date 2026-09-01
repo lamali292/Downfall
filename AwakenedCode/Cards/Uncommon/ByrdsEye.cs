@@ -14,6 +14,7 @@ public class ByrdsEye : AwakenedCardModel
     public ByrdsEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithConjure();
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -21,7 +22,7 @@ public class ByrdsEye : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var spellbook = AwakenedCmd.GetSpellbook(Owner);
-        if (IsUpgraded) AwakenedCmd.RefreshSpellbook(Owner);
+        //if (IsUpgraded) AwakenedCmd.RefreshSpellbook(Owner);
 
         var cards = spellbook.Cards;
         var selected =

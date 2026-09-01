@@ -27,7 +27,7 @@
   "AWAKENED-BRAINSHOCK.title": "Brainshock",
   "AWAKENED-BURNING_STUDY.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "AWAKENED-BURNING_STUDY.title": "Burning Study",
-  "AWAKENED-BYRDS_EYE.description": "{IfUpgraded:show:Refresh your Spells.\n|}Choose a Spell to [gold]Conjure[/gold].",
+  "AWAKENED-BYRDS_EYE.description": "Choose a Spell to [gold]Conjure[/gold].",
   "AWAKENED-BYRDS_EYE.title": "Byrd's Eye",
   "AWAKENED-CARRIONMAKER.description": "Deal {Damage:diff()} damage to a random enemy.\nRepeat for each Spell played this turn.",
   "AWAKENED-CARRIONMAKER.title": "Carrionmaker",
@@ -147,7 +147,7 @@
   "AWAKENED-PSALM.title": "Psalm",
   "AWAKENED-RAVEN_STRIKE.description": "Deal {Damage:diff()} damage.",
   "AWAKENED-RAVEN_STRIKE.title": "Raven Strike",
-  "AWAKENED-RAZOR_SHARP.description": "Shuffle 2 [gold]Plume Jabs[/gold] into your [gold]Draw Pile[/gold].\n[gold]Plume Jabs[/gold] hit {RazorSharpPower:diff()} more {RazorSharpPower:plural:time|times}.",
+  "AWAKENED-RAZOR_SHARP.description": "Add {Cards:diff()} {Cards:plural:[gold]Plume Jab[/gold]|[gold]Plume Jabs[/gold]} into your [gold]Draw Pile[/gold].\n[gold]Plume Jabs[/gold] hit {RazorSharpPower:diff()} additional {RazorSharpPower:plural:time|times}.",
   "AWAKENED-RAZOR_SHARP.title": "Razor Sharp",
   "AWAKENED-REALITY_RIFT.description": "Put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].\nGain 1 of 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}cards from another dimension.",
   "AWAKENED-REALITY_RIFT.title": "Reality Rift",
@@ -214,7 +214,7 @@
   "AWAKENED-CONGREGATION.title": "Congregation",
   "AWAKENED-CONGREGATION.description": "ALL players gain {Energy:energyIcons()} and add a [gold]Void[/gold] to the bottom of their [gold]Draw Pile[/gold].",
   "AWAKENED-BLESS.title": "Bless",
-  "AWAKENED-BLESS.description": "Lose {StrengthLoss:diff()} [gold]Strength[/gold].\nAnother player gains {StrengthPower:diff()} [gold]Strength[/gold].",
+  "AWAKENED-BLESS.description": "Give another player {StrengthPower:diff()} [gold]Strength[/gold].\nLose {StrengthLoss:diff()} [gold]Strength[/gold].",
   "AWAKENED-FEATHER_DANCE.title": "Feather Dance",
   "AWAKENED-FEATHER_DANCE.description": "Add {Cards:diff()} [gold]Plume Jabs[/gold] to ALL players' [gold]Hands[/gold]."
 }

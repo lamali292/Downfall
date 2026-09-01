@@ -11,7 +11,7 @@ public class InertBlade : SneckoCardModel
 {
     public InertBlade() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(10, 3);
+        WithDamage(9, 3);
         WithCards(3, 1);
         WithBlock(9, 3);
         WithPower<StrengthPower>(3, 1);

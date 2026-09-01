@@ -57,10 +57,11 @@ public static class DownfallMainFile
         });
         
         
+        
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting",
-            IsVisible = () => true,
+            IsVisible = () => false,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>
