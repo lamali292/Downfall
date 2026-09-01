@@ -143,7 +143,7 @@
   "HEXAGHOST-SEAR.title": "Sear",
   "HEXAGHOST-SEARING_WOUND.description": "ALL enemies lose HP equal to their [gold]Soulburn[/gold].",
   "HEXAGHOST-SEARING_WOUND.title": "Searing Wound",
-  "HEXAGHOST-SEVENTH_EYE.description": "Put {Cards:diff()} {Cards:plural:card|cards} from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold]. \nRandomize your current Ghostflame.",
+  "HEXAGHOST-SEVENTH_EYE.description": "Put a card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold]. \nRandomize your current Ghostflame.",
   "HEXAGHOST-SEVENTH_EYE.title": "Seventh Eye",
   "HEXAGHOST-SHADOW_GUISE.title": "Shadow Guise",
   "HEXAGHOST-SHADOW_GUISE.description": "Gain {Block:diff()} [gold]Block[/gold].",
