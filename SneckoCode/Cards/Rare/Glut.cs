@@ -15,12 +15,10 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class Glut : SneckoCardModel
 {
-    public Glut() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public Glut() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithOverflow();
-        WithDamage(12, 4);
-        WithCalculatedVar("OverflowRepeat", 0, Calc);
-        WithVar(new DamageVar("OverflowDamage", 2, DamageProps.card).WithUpgrade(1));
+        WithDamage(4, 2);
+        WithCalculatedVar("Repeat", 0, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? _)
@@ -30,32 +28,7 @@ public class Glut : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
-        var context = await AttackContextCompatibility.CreateContextAsync(CombatState!, ctx, cardPlay);
-        try
-        {
-            context.AddHit(await CompatibilityCreatureCmd.Damage(
-                ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
-                DamageProps.card, this, cardPlay));
-            if (SneckoCmd.OverflowActive(this))
-            {
-                var dmg = (DamageVar)DynamicVars["OverflowDamage"];
-                var hits = (int)((CalculatedVar)DynamicVars["OverflowRepeat"]).Calculate(null);
-                for (var i = 0; i < hits; i++)
-                {
-                    var targets = CombatState!.GetOpponentsOf(Owner.Creature).Where(e => e.IsHittable).ToList();
-                    if (targets.Count == 0) break;
-                    context.AddHit(await CompatibilityCreatureCmd.Damage(
-                        ctx, targets, dmg.BaseValue,
-                        DamageProps.card, Owner.Creature, this, cardPlay));
-                }
-
-                await SneckoHook.AfterOverflowEffect(Owner, cardPlay, this);
-            }
-        }
-        finally
-        {
-            await context.DisposeAsync();
-        }
+        var hits = (int)((CalculatedVar)DynamicVars["Repeat"]).Calculate(cardPlay.Target);
+        await CommonActions.CardAttack(this, cardPlay, hits).Execute(ctx);
     }
 }
