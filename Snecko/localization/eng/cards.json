@@ -182,7 +182,7 @@
   "SNECKO-SOUL_REFRESH.title": "Soul Refresh",
   "SNECKO-SOUL_REFRESH.description": "Transform a card in your [gold]Hand[/gold] into a [gold]Soul Roll[/gold].",
   "SNECKO-MULLIGAN.title": "Mulligan",
-  "SNECKO-MULLIGAN.description": "The first {MulliganPower:plural:time|{MulliganPower:diff()} times} each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}.",
+  "SNECKO-MULLIGAN.description": "Whenever you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)} next turn.",
   "SNECKO-PARALYTIC_VENOM.title": "Paralytic Venom",
   "SNECKO-PARALYTIC_VENOM.description": "Whenever an Attack deals unblocked damage, apply {ParalyticVenomPower:diff()} [gold]Venom[/gold].",
   "SNECKO-TOXIC_BITE.title": "Toxic Bite",
