@@ -11,7 +11,7 @@ public sealed class Dissolve : HermitCardModel
 {
     public Dissolve() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(18, 7);
+        WithBlock(16, 4);
         WithPower<BlurPower>(2, false);
         WithKeyword(CardKeyword.Exhaust);
     }

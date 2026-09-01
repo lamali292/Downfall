@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,13 +12,17 @@ public class ItsAFeaturePower : AutomatonPowerModel
 {
     public ItsAFeaturePower()
     {
-        WithTip<VigorPower>();
+        WithTip<StrengthPower>();
+        WithTip<DexterityPower>();
     }
 
-    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
+    public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
-        if (creator == null || creator.Creature != Owner) return;
-        Flash();
-        await PowerCmd.Apply<VigorPower>(new BlockingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        if (card.Owner.Creature != Owner) return;
+        await PowerCmd.Apply<ItsAFeaturePowerStrengthPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ItsAFeaturePowerDexterityPower>(ctx, Owner, Amount, Owner, null);
     }
 }
+
+public class ItsAFeaturePowerStrengthPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, StrengthPower>;
+public class ItsAFeaturePowerDexterityPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, StrengthPower>;

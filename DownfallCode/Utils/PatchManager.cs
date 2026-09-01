@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Patches.KaleidoscopePatch;
 using Hexaghost.HexaghostCode.CustomEnums;
@@ -13,7 +14,7 @@ public class DownfallPatchManager
             .Add(typeof(ModelDbInitPatch))
             .Add(typeof(CombatUiActivatePatch))
             .Add(typeof(ModifyDamageInternalPatch))
-            .Add(typeof(AfflictionModelOverlayPathPatch))
+            .Add(typeof(CustomAfflictionModel.AfflictionModelOverlayPathPatch))
             .Add(typeof(CardDescriptionPatch))
             .Add(typeof(GetCardTextPatch))
             .Add(typeof(SetCardContextPatch))

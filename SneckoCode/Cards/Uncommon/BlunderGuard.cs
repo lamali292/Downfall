@@ -15,7 +15,7 @@ public class BlunderGuard : SneckoCardModel
     public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<BlunderGuardPower>(6, 2, false);
-        WithVar("BlunderGuardTwoPower", 2, 1);
+        WithVar("BlunderGuardTwoPower", 1, 1);
         WithTip(StaticHoverTip.Block);
         WithTip<StrengthPower>();
     }

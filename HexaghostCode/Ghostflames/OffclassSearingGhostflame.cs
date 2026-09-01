@@ -30,7 +30,7 @@ public class OffclassSearingGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameSoulburnVar(2)
+        new GhostflameSoulburnVar(3)
     ];
 
 

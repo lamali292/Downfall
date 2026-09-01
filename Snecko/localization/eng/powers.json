@@ -60,7 +60,7 @@
   "SNECKO-MIMICRY_POWER.description": "Whenever you play an [gold]Offclass[/gold] card, gain [gold]Strength[/gold] for one turn.",
   "SNECKO-MIMICRY_POWER.smartDescription": "Whenever you play an [gold]Offclass[/gold] card, gain [blue]{Amount}[/blue] [gold]Strength[/gold] for one turn.",
   "SNECKO-THROWING_CARDS_POWER.title": "Throwing Cards",
-  "SNECKO-THROWING_CARDS_POWER.description": "The next time you play an [gold]Offclass[/gold] card, deal 6 damage to a random enemy and draw a card.",
+  "SNECKO-THROWING_CARDS_POWER.description": "The next time you play an [gold]Offclass[/gold] card, deal damage to a random enemy and draw a card.",
   "SNECKO-THROWING_CARDS_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you play an [gold]Offclass[/gold] card, deal [blue]{Damage:diff()}[/blue] damage to a random enemy and draw {Cards:plural:a card|[blue]{}[/blue] cards}",
   "SNECKO-DICE_CASE_POWER.title": "Dice Case",
   "SNECKO-DICE_CASE_POWER.description": "At the start of your turn, add a [gold]Soul Roll[/gold] to another player's [gold]Hand[/gold].",
@@ -69,6 +69,15 @@
   "SNECKO-GAMBLE_POWER.description": "Next turn, draw cards and [gold]Muddle[/gold] them.",
   "SNECKO-GAMBLE_POWER.smartDescription": "Next turn, draw {Amount:plural:a card|[blue]{}[/blue] cards} and [gold]Muddle[/gold] {Amount:plural:it|them}.",
   "SNECKO-MULLIGAN_POWER.title": "Mulligan",
-  "SNECKO-MULLIGAN_POWER.description": "The first time each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}.",
-  "SNECKO-MULLIGAN_POWER.smartDescription": "The first {Amount:plural:time|[blue]{}[/blue] times} each turn you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)}."
+  "SNECKO-MULLIGAN_POWER.description": "Whenever you play a card that costs more than its original cost, gain {energyPrefix:energyIcons(1)} next turn.",
+  "SNECKO-MULLIGAN_POWER.smartDescription": "Whenever you play a card that costs more than its original cost, gain {Amount:energyIcons()} next turn.",
+  "SNECKO-PARALYTIC_VENOM_POWER.title": "Paralytic Venom",
+  "SNECKO-PARALYTIC_VENOM_POWER.description": "Whenever an Attack deals unblocked damage, apply [gold]Venom[/gold].",
+  "SNECKO-PARALYTIC_VENOM_POWER.smartDescription": "Whenever an Attack deals unblocked damage, apply [blue]{Amount}[/blue] [gold]Venom[/gold].",
+  "SNECKO-MUDDY_POWER.title": "Muddy",
+  "SNECKO-MUDDY_POWER.description": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, [gold]Muddle[/gold] your [gold]Hand[/gold].",
+  "SNECKO-VENOMOLOGY_POWER.title": "Venomology",
+  "SNECKO-VENOMOLOGY_POWER.description": "This turn, whenever another player debuffs this enemy, it gains [gold]Venom[/gold].",
+  "SNECKO-VENOMOLOGY_POWER.smartDescription": "This turn, whenever another player debuffs this enemy, it gains [blue]{Amount}[/blue] [gold]Venom[/gold].",
+  "SNECKO-VENOMOLOGY_POWER.remoteDescription": "This turn, whenever you debuff this enemy, it gains [blue]{Amount}[/blue] [gold]Venom[/gold]."
 }

@@ -1,18 +1,18 @@
 {
   "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Bolstering Ghostflame",
-  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]To Ignite:\n[/b]- Play a Power card.[b]\n\nWhen Ignited:\n[/b]- Gain {Block:diff()} [gold]Block[/gold].\n- Gain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play a Power card.\n\n[b]When Ignited:[/b]\n- Gain {Block:diff()} [gold]Block[/gold].\n- Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Crushing Ghostflame",
-  "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]To Ignite:\n[/b]- Play 2 Skill cards.\n\n[b]When Ignited:[/b]\n- Deal {Damage:diff()} damage twice.",
+  "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play 2 Skill cards.\n\n[b]When Ignited:[/b]\n- Deal {Damage:diff()} damage twice.",
   "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Inferno Ghostflame",
   "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Spend {energyPrefix:energyIcons(3)}.\n\n[b]When Ignited:[/b]\n- Deal {Damage:diff()} damage for each [gold]Ignited[/gold] Ghostflame.\n- If all Ghostflames are [gold]Ignited[/gold], gain {IntensityPower:diff()} [gold]Intensity[/gold].\n- [gold]Extinguish[/gold] all other Ghostflames. \n\n[b]End of Turn:[/b]\n- [gold]Extinguishes[/gold] itself.",
   "HEXAGHOST-SEARING_GHOSTFLAME.title": "Searing Ghostflame",
-  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]To Ignite:\n[/b]- Play 2 Attack cards.\n\n[b]When Ignited:\n[/b]- Apply {Soulburn:diff()} [gold]Soulburn[/gold] twice.",
+  "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play 2 Attack cards.\n\n[b]When Ignited:[/b]\n- Apply {Soulburn:diff()} [gold]Soulburn[/gold] twice.",
   "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "Offclass Bolstering Ghostflame",
-  "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]To Ignite:[/b][gold]\n[/gold]- Play a [gold]Offclass[/gold] Power card.[gold]\n\n[/gold][b]When Ignited:[/b][gold]\n[/gold]- Gain {Block:diff()} [gold]Block[/gold].\n- Gain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play a [gold]Offclass[/gold] Power card.\n\n[b]When Ignited:[/b]\n- Gain {Block:diff()} [gold]Block[/gold].\n- Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "Offclass Crushing Ghostflame",
-  "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]To Ignite:[/b][gold]\n[/gold]- Play 2 [gold]Offclass[/gold] Skill cards.[gold]\n\n[/gold][b]When Ignited:[/b]\n- Deal {Damage:diff()} damage twice.",
+  "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play 2 [gold]Offclass[/gold] Skill cards.\n\n[b]When Ignited:[/b]\n- Deal {Damage:diff()} damage twice.",
   "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "Offclass Inferno Ghostflame",
-  "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]To Ignite:\n[/b]- Spend {energyPrefix:energyIcons(3)} on [gold]Offclass[/gold] cards.[b]\n\nWhen Ignited:\n[/b]- Deal {Damage:diff()} damage for each [gold]Ignited[/gold] Ghostflame.\n- [gold]Extinguish[/gold] all other Ghostflames.\n\n[b]End of Turn:\n[/b]- [gold]Extinguishes[/gold] itself.",
+  "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Spend {energyPrefix:energyIcons(3)} on [gold]Offclass[/gold] cards.\n\n[b]When Ignited:[/b]\n- Deal {Damage:diff()} damage for each [gold]Ignited[/gold] Ghostflame.\n- [gold]Extinguish[/gold] all other Ghostflames.\n\n[b]End of Turn:[/b]\n- [gold]Extinguishes[/gold] itself.",
   "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "Offclass Searing Ghostflame",
-  "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]To Ignite:\n[/b]- Play 2 [gold]Offclass[/gold] Attack cards.\n\n[b]When Ignited:\n[/b]- Apply {Soulburn:diff()} [gold]Soulburn[/gold] twice."
+  "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]To Ignite:[/b]\n- Play 2 [gold]Offclass[/gold] Attack cards.\n\n[b]When Ignited:[/b]\n- Apply {Soulburn:diff()} [gold]Soulburn[/gold] twice."
 }

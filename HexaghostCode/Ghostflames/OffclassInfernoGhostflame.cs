@@ -34,7 +34,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameDamageVar(3)
+        new GhostflameDamageVar(4)
     ];
 
     public override bool IsOffclass => true;
