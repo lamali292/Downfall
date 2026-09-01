@@ -131,7 +131,7 @@
   "SNECKO-STRIKE_SNECKO.title": "Strike",
   "SNECKO-TAIL_WHIP.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold].",
   "SNECKO-TAIL_WHIP.title": "Tail Whip",
-  "SNECKO-THROWING_CARDS.description": "The next X{IfUpgraded:show:+1|} times you play an [gold]Offclass[/gold] card, deal 6 damage to a random enemy and draw a card.",
+  "SNECKO-THROWING_CARDS.description": "The next X{IfUpgraded:show:+1|} times you play an [gold]Offclass[/gold] card, deal {ThrowingCardsPower:diff()} damage to a random enemy and draw a card.",
   "SNECKO-THROWING_CARDS.title": "Throwing Cards",
   "SNECKO-TOOTH_AND_CLAW.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Shiv{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold] for each unique color in your [gold]Hand[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon.}",
   "SNECKO-TOOTH_AND_CLAW.title": "Tooth And Claw",

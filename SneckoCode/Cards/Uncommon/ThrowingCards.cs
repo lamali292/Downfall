@@ -1,3 +1,4 @@
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +14,7 @@ public class ThrowingCards : SneckoCardModel
     public ThrowingCards() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(DownfallTip.Offclass);
+        WithPower<ThrowingCardsPower>(8, false);
     }
 
     protected override bool HasEnergyCostX => true;
@@ -21,6 +23,8 @@ public class ThrowingCards : SneckoCardModel
     {
         var x = ResolveEnergyXValue();
         if (IsUpgraded) x++;
-        await CommonActions.ApplySelf<ThrowingCardsPower>(ctx, this, x);
+        var power = await CommonActions.ApplySelf<ThrowingCardsPower>(ctx, this, x);
+        power?.SetDamage(DynamicVars.Power<ThrowingCardsPower>().BaseValue);
+        power?.CardPlay = cardPlay;
     }
 }
