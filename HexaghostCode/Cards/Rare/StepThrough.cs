@@ -6,14 +6,14 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+namespace Hexaghost.HexaghostCode.Cards.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
 public class StepThrough : HexaghostCardModel
 {
-    public StepThrough() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public StepThrough() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
+        WithDamage(8, 3);
         WithTip(HexaghostTip.Ignite);
     }
 
