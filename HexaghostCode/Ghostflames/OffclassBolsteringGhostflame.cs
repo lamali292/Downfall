@@ -29,7 +29,7 @@ public class OffclassBolsteringGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameBlockVar(3),
+        new GhostflameBlockVar(4),
         new PowerVar<StrengthPower>(1)
     ];
 
