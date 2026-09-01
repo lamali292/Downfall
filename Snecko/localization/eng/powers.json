@@ -73,5 +73,7 @@
   "SNECKO-MULLIGAN_POWER.smartDescription": "Whenever you play a card that costs more than its original cost, gain {Amount:energyIcons()} next turn.",
   "SNECKO-PARALYTIC_VENOM_POWER.title": "Paralytic Venom",
   "SNECKO-PARALYTIC_VENOM_POWER.description": "Whenever an Attack deals unblocked damage, apply [gold]Venom[/gold].",
-  "SNECKO-PARALYTIC_VENOM_POWER.smartDescription": "Whenever an Attack deals unblocked damage, apply [blue]{Amount}[/blue] [gold]Venom[/gold]."
+  "SNECKO-PARALYTIC_VENOM_POWER.smartDescription": "Whenever an Attack deals unblocked damage, apply [blue]{Amount}[/blue] [gold]Venom[/gold].",
+  "SNECKO-MUDDY_POWER.title": "Muddy",
+  "SNECKO-MUDDY_POWER.description": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, [gold]Muddle[/gold] your [gold]Hand[/gold]."
 }
