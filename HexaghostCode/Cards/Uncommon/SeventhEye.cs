@@ -7,15 +7,15 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hexaghost.HexaghostCode.Cards.Rare;
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class SeventhEye : HexaghostCardModel
 {
-    public SeventhEye() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SeventhEye() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Exhaust);
-        WithCards(2, 1);
     }
 
     protected override Artist Artist => Artist.Get<Claude27A>();
