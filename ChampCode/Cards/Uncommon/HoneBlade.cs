@@ -10,11 +10,9 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class HoneBlade : ChampCardModel
 {
-    public HoneBlade() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<HoneBladePower>( 1, false);
-        WithEnergy(1);
+        WithPower<HoneBladePower>(4, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
