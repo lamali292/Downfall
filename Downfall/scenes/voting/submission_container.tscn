@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 ]
+
+[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NScrollableContainer.cs" id="1_d0koq"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/art_row.tscn" id="2_udwrk"]
+[ext_resource type="PackedScene" path="res://scenes/ui/scrollbar.tscn" id="3_exsin"]
+
+[node name="SubmissionsScrollContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="SubmissionsScrollContainer" type="Control" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_d0koq")
+
+[node name="Mask" type="ColorRect" parent="MarginContainer/SubmissionsScrollContainer"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -129.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="HFlowContainer" parent="MarginContainer/SubmissionsScrollContainer/Mask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="VoteCard" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard2" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard3" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard4" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard5" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard6" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard7" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard8" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="VoteCard9" parent="MarginContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("2_udwrk")]
+layout_mode = 2
+script = null
+
+[node name="Scrollbar" parent="MarginContainer/SubmissionsScrollContainer" instance=ExtResource("3_exsin")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.975
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = 71.0
+offset_right = 0.0
+offset_bottom = -57.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(24, 490)
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
