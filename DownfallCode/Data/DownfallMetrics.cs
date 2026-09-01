@@ -19,7 +19,7 @@ public static class DownfallMetrics
         new MetricsUploaderConfig
         {
             ModName = "Downfall",
-            EndpointUrl = "https://wxememsxgrgrfvntulgr.supabase.co/rest/v1/runs",
+            EndpointUrl = "https://api.downfall-sts2.org/runs",
             ApiKey = BuildSecrets.MetricsApiKey,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
             IsOwnCharacter = e => e is DownfallCharacterModel,
@@ -27,6 +27,11 @@ public static class DownfallMetrics
             {
                 typeof(DownfallCharacterModel).Assembly,
                 typeof(CharacterModel).Assembly
+            },
+            ConfigureRequest =  req =>  
+            {
+                req.Headers.Add("apikey", BuildSecrets.MetricsApiKey);
+                req.Headers.Add("Prefer", "return=minimal");
             },
             Logger = DownfallMainFile.Logger
         },
