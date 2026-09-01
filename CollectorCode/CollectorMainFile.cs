@@ -20,15 +20,7 @@ public static class CollectorMainFile
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);
-
-        RunHooks.OnNewRunPerPlayer(player =>
-        {
-            EssenceModel.ClearEssence(player);
-            CollectiblesModel.ClearCollectibles(player);
-            if (player.Character is Core.Collector)
-                EssenceModel.AddEssence(player, 5);
-        });
-
+        
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");

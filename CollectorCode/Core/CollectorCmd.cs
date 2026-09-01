@@ -1,5 +1,4 @@
 ﻿using Collector.CollectorCode.Events;
-using Collector.CollectorCode.Piles;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,21 +22,6 @@ public class CollectorCmd
         await CollectorHook.OnPyre(card.CombatState, ctx, card, pyred);
         return pyred;
     }
-
-
-    public static async Task<CardPileAddResult> DrawCollected(PlayerChoiceContext ctx, Player player)
-    {
-        if (player.Creature.CombatState == null) return default;
-        return await DownfallCardCmd.DrawFromCustomPile(ctx, player, CollectorPile.Collected);
-    }
-
-    public static async Task<IReadOnlyList<CardPileAddResult>> DrawCollected(PlayerChoiceContext ctx, Player player,
-        int amount)
-    {
-        if (player.Creature.CombatState == null) return [];
-        return await DownfallCardCmd.DrawFromCustomPile(ctx, player, CollectorPile.Collected, amount);
-    }
-
 
     public static async Task<Creature> SummonTorchhead(
         PlayerChoiceContext ctx,

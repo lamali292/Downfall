@@ -23,24 +23,6 @@ public class Forgery : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (Owner.Creature.CombatState == null) return;
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-        var cards = Owner.CollectiblesPile;
-
-        if (cards.Count == 0) return;
-        CardModel? chosenCard;
-        if (cards.Count == 1)
-            chosenCard = cards[0];
-        else
-            chosenCard = await CardSelectCmd.FromChooseACardScreen(
-                ctx,
-                cards.TakeRandom(3, rng).ToList(),
-                Owner,
-                true
-            );
-        if (chosenCard == null) return;
-        var copy = chosenCard.CreateClone();
-        await CardPileCmd.Add(copy, PileType.Hand);
+        throw new NotImplementedException();
     }
 }
