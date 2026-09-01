@@ -30,14 +30,29 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override LocString BuildEmptyPileMessage()
         => new("combat_messages", "OPEN_EMPTY_ENCODE");
     
+    
+    private CardModel? _previewModel;
+    private readonly List<CardModel> _previewSource = new();
+    
     protected override List<CardModel> GetCards()
     {
-        var list = _pile?.Cards.ToList();
-        if (list == null) return [];
-        var function = CreatePreviewModel(list);
-        return function == null? [] : [function];
-    }
+        var list = _pile?.Cards;
+        if (list == null || list.Count == 0)
+        {
+            _previewModel = null;
+            _previewSource.Clear();
+            return [];
+        }
 
+        // Rebuild only when the source cards changed.
+        if (_previewModel != null && list.SequenceEqual(_previewSource))
+            return _previewModel == null ? [] : [_previewModel];
+        _previewSource.Clear();
+        _previewSource.AddRange(list);
+        _previewModel = CreatePreviewModel(_previewSource);
+
+        return _previewModel == null ? [] : [_previewModel];
+    }
     private static CardModel? CreatePreviewModel(IReadOnlyList<CardModel> slotCards)
     {
         if (ModelDb.Card<FunctionCard>().ToMutable() is not FunctionCard model) return null;

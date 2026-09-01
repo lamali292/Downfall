@@ -5,19 +5,15 @@ using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
 using Automaton.AutomatonCode.Vfx;
-using Awakened.AwakenedCode.Vfx;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Utils.UI;
 using Godot;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Core;
 
@@ -55,16 +51,15 @@ public static class AutomatonCmd
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
-        await Cmd.Wait(0.1f);
+        await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, EncodePile.FunctionSequence);
-        await Cmd.Wait(0.1f);
+        await Cmd.Wait(0.2f);
         EncodePile.FunctionSequence.GetPile(player).InvokeContentsChanged();
         //NSequenceDisplay.Refresh(creature);
 
         FunctionCard? functionCard = null;
         if (player.EncodePile.Count >= GetMax(player))
         {
-            await Cmd.Wait(0.2f);
             functionCard = await CompileFunctionCard(player, ctx);
         }
 
@@ -80,12 +75,12 @@ public static class AutomatonCmd
     {
         var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, EncodePile.FunctionSequence);
         if (pile == null) return null;
-        await Cmd.Wait(0.3f);
+        await Cmd.Wait(0.5f);
         var combatState = player.Creature.CombatState;
         if (combatState == null) return null;
         var snapshot = pile.Cards.ToList();
         pile.Clear();
-
+        
         //NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
             if (cardModel is ICompilable compilable)
@@ -95,7 +90,7 @@ public static class AutomatonCmd
         functionCard.SetSourceCards(snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player); ;
         await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result);
         return functionCard;
     }

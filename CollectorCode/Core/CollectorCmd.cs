@@ -47,10 +47,4 @@ public class CollectorCmd
     {
         return await DownfallCmd.Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
     }
-
-
-    public static Creature? Torchhead(Player summoner)
-    {
-        return DownfallCmd.GainPet<TorchheadMonsterModel>(summoner);
-    }
 }
