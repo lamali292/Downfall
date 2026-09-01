@@ -13,7 +13,7 @@ public sealed class Malice : HermitCardModel
 {
     public Malice() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(20, 4);
+        WithDamage(18, 4);
         WithTip(CardKeyword.Exhaust);
     }
 
