@@ -21,8 +21,8 @@ public class Bless : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.Apply<StrengthPower>(ctx, this, cardPlay);
         await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, -DynamicVars["StrengthLoss"].BaseValue,
             Owner.Creature, this);
-        await CommonActions.Apply<StrengthPower>(ctx, this, cardPlay);
     }
 }

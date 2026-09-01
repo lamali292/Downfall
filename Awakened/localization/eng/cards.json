@@ -214,7 +214,7 @@
   "AWAKENED-CONGREGATION.title": "Congregation",
   "AWAKENED-CONGREGATION.description": "ALL players gain {Energy:energyIcons()} and add a [gold]Void[/gold] to the bottom of their [gold]Draw Pile[/gold].",
   "AWAKENED-BLESS.title": "Bless",
-  "AWAKENED-BLESS.description": "Lose {StrengthLoss:diff()} [gold]Strength[/gold].\nAnother player gains {StrengthPower:diff()} [gold]Strength[/gold].",
+  "AWAKENED-BLESS.description": "Give another player {StrengthPower:diff()} [gold]Strength[/gold].\nLose {StrengthLoss:diff()} [gold]Strength[/gold].",
   "AWAKENED-FEATHER_DANCE.title": "Feather Dance",
   "AWAKENED-FEATHER_DANCE.description": "Add {Cards:diff()} [gold]Plume Jabs[/gold] to ALL players' [gold]Hands[/gold]."
 }
