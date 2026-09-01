@@ -60,7 +60,7 @@
   "SNECKO-MIMICRY_POWER.description": "Whenever you play an [gold]Offclass[/gold] card, gain [gold]Strength[/gold] for one turn.",
   "SNECKO-MIMICRY_POWER.smartDescription": "Whenever you play an [gold]Offclass[/gold] card, gain [blue]{Amount}[/blue] [gold]Strength[/gold] for one turn.",
   "SNECKO-THROWING_CARDS_POWER.title": "Throwing Cards",
-  "SNECKO-THROWING_CARDS_POWER.description": "The next time you play an [gold]Offclass[/gold] card, deal 6 damage to a random enemy and draw a card.",
+  "SNECKO-THROWING_CARDS_POWER.description": "The next time you play an [gold]Offclass[/gold] card, deal damage to a random enemy and draw a card.",
   "SNECKO-THROWING_CARDS_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you play an [gold]Offclass[/gold] card, deal [blue]{Damage:diff()}[/blue] damage to a random enemy and draw {Cards:plural:a card|[blue]{}[/blue] cards}",
   "SNECKO-DICE_CASE_POWER.title": "Dice Case",
   "SNECKO-DICE_CASE_POWER.description": "At the start of your turn, add a [gold]Soul Roll[/gold] to another player's [gold]Hand[/gold].",
