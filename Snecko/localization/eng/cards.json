@@ -57,7 +57,7 @@
   "SNECKO-IRON_FANG.title": "Iron Fang",
   "SNECKO-JACKPOT.description": "Gain {Energy:energyIcons()}.",
   "SNECKO-JACKPOT.title": "Snekpot",
-  "SNECKO-LACERATE.description": "Apply {VenomPower:diff()} [gold]Venom[/gold] to ALL enemies.",
+  "SNECKO-LACERATE.description": "Apply {VenomPower:diff()} [gold]Venom[/gold] and {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "SNECKO-LACERATE.title": "Lacerate",
   "SNECKO-LASER_EYES.description": "Deal {Damage:diff()} damage.\nGain {Energy:energyIcons()}.",
   "SNECKO-LASER_EYES.title": "Laser Eyes",
