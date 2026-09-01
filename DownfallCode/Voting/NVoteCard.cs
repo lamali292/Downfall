@@ -57,7 +57,7 @@ public partial class NVoteCard : PanelContainer
 
     // ---- Data the filter/sort reads ----
 
-    public ModelId ModelId { get; set; }
+    public ModelId? ModelId { get; set; }
     public string CardName { get; private set; } = "";
     public string Author { get; private set; } = "";
     public int Likes  => _up;
@@ -107,7 +107,7 @@ public partial class NVoteCard : PanelContainer
             {
                 Pressed: true,
                 ButtonIndex: MouseButton.Left
-            })
+            } && ModelId != null)
         {
             EmitSignal(SignalName.CardClicked, _imagePath, ModelId.Category, ModelId.Entry);
         }

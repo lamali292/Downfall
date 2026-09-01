@@ -15,8 +15,6 @@ public class BagOfTricks() : CollectorRelicModel(RelicRarity.Common)
         PlayerChoiceContext ctx,
         ICombatState combatState)
     {
-        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await CollectorCmd.DrawCollected(ctx, player, 2);
-        Flash();
+        throw new NotImplementedException();
     }
 }

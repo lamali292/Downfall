@@ -11,7 +11,6 @@ public class TheContract() : CollectorRelicModel(RelicRarity.Shop)
 
     public override Task AfterObtained()
     {
-        EssenceModel.AddEssence(Owner, 10);
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 }

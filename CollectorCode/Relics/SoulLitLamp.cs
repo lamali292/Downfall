@@ -23,8 +23,7 @@ public class SoulLitLamp : CollectorRelicModel
 
     public override Task AfterObtained()
     {
-        EssenceModel.AddEssence(Owner, 3);
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     public override async Task BeforeHandDraw(

@@ -20,7 +20,6 @@ public class DarkApotheosis : CollectorCardModel
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        foreach (var cardModel in Owner.CollectiblesPile) CardCmd.Upgrade(cardModel);
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 }
