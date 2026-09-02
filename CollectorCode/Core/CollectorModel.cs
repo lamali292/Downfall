@@ -71,14 +71,6 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
             .OfType<CardModel>()
             .ToList();
         
-        /*var essenceAmount = room.RoomType switch
-        {
-            RoomType.Monster => 1,
-            RoomType.Elite => 2,
-            RoomType.Boss => 3,
-            _ => 0
-        };*/
-        
         foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector && (room.RoomType is RoomType.Elite or RoomType.Boss)))
         {
             //if (essenceAmount > 0) room.AddExtraReward(player, new EssenceReward(essenceAmount, player));

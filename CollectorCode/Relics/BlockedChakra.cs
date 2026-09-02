@@ -1,35 +1,53 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
+using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class BlockedChakra : CollectorRelicModel, IPreventCollectedDraw
+public class BlockedChakra : CollectorRelicModel
 {
-    public BlockedChakra() : base(RelicRarity.Ancient)
+    public BlockedChakra() : base(RelicRarity.Shop)
     {
-        WithEnergy(1);
+        WithVar("KindleAmount", 3);
+        //WithEnergy(1);
     }
-
-    public bool PreventCollectedDraw(Player player)
+    private DynamicVar KindleAmount => DynamicVars["KindleAmount"];
+    
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
+        Creature? dealer, CardModel? cardSource)
     {
-        return player == Owner && Owner.PlayerCombatState?.TurnNumber <= 4;
+        if( target != Owner.Torchhead()) return;
+        
+        if (result.UnblockedDamage > 3)
+        {
+            var toTake = (int)Math.Ceiling(result.UnblockedDamage / 3.0);
+            IEnumerable<DamageResult> damageResults = await CreatureCmd.Damage(choiceContext, Owner.Creature, toTake,
+                ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        }
     }
-
+    
     protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (side != Owner.Creature.Side)
+        {
             return;
+        }
         Flash();
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+        var dV = (int)KindleAmount.BaseValue;
+        await CollectorCmd.SummonTorchhead(ctx, Owner, dV, this);
     }
+    
 }
