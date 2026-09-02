@@ -67,5 +67,8 @@
   "COLLECTOR-SUFFERING_POWER.smartDescription": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] also apply [blue]{Amount}[/blue] [gold]Doom[/gold] to them.",
   "COLLECTOR-THIMBLE_HELM_POWER.title": "Thimble Helm",
   "COLLECTOR-THIMBLE_HELM_POWER.description": "While [gold]Torchhead[/gold] is alive, gain additional [gold]Block[/gold] from cards.",
-  "COLLECTOR-THIMBLE_HELM_POWER.smartDescription": "While [gold]Torchhead[/gold] is alive, gain [blue]{Amount}[/blue] additional [gold]Block[/gold] from cards."
+  "COLLECTOR-THIMBLE_HELM_POWER.smartDescription": "While [gold]Torchhead[/gold] is alive, gain [blue]{Amount}[/blue] additional [gold]Block[/gold] from cards.",
+  "COLLECTOR-TORCHHEAD_POWER.title": "Todo: Die for you for Torchhead",
+  "COLLECTOR-TORCHHEAD_POWER.description": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
+  "COLLECTOR-TORCHHEAD_POWER.smartDescription": "[gold]Torchhead[/gold] absorbs all unblocked attack damage."
 }

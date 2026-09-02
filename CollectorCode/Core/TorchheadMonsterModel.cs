@@ -39,8 +39,29 @@ public class TorchheadMonsterModel : CustomMonsterModel
         await CreatureCmd.SetMaxHp(target, Creature.CurrentHp);
     }
 
-    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+    public override CreatureAnimator SetupCustomAnimationStates(MegaSprite controller)
     {
-        return SetupAnimationState(controller, "idle");
+        var idleState = new AnimState("idle_loop", true);
+        var castState = new AnimState("cast");
+        var attackState = new AnimState("attack");
+        var hurtState = new AnimState("hurt");
+        var dieState = new AnimState("die");
+        //var deadLoopState = new AnimState("dead_loop", true);
+        var reviveState = new AnimState("revive");
+        idleState.AddBranch("Hit", hurtState);
+        castState.NextState = idleState;
+        castState.AddBranch("Hit", hurtState);
+        attackState.NextState = idleState;
+        attackState.AddBranch("Hit", hurtState);
+        hurtState.NextState = idleState;
+        hurtState.AddBranch("Hit", hurtState);
+        //dieState.NextState = deadLoopState;
+        reviveState.NextState = idleState;
+        var animator = new CreatureAnimator(idleState, controller);
+        animator.AddAnyState("Attack", attackState);
+        animator.AddAnyState("Cast", castState);
+        animator.AddAnyState("Dead", dieState);
+        animator.AddAnyState("Revive", reviveState);
+        return animator;
     }
 }

@@ -12,9 +12,9 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Visuals" parent="." instance=ExtResource("2_arvdp")]
+preview_animation = "-- Empty --"
 unique_name_in_owner = true
-position = Vector2(0, -19.19)
-scale = Vector2(-1, 1)
+position = Vector2(0, -19.190002)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
