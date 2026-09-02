@@ -16,9 +16,9 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
     public static Vector2 ButtonSize => _instance?.Size ?? Vector2.Zero;
 
     public override void Initialize(Player player)
-    {
-        base.Initialize(player);
-        _instance = this;
+    {//Todo: make sure this dosnt load.
+        //base.Initialize(player);
+        //_instance = this;
     }
 
     public override void _ExitTree()
@@ -34,7 +34,7 @@ public partial class NTopBarCollectorButton : NCustomTopBarButton
 
     public static void RefreshButton()
     {
-        _instance?.RefreshCount();
+        //_instance?.RefreshCount();
     }
 
     protected override void OnRelease()

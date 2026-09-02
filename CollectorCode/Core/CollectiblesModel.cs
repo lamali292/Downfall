@@ -5,6 +5,8 @@ using Collector.CollectorCode.Piles;
 using Collector.CollectorCode.Rewards;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -63,7 +65,10 @@ public static class CollectiblesModel
 
     internal static void AddCollectible(Player player, CardModel card)
     {
-        CollectorDeck.Set(player, [..CollectorDeck.Get(player) ?? [], card.ToSerializable()]);
+        //CollectorDeck.Set(player, [..CollectorDeck.Get(player) ?? [], card.ToSerializable()]);//This is adding to collected deck?
+        
+        CardPileCmd.Add(card, player.Deck);//This seems to be the basegame command in CardReward.cs
+        
         NTopBarCollectorButton.RefreshButton();
     }
 
