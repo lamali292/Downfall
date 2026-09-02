@@ -69,6 +69,7 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         _newDynamicVars.Add(new PowerVar<T>(i));
         return this;
     }
+    
 
     protected ConstructedRelicModel WithVar(string name, int baseVal)
     {

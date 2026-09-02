@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using Collector.CollectorCode.Cards.Basic;
+using Collector.CollectorCode.DynamicVars;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
@@ -64,7 +65,14 @@ public class Collector : DownfallCharacterModel
 public class CollectorRelicPool : DownfallRelicPool<Collector>;
 
 public abstract class CollectorRelicModel(RelicRarity rarity, bool autoAdd = true)
-    : DownfallRelicModel<Collector>(rarity, autoAdd);
+    : DownfallRelicModel<Collector>(rarity, autoAdd)
+{
+    protected ConstructedRelicModel WithKindle(int baseVal)
+    {
+        WithVars(new KindleVar(baseVal));
+        return this;
+    }
+}
 
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,
