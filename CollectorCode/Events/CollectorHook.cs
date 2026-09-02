@@ -9,10 +9,10 @@ namespace Collector.CollectorCode.Events;
 
 public static class CollectorHook
 {
-    public static int ModifyCollectorDoomDamage(ICombatState cs, Creature creature, int baseAmount)
+    public static int ModifyCollectorMiasmaIncrement(ICombatState cs, Creature creature, int baseAmount)
     {
-        return HookUtils.Aggregate<IModifyCollectorDoomDamage, int>(cs, baseAmount,
-            (m, current) => m.ModifyCollectorDoomDamage(creature, current));
+        return HookUtils.Aggregate<IModifyCollectorMiasmaIncrement, int>(cs, baseAmount,
+            (m, current) => m.ModifyCollectorMiasmaIncrement(creature, current));
     }
 
     public static bool PreventDoomRemoval(ICombatState cs, Creature creature)

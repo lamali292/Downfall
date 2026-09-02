@@ -1,9 +1,9 @@
 ﻿{
   "id": "Downfall",
   "name": "Downfall",
-  "author": "lamali",
-  "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
-  "version": "0.1.16",
+  "author": "lamali, Blue Guy and SandTag",
+  "description": "A port of Downfall 1's characters refreshed and updated for Slay The Spire 2, alongside the global relics from the first game.",
+  "version": "0.2.0",
   "has_pck": true,
   "has_dll": true,
   "min_game_version": "0.107.1",

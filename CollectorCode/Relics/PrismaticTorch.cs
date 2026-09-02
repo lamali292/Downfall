@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Relics;
@@ -18,8 +19,10 @@ public class PrismaticTorch : CollectorRelicModel
 {
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
+        WithVar("KindleAmount", 10);
         WithTip<Ember>();
     }
+    private DynamicVar KindleAmount => DynamicVars["KindleAmount"];
 
     public override async Task BeforeHandDraw(
         Player player,
@@ -27,21 +30,9 @@ public class PrismaticTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
-        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
+        var dV = (int)KindleAmount.BaseValue;
+        await CollectorCmd.SummonTorchhead(ctx, Owner, dV, this);
         Flash();
     }
-
-    public override Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
-    {
-        var state = Owner.Creature.CombatState;
-        if (card.Owner != Owner ||
-            card is not Ember ||
-            CombatManager.Instance.History.Entries.OfType<CardExhaustedEntry>().Any(e =>
-                e.HappenedThisTurn(state) && e.Card is Ember && e.Card != card)
-           ) return Task.CompletedTask;
-        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, 1);
-        Flash();
-        return Task.CompletedTask;
-    }
+    
 }

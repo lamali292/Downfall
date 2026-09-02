@@ -11,7 +11,7 @@ public class DemisePower() : CollectorPowerModel(PowerType.Debuff), IPreventDoom
     public bool PreventDoomRemoval(Creature creature)
     {
         if (creature != Owner || Amount <= 0) return false;
-        PowerCmd.Decrement(this);
+        //PowerCmd.Decrement(this); - No longer decrements.
         return true;
     }
 }

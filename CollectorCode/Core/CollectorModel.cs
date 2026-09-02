@@ -1,10 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Collector.CollectorCode.Cards.Token;
-using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Rewards;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
@@ -15,11 +12,7 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
 {
     private readonly List<MonsterModel> _defeatedEnemies = [];
     public override bool ShouldReceiveCombatHooks => true;
-
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-    {
-        //throw new NotImplementedException();
-    }
+    
 
     public override Task BeforeCombatStart()
     {
@@ -38,6 +31,7 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task AfterCombatEnd(CombatRoom room)
     {
+        if (room.RoomType is not (RoomType.Elite or RoomType.Boss)) return Task.CompletedTask;
         var cards = ModelDb.CardPool<CollectibleCardPool>().AllCards.OfType<ICollectible>();
         var enemyCards = _defeatedEnemies
             .Where(e => cards.Any(c => c.GetMonsterModel().Id == e.Id))
