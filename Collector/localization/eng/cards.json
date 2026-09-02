@@ -1,8 +1,8 @@
 {
   "COLLECTOR-ARROGANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nYour next Attack this turn also applies {DoomedAttackPower:diff()} [gold]Doom[/gold].",
   "COLLECTOR-ARROGANCE.title": "Arrogance",
-  "COLLECTOR-ASHEN_STRIKE.description": "Deal {Damage:diff()} damage.\nGain an [gold]Ember[/gold].",
-  "COLLECTOR-ASHEN_STRIKE.title": "Ashen Strike",
+  "COLLECTOR-ASHEN_STRIKE.description": "Deal {Damage:diff()} damage.\nAdd {IfUpgraded:show:an Ember| a Burn} into your Hand.",
+  "COLLECTOR-ASHEN_STRIKE.title": "Ash Strike",
   "COLLECTOR-BELLOW_COLLECTOR.title": "Bellow",
   "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Doom[/gold] equal to unused [gold]Block[/gold] last turn.\n(Applies {UnusedBlock:diff()} [gold]Doom[/gold])",
   "COLLECTOR-BILLOW.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, add [gold]Bellow[/gold] into your [gold]Hand[/gold].",
@@ -19,7 +19,7 @@
   "COLLECTOR-BONFIRE.title": "Bonfire",
   "COLLECTOR-BRAIN_DRAIN.description": "Enemy loses {Damage:diff()} HP.\nAdd their Collected card into your Hand{IfUpgraded:show: and Upgrade it|}.",
   "COLLECTOR-BRAIN_DRAIN.title": "Brain Drain",
-  "COLLECTOR-BRAMBLESPAR_KINDLING.description": "When [gold]Exhausted[/gold], add a [gold]Burning Strike {IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold].",
+  "COLLECTOR-BRAMBLESPAR_KINDLING.description": "When [gold]Exhausted[/gold], add a [gold]Burning Strike {IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold] and [gold]Kindle[/gold] {Summon:diff()}.",
   "COLLECTOR-BRAMBLESPAR_KINDLING.title": "Bramblespar Kindling",
   "COLLECTOR-BURNING_STRIKE.title": "Burning Strike",
   "COLLECTOR-BURNING_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards:plural:a card|{Cards:diff()} cards}.",
@@ -148,7 +148,7 @@
   "COLLECTOR-STRIKE_COLLECTOR.description": "Deal {Damage:diff()} damage.",
   "COLLECTOR-STRIKE_COLLECTOR.title": "Strike",
   "COLLECTOR-SUCKER_PUNCH.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
-  "COLLECTOR-SUCKER_PUNCH.title": "Sucker Punch",
+  "COLLECTOR-SUCKER_PUNCH.title": "Clothsline",
   "COLLECTOR-SUFFERING.description": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] to an enemy, also apply {SufferingPower:diff()} [gold]Doom[/gold] to them.",
   "COLLECTOR-SUFFERING.title": "Suffering",
   "COLLECTOR-SUNBLOOM_KINDLING.description": "When [gold]Exhausted[/gold], gain {StrengthPower:diff()} [gold]Strength[/gold] and add {Cards:diff()} [gold]Embers[/gold] into your [gold]Hand[/gold].",
@@ -167,6 +167,10 @@
   "COLLECTOR-WHOMP.title": "Whomp",
   "COLLECTOR-WILDFIRE.description": "Deal {ExtraDamage:diff()} damage for each unique debuff on the enemy.",
   "COLLECTOR-WILDFIRE.title": "Wildfire",
-  "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {CollectorDoomPower:diff()} [gold]Doom[/gold].",
-  "COLLECTOR-YOU_ARE_MINE.title": "You Are Mine!"
+  "COLLECTOR-YOU_ARE_MINE.description": "Deal {Damage:diff()} damage.",
+  "COLLECTOR-YOU_ARE_MINE.title": "You Are Mine!",
+  "COLLECTOR-FIREBALL.title": "Fireball",
+  "COLLECTOR-FIREBALL.description": "Deal {Damage:diff()} damage. Add {IfUpgraded:show:an [gold]Ember[/gold]| a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-CAST_IRON.title": "Cast Iron",
+  "COLLECTOR-CAST_IRON.description": "Add {Quantity:diff()} [gold]Burn[/gold] to your hand and [gold]Kindle[/gold] {Summon:diff()} for each [gold]Status[/gold] card in your hand."
 }

@@ -15,7 +15,7 @@ public class DarkLordFormPower : CollectorPowerModel
         if (player.Creature != Owner) return;
         for (var i = 0; i < Amount; i++)
         {
-            var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<YouAreMine>(), player);
+            var card = player.Creature.CombatState!.CreateCard(ModelDb.Card<Fireball>(), player);
             card.ExhaustOnNextPlay = true;
             await CardCmd.AutoPlay(ctx, card, null);
             await CardPileCmd.RemoveFromCombat(card, true);
