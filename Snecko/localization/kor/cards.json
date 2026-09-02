@@ -139,14 +139,11 @@
     "SNECKO-GLUT.title": "폭식",
     "SNECKO-GLUT.description": "{Damage:diff()} 피해를 줍니다.\n[gold]과류[/gold]:\n[gold]손패[/gold]에 있는 다른 카드 한 장당 모든 적에게 {OverflowDamage:diff()} 피해를 줍니다.{InCombat:cond:\n({OverflowRepeat} {OverflowRepeat:plural:번|번} 적중)|}",
     "SNECKO-WEIGHTED_DICE.title": "무게를 실은 주사위",
-    "SNECKO-FORKED_TONGUE.title": "갈라진 혀",
     "SNECKO-SHED.title": "허물벗기",
     "SNECKO-SHED.description": "[gold]손패[/gold]를 [gold]혼란[/gold]시킵니다.\n현재 비용이 {energyPrefix:energyIcons(0)}인 카드 한 장당 {Block:diff()} [gold]방어도[/gold]를 얻습니다.",
     "SNECKO-SHAPESHIFT.title": "형상 변환",
     "SNECKO-SHAPESHIFT.description": "[gold]손패[/gold]의 모든 카드를 동일한 희귀도의 무작위 {IfUpgraded:show:[gold]강화된[/gold] |}[gold]타직업[/gold] 카드로 변환합니다.",
     "SNECKO-SSSHARING.title": "나느으음",
     "SNECKO-MIMICRY.title": "의태",
-    "SNECKO-WHIPLASH.title": "채찍질",
-    "SNECKO-SNATCH.title": "날치기",
-    "SNECKO-SNATCH.description": "카드를 {Cards:diff()} {Cards:plural:장 뽑습니다.|장 뽑습니다.}\n[gold]과류[/gold]:\n카드를 {OverflowCards:diff()}장 더 뽑습니다."
+    "SNECKO-WHIPLASH.title": "채찍질"
 }
