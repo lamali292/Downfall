@@ -2,7 +2,7 @@
 
 namespace Collector.CollectorCode.DynamicVars;
 
-public class CallVar(decimal amount) : DynamicVar("Call", amount)
+public class KindleVar(decimal amount) : DynamicVar("Kindle", amount)
 {
     
 }

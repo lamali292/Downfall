@@ -19,8 +19,8 @@ public abstract class CollectorCardModel(
     protected override bool IsPlayable =>
         this is not IHasPyre || (this is IHasPyre && Owner.Hand.Any(e => e != this));
     
-    public ConstructedCardModel WithCall(int baseVal, int upgradeVal = 0)
+    public ConstructedCardModel WithKindle(int baseVal, int upgradeVal = 0)
     {
-        return WithVar(new CallVar(baseVal).WithUpgrade(upgradeVal));
+        return WithVar(new KindleVar(baseVal).WithUpgrade(upgradeVal));
     }
 }

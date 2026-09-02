@@ -7,7 +7,7 @@ public static class DynamicVarSetExtension
 {
     extension(DynamicVarSet vars)
     {
-        public CallVar Call  => (CallVar) vars._vars["Call"];
+        public KindleVar Kindle  => (KindleVar) vars._vars["Kindle"];
         
     }
 }
