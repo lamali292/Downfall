@@ -1,6 +1,6 @@
 {
   "COLLECTOR-BAG_OF_TRICKS.title": "Bag of Tricks",
-  "COLLECTOR-BAG_OF_TRICKS.description": "The first [blue]3[/blue] times you [gold]Pyre[/gold] each combat, draw [blue]1[/blue] card.",
+  "COLLECTOR-BAG_OF_TRICKS.description": "The first [blue]{MaxUses}[/blue] times you [gold]Pyre[/gold] each combat, draw [blue]{Cards}[/blue] card.",
   "COLLECTOR-BAG_OF_TRICKS.flavor": "Tricky.",
   "COLLECTOR-BLOCKED_CHAKRA.title": "Blocked Chakra",
   "COLLECTOR-BLOCKED_CHAKRA.description": "At the start of your turn [gold]Kindle[/gold] 3. Every time [blue]Torchhead[/blue] loses [blue]3[/blue] HP, you lose [red]1[/red] HP.",

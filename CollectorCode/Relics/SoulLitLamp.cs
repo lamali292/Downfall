@@ -23,7 +23,6 @@ public class SoulLitLamp : CollectorRelicModel, IOnPyre
 
     public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        const decimal val = 3;
         if (pyred._energyCost != null && pyred._energyCost.GetAmountToSpend() >= DynamicVars.Energy.BaseValue)
         {
             await PowerCmd.Apply<SoulBurnPower>(ctx,
