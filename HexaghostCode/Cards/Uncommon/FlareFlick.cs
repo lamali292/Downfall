@@ -76,4 +76,7 @@ public class FlareFlickChoice : HexaghostCardModel
     {
         description.Add("Keyword", Keyword.GetTitle());
     }
+    
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }

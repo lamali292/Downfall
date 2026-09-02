@@ -6,4 +6,4 @@ namespace Automaton.AutomatonCode.Cards.Removed;
 
 [Obsolete]
 [Pool(typeof(TokenCardPool))]
-public class Batch() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self);
+public class Batch() : AutomatonCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self, false, false);

@@ -18,4 +18,7 @@ public class BranchBlock : AutomatonCardModel, IEncodable
     protected override Artist Artist => Artist.Get<Opal>();
 
     public IEnumerable<Encodable> Encodings => [new BlockEncode()];
+    
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }
