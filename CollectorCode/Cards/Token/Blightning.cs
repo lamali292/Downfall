@@ -23,8 +23,6 @@ public class Blightning : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.DrawCollected(ctx, Owner);
+        throw new NotImplementedException();
     }
 }

@@ -33,7 +33,7 @@ public class Clutch : AwakenedCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = PileType.Draw.GetPile(Owner)
-            .Cards.FirstOrDefault(c => c.EnergyCost is { Canonical: 0, CostsX: false });
+            .Cards.FirstOrDefault(c => c.EnergyCost.GetAmountToSpend() == 0 && !c.EnergyCost.CostsX);
         if (card == null) return;
         await CardPileCmd.Add(card, PileType.Hand);
     }

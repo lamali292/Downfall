@@ -19,7 +19,7 @@ public class FleetingEmbers : CollectorCardModel, IHasPyre
         WithKeyword(CollectorKeyword.Pyre);
         WithBlock(5, 3);
         WithCards(2);
-        this.WithTip<Ember>();
+        WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

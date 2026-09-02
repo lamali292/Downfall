@@ -17,6 +17,4 @@ public static class AttackCommandExtensions
             return command;
         }
     }
-    
-    
 }

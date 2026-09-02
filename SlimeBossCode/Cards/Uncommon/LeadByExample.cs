@@ -12,7 +12,7 @@ public class LeadByExample : SlimeBossCardModel
 {
     public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<LeadByExamplePower>(1, 1, false);
+        WithPower<LeadByExamplePower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

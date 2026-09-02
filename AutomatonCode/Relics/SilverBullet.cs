@@ -18,10 +18,10 @@ public class SilverBullet : AutomatonRelicModel
     }
 
 
-    protected override async Task AfterCardGeneratedForCombat(PlayerChoiceContext ctx, CardModel card, Player? creator)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (creator == null || creator != Owner || card.Type != CardType.Status) return;
         Flash();
-        await MyCommonActions.Attack(this, null, TargetType.AllEnemies).Execute(ctx);
+        await MyCommonActions.Attack(this, null, TargetType.AllEnemies).Execute(new BlockingPlayerChoiceContext());
     }
 }

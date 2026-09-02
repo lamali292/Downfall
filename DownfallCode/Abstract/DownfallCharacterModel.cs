@@ -31,13 +31,13 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public override string CustomIconTexturePath =>
         $"res://{ModId}/images/character/character_icon.png";
 
-    
+
     public override RelicIconData CustomYummyCookie => new(
         "yummy.png".BigRelicImagePath(ModId),
         "yummy.tres".TresRelicImagePath(ModId),
         "yummy_outline.tres".TresRelicImagePath(ModId)
     );
-    
+
     /*
     public override CustomEnergyCounter? CustomEnergyCounter =>
         new CustomEnergyCounter(EnergyCounterPaths, EnergyOutlineColor, EnergyBurstColor);

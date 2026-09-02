@@ -14,9 +14,9 @@ public class Gluttony : SlimeBossCardModel
 {
     public Gluttony() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<GluttonyPower>(1, false);
+        WithPower<GluttonyPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        this.WithTip<Lick>();
+        WithTip<Lick>();
         WithTip(SlimeBossTip.Consume);
     }
 

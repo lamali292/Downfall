@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +11,7 @@ public class MysticOrder : AwakenedCardModel
 {
     public MysticOrder() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithConjure();
+        WithConjure();
         WithCards(2, 1);
     }
 

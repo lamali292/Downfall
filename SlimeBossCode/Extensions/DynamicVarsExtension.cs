@@ -9,6 +9,4 @@ public static class DynamicVarsExtension
     {
         public SlimeSecondaryVar Slime => (SlimeSecondaryVar)vars._vars["Slime"];
     }
-    
-    
 }

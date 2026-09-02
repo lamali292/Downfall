@@ -14,6 +14,13 @@ namespace Champ.ChampCode.Powers;
 
 public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single), IOnChampStanceChange
 {
+    public Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
+        ChampStanceModel newStance)
+    {
+        if (Owner.Player != player || newStance is ChampUltimateStance or ChampNoStance) return Task.CompletedTask;
+        return EnterUltimateStance(ctx, player);
+    }
+
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
         CardModel? cardSource)
@@ -34,12 +41,5 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
         if (side == Owner.Side || Owner.Player == null) return;
         await ChampCmd.ClearStance(ctx, Owner.Player);
         await PowerCmd.Remove(this);
-    }
-
-    public Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
-        ChampStanceModel newStance)
-    {
-        if (Owner.Player != player || newStance is ChampUltimateStance or ChampNoStance) return Task.CompletedTask;
-        return EnterUltimateStance(ctx, player);
     }
 }

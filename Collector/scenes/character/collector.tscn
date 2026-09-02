@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://Collector/scenes/character/collector.spatlas" id="1_lf1jc"]
-[ext_resource type="SpineSkeletonFileResource" path="res://Collector/scenes/character/collector.spskel" id="2_l45cq"]
+[ext_resource type="SpineAtlasResource" path="res://Collector/scenes/character/spine/skeleton.atlas" id="1_lf1jc"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Collector/scenes/character/spine/skeleton.skel" id="2_l45cq"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_teaa0"]
 atlas_res = ExtResource("1_lf1jc")
@@ -10,6 +10,6 @@ skeleton_file_res = ExtResource("2_l45cq")
 [node name="Collector" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_teaa0")
 preview_skin = "Default"
-preview_animation = "idle"
+preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

@@ -11,7 +11,7 @@ public sealed class EternalForm : HermitCardModel
 {
     public EternalForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<EternalPower>(1, false);
+        WithPower<EternalPower>(1, false);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithEnergyTip();
     }

@@ -3,13 +3,12 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-
+using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -40,12 +39,13 @@ public class ShadowDaggers : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if(cardPlay.Target == null) return;
+        if (cardPlay.Target == null) return;
         await DamageCmd
-            .Attack(base.DynamicVars.Damage.BaseValue).WithHitCount((int)((CalculatedVar)base.DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
+            .Attack(DynamicVars.Damage.BaseValue)
+            .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
             .FromCardCompatibility(this, cardPlay)
-			.Targeting(cardPlay.Target)
-			.WithHitFx("vfx/vfx_attack_slash")
-			.Execute(ctx);
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(ctx);
     }
 }

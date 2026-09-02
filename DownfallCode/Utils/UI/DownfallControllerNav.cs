@@ -38,10 +38,7 @@ public static class DownfallControllerNav
     /// </summary>
     public static void WireChain(IReadOnlyList<Control> controls, bool wrap = false, bool rtl = false)
     {
-        if (controls.Any(c => !GodotObject.IsInstanceValid(c) || !c.IsInsideTree()))
-        {
-            return;
-        }
+        if (controls.Any(c => !GodotObject.IsInstanceValid(c) || !c.IsInsideTree())) return;
 
         for (var i = 0; i < controls.Count; i++)
         {
@@ -120,18 +117,15 @@ public static class DownfallControllerNav
             AnchorLinks.Remove(anchor);
             return;
         }
-        
+
         if (link.Controls.Any(control => !GodotObject.IsInstanceValid(control)))
         {
             AnchorLinks.Remove(anchor);
             return;
         }
-        
+
         if (!anchor.IsInsideTree()) return;
-        if (link.Controls.Any(control => !control.IsInsideTree()))
-        {
-            return;
-        }
+        if (link.Controls.Any(control => !control.IsInsideTree())) return;
 
         anchor.FocusNeighborTop = link.Controls[link.EntryIndex].GetPath();
         foreach (var control in link.Controls)

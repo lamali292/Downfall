@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,8 +13,8 @@ public class IgnorePain : ChampCardModel
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeywords(CardKeyword.Exhaust);
-        this.WithFinisher();
-        this.WithPower<IgnorePainPower>(1, false);
+        WithFinisher();
+        WithPower<IgnorePainPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

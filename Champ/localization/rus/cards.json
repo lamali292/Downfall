@@ -88,6 +88,7 @@
     "CHAMP-HEADBUTT.title": "Протаранить",
     "CHAMP-HOLD_FIRM.description": "Дает {Block:diff()} [gold]защиты[/gold].\nДает {CounterPower:diff()} [gold]Контратаки[/gold].\n[gold]Защита[/gold] не пропадет в начале следующего хода.",
     "CHAMP-HOLD_FIRM.title": "Стоять до последнего!",
+    "CHAMP-HONE_BLADE.description": "Ваши карты с «ударом» в названии наносят на {HoneBladePower:diff()} урона больше.",
     "CHAMP-HONE_BLADE.title": "Заточенный клинок",
     "CHAMP-HUDDLE.title": "Посовещаться",
     "CHAMP-HUDDLE.description": "Дает ВСЕМ игрокам {VigorPower:diff()} [gold]бодрости[/gold].",

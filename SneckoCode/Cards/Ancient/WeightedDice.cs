@@ -12,7 +12,7 @@ public class WeightedDice : SneckoCardModel
     public WeightedDice() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        this.WithPower<WeightedDicePower>(1, false);
+        WithPower<WeightedDicePower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

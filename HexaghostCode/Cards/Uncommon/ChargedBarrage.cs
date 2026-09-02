@@ -13,7 +13,7 @@ public class ChargedBarrage : HexaghostCardModel
 {
     public ChargedBarrage() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(7, 2);
+        WithPower<SoulBurnPower>(6, 2);
         WithTip(HexaghostTip.Ignite);
     }
 
@@ -30,6 +30,5 @@ public class ChargedBarrage : HexaghostCardModel
             scale *= 0.9f;
             await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         }
-           
     }
 }

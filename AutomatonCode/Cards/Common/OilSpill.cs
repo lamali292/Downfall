@@ -19,7 +19,7 @@ public class OilSpill : AutomatonCardModel, IEncodable, ICompilable
         WithDamage(4, 1);
         WithPower<PoisonPower>(4, 1);
         WithTip(AutomatonTip.Stash);
-        this.WithTip<Error>();
+        WithTip<Error>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

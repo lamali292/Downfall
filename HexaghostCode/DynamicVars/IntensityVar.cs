@@ -6,18 +6,21 @@ namespace Hexaghost.HexaghostCode.DynamicVars;
 
 public class GhostflameVar(string name, decimal baseValue) : DynamicVar(name, baseValue)
 {
-    
+    public int IntensityValue => IntValue + (_owner is GhostflameModel ghostflameModel
+        ? HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!,
+            ghostflameModel.Owner, ghostflameModel)
+        : 0);
+
     public void UpdateGhostflamePreview(
         GhostflameModel ghostflameModel,
         bool runGlobalHooks)
     {
         var originalDamage1 = BaseValue;
         if (runGlobalHooks)
-            originalDamage1 += HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!, ghostflameModel.Owner, ghostflameModel);
+            originalDamage1 += HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!,
+                ghostflameModel.Owner, ghostflameModel);
         PreviewValue = originalDamage1;
     }
-    
-    public int IntensityValue => IntValue + (_owner is GhostflameModel ghostflameModel ?   HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!, ghostflameModel.Owner, ghostflameModel) : 0);
 
     public override string ToString()
     {
@@ -25,6 +28,8 @@ public class GhostflameVar(string name, decimal baseValue) : DynamicVar(name, ba
     }
 }
 
-public class GhostflameDamageVar( decimal baseValue) : GhostflameVar("Damage", baseValue);
-public class GhostflameBlockVar( decimal baseValue) : GhostflameVar("Block", baseValue);
-public class GhostflameSoulburnVar( decimal baseValue) : GhostflameVar("Soulburn", baseValue);
+public class GhostflameDamageVar(decimal baseValue) : GhostflameVar("Damage", baseValue);
+
+public class GhostflameBlockVar(decimal baseValue) : GhostflameVar("Block", baseValue);
+
+public class GhostflameSoulburnVar(decimal baseValue) : GhostflameVar("Soulburn", baseValue);

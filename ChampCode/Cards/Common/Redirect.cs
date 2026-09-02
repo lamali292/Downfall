@@ -12,7 +12,7 @@ public class Redirect : ChampCardModel
     public Redirect() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 3);
-        this.WithPower<ReboundPower>(1, false);
+        WithPower<ReboundPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

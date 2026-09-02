@@ -14,7 +14,7 @@ public sealed class Misfire : HermitCardModel
     public Misfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(13, 4);
-        this.WithTip<Clumsy>();
+        WithTip<Clumsy>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

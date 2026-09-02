@@ -15,7 +15,7 @@ public class HauntingEcho : HexaghostCardModel
         WithDamage(7, 3);
         WithTip(HexaghostTip.Ignite);
     }
-    
+
     protected override bool ShouldGlowGoldInternal
     {
         get

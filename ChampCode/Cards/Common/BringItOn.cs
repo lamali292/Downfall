@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +14,7 @@ public class BringItOn : ChampCardModel
     {
         WithBlock(6, 2);
         WithPower<CounterPower>(6, 2);
-        this.WithFinisher();
+        WithFinisher();
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

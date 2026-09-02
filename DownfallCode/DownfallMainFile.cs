@@ -12,7 +12,6 @@ using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
-using Godot;
 using Godot.Bridge;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Helpers;
@@ -57,25 +56,12 @@ public static class DownfallMainFile
             return echoLoc.GetFormattedText();
         });
         
-        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
-        {
-            Label = "Auto Slay",
-            IsVisible = () => DownfallConfig.DevMode,
-            SubmenuType = null,
-            CreateSubmenu = null,
-            OnPress = stack =>
-            {
-                var slayer = new AutoSlayer();
-                slayer.Start(SeedHelper.GetRandomSeed(), "autoslay.log");
-            }
-        });
         
-     
-        /*
+        
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting",
-            IsVisible = () => DownfallConfig.DevMode,
+            IsVisible = () => false,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>
@@ -84,7 +70,7 @@ public static class DownfallMainFile
                     stack?.GetTree().Root.AddChild(new VotingApi());
                 stack?.PushSubmenuType<NArtVotingScreen>();
             }
-        });*/
+        });
 
         // mention downfall sts1 credits somewhere
         ModCredits.Register(ModId,
@@ -92,19 +78,19 @@ public static class DownfallMainFile
             new ModCredits.Section("HELP", ModCredits.Layout.Roles),
             new ModCredits.Section("ART"),
             new ModCredits.Section("SOUND"),
-            new ModCredits.Section("LOC", Children: [
+            new ModCredits.Section("LOC", Children:
+            [
                 new ModCredits.Section("LOC_ZHS"),
                 new ModCredits.Section("LOC_FRA"),
                 new ModCredits.Section("LOC_ITA"),
                 new ModCredits.Section("LOC_RUS"),
                 new ModCredits.Section("LOC_KOR"),
-           //     new ModCredits.Section("LOC_PTB"),
-           //     new ModCredits.Section("LOC_DEU"),
+                //     new ModCredits.Section("LOC_PTB"),
+                //     new ModCredits.Section("LOC_DEU"),
                 new ModCredits.Section("LOC_JPN")
-          
             ]),
             new ModCredits.Section("STS1")
-            );
+        );
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
@@ -126,10 +112,6 @@ public static class DownfallMainFile
 
         return mod?.manifest?.version ?? "unknown";
     }
-
-
- 
-
 
 
     private static void LogRegisteredCounts()

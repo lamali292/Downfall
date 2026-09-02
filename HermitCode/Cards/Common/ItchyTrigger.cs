@@ -26,8 +26,8 @@ public sealed class ItchyTrigger : HermitCardModel, IHasDeadOnEffect
         if (candidates.Count <= 0) return Task.CompletedTask;
         var maxResolved = candidates.Max(c => c.EnergyCost.GetResolved());
         var topCost = candidates
-                .Where(c => c.EnergyCost.GetResolved() == maxResolved)
-                .ToList();
+            .Where(c => c.EnergyCost.GetResolved() == maxResolved)
+            .ToList();
 
         var chosen = Owner.RunState.Rng.CombatCardSelection.NextItem(topCost);
         chosen?.EnergyCost.AddThisTurnOrUntilPlayed(-DynamicVars["CostReduction"].IntValue, true);

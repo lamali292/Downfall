@@ -13,7 +13,7 @@ public class Share : AutomatonCardModel
 {
     public Share() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<SharePower>(3, 1, false);
+        WithPower<SharePower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 

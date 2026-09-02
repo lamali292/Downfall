@@ -1,4 +1,5 @@
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -24,7 +25,7 @@ public class ThimbleHelmPower : CollectorPowerModel
         if (cardSource == null) return 0;
         var player = cardSource.Owner;
         if (player.Creature != Owner) return 0M;
-        var creature = CollectorCmd.Torchhead(cardSource.Owner);
+        var creature = cardSource.Owner.Torchhead;
         if (creature is not { IsAlive: true }) return 0M;
         return !props.IsPoweredCardOrMonsterMoveBlock() ? 0M : Amount;
     }

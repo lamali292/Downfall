@@ -12,8 +12,8 @@ public class DuplicatedForm : SlimeBossCardModel
 {
     public DuplicatedForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<DuplicatedFormPower>(1, false);
-        this.WithPower<EnergizedPower>(0, 1, false);
+        WithPower<DuplicatedFormPower>(1, false);
+        WithPower<EnergizedPower>(0, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

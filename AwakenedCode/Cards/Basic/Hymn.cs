@@ -1,6 +1,5 @@
 ﻿using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -16,8 +15,8 @@ public class Hymn : AwakenedCardModel
     public Hymn() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithBlock(3, 3);
-        this.WithTip<Ceremony>();
-        this.WithDrained(1);
+        WithTip<Ceremony>();
+        WithDrained(1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

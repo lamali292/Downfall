@@ -18,13 +18,18 @@ public class BlunderGuardPower : SneckoPowerModel, IHasSecondAmount
         WithPower<StrengthPower>(0);
         WithTip(StaticHoverTip.Block);
     }
-    
+
     private int StrengthAmount => DynamicVars.Power<StrengthPower>().IntValue;
-    public string GetSecondAmount() => $"{StrengthAmount}";
-    
+
+    public string GetSecondAmount()
+    {
+        return $"{StrengthAmount}";
+    }
+
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue || cardPlay.Card.Owner.Creature != Owner) return;
+        if (cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue ||
+            cardPlay.Card.Owner.Creature != Owner) return;
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
         await PowerCmd.Apply<StrengthPower>(ctx, Owner, StrengthAmount, Owner, null);

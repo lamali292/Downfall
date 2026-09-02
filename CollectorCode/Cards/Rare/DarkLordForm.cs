@@ -18,7 +18,7 @@ public class DarkLordForm : CollectorCardModel
             ? HoverTipFactory.FromPower<DarkLordFormPlusPower>()
             : HoverTipFactory
                 .FromPower<DarkLordFormPower>()));
-        this.WithTip<YouAreMine>();
+        WithTip<YouAreMine>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

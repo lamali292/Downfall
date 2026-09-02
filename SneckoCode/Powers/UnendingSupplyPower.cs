@@ -10,7 +10,6 @@ namespace Snecko.SneckoCode.Powers;
 
 public class UnendingSupplyPower : SneckoPowerModel
 {
-
     public UnendingSupplyPower()
     {
         WithTip(DownfallKeyword.Echo);
@@ -18,7 +17,7 @@ public class UnendingSupplyPower : SneckoPowerModel
         WithTip(CardKeyword.Exhaust);
         WithTip(DownfallTip.Offclass);
     }
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {

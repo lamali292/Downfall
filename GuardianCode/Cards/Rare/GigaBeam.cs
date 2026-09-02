@@ -23,8 +23,8 @@ public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
     {
         WithDamage(36, 4);
         WithVar("StrengthEffect", 2, 2);
-        this.WithPower<NextTurnStunnedPower>(1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<NextTurnStunnedPower>(1, false);
+        WithTip<StrengthPower>();
     }
 
 

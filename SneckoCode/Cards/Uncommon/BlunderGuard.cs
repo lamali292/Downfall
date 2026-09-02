@@ -14,15 +14,16 @@ public class BlunderGuard : SneckoCardModel
 {
     public BlunderGuard() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<BlunderGuardPower>(6, 2, false);
-        WithVar("BlunderGuardTwoPower", 2, 1);
+        WithPower<BlunderGuardPower>(6, 2, false);
+        WithVar("BlunderGuardTwoPower", 1, 1);
         WithTip(StaticHoverTip.Block);
-        this.WithTip<StrengthPower>();
+        WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        (await CommonActions.ApplySelf<BlunderGuardPower>(ctx, this))?.IncrementStrength(DynamicVars["BlunderGuardTwoPower"].BaseValue);
+        (await CommonActions.ApplySelf<BlunderGuardPower>(ctx, this))?.IncrementStrength(
+            DynamicVars["BlunderGuardTwoPower"].BaseValue);
     }
 }

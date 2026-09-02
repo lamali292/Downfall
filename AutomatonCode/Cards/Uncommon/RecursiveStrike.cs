@@ -26,17 +26,7 @@ public class RecursiveStrike : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        var combatState = Owner.Creature.CombatState;
-        if (combatState == null) return;
-        var strike1 = combatState.CreateCard<StrikeAutomaton>(Owner);
-        var strike2 = combatState.CreateCard<StrikeAutomaton>(Owner);
-        if (IsUpgraded)
-        {
-            strike1.UpgradeInternal();
-            strike2.UpgradeInternal();
-        }
-
-        await AutomatonCmd.EncodeCard(strike1, ctx);
-        await AutomatonCmd.EncodeCard(strike2, ctx);
+        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx, s => s.UpgradeInternal());
+        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx, s => s.UpgradeInternal());
     }
 }

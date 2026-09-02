@@ -15,9 +15,9 @@ public class AncestralGrounds : AwakenedCardModel
     {
         WithBlock(12);
         WithEnergy(2, 1);
-        this.WithPower<AncestralGroundsPower>(2, false);
-        this.WithPower<AncestralGroundsUpgradedPower>(2, false);
-        this.WithTip<Void>();
+        WithPower<AncestralGroundsPower>(2, false);
+        WithPower<AncestralGroundsUpgradedPower>(2, false);
+        WithTip<Void>();
     }
 
 

@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,7 +11,7 @@ public class FadeOut : HermitCardModel
     public FadeOut() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
         WithBlock(9, 3);
-        this.WithTip<Clumsy>();
+        WithTip<Clumsy>();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

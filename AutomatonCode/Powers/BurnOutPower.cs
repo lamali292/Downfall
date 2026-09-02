@@ -13,7 +13,8 @@ namespace Automaton.AutomatonCode.Powers;
 
 public class BurnOutPower : AutomatonPowerModel, IAfterCardStashed
 {
-    public  async Task AfterCardsStashed(PlayerChoiceContext ctx, Player player, IEnumerable<CardModel> stashedCards, IEnumerable<CardModel> overflowCards)
+    public async Task AfterCardsStashed(PlayerChoiceContext ctx, Player player, IEnumerable<CardModel> stashedCards,
+        IEnumerable<CardModel> overflowCards)
     {
         foreach (var card in stashedCards)
         {

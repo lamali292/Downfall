@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Abstract;
 
-public abstract class DownfallCardPool<T> : CustomCardPoolModel
+public abstract class DownfallCardPool<T> : CustomCardPoolModel, IDownfallCardPool
     where T : DownfallCharacterModel
 {
     private static T Character => ModelDb.Character<T>();
@@ -25,3 +25,5 @@ public abstract class DownfallCardPool<T> : CustomCardPoolModel
     public override Color DeckEntryCardColor => Character.DeckEntryCardColor;
     public override bool IsColorless => false;
 }
+
+public interface IDownfallCardPool;

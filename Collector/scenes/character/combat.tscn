@@ -93,12 +93,16 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Visuals" parent="." instance=ExtResource("1_orqfj")]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -33.755)
+scale = Vector2(0.75, 0.75)
+
+[node name="Visuals" parent="Node2D" instance=ExtResource("1_orqfj")]
 preview_animation = "-- Empty --"
 unique_name_in_owner = true
-position = Vector2(0, -25)
 
-[node name="RightEye" type="Control" parent="Visuals"]
+[node name="RightEye" type="Control" parent="Node2D/Visuals"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -113,7 +117,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_r" type="ColorRect" parent="Visuals/RightEye"]
+[node name="eye_fire_r" type="ColorRect" parent="Node2D/Visuals/RightEye"]
 material = SubResource("ShaderMaterial_qs3l2")
 layout_mode = 1
 anchors_preset = 15
@@ -122,7 +126,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Visuals/RightEye"]
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="Node2D/Visuals/RightEye"]
 material = SubResource("ShaderMaterial_7s6gn")
 layout_mode = 1
 anchors_preset = 15
@@ -131,7 +135,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftEye" type="Control" parent="Visuals"]
+[node name="LeftEye" type="Control" parent="Node2D/Visuals"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,7 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(10, 60)
 
-[node name="eye_fire_l" type="ColorRect" parent="Visuals/LeftEye"]
+[node name="eye_fire_l" type="ColorRect" parent="Node2D/Visuals/LeftEye"]
 material = SubResource("ShaderMaterial_jfhgk")
 layout_mode = 1
 anchors_preset = 15
@@ -155,7 +160,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Visuals/LeftEye"]
+[node name="eye_fire_l_inner_glow" type="ColorRect" parent="Node2D/Visuals/LeftEye"]
 material = SubResource("ShaderMaterial_2nioc")
 layout_mode = 1
 anchors_preset = 15
@@ -168,10 +173,9 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -125.0
+offset_left = -116.0
 offset_top = -305.0
-offset_right = 184.0
-offset_bottom = 10.0
+offset_right = 109.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

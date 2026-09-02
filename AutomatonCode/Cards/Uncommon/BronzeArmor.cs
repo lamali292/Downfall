@@ -14,7 +14,7 @@ public class BronzeArmor : AutomatonCardModel
     {
         WithBlock(13, 4);
         WithStash(2);
-        this.WithTip<Error>();
+        WithTip<Error>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

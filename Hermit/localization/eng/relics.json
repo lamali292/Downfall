@@ -4,7 +4,7 @@
   "HERMIT-OLD_LOCKET.description": "At the start of each combat, add a [gold]Memento[/gold] into your [gold]Hand[/gold].",
   "HERMIT-RYE_STALK.title": "Rye Stalk",
   "HERMIT-RYE_STALK.flavor": "Still in mint condition, despite being chewed on for so long.",
-  "HERMIT-RYE_STALK.description": "At the start of turn [blue]{Turn}[/blue], gain [blue]{RuggedPower:diff()}[/blue] [gold]Rugged[/gold].",
+  "HERMIT-RYE_STALK.description": "At the start of your [blue]4th[/blue] turn, gain [blue]{RuggedPower:diff()}[/blue] [gold]Rugged[/gold].",
   "HERMIT-SHOTGLASS.title": "Shotglass",
   "HERMIT-SHOTGLASS.flavor": "Any liquid placed inside changes into something else.",
   "HERMIT-SHOTGLASS.description": "The first {Limit:plural:time|[blue]{}[/blue] times} you use a potion each combat, procure a random potion. You can only use [blue]{Limit} [/blue]{Limit:plural:potion|potions} each combat.",

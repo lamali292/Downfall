@@ -15,8 +15,8 @@ public class Recreate : AutomatonCardModel
 {
     public Recreate() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<RecreatePower>(1, false);
-        this.WithTip<Fuel>();
+        WithPower<RecreatePower>(1, false);
+        WithTip<Fuel>();
         WithCostUpgradeBy(-1);
         WithTip(StaticHoverTip.Transform);
     }

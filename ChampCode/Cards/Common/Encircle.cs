@@ -1,10 +1,10 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Cards.Common;
 
@@ -13,15 +13,14 @@ public class Encircle : ChampCardModel
 {
     public Encircle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(8, 3);
-        this.WithGlory(1);
+        WithDamage(6, 3);
+        WithPower<EnergyNextTurnPower>(1, false);
+        WithEnergy(1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var a = attack.Results.SelectMany(r => r).Count(x => x.TotalDamage > 0)
-                * DynamicVars.Power<GloryPower>().BaseValue;
-        await CommonActions.ApplySelf<GloryPower>(ctx, this, a);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
     }
 }

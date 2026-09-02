@@ -19,7 +19,7 @@ public class FindAndReplace : AutomatonCardModel
     public FindAndReplace() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithTip<Error>();
+        WithTip<Error>();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
@@ -29,11 +29,11 @@ public class FindAndReplace : AutomatonCardModel
     {
         if (CombatState == null) return;
         var choices = Owner.StashPile.Concat(Owner.DrawPile).Concat(Owner.DiscardPile).ToList();
-        
+
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
         var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();
 
-        var selected = (await MultiPileCardSelect.Select(ctx, Owner, prefs, choices, pileTypes)).FirstOrDefault();
+        var selected = (await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs, choices, pileTypes)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;
         var index = sourcePile._cards.IndexOf(selected);

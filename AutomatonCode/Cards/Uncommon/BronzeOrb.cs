@@ -15,7 +15,7 @@ public class BronzeOrb : AutomatonCardModel
     {
         WithDamage(5, 3);
         WithTip(AutomatonTip.Stash);
-        this.WithPower<BronzeOrbPower>(1, false);
+        WithPower<BronzeOrbPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

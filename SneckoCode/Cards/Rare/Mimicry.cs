@@ -13,8 +13,8 @@ public class Mimicry : SneckoCardModel
 {
     public Mimicry() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<MimicryPower>(2, 1, false);
-        this.WithTip<StrengthPower>();
+        WithPower<MimicryPower>(2, 1, false);
+        WithTip<StrengthPower>();
         WithTip(DownfallTip.Offclass);
     }
 

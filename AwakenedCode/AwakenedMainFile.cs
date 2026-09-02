@@ -7,7 +7,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -33,12 +32,12 @@ public static class AwakenedMainFile
 
         BundledSubmodLocRegistry.Register(ModId);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
-        
+
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(PlayerCmdLoseEnergyPatch))
             .PatchAll();
 
-        
+
         FormBoneRegistry.RegisterVoidForm<Core.Awakened>("Eye");
         FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");
         FormBoneRegistry.RegisterReaperForm<Core.Awakened>("Shoulder_feathers");
@@ -47,11 +46,12 @@ public static class AwakenedMainFile
 
     private static void PostModelInit()
     {
-        CustomBundleRegistry.Register<Core.Awakened>(new CustomPackage {
+        CustomBundleRegistry.Register<Core.Awakened>(new CustomPackage
+        {
             ChancePercent = 2,
             Card1 = ModelDb.Card<Caw>(),
             Card2 = ModelDb.Card<Caw>(),
-            Card3 = ModelDb.Card<Caw>(),
+            Card3 = ModelDb.Card<Caw>()
         });
     }
 }

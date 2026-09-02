@@ -16,10 +16,10 @@ public class Parry : ChampCardModel
     {
         WithBlock(8, 4);
         WithPower<CounterPower>(4, 2);
-        this.WithPower<ParryingPower>(1, false);
-        this.WithCardTip<RiposteStrike>((e, p) =>
+        WithPower<ParryingPower>(1, false);
+        WithCardTip<RiposteStrike>((e, p) =>
         {
-            if (p._owner == null) return; 
+            if (p._owner == null) return;
             e.DynamicVars.Damage.BaseValue = p.Owner.Creature.GetPowerAmount<CounterPower>();
         });
         WithTip(StaticHoverTip.ReplayStatic);

@@ -127,6 +127,7 @@
     "HEXAGHOST-POLTERGEIST.title": "Полтергейст",
     "HEXAGHOST-POWER_FROM_BEYOND.description": "[afterlife]Дает {Block:diff()} защиты.[/afterlife]\nДаст {Energy:energyIcons()} в следующем ходу.",
     "HEXAGHOST-POWER_FROM_BEYOND.title": "Сила извне",
+    "HEXAGHOST-PREMONITION.description": "Вы добираете {PremonitionPower:diff()} {PremonitionPower:plural(ru):карту|карты|карт} в начале хода, если [gold]сожгли[/gold] не менее 2 карт в предыдущем ходу.",
     "HEXAGHOST-PREMONITION.title": "Предчувствие",
     "HEXAGHOST-PREMONITION_CHOICE.description": "{Type}",
     "HEXAGHOST-PREMONITION_CHOICE.title": "Предчувствие",

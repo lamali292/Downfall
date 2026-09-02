@@ -15,7 +15,7 @@ public class Backstep : ChampCardModel
     public Backstep() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCalculatedBlock(6, CalcBlock, upgrade: 3);
-        this.WithTip<VigorPower>();
+        WithTip<VigorPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

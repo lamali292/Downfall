@@ -8,13 +8,13 @@ namespace Awakened.AwakenedCode.Displays;
 
 public class AwakenedDisplay
 {
-   
     private static readonly PlayerField<NAwakenMeter> AwakenMeterDisplays = new(() => null);
-    
-   
+
+
     public static void RefreshAwakenMeter(Player player, int value)
     {
-        if (!LocalContext.IsMe(player)) return;;
+        if (!LocalContext.IsMe(player)) return;
+        ;
         Callable.From(() =>
         {
             var existing = AwakenMeterDisplays.Get(player);
@@ -37,8 +37,8 @@ public class AwakenedDisplay
             }
         }).CallDeferred();
     }
-    
-    
+
+
     /*
    private static readonly PlayerField<NSpellbookDisplay> AwakenSpellDisplays = new(() => null);
    public static void RefreshSpellDisplays(Player player)

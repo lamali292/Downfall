@@ -16,8 +16,9 @@ public class HeatingPower : HexaghostPowerModel
         WithTip<SoulBurnPower>();
         WithTip(StaticHoverTip.Block);
     }
-    
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
+
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
+        decimal amount, Creature? applier,
         CardModel? cardSource)
     {
         if (power is not SoulBurnPower || applier != Owner) return;

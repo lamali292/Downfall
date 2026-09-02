@@ -14,7 +14,7 @@ public sealed class FromBeyond : HermitCardModel
 {
     public FromBeyond() : base(1, CardType.Skill, CardRarity.Rare, TargetType.RandomEnemy)
     {
-        this.WithHpLoss(5, 2);
+        WithHpLoss(5, 2);
         WithCalculatedVar("CalculatedHits", 0, CountCardsInExhaust);
         WithTip(CardKeyword.Exhaust);
     }

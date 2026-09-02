@@ -28,16 +28,16 @@ public static class DownfallHook
         return HookUtils.Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));
     }
 
-    public static Task<bool> ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
+    public static bool ShouldSoulburnDetonateTargetAll(ICombatState cs, PlayerChoiceContext ctx, Creature owner)
     {
-        return Task.FromResult(
-            HookUtils.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner)));
+        return HookUtils.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner));
     }
 
     public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
         out IEnumerable<IModifySelfDamage> modifiers)
     {
-        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers, MyHookUtils.HookScope.CombatRaw);
+        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers,
+            MyHookUtils.HookScope.CombatRaw);
     }
 
     public static Task AfterModifyingSelfDamage(ICombatState cs, IEnumerable<IModifySelfDamage> modifiers,

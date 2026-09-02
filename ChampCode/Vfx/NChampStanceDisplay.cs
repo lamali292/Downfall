@@ -2,7 +2,6 @@
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
-using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -21,28 +20,26 @@ public partial class NChampStanceDisplay : NClickableControl
 {
     private const string DisplayScenePath = "res://Champ/scenes/ui/stance_display.tscn";
 
-    private Player? _trackedPlayer;
+    private Tween? _activeTween;
 
     private TextureProgressBar? _fill;
     private Label? _label;
-    public bool IsExiting => _isExiting;
     private NSelectionReticle? _reticle;
-    private IEnumerable<IHoverTip>? _tips;
     private Func<IEnumerable<IHoverTip>>? _tipProvider;
+    private IEnumerable<IHoverTip>? _tips;
 
-    private Vector2 RelativeOffset => new Vector2(-70f, -10f);
-    private Vector2 HideOffset => new Vector2(-480f, 128f);
+    private Player? _trackedPlayer;
+    public bool IsExiting { get; private set; }
 
-    private Tween? _activeTween;
-    private bool _isExiting;
+    private Vector2 RelativeOffset => new(-70f, -10f);
+    private Vector2 HideOffset => new(-480f, 128f);
 
     public override void _EnterTree()
     {
         base._EnterTree();
         CombatManager.Instance.CombatEnded += OnCombatEnded;
     }
-    
-    
+
 
     public override void _ExitTree()
     {
@@ -57,7 +54,7 @@ public partial class NChampStanceDisplay : NClickableControl
 
     public void AnimIn()
     {
-        if (_isExiting) return;
+        if (IsExiting) return;
 
         var targetPos = GetTargetShowPosition();
         var startPos = targetPos + HideOffset;
@@ -73,8 +70,8 @@ public partial class NChampStanceDisplay : NClickableControl
 
     public void AnimOutAndFree()
     {
-        if (_isExiting) return;
-        _isExiting = true;
+        if (IsExiting) return;
+        IsExiting = true;
 
         _activeTween?.Kill();
 
@@ -90,10 +87,7 @@ public partial class NChampStanceDisplay : NClickableControl
 
     private void OnExitAnimFinished()
     {
-        if (IsInstanceValid(this) && !IsQueuedForDeletion())
-        {
-            QueueFree();
-        }
+        if (IsInstanceValid(this) && !IsQueuedForDeletion()) QueueFree();
     }
 
     private Vector2 GetTargetShowPosition()
@@ -103,7 +97,7 @@ public partial class NChampStanceDisplay : NClickableControl
 
         if (energyNode != null && ui != null)
         {
-            Vector2 uiLocalPos = energyNode.GlobalPosition - ui.GlobalPosition;
+            var uiLocalPos = energyNode.GlobalPosition - ui.GlobalPosition;
             return uiLocalPos + RelativeOffset;
         }
 
@@ -153,7 +147,7 @@ public partial class NChampStanceDisplay : NClickableControl
 
     public void Refresh()
     {
-        if (!IsInstanceValid(this) || IsQueuedForDeletion() || _trackedPlayer == null || _isExiting)
+        if (!IsInstanceValid(this) || IsQueuedForDeletion() || _trackedPlayer == null || IsExiting)
             return;
 
         var stance = _trackedPlayer.ChampStance;
@@ -188,18 +182,14 @@ public partial class NChampStanceDisplay : NClickableControl
 
         if (_trackedPlayer.Creature.CombatState != null &&
             ChampHook.IgnoreChargeCap(_trackedPlayer.Creature.CombatState, _trackedPlayer))
-        {
             _label!.Text = "∞";
-        }
         else
-        {
             _label!.Text = $"{charges}/{maxCharges}";
-        }
-        
+
 
         SetTipProvider(() => stance.HoverTips.Reverse());
     }
-    
+
     public void SetReticle(NSelectionReticle? reticle)
     {
         _reticle = reticle;
@@ -225,7 +215,7 @@ public partial class NChampStanceDisplay : NClickableControl
             return;
 
         // Position above the display node and anchor to bottom so it expands upward
-        float containerHeight = tipSet.TextHoverTipDimensions.Y;
+        var containerHeight = tipSet.TextHoverTipDimensions.Y;
         tipSet.GlobalPosition = GlobalPosition + new Vector2(0f, -containerHeight - 10f);
     }
 

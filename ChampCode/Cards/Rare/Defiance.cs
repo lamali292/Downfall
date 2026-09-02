@@ -16,13 +16,13 @@ public class Defiance : ChampCardModel
     {
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Retain);
-        this.WithTip<CounterPower>();
+        WithTip<CounterPower>();
         WithCalculatedBlock(0, CalcBlock);
     }
 
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
-        return 2*card.Owner.Creature.GetPowerAmount<CounterPower>();
+        return 2 * card.Owner.Creature.GetPowerAmount<CounterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

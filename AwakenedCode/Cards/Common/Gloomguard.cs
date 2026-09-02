@@ -15,7 +15,7 @@ public class Gloomguard : AwakenedCardModel
     {
         WithBlock(8, 3);
         WithEnergyTip();
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

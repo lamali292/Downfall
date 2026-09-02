@@ -19,20 +19,20 @@ namespace Hexaghost.HexaghostCode.Ghostflames;
 
 public class OffclassBolsteringGhostflame : GhostflameModel
 {
-    public override AbstractIntent Intent => new BolsteringIntent(
-        () => DynamicVars.GhostflameBlock);
+    public override AbstractIntent Intent => new BolsteringIntent(() => DynamicVars.GhostflameBlock);
+
     protected override int IgnitionRequirement => 1;
 
     public override FireColor FireColor => FireColor.Blue;
     public override bool IsOffclass => true;
 
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameBlockVar( 3),
+        new GhostflameBlockVar(4),
         new PowerVar<StrengthPower>(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(DownfallTip.Offclass),
@@ -54,10 +54,13 @@ public class OffclassBolsteringGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Power, DownfallCmd.IsOffclass);
-    
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Power, DownfallCmd.IsOffclass);
+    }
+
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Power && DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Power && DownfallCmd.IsOffclass(card) &&
+               IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

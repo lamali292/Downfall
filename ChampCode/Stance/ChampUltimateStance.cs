@@ -4,8 +4,6 @@ using Champ.ChampCode.DynamicVars;
 using Champ.ChampCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,16 +20,17 @@ public class ChampUltimateStance : ChampStanceModel
     public override string ChargeIconPathOver => "res://Champ/images/ui/stance_ultimate_over.png";
     public override string ChargeIconPathUnder => "res://Champ/images/ui/stance_ultimate_under.png";
     public override Color? LabelOutlineColor => new("5e3900");
-    
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<CounterPower>(),
         HoverTipFactory.FromPower<VigorPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.Static(StaticHoverTip.Block),
         HoverTipFactory.Static(ChampTip.Finisher)
     ];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BerserkerSkillVar(2),

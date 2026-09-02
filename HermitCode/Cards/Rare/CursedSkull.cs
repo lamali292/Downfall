@@ -25,7 +25,7 @@ public class CursedSkull : HermitCardModel
     }
 
     protected override Artist Artist => Artist.Get<DawnablesAwakened>();
-    
+
     public override bool CanBeGeneratedInCombat => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -43,11 +43,11 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
-    private bool IsDeadOn => Owner != null &&  HermitCmd.IsInDeadOnState(Owner);
+    private bool IsDeadOn => Owner != null && HermitCmd.IsInDeadOnState(Owner);
     private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
     public override bool ShouldGlowGold => IsDeadOn;
     public int Value { get; set; } = 1;
-    
+
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         return card == Owner && IsDeadOn ? playCount + ModVal : playCount;

@@ -13,8 +13,8 @@ public class SongOfSorrow : AwakenedCardModel
 {
     public SongOfSorrow() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<SongOfSorrowPower>(7, 3, false);
-        this.WithTip<Void>();
+        WithPower<SongOfSorrowPower>(7, 3, false);
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Extensions;
 using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,8 +13,8 @@ public class CrookedStrike : ChampCardModel, IRetainVigorCard
     public CrookedStrike() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        this.WithFinisher();
-        this.WithTip<VigorPower>();
+        WithFinisher();
+        WithTip<VigorPower>();
         WithTags(CardTag.Strike);
     }
 

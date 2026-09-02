@@ -22,7 +22,7 @@ public sealed class CursedWeapon : HermitCardModel
         WithCostUpgradeBy(-1);
         WithDamage(CurrentDamage);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithHpLoss(2);
+        WithHpLoss(2);
         WithVar(IncreaseKey, 1);
     }
 
@@ -30,32 +30,6 @@ public sealed class CursedWeapon : HermitCardModel
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
-    public override void AfterCreated()
-    {
-        base.AfterCreated();
-
-        // Future cursed weapons join at the current shared level
-        var others = GetCursedWeapons().Where(c => c != this).ToList();
-        if (others.Count > 0)
-            IncreasedDamage = others.Max(c => c.IncreasedDamage);
-
-        UpdateDamage();
-    }
-    
-    private void SetIncrease(int total)
-    {
-        IncreasedDamage = total;
-        UpdateDamage();
-    }
-    
-    private List<CursedWeapon> GetCursedWeapons()
-    {
-        return Owner.GetAllCombatCards.OfType<CursedWeapon>()
-            .Concat(Owner.DeckPile.OfType<CursedWeapon>())
-            .Distinct()
-            .ToList();
-    }
-    
     [SavedProperty]
     // ReSharper disable once MemberCanBePrivate.Global
     public int CurrentDamage
@@ -81,23 +55,49 @@ public sealed class CursedWeapon : HermitCardModel
         }
     }
 
+    public override void AfterCreated()
+    {
+        base.AfterCreated();
 
-protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
-{
-    await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-        DamageProps.cardHpLoss, Owner.Creature, this, play);
+        // Future cursed weapons join at the current shared level
+        var others = GetCursedWeapons().Where(c => c != this).ToList();
+        if (others.Count > 0)
+            IncreasedDamage = others.Max(c => c.IncreasedDamage);
 
-    await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-    await CommonActions.CardAttack(this, play).WithHermitFireHitFx()
-        .Execute(ctx);
+        UpdateDamage();
+    }
 
-    var increase = DynamicVars[IncreaseKey].IntValue;
+    private void SetIncrease(int total)
+    {
+        IncreasedDamage = total;
+        UpdateDamage();
+    }
 
-    // One shared total, applied to every cursed weapon (deck + combat copies)
-    var weapons = GetCursedWeapons();
-    var newTotal = weapons.Select(c => c.IncreasedDamage).DefaultIfEmpty(0).Max() + increase;
-    weapons.ForEach(c => c.SetIncrease(newTotal));
-}
+    private List<CursedWeapon> GetCursedWeapons()
+    {
+        return Owner.GetAllCombatCards.OfType<CursedWeapon>()
+            .Concat(Owner.DeckPile.OfType<CursedWeapon>())
+            .Distinct()
+            .ToList();
+    }
+
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+            DamageProps.cardHpLoss, Owner.Creature, this, play);
+
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        await CommonActions.CardAttack(this, play).WithHermitFireHitFx()
+            .Execute(ctx);
+
+        var increase = DynamicVars[IncreaseKey].IntValue;
+
+        // One shared total, applied to every cursed weapon (deck + combat copies)
+        var weapons = GetCursedWeapons();
+        var newTotal = weapons.Select(c => c.IncreasedDamage).DefaultIfEmpty(0).Max() + increase;
+        weapons.ForEach(c => c.SetIncrease(newTotal));
+    }
 
     protected override void AfterDowngraded()
     {

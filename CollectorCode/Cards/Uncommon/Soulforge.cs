@@ -21,16 +21,6 @@ public class Soulforge : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var result = await CollectorCmd.DrawCollected(ctx, Owner);
-        if (!result.success) return;
-        List<CardModel> cards = [];
-        for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
-        {
-            var copy = result.cardAdded.CreateClone();
-            copy.UpgradeInternal();
-            cards.Add(copy);
-        }
-
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
+        throw new NotImplementedException();
     }
 }

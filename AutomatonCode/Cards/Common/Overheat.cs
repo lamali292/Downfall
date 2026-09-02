@@ -13,7 +13,7 @@ public class Overheat : AutomatonCardModel
     public Overheat() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(11, 3);
-        this.WithPower<OverheatPower>(11, 3, false);
+        WithPower<OverheatPower>(11, 3, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

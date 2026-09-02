@@ -27,7 +27,6 @@ public class DragonsTrove : CollectorCardModel, IHasPyre
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.DrawCollected(ctx, Owner, DynamicVars.Cards.IntValue);
-        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(Owner, DynamicVars["Reserve"].IntValue);
+        throw new NotImplementedException();
     }
 }

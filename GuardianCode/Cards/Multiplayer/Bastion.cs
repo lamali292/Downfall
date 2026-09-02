@@ -13,7 +13,7 @@ public class Bastion : GuardianCardModel
 {
     public Bastion() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<BastionPower>(1, 1, false);
+        WithPower<BastionPower>(1, 1, false);
         WithTip(StaticHoverTip.Block);
         WithTip(GuardianTip.Brace);
     }
@@ -25,5 +25,4 @@ public class Bastion : GuardianCardModel
     {
         await CommonActions.ApplySelf<BastionPower>(ctx, this);
     }
-    
 }

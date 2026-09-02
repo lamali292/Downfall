@@ -1,5 +1,7 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
+using Downfall.DownfallCode.Patches.KaleidoscopePatch;
 using Hexaghost.HexaghostCode.CustomEnums;
 
 namespace Downfall.DownfallCode.Utils;
@@ -12,7 +14,7 @@ public class DownfallPatchManager
             .Add(typeof(ModelDbInitPatch))
             .Add(typeof(CombatUiActivatePatch))
             .Add(typeof(ModifyDamageInternalPatch))
-            .Add(typeof(AfflictionModelOverlayPathPatch))
+            .Add(typeof(CustomAfflictionModel.AfflictionModelOverlayPathPatch))
             .Add(typeof(CardDescriptionPatch))
             .Add(typeof(GetCardTextPatch))
             .Add(typeof(SetCardContextPatch))
@@ -67,8 +69,10 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
-        
 
+        patcher.Add(typeof(KaleidoscopePoolFilter))
+            .Add(typeof(RunConfigSyncHook))
+            .Add(typeof(PrismaticGemPoolFilter));
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
             ? typeof(NCardUpdatePortraitPatch)

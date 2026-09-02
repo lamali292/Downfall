@@ -19,9 +19,9 @@ public class DarknessFalls : AwakenedCardModel
     {
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
         WithTip(StaticHoverTip.Block);
-        this.WithTip<StrengthPower>();
-        this.WithPower<DarknessFallsPower>(4, false);
-        this.WithPower<DarkblessedPower>(1, false);
+        WithTip<StrengthPower>();
+        WithPower<DarknessFallsPower>(4, false);
+        WithPower<DarkblessedPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 

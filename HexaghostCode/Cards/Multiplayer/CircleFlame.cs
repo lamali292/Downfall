@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
-using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,23 +15,19 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
 {
     public CircleFlame() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        this.WithAfterlife();
+        WithAfterlife();
         WithPower<SoulBurnPower>(14, 4);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     protected override Artist Artist => Artist.Get<Chimedragon>();
 
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return AfterlifeEffect(ctx, cardPlay, false, false);
-    }
 
-
-    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted, bool causedByEthereal)
+    public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
+        bool causedByEthereal)
     {
         var target = cardPlay?.Target ?? CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);
@@ -45,5 +40,10 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
         clone._owner = player;
         var a = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Discard, Owner);
         CardCmd.PreviewCardPileAdd(a, 0.5f);
+    }
+
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }

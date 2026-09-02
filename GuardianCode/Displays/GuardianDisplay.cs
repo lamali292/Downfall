@@ -13,7 +13,10 @@ public class GuardianDisplay
 {
     private static readonly PlayerField<NGuardianDisplay> Displays = new(() => null);
 
-    public static bool HasDisplay(Player player) => GodotObject.IsInstanceValid(Displays[player]);
+    public static bool HasDisplay(Player player)
+    {
+        return GodotObject.IsInstanceValid(Displays[player]);
+    }
 
     public static void Refresh(Player creature)
     {

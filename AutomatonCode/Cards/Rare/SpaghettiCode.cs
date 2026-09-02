@@ -5,9 +5,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Cards.Rare;
 
@@ -18,16 +16,12 @@ public class SpaghettiCode : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-
-        
+    { 
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {
@@ -36,7 +30,6 @@ public class SpaghettiCode : AutomatonCardModel
             if (selected == null) break;
             functionCard = await AutomatonCmd.EncodeCard(selected, ctx);
         }
-
-        functionCard?.SetToFreeThisTurn();
+        if (IsUpgraded) functionCard?.SetToFreeThisTurn();
     }
 }

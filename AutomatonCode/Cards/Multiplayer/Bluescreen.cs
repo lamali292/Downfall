@@ -15,7 +15,7 @@ public class Bluescreen : AutomatonCardModel
     public Bluescreen() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithBlock(12, 5);
-        this.WithTip<Error>();
+        WithTip<Error>();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,7 +13,7 @@ public class Envision : AwakenedCardModel
     public Envision() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(4, 3);
-        this.WithConjure();
+        WithConjure();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
