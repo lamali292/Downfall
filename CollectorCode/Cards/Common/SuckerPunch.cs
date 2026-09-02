@@ -10,10 +10,10 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class SuckerPunch : CollectorCardModel
 {
-    public SuckerPunch() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public SuckerPunch() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(7, 2);
-        WithPower<WeakPower>(1, 1);
+        WithDamage(13, 3);
+        WithPower<WeakPower>(2, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -1,33 +1,32 @@
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
-
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class AshenStrike : CollectorCardModel
+public class CastIron : CollectorCardModel
 {
-    // rename
-    public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public CastIron() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithDamage(14, 1);
+        //WithTip<Burn>();
+        WithVar("Quantity", 2);
+        
         WithTips(e =>
             e.IsUpgraded
                 ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
                 : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
+        WithVars(new SummonVar(4));
     }
 
-    protected override Artist Artist => Artist.Get<Opal>();
-
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
+        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
     }
+
 }
