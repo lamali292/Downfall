@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
 [ext_resource type="SpineAtlasResource" path="res://Collector/scenes/character/torchhead/skeleton.atlas" id="1_tmplb"]
 [ext_resource type="SpineSkeletonFileResource" path="res://Collector/scenes/character/torchhead/skeleton.skel" id="2_dqsgj"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/vfx_stepped_fire.tscn" id="3_dqsgj"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_nce1o"]
 atlas_res = ExtResource("1_tmplb")
@@ -13,3 +14,13 @@ preview_skin = "Default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "torch-fireslot"
+show_behind_parent = true
+position = Vector2(-5.489995, -146.75)
+rotation = -3.1415925
+
+[node name="VfxSteppedShaderFire" parent="SpineSlotNode" instance=ExtResource("3_dqsgj")]
+rotation = 3.1415927
+scale = Vector2(0.2, 0.2)
