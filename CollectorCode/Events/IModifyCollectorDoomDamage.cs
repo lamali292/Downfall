@@ -2,7 +2,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace Collector.CollectorCode.Events;
 
-public interface IModifyCollectorDoomDamage
+public interface IModifyCollectorMiasmaIncrement
 {
-    int ModifyCollectorDoomDamage(Creature creature, int current);
+    int ModifyCollectorMiasmaIncrement(Creature creature, int current);
 }

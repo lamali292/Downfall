@@ -13,6 +13,7 @@ public class LuckyWick : CollectorCardModel
     {
         WithDamage(3, 1);
         WithBlock(3, 1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

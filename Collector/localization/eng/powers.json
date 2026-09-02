@@ -9,7 +9,7 @@
   "COLLECTOR-CANT_TOUCH_THIS_POWER.description": "When you fully block an attack, apply [gold]Doom[/gold] to the attacker.",
   "COLLECTOR-CANT_TOUCH_THIS_POWER.smartDescription": "When you fully block an attack, apply [blue]{Amount}[/blue] [gold]Doom[/gold] to the attacker.",
   "COLLECTOR-COLLECTOR_DOOM_POWER.title": "Doom",
-  "COLLECTOR-COLLECTOR_DOOM_POWER.description": "Loses HP at the start of its turn, removing all [gold]Doom[/gold] unless they are [gold]Afflicted[/gold].",
+  "COLLECTOR-COLLECTOR_DOOM_POWER.description": "Takes damage at the end of its turn.",
   "COLLECTOR-COLLECTOR_DOOM_POWER.smartDescription": "Loses [blue]{Amount}[/blue] HP at the start of its turn, removing all [gold]Doom[/gold] unless they are [gold]Afflicted[/gold].",
   "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.title": "Dark Lord Form",
   "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.description": "At the start of your turn, play [gold]You Are Mine+[/gold] on a random enemy.",

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace Collector.CollectorCode.Core;
 
@@ -29,6 +30,21 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        return await DownfallCmd.Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);
+        if (summoner.Osty != null && !OwnsTorchhead(summoner))//User has an Osty already! (But does not have a Torchhead).
+        {
+            await CreatureCmd.TriggerAnim(summoner.Creature, Necrobinder.GetSummonAnimIfApplicable(summoner.Character), Necrobinder.GetSummonDelayIfApplicable(summoner.Character));
+            SummonResult summonResult = await OstyCmd.Summon(ctx, summoner, hp, source);
+        }
+        return await DownfallCmd.Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
+    }
+
+    public static bool OwnsTorchhead(Player summoner)
+    {
+        return (Torchhead(summoner) != null);
+    }
+
+    public static Creature? Torchhead(Player summoner)
+    {
+        return DownfallCmd.GainPet<TorchheadMonsterModel>(summoner);
     }
 }
