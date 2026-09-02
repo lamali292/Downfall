@@ -27,7 +27,7 @@ public class Collector : DownfallCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Feminine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
-    public override int StartingHp => 65;
+    public override int StartingHp => 72;
     public override int StartingGold => 99;
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideCollector;
     public override bool HideInCompendium => DownfallConfig.HideCollector;
@@ -43,7 +43,7 @@ public class Collector : DownfallCharacterModel
         ModelDb.Card<DefendCollector>(),
         ModelDb.Card<DefendCollector>(),
         ModelDb.Card<FuelTheFire>(),
-        ModelDb.Card<YouAreMine>()
+        ModelDb.Card<Fireball>()
     ];
 
 

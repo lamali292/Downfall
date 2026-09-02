@@ -5,6 +5,8 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Cards.Common;
 
@@ -14,8 +16,11 @@ public class AshenStrike : CollectorCardModel
     // rename
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(10, 3);
-        WithTip<Ember>();
+        WithDamage(14, 1);
+        WithTips(e =>
+            e.IsUpgraded
+                ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
+                : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
