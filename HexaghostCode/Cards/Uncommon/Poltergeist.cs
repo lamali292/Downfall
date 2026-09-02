@@ -13,7 +13,7 @@ public class Poltergeist : HexaghostCardModel
 {
     public Poltergeist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<PoltergeistPower>(4, 2, false);
+        WithPower<PoltergeistPower>(4, 2, false);
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
     }

@@ -16,7 +16,6 @@ namespace Hermit.HermitCode.Relics;
 /// </summary>
 public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
 {
-
     private int _cardsPlayedThisTurn;
 
     public Spyglass() : base(RelicRarity.Shop)
@@ -42,6 +41,12 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
         }
     }
 
+    public bool ShouldTriggerDeadOn(CardModel card)
+    {
+        if (card.Owner != Owner) return false;
+        return _cardsPlayedThisTurn + 1 == DynamicVars.Cards.IntValue;
+    }
+
     private void UpdateDisplay()
     {
         // Light up when the NEXT card played will be the Dead On one.
@@ -57,8 +62,7 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
         return Task.CompletedTask;
     }
 
-    protected override Task AfterSideTurnStart(
-        PlayerChoiceContext ctx,
+    public override Task AfterSideTurnStart(
         CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
@@ -74,12 +78,6 @@ public sealed class Spyglass : HermitRelicModel, IShouldTriggerDeadOn
         if (cardPlay.Card.Owner == Owner && CombatManager.Instance.IsInProgress)
             CardsPlayedThisTurn++;
         return Task.CompletedTask;
-    }
-
-    public bool ShouldTriggerDeadOn(CardModel card)
-    {
-        if (card.Owner != Owner) return false;
-        return _cardsPlayedThisTurn + 1 == DynamicVars.Cards.IntValue;
     }
 
     public override Task AfterCombatEnd(CombatRoom _)

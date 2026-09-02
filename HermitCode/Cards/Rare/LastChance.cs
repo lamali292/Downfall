@@ -16,9 +16,9 @@ public class LastChance : HermitCardModel
     }
 
     protected override bool ShouldGlowGoldInternal => IsDebuffed;
-    
+
     private bool IsDebuffed => Owner.Creature.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff);
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

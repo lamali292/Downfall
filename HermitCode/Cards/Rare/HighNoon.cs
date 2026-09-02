@@ -12,8 +12,8 @@ public sealed class HighNoon : HermitCardModel
 {
     public HighNoon() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<HighNoonPower>(1, false);
-        this.WithPower<HighNoonDefendPower>(0, 1, false);
+        WithPower<HighNoonPower>(1, false);
+        WithPower<HighNoonDefendPower>(0, 1, false);
         WithTip(StaticHoverTip.ReplayStatic);
     }
 

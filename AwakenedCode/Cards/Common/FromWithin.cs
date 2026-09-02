@@ -13,7 +13,7 @@ public class FromWithin : AwakenedCardModel
     {
         WithBlock(10, 3);
         WithEnergy(1);
-        this.WithPower<FromWithinPower>(1, false);
+        WithPower<FromWithinPower>(1, false);
     }
 
 

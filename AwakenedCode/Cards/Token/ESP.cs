@@ -23,10 +23,10 @@ public class ESP : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
         WithTags(AwakenedTag.Spell);
     }
 
-    public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
-
 
     protected override IEnumerable<string> ExtraRunAssetPaths => [(this as ISpell).SpellIconPath];
+
+    public LocString GetTypePlaqueName => new("gameplay_ui", "AWAKENED-SPELL");
 
     public Task OnAwaken(PlayerChoiceContext ctx, Player player)
     {

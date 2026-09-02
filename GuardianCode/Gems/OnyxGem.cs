@@ -19,14 +19,12 @@ public class OnyxGem : GemModel
     public override Color GemColor => new(0x616161FF);
     public override CardRarity Rarity => CardRarity.Rare;
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay, IEnumerable<Player> targetPlayers)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
+        IEnumerable<Player> targetPlayers)
     {
         var card = Card;
         if (card == null) return;
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, card);
-        foreach (var player in targetPlayers)
-        {
-            await GuardianCmd.Polish(ctx, player.Creature, effect, Card);
-        }
+        foreach (var player in targetPlayers) await GuardianCmd.Polish(ctx, player.Creature, effect, Card);
     }
 }

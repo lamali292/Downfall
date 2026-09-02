@@ -17,12 +17,13 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     private const float DeadMix = 0.35f;
 
     private MegaAnimationState? _animState;
-    private MegaSprite? _sprite;
 
     private Node2D? _eyeFlare;
-    private WingFlare? _wingFlare;
 
     private bool _isAwakened;
+    private MegaSprite? _sprite;
+    private WingFlare? _wingFlare;
+
     public bool IsAwakened
     {
         get => _isAwakened;
@@ -122,9 +123,8 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     }
 }
 
-
 public static class WingPos
 {
     public static float wingPosX => 10;
     public static float wingPosY => -20;
-} 
+}

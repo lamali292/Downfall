@@ -14,7 +14,7 @@ public class Incorporeal : HexaghostCardModel
 {
     public Incorporeal() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithHpLoss(6, -3);
+        WithHpLoss(6, -3);
         WithPower<IntangiblePower>(1);
         WithKeywords(CardKeyword.Exhaust, HexaghostKeyword.Retract);
     }

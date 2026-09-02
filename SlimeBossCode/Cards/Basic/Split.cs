@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Basic;
@@ -13,7 +12,7 @@ public class Split : SlimeBossCardModel
     // todo add split hovertip
     public Split() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        this.WithCommand(1);
+        WithCommand(1);
         WithCostUpgradeBy(-1);
     }
 

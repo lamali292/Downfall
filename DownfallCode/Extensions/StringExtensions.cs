@@ -8,6 +8,44 @@ namespace Downfall.DownfallCode.Extensions;
 
 public static class StringExtensions
 {
+    private static string ModId<T>() where T : DownfallCharacterModel
+    {
+        return ModelDb.Character<T>().ModId;
+    }
+
+    private static string ImgPath(string modId, string subfolder, string file)
+    {
+        return Path.Join(modId, "images", subfolder, file);
+    }
+
+    public static string ScenePath(string modId, string subfolder, string file)
+    {
+        return Path.Join(modId, "scenes", subfolder, file);
+    }
+
+    // Changed the second argument to a Func delegate so it only executes when needed
+    private static string WithFallback(string path, Func<string> fallbackProvider)
+    {
+        return ResourceLoader.Exists(path) ? path : fallbackProvider();
+    }
+
+    private static string? WithNullFallback(string path)
+    {
+        return ResourceLoader.Exists(path) ? path : null;
+    }
+
+    private static string FallbackImg(string missingPath, string subfolder, string file)
+    {
+        //DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
+        return ImgPath(DownfallMainFile.ModId, subfolder, file);
+    }
+
+    private static string FallbackScene(string missingPath, string subfolder, string file)
+    {
+        //DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
+        return ScenePath(DownfallMainFile.ModId, subfolder, file);
+    }
+
     extension(string path)
     {
         public string CardImageAtlasPath<T>() where T : DownfallCharacterModel
@@ -141,43 +179,5 @@ public static class StringExtensions
         {
             return WithNullFallback(ImgPath(DownfallMainFile.ModId, "artists", path));
         }
-    }
-
-    private static string ModId<T>() where T : DownfallCharacterModel
-    {
-        return ModelDb.Character<T>().ModId;
-    }
-
-    private static string ImgPath(string modId, string subfolder, string file)
-    {
-        return Path.Join(modId, "images", subfolder, file);
-    }
-
-    public static string ScenePath(string modId, string subfolder, string file)
-    {
-        return Path.Join(modId, "scenes", subfolder, file);
-    }
-
-    // Changed the second argument to a Func delegate so it only executes when needed
-    private static string WithFallback(string path, Func<string> fallbackProvider)
-    {
-        return ResourceLoader.Exists(path) ? path : fallbackProvider();
-    }
-
-    private static string? WithNullFallback(string path)
-    {
-        return ResourceLoader.Exists(path) ? path : null;
-    }
-
-    private static string FallbackImg(string missingPath, string subfolder, string file)
-    {
-        //DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
-        return ImgPath(DownfallMainFile.ModId, subfolder, file);
-    }
-
-    private static string FallbackScene(string missingPath, string subfolder, string file)
-    {
-        //DownfallMainFile.Logger.Warn($"File not found at: '{missingPath}'. Falling back to: '{subfolder}/{file}'");
-        return ScenePath(DownfallMainFile.ModId, subfolder, file);
     }
 }

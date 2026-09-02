@@ -20,7 +20,7 @@ public class ShieldThrow : ChampCardModel
         WithCostUpgradeBy(-1);
         // this.WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
-        this.WithPower<NoBlockNextTurnPower>(1, false);
+        WithPower<NoBlockNextTurnPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

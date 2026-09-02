@@ -13,7 +13,7 @@ public class DesperatePrayer : AwakenedCardModel
 {
     public DesperatePrayer() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        this.WithTip<Ceremony>();
+        WithTip<Ceremony>();
         WithKeywords(CardKeyword.Exhaust);
         WithCards(3, 1);
     }

@@ -19,7 +19,7 @@ public class RealityRift : AwakenedCardModel
     public RealityRift() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithTip<Void>();
+        WithTip<Void>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

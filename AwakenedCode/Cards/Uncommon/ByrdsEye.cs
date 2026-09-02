@@ -1,5 +1,4 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -14,7 +13,8 @@ public class ByrdsEye : AwakenedCardModel
 {
     public ByrdsEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithConjure();
+        WithConjure();
+        WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -22,7 +22,7 @@ public class ByrdsEye : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var spellbook = AwakenedCmd.GetSpellbook(Owner);
-        if (IsUpgraded) AwakenedCmd.RefreshSpellbook(Owner);
+        //if (IsUpgraded) AwakenedCmd.RefreshSpellbook(Owner);
 
         var cards = spellbook.Cards;
         var selected =

@@ -3,7 +3,6 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
@@ -13,7 +12,7 @@ public class SplitMire : SlimeBossCardModel
 {
     public SplitMire() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        this.WithCommand(2, 1);
+        WithCommand(2, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -13,9 +13,9 @@ public sealed class SmokingBarrel : HermitCardModel
 {
     public SmokingBarrel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<SmokingBarrelPower>(3, 1, false);
+        WithPower<SmokingBarrelPower>(3, 1, false);
         WithTip(HermitKeywords.DeadOn);
-        this.WithTip<VigorPower>();
+        WithTip<VigorPower>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

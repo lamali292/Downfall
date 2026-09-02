@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
 
@@ -13,13 +12,13 @@ public class CobraCoil : SneckoCardModel, IHasGift
 {
     public CobraCoil() : base(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             Rarity = CardRarity.Rare,
             Type = CardType.Attack
         });
         WithDamage(20, 4);
-        this.WithPower<SneckoConstrictPower>(10, false);
+        WithPower<SneckoConstrictPower>(10, false);
     }
 
     public Gift? Gift { get; set; }

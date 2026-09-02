@@ -14,8 +14,8 @@ public class GreatHex : AwakenedCardModel, IChantable
     public GreatHex() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        this.WithPower<GreatHexPower>(5, 3, false);
-        this.WithTip<ManaburnPower>();
+        WithPower<GreatHexPower>(5, 3, false);
+        WithTip<ManaburnPower>();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

@@ -1,8 +1,11 @@
 {
     "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "防守姿态",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "[gold]技术奖励[/gold]：\n{Infinite:cond:每当你打出一张技能牌时|你下{Charges:diff()}次打出一张技能牌时}，获得[blue]{DefensiveSkill}[/blue]层[gold]反击[/gold]。\n[gold]终结技[/gold]：\n每当你触发[gold]终极技[/gold]时，获得[blue]{DefensiveFinisher}[/blue]点[gold]格挡[/gold]。",
     "CHAMP-CHAMP_BERSERKER_STANCE.title": "战狂姿态",
+    "CHAMP-CHAMP_BERSERKER_STANCE.description": "[gold]技术奖励[/gold]：\n{Infinite:cond:每当你打出一张技能牌时|你下{Charges:diff()}次打出一张技能牌时}，获得[blue]{BerserkerSkill}[/blue]点[gold]活力[/gold]。\n[gold]终结技[/gold]：\n每当你触发[gold]终极技[/gold]时，获得[blue]{BerserkerFinisher}[/blue]点[gold]力量[/gold]。",
     "CHAMP-CHAMP_NO_STANCE.title": "无姿态",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "终极姿态",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.description": "[gold]技术奖励[/gold]：\n{Infinite:cond:每当你打出一张技能牌时|你下{Charges:diff()}次打出一张技能牌时}，获得[blue]{BerserkerSkill}[/blue]点[gold]活力[/gold]和[blue]{DefensiveSkill}[/blue]层[gold]反击[/gold]。\n[gold]终结技[/gold]：\n每当你触发[gold]终极技[/gold]时，获得[blue]{BerserkerFinisher}[/blue]点[gold]力量[/gold]和[blue]{DefensiveFinisher}[/blue]点[gold]格挡[/gold]。",
     "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}：{AffectsAllPlayers:所有玩家|}获得{BerserkerFinisher}点[gold]力量[/gold]和{DefensiveFinisher}点[gold]格挡[/gold]。",
     "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()}[gold]终结技[/gold]",
     "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}：{AffectsAllPlayers:所有玩家|}获得{BerserkerFinisher}点[gold]力量[/gold]。",

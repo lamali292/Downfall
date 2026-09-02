@@ -14,9 +14,9 @@ public sealed class FatalDesire : HermitCardModel
     public FatalDesire() : base(0, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        this.WithPower<FatalDesirePower>(1, false);
-        this.WithPower<MachineLearningPower>(2, false);
-        this.WithTip<Injury>();
+        WithPower<FatalDesirePower>(1, false);
+        WithPower<MachineLearningPower>(2, false);
+        WithTip<Injury>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

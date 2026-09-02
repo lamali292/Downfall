@@ -12,7 +12,7 @@ public class Improvising : ChampCardModel
 {
     public Improvising() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<ImprovisingPower>(2, 1, false);
+        WithPower<ImprovisingPower>(2, 1, false);
         // WithTip(ChampTip.Stance);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }

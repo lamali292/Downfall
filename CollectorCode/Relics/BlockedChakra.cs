@@ -27,7 +27,7 @@ public class BlockedChakra : CollectorRelicModel
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if( target != Owner.Torchhead()) return;
+        if( target != Owner.Torchhead) return;
         
         if (result.UnblockedDamage > 3)
         {
@@ -36,18 +36,15 @@ public class BlockedChakra : CollectorRelicModel
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         }
     }
-    
-    protected override async Task AfterSideTurnStart(PlayerChoiceContext ctx, CombatSide side,
+
+    public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
-        if (side != Owner.Creature.Side)
-        {
-            return;
-        }
+        if (!participants.Contains(Owner.Creature)) return;
         Flash();
         var dV = (int)KindleAmount.BaseValue;
-        await CollectorCmd.SummonTorchhead(ctx, Owner, dV, this);
+        await CollectorCmd.SummonTorchhead(new BlockingPlayerChoiceContext(), Owner, dV, this);
     }
     
 }

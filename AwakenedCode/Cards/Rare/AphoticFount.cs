@@ -1,6 +1,5 @@
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Extensions;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -15,10 +14,10 @@ public class AphoticFount : AwakenedCardModel
 {
     public AphoticFount() : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<AphoticFountPower>(1, 1, false);
-        this.WithTip<PlatingPower>();
-        this.WithTip<Cryostasis>();
-        this.WithConjure();
+        WithPower<AphoticFountPower>(1, 1, false);
+        WithTip<PlatingPower>();
+        WithTip<Cryostasis>();
+        WithConjure();
     }
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();

@@ -18,7 +18,7 @@ public class QuickSnack : SlimeBossCardModel
     {
         WithCards(1, 1);
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<Lick>();
+        WithTip<Lick>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -97,6 +97,7 @@ public static class GuardianCmd
                 ThinkCmd.Play(FullStasisText, player.Creature, 2.0);
             return false;
         }
+
         await GuardianHook.BeforeCardEntersStasis(cs, ctx, card, source);
         await CardPileCmd.Add(card, pile, skipVisuals: silent);
         SetStasisCounter(card);

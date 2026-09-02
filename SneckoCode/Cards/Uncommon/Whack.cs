@@ -16,7 +16,6 @@ public class Whack : SneckoCardModel
         WithDamage(8, 2);
         WithEnergy(2);
         WithTip(StaticHoverTip.Block);
-
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

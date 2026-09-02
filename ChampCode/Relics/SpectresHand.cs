@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Commands;

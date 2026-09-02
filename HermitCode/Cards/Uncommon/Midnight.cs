@@ -13,7 +13,7 @@ public sealed class Midnight : HermitCardModel
     public Midnight() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
-        this.WithTip<ImpendingDoom>();
+        WithTip<ImpendingDoom>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

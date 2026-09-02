@@ -13,14 +13,22 @@ public static class FmodStudio
     private static readonly StringName PlayOneShot = new("play_one_shot_using_guid");
     private static readonly StringName WaitForAllLoads = new("wait_for_all_loads");
 
-    public static void RegisterBank(string resourcePath) => Enqueue(PendingBanks, resourcePath);
+    public static void RegisterBank(string resourcePath)
+    {
+        Enqueue(PendingBanks, resourcePath);
+    }
 
-    public static void RegisterGuidMappings(string resourcePath) => Enqueue(PendingGuidFiles, resourcePath);
+    public static void RegisterGuidMappings(string resourcePath)
+    {
+        Enqueue(PendingGuidFiles, resourcePath);
+    }
 
     public static void OnDeferredInitializationCompleted()
     {
         lock (Gate)
+        {
             _ready = true;
+        }
 
         Flush();
     }
@@ -73,7 +81,9 @@ public static class FmodStudio
         foreach (var path in banks)
             if (FmodServer.LoadBank(path) is { } bank)
                 lock (Gate)
+                {
                     LoadedBanks.Add(bank);
+                }
 
         if (banks.Count > 0)
             FmodServer.Call(WaitForAllLoads);

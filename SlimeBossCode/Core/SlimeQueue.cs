@@ -1,7 +1,5 @@
-﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Core;
+﻿using Downfall.DownfallCode.Core;
 using Godot;
-using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -26,7 +24,7 @@ public static class SlimeQueue
     {
         SlimeSlots[player] = amount;
     }
-    
+
     public static int GetSlots(Player player)
     {
         return SlimeSlots[player];

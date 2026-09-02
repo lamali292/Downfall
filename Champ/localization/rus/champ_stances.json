@@ -1,8 +1,11 @@
 {
     "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "Стойка Рыцаря",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "Дает [blue]{DefensiveSkill}[/blue] [gold]Контратаки[/gold]{Infinite:cond:, когда вы разыгрываете Навыки|{Charges:plural(ru): в следующий раз, когда вы разыграете Навык|в следующие [blue]{}[/blue] раза, когда вы разыграете Навык|в следующие [blue]{}[/blue] раз, когда вы разыграете Навык}}.\nДает [blue]{DefensiveFinisher}[/blue] [gold]защиты[/gold], когда вы разыгрываете [gold]Финишер[/gold].",
     "CHAMP-CHAMP_BERSERKER_STANCE.title": "Стойка Берсерка",
+    "CHAMP-CHAMP_BERSERKER_STANCE.description": "Дает [blue]{BerserkerSkill}[/blue] [gold]бодрости[/gold]{Infinite:cond:, когда вы разыгрываете Навыки|{Charges:plural(ru): в следующий раз, когда вы разыграете Навык|в следующие [blue]{}[/blue] раза, когда вы разыграете Навык|в следующие [blue]{}[/blue] раз, когда вы разыграете Навык}}.\nДает [blue]{BerserkerFinisher}[/blue] [gold]силы[/gold], когда вы разыгрываете [gold]Финишер[/gold].",
     "CHAMP-CHAMP_NO_STANCE.title": "Не в стойке",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Совершенная стойка",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.description": "Дает [blue]{BerserkerSkill}[/blue] [gold]бодрости[/gold] и [blue]{DefensiveSkill}[/blue] [gold]Контратаки[/gold]{Infinite:cond:, когда вы разыгрываете Навыки|{Charges:plural(ru): в следующий раз, когда вы разыграете Навык|в следующие [blue]{}[/blue] раза, когда вы разыграете Навык|в следующие [blue]{}[/blue] раз, когда вы разыграете Навык}}.\nДает [blue]{BerserkerFinisher}[/blue] [gold]силы[/gold] и [blue]{DefensiveFinisher}[/blue] [gold]защиты[/gold], когда вы разыгрываете [gold]Финишер[/gold].",
     "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: Дает {BerserkerFinisher} [gold]силы[/gold] и {DefensiveFinisher} [gold]защиты[/gold]{AffectsAllPlayers: ВСЕМ игрокам|}.",
     "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Финишер[/gold]",
     "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: Дает {BerserkerFinisher} [gold]силы[/gold]{AffectsAllPlayers: ВСЕМ игрокам|}.",

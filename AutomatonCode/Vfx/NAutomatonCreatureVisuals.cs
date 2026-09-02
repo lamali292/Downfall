@@ -9,9 +9,6 @@ namespace Automaton.AutomatonCode.Vfx;
 [GlobalClass]
 public partial class NAutomatonCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
-
-    private MegaAnimationState? _animState;
-    private MegaSprite? _sprite;
     private const float DefaultMix = 0.2f;
     private const float ToIdleMix = 0.35f;
     private const float AttackMix = 0.1f;
@@ -22,6 +19,9 @@ public partial class NAutomatonCreatureVisuals : NCreatureVisuals, IAnimatedVisu
     private const string HitAnim = "hurt";
     private const string CastAnim = "cast";
     private const string DeadAnim = "die";
+
+    private MegaAnimationState? _animState;
+    private MegaSprite? _sprite;
     private string IdleAnim => "idle_loop";
 
     public void OnAnimationTrigger(string trigger)

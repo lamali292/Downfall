@@ -35,11 +35,11 @@ public class PackPotions(string scriptDir, bool force)
             Directory.CreateDirectory(d);
 
         var seen = new HashSet<string>();
-        var inputFiles = (from sub in InputSubdirs 
+        var inputFiles = (from sub in InputSubdirs
             select Path.Join(ImagesDir, sub, charId)
-            into d 
-            where Directory.Exists(d) 
-            from file in Directory.EnumerateFiles(d, "*.png").Order() 
+            into d
+            where Directory.Exists(d)
+            from file in Directory.EnumerateFiles(d, "*.png").Order()
             where seen.Add(Path.GetFileName(file))
             select file).ToList();
 

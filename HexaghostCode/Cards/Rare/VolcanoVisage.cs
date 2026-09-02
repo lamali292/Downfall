@@ -14,9 +14,9 @@ public class VolcanoVisage : HexaghostCardModel
 {
     public VolcanoVisage() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<VolcanoVisagePower>(4, 2, false);
+        WithPower<VolcanoVisagePower>(4, 2, false);
         WithTip(HexaghostTip.Ignite);
-        this.WithTip<SoulBurnPower>();
+        WithTip<SoulBurnPower>();
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

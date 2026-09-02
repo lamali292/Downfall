@@ -4,7 +4,6 @@ using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Extensions;
 using Hexaghost.HexaghostCode.Ghostflames.Intents;
-using Hexaghost.HexaghostCode.Powers;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +26,7 @@ public class OffclassInfernoGhostflame : GhostflameModel
         () => DynamicVars.GhostflameDamage,
         () => (HexaghostCmd.GetIgnitedCount(Owner) + (IsIgnited ? 0 : 1)) * Repeat(GhostflameRepeatType.Damage)
     );
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(DownfallTip.Offclass)
@@ -35,10 +34,11 @@ public class OffclassInfernoGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameDamageVar(3)
+        new GhostflameDamageVar(4)
     ];
-    
+
     public override bool IsOffclass => true;
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;

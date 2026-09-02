@@ -14,10 +14,10 @@ public class DoubleStyle : ChampCardModel
 {
     public DoubleStyle() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<DefensiveStylePower>(1, 1, false);
-        this.WithPower<BerserkerStylePower>(1, 1, false);
-        this.WithTip<VigorPower>();
-        this.WithTip<CounterPower>();
+        WithPower<DefensiveStylePower>(1, 1, false);
+        WithPower<BerserkerStylePower>(1, 1, false);
+        WithTip<VigorPower>();
+        WithTip<CounterPower>();
         WithTip(ChampKeyword.TriggerSkillBonus);
     }
 

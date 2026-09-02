@@ -14,13 +14,14 @@ public class SoulRefresh : SneckoCardModel
     public SoulRefresh() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        this.WithTip<SoulRoll>();
+        WithTip<SoulRoll>();
         WithCostUpgradeBy(-1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1), null,
+        var card = (await CardSelectCmd.FromHand(ctx, Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1), null,
             this)).FirstOrDefault();
         if (card == null) return;
         await CardCmd.TransformTo<SoulRoll>(card);

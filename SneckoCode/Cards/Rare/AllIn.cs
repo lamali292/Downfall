@@ -25,6 +25,5 @@ public class AllIn : SneckoCardModel
         await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
         if (IsUpgraded) x++;
         await CommonActions.ApplySelf<GamblePower>(ctx, this, x);
-
     }
 }

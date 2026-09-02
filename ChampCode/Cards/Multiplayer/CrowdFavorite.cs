@@ -12,8 +12,8 @@ public class CrowdFavorite : ChampCardModel
 {
     public CrowdFavorite() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-       this.WithPower<CrowdFavoritePower>(1, 1, false);
-       this.WithTip<VigorPower>();
+        WithPower<CrowdFavoritePower>(1, 1, false);
+        WithTip<VigorPower>();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

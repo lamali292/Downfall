@@ -18,7 +18,12 @@ public class Seething : DownfallEnchantmentModel<Core.Hermit>
         new EnergyVar(1)
     ];
 
-    public override bool CanEnchant(CardModel card) => true;
+    public override bool HasExtraCardText => Status == EnchantmentStatus.Normal;
+
+    public override bool CanEnchant(CardModel card)
+    {
+        return true;
+    }
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
@@ -29,13 +34,12 @@ public class Seething : DownfallEnchantmentModel<Core.Hermit>
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Card.Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Card.Owner);
     }
-    
-    public override bool HasExtraCardText => Status == EnchantmentStatus.Normal;
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
-        if (!participants.Contains(Card.Owner.Creature))  return Task.CompletedTask;
+        if (!participants.Contains(Card.Owner.Creature)) return Task.CompletedTask;
         Status = EnchantmentStatus.Normal;
         return Task.CompletedTask;
     }

@@ -1,6 +1,5 @@
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
-using Awakened.AwakenedCode.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +14,7 @@ public class Manastorm : AwakenedCardModel
     {
         WithDamage(14, 4);
         WithTip(AwakenedTip.Conjure);
-        this.WithConjure();
+        WithConjure();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

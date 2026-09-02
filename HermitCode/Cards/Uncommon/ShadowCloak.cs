@@ -12,7 +12,7 @@ public sealed class ShadowCloak : HermitCardModel
 {
     public ShadowCloak() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ShadowCloakPower>(4, 2, false);
+        WithPower<ShadowCloakPower>(4, 2, false);
         WithTip(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Block);
     }

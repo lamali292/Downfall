@@ -16,7 +16,7 @@ public class Iterate : AutomatonCardModel
     public Iterate() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(4);
-        this.WithRepeat(2, 1);
+        WithRepeat(2, 1);
         WithTip(AutomatonTip.Stash);
     }
 

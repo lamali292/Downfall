@@ -1,31 +1,82 @@
-[gd_scene load_steps=13 format=3 ]
+[gd_scene load_steps=30 format=3 uid="uid://d145ou0ioe2i5"]
 
-[ext_resource type="Script" path="res://DownfallCode/Voting/NArtVotingScreen.cs" id="1_cd3my"]
-[ext_resource type="PackedScene" path="res://scenes/ui/back_button.tscn" id="1_d2wa3"]
-[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_cd3my"]
-[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="3_6lchq"]
-[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NScrollableContainer.cs" id="4_jnau3"]
-[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/art_voting_row.tscn" id="5_5xrb2"]
-[ext_resource type="PackedScene" path="res://scenes/ui/scrollbar.tscn" id="6_76oc8"]
-[ext_resource type="Script" path="res://DownfallCode/Voting/NArtVotingContainer.cs" id="8_cd3my"]
-[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/art_row.tscn" id="8_vcard"]
-[ext_resource type="Script" path="res://DownfallCode/Voting/NArtVotingCardContainer.cs" id="10_6lchq"]
+[ext_resource type="Script" uid="uid://bdjjkyu1yalcm" path="res://DownfallCode/Voting/NArtVotingScreen.cs" id="1_cd3my"]
+[ext_resource type="PackedScene" uid="uid://bl4mbjqjfffa3" path="res://scenes/ui/back_button.tscn" id="1_d2wa3"]
+[ext_resource type="Script" uid="uid://cu6crcx7mdi18" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="2_0g211"]
+[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="2_cd3my"]
+[ext_resource type="Script" uid="uid://cbfrtu75jkvgc" path="res://DownfallCode/Voting/NVotingFilter.cs" id="2_tjnpw"]
+[ext_resource type="Script" uid="uid://dmpp1qcet6qvk" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="4_tjnpw"]
+[ext_resource type="Script" uid="uid://ylx5eqt8x13v" path="res://src/Core/Nodes/Screens/CardLibrary/NClearSearchButton.cs" id="5_obalg"]
+[ext_resource type="Texture2D" uid="uid://q1y4ux" path="res://images/atlases/compressed.sprites/back_button_x.tres" id="6_0rl3y"]
+[ext_resource type="PackedScene" uid="uid://b6nko387cwp7n" path="res://scenes/ui/scrollbar.tscn" id="6_76oc8"]
+[ext_resource type="PackedScene" uid="uid://c0eif6msrle3b" path="res://scenes/screens/card_library/library_pool_toggle.tscn" id="7_rp13f"]
+[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="8_8vdlf"]
+[ext_resource type="PackedScene" uid="uid://6kbn03rj7xhd" path="res://Downfall/scenes/voting/art_row.tscn" id="8_vcard"]
+[ext_resource type="Texture2D" uid="uid://benjmog6pxpp0" path="res://Automaton/images/character/character_icon.png" id="9_wfp2r"]
+[ext_resource type="Texture2D" uid="uid://dkbapkasmb7iw" path="res://Awakened/images/character/character_icon.png" id="10_0u028"]
+[ext_resource type="Texture2D" uid="uid://cukfpxdb1ktvc" path="res://Champ/images/character/character_icon.png" id="11_tdci4"]
+[ext_resource type="Texture2D" uid="uid://cm7ibwowa1kfw" path="res://Guardian/images/character/character_icon.png" id="12_muuoi"]
+[ext_resource type="Texture2D" uid="uid://cv87ha0geth8b" path="res://Hermit/images/character/character_icon.png" id="13_86mx5"]
+[ext_resource type="Texture2D" uid="uid://dc1124damgc2r" path="res://Hexaghost/images/character/character_icon.png" id="14_2mbmw"]
+[ext_resource type="Texture2D" uid="uid://qncyy6hlbbxl" path="res://SlimeBoss/images/character/character_icon.png" id="15_ivt4w"]
+[ext_resource type="Texture2D" uid="uid://h04qjcyju7ns" path="res://Snecko/images/character/character_icon.png" id="16_jkyqy"]
+[ext_resource type="PackedScene" uid="uid://cdyfypvscsvs4" path="res://scenes/screens/card_library/library_sort_button.tscn" id="17_fnmll"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b6vv"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.403922, 0.682353, 0.921569, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibwph"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci2g3"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.403922, 0.682353, 0.921569, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kl0v"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hq5ru"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1bge"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jc271"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wun8w"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxc27"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgm8r"]
+resource_local_to_scene = true
+shader = ExtResource("8_8vdlf")
+shader_parameter/h = 1.0
+shader_parameter/s = 0.3
+shader_parameter/v = 0.55
 
 [node name="Voting" type="Control"]
 layout_mode = 3
@@ -36,51 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cd3my")
 
-[node name="BackButton" parent="." instance=ExtResource("1_d2wa3")]
-layout_mode = 1
-
-[node name="ModsBorder" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 255.0
-offset_top = 161.0
-offset_right = 594.0
-offset_bottom = 986.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0b6vv")
-
-[node name="ArtVotingTitle" type="RichTextLabel" parent="ModsBorder"]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 2.0
-offset_top = -78.0
-offset_right = 354.0
-offset_bottom = -6.0
-theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
-theme_override_fonts/normal_font = ExtResource("2_cd3my")
-theme_override_font_sizes/normal_font_size = 56
-text = "Votings"
-fit_content = true
-script = ExtResource("3_6lchq")
-AutoSizeEnabled = false
-IsVerticallyBound = false
-metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
-
-[node name="ModsScrollContainer" type="Control" parent="ModsBorder"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_jnau3")
-
-[node name="Mask" type="ColorRect" parent="ModsBorder/ModsScrollContainer"]
-clip_children = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,91 +95,249 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Content" type="VBoxContainer" parent="ModsBorder/ModsScrollContainer/Mask"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 72.0
-grow_horizontal = 2
-theme_override_constants/separation = 16
-
-[node name="ModRow" parent="ModsBorder/ModsScrollContainer/Mask/Content" instance=ExtResource("5_5xrb2")]
+[node name="VotingFilter" type="Control" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
+script = ExtResource("2_tjnpw")
 
-[node name="Scrollbar" parent="ModsBorder/ModsScrollContainer" instance=ExtResource("6_76oc8")]
-custom_minimum_size = Vector2(48, 0)
+[node name="Panel" type="ColorRect" parent="HBoxContainer/VotingFilter"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.182, 0.2604, 0.28, 0.501961)
+
+[node name="Shadow" type="ColorRect" parent="HBoxContainer/VotingFilter/Panel"]
+show_behind_parent = true
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -8.0
-offset_right = 54.0
-offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_behavior_recursive = 0
-mouse_behavior_recursive = 0
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
+color = Color(0.2346, 0.325947, 0.34, 1)
 
-[node name="SubmissionsContainer" type="Panel" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VotingFilter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TopVBox" type="VBoxContainer" parent="HBoxContainer/VotingFilter/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SearchBar" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 661.0
-offset_top = 86.0
-offset_right = 1226.0
-offset_bottom = 987.0
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+script = ExtResource("2_0g211")
+
+[node name="TextArea" type="LineEdit" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ClearButton")
+focus_neighbor_bottom = NodePath("../../PoolFilters/AutomatonPool")
+theme_override_fonts/font = ExtResource("2_cd3my")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "NOT_SET"
+script = ExtResource("4_tjnpw")
+theme_override_fonts/font = ExtResource("2_cd3my")
+theme_override_font_sizes/font_size = 24
+
+[node name="ClearButton" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("5_obalg")
+
+[node name="Image" type="TextureRect" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/SearchBar/ClearButton"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(24, 24)
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ci2g3")
-script = ExtResource("8_cd3my")
+texture = ExtResource("6_0rl3y")
+expand_mode = 1
 
-[node name="SubmissionsTitle" type="RichTextLabel" parent="SubmissionsContainer"]
-layout_mode = 1
-offset_left = 2.0
-offset_top = -78.0
-offset_right = 902.0
-offset_bottom = -6.0
-theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
-theme_override_fonts/normal_font = ExtResource("2_cd3my")
-theme_override_font_sizes/normal_font_size = 56
-text = "Submissions"
-fit_content = true
-script = ExtResource("3_6lchq")
-AutoSizeEnabled = false
-IsVerticallyBound = false
-metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
+[node name="Spacer2" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
 
-[node name="SubmissionsScrollContainer" type="Control" parent="SubmissionsContainer"]
+[node name="PoolFilters" type="GridContainer" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="AutomatonPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_jnau3")
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
 
-[node name="Mask" type="ColorRect" parent="SubmissionsContainer/SubmissionsScrollContainer"]
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AutomatonPool" index="0"]
+material = SubResource("ShaderMaterial_ibwph")
+texture = ExtResource("9_wfp2r")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AutomatonPool/Image" index="0"]
+texture = ExtResource("9_wfp2r")
+
+[node name="AwakenedPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AwakenedPool" index="0"]
+material = SubResource("ShaderMaterial_1kl0v")
+texture = ExtResource("10_0u028")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AwakenedPool/Image" index="0"]
+texture = ExtResource("10_0u028")
+
+[node name="ChampPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/ChampPool" index="0"]
+material = SubResource("ShaderMaterial_hq5ru")
+texture = ExtResource("11_tdci4")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/ChampPool/Image" index="0"]
+texture = ExtResource("11_tdci4")
+
+[node name="GuardianPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/GuardianPool" index="0"]
+material = SubResource("ShaderMaterial_x1bge")
+texture = ExtResource("12_muuoi")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/GuardianPool/Image" index="0"]
+texture = ExtResource("12_muuoi")
+
+[node name="HermitPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../SearchBar/TextArea")
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HermitPool" index="0"]
+material = SubResource("ShaderMaterial_jc271")
+texture = ExtResource("13_86mx5")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HermitPool/Image" index="0"]
+texture = ExtResource("13_86mx5")
+
+[node name="HexaghostPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HexaghostPool" index="0"]
+material = SubResource("ShaderMaterial_wun8w")
+texture = ExtResource("14_2mbmw")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HexaghostPool/Image" index="0"]
+texture = ExtResource("14_2mbmw")
+
+[node name="SlimebossPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SlimebossPool" index="0"]
+material = SubResource("ShaderMaterial_wxc27")
+texture = ExtResource("15_ivt4w")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SlimebossPool/Image" index="0"]
+texture = ExtResource("15_ivt4w")
+
+[node name="SneckoPool" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters" instance=ExtResource("7_rp13f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SneckoPool" index="0"]
+material = SubResource("ShaderMaterial_fgm8r")
+texture = ExtResource("16_jkyqy")
+
+[node name="Shadow" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SneckoPool/Image" index="0"]
+texture = ExtResource("16_jkyqy")
+
+[node name="Spacer" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="LikeSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="NewSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="AlphabetSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer2"]
 clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Content" type="HFlowContainer" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask"]
+[node name="Content" type="HFlowContainer" parent="HBoxContainer/MarginContainer2/ColorRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -180,58 +345,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 600.0
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="VoteCard" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard2" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard2" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard3" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard3" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard4" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard4" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard5" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard5" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard6" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard6" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard7" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard7" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard8" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard8" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard9" parent="SubmissionsContainer/SubmissionsScrollContainer/Mask/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard9" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="Scrollbar" parent="SubmissionsContainer/SubmissionsScrollContainer" instance=ExtResource("6_76oc8")]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -8.0
-offset_right = 54.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 100
+
+[node name="Scrollbar" parent="HBoxContainer/MarginContainer" instance=ExtResource("6_76oc8")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
 focus_behavior_recursive = 0
 mouse_behavior_recursive = 0
 accessibility_name = ""
@@ -242,29 +406,14 @@ accessibility_described_by_nodes = Array[NodePath]([])
 accessibility_labeled_by_nodes = Array[NodePath]([])
 accessibility_flow_to_nodes = Array[NodePath]([])
 
-[node name="CardContainer" type="Panel" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1298.13
-offset_top = 86.0
-offset_right = 1863.13
-offset_bottom = 987.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ci2g3")
-script = ExtResource("10_6lchq")
-
-[node name="SubmissionsTitle" type="RichTextLabel" parent="CardContainer"]
+[node name="BackButton" parent="." instance=ExtResource("1_d2wa3")]
 layout_mode = 1
-offset_left = 2.0
-offset_top = -78.0
-offset_right = 902.0
-offset_bottom = -6.0
-theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
-theme_override_fonts/normal_font = ExtResource("2_cd3my")
-theme_override_font_sizes/normal_font_size = 56
-text = "Card"
-fit_content = true
-script = ExtResource("3_6lchq")
-AutoSizeEnabled = false
-IsVerticallyBound = false
-metadata/_custom_type_script = "uid://c2oywrx8xbqfx"
+
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AutomatonPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/AwakenedPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/ChampPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/GuardianPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HermitPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/HexaghostPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SlimebossPool"]
+[editable path="HBoxContainer/VotingFilter/MarginContainer/TopVBox/PoolFilters/SneckoPool"]

@@ -15,7 +15,7 @@ public class TornadoPunch : ChampCardModel, IDefensiveComboCard
 
     public TornadoPunch() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(12, 2);
+        WithDamage(10, 2);
         WithBlock(5, 2);
         WithVar("LastHitCount", 0);
     }

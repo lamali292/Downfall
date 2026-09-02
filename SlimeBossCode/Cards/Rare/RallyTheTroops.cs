@@ -13,7 +13,7 @@ public class RallyTheTroops : SlimeBossCardModel
     public RallyTheTroops() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
-        this.WithPower<RallyTheTroopsPower>(2, 1, false);
+        WithPower<RallyTheTroopsPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

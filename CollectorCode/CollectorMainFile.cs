@@ -1,9 +1,6 @@
-using System.Reflection;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -21,15 +18,8 @@ public static class CollectorMainFile
     public static void Initialize()
     {
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-        
+
         BundledSubmodLocRegistry.Register(ModId);
-        
-        RunHooks.OnNewRunPerPlayer(player =>
-        {
-            //EssenceModel.ClearEssence(player);
-            CollectiblesModel.ClearCollectibles(player);
-            //if (player.Character is Core.Collector) EssenceModel.AddEssence(player, 5);
-        });
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");

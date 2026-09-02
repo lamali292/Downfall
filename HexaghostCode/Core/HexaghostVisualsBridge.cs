@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -21,9 +22,15 @@ public static class HexaghostVisualsBridge
         return null;
     }
 
-    public static void FadeFlamesOnDeath(Player player) => GetVisuals(player)?.FadeOutOnDeath();
+    public static void FadeFlamesOnDeath(Player player)
+    {
+        GetVisuals(player)?.FadeOutOnDeath();
+    }
 
-    public static void FadeFlamesOnRevive(Player player) => GetVisuals(player)?.FadeInOnRevive();
+    public static void FadeFlamesOnRevive(Player player)
+    {
+        GetVisuals(player)?.FadeInOnRevive();
+    }
 
     private static void Setup(NCombatRoom combatRoom, Player player)
     {
@@ -39,7 +46,7 @@ public static class HexaghostVisualsBridge
         Displays[player] = display;
 
         var vfxContainer = combatRoom.CombatVfxContainer;
-  
+
         vfxContainer.AddChildSafely(display);
 
         var creatureNode = combatRoom.GetCreatureNode(player.Creature);
@@ -54,6 +61,7 @@ public static class HexaghostVisualsBridge
 
     public static void Refresh(Player player)
     {
+        if (TestMode.IsOn) return;
         var visuals = GetVisuals(player);
         if (visuals == null)
         {
@@ -62,6 +70,7 @@ public static class HexaghostVisualsBridge
                 HexaghostMainFile.Logger.Warn("[Ghostflames] Refresh: no combat room, skipping");
                 return;
             }
+
             Setup(room, player);
             return;
         }

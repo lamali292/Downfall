@@ -34,9 +34,9 @@ public class OffclassCrushingGhostflame : GhostflameModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new GhostflameDamageVar(2)
+        new GhostflameDamageVar(3)
     ];
-    
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
@@ -49,10 +49,13 @@ public class OffclassCrushingGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Skill, DownfallCmd.IsOffclass);
-    
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Skill, DownfallCmd.IsOffclass);
+    }
+
     public override bool AboutToIgnite(CardModel card)
     {
-        return card.Type == CardType.Skill && DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= 1;
+        return card.Type == CardType.Skill && DownfallCmd.IsOffclass(card) &&
+               IgnitionRequirement - IgnitionProgress <= 1;
     }
 }

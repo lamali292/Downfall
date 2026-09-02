@@ -17,12 +17,12 @@ public partial class NFire : Node2D
     private const string HueUniform = "HueShift";
     private const string HueTweenPath = "shader_parameter/HueShift";
 
+    private FireColor _currentColor = FireColor.Red;
+
     private TextureRect? _flame;
     private ShaderMaterial? _flameMaterial;
     private GpuParticles2D? _particles;
     private Tween? _tween;
-
-    private FireColor _currentColor = FireColor.Red;
     public FireSize CurrentSize { get; private set; } = FireSize.Small;
 
     public override void _Ready()
@@ -43,6 +43,7 @@ public partial class NFire : Node2D
                 $"[NFire] '{Name}': flame has no ShaderMaterial to duplicate");
             return;
         }
+
         _flameMaterial = (ShaderMaterial)baseMaterial.Duplicate();
         _flame.Material = _flameMaterial; // non-conditional: this must actually take effect
 
@@ -55,7 +56,7 @@ public partial class NFire : Node2D
         CurrentSize = size;
 
         var targetScale = size == FireSize.Large ? LargeScale : SmallScale;
-        
+
         var displayColor = size == FireSize.Large ? FireColor.Green : color;
         var targetHue = HueFor(displayColor);
 
@@ -82,19 +83,22 @@ public partial class NFire : Node2D
             .SetTrans(Tween.TransitionType.Sine)
             .SetEase(Tween.EaseType.InOut);
     }
-    
-    private static float HueFor(FireColor color) => color switch
+
+    private static float HueFor(FireColor color)
     {
-        FireColor.Green => 0.15f,
-        FireColor.Yellow => 0.0f,
-        FireColor.Pink => 0.6f,
-        FireColor.Blue => 0.25f,
-        FireColor.Red => 0.85f,
-        
-        
-        FireColor.Orange => 0.80f,
-        _ => 0.0f
-    };
+        return color switch
+        {
+            FireColor.Green => 0.15f,
+            FireColor.Yellow => 0.0f,
+            FireColor.Pink => 0.6f,
+            FireColor.Blue => 0.25f,
+            FireColor.Red => 0.85f,
+
+
+            FireColor.Orange => 0.80f,
+            _ => 0.0f
+        };
+    }
 }
 
 public enum FireColor

@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Events;
-using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -16,7 +15,7 @@ public class OneTwoCombo : SlimeBossCardModel, IAfterSplit
     public OneTwoCombo() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(4, 3);
-        this.WithCommand(1);
+        WithCommand(1);
     }
 
     public async Task AfterSplit(Player player, SlimeModel slime)

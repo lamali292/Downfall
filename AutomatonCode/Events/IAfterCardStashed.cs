@@ -6,5 +6,6 @@ namespace Automaton.AutomatonCode.Events;
 
 public interface IAfterCardStashed
 {
-    Task AfterCardsStashed( PlayerChoiceContext ctx,Player player, IEnumerable<CardModel> stashedCards, IEnumerable<CardModel> overflowCards);
+    Task AfterCardsStashed(PlayerChoiceContext ctx, Player player, IEnumerable<CardModel> stashedCards,
+        IEnumerable<CardModel> overflowCards);
 }

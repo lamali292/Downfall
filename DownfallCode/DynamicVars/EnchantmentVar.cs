@@ -6,7 +6,7 @@ namespace Downfall.DownfallCode.DynamicVars;
 public class EnchantmentVar<T> : DynamicVar where T : EnchantmentModel
 {
     public EnchantmentVar(decimal powerAmount)
-        : base(typeof (T).Name, powerAmount)
+        : base(typeof(T).Name, powerAmount)
     {
     }
 

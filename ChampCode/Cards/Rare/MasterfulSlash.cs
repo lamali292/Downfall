@@ -14,7 +14,7 @@ public class MasterfulSlash : ChampCardModel
     public MasterfulSlash() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        this.WithTip<VigorPower>();
+        WithTip<VigorPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

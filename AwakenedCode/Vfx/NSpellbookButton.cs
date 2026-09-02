@@ -4,13 +4,12 @@ using Downfall.DownfallCode.Core;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Awakened.AwakenedCode.Vfx;
 
@@ -22,59 +21,39 @@ public partial class NSpellbookButton : NCustomCombatCardPile
     protected override Vector2 HoverTipOffset => new(30f, -850f);
     protected override Vector2 ButtonOffsets => new(20f, -360f);
 
-    private static readonly PlayerField<bool> Revealed = new(() => false);
+    private CardModel? Next => (_pile as AwakenedPile)?.NextSpell;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        Next == null ? [] : [HoverTipFactory.FromCard(Next), ..Next.HoverTips];
 
     public override void Initialize(Player player)
     {
-        base.Initialize(player);
-        if (Revealed[player]) Visible = true; 
+        base.Initialize(player);   // base sets Visible = false when StartHidden(player)
         RefreshSpellIcon();
-    }
-    
-   
-    public static Vector2 GetPositionFor()
-    {
-        var btn = Live;
-        return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
     }
 
     public static void RevealFor(Player player)
     {
-        Revealed[player] = true;
-        var btn = Live;
+        if (!LocalContext.IsMe(player)) return;   // only the local player's pile reveals
+        var btn = GetPileNode<NSpellbookButton>();
         if (btn == null) return;
         btn.Reveal();
-        btn.RefreshSpellIcon();  
+        btn.RefreshSpellIcon();
     }
 
-    private static NSpellbookButton? Live
-    {
-        get
-        {
-            var container = NCombatRoom.Instance?.Ui._combatPilesContainer;
-            if (container == null || !IsInstanceValid(container)) return null;
-            return container.GetChildren()
-                .OfType<NSpellbookButton>()
-                .FirstOrDefault(IsInstanceValid);
-        }
-    }
-    public void RefreshSpellIcon()
+    private void RefreshSpellIcon()
     {
         var slot = GetNodeOrNull<TextureRect>("Icon");
         if (slot == null) return;
 
         if (Next is ISpell spell && ResourceLoader.Exists(spell.SpellIconPath))
-        {
             slot.Texture = PreloadManager.Cache.GetTexture2D(spell.SpellIconPath);
-        }
     }
-    
-    protected override bool StartHidden(Player player) => player.Character is not Core.Awakened;
 
-    private CardModel? Next => (_pile as AwakenedPile)?.NextSpell;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Next == null ? [] : [HoverTipFactory.FromCard(Next), ..Next.HoverTips];
+    protected override bool StartHidden(Player player)
+    {
+        return !LocalContext.IsMe(player) || player.Character is not Core.Awakened;
+    }
 
     protected override HoverTip BuildHoverTip()
     {
@@ -88,5 +67,7 @@ public partial class NSpellbookButton : NCustomCombatCardPile
     }
 
     protected override LocString BuildEmptyPileMessage()
-        => new("combat_messages", "OPEN_EMPTY_SPELLBOOK");
+    {
+        return new LocString("combat_messages", "OPEN_EMPTY_SPELLBOOK");
+    }
 }

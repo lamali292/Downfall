@@ -1,10 +1,14 @@
 ﻿using BaseLib.Config;
+using Downfall.DownfallCode.Patches.KaleidoscopePatch;
 
 namespace Downfall.DownfallCode.Config;
 
 [ConfigHoverTipsByDefault]
 public class DownfallConfig : SimpleModConfig
 {
+    [ConfigSection("Sync")] 
+    public static PrismaticMode PrismaticOption { get; set; } = PrismaticMode.All;
+    
     
     [ConfigSection("HideSection")]
     public static bool HideAutomaton { get; set; } = false;

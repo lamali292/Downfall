@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hexaghost.HexaghostCode.Potions;
@@ -14,11 +13,11 @@ namespace Hexaghost.HexaghostCode.Potions;
 [Pool(typeof(HexaghostPotionPool))]
 public class EctoCoolerPotion : HexaghostPotionModel
 {
-    public EctoCoolerPotion() : base( PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyPlayer)
+    public EctoCoolerPotion() : base(PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyPlayer)
     {
         WithTip(HexaghostKeyword.Afterlife);
     }
-    
+
     protected override Artist Artist => Artist.Get<Chimedragon>();
 
 

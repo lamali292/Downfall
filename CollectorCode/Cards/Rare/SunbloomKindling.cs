@@ -18,7 +18,7 @@ public class SunbloomKindling : CollectorCardModel
         WithKeyword(CardKeyword.Unplayable);
         WithPower<StrengthPower>(2, 3);
         WithCards(2);
-        this.WithTip<Ember>();
+        WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

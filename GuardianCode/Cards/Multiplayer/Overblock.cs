@@ -13,14 +13,14 @@ namespace Guardian.GuardianCode.Cards.Multiplayer;
 [Pool(typeof(GuardianCardPool))]
 public class Overblock : GuardianCardModel
 {
-    public Overblock() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Overblock() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithCostUpgradeBy(-1);
         WithTip(GuardianTip.DefensiveMode);
         WithTip(StaticHoverTip.Block);
-        this.WithTip<ThornsPower>();
-        this.WithPower<OverblockBlockPower>(16, false);
+        WithTip<ThornsPower>();
+        WithPower<OverblockBlockPower>(12, false);
         WithVar("OverblockThornsPower", 3);
     }
 
@@ -29,6 +29,7 @@ public class Overblock : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        (await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this))?.IncrementThorns(DynamicVars["OverblockThornsPower"].BaseValue);
+        (await CommonActions.ApplySelf<OverblockBlockPower>(ctx, this))?.IncrementThorns(
+            DynamicVars["OverblockThornsPower"].BaseValue);
     }
 }

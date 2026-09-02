@@ -9,7 +9,7 @@ public class Technique : HermitCardModel
 {
     public Technique() : base(1, CardType.Power, CardRarity.Rare, TargetType.AllAllies)
     {
-        this.WithPower<MaintenanceStrikePower>(5, 2, false);
+        WithPower<MaintenanceStrikePower>(5, 2, false);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

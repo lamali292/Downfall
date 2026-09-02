@@ -13,7 +13,7 @@ public class ThunderWave : AutomatonCardModel
     public ThunderWave() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(18, 10);
-        this.WithPower<BufferPower>(1, false);
+        WithPower<BufferPower>(1, false);
         WithKeywords(CardKeyword.Exhaust);
     }
 

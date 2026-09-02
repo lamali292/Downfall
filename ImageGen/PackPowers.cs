@@ -72,7 +72,6 @@ public class PackPowers(string scriptDir, bool force)
 
         var entries = new List<(string Stem, Image<Rgba32> Big, Image<Rgba32> Small, Image<Rgba32> Sprite)>();
         foreach (var file in inputFiles)
-        {
             try
             {
                 var stem = Path.GetFileNameWithoutExtension(file);
@@ -87,8 +86,6 @@ public class PackPowers(string scriptDir, bool force)
                 Console.WriteLine(file);
                 Console.WriteLine(e);
             }
-           
-        }
 
         var atlasData = entries.Select(e => (e.Stem, (Image)e.Small)).ToList();
         var spriteData = entries.Select(e => (e.Stem, (Image)e.Sprite)).ToList();

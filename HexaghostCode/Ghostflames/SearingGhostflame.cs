@@ -29,13 +29,13 @@ public class SearingGhostflame : GhostflameModel
     [
         HoverTipFactory.FromPower<SoulBurnPower>()
     ];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new GhostflameSoulburnVar(3)
     ];
 
-    
+
     public override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         if (!TryBeginIgnite()) return;
@@ -46,7 +46,9 @@ public class SearingGhostflame : GhostflameModel
     }
 
     protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-        => TriggerOnCardType(ctx, cardPlay, CardType.Attack);
+    {
+        return TriggerOnCardType(ctx, cardPlay, CardType.Attack);
+    }
 
     public override bool AboutToIgnite(CardModel card)
     {

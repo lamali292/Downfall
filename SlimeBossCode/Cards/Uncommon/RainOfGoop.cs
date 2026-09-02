@@ -12,7 +12,7 @@ public class RainOfGoop : SlimeBossCardModel
     public RainOfGoop() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithPower<GoopPower>(4);
-        this.WithRepeat(3, 1);
+        WithRepeat(3, 1);
     }
 
 

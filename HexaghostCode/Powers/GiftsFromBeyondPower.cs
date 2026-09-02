@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hexaghost.HexaghostCode.Powers;
@@ -15,7 +14,7 @@ public class GiftsFromBeyondPower : HexaghostPowerModel
     {
         WithTip(HexaghostKeyword.Afterlife);
     }
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {

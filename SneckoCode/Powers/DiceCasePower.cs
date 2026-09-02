@@ -21,19 +21,8 @@ public class DiceCasePower : SneckoPowerModel, IAddDumbVariablesToPowerDescripti
     {
         WithTip<SoulRoll>();
     }
-    
-    public Creature? TargetCreature { get; set; }
-    
-    public override PowerInstanceType InstanceType => CustomPowerInstanceType.InstancedPerTarget;
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext crx, ICombatState combatState)
-    {
-        if (player.Creature != Owner) return;
-        var otherPlayer = TargetCreature?.Player;
-        if (otherPlayer == null) return;
-        await DownfallCardCmd.GiveCards<SoulRoll>(otherPlayer, PileType.Hand, Amount, CardPilePosition.Top,
-            creator: Owner.Player);
-    }
+    public override PowerInstanceType InstanceType => CustomPowerInstanceType.InstancedPerTarget;
 
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
@@ -44,8 +33,9 @@ public class DiceCasePower : SneckoPowerModel, IAddDumbVariablesToPowerDescripti
             case { IsMonster: true, Monster: not null }:
                 description.Add("OtherName", otherCreature.Monster.Title);
                 break;
-            case {Player: not null}:
-                description.Add("OtherName", PlatformUtil.GetPlayerName(RunManager.Instance.NetService.Platform, otherCreature.Player.NetId));
+            case { Player: not null }:
+                description.Add("OtherName",
+                    PlatformUtil.GetPlayerName(RunManager.Instance.NetService.Platform, otherCreature.Player.NetId));
                 break;
             default:
                 description.Add("OtherName", "???");
@@ -53,6 +43,14 @@ public class DiceCasePower : SneckoPowerModel, IAddDumbVariablesToPowerDescripti
         }
     }
 
+    public Creature? TargetCreature { get; set; }
 
-  
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext crx, ICombatState combatState)
+    {
+        if (player.Creature != Owner) return;
+        var otherPlayer = TargetCreature?.Player;
+        if (otherPlayer == null) return;
+        await DownfallCardCmd.GiveCards<SoulRoll>(otherPlayer, PileType.Hand, Amount, CardPilePosition.Top,
+            creator: Owner.Player);
+    }
 }

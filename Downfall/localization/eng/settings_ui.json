@@ -1,5 +1,40 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
+  "DOWNFALL-PRISMATIC_OPTION.title": "Kaleidoscope and Prismatic Gem Option",
+  "DOWNFALL-PRISMATIC_OPTION.VanillaOnly": "Vanilla Only",
+  "DOWNFALL-PRISMATIC_OPTION.DownfallAndVanilla": "Downfall + Vanilla",
+  "DOWNFALL-PRISMATIC_OPTION.DownfallOnly": "Downfall Only",
+  "DOWNFALL-PRISMATIC_OPTION.Same": "Same",
+  "DOWNFALL-PRISMATIC_OPTION.All": "All",
+  "DOWNFALL-PRISMATIC_OPTION.hover.desc": "Controls which characters' cards Kaleidoscope and Prismatic Gem can pull from (doesn't affect other mods).\n\nSame: only Downfall cards if you're a Downfall character, vanilla cards if you're a base-game character.",
+
+  "DOWNFALL-HIDE_AUTOMATON.title": "Hide Automaton",
+  "DOWNFALL-HIDE_AUTOMATON.hover.desc": "Hides Automaton from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_AWAKENED.title": "Hide Awakened",
+  "DOWNFALL-HIDE_AWAKENED.hover.desc": "Hides Awakened One from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_CHAMP.title": "Hide Champ",
+  "DOWNFALL-HIDE_CHAMP.hover.desc": "Hides the Champ from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_COLLECTOR.title": "Hide Collector",
+  "DOWNFALL-HIDE_COLLECTOR.hover.desc": "Hides the Collector from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_GUARDIAN.title": "Hide Guardian",
+  "DOWNFALL-HIDE_GUARDIAN.hover.desc": "Hides the Guardian from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_HERMIT.title": "Hide Hermit",
+  "DOWNFALL-HIDE_HERMIT.hover.desc": "Hides the Hermit from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_HEXAGHOST.title": "Hide Hexaghost",
+  "DOWNFALL-HIDE_HEXAGHOST.hover.desc": "Hides Hexaghost from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_SLIMEBOSS.title": "Hide Slimeboss",
+  "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "Hides the Slime Boss from the character select and compendium. It stays registered and its cards can still appear in runs.",
+
+  "DOWNFALL-HIDE_SNECKO.title": "Hide Snecko",
+  "DOWNFALL-HIDE_SNECKO.hover.desc": "Hides Snecko from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  
   "DOWNFALL-UPLOAD_METRICS.title": "Upload Gameplay Data",
   "DOWNFALL-UPLOAD_METRICS.hover.desc": "Gameplay data is sent to help fix bugs and balance the mod. Only sent when playing as a Downfall character.\n\nPersonally identifying information is NOT collected.",
   "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "Voting"

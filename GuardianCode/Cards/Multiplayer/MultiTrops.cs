@@ -21,5 +21,4 @@ public class MultiTrops : GuardianCardModel
     {
         await CommonActions.Apply<ThornsPower>(ctx, this, cardPlay);
     }
-    
 }

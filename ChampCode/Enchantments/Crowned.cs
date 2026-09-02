@@ -8,7 +8,8 @@ public class Crowned : DownfallEnchantmentModel<Core.Champ>
 {
     public override bool CanEnchant(CardModel card)
     {
-        return base.CanEnchant(card) && !card.EnergyCost.CostsX;;
+        return base.CanEnchant(card) && !card.EnergyCost.CostsX;
+        ;
     }
 
     protected override void OnEnchant()

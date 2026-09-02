@@ -8,7 +8,6 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class RollThroughPower : SlimeBossPowerModel, IModifySelfDamage
 {
-
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {
         return model is CardModel card && card.Tags.Contains(SlimeBossTag.Tackle) && card.Owner.Creature == Owner

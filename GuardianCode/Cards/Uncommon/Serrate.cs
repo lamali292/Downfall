@@ -16,7 +16,7 @@ public class Serrate : GuardianCardModel
     public Serrate() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithCalculatedDamage(15, 2, Calc, DamageProps.card, 5, 1);
-        this.WithTip<ThornsPower>();
+        WithTip<ThornsPower>();
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();

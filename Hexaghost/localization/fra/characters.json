@@ -2,15 +2,15 @@
     "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]Je suis liée. J'endure. Je suis liée. J'endure. [jitter]Je suis liée.[/jitter][/purple][/sine]",
     "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "...[jitter]joue...[/jitter]",
     "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "...",
-    "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "Les cartes du Hexafantôme apparaîtront désormais dans les récompenses et les boutiques.",
-    "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "Cartes de la Hexafantôme",
+    "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "Les cartes de l'Hexaplasme apparaîtront désormais dans les récompenses et les boutiques.",
+    "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "Cartes de l'Hexaplasme",
     "HEXAGHOST-HEXAGHOST.description": "Un esprit maudit de la Flèche.\nScellée à un destin éternel de protectrice.",
     "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "Je ne peux pas encore passer... mes flammes brûlent toujours.",
     "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]L'or... il ne signifie rien pour les morts... et pourtant...[/sine]",
-    "HEXAGHOST-HEXAGHOST.possessiveAdjective": "sa",
+    "HEXAGHOST-HEXAGHOST.possessiveAdjective": "son/sa/ses",
     "HEXAGHOST-HEXAGHOST.pronounObject": "elle",
-    "HEXAGHOST-HEXAGHOST.pronounPossessive": "la sienne",
+    "HEXAGHOST-HEXAGHOST.pronounPossessive": "son/sa/ses",
     "HEXAGHOST-HEXAGHOST.pronounSubject": "elle",
-    "HEXAGHOST-HEXAGHOST.title": "La Hexafantôme",
-    "HEXAGHOST-HEXAGHOST.titleObject": "La Hexafantôme"
+    "HEXAGHOST-HEXAGHOST.title": "L'Hexaplasme",
+    "HEXAGHOST-HEXAGHOST.titleObject": "de l'Hexaplasme"
 }

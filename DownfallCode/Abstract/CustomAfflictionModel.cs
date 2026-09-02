@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Abstract;
@@ -10,5 +11,23 @@ public abstract class CustomAfflictionModel : AfflictionModel, ICustomModel
     ///     used by the base game ("cards/overlays/afflictions/...").
     ///     Return null to fall through to the default OverlayPath.
     /// </summary>
-    public virtual string? CustomOverlayPath => null;
+    protected virtual string? CustomOverlayPath => null;
+    
+    
+    [HarmonyPatch(typeof(AfflictionModel), nameof(AfflictionModel.OverlayPath), MethodType.Getter)]
+    internal static class AfflictionModelOverlayPathPatch
+    {
+        private static bool Prefix(AfflictionModel __instance, ref string __result)
+        {
+            if (__instance is not CustomAfflictionModel customAfflictionModel)
+                return true;
+
+            var custom = customAfflictionModel.CustomOverlayPath;
+            if (custom == null)
+                return true;
+
+            __result = custom;
+            return false;
+        }
+    }
 }

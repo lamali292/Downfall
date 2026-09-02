@@ -13,9 +13,8 @@ public class HereAndNowPower : HexaghostPowerModel
     {
         WithTip(HexaghostTip.Extinguish);
     }
-    
-    
-    
+
+
     public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)
     {

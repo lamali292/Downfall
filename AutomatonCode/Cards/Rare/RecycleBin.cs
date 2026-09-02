@@ -13,7 +13,7 @@ public class RecycleBin : AutomatonCardModel
 {
     public RecycleBin() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithPower<RecycleBinPower>(4, 1, false);
+        WithPower<RecycleBinPower>(4, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 

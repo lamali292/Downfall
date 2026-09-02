@@ -27,7 +27,7 @@ internal static class FmodGuids
 
         return map;
     }
-    
+
     public static bool LoadFile(string resourcePath)
     {
         if (string.IsNullOrWhiteSpace(resourcePath) || !FileAccess.FileExists(resourcePath))

@@ -14,7 +14,7 @@ public class Reroute : GuardianCardModel, IGemSocketCard
     public Reroute() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        this.WithPower<ReroutePower>(1, false);
+        WithPower<ReroutePower>(1, false);
         WithTip(GuardianTip.Stasis);
     }
 

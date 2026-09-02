@@ -17,7 +17,7 @@ public class DemonGlyph : AwakenedCardModel
     {
         WithPower<StrengthPower>(1);
         WithPower<DexterityPower>(1);
-        this.WithPower<DemonGlyphPower>(2, 1, false);
+        WithPower<DemonGlyphPower>(2, 1, false);
         WithTip(AwakenedTip.Awaken);
     }
 

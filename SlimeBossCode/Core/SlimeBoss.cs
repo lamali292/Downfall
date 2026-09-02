@@ -1,7 +1,6 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -27,7 +26,7 @@ public class SlimeBoss : DownfallCharacterModel
 
     public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideSlimeboss;
     public override bool HideInCompendium => DownfallConfig.HideSlimeboss;
-    
+
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;
     public override int StartingHp => 65;
@@ -46,7 +45,7 @@ public class SlimeBoss : DownfallCharacterModel
         ModelDb.Card<Split>(),
         ModelDb.Card<Tackle>()
     ];
-    
+
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<HeartOfGoo>()
@@ -69,15 +68,6 @@ public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = tru
 public abstract class SlimeBossPowerModel(
     PowerType powerType = PowerType.Buff,
     PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType);
-
-public abstract class SlimeBossCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : DownfallCardModel<SlimeBoss>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
 
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 

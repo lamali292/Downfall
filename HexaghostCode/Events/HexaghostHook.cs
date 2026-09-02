@@ -60,14 +60,17 @@ public static class HexaghostHook
             m => m.GhostflameConditionOverwrites(player, ghostflame, cardPlay));
     }
 
-    public static bool ShouldGhostflameTargetAll(ICombatState cs, GhostflameModel ghostflame, GhostflameRepeatType damage, out IEnumerable<IShouldGhostflameTargetAll> matches)
+    public static bool ShouldGhostflameTargetAll(ICombatState cs, GhostflameModel ghostflame,
+        GhostflameRepeatType damage, out IEnumerable<IShouldGhostflameTargetAll> matches)
     {
         return HookUtils.Any(cs,
             m => m.ShouldGhostflameTargetAll(ghostflame, damage), out matches);
     }
-    
-    public static Task AfterShouldGhostflameTargetedAll(ICombatState cs, PlayerChoiceContext ctx, GhostflameModel ghostflame,
-        IEnumerable<IShouldGhostflameTargetAll> matches)
-        => HookUtils.AfterModifying(cs, matches, m => m.AfterShouldGhostflameTargetedAll(ctx, ghostflame));
-}
 
+    public static Task AfterShouldGhostflameTargetedAll(ICombatState cs, PlayerChoiceContext ctx,
+        GhostflameModel ghostflame,
+        IEnumerable<IShouldGhostflameTargetAll> matches)
+    {
+        return HookUtils.AfterModifying(cs, matches, m => m.AfterShouldGhostflameTargetedAll(ctx, ghostflame));
+    }
+}

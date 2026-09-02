@@ -4,7 +4,6 @@ using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs.History;
@@ -20,22 +19,29 @@ public static class DownfallMetrics
         new MetricsUploaderConfig
         {
             ModName = "Downfall",
-            EndpointUrl = "https://wxememsxgrgrfvntulgr.supabase.co/rest/v1/runs",
+            EndpointUrl = "https://api.downfall-sts2.org/runs",
             ApiKey = BuildSecrets.MetricsApiKey,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
             IsOwnCharacter = e => e is DownfallCharacterModel,
             AllowedAssemblies = new HashSet<Assembly>
             {
                 typeof(DownfallCharacterModel).Assembly,
-                typeof(CharacterModel).Assembly,
+                typeof(CharacterModel).Assembly
             },
-            Logger = DownfallMainFile.Logger,
+            ConfigureRequest =  req =>  
+            {
+                req.Headers.Add("apikey", BuildSecrets.MetricsApiKey);
+                req.Headers.Add("Prefer", "return=minimal");
+            },
+            Logger = DownfallMainFile.Logger
         },
-        buildPayload: GetRunMetrics,
-        serialize: m => JsonSerializer.Serialize(m, MetricsSerializerContext.Default.RunMetrics));
+        GetRunMetrics,
+        m => JsonSerializer.Serialize(m, MetricsSerializerContext.Default.RunMetrics));
 
     internal static void OnMetricsUpload(SerializableRun run, bool isVictory, ulong localPlayerId)
-        => Uploader.Upload(run, isVictory, localPlayerId);
+    {
+        Uploader.Upload(run, isVictory, localPlayerId);
+    }
 
     private static RunMetrics GetRunMetrics(
         SerializableRun run,
@@ -84,7 +90,7 @@ public static class DownfallMetrics
                       entry.MapPointType != MapPointType.Ancient
                 select new EventChoiceMetric(entry, localPlayerId, run.Acts[index]));
 
-            var win = index < run.MapPointHistory.Count - 1 | isVictory;
+            var win = (index < run.MapPointHistory.Count - 1) | isVictory;
             var actEntry = run.Acts[index].Id?.Entry;
             if (actEntry == null) continue;
             actWinMetricList.Add(new ActWinMetric(actEntry, win));
@@ -119,8 +125,7 @@ public static class DownfallMetrics
             AncientChoices = ancientChoices,
             ActWins = actWinMetricList,
             CampfireUpgrades = list1
-                .Where(
-                    (e => e.MapPointType == MapPointType.RestSite))
+                .Where(e => e.MapPointType == MapPointType.RestSite)
                 .SelectMany(e =>
                     e.GetEntry(localPlayerId).UpgradedCards)
                 .Select<ModelId, string>(c => c.Entry).ToList(),

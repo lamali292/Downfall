@@ -5,27 +5,14 @@ namespace Awakened.AwakenedCode.Vfx;
 [GlobalClass]
 public partial class WingFlare : Node2D
 {
-    private static Texture2D? _spikeTex;
-    private static Texture2D SpikeTex => _spikeTex ??= GD.Load<Texture2D>("res://Awakened/images/character/spike.png");
-
     private const float SpawnInterval = 0.1f;
     private const float SizeMultiplier = 0.8f;
+    private static Texture2D? _spikeTex;
+    private readonly List<Spike> _spikes = new();
 
     private bool _active;
     private float _spawnTimer;
-    private readonly List<Spike> _spikes = new();
-
-    private sealed class Spike
-    {
-        public Sprite2D Glow = null!;
-        public Sprite2D Main = null!;
-        public Sprite2D Shadow = null!;
-
-        public float Duration;
-        public float TargetScale;
-        public float BaseRotation;
-        public float ColorA;
-    }
+    private static Texture2D SpikeTex => _spikeTex ??= GD.Load<Texture2D>("res://Awakened/images/character/spike.png");
 
     public void SetActive(bool on)
     {
@@ -113,9 +100,9 @@ public partial class WingFlare : Node2D
 
         var spike = new Spike
         {
-            Glow = MakeLayer(pos, additive: true),
-            Main = MakeLayer(pos, additive: false),
-            Shadow = MakeLayer(pos, additive: false),
+            Glow = MakeLayer(pos, true),
+            Main = MakeLayer(pos, false),
+            Shadow = MakeLayer(pos, false),
             Duration = 2.0f,
             TargetScale = targetScale * SizeMultiplier,
             BaseRotation = baseRot,
@@ -145,12 +132,10 @@ public partial class WingFlare : Node2D
         sprite.Offset = new Vector2(width * 0.5f - width * 0.08f, 0f);
 
         if (additive)
-        {
             sprite.Material = new CanvasItemMaterial
             {
                 BlendMode = CanvasItemMaterial.BlendModeEnum.Add
             };
-        }
 
         return sprite;
     }
@@ -171,10 +156,7 @@ public partial class WingFlare : Node2D
 
         var a = s.ColorA;
 
-        if (s.Duration < 0.2f)
-        {
-            a = Mathf.Lerp(0f, 0.5f, s.Duration * 5f);
-        }
+        if (s.Duration < 0.2f) a = Mathf.Lerp(0f, 0.5f, s.Duration * 5f);
 
         var derp = (float)GD.RandRange(3.0, 5.0);
         var rot = s.BaseRotation + derp;
@@ -199,5 +181,17 @@ public partial class WingFlare : Node2D
         var bounce = Mathf.Abs(Mathf.Sin(b * Mathf.Pi * 2.5f)) * (1f - b);
 
         return Mathf.Lerp(start, end, bounce);
+    }
+
+    private sealed class Spike
+    {
+        public float BaseRotation;
+        public float ColorA;
+
+        public float Duration;
+        public Sprite2D Glow = null!;
+        public Sprite2D Main = null!;
+        public Sprite2D Shadow = null!;
+        public float TargetScale;
     }
 }

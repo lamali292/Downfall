@@ -1,6 +1,5 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
-using System.Text;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
@@ -125,7 +124,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
             var perfection = new LocString("encode", "AUTOMATON-PERFECTION.functionName").GetFormattedText();
             return perfection;
         }
-        
+
         var prefix = Encode(0, ".functionPrefix", card => card.Title.ToLowerInvariant());
         var name = Encode(1, ".functionName", card => card.Title);
         var end3 = Encode(2, ".functionEnd", card => card.Title[0].ToString());
@@ -134,7 +133,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         var parentheses = parenthesesLoc.Exists() ? parenthesesLoc.GetFormattedText() : "()";
 
         var functionName = new LocString("encode", "AUTOMATON-FUNCTION.title");
-        
+
         functionName.Add("prefix", prefix);
         functionName.Add("name", name);
         functionName.Add("end3", end3);

@@ -15,16 +15,11 @@ namespace Downfall.DownfallCode.Extensions.Cards
                 return new TooltipSource(_ => HoverTipFactory.Static(staticTip, vars));
             }
         }
-        
-        
     }
 }
 
 namespace Downfall.DownfallCode.Extensions.Relics
 {
-    
-   
-
     public static class StaticHoverTipPowerExtensions
     {
         extension(StaticHoverTip staticTip)

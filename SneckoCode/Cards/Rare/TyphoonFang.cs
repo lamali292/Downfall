@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
 
@@ -14,7 +13,7 @@ public class TyphoonFang : SneckoCardModel, IHasOverflowEffect
     public TyphoonFang() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(12, 4);
-        this.WithOverflow();
+        WithOverflow();
         WithPower<TyphoonFangPower>(1);
     }
 

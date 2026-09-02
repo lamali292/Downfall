@@ -18,15 +18,14 @@ public static class PatchCreatureHoverTips
 {
     public static void Postfix(Creature __instance, ref IEnumerable<IHoverTip> __result)
     {
-      
-        if (__instance.Player == null || !HexaghostCmd.IsGhostwheelActivated(__instance.Player)) 
+        if (__instance.Player == null || !HexaghostCmd.IsGhostwheelActivated(__instance.Player))
             return;
         __result = __result.Concat(
         [
-            HoverTipFactory.Static(HexaghostTip.Wheel), 
+            HoverTipFactory.Static(HexaghostTip.Wheel),
             HoverTipFactory.FromKeyword(HexaghostKeyword.Advance),
             HoverTipFactory.Static(HexaghostTip.Ignite),
-            HoverTipFactory.Static(HexaghostTip.Extinguish),
+            HoverTipFactory.Static(HexaghostTip.Extinguish)
         ]);
     }
 }

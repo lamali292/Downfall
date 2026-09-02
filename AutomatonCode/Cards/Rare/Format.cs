@@ -16,7 +16,7 @@ public class Format : AutomatonCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
-        this.WithUpgradedCardTip<Fragment>();
+        WithUpgradedCardTip<Fragment>();
         WithEnergy(1);
     }
 

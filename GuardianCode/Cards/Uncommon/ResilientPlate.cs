@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
-using Guardian.GuardianCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -13,8 +12,8 @@ public class ResilientPlate : GuardianCardModel
     public ResilientPlate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
-        this.WithBrace(8);
-        this.WithPolish(2);
+        WithBrace(8);
+        WithPolish(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

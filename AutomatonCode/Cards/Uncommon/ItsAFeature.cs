@@ -12,10 +12,11 @@ namespace Automaton.AutomatonCode.Cards.Uncommon;
 [Pool(typeof(AutomatonCardPool))]
 public class ItsAFeature : AutomatonCardModel
 {
-    public ItsAFeature() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public ItsAFeature() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        this.WithPower<ItsAFeaturePower>(3, 2, false);
-        this.WithTip<VigorPower>();
+        WithPower<ItsAFeaturePower>(1, 1, false);
+        WithTip<StrengthPower>();
+        WithTip<DexterityPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

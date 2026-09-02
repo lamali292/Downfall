@@ -13,7 +13,7 @@ public class GiftsFromBeyond : HexaghostCardModel
     public GiftsFromBeyond() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
-        this.WithPower<GiftsFromBeyondPower>(1, false);
+        WithPower<GiftsFromBeyondPower>(1, false);
         WithTip(HexaghostKeyword.Afterlife);
     }
 

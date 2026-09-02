@@ -18,7 +18,7 @@ public class Bloodthirst : AwakenedCardModel
     {
         WithDamage(20, 5);
         WithTip(CardKeyword.Exhaust);
-        this.WithTip<PowerPotion>();
+        WithTip<PowerPotion>();
         WithTip(StaticHoverTip.Fatal);
     }
 

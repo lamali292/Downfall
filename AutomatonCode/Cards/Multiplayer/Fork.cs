@@ -29,7 +29,7 @@ public class Fork : AutomatonCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e.EnergyCost.GetResolved() == 1, this))
             .FirstOrDefault();
         if (card == null || cardPlay.Target == null) return;
-        
+
         // TODO: use CreateCloneForPlayer on main / beta merge
         var clone = card.CreateClone();
         clone._owner = cardPlay.Target.Player;

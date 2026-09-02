@@ -13,6 +13,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 public class Roughhouse : HermitCardModel, IHasDeadOnEffect
 {
     private AttackCommand? _result;
+
     public Roughhouse() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(22, 6);
@@ -20,13 +21,7 @@ public class Roughhouse : HermitCardModel, IHasDeadOnEffect
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
     public override bool GainsBlock => true;
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
-    {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        _result = await CommonActions.CardAttack(this, play).WithHermitBluntHeavyHitFx()
-            .Execute(ctx);
-    }
-    
+
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
     {
         if (_result == null) return;
@@ -37,6 +32,10 @@ public class Roughhouse : HermitCardModel, IHasDeadOnEffect
         _result = null;
     }
 
-
-   
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        _result = await CommonActions.CardAttack(this, play).WithHermitBluntHeavyHitFx()
+            .Execute(ctx);
+    }
 }

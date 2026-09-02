@@ -26,5 +26,4 @@ public class MimicryPower : SneckoPowerModel
     }
 }
 
-
 public class MimicryPowerPower : CustomTemporaryPowerModelWrapper<MimicryPower, StrengthPower>;

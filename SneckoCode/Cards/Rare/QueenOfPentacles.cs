@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Extensions;
 using Snecko.SneckoCode.Interfaces;
 using Snecko.SneckoCode.Powers;
 
@@ -15,12 +14,12 @@ public class QueenOfPentacles : SneckoCardModel, IHasGift
 {
     public QueenOfPentacles() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        this.WithGift(new Gift
+        WithGift(new Gift
         {
             IsDebuff = true
         });
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        this.WithPower<QueenOfPentaclesPower>(4, false);
+        WithPower<QueenOfPentaclesPower>(4, false);
         WithTip(StaticHoverTip.Block);
     }
 
