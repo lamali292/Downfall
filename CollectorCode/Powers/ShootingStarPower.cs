@@ -10,20 +10,20 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Powers;
 
-public class ShootingStarPower : CollectorPowerModel, IOnPyre, IHasSecondAmount
+public class ShootingStarPower : CollectorPowerModel, IOnPyre
 {
     private int _usesThisTurn;
 
-    public string GetSecondAmount()
-    {
-        return $"{Amount - _usesThisTurn}";
-    }
+
+    public override int DisplayAmount => Amount - _usesThisTurn;
+
+    
 
     public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (card.Owner.Creature != Owner || pyred.Type != CardType.Attack || _usesThisTurn >= Amount) return;
         var copy = pyred.CreateClone();
-        copy.EnergyCost.SetUntilPlayed(0);
+        copy.SetToFreeThisTurn();
         await CardPileCmd.Add(copy, PileType.Hand);
         _usesThisTurn++;
         Flash();
