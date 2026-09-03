@@ -1,8 +1,10 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Powers;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -14,17 +16,19 @@ public class ThornWhip : CollectorCardModel
 {
     public ThornWhip() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithDamage(6, 2);
-        WithTip<Shiv>();
-        WithPower<BruisePower>(3, 1);
+        WithDamage(9, 4);
+        WithTip<MiasmaPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<BruisePower>(ctx, this, cardPlay);
-        await DownfallCardCmd.GiveCard<Shiv>(Owner, PileType.Hand);
+        var a = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        foreach (var damageResult in a.Results.SelectMany(e=>e).Where(e=>e.Receiver.IsHittable))
+        {
+            await PowerCmd.Apply<MiasmaPower>(ctx, damageResult.Receiver, damageResult.UnblockedDamage, Owner.Creature,
+                this);
+        }
     }
 }
