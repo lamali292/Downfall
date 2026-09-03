@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Events;
@@ -29,4 +30,10 @@ public static class CollectorHook
     {
         return HookUtils.Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));
     }
+
+    public static bool ShouldExhaustPyred(CardModel card, CardModel pyred)
+    {
+        return HookUtils.All<IShouldExhaustPyred>(card.CombatState!, e => e.ShouldExhaustPyred(card, pyred));
+    }
 }
+

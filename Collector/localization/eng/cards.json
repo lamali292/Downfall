@@ -83,7 +83,7 @@
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
   "COLLECTOR-HOARD.description": "Draw {Cards:diff()} cards.\nThis turn, they [gold]Retain[/gold].",
   "COLLECTOR-HOARD.title": "Hoard",
-  "COLLECTOR-HOARDERS_STRIKE.description": "Deal {Damage:diff()} damage.\nPlay the top card of your Collected pile.",
+  "COLLECTOR-HOARDERS_STRIKE.description": "Deal {Damage:diff()} damage.\nIf the [gold]Pyred[/gold] card was Colorless, play it.",
   "COLLECTOR-HOARDERS_STRIKE.title": "Hoarder's Strike",
   "COLLECTOR-HURTING.description": "Deal {Damage:diff()} damage.\nIf this card is [gold]Exhausted[/gold], gain a [gold]Greater Hurting[/gold]{IfUpgraded:show:+|}.",
   "COLLECTOR-HURTING.title": "Hurting",
