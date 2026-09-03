@@ -13,7 +13,7 @@ public class Blightning : CollectorCardModel
 {
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithPower<CollectorDoomPower>(6, 2);
+        WithPower<MiasmaPower>(6, 2);
         WithDamage(6, 2);
         WithKeyword(CardKeyword.Exhaust);
         WithCards(1);

@@ -14,6 +14,6 @@ public class SufferingPower : CollectorPowerModel
         CardModel? cardSource)
     {
         if (applier != Owner || power is not (VulnerablePower or WeakPower) || power.Owner == Owner) return;
-        await PowerCmd.Apply<CollectorDoomPower>(ctx, power.Owner, Amount, Owner, null);
+        await PowerCmd.Apply<MiasmaPower>(ctx, power.Owner, Amount, Owner, null);
     }
 }

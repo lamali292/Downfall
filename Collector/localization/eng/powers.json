@@ -8,9 +8,6 @@
   "COLLECTOR-CANT_TOUCH_THIS_POWER.title": "Can't Touch This",
   "COLLECTOR-CANT_TOUCH_THIS_POWER.description": "When you fully block an attack, apply [gold]Doom[/gold] to the attacker.",
   "COLLECTOR-CANT_TOUCH_THIS_POWER.smartDescription": "When you fully block an attack, apply [blue]{Amount}[/blue] [gold]Doom[/gold] to the attacker.",
-  "COLLECTOR-COLLECTOR_DOOM_POWER.title": "Miasma",
-  "COLLECTOR-COLLECTOR_DOOM_POWER.description": "Takes damage at the end of its turn.",
-  "COLLECTOR-COLLECTOR_DOOM_POWER.smartDescription": "Loses [blue]{Amount}[/blue] HP at the start of its turn, removing all [gold]Doom[/gold] unless they are [gold]Afflicted[/gold].",
   "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.title": "Dark Lord Form",
   "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.description": "At the start of your turn, play [gold]You Are Mine+[/gold] on a random enemy.",
   "COLLECTOR-DARK_LORD_FORM_PLUS_POWER.smartDescription": "At the start of your turn, play{Amount:plural:| [blue]{Amount} [/blue]copies of} [gold]You Are Mine+[/gold] on a random enemy.",
@@ -67,5 +64,7 @@
   "COLLECTOR-SUFFERING_POWER.smartDescription": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] also apply [blue]{Amount}[/blue] [gold]Doom[/gold] to them.",
   "COLLECTOR-TORCHHEAD_POWER.title": "Todo: Die for you for Torchhead",
   "COLLECTOR-TORCHHEAD_POWER.description": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
-  "COLLECTOR-TORCHHEAD_POWER.smartDescription": "[gold]Torchhead[/gold] absorbs all unblocked attack damage."
+  "COLLECTOR-TORCHHEAD_POWER.smartDescription": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
+  "COLLECTOR-MIASMA_POWER.title": "Miasma",
+  "COLLECTOR-MIASMA_POWER.description": ""
 }

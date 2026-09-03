@@ -13,7 +13,7 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
 {
     public FingerOfDeath() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<CollectorDoomPower>(60);
+        WithPower<MiasmaPower>(60);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -22,6 +22,6 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }

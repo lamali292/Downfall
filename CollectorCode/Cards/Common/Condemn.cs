@@ -14,7 +14,7 @@ public class Condemn : CollectorCardModel
     public Condemn() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithPower<VulnerablePower>(1, 1);
-        WithPower<CollectorDoomPower>(5, 1);
+        WithPower<MiasmaPower>(5, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -22,6 +22,6 @@ public class Condemn : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }

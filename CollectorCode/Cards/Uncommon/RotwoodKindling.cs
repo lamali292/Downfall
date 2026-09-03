@@ -16,7 +16,7 @@ public class RotwoodKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Unplayable);
         WithPower<VulnerablePower>(2, 1);
-        WithPower<CollectorDoomPower>(4, 2);
+        WithPower<MiasmaPower>(4, 2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,6 +26,6 @@ public class RotwoodKindling : CollectorCardModel
     {
         if (card != this || CombatState == null) return;
         await CommonActions.Apply<VulnerablePower>(ctx, CombatState.Enemies, this);
-        await CommonActions.Apply<CollectorDoomPower>(ctx, CombatState.Enemies, this);
+        await CommonActions.Apply<MiasmaPower>(ctx, CombatState.Enemies, this);
     }
 }
