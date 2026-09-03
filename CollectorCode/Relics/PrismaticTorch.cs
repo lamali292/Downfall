@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
@@ -20,6 +21,7 @@ public class PrismaticTorch : CollectorRelicModel
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
         WithVar("KindleAmount", 10);
+        WithTip(CollectorTip.Kindle);
         WithTip<Ember>();
     }
     private DynamicVar KindleAmount => DynamicVars["KindleAmount"];
