@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "Maestria dell'Arena Berserker",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "I Finalizzatori Berserker concedono più [gold]Forza[/gold].",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "I Finalizzatori Berserker concedono [blue]{Amount}[/blue] [gold]Forza[/gold] in più.",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "Maestria dell'Arena Difensiva",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "I Finalizzatori Difensivi concedono più [gold]Blocco[/gold].",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "I Finalizzatori Difensivi concedono [blue]{Amount}[/blue] [gold]Blocco[/gold] in più.",
     "CHAMP-BERSERKER_STYLE_POWER.title": "Stile Berserker",
     "CHAMP-BERSERKER_STYLE_POWER.description": "I [gold]Bonus Abilità[/gold] concedono [gold]Vigore[/gold] aggiuntivo.",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "I [gold]Bonus Abilità[/gold] concedono [blue]{Amount}[/blue] [gold]Vigore[/gold] aggiuntivo.",
