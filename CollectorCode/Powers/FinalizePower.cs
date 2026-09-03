@@ -8,13 +8,8 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Powers;
 
-public class FinalizePower : CollectorPowerModel
+public class FinalizePower() : CollectorPowerModel(PowerType.Debuff)
 {
-    public FinalizePower() : base(PowerType.Debuff)
-    {
-        WithVars(new OwnerVar());
-    }
-
     public override bool ShouldPowerBeRemovedAfterOwnerDeath()
     {
         return false;
@@ -27,21 +22,5 @@ public class FinalizePower : CollectorPowerModel
         await CreatureCmd.Heal(Applier, Amount);
         await PowerCmd.Remove(this);
         await Cmd.Wait(1);
-    }
-
-    private class OwnerVar() : DynamicVar("Owner", 0M)
-    {
-        private PowerModel? _power;
-
-        public override void SetOwner(AbstractModel model)
-        {
-            base.SetOwner(model);
-            _power = model as PowerModel;
-        }
-
-        public override string ToString()
-        {
-            return _power?.Owner.Name ?? "Unknown";
-        }
     }
 }

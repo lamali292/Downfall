@@ -14,7 +14,7 @@ public class Finalize : CollectorCardModel
     {
         WithKeywords(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(24, 4);
-        WithPower<FinalizePower>(6, 2);
+        WithPower<FinalizePower>(6, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
