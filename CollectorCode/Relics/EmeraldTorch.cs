@@ -32,4 +32,5 @@ public class EmeraldTorch : CollectorRelicModel
         await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
         Flash();
     }
+    
 }

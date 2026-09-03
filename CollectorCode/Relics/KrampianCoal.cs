@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -15,24 +17,18 @@ public class KrampianCoal : CollectorRelicModel, IOnPyre
 {
     public KrampianCoal() : base(RelicRarity.Rare)
     {
+        WithTip(CollectorKeyword.Pyre);
         WithTip<LuckyWick>();
-        //WithTip<LuckyWick>(); Todo: Figure out how to show upgraded lucky wick.
-    }
+        WithUpgradedCardTip<LuckyWick>();
 
-    /*
-    public async Task AfterCustomDraw(Player player, PileType pile, CardPileAddResult result)
-    {
-        if (player != Owner || pile != CollectorPile.Collected || result.success) return;
-        await DownfallCardCmd.GiveCard<LuckyWick>(player, PileType.Hand);
     }
-    */
     
     public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (pyred.Type is CardType.Curse or CardType.Status)
         {
-            var willUpgrade = (pyred.Type == CardType.Curse);
-            await DownfallCardCmd.GiveCard<LuckyWick>(Owner, PileType.Hand, CardPilePosition.Bottom, willUpgrade);
+            var willUpgrade = pyred.Type == CardType.Curse;
+            await DownfallCardCmd.GiveCard<LuckyWick>(Owner, PileType.Hand, upgraded: willUpgrade);
             Flash();
         }
     }

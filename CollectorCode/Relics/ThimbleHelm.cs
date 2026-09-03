@@ -1,12 +1,11 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Powers;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Players;
+using Collector.CollectorCode.Extensions;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -15,16 +14,24 @@ public class ThimbleHelm : CollectorRelicModel
 {
     public ThimbleHelm() : base(RelicRarity.Rare)
     {
-        WithTip(CollectorTip.Kindle);
+        WithBlock(1);
     }
 
-    public override async Task BeforeHandDraw(
-        Player player,
-        PlayerChoiceContext ctx,
-        ICombatState combatState)
+    public override decimal ModifyBlockAdditive(
+        Creature target,
+        decimal block,
+        ValueProp props,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
-        if (player != Owner) return;
-        //await CollectorCmd.SummonTorchhead(ctx, Owner, 3, this);
-        await PowerCmd.Apply<ThimbleHelmPower>(ctx, Owner.Creature, 1, Owner.Creature, null);
+        if (cardSource?.Owner != Owner) return 0;
+        if (Owner.Torchhead is not { IsAlive: true }) return 0;
+        return props.IsPoweredCardOrMonsterMoveBlock() ? DynamicVars.Block.IntValue : 0;
+    }
+
+    public override Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel? cardSource, CardPlay? cardPlay)
+    {
+        Flash();
+        return Task.CompletedTask;
     }
 }

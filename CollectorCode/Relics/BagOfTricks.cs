@@ -26,16 +26,10 @@ public class BagOfTricks : CollectorRelicModel, IOnPyre
     
     public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (!CombatManager.Instance.IsInProgress && !Owner.Creature.IsDead)//If pyre resolves as or shorty after combat ends or as a player dies, don't draw cards (MP).
-        {
-            return;
-        }
-        
-        if (UsesLeft.BaseValue > 0)
-        {
-            UsesLeft.BaseValue--;
-            await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue,  Owner);
-        }
+        if (card.Owner != Owner) return;
+        if (UsesLeft.BaseValue <= 0) return;
+        UsesLeft.BaseValue--;
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue,  Owner);
         Flash();
         InvokeDisplayAmountChanged();
     }

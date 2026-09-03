@@ -49,6 +49,12 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
         WithVars(new CardsVar(i));
         return this;
     }
+    
+    protected ConstructedRelicModel WithHpLoss(int i)
+    {
+        WithVars(new HpLossVar(i));
+        return this;
+    }
 
 
     protected ConstructedRelicModel WithBlock(int i)
@@ -91,6 +97,17 @@ public abstract class ConstructedRelicModel(RelicRarity rarity, bool autoAdd = t
             var mutable = ModelDb.Card<T>().ToMutable();
             if (mutable is T obj2) modifyTipCard?.Invoke(obj2, relic);
             return [HoverTipFactory.FromCard(mutable), ..mutable.HoverTips];
+        });
+    }
+    
+    protected ConstructedRelicModel WithUpgradedCardTip<T>(
+        Action<T, RelicModel>? modifyTipCard = null)
+        where T : CardModel
+    {
+        return WithCardTip<T>((hoverCard, relic) =>
+        {
+            hoverCard.UpgradeInternal();
+            modifyTipCard?.Invoke(hoverCard, relic);
         });
     }
 
