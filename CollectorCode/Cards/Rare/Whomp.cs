@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,10 +15,9 @@ public class Whomp : CollectorCardModel
 {
     public Whomp() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(12, 3);
-        WithVars(new SummonVar(12).WithUpgrade(3));
+        WithDamage(14, 5);
+        WithKindle(10, 4);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(CollectorTip.Kindle);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -25,6 +25,6 @@ public class Whomp : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
     }
 }
