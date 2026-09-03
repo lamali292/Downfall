@@ -55,7 +55,7 @@
   "SLIMEBOSS-LEECH_LIFE.title": "Leech Life",
   "SLIMEBOSS-LEVEL_UP.description": "Gain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-LEVEL_UP.title": "Level Up",
-  "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].\n",
+  "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-LIQUIDATE.title": "Liquidate",
   "SLIMEBOSS-MASS_FEED.description": "Deal {Damage:diff()} damage to ALL enemies.\nIf [gold]Fatal[/gold], raise your Max HP by {MaxHp:diff()}.",
   "SLIMEBOSS-MASS_FEED.title": "Mass Feed",
