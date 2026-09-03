@@ -1,197 +1,182 @@
-﻿using Godot;
+using Godot;
 
 namespace Awakened.AwakenedCode.Vfx;
 
 [GlobalClass]
+[Tool] // lets this run inside the editor, not just at runtime
 public partial class WingFlare : Node2D
 {
-    private const float SpawnInterval = 0.1f;
-    private const float SizeMultiplier = 0.8f;
-    private static Texture2D? _spikeTex;
-    private readonly List<Spike> _spikes = new();
+	private const float SpawnInterval = 0.3f;
+	private const float SizeMultiplier = 0.8f;
+	private static Texture2D? _spikeTex;
+	private readonly List<Spike> _spikes = new();
 
-    private bool _active;
-    private float _spawnTimer;
-    private static Texture2D SpikeTex => _spikeTex ??= GD.Load<Texture2D>("res://Awakened/images/character/spike.png");
+	// When true and running inside the editor, the effect plays automatically
+	// so you can see it in the 2D viewport without calling SetActive() from code.
+	// Has no effect at runtime (Engine.IsEditorHint() is false in a real build).
+	[Export] private bool _previewInEditor = true;
 
-    public void SetActive(bool on)
-    {
-        _active = on;
-    }
+	private bool _active;
+	private float _spawnTimer;
+	private static Texture2D SpikeTex => _spikeTex ??= GD.Load<Texture2D>("res://Awakened/images/character/spike.png");
 
-    public override void _Process(double delta)
-    {
-        var dt = (float)delta;
+	public void SetActive(bool on)
+	{
+		_active = on;
+	}
 
-        if (_active)
-        {
-            _spawnTimer -= dt;
+	public override void _Process(double delta)
+	{
+		var dt = (float)delta;
+		var running = _active || (Engine.IsEditorHint() && _previewInEditor);
 
-            if (_spawnTimer <= 0f)
-            {
-                _spawnTimer = SpawnInterval;
-                SpawnSpike();
-            }
-        }
+		if (running)
+		{
+			_spawnTimer -= dt;
 
-        for (var i = _spikes.Count - 1; i >= 0; i--)
-        {
-            var s = _spikes[i];
+			if (_spawnTimer <= 0f)
+			{
+				_spawnTimer = SpawnInterval;
+				SpawnSpike();
+			}
+		}
 
-            s.Duration -= dt;
+		for (var i = _spikes.Count - 1; i >= 0; i--)
+		{
+			var s = _spikes[i];
 
-            if (s.Duration <= 0f)
-            {
-                s.Glow.QueueFree();
-                s.Main.QueueFree();
-                s.Shadow.QueueFree();
+			s.Duration -= dt;
 
-                _spikes.RemoveAt(i);
-                continue;
-            }
+			if (s.Duration <= 0f)
+			{
+				s.Glow.QueueFree();
+				s.Main.QueueFree();
+				s.Shadow.QueueFree();
 
-            UpdateSpike(s);
-        }
-    }
+				_spikes.RemoveAt(i);
+				continue;
+			}
 
-    private void SpawnSpike()
-    {
-        float x;
-        float y;
-        float targetScale;
+			UpdateSpike(s);
+		}
+	}
 
-        var roll = GD.RandRange(0, 2);
+	private void SpawnSpike()
+	{
+		var x = (float)GD.RandRange(-50.0, 60.0);
+		var y = (float)GD.RandRange(-20.0, 20.0);
+		var targetScale = (float)GD.RandRange(0.4, 0.5);
+		
+		y += 30f;
 
-        switch (roll)
-        {
-            case 0:
-                x = (float)GD.RandRange(-340.0, -170.0);
-                y = (float)GD.RandRange(-20.0, 20.0);
-                targetScale = (float)GD.RandRange(0.4, 0.5);
-                break;
-            case 1:
-                x = (float)GD.RandRange(-220.0, -20.0);
-                y = (float)GD.RandRange(-40.0, -10.0);
-                targetScale = (float)GD.RandRange(0.4, 0.5);
-                break;
-            default:
-                x = (float)GD.RandRange(-270.0, -60.0);
-                y = (float)GD.RandRange(-30.0, 0.0);
-                targetScale = (float)GD.RandRange(0.4, 0.7);
-                break;
-        }
+		float width = SpikeTex.GetWidth();
+		float height = SpikeTex.GetHeight();
 
-        x += 155f;
-        y += 30f;
+		x -= width / 2f;
+		y -= height / 2f;
 
-        float width = SpikeTex.GetWidth();
-        float height = SpikeTex.GetHeight();
+		x = -x;
+		y = -y;
 
-        x -= width / 2f;
-        y -= height / 2f;
+		var pos = new Vector2(x, y);
 
-        x = -x;
-        y = -y;
+		var baseRot = (float)GD.RandRange(25.0, 85.0);
+		var colorA = (float)GD.RandRange(0.5, 0.9);
 
-        var pos = new Vector2(x, y);
+		var spike = new Spike
+		{
+			Glow = MakeLayer(pos, true),
+			Main = MakeLayer(pos, false),
+			Shadow = MakeLayer(pos, false),
+			Duration = 2.0f,
+			TargetScale = targetScale * SizeMultiplier,
+			BaseRotation = baseRot,
+			ColorA = colorA
+		};
 
-        var baseRot = (float)GD.RandRange(25.0, 85.0);
-        var colorA = (float)GD.RandRange(0.5, 0.9);
+		AddChild(spike.Glow);
+		AddChild(spike.Main);
+		AddChild(spike.Shadow);
 
-        var spike = new Spike
-        {
-            Glow = MakeLayer(pos, true),
-            Main = MakeLayer(pos, false),
-            Shadow = MakeLayer(pos, false),
-            Duration = 2.0f,
-            TargetScale = targetScale * SizeMultiplier,
-            BaseRotation = baseRot,
-            ColorA = colorA
-        };
+		_spikes.Add(spike);
 
-        AddChild(spike.Glow);
-        AddChild(spike.Main);
-        AddChild(spike.Shadow);
+		UpdateSpike(spike);
+	}
 
-        _spikes.Add(spike);
+	private static Sprite2D MakeLayer(Vector2 pos, bool additive)
+	{
+		var sprite = new Sprite2D
+		{
+			Texture = SpikeTex,
+			Centered = true,
+			Position = pos
+		};
 
-        UpdateSpike(spike);
-    }
+		float width = SpikeTex.GetWidth();
 
-    private static Sprite2D MakeLayer(Vector2 pos, bool additive)
-    {
-        var sprite = new Sprite2D
-        {
-            Texture = SpikeTex,
-            Centered = true,
-            Position = pos
-        };
+		sprite.Offset = new Vector2(width * 0.5f - width * 0.08f, 0f);
 
-        float width = SpikeTex.GetWidth();
+		if (additive)
+			sprite.Material = new CanvasItemMaterial
+			{
+				BlendMode = CanvasItemMaterial.BlendModeEnum.Add
+			};
 
-        sprite.Offset = new Vector2(width * 0.5f - width * 0.08f, 0f);
+		return sprite;
+	}
 
-        if (additive)
-            sprite.Material = new CanvasItemMaterial
-            {
-                BlendMode = CanvasItemMaterial.BlendModeEnum.Add
-            };
+	private static void UpdateSpike(Spike s)
+	{
+		float scale;
 
-        return sprite;
-    }
+		if (s.Duration > 1.0f)
+		{
+			var t = s.Duration - 1.0f;
+			scale = BounceIn(s.TargetScale, 0.01f * SizeMultiplier, t);
+		}
+		else
+		{
+			scale = s.TargetScale;
+		}
 
-    private static void UpdateSpike(Spike s)
-    {
-        float scale;
+		var a = s.ColorA;
 
-        if (s.Duration > 1.0f)
-        {
-            var t = s.Duration - 1.0f;
-            scale = BounceIn(s.TargetScale, 0.01f * SizeMultiplier, t);
-        }
-        else
-        {
-            scale = s.TargetScale;
-        }
+		if (s.Duration < 0.2f) a = Mathf.Lerp(0f, 0.5f, s.Duration * 5f);
 
-        var a = s.ColorA;
+		var derp = (float)GD.RandRange(3.0, 5.0);
+		var rot = s.BaseRotation + derp;
 
-        if (s.Duration < 0.2f) a = Mathf.Lerp(0f, 0.5f, s.Duration * 5f);
+		s.Glow.Scale = new Vector2(-scale * (float)GD.RandRange(1.1, 1.25), scale);
+		s.Glow.RotationDegrees = rot;
+		s.Glow.Modulate = new Color(0.4f, 1.0f, 1.0f, a / 2f);
 
-        var derp = (float)GD.RandRange(3.0, 5.0);
-        var rot = s.BaseRotation + derp;
+		s.Main.Scale = new Vector2(-scale, scale);
+		s.Main.RotationDegrees = rot;
+		s.Main.Modulate = new Color(0.3f, 0.3f, 0.34f, a);
 
-        s.Glow.Scale = new Vector2(-scale * (float)GD.RandRange(1.1, 1.25), scale);
-        s.Glow.RotationDegrees = rot;
-        s.Glow.Modulate = new Color(0.4f, 1.0f, 1.0f, a / 2f);
+		s.Shadow.Scale = new Vector2(-scale * 0.7f, scale * 0.7f);
+		s.Shadow.RotationDegrees = rot - 40.0f;
+		s.Shadow.Modulate = new Color(0f, 0f, 0f, a / 5f);
+	}
 
-        s.Main.Scale = new Vector2(-scale, scale);
-        s.Main.RotationDegrees = rot;
-        s.Main.Modulate = new Color(0.3f, 0.3f, 0.34f, a);
+	private static float BounceIn(float start, float end, float t)
+	{
+		t = Mathf.Clamp(t, 0f, 1f);
+		var b = 1f - t;
+		var bounce = Mathf.Abs(Mathf.Sin(b * Mathf.Pi * 2.5f)) * (1f - b);
 
-        s.Shadow.Scale = new Vector2(-scale * 0.7f, scale * 0.7f);
-        s.Shadow.RotationDegrees = rot - 40.0f;
-        s.Shadow.Modulate = new Color(0f, 0f, 0f, a / 5f);
-    }
+		return Mathf.Lerp(start, end, bounce);
+	}
 
-    private static float BounceIn(float start, float end, float t)
-    {
-        t = Mathf.Clamp(t, 0f, 1f);
-        var b = 1f - t;
-        var bounce = Mathf.Abs(Mathf.Sin(b * Mathf.Pi * 2.5f)) * (1f - b);
+	private sealed class Spike
+	{
+		public float BaseRotation;
+		public float ColorA;
 
-        return Mathf.Lerp(start, end, bounce);
-    }
-
-    private sealed class Spike
-    {
-        public float BaseRotation;
-        public float ColorA;
-
-        public float Duration;
-        public Sprite2D Glow = null!;
-        public Sprite2D Main = null!;
-        public Sprite2D Shadow = null!;
-        public float TargetScale;
-    }
+		public float Duration;
+		public Sprite2D Glow = null!;
+		public Sprite2D Main = null!;
+		public Sprite2D Shadow = null!;
+		public float TargetScale;
+	}
 }
