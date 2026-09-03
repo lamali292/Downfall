@@ -29,13 +29,12 @@ public class YouAreMine : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        if (cardPlay.Target == null) return;
-        var vfx = DoomCurseEffect.Create(cardPlay.Target);
+        var vfx = DoomCurseEffect.Create(CombatState.HittableEnemies);
         if (vfx != null)
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
-        await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
-        await CommonActions.Apply<FrailPower>(ctx, cardPlay.Target, this);
-        await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
-        await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<FrailPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }
