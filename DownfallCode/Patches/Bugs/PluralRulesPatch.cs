@@ -8,13 +8,13 @@ namespace Downfall.DownfallCode.Patches;
 [HarmonyPatch(typeof(LocManager), nameof(LocManager.LoadLocFormatters))]
 public static class PluralRulesPatch
 {
-    [HarmonyPostfix]
-    private static void FixChinesePlural()
-    {
-        var prop = typeof(PluralRules).GetProperty("IsoLangToDelegate",
-            BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (prop?.GetValue(null) is not { } dict) return;
-        var indexer = dict.GetType().GetProperty("Item");
-        indexer?.SetValue(dict, PluralRules.GetPluralRule("en"), ["zh"]);
-    }
+	[HarmonyPostfix]
+	private static void FixChinesePlural()
+	{
+		var prop = typeof(PluralRules).GetProperty("IsoLangToDelegate",
+			BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+		if (prop?.GetValue(null) is not { } dict) return;
+		var indexer = dict.GetType().GetProperty("Item");
+		indexer?.SetValue(dict, PluralRules.GetPluralRule("en"), ["zh"]);
+	}
 }
