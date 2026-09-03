@@ -4,6 +4,7 @@ using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -12,8 +13,9 @@ public class Omen : CollectorCardModel
 {
     public Omen() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<OmenPower>(1);
-        WithCostUpgradeBy(-1);
+        WithPower<OmenPower>(1, false);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithTip<StrengthPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
