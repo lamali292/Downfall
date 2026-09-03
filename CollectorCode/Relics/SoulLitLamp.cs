@@ -34,5 +34,4 @@ public class SoulLitLamp : CollectorRelicModel, IOnPyre
             Flash();
         }
     }
-    
 }

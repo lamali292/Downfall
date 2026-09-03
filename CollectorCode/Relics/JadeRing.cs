@@ -13,12 +13,12 @@ public class JadeRing() : CollectorRelicModel(RelicRarity.Rare), IModifyCollecto
     public int ModifyCollectorMiasmaIncrement(Creature creature, int current)
     {
         
-        int uniqueDebuffs = creature.Powers
+        var uniqueDebuffs = creature.Powers
             .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
             .Select(p => p.Id)
             .Distinct()
             .Count();//Check for powers that don't stack (don't double count them).
         
-        return creature.Side == Owner.Creature.Side ? current : (current + uniqueDebuffs);//Increases by quantity
+        return creature.Side == Owner.Creature.Side ? current : current + uniqueDebuffs;//Increases by quantity
     }
 }
