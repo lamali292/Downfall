@@ -174,5 +174,7 @@
   "COLLECTOR-YOU_ARE_MINE.title": "YOU ARE MINE!!!",
   "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold], [gold]Frail[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-PYREBLAST.title": "Pyreblast",
-  "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Exhausted[/gold] this combat, while this is in your [gold]Hand[/gold]."
+  "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Exhausted[/gold] this combat, while this is in your [gold]Hand[/gold].",
+  "COLLECTOR-HELLFIRE.title": "Hellfire",
+  "COLLECTOR-HELLFIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold] for each card [gold]Exhausted[/gold]."
 }
