@@ -27,7 +27,7 @@ jobs:
 
       - name: Bump versions, commit and tag
         run: |
-          CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' build/mod.build.props | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' Downfall.csproj | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
           if [ -n "${{ inputs.version }}" ]; then
             VERSION="${{ inputs.version }}"
           else
@@ -40,11 +40,11 @@ jobs:
           if git rev-parse -q --verify "refs/tags/v$VERSION" > /dev/null; then
             echo "Tag v$VERSION already exists"; exit 1
           fi
-          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+' build/mod.build.props | sed 's/<BaseLibVersion>//')
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+' Downfall.csproj | sed 's/<BaseLibVersion>//')
 
-          perl -0pi -e "s/<Version>\d+\.\d+\.\d+<\/Version>/<Version>$VERSION<\/Version>/" build/mod.build.props
-          perl -0pi -e "s/<AssemblyVersion>\d+\.\d+\.\d+\.\d+<\/AssemblyVersion>/<AssemblyVersion>$VERSION.0<\/AssemblyVersion>/" build/mod.build.props
-          perl -0pi -e "s/<FileVersion>\d+\.\d+\.\d+\.\d+<\/FileVersion>/<FileVersion>$VERSION.0<\/FileVersion>/" build/mod.build.props
+          perl -0pi -e "s/<Version>\d+\.\d+\.\d+<\/Version>/<Version>$VERSION<\/Version>/" Downfall.csproj
+          perl -0pi -e "s/<AssemblyVersion>\d+\.\d+\.\d+\.\d+<\/AssemblyVersion>/<AssemblyVersion>$VERSION.0<\/AssemblyVersion>/" Downfall.csproj
+          perl -0pi -e "s/<FileVersion>\d+\.\d+\.\d+\.\d+<\/FileVersion>/<FileVersion>$VERSION.0<\/FileVersion>/" Downfall.csproj
           perl -0pi -e "s/(\"version\"\s*:\s*\")\d+\.\d+\.\d+(\")/\${1}$VERSION\${2}/" Downfall.json
           GV="${{ inputs.game_version }}"
           if [ -n "$GV" ]; then
@@ -57,7 +57,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add build/mod.build.props Downfall.json
+          git add Downfall.csproj Downfall.json
           git commit -m "Release v$VERSION"
 
           # Annotated tag carries the steam toggle forward — release.yml has no inputs context.
