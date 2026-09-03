@@ -1,4 +1,7 @@
-﻿using Collector.CollectorCode.Interfaces;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Collector.CollectorCode.DynamicVars;
+using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
@@ -15,4 +18,9 @@ public abstract class CollectorCardModel(
 {
     protected override bool IsPlayable =>
         this is not IHasPyre || (this is IHasPyre && Owner.Hand.Any(e => e != this));
+    
+    public ConstructedCardModel WithKindle(int baseVal, int upgradeVal = 0)
+    {
+        return WithVar(new KindleVar(baseVal).WithUpgrade(upgradeVal));
+    }
 }

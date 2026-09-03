@@ -64,6 +64,8 @@ public class FloatChoiceRetract : HexaghostCardModel
         $"{ModelDb.Card<Float>().Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<Core.Hexaghost>();
 
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }
 
 [Pool(typeof(TokenCardPool))]
@@ -78,4 +80,6 @@ public class FloatChoiceAdvance : HexaghostCardModel
         $"{ModelDb.Card<Float>().Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<Core.Hexaghost>();
 
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<HexaghostCardPool>();
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }

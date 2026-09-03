@@ -20,4 +20,7 @@ public class Blind : CollectorCardModel
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
     }
+    
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }

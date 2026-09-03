@@ -1,0 +1,180 @@
+[gd_scene load_steps=21 format=3 ]
+
+[ext_resource type="Shader" path="res://shaders/vfx/vfx_stepped_shader_fire_flat.tres" id="1_37gd5"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/triangle_noise_tile.png" id="2_oh6dr"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/zigzag_fire_distortion.png" id="3_050wu"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/fire_bottom_mask.png" id="4_gm7it"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/basic_fire_noise.png" id="5_lj0qd"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/fire_base_pointy.png" id="6_jma2k"]
+[ext_resource type="Shader" path="res://shaders/vfx/vfx_stepped_shader_fire_add.tres" id="7_giu5c"]
+[ext_resource type="Material" path="res://themes/canvas_item_material_additive_shared.tres" id="8_bgxs3"]
+[ext_resource type="Texture2D" path="res://images/vfx/fire/cinder_particle.png" id="9_e7ewu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_74kop"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6nxj"]
+shader = ExtResource("1_37gd5")
+shader_parameter/OuterColor = Color(0, 0.6343208, 0.6049108, 1)
+shader_parameter/InnerColorStep = Vector2(0.26, 0.75)
+shader_parameter/Noise2Strength = 1.0
+shader_parameter/Noise2Scaling = Vector2(1.4, 1.4)
+shader_parameter/Noise2Panning = Vector2(-0.2, 0.9)
+shader_parameter/Noise2Texture = ExtResource("5_lj0qd")
+shader_parameter/Noise1Strength = 1.0
+shader_parameter/Noise1Scaling = Vector2(2, 2)
+shader_parameter/Noise1Panning = Vector2(1, 0.7)
+shader_parameter/Noise1Texture = ExtResource("2_oh6dr")
+shader_parameter/InvertNoiseMask = true
+shader_parameter/NoiseMaskScale = Vector2(1, 1.4)
+shader_parameter/NoiseMaskOffset = Vector2(0, 0.235)
+shader_parameter/NoiseMask = ExtResource("4_gm7it")
+shader_parameter/Distortion2Scale = Vector2(1, 1)
+shader_parameter/Distortion2Panning = Vector2(0, 0.76)
+shader_parameter/Distortion2Texture = ExtResource("3_050wu")
+shader_parameter/Distortion2Strength = 0.1
+shader_parameter/Distortion1Scale = Vector2(1, 1)
+shader_parameter/Distortion1Panning = Vector2(0.23, 0.8)
+shader_parameter/Distortion1Texture = ExtResource("2_oh6dr")
+shader_parameter/Distortion1Strength = 0.095
+shader_parameter/DistortionMaskScale = Vector2(1, 1.03)
+shader_parameter/DistortionMaskOffset = Vector2(0, 0.07)
+shader_parameter/DistortionMask = ExtResource("4_gm7it")
+shader_parameter/InnerColor = Color(0.9, 0.40125, 0.045, 1)
+shader_parameter/OuterStep = Vector2(0.135, 0.175)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sxx"]
+shader = ExtResource("7_giu5c")
+shader_parameter/OuterColor = Color(0, 0.21883407, 0.22392973, 1)
+shader_parameter/InnerColorStep = Vector2(0.745, 0.995)
+shader_parameter/Noise2Strength = 1.0
+shader_parameter/Noise2Scaling = Vector2(1.4, 1.4)
+shader_parameter/Noise2Panning = Vector2(0.4, 0.6)
+shader_parameter/Noise2Texture = ExtResource("5_lj0qd")
+shader_parameter/Noise1Strength = 1.0
+shader_parameter/Noise1Scaling = Vector2(1, 1)
+shader_parameter/Noise1Panning = Vector2(0.8, 0.7)
+shader_parameter/Noise1Texture = ExtResource("2_oh6dr")
+shader_parameter/InvertNoiseMask = true
+shader_parameter/NoiseMaskScale = Vector2(1, 2.01)
+shader_parameter/NoiseMaskOffset = Vector2(0, -0.32)
+shader_parameter/NoiseMask = ExtResource("4_gm7it")
+shader_parameter/Distortion2Scale = Vector2(1, 1)
+shader_parameter/Distortion2Panning = Vector2(0.045, 0.76)
+shader_parameter/Distortion2Texture = ExtResource("3_050wu")
+shader_parameter/Distortion2Strength = 0.1
+shader_parameter/Distortion1Scale = Vector2(1, 1.06)
+shader_parameter/Distortion1Panning = Vector2(0.06, 0.6)
+shader_parameter/Distortion1Texture = ExtResource("2_oh6dr")
+shader_parameter/Distortion1Strength = 0.095
+shader_parameter/DistortionMaskScale = Vector2(1, 1)
+shader_parameter/DistortionMaskOffset = Vector2(0, 0.095)
+shader_parameter/DistortionMask = ExtResource("4_gm7it")
+shader_parameter/InnerColor = Color(0.68, 0.561, 0.476, 1)
+shader_parameter/OuterStep = Vector2(0.335, 0.92)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egmt1"]
+shader = ExtResource("7_giu5c")
+shader_parameter/OuterColor = Color(0.48655945, 0.69948345, 0.63291454, 1)
+shader_parameter/InnerColorStep = Vector2(0.975, 0.99)
+shader_parameter/Noise2Strength = 1.0
+shader_parameter/Noise2Scaling = Vector2(1.4, 1.4)
+shader_parameter/Noise2Panning = Vector2(0.4, 0.6)
+shader_parameter/Noise2Texture = ExtResource("5_lj0qd")
+shader_parameter/Noise1Strength = 1.0
+shader_parameter/Noise1Scaling = Vector2(1, 1)
+shader_parameter/Noise1Panning = Vector2(1, 0.7)
+shader_parameter/Noise1Texture = ExtResource("2_oh6dr")
+shader_parameter/InvertNoiseMask = true
+shader_parameter/NoiseMaskScale = Vector2(1, 2)
+shader_parameter/NoiseMaskOffset = Vector2(0, -0.63)
+shader_parameter/NoiseMask = ExtResource("4_gm7it")
+shader_parameter/Distortion2Scale = Vector2(1, 1)
+shader_parameter/Distortion2Panning = Vector2(0.045, 0.76)
+shader_parameter/Distortion2Texture = ExtResource("3_050wu")
+shader_parameter/Distortion2Strength = 0.1
+shader_parameter/Distortion1Scale = Vector2(1, 1)
+shader_parameter/Distortion1Panning = Vector2(0.06, 0.6)
+shader_parameter/Distortion1Texture = ExtResource("2_oh6dr")
+shader_parameter/Distortion1Strength = 0.095
+shader_parameter/DistortionMaskScale = Vector2(1, 1.2)
+shader_parameter/DistortionMaskOffset = Vector2(0, -0.025)
+shader_parameter/DistortionMask = ExtResource("4_gm7it")
+shader_parameter/InnerColor = Color(0, 0, 0, 1)
+shader_parameter/OuterStep = Vector2(0.285, 0.99)
+
+[sub_resource type="Curve" id="Curve_c7o2j"]
+_data = [Vector2(0, 0.531754), 0.0, 2.99665, 0, 0, Vector2(0.300248, 0.969194), 0.0, 0.0, 0, 0, Vector2(0.573201, 0.981517), 0.0, 0.0, 0, 0, Vector2(0.734491, 0.969194), 0.0, 0.0, 0, 0, Vector2(1, 0.0265403), -7.44881, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_gglpj"]
+curve = SubResource("Curve_c7o2j")
+
+[sub_resource type="Curve" id="Curve_m5ga5"]
+_limits = [-0.5, 0.5, 0.0, 1.0]
+_data = [Vector2(0, -0.020853), 0.0, 0.0, 0, 0, Vector2(0.255583, 0.0194313), 0.0, 0.0, 0, 0, Vector2(0.66005, -0.0298578), 0.0, 0.0, 0, 0, Vector2(1, -0.020853), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_013pf"]
+curve = SubResource("Curve_m5ga5")
+
+[sub_resource type="Curve" id="Curve_hohd6"]
+_data = [Vector2(0, 0.531754), 0.0, 5.89698, 0, 0, Vector2(0.0967742, 1), 0.0, 0.0, 0, 0, Vector2(0.215881, 0.611848), 0.0, 0.0, 0, 0, Vector2(0.327543, 1), 0.0, 0.0, 0, 0, Vector2(0.48139, 0.605687), 0.0, 0.0, 0, 0, Vector2(0.600496, 1), 0.0, 0.0, 0, 0, Vector2(0.751861, 0.544076), -3.66529, -3.66529, 0, 0, Vector2(1, 0), -0.926037, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="CurveTexture" id="CurveTexture_7x6jo"]
+curve = SubResource("Curve_hohd6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02s0r"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 1)
+inherit_velocity_ratio = 1.0
+direction = Vector3(-1, -1, 0)
+spread = 60.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.5
+orbit_velocity_curve = SubResource("CurveTexture_013pf")
+gravity = Vector3(50, -200, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_7x6jo")
+color = Color(7.70092e-07, 0.91070753, 0.31512326, 1)
+alpha_curve = SubResource("CurveTexture_gglpj")
+hue_variation_min = -0.01
+hue_variation_max = 0.02
+
+[node name="VfxSteppedShaderFire" type="Node2D"]
+material = SubResource("ShaderMaterial_74kop")
+
+[node name="SteppedFireMix" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_v6nxj")
+position = Vector2(-14.4125, -235.69)
+scale = Vector2(1.14924, 1.14924)
+texture = ExtResource("6_jma2k")
+
+[node name="SteppedFireAdd" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u5sxx")
+position = Vector2(-17, -223)
+scale = Vector2(1.11663, 1.07664)
+texture = ExtResource("6_jma2k")
+
+[node name="SteppedFireAdd1" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_egmt1")
+position = Vector2(-12, -179)
+scale = Vector2(0.823203, 0.863206)
+texture = ExtResource("6_jma2k")
+
+[node name="sparks big" type="GPUParticles2D" parent="."]
+material = ExtResource("8_bgxs3")
+position = Vector2(-6.49258, -83.8541)
+rotation = 0.232337
+scale = Vector2(2.09743, 2.09743)
+amount = 24
+texture = ExtResource("9_e7ewu")
+lifetime = 4.0
+fixed_fps = 60
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_02s0r")

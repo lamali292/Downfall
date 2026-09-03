@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Common;
 [Pool(typeof(SneckoCardPool))]
 public class ToxicBite : SneckoCardModel
 {
-    public ToxicBite() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public ToxicBite() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
         WithPower<VenomPower>(2, 1);

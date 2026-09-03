@@ -1,4 +1,6 @@
 ﻿using Collector.CollectorCode.Events;
+using Collector.CollectorCode.Extensions;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -30,18 +32,14 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        if (summoner.Osty != null && !OwnsTorchhead(summoner))//User has an Osty already! (But does not have a Torchhead).
-        {
-            await CreatureCmd.TriggerAnim(summoner.Creature, Necrobinder.GetSummonAnimIfApplicable(summoner.Character), Necrobinder.GetSummonDelayIfApplicable(summoner.Character));
-            SummonResult summonResult = await OstyCmd.Summon(ctx, summoner, hp, source);
-        }
-        return await DownfallCmd.Summon<TorchheadMonsterModel>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
+        if (summoner is not { Osty: not null, Torchhead: null }) //User has an Osty already! (But does not have a Torchhead).
+            return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp,
+                source); //No Osty, summon on Torchhead instead.
+        await CreatureCmd.TriggerAnim(summoner.Creature, Necrobinder.GetSummonAnimIfApplicable(summoner.Character), Necrobinder.GetSummonDelayIfApplicable(summoner.Character));
+        await OstyCmd.Summon(ctx, summoner, hp, source);
+        return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
     }
-
-    public static bool OwnsTorchhead(Player summoner)
-    {
-        return (Torchhead(summoner) != null);
-    }
+    
 
     public static Creature? Torchhead(Player summoner)
     {
