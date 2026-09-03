@@ -1,6 +1,7 @@
 ﻿using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -39,8 +40,14 @@ public class CollectorCmd
         await OstyCmd.Summon(ctx, summoner, hp, source);
         return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
     }
-    
 
+
+    public static Task GetReserve(Player player, int amount)
+    {
+        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(player, amount);
+        return Task.CompletedTask;
+    }
+    
     public static Creature? Torchhead(Player summoner)
     {
         return DownfallCmd.GainPet<TorchheadMonsterModel>(summoner);

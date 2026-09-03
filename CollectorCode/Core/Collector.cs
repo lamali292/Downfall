@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using Collector.CollectorCode.Cards.Basic;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.DynamicVars;
 using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Abstract;
@@ -76,7 +77,13 @@ public abstract class CollectorRelicModel(RelicRarity rarity, bool autoAdd = tru
 
 public abstract class CollectorPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Collector>(powerType, powerStackType);
+    PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Collector>(powerType, powerStackType)
+{
+    protected ConstructedPowerModel WithReserveTip()
+    {
+        return WithTip(new PowerTooltipSource(_ => CollectorTip.ReserveTip));
+    }
+}
 
 public class CollectorPotionPool : DownfallPotionPool<Collector>;
 
