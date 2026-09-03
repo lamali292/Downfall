@@ -9,9 +9,14 @@ namespace Collector.CollectorCode.Powers;
 
 public class OmenPower : CollectorPowerModel
 {
+    public OmenPower()
+    {
+        WithTip<StrengthPower>();
+    }
+    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card is not ICollectible) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.VisualCardPool.IsColorless) return;
         await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
     }
 }

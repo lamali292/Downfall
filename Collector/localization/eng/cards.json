@@ -113,7 +113,7 @@
   "COLLECTOR-MYSTERY_WEAVING.title": "Mystery Weaving",
   "COLLECTOR-OAKBRIM_KINDLING.description": "When [gold]Exhausted[/gold], draw {Cards:diff()} cards.",
   "COLLECTOR-OAKBRIM_KINDLING.title": "Oakbrim Kindling",
-  "COLLECTOR-OMEN.description": "{IfUpgraded:show:Innate.\n|}Whenever you play a Collected card, gain 1 [gold]Strength[/gold].",
+  "COLLECTOR-OMEN.description": "Whenever you play a Colorless card, gain {OmenPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-OMEN.title": "Omen",
   "COLLECTOR-PROTECTING_CALL.description": "[gold]Kindle[/gold] {Summon:diff()}.\nAfter you play an Attack, [gold]Torchhead [/gold]gives you {ProtectingCallPower:diff()} [gold]Block[/gold].",
   "COLLECTOR-PROTECTING_CALL.title": "Protecting Call",
