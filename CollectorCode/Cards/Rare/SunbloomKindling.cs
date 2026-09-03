@@ -13,12 +13,12 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SunbloomKindling : CollectorCardModel
 {
-    public SunbloomKindling() : base(-1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SunbloomKindling() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Unplayable);
         WithPower<StrengthPower>(2, 1);
         WithCards(2);
         WithTip<Ember>();
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
