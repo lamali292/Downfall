@@ -15,6 +15,8 @@ public class FinalizePower() : CollectorPowerModel(PowerType.Debuff)
         return false;
     }
 
+    public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
+
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
         bool wasRemovalPrevented, float deathAnimLength)
     {

@@ -66,5 +66,6 @@
   "COLLECTOR-TORCHHEAD_POWER.description": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
   "COLLECTOR-TORCHHEAD_POWER.smartDescription": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
   "COLLECTOR-MIASMA_POWER.title": "Miasma",
-  "COLLECTOR-MIASMA_POWER.description": ""
+  "COLLECTOR-MIASMA_POWER.description": "",
+  "COLLECTOR-FINALIZE_POWER.remoteDescription": "When [gold]{OwnerName}[/gold] dies, [orange]{ApplierName}[/orange] heals [blue]{Amount}[/blue] HP."
 }
