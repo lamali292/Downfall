@@ -17,7 +17,7 @@ public class BlackBindings : CollectorCardModel
     public BlackBindings() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(2);
-        WithPower<CollectorDoomPower>(2, 2);
+        WithPower<MiasmaPower>(2, 2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -31,7 +31,7 @@ public class BlackBindings : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
-        var amount = DamageCalc(cardPlay.Target) * DynamicVars.Power<CollectorDoomPower>().BaseValue;
-        await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this, amount);
+        var amount = DamageCalc(cardPlay.Target) * DynamicVars.Power<MiasmaPower>().BaseValue;
+        await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
     }
 }

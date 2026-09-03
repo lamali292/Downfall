@@ -16,7 +16,7 @@ public class LanternFlare : CollectorCardModel, IHasPyre
     public LanternFlare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithPower<CollectorDoomPower>(12, 3);
+        WithPower<MiasmaPower>(12, 3);
         WithPower<ScorchedPower>(3, 1);
     }
 
@@ -27,7 +27,7 @@ public class LanternFlare : CollectorCardModel, IHasPyre
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Apply<ScorchedPower>(ctx, this, cardPlay);
     }
 }

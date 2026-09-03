@@ -19,7 +19,7 @@ public class BindingCallPower : CollectorPowerModel
         {
             var target = Owner.PetOwner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (target != null)
-                await PowerCmd.Apply<CollectorDoomPower>(ctx, target, Amount, Owner, null);
+                await PowerCmd.Apply<MiasmaPower>(ctx, target, Amount, Owner, null);
         }
     }
 }

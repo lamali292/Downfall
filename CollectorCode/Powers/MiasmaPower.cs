@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
-public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
+public class MiasmaPower() : CollectorPowerModel(PowerType.Debuff)
 {
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext ctx)
     {
@@ -48,7 +48,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         
         //If demise is present apply stacks.
         if (Owner.IsAlive && stacks > 0)
-            await PowerCmd.Apply<CollectorDoomPower>(ctx, Owner, stacks, Owner, null);
+            await PowerCmd.Apply<MiasmaPower>(ctx, Owner, stacks, Owner, null);
     }
     
 }
