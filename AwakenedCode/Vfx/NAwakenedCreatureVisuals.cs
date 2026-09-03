@@ -22,7 +22,7 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
 
     private bool _isAwakened;
     private MegaSprite? _sprite;
-    private WingFlare? _wingFlare;
+    private WingFlare? _wingFlare1, _wingFlare2, _wingFlare3, _wingFlare4;
 
     public bool IsAwakened
     {
@@ -85,33 +85,23 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
         _animState?.SetAnimationCompat(IdleAnim);
 
         _eyeFlare = _body.GetNodeOrNull<Node2D>("%EyeFlare");
-        _wingFlare = _body.GetNodeOrNull<WingFlare>("%WingFlare");
+        _wingFlare1 = _body.GetNodeOrNull<WingFlare>("%WingFlare1");
+        _wingFlare2 = _body.GetNodeOrNull<WingFlare>("%WingFlare2");
+        _wingFlare3 = _body.GetNodeOrNull<WingFlare>("%WingFlare3");
+        _wingFlare4 = _body.GetNodeOrNull<WingFlare>("%WingFlare4");
+        SetParticles(false);
+
     }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        if (_sprite == null) return;
-
-        if (_eyeFlare != null)
-        {
-            var eye = _sprite.GetGlobalBoneTransformCompat("Eye");
-            if (eye.HasValue)
-                _eyeFlare.GlobalPosition = eye.Value.Origin;
-        }
-
-        if (_wingFlare != null)
-        {
-            var hips = _sprite.GetGlobalBoneTransformCompat("Hips");
-            if (hips.HasValue)
-                _wingFlare.GlobalPosition = hips.Value.Origin + new Vector2(WingPos.wingPosX, WingPos.wingPosY);
-        }
-    }
+    
 
     private void SetParticles(bool on)
     {
         SetFlare(_eyeFlare, on);
-        _wingFlare?.SetActive(on);
+        _wingFlare1?.SetActive(on);
+        _wingFlare2?.SetActive(on);
+        _wingFlare3?.SetActive(on);
+        _wingFlare4?.SetActive(on);
+        
     }
 
     private static void SetFlare(Node2D? flare, bool on)
@@ -121,10 +111,4 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals, IAnimatedVisua
             if (child is GpuParticles2D p)
                 p.Emitting = on;
     }
-}
-
-public static class WingPos
-{
-    public static float wingPosX => 10;
-    public static float wingPosY => -20;
 }

@@ -3,7 +3,7 @@
 [ext_resource type="SpineAtlasResource" path="res://Awakened/scenes/character/spine/awakened.atlas" id="1_nccbw"]
 [ext_resource type="SpineSkeletonFileResource" path="res://Awakened/scenes/character/spine/awakened.skel" id="2_ay631"]
 [ext_resource type="Texture2D" path="res://Awakened/images/character/shine.png" id="3_ay631"]
-[ext_resource type="Script" path="res://AwakenedCode/Vfx/WingFlare.cs" id="5_wing"]
+[ext_resource type="PackedScene" path="res://Awakened/scenes/character/wing_flare.tscn" id="4_kdtgo"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_kdtgo"]
 atlas_res = ExtResource("1_nccbw")
@@ -31,40 +31,88 @@ color_ramp = SubResource("GradientTexture1D_fade")
 [node name="Awakened" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_kdtgo")
 preview_skin = "Default"
-preview_animation = "idle_loop"
+preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
 
-[node name="EyeFlare" type="Node2D" parent="."]
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "eye_flare"
+show_behind_parent = true
+position = Vector2(157.5365, -58.9327)
+rotation = 3.1410687
+scale = Vector2(0.99999994, 1)
+
+[node name="EyeFlare" type="Node2D" parent="SpineSlotNode"]
 unique_name_in_owner = true
 show_behind_parent = true
-position = Vector2(158, -59)
+rotation = 2.136283
+scale = Vector2(1.0000001, 1)
 
-[node name="flare_horizontal" type="GPUParticles2D" parent="EyeFlare"]
+[node name="flare_horizontal" type="GPUParticles2D" parent="SpineSlotNode/EyeFlare"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_add")
 scale = Vector2(5, 0.417)
-emitting = false
 amount = 3
 texture = ExtResource("3_ay631")
 lifetime = 0.6
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kdtgo")
 
-[node name="flare_vertical" type="GPUParticles2D" parent="EyeFlare"]
+[node name="flare_vertical" type="GPUParticles2D" parent="SpineSlotNode/EyeFlare"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_add")
 rotation = 1.5707964
 scale = Vector2(5, 0.417)
-emitting = false
 amount = 3
 texture = ExtResource("3_ay631")
 lifetime = 0.6
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kdtgo")
 
-[node name="WingFlare" type="Node2D" parent="."]
+[node name="SpineWingFlare1" type="SpineSlotNode" parent="."]
+slot_name = "wing_flare1"
+show_behind_parent = true
+position = Vector2(-52.570007, -136.34)
+rotation = -0.54977876
+
+[node name="WingFlare1" parent="SpineWingFlare1" instance=ExtResource("4_kdtgo")]
 unique_name_in_owner = true
 show_behind_parent = true
-position = Vector2(38, -239)
-script = ExtResource("5_wing")
+position = Vector2(-60.005386, 12.886171)
+
+[node name="SpineWingFlare2" type="SpineSlotNode" parent="."]
+slot_name = "wing_flare2"
+show_behind_parent = true
+position = Vector2(-16.81881, -158.24837)
+rotation = -0.06091218
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="WingFlare2" parent="SpineWingFlare2" instance=ExtResource("4_kdtgo")]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(-24.188187, 15.805237)
+rotation = 0.04712389
+
+[node name="SpineWingFlare3" type="SpineSlotNode" parent="."]
+slot_name = "wing_flare3"
+show_behind_parent = true
+position = Vector2(28.756512, -161.0279)
+rotation = 0.19914186
+scale = Vector2(1, 0.99999994)
+
+[node name="WingFlare3" parent="SpineWingFlare3" instance=ExtResource("4_kdtgo")]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(-22.679098, 12.766773)
+
+[node name="SpineWingFlare4" type="SpineSlotNode" parent="."]
+slot_name = "wing_flare4"
+show_behind_parent = true
+position = Vector2(98.51016, -146.95044)
+rotation = 0.74734974
+
+[node name="WingFlare4" parent="SpineWingFlare4" instance=ExtResource("4_kdtgo")]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(-18.065506, 18.036327)
+scale = Vector2(0.8, 0.8)
