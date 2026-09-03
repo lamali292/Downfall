@@ -172,5 +172,7 @@
   "COLLECTOR-CAST_IRON.title": "Cast Iron",
   "COLLECTOR-CAST_IRON.description": "Add {Quantity:diff()} [gold]Burn[/gold] to your hand and [gold]Kindle[/gold] {Summon:diff()} for each [gold]Status[/gold] card in your hand.",
   "COLLECTOR-YOU_ARE_MINE.title": "YOU ARE MINE!!!",
-  "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold], [gold]Frail[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] to ALL enemies."
+  "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold], [gold]Frail[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] to ALL enemies.",
+  "COLLECTOR-PYREBLAST.title": "Pyreblast",
+  "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Exhausted[/gold] this combat, while this is in your [gold]Hand[/gold]."
 }
