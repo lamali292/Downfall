@@ -11,7 +11,7 @@ public class ShootingStar : CollectorCardModel
 {
     public ShootingStar() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<ShootingStarPower>(1);
+        WithPower<ShootingStarPower>(1, false);
         WithCostUpgradeBy(-1);
     }
 

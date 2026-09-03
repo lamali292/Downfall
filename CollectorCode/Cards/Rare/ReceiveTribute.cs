@@ -3,9 +3,14 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -17,15 +22,26 @@ public class ReceiveTribute : CollectorCardModel, IHasPyre
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithKeyword(CardKeyword.Exhaust);
-        WithCards(2, 1);
+        WithCards(2, 2);
+        WithEnchantment<Steady>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return Task.CompletedTask;
+        var list = CardFactory.GetDistinctForCombat(Owner, 
+            ModelDb.CardPool<ColorlessCardPool>()
+                .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint), 
+            DynamicVars.Cards.IntValue, 
+            Owner.RunState.Rng.CombatCardGeneration)
+            .ToList();
+        var card = await CardSelectCmd.FromChooseACardScreen(ctx, list, Owner, true);
+        if (card == null)
+            return;
+        CardCmd.Enchant<Steady>(card, DynamicVars.Enchantment<Steady>().IntValue);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }
