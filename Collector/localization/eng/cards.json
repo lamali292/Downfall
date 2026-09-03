@@ -57,7 +57,7 @@
   "COLLECTOR-FEEL_MY_PAIN.title": "Feel My Pain",
   "COLLECTOR-FIEND_FIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal {Damage:diff()} damage for each card [gold]Exhausted[/gold].",
   "COLLECTOR-FIEND_FIRE.title": "Fiend Fire",
-  "COLLECTOR-FINALIZE.description": "When the enemy dies, heal {FinalizePower:diff()} HP.\nApply {MiasmaPower:diff()} [gold]Doom[/gold].",
+  "COLLECTOR-FINALIZE.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold].\nWhen this enemy dies, heal {FinalizePower:diff()} HP.",
   "COLLECTOR-FINALIZE.title": "Finalize",
   "COLLECTOR-FINGER_OF_DEATH.description": "Only [gold]Reserves[/gold] may be spent on this.\nApply {MiasmaPower:diff()} [gold]Doom[/gold] {IfUpgraded:show: to ALL enemies|}.",
   "COLLECTOR-FINGER_OF_DEATH.title": "Finger of Death",
