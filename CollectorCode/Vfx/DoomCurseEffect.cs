@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
@@ -16,7 +17,7 @@ public partial class DoomCurseEffect : Node2D
     private const float StakeDuration = 0.6f;
     private const float SoundLeadIn = 0.8f;
     private const float SpawnInterval = 0.04f;
-    private const int StakeCount = 13;
+    private const int StakeCount = 13; // now interpreted as waves: StakeCount stakes PER creature
 
 
     private const float SpawnAngleMin = -50f;
@@ -44,9 +45,12 @@ public partial class DoomCurseEffect : Node2D
     private static CanvasItemMaterial? _additiveMat;
 
     private readonly List<Stake> _stakes = [];
-    private int _count = StakeCount;
+
+    // One center per targeted creature. Every spawn wave drops one stake per center.
+    private readonly List<Vector2> _centers = [];
+
+    private int _count = StakeCount; // remaining waves
     private CancellationTokenSource? _cts;
-    private float _cx, _cy;
     private string _sfxImpact = "event:/sfx/characters/silent/silent_attack";
     private float _sfxImpactVolume = 0.3f;
 
@@ -57,15 +61,35 @@ public partial class DoomCurseEffect : Node2D
     // Public API
     // -------------------------------------------------------------------------
 
+    /// <summary>Single-target convenience overload. Delegates to the list version.</summary>
     public static DoomCurseEffect? Create(Creature target)
+    {
+        return Create([target]);
+    }
+
+    /// <summary>
+    /// Builds ONE effect node that curses every valid target at once.
+    /// Intro sound / screen flash / overlay fire a single time; each creature
+    /// still gets its own converging burst of stakes.
+    /// Returns null if there are no valid targets (no orphan node is created).
+    /// </summary>
+    public static DoomCurseEffect? Create(IReadOnlyList<Creature> targets)
     {
         if (TestMode.IsOn) return null;
 
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(target);
-        if (creatureNode == null) return null;
+        var room = NCombatRoom.Instance;
+        if (room == null) return null;
 
-        var pos = creatureNode.VfxSpawnPosition;
-        return new DoomCurseEffect { _cx = pos.X, _cy = pos.Y };
+        // Resolve every target to a spawn position first, so we never leave a
+        // freshly-newed Node2D dangling when nothing is valid.
+        var centers = new List<Vector2>(targets.Count);
+        centers.AddRange(targets.Select(target => room.GetCreatureNode(target)).OfType<NCreature>().Select(creatureNode => creatureNode.VfxSpawnPosition).Select(pos => new Vector2(pos.X, pos.Y)));
+
+        if (centers.Count == 0) return null;
+
+        var effect = new DoomCurseEffect();
+        effect._centers.AddRange(centers);
+        return effect;
     }
 
     public override void _Ready()
@@ -103,7 +127,11 @@ public partial class DoomCurseEffect : Node2D
                 ScreenFlashEffect.Play(new Color(1f, 0f, 1f, 0.7f));
             }
 
-            SpawnStake();
+            // One stake per creature this wave, so total duration is independent
+            // of how many creatures are targeted.
+            foreach (var center in _centers)
+                SpawnStake(center);
+
             _count--;
 
             await Cmd.Wait(SpawnInterval, ct);
@@ -174,7 +202,7 @@ public partial class DoomCurseEffect : Node2D
         }
     }
 
-    private void SpawnStake()
+    private void SpawnStake(Vector2 center)
     {
         var sceneScale = NCombatRoom.Instance?.SceneContainer.Scale.X ?? 1f;
         var rng = new RandomNumberGenerator();
@@ -182,8 +210,8 @@ public partial class DoomCurseEffect : Node2D
 
         var angle = rng.RandfRange(SpawnAngleMin, SpawnAngleMax) * Mathf.Pi / 180f;
 
-        var tx = _cx + rng.RandfRange(-TargetScatterX, TargetScatterX) / sceneScale;
-        var ty = _cy + rng.RandfRange(-TargetScatterY, TargetScatterY) / sceneScale;
+        var tx = center.X + rng.RandfRange(-TargetScatterX, TargetScatterX) / sceneScale;
+        var ty = center.Y + rng.RandfRange(-TargetScatterY, TargetScatterY) / sceneScale;
 
         var sx = Mathf.Cos(angle) * rng.RandfRange(SpawnDistMin, SpawnDistMax) / sceneScale + tx;
         var sy = Mathf.Sin(angle) * rng.RandfRange(SpawnDistYMin, SpawnDistYMax) / sceneScale + ty;
