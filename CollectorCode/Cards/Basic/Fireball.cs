@@ -20,17 +20,14 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 namespace Collector.CollectorCode.Cards.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class Fireball : CollectorCardModel
+public class Fireball : CollectorCardModel, IHasPyre
 {
     public Fireball() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Retain);
         WithDamage(18, 3);
-        WithTips(e =>
-            e.IsUpgraded
-                ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
-                : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
+        WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -54,4 +51,6 @@ public class Fireball : CollectorCardModel
         //await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
         //await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this);
     }
+
+    public CardModel? PyredCard { get; set; }
 }

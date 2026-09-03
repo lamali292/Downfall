@@ -17,6 +17,7 @@ public class BagOfTricks : CollectorRelicModel, IOnPyre
     {
         WithVar("MaxUses", 3);
         WithVar("UsesLeft", 3);
+        WithCards(1);
     }
     private DynamicVar MaxUses => DynamicVars["MaxUses"];
     private DynamicVar UsesLeft => DynamicVars["UsesLeft"];
@@ -33,7 +34,7 @@ public class BagOfTricks : CollectorRelicModel, IOnPyre
         if (UsesLeft.BaseValue > 0)
         {
             UsesLeft.BaseValue--;
-            CardModel cardModel = await CardPileCmd.Draw(ctx, Owner);
+            await CardPileCmd.Draw(ctx, DynamicVars.Cards.IntValue,  Owner);
         }
         Flash();
         InvokeDisplayAmountChanged();

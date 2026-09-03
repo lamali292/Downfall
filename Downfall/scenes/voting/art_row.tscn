@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://6kbn03rj7xhd"]
+[gd_scene load_steps=6 format=3 ]
 
-[ext_resource type="Script" uid="uid://b7o3jvdsfch6t" path="res://DownfallCode/Voting/NVoteCard.cs" id="1_e658i"]
-[ext_resource type="FontVariation" uid="uid://c6wnuvk3exmk5" path="res://themes/kreon_regular_shared.tres" id="2_font"]
-[ext_resource type="Texture2D" uid="uid://cukfpxdb1ktvc" path="res://Champ/images/character/character_icon.png" id="3_ep5fj"]
-[ext_resource type="Texture2D" uid="uid://b08u3k37ki577" path="res://images/packed/card_portraits/ironclad/strike_ironclad.png" id="3_preview"]
-[ext_resource type="PackedScene" uid="uid://bys7sqdhlbmud" path="res://Downfall/scenes/voting/heart_button.tscn" id="5_a7b1r"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/NVoteCard.cs" id="1_e658i"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_font"]
+[ext_resource type="Texture2D" path="res://Champ/images/character/character_icon.png" id="3_ep5fj"]
+[ext_resource type="Texture2D" path="res://images/packed/card_portraits/ironclad/strike_ironclad.png" id="3_preview"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/heart_button.tscn" id="5_a7b1r"]
 
 [node name="VoteCard" type="PanelContainer"]
 custom_minimum_size = Vector2(250, 200)

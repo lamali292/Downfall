@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bys7sqdhlbmud"]
+[gd_scene load_steps=7 format=3 ]
 
-[ext_resource type="Script" uid="uid://btnvs2wsfvte4" path="res://DownfallCode/Voting/NHeartButton.cs" id="1_n317h"]
-[ext_resource type="Texture2D" uid="uid://v5rbe5mvrb1s" path="res://Downfall/images/ui/heart.png" id="2_n317h"]
-[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="3_yrokf"]
-[ext_resource type="Texture2D" uid="uid://b5x513mavmk5v" path="res://images/ui/placeholder_controller_icon.png" id="4_g3oc1"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/NHeartButton.cs" id="1_n317h"]
+[ext_resource type="Texture2D" path="res://Downfall/images/ui/heart.png" id="2_n317h"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="3_yrokf"]
+[ext_resource type="Texture2D" path="res://images/ui/placeholder_controller_icon.png" id="4_g3oc1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u3hj0"]
 shader = ExtResource("3_yrokf")

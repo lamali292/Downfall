@@ -99,11 +99,13 @@ public class DownfallCmd
         return summoner.Creature.CombatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
     }
 
-    public static async Task<Creature> Summon<T>(
+    public static async Task<Creature> Summon<T, T2>(
         PlayerChoiceContext ctx,
         Player summoner,
         int hp,
-        AbstractModel? source) where T : MonsterModel
+        AbstractModel? source) 
+        where T : MonsterModel
+        where T2 : PowerModel
     {
         var combatState = summoner.Creature.CombatState;
         var existing = combatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
@@ -125,16 +127,17 @@ public class DownfallCmd
             var node = NCombatRoom.Instance?.GetCreatureNode(existing);
             var playerNode = NCombatRoom.Instance?.GetCreatureNode(summoner.Creature);
 
-            if (node != null && source is CardModel && playerNode != null)
+            if (node != null && playerNode != null)
             {
                 node.Position = playerNode.Position + new Vector2(250f, -75f);
                 node.Modulate = Colors.Transparent;
                 node.CreateTween()
                     .TweenProperty(node, "modulate", Colors.White, 0.35)
                     .SetDelay(0.1);
+                node.StartReviveAnim();
             }
 
-            await PowerCmd.Apply<DieForYouPower>(ctx, existing, 1M, null, null);
+            await PowerCmd.Apply<T2>(ctx, existing, 1M, null, null);
             node?.TrackBlockStatus(summoner.Creature);
             node?.ToggleIsInteractable(true);
         }

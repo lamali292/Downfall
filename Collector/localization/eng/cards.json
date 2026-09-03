@@ -167,10 +167,8 @@
   "COLLECTOR-WHOMP.title": "Whomp",
   "COLLECTOR-WILDFIRE.description": "Deal {ExtraDamage:diff()} damage for each unique debuff on the enemy.",
   "COLLECTOR-WILDFIRE.title": "Wildfire",
-  "COLLECTOR-YOU_ARE_MINE.description": "Deal {Damage:diff()} damage.",
-  "COLLECTOR-YOU_ARE_MINE.title": "You Are Mine!",
   "COLLECTOR-FIREBALL.title": "Fireball",
-  "COLLECTOR-FIREBALL.description": "Deal {Damage:diff()} damage. Add {IfUpgraded:show:an [gold]Ember[/gold]| a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-FIREBALL.description": "Deal {Damage:diff()} damage.\nAdd {IfUpgraded:show:an [gold]Ember[/gold]| a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-CAST_IRON.title": "Cast Iron",
   "COLLECTOR-CAST_IRON.description": "Add {Quantity:diff()} [gold]Burn[/gold] to your hand and [gold]Kindle[/gold] {Summon:diff()} for each [gold]Status[/gold] card in your hand."
 }

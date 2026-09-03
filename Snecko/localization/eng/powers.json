@@ -75,9 +75,10 @@
   "SNECKO-PARALYTIC_VENOM_POWER.description": "Whenever an Attack deals unblocked damage, apply [gold]Venom[/gold].",
   "SNECKO-PARALYTIC_VENOM_POWER.smartDescription": "Whenever an Attack deals unblocked damage, apply [blue]{Amount}[/blue] [gold]Venom[/gold].",
   "SNECKO-MUDDY_POWER.title": "Muddy",
-  "SNECKO-MUDDY_POWER.description": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, [gold]Muddle[/gold] your [gold]Hand[/gold].",
+  "SNECKO-MUDDY_POWER.description": "At the start of your next turn, [gold]Muddle[/gold] your [gold]Hand[/gold].",
   "SNECKO-VENOMOLOGY_POWER.title": "Venomology",
   "SNECKO-VENOMOLOGY_POWER.description": "This turn, whenever another player debuffs this enemy, it gains [gold]Venom[/gold].",
   "SNECKO-VENOMOLOGY_POWER.smartDescription": "This turn, whenever another player debuffs this enemy, it gains [blue]{Amount}[/blue] [gold]Venom[/gold].",
-  "SNECKO-VENOMOLOGY_POWER.remoteDescription": "This turn, whenever you debuff this enemy, it gains [blue]{Amount}[/blue] [gold]Venom[/gold]."
+  "SNECKO-VENOMOLOGY_POWER.remoteDescription": "This turn, whenever you debuff this enemy, it gains [blue]{Amount}[/blue] [gold]Venom[/gold].",
+  "SNECKO-MUDDY_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, [gold]Muddle[/gold] your [gold]Hand[/gold]."
 }

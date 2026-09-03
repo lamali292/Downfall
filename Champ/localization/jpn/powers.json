@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "アリーナマスタリー:狂化",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "狂化のフィニッシャーが追加で[gold]筋力[/gold]を与える。",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "狂化のフィニッシャーが追加で[gold]筋力[/gold][blue]{Amount}[/blue]を与える。",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "アリーナマスタリー:守護",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "守護のフィニッシャーが追加で[gold]ブロック[/gold]を与える。",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "守護のフィニッシャーが追加で[blue]{Amount}[/blue][gold]ブロック[/gold]を与える。",
     "CHAMP-BERSERKER_STYLE_POWER.title": "狂化の構え",
     "CHAMP-BERSERKER_STYLE_POWER.description": "[gold]スキルボーナス[/gold]が追加で[gold]活力[/gold]を与える。",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "[gold]スキルボーナス[/gold]が追加で[gold]活力[/gold][blue]{Amount}[/blue]を与える。",

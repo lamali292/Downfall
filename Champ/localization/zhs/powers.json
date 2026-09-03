@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "竞技精通：战狂",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "战狂终结技额外给予[gold]力量[/gold]。",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "战狂终结技额外给予[blue]{Amount}[/blue]点[gold]力量[/gold]。",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "竞技精通：防守",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "防守终结技额外给予[gold]格挡[/gold]。",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "防守终结技额外给予[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "CHAMP-BERSERKER_STYLE_POWER.title": "战狂战法",
     "CHAMP-BERSERKER_STYLE_POWER.description": "[gold]技术奖励[/gold]额外给予[gold]活力[/gold]。",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "[gold]技术奖励[/gold]额外给予[blue]{Amount}[/blue]点[gold]活力[/gold]。",

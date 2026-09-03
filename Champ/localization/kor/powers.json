@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "투기장 숙련: 광란",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "광란 마무리 카드가 [gold]힘[/gold]을 더 많이 부여합니다.",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "광란 마무리 카드가 [blue]{Amount}[/blue]의 [gold]힘[/gold]을 추가로 부여합니다.",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "투기장 숙련: 철벽",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "철벽 마무리 카드가 [gold]방어도[/gold]를 더 많이 부여합니다.",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "철벽 마무리 카드가 [blue]{Amount}[/blue]의 [gold]방어도[/gold]를 추가로 부여합니다.",
     "CHAMP-BERSERKER_STYLE_POWER.title": "광란 태세",
     "CHAMP-BERSERKER_STYLE_POWER.description": "[gold]스킬 보너스[/gold]가 [gold]활력[/gold]을 추가로 부여합니다.",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "[gold]스킬 보너스[/gold]가 [blue]{Amount}[/blue]의 [gold]활력[/gold]을 추가로 부여합니다.",

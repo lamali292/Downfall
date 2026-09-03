@@ -67,4 +67,7 @@ public class BadOmenChoice : HexaghostCardModel
     {
         description.Add("Ghostflame", GhostflameModel?.Title ?? HexaghostModelDb.Ghostflame<InfernoGhostflame>().Title);
     }
+    
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 }

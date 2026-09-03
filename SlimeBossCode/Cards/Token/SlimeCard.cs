@@ -19,6 +19,8 @@ public abstract class SlimeCard<T>
         WithTips(_ => [SlimeModel.SlimeTip]);
     }
 
+    public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override bool IsPlayable => false;
     public override string Title => SlimeModel.Title.GetFormattedText();

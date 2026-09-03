@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
@@ -22,9 +23,9 @@ public class PrismaticTorch : CollectorRelicModel
     {
         WithVar("KindleAmount", 10);
         WithTip(CollectorTip.Kindle);
+        WithKindle(10);
         WithTip<Ember>();
     }
-    private DynamicVar KindleAmount => DynamicVars["KindleAmount"];
 
     public override async Task BeforeHandDraw(
         Player player,
@@ -32,8 +33,7 @@ public class PrismaticTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        var dV = (int)KindleAmount.BaseValue;
-        await CollectorCmd.SummonTorchhead(ctx, Owner, dV, this);
+        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
         Flash();
     }
     
