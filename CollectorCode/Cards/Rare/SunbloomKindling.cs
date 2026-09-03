@@ -16,7 +16,7 @@ public class SunbloomKindling : CollectorCardModel
     public SunbloomKindling() : base(-1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
-        WithPower<StrengthPower>(2, 3);
+        WithPower<StrengthPower>(2, 1);
         WithCards(2);
         WithTip<Ember>();
     }
