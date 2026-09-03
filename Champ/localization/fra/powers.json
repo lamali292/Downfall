@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "Maître Destructeur de l'Arène",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "Les Finishers de la Pose du Destructeur donnent plus de [gold]Force[/gold].",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "Les Finishers de la Pose du Destructeur donnent [blue]{Amount}[/blue] de [gold]Force[/gold] supplémentaire.",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "Maître Défensif de l'Arène",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "Les Finishers de la Pose Défensive donnent plus [gold]d'Armure[/gold].",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "Les Finishers de la Pose Défensive donnent [blue]{Amount}[/blue] [gold]d'Armure[/gold] supplémentaire.",
     "CHAMP-BERSERKER_STYLE_POWER.title": "Style du Destructeur",
     "CHAMP-BERSERKER_STYLE_POWER.description": "Les [gold]Bonus de Compétence[/gold] donnent de la [gold]Vigueur[/gold] supplémentaire.",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "Les [gold]Bonus de Compétence[/gold] donnent [blue]{Amount}[/blue] de [gold]Vigueur[/gold] supplémentaires.",

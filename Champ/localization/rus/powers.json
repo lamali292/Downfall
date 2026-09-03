@@ -1,10 +1,4 @@
 {
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.title": "Мастерство боя Берсерка",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.description": "[gold]Финишер Берсерка[/gold] дает больше [gold]силы[/gold].",
-    "CHAMP-ARENA_MASTERY_BERSERKER_POWER.smartDescription": "[gold]Финишер Берсерка[/gold] дает на [blue]{Amount}[/blue] [gold]силы[/gold] больше.",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.title": "Мастерство боя Рыцаря",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.description": "[gold]Финишер Рыцаря[/gold] дает больше [gold]защиты[/gold].",
-    "CHAMP-ARENA_MASTERY_DEFENSIVE_POWER.smartDescription": "[gold]Финишер Рыцаря[/gold] дает на [blue]{Amount}[/blue] [gold]защиты[/gold] больше.",
     "CHAMP-BERSERKER_STYLE_POWER.title": "Яростный стиль",
     "CHAMP-BERSERKER_STYLE_POWER.description": "[gold]Бонус стойки[/gold] дает больше [gold]бодрости[/gold].",
     "CHAMP-BERSERKER_STYLE_POWER.smartDescription": "[gold]Бонус стойки[/gold] дает на [blue]{Amount}[/blue] [gold]бодрости[/gold] больше.",
