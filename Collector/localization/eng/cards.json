@@ -153,7 +153,7 @@
   "COLLECTOR-SUFFERING.title": "Suffering",
   "COLLECTOR-SUNBLOOM_KINDLING.description": "When [gold]Exhausted[/gold], gain {StrengthPower:diff()} [gold]Strength[/gold] and add {Cards:diff()} [gold]Embers[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-SUNBLOOM_KINDLING.title": "Sunbloom Kindling",
-  "COLLECTOR-THORN_WHIP.description": "Deal {Damage:diff()} damage and apply {BruisePower:diff()} [gold]Bruise[/gold] to ALL enemies.\nGain a [gold]Shiv[/gold].",
+  "COLLECTOR-THORN_WHIP.description": "Deal {Damage:diff()} to ALL enemies.\nApply [gold]Miasma[/gold] equal to unblocked damage dealt.",
   "COLLECTOR-THORN_WHIP.title": "Thorn Whip",
   "COLLECTOR-TORCHBEARER.description": "[gold]Kindle[/gold] {Summon:diff()}.",
   "COLLECTOR-TORCHBEARER.title": "Torchbearer",
