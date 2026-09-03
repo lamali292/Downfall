@@ -71,7 +71,7 @@
   "COLLECTOR-FORGERY.title": "Forgery",
   "COLLECTOR-FUEL_THE_FIRE.description": "Next turn, gain {ReserveNextTurnPower:diff()} [gold]Reserve[/gold]{IfUpgraded:show: and draw a card|}.",
   "COLLECTOR-FUEL_THE_FIRE.title": "Fuel the Fire",
-  "COLLECTOR-GOODBYE.description": "Double the enemy's [gold]Doom[/gold].",
+  "COLLECTOR-GOODBYE.description": "{IfUpgraded:show:Triple|Double} the enemy's [gold]Miasma[/gold].",
   "COLLECTOR-GOODBYE.title": "Goodbye",
   "COLLECTOR-GREATER_HURTING.title": "Greater Hurting",
   "COLLECTOR-GREATER_HURTING.description": "Deal {Damage:diff()} damage.\nIf this card is [gold]Exhausted[/gold], gain a [gold]Greatest Hurting[/gold]{IfUpgraded:show:+|}.",

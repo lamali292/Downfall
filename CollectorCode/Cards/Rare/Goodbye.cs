@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
@@ -11,9 +12,10 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Goodbye : CollectorCardModel
 {
-    public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Goodbye() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Exhaust);
+        WithTip<MiasmaPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -25,6 +27,7 @@ public class Goodbye : CollectorCardModel
         var powerAmount = cardPlay.Target.GetPowerAmount<MiasmaPower>();
         if (powerAmount <= 0)
             return;
+        if (IsUpgraded) powerAmount *= 2;
         await PowerCmd.Apply<MiasmaPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
     }
 }
