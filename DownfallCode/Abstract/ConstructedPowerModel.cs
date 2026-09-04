@@ -1,4 +1,6 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Cards.Variables;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -127,5 +129,68 @@ public abstract class ConstructedPowerModel(
     public ConstructedPowerModel WithTip<T>() where T : AbstractModel
     {
         return WithTip(typeof(T));
+    }
+
+
+    public static IEnumerable<DynamicVar> FinishMakeCalculatedVar(
+        CalculatedVar var,
+        int baseVal,
+        int bonusVal)
+    {
+        switch (var)
+        {
+            case CustomCalculatedVar _:
+            case CustomCalculatedBlockVar _:
+                yield return new DynamicVar(var.Name + "Base", baseVal);
+                yield return new DynamicVar(var.Name + "Extra", bonusVal);
+                break;
+            case CustomCalculatedDamageVar _:
+                yield return new DynamicVar(var.Name + "Base", baseVal);
+                yield return new CustomExtraDamageVar(var.Name, bonusVal);
+                break;
+            case CalculatedDamageVar _:
+                yield return new CalculationBaseVar(baseVal);
+                yield return new ExtraDamageVar(bonusVal);
+                break;
+            default:
+                yield return new CalculationBaseVar(baseVal);
+                yield return new CalculationExtraVar(bonusVal);
+                break;
+        }
+
+        yield return var;
+    }
+
+
+    public static IEnumerable<DynamicVar> MakeCalculatedVar(
+        string name,
+        int baseVal,
+        Func<PowerModel, Creature?, Decimal> bonus,
+        int mult = 1)
+    {
+        return CustomCardModel.FinishMakeCalculatedVar(
+            new CustomCalculatedVar(name).WithMultiplier(bonus), baseVal, mult);
+    }
+
+    public static IEnumerable<DynamicVar> MakeCalculatedDamage(
+        string name,
+        int baseVal,
+        Func<PowerModel, Creature?, Decimal> bonus,
+        int mult = 1,
+        ValueProp props = ValueProp.Move)
+    {
+        return CustomCardModel.FinishMakeCalculatedVar(
+            new CustomCalculatedDamageVar(name, props).WithMultiplier(bonus), baseVal, mult);
+    }
+
+    public static IEnumerable<DynamicVar> MakeCalculatedBlock(
+        string name,
+        int baseVal,
+        Func<PowerModel, Creature?, Decimal> bonus,
+        int mult = 1,
+        ValueProp props = ValueProp.Move)
+    {
+        return CustomCardModel.FinishMakeCalculatedVar(
+            new CustomCalculatedBlockVar(name, props).WithMultiplier(bonus), baseVal, mult);
     }
 }
