@@ -12,6 +12,6 @@ public class ScorchedPower : CollectorPowerModel
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
-        await PowerCmd.Apply<CollectorDoomPower>(ctx, Owner, Amount, Applier, null);
+        await PowerCmd.Apply<CollectorMiasmaPower>(ctx, Owner, Amount, Applier, null);
     }
 }

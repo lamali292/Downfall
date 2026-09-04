@@ -3,19 +3,13 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
-using Collector.CollectorCode.Powers;
-using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Collector.CollectorCode.Cards.Basic;
 
@@ -49,7 +43,7 @@ public class Fireball : CollectorCardModel, IHasPyre
         }
         //await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
         //await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
-        //await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this);
+        //await CommonActions.Apply<CollectorMiasmaPower>(ctx, cardPlay.Target, this);
     }
 
     public CardModel? PyredCard { get; set; }

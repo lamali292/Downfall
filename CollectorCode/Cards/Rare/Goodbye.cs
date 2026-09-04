@@ -22,9 +22,9 @@ public class Goodbye : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target is not { IsAlive: true }) return;
-        var powerAmount = cardPlay.Target.GetPowerAmount<CollectorDoomPower>();
+        var powerAmount = cardPlay.Target.GetPowerAmount<CollectorMiasmaPower>();
         if (powerAmount <= 0)
             return;
-        await PowerCmd.Apply<CollectorDoomPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
+        await PowerCmd.Apply<CollectorMiasmaPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
     }
 }
