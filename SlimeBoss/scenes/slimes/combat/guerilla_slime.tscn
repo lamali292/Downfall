@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_khak3"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_c84yf"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/poison.tscn" id="2_khak3"]
 
 [node name="PoisonSlime" type="Node2D"]
-script = ExtResource("1_khak3")
+script = ExtResource("1_c84yf")
 
 [node name="Visuals" parent="." instance=ExtResource("2_khak3")]
+preview_animation = "idle_loop"
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]
