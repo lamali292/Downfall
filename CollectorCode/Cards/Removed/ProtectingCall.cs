@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class ProtectingCall : CollectorCardModel
 {
-    public ProtectingCall() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public ProtectingCall() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, false, false)
     {
         WithVars(new SummonVar(6).WithUpgrade(2));
         WithPower<ProtectingCallPower>(2, 1);
