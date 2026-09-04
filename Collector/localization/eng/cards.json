@@ -188,5 +188,7 @@
   "COLLECTOR-COALESCENCE_FORM.title": "Coalescence Form",
   "COLLECTOR-COALESCENCE_FORM.description": "Gain {Reserve:reserveIcons()}.\nAt the start of your turn, gain {CoalescenceFormPower:reserveIcons()} and increase this gain by 1.",
   "COLLECTOR-ASTRAL_FLAMES.title": "Astral Flames",
-  "COLLECTOR-ASTRAL_FLAMES.description": "[gold]Exhaust[/gold] a card from your [gold]Hand[/gold], [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold].\nGain {Block:diff()} [gold]Block[/gold].\nGains {Increase:diff()} additional [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} it costs."
+  "COLLECTOR-ASTRAL_FLAMES.description": "[gold]Exhaust[/gold] a card from your [gold]Hand[/gold], [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold].\nGain {Block:diff()} [gold]Block[/gold].\nGains {Increase:diff()} additional [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} it costs.",
+  "COLLECTOR-ASHES_OF_CALAMITY.title": "Ashes of Calamity",
+  "COLLECTOR-ASHES_OF_CALAMITY.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf there are {Threshold:diff()} or more Status cards in your [gold]Exhaust Pile[/gold], destroy them.\nOtherwise, [gold]Exhaust[/gold] this card."
 }
