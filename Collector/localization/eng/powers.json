@@ -67,5 +67,11 @@
   "COLLECTOR-TORCHHEAD_POWER.smartDescription": "[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
   "COLLECTOR-MIASMA_POWER.title": "Miasma",
   "COLLECTOR-MIASMA_POWER.description": "",
-  "COLLECTOR-FINALIZE_POWER.remoteDescription": "When [gold]{OwnerName}[/gold] dies, [orange]{ApplierName}[/orange] heals [blue]{Amount}[/blue] HP."
+  "COLLECTOR-FINALIZE_POWER.remoteDescription": "When [gold]{OwnerName}[/gold] dies, [orange]{ApplierName}[/orange] heals [blue]{Amount}[/blue] HP.",
+  "COLLECTOR-EQUIP_SHIELD_POWER.title": "Equip: Shield",
+  "COLLECTOR-EQUIP_SHIELD_POWER.description": "At the end of your turn, if [gold]Torchhead[/gold] is alive, gain [gold]Block[/gold].",
+  "COLLECTOR-EQUIP_SHIELD_POWER.smartDescription": "At the end of your turn, if [gold]Torchhead[/gold] is alive, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "COLLECTOR-EQUIP_FURNACE_POWER.title": "Equip: Furnace",
+  "COLLECTOR-EQUIP_FURNACE_POWER.description": "[gold]Torchhead[/gold] deals additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold]. ",
+  "COLLECTOR-EQUIP_FURNACE_POWER.smartDescription": "[gold]Torchhead[/gold] deals [blue]{Amount}[/blue] additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].\n(Deals [blue]{Damage}[/blue] additional damage)"
 }

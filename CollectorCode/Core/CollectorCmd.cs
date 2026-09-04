@@ -30,6 +30,24 @@ public class CollectorCmd
         return pyred;
     }
 
+    
+    
+    public static Task<Creature> Kindle(
+        PlayerChoiceContext ctx,
+        AbstractModel source)
+    {
+        return Kindle(ctx, source.Player, source);
+    }
+
+    public static Task<Creature> Kindle(
+        PlayerChoiceContext ctx,
+        Player summoner,
+        AbstractModel source)
+    {
+        return SummonTorchhead(ctx, summoner, source.DynamicVars.Kindle.IntValue, source);
+    }
+    
+    
     public static async Task<Creature> SummonTorchhead(
         PlayerChoiceContext ctx,
         Player summoner,

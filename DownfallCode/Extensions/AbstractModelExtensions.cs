@@ -4,6 +4,7 @@ using BaseLib.Patches.Features;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
@@ -37,6 +38,20 @@ public static class AbstractModelExtensions
             CardModifier cardModifier => cardModifier.Owner?.Creature ??
                                          throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
             GhostflameModel ghostflameModel => ghostflameModel.Owner.Creature,
+            _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
+        };
+        
+        public Player Player => model switch
+        {
+            RelicModel relic => relic.Owner,
+            CardModel card => card.Owner,
+            PotionModel potion => potion.Owner,
+            PowerModel power => power.Owner.Player ??  throw new ArgumentException($"Power has no player: {model.GetType().Name}"),
+            EnchantmentModel enchantment => enchantment.Card.Owner,
+            AfflictionModel affliction => affliction.Card.Owner,
+            CardModifier cardModifier => cardModifier.Owner?.Owner ??
+                                         throw new ArgumentException($"CardModifier has no player: {model.GetType().Name}"),
+            GhostflameModel ghostflameModel => ghostflameModel.Owner,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
 

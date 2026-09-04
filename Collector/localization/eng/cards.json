@@ -176,5 +176,9 @@
   "COLLECTOR-PYREBLAST.title": "Pyreblast",
   "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Exhausted[/gold] this combat, while this is in your [gold]Hand[/gold].",
   "COLLECTOR-HELLFIRE.title": "Hellfire",
-  "COLLECTOR-HELLFIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold] for each card [gold]Exhausted[/gold]."
+  "COLLECTOR-HELLFIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold] for each card [gold]Exhausted[/gold].",
+  "COLLECTOR-EQUIP_SHIELD.title": "Equip: Shield",
+  "COLLECTOR-EQUIP_SHIELD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nAt the end of your turn, if [gold]Torchhead[/gold] is alive, gain {EquipShieldPower:diff()} [gold]Block[/gold].",
+  "COLLECTOR-EQUIP_FURNACE.title": "Equip: Furnace",
+  "COLLECTOR-EQUIP_FURNACE.description": "[gold]Torchhead[/gold] deals {EquipFurnacePower:diff()} additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold]."
 }
