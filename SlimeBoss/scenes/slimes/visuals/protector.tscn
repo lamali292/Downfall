@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/protector.spatlas" id="1_i5tq0"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_m.spskel" id="2_h5rle"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.atlas" id="1_h5rle"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.skel" id="2_1yrsp"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_h5rle"]
-atlas_res = ExtResource("1_i5tq0")
-skeleton_file_res = ExtResource("2_h5rle")
+atlas_res = ExtResource("1_h5rle")
+skeleton_file_res = ExtResource("2_1yrsp")
 
 [node name="Protector" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_h5rle")
-preview_skin = "Default"
+preview_skin = "protector"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

@@ -23,11 +23,14 @@ public class GhostflameSlime : SlimeModel
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips => [HoverTipFactory.FromPower<SoulBurnPower>()];
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("hex"));
+        skeleton.SetSlotsToSetupPose();
     }
+
 
 
     public override async Task Command(PlayerChoiceContext ctx)

@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/hex.spatlas" id="1_dedoe"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_m.spskel" id="2_i2du6"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.atlas" id="1_i2du6"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.skel" id="2_50tnr"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/vfx/fire.tscn" id="3_50tnr"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_i2du6"]
-atlas_res = ExtResource("1_dedoe")
-skeleton_file_res = ExtResource("2_i2du6")
+atlas_res = ExtResource("1_i2du6")
+skeleton_file_res = ExtResource("2_50tnr")
 
 [node name="Hex" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_i2du6")
-preview_skin = "Default"
+preview_skin = "hex"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "top"
+show_behind_parent = true
+position = Vector2(3.1299968, -78.11)
+rotation = -3.1415925
+
+[node name="vfx_fire" parent="SpineSlotNode" instance=ExtResource("3_50tnr")]
+show_behind_parent = true
+rotation = 3.1415927
+scale = Vector2(0.224, 0.224)

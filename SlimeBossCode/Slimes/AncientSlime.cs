@@ -25,10 +25,11 @@ public class AncientSlime : SlimeModel
     [
         HoverTipFactory.FromPower<PotencyPower>()
     ];
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("ancient"));
+        skeleton.SetSlotsToSetupPose();
     }
 
     public override async Task Command(PlayerChoiceContext ctx)

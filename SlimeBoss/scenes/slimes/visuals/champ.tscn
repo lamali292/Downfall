@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/champ.spatlas" id="1_or3np"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_m.spskel" id="2_bsax8"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.atlas" id="1_or3np"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.skel" id="2_bsax8"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/crown.png" id="3_bsax8"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_2lth5"]
 atlas_res = ExtResource("1_or3np")
@@ -9,7 +10,22 @@ skeleton_file_res = ExtResource("2_bsax8")
 
 [node name="Champ" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_2lth5")
-preview_skin = "Default"
+preview_skin = "champ"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "crown"
+show_behind_parent = true
+position = Vector2(-16.18, -43.64)
+rotation = -3.1415925
+
+[node name="CrownImg" type="TextureRect" parent="SpineSlotNode"]
+offset_left = 32.820007
+offset_top = 50.36
+offset_right = 176.82
+offset_bottom = 194.36
+rotation = -3.0798693
+scale = Vector2(1.1562281, 1.1562281)
+texture = ExtResource("3_bsax8")

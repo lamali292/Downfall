@@ -19,11 +19,13 @@ public class BronzeSlime : SlimeModel
     ];
 
     public override SlimeType SlimeType => SlimeType.Specialist;
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("bronze"));
+        skeleton.SetSlotsToSetupPose();
     }
+
 
     public override async Task Command(PlayerChoiceContext ctx)
     {

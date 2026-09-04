@@ -18,12 +18,13 @@ public class BruiserSlime : SlimeModel
         new RepeatVar(2)
     ];
 
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("attack"));
+        skeleton.SetSlotsToSetupPose();
     }
 
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).WithHitCount(DynamicVars.Repeat.IntValue)
