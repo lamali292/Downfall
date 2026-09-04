@@ -1,4 +1,6 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
@@ -12,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class FuelTheFire : CollectorCardModel, IHasPyre
+public class FuelTheFire : CollectorCardModel, IHasPyre, ITranscendenceCard
 {
     public FuelTheFire() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
@@ -28,5 +30,10 @@ public class FuelTheFire : CollectorCardModel, IHasPyre
     {
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, 1);
+    }
+
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<StashAway>();
     }
 }

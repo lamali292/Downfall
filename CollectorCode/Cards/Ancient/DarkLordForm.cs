@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Basic;
+using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
@@ -7,18 +8,15 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
-namespace Collector.CollectorCode.Cards.Rare;
+namespace Collector.CollectorCode.Cards.Ancient;
 
 [Pool(typeof(CollectorCardPool))]
 public class DarkLordForm : CollectorCardModel
 {
-    public DarkLordForm() : base(4, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public DarkLordForm() : base(5, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        WithTip(new TooltipSource(card => card.IsUpgraded
-            ? HoverTipFactory.FromPower<DarkLordFormPlusPower>()
-            : HoverTipFactory
-                .FromPower<DarkLordFormPower>()));
-        WithTip<Fireball>();
+        WithUpgradingCardTip<YouAreMine>();
+        WithKeyword(CardKeyword.Retain);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
