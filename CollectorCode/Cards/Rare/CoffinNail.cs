@@ -11,10 +11,10 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class CoffinNail : CollectorCardModel
 {
-    public CoffinNail() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public CoffinNail() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
-        WithVar("Increase", 6, 2);
+        WithDamage(34, 11);
+        WithVar("Increase", 9, 2);
         WithPower<CopyNextTurnPower>(1);
     }
 
@@ -29,7 +29,6 @@ public class CoffinNail : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-
         var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
         if (power == null) return;
         power.Card = this;

@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using SlimeBoss.SlimeBossCode.Patches;
+using SlimeBoss.SlimeBossCode.Slimes;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace SlimeBoss.SlimeBossCode;
@@ -18,8 +19,8 @@ public static class SlimeBossMainFile
     public static void Initialize()
     {
         BundledSubmodLocRegistry.Register(ModId);
+        HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
-            .Add(typeof(PersonalHivePowerSlimePatch))
             .Add(typeof(SlimeDeathPatches))
             .Add(typeof(SlimeHoverTipPatch))
             .PatchAll();

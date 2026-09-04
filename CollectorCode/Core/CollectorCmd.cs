@@ -62,7 +62,11 @@ public class CollectorCmd
         return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
     }
 
-
+    public static Task GetReserve(CardModel card)
+    {
+        return GetReserve(card.Owner, card.DynamicVars.Reserve.IntValue );
+    }
+    
     public static Task GetReserve(Player player, int amount)
     {
         CardResourceRegistry.Get<CollectorEnergy>()?.Gain(player, amount);
