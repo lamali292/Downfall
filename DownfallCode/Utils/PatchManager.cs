@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Patches.KaleidoscopePatch;
 using Hexaghost.HexaghostCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Patches;
 
 namespace Downfall.DownfallCode.Utils;
 
@@ -68,6 +69,7 @@ public class DownfallPatchManager
             .Add(typeof(MainMenuButtonsPatch))
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
+            .Add(typeof(PersonalHivePowerExemptPatch))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
 
         patcher.Add(typeof(KaleidoscopePoolFilter))

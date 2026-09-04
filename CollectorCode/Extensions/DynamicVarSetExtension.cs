@@ -8,6 +8,6 @@ public static class DynamicVarSetExtension
     extension(DynamicVarSet vars)
     {
         public KindleVar Kindle  => (KindleVar) vars._vars["Kindle"];
-        
+        public ReserveVar Reserve  => (ReserveVar) vars._vars["Reserve"];
     }
 }

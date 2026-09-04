@@ -29,6 +29,12 @@ public abstract class CollectorCardModel(
     {
         return WithVar(new KindleVar(baseVal).WithUpgrade(upgradeVal));
     }
+    
+    protected ConstructedCardModel WithReserve(int baseVal, int upgradeVal = 0)
+    {
+        WithReserveTip();
+        return WithVar(new ReserveVar(baseVal).WithUpgrade(upgradeVal));
+    }
 
 
 

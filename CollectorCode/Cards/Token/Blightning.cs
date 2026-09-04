@@ -13,10 +13,10 @@ public class Blightning : CollectorCardModel
 {
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithPower<MiasmaPower>(3, 1);
         WithDamage(6, 3);
-        WithKeyword(CardKeyword.Exhaust);
+        WithPower<MiasmaPower>(3, 1);
         WithCards(1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,6 +26,7 @@ public class Blightning : CollectorCardModel
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
-        
+        await CommonActions.Draw(this, ctx);
+
     }
 }

@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using SlimeBoss.SlimeBossCode.Patches;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Collector.CollectorCode;
@@ -17,6 +18,7 @@ public static class CollectorMainFile
 
     public static void Initialize()
     {
+        HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);

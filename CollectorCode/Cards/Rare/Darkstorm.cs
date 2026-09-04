@@ -13,17 +13,16 @@ public class Darkstorm : CollectorCardModel
 {
     public Darkstorm() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithCards(2, 2);
-        WithKeyword(CardKeyword.Exhaust);
-        WithTip<Blightning>();
+        WithKeyword(CardKeyword.Ethereal);
+        WithUpgradingCardTip<Blightning>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Hand);
-        await DownfallCardCmd.GiveCards<Blightning>(Owner, PileType.Draw, DynamicVars.Cards.IntValue,
-            CardPilePosition.Random);
+        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Hand, upgraded:IsUpgraded);
+        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Draw, CardPilePosition.Random, upgraded:IsUpgraded);
+        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Discard, upgraded:IsUpgraded);
     }
 }

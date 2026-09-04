@@ -83,6 +83,13 @@ public abstract class CollectorPowerModel(
     {
         return WithTip(new PowerTooltipSource(_ => CollectorTip.ReserveTip));
     }
+    
+    protected ConstructedPowerModel WithReserve(int baseVal)
+    {
+        WithReserveTip();
+        return WithVars(new ReserveVar(baseVal));
+    }
+
 }
 
 public class CollectorPotionPool : DownfallPotionPool<Collector>;

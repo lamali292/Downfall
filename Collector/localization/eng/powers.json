@@ -24,8 +24,8 @@
   "COLLECTOR-DOOMED_ATTACK_POWER.description": "Your next Attack this turn applies [gold]Miasma[/gold].",
   "COLLECTOR-DOOMED_ATTACK_POWER.smartDescription": "Your next Attack this turn applies [blue]{Amount}[/blue] Miasma.",
   "COLLECTOR-DOUBLE_TROUBLE_POWER.title": "Double Up",
-  "COLLECTOR-DOUBLE_TROUBLE_POWER.description": "Your next Collected card this turn is played twice.",
-  "COLLECTOR-DOUBLE_TROUBLE_POWER.smartDescription": "Your next {Amount:plural:|[blue]{Amount}[/blue] }Collected {Amount:plural:card:cards} this turn {Amount:plural:is|are} played twice.",
+  "COLLECTOR-DOUBLE_TROUBLE_POWER.description": "This turn, your next Colorless card is played an extra time.",
+  "COLLECTOR-DOUBLE_TROUBLE_POWER.smartDescription": "This turn, your next {Amount:plural:|[blue]{Amount}[/blue] }Colorless {Amount:plural:card is:cards are} played an extra time.",
   "COLLECTOR-EMPOWER_POWER.title": "Empower",
   "COLLECTOR-EMPOWER_POWER.description": "At the start of your next turn, gain [gold]Strength[/gold].",
   "COLLECTOR-EMPOWER_POWER.smartDescription": "At the start of your next {Turns:plural:turn|[blue]{}[/blue] turns}, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
@@ -73,5 +73,8 @@
   "COLLECTOR-EQUIP_SHIELD_POWER.smartDescription": "At the end of your turn, if [gold]Torchhead[/gold] is alive, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "COLLECTOR-EQUIP_FURNACE_POWER.title": "Equip: Furnace",
   "COLLECTOR-EQUIP_FURNACE_POWER.description": "[gold]Torchhead[/gold] deals additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold]. ",
-  "COLLECTOR-EQUIP_FURNACE_POWER.smartDescription": "[gold]Torchhead[/gold] deals [blue]{Amount}[/blue] additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].\n(Deals [blue]{Damage}[/blue] additional damage)"
+  "COLLECTOR-EQUIP_FURNACE_POWER.smartDescription": "[gold]Torchhead[/gold] deals [blue]{Amount}[/blue] additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].\n(Deals [blue]{Damage}[/blue] additional damage)",
+  "COLLECTOR-COALESCENCE_FORM_POWER.title": "Coalescence Form",
+  "COLLECTOR-COALESCENCE_FORM_POWER.description": "At the start of your turn, gain {1:reserveIcons()} and increase this gain by [blue]1[/blue].",
+  "COLLECTOR-COALESCENCE_FORM_POWER.smartDescription": "At the start of your turn, gain {Reserve:reserveIcons()} and increase this gain by [blue]{Amount}[/blue]."
 }
