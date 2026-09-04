@@ -13,7 +13,7 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
 {
     public FingerOfDeath() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<MiasmaPower>(60);
+        WithPower<MiasmaPower>(50, 17);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

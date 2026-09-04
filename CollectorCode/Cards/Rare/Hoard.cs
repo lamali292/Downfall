@@ -8,16 +8,18 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class Hoard : CollectorCardModel, IHasPyre
 {
-    public Hoard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Hoard() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithCards(6, 1);
+        WithPower<RetainHandPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -31,6 +33,6 @@ public class Hoard : CollectorCardModel, IHasPyre
             var drawn = await CardPileCmd.Draw(ctx, Owner);
             if (drawn == null) break;
         }
-
+        await CommonActions.ApplySelf<RetainHandPower>(ctx, this);
     }
 }
