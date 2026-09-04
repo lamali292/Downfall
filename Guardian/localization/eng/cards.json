@@ -69,7 +69,7 @@
   "GUARDIAN-PREPROGRAM.title": "Preprogram",
   "GUARDIAN-PRIMING_SHOT.description": "Deal {Damage:diff()} damage.\n[gold]Brace[/gold] {Brace:diff()}.",
   "GUARDIAN-PRIMING_SHOT.title": "Priming Shot",
-  "GUARDIAN-PRISMATIC_BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold] for each [gold]Gem[/gold] in this card.{InCombat:cond:\n(Repeats {Repeat:diff()} {Repeat:plural:time|times})|}",
+  "GUARDIAN-PRISMATIC_BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold] for each [gold]Gem[/gold] in this card.{InCombat:cond:\n(Gained {Repeat:diff()} {Repeat:plural:time|times})|}",
   "GUARDIAN-PRISMATIC_BARRIER.title": "Prismatic Barrier",
   "GUARDIAN-PRISMATIC_SPRAY.description": "Deal {Damage:diff()} damage for each [gold]Gem[/gold] in this card.{InCombat:cond:\n(Hits {Repeat:diff()} {Repeat:plural:time|times})|}",
   "GUARDIAN-PRISMATIC_SPRAY.title": "Prismatic Spray",
