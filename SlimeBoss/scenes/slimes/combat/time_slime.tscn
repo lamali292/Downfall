@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_vpw3y"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_j1qox"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slowing.tscn" id="2_vpw3y"]
 
 [node name="SlowingSlime" type="Node2D"]
-script = ExtResource("1_vpw3y")
+script = ExtResource("1_j1qox")
 
 [node name="Visuals" parent="." instance=ExtResource("2_vpw3y")]
+preview_animation = "idle_loop"
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]

@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_sajeu"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_86n8s"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/sliming.tscn" id="2_sajeu"]
 
 [node name="SlimingSlime" type="Node2D"]
-script = ExtResource("1_sajeu")
+script = ExtResource("1_86n8s")
 
 [node name="Visuals" parent="." instance=ExtResource("2_sajeu")]
+preview_animation = "idle_loop"
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]

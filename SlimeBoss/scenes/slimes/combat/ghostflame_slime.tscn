@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCreatureVisuals.cs" id="1_nnsxd"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_8iyfg"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/hex.tscn" id="2_nnsxd"]
 
 [node name="HexSlime" type="Node2D"]
-script = ExtResource("1_nnsxd")
+script = ExtResource("1_8iyfg")
 
 [node name="Visuals" parent="." instance=ExtResource("2_nnsxd")]
+preview_animation = "idle_loop"
 unique_name_in_owner = true
 position = Vector2(0, -2)
 
