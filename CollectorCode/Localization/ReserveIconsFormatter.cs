@@ -24,8 +24,8 @@ public class ReserveIconsFormatter : IAutoRegisterFormatSpecifier
             DynamicVar dynamicVar => Convert.ToInt32(dynamicVar.PreviewValue),
             decimal num1 => (int)num1,
             int num2 => num2,
-            _ => throw new LocException(
-                $"Unknown value='{formattingInfo.CurrentValue}' type={formattingInfo.CurrentValue?.GetType()}")
+            _ =>  int.TryParse(formattingInfo.FormatterOptions, out var str) ? str : 1
+        
         };
 
         const string element = "[img]res://Collector/images/character/reserve_text_icon.png[/img]";

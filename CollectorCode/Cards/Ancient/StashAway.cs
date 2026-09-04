@@ -1,20 +1,23 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class StashAway : CollectorCardModel
+public class StashAway : CollectorCardModel, IHasPyre
 {
-    public StashAway() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public StashAway() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
-        WithBlock(4, 2);
-        WithTip<ReserveNextTurnPower>();
-        WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Pyre);
+        WithReserve(1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -25,8 +28,10 @@ public class StashAway : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        for (var i = 0; i < x; i++)
-            await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this, x);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this, x + 2);
+        if (!IsUpgraded) return;
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, x + 1);
     }
+
+    public CardModel? PyredCard { get; set; }
 }

@@ -9,6 +9,11 @@ namespace Collector.CollectorCode.Powers;
 
 public class ReserveNextTurnPower : CollectorPowerModel
 {
+    public ReserveNextTurnPower()
+    {
+        WithReserveTip();
+    }
+     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (Owner != player.Creature) return;
