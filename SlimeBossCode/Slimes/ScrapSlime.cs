@@ -8,12 +8,15 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 public class ScrapSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.None;
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("scrap"));
+        skeleton.SetSlotsToSetupPose();
     }
 
+    
     public override Task Command(PlayerChoiceContext ctx)
     {
         throw new Exception();

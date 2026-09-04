@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/scrap.spatlas" id="1_q7uhk"]
-[ext_resource type="SpineSkeletonFileResource"  path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_lcpih"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltS/skeleton.atlas" id="1_q7uhk"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltS/skeleton.skel" id="2_lcpih"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/scrap.png" id="3_lcpih"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_inq3w"]
 atlas_res = ExtResource("1_q7uhk")
@@ -9,7 +10,22 @@ skeleton_file_res = ExtResource("2_lcpih")
 
 [node name="Scrap" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_inq3w")
-preview_skin = "Default"
+preview_skin = "scrap"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "images-eyeshadow"
+show_behind_parent = true
+position = Vector2(13.759999, -12.75)
+rotation = -3.1415925
+
+[node name="TextureRect" type="TextureRect" parent="SpineSlotNode"]
+offset_left = 61.76
+offset_top = 38.249992
+offset_right = 157.76
+offset_bottom = 134.25
+rotation = 2.878949
+scale = Vector2(0.74238724, 0.74238724)
+texture = ExtResource("3_lcpih")

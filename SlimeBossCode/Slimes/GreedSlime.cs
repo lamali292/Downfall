@@ -8,11 +8,14 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 public class GreedSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.None;
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("greed"));
+        skeleton.SetSlotsToSetupPose();
     }
+
 
     public override Task Command(PlayerChoiceContext ctx)
     {

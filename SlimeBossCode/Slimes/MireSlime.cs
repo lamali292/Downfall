@@ -26,13 +26,15 @@ public class MireSlime : SlimeModel
     [
         HoverTipFactory.FromPower<GoopPower>()
     ];
+    
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "hit");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("sliming"));
+        skeleton.SetSlotsToSetupPose();
     }
 
-
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         var cmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)

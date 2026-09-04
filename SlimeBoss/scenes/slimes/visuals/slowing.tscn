@@ -1,15 +1,48 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=6 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/slowing.spatlas" id="1_4772p"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.spskel" id="2_4ea0b"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltS/skeleton.atlas" id="1_4ea0b"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltS/skeleton.skel" id="2_byrrt"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/stopwatch.png" id="3_gorgb"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/antennae.png" id="4_ypsfb"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_4ea0b"]
-atlas_res = ExtResource("1_4772p")
-skeleton_file_res = ExtResource("2_4ea0b")
+atlas_res = ExtResource("1_4ea0b")
+skeleton_file_res = ExtResource("2_byrrt")
 
 [node name="Slowing" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_4ea0b")
-preview_skin = "Default"
+preview_skin = "slowing"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "stopwatch"
+show_behind_parent = true
+position = Vector2(-35.44, -5.299999)
+rotation = -3.1415925
+
+[node name="TextureRect" type="TextureRect" parent="SpineSlotNode"]
+offset_left = 47.56002
+offset_top = 57.699997
+offset_right = 191.56003
+offset_bottom = 201.7
+rotation = -3.1243982
+scale = Vector2(0.7173225, 0.7173225)
+texture = ExtResource("3_gorgb")
+
+[node name="SpineSlotNode2" type="SpineSlotNode" parent="."]
+slot_name = "antennae"
+show_behind_parent = true
+position = Vector2(8.689999, -34.28)
+rotation = -3.1415925
+
+[node name="TextureRect" type="TextureRect" parent="SpineSlotNode2"]
+offset_left = 59.690006
+offset_top = 37.72
+offset_right = 203.69
+offset_bottom = 181.72
+rotation = -3.187093
+scale = Vector2(0.85431904, 0.85431904)
+texture = ExtResource("4_ypsfb")
+metadata/_edit_use_anchors_ = true

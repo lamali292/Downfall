@@ -27,11 +27,13 @@ public class SpikySlime : SlimeModel
     [
         HoverTipFactory.FromPower<ThornsPower>()
     ];
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("protector"));
+        skeleton.SetSlotsToSetupPose();
     }
+    
 
 
     public override async Task Command(PlayerChoiceContext ctx)

@@ -17,9 +17,11 @@ public class GuerillaSlime : SlimeModel
         new DamageVar(3, DamageProps.monsterMove)
     ];
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("poison"));
+        skeleton.SetSlotsToSetupPose();
     }
 
 

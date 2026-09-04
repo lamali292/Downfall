@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="SpineAtlasResource"  path="res://SlimeBoss/scenes/slimes/visuals/drawing.spatlas" id="1_hv7gw"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_m.spskel" id="2_bh55p"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.atlas" id="1_hv7gw"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.skel" id="2_bh55p"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_hv7gw"]
 atlas_res = ExtResource("1_hv7gw")
@@ -9,7 +9,7 @@ skeleton_file_res = ExtResource("2_bh55p")
 
 [node name="Ancient" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_hv7gw")
-preview_skin = "Default"
+preview_skin = "ancient"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

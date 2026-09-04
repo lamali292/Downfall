@@ -1,15 +1,46 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=6 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/cultist.spatlas" id="1_665ly"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_m.spskel" id="2_7mcfq"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.atlas" id="1_7mcfq"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.skel" id="2_738gk"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/cultistleftstick.png" id="3_jpabe"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/cultistrightstick.png" id="4_5ajtd"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_7mcfq"]
-atlas_res = ExtResource("1_665ly")
-skeleton_file_res = ExtResource("2_7mcfq")
+atlas_res = ExtResource("1_7mcfq")
+skeleton_file_res = ExtResource("2_738gk")
 
 [node name="Cultist" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_7mcfq")
-preview_skin = "Default"
+preview_skin = "cultist"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "images-eyeback1"
+show_behind_parent = true
+position = Vector2(35.599995, -64.24)
+rotation = -3.1415925
+
+[node name="StickL" type="TextureRect" parent="SpineSlotNode"]
+offset_left = 42.86762
+offset_top = 94.8991
+offset_right = 186.86761
+offset_bottom = 238.89911
+rotation = -2.7593656
+texture = ExtResource("3_jpabe")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpineSlotNode2" type="SpineSlotNode" parent="."]
+slot_name = "images-eyeback4"
+show_behind_parent = true
+position = Vector2(-11.060003, -56.91)
+rotation = -3.1415925
+
+[node name="StickR" type="TextureRect" parent="SpineSlotNode2"]
+offset_left = 130.94
+offset_top = -1.9100192
+offset_right = 274.94
+offset_bottom = 142.08998
+rotation = -3.8205256
+texture = ExtResource("4_5ajtd")

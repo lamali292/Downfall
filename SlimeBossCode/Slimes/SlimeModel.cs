@@ -1,6 +1,8 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,6 +32,12 @@ public abstract class SlimeModel : CustomMonsterModel
     public Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
     protected virtual LocString Description => L10NMonsterLookup(Id.Entry + ".description");
 
+
+    public sealed override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    {
+        return SetupAnimationState(controller, "idle_loop", hitName: "hurt", attackName: "attack");
+    }
+ 
     private LocString SmartDescription
     {
         get

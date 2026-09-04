@@ -25,12 +25,15 @@ public class LeechingSlime : SlimeModel
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
+    
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        return SetupAnimationState(controller, "idle", hitName: "damage");
+        skeleton.SetSkin(skeleton.GetData().FindSkin("shield"));
+        skeleton.SetSlotsToSetupPose();
     }
 
+    
     public override async Task Command(PlayerChoiceContext ctx)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)

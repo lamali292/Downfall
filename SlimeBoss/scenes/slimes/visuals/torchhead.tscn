@@ -1,15 +1,100 @@
-[gd_scene load_steps=4 format=3 ]
+[gd_scene load_steps=12 format=3 ]
 
-[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/visuals/torchhead.spatlas" id="1_hnuya"]
-[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_m.spskel" id="2_qtewo"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.atlas" id="1_hnuya"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeAltM/skeleton.skel" id="2_qtewo"]
+[ext_resource type="Shader" path="res://shaders/vfx/fire/fire_shader_1.tres" id="3_7kate"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_4.png" id="4_kkywg"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_1.png" id="5_b85ex"]
+[ext_resource type="Texture2D" path="res://images/vfx/tileable_noise_2.png" id="6_w6cju"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/fire_shape_1.png" id="7_2skdu"]
+[ext_resource type="Texture2D" path="res://images/vfx/environment/fire/basic_fire_gradient.png" id="8_2ialt"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_kxbuo"]
 atlas_res = ExtResource("1_hnuya")
 skeleton_file_res = ExtResource("2_qtewo")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_od4y2"]
+shader = ExtResource("3_7kate")
+shader_parameter/ColorParameter = Color(0.8, 1, 0, 1)
+shader_parameter/Smooth_Step = Vector2(0.81, 0.9)
+shader_parameter/Noise_Intensity_1 = 0.935
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.0
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.69)
+shader_parameter/NoiseTexture1 = ExtResource("5_b85ex")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("6_w6cju")
+shader_parameter/Noise_Intensity_2 = 1.055
+shader_parameter/top_gradient = ExtResource("8_2ialt")
+shader_parameter/MaskNoiseIntensity = 0.1
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("4_kkywg")
+shader_parameter/Shape_Mask = ExtResource("7_2skdu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t7mt"]
+shader = ExtResource("3_7kate")
+shader_parameter/ColorParameter = Color(0.9411765, 1, 0.4, 1)
+shader_parameter/Smooth_Step = Vector2(0.925, 0.99)
+shader_parameter/Noise_Intensity_1 = 1.055
+shader_parameter/NoiseScale1 = 0.6
+shader_parameter/TimeOffset = 0.3
+shader_parameter/Noise_Scroll_1 = Vector2(0.4, 0.2)
+shader_parameter/NoiseTexture1 = ExtResource("5_b85ex")
+shader_parameter/NoiseScale2 = 0.5
+shader_parameter/Noise_Scroll_2 = Vector2(-0.045, 0.385)
+shader_parameter/NoiseTexture2 = ExtResource("6_w6cju")
+shader_parameter/Noise_Intensity_2 = 0.985
+shader_parameter/top_gradient = ExtResource("8_2ialt")
+shader_parameter/MaskNoiseIntensity = 0.09
+shader_parameter/MaskNoiseScroll = Vector2(0.085, 0.81)
+shader_parameter/MaskNoiseTexture = ExtResource("4_kkywg")
+shader_parameter/Shape_Mask = ExtResource("7_2skdu")
+
 [node name="Torchhead" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_kxbuo")
-preview_skin = "Default"
+preview_skin = "torchhead"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="."]
+slot_name = "images-eye"
+show_behind_parent = true
+position = Vector2(33.869892, -24.40732)
+rotation = -2.8708837
+scale = Vector2(0.99999994, 1)
+
+[node name="RightEye" type="Control" parent="SpineSlotNode"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.388416
+offset_top = -58.97484
+offset_right = 6.6115837
+offset_bottom = 21.025162
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.9373155
+pivot_offset = Vector2(10, 60)
+
+[node name="eye_fire_r" type="ColorRect" parent="SpineSlotNode/RightEye"]
+material = SubResource("ShaderMaterial_od4y2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eye_fire_r_inner_glow" type="ColorRect" parent="SpineSlotNode/RightEye"]
+material = SubResource("ShaderMaterial_8t7mt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
