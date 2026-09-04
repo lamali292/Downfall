@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Combat;
@@ -19,7 +20,8 @@ public class BlockedChakra : CollectorRelicModel
 {
     public BlockedChakra() : base(RelicRarity.Shop)
     {
-        WithVar("KindleAmount", 3);
+        WithKindle(3);
+        WithTip(CollectorTip.Kindle);
         //WithEnergy(1);
     }
     private DynamicVar KindleAmount => DynamicVars["KindleAmount"];

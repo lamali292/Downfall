@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -18,14 +19,17 @@ public class FlameLash : CollectorCardModel, IHasPyre
         WithDamage(8, 4);
     }
 
+    private bool isAoE = false;
     protected override Artist Artist => Artist.Get<Opal>();
 
     public CardModel? PyredCard { get; set; }
 
+    public override TargetType TargetType => (_owner == null || !IsMutable ? TargetType.AnyEnemy :
+        isAoE ? TargetType.AllEnemies : TargetType.AnyEnemy);
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        isAoE = (PyredCard!.EnergyCost.GetResolved() > 2);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (PyredCard == null || !PyredCard.DynamicVars.ContainsKey("Damage")) return;
-        DynamicVars.Damage.UpgradeValueBy(PyredCard.DynamicVars.Damage.BaseValue);
     }
 }

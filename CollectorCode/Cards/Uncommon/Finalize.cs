@@ -13,7 +13,7 @@ public class Finalize : CollectorCardModel
     public Finalize() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<CollectorDoomPower>(24, 4);
+        WithPower<CollectorMiasmaPower>(24, 4);
         WithPower<FinalizePower>(6, 2);
     }
 
@@ -21,7 +21,7 @@ public class Finalize : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<CollectorMiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Apply<FinalizePower>(ctx, this, cardPlay);
     }
 }

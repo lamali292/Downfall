@@ -21,7 +21,7 @@
   "GUARDIAN-CRYSTAL_SHIV.description": "Deal {Damage:diff()} damage.",
   "GUARDIAN-CRYSTAL_WARD.title": "Crystal Ward",
   "GUARDIAN-CRYSTAL_WARD.description": "Gain {Block:diff()} [gold]Block[/gold].",
-  "GUARDIAN-CURL_UP.description": "Place a {IfUpgraded:show:card in|random card from} your [gold]Hand[/gold] into [gold]Stasis[/gold].\n[gold]Brace [/gold]{Brace:diff()}.",
+  "GUARDIAN-CURL_UP.description": "Place a card in your [gold]Hand[/gold] into [gold]Stasis[/gold].\n[gold]Brace [/gold]{Brace:diff()}.",
   "GUARDIAN-CURL_UP.title": "Curl Up",
   "GUARDIAN-DEFEND_GUARDIAN.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "GUARDIAN-DEFEND_GUARDIAN.title": "Defend",

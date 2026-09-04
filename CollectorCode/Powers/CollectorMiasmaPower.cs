@@ -1,21 +1,17 @@
 ﻿using BaseLib.Hooks;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
-using Collector.CollectorCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
-public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
+public class CollectorMiasmaPower() : CollectorPowerModel(PowerType.Debuff)
 {
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext ctx)
     {
@@ -83,7 +79,7 @@ public class CollectorDoomPower() : CollectorPowerModel(PowerType.Debuff)
         
         //If demise is present apply stacks.
         if (Owner.IsAlive && stacks > 0)
-            await PowerCmd.Apply<CollectorDoomPower>(ctx, this.Owner, stacks, this.Owner, null);
+            await PowerCmd.Apply<CollectorMiasmaPower>(ctx, this.Owner, stacks, this.Owner, null);
         else
             await Cmd.CustomScaledWait(0.1f, 0.25f);
     }

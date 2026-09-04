@@ -13,7 +13,7 @@ public class SeedOfDoubt : CollectorCardModel
 {
     public SeedOfDoubt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<CollectorDoomPower>(3);
+        WithPower<CollectorMiasmaPower>(3);
         WithVar("Increase", 1, 1);
     }
 
@@ -21,7 +21,7 @@ public class SeedOfDoubt : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<CollectorDoomPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<CollectorMiasmaPower>(ctx, this, cardPlay);
     }
 
 

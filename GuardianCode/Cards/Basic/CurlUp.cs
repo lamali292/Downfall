@@ -15,7 +15,7 @@ public class CurlUp : GuardianCardModel
 {
     public CurlUp() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBrace(10, 2);
+        WithBrace(5, 5);
         WithTip(GuardianTip.Stasis);
     }
 
@@ -28,12 +28,12 @@ public class CurlUp : GuardianCardModel
         if (GuardianCmd.CanPutIntoStasis(Owner))
         {
             CardModel? card;
-            if (IsUpgraded)
+            //if (IsUpgraded)
                 card =
                     (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
                     .FirstOrDefault();
-            else
-                card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e => e != this));
+            //else
+            //    card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e => e != this));
 
             if (card != null) await GuardianCmd.PutIntoStasis(card, ctx, this);
         }

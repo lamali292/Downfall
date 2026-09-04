@@ -19,7 +19,7 @@ public class BellowCollector : CollectorCardModel
         WithCostUpgradeBy(-1);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
         WithCalculatedVar("UnusedBlock", 0, Calc);
-        WithTip<CollectorDoomPower>();
+        WithTip<CollectorMiasmaPower>();
         WithTip(StaticHoverTip.Block);
     }
 
@@ -34,6 +34,6 @@ public class BellowCollector : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         var unusedBlock = Calc(this, cardPlay.Target);
-        await CommonActions.Apply<CollectorDoomPower>(ctx, cardPlay.Target, this, unusedBlock);
+        await CommonActions.Apply<CollectorMiasmaPower>(ctx, cardPlay.Target, this, unusedBlock);
     }
 }

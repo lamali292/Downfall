@@ -13,8 +13,8 @@ public class Blightning : CollectorCardModel
 {
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithPower<CollectorDoomPower>(6, 2);
-        WithDamage(6, 2);
+        WithPower<CollectorMiasmaPower>(3, 1);
+        WithDamage(6, 3);
         WithKeyword(CardKeyword.Exhaust);
         WithCards(1);
     }
@@ -23,6 +23,9 @@ public class Blightning : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        throw new NotImplementedException();
+        if (cardPlay.Target == null) return;
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.Apply<CollectorMiasmaPower>(ctx, this, cardPlay);
+        
     }
 }
