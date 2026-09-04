@@ -16,7 +16,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 public class FiendFire : CollectorCardModel
 {
     public FiendFire()
-        : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+        : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, false, false)
     {
         WithDamage(7, 3);
         WithTip(CardKeyword.Exhaust);

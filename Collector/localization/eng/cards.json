@@ -19,7 +19,7 @@
   "COLLECTOR-BONFIRE.title": "Bonfire",
   "COLLECTOR-BRAIN_DRAIN.description": "Enemy loses {Damage:diff()} HP.\nAdd their Collected card into your Hand{IfUpgraded:show: and Upgrade it|}.",
   "COLLECTOR-BRAIN_DRAIN.title": "Brain Drain",
-  "COLLECTOR-BRAMBLESPAR_KINDLING.description": "When [gold]Exhausted[/gold], add a [gold]Burning Strike {IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold] and [gold]Kindle[/gold] {Kindle:diff()}.",
+  "COLLECTOR-BRAMBLESPAR_KINDLING.description": "When [gold]Exhausted[/gold], add a [gold]Burning Strike{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold] and [gold]Kindle[/gold] {Kindle:diff()}.",
   "COLLECTOR-BRAMBLESPAR_KINDLING.title": "Bramblespar Kindling",
   "COLLECTOR-BURNING_STRIKE.title": "Burning Strike",
   "COLLECTOR-BURNING_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards:plural:a card|{Cards:diff()} cards}.",

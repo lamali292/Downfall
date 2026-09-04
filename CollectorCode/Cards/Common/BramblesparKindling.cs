@@ -19,9 +19,8 @@ public class BramblesparKindling : CollectorCardModel
 {
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithVars(new SummonVar(3).WithUpgrade(1));
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(CollectorTip.Kindle);
+        WithKindle(3, 1);
         WithTip(new TooltipSource(card =>
         {
             var beam = ModelDb.GetById<BurningStrike>(ModelDb.Card<BurningStrike>().Id).ToMutable();
@@ -39,6 +38,6 @@ public class BramblesparKindling : CollectorCardModel
     {
         if (card != this) return;
         await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
-        await CollectorCmd.SummonTorchhead(choiceContext, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(choiceContext, this);
     }
 }

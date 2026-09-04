@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class DarkApotheosis : CollectorCardModel
 {
-    public DarkApotheosis() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public DarkApotheosis() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, false, false)
     {
         WithKeyword(CardKeyword.Exhaust);
     }
