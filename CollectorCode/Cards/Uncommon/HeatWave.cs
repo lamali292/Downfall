@@ -11,9 +11,9 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class HeatWave : CollectorCardModel
 {
-    public HeatWave() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    public HeatWave() : base(0, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(5, 3);
+        WithDamage(8, 3);
         WithTip<Ember>();
     }
 

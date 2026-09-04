@@ -1,13 +1,11 @@
 using BaseLib.Utils;
-using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Common;
@@ -17,8 +15,9 @@ public class Flash : CollectorCardModel, IHasPyre
 {
     public Flash() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        WithPower<MiasmaPower>(5, 2);
         WithKeyword(CollectorKeyword.Pyre);
-        WithKeyword(CardKeyword.Exhaust);
+        /*
         WithTip(new TooltipSource(c =>
         {
             var card = ModelDb.GetById<Trip>(ModelDb.Card<Trip>().Id).ToMutable();
@@ -31,6 +30,7 @@ public class Flash : CollectorCardModel, IHasPyre
             if (c.IsUpgraded) card.UpgradeInternal();
             return HoverTipFactory.FromCard(card);
         }));
+        */
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -39,6 +39,10 @@ public class Flash : CollectorCardModel, IHasPyre
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
+        //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        /* Old flash code if we decide to go back to old card.
         var trip = CombatState!.CreateCard<Trip>(cardPlay.Card.Owner);
         var blind = CombatState!.CreateCard<Blind>(cardPlay.Card.Owner);
         if (IsUpgraded)
@@ -50,5 +54,6 @@ public class Flash : CollectorCardModel, IHasPyre
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, [trip, blind], Owner);
         if (chosen == null) return;
         await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
+        */
     }
 }

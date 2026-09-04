@@ -12,11 +12,12 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class RotwoodKindling : CollectorCardModel
 {
-    public RotwoodKindling() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+    public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithKeyword(CardKeyword.Unplayable);
+        WithKeyword(CardKeyword.Exhaust);
         WithPower<VulnerablePower>(2, 1);
         WithPower<MiasmaPower>(4, 2);
+        //WithKindle(4, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -27,5 +28,6 @@ public class RotwoodKindling : CollectorCardModel
         if (card != this || CombatState == null) return;
         await CommonActions.Apply<VulnerablePower>(ctx, CombatState.Enemies, this);
         await CommonActions.Apply<MiasmaPower>(ctx, CombatState.Enemies, this);
+        //await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this); - Todo: Figure out how to solve this one.
     }
 }

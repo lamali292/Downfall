@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -38,6 +39,6 @@ public class BramblesparKindling : CollectorCardModel
     {
         if (card != this) return;
         await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
-        await CollectorCmd.SummonTorchhead(choiceContext, Owner, DynamicVars.Summon.IntValue, this);
+        await CollectorCmd.SummonTorchhead(choiceContext, Owner, DynamicVars.Kindle.IntValue, this);
     }
 }
