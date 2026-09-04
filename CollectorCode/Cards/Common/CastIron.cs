@@ -1,5 +1,4 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +15,7 @@ public class CastIron : CollectorCardModel
     {
         //WithTip<Burn>();
         WithVar("Quantity", 2);
-        
+        WithKeyword(CardKeyword.Exhaust);
         WithTips(e =>
             e.IsUpgraded
                 ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()

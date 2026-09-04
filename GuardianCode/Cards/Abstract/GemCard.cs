@@ -67,11 +67,10 @@ public class Bismuth : GemCard<BismuthGem>
 {
     public Bismuth()
     {
-        WithKeyword(CardKeyword.Unplayable);
+        //WithKeyword(CardKeyword.Unplayable);
     }
-
-    protected override bool IsPlayable => false;
-    protected override int CanonicalEnergyCost => -1;
+   //protected override bool IsPlayable => false;
+   protected override int CanonicalEnergyCost => 1;
 }
 
 #pragma warning restore STS001

@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,10 +16,11 @@ public class SunbloomKindling : CollectorCardModel
 {
     public SunbloomKindling() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<StrengthPower>(2, 1);
-        WithCards(2);
-        WithTip<Ember>();
         WithKeyword(CardKeyword.Exhaust);
+        WithKindle(5, 3);
+        WithPower<StrengthPower>(2);
+        WithCards(2);
+        WithUpgradingCardTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -28,6 +30,7 @@ public class SunbloomKindling : CollectorCardModel
     {
         if (card != this) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
+        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue, CardPilePosition.Bottom, IsUpgraded);
+        await CollectorCmd.Kindle(ctx, this);
     }
 }
