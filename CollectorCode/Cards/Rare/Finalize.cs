@@ -5,12 +5,12 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class Finalize : CollectorCardModel
 {
-    public Finalize() : base(4, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Finalize() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(24, 4);
@@ -21,7 +21,7 @@ public class Finalize : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Apply<FinalizePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }

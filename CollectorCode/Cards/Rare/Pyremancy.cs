@@ -10,9 +10,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Pyromancy : CollectorCardModel, IHasPyre
+public class Pyremancy : CollectorCardModel, IHasPyre
 {
-    public Pyromancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Pyremancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<PyromancyPower>(1, 1, false);
         WithReserveTip();

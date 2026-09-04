@@ -5,12 +5,12 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class DoubleTrouble : CollectorCardModel
 {
-    public DoubleTrouble() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public DoubleTrouble() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(6, 3);
         WithPower<DoubleTroublePower>(1, false);
