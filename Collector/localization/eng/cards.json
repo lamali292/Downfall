@@ -186,5 +186,7 @@
   "COLLECTOR-DEGRADE.title": "Degrade",
   "COLLECTOR-DEGRADE.description": "Enemy loses X [gold]Strength[/gold].\nApply {MiasmaPower:diff()}X [gold]Miasma[/gold].",
   "COLLECTOR-COALESCENCE_FORM.title": "Coalescence Form",
-  "COLLECTOR-COALESCENCE_FORM.description": "Gain {Reserve:reserveIcons()}.\nAt the start of your turn, gain {CoalescenceFormPower:reserveIcons()} and increase this gain by 1."
+  "COLLECTOR-COALESCENCE_FORM.description": "Gain {Reserve:reserveIcons()}.\nAt the start of your turn, gain {CoalescenceFormPower:reserveIcons()} and increase this gain by 1.",
+  "COLLECTOR-ASTRAL_FLAMES.title": "Astral Flames",
+  "COLLECTOR-ASTRAL_FLAMES.description": "[gold]Exhaust[/gold] a card from your [gold]Hand[/gold], [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold].\nGain {Block:diff()} [gold]Block[/gold].\nGains {Increase:diff()} additional [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} it costs."
 }
