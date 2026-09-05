@@ -22,7 +22,7 @@ public class Hellfire : CollectorCardModel, IUsesPyredCards
         WithPower<MiasmaPower>(6, 3);
     }
 
-    public IEnumerable<CardModel> PyredCards { get; set; }
+    public IEnumerable<CardModel> PyredCards { get; set; } = [];
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
