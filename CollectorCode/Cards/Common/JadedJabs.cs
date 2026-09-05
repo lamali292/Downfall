@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class JadedJabs : CollectorCardModel, IUsesPyredCard
+public class JadedJabs : CollectorCardModel, IUsesPyredCards
 {
     public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -22,14 +22,15 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCard
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
-
+    
+    public IEnumerable<CardModel> PyredCards { get; set; }
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var cost = PyredCard!.EnergyCost.GetWithModifiers(CostModifiers.All);
+        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetWithModifiers(CostModifiers.All) ?? 0;
         var jadedJabs = DynamicVars["JadedJabs"].IntValue;
         await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
     }
+
+
 }
