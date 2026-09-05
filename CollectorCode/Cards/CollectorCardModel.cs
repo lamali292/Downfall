@@ -23,8 +23,10 @@ public abstract class CollectorCardModel(
     : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
     protected override bool IsPlayable =>
-        !Keywords.Contains(CollectorKeyword.Pyre)|| (Keywords.Contains(CollectorKeyword.Pyre) && Owner.Hand.Any(e => e != this));
+        !HasPyre|| (HasPyre && Owner.Hand.Any(e => e != this));
 
+    private bool HasPyre => Keywords.Contains(CollectorKeyword.Pyre) || Keywords.Contains(CollectorKeyword.Megapyre);
+    
     protected ConstructedCardModel WithKindle(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new KindleVar(baseVal).WithUpgrade(upgradeVal));

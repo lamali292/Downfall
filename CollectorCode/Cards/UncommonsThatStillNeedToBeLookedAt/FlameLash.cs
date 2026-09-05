@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class FlameLash : CollectorCardModel, IUsesPyredCard
+public class FlameLash : CollectorCardModel, IUsesPyredCards
 {
     public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -22,11 +22,11 @@ public class FlameLash : CollectorCardModel, IUsesPyredCard
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public CardModel? PyredCard { get; set; }
+    public IEnumerable<CardModel> PyredCards { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cost = PyredCard?.EnergyCost.GetResolved() ?? 0;
+        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetResolved() ?? 0;
         if (cost >= DynamicVars.Energy.IntValue)
         {
             await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCardCompatibility(this, cardPlay)
