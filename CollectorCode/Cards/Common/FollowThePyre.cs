@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class FollowThePyre : CollectorCardModel, IHasPyre
+public class FollowThePyre : CollectorCardModel
 {
     
     public FollowThePyre() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

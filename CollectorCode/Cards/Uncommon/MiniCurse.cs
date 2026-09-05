@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class MiniCurse : CollectorCardModel, IHasPyre
+public class MiniCurse : CollectorCardModel
 {
     public MiniCurse() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -23,7 +23,6 @@ public class MiniCurse : CollectorCardModel, IHasPyre
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

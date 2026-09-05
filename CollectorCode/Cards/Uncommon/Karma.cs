@@ -2,9 +2,9 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -13,15 +13,15 @@ public class Karma : CollectorCardModel
 {
     public Karma() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<KarmaPower>(2, 1);
-        WithPower<MetallicizePower>(2, 1);
+        WithPower<KarmaPower>(3, 1);
+        WithVar("Debuffs", 2);
+        WithTip(StaticHoverTip.Block);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
         await CommonActions.ApplySelf<KarmaPower>(ctx, this);
     }
 }

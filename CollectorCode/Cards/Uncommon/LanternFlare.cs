@@ -11,18 +11,16 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class LanternFlare : CollectorCardModel, IHasPyre
+public class LanternFlare : CollectorCardModel
 {
     public LanternFlare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithPower<MiasmaPower>(12, 3);
-        WithPower<ScorchedPower>(3, 1);
+        WithPower<ScorchedPower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

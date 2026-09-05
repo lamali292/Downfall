@@ -20,7 +20,6 @@ public class Hellfire : CollectorCardModel
         WithTip(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(6, 3);
     }
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

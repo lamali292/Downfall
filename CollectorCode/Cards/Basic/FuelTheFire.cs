@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class FuelTheFire : CollectorCardModel, IHasPyre, ITranscendenceCard
+public class FuelTheFire : CollectorCardModel, ITranscendenceCard
 {
     public FuelTheFire() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
@@ -23,8 +23,6 @@ public class FuelTheFire : CollectorCardModel, IHasPyre, ITranscendenceCard
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

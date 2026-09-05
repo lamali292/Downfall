@@ -11,12 +11,12 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class RagingCall : CollectorCardModel
+public class BindingCall : CollectorCardModel
 {
-    public RagingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public BindingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithVars(new SummonVar(6).WithUpgrade(1));
-        WithPower<RagingCallPower>(3, 5);
+        WithKindle(6, 2);
+        WithPower<BindingCallPower>(2, 1);
         WithTip(CollectorTip.Kindle);
     }
 
@@ -24,7 +24,7 @@ public class RagingCall : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
-        await CommonActions.Apply<RagingCallPower>(ctx, torchhead, this);
+        var torchhead = await CollectorCmd.Kindle(ctx,this);
+        await CommonActions.Apply<BindingCallPower>(ctx, torchhead, this);
     }
 }

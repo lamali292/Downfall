@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class JadedJabs : CollectorCardModel, IHasPyre
+public class JadedJabs : CollectorCardModel, IUsesPyredCard
 {
     public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {

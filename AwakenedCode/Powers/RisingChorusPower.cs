@@ -17,7 +17,7 @@ public class RisingChorusPower : AwakenedPowerModel, IOnChant
     public override int DisplayAmount => Math.Max(Amount - ChantThisTurn, 0);
 
     private int ChantThisTurn => CombatManager.Instance.History.Entries.OfType<ChantEntry>()
-        .Count(e => e.HappenedThisTurn(CombatState) && e.FirstChantInSeries);
+        .Count(e => e.HappenedThisTurn(CombatState) && e.FirstChantInSeries && e.Actor == Owner);
     
     public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime)
     {

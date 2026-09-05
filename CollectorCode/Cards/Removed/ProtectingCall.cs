@@ -15,7 +15,7 @@ public class ProtectingCall : CollectorCardModel
 {
     public ProtectingCall() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, false, false)
     {
-        WithVars(new SummonVar(6).WithUpgrade(2));
+        WithKindle(6, 2);
         WithPower<ProtectingCallPower>(2, 1);
         WithTip(CollectorTip.Kindle);
     }
@@ -24,7 +24,7 @@ public class ProtectingCall : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var torchhead = await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+        var torchhead = await CollectorCmd.Kindle(ctx, this);
         await CommonActions.Apply<ProtectingCallPower>(ctx, torchhead, this);
     }
 }

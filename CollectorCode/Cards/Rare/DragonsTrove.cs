@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class DragonsTrove : CollectorCardModel, IHasPyre
+public class DragonsTrove : CollectorCardModel
 {
     public DragonsTrove() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
@@ -23,8 +23,6 @@ public class DragonsTrove : CollectorCardModel, IHasPyre
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

@@ -20,12 +20,12 @@ public class CastIron : CollectorCardModel
             e.IsUpgraded
                 ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
                 : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
-        WithVars(new SummonVar(4));
+        WithKindle(4);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
     {
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+        await CollectorCmd.Kindle(ctx, this);
     }
 
 }

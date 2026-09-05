@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Pyremancy : CollectorCardModel, IHasPyre
+public class Pyremancy : CollectorCardModel
 {
     public Pyremancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
@@ -21,8 +21,6 @@ public class Pyremancy : CollectorCardModel, IHasPyre
 
  
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

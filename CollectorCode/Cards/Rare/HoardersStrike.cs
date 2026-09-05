@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class HoardersStrike : CollectorCardModel, IHasPyre, IShouldExhaustPyred
+public class HoardersStrike : CollectorCardModel, IUsesPyredCard, IShouldExhaustPyred
 {
     public HoardersStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {

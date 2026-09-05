@@ -4,14 +4,14 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Collector.CollectorCode.Cards.Common;
+namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
 public class ScorchingRay : CollectorCardModel
 {
-    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
+    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
-        WithDamage(8, 3);
+        WithDamage(9, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

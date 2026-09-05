@@ -27,6 +27,6 @@ public class DarkwillowKindling : CollectorCardModel
     {
         if (card != this) return;
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(ctx, this);
     }
 }

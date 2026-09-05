@@ -2,7 +2,7 @@
 
 namespace Collector.CollectorCode.Interfaces;
 
-public interface IHasPyre
+public interface IUsesPyredCard
 {
     CardModel? PyredCard { get; set; }
 }

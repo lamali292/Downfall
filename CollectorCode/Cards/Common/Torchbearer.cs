@@ -24,6 +24,6 @@ public class Torchbearer : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(ctx,  this);
     }
 }

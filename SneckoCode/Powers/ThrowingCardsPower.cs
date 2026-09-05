@@ -14,7 +14,7 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 
-public class ThrowingCardsPower : SneckoPowerModel, IHasSecondAmount
+public class ThrowingCardsPower : SneckoPowerModel
 {
     public ThrowingCardsPower()
     {
@@ -23,7 +23,7 @@ public class ThrowingCardsPower : SneckoPowerModel, IHasSecondAmount
         WithTip(DownfallTip.Offclass);
     }
 
-    public string GetSecondAmount() => $"{DynamicVars.Damage.IntValue}";
+    protected override int? SecondAmount => DynamicVars.Damage.IntValue;
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 

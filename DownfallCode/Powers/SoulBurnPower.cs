@@ -17,18 +17,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Downfall.DownfallCode.Powers;
 
-public class SoulBurnPower : DownfallPowerModel, IHasSecondAmount
+public class SoulBurnPower : DownfallPowerModel
 {
     public SoulBurnPower() : base(PowerType.Debuff)
     {
         WithVar("Turns", 3);
     }
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars["Turns"].BaseValue}";
-    }
 
+    protected override int? SecondAmount => DynamicVars["Turns"].IntValue;
 
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext ctx)
     {

@@ -15,7 +15,7 @@ public class CoffinNail : CollectorCardModel
     {
         WithDamage(34, 11);
         WithVar("Increase", 9, 2);
-        WithPower<CopyNextTurnPower>(1);
+        WithPower<CopyNextTurnPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
