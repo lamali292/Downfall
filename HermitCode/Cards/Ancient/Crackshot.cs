@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Powers;
@@ -19,6 +20,8 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
         WithDamage(8, 3);
     }
 
+    protected override Artist Artist => Artist.Get<MalleableFrog>();
+    
     public override bool GainsBlock => true;
 
 
