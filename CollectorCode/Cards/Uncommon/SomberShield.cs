@@ -19,7 +19,8 @@ public class SomberShield : CollectorCardModel, IUsesPyredCards
         WithBlock(6, 3);
         WithPower<CopyNextTurnPower>(1, false);
     }
-    public IEnumerable<CardModel> PyredCards { get; set; }
+    
+    public IEnumerable<CardModel> PyredCards { get; set; } = [];
 
     protected override Artist Artist => Artist.Get<Opal>();
     

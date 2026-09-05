@@ -22,7 +22,7 @@ public class FlameLash : CollectorCardModel, IUsesPyredCards
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<CardModel> PyredCards { get; set; }
+    public IEnumerable<CardModel> PyredCards { get; set; } = [];
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

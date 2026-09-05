@@ -22,8 +22,8 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    
-    public IEnumerable<CardModel> PyredCards { get; set; }
+
+    public IEnumerable<CardModel> PyredCards { get; set; } = [];
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

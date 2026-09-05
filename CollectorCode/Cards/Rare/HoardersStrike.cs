@@ -24,7 +24,7 @@ public class HoardersStrike : CollectorCardModel, IUsesPyredCards, IShouldExhaus
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<CardModel> PyredCards { get; set; }
+    public IEnumerable<CardModel> PyredCards { get; set; } = [];
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
