@@ -10,21 +10,18 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
+public sealed class EternalPower : HermitPowerModel
 {
     private const int MaxReductions = 4;
 
-    public string GetSecondAmount()
-    {
-        return $"{Math.Max(0, MaxReductions - QualifyingHandDrawsThisTurn())}";
-    }
-
+    protected override int? SecondAmount => Math.Max(0, MaxReductions - QualifyingHandDrawsThisTurn());
+    
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
         return Task.CompletedTask;
     }
 
@@ -40,7 +37,7 @@ public sealed class EternalPower : HermitPowerModel, IHasSecondAmount
             return Task.CompletedTask;
 
         card.EnergyCost.AddThisTurnOrUntilPlayed(-Amount, true);
-        this.InvokeSecondAmountChanged();
+        InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 

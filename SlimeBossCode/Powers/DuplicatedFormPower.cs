@@ -8,7 +8,7 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class DuplicatedFormPower : SlimeBossPowerModel, IHasSecondAmount
+public class DuplicatedFormPower : SlimeBossPowerModel
 {
     private int _visualValue;
 
@@ -18,10 +18,8 @@ public class DuplicatedFormPower : SlimeBossPowerModel, IHasSecondAmount
                     e.HappenedThisTurn(CombatState) && e.CardPlay.Target is { Side: CombatSide.Enemy });
 
 
-    public string GetSecondAmount()
-    {
-        return $"{Math.Min(_visualValue, Amount)}";
-    }
+    protected override int? SecondAmount => Math.Min(_visualValue, Amount);
+    
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
@@ -38,15 +36,14 @@ public class DuplicatedFormPower : SlimeBossPowerModel, IHasSecondAmount
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
         _visualValue = 0;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
         return Task.CompletedTask;
     }
 
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {
-        Flash();
         _visualValue++;
-        this.InvokeSecondAmountChanged();
+        InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

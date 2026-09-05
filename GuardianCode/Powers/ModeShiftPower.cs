@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
+public class ModeShiftPower : GuardianPowerModel
 {
     public ModeShiftPower()
     {
@@ -22,10 +22,7 @@ public class ModeShiftPower : GuardianPowerModel, IHasSecondAmount
     public override bool ShouldRemoveDueToZero => false;
     public override bool AllowNegative => true;
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars["CurrentLimit"].BaseValue}";
-    }
+    protected override int? SecondAmount => DynamicVars["CurrentLimit"].IntValue;
 
     public override async Task AfterDamageReceived(PlayerChoiceContext ctx, Creature target,
         DamageResult result, ValueProp props,

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class MoonlitVisionPower : AwakenedPowerModel, IHasSecondAmount
+public class MoonlitVisionPower : AwakenedPowerModel
 {
     private int SpellsPlayedThisTurn => CombatManager.Instance.History.Entries
         .OfType<CardPlayStartedEntry>()
@@ -18,30 +18,28 @@ public class MoonlitVisionPower : AwakenedPowerModel, IHasSecondAmount
                     e.CardPlay.Card is ISpell &&
                     e.CardPlay.Card.Owner == Owner.Player);
 
-    public string GetSecondAmount()
-    {
-        return $"{Math.Max(Amount - SpellsPlayedThisTurn, 0)}";
-    }
+    public override int DisplayAmount=> Math.Max(Amount - SpellsPlayedThisTurn, 0);
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player) return;
         if (cardPlay.Card is not ISpell) return;
-
-        InvokeDisplayAmountChanged();
-
+        
         var previousSpellsThisTurn = SpellsPlayedThisTurn - 1;
         if (previousSpellsThisTurn < Amount)
         {
-            Flash();
+            InvokeDisplayAmountChanged();
             await PlayerCmd.GainEnergy(1, Owner.Player);
+        }
+        else
+        {
+            this.InvokeSilentDisplayAmountChanged();
         }
     }
 
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature == Owner) InvokeDisplayAmountChanged();
-
+        if (player.Creature == Owner) this.InvokeSilentDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

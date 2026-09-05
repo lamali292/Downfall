@@ -11,11 +11,11 @@ namespace Downfall.DownfallCode.Abstract;
 
 public abstract class ConstructedPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel
+    PowerStackType stackType = PowerStackType.Counter) : CustomPowerModel, IHasSecondAmount
 {
     private readonly List<AbstractTooltipSource<PowerModel>> _hoverTips = [];
     private readonly List<Func<PowerModel, IEnumerable<IHoverTip>>> _multiHoverTips = [];
-
+    protected virtual int? SecondAmount => null;
     private readonly List<DynamicVar> _newDynamicVars = [];
     public override PowerType Type => powerType;
     public override PowerStackType StackType => stackType;
@@ -193,4 +193,6 @@ public abstract class ConstructedPowerModel(
         return CustomCardModel.FinishMakeCalculatedVar(
             new CustomCalculatedBlockVar(name, props).WithMultiplier(bonus), baseVal, mult);
     }
+
+    public string GetSecondAmount() => SecondAmount.ToString() ?? "";
 }

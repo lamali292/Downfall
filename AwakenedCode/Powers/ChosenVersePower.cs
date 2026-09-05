@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class ChosenVersePower : AwakenedPowerModel, IHasSecondAmount
+public class ChosenVersePower : AwakenedPowerModel
 {
     public CardPlay? CardPlay;
 
@@ -21,15 +21,12 @@ public class ChosenVersePower : AwakenedPowerModel, IHasSecondAmount
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars.Block.IntValue}";
-    }
+    protected override int? SecondAmount => DynamicVars.Block.IntValue;
 
     public void SetBlock(decimal block)
     {
         DynamicVars.Block.BaseValue = block;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

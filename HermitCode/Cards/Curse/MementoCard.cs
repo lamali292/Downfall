@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,7 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace Hermit.HermitCode.Cards.Curse;
 
@@ -25,8 +25,7 @@ public sealed class MementoCard : HermitCardModel
     public override int MaxUpgradeLevel => 0;
     public override bool CanBeGeneratedByModifiers => false;
 
-    private static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
-
+   
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
@@ -35,6 +34,6 @@ public sealed class MementoCard : HermitCardModel
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        description.Add("Multiplayer", IsMultiplayer);
+        description.Add("Multiplayer", DownfallCmd.IsMultiplayer);
     }
 }
