@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class FlameLash : CollectorCardModel, IHasPyre
+public class FlameLash : CollectorCardModel, IUsesPyredCard
 {
     public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {

@@ -42,6 +42,8 @@ public class DawnablesAwakened : Artist;
 
 public class GoofballMcgee : Artist;
 
+public class MalleableFrog : Artist;
+
 public class Eudaimonia : Artist;
 
 public class Opal : Artist;

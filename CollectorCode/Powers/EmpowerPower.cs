@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Powers;
 
-public class EmpowerPower : CollectorPowerModel, IHasSecondAmount
+public class EmpowerPower : CollectorPowerModel
 {
     public EmpowerPower()
     {
@@ -19,15 +19,12 @@ public class EmpowerPower : CollectorPowerModel, IHasSecondAmount
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars["Turns"].BaseValue}";
-    }
+    protected override int? SecondAmount => DynamicVars["Turns"].IntValue;
 
     public void SetTurns(decimal turns)
     {
         DynamicVars["Turns"].BaseValue = turns;
-        InvokeDisplayAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
     }
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)

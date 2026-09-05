@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Collector.CollectorCode.Cards.Basic;
 
 [Pool(typeof(CollectorCardPool))]
-public class Fireball : CollectorCardModel, IHasPyre
+public class Fireball : CollectorCardModel
 {
     public Fireball() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -45,6 +45,4 @@ public class Fireball : CollectorCardModel, IHasPyre
         //await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
         //await CommonActions.Apply<CollectorMiasmaPower>(ctx, cardPlay.Target, this);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

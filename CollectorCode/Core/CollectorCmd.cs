@@ -44,11 +44,11 @@ public class CollectorCmd
         Player summoner,
         AbstractModel source)
     {
-        return SummonTorchhead(ctx, summoner, source.DynamicVars.Kindle.IntValue, source);
+        return Kindle(ctx, summoner, source.DynamicVars.Kindle.IntValue, source);
     }
     
     
-    public static async Task<Creature> SummonTorchhead(
+    public static async Task<Creature> Kindle(
         PlayerChoiceContext ctx,
         Player summoner,
         int hp,

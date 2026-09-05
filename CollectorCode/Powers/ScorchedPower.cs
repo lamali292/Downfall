@@ -8,6 +8,12 @@ namespace Collector.CollectorCode.Powers;
 
 public class ScorchedPower : CollectorPowerModel
 {
+    public ScorchedPower()
+    {
+        WithTip<MiasmaPower>();
+    }
+    
+    
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -152,4 +153,6 @@ public class DownfallCmd
     {
         return creature?.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff) ?? false;
     }
+    public static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
+
 }

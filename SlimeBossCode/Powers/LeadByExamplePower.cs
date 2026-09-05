@@ -15,19 +15,16 @@ public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
             e.Actor == Owner
             && e.HappenedThisTurn(CombatState)
             && e.CardPlay.Target is { IsEnemy: true });
+    
 
-    public string GetSecondAmount()
-    {
-        return $"{CardPlayCount}";
-    }
+    protected override int? SecondAmount => CardPlayCount;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } ||
             CardPlayCount > Amount) return;
         await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, false);
-        Flash();
-        this.InvokeSecondAmountChanged();
+        InvokeDisplayAmountChanged();
     }
 
     public override Task AfterSideTurnStart(CombatSide side,
@@ -35,7 +32,7 @@ public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

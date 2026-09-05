@@ -12,11 +12,9 @@ public class StasisEnginePower : GuardianPowerModel, IHasSecondAmount
 {
     private int _triggers;
 
+    
 
-    public string GetSecondAmount()
-    {
-        return $"{_triggers}/3";
-    }
+    protected override int? SecondAmount => 3 - _triggers;
 
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

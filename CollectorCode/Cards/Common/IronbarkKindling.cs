@@ -24,11 +24,11 @@ public class IronbarkKindling : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
         if (card != this) return;
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
-        await CollectorCmd.SummonTorchhead(choiceContext, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(ctx, this);
     }
 }

@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Hoard : CollectorCardModel, IHasPyre
+public class Hoard : CollectorCardModel
 {
     public Hoard() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
@@ -23,8 +23,6 @@ public class Hoard : CollectorCardModel, IHasPyre
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

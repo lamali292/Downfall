@@ -15,11 +15,9 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ShadowDaggers : CollectorCardModel
 {
-    private const string _calculatedHitsKey = "CalculatedHits";
-
-    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ShadowDaggers() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 2);
+        WithDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -28,23 +26,13 @@ public class ShadowDaggers : CollectorCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        return CombatManager.Instance.History.CardPlaysStarted.Count(e => IsCollected(e.CardPlay.Card));
+        return card.Owner.GetAllCombatCards.Count(c => c.VisualCardPool.IsColorless);
     }
-
-    private static bool IsCollected(CardModel card)
-    {
-        return card is ICollectible;
-    }
-
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
-        await DamageCmd
-            .Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target))
-            .FromCardCompatibility(this, cardPlay)
-            .Targeting(cardPlay.Target)
+        var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
+        await CommonActions.CardAttack(this, cardPlay, hits)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
     }

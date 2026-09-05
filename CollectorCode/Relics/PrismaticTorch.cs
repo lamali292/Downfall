@@ -24,7 +24,7 @@ public class PrismaticTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(ctx, this);
         Flash();
     }
     

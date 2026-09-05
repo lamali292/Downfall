@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class StashAway : CollectorCardModel, IHasPyre
+public class StashAway : CollectorCardModel
 {
     public StashAway() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
@@ -32,6 +32,4 @@ public class StashAway : CollectorCardModel, IHasPyre
         if (!IsUpgraded) return;
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, x + 1);
     }
-
-    public CardModel? PyredCard { get; set; }
 }

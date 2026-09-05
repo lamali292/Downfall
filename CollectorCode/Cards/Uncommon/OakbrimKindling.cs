@@ -13,9 +13,9 @@ public class OakbrimKindling : CollectorCardModel
 {
     public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Exhaust);
         WithCards(2, 1);
-        WithKindle(3);
+        WithKindle(2, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -24,6 +24,6 @@ public class OakbrimKindling : CollectorCardModel
     {
         if (card != this) return;
         await CommonActions.Draw(this, ctx);
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Kindle.IntValue, this);
+        await CollectorCmd.Kindle(ctx, this);
     }
 }

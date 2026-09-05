@@ -1,10 +1,11 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -12,23 +13,22 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class FleetingEmbers : CollectorCardModel, IHasPyre
+public class PyroclasticFlow : CollectorCardModel
 {
-    public FleetingEmbers() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public PyroclasticFlow() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Pyre);
-        WithBlock(5, 3);
-        WithCards(2);
+        WithCards(3,1);
         WithTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public CardModel? PyredCard { get; set; }
-
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
-        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
+        var cards = (await CommonActions.Draw(this, ctx)).ToList();
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
+        var selected = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => cards.Contains(e), this)).FirstOrDefault();
+        if (selected == null) return;
+        await CardCmd.TransformTo<Ember>(selected);
     }
 }

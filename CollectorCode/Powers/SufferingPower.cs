@@ -9,6 +9,14 @@ namespace Collector.CollectorCode.Powers;
 
 public class SufferingPower : CollectorPowerModel
 {
+    public SufferingPower()
+    {
+        WithTip<WeakPower>();
+        WithTip<VulnerablePower>();
+        WithTip<MiasmaPower>();
+    }
+    
+    
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
         CardModel? cardSource)
