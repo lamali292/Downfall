@@ -12,23 +12,26 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Hellfire : CollectorCardModel
+public class Hellfire : CollectorCardModel, IHasPyre
 {
-    public Hellfire() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorKeyword.Pyre);
-        WithTip(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(6, 3);
     }
-    public CardModel? PyredCard { get; set; }
 
+    public CardModel? PyredCard { get; set; }
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
         var list = Owner.Hand.ToList();
         var cardCount = list.Count;
         foreach (var card2 in list)
-            await CardCmdCompatibility.Exhaust(ctx, card2);
+            PyredCard = card2;//Is this a bad idea?
+        await CardCmdCompatibility.Exhaust(ctx, PyredCard!).ConfigureAwait(false);
         for (var i = 0; i < cardCount; i++)
         {
             await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);

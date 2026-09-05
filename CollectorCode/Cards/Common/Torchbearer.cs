@@ -6,7 +6,6 @@ using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Collector.CollectorCode.Cards.Common;
 
