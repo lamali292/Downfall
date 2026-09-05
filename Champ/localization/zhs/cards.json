@@ -117,7 +117,7 @@
     "CHAMP-MURDER_STRIKE.description": "造成{Damage:diff()}点伤害。\n每当你打出技能牌时，本场战斗中此牌伤害增加{Increase:diff()}。",
     "CHAMP-MURDER_STRIKE.title": "刽子打击",
     "CHAMP-PARRY.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得{CounterPower:diff()}点[gold]反击[/gold]。\n如果本回合触发了[gold]反击[/gold]，[gold]还击打击[/gold]获得[gold]重放[/gold]1。",
-    "CHAMP-PARRY.title": "第二意图",
+    "CHAMP-PARRY.title": "后发制人",
     "CHAMP-PERFECTER_STRIKE.description": "造成{CalculatedDamage:diff()}点伤害。\n你每有一张“打击”牌，伤害增加{ExtraDamage:diff()}。",
     "CHAMP-PERFECTER_STRIKE.title": "完美打击",
     "CHAMP-PILEDRIVER.description": "造成{Damage:diff()}点伤害。\n给予{VulnerablePower:diff()}层[gold]易伤[/gold]。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]。",

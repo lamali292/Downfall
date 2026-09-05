@@ -77,7 +77,7 @@
     "HERMIT-UNYIELDING_POWER.title": "不屈",
     "HERMIT-UNYIELDING_POWER.description": "如果你有[gold]易伤[/gold]，本回合中受到的伤害降低[blue]50%[/blue]。",
     "HERMIT-UNYIELDING_POWER.smartDescription": "如果你有[gold]易伤[/gold]，[blue]{Amount}[/blue]回合内受到的伤害降低[blue]{DamageDecrease:percentLess()}%[/blue]。",
-    "HERMIT-DEATHWISH_POWER.title": "至死方休",
+    "HERMIT-DEATHWISH_POWER.title": "亡命之愿",
     "HERMIT-DEATHWISH_POWER.description": "与诅咒牌相邻的牌会触发[gold]精准[/gold]效果并额外造成伤害。",
     "HERMIT-BIG_BRUISER_POWER.title": "莽汉",
     "HERMIT-BIG_BRUISER_POWER.description": "[gold]瘀伤[/gold]对所有玩家生效。",
@@ -90,7 +90,7 @@
     "HERMIT-BURDENED_POWER.description": "在你的回合开始时，获得[gold]活力[/gold]并将一张[gold]腐朽[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-BURDENED_POWER.smartDescription": "在你的回合开始时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]并将[blue]{Cards}[/blue]张[gold]腐朽[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-BRUISE_POWER.remoteDescription": "本回合{HasBigBruiser:|[orange]{ApplierName}[/orange]的}攻击对目标造成[blue]{Amount}[/blue]点额外伤害。",
-    "HERMIT-LONG_SHADOWS_POWER.title": "漫长阴影",
+    "HERMIT-LONG_SHADOWS_POWER.title": "往日余影",
     "HERMIT-LONG_SHADOWS_POWER.description": "每当你抽到一张诅咒牌时，抽[blue]1[/blue]张牌。",
     "HERMIT-LONG_SHADOWS_POWER.smartDescription": "每当你抽到一张诅咒牌时，抽[blue]{Amount}[/blue]张牌。"
 }

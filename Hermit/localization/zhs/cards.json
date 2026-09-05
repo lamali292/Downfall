@@ -177,7 +177,7 @@
     "HERMIT-TORN_PAGE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n给[gold]手牌[/gold]中的所有诅咒牌[gold]附魔[/gold][purple]死灵[/purple]。",
     "HERMIT-UNYIELDING.title": "不屈",
     "HERMIT-UNYIELDING.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果你有[gold]易伤[/gold]，本回合中受到的伤害降低50%。",
-    "HERMIT-DEATHWISH.title": "至死方休",
+    "HERMIT-DEATHWISH.title": "亡命之愿",
     "HERMIT-DEATHWISH.description": "诅咒牌相邻的牌视为[gold]精准[/gold]并额外造成{DeathwishPower:diff()}点伤害。",
     "HERMIT-RUBBER_BULLET.title": "橡胶子弹",
     "HERMIT-RUBBER_BULLET.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：本场战斗中此牌伤害增加{Increase:diff()}点，然后将其移至另一名随机玩家的[gold]手牌[/gold]。",
@@ -187,8 +187,8 @@
     "HERMIT-FADE_OUT.description": "所有玩家获得{Block:diff()}点[gold]格挡[/gold]，并在[gold]弃牌堆[/gold]中加入一张[gold]笨拙[/gold]。",
     "HERMIT-SHARE_THE_LOAD.title": "同甘共苦",
     "HERMIT-SHARE_THE_LOAD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]精准[/gold]：所有盟友获得{Energy:energyIcons()}并抽{Cards:diff()}张牌。",
-    "HERMIT-TECHNIQUE.title": "绝技",
+    "HERMIT-TECHNIQUE.title": "技法",
     "HERMIT-TECHNIQUE.description": "所有人的[gold]打击[/gold]额外造成{MaintenanceStrikePower:diff()}点伤害。",
-    "HERMIT-LONG_SHADOWS.title": "漫长阴影",
+    "HERMIT-LONG_SHADOWS.title": "往日余影",
     "HERMIT-LONG_SHADOWS.description": "每当你抽到一张诅咒牌时，抽{LongShadowsPower:diff()}张牌。"
 }
