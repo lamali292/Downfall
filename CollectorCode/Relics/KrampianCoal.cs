@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class KrampianCoal : CollectorRelicModel, IOnPyre
+public class KrampianCoal : CollectorRelicModel, IAfterCardPyred
 {
     public KrampianCoal() : base(RelicRarity.Rare)
     {
@@ -23,7 +23,7 @@ public class KrampianCoal : CollectorRelicModel, IOnPyre
 
     }
     
-    public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (pyred.Type is CardType.Curse or CardType.Status)
         {

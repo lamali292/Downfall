@@ -39,7 +39,7 @@
   "AUTOMATON-CLASS_DEFAULT.title": "Class Default",
   "AUTOMATON-CLEANSE.description": "",
   "AUTOMATON-CLEANSE.title": "",
-  "AUTOMATON-CLEAN_CODE.description": "At the end of your turn, you may [gold]Stash[/gold] {CleanCodePower:plural:a card|{} cards}.",
+  "AUTOMATON-CLEAN_CODE.description": "At the end of your turn, you may [gold]Stash[/gold] {CleanCodePower:plural:a card|{:diff()} cards}.",
   "AUTOMATON-CLEAN_CODE.title": "Clean Code",
   "AUTOMATON-CONSTRUCTOR.description": "When [gold]Encoded[/gold] as the first card, increase its [gold]Block[/gold] by {ExtraBlock:diff()}.",
   "AUTOMATON-CONSTRUCTOR.title": "Constructor",

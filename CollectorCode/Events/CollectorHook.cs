@@ -26,9 +26,9 @@ public static class CollectorHook
         return HookUtils.Any<IPreventCollectedDraw>(cs, m => m.PreventCollectedDraw(player));
     }
 
-    public static Task OnPyre(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public static Task AfterCardPyred(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        return HookUtils.Dispatch<IOnPyre>(cs, ctx, m => m.OnPyre(ctx, card, pyred));
+        return HookUtils.Dispatch<IAfterCardPyred>(cs, ctx, m => m.AfterCardPyred(ctx, card, pyred));
     }
 
     public static bool ShouldExhaustPyred(CardModel card, CardModel pyred)

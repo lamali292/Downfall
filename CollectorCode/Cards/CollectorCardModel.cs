@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards;
 
@@ -36,6 +37,11 @@ public abstract class CollectorCardModel(
     {
         WithReserveTip();
         return WithVar(new ReserveVar(baseVal).WithUpgrade(upgradeVal));
+    }
+    
+    protected ConstructedCardModel WithCollectorDamage(int baseVal, int upgradeVal = 0)
+    {
+        return WithVar(new CollectorDamageVar(baseVal, DamageProps.card).WithUpgrade(upgradeVal));
     }
 
 

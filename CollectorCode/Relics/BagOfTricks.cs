@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class BagOfTricks : CollectorRelicModel, IOnPyre
+public class BagOfTricks : CollectorRelicModel, IAfterCardPyred
 {
     public BagOfTricks() : base(RelicRarity.Common)
     {
@@ -24,7 +24,7 @@ public class BagOfTricks : CollectorRelicModel, IOnPyre
     public override int DisplayAmount => UsesLeft.IntValue;
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
     
-    public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (card.Owner != Owner) return;
         if (UsesLeft.BaseValue <= 0) return;

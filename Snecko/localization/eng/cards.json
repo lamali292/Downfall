@@ -186,7 +186,7 @@
   "SNECKO-PARALYTIC_VENOM.title": "Paralytic Venom",
   "SNECKO-PARALYTIC_VENOM.description": "Whenever an Attack deals unblocked damage, apply {ParalyticVenomPower:diff()} [gold]Venom[/gold].",
   "SNECKO-TOXIC_BITE.title": "Toxic Bite",
-  "SNECKO-TOXIC_BITE.description": "Deal {Damage:diff()} damage.\nApply {VenomPower:diff()} [gold]Venom[/gold].",
+  "SNECKO-TOXIC_BITE.description": "Deal {Damage:diff()} damage.\nApply {VenomPower:diff()} [gold]Venom[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Common Debuff.} ",
   "SNECKO-MUDDY.title": "Muddy",
   "SNECKO-MUDDY.description": "Choose another player.\nAt the start of their next turn, they draw {DrawCardsNextTurnPower:diff()} additional cards and [gold]Muddle[/gold] their [gold]Hand[/gold].",
   "SNECKO-VENOMOLOGY.title": "Venomology",

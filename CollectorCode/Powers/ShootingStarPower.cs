@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Powers;
 
-public class ShootingStarPower : CollectorPowerModel, IOnPyre
+public class ShootingStarPower : CollectorPowerModel, IAfterCardPyred
 {
     private int _usesThisTurn;
 
@@ -19,7 +19,7 @@ public class ShootingStarPower : CollectorPowerModel, IOnPyre
 
     
 
-    public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (card.Owner.Creature != Owner || pyred.Type != CardType.Attack || _usesThisTurn >= Amount) return;
         var copy = pyred.CreateClone();
