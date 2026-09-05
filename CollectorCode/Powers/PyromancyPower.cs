@@ -1,4 +1,5 @@
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Events;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -7,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Powers;
 
@@ -20,7 +22,7 @@ public class PyromancyPower : CollectorPowerModel
     }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player)
-    {
+    {//Hmm how to "pyre" from inside a power?
         if (player.Creature != Owner) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, 1);
         var result = (await  CardSelectCmd.FromHand(ctx, player, prefs, null,
