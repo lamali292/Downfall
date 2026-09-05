@@ -27,7 +27,7 @@ public class Nihil : AwakenedCardModel, IChantable
         if (CombatState == null) return;
         foreach (var combatStateEnemy in CombatState.Enemies)
         {
-            var a = combatStateEnemy.GetPowerAmount<ManaburnPower>();
+            var a = combatStateEnemy.GetInstancedPowerAmountSum<ManaburnPower>();
             if (a <= 0) continue;
             await CompatibilityCreatureCmd.Damage(
                 ctx,
