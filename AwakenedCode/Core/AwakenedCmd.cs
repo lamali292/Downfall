@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Events;
+using Awakened.AwakenedCode.History;
 using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Powers;
@@ -69,9 +70,10 @@ public static class AwakenedCmd
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }
 
-    public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay, bool isFirstChantInSeries = true)
     {
-        if (card is not IChantable chantable) return;
+        var combatState = card.CombatState;
+        if (card is not IChantable chantable || combatState == null) return;
         var firstTime = !chantable.HasChanted;
         if (firstTime && card is not Caw && TestMode.IsOff)
         {
@@ -81,6 +83,8 @@ public static class AwakenedCmd
             SfxCmd.Play("event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp");
         }
 
+        var entry = new ChantEntry(cardPlay, isFirstChantInSeries, combatState.RoundNumber, combatState.CurrentSide, CombatManager.Instance.History, combatState.Players);
+        CombatManager.Instance.History.Add(combatState, entry);
         chantable.HasChanted = true;
         await chantable.PlayChantEffect(ctx, cardPlay);
         await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime);

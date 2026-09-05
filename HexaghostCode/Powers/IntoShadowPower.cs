@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmount
+public class IntoShadowPower : HexaghostPowerModel, IWheelMoved
 {
     
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
@@ -19,6 +19,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
         return Task.CompletedTask;
     }
 
+    public override int DisplayAmount => FreeCards;
 
     public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
@@ -30,11 +31,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IHasSecondAmoun
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
-
-    public string GetSecondAmount()
-    {
-        return $"{FreeCards}";
-    }
+    
     private AbstractModel? Source { get; set; }
     private int FreeCards { get; set; }
 

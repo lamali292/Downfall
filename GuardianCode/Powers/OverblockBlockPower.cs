@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange, IHasSecondAmount
+public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
 {
     public OverblockBlockPower()
     {
@@ -36,18 +36,15 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange,
         if (target == null) return;
         await CreatureCmd.GainBlock(target.Creature, Amount, BlockProps.nonCardUnpowered, null);
         await PowerCmd.Apply<ThornsPower>(ctx, target.Creature, ThornsAmount, Owner, null);
+        Flash();
     }
 
-    public string GetSecondAmount()
-    {
-        return $"{ThornsAmount}";
-    }
-
+    protected override int? SecondAmount => ThornsAmount;
 
     public void IncrementThorns(decimal value)
     {
         AssertMutable();
         DynamicVars.Power<ThornsPower>().BaseValue += value;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
     }
 }

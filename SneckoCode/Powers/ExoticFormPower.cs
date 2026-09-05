@@ -9,14 +9,11 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 
-public class ExoticFormPower : SneckoPowerModel, IHasSecondAmount
+public class ExoticFormPower : SneckoPowerModel
 {
     private readonly HashSet<CardPoolModel> _uniqueColorsThisTurn = [];
-
-    public string GetSecondAmount()
-    {
-        return _uniqueColorsThisTurn.Count.ToString();
-    }
+    
+    public override int DisplayAmount => _uniqueColorsThisTurn.Count * Amount;
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {

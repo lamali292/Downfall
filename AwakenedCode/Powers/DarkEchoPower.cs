@@ -14,19 +14,21 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class DarkEchoPower : AwakenedPowerModel, IHasSecondAmount
+public class DarkEchoPower : AwakenedPowerModel
 {
-    public string GetSecondAmount()
+    public DarkEchoPower()
     {
-        return $"{Owner.GetPowerAmount<StrengthPower>() + 4}";
+        WithDamage(4);
     }
 
+    protected override int? SecondAmount => ActualDamage;
+    private int ActualDamage => Owner.GetPowerAmount<StrengthPower>() + DynamicVars.Damage.IntValue;
 
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
-        var damageAmount = Owner.GetPowerAmount<StrengthPower>() + 4;
+        var damageAmount = ActualDamage;
         if (damageAmount <= 0) return;
         SfxPlayer.PlaySfx("res://Awakened/audio/awakened_one_3.ogg");
         for (var i = 0; i < Amount; i++)

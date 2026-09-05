@@ -1,6 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,17 +10,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hermit.HermitCode.Powers;
 
-public class BurdenedPower : HermitPowerModel, IHasSecondAmount
+public class BurdenedPower : HermitPowerModel
 {
     public BurdenedPower()
     {
         WithCards(0);
     }
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars.Cards.IntValue}";
-    }
+    protected override int? SecondAmount => DynamicVars.Cards.IntValue;
 
     public override async Task BeforeHandDrawLate(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
@@ -37,6 +32,6 @@ public class BurdenedPower : HermitPowerModel, IHasSecondAmount
     {
         AssertMutable();
         ++DynamicVars.Cards.BaseValue;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
     }
 }

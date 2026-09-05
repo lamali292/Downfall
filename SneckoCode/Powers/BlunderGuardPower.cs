@@ -10,7 +10,7 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 
-public class BlunderGuardPower : SneckoPowerModel, IHasSecondAmount
+public class BlunderGuardPower : SneckoPowerModel
 {
     public BlunderGuardPower()
     {
@@ -21,11 +21,8 @@ public class BlunderGuardPower : SneckoPowerModel, IHasSecondAmount
 
     private int StrengthAmount => DynamicVars.Power<StrengthPower>().IntValue;
 
-    public string GetSecondAmount()
-    {
-        return $"{StrengthAmount}";
-    }
-
+    protected override int? SecondAmount => StrengthAmount;
+    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue ||
@@ -39,6 +36,6 @@ public class BlunderGuardPower : SneckoPowerModel, IHasSecondAmount
     {
         AssertMutable();
         DynamicVars.Power<StrengthPower>().BaseValue += value;
-        this.InvokeSecondAmountChanged();
+        this.InvokeSilentDisplayAmountChanged();
     }
 }

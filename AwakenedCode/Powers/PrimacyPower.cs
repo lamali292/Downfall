@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Awakened.AwakenedCode.Powers;
 
-public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
+public class PrimacyPower : AwakenedPowerModel
 {
     private int StrengthGainsThisTurn => CombatManager.Instance.History.Entries
         .OfType<PowerReceivedEntry>()
@@ -20,10 +20,7 @@ public class PrimacyPower : AwakenedPowerModel, IHasSecondAmount
                     e.Actor == Owner &&
                     e is { Power: StrengthPower, Amount: > 0 });
 
-    public string GetSecondAmount()
-    {
-        return $"{Math.Max(Amount - StrengthGainsThisTurn, 0)}";
-    }
+    public override int DisplayAmount => Math.Max(Amount - StrengthGainsThisTurn, 0);
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount,
         Creature? applier,
