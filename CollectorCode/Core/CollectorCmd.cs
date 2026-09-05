@@ -27,6 +27,7 @@ public class CollectorCmd
                 await CardCmdCompatibility.Exhaust(ctx, c);
             }
             await CollectorHook.OnPyre(card.CombatState, ctx, card, c);
+            await Cmd.Wait(0.1f);
         }
     }
 
