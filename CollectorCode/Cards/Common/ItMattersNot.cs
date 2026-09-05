@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +17,7 @@ public class ItMattersNot : CollectorCardModel
         WithBlock(13, 4);
         WithTip<VulnerablePower>();
         WithTip<WeakPower>();
+        WithTip<MiasmaPower>();
         WithVar("ItMattersNot", 1);
     }
 
@@ -29,5 +31,7 @@ public class ItMattersNot : CollectorCardModel
         await PowerCmd.Apply<WeakPower>(ctx, a, 1, Owner.Creature, this);
         var b = CombatState.Enemies.Where(e => e.HasPower<VulnerablePower>());
         await PowerCmd.Apply<VulnerablePower>(ctx, b, 1, Owner.Creature, this);
+        var c = CombatState.Enemies.Where(e => e.HasPower<MiasmaPower>());
+        await PowerCmd.Apply<MiasmaPower>(ctx, c, 1, Owner.Creature, this);
     }
 }

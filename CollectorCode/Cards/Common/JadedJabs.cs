@@ -17,7 +17,7 @@ public class JadedJabs : CollectorCardModel, IHasPyre
     public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithDamage(15, 2);
+        WithDamage(7, 3);
         WithVar("JadedJabs", 1, 1);
     }
 
@@ -29,7 +29,14 @@ public class JadedJabs : CollectorCardModel, IHasPyre
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var cost = PyredCard!.EnergyCost.GetWithModifiers(CostModifiers.All);
-        var jadedJabs = DynamicVars["JadedJabs"].IntValue;
-        await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
+        if (cost > 0)
+        {
+            for (var i = 0; i < cost; i++)
+            {
+                await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+            }
+        }
+        //var jadedJabs = DynamicVars["JadedJabs"].IntValue;
+        //await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
     }
 }

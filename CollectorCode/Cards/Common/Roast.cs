@@ -15,7 +15,7 @@ public class Roast : CollectorCardModel, IHasPyre
     public Roast() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithDamage(4, 3);
+        WithDamage(5, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

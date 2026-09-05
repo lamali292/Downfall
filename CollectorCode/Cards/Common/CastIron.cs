@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -13,19 +14,31 @@ public class CastIron : CollectorCardModel
 {
     public CastIron() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        //WithTip<Burn>();
-        WithVar("Quantity", 2);
         WithKeyword(CardKeyword.Exhaust);
-        WithTips(e =>
-            e.IsUpgraded
-                ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
-                : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
-        WithVars(new SummonVar(4));
+        WithCards(2);
+        WithKindle(3);
+        WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+        if (IsUpgraded)
+        {
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
+        }
+        else
+        {
+            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
+        }
+
+        var handContents = Owner.Hand;
+        foreach (var handContent in handContents)
+        {
+            if (handContent.Type == CardType.Status)
+            {
+                await CollectorCmd.SummonTorchhead(ctx, Owner, DynamicVars.Summon.IntValue, this);
+            }
+        }
     }
 
 }

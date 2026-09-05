@@ -15,18 +15,27 @@ public class Wildfire : CollectorCardModel
 {
     public Wildfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(0, 4, DamageCalc, DamageProps.card, 0, 2);
+        WithDamage(7, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
+    /*
     private static decimal DamageCalc(CardModel card, Creature? creature)
     {
         return creature?.Powers.Count(e => e.Type == PowerType.Debuff) ?? 0;
     }
+    */
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (cardPlay.Target == null) return;
+        var varLm = cardPlay.Target.Powers;
+        var count = varLm.Count(powerModel => powerModel.Type == PowerType.Debuff);
+        if (count >= 2)
+        {
+            await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        }
     }
 }
