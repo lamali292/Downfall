@@ -30,8 +30,8 @@
   "COLLECTOR-EMPOWER_POWER.description": "At the start of your next turn, gain [gold]Strength[/gold].",
   "COLLECTOR-EMPOWER_POWER.smartDescription": "At the start of your next {Turns:plural:turn|[blue]{}[/blue] turns}, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-FEEL_MY_PAIN_POWER.title": "Feel My Pain",
-  "COLLECTOR-FEEL_MY_PAIN_POWER.description": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses HP.",
-  "COLLECTOR-FEEL_MY_PAIN_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a card, a random enemy loses [blue]{Amount}[/blue] HP.",
+  "COLLECTOR-FEEL_MY_PAIN_POWER.description": "Whenever a card is [gold]Pyred[/gold], a random enemy loses HP.",
+  "COLLECTOR-FEEL_MY_PAIN_POWER.smartDescription": "Whenever a card is [gold]Pyred[/gold], a random enemy loses [blue]{Amount}[/blue] HP.",
   "COLLECTOR-FINALIZE_POWER.title": "Finalized",
   "COLLECTOR-FINALIZE_POWER.description": "When this creature dies, heal.",
   "COLLECTOR-FINALIZE_POWER.smartDescription": "When [gold]{OwnerName}[/gold] dies, heal [blue]{Amount}[/blue] HP.",
@@ -86,5 +86,8 @@
   "COLLECTOR-MIASMA_POWER.smartDescription": "a",
   "COLLECTOR-REFINED_FUEL_POWER.title": "Refined Fuel",
   "COLLECTOR-REFINED_FUEL_POWER.description": "The first time you [gold]Exhaust[/gold] a Status each turn, gain {:reserveIcons(1)} next turn.",
-  "COLLECTOR-REFINED_FUEL_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Exhaust[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn."
+  "COLLECTOR-REFINED_FUEL_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Exhaust[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn.",
+  "COLLECTOR-EQUIP_STAFF_POWER.title": "Equip: Staff",
+  "COLLECTOR-EQUIP_STAFF_POWER.description": "Whenever [gold]Torchhead[/gold] attacks, it applies [gold]Miasma[/gold].",
+  "COLLECTOR-EQUIP_STAFF_POWER.smartDescription": "Whenever [gold]Torchhead[/gold] attacks, it applies [blue]{Amount}[/blue] [gold]Miasma[/gold]."
 }

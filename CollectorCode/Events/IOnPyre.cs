@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Events;
 
-public interface IOnPyre
+public interface IAfterCardPyred
 {
-    Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred);
+    Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred);
 }

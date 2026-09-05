@@ -53,7 +53,7 @@
   "COLLECTOR-EMBER.description": "When [gold]Exhausted[/gold], gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-EMPOWER.description": "Gain X Strength at the start of your next {Turns:diff()} turns.",
   "COLLECTOR-EMPOWER.title": "Empower",
-  "COLLECTOR-FEEL_MY_PAIN.description": "Whenever a card [gold]Exhausts[/gold], a random enemy loses {FeelMyPainPower:diff()} HP.",
+  "COLLECTOR-FEEL_MY_PAIN.description": "Whenever a card is [gold]Pyred[/gold], a random enemy loses {FeelMyPainPower:diff()} HP.",
   "COLLECTOR-FEEL_MY_PAIN.title": "Feel My Pain",
   "COLLECTOR-FIEND_FIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal {Damage:diff()} damage for each card [gold]Exhausted[/gold].",
   "COLLECTOR-FIEND_FIRE.title": "Fiend Fire",
@@ -87,7 +87,7 @@
   "COLLECTOR-HOARDERS_STRIKE.title": "Hoarder's Strike",
   "COLLECTOR-HURTING.description": "Deal {Damage:diff()} damage.\nIf this card is [gold]Exhausted[/gold], gain a [gold]Greater Hurting[/gold]{IfUpgraded:show:+|}.",
   "COLLECTOR-HURTING.title": "Hurting",
-  "COLLECTOR-ILL_TAKE_THAT.description": "[gold]Steal[/gold] up to {IllTakeThat:diff()} of the enemy's [gold]Block[/gold].\nDeal {Damage:diff()} damage.",
+  "COLLECTOR-ILL_TAKE_THAT.description": "Steal up to {IllTakeThat:diff()} [gold]Block[/gold] from the enemy.\nDeal {Damage:diff()} damage.",
   "COLLECTOR-ILL_TAKE_THAT.title": "I'll Take That",
   "COLLECTOR-INEVITABLE_DEMISE.description": "Deal {Damage:diff()} damage.\nThe target's [gold]Miasma[/gold] increases by {DemisePower:diff()} when it deals damage.",
   "COLLECTOR-INEVITABLE_DEMISE.title": "Inevitable Demise",
@@ -200,5 +200,9 @@
   "COLLECTOR-QUENCHING_DREGS.title": "Quenching Dregs",
   "COLLECTOR-QUENCHING_DREGS.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Status card in your [gold]Hand[/gold].",
   "COLLECTOR-MISFORTUNE_COOKIES.title": "Misfortune Cookies",
-  "COLLECTOR-MISFORTUNE_COOKIES.description": "Draw {CardsExtra:diff()} {CardsExtra:plural:card|cards} and [gold]Kindle[/gold] {KindleExtra:diff()} for each unique debuff on the enemy.{IsTargeting:cond:\n(Draw {Cards:diff()} {Cards:pplural:card|cards} and [gold]Kindle[/gold] {Kindle:diff()})|}"
+  "COLLECTOR-MISFORTUNE_COOKIES.description": "Draw {CardsExtra:diff()} {CardsExtra:plural:card|cards} and [gold]Kindle[/gold] {KindleExtra:diff()} for each unique debuff on the enemy.{IsTargeting:cond:\n(Draw {Cards:diff()} {Cards:pplural:card|cards} and [gold]Kindle[/gold] {Kindle:diff()})|}",
+  "COLLECTOR-FORGE_CONTRACT.title": "Forge Contract",
+  "COLLECTOR-FORGE_CONTRACT.description": "Deal {Damage:diff()} damage.\n[gold]Torchhead[/gold] deals {CollectorDamage:diff()} damage.",
+  "COLLECTOR-EQUIP_STAFF.title": "Equip: Staff",
+  "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold]."
 }

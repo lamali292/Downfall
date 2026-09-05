@@ -17,6 +17,34 @@ namespace Collector.CollectorCode.Core;
 
 public class CollectorCmd
 {
+    
+    public static async Task TorchheadAttack(PlayerChoiceContext ctx, CardModel card)
+    {
+        var player = card.Owner;
+        var damage = card.DynamicVars.CollectorDamage.IntValue;
+        var torchhead = player.Torchhead?.Monster as TorchheadMonsterModel;
+        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
+        if (target == null || torchhead == null) return;
+        await DamageCmd.Attack(damage)
+            .FromTorchhead(torchhead)
+            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
+            .Targeting(target).Execute(ctx);
+    }
+
+
+    
+    public static async Task TorchheadAttack(PlayerChoiceContext ctx, Player player, int damage)
+    {
+        var torchhead = player.Torchhead?.Monster as TorchheadMonsterModel;
+        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
+        if (target == null || torchhead == null) return;
+        await DamageCmd.Attack(damage)
+            .FromTorchhead(torchhead)
+            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
+            .Targeting(target).Execute(ctx);
+    }
+    
+    
     private static async Task PyreCards(PlayerChoiceContext ctx, CardModel card, IEnumerable<CardModel> pyred)
     {
         if (card.CombatState == null) return;
@@ -26,7 +54,7 @@ public class CollectorCmd
             {
                 await CardCmdCompatibility.Exhaust(ctx, c);
             }
-            await CollectorHook.OnPyre(card.CombatState, ctx, card, c);
+            await CollectorHook.AfterCardPyred(card.CombatState, ctx, card, c);
             await Cmd.Wait(0.1f);
         }
     }

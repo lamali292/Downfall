@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class SoulLitLamp : CollectorRelicModel, IOnPyre
+public class SoulLitLamp : CollectorRelicModel, IAfterCardPyred
 {
     public SoulLitLamp() : base(RelicRarity.Uncommon)
     {
@@ -21,7 +21,7 @@ public class SoulLitLamp : CollectorRelicModel, IOnPyre
         WithTip(CollectorKeyword.Pyre);
     }
 
-    public async Task OnPyre(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (pyred._energyCost != null && pyred.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue)
         {

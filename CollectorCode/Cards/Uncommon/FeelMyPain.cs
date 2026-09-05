@@ -1,7 +1,9 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,14 +14,15 @@ public class FeelMyPain : CollectorCardModel
 {
     public FeelMyPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FeelMyPainPower>(4, 1, false);
-        WithTip(CardKeyword.Exhaust);
+        WithPower<FeelMyPainPower>(4, 2, false);
+        WithTip(CollectorKeyword.Pyre);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<FeelMyPainPower>(ctx, this);
     }
 }
