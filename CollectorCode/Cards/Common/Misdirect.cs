@@ -12,8 +12,9 @@ public class Misdirect : CollectorCardModel
 {
     public Misdirect() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(2, 2);
+        WithBlock(3, 3);
         WithPower<ReserveNextTurnPower>(1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

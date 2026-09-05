@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Hellfire : CollectorCardModel, IUsesPyredCards
 {
-    public Hellfire() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorKeyword.Pyre);
