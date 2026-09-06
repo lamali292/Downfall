@@ -3,10 +3,7 @@ using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Encounters;
-using MegaCrit.Sts2.Core.Models.Monsters;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards.Collectibles;
@@ -22,6 +19,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
+        if (card.Pile?.Type is not (PileType.Hand or PileType.Play))
+            return false;
         if (card != this) return false;
         modifiedCost -= Owner.Hand.Count(e => e.Keywords.Contains(CardKeyword.Unplayable));
         return true;

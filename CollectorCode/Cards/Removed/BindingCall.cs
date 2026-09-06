@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class BindingCall : CollectorCardModel
 {
-    public BindingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public BindingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, false, false)
     {
         WithKindle(6, 2);
         WithPower<BindingCallPower>(2, 1, false);

@@ -28,7 +28,7 @@ public class ForgeContract : CollectorCardModel
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(Owner, out _);
+        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
         description.Add("TorchheadTargetsAll", shouldTargetAll);
         base.AddExtraArgsToDescription(description);
     }

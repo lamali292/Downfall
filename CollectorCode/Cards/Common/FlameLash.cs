@@ -8,15 +8,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
 public class FlameLash : CollectorCardModel, IUsesPyredCards
 {
-    public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public FlameLash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
+        WithTip(CardKeyword.Exhaust);
         WithDamage(8, 4);
         WithEnergy(2);
     }
@@ -27,7 +28,7 @@ public class FlameLash : CollectorCardModel, IUsesPyredCards
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetResolved() ?? 0;
+        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetAmountToSpend() ?? 0;
         if (cost >= DynamicVars.Energy.IntValue)
         {
             await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCardCompatibility(this, cardPlay)
