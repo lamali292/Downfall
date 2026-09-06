@@ -14,7 +14,7 @@ public class Shatter : ChampCardModel
 {
     public Shatter() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(14, 2);
+        WithDamage(13, 2);
         WithPower<VulnerablePower>(1, 1);
         WithPower<WeakPower>(1, 1);
         // WithTip(ChampTip.Stance);
