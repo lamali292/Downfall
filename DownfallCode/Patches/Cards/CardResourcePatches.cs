@@ -16,7 +16,6 @@ internal static class GenericSpendResourcesPatch
     [HarmonyPrefix]
     private static bool HandleResourceSpending(CardModel __instance, ref Task<(int, int)> __result)
     {
-        if (__instance is not DownfallCardModel) return true;
         var player = __instance.Owner;
         if (player.PlayerCombatState == null) return true;
 
@@ -39,7 +38,6 @@ internal static class GenericHasEnoughResourcesPatch
     private static bool HandleExclusiveResourceLogic(PlayerCombatState __instance, CardModel card,
         ref bool __result, ref UnplayableReason reason)
     {
-        if (card is not DownfallCardModel) return true;
         foreach (var resource in CardResourceRegistry.GetAll())
             if (resource.ShouldHandleResourceCheck(card) && resource.UsesResourceExclusively(card))
             {
@@ -56,7 +54,6 @@ internal static class GenericHasEnoughResourcesPatch
     private static void HandleHybridResourceLogic(PlayerCombatState __instance, CardModel card,
         ref bool __result, ref UnplayableReason reason)
     {
-        if (card is not DownfallCardModel) return ;
         if (__result) return; // Already has enough resources
         if (!reason.HasFlag(UnplayableReason.EnergyCostTooHigh)) return;
 
