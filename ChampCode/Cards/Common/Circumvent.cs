@@ -14,7 +14,7 @@ public class Circumvent : ChampCardModel
 {
     public Circumvent() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(6, 3);
+        WithBlock(5, 3);
         WithCards(2);
         //this.WithDefensiveTip();
     }
