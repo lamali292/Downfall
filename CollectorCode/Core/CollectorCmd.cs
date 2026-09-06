@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 
@@ -18,30 +19,32 @@ namespace Collector.CollectorCode.Core;
 public class CollectorCmd
 {
     
-    public static async Task TorchheadAttack(PlayerChoiceContext ctx, CardModel card)
+    public static Task TorchheadAttack(PlayerChoiceContext ctx, CardModel card)
     {
         var player = card.Owner;
         var damage = card.DynamicVars.CollectorDamage.IntValue;
-        var torchhead = player.Torchhead?.Monster as TorchheadMonsterModel;
-        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-        if (target == null || torchhead == null) return;
-        await DamageCmd.Attack(damage)
-            .FromTorchhead(torchhead)
-            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
-            .Targeting(target).Execute(ctx);
+        return TorchheadAttack(ctx, player, damage);
     }
-
-
     
     public static async Task TorchheadAttack(PlayerChoiceContext ctx, Player player, int damage)
     {
-        var torchhead = player.Torchhead?.Monster as TorchheadMonsterModel;
-        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-        if (target == null || torchhead == null) return;
-        await DamageCmd.Attack(damage)
+        await Cmd.CustomScaledWait(0.1f, 0.3f);
+        var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out var modifiers);
+        await CollectorHook.AfterShouldTorchheadTargetAll(ctx, player, modifiers);
+        if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead) return;
+        var attack = DamageCmd.Attack(damage)
             .FromTorchhead(torchhead)
-            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
-            .Targeting(target).Execute(ctx);
+            .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3");
+        if (shouldTargetAll)
+        {
+            await attack.TargetingAllOpponents(player.Creature.CombatState).Execute(ctx);
+        }
+        else
+        {
+            var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
+            if (target == null) return;
+            await attack.Targeting(target).Execute(ctx);
+        }
     }
     
     

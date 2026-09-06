@@ -1,7 +1,5 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,23 +8,21 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
-
 [Pool(typeof(CollectorCardPool))]
-public class AshesToAshes : CollectorCardModel
+public class EquipAxe : CollectorCardModel
 {
-    public AshesToAshes() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public EquipAxe() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        // TODO : this needs a upgrade
-        WithPower<AshesToAshesPower>(1, false);
-        WithTip<StrengthPower>();
-        WithTip(CollectorKeyword.Pyre);
-        WithTip(CollectorTip.Pyred);
-        WithTip(CardKeyword.Exhaust);
+        WithKindle(6, 1);
+        WithPower<EquipAxePower>(1, false);
+        WithPower<StrengthPower>(2,1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CommonActions.ApplySelf<AshesToAshesPower>(ctx, this);
+        var torchhead = await CollectorCmd.Kindle(ctx, this);
+        await CommonActions.ApplySelf<EquipAxePower>(ctx, this);
+        await PowerCmd.Apply<StrengthPower>(ctx, torchhead, DynamicVars.Strength.BaseValue, Owner.Creature, this);
     }
 }

@@ -35,5 +35,19 @@ public static class CollectorHook
     {
         return HookUtils.All<IShouldExhaustPyred>(card.CombatState!, e => e.ShouldExhaustPyred(card, pyred));
     }
+
+    public static bool ShouldTorchheadTargetAll(Player player, out IEnumerable<IShouldTorchheadTargetAll> modifiers)
+    {
+        if (player.Creature.CombatState != null)
+            return HookUtils.Any(player.Creature.CombatState!, e => e.ShouldTorchheadTargetAll(player), out modifiers);
+        modifiers = [];
+        return false;
+    }
+    
+    public static Task AfterShouldTorchheadTargetAll(PlayerChoiceContext ctx, Player player, IEnumerable<IShouldTorchheadTargetAll> modifiers)
+    {
+        if (player.Creature.CombatState == null) return Task.CompletedTask;
+        return HookUtils.AfterModifying(player.Creature.CombatState, modifiers, e => e.AfterShouldTorchheadTargetAll(ctx, player));
+    }
 }
 
