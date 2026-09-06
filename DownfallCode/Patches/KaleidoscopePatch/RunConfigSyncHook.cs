@@ -15,18 +15,28 @@ public static class RunConfigSyncHook
     [HarmonyPostfix]
     public static void OnInitShared(RunManager __instance)
     {
-        var net = __instance.NetService;
-        net.RegisterMessageHandler(Handler);
-
-        PrismaticModeConfigSync.SetRebroadcast(() =>
+        try
         {
-            if (net.Type != NetGameType.Singleplayer)
-                net.SendMessage(new PrismaticConfigMessage
-                {
-                    OwnerNetId = net.NetId,
-                    PrismaticMode = DownfallConfig.PrismaticOption,
-                });
-        });
+            var net = __instance.NetService;
+
+            net.UnregisterMessageHandler(Handler);  
+            net.RegisterMessageHandler(Handler); 
+
+            PrismaticModeConfigSync.SetRebroadcast(() =>
+            {
+                if (DownfallConfig.PrismaticOption == PrismaticMode.All) return;
+                if (net.Type != NetGameType.Singleplayer)
+                    net.SendMessage(new PrismaticConfigMessage
+                    {
+                        OwnerNetId = net.NetId,
+                        PrismaticMode = DownfallConfig.PrismaticOption,
+                    });
+            });
+        }
+        catch (Exception e)
+        {
+            DownfallMainFile.Logger.Error($"OnInitShared threw: {e}");
+        }
     }
     
     [HarmonyPatch(typeof(RunManager), nameof(RunManager.Launch))]
@@ -34,8 +44,8 @@ public static class RunConfigSyncHook
     public static void OnLaunch(RunManager __instance)
     {
         PrismaticModeConfigSync.Reset();      
+        if (DownfallConfig.PrismaticOption == PrismaticMode.All) return;
         PrismaticModeConfigSync.CaptureLocal(); 
-
         var net = __instance.NetService;
         if (net.Type != NetGameType.Singleplayer)
             net.SendMessage(new PrismaticConfigMessage     
@@ -49,7 +59,7 @@ public static class RunConfigSyncHook
     [HarmonyPostfix]
     public static void OnCleanUp(RunManager __instance)
     {
-        __instance.NetService?.UnregisterMessageHandler(Handler);
+        __instance.NetService.UnregisterMessageHandler(Handler);
         PrismaticModeConfigSync.SetRebroadcast(null);
     }
 }

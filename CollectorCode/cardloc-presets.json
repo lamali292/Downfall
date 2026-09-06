@@ -5,8 +5,7 @@
     {
       "id": "card",
       "markers": [
-        "CollectorCardModel",
-        "Collectible"
+        "CollectorCardModel"
       ],
       "fields": [
         {
@@ -176,6 +175,24 @@
           "name": "description",
           "file": "enchantments.json",
           "optional": false
+        }
+      ]
+    },
+    {
+      "id": "collectible",
+      "markers": [
+        "Collectible"
+      ],
+      "fields": [
+        {
+          "name": "description",
+          "file": "cards.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "cards.json",
+          "optional": true
         }
       ]
     }

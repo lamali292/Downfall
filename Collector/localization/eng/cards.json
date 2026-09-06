@@ -204,5 +204,21 @@
   "COLLECTOR-FORGE_CONTRACT.title": "Forge Contract",
   "COLLECTOR-FORGE_CONTRACT.description": "Deal {Damage:diff()} damage.\n[gold]Torchhead[/gold] deals {CollectorDamage:diff()} damage.",
   "COLLECTOR-EQUIP_STAFF.title": "Equip: Staff",
-  "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold]."
+  "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold].",
+  "COLLECTOR-INFESTED_PRISM_CARD.description": "When you play a Skill, gain {InfestedPrismCardPower:diff()}[gold] Strength[/gold] this turn.",
+  "COLLECTOR-DECIMILLIPEDE_CARD.description": "",
+  "COLLECTOR-WATERFALL_GIANT_CARD.description": "",
+  "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
+  "COLLECTOR-AEONGLASS_CARD.description": "",
+  "COLLECTOR-SKULKING_COLONY_CARD.description": "When this card is [gold]Exhausted[/gold], gain {PlatingPower:diff()} [gold]Plating[/gold].",
+  "COLLECTOR-TERROR_EEL_CARD.description": "When this card is [gold]Exhausted[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
+  "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
+  "COLLECTOR-PHANTASMAL_GARDENER_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage {Repeat:diff()} times. ",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "Gain 4(6) Plated Armour at the end of your next 3 turns.",
+  "COLLECTOR-BYRDONIS_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "COLLECTOR-BYGONE_EFFIGY_CARD.description": "",
+  "COLLECTOR-PHROG_PARASITE_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Infection[/gold] into your [gold]Hand[/gold]. ",
+  "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} you have.\nThe next card you play ends your turn.",
+  "COLLECTOR-KIN_PRIEST_CARD.description": "Deal {Damage:diff()} damage.\nIf the current turn is Odd, apply {WeakPower:diff()} [gold]Weak[/gold].\nOtherwise, apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].{InCombat:cond:\n(Apply {EvenTurn:cond:{VulnerablePower:diff()} [gold]Vulnerable[/gold]|{WeakPower:diff()} [gold]Weak[/gold]})|}",
+  "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times."
 }

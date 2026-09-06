@@ -26,15 +26,6 @@ public class BrainDrain : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target?.Monster == null) return;
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (ModelDb.CardPool<CollectibleCardPool>()
-                .AllCards.Cast<ICollectible>()
-                .FirstOrDefault(e => e.GetMonsterModel().Id == cardPlay.Target.Monster.Id) is not CollectorCardModel
-            collectible) return;
-        var card = Owner.Creature.CombatState!.CreateCard(collectible, Owner);
-        if (IsUpgraded)
-            CardCmd.Upgrade(card);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+        throw new NotImplementedException();
     }
 }

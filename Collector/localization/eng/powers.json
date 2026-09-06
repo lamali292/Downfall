@@ -89,5 +89,11 @@
   "COLLECTOR-REFINED_FUEL_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Exhaust[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn.",
   "COLLECTOR-EQUIP_STAFF_POWER.title": "Equip: Staff",
   "COLLECTOR-EQUIP_STAFF_POWER.description": "Whenever [gold]Torchhead[/gold] attacks, it applies [gold]Miasma[/gold].",
-  "COLLECTOR-EQUIP_STAFF_POWER.smartDescription": "Whenever [gold]Torchhead[/gold] attacks, it applies [blue]{Amount}[/blue] [gold]Miasma[/gold]."
+  "COLLECTOR-EQUIP_STAFF_POWER.smartDescription": "Whenever [gold]Torchhead[/gold] attacks, it applies [blue]{Amount}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-CEREMONIAL_BEAST_CARD_POWER.title": "Ringed",
+  "COLLECTOR-CEREMONIAL_BEAST_CARD_POWER.description": "The next card you play ends your turn.",
+  "COLLECTOR-CEREMONIAL_BEAST_CARD_POWER.smartDescription": "{Amount:plural:The next card you play ends your turn.|After you play [blue]{}[/blue] more cards, your turn ends.}",
+  "COLLECTOR-INFESTED_PRISM_CARD_POWER.title": "Honed Spark",
+  "COLLECTOR-INFESTED_PRISM_CARD_POWER.description": "When you play a Skill, gain [gold]Strength[/gold] this turn.",
+  "COLLECTOR-INFESTED_PRISM_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold] this turn."
 }
