@@ -18,7 +18,8 @@ public class FuelTheFire : CollectorCardModel, ITranscendenceCard
 {
     public FuelTheFire() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithPower<ReserveNextTurnPower>(2);
+        WithPower<ReserveNextTurnPower>(2, false);
+        WithReserveTip();
         WithKeyword(CollectorKeyword.Pyre);
     }
 

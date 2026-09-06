@@ -16,6 +16,7 @@ public class AstralFlames : CollectorCardModel
     {
         WithBlock(6, 3);
         WithVar("Increase", 2, 1);
+        WithEnergyTip();
         WithTip(CardKeyword.Exhaust);
     }
 

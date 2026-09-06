@@ -17,6 +17,7 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
     public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
         WithDamage(7, 3);
         WithVar("JadedJabs", 1, 1);
     }

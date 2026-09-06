@@ -12,7 +12,8 @@ public class InevitableDemise : CollectorCardModel
     public InevitableDemise() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 3);
-        WithPower<DemisePower>(1);
+        WithPower<DemisePower>(1, false);
+        WithTip<MiasmaPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

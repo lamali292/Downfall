@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -20,6 +21,7 @@ public class Hoard : CollectorCardModel
         WithKeyword(CollectorKeyword.Pyre);
         WithCards(6, 1);
         WithPower<RetainHandPower>(1, false);
+        WithTip(CardKeyword.Retain);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

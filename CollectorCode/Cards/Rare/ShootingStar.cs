@@ -1,5 +1,7 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,6 +14,9 @@ public class ShootingStar : CollectorCardModel
     public ShootingStar() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<ShootingStarPower>(1, false);
+        WithTip(CollectorTip.Pyred);
+        WithTip(CollectorKeyword.Pyre);
+        WithTip(CardKeyword.Exhaust);
         WithCostUpgradeBy(-1);
     }
 

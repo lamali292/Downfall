@@ -17,7 +17,8 @@ public class Bonfire : CollectorCardModel
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithBlock(12, 4);
-        WithPower<ReserveNextTurnPower>(1);
+        WithPower<ReserveNextTurnPower>(1, false);
+        WithReserveTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

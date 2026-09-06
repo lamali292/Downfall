@@ -14,15 +14,26 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards;
 
-public abstract class CollectorCardModel(
-    int cost,
-    CardType type,
-    CardRarity rarity,
-    TargetType targetType,
-    bool showInCardLibrary = true,
-    bool autoAdd = true)
-    : DownfallCardModel<Core.Collector>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+public abstract class CollectorCardModel
+    : DownfallCardModel<Core.Collector>
 {
+    protected CollectorCardModel(
+        int cost,
+        CardType type,
+        CardRarity rarity,
+        TargetType targetType,
+        bool showInCardLibrary = true,
+        bool autoAdd = true) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+    {
+        WithTips(e => e.Keywords.Contains(CollectorKeyword.Pyre)
+            ?
+            [
+                HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+            ]
+            : []);
+    }
+    
+    
     protected override bool IsPlayable =>
         !HasPyre|| (HasPyre && Owner.Hand.Any(e => e != this));
 

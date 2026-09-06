@@ -1,8 +1,8 @@
 ﻿{
-  "COLLECTOR-COLLECTED_PILE.title": "Collected Pile",
-  "COLLECTOR-COLLECTED_PILE.description": "This contains the Collected cards you have yet to draw this combat. You draw one card from this at the start of your turn.",
   "COLLECTOR-KINDLE.title": "Kindle",
   "COLLECTOR-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat.",
   "COLLECTOR-RESERVE.title": "Reserve",
-  "COLLECTOR-RESERVE.description": "Reserve is used to play cards from your [gold]Hand[/gold] after [gold]Energy[/gold] runs out.\nStays between turns."
+  "COLLECTOR-RESERVE.description": "Reserve is used to play cards from your [gold]Hand[/gold] after [gold]Energy[/gold] runs out.\nStays between turns.",
+  "COLLECTOR-PYRED.description": "A card that was [gold]Exhausted[/gold] to play a card with [gold]Pyre[/gold].",
+  "COLLECTOR-PYRED.title": "Pyred"
 }

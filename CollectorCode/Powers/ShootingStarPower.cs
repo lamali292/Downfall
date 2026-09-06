@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,6 +13,12 @@ namespace Collector.CollectorCode.Powers;
 
 public class ShootingStarPower : CollectorPowerModel, IAfterCardPyred
 {
+    public ShootingStarPower()
+    {
+        WithTip(CollectorTip.Pyred);
+        WithTip(CollectorKeyword.Pyre);
+    }
+    
     private int _usesThisTurn;
 
 

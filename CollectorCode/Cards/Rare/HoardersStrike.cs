@@ -18,6 +18,7 @@ public class HoardersStrike : CollectorCardModel, IUsesPyredCards, IShouldExhaus
     public HoardersStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
         WithDamage(16, 4);
         WithTags(CardTag.Strike);
     }

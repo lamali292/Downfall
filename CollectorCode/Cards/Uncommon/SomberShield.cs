@@ -16,6 +16,7 @@ public class SomberShield : CollectorCardModel, IUsesPyredCards
     public SomberShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
         WithBlock(6, 3);
         WithPower<CopyNextTurnPower>(1, false);
     }

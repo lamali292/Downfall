@@ -16,7 +16,7 @@ public class CursedWail : CollectorCardModel
 {
     public CursedWail() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<CursedWailPower>(9, 2);
+        WithPower<CursedWailPower>(9, 2, false);
         WithPower<StrengthPower>(1, 1);
         WithKeywords(CardKeyword.Exhaust);
     }

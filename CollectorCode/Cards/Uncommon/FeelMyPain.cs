@@ -15,7 +15,9 @@ public class FeelMyPain : CollectorCardModel
     public FeelMyPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<FeelMyPainPower>(4, 2, false);
+        WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
+        WithTip(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

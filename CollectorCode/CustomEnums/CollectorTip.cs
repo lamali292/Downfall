@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.CustomEnums;
 public class CollectorTip
 {
     [CustomEnum] public static StaticHoverTip Kindle;
-
+    [CustomEnum] public static StaticHoverTip Pyred;
     
     public static HoverTip ReserveTip => new(
         HoverTipFactory.L10NStatic("COLLECTOR-RESERVE.title"),

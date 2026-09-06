@@ -13,7 +13,7 @@ public class Karma : CollectorCardModel
 {
     public Karma() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<KarmaPower>(3, 1);
+        WithPower<KarmaPower>(3, 1, false);
         WithVar("Debuffs", 2);
         WithTip(StaticHoverTip.Block);
     }

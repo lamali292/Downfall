@@ -17,7 +17,7 @@ public class Hellfire : CollectorCardModel, IUsesPyredCards
     public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Megapyre);
-        WithTip(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(6, 3);
     }
@@ -27,7 +27,6 @@ public class Hellfire : CollectorCardModel, IUsesPyredCards
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var list = Owner.Hand.ToList();
         var cardCount = PyredCards.Count();
         for (var i = 0; i < cardCount; i++)
         {

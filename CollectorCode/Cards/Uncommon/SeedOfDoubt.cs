@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
@@ -15,6 +16,7 @@ public class SeedOfDoubt : CollectorCardModel
     public SeedOfDoubt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<MiasmaPower>(3);
+        WithTip(CardKeyword.Exhaust);
         WithVar("Increase", 1, 1);
     }
 

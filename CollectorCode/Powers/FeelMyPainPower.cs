@@ -12,7 +12,7 @@ public class FeelMyPainPower : CollectorPowerModel, IAfterCardPyred
 {
     public FeelMyPainPower()
     {
-        WithTip(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
     }
     
     
