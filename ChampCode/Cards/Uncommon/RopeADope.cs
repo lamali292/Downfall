@@ -13,7 +13,7 @@ public class RopeADope : ChampCardModel
     public RopeADope() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithFinisher();
-        WithBlock(8, 4);
+        WithBlock(7, 3);
         WithEnergy(1);
         WithPower<DrawCardsNextTurnPower>(2, false);
     }
