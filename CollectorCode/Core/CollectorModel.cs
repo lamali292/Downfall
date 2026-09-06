@@ -23,16 +23,4 @@ public class CollectorModel() : CustomSingletonModel(HookType.Combat)
         }
 
     }
-
-    public override Task AfterCombatEnd(CombatRoom room)
-    {
-        if (room.RoomType is not (RoomType.Elite or RoomType.Boss)) return Task.CompletedTask;
-        var existsCard = ModelDb.CardPool<CollectibleCardPool>().AllCards.Any(c => c is ICollectible col && col.GetEncounterModel().Id == room.Encounter.Id);
-        if (!existsCard) return Task.CompletedTask;
-        foreach (var player in room.CombatState.Players.Where(p => p.Character is Collector))
-        {
-            room.AddExtraReward(player, new CollectibleReward(room.Encounter.Id, player));
-        }
-        return Task.CompletedTask;
-    }
 }
