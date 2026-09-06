@@ -12,8 +12,8 @@ public class BurningStrike : CollectorCardModel
     public BurningStrike() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithTags(CardTag.Strike);
-        WithDamage(14, 1);
-        WithCards(1, 1);
+        WithDamage(10, 4);
+        WithCards(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

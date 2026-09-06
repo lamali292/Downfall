@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ public class RefinedFuel : CollectorCardModel
     public RefinedFuel() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithReserve(1);
-        WithTip(CardKeyword.Exhaust);
+        WithTip(CollectorTip.Pyred);
         WithPower<RefinedFuelPower>(1, 1, false);
     }
 

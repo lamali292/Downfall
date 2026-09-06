@@ -11,9 +11,9 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class TheInsatiableCard : Collectible<TheInsatiableBoss>
 {
-    public TheInsatiableCard() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    public TheInsatiableCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
     {
-        WithPower<TheInsatiableCardPower>(3, 2, false);
+        WithPower<TheInsatiableCardPower>(3, 1, false);
         WithTip(CollectorTip.Kindle);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
