@@ -59,7 +59,7 @@
   "COLLECTOR-FIEND_FIRE.title": "Fiend Fire",
   "COLLECTOR-FINALIZE.description": "When this enemy dies, heal {FinalizePower:diff()} HP.\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-FINALIZE.title": "Finalize",
-  "COLLECTOR-FINGER_OF_DEATH.description": "Only [gold]Reserves[/gold] may be spent on this.\nApply {MiasmaPower:diff()} [gold]Doom[/gold] {IfUpgraded:show: to ALL enemies|}.",
+  "COLLECTOR-FINGER_OF_DEATH.description": "Only {:reserveIcons()} may be spent on this.\nApply {MiasmaPower:diff()} [gold]Miasma [/gold]to ALL enemies.",
   "COLLECTOR-FINGER_OF_DEATH.title": "Finger of Death",
   "COLLECTOR-FLAME_LASH.description": "Deal {Damage:diff()} damage.\nIf the [gold]Pyred[/gold] card costs {Energy:energyIcons()} or more, hit ALL enemies.",
   "COLLECTOR-FLAME_LASH.title": "Flame Lash",
