@@ -46,3 +46,17 @@ namespace Downfall.DownfallCode.Extensions.Powers
         }
     }
 }
+
+namespace Downfall.DownfallCode.Extensions.Potions
+{
+    public static class StaticHoverTipCardExtensions
+    {
+        extension(StaticHoverTip staticTip)
+        {
+            public AbstractTooltipSource<PotionModel> WithVars(params DynamicVar[] vars)
+            {
+                return new AbstractTooltipSource<PotionModel>(_ => HoverTipFactory.Static(staticTip, vars));
+            }
+        }
+    }
+}
