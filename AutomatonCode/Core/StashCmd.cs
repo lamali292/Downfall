@@ -93,12 +93,13 @@ public class StashCmd
         return Run(ctx, player, cards.ToList(), PlaceExisting);
     }
 
-    public static Task Stash<TCard>(PlayerChoiceContext ctx, Player player, int amount = 1)
+    public static Task Stash<TCard>(PlayerChoiceContext ctx, Player player, int amount = 1, Player? creator = null)
         where TCard : CardModel
     {
+        creator ??= player;
         var cards = BuildCards<TCard>(player, amount);
         return Run(ctx, player, cards, async (list, target)
-            => await CardPileCmd.AddGeneratedCardsToCombat(list, target, player));
+            => await CardPileCmd.AddGeneratedCardsToCombat(list, target, creator));
     }
 
     // Creation loop lifted out of DownfallCardCmd.GiveCards.

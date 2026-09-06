@@ -105,5 +105,8 @@
   "AWAKENED-THAUMATURGY_POWER.description": "At the start of your next turn, gain a [gold]Ceremony[/gold].",
   "AWAKENED-THAUMATURGY_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, gain a [gold]Ceremony[/gold].",
   "AWAKENED-MANABURN_POWER.remoteDescription": "Whenever [orange]{ApplierName}[/orange] is [gold]Drained[/gold], this enemy loses [blue]{Amount}[/blue] HP.",
-  "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Whenever [orange]{ApplierName}[/orange] attacks this enemy, they gain [blue]{Amount}[/blue] [gold]Strength[/gold] for one turn."
+  "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Whenever [orange]{ApplierName}[/orange] attacks this enemy, they gain [blue]{Amount}[/blue] [gold]Strength[/gold] for one turn.",
+  "AWAKENED-SACRAMENTAL_WINE_POWER.title": "Sacramental Wine",
+  "AWAKENED-SACRAMENTAL_WINE_POWER.description": "Whenever you play a Power, gain [gold]Block[/gold]. ",
+  "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Whenever you play a Power, gain [blue]{Amount}[/blue] [gold]Block[/gold]. "
 }
