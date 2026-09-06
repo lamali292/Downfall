@@ -17,7 +17,6 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class ReceiveTribute : CollectorCardModel
 {
-    // Todo: nah
     public ReceiveTribute() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
