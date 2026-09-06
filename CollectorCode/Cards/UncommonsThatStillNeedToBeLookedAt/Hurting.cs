@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class Hurting : CollectorCardModel
 {
-    public Hurting() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Hurting() : base(1, CardType.Attack, CardRarity.Event, TargetType.AnyEnemy, false, false)
     {
         WithKeyword(CardKeyword.Ethereal);
         WithDamage(10, 3);

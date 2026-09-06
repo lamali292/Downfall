@@ -17,7 +17,7 @@ public class BlackBindings : CollectorCardModel
     public BlackBindings() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(2);
-        WithPower<MiasmaPower>(2, 2);
+        WithPower<MiasmaPower>(3, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

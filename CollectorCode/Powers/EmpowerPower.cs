@@ -17,24 +17,27 @@ public class EmpowerPower : CollectorPowerModel
 {
     public EmpowerPower()
     {
-        WithCards(0);
+        WithPower<StrengthPower>(0);
     }
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override int? SecondAmount => DynamicVars.Cards.IntValue;
+    protected override int? SecondAmount => DynamicVars.Strength.IntValue;
 
-    public void SetCards(int amount)
+    
+    public void SetStrength(int amount)
     {
-        DynamicVars.Cards.BaseValue = amount;
+        DynamicVars.Strength.BaseValue = amount;
         this.InvokeSilentDisplayAmountChanged();
     }
+    
  
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
-        await DownfallCardCmd.GiveCards<Ember>(player, PileType.Hand, DynamicVars.Cards.IntValue, upgraded: true);
+        await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
         Flash();
         await PowerCmd.Decrement(this);
     }
+
 }

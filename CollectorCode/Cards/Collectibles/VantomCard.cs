@@ -20,6 +20,6 @@ public class VantomCard : Collectible<VantomBoss>
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SlipperyPower>(ctx, this);
+        await CommonActions.ApplySelf<SlipperyPower>(ctx, this);//Todo: Investigate/test slippery as some modders did say its problematic on the player (Does it desync or miscalculate?)
     }
 }
