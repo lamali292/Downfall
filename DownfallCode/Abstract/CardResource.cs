@@ -122,20 +122,20 @@ public abstract class CardResource : CustomSingletonModel
 
 public static class CardResourceRegistry
 {
-    private static readonly List<CardResource> _resources = [];
+    private static readonly List<CardResource> Resources = [];
 
     public static void Register(CardResource resource)
     {
-        _resources.Add(resource);
+        Resources.Add(resource);
     }
 
     public static IReadOnlyList<CardResource> GetAll()
     {
-        return _resources;
+        return Resources;
     }
 
     public static T? Get<T>() where T : CardResource
     {
-        return _resources.OfType<T>().FirstOrDefault();
+        return Resources.OfType<T>().FirstOrDefault();
     }
 }
