@@ -17,10 +17,7 @@ public class AshenStrike : CollectorCardModel
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(14, 1);
-        WithTips(e =>
-            e.IsUpgraded
-                ? HoverTipFactory.FromCardWithCardHoverTips<Ember>()
-                : HoverTipFactory.FromCardWithCardHoverTips<Burn>());
+        WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -28,6 +25,9 @@ public class AshenStrike : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
+        if (IsUpgraded)
+            await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
+        else 
+            await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
 }

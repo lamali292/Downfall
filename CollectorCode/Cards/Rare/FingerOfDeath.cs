@@ -18,9 +18,7 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public override TargetType TargetType => IsUpgraded ? TargetType.AllEnemies : TargetType.AnyEnemy;
-
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
