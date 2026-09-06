@@ -229,5 +229,5 @@
   "COLLECTOR-EQUIP_AXE.title": "Equip: Axe",
   "COLLECTOR-EQUIP_AXE.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies.\n[gold]Torchhead[/gold] gains {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BIDING_BLAST.title": "Biding Blast",
-  "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf this card is played using Reserves, hits twice."
+  "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice."
 }
