@@ -22,7 +22,7 @@
   "COLLECTOR-SOUL_LIT_LAMP.flavor": "A ghoulish decoration. The crackles of fire are replaced by buzzing wails.",
   "COLLECTOR-THE_CONTRACT.title": "The Contract",
   "COLLECTOR-THE_CONTRACT.description": "The first time you play a [gold]Colorless[/gold] card each combat, gain {energyPrefix:energyIcons(1)} equal to its cost.",
-  "COLLECTOR-THE_CONTRACT.flavor": "Sign in blood.",
+  "COLLECTOR-THE_CONTRACT.flavor": "Services from Carolina I.\nSign in blood.",
   "COLLECTOR-THIMBLE_HELM.title": "Thimble Helm",
   "COLLECTOR-THIMBLE_HELM.description": "While [gold]Torchhead[/gold] is alive, gain [blue]{Block:diff()}[/blue] additional [gold]Block[/gold] from cards.",
   "COLLECTOR-THIMBLE_HELM.flavor": "Worn by the Spire's miniest heroes.",
