@@ -187,6 +187,29 @@
           "optional": true
         }
       ]
+    },
+    {
+      "id": "potions",
+      "markers": [
+        "AwakenedPotionModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "potions.json",
+          "optional": true
+        }
+      ]
     }
   ],
   "pinnedColors": [],

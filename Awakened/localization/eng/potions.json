@@ -1,0 +1,8 @@
+{
+  "AWAKENED-CULTISTS_DELIGHT.title": "Cultist's Delight",
+  "AWAKENED-CULTISTS_DELIGHT.description": "Gain [blue]{CuriosityPower:diff()}[/blue] [gold]Curiosity[/gold].",
+  "AWAKENED-UNHOLY_WATER.title": "Unholy Water",
+  "AWAKENED-UNHOLY_WATER.description": "Apply [blue]{ManaburnPower:diff()}[/blue] [gold]Manaburn[/gold].",
+  "AWAKENED-SACRAMENTAL_WINE.title": "Sacramental Wine",
+  "AWAKENED-SACRAMENTAL_WINE.description": "Whenever you play a Power, gain [blue]{SacramentalWinePower:diff()}[/blue] [gold]Block[/gold]."
+}

@@ -3,7 +3,9 @@ using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -103,3 +105,6 @@ public abstract class AwakenedPowerModel(
 public class AwakenedPotionPool : DownfallPotionPool<Awakened>;
 
 public class AwakenedCardPool : DownfallCardPool<Awakened>;
+
+public abstract class AwakenedPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<Awakened>(potionRarity, potionUsage, targetType);
