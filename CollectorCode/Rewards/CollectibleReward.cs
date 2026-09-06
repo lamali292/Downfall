@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Collector.CollectorCode.Rewards;
 
-public class CollectibleReward(ModelId encounterModel, Player player) : CustomReward(player)
+public class CollectibleReward(ModelId encounterModel, Player player, bool upgraded) : CustomReward(player)
 {
     [CustomEnum] public static RewardType CustomCardRewardType;
     
@@ -39,7 +39,7 @@ public class CollectibleReward(ModelId encounterModel, Player player) : CustomRe
     }
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromCard(Card)];
+        [HoverTipFactory.FromCard(Card, upgraded)];
 
     public override bool IsPopulated => _card != null;
 
@@ -58,6 +58,7 @@ public class CollectibleReward(ModelId encounterModel, Player player) : CustomRe
         if (LocalContext.NetId == null) return false;
         Card.AssertCanonical();
         var runCard = Player.RunState.CreateCard(Card, Player);
+        if (upgraded && runCard.IsUpgradable) CardCmd.Upgrade(runCard);
         var result = await CardPileCmd.Add(runCard, PileType.Deck);
         CardCmd.PreviewCardPileAdd(result, 0.4f);
         runCard.AssertMutable();
@@ -73,6 +74,7 @@ public class CollectibleReward(ModelId encounterModel, Player player) : CustomRe
     {
         if (LocalContext.NetId == null) return;
         var runCard = Player.RunState.CreateCard(Card, Player);
+        if (upgraded && runCard.IsUpgradable) CardCmd.Upgrade(runCard);
         Player.RunState.CurrentMapPointHistoryEntry?
             .GetEntry(LocalContext.NetId.Value)
             .CardChoices.Add(new CardChoiceHistoryEntry(runCard, false));
@@ -83,13 +85,14 @@ public class CollectibleReward(ModelId encounterModel, Player player) : CustomRe
         return new SerializableReward
         {
             RewardType = CustomCardRewardType,
-            PredeterminedModelId = encounterModel
+            PredeterminedModelId = encounterModel,
+            WasGoldStolenBack = upgraded
         };
     }
 
     private static CustomReward Deserialize(SerializableReward save, Player player)
     {
-        return new CollectibleReward(save.PredeterminedModelId, player);
+        return new CollectibleReward(save.PredeterminedModelId, player, save.WasGoldStolenBack);
     }
 
     public override void MarkContentAsSeen()

@@ -1,13 +1,29 @@
-﻿using Collector.CollectorCode.Cards.Token;
+﻿using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Powers;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;
-using MegaCrit.Sts2.Core.Models.Monsters;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace Collector.CollectorCode.Cards.Collectibles;
 
-public class TheInsatiableCard()
-    : Collectible<TheInsatiableBoss>(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
+public class TheInsatiableCard : Collectible<TheInsatiableBoss>
 {
+    public TheInsatiableCard() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    {
+        WithPower<TheInsatiableCardPower>(3, 2, false);
+        WithTip(CollectorTip.Kindle);
+        WithTip(CollectorTip.Pyred);
+        WithTip(CollectorKeyword.Pyre);
+        WithTip(CardKeyword.Exhaust);
+        WithEnergyTip();
+    }
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.ApplySelf<TheInsatiableCardPower>(ctx, this);
+    }
 }

@@ -1,12 +1,15 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using Collector.CollectorCode.Rewards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -33,4 +36,16 @@ public class EmeraldTorch : CollectorRelicModel
         Flash();
     }
     
+    
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        if (room.RoomType is not (RoomType.Elite or RoomType.Boss)) return Task.CompletedTask;
+        var existsCard = ModelDb.CardPool<CollectibleCardPool>().AllCards.Any(c => c is ICollectible col && col.GetEncounterModel().Id == room.Encounter.Id);
+        if (!existsCard) return Task.CompletedTask;
+        foreach (var player in room.CombatState.Players.Where(p => p.Character is Core.Collector))
+        {
+            room.AddExtraReward(player, new CollectibleReward(room.Encounter.Id, player, false));
+        }
+        return Task.CompletedTask;
+    }
 }

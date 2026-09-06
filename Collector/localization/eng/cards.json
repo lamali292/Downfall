@@ -206,7 +206,7 @@
   "COLLECTOR-EQUIP_STAFF.title": "Equip: Staff",
   "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-INFESTED_PRISM_CARD.description": "When you play a Skill, gain {InfestedPrismCardPower:diff()}[gold] Strength[/gold] this turn.",
-  "COLLECTOR-DECIMILLIPEDE_CARD.description": "",
+  "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], [gold]Kindle[/gold] {Kindle:diff()}, gain {Block:diff()} Block and gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn.",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
   "COLLECTOR-AEONGLASS_CARD.description": "",
@@ -220,5 +220,6 @@
   "COLLECTOR-PHROG_PARASITE_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Infection[/gold] into your [gold]Hand[/gold]. ",
   "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} you have.\nThe next card you play ends your turn.",
   "COLLECTOR-KIN_PRIEST_CARD.description": "Deal {Damage:diff()} damage.\nIf the current turn is Odd, apply {WeakPower:diff()} [gold]Weak[/gold].\nOtherwise, apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].{InCombat:cond:\n(Apply {EvenTurn:cond:{VulnerablePower:diff()} [gold]Vulnerable[/gold]|{WeakPower:diff()} [gold]Weak[/gold]})|}",
-  "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times."
+  "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
+  "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}"
 }

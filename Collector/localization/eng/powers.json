@@ -95,5 +95,8 @@
   "COLLECTOR-CEREMONIAL_BEAST_CARD_POWER.smartDescription": "{Amount:plural:The next card you play ends your turn.|After you play [blue]{}[/blue] more cards, your turn ends.}",
   "COLLECTOR-INFESTED_PRISM_CARD_POWER.title": "Honed Spark",
   "COLLECTOR-INFESTED_PRISM_CARD_POWER.description": "When you play a Skill, gain [gold]Strength[/gold] this turn.",
-  "COLLECTOR-INFESTED_PRISM_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold] this turn."
+  "COLLECTOR-INFESTED_PRISM_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold] this turn.",
+  "COLLECTOR-THE_INSATIABLE_CARD_POWER.title": "Todo: The Insatiable Card Power",
+  "COLLECTOR-THE_INSATIABLE_CARD_POWER.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold].",
+  "COLLECTOR-THE_INSATIABLE_CARD_POWER.smartDescription": "Whenever a card is [gold]Pyred[/gold] that costs {Energy:energyIcons()} or more, [gold]Kindle[/gold] [blue]{Amount}[/blue]."
 }
