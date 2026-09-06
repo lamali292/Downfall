@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Collector.CollectorCode.Rewards;
 
-public class CollectibleReward(ModelId monsterModel, Player player) : CustomReward(player)
+public class CollectibleReward(ModelId encounterModel, Player player) : CustomReward(player)
 {
     [CustomEnum] public static RewardType CustomCardRewardType;
     
@@ -47,7 +47,7 @@ public class CollectibleReward(ModelId monsterModel, Player player) : CustomRewa
 
     public override void Populate()
     {
-        _card = ModelDb.CardPool<CollectibleCardPool>().AllCards.FirstOrDefault(c => c is ICollectible g && g.GetMonsterModel().Id == monsterModel);
+        _card = ModelDb.CardPool<CollectibleCardPool>().AllCards.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterModel);
     }
 
     private CardModel? _card;
@@ -83,7 +83,7 @@ public class CollectibleReward(ModelId monsterModel, Player player) : CustomRewa
         return new SerializableReward
         {
             RewardType = CustomCardRewardType,
-            PredeterminedModelId = monsterModel
+            PredeterminedModelId = encounterModel
         };
     }
 

@@ -1,18 +1,22 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
+using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Collector.CollectorCode.Cards.Token;
 
 public interface ICollectible
 {
-    MonsterModel GetMonsterModel();
+    EncounterModel GetEncounterModel();
 }
 
+[Pool(typeof(CollectibleCardPool))]
 public abstract class Collectible<T>(
     int cost,
     CardType type,
@@ -22,24 +26,22 @@ public abstract class Collectible<T>(
     float s = 1.0f,
     float v = 1.0f) : CollectorCardModel(cost, type, rarity, targetType), ICollectible, IAdditionalOverlay,
     IColoredPortrait
-    where T : MonsterModel
+    where T : EncounterModel
 {
     public override bool HasBuiltInOverlay => false;
 
-    public override List<(string, string)> Localization =>
-        new CardLoc(
-            GetMonsterModel().Title.GetFormattedText(),
-            ""
-        );
+    public override string Title => EncounterModel.Title.GetFormattedText();
 
-
+    public ActModel? Act => ModelDb.Acts.FirstOrDefault(e => e.AllEncounters.Contains(EncounterModel));
+    public RoomType RoomType => EncounterModel.RoomType;
+    
     //public override string CustomPortraitPath => "collectible.png".CardImagePath<Character.Collector>();
     public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Core.Collector>();
 
 
     public Control CreateAdditionalOverlay()
     {
-        var monster = GetMonsterModel().ToMutable();
+        var monster = EncounterModel.AllPossibleMonsters.First().ToMutable();
         var visuals = monster.CreateVisuals();
 
         var container = new Control { Name = OverlayNodeName, MouseFilter = Control.MouseFilterEnum.Ignore };
@@ -52,16 +54,18 @@ public abstract class Collectible<T>(
 
     public string OverlayNodeName => "DownfallMonsterOverlay";
 
-    public MonsterModel GetMonsterModel()
+    public EncounterModel GetEncounterModel()
     {
-        return ModelDb.Monster<T>();
+        return ModelDb.Encounter<T>();
     }
+    
+    public EncounterModel EncounterModel => GetEncounterModel();
 
     public float HueShift => h;
     public float Saturation => s;
     public float Value => v;
 
-    public void S(NCreatureVisuals visuals, MonsterModel monster)
+    private static void S(NCreatureVisuals visuals, MonsterModel monster)
     {
         if (visuals.SpineBody != null)
             monster.GenerateAnimator(visuals.SpineBody);
