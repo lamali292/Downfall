@@ -15,6 +15,7 @@ public class AshesToAshes : CollectorCardModel
 {
     public AshesToAshes() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        // TODO : this needs a upgrade
         WithPower<AshesToAshesPower>(1, false);
         WithTip<StrengthPower>();
         WithTip(CardKeyword.Exhaust);

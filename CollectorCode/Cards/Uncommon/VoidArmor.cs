@@ -17,7 +17,7 @@ public class VoidArmor : CollectorCardModel
     public VoidArmor() : base(1, CardType.Skill, CardRarity.Uncommon, DownfallTargetType.MeAndEnemies)
     {
         WithBlock(10, 3);
-        WithPower<BlurPower>(1);
+        WithPower<BlurPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

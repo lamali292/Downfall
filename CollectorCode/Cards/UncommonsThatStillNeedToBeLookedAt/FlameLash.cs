@@ -16,6 +16,7 @@ public class FlameLash : CollectorCardModel, IUsesPyredCards
     public FlameLash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
+        WithTip(CollectorTip.Pyred);
         WithDamage(8, 4);
         WithEnergy(2);
     }

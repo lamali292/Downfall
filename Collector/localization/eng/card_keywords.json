@@ -1,7 +1,6 @@
 ﻿{
-  "COLLECTOR-PYRE.description": "Requires exhausting a card in [gold]Hand[/gold] in addition to paying its energy cost.",
+  "COLLECTOR-PYRE.description": "Requires [gold]Exhausting[/gold] a card in your [gold]Hand[/gold] to be played.",
   "COLLECTOR-PYRE.title": "Pyre",
-  "COLLECTOR-MEGAPYRE.description": "Requires exhausting ALL cards in your [gold]Hand[/gold].",
+  "COLLECTOR-MEGAPYRE.description": "Requires [gold]Exhausting[/gold] ALL cards in your [gold]Hand[/gold] to be played.",
   "COLLECTOR-MEGAPYRE.title": "Megapyre"
-
 }

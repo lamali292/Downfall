@@ -22,7 +22,7 @@
   "COLLECTOR-DEMISE_POWER.smartDescription": "Prevent the next {Amount:plural:time|[blue]{Amount}[/blue] times} [gold]Doom[/gold] would be removed from this enemy.",
   "COLLECTOR-DOOMED_ATTACK_POWER.title": "Malaised Attack",
   "COLLECTOR-DOOMED_ATTACK_POWER.description": "Your next Attack this turn applies [gold]Miasma[/gold].",
-  "COLLECTOR-DOOMED_ATTACK_POWER.smartDescription": "Your next Attack this turn applies [blue]{Amount}[/blue] Miasma.",
+  "COLLECTOR-DOOMED_ATTACK_POWER.smartDescription": "Your next Attack this turn applies [blue]{Amount}[/blue] [gold]Miasma[/gold].",
   "COLLECTOR-DOUBLE_TROUBLE_POWER.title": "Double Up",
   "COLLECTOR-DOUBLE_TROUBLE_POWER.description": "This turn, your next Colorless card is played an extra time.",
   "COLLECTOR-DOUBLE_TROUBLE_POWER.smartDescription": "This turn, your next {Amount:plural:|[blue]{Amount}[/blue] }Colorless {Amount:plural:card is:cards are} played an extra time.",

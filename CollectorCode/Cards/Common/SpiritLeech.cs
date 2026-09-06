@@ -14,7 +14,8 @@ public class SpiritLeech : CollectorCardModel
     public SpiritLeech() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(15, 5);
-        WithPower<ReserveNextTurnPower>(1);
+        WithPower<ReserveNextTurnPower>(1, false);
+        WithReserveTip();
         //WithBlock(11, 2);
     }
 

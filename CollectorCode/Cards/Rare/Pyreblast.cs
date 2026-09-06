@@ -17,7 +17,9 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
         WithKeyword(CardKeyword.Retain);
         WithDamage(60, 40);
         WithEnergy(1);
+        WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
+        WithTip(CardKeyword.Exhaust);
     }
     
     public Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)

@@ -16,7 +16,7 @@ public class RagingCall : CollectorCardModel
     public RagingCall() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKindle(6, 1);
-        WithPower<RagingCallPower>(3, 5);
+        WithPower<RagingCallPower>(3, 5, false);
         WithTip(CollectorTip.Kindle);
     }
 

@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
@@ -14,7 +15,8 @@ public class CantTouchThis : CollectorCardModel
     public CantTouchThis() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2, 1);
-        WithPower<CantTouchThisPower>(2);
+        WithPower<CantTouchThisPower>(2, false);
+        WithTip<MiasmaPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -16,7 +16,8 @@ public class DarkwillowKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<ReserveNextTurnPower>(2);
+        WithPower<ReserveNextTurnPower>(2, false);
+        WithReserveTip();
         WithKindle(3);
     }
 
