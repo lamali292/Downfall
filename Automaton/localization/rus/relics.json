@@ -27,7 +27,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "Вы начинаете бой с [gold]Программируемыми[/gold] [gold]«Ударом»[/gold] и [gold]«Обороной»[/gold].\nВ начале хода добавляет в [gold]руку[/gold] случайную [gold]Программируемую[/gold] карту.",
     "AUTOMATON-PLATINUM_CORE.flavor": "Обновление: улучшение пользовательских ощущений.",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "Защитные очки",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "Дает [blue]{Block:diff()}[/blue] [gold]Защиты[/gold], если вы завершаете ход без карт в [gold]Коде[/gold].",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Присмотритесь.",
     "AUTOMATON-SILVER_BULLET.title": "Серебряная пуля",
     "AUTOMATON-SILVER_BULLET.description": "Наносит [blue]{Damage:diff()}[/blue] урона ВСЕМ врагам, когда вы создаете Статус.",

@@ -55,7 +55,6 @@
     "SLIMEBOSS-LEECH_LIFE.title": "リーチライフ",
     "SLIMEBOSS-LEVEL_UP.description": "[gold]潜在[/gold]{PotencyPower:diff()}を得る。",
     "SLIMEBOSS-LEVEL_UP.title": "レベルアップ！",
-    "SLIMEBOSS-LIQUIDATE.description": "[gold]筋力[/gold]を{StrengthPower:inverseDiff()}失う。\n[gold]潜在[/gold]{PotencyPower:diff()}を得る。",
     "SLIMEBOSS-LIQUIDATE.title": "液状化",
     "SLIMEBOSS-MASS_FEED.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]リーサル[/gold]の場合、最大HPを{MaxHp:diff()}増加させる。",
     "SLIMEBOSS-MASS_FEED.title": "大量供給",

@@ -26,7 +26,6 @@
     "AWAKENED-BRAINSHOCK.title": "ブレインショック",
     "AWAKENED-BURNING_STUDY.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\nすべての敵に[gold]脱力[/gold]{WeakPower:diff()}を付与する。",
     "AWAKENED-BURNING_STUDY.title": "炎の修練",
-    "AWAKENED-BYRDS_EYE.description": "{IfUpgraded:show:呪文を更新する。\n|}[gold]召喚[/gold]する呪文を選ぶ。",
     "AWAKENED-BYRDS_EYE.title": "バードアイ",
     "AWAKENED-CARRIONMAKER.description": "ランダムな敵に{Damage:diff()}ダメージを与える。\nこのターン中にプレイした呪文の回数分、追加で繰り返す。",
     "AWAKENED-CARRIONMAKER.title": "死肉を作る者",
@@ -113,7 +112,6 @@
     "AWAKENED-MANA_SHIELD.title": "マナシールド",
     "AWAKENED-MANTIS.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]羽根撃ち[/gold]を1枚[gold]手札[/gold]に加える。",
     "AWAKENED-MANTIS.title": "マンティス",
-    "AWAKENED-MIDDEN_HEAP.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]山札[/gold]または[gold]捨て札[/gold]から状態異常または呪いを{Cards:diff()}枚[gold]手札[/gold]に加える。",
     "AWAKENED-MIDDEN_HEAP.title": "埋葬された山",
     "AWAKENED-MINNIEGUN.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]山札[/gold]に[gold]虚無[/gold]を1枚混ぜる。",
     "AWAKENED-MINNIEGUN.title": "ミニガン",
@@ -145,7 +143,6 @@
     "AWAKENED-PSALM.title": "詩編",
     "AWAKENED-RAVEN_STRIKE.description": "{Damage:diff()}ダメージを与える。",
     "AWAKENED-RAVEN_STRIKE.title": "レイブンストライク",
-    "AWAKENED-RAZOR_SHARP.description": "[gold]山札[/gold]に[gold]羽根撃ち[/gold]を2枚混ぜる。\n[gold]羽根撃ち[/gold]の攻撃回数が{RazorSharpPower:diff()}回増える。",
     "AWAKENED-RAZOR_SHARP.title": "羽根の研磨",
     "AWAKENED-REALITY_RIFT.description": "[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。\n別次元から{IfUpgraded:show:[gold]アップグレード[/gold]済みの|}3枚のカードから1枚を選んで得る。",
     "AWAKENED-REALITY_RIFT.title": "次元の裂け目",
@@ -211,7 +208,6 @@
     "AWAKENED-CONGREGATION.title": "烏合の衆",
     "AWAKENED-CONGREGATION.description": "すべてのプレイヤーは{Energy:energyIcons()}を得て、[gold]虚無[/gold]を1枚[gold]山札[/gold]の底に加える。",
     "AWAKENED-BLESS.title": "祝福",
-    "AWAKENED-BLESS.description": "[gold]筋力[/gold]{StrengthLoss:diff()}を失う。\n他のプレイヤー1人が[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
     "AWAKENED-FEATHER_DANCE.title": "フェザーダンス",
     "AWAKENED-FEATHER_DANCE.description": "すべてのプレイヤーは[gold]羽根撃ち[/gold]を{Cards:diff()}枚[gold]手札[/gold]に加える。"
 }

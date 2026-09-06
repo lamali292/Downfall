@@ -9,8 +9,6 @@
     "HERMIT-HIGH_NOON_POWER.description": "[gold]기본[/gold] 타격이 [gold]재사용[/gold]을 얻습니다. ",
     "HERMIT-HIGH_NOON_POWER.smartDescription": "[gold]기본[/gold] 타격이 [gold]재사용[/gold] [blue]{Amount}[/blue]를 얻습니다. ",
     "HERMIT-HIGH_NOON_POWER.title": "정오",
-    "HERMIT-FATAL_DESIRE_POWER.description": "내 턴이 시작될 때, [gold]부상[/gold] 1장을 손패에 추가합니다.",
-    "HERMIT-FATAL_DESIRE_POWER.smartDescription": "내 턴이 시작될 때, [gold]부상[/gold] {Amount:plural:1장을|[blue]{}[/blue]장을}[blue] [/blue]손패에 추가합니다.",
     "HERMIT-FATAL_DESIRE_POWER.title": "치명적인 욕망",
     "HERMIT-SHADOW_CLOAK_POWER.title": "그림자 망토",
     "HERMIT-TAKE_AIM_POWER.description": "내 턴이 시작될 때, [gold]집중[/gold]을 얻습니다.",
@@ -33,7 +31,6 @@
     "HERMIT-RUGGED_POWER.description": "막히지 않은 공격 피해를 받을 때, 그 피해를 [blue]2[/blue]로 줄입니다.",
     "HERMIT-RUGGED_POWER.title": "거칢",
     "HERMIT-ETERNAL_POWER.description": "매 턴 시작 시 처음으로 뽑은 [blue]4[/blue]장의 사용 가능한 카드의 비용이 이번 턴 동안 [blue]1[/blue] 감소합니다.",
-    "HERMIT-ETERNAL_POWER.smartDescription": "매 턴 시작 시 처음으로 뽑은 [blue]4[/blue]장의 사용 가능한 카드의 비용이 이번 턴 동안 [blue]{Amount}[/blue] 감소합니다.",
     "HERMIT-ETERNAL_POWER.title": "영원한 형상",
     "HERMIT-OVERWHELMING_POWER_POWER.description": "내 턴을 {energyPrefix:energyIcons(0)}인 상태로 끝낸다면, [blue]3[/blue] 체력을 잃습니다.",
     "HERMIT-OVERWHELMING_POWER_POWER.smartDescription": "내 턴을 {energyPrefix:energyIcons(0)}인 상태로 끝낸다면, [blue]{Amount}[/blue] 체력을 잃습니다.",
@@ -77,7 +74,5 @@
     "HERMIT-SCOPE_OUT_POWER.title": "정찰",
     "HERMIT-SCOPE_OUT_POWER.description": "이제 [gold]기본[/gold] 타격이 모든 적에게 피해를 줍니다.",
     "HERMIT-SCOPE_OUT_POWER.smartDescription": "이제 [gold]기본[/gold] 타격이 모든 적에게 피해를 줍니다.",
-    "HERMIT-BURDENED_POWER.title": "중압감",
-    "HERMIT-BURDENED_POWER.description": "내 턴 시작 시, [gold]활력[/gold]을 얻고 [gold]부패[/gold] 저주를 1장 [gold]패[/gold]에 추가합니다.",
-    "HERMIT-BURDENED_POWER.smartDescription": "내 턴 시작 시, [gold]활력[/gold]을 [blue]{Amount}[/blue] 얻고 [gold]부패[/gold] 저주를 {Cards:plural:a|[blue]{}[/blue]}장 [gold]패[/gold]에 추가합니다."
+    "HERMIT-BURDENED_POWER.title": "중압감"
 }

@@ -50,7 +50,6 @@
     "AUTOMATON-SEPARATOR.functionPrefix": "Dividir",
     "AUTOMATON-SPIKE.functionName": "Espina",
     "AUTOMATON-SPIKE.functionPrefix": "Puntiagudo",
-    "AUTOMATON-STRIKE_AUTOMATON.functionName": "Golpe",
     "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "Golpear",
     "AUTOMATON-TERMINATOR.functionName": "fin",
     "AUTOMATON-TERMINATOR.functionPrefix": "Triste"

@@ -5,12 +5,7 @@
     "SNECKO-SAVE_FOR_LATER_POWER.title": "Sous le Coude",
     "SNECKO-SAVE_FOR_LATER_POWER.description": "À la fin de votre tour, [gold]Retenez[/gold] une carte.",
     "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "À la fin de votre tour, [gold]Retenez[/gold] [blue]{Amount}[/blue] {Amount:plural:carte|cartes}.",
-    "SNECKO-BLUNDER_GUARD_POWER.title": "Armure de Garde Improvisée",
-    "SNECKO-BLUNDER_GUARD_POWER.description": "Lorsque vous jouez une carte qui coûte {energyPrefix:energyIcons(3)} ou plus, gagnez de [gold]l'Armure[/gold].",
-    "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "Lorsque vous jouez une carte qui coûte {Energy:energyIcons()} ou plus, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "SNECKO-CHEAP_STOCK_POWER.title": "Stock Bon Marché",
-    "SNECKO-CHEAP_STOCK_POWER.description": "Au début de votre tour, [gold]Confondez[/gold] la carte la plus chère de votre [gold]Main[/gold].",
-    "SNECKO-CHEAP_STOCK_POWER.smartDescription": "Au début de votre tour, [gold]Confondez[/gold] {Amount:plural:la carte la plus chère|les [blue]{Amount}[/blue] cartes les plus chères} de votre [gold]Main[/gold].",
     "SNECKO-OVERWHELMING_POWER.title": "Déferlante",
     "SNECKO-OVERWHELMING_POWER.description": "La première fois que vous jouez une carte [gold]Hors-classe[/gold] chaque tour, piochez une carte.",
     "SNECKO-OVERWHELMING_POWER.smartDescription": "La première fois que vous jouez une carte [gold]Hors-classe[/gold] chaque tour, piochez {Amount:plural:une carte|[blue]{}[/blue] cartes}.",
@@ -60,7 +55,6 @@
     "SNECKO-MIMICRY_POWER.description": "Lorsque vous jouez une carte [gold]Hors-classe[/gold], gagnez de la [gold]Force[/gold] pour un tour.",
     "SNECKO-MIMICRY_POWER.smartDescription": "Lorsque vous jouez une carte [gold]Hors-classe[/gold], gagnez [blue]{Amount}[/blue] de [gold]Force[/gold] pour un tour.",
     "SNECKO-THROWING_CARDS_POWER.title": "Lancer de Cartes",
-    "SNECKO-THROWING_CARDS_POWER.description": "La prochaine fois que vous jouez une carte [gold]Hors-classe[/gold], infligez 6 dégâts à un ennemi aléatoire et piochez une carte.",
     "SNECKO-THROWING_CARDS_POWER.smartDescription": "{Amount:plural:La prochaine fois| Les [blue]{}[/blue] prochaines fois} que vous jouez une carte [gold]Hors-classe[/gold], infligez [blue]{Damage:diff()}[/blue] dégâts à un ennemi aléatoire et piochez {Cards:plural:une carte|[blue]{}[/blue] cartes}.",
     "SNECKO-DICE_CASE_POWER.title": "Étui à Dés",
     "SNECKO-DICE_CASE_POWER.description": "Au début de votre tour, ajoutez un [gold]Lancer de l'Âme[/gold] dans la [gold]Main[/gold] d'un autre joueur.",
@@ -68,7 +62,5 @@
     "SNECKO-GAMBLE_POWER.title": "Pari",
     "SNECKO-GAMBLE_POWER.description": "Au prochain tour, piochez des cartes et [gold]Confondez-les[/gold].",
     "SNECKO-GAMBLE_POWER.smartDescription": "Au prochain tour, piochez {Amount:plural:une carte|[blue]{}[/blue] cartes} et {Amount:plural:[gold]Confondez-la[/gold]|[gold]Confondez-les[/gold]}.",
-    "SNECKO-MULLIGAN_POWER.title": "Mulligan",
-    "SNECKO-MULLIGAN_POWER.description": "La première fois que vous jouez une carte qui coûte plus que son coût original, gagnez {energyPrefix:energyIcons(1)}.",
-    "SNECKO-MULLIGAN_POWER.smartDescription": "{Amount:plural:La première|Les [blue]{}[/blue] premières} fois que vous jouez une carte qui coûte plus que son coût original, gagnez {energyPrefix:energyIcons(1)}."
+    "SNECKO-MULLIGAN_POWER.title": "Mulligan"
 }

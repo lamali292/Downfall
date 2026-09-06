@@ -55,7 +55,6 @@
     "SLIMEBOSS-LEECH_LIFE.title": "生命汲取",
     "SLIMEBOSS-LEVEL_UP.description": "获得{PotencyPower:diff()}点[gold]潜能[/gold]。",
     "SLIMEBOSS-LEVEL_UP.title": "升级",
-    "SLIMEBOSS-LIQUIDATE.description": "失去{StrengthPower:inverseDiff()}点[gold]力量[/gold]。\n获得{PotencyPower:diff()}点[gold]潜能[/gold]。",
     "SLIMEBOSS-LIQUIDATE.title": "清算",
     "SLIMEBOSS-MASS_FEED.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]斩杀[/gold]时，永久获得{MaxHp:diff()}点最大生命值。",
     "SLIMEBOSS-MASS_FEED.title": "盛宴",

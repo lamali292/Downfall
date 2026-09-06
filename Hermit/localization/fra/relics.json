@@ -4,7 +4,6 @@
     "HERMIT-OLD_LOCKET.description": "Au début de chaque combat, ajoutez un [gold]Mémento[/gold] dans votre [gold]Main[/gold].",
     "HERMIT-RYE_STALK.title": "Tige de Seigle",
     "HERMIT-RYE_STALK.flavor": "Toujours en parfait état, malgré le fait qu'elle ait été mâchouillée pendant si longtemps.",
-    "HERMIT-RYE_STALK.description": "Au début du tour [blue]{Turn}[/blue], gagnez [blue]{RuggedPower:diff()}[/blue] de [gold]Robustesse[/gold].",
     "HERMIT-SHOTGLASS.title": "Verre à Shot",
     "HERMIT-SHOTGLASS.flavor": "Tout liquide placé à l'intérieur se transforme en quelque chose d'autre.",
     "HERMIT-SHOTGLASS.description": "{Limit:plural:La première fois|Les [blue]{}[/blue] premières fois} que vous utilisez une potion chaque combat, obtenez une potion aléatoire. Vous ne pouvez utiliser {Limit:plural:qu'une potion|que [blue]{Limit}[/blue] potions} chaque combat.",

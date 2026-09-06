@@ -22,7 +22,6 @@
     "AUTOMATON-CULTIST_STRIKE.functionPrefix": "cultista",
     "AUTOMATON-DAZING_PULSE.functionName": "Impulso",
     "AUTOMATON-DAZING_PULSE.functionPrefix": "stordente",
-    "AUTOMATON-DEFEND_AUTOMATON.functionName": "Difendi",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "scudo",
     "AUTOMATON-DEPRECATE.functionName": "Insulto",
     "AUTOMATON-DEPRECATE.functionPrefix": "vecchio",
@@ -57,7 +56,6 @@
     "AUTOMATON-SEPARATOR.functionPrefix": "diviso",
     "AUTOMATON-SPIKE.functionName": "Spina",
     "AUTOMATON-SPIKE.functionPrefix": "spinoso",
-    "AUTOMATON-STRIKE_AUTOMATON.functionName": "Colpo",
     "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "colpo",
     "AUTOMATON-TERMINATOR.functionName": "Fine",
     "AUTOMATON-TERMINATOR.functionPrefix": "triste"

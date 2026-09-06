@@ -55,7 +55,6 @@
     "SLIMEBOSS-LEECH_LIFE.title": "Vita Sanguisuga",
     "SLIMEBOSS-LEVEL_UP.description": "Gain {PotencyPower:diff()} [gold]Potenza[/gold].",
     "SLIMEBOSS-LEVEL_UP.title": "Aumento di Livello",
-    "SLIMEBOSS-LIQUIDATE.description": "Perdi {StrengthPower:inverseDiff()} di [gold]Forza[/gold].\nGain {PotencyPower:diff()} [gold]Potenza[/gold].\n",
     "SLIMEBOSS-LIQUIDATE.title": "Liquida",
     "SLIMEBOSS-MASS_FEED.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\nIf [gold]Fatale[/gold], raise your Max HP by {MaxHp:diff()}.",
     "SLIMEBOSS-MASS_FEED.title": "Nutrimento di Massa",

@@ -63,8 +63,6 @@
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.description": "[gold]Тик[/gold] любой карты в [gold]Стазисе[/gold] дает [blue]1[/blue] [gold]силы[/gold] на этот ход.",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "[gold]Тик[/gold] любой карты в [gold]Стазисе[/gold] дает [blue]{Amount}[/blue] [gold]силы[/gold] на этот ход.",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "Сверхзащита",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.description": "Дает [gold]защиту[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
     "GUARDIAN-BASTION_POWER.title": "Оплот",
     "GUARDIAN-BASTION_POWER.description": "Дает другим игрокам [gold]защиту[/gold], когда вы получаете [gold]Укрепление[/gold].",
     "GUARDIAN-BASTION_POWER.smartDescription": "Дает другим игрокам [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы получаете [gold]Укрепление[/gold]."

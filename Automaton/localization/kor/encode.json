@@ -12,7 +12,6 @@
     "AUTOMATON-CULTIST_STRIKE.functionPrefix": "광신도의",
     "AUTOMATON-DAZING_PULSE.functionName": "맥동",
     "AUTOMATON-DAZING_PULSE.functionPrefix": "어지러운",
-    "AUTOMATON-DEFEND_AUTOMATON.functionName": "수비",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "방패",
     "AUTOMATON-DEPRECATE.functionName": "모욕",
     "AUTOMATON-DEPRECATE.functionPrefix": "낡은",
@@ -45,7 +44,6 @@
     "AUTOMATON-SEPARATOR.functionPrefix": "분리된",
     "AUTOMATON-SPIKE.functionName": "가시",
     "AUTOMATON-SPIKE.functionPrefix": "뾰족한",
-    "AUTOMATON-STRIKE_AUTOMATON.functionName": "타격",
     "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "타격하는",
     "AUTOMATON-TERMINATOR.functionName": "끝",
     "AUTOMATON-TERMINATOR.functionPrefix": "슬픈"

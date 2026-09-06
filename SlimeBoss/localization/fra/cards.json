@@ -55,7 +55,6 @@
     "SLIMEBOSS-LEECH_LIFE.title": "Soin Parasite",
     "SLIMEBOSS-LEVEL_UP.description": "Gagnez {PotencyPower:diff()} de [gold]Potentiel[/gold].",
     "SLIMEBOSS-LEVEL_UP.title": "Niveau Supérieur",
-    "SLIMEBOSS-LIQUIDATE.description": "Perdez {StrengthPower:inverseDiff()} de [gold]Force[/gold].\nGagnez {PotencyPower:diff()} de [gold]Potentiel[/gold].\n",
     "SLIMEBOSS-LIQUIDATE.title": "Liquidation",
     "SLIMEBOSS-MASS_FEED.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\nSi c'est [gold]Fatal[/gold], augmentez vos PV Max de {MaxHp:diff()}.",
     "SLIMEBOSS-MASS_FEED.title": "Appétit Massif",
