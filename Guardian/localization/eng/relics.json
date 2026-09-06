@@ -6,7 +6,7 @@
   "GUARDIAN-BOTTLED_BLACK_HOLE.description": "On pickup, [gold]Enchant[/gold] a card with [purple]Temporal[/purple].",
   "GUARDIAN-BOTTLED_BLACK_HOLE.flavor": "Somewhere, something incredible is waiting to be known.",
   "GUARDIAN-BRONZE_GEAR.title": "Bronze Gear",
-  "GUARDIAN-BRONZE_GEAR.description": "At the start of each combat, add [gold]Gear Up[/gold] into your [gold]Hand[/gold].\nGuardian starts the run with a random common [gold]Gem[/gold].",
+  "GUARDIAN-BRONZE_GEAR.description": "At the start of each combat, add [gold]Gear Up[/gold] into your [gold]Hand[/gold].\nUpon pickup, add a [gold]Sapphire[/gold] into your [gold]Deck[/gold].",
   "GUARDIAN-BRONZE_GEAR.flavor": "Protection where you need it most.",
   "GUARDIAN-CRYO_CHAMBER.title": "Cryo Chamber",
   "GUARDIAN-CRYO_CHAMBER.description": "At the start of each combat, gain [blue]1[/blue] [gold]Stasis[/gold] slot. Whenever a card enters [gold]Stasis[/gold], [gold]Upgrade[/gold] it for the remainder of combat.",

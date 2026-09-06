@@ -1,8 +1,8 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Token;
 using Guardian.GuardianCode.Core;
-using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,8 +18,9 @@ public class BronzeGear : GuardianRelicModel
 {
     public BronzeGear() : base(RelicRarity.Starter)
     {
-        WithTip(typeof(GearUp));
-        WithTip(GuardianKeyword.Gem);
+        WithTip<GearUp>();
+        WithTip<Sapphire>();
+        //WithTip(GuardianKeyword.Gem);
     }
 
     public override bool HasUponPickupEffect => true;
@@ -37,10 +38,13 @@ public class BronzeGear : GuardianRelicModel
 
     public override async Task AfterObtained()
     {
+        /*
         var card = Owner.RunState.Rng.CombatCardGeneration
             .NextItem(GuardianModelDb.AllGems.Where(e => e.Rarity == CardRarity.Common))?
             .ToCard.ToMutable();
         if (card == null) return;
+        */
+        var card = ModelDb.Card<Sapphire>().ToMutable();
         Owner.RunState.AddCard(card, Owner);
         var addResult = await CardPileCmd.Add(card, PileType.Deck);
         CardCmd.PreviewCardPileAdd(addResult);
