@@ -221,5 +221,6 @@
   "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} you have.\nThe next card you play ends your turn.",
   "COLLECTOR-KIN_PRIEST_CARD.description": "Deal {Damage:diff()} damage.\nIf the current turn is Odd, apply {WeakPower:diff()} [gold]Weak[/gold].\nOtherwise, apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].{InCombat:cond:\n(Apply {EvenTurn:cond:{VulnerablePower:diff()} [gold]Vulnerable[/gold]|{WeakPower:diff()} [gold]Weak[/gold]})|}",
   "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
-  "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}"
+  "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}",
+  "COLLECTOR-KNOWLEDGE_DEMON_CARD.description": "Choose 1 of 5 [gold]Upgraded[/gold] cards to add into your [gold]Hand[/gold].\n{IfUpgraded:show:It's free to play this turn.|Reduce its cost by 1 this turn.}"
 }
