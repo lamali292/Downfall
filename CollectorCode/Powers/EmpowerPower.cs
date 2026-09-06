@@ -1,7 +1,10 @@
 ﻿using BaseLib.Abstracts;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,25 +17,24 @@ public class EmpowerPower : CollectorPowerModel
 {
     public EmpowerPower()
     {
-        WithVars(new IntVar("Turns", 2));
+        WithCards(0);
     }
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override int? SecondAmount => DynamicVars["Turns"].IntValue;
+    protected override int? SecondAmount => DynamicVars.Cards.IntValue;
 
-    public void SetTurns(decimal turns)
+    public void SetCards(int amount)
     {
-        DynamicVars["Turns"].BaseValue = turns;
+        DynamicVars.Cards.BaseValue = amount;
         this.InvokeSilentDisplayAmountChanged();
     }
-
+ 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (player.Creature != Owner) return;
-        DynamicVars["Turns"].UpgradeValueBy(-1);
-        InvokeDisplayAmountChanged();
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
-        if (DynamicVars["Turns"].BaseValue <= 0) await PowerCmd.Remove(this);
+        await DownfallCardCmd.GiveCards<Ember>(player, PileType.Hand, DynamicVars.Cards.IntValue, upgraded: true);
+        Flash();
+        await PowerCmd.Decrement(this);
     }
 }
