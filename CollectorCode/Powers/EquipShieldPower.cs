@@ -1,8 +1,7 @@
 ﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -17,13 +16,11 @@ public class EquipShieldPower : CollectorPowerModel
         WithTip(StaticHoverTip.Block);
     }
     
-    public override async Task BeforeSideTurnEndEarly(
-        PlayerChoiceContext ctx,
-        CombatSide side,
-        IEnumerable<Creature> participants)
+        
+    public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
-        if (!participants.Contains(Owner) || Owner.Player?.Torchhead?.IsAlive is null or false)
-            return;
+        if (Owner.Player == null || command.Attacker != Owner.Player?.Torchhead) return;
+        //foreach (var damageResult in command.Results.SelectMany(e => e))
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }

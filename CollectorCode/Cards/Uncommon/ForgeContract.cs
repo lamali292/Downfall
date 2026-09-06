@@ -1,8 +1,10 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -22,5 +24,12 @@ public class ForgeContract : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CollectorCmd.TorchheadAttack(ctx, this);
+    }
+
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(Owner, out _);
+        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        base.AddExtraArgsToDescription(description);
     }
 }
