@@ -27,7 +27,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "Commencez chaque combat avec une [gold]Frappe[/gold] et une [gold]Défense[/gold] [gold]Encodées[/gold].\nAu début de votre tour, ajoutez une carte aléatoire avec [gold]Encodez[/gold] à votre [gold]Main[/gold].",
     "AUTOMATON-PLATINUM_CORE.flavor": "Changelog : Expérience de l'utilisateur améliorée.",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "Lunettes de protection",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "Si vous finissez votre tour sans cartes [gold]Encodées[/gold], gagnez [blue]{Block:diff()}[/blue] [gold]d'Armure[/gold].",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Regardez attentivement.",
     "AUTOMATON-SILVER_BULLET.title": "Balle argentée",
     "AUTOMATON-SILVER_BULLET.description": "Lorsque vous créez un Statut, infligez [blue]{Damage:diff()}[/blue] dégâts à TOUS les ennemis.",

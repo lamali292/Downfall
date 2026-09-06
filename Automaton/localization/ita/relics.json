@@ -27,7 +27,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "All'inizio di ogni combattimento, [gold]Codifica[/gold] un [gold]Colpo[/gold] e un [gold]Difendi[/gold].\nAll'inizio del tuo turno, aggiungi una carta casuale con [gold]Codifica[/gold] alla tua [gold]Mano[/gold].",
     "AUTOMATON-PLATINUM_CORE.flavor": "Changelog: Esperienza utente migliorata.",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "Occhialetti Protettivi",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "Se termini il tuo turno senza carte [gold]Codificate[/gold], ottieni [blue]{Block:diff()}[/blue] [gold]Blocco[/gold].",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "Guarda più da vicino.",
     "AUTOMATON-SILVER_BULLET.title": "Pallottola d'Argento",
     "AUTOMATON-SILVER_BULLET.description": "Ogni volta che crei uno Stato, infliggi [blue]{Damage:diff()}[/blue] danno a TUTTI i nemici.",

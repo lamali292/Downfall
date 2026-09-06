@@ -57,7 +57,5 @@
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "최대 과부하",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.description": "[gold]정지장[/gold] 상태인 카드의 틱이 줄어들 때마다, 이번 턴에 [blue]1[/blue] [gold]힘[/gold]을 얻습니다.",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "[gold]정지장[/gold] 상태인 카드의 틱이 줄어들 때마다, 이번 턴에 [blue]{Amount}[/blue] [gold]힘[/gold]을 얻습니다.",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "과잉 방어",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.description": "[gold]방어 모드[/gold]에 진입할 때마다, [gold]방어도[/gold]가 가장 낮은 아군이 [gold]방어도[/gold]를 얻습니다.",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "[gold]방어 모드[/gold]에 진입할 때마다, [gold]방어도[/gold]가 가장 낮은 아군이 [blue] {Amount}[/blue] [gold]방어도[/gold]를 얻습니다."
+    "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "과잉 방어"
 }

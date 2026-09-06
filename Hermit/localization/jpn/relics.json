@@ -4,7 +4,6 @@
     "HERMIT-OLD_LOCKET.description": "戦闘開始時、[gold]メメント[/gold]を1枚[gold]手札[/gold]に加える。",
     "HERMIT-RYE_STALK.title": "ライ麦の茎",
     "HERMIT-RYE_STALK.flavor": "長い間噛まれ続けているのに、いまだに新品同様だ。",
-    "HERMIT-RYE_STALK.description": "[blue]{Turn}[/blue]ターン目の開始時、[gold]堅牢[/gold][blue]{RuggedPower:diff()}[/blue]を得る。",
     "HERMIT-SHOTGLASS.title": "ショットグラス",
     "HERMIT-SHOTGLASS.flavor": "中に入れた液体は、別の何かに変化する。",
     "HERMIT-SHOTGLASS.description": "各戦闘でポーションを最初に使った時、ランダムなポーションを1つ入手する。各戦闘でポーションは[blue]{Limit}[/blue]個までしか使用できない。",

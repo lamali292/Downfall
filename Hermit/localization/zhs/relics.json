@@ -4,7 +4,6 @@
     "HERMIT-OLD_LOCKET.description": "在每场战斗开始时，将一张[gold]纪念品[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-RYE_STALK.title": "黑麦茎",
     "HERMIT-RYE_STALK.flavor": "被反复咀嚼过，却依然没有折断。",
-    "HERMIT-RYE_STALK.description": "在第[blue]{Turn}[/blue]回合开始时，获得[blue]{RuggedPower:diff()}[/blue]层[gold]坚固[/gold]。",
     "HERMIT-SHOTGLASS.title": "小酒杯",
     "HERMIT-SHOTGLASS.flavor": "任何倒进去的液体都能变成一杯饮料。",
     "HERMIT-SHOTGLASS.description": "每场战斗你最多能使用[blue]{Limit}[/blue]瓶药水。你在战斗中使用药水时，获取[blue]1[/blue]瓶随机药水。",

@@ -5,12 +5,7 @@
     "SNECKO-SAVE_FOR_LATER_POWER.title": "また後で",
     "SNECKO-SAVE_FOR_LATER_POWER.description": "ターン終了時、カードを1枚[gold]保留[/gold]する。",
     "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "ターン終了時、カードを[blue]{Amount}[/blue]枚[gold]保留[/gold]する。",
-    "SNECKO-BLUNDER_GUARD_POWER.title": "失敗保険：ブロック",
-    "SNECKO-BLUNDER_GUARD_POWER.description": "コストが{energyPrefix:energyIcons(3)}以上のカードをプレイするたび、[gold]ブロック[/gold]を得る。",
-    "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "コストが{Energy:energyIcons()}以上のカードをプレイするたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "SNECKO-CHEAP_STOCK_POWER.title": "チープストック",
-    "SNECKO-CHEAP_STOCK_POWER.description": "ターン開始時、[gold]手札[/gold]で最もコストが高いカードを[gold]泥まみれ[/gold]にする。",
-    "SNECKO-CHEAP_STOCK_POWER.smartDescription": "ターン開始時、[gold]手札[/gold]で最もコストが高いカード[blue]{Amount}[/blue]枚を[gold]泥まみれ[/gold]にする。",
     "SNECKO-OVERWHELMING_POWER.title": "圧倒",
     "SNECKO-OVERWHELMING_POWER.description": "毎ターン最初に[gold]他クラス[/gold]のカードをプレイした時、カードを1枚引く。",
     "SNECKO-OVERWHELMING_POWER.smartDescription": "毎ターン最初に[gold]他クラス[/gold]のカードをプレイした時、カードを[blue]{Amount}[/blue]枚引く。",
@@ -60,7 +55,6 @@
     "SNECKO-MIMICRY_POWER.description": "[gold]他クラス[/gold]のカードをプレイするたび、1ターンの間[gold]筋力[/gold]を得る。",
     "SNECKO-MIMICRY_POWER.smartDescription": "[gold]他クラス[/gold]のカードをプレイするたび、1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "SNECKO-THROWING_CARDS_POWER.title": "カードスロー",
-    "SNECKO-THROWING_CARDS_POWER.description": "次に[gold]他クラス[/gold]のカードをプレイした時、ランダムな敵に6ダメージを与えてカードを1枚引く。",
     "SNECKO-THROWING_CARDS_POWER.smartDescription": "次に[blue]{Amount}[/blue]回[gold]他クラス[/gold]のカードをプレイした時、ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与えてカードを[blue]{Cards:diff()}[/blue]枚引く。",
     "SNECKO-DICE_CASE_POWER.title": "ダイスケース",
     "SNECKO-DICE_CASE_POWER.description": "ターン開始時、他のプレイヤー1人の[gold]手札[/gold]に[gold]ソウルロール[/gold]を1枚加える。",
@@ -68,7 +62,5 @@
     "SNECKO-GAMBLE_POWER.title": "ギャンブル",
     "SNECKO-GAMBLE_POWER.description": "次のターン、カードを引いて[gold]泥まみれ[/gold]にする。",
     "SNECKO-GAMBLE_POWER.smartDescription": "次のターン、カードを[blue]{Amount}[/blue]枚引いて[gold]泥まみれ[/gold]にする。",
-    "SNECKO-MULLIGAN_POWER.title": "マリガン",
-    "SNECKO-MULLIGAN_POWER.description": "毎ターン最初に元のコストより多いコストでカードをプレイした時、{energyPrefix:energyIcons(1)}を得る。",
-    "SNECKO-MULLIGAN_POWER.smartDescription": "毎ターン最初に元のコストより多いコストでカードを[blue]{Amount}[/blue]回プレイした時、{energyPrefix:energyIcons(1)}を得る。"
+    "SNECKO-MULLIGAN_POWER.title": "マリガン"
 }

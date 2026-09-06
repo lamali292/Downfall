@@ -12,8 +12,6 @@
     "AUTOMATON-INFINITE_BEAMS_UPGRADED_POWER.description": "Al comienzo de tu turno, añade un [gold]Rayo menor[/gold] a tu [gold]Mano[/gold].",
     "AUTOMATON-INFINITE_BEAMS_UPGRADED_POWER.smartDescription": "Al inicio de tu turno, añade {Amount:plural:un [gold]Rayo menor+[/gold]|[blue]{}[/blue] [gold]Rayos menores+[/gold]} a tu [gold]mano[/gold].",
     "AUTOMATON-ITS_A_FEATURE_POWER.title": "Es una Funcionalidad",
-    "AUTOMATON-ITS_A_FEATURE_POWER.description": "Cada vez que creas una carta, gana [gold]Vigor[/gold].",
-    "AUTOMATON-ITS_A_FEATURE_POWER.smartDescription": "Cada vez que creas una carta, gana [blue]{Amount}[/blue] de [gold]Vigor[/gold].",
     "AUTOMATON-LIBRARY_POWER.title": "Biblioteca",
     "AUTOMATON-LIBRARY_POWER.description": "Al comienzo de tu turno, añade una carta aleatoria con [gold]Codificar[/gold] a tu [gold]Mano[/gold].\nCuesta 0 este turno.",
     "AUTOMATON-LIBRARY_POWER.smartDescription": "Al inicio de tu turno, añade {Amount:plural:una|[blue]{Amount}[/blue]} carta aleatoria con {Amount:plural:[gold]Codificación[/gold]|[gold]Codificación[/gold]} a tu [gold]mano[/gold]. {Amount:plural:Cuesta|Cuestan} 0 este turno.",
@@ -57,9 +55,7 @@
     "AUTOMATON-CRASHOUT_POWER.description": "Cada vez que juegues una carta de Estado, inflige daño a un enemigo aleatorio.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "Cada vez que juegues una carta de Estado, inflige [blue]{Amount}[/blue] de daño a un enemigo aleatorio.",
     "AUTOMATON-BURN_OUT_POWER.title": "Quemado",
-    "AUTOMATON-BURN_OUT_POWER.description": "Cada vez que [gold]guardes[/gold] un Estado o una Maldición, inflige daño a TODOS los enemigos e [gold]inhúmala[/gold] en su lugar.",
     "AUTOMATON-BURN_OUT_POWER.smartDescription": "Cada vez que [gold]guardes[/gold] un Estado o una Maldición, inflige [blue]{Amount}[/blue] de daño a TODOS los enemigos e [gold]inhúmala[/gold] en su lugar.",
     "AUTOMATON-RECYCLE_BIN_POWER.title": "Reciclaje",
-    "AUTOMATON-RECYCLE_BIN_POWER.description": "Al final de tu turno, gana [gold]Bloqueo[/gold] por cada Estado o Maldición en tu [gold]Mano[/gold].",
     "AUTOMATON-COPY_PASTE_POWER.title": "Copiar y Pegar"
 }

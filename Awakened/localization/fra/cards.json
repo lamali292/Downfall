@@ -26,7 +26,6 @@
     "AWAKENED-BRAINSHOCK.title": "Choc Mental",
     "AWAKENED-BURNING_STUDY.description": "Gagnez {StrengthPower:diff()} de [gold]Force[/gold].\nAppliquez {WeakPower:diff()} de [gold]Faiblesse[/gold] à TOUS les ennemis.",
     "AWAKENED-BURNING_STUDY.title": "Étude Ardente",
-    "AWAKENED-BYRDS_EYE.description": "{IfUpgraded:show:Renouvelez vos Sorts.\n|}Choisissez un Sort à [gold]Conjurer[/gold].",
     "AWAKENED-BYRDS_EYE.title": "Œil d'Oizo",
     "AWAKENED-CARRIONMAKER.description": "Infligez {Damage:diff()} dégâts à un ennemi aléatoire.\nRépétez pour chaque Sort joué ce tour-ci.",
     "AWAKENED-CARRIONMAKER.title": "Charognard",
@@ -113,7 +112,6 @@
     "AWAKENED-MANA_SHIELD.title": "Bouclier de Mana",
     "AWAKENED-MANTIS.description": "Gagnez {StrengthPower:diff()} de [gold]Force[/gold].\nAjoutez un [gold]Jab de Plumes[/gold] dans votre [gold]Main[/gold].",
     "AWAKENED-MANTIS.title": "Mante",
-    "AWAKENED-MIDDEN_HEAP.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nPlacez {Cards:diff()} {Cards:plural:Statut ou Malédiction|Statuts ou Malédictions} de votre [gold]Pioche[/gold] ou de votre [gold]Défausse[/gold] dans votre [gold]Main[/gold].",
     "AWAKENED-MIDDEN_HEAP.title": "Tas d'immondices",
     "AWAKENED-MINNIEGUN.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois.\nMélangez un [gold]Néant[/gold] dans votre [gold]Pioche[/gold].",
     "AWAKENED-MINNIEGUN.title": "Minniegun",
@@ -145,7 +143,6 @@
     "AWAKENED-PSALM.title": "Psaume",
     "AWAKENED-RAVEN_STRIKE.description": "Infligez {Damage:diff()} dégâts.",
     "AWAKENED-RAVEN_STRIKE.title": "Frappe du Corbeau",
-    "AWAKENED-RAZOR_SHARP.description": "Mélangez 2 [gold]Jabs de Plumes[/gold] dans votre [gold]Pioche[/gold].\nLes [gold]Jab de Plumes[/gold] touchent {RazorSharpPower:diff()} fois de plus.",
     "AWAKENED-RAZOR_SHARP.title": "Affûté",
     "AWAKENED-REALITY_RIFT.description": "Placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].\nObtenez 1 carte {IfUpgraded:show:[gold]Améliorée[/gold] |}venue d'une autre dimension parmi 3.",
     "AWAKENED-REALITY_RIFT.title": "Fracture de la Réalité",
@@ -211,7 +208,6 @@
     "AWAKENED-CONGREGATION.title": "Congrégation",
     "AWAKENED-CONGREGATION.description": "TOUS les joueurs gagnent {Energy:energyIcons()} et ajoutent un [gold]Néant[/gold] au fond de leur [gold]Pioche[/gold].",
     "AWAKENED-BLESS.title": "Bénédiction",
-    "AWAKENED-BLESS.description": "Perdez {StrengthLoss:diff()} de [gold]Force[/gold].\nUn autre joueur gagne {StrengthPower:diff()} de [gold]Force[/gold].",
     "AWAKENED-FEATHER_DANCE.title": "Danse de Plumes",
     "AWAKENED-FEATHER_DANCE.description": "Ajoutez {Cards:diff()} [gold]Jab de Plumes[/gold] dans les [gold]Mains[/gold] de TOUS les joueurs."
 }

@@ -26,7 +26,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "매 전투를 [gold]부호화[/gold]된 [gold]타격[/gold]과 [gold]수비[/gold]를 가지고 시작합니다.\n턴 시작 시, [gold]부호화[/gold]를 가진 무작위 카드를 [gold]패[/gold]에 추가합니다.",
     "AUTOMATON-PLATINUM_CORE.flavor": "변경 로그: 사용자 경험 개선.",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "보안경",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "[gold]부호화[/gold]된 카드가 하나도 없는 상태로 턴을 종료하면, 방어도를 [blue]{Block:diff()}[/blue] 얻습니다.",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "자세히 보세요.",
     "AUTOMATON-SILVER_BULLET.title": "은탄환",
     "AUTOMATON-SILVER_BULLET.description": "상태이상 카드를 생성할 때마다, 모든 적에게 [blue]{Damage:diff()}[/blue]의 피해를 줍니다.",

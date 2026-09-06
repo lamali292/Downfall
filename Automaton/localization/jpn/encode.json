@@ -23,7 +23,6 @@
     "AUTOMATON-CULTIST_STRIKE.functionPrefix": "カルティストの",
     "AUTOMATON-DAZING_PULSE.functionName": "パルス",
     "AUTOMATON-DAZING_PULSE.functionPrefix": "ふらついた",
-    "AUTOMATON-DEFEND_AUTOMATON.functionName": "防御",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "盾の",
     "AUTOMATON-DEPRECATE.functionName": "侮辱",
     "AUTOMATON-DEPRECATE.functionPrefix": "古い",
@@ -58,7 +57,6 @@
     "AUTOMATON-SEPARATOR.functionPrefix": "分割した",
     "AUTOMATON-SPIKE.functionName": "トゲ",
     "AUTOMATON-SPIKE.functionPrefix": "トゲトゲした",
-    "AUTOMATON-STRIKE_AUTOMATON.functionName": "ストライク",
     "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "一撃の",
     "AUTOMATON-TERMINATOR.functionName": "エンド",
     "AUTOMATON-TERMINATOR.functionPrefix": "悲しい"

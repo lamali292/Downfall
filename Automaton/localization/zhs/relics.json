@@ -27,7 +27,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "在每场战斗开始时，[gold]编码[/gold]一张[gold]打击[/gold]和一张[gold]防御[/gold]。\n在你的回合开始时，将一张随机[gold]编码[/gold]牌加入你的[gold]手牌[/gold]。",
     "AUTOMATON-PLATINUM_CORE.flavor": "更新日志：提升用户体验。",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "护目镜",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "在你的回合结束时，若[gold]编码[/gold]队列中没有牌，获得[blue]{Block:diff()}[/blue]点[gold]格挡[/gold]。",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "仔细看。",
     "AUTOMATON-SILVER_BULLET.title": "银色子弹",
     "AUTOMATON-SILVER_BULLET.description": "每当你生成一张状态牌时，对所有敌人造成[blue]{Damage:diff()}[/blue]点伤害。",

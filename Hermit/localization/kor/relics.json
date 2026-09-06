@@ -3,7 +3,6 @@
     "HERMIT-OLD_LOCKET.description": "전투가 시작될 때마다 [gold]유품[/gold] 1장을 [gold]손패[/gold]에 추가합니다.",
     "HERMIT-RYE_STALK.title": "호밀 줄기",
     "HERMIT-RYE_STALK.flavor": "오랫동안 씹혔음에도 보존 상태가 완벽합니다.",
-    "HERMIT-RYE_STALK.description": "[blue]{Turn}[/blue]번째 턴이 시작될 때, [blue]{RuggedPower:diff()}[/blue] [gold]거칢[/gold]을 얻습니다.",
     "HERMIT-SHOTGLASS.title": "스트레이트 잔",
     "HERMIT-SHOTGLASS.flavor": "안에 담긴 모든 액체가 다른 것으로 변합니다.",
     "HERMIT-HORSESHOE.title": "편자",

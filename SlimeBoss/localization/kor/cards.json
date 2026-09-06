@@ -55,7 +55,6 @@
     "SLIMEBOSS-LEECH_LIFE.title": "생명 흡수",
     "SLIMEBOSS-LEVEL_UP.description": "{PotencyPower:diff()} [gold]잠재력[/gold]을 얻습니다.",
     "SLIMEBOSS-LEVEL_UP.title": "레벨 업",
-    "SLIMEBOSS-LIQUIDATE.description": "{StrengthPower:inverseDiff()} [gold]힘[/gold]을 잃습니다.\n{PotencyPower:diff()} [gold]잠재력[/gold]을 얻습니다.",
     "SLIMEBOSS-LIQUIDATE.title": "액체화",
     "SLIMEBOSS-MASS_FEED.description": "모든 적에게 {Damage:diff()} 피해를 줍니다.\n[gold]치명타[/gold] 라면, 최대 체력이 {MaxHp:diff()} 증가합니다.",
     "SLIMEBOSS-MASS_FEED.title": "게걸스런 포식",

@@ -1,8 +1,5 @@
 {
     "AUTOMATON-ENCODE.title": "Encodez",
-    "AUTOMATON-ENCODE.description": "Placez cette carte dans votre [gold]Séquence[/gold].\nLorsqu'elle contient [blue]3[/blue] cartes, leurs effets après ce mot-clé sont mélangés en une fonction qui coûte [blue]1[/blue].",
     "AUTOMATON-STASH.title": "Réservez",
-    "AUTOMATON-STASH.description": "Placez une carte à l'intérieur de votre [gold]Réserve[/gold], jusqu'à un maximum de [blue]5[/blue]. Vous piochez la carte la plus vielle de celle-ci au début de chaque tour.",
-    "AUTOMATON-COMPILE.title": "Compilez",
-    "AUTOMATON-COMPILE.description": "Un effet qui se déclenche lorsque cette carte est intégrée à une Fonction."
+    "AUTOMATON-COMPILE.title": "Compilez"
 }

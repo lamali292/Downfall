@@ -18,8 +18,6 @@
     "CHAMP-MAGNIFICENCE_POWER.smartDescription": "Erhalte zu Beginn deines Zuges [blue]{Amount}[/blue] [gold]Ruhm[/gold].",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.title": "Schild verloren",
     "CHAMP-PARRYING_POWER.title": "Parieren",
-    "CHAMP-PROTECTIVE_AURA_POWER.description": "Immer wenn du deinen Zug beendest, während du dich in keiner [gold]Haltung[/gold] befindest, erhalte [gold]Block[/gold].",
-    "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "Immer wenn du deinen Zug beendest, während du dich in keiner [gold]Haltung[/gold] befindest, erhalte [blue]{Amount}[/blue] [gold]Block[/gold].",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "Genieschlag+",
     "CHAMP-STRIKE_OF_GENIUS_POWER.title": "Schlagfertig",
     "CHAMP-TECHNICAL_JIG_POWER.title": "Launiges Zappeln",

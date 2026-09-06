@@ -11,8 +11,6 @@
     "HERMIT-HIGH_NOON_POWER.description": "I [gold]Colpi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold].",
     "HERMIT-HIGH_NOON_POWER.smartDescription": "I [gold]Colpi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold] [blue]{Amount}[/blue].",
     "HERMIT-HIGH_NOON_POWER.title": "Mezzogiorno",
-    "HERMIT-FATAL_DESIRE_POWER.description": "All'inizio del tuo turno, aggiungi una [gold]Ferita[/gold] alla tua [gold]Mano[/gold].",
-    "HERMIT-FATAL_DESIRE_POWER.smartDescription": "All'inizio del tuo turno, aggiungi {Amount:plural:una [gold]Ferita[/gold]|[blue]{}[/blue] [gold]Ferite[/gold]} alla tua [gold]Mano[/gold].",
     "HERMIT-FATAL_DESIRE_POWER.title": "Desiderio Fatale",
     "HERMIT-SHADOW_CLOAK_POWER.description": "Ogni volta che peschi o [gold]Esaurisci[/gold] una Maledizione, ottieni [blue]1[/blue] di [gold]Blocco[/gold].",
     "HERMIT-SHADOW_CLOAK_POWER.smartDescription": "Ogni volta che peschi o [gold]Esaurisci[/gold] una Maledizione, ottieni [blue]{Amount}[/blue] di [gold]Blocco[/gold].",
@@ -39,7 +37,6 @@
     "HERMIT-RUGGED_POWER.smartDescription": "La {Amount:plural:prossima volta|prossime [blue]{}[/blue] volte} che riceveresti danno da attacco non bloccato, riducilo a [blue]2[/blue].",
     "HERMIT-RUGGED_POWER.title": "Resistente",
     "HERMIT-ETERNAL_POWER.description": "Le prime [blue]4[/blue] carte giocabili pescate all'inizio di ogni turno costano meno {energyPrefix:energyIcons(1)} in quel turno.",
-    "HERMIT-ETERNAL_POWER.smartDescription": "Le prime [blue]4[/blue] carte giocabili pescate all'inizio di ogni turno costano {Amount:energyIcons()} in quel turno.",
     "HERMIT-ETERNAL_POWER.title": "Forma Eterna",
     "HERMIT-OVERWHELMING_POWER_POWER.description": "Perdi [blue]3[/blue] HP se termini il tuo turno con {energyPrefix:energyIcons(0)}.",
     "HERMIT-OVERWHELMING_POWER_POWER.smartDescription": "Perdi [blue]{Amount}[/blue] HP se termini il tuo turno con {energyPrefix:energyIcons(0)}.",
@@ -84,7 +81,5 @@
     "HERMIT-SCOPE_OUT_POWER.description": "I [gold]Colpi[/gold] [gold]Base[/gold] ora infliggono danno a TUTTI i nemici.",
     "HERMIT-SCOPE_OUT_POWER.smartDescription": "I [gold]Colpi[/gold] [gold]Base[/gold] ora infliggono danno a TUTTI i nemici.",
     "HERMIT-BURDENED_POWER.title": "Appesantito",
-    "HERMIT-BURDENED_POWER.description": "All'inizio del tuo turno, ottieni [gold]Vigore[/gold] e aggiungi un [gold]Decadimento[/gold] alla tua [gold]Mano[/gold].",
-    "HERMIT-BURDENED_POWER.smartDescription": "All'inizio del tuo turno, ottieni [blue]{Amount}[/blue] [gold]Vigore[/gold] e aggiungi {Cards:plural:un|[blue]{}[/blue]} [gold]Decadimento[/gold] alla tua [gold]Mano[/gold].",
     "HERMIT-BRUISE_POWER.remoteDescription": "In questo turno, gli attacchi di{HasBigBruiser: [orange]{ApplierName}[/orange]|} infliggono [blue]{Amount}[/blue] danno aggiuntivo al bersaglio."
 }

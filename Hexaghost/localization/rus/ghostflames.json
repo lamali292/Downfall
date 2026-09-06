@@ -1,18 +1,11 @@
 {
     "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Укрепляющий огонек",
-    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании [blue]1[/blue] Таланта.[b]\n\nЗажигание:\n[/b]- дает [blue]{Block:diff()}[/blue] [gold]защиты[/gold].\n- дает [blue]{StrengthPower:diff()}[/blue] [gold]силы[/gold].",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Сокрушающий огонек",
-    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании [blue]2[/blue] Навыков.\n\n[b]Зажигание:[/b]\n- наносит [blue]{Damage:diff()}[/blue] урона дважды.",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Адский огонек",
     "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[b]Зажигается:[/b]\n- когда вы тратите {energyPrefix:energyIcons(3)}.\n\n[b]Зажигание:[/b]\n- наносит {Damage:diff()} урона за каждый [gold]Зажженый[/gold] Огонек.\n- если все Огоньки [gold]Зажжены[/gold], дает {IntensityPower:diff()} [gold]Интенсивности[/gold].\n- [gold]Тушит[/gold] все остальные Огоньки.\n\n[b]В конце хода:[/b]\n- [gold]Затухает[/gold].",
     "HEXAGHOST-SEARING_GHOSTFLAME.title": "Обжигающий огонек",
-    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании [blue]2[/blue] Атак.\n\n[b]Зажигание:\n[/b]- накладывает {Soulburn:diff()} [gold]Ожога души[/gold] дважды.",
     "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "Внеклассовый укрепляющий огонек",
-    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]Зажигается:[/b][gold]\n[/gold]- при разыгрывании [gold]Внеклассового[/gold] Таланта.[gold]\n\n[/gold][b]Зажигание:[/b][gold]\n[/gold]- дает {Block:diff()} [gold]защиты[/gold].\n- дает {StrengthPower:diff()} [gold]силы[/gold].",
     "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "Внеклассовый сокрушающий огонек",
-    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]Зажигается:[/b][gold]\n[/gold]- при разыгрывании [blue]2[/blue] [gold]Внеклассовых[/gold] Навыков.[gold]\n\n[/gold][b]Зажигание:[/b]\n- наносит {Damage:diff()} урона дважды.",
     "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "Внеклассовый адский огонек",
-    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- когда вы тратите {energyPrefix:energyIcons(3)}, разыгрывая [gold]Внеклассовые[/gold] карты.[b]\n\nЗажигание:\n[/b]- наносит {Damage:diff()} урона за каждый [gold]Зажженый[/gold] Огонек.\n- [gold]Тушит[/gold] все остальные Огоньки.\n\n[b]В конце хода:\n[/b]- [gold]Затухает[/gold].",
-    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "Внеклассовый обжигающий огонек",
-    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]Зажигается:\n[/b]- при разыгрывании 2 [gold]Внеклассовых[/gold] Атак.\n\n[b]Зажигание:\n[/b]- накладывает {Soulburn:diff()} [gold]Ожога души[/gold] дважды."
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "Внеклассовый обжигающий огонек"
 }

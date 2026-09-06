@@ -27,7 +27,6 @@
     "AUTOMATON-PLATINUM_CORE.description": "各戦闘を、[gold]エンコード済み[/gold]の[gold]ストライク[/gold]と[gold]防御[/gold]を持った状態で開始する。\nターン開始時、[gold]エンコード[/gold]を持つカードをランダムに1枚[gold]手札[/gold]に加える。",
     "AUTOMATON-PLATINUM_CORE.flavor": "変更履歴：ユーザー体験を改善。",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "保護ゴーグル",
-    "AUTOMATON-PROTECTIVE_GOGGLES.description": "[gold]エンコード済み[/gold]のカードが無い状態でターンを終了した場合、[blue]{Block:diff()}[/blue]の[gold]ブロック[/gold]を得る。",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "よく見て。",
     "AUTOMATON-SILVER_BULLET.title": "シルバーバレット",
     "AUTOMATON-SILVER_BULLET.description": "状態異常を1枚生成するたび、敵全体に[blue]{Damage:diff()}[/blue]ダメージを与える。",

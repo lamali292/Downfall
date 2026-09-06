@@ -4,7 +4,6 @@
     "HERMIT-OLD_LOCKET.description": "Добавляет в [gold]руку[/gold] [gold]«Напоминание»[/gold] в начале боя.",
     "HERMIT-RYE_STALK.title": "Стебель пшеницы",
     "HERMIT-RYE_STALK.flavor": "Все еще свежий, несмотря на то, что его так долго пережевывали.",
-    "HERMIT-RYE_STALK.description": "Дает [blue]{RuggedPower:diff()}[/blue] [gold]Стойкости[/gold] в начале [blue]{Turn}[/blue] хода.",
     "HERMIT-SHOTGLASS.title": "Рюмка",
     "HERMIT-SHOTGLASS.flavor": "Любая жидкость, налитая в этот стакан, превращается во что-то иное.",
     "HERMIT-SHOTGLASS.description": "Дает случайное зелье, когда вы используете зелье ({Limit:plural(ru):раз|[blue]{}[/blue] раза|[blue]{}[/blue] раз} за бой). Вы можете использовать не более [blue]{Limit}[/blue] {Limit:plural:зелья|зелий} в каждом бою.",
