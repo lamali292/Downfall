@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,16 +10,18 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards.Token;
 
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(StatusCardPool))]
 public class Ember : CollectorCardModel
 {
-    public Ember() : base(-1, CardType.Status, CardRarity.Token, TargetType.Self)
+    public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
-        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
+        WithKeywords(CardKeyword.Retain);
+        WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
         WithDamage(2, 1);
     }
@@ -37,6 +40,6 @@ public class Ember : CollectorCardModel
         var instance = NCombatRoom.Instance;
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage, this, null);
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, BlockProps.cardUnpowered, this, null);
     }
 }

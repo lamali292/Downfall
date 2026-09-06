@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,7 +29,7 @@ public class IronbarkKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+        await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
         await CollectorCmd.Kindle(ctx, this);
     }
 }

@@ -34,19 +34,13 @@ public class MiasmaPower() : CollectorPowerModel(PowerType.Debuff)
         
     }
 
-    public async Task Trigger(PlayerChoiceContext ctx)
+    private async Task Trigger(PlayerChoiceContext ctx)
     {
-        //The amount of demise stacks the target has.
-        var stacks = Owner.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.DemisePower>();
-        //Jade Ring modifier for incrementing.
-        var extraStacks = CollectorHook.ModifyCollectorMiasmaIncrement(Owner.CombatState!, Owner, 0);
-        if (extraStacks > 0) stacks += extraStacks;
-
+        var stacks = CollectorHook.ModifyCollectorMiasmaIncrement(Owner.CombatState!, Owner, 0);
         await CreatureCmd.Damage(
             new BlockingPlayerChoiceContext(), Owner, Amount,
             DamageProps.nonCardUnpowered, null, null);
         
-        //If demise is present apply stacks.
         if (Owner.IsAlive && stacks > 0)
             await PowerCmd.Apply<MiasmaPower>(ctx, Owner, stacks, Owner, null);
     }
