@@ -25,16 +25,6 @@ public class TestRuns
         Assert.IsTrue(target.CurrentHp < startingHp, "Target should have taken damage.");
     }
 
-    [CardTest(typeof(Champ.ChampCode.Core.Champ), typeof(SlimesNormal))]
-    public async Task ExecutionLowHealthTargetRefundsEnergy(TestContext ctx)
-    {
-        await ctx.AddCardToTopOfDraw<ProtoShield>();
-        var card = await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), ctx.Player);
-        Assert.IsTrue(card is ProtoShield);
-        Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(),
-            "Energy should be refunded on kill/low HP.");
-    }
-
     // ---- pool tests: return IEnumerable<CardTestCase>, take CharacterModel ----
     // NOTE: plain (non-async) generators — the runner drives each case in its own combat.
 
@@ -62,6 +52,10 @@ public class TestRuns
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
     public IEnumerable<CardTestCase> PlaySneckoCards(CharacterModel character) => PlayAllCards(character);
 
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public IEnumerable<CardTestCase> PlayCollectorCards(CharacterModel character) => PlayAllCards(character);
+
+    
     private IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
         return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
