@@ -24,7 +24,7 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
     
     public Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (card.Owner.Creature != Owner.Creature || (pyred.Type is not CardType.Status || pyred.Type is not CardType.Curse) || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
+        if (card.Owner.Creature != Owner.Creature || pyred.Type is not (CardType.Status or CardType.Curse) || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }

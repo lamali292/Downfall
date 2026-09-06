@@ -2,6 +2,7 @@
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
@@ -19,7 +20,8 @@ public class ForgeContract : CollectorCardModel
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
-
+    protected override Artist Artist => Artist.Get<Opal>();
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

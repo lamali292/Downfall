@@ -16,16 +16,6 @@ public static class CollectorHook
             (m, current) => m.ModifyCollectorMiasmaIncrement(creature, current));
     }
 
-    public static bool PreventDoomRemoval(ICombatState cs, Creature creature)
-    {
-        return HookUtils.Any<IPreventDoomRemoval>(cs, m => m.PreventDoomRemoval(creature));
-    }
-
-    public static bool PreventCollectedDraw(ICombatState cs, Player player)
-    {
-        return HookUtils.Any<IPreventCollectedDraw>(cs, m => m.PreventCollectedDraw(player));
-    }
-
     public static Task AfterCardPyred(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         return HookUtils.Dispatch<IAfterCardPyred>(cs, ctx, m => m.AfterCardPyred(ctx, card, pyred));
