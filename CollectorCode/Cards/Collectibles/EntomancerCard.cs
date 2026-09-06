@@ -8,10 +8,11 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class EntomancerCard : Collectible<EntomancerElite>
 {
-    public EntomancerCard() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
+    public EntomancerCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
     {
         WithDamage(1);
-        WithRepeat(5, 1);
+        WithRepeat(7, 1);
+        WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
     }
 

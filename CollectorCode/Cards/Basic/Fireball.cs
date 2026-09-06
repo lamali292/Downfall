@@ -41,8 +41,5 @@ public class Fireball : CollectorCardModel
         {
             await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, 1);
         }
-        //await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
-        //await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
-        //await CommonActions.Apply<CollectorMiasmaPower>(ctx, cardPlay.Target, this);
     }
 }

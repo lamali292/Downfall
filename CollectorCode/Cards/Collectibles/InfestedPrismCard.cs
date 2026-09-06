@@ -12,11 +12,12 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class InfestedPrismCard : Collectible<InfestedPrismsElite>
 {
-    public InfestedPrismCard() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public InfestedPrismCard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithPower<InfestedPrismCardPower>(1, false);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithPower<InfestedPrismCardPower>(2, false);
         WithTip<StrengthPower>();
     }
 
