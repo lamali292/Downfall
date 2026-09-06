@@ -12,8 +12,8 @@ public class Challenge : ChampCardModel
 {
     public Challenge() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithBlock(8, 3);
-        WithDamage(8, 3);
+        WithBlock(7, 3);
+        WithDamage(7, 3);
         WithTip<StrengthPower>();
     }
 
