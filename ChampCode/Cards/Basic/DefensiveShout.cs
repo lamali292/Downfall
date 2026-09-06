@@ -12,7 +12,7 @@ public class DefensiveShout : ChampCardModel
 {
     public DefensiveShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithPower<CounterPower>(3, 3);
+        WithPower<CounterPower>(2, 2);
         WithEnterDefensive();
     }
 
