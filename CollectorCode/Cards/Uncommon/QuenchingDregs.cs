@@ -19,6 +19,8 @@ public class QuenchingDregs : CollectorCardModel
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
+        if (card.Pile?.Type is not (PileType.Hand or PileType.Play))
+            return false;
         if (card != this) return false;
         modifiedCost -= Owner.Hand.Count(e => e.Type == CardType.Status);
         return true;

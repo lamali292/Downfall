@@ -101,5 +101,8 @@
   "COLLECTOR-THE_INSATIABLE_CARD_POWER.smartDescription": "Whenever a card is [gold]Pyred[/gold] that costs {Energy:energyIcons()} or more, [gold]Kindle[/gold] [blue]{Amount}[/blue].",
   "COLLECTOR-EQUIP_AXE_POWER.title": "Equip: Axe",
   "COLLECTOR-EQUIP_AXE_POWER.description": "[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies.",
-  "COLLECTOR-EQUIP_AXE_POWER.smartDescription": "[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies."
+  "COLLECTOR-EQUIP_AXE_POWER.smartDescription": "[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies.",
+  "COLLECTOR-BRAIN_DRAIN_POWER.title": "Brain Drain",
+  "COLLECTOR-BRAIN_DRAIN_POWER.description": "The next Colorless card you play costs {energyPrefix:energyIcons(0)}.",
+  "COLLECTOR-BRAIN_DRAIN_POWER.smartDescription": "The next {Amount:plural:Colorless card|[blue]{}[/blue] Colorless cards} you play costs {energyPrefix:energyIcons(0)}."
 }

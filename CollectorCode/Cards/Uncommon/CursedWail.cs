@@ -29,18 +29,18 @@ public class CursedWail : CollectorCardModel
     {
         if (CombatState == null) return;
         
-        await CommonActions.Apply<CursedWailPower>(ctx, CombatState.Enemies, this);
-        
+       
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
-        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.Enemies.Where(e => e.Powers.Count(ShouldCountPower) >= 3), amount,
-            Owner.Creature,
-            this);
+        var enemies = CombatState.HittableEnemies.Where(e => e.Powers.Count(ShouldCountPower) >= 3);
+        await PowerCmd.Apply<StrengthPower>(ctx, enemies, amount, Owner.Creature, this);
+        
+        await CommonActions.Apply<CursedWailPower>(ctx, this, cardPlay);
     }
     
-    private bool ShouldCountPower(PowerModel power)
+    private static bool ShouldCountPower(PowerModel power)
     {
         return power.TypeForCurrentAmount == PowerType.Debuff && power is not ITemporaryPower;
     }
 }
 
-public class CursedWailPower : TemporaryDebuffPowerWrapper<CursedWail, StrengthPower>{}
+public class CursedWailPower : TemporaryDebuffPowerWrapper<CursedWail, StrengthPower>;
