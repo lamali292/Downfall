@@ -14,7 +14,7 @@ namespace Automaton.AutomatonCode.Potions;
 [Pool(typeof(AutomatonPotionPool))]
 public class KiosCleverConcoctionPotion : AutomatonPotionModel
 {
-    public KiosCleverConcoctionPotion() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.Self)
+    public KiosCleverConcoctionPotion() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.AnyPlayer)
     {
         WithTip(AutomatonTip.Encode);
     }
@@ -23,11 +23,13 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
+        var player = target?.Player;
+        if (player == null) return;
         FunctionCard? functionCard = null;
         while (functionCard == null)
         {
-            var choices = AutomatonCmd.GetEncodableCards(Owner, 3).ToList();
-            var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, Owner);
+            var choices = AutomatonCmd.GetEncodableCards(player, 3).ToList();
+            var selected = await CardSelectCmd.FromChooseACardScreen(ctx, choices, player);
             if (selected == null) break;
             functionCard = await AutomatonCmd.EncodeCard(selected, ctx);
         }
