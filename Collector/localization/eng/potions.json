@@ -4,5 +4,5 @@
   "COLLECTOR-EMBALMING_OILS.title": "Embalming Oils",
   "COLLECTOR-EMBALMING_OILS.desciption": "Gain {Reserve:reserveIcons()}.",
   "COLLECTOR-OLD_TIME_RATIONS.title": "Old Time Rations",
-  "COLLECTOR-OLD_TIME_RATIONS.desciption": ""
+  "COLLECTOR-OLD_TIME_RATIONS.desciption": "Increase any debuff by {Increase:diif()}. "
 }
