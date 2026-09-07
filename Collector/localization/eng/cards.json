@@ -190,7 +190,7 @@
   "COLLECTOR-TERROR_EEL_CARD.description": "When this card is [gold]Exhausted[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
   "COLLECTOR-PHANTASMAL_GARDENER_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage {Repeat:diff()} times. ",
-  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "Gain 4(6) Plated Armour at the end of your next 3 turns.",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "At the end of your {LagavulinMatriarchCardPower:plural:turn|next {:diff()} turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-BYRDONIS_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BYGONE_EFFIGY_CARD.description": "",
   "COLLECTOR-PHROG_PARASITE_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Infection[/gold] into your [gold]Hand[/gold]. ",

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Cards.Variables;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -68,9 +69,12 @@ public abstract class ConstructedPowerModel(
         return this;
     }
 
-    protected ConstructedPowerModel WithPower<T>(decimal i) where T : PowerModel
+    protected ConstructedPowerModel WithPower<T>(decimal i, bool showTooltip = true) where T : PowerModel
     {
-        return WithVars(new PowerVar<T>(i));
+        WithVars(new PowerVar<T>(i));
+        if (showTooltip)
+            WithTips(e => [HoverTipFactory.FromPower<T>(e.DynamicVars.Power<T>().IntValue)]);
+        return this;
     }
 
     protected ConstructedPowerModel WithVar(string name, decimal baseVal)
