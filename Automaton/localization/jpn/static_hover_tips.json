@@ -1,5 +1,12 @@
 {
     "AUTOMATON-ENCODE.title": "エンコード",
+    "AUTOMATON-ENCODE.description": "このカードを[gold]エンコードオーブ[/gold]に配置する。\nそこに[blue]3[/blue]枚のカードが揃うと、このキーワードより上の効果が、コスト[blue]1[/blue]の関数に統合される。",
     "AUTOMATON-STASH.title": "格納",
-    "AUTOMATON-COMPILE.title": "コンパイル"
+    "AUTOMATON-STASH.description": "カードを[gold]格納オーブ[/gold]の中に、最大[blue]5[/blue]枚まで置く。",
+    "AUTOMATON-COMPILE.title": "コンパイル",
+    "AUTOMATON-COMPILE.description": "このカードが関数に統合された時に発動する効果。",
+    "AUTOMATON-ENCODE_PILE.title": "エンコードオーブ",
+    "AUTOMATON-ENCODE_PILE.description": "最大[blue]3[/blue]枚のカードを保持するオーブ。満杯になった時、保持されたカードの[gold]エンコード[/gold]より上の効果を、コスト[blue]1[/blue]の関数に統合する。",
+    "AUTOMATON-STASH_PILE.title": "格納オーブ",
+    "AUTOMATON-STASH_PILE.description": "最大[blue]5[/blue]枚のカードを保持するオーブ。毎ターン開始時、この中から最も古いカードを1枚引く。"
 }

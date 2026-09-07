@@ -18,7 +18,7 @@
     "AUTOMATON-MERGE_CONFLICT_POWER.description": "При создании следующей Функции, создает её дополнительную копию.",
     "AUTOMATON-CLEAN_CODE_POWER.title": "Чистый код",
     "AUTOMATON-SELF_REPAIR_POWER.title": "Самопочинка",
-    "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "Восстанавливает [blue]{Amount}[/blue] ОЗ в конце боя.",
+    "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "Восполняет [blue]{Amount}[/blue] ОЗ в конце боя.",
     "AUTOMATON-REPULSE_POWER.title": "Репульсор",
     "AUTOMATON-RECYCLE_BIN_POWER.title": "Корзина",
     "AUTOMATON-COPY_PASTE_POWER.title": "Копировать-вставить"

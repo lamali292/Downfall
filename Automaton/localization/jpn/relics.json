@@ -1,6 +1,6 @@
 {
     "AUTOMATON-BOTTLED_CODE.title": "瓶詰めのコード",
-    "AUTOMATON-BOTTLED_CODE.description": "入手時、[gold]エンコード[/gold]を持つカードを1枚[purple]ハードコード[/purple]で[gold]エンチャント[/gold]する。",
+    "AUTOMATON-BOTTLED_CODE.description": "入手時、[gold]エンコード[/gold]を持つカード1枚に[purple]ハードコード[/purple]を[gold]エンチャント[/gold]する。",
     "AUTOMATON-BOTTLED_CODE.flavor": "まさにそれ用のコード、実はあるんだよね……",
     "AUTOMATON-BRONZE_CORE.title": "ブロンズコア",
     "AUTOMATON-BRONZE_CORE.description": "各戦闘を、[gold]エンコード済み[/gold]の[gold]ストライク[/gold]と[gold]防御[/gold]を持った状態で開始する。",
@@ -15,7 +15,7 @@
     "AUTOMATON-ELECTROMAGNETIC_COIL.description": "関数が[blue]4[/blue]枚のカードで構成されるようになる。",
     "AUTOMATON-ELECTROMAGNETIC_COIL.flavor": "非効率だが、見ていて楽しい動力源。",
     "AUTOMATON-FROST_PRIMER.title": "凍った下地剤",
-    "AUTOMATON-FROST_PRIMER.description": "作成する全ての関数に[purple]安定性[/purple]をエンチャントする。",
+    "AUTOMATON-FROST_PRIMER.description": "作成する全ての関数に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。",
     "AUTOMATON-FROST_PRIMER.flavor": "化合物Ar22を22オンス、保存期間は22年。マホガニー製の冷蔵庫での保管が最適。",
     "AUTOMATON-MAKESHIFT_BATTERY.title": "補助用電源",
     "AUTOMATON-MAKESHIFT_BATTERY.description": "ターン開始時、{Energy:energyIcons()}を得て、[gold]捨て札[/gold]に[gold]粘液[/gold]を1枚加える。",
@@ -27,9 +27,10 @@
     "AUTOMATON-PLATINUM_CORE.description": "各戦闘を、[gold]エンコード済み[/gold]の[gold]ストライク[/gold]と[gold]防御[/gold]を持った状態で開始する。\nターン開始時、[gold]エンコード[/gold]を持つカードをランダムに1枚[gold]手札[/gold]に加える。",
     "AUTOMATON-PLATINUM_CORE.flavor": "変更履歴：ユーザー体験を改善。",
     "AUTOMATON-PROTECTIVE_GOGGLES.title": "保護ゴーグル",
+    "AUTOMATON-PROTECTIVE_GOGGLES.description": "ターン終了時、[gold]格納の山[/gold]のカード1枚につき、[blue]1[/blue][gold]ブロック[/gold]を得る。",
     "AUTOMATON-PROTECTIVE_GOGGLES.flavor": "よく見て。",
     "AUTOMATON-SILVER_BULLET.title": "シルバーバレット",
-    "AUTOMATON-SILVER_BULLET.description": "状態異常を1枚生成するたび、敵全体に[blue]{Damage:diff()}[/blue]ダメージを与える。",
+    "AUTOMATON-SILVER_BULLET.description": "状態異常を1枚作成するたび、敵全体に[blue]{Damage:diff()}[/blue]ダメージを与える。",
     "AUTOMATON-SILVER_BULLET.flavor": "スパイアウルフはとうの昔に絶滅した。",
     "SEA_GLASS.AUTOMATON-AUTOMATON.title": "コドングラス"
 }

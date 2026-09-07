@@ -1,3 +1,5 @@
 {
-    "FULL_STASH": "[gold]格納[/gold]が[red]満杯[/red]だ。"
+    "FULL_STASH": "[gold]格納オーブ[/gold]が[red]満杯[/red]だ。",
+    "OPEN_EMPTY_STASH": "[gold]格納オーブ[/gold]が[red]空[/red]だ。",
+    "OPEN_EMPTY_ENCODE": "[gold]エンコードオーブ[/gold]が[red]空[/red]だ。"
 }

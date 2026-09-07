@@ -1,3 +1,5 @@
 {
-    "FULL_STASH": "[gold]暂存区[/gold][red]已满[/red]。"
+    "FULL_STASH": "我的[gold]暂存区[/gold][red]满了[/red]。",
+    "OPEN_EMPTY_STASH": "我的[gold]暂存区[/gold]是[red]空的[/red]。",
+    "OPEN_EMPTY_ENCODE": "我的[gold]编码序列[/gold]是[red]空的[/red]。"
 }

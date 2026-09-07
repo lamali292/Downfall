@@ -39,6 +39,8 @@
     "AWAKENED-DARKNESS_FALLS_POWER.description": "[gold]ドレイン[/gold]するたび、[gold]ブロック[/gold]を得る。",
     "AWAKENED-DARKNESS_FALLS_POWER.smartDescription": "[gold]ドレイン[/gold]するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AWAKENED-DARK_ECHO_POWER.title": "ダークエコー",
+    "AWAKENED-DARK_ECHO_POWER.description": "ターン終了時、すべての敵に[blue]4[/blue]ダメージを与える。自身の[gold]筋力[/gold]の影響を受ける。",
+    "AWAKENED-DARK_ECHO_POWER.smartDescription": "ターン終了時、すべての敵に[blue]{Damage}[/blue]ダメージを[blue]{Amount}[/blue]回与える。自身の[gold]筋力[/gold]の影響を受ける。",
     "AWAKENED-DEMON_GLYPH_POWER.title": "デーモングリフ",
     "AWAKENED-DEMON_GLYPH_POWER.description": "[gold]覚醒[/gold]した時、[gold]筋力[/gold]と[gold]敏捷[/gold]を得る。",
     "AWAKENED-DEMON_GLYPH_POWER.smartDescription": "[gold]覚醒[/gold]した時、[gold]筋力[/gold]と[gold]敏捷[/gold]を[blue]{Amount}[/blue]得る。",

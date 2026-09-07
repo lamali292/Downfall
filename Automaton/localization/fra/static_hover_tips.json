@@ -1,5 +1,12 @@
 {
     "AUTOMATON-ENCODE.title": "Encodez",
+    "AUTOMATON-ENCODE.description": "Placez cette carte dans votre [gold]Orbe d'Encodage[/gold]. À [blue]3[/blue] cartes, mélangez leurs effets après ce mot-clé en une fonction qui coûte [blue]1[/blue] Énergie.",
     "AUTOMATON-STASH.title": "Réservez",
-    "AUTOMATON-COMPILE.title": "Compilez"
+    "AUTOMATON-STASH.description": "Placez une carte à l'intérieur de votre [gold]Orbe de Réserve[/gold]. Peut contenir jusqu'à [blue]5[/blue].",
+    "AUTOMATON-COMPILE.title": "Compilez",
+    "AUTOMATON-COMPILE.description": "Se déclenche lorsque cette carte est intégrée à une Fonction.",
+    "AUTOMATON-ENCODE_PILE.title": "Orbe d'Encodage",
+    "AUTOMATON-ENCODE_PILE.description": "Un Orbe contenant jusqu'à [blue]3[/blue] cartes. Lorsqu'il est rempli, compile les effets au-dessus de [gold]Encodez[/gold] en une Fonction coûtant [blue]1[/blue] Énergie.",
+    "AUTOMATON-STASH_PILE.title": "Orbe de Réserve",
+    "AUTOMATON-STASH_PILE.description": "Un Orbe pouvant contenir jusqu'à [blue]5[/blue] cartes. Au début du tour, piochez la carte la plus ancienne."
 }
