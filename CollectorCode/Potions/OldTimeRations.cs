@@ -21,4 +21,5 @@ public class OldTimeRations : CollectorPotionModel
         if (target?.Player == null) return;
         await CollectorCmd.GetReserve(target.Player, DynamicVars.Reserve.IntValue);
     }
+   
 }
