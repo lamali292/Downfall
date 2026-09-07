@@ -182,7 +182,7 @@
   "COLLECTOR-EQUIP_STAFF.title": "Equip: Staff",
   "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-INFESTED_PRISM_CARD.description": "When you play a Skill, gain {InfestedPrismCardPower:diff()}[gold] Strength[/gold] this turn.",
-  "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], [gold]Kindle[/gold] {Kindle:diff()}, gain {Block:diff()} Block and gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn.",
+  "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn, [gold]Kindle[/gold] {Kindle:diff()} and gain {Block:diff()} [gold]Block[/gold]",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
   "COLLECTOR-AEONGLASS_CARD.description": "",
@@ -199,11 +199,14 @@
   "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
   "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}",
   "COLLECTOR-KNOWLEDGE_DEMON_CARD.description": "Choose 1 of 5 [gold]Upgraded[/gold] cards to add into your [gold]Hand[/gold].\n{IfUpgraded:show:It's free to play this turn.|Reduce its cost by 1 this turn.}",
-  "COLLECTOR-KAISER_CRAB_CARD.description": "Deal {Damage:diff()} damage.\nPlay another )random( attack in your [gold]Hand[/gold].",
+  "COLLECTOR-KAISER_CRAB_CARD.description": "Deal {Damage:diff()} damage.\nPlay {IfUpgraded:show:an|a random} Attack in your [gold]Hand[/gold].",
   "COLLECTOR-MECHA_KNIGHT_CARD.description": "",
   "COLLECTOR-KNIGHTS_CARD.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.\nThey gain [gold]Ethereal[/gold] this turn.",
   "COLLECTOR-EQUIP_AXE.title": "Equip: Axe",
   "COLLECTOR-EQUIP_AXE.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies.\n[gold]Torchhead[/gold] gains {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BIDING_BLAST.title": "Biding Blast",
-  "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice."
+  "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice.",
+  "COLLECTOR-QUEEN_CARD.description": "",
+  "COLLECTOR-SOUL_NEXUS_CARD.description": "",
+  "COLLECTOR-TEST_SUBJECT_CARD.description": ""
 }

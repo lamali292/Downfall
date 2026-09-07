@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Afflictions;
 using MegaCrit.Sts2.Core.Models.Encounters;
 
 namespace Collector.CollectorCode.Cards.Collectibles;
@@ -19,7 +20,7 @@ public class KnightsCard : Collectible<KnightsElite>
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
-        foreach (var card in cards)
-            CardCmd.ApplySingleTurnRetain(card);
+        //foreach (var card in cards)
+        // Todo  
     }
 }
