@@ -1,8 +1,8 @@
 {
   "COLLECTOR-BOTTLED_HEX.title": "Bottled Hex",
-  "COLLECTOR-BOTTLED_HEX.desciption": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-BOTTLED_HEX.description": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold].",
   "COLLECTOR-EMBALMING_OILS.title": "Embalming Oils",
-  "COLLECTOR-EMBALMING_OILS.desciption": "Gain {Reserve:reserveIcons()}.",
+  "COLLECTOR-EMBALMING_OILS.description": "Gain {Reserve:reserveIcons()}.",
   "COLLECTOR-OLD_TIME_RATIONS.title": "Old Time Rations",
-  "COLLECTOR-OLD_TIME_RATIONS.desciption": "Increase any debuff by {Increase:diif()}. "
+  "COLLECTOR-OLD_TIME_RATIONS.description": "Increase any debuff by {Increase:diif()}. "
 }

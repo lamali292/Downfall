@@ -208,7 +208,7 @@
           "optional": false
         },
         {
-          "name": "desciption",
+          "name": "description",
           "file": "potions.json",
           "optional": false
         },
