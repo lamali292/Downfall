@@ -35,6 +35,8 @@ public class Ember : CollectorCardModel
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
     
+    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
+    
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         var instance = NCombatRoom.Instance;
