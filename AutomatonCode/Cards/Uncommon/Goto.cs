@@ -25,7 +25,7 @@ public class Goto : AutomatonCardModel
 
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (creator != Owner || card.Owner != Owner || card.Type != CardType.Status) return Task.CompletedTask;
+        if (creator != Owner || card.Type != CardType.Status) return Task.CompletedTask;
         EnergyCost.SetUntilPlayed(DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }

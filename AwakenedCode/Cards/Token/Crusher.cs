@@ -23,7 +23,7 @@ public class Crusher : AwakenedCardModel
 
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
-        if (card.Owner != Owner) return Task.CompletedTask;
+        if (player != Owner) return Task.CompletedTask;
         EnergyCost.AddUntilPlayed(-1);
         return Task.CompletedTask;
     }

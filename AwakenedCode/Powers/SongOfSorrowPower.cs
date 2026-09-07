@@ -13,7 +13,7 @@ public class SongOfSorrowPower : AwakenedPowerModel
 {
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
-        if (card is not Void || card.Owner != Owner.Player || LocalContext.NetId == null)
+        if (card is not Void || player?.Creature != Owner)
             return;
         var ctx = new BlockingPlayerChoiceContext();
         Flash();
