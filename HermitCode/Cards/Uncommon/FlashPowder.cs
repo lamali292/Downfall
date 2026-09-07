@@ -11,7 +11,7 @@ public sealed class FlashPowder : HermitCardModel
 {
     public FlashPowder() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithBlock(5);
+        WithBlock(6, 2);
         WithKeyword(CardKeyword.Exhaust);
         WithPower<StrengthPower>(-1, -1);
         WithVar("StrengthLoss", 1, 1);

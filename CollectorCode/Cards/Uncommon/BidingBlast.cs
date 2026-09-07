@@ -11,7 +11,7 @@ public class BidingBlast : CollectorCardModel
 {
     public BidingBlast() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(10, 12);
+        WithDamage(10, 2);
         WithReserveTip();
     }
 
