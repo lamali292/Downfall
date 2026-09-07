@@ -45,7 +45,7 @@
   "COLLECTOR-DRAGONS_TROVE.title": "Dragon's Trove",
   "COLLECTOR-EMBER.title": "Ember",
   "COLLECTOR-EMBER.description": "When this card is [gold]Exhausted[/gold], gain {StrengthPower:diff()} [gold]Strength[/gold].\nAt the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.",
-  "COLLECTOR-EMPOWER.description": "At the start of your next {EmpowerPower:diff()} turns, gain X [gold]Strength[/gold].",
+  "COLLECTOR-EMPOWER.description": "At the start of your next {EmpowerPower:diff()} turns, add an [gold]Ember[/gold] into your [gold]Hand[/gold] and [gold]Upgrade[/gold] it {IfUpgraded:show:X+1|X} times.",
   "COLLECTOR-EMPOWER.title": "Empower",
   "COLLECTOR-FEEL_MY_PAIN.description": "Whenever a card is [gold]Pyred[/gold], a random enemy loses {FeelMyPainPower:diff()} HP.",
   "COLLECTOR-FEEL_MY_PAIN.title": "Feel My Pain",
