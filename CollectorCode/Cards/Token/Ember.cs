@@ -14,17 +14,18 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Collector.CollectorCode.Cards.Token;
 
-[Pool(typeof(TokenCardPool))]
+[Pool(typeof(StatusCardPool))]
 public class Ember : CollectorCardModel
 {
-    public Ember() : base(-1, CardType.Status, CardRarity.Token, TargetType.Self)
+    public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
-        WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
+        WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
         WithDamage(2, 1);
     }
     public override bool HasTurnEndInHandEffect => true;
+    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
