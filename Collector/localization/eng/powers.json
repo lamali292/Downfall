@@ -24,8 +24,8 @@
   "COLLECTOR-DOUBLE_TROUBLE_POWER.description": "This turn, your next Colorless card is played an extra time.",
   "COLLECTOR-DOUBLE_TROUBLE_POWER.smartDescription": "This turn, your next {Amount:plural:|[blue]{Amount}[/blue] }Colorless {Amount:plural:card is:cards are} played an extra time.",
   "COLLECTOR-EMPOWER_POWER.title": "Empower",
-  "COLLECTOR-EMPOWER_POWER.description": "At the start of your next turn, gain [gold]Strength[/gold].",
-  "COLLECTOR-EMPOWER_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold].",
+  "COLLECTOR-EMPOWER_POWER.description": "At the start of your next turn, add an [gold]Ember[/gold] into your [gold]Hand [/gold]and [gold]Upgrade[/gold] it [blue]X[/blue] times.",
+  "COLLECTOR-EMPOWER_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, add an [gold]Ember[/gold] into your [gold]Hand[/gold]{Cards:cond:>0? and [gold]Upgrade[/gold] it|}{Cards:cond:>1? [blue]{}[/blue] times|}.",
   "COLLECTOR-FEEL_MY_PAIN_POWER.title": "Feel My Pain",
   "COLLECTOR-FEEL_MY_PAIN_POWER.description": "Whenever a card is [gold]Pyred[/gold], a random enemy loses HP.",
   "COLLECTOR-FEEL_MY_PAIN_POWER.smartDescription": "Whenever a card is [gold]Pyred[/gold], a random enemy loses [blue]{Amount}[/blue] HP.",
@@ -107,5 +107,8 @@
   "COLLECTOR-INEVITABLE_DEMISE_POWER.smartDescription": "This enemy's [gold]Miasma[/gold] increases by [blue]{Amount}[/blue] each turn.",
   "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.title": "Waking",
   "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.description": "At the start of your next [blue]3[/blue] turns, gain [gold]Plated Armor[/gold].",
-  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.smartDescription": "At the end of your {Amount:plural:turn|next [blue]{}[/blue] turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold]."
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.smartDescription": "At the end of your {Amount:plural:turn|next [blue]{}[/blue] turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
+  "COLLECTOR-FOLLOW_THE_PYRE_POWER.title": "Follow the Pyre",
+  "COLLECTOR-FOLLOW_THE_PYRE_POWER.description": "This enemy takes additional damage from ALL [gold]Follow the Pyre[/gold] cards.",
+  "COLLECTOR-FOLLOW_THE_PYRE_POWER.smartDescription": "This enemy takes [blue]{Amount}[/blue] additional damage from ALL [gold]Follow the Pyre[/gold] cards."
 }
