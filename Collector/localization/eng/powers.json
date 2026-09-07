@@ -104,5 +104,8 @@
   "COLLECTOR-BRAIN_DRAIN_POWER.smartDescription": "The next {Amount:plural:Colorless card|[blue]{}[/blue] Colorless cards} you play costs {energyPrefix:energyIcons(0)}.",
   "COLLECTOR-INEVITABLE_DEMISE_POWER.title": "Inevitable Demise",
   "COLLECTOR-INEVITABLE_DEMISE_POWER.description": "This enemy's [gold]Miasma[/gold] increases by [blue]1[/blue] each turn.",
-  "COLLECTOR-INEVITABLE_DEMISE_POWER.smartDescription": "This enemy's [gold]Miasma[/gold] increases by [blue]{Amount}[/blue] each turn."
+  "COLLECTOR-INEVITABLE_DEMISE_POWER.smartDescription": "This enemy's [gold]Miasma[/gold] increases by [blue]{Amount}[/blue] each turn.",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.title": "Waking",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.description": "At the start of your next [blue]3[/blue] turns, gain [gold]Plated Armor[/gold].",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD_POWER.smartDescription": "At the end of your {Amount:plural:turn|next [blue]{}[/blue] turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold]."
 }
