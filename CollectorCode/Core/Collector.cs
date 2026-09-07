@@ -97,7 +97,19 @@ public abstract class CollectorPowerModel(
 public class CollectorPotionPool : DownfallPotionPool<Collector>;
 
 public abstract class CollectorPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
-    DownfallPotionModel<Collector>(potionRarity, potionUsage, targetType);
+    DownfallPotionModel<Collector>(potionRarity, potionUsage, targetType)
+{
+    protected ConstructedPotionModel WithReserve(int baseVal)
+    {
+        WithReserveTip();
+        return WithVars(new ReserveVar(baseVal));
+    }
+    
+    protected ConstructedPotionModel WithReserveTip()
+    {
+        return WithTip(new PotionTooltipSource(_ => CollectorTip.ReserveTip));
+    }
+}
 
 public class CollectorCardPool : DownfallCardPool<Collector>;
 
