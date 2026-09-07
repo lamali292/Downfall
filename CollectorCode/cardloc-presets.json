@@ -195,6 +195,29 @@
           "optional": true
         }
       ]
+    },
+    {
+      "id": "potion",
+      "markers": [
+        "CollectorPotionModel"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "desciption",
+          "file": "potions.json",
+          "optional": false
+        },
+        {
+          "name": "selectionScreenPrompt",
+          "file": "potions.json",
+          "optional": true
+        }
+      ]
     }
   ],
   "pinnedColors": [],
