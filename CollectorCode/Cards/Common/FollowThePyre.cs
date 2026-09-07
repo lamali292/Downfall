@@ -1,7 +1,10 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Interfaces;
+using Collector.CollectorCode.Powers;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -12,19 +15,23 @@ namespace Collector.CollectorCode.Cards.Common;
 public class FollowThePyre : CollectorCardModel
 {
     
-    public FollowThePyre() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public FollowThePyre() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithVar("Increase", 4, 3);
+        WithPower<FollowThePyrePower>(4, 3, false);
         WithKeyword(CollectorKeyword.Pyre);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        //Todo: Add power for this card.
     }
 
-    public CardModel? PyredCard { get; set; }
+    public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
+    {
+        if (card != this || CombatState == null) return;
+        var randomEnemy = RunState?.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+        if (randomEnemy == null) return;
+        await CommonActions.Apply<FollowThePyrePower>(ctx, randomEnemy, this);
+    }
 }
