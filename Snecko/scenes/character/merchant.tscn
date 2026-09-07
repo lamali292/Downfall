@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SneckoCode/Vfx/NSneckoMerchantCharacter.cs" id="1_42ufr"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_42ufr"]
 [ext_resource type="PackedScene" path="res://Snecko/scenes/character/snecko.tscn" id="1_mpw0i"]
 
 [node name="Merchant" type="Node2D"]

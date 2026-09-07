@@ -25,8 +25,6 @@
   "COLLECTOR-COFFIN_NAIL.title": "Coffin Nail",
   "COLLECTOR-COLLECTIBLE.description": "",
   "COLLECTOR-COLLECTIBLE.title": "Collectible",
-  "COLLECTOR-CONDEMN.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold]",
-  "COLLECTOR-CONDEMN.title": "Condemn",
   "COLLECTOR-CURSED_WAIL.description": "Enemies with 3 or more unique debuffs lose {StrengthPower:diff()} [gold]Strength[/gold]. \nALL enemies lose {CursedWailPower:diff()} [gold]Strength[/gold] this turn.",
   "COLLECTOR-CURSED_WAIL.title": "Cursed Wail",
   "COLLECTOR-DARKSTORM.description": "Add a [gold]Blightning{IfUpgraded:plus()}[/gold] into your [gold]Hand[/gold], [gold]Draw Pile[/gold] and [gold]Discard Pile[/gold].",
@@ -208,5 +206,7 @@
   "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice.",
   "COLLECTOR-QUEEN_CARD.description": "",
   "COLLECTOR-SOUL_NEXUS_CARD.description": "",
-  "COLLECTOR-TEST_SUBJECT_CARD.description": ""
+  "COLLECTOR-TEST_SUBJECT_CARD.description": "",
+  "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
+  "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]"
 }
