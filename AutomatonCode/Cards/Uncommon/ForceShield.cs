@@ -39,7 +39,7 @@ public class ForceShield : AutomatonCardModel
 
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (card.Owner != Owner) return Task.CompletedTask;
+        if (creator != Owner) return Task.CompletedTask;
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
