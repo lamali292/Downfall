@@ -78,17 +78,7 @@ public partial class NChampCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
     public override void _Ready()
     {
         base._Ready();
-
-        var premultMat = new CanvasItemMaterial
-        {
-            BlendMode = CanvasItemMaterial.BlendModeEnum.PremultAlpha
-        };
-
-        _sprite = SpineBody;
-        _sprite?.SetNormalMaterial(premultMat);
-
         _animState = _sprite?.GetAnimationState();
-
         _animState?.SetAnimationCompat(IdleAnim);
     }
 }

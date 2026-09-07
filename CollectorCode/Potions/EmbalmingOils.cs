@@ -15,7 +15,7 @@ public class EmbalmingOils : CollectorPotionModel
 {
     public EmbalmingOils() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.AnyEnemy)
     {
-        WithVar("Increase", 3);
+        WithVar("Increase", 2);
     }
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
