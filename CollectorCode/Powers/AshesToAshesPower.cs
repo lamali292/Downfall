@@ -14,27 +14,16 @@ public class AshesToAshesPower : CollectorPowerModel, IAfterCardPyred
     public AshesToAshesPower()
     {
         WithTip<StrengthPower>();
+        WithTip(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
+        WithTip(CardKeyword.Exhaust);
     }
-
+    
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (card.Owner.Creature != Owner)
+        if (pyred.Owner.Creature != Owner)
             return;
         await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
         Flash();
     }
-
-    /*
-    public override async Task AfterCardExhausted(
-        PlayerChoiceContext ctx,
-        CardModel card,
-        bool _)
-    {
-        if (card.Owner.Creature != Owner)
-            return;
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
-        Flash();
-    }
-    */
 }

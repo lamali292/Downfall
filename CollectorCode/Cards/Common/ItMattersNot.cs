@@ -27,11 +27,11 @@ public class ItMattersNot : CollectorCardModel
     {
         if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
-        var a = CombatState.Enemies.Where(e => e.HasPower<WeakPower>());
+        var a = CombatState.HittableEnemies.Where(e => e.HasPower<WeakPower>());
         await PowerCmd.Apply<WeakPower>(ctx, a, 1, Owner.Creature, this);
-        var b = CombatState.Enemies.Where(e => e.HasPower<VulnerablePower>());
+        var b = CombatState.HittableEnemies.Where(e => e.HasPower<VulnerablePower>());
         await PowerCmd.Apply<VulnerablePower>(ctx, b, 1, Owner.Creature, this);
-        var c = CombatState.Enemies.Where(e => e.HasPower<MiasmaPower>());
+        var c = CombatState.HittableEnemies.Where(e => e.HasPower<MiasmaPower>());
         await PowerCmd.Apply<MiasmaPower>(ctx, c, 1, Owner.Creature, this);
     }
 }

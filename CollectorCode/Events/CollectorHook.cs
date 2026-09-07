@@ -16,16 +16,6 @@ public static class CollectorHook
             (m, current) => m.ModifyCollectorMiasmaIncrement(creature, current));
     }
 
-    public static bool PreventDoomRemoval(ICombatState cs, Creature creature)
-    {
-        return HookUtils.Any<IPreventDoomRemoval>(cs, m => m.PreventDoomRemoval(creature));
-    }
-
-    public static bool PreventCollectedDraw(ICombatState cs, Player player)
-    {
-        return HookUtils.Any<IPreventCollectedDraw>(cs, m => m.PreventCollectedDraw(player));
-    }
-
     public static Task AfterCardPyred(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         return HookUtils.Dispatch<IAfterCardPyred>(cs, ctx, m => m.AfterCardPyred(ctx, card, pyred));
@@ -34,6 +24,20 @@ public static class CollectorHook
     public static bool ShouldExhaustPyred(CardModel card, CardModel pyred)
     {
         return HookUtils.All<IShouldExhaustPyred>(card.CombatState!, e => e.ShouldExhaustPyred(card, pyred));
+    }
+
+    public static bool ShouldTorchheadTargetAll(Player player, out IEnumerable<IShouldTorchheadTargetAll> modifiers)
+    {
+        if (player.Creature.CombatState != null)
+            return HookUtils.Any(player.Creature.CombatState!, e => e.ShouldTorchheadTargetAll(player), out modifiers);
+        modifiers = [];
+        return false;
+    }
+    
+    public static Task AfterShouldTorchheadTargetAll(PlayerChoiceContext ctx, Player player, IEnumerable<IShouldTorchheadTargetAll> modifiers)
+    {
+        if (player.Creature.CombatState == null) return Task.CompletedTask;
+        return HookUtils.AfterModifying(player.Creature.CombatState, modifiers, e => e.AfterShouldTorchheadTargetAll(ctx, player));
     }
 }
 

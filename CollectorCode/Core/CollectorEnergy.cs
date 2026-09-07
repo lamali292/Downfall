@@ -1,4 +1,5 @@
-﻿using Collector.CollectorCode.Interfaces;
+﻿using BaseLib.Utils;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Abstract;
 using Godot;
@@ -15,6 +16,8 @@ public class CollectorEnergy : CardResource
     public override Vector2 UiScale => new(0.6f, 0.6f);
 
     protected override bool InteractsWithEnergy => true;
+    
+    private readonly SpireField<CardModel, int> _lastSpent = new(() => 0);
 
     public override Control CreateCounter(Player player)
     {
@@ -28,19 +31,30 @@ public class CollectorEnergy : CardResource
 
         if (UsesResourceExclusively(card))
         {
-            if (!CanAfford(player, cost)) return (0, 0);
+            if (!CanAfford(player, cost))
+            {
+                _lastSpent[card] = 0;
+                return (0, 0);
+            }
+
             Spend(player, cost);
+            _lastSpent[card] = cost;
             return (0, 0);
         }
 
         var energy = player.PlayerCombatState?.Energy ?? 0;
-        if (energy >= cost) return (cost, 0); // Normal energy spending
+        if (energy >= cost)
+        {
+            _lastSpent[card] = 0;
+            return (cost, 0);
+        }
 
         var deficit = cost - energy;
         var available = Get(player);
         var cover = Math.Min(deficit, available);
 
         if (cover > 0) Spend(player, cover);
+        _lastSpent[card] = cover;
         return (energy, 0);
     }
 
@@ -81,4 +95,7 @@ public class CollectorEnergy : CardResource
         var cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         return card.Owner.PlayerCombatState.Energy + reserve >= cost;
     }
+    
+    public bool WasSpentOn(CardModel card) => _lastSpent[card] > 0;
+    public int AmountSpentOn(CardModel card) => _lastSpent[card];
 }

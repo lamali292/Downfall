@@ -1,5 +1,7 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +17,7 @@ public class ProtectiveAura : ChampCardModel
     {
         WithPower<ProtectiveAuraPower>(3, 2, false);
         WithTip(StaticHoverTip.Block);
+        WithTip(ChampTip.Finisher);
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
