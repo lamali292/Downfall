@@ -9,9 +9,9 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class BidingBlast : CollectorCardModel
 {
-    public BidingBlast() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public BidingBlast() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(10, 12);
+        WithDamage(9, 2);
         WithReserveTip();
     }
 

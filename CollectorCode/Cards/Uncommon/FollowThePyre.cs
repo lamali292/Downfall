@@ -1,10 +1,7 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -15,10 +12,10 @@ namespace Collector.CollectorCode.Cards.Common;
 public class FollowThePyre : CollectorCardModel
 {
     
-    public FollowThePyre() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public FollowThePyre() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
-        WithPower<FollowThePyrePower>(4, 3, false);
+        WithDamage(5, 3);
+        WithPower<FollowThePyrePower>(5, 2, false);
         WithKeyword(CollectorKeyword.Pyre);
     }
 

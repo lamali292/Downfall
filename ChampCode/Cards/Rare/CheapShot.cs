@@ -17,6 +17,7 @@ public class CheapShot : ChampCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(StaticHoverTip.Stun);
         WithCostUpgradeBy(-1);
+        //Todo: New card?
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

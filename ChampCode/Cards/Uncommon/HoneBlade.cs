@@ -12,7 +12,7 @@ public class HoneBlade : ChampCardModel
 {
     public HoneBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<HoneBladePower>(4, 1, false);
+        WithPower<HoneBladePower>(4, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
