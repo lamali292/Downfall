@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Potions;
 [Pool(typeof(CollectorPotionPool))]
 public class OldTimeRations : CollectorPotionModel
 {
-    public OldTimeRations() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.AnyPlayer)
+    public OldTimeRations() : base(PotionRarity.Uncommon, PotionUsage.CombatOnly, TargetType.AnyPlayer)
     {
         WithReserve(2);
     }

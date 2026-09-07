@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Potions;
 [Pool(typeof(CollectorPotionPool))]
 public class EmbalmingOils : CollectorPotionModel
 {
-    public EmbalmingOils() : base(PotionRarity.Uncommon, PotionUsage.CombatOnly, TargetType.AnyEnemy)
+    public EmbalmingOils() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.AnyEnemy)
     {
         WithVar("Increase", 2);
     }
