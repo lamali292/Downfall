@@ -5,11 +5,15 @@ using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Rewards;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Relics;
 
@@ -30,6 +34,7 @@ public class PrismaticTorch : CollectorRelicModel
         await CollectorCmd.Kindle(ctx, this);
         Flash();
     }
+    /*
     
     public override Task AfterCombatEnd(CombatRoom room)
     {
@@ -41,6 +46,33 @@ public class PrismaticTorch : CollectorRelicModel
             room.AddExtraReward(player, new CollectibleReward(room.Encounter.Id, player, true));
         }
         return Task.CompletedTask;
+    }*/
+
+    public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
+    {
+        if (Owner != player
+            || creationOptions.Source != CardCreationSource.Encounter
+            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsCardReward)
+            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsFromCombat))
+            return false;
+        
+        var room = player.RunState.CurrentRoom as CombatRoom;
+        if (room?.RoomType is not (RoomType.Elite or RoomType.Boss))
+            return false;
+
+        var encounterId = room.Encounter.Id;
+
+        var model = ModelDb.CardPool<CollectibleCardPool>().AllCards
+            .FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
+        if (model is null)
+            return false;
+
+        var card = player.RunState.CreateCard(model, player);
+        CardCmd.Upgrade(card);
+        var result = new CardCreationResult(card);
+        result.ModifyCard(card, this);
+        cardRewardOptions.Add(result);
+        return true;
+        
     }
-    
 }
