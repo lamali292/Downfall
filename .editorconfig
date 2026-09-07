@@ -11,7 +11,6 @@ dotnet_diagnostic.STS002.severity = warning
 # STS003: Custom Model usage
 dotnet_diagnostic.STS003.severity = warning
 
-
 charset = utf-8
 indent_style = space
 indent_size = 4
@@ -19,3 +18,6 @@ insert_final_newline = false
 max_line_length = 120
 tab_width = 4
 trim_trailing_whitespace = false
+
+[CollectorCode/Cards/Collectibles/*.cs]
+dotnet_diagnostic.STS001.severity = none

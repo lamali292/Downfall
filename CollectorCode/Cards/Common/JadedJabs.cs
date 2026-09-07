@@ -27,17 +27,8 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
     public IEnumerable<CardModel> PyredCards { get; set; } = [];
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetWithModifiers(CostModifiers.All);
-        if (cost > 0)
-        {
-            for (var i = 0; i < cost; i++)
-            {
-                await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-            }
-        }
-        //var jadedJabs = DynamicVars["JadedJabs"].IntValue;
-        //await DownfallCardCmd.GiveCards<Shiv>(Owner, PileType.Hand, jadedJabs + cost);
+        var cost = PyredCards.FirstOrDefault()?.EnergyCost.GetAmountToSpend() ?? 0;
+        await CommonActions.CardAttack(this, cardPlay, 1+ cost).Execute(ctx);
     }
 
 

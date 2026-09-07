@@ -1,6 +1,8 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,13 +21,13 @@ public class CastIron : CollectorCardModel
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradeChangingCardTip<Burn, Ember>();
-        WithCalculatedVar("Repeat", 0, Calc);
-        WithKindle(3);
+        WithCalculatedVar("Kindle", 0, 3, Calc);
+        WithTip(CollectorTip.Kindle);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
     {
-        return card.Owner.Hand.Count(e => e.Type == CardType.Curse);
+        return card.Owner.Hand.Count(e => e.Type == CardType.Status);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
@@ -38,8 +40,8 @@ public class CastIron : CollectorCardModel
         {
             await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         }
-        var repeat = ((CalculatedVar)DynamicVars["Repeat"]).Calculate(null);
-        for (var i = 0; i  <  repeat; i++) await CollectorCmd.Kindle(ctx,this);
+        var repeat = (int)((CalculatedVar)DynamicVars["Kindle"]).Calculate(null);
+        await CollectorCmd.Kindle(ctx,Owner, repeat, this);
     }
 
 }

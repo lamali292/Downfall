@@ -98,18 +98,17 @@ public class CollectorCardPool : DownfallCardPool<Collector>;
 
 public class CollectibleCardPool : CustomCardPoolModel
 {
-    private static readonly Color Color = new("C6C1FF");
     public override string Title => "Collectible";
 
     public override string BigEnergyIconPath => ModelDb.CardPool<CollectorCardPool>().BigEnergyIconPath;
     public override string TextEnergyIconPath => ModelDb.CardPool<CollectorCardPool>().TextEnergyIconPath;
 
-    public override float H => Color.H;
-    public override float S => Color.S;
-    public override float V => Color.V;
+    public override float H => 1;
+    public override float S => 0;
+    public override float V => 1.2f;
 
 
-    public override Color DeckEntryCardColor => Color;
-    public override bool IsColorless => false;
+    public override Color DeckEntryCardColor => new Color("A3A3A3FF");
+    public override bool IsColorless => true;
     public override bool IsShared => true;
 }

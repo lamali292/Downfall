@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -15,10 +16,10 @@ public class InflictAgony : CollectorCardModel
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(15, 5);
-        WithPower<VulnerablePower>(1, 1);
-        WithPower<WeakPower>(1, 1);
-        WithPower<MiasmaPower>(1, 1);
-        WithVar("WVVal", 1, 1);//Should be the same as the above 3 powers.
+        WithVar("Power", 1, 1);
+        WithTip<WeakPower>();
+        WithTip<VulnerablePower>();
+        WithTip<MiasmaPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,19 +27,18 @@ public class InflictAgony : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        //if (!cardPlay.Target?.IsAfflicted ?? false)
-        //{
-        if (cardPlay.Target!.HasPower<WeakPower>())
+        var amount = DynamicVars["Power"].IntValue;
+        if (!cardPlay.Target!.HasPower<WeakPower>())
         {
-            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this, amount);
         }
-        if (cardPlay.Target!.HasPower<VulnerablePower>())
+        if (!cardPlay.Target!.HasPower<VulnerablePower>())
         {
-            await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this, amount);
         }
-        if (cardPlay.Target!.HasPower<MiasmaPower>())
+        if (!cardPlay.Target!.HasPower<MiasmaPower>())
         {
-            
+            await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
         }
     }
 }
