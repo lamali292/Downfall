@@ -14,6 +14,7 @@ public class OakbrimKindling : CollectorCardModel
     public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust);
         WithCards(2, 1);
         WithKindle(2, 1);
     }

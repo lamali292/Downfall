@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -18,6 +20,7 @@ public class BagOfTricks : CollectorRelicModel, IAfterCardPyred
         WithVar("MaxUses", 3);
         WithVar("UsesLeft", 3);
         WithCards(1);
+        WithTip(CollectorKeyword.Pyre);
     }
     private DynamicVar MaxUses => DynamicVars["MaxUses"];
     private DynamicVar UsesLeft => DynamicVars["UsesLeft"];

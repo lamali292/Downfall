@@ -14,7 +14,7 @@ public class AstralFlames : CollectorCardModel
 {
     public AstralFlames() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(6, 3);
+        WithBlock(7, 2);
         WithVar("Increase", 2, 1);
         WithEnergyTip();
         WithTip(CardKeyword.Exhaust);

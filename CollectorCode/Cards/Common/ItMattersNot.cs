@@ -14,7 +14,7 @@ public class ItMattersNot : CollectorCardModel
 {
     public ItMattersNot() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(13, 4);
+        WithBlock(12, 4);
         WithTip<VulnerablePower>();
         WithTip<WeakPower>();
         WithTip<MiasmaPower>();

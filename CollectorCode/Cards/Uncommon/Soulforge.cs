@@ -16,7 +16,7 @@ public class Soulforge : CollectorCardModel
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithKeyword(CardKeyword.Exhaust);
-        WithCards(3, 1);
+        WithCards(2, 1);
 
     }
 

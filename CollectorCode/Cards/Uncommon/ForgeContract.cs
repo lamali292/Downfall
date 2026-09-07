@@ -14,8 +14,8 @@ public class ForgeContract : CollectorCardModel
 {
     public ForgeContract() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
-        WithCollectorDamage(5);
+        WithDamage(5, 2);
+        WithCollectorDamage(6, 3);
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;

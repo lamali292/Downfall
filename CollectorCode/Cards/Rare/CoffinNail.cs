@@ -13,7 +13,7 @@ public class CoffinNail : CollectorCardModel
 {
     public CoffinNail() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(34, 11);
+        WithDamage(37, 7);
         WithVar("Increase", 9, 2);
         WithPower<CopyNextTurnPower>(1, false);
         WithTip(CardKeyword.Exhaust);

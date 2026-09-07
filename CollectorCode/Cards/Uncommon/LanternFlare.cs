@@ -16,7 +16,7 @@ public class LanternFlare : CollectorCardModel
     public LanternFlare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithPower<MiasmaPower>(12, 3);
+        WithPower<MiasmaPower>(7, 2);
         WithPower<ScorchedPower>(2, 1, false);
     }
 

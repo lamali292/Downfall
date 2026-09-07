@@ -15,7 +15,7 @@ public class RotwoodKindling : CollectorCardModel
     public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(6, 1);
+        WithPower<MiasmaPower>(4, 1);
         WithKindle(4, 1);
     }
 

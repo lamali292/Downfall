@@ -29,7 +29,6 @@ public class CursedWail : CollectorCardModel
     {
         if (CombatState == null) return;
         
-       
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
         var enemies = CombatState.HittableEnemies.Where(e => e.Powers.Count(ShouldCountPower) >= 3);
         await PowerCmd.Apply<StrengthPower>(ctx, enemies, amount, Owner.Creature, this);

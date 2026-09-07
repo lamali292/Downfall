@@ -13,8 +13,8 @@ public class Finalize : CollectorCardModel
     public Finalize() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(24, 4);
-        WithPower<FinalizePower>(6, 2, false);
+        WithPower<MiasmaPower>(16, 6);
+        WithPower<FinalizePower>(7, 3, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

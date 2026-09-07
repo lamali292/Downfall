@@ -63,7 +63,7 @@
   "COLLECTOR-PYROCLASTIC_FLOW.title": "Pyroclastic Flow",
   "COLLECTOR-FUEL_THE_FIRE.description": "Next turn, gain {ReserveNextTurnPower:reserveIcons()}{IfUpgraded:show: and draw a card|}.",
   "COLLECTOR-FUEL_THE_FIRE.title": "Fuel the Fire",
-  "COLLECTOR-GOODBYE.description": "{IfUpgraded:show:Triple|Double} the enemy's [gold]Miasma[/gold].",
+  "COLLECTOR-GOODBYE.description": "Double the enemy's [gold]Miasma[/gold].",
   "COLLECTOR-GOODBYE.title": "Goodbye",
   "COLLECTOR-HOARD.description": "Draw cards until you have {Cards:diff()} in your [gold]Hand[/gold].\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
   "COLLECTOR-HOARD.title": "Hoard",

@@ -17,7 +17,7 @@ public class SomberShield : CollectorCardModel, IUsesPyredCards
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
-        WithBlock(6, 3);
+        WithBlock(4, 3);
         WithPower<CopyNextTurnPower>(1, false);
     }
     

@@ -16,6 +16,7 @@ public class Goodbye : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip<MiasmaPower>();
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -27,7 +28,7 @@ public class Goodbye : CollectorCardModel
         var powerAmount = cardPlay.Target.GetPowerAmount<MiasmaPower>();
         if (powerAmount <= 0)
             return;
-        if (IsUpgraded) powerAmount *= 2;
+        //if (IsUpgraded) powerAmount *= 2;
         await PowerCmd.Apply<MiasmaPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
     }
 }

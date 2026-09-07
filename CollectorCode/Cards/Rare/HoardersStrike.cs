@@ -19,7 +19,7 @@ public class HoardersStrike : CollectorCardModel, IUsesPyredCards, IShouldExhaus
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
-        WithDamage(16, 4);
+        WithDamage(20, 5);
         WithTags(CardTag.Strike);
     }
 
