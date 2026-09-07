@@ -34,6 +34,7 @@
     "AUTOMATON-DAZING_PULSE.functionName": "Onde",
     "AUTOMATON-DAZING_PULSE.functionPrefix": "étourdi",
     "AUTOMATON-DEFEND_AUTOMATON.functionEnd": "D",
+    "AUTOMATON-DEFEND_AUTOMATON.functionName": "Défense",
     "AUTOMATON-DEFEND_AUTOMATON.functionPrefix": "bouclier",
     "AUTOMATON-DEPRECATE.functionEnd": "D",
     "AUTOMATON-DEPRECATE.functionName": "Insulte",
@@ -85,9 +86,11 @@
     "AUTOMATON-SPIKE.functionName": "Épine",
     "AUTOMATON-SPIKE.functionPrefix": "hérissé",
     "AUTOMATON-STRIKE_AUTOMATON.functionEnd": "S",
+    "AUTOMATON-STRIKE_AUTOMATON.functionName": "Blessé",
     "AUTOMATON-STRIKE_AUTOMATON.functionPrefix": "coup",
     "AUTOMATON-TERMINATOR.functionEnd": "T",
     "AUTOMATON-TERMINATOR.functionName": "Fin",
     "AUTOMATON-TERMINATOR.functionPrefix": "triste",
-    "AUTOMATON-FUNCTION.functionParentheses": "()"
+    "AUTOMATON-FUNCTION.functionParentheses": "()",
+    "AUTOMATON-PERFECTION.functionName": "perfection()"
 }

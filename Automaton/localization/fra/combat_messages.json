@@ -1,3 +1,5 @@
 {
-    "FULL_STASH": "Ma [gold]Réserve[/gold] est [red]remplie[/red]."
+    "FULL_STASH": "Ma [gold]Réserve[/gold] est [red]remplie[/red].",
+    "OPEN_EMPTY_STASH": "Mon [gold]Orbe de Réserve[/gold] est [red]vide[/red].",
+    "OPEN_EMPTY_ENCODE": "Mon [gold]Orbe d'Encodage[/gold] est [red]vide[/red]."
 }

@@ -5,9 +5,9 @@
     "DOWNFALL-METALLICIZE_POWER.description": "ターン終了時、[gold]ブロック[/gold]を得る。",
     "DOWNFALL-METALLICIZE_POWER.smartDescription": "ターン終了時、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "DOWNFALL-METALLICIZE_POWER.title": "金属化",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "プレートアーマー",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "ターン終了時、[gold]ブロック[/gold]を得る。ブロックできなかったダメージを受けるたび、[gold]プレートアーマー[/gold]の値は[blue]1[/blue]減少する。",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "ターン終了時、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。ブロックできなかったダメージを受けるたび、[gold]プレートアーマー[/gold]の値は[blue]1[/blue]減少する。",
+    "DOWNFALL-PLATED_ARMOR_POWER.title": "被覆",
+    "DOWNFALL-PLATED_ARMOR_POWER.description": "ターン終了時、[gold]ブロック[/gold]を得る。ブロックできなかったダメージを受けるたび、[gold]被覆[/gold]の値は[blue]1[/blue]減少する。",
+    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "ターン終了時、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。ブロックできなかったダメージを受けるたび、[gold]被覆[/gold]の値は[blue]1[/blue]減少する。",
     "DOWNFALL-STUNNED_POWER.title": "スタン",
     "DOWNFALL-STUNNED_POWER.description": "あなたはこのターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
     "DOWNFALL-STUNNED_POWER.smartDescription": "あなたはこのターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
@@ -26,7 +26,7 @@
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "カード獲得",
     "DOWNFALL-COPY_NEXT_TURN_POWER.description": "次のターン開始時、[gold]手札[/gold]に加えるカードを選ぶ。",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "次のターン開始時、[gold]{card}[/gold]を[gold]手札[/gold]に加える。",
-    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "次のターンの筋力",
+    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "次ターン筋力",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "次のターン、[gold]筋力[/gold]を得る。",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]筋力[/gold]{Amount:cond:>0?[blue]{Amount}[/blue]を得る|[blue]{NAmount}[/blue]を失う}。"
 }
