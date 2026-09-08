@@ -13,6 +13,8 @@ public class SoulNexusCard : Collectible<SoulNexusElite>
     {
         WithPower<DebilitatePower>(2, 1, false);
         WithDamage(15, 5);
+        WithTip<VulnerablePower>();
+        WithTip<WeakPower>();
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
