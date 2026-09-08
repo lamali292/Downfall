@@ -10,13 +10,8 @@ namespace Guardian.GuardianCode.Vfx;
 public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisuals
 {
     private const float DefaultMix = 0.2f;
-    private const float ToIdleMix = 0.35f;
-    private const float AttackMix = 0.1f;
-    private const float HitMix = 0.05f;
     private MegaAnimationState? _animState;
-
-    private MegaSprite? _sprite;
-
+    
     public bool IsDefensive { get; set; }
 
     private string IdleAnim => IsDefensive ? "idle_loop_defensive" : "idle_loop";
@@ -42,7 +37,7 @@ public partial class NGuardianCreatureVisuals : NCreatureVisuals, IAnimatedVisua
     public override void _Ready()
     {
         base._Ready();
-        _animState = _sprite?.GetAnimationState();
+        _animState = SpineBody?.GetAnimationState();
         _animState?.SetAnimationCompat(IdleAnim);
     }
 }

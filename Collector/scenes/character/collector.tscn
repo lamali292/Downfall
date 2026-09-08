@@ -8,6 +8,7 @@
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_teaa0"]
 atlas_res = ExtResource("1_lf1jc")
 skeleton_file_res = ExtResource("2_l45cq")
+default_mix = 0.15
 
 [node name="Collector" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_teaa0")
@@ -19,9 +20,9 @@ preview_time = 0.0
 [node name="FireslotTorch1" type="SpineSlotNode" parent="."]
 slot_name = "torch-fireslot"
 show_behind_parent = true
-position = Vector2(-203.87971, -211.06812)
+position = Vector2(-121.23015, -140.51596)
 rotation = -3.1415925
-scale = Vector2(1.25, 1.25)
+scale = Vector2(0.75, 0.75)
 
 [node name="VfxSteppedShaderFire2" parent="FireslotTorch1" instance=ExtResource("3_teaa0")]
 rotation = 3.1415927
@@ -30,9 +31,9 @@ scale = Vector2(0.2, 0.2)
 [node name="Fireslot" type="SpineSlotNode" parent="."]
 slot_name = "fireslot"
 show_behind_parent = true
-position = Vector2(112.134964, -269.72552)
-rotation = -0.1391412
-scale = Vector2(1, 0.99999994)
+position = Vector2(68.37871, -175.71042)
+rotation = -0.13914022
+scale = Vector2(0.59999996, 0.6000001)
 
 [node name="VfxSteppedShaderFire2" parent="Fireslot" instance=ExtResource("3_teaa0")]
 scale = Vector2(0.3, 0.3)
@@ -40,9 +41,9 @@ scale = Vector2(0.3, 0.3)
 [node name="FireslotTorch2" type="SpineSlotNode" parent="."]
 slot_name = "torch2-fireslot"
 show_behind_parent = true
-position = Vector2(166.5007, -124.24969)
+position = Vector2(100.998116, -88.424904)
 rotation = -3.1415925
-scale = Vector2(1.25, 1.25)
+scale = Vector2(0.75, 0.75)
 
 [node name="VfxSteppedShaderFire2" parent="FireslotTorch2" instance=ExtResource("3_teaa0")]
 position = Vector2(-0.3994385, -0.19974972)
@@ -52,8 +53,9 @@ scale = Vector2(0.2, 0.2)
 [node name="RightEye" type="SpineSlotNode" parent="."]
 slot_name = "righteyefireslot"
 show_behind_parent = true
-position = Vector2(-10.744358, -256.79132)
+position = Vector2(-5.3489285, -167.94989)
 rotation = -3.1415925
+scale = Vector2(0.6, 0.6)
 
 [node name="vfx_fire2" parent="RightEye" instance=ExtResource("4_mhgef")]
 position = Vector2(0, -8)
@@ -63,8 +65,9 @@ scale = Vector2(0.2, 0.2)
 [node name="LeftEye" type="SpineSlotNode" parent="."]
 slot_name = "lefteyefireslot"
 show_behind_parent = true
-position = Vector2(20.515642, -255.71133)
+position = Vector2(13.407073, -167.3019)
 rotation = -3.1415925
+scale = Vector2(0.6, 0.6)
 
 [node name="vfx_fire2" parent="LeftEye" instance=ExtResource("4_mhgef")]
 position = Vector2(0, -8)

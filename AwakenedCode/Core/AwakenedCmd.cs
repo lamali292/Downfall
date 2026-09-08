@@ -61,12 +61,10 @@ public static class AwakenedCmd
     {
         if (!AwakenedModel.MarkAwakened(player)) return;
 
-        Callable.From(() =>
-        {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            if (creatureNode?.Visuals is not NAwakenedCreatureVisuals awakenedVisuals) return;
-            awakenedVisuals.IsAwakened = true;
-        }).CallDeferred();
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        if (creatureNode?.Visuals is not NAwakenedCreatureVisuals awakenedVisuals) return;
+        awakenedVisuals.SetParticles(true);
+        await CreatureCmd.TriggerAnim(player.Creature, "Cast", player.Character.CastAnimDelay);
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
     }
 

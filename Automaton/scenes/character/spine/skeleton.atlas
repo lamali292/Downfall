@@ -1,7 +1,6 @@
 skeleton.png
 size:381,282
 filter:Linear,Linear
-pma:true
 images/abdomen
 bounds:52,143,86,102
 offsets:0,0,86,159

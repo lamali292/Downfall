@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Awakened.AwakenedCode.Core;
 
@@ -17,7 +18,19 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
-        foreach (var player in state.Players) AwakenedCmd.RefreshSpellbook(player);
+        foreach (var player in state.Players)
+        {
+            AwakenMeter.Set(player, 0);
+            AwakenDispatched.Set(player, false);
+            AwakenedCmd.RefreshSpellbook(player);
+        }
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        AwakenMeter.Clear();
+        AwakenDispatched.Clear();
         return Task.CompletedTask;
     }
 

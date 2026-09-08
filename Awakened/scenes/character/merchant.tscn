@@ -7,5 +7,4 @@
 script = ExtResource("1_h8ax2")
 
 [node name="Awakened" parent="." instance=ExtResource("2_nxpmx")]
-preview_animation = "Idle_1"
 scale = Vector2(1.372749, 1.372749)

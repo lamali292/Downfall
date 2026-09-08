@@ -8,6 +8,7 @@
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_kdtgo"]
 atlas_res = ExtResource("1_nccbw")
 skeleton_file_res = ExtResource("2_ay631")
+default_mix = 0.2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
 blend_mode = 1

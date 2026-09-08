@@ -12,7 +12,8 @@ public class Arrogance : CollectorCardModel
 {
     public Arrogance() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPower<DoomedAttackPower>(3, 1);
+        WithPower<DoomedAttackPower>(3, 1, false);
+        WithTip<MiasmaPower>();
         WithBlock(7, 2);
     }
 

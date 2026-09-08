@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://ChampCode/Vfx/NChampMerchantCharacter.cs" id="1_4dwfy"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_4dwfy"]
 [ext_resource type="PackedScene" path="res://Champ/scenes/character/champ.tscn" id="2_f17ie"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_4dwfy")
 
 [node name="Champ" parent="." instance=ExtResource("2_f17ie")]
-preview_animation = "Idle"
 scale = Vector2(1.4130828, 1.4130828)
