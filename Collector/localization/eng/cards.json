@@ -181,7 +181,7 @@
   "COLLECTOR-EQUIP_STAFF.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, it applies {EquipStaffPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-INFESTED_PRISM_CARD.description": "When you play a Skill, gain {InfestedPrismCardPower:diff()}[gold] Strength[/gold] this turn.",
   "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn, [gold]Kindle[/gold] {Kindle:diff()} and gain {Block:diff()} [gold]Block[/gold]",
-  "COLLECTOR-WATERFALL_GIANT_CARD.description": "Torchhead skips its next turn 4(3)-X turns. Torchhead acts twice per turn.\n(why are we doing math?)",
+  "COLLECTOR-WATERFALL_GIANT_CARD.description": "At the end of {WaterfallGiantCardPower:inverseDiff()} turns, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
   "COLLECTOR-AEONGLASS_CARD.description": "",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "When this card is [gold]Exhausted[/gold], gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
@@ -205,7 +205,7 @@
   "COLLECTOR-BIDING_BLAST.title": "Biding Blast",
   "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice.",
   "COLLECTOR-QUEEN_CARD.description": "",
-  "COLLECTOR-SOUL_NEXUS_CARD.description": "If the enemy is Weak, Vulnerable or has Miasma, deal 11(15) damage for each.\nOtherwise apply 2(3) of that debuff.\n(a simpler condition would be good)",
+  "COLLECTOR-SOUL_NEXUS_CARD.description": "Deal {Damage:diff()} damage.\n[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} turns. ",
   "COLLECTOR-TEST_SUBJECT_CARD.description": "",
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
   "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]"

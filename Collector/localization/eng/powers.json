@@ -115,6 +115,9 @@
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.description": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] random Orbs. ",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] [blue]{Amount}[/blue] random {Amount:plural:Orb|Orbs}. ",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.title": "Bygone Effigy Card Power",
-  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of [blue]3[/blue] turns, gain {:reserveIcons(1)} and  [gold]Plated Armor[/gold].",
-  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, gain {Reserve:reserveIcons()} and [blue]{PlatedArmorPower:diff()}[/blue] [gold]Plated Armor[/gold]."
+  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of [blue]3[/blue] turns, gain {:reserveIcons(1)} and [gold]Plated Armor[/gold].",
+  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, gain {Reserve:reserveIcons()} and [blue]{PlatedArmorPower:diff()}[/blue] [gold]Plated Armor[/gold].",
+  "COLLECTOR-WATERFALL_GIANT_CARD_POWER.title": "Waterfall Giant Card Power",
+  "COLLECTOR-WATERFALL_GIANT_CARD_POWER.description": "At the end of [blue]3[/blue] turns, apply [gold]Miasma[/gold] to ALL enemies.",
+  "COLLECTOR-WATERFALL_GIANT_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies."
 }

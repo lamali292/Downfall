@@ -38,10 +38,8 @@ public class BygoneEffigyCardPower : CollectorPowerModel
         else
         {
             Flash();
-            await Cmd.CustomScaledWait(0.1f, 0.4f);
             await CollectorCmd.GetReserve(this);
             await MyCommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
-            await Cmd.CustomScaledWait(0.1f, 0.4f);
             await PowerCmd.Remove(this);
         }
     }

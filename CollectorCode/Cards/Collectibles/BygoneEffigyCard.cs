@@ -13,7 +13,7 @@ public class BygoneEffigyCard : Collectible<BygoneEffigyElite>
     public BygoneEffigyCard() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithVar("Power", 3);
-        WithPower<BygoneEffigyCardPower>(3, -1);
+        WithPower<BygoneEffigyCardPower>(3, -1, false);
         WithReserveTip();
         WithTip<PlatedArmorPower>();
     }
