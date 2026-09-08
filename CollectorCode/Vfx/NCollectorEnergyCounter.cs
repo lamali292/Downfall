@@ -133,6 +133,7 @@ public partial class NCollectorEnergyCounter : Control, IAnimatedCounter
 
     private void OnHovered()
     {
+        if (_hoverTip == null) return;
         NHoverTipSet.CreateAndShow(this, _hoverTip)?.SetGlobalPosition(GlobalPosition + new Vector2(-70f, -200f));
     }
 
