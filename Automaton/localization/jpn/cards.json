@@ -27,6 +27,7 @@
     "AUTOMATON-BURN_OUT.title": "バーンアウト",
     "AUTOMATON-CLASS_DEFAULT.description": "関数のダメージと[gold]ブロック[/gold]を{ClassDefaultPower:diff()}増加させる。",
     "AUTOMATON-CLASS_DEFAULT.title": "クラス初期化",
+    "AUTOMATON-CLEAN_CODE.description": "ターン終了時、カードを{CleanCodePower:diff()}枚[gold]格納[/gold]してもよい。",
     "AUTOMATON-CLEAN_CODE.title": "コード清書",
     "AUTOMATON-CONSTRUCTOR.description": "最初のカードとして[gold]エンコード[/gold]された場合、その[gold]ブロック[/gold]を{ExtraBlock:diff()}増加させる。",
     "AUTOMATON-CONSTRUCTOR.title": "コンストラクター",
