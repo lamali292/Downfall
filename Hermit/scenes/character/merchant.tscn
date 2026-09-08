@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dunp88nulr5yt"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://b2ww8leotjikm" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_d8cb7"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_d8cb7"]
 [ext_resource type="PackedScene" path="res://Hermit/scenes/character/hermit.tscn" id="3_hkw07"]
 
 [node name="Merchant" type="Node2D"]

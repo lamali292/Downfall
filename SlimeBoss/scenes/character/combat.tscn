@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/slime_boss.tscn" id="1_2vsmi"]
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeBossCreatureVisuals.cs" id="1_5ghei"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_5ghei"]
 
 [node name="SlimeBossCombat" type="Node2D"]
 script = ExtResource("1_5ghei")
@@ -11,13 +11,9 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Node2D" type="Node2D" parent="."]
-show_behind_parent = true
-scale = Vector2(-1, 1)
-
-[node name="Visuals" parent="Node2D" instance=ExtResource("1_2vsmi")]
+[node name="Visuals" parent="." instance=ExtResource("1_2vsmi")]
 unique_name_in_owner = true
-position = Vector2(4, -24)
+position = Vector2(-4, -24)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

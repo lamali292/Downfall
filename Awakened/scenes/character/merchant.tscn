@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://AwakenedCode/Vfx/NAwakenedMerchantCharacter.cs" id="1_h8ax2"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_h8ax2"]
 [ext_resource type="PackedScene" path="res://Awakened/scenes/character/awakened.tscn" id="2_nxpmx"]
 
 [node name="Merchant" type="Node2D"]
