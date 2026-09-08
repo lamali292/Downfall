@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsagh3w1xvpcc"]
+[gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_nqoe6"]
-[ext_resource type="PackedScene" uid="uid://dn6jy6nlj7ug" path="res://Collector/scenes/character/collector.tscn" id="1_orqfj"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_nqoe6"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/collector.tscn" id="1_orqfj"]
 
 [node name="CollectorCombat" type="Node2D"]
 script = ExtResource("1_nqoe6")

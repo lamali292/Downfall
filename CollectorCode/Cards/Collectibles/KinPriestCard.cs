@@ -17,7 +17,7 @@ public class KinPriestCard : Collectible<TheKinBoss>
         WithPower<VulnerablePower>(3);
     }
 
-    private bool EvenTurn => (Owner.PlayerCombatState?.TurnNumber ?? 0) % 2 == 0;
+    private bool EvenTurn => _owner == null || (Owner.PlayerCombatState?.TurnNumber ?? 0) % 2 == 0;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
