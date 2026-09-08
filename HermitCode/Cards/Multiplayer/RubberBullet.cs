@@ -35,7 +35,7 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, cardPlay).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 HermitSfx.PlayGun3();

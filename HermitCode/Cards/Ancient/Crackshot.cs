@@ -42,7 +42,7 @@ public class Crackshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipl
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var result = await CommonActions.CardAttack(this, cardPlay)
             .WithHermitGunHitFx().BeforeDamage(() =>
             {

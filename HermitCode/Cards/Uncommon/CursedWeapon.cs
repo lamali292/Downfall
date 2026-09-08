@@ -87,7 +87,7 @@ public sealed class CursedWeapon : HermitCardModel
         await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             DamageProps.cardHpLoss, Owner.Creature, this, play);
 
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play).WithHermitFireHitFx()
             .Execute(ctx);
 

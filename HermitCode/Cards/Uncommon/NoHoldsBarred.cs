@@ -22,7 +22,7 @@ public sealed class NoHoldsBarred : HermitCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play)
             .WithHermitSlashHitFx()
             .Execute(ctx);

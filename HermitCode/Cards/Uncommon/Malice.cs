@@ -24,7 +24,7 @@ public sealed class Malice : HermitCardModel
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (card != null) await CardCmdCompatibility.Exhaust(ctx, card);
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         HermitSfx.PlayGun1();
         if (card?.Type == CardType.Curse)
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

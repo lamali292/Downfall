@@ -33,7 +33,7 @@ public sealed class DeadOrAlive : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         var times = ResolveEnergyXValue();
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var command = await CommonActions.CardAttack(this, play, times).WithHermitBluntLightHitFx()
             .Execute(ctx);
         var shouldTriggerFatal = play.Target!.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
