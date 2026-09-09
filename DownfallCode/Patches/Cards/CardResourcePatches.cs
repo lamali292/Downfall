@@ -65,14 +65,16 @@ internal static class GenericHasEnoughResourcesPatch
     }
 }
 
-[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
+[HarmonyPatch(typeof(NCombatUi))]
 internal static class GenericResourceUiPatch
 {
+    [HarmonyPatch(nameof(NCombatUi.Activate))]
+    [HarmonyPostfix]
     private static void Postfix(NCombatUi __instance, CombatState state)
     {
         var player = LocalContext.GetMe(state);
         if (player == null) return;
-
+ 
         foreach (var resource in CardResourceRegistry.GetAll())
         {
             var counter = resource.CreateCounter(player);
@@ -80,6 +82,23 @@ internal static class GenericResourceUiPatch
             counter.Position = resource.UiPosition;
             counter.Scale = resource.UiScale;
             __instance.EnergyCounterContainer.AddChild(counter);
+            if (counter is IAnimatedCounter animated)
+                animated.AnimIn();
         }
     }
+ 
+    [HarmonyPatch(nameof(NCombatUi.AnimOut))]
+    [HarmonyPostfix]
+    private static void Postfix(NCombatUi __instance)
+    {
+        foreach (var child in __instance.EnergyCounterContainer.GetChildren())
+            if (child is IAnimatedCounter animated)
+                animated.AnimOut();
+    }
+}
+
+public interface IAnimatedCounter
+{
+    void AnimIn();
+    void AnimOut();
 }

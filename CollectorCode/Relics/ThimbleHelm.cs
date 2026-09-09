@@ -15,7 +15,7 @@ public class ThimbleHelm : CollectorRelicModel
 {
     public ThimbleHelm() : base(RelicRarity.Rare)
     {
-        WithBlock(1);
+        WithBlock(2);
     }
 
     public override decimal ModifyBlockAdditive(

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://CollectorCode/Vfx/NTorchheadCreatureVisuals.cs" id="1_8l8vf"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_5uu03"]
 [ext_resource type="PackedScene" path="res://Collector/scenes/character/torchhead.tscn" id="2_arvdp"]
 
 [node name="TorchheadCombat" type="Node2D"]
-script = ExtResource("1_8l8vf")
+script = ExtResource("1_5uu03")
 
 [node name="FormVfx" type="Control" parent="."]
 unique_name_in_owner = true
@@ -12,7 +12,6 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Visuals" parent="." instance=ExtResource("2_arvdp")]
-preview_animation = "-- Empty --"
 unique_name_in_owner = true
 position = Vector2(0, -19.190002)
 

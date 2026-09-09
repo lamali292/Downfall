@@ -8,5 +8,5 @@
     "HERMIT-STRIKE.title": "ストライク",
     "HERMIT-STRIKE.description": "「ストライク」を含むカード。",
     "HERMIT-CONCENTRATE.title": "集中",
-    "HERMIT-CONCENTRATE.description": "このターン、次にプレイした[gold]命中[/gold]カードは、位置に関係なくその効果を発動する。"
+    "HERMIT-CONCENTRATE.description": "このターン、次にプレイする[gold]命中[/gold]カードは、位置に関係なくその効果を発動する。"
 }

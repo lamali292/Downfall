@@ -28,7 +28,7 @@ public sealed class Magnum : HermitCardModel
             ctx, Owner, prefs, null, this)).ToList();
         if (selected.Count == 0) return;
         await CardCmd.Discard(ctx, selected);
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play, selected.Count).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 HermitSfx.PlayGun1();

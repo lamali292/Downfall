@@ -11,7 +11,7 @@ namespace ImageGen;
 
 public class SyncSheets
 {
-    private const string GithubRaw = "https://raw.githubusercontent.com/lamali292/Downfall/develop-2/ImageGen/images";
+    private const string GithubRaw = "https://raw.githubusercontent.com/lamali292/Downfall/main/ImageGen/images";
 
     private const int RowHeightPx = 130;
     private const int ImgColPx = 170;

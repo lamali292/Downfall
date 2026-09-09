@@ -22,7 +22,7 @@ public sealed class TrackingShot : HermitCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, play, 2).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 var i = Rng.Chaotic.NextInt(2);

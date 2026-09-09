@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 ]
 
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_i7p3u"]
 [ext_resource type="PackedScene" path="res://Champ/scenes/character/champ.tscn" id="1_iqfof"]
-[ext_resource type="Script" path="res://ChampCode/Vfx/NChampCreatureVisuals.cs" id="1_o1y6q"]
 
 [node name="ChampCombat" type="Node2D"]
-script = ExtResource("1_o1y6q")
+script = ExtResource("1_i7p3u")
 
 [node name="FormVfx" type="Control" parent="."]
 unique_name_in_owner = true
@@ -12,7 +12,6 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Visuals" parent="." instance=ExtResource("1_iqfof")]
-preview_animation = "IdleUltimate"
 preview_frame = true
 unique_name_in_owner = true
 position = Vector2(0, -19)

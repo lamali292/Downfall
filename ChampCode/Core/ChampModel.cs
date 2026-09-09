@@ -7,6 +7,7 @@ using Champ.ChampCode.Stance;
 using Champ.ChampCode.Vfx;
 using Downfall.DownfallCode.Core;
 using Godot;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -29,13 +30,12 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
         return stance;
     }
     
+    
     private static void SetStanceInternal(Player player, ChampStanceModel model)
     {
         model.AssertMutable();
         ActiveStance[player] = model;
     }
-
-    
     
     private static readonly PlayerField<NChampStanceDisplay> StanceDisplays = new(() => null);
 
@@ -88,29 +88,19 @@ public class ChampModel() : CustomSingletonModel(HookType.Combat)
     }
 
 
-    public override Task BeforeCombatStart()
-    {
-        return Task.CompletedTask;
-    }
+  
 
 
     private static void TriggerStanceAnimation(Player player)
     {
-        Callable.From(() =>
+        var trigger = player.ChampStance switch
         {
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            if (creatureNode?.Visuals is not NChampCreatureVisuals champVisuals) return;
-
-            champVisuals.CurrentStance = GetStanceModel(player) switch
-            {
-                ChampBerserkerStance => NChampCreatureVisuals.Stance.Berserker,
-                ChampDefensiveStance => NChampCreatureVisuals.Stance.Defensive,
-                ChampUltimateStance => NChampCreatureVisuals.Stance.Ultimate,
-                _ => NChampCreatureVisuals.Stance.Normal
-            };
-
-            champVisuals.OnAnimationTrigger("Idle");
-        }).CallDeferred();
+            ChampUltimateStance  => "IdleUltimate",
+            ChampDefensiveStance => "IdleDefensive",
+            ChampBerserkerStance => "IdleBerserker",
+            _                    => "Idle",
+        };
+        CreatureCmd.TriggerAnim(player.Creature, trigger, player.Character.CastAnimDelay);
     }
 
     public static void RefreshDisplay(Player player)

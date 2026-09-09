@@ -6,10 +6,11 @@
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_xbnni"]
 atlas_res = ExtResource("1_swlh0")
 skeleton_file_res = ExtResource("2_j1kbm")
+default_mix = 0.2
 
 [node name="Champ" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_xbnni")
 preview_skin = "Default"
-preview_animation = "die"
+preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

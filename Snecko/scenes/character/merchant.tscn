@@ -7,4 +7,4 @@
 script = ExtResource("1_42ufr")
 
 [node name="Snecko" parent="." instance=ExtResource("1_mpw0i")]
-scale = Vector2(-1.563, 1.563)
+scale = Vector2(1.563, 1.563)

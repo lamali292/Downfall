@@ -25,7 +25,7 @@ public class FireAway : HermitCardModel, IAfterDeadOnTrigger
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).BeforeDamage(() =>
         {
             HermitSfx.PlayGun3();

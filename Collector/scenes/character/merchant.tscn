@@ -1,12 +1,9 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://CollectorCode/Vfx/NCollectorMerchantCharacter.cs" id="1_itnq2"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_21l3d"]
 [ext_resource type="PackedScene" path="res://Collector/scenes/character/collector.tscn" id="1_vkos4"]
 
 [node name="Merchant" type="Node2D"]
-script = ExtResource("1_itnq2")
+script = ExtResource("1_21l3d")
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Collector" parent="Node2D" instance=ExtResource("1_vkos4")]
-scale = Vector2(1.3507653, 1.3507653)
+[node name="Collector" parent="." instance=ExtResource("1_vkos4")]

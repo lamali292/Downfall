@@ -6,6 +6,7 @@
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_4kq0j"]
 atlas_res = ExtResource("1_l1fn0")
 skeleton_file_res = ExtResource("2_k5lqo")
+default_mix = 0.1
 
 [node name="SlimeBoss" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_4kq0j")

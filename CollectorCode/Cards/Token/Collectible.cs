@@ -2,7 +2,10 @@
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
@@ -67,12 +70,29 @@ public abstract class Collectible<T>(
     private static void S(NCreatureVisuals visuals, MonsterModel monster)
     {
         if (visuals.SpineBody != null)
+        {
             monster.GenerateAnimator(visuals.SpineBody);
-
+            var skeleton = visuals.SpineBody.GetSkeleton();
+            if (skeleton == null)
+                return;
+            try
+            {
+                _ = new Creature(monster, CombatSide.Enemy, "hi");
+                monster.SetupSkins(visuals.SpineBody, skeleton);
+                
+                //visuals.SpineAnimation.SetAnimation("attack", true);
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+          
+        }
+        
         foreach (var node in visuals.GetChildrenRecursive<Control>())
             node.MouseFilter = Control.MouseFilterEnum.Ignore;
-
-        // --- YOUR CUSTOM VALUES ---
+        
         var boundsSize = visuals.Bounds.Size;
         var boundsPos = visuals.Bounds.Position;
         const float portraitW = 250f;

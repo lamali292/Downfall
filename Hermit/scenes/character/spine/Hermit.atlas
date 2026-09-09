@@ -1,7 +1,6 @@
 Hermit.png
 size:538,202
 filter:Linear,Linear
-pma:true
 body
 bounds:35,13,166,187
 offsets:0,1,167,188

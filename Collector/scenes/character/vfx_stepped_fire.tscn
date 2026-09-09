@@ -168,10 +168,12 @@ scale = Vector2(0.823203, 0.863206)
 texture = ExtResource("6_jma2k")
 
 [node name="sparks big" type="GPUParticles2D" parent="."]
+visible = false
 material = ExtResource("8_bgxs3")
 position = Vector2(-6.49258, -83.8541)
 rotation = 0.232337
 scale = Vector2(2.09743, 2.09743)
+emitting = false
 amount = 24
 texture = ExtResource("9_e7ewu")
 lifetime = 4.0

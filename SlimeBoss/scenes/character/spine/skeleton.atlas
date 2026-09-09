@@ -1,7 +1,6 @@
 skeleton.png
 size:403,482
 filter:Linear,Linear
-pma:true
 images/body
 bounds:2,134,346,264
 rotate:90

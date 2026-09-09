@@ -1,3 +1,5 @@
 {
-    "FULL_STASH": "Мой [gold]Запас[/gold] [red]полон[/red]."
+    "FULL_STASH": "[gold]Запас[/gold] моей сферы [red]полон[/red].",
+    "OPEN_EMPTY_STASH": "[gold]Запас[/gold] моей сферы [red]пуст[/red].",
+    "OPEN_EMPTY_ENCODE": "[gold]Код[/gold] моей сферы [red]пуст[/red]."
 }

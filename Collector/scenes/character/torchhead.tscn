@@ -7,6 +7,7 @@
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_nce1o"]
 atlas_res = ExtResource("1_tmplb")
 skeleton_file_res = ExtResource("2_dqsgj")
+default_mix = 0.1
 
 [node name="Torchhead" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_nce1o")
@@ -18,8 +19,9 @@ preview_time = 0.0
 [node name="SpineSlotNode" type="SpineSlotNode" parent="."]
 slot_name = "torch-fireslot"
 show_behind_parent = true
-position = Vector2(-5.489995, -146.75)
+position = Vector2(-3.2939975, -88.05)
 rotation = -3.1415925
+scale = Vector2(0.6, 0.6)
 
 [node name="VfxSteppedShaderFire" parent="SpineSlotNode" instance=ExtResource("3_dqsgj")]
 rotation = 3.1415927

@@ -16,6 +16,11 @@ public sealed class PlayerField<TVal>
     {
         _inner = new SpireField<PlayerCombatState, TVal>(defaultVal);
     }
+    
+    public void Clear()
+    {
+         _inner._table.Clear();
+    }
 
     public TVal? this[Player? obj]
     {

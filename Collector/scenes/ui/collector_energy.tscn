@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" path="res://Collector/images/ui/collector_energy_layer5.png" id="6_wgqhr"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="8_wgqhr"]
 
-
 [sub_resource type="FontVariation" id="FontVariation_e2yny"]
 base_font = ExtResource("2_evxyu")
 spacing_glyph = 2
 
 [node name="CollectorEnergy" type="Control"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dnfak")
@@ -35,8 +35,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -46,12 +44,11 @@ stretch_mode = 5
 
 [node name="RotationLayers" type="Control" parent="Layers"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -90,8 +87,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -105,8 +100,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -123,14 +116,18 @@ offset_right = 112.0
 offset_bottom = 157.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0.08627451, 0.2509804, 0.18039216, 1)
+theme_override_colors/font_outline_color = Color(0.21035752, 0.2641972, 0.11234634, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/outline_size = 16
-theme_override_constants/shadow_outline_size = 16
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 24
 theme_override_fonts/font = SubResource("FontVariation_e2yny")
 theme_override_font_sizes/font_size = 36
 text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_wgqhr")
+theme_override_constants/outline_size = 24
+theme_override_constants/shadow_outline_size = 24
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_outline_color = Color(0.21035752, 0.2641972, 0.11234634, 1)

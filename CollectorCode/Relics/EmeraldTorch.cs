@@ -78,4 +78,11 @@ public class EmeraldTorch : CollectorRelicModel
         return true;
         
     }
+
+    /*
+    public override Task AfterModifyingCardRewardOptions()
+    {
+        Flash();
+        return Task.CompletedTask;
+    }*/
 }

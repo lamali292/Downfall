@@ -47,7 +47,7 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         _result = await CommonActions.CardAttack(this, play)
             .WithHermitGunHitFx().BeforeDamage(() =>
             {

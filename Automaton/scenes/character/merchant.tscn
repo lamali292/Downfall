@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://AutomatonCode/Vfx/NAutomatonMerchantCharacter.cs" id="1_j2063"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_j2063"]
 [ext_resource type="PackedScene" path="res://Automaton/scenes/character/automaton.tscn" id="2_ssl3a"]
 
 [node name="Merchant" type="Node2D"]
@@ -8,4 +8,4 @@ script = ExtResource("1_j2063")
 
 [node name="Automaton" parent="." instance=ExtResource("2_ssl3a")]
 position = Vector2(0, -9)
-scale = Vector2(-1.255, 1.255)
+scale = Vector2(1.255, 1.255)
