@@ -8,9 +8,10 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
+[Obsolete]
 public class Flurry : SneckoCardModel
 {
-    public Flurry() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Flurry() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false, false)
     {
         WithDamage(13, 4);
         WithCards(3, 1);
