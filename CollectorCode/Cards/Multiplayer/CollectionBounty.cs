@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -11,12 +12,15 @@ public class CollectionBounty : CollectorCardModel
     public CollectionBounty() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 3);
+        WithPower<CollectionBountyPower>(1, false);
+        WithReserveTip();
     }
     
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.Apply<CollectionBountyPower>(ctx, this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

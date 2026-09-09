@@ -128,5 +128,8 @@
   "COLLECTOR-TEST_SUBJECT_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.title": "Greenpyre Enchantment",
   "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.description": "Whenever your Attacks deal unblocked damage, apply [gold]Miasma[/gold].",
-  "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.smartDescription": "Whenever your Attacks deal unblocked damage, apply [blue]{Amount}[/blue] [gold]Miasma[/gold]."
+  "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.smartDescription": "Whenever your Attacks deal unblocked damage, apply [blue]{Amount}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-COLLECTION_BOUNTY_POWER.title": "Collection Bounty",
+  "COLLECTOR-COLLECTION_BOUNTY_POWER.description": "When this enemy dies, ALL players gain {:reserveIcons(1)}. ",
+  "COLLECTOR-COLLECTION_BOUNTY_POWER.smartDescription": "When this enemy dies, ALL players gain {Amount:reserveIcons()}. "
 }

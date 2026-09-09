@@ -210,7 +210,7 @@
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
   "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]",
   "COLLECTOR-COLLECTION_BOUNTY.title": "Collection Bounty",
-  "COLLECTOR-COLLECTION_BOUNTY.description": "Deal {Damage:diff()} damage.\nIf this enemy dies this turn, ALL players gain 1 Reserve. ",
+  "COLLECTOR-COLLECTION_BOUNTY.description": "When this enemy dies, ALL players gain {CollectionBountyPower:reserveIcons()}. \nDeal {Damage:diff()} damage.",
   "COLLECTOR-GREENPYRE_ENCHANTMENT.title": "Greenpyre Enchantment",
   "COLLECTOR-GREENPYRE_ENCHANTMENT.description": "Choose another player.\nWhenever their Attacks deal unblocked damage, they apply {GreenpyreEnchantmentPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-HIRED_GUARDS.title": "Hired Guards",
