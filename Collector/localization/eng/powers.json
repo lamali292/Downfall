@@ -122,5 +122,8 @@
   "COLLECTOR-WATERFALL_GIANT_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-KNIGHTS_CARD_POWER.title": "Knights Card Power",
   "COLLECTOR-KNIGHTS_CARD_POWER.description": "ALL your cards are [gold]Ethereal[/gold].",
-  "COLLECTOR-KNIGHTS_CARD_POWER.smartDescription": "ALL your cards are [gold]Ethereal[/gold]."
+  "COLLECTOR-KNIGHTS_CARD_POWER.smartDescription": "ALL your cards are [gold]Ethereal[/gold].",
+  "COLLECTOR-TEST_SUBJECT_CARD_POWER.title": "Test Subject Card Power",
+  "COLLECTOR-TEST_SUBJECT_CARD_POWER.description": "When you play a Skill, gain [gold]Strength[/gold].",
+  "COLLECTOR-TEST_SUBJECT_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold]."
 }

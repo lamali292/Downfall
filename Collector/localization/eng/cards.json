@@ -183,7 +183,7 @@
   "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn, [gold]Kindle[/gold] {Kindle:diff()} and gain {Block:diff()} [gold]Block[/gold]",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "At the end of {WaterfallGiantCardPower:inverseDiff()} turns, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
-  "COLLECTOR-AEONGLASS_CARD.description": "",
+  "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons()}.{InCombat:cond:\n(Deal {CalculatedDamage:diff()} damage)|}",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "When this card is [gold]Exhausted[/gold], gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-TERROR_EEL_CARD.description": "When this card is [gold]Exhausted[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
@@ -204,9 +204,9 @@
   "COLLECTOR-EQUIP_AXE.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold]'s attacks deal damage to ALL enemies.\n[gold]Torchhead[/gold] gains {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BIDING_BLAST.title": "Biding Blast",
   "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, hits twice.",
-  "COLLECTOR-QUEEN_CARD.description": "",
+  "COLLECTOR-QUEEN_CARD.description": "At the start of your turn, gain {Energy:energyIcons()}.\nThe first {ChainsOfBindingPower:diff()} cards drawn each turn are Afflicted with [gold]Bound[/gold].",
   "COLLECTOR-SOUL_NEXUS_CARD.description": "Deal {Damage:diff()} damage.\n[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} turns. ",
-  "COLLECTOR-TEST_SUBJECT_CARD.description": "",
+  "COLLECTOR-TEST_SUBJECT_CARD.description": "When you play a Skill, gain {TestSubjectCardPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
   "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]"
 }
