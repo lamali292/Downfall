@@ -31,6 +31,7 @@ public class MysteriousWinds : CollectorCardModel, IUsesPyredCards
         foreach (var copyNextTurnPower in powers)
         {
             var card = pyredCard.CreateClone();
+            card._owner = copyNextTurnPower.Owner.Player;
             if (IsUpgraded && card.IsUpgradable) CardCmd.Upgrade(card);
             copyNextTurnPower.Card = card;
         }

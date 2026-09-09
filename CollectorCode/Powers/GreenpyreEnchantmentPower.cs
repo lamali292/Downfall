@@ -25,5 +25,6 @@ public class GreenpyreEnchantmentPower : CollectorPowerModel
         if (dealer != Owner || !props.IsPoweredAttack() || result.UnblockedDamage <= 0)
             return;
         await PowerCmd.Apply<MiasmaPower>(choiceContext, target, Amount, Owner, null);
+        Flash();
     }
 }
