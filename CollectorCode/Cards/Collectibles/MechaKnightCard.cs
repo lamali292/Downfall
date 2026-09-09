@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,13 +16,16 @@ public class MechaKnightCard : Collectible<MechaKnightElite>
     public MechaKnightCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithTip(StaticHoverTip.Channeling);
-        WithTip(CardKeyword.Exhaust);
+        WithTip(CollectorTip.Pyred);
         WithPower<MechaKnightCardPower>(1, false);
+        WithCostUpgradeBy(-1);
+        WithVar("OrbSlots", 10);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+        await OrbCmd.AddSlots(Owner, DynamicVars["OrbSlots"].IntValue);
         await CommonActions.ApplySelf<MechaKnightCardPower>(ctx, this);
     }
 }

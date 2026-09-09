@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class CeremonialBeastCard : Collectible<CeremonialBeastBoss>
@@ -14,7 +13,7 @@ public class CeremonialBeastCard : Collectible<CeremonialBeastBoss>
     public CeremonialBeastCard() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.3f)
     {
         WithCalculatedBlock(0, 2, BlockCalc, 0, 1);
-        WithPower<CeremonialBeastCardPower>(1, false);
+        WithPower<CeremonialBeastCardPower>(1, true);
     }
 
     private static decimal BlockCalc(CardModel card, Creature? creature)

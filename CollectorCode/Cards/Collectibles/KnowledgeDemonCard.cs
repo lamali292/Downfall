@@ -4,14 +4,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
 {
     public KnowledgeDemonCard() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.3f)
     {
-        WithCards(5);
+        WithCards(5, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

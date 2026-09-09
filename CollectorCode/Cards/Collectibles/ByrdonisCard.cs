@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class ByrdonisCard : Collectible<ByrdonisElite>
@@ -13,7 +12,7 @@ public class ByrdonisCard : Collectible<ByrdonisElite>
     {
         WithDamage(7, 2);
         WithRepeat(3);
-        WithPower<StrengthPower>(2);
+        WithPower<StrengthPower>(2, 1);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

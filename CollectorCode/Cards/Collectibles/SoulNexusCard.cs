@@ -2,17 +2,18 @@
 using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
+[Pool(typeof(TokenCardPool))]
 public class SoulNexusCard : Collectible<SoulNexusElite>
 {
     public SoulNexusCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
     {
         WithPower<DebilitatePower>(2, 1, false);
-        WithDamage(15, 5);
+        WithDamage(18, 2);
         WithTip<VulnerablePower>();
         WithTip<WeakPower>();
     }

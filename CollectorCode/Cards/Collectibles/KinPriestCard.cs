@@ -5,14 +5,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KinPriestCard : Collectible<TheKinBoss>
 {
     public KinPriestCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
     {
-        WithDamage(15, 5);
+        WithDamage(21, 6);
         WithPower<WeakPower>(3);
         WithPower<VulnerablePower>(3);
     }
