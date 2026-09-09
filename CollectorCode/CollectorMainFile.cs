@@ -1,6 +1,6 @@
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
-using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
