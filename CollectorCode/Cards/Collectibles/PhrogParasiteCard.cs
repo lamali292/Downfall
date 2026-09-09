@@ -5,14 +5,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Encounters;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class PhrogParasiteCard : Collectible<PhrogParasiteElite>
 {
     public PhrogParasiteCard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
     {
-        WithBlock(16, 5);
+        WithBlock(19, 4);//Keep in mind manifest is a common.
         WithCardTip<Infection>();
     }
 

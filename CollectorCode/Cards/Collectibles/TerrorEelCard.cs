@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class TerrorEelCard
@@ -14,7 +13,7 @@ public class TerrorEelCard
     public TerrorEelCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<VulnerablePower>(3, 2);
+        WithPower<VulnerablePower>(3, 6);
     }
     
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)

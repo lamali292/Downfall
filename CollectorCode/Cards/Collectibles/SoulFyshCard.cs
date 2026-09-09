@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.ValueProps;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class SoulFyshCard : Collectible<SoulFyshBoss>

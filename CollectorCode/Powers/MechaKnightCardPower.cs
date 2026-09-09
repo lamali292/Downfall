@@ -1,21 +1,23 @@
 ﻿using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-
 namespace Collector.CollectorCode.Powers;
 
-public class MechaKnightCardPower : CollectorPowerModel
+public class MechaKnightCardPower : CollectorPowerModel, IAfterCardPyred
 {
     public MechaKnightCardPower()
     {
         WithTip(StaticHoverTip.Channeling);
+        WithTip(CollectorTip.Pyred);
         WithTip(CardKeyword.Exhaust);
     }
-    
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+
+    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (card.Owner.Creature != Owner) return;
         var player = card.Owner;
@@ -25,6 +27,5 @@ public class MechaKnightCardPower : CollectorPowerModel
             var orb = OrbModel.GetRandomOrb(player.RunState.Rng.CombatOrbGeneration).ToMutable();
             await OrbCmd.Channel(ctx,orb, player);
         }
-          
     }
 }

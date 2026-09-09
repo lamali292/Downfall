@@ -112,7 +112,7 @@
   "COLLECTOR-FOLLOW_THE_PYRE_POWER.description": "This enemy takes additional damage from ALL [gold]Follow the Pyre[/gold] cards.",
   "COLLECTOR-FOLLOW_THE_PYRE_POWER.smartDescription": "This enemy takes [blue]{Amount}[/blue] additional damage from ALL [gold]Follow the Pyre[/gold] cards.",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.title": "Todo: Mecha Knight Card Power",
-  "COLLECTOR-MECHA_KNIGHT_CARD_POWER.description": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] random Orbs. ",
+  "COLLECTOR-MECHA_KNIGHT_CARD_POWER.description": "Whenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] random Orbs. ",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] [blue]{Amount}[/blue] random {Amount:plural:Orb|Orbs}. ",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.title": "Bygone Effigy Card Power",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of [blue]3[/blue] turns, gain {:reserveIcons(1)} and [gold]Plated Armor[/gold].",

@@ -7,14 +7,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
-
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KaiserCrabCard : Collectible<KaiserCrabBoss>
 {
-    public KaiserCrabCard() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
+    public KaiserCrabCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
     {
-        WithDamage(14, 1);
+        WithDamage(16, 7);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,7 +1,6 @@
-﻿using BaseLib.Utils;
+using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
