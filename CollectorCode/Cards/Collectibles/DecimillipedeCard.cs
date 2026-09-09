@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class DecimillipedeCard : Collectible<DecimillipedeElite>
 {
-    public DecimillipedeCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public DecimillipedeCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.66f)
     {
         WithKindle(4, 2);
         WithBlock(4, 2);

@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class MechaKnightCard : Collectible<MechaKnightElite>
 {
-    public MechaKnightCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public MechaKnightCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.63f)
     {
         WithTip(StaticHoverTip.Channeling);
         WithTip(CollectorTip.Pyred);

@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class QueenCard : Collectible<QueenBoss>
 {
-    public QueenCard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    public QueenCard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, 0.17f)
     {
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);

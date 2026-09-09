@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class PhantasmalGardenerCard
     : Collectible<PhantasmalGardenersElite>
 {
-    public PhantasmalGardenerCard() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
+    public PhantasmalGardenerCard() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.05f)
     {
         WithBlock(7, 2);
         WithDamage(1);

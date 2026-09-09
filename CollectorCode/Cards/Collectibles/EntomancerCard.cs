@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class EntomancerCard : Collectible<EntomancerElite>
 {
-    public EntomancerCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
+    public EntomancerCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.54f)
     {
         WithDamage(1);
         WithRepeat(7, 1);
