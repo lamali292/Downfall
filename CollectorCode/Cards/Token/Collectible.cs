@@ -31,20 +31,6 @@ public abstract class Collectible<T>(
     where T : EncounterModel
 {
     public override bool HasBuiltInOverlay => false;
-
-    
-    public override string Title
-    {
-        get
-        {
-            var titleLocString = EncounterModel.Title;
-            if (!IsUpgraded)
-                return titleLocString.GetFormattedText();
-            if (MaxUpgradeLevel <= 1)
-                return titleLocString.GetFormattedText() + "+";
-            return $"{titleLocString.GetFormattedText()}+{CurrentUpgradeLevel}";
-        }
-    }
    
     public ActModel? Act => ModelDb.Acts.FirstOrDefault(e => e.AllEncounters.Contains(EncounterModel));
     public RoomType RoomType => EncounterModel.RoomType;
