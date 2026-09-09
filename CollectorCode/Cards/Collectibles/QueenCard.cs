@@ -26,7 +26,8 @@ public class QueenCard : Collectible<QueenBoss>
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<EnergizedPower>(ctx, this, DynamicVars.Energy.BaseValue);
+        await CommonActions.ApplySelf<PyrePower>(ctx, this, DynamicVars.Energy.BaseValue);
+        //I use pyre power because it's funny that the pyre card gives you the pyre power on the pyre character.
         await CommonActions.ApplySelf<ChainsOfBindingPower>(ctx, this);
     }
 }

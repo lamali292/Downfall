@@ -15,6 +15,7 @@ public class Fireball : CollectorCardModel
 {
     public Fireball() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
+        WithKeyword(CardKeyword.Retain);
         WithDamage(18, 3);
         WithUpgradeChangingCardTip<Burn, Ember>();
     }
