@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class VantomCard : Collectible<VantomBoss>
 {
-    public VantomCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    public VantomCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.67f)
     {
         WithPower<SlipperyPower>(1, 1);
     }

@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class CeremonialBeastCard : Collectible<CeremonialBeastBoss>
 {
-    public CeremonialBeastCard() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.3f)
+    public CeremonialBeastCard() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.72f)
     {
         WithCalculatedBlock(0, 2, BlockCalc, 0, 1);
         WithPower<CeremonialBeastCardPower>(1, false);

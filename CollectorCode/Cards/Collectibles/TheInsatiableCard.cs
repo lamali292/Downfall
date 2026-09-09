@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class TheInsatiableCard : Collectible<TheInsatiableBoss>
 {
-    public TheInsatiableCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    public TheInsatiableCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.61f)
     {
         WithPower<TheInsatiableCardPower>(3, 1, false);
         WithTip(CollectorTip.Kindle);
