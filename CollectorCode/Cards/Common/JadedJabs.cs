@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class JadedJabs : CollectorCardModel, IUsesPyredCards
 {
-    public JadedJabs() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public JadedJabs() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);

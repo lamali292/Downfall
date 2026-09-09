@@ -14,7 +14,7 @@ public class Torchbearer : CollectorCardModel
 {
     public Torchbearer() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKindle(10, 13);
+        WithKindle(10, 3);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(CollectorTip.Kindle);
     }
