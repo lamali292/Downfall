@@ -125,5 +125,8 @@
   "COLLECTOR-KNIGHTS_CARD_POWER.smartDescription": "ALL your cards are [gold]Ethereal[/gold].",
   "COLLECTOR-TEST_SUBJECT_CARD_POWER.title": "Test Subject Card Power",
   "COLLECTOR-TEST_SUBJECT_CARD_POWER.description": "When you play a Skill, gain [gold]Strength[/gold].",
-  "COLLECTOR-TEST_SUBJECT_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold]."
+  "COLLECTOR-TEST_SUBJECT_CARD_POWER.smartDescription": "When you play a Skill, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.title": "Greenpyre Enchantment",
+  "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.description": "Whenever your Attacks deal unblocked damage, apply [gold]Miasma[/gold].",
+  "COLLECTOR-GREENPYRE_ENCHANTMENT_POWER.smartDescription": "Whenever your Attacks deal unblocked damage, apply [blue]{Amount}[/blue] [gold]Miasma[/gold]."
 }
