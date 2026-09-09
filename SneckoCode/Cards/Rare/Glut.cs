@@ -9,9 +9,10 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
+[Obsolete]
 public class Glut : SneckoCardModel
 {
-    public Glut() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public Glut() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, false, false)
     {
         WithDamage(4, 2);
         WithCalculatedVar("Repeat", 0, Calc);
