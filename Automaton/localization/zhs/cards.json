@@ -99,7 +99,7 @@
     "AUTOMATON-OIL_SPILL.description": "[gold]编译[/gold]：[gold]暂存[/gold]一张[gold]错误[/gold]。",
     "AUTOMATON-OIL_SPILL.title": "漏油",
     "AUTOMATON-OPTIMIZE.description": "在你的回合开始时，额外从[gold]暂存区[/gold]中抽[blue]1[/blue]张牌。",
-    "AUTOMATON-OPTIMIZE.title": "调优",
+    "AUTOMATON-OPTIMIZE.title": "优化",
     "AUTOMATON-OVERHEAT.description": "造成{Damage:diff()}点伤害。\n下一次你生成牌时，该敌人失去{OverheatPower:diff()}点生命值。",
     "AUTOMATON-OVERHEAT.title": "过热",
     "AUTOMATON-PHILOSOPHIZE.description": "每当你抽到这张牌时，在一回合内获得{PhilosophizePower:diff()}点[gold]力量[/gold]。",

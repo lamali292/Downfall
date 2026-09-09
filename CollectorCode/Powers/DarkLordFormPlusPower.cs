@@ -1,4 +1,3 @@
-using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Combat;

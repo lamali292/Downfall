@@ -124,7 +124,7 @@
   "COLLECTOR-STRIKE_COLLECTOR.description": "Deal {Damage:diff()} damage.",
   "COLLECTOR-STRIKE_COLLECTOR.title": "Strike",
   "COLLECTOR-SUCKER_PUNCH.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
-  "COLLECTOR-SUCKER_PUNCH.title": "Clothsline",
+  "COLLECTOR-SUCKER_PUNCH.title": "Clothesline",
   "COLLECTOR-SUFFERING.description": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] to an enemy, also apply {SufferingPower:diff()} [gold]Miasma[/gold] to them.",
   "COLLECTOR-SUFFERING.title": "Suffering",
   "COLLECTOR-SUNBLOOM_KINDLING.description": "When this card is [gold]Exhausted[/gold],\ngain {StrengthPower:diff()} [gold]Strength[/gold],\nadd {Cards:diff()} {IfUpgraded:show:[gold]Ember+[/gold]|[gold]Ember[/gold]} into your [gold]Hand[/gold]\nand [gold]Kindle[/gold] {Kindle:diff()}.",

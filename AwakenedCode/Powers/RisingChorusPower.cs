@@ -1,9 +1,7 @@
-﻿using System.Globalization;
-using Awakened.AwakenedCode.Core;
+﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.History;
 using Awakened.AwakenedCode.Interfaces;
-using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;

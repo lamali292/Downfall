@@ -2,7 +2,6 @@
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Interfaces;
 using Godot;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

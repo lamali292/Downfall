@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Powers;
-using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

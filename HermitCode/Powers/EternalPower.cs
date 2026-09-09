@@ -1,5 +1,3 @@
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;

@@ -3,13 +3,9 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.DynamicVars;
-using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Abstract;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards;

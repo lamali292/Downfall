@@ -5,7 +5,7 @@
     "HERMIT-CHEAT_POWER.description": "次にプレイするカードは[gold]命中[/gold]効果を発動する。[gold]命中[/gold]を持つかどうかに関わらず、カードを1枚プレイするとこのパワーは消費される。",
     "HERMIT-CHEAT_POWER.smartDescription": "次にプレイするカードは[gold]命中[/gold]効果を発動する。[gold]命中[/gold]を持つかどうかに関わらず、カードを1枚プレイするとこのパワーは消費される。",
     "HERMIT-CHEAT_POWER.title": "イカサマ",
-    "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.title": "次ターンのドロー減少",
+    "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.title": "次ターンドロー減少",
     "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.description": "次のターン開始時、引くカードが[blue]1[/blue]枚減る。",
     "HERMIT-DRAW_FEWER_CARDS_NEXT_TURN_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、引くカードが[blue]1[/blue]枚減る。",
     "HERMIT-HIGH_NOON_POWER.description": "[gold]基本[/gold][gold]ストライク[/gold]が[gold]リプレイ[/gold]を得る。",

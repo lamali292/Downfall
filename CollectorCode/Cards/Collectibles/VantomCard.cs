@@ -1,14 +1,9 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
-using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Encounters;
-using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace Collector.CollectorCode.Cards.Collectibles;
 public class VantomCard : Collectible<VantomBoss>

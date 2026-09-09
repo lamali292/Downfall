@@ -1,5 +1,4 @@
 ﻿using Awakened.AwakenedCode.Core;
-using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;

@@ -1,5 +1,12 @@
 {
     "AUTOMATON-ENCODE.title": "Программирование",
+    "AUTOMATON-ENCODE.description": "Помещает эту карту в [gold]Код[/gold].\nКогда в нем [blue]3[/blue] карты, их эффекты, описанные выше, объединяются в [gold]Функцию[/gold] стоимостью [blue]1[/blue].",
     "AUTOMATON-STASH.title": "Запас",
-    "AUTOMATON-COMPILE.title": "Компиляция"
+    "AUTOMATON-STASH.description": "Помещает карту в [gold]стопку Запаса[/gold] (максимум [blue]5[/blue] карт). Вы добираете карту с низа [gold]стопки Запаса[/gold] в начале хода.",
+    "AUTOMATON-COMPILE.title": "Компиляция",
+    "AUTOMATON-COMPILE.description": "Этот эффект срабатывает, когда карта становится частью Функции.",
+    "AUTOMATON-ENCODE_PILE.title": "Сфера кода",
+    "AUTOMATON-ENCODE_PILE.description": "Вы можете поместить до [blue]3[/blue] карт в эту сферу. Когда она заполнена, эффекты карт, описанные до [gold]Компиляции[/gold], собираются в [gold]Функцию[/gold] стоимостью [blue]1[/blue].",
+    "AUTOMATON-STASH_PILE.title": "Сфера запаса",
+    "AUTOMATON-STASH_PILE.description": "Вы можете поместить до [blue]5[/blue] карт в эту сферу. Вы добираете карту с низа [gold]стопки Запаса[/gold] в начале хода."
 }

@@ -1,6 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Commands.Builders;
-using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace Collector.CollectorCode.Extensions;
 

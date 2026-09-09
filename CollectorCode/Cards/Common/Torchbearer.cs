@@ -1,8 +1,6 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +12,7 @@ public class Torchbearer : CollectorCardModel
 {
     public Torchbearer() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKindle(10, 13);
+        WithKindle(10, 3);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(CollectorTip.Kindle);
     }

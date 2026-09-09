@@ -2,7 +2,6 @@
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
