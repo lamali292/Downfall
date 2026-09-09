@@ -1,4 +1,5 @@
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
@@ -27,5 +28,8 @@ public static class CollectorMainFile
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
+
+
+        ModPatcher.Create(ModId, Logger).Add(typeof(AddMyPoolFilterPatch)).PatchAll();
     }
 }

@@ -70,7 +70,6 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(PersonalHivePowerExemptPatch))
-            .Add(typeof(AddMyPoolFilterPatch))
             .Add(typeof(ScrollBoxesCustomBundlePatch));
 
         patcher.Add(typeof(KaleidoscopePoolFilter))

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary;
 
-namespace Downfall.DownfallCode.Patches;
+namespace Collector.CollectorCode.Patches;
 
 
 [HarmonyPatch(typeof(NCardLibrary), nameof(NCardLibrary._Ready))]
