@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

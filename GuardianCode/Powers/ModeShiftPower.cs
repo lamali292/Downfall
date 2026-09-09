@@ -1,4 +1,3 @@
-using BaseLib.Abstracts;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;

@@ -1,14 +1,10 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 

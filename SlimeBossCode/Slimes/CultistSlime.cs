@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;

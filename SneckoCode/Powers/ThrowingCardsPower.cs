@@ -1,14 +1,11 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Snecko.SneckoCode.Core;
 

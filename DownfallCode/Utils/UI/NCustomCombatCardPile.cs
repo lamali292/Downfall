@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;

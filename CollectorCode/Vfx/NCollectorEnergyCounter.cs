@@ -7,7 +7,6 @@ using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Collector.CollectorCode.Vfx;

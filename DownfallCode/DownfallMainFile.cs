@@ -13,8 +13,6 @@ using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using Godot.Bridge;
-using MegaCrit.Sts2.Core.AutoSlay;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;

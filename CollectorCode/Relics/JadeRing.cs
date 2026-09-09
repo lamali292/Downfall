@@ -1,4 +1,3 @@
-using System.Collections;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;

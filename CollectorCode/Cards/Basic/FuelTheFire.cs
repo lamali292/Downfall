@@ -3,7 +3,6 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;

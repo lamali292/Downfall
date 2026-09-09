@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;

@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Abstract;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Combat;

@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
-using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;

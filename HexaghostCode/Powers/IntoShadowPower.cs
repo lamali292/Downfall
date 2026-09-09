@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;

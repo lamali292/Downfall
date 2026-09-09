@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;

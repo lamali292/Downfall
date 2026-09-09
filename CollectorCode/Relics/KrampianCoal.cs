@@ -3,7 +3,6 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
-using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;

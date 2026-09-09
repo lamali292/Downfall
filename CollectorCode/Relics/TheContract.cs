@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;

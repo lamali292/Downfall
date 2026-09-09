@@ -1,4 +1,3 @@
-using BaseLib.Abstracts;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Compatibility;

@@ -1,6 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
-using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

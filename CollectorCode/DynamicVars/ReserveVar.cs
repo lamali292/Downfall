@@ -1,5 +1,4 @@
-﻿using BaseLib.Extensions;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+﻿using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Collector.CollectorCode.DynamicVars;
 

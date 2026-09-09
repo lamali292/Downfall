@@ -1,12 +1,10 @@
 using BaseLib.Utils;
-using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Collector.CollectorCode.Cards.Ancient;
 
