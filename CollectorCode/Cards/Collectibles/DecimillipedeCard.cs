@@ -15,15 +15,15 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>
     {
         WithKindle(4, 2);
         WithBlock(4, 2);
-        WithPower<BlockNextTurnPower>(4, 2, false);
         WithKeyword(CardKeyword.Exhaust);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this);
+     
         await CollectorCmd.Kindle(ctx, this);
-        await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
+        var block = await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
+        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, block);
     }
 }
