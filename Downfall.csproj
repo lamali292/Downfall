@@ -21,7 +21,7 @@
         <DefaultItemExcludes>
             packages/**;
             src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
-            animations/**;banks/**;debug_audio/**;fonts/**;images/**;
+            animations/**;banks/**;debug_audio/**;fonts/**;images/**;i rn
             localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
         </DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>

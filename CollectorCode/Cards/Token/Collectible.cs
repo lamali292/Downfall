@@ -5,6 +5,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
@@ -31,8 +32,20 @@ public abstract class Collectible<T>(
 {
     public override bool HasBuiltInOverlay => false;
 
-    public override string Title => EncounterModel.Title.GetFormattedText();
-
+    
+    public override string Title
+    {
+        get
+        {
+            var titleLocString = EncounterModel.Title;
+            if (!IsUpgraded)
+                return titleLocString.GetFormattedText();
+            if (MaxUpgradeLevel <= 1)
+                return titleLocString.GetFormattedText() + "+";
+            return $"{titleLocString.GetFormattedText()}+{CurrentUpgradeLevel}";
+        }
+    }
+   
     public ActModel? Act => ModelDb.Acts.FirstOrDefault(e => e.AllEncounters.Contains(EncounterModel));
     public RoomType RoomType => EncounterModel.RoomType;
     

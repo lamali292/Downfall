@@ -15,8 +15,6 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
         WithPower<MiasmaPower>(40, 10);
     }
 
-    protected override bool HasEnergyCostX => true;
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetMiasma(DynamicVars.Power<MiasmaPower>().BaseValue);
