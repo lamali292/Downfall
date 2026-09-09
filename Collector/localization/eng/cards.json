@@ -183,7 +183,7 @@
   "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold], gain {BlockNextTurnPower:diff()} [gold]Block[/gold] next turn, [gold]Kindle[/gold] {Kindle:diff()} and gain {Block:diff()} [gold]Block[/gold]",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "At the end of {WaterfallGiantCardPower:inverseDiff()} turns, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
-  "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons()}.{InCombat:cond:\n(Deal {CalculatedDamage:diff()} damage)|}",
+  "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons(1)}.{InCombat:cond:\n(Deal {CalculatedDamage:diff()} damage)|}",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "When this card is [gold]Exhausted[/gold], gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-TERROR_EEL_CARD.description": "When this card is [gold]Exhausted[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
@@ -208,5 +208,15 @@
   "COLLECTOR-SOUL_NEXUS_CARD.description": "Deal {Damage:diff()} damage.\n[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} turns. ",
   "COLLECTOR-TEST_SUBJECT_CARD.description": "When you play a Skill, gain {TestSubjectCardPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
-  "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]"
+  "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]",
+  "COLLECTOR-COLLECTION_BOUNTY.title": "Collection Bounty",
+  "COLLECTOR-COLLECTION_BOUNTY.description": "Deal {Damage:diff()} damage.\nIf this enemy dies this turn, ALL players gain 1 Reserve. ",
+  "COLLECTOR-GREENPYRE_ENCHANTMENT.title": "Greenpyre Enchantment",
+  "COLLECTOR-GREENPYRE_ENCHANTMENT.description": "Choose another player.\nWhenever their Attacks deal unblocked damage, they apply {GreenpyreEnchantmentPower:diff()} [gold]Miasma[/gold].",
+  "COLLECTOR-HIRED_GUARDS.title": "Hired Guards",
+  "COLLECTOR-HIRED_GUARDS.description": "Another player [gold]Kindles[/gold] {Kindle:diff()}.",
+  "COLLECTOR-MYSTERIOUS_WINDS.title": "Mysterious Winds",
+  "COLLECTOR-MYSTERIOUS_WINDS.description": "Next turn, ALL players add {IfUpgraded:show:an [gold]Upgraded[/gold]|a} copy of the [gold]Pyred[/gold] card into their [gold]Hand[/gold].",
+  "COLLECTOR-TRUST_FUND.title": "Trust Fund",
+  "COLLECTOR-TRUST_FUND.description": "Swap [gold]Block[/gold] with another player.\nYou both gain {Reserve:reserveIcons()}."
 }
