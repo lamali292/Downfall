@@ -14,7 +14,6 @@ public class AeonglassCard : Collectible<AeonglassBoss>
     public AeonglassCard() : base(12, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithKeyword(CardKeyword.Exhaust);
         WithCalculatedDamage(0, 3, Calc);
     }
 
