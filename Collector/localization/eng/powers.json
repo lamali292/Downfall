@@ -119,5 +119,8 @@
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, gain {Reserve:reserveIcons()} and [blue]{PlatedArmorPower:diff()}[/blue] [gold]Plated Armor[/gold].",
   "COLLECTOR-WATERFALL_GIANT_CARD_POWER.title": "Waterfall Giant Card Power",
   "COLLECTOR-WATERFALL_GIANT_CARD_POWER.description": "At the end of [blue]3[/blue] turns, apply [gold]Miasma[/gold] to ALL enemies.",
-  "COLLECTOR-WATERFALL_GIANT_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies."
+  "COLLECTOR-WATERFALL_GIANT_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
+  "COLLECTOR-KNIGHTS_CARD_POWER.title": "Knights Card Power",
+  "COLLECTOR-KNIGHTS_CARD_POWER.description": "ALL your cards are [gold]Ethereal[/gold].",
+  "COLLECTOR-KNIGHTS_CARD_POWER.smartDescription": "ALL your cards are [gold]Ethereal[/gold]."
 }
