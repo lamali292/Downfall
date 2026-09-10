@@ -46,9 +46,9 @@ public abstract class CollectorCardModel
         return WithVar(new ReserveVar(baseVal).WithUpgrade(upgradeVal));
     }
     
-    protected ConstructedCardModel WithCollectorDamage(int baseVal, int upgradeVal = 0)
+    protected ConstructedCardModel WithTorchheadDamage(int baseVal, int upgradeVal = 0)
     {
-        return WithVar(new CollectorDamageVar(baseVal, DamageProps.card).WithUpgrade(upgradeVal));
+        return WithVar(new TorchheadDamageVar(baseVal, DamageProps.card).WithUpgrade(upgradeVal));
     }
 
 
