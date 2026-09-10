@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -13,6 +14,7 @@ public class TerrorEelCard
     public TerrorEelCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithPower<VulnerablePower>(3, 6);
     }
     
