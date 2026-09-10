@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class SoulFyshCard : Collectible<SoulFyshBoss>
 {
-    public SoulFyshCard() : base(7, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
+    public SoulFyshCard() : base(6, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
     {
         WithTip(CardKeyword.Unplayable);
         WithHpLoss(50, 16);

@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Ancient;
 [Pool(typeof(CollectorCardPool))]
 public class DarkLordForm : CollectorCardModel
 {
-    public DarkLordForm() : base(5, CardType.Power, CardRarity.Ancient, TargetType.Self)
+    public DarkLordForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithUpgradingCardTip<YouAreMine>();
         WithKeyword(CardKeyword.Retain);

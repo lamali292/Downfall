@@ -9,9 +9,9 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class PhrogParasiteCard : Collectible<PhrogParasiteElite>
 {
-    public PhrogParasiteCard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
+    public PhrogParasiteCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
     {
-        WithBlock(19, 4);//Keep in mind manifest is a common.
+        WithBlock(20, 4);//Keep in mind manifest is a common.
         WithCardTip<Infection>();
     }
 
