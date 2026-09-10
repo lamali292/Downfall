@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,6 +15,7 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 	
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithPower<PlatedArmorPower>(4, 3);
     }
 

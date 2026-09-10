@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,7 @@ public class DarkwillowKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithPower<ReserveNextTurnPower>(2, false);
         WithReserveTip();
         WithKindle(3);

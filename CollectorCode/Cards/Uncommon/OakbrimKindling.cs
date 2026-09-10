@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,6 +14,7 @@ public class OakbrimKindling : CollectorCardModel
     public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithKeyword(CardKeyword.Exhaust);
         WithCards(2, 1);
         WithKindle(2, 1);
