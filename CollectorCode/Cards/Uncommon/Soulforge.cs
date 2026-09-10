@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
@@ -14,8 +15,8 @@ public class Soulforge : CollectorCardModel
 {
     public Soulforge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Pyre);
-        WithKeyword(CardKeyword.Exhaust);
+        //WithKeyword(CollectorKeyword.Pyre);
+        //WithKeyword(CardKeyword.Exhaust);
         WithCards(2, 1);
 
     }
@@ -24,7 +25,9 @@ public class Soulforge : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = await CommonActions.Draw(this, ctx);
-        CardCmd.Upgrade(cards, CardPreviewStyle.None);
+        await CommonActions.Draw(this, ctx);
+        foreach (var card in Owner.Hand){
+            CardCmd.Upgrade(card);
+        }
     }
 }

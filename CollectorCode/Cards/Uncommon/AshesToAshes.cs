@@ -1,11 +1,10 @@
 ﻿using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -15,12 +14,8 @@ public class AshesToAshes : CollectorCardModel
 {
     public AshesToAshes() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<AshesToAshesPower>(1, false);
-        WithTip<StrengthPower>();
-        WithTip(CollectorKeyword.Pyre);
-        WithTip(CollectorTip.Pyred);
-        WithTip(CardKeyword.Exhaust);
+        WithPower<AshesToAshesPower>(1, 1, false);
+        WithTip<Ember>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

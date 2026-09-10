@@ -17,8 +17,8 @@ public class SapphireGem : GemModel
     public override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(GuardianTip.Brace)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(5)];
     public override Color GemColor => new(0x0624BEFF);
-    public override CardRarity Rarity => CardRarity.Common;
-
+	
+    public override CardRarity Rarity => CardRarity.Common;//Todo: Basic next update.
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
         IEnumerable<Player> targetPlayers)
     {
