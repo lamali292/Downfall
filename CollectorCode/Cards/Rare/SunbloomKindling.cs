@@ -30,8 +30,8 @@ public class SunbloomKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
+        await CollectorCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue, CardPilePosition.Bottom, IsUpgraded);
-        await CollectorCmd.Kindle(ctx, this);
     }
 }

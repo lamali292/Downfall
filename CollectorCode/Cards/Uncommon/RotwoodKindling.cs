@@ -26,7 +26,7 @@ public class RotwoodKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this || CombatState == null) return;
-        await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
         await CollectorCmd.Kindle(ctx, this);
+        await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
     }
 }
