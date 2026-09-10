@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Powers;
 
@@ -17,7 +18,7 @@ public class BygoneEffigyCardPower : CollectorPowerModel
     public BygoneEffigyCardPower()
     {
         WithReserve(0);
-        WithPower<PlatedArmorPower>(0);
+        WithPower<StrengthPower>(0);
     }
     
     
@@ -39,7 +40,7 @@ public class BygoneEffigyCardPower : CollectorPowerModel
         {
             Flash();
             await CollectorCmd.GetReserve(this);
-            await MyCommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
+            await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
             await PowerCmd.Remove(this);
         }
     }
@@ -47,6 +48,6 @@ public class BygoneEffigyCardPower : CollectorPowerModel
     public void SetEffect(decimal baseValue)
     {
         DynamicVars.Reserve.BaseValue = baseValue;
-        DynamicVars.Power<PlatedArmorPower>().BaseValue = baseValue;
+        DynamicVars.Power<StrengthPower>().BaseValue = baseValue;
     }
 }

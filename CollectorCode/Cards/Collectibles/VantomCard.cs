@@ -10,7 +10,7 @@ public class VantomCard : Collectible<VantomBoss>
 {
     public VantomCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
     {
-        WithPower<SlipperyPower>(1, 1);
+        WithPower<SlipperyPower>(2, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

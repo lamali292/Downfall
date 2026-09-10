@@ -9,9 +9,10 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class CoalescenceForm : CollectorCardModel
 {
-    public CoalescenceForm() : base(5, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public CoalescenceForm() : base(4, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
+        //WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithReserve(1);
         WithPower<CoalescenceFormPower>(1, false);
     }
