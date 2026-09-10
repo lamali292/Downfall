@@ -25,7 +25,7 @@ public class OakbrimKindling : CollectorCardModel
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.Draw(this, ctx);
         await CollectorCmd.Kindle(ctx, this);
+        await CommonActions.Draw(this, ctx);
     }
 }

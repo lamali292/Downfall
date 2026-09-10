@@ -35,7 +35,7 @@ public class BramblesparKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
         await CollectorCmd.Kindle(choiceContext, this);
+        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }
