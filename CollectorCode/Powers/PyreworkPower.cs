@@ -21,22 +21,8 @@ public class PyreworkPower : CollectorPowerModel
         if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
         for (int i = 0; i < Amount; i++)
         {
-            await CollectorCmd.TorchheadAttack(ctx, Owner.Player!, DynamicVars.TorchheadDamage.IntValue);
+            await CollectorCmd.TorchheadAttack(Owner.Player!, DynamicVars.TorchheadDamage.IntValue).Execute(ctx);
         }
     }
-    
-    /*
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player)
-    {//Hmm how to "pyre" from inside a power?
-        if (player.Creature != Owner) return;
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, 1);
-        var result = (await  CardSelectCmd.FromHand(ctx, player, prefs, null,
-            this)).FirstOrDefault();
-        if (result == null) return;
-        await CardCmd.Exhaust(ctx, result);
-        await CollectorCmd.GetReserve(player, Amount);
-    }
-    */
-
   
 }
