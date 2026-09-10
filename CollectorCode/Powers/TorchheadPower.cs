@@ -1,14 +1,46 @@
-﻿using Collector.CollectorCode.Core;
+﻿using BaseLib.Patches.Localization;
+using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Events;
+using Collector.CollectorCode.Extensions;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
-public class TorchheadPower() : CollectorPowerModel(PowerType.Buff, PowerStackType.Single)
+public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescription
 {
+
+    public TorchheadPower() : base(PowerType.Buff, PowerStackType.Single)
+    {
+        WithTorchheadDamage(5);
+    }
+    
+    
     public override bool ShouldPlayVfx => false;
 
+    
+    public void AddDumbVariablesToPowerDescription(LocString description)
+    {
+        DynamicVars.TorchheadDamage.UpdatePowerPreview(this, CardPreviewMode.None, null, IsMutable);
+        var shouldTargetAll = _owner?.PetOwner != null && CollectorHook.ShouldTorchheadTargetAll(_owner.PetOwner, out _);
+        description.Add("TorchheadTargetsAll", shouldTargetAll);
+    }
+    
+    
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    {
+        var petOwner = Owner.PetOwner;
+        var creature = petOwner?.Creature;
+        if (petOwner == null || creature == null || !participants.Contains(creature)) return;
+        await CollectorCmd.TorchheadAttack(ctx, petOwner, DynamicVars.TorchheadDamage.IntValue);
+
+    }
+    
     public override Creature ModifyUnblockedDamageTarget(
         Creature target,
         decimal _,
@@ -27,4 +59,5 @@ public class TorchheadPower() : CollectorPowerModel(PowerType.Buff, PowerStackTy
     }
 
     public override bool ShouldPowerBeRemovedAfterOwnerDeath() => false;
+    
 }
