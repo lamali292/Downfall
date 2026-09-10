@@ -26,7 +26,6 @@ public class BlackBindings : CollectorCardModel
     {
         if (creature == null) return 0;
         var amount = creature.Powers.Count(ShouldCountPower);
-        if (!creature.Powers.Any(e => e is WeakPower)) amount++;
         return amount;
     }
     
