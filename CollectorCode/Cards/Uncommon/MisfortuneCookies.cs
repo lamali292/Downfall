@@ -18,10 +18,10 @@ public class MisfortuneCookies : CollectorCardModel
     public MisfortuneCookies() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(CollectorTip.Kindle);
         
         WithCalculatedVar("Cards", 0, Calc);
-        WithCalculatedVar("Kindle", 0, 1,Calc,0,1);
+        WithCalculatedVar("KindleCalc", 0, 1,Calc,0,1);
+        WithKindle(1, 1); // only for the tip
     }
 
     private static decimal Calc(CardModel arg1, Creature? creature)
@@ -32,7 +32,7 @@ public class MisfortuneCookies : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = (int)((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
-        var kindle = (int)((CalculatedVar)DynamicVars["Kindle"]).Calculate(cardPlay.Target);
+        var kindle = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(cardPlay.Target);
         await CardPileCmd.Draw(ctx, cards, Owner);
         await CollectorCmd.Kindle(ctx, Owner, kindle, this);
     }

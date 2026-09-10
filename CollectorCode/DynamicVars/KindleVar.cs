@@ -7,6 +7,6 @@ public class KindleVar : DynamicVar
 {
     public KindleVar(decimal amount) : base("Kindle", amount)
     {
-        this.WithTooltip();
+        this.WithMyTooltip();
     }
 }

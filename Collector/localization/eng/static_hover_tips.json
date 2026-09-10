@@ -1,6 +1,8 @@
 ﻿{
   "COLLECTOR-KINDLE.title": "Kindle",
-  "COLLECTOR-KINDLE.description": "Summon a [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat.",
+  "COLLECTOR-KINDLE.smartTitle": "Kindle {Kindle}",
+  "COLLECTOR-KINDLE.description": "Summon [gold]Torchhead[/gold]. If one is already summoned, increase its Max HP for this combat.",
+  "COLLECTOR-KINDLE.smartDescription": "Summon [gold]Torchhead[/gold] with [blue]{Kindle}[/blue] HP. If already summoned, raise his Max HP by [blue]{Kindle}[/blue] for this combat.",
   "COLLECTOR-RESERVE.title": "Reserve",
   "COLLECTOR-RESERVE.description": "Reserve is used to play cards from your [gold]Hand[/gold] after [gold]Energy[/gold] runs out.\nStays between turns.",
   "COLLECTOR-PYRED.description": "A card that was [gold]Exhausted[/gold] to play a card with [gold]Pyre[/gold].",
