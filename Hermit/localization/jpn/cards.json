@@ -140,7 +140,7 @@
     "HERMIT-HOLE_UP.title": "隠れる",
     "HERMIT-HOLE_UP.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]脱力[/gold]{WeakPower:diff()}を得る。",
     "HERMIT-ITCHY_TRIGGER.title": "軽い引き金",
-    "HERMIT-ITCHY_TRIGGER.description": "{Damage:diff()}ダメージを与える。\n[gold]命中[/gold]：このターン、[gold]手札[/gold]で最もコストが高いカードのコストを{CostReduction:diff()}減少させる。",
+    "HERMIT-ITCHY_TRIGGER.description": "{Damage:diff()}ダメージを与える。\n[gold]命中[/gold]：このターン、[gold]手札[/gold]で最もコストが高いカードのコストを{CostReduction:diff()}{energyPrefix:energyIcons(1)}減少させる。",
     "HERMIT-EYE_OF_THE_STORM.title": "嵐の目",
     "HERMIT-EYE_OF_THE_STORM.description": "最大値まで{energyPrefix:energyIcons(1)}を得る。",
     "HERMIT-FINAL_CANTER.title": "最後の仕上げ",
