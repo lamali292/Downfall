@@ -18,19 +18,19 @@ namespace Collector.CollectorCode.Core;
 public class CollectorCmd
 {
     
-    public static AttackCommand TorchheadAttack(AbstractModel card)
+    public static AttackCommand? TorchheadAttack(AbstractModel card)
     {
         var player = card.Player;
         var damage = card.DynamicVars.TorchheadDamage.IntValue;
         return TorchheadAttack(player, damage);
     }
     
-    public static AttackCommand TorchheadAttack(Player player, int damage)
+    public static AttackCommand? TorchheadAttack(Player player, int damage)
     {
         var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out _);
         if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead)
         {
-            throw new Exception("Attacker not a Torchhead");
+            return null;
         }
         var attack = DamageCmd.Attack(damage)
             .FromTorchhead(torchhead)
@@ -41,7 +41,7 @@ public class CollectorCmd
         }
 
         var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-        return target == null ? throw new Exception("Target not found") : attack.Targeting(target);
+        return target == null ? null: attack.Targeting(target);
     }
     
     
