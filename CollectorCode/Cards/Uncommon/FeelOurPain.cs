@@ -10,9 +10,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class FeelMyPain : CollectorCardModel
+public class FeelOurPain : CollectorCardModel
 {
-    public FeelMyPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public FeelOurPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<FeelMyPainPower>(4, 2, false);
         WithTip(CollectorTip.Pyred);
