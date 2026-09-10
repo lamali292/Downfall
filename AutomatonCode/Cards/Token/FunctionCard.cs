@@ -27,6 +27,7 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     private string _dynamicTitle = string.Empty;
 
     private IReadOnlyList<CardModel> _sourceCards = [];
+    public IReadOnlyList<CardModel> SourceCards => _sourceCards;
     protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

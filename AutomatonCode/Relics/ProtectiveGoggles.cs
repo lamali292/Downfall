@@ -1,18 +1,28 @@
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class ProtectiveGoggles() : AutomatonRelicModel(RelicRarity.Uncommon)
+public class ProtectiveGoggles : AutomatonRelicModel
 {
+    public ProtectiveGoggles() : base(RelicRarity.Uncommon)
+    {
+        WithTip(StaticHoverTip.Block);
+        WithTip(AutomatonTip.Stash);
+    }
+    
+    
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

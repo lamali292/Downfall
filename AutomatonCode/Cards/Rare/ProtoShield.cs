@@ -11,7 +11,7 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class ProtoShield : AutomatonCardModel
 {
-    public ProtoShield() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public ProtoShield() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(11, 3);
         WithKeyword(CardKeyword.Ethereal);

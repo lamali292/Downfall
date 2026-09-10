@@ -1,7 +1,9 @@
+using System.Runtime.ConstrainedExecution;
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,12 +18,11 @@ namespace Awakened.AwakenedCode.Relics;
 [Pool(typeof(AwakenedRelicPool))]
 public class Zetsumei : AwakenedRelicModel
 {
-    private bool _isActivating;
-    private int _spellsPlayed;
-
+    
     public Zetsumei() : base(RelicRarity.Uncommon)
     {
         WithCards(4);
+        WithTip<Ceremony>();
     }
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
@@ -31,22 +32,22 @@ public class Zetsumei : AwakenedRelicModel
 
     private bool IsActivating
     {
-        get => _isActivating;
+        get;
         set
         {
             AssertMutable();
-            _isActivating = value;
+            field = value;
             UpdateDisplay();
         }
     }
 
     private int SpellsPlayed
     {
-        get => _spellsPlayed;
+        get;
         set
         {
             AssertMutable();
-            _spellsPlayed = value;
+            field = value;
             UpdateDisplay();
         }
     }
