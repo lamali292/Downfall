@@ -8,11 +8,6 @@ namespace Collector.CollectorCode.Powers;
 
 public class FinalizePower() : CollectorPowerModel(PowerType.Debuff)
 {
-    public override bool ShouldPowerBeRemovedAfterOwnerDeath()
-    {
-        return false;
-    }
-
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,

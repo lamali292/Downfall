@@ -11,6 +11,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 {
     public SkulkingColonyCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
+	
     {
         WithKeyword(CardKeyword.Exhaust);
         WithPower<PlatedArmorPower>(4, 3);
@@ -19,6 +20,6 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<PlatingPower>(ctx, this);
+        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
     }
 }
