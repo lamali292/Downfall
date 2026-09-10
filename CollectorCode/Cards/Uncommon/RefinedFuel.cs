@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class RefinedFuel : CollectorCardModel
 {
-    public RefinedFuel() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public RefinedFuel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithReserve(1);
         WithTip(CollectorTip.Pyred);

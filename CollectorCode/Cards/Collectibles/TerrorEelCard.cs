@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class TerrorEelCard
     : Collectible<TerrorEelElite>
 {
-    public TerrorEelCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public TerrorEelCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithPower<VulnerablePower>(3, 6);

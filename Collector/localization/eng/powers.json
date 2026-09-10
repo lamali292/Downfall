@@ -74,7 +74,7 @@
   "COLLECTOR-COALESCENCE_FORM_POWER.title": "Coalescence Form",
   "COLLECTOR-COALESCENCE_FORM_POWER.description": "At the start of your turn, gain {:reserveIcons(1)} and increase this gain by [blue]1[/blue].",
   "COLLECTOR-COALESCENCE_FORM_POWER.smartDescription": "At the start of your turn, gain {Reserve:reserveIcons()} and increase this gain by [blue]{Amount}[/blue].",
-  "COLLECTOR-ASHES_TO_ASHES_POWER.title": "Ashes to Ashes",
+  "COLLECTOR-ASHES_TO_ASHES_POWER.title": "Enrichment",
   "COLLECTOR-ASHES_TO_ASHES_POWER.description": "Whenever you create an [gold]Ember[/gold], [gold]Upgrade[/gold] it. ",
   "COLLECTOR-VEIL_OF_SMOKE_POWER.title": "Veil of Smoke",
   "COLLECTOR-VEIL_OF_SMOKE_POWER.description": "At the end of your turn, gain [gold]Block[/gold], then reduce [gold]Veil of Smoke[/gold] by [blue]1[/blue].",
@@ -115,7 +115,7 @@
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.description": "Whenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] random Orbs. ",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] [blue]{Amount}[/blue] random {Amount:plural:Orb|Orbs}. ",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.title": "Stone Head Power",
-  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of [blue]3[/blue] turns, gain {:reserveIcons(1)} and [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].",
+  "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of this turn, gain {:reserveIcons(1)} and [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, gain {Reserve:reserveIcons()} and [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-WATERFALL_GIANT_CARD_POWER.title": "Waterfall Giant Card Power",
   "COLLECTOR-WATERFALL_GIANT_CARD_POWER.description": "At the end of [blue]3[/blue] turns, apply [gold]Miasma[/gold] to ALL enemies.",
@@ -133,5 +133,5 @@
   "COLLECTOR-COLLECTION_BOUNTY_POWER.description": "When this enemy dies, ALL players gain {:reserveIcons(1)}. ",
   "COLLECTOR-COLLECTION_BOUNTY_POWER.smartDescription": "When this enemy dies, ALL players gain {Amount:reserveIcons()}. ",
   "COLLECTOR-PYREWORK_POWER.title": "Pyrework",
-  "COLLECTOR-PYREWORK_POWER.description": ""
+  "COLLECTOR-PYREWORK_POWER.description": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} {RazorSharpPower:diff()} {PyreworkPower:plural:time|times}."
 }

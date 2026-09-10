@@ -1,5 +1,6 @@
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -12,14 +13,16 @@ public class PyreworkPower : CollectorPowerModel
     {
         WithReserveTip();
         WithTip(CardKeyword.Exhaust);
-        
+        WithTorchheadDamage(5);//If this value changes, change the value in the main thing too.
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
-        
-        await CollectorCmd.TorchheadAttack(ctx, Owner.Player!, this._amount);
+        for (int i = 0; i < Amount; i++)
+        {
+            await CollectorCmd.TorchheadAttack(ctx, Owner.Player!, DynamicVars.TorchheadDamage.IntValue);
+        }
     }
     
     /*
