@@ -1,5 +1,6 @@
 ﻿using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Collector.CollectorCode.Extensions;
 
@@ -17,4 +18,8 @@ public static class AttackCommandExtensions
             return command;
         }
     }
+    
+    public static async Task<AttackCommand?> ExecuteIfPresent(
+        this AttackCommand? attack, PlayerChoiceContext ctx)
+        => attack != null ? await attack.Execute(ctx) : null;
 }
