@@ -11,7 +11,7 @@ public class CultistSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, DamageProps.monsterMove),
+        new DamageVar(6, DamageProps.nonCardUnpowered),
         new("Increase", 1)
     ];
 

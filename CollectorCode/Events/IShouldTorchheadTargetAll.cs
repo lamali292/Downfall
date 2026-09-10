@@ -6,6 +6,5 @@ namespace Collector.CollectorCode.Events;
 public interface IShouldTorchheadTargetAll
 {
     bool ShouldTorchheadTargetAll(Player player);
-    Task AfterShouldTorchheadTargetAll(PlayerChoiceContext ctx, Player player);
 }
 
