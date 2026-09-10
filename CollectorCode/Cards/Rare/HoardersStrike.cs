@@ -31,7 +31,6 @@ public class HoardersStrike : CollectorCardModel, IUsesPyredCards, IShouldExhaus
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = PyredCards.FirstOrDefault();
         if (card == null || !card.VisualCardPool.IsColorless) return;
-        card.ExhaustOnNextPlay = true;
         await CardCmd.AutoPlay(ctx, card, null);
     }
     

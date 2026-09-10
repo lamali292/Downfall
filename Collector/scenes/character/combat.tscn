@@ -14,17 +14,15 @@ anchors_preset = 0
 [node name="Visuals" parent="." instance=ExtResource("1_orqfj")]
 preview_animation = "low_health_loop"
 unique_name_in_owner = true
-position = Vector2(0, -37)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -120.0
-offset_top = -271.0
-offset_right = 70.38733
-offset_bottom = 69.824615
-scale = Vector2(1.1923062, 0.7833941)
+offset_left = -127.0
+offset_top = -372.0
+offset_right = 115.0
+offset_bottom = -24.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

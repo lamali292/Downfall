@@ -1,29 +1,24 @@
-﻿using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Events;
+﻿using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Powers;
 
-public class AshesToAshesPower : CollectorPowerModel, IAfterCardPyred
+public class AshesToAshesPower : CollectorPowerModel
 {
     public AshesToAshesPower()
     {
-        WithTip<StrengthPower>();
-        WithTip(CollectorKeyword.Pyre);
-        WithTip(CollectorTip.Pyred);
-        WithTip(CardKeyword.Exhaust);
+        WithTip<Ember>();
     }
     
-    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (pyred.Owner.Creature != Owner)
+        if (creator == null || creator.Creature != Owner || card is not Ember)
             return;
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, null);
         Flash();
+        for (var i = 0; i < Amount; i++) CardCmd.Upgrade(card);
     }
+    
 }

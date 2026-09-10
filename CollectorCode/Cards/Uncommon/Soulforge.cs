@@ -23,11 +23,8 @@ public class Soulforge : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        //var cards = 
         await CommonActions.Draw(this, ctx);
-        //CardCmd.Upgrade(cards, CardPreviewStyle.None);
-        
-        foreach (CardModel card in PileType.Hand.GetPile(Owner).Cards.Where(c => c.IsUpgradable)){
+        foreach (var card in Owner.Hand){
             CardCmd.Upgrade(card);
         }
     }
