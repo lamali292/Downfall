@@ -14,7 +14,7 @@ public class RefinedFuel : CollectorCardModel
     public RefinedFuel() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithReserve(1);
-        WithTip(CollectorTip.Pyred);
+        WithTip(CollectorKeyword.Pyre);
         WithPower<RefinedFuelPower>(1, 1, false);
     }
 

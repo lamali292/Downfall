@@ -130,5 +130,6 @@
   "COLLECTOR-COLLECTION_BOUNTY_POWER.description": "When this enemy dies, ALL players gain {:reserveIcons(1)}. ",
   "COLLECTOR-COLLECTION_BOUNTY_POWER.smartDescription": "When this enemy dies, ALL players gain {Amount:reserveIcons()}. ",
   "COLLECTOR-PYREWORK_POWER.title": "Pyrework",
-  "COLLECTOR-PYREWORK_POWER.description": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} {RazorSharpPower:diff()} {PyreworkPower:plural:time|times}."
+  "COLLECTOR-PYREWORK_POWER.description": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals damage.",
+  "COLLECTOR-PYREWORK_POWER.smartDescription": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals {TorchheadDamage} damage{TorchheadTargetsAll:cond: to ALL enemies|}{Amount:plural:| [blue]{Amount}[/blue] times}."
 }
