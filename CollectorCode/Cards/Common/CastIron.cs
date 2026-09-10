@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,8 +18,8 @@ public class CastIron : CollectorCardModel
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradeChangingCardTip<Burn, Ember>();
-        WithCalculatedVar("Kindle", 0, 3, Calc);
-        WithTip(CollectorTip.Kindle);
+        WithCalculatedVar("KindleCalc", 0, 3, Calc);
+        WithKindle(3); // only for the tip
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
@@ -38,7 +37,7 @@ public class CastIron : CollectorCardModel
         {
             await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         }
-        var repeat = (int)((CalculatedVar)DynamicVars["Kindle"]).Calculate(null);
+        var repeat = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
         await CollectorCmd.Kindle(ctx,Owner, repeat, this);
     }
 

@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +13,6 @@ public class Torchbearer : CollectorCardModel
     {
         WithKindle(10, 3);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(CollectorTip.Kindle);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
