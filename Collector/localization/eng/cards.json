@@ -183,7 +183,7 @@
   "COLLECTOR-DECIMILLIPEDE_CARD.description": "When this card is [gold]Exhausted[/gold],\n[gold]Kindle[/gold] {Kindle:diff()}\nand gain {Block:diff()} [gold]Block[/gold] now and next turn.",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "At the end of {WaterfallGiantCardPower:inverseDiff()} turns, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-VANTOM_CARD.description": "Gain {SlipperyPower:diff()} [gold]Slippery[/gold].",
-  "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons()}.\n{InCombat:cond:(Deal {CalculatedDamage:diff()} damage)|}",
+  "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons(1)}.\n{InCombat:cond:(Deal {CalculatedDamage:diff()} damage)|}",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "When this card is [gold]Exhausted[/gold], gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-TERROR_EEL_CARD.description": "When this card is [gold]Exhausted[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
