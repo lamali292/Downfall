@@ -12,7 +12,7 @@ public class Misdirect : CollectorCardModel
 {
     public Misdirect() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(3, 3);
+        WithBlock(2, 3);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithKeyword(CardKeyword.Exhaust);

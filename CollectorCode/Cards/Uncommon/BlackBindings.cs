@@ -18,7 +18,7 @@ public class BlackBindings : CollectorCardModel
     public BlackBindings() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(2);
-        WithCalculatedVar("Miasma", 0, 3, Calc, 0, 1);
+        WithCalculatedVar("Miasma", 0, 2, Calc, 0, 1);
         WithTip<MiasmaPower>();
     }
 
