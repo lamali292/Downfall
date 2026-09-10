@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,32 +18,30 @@ namespace Collector.CollectorCode.Core;
 public class CollectorCmd
 {
     
-    public static Task TorchheadAttack(PlayerChoiceContext ctx, CardModel card)
+    public static AttackCommand TorchheadAttack(AbstractModel card)
     {
-        var player = card.Owner;
+        var player = card.Player;
         var damage = card.DynamicVars.TorchheadDamage.IntValue;
-        return TorchheadAttack(ctx, player, damage);
+        return TorchheadAttack(player, damage);
     }
     
-    public static async Task TorchheadAttack(PlayerChoiceContext ctx, Player player, int damage)
+    public static AttackCommand TorchheadAttack(Player player, int damage)
     {
-        await Cmd.CustomScaledWait(0.1f, 0.3f);
-        var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out var modifiers);
-        await CollectorHook.AfterShouldTorchheadTargetAll(ctx, player, modifiers);
-        if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead) return;
+        var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out _);
+        if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead)
+        {
+            throw new Exception("Attacker not a Torchhead");
+        }
         var attack = DamageCmd.Attack(damage)
             .FromTorchhead(torchhead)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3");
         if (shouldTargetAll)
         {
-            await attack.TargetingAllOpponents(player.Creature.CombatState).Execute(ctx);
+            return attack.TargetingAllOpponents(player.Creature.CombatState);
         }
-        else
-        {
-            var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-            if (target == null) return;
-            await attack.Targeting(target).Execute(ctx);
-        }
+
+        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
+        return target == null ? throw new Exception("Target not found") : attack.Targeting(target);
     }
     
     

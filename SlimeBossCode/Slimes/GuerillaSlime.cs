@@ -13,7 +13,7 @@ public class GuerillaSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3, DamageProps.monsterMove)
+        new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
     
