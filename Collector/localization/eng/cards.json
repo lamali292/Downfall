@@ -115,7 +115,7 @@
   "COLLECTOR-SHOOTING_STAR.title": "Shooting Star",
   "COLLECTOR-SOMBER_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, add a copy of the [gold]Pyred[/gold] card into your [gold]Hand[/gold].",
   "COLLECTOR-SOMBER_SHIELD.title": "Somber Shield",
-  "COLLECTOR-SOULFORGE.description": "Draw {Cards:diff()} cards.\n[gold]Upgrade [/gold]ALL cards in your [gold]Hand[/gold].",
+  "COLLECTOR-SOULFORGE.description": "Draw {Cards:diff()} cards.\n[gold]Upgrade[/gold] ALL cards in your [gold]Hand[/gold].",
   "COLLECTOR-SOULFORGE.title": "Soulforge",
   "COLLECTOR-SPIRIT_LEECH.description": "Deal {Damage:diff()} damage.\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.",
   "COLLECTOR-SPIRIT_LEECH.title": "Spirit Leech",

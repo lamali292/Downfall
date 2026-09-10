@@ -13,7 +13,7 @@ public class BronzeSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10, DamageProps.monsterMove),
+        new DamageVar(10, DamageProps.nonCardUnpowered),
         new("Sleep", 2)
     ];
 
