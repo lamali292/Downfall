@@ -8,13 +8,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Pyremancy : CollectorCardModel
+public class Pyrework : CollectorCardModel
 {
-    public Pyremancy() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Pyrework() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<PyromancyPower>(1, 1, false);
+        WithPower<PyreworkPower>(1, 1, false);
         WithReserveTip();
         WithTip(CardKeyword.Exhaust);
+        WithTorchheadDamage(5);
     }
 
  
@@ -22,6 +23,6 @@ public class Pyremancy : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PyromancyPower>(ctx, this);
+        await CommonActions.ApplySelf<PyreworkPower>(ctx, this);
     }
 }
