@@ -7,7 +7,7 @@
   "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Doom[/gold] equal to unused [gold]Block[/gold] last turn.\n(Applies {UnusedBlock:diff()} [gold]Doom[/gold])",
   "COLLECTOR-BILLOW.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, add [gold]Bellow[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-BILLOW.title": "Billow",
-  "COLLECTOR-BLACK_BINDINGS.description": "Apply {WeakPower:diff()} [gold]Weak.[/gold]\nApply {MiasmaExtra:diff()} [gold]Miasma[/gold] for each unique debuff on the enemy.{IsTargeting:cond:\n(Apply {Miasma:preview()} [gold]Miasma[/gold])|}",
+  "COLLECTOR-BLACK_BINDINGS.description": "Apply {WeakPower:diff()} [gold]Weak.[/gold]\nApply {MiasmaExtra:diff()} [gold]Miasma[/gold] for each unique debuff on the enemy.",
   "COLLECTOR-BLACK_BINDINGS.title": "Black Bindings",
   "COLLECTOR-BLIGHTNING.title": "Blightning",
   "COLLECTOR-BLIGHTNING.description": "Deal {Damage:diff()} damage.\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
