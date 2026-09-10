@@ -37,7 +37,7 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
         var petOwner = Owner.PetOwner;
         var creature = petOwner?.Creature;
         if (petOwner == null || creature == null || !participants.Contains(creature)) return;
-        await CollectorCmd.TorchheadAttack(petOwner, DynamicVars.TorchheadDamage.IntValue).Execute(ctx);
+        await CollectorCmd.TorchheadAttack(petOwner, DynamicVars.TorchheadDamage.IntValue).ExecuteIfPresent(ctx);
 
     }
     
