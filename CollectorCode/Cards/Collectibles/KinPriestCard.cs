@@ -11,7 +11,7 @@ public class KinPriestCard : Collectible<TheKinBoss>
 {
     public KinPriestCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.786f)
     {
-        WithDamage(21, 6);
+        WithDamage(21, 5);
         WithPower<WeakPower>(3);
         WithPower<VulnerablePower>(3);
     }
