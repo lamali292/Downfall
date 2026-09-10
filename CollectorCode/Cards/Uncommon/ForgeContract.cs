@@ -25,7 +25,7 @@ public class ForgeContract : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.TorchheadAttack(ctx, this);
+        await CollectorCmd.TorchheadAttack(this).Execute(ctx);
     }
 
     protected override void AddExtraArgsToDescription(LocString description)

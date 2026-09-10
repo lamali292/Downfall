@@ -16,7 +16,7 @@ public class LeechingSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1, DamageProps.monsterMove),
+        new DamageVar(1, DamageProps.nonCardUnpowered),
         new SlimeSecondaryVar(3)
     ];
 

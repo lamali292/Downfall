@@ -17,7 +17,7 @@ public class MireSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(2, DamageProps.monsterMove),
+        new DamageVar(2, DamageProps.nonCardUnpowered),
         new SlimeSecondaryVar(2)
     ];
 

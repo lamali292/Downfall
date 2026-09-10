@@ -12,12 +12,7 @@ namespace Collector.CollectorCode.Powers;
 public class EquipAxePower() : CollectorPowerModel, IShouldTorchheadTargetAll
 {
     public bool ShouldTorchheadTargetAll(Player player) => player.Creature == Owner;
-
-    public Task AfterShouldTorchheadTargetAll(PlayerChoiceContext ctx, Player player)
-    {
-        Flash();
-        return Task.CompletedTask;
-    }
+    
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource,
         CardPlay? cardPlay)

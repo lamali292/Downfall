@@ -17,7 +17,7 @@ public class TimeSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, DamageProps.monsterMove),
+        new DamageVar(4, DamageProps.nonCardUnpowered),
         new SlimeSecondaryVar(1)
     ];
 

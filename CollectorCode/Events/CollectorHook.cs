@@ -32,11 +32,5 @@ public static class CollectorHook
         modifiers = [];
         return false;
     }
-    
-    public static Task AfterShouldTorchheadTargetAll(PlayerChoiceContext ctx, Player player, IEnumerable<IShouldTorchheadTargetAll> modifiers)
-    {
-        if (player.Creature.CombatState == null) return Task.CompletedTask;
-        return HookUtils.AfterModifying(player.Creature.CombatState, modifiers, e => e.AfterShouldTorchheadTargetAll(ctx, player));
-    }
 }
 
