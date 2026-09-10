@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
 {
-    public KnowledgeDemonCard() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.3f)
+    public KnowledgeDemonCard() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.1f)
     {
         WithCards(5, 1);
     }

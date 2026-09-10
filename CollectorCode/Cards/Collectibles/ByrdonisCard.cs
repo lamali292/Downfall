@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class ByrdonisCard : Collectible<ByrdonisElite>
 {
-    public ByrdonisCard() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.3f)
+    public ByrdonisCard() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.5f)
     {
         WithDamage(7, 2);
         WithRepeat(3);

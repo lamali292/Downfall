@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class InfestedPrismCard : Collectible<InfestedPrismsElite>
 {
-    public InfestedPrismCard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public InfestedPrismCard() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.92f)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);

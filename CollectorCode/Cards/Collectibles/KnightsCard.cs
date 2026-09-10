@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KnightsCard : Collectible<KnightsElite>
 {
-    public KnightsCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public KnightsCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.4f)
     {
         WithTip(CardKeyword.Ethereal);
         WithPower<MachineLearningPower>(2, false);

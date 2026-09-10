@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class LagavulinMatriarchCard : Collectible<LagavulinMatriarchBoss>
 {
-    public LagavulinMatriarchCard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, 0.3f)
+    public LagavulinMatriarchCard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, 0.91f)
     {
         WithPower<LagavulinMatriarchCardPower>(3, false);
         WithPower<PlatedArmorPower>(4, 1);
