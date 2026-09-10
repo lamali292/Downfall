@@ -2,6 +2,7 @@
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -19,10 +20,19 @@ public class FeelMyPainPower : CollectorPowerModel, IAfterCardPyred
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (pyred.Owner.Creature != Owner) return;
-        var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
-        if (creature == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, creature, Amount,
-            DamageProps.nonCardHpLoss, Owner, null, null);
+        //var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+        //if (creature == null) return;
+        //await CompatibilityCreatureCmd.Damage(ctx, creature, Amount, DamageProps.nonCardHpLoss, Owner, null, null);
+        var ctxy = new BlockingPlayerChoiceContext();
+        Flash();
+        var currentEnemies = CombatState.Enemies.ToList();
+        foreach (var enemy in currentEnemies)//Same as SongOfSorrowPower
+            if (enemy is { IsHittable: true, IsAlive: true })
+                await CreatureCmd.Damage(ctxy,
+                    enemy,
+                    Amount,
+                    DamageProps.nonCardHpLoss,
+                    Owner);
         Flash();
     }
 }

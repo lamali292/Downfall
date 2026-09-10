@@ -26,7 +26,7 @@ public class DarkwillowKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         await CollectorCmd.Kindle(ctx, this);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
 }

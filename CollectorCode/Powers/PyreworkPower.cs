@@ -1,21 +1,28 @@
 using Collector.CollectorCode.Core;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
+using Collector.CollectorCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Collector.CollectorCode.Powers;
 
-public class PyromancyPower : CollectorPowerModel
+public class PyreworkPower : CollectorPowerModel
 {
 
-    public PyromancyPower()
+    public PyreworkPower()
     {
         WithReserveTip();
         WithTip(CardKeyword.Exhaust);
+        
     }
 
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
+        
+        await CollectorCmd.TorchheadAttack(ctx, Owner.Player!, this._amount);
+    }
+    
+    /*
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player)
     {//Hmm how to "pyre" from inside a power?
         if (player.Creature != Owner) return;
@@ -26,6 +33,7 @@ public class PyromancyPower : CollectorPowerModel
         await CardCmd.Exhaust(ctx, result);
         await CollectorCmd.GetReserve(player, Amount);
     }
+    */
 
   
 }
