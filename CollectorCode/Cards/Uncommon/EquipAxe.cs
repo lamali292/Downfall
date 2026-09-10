@@ -15,8 +15,7 @@ public class EquipAxe : CollectorCardModel
     public EquipAxe() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKindle(6, 1);
-        WithPower<EquipAxePower>(1, false);
-        WithPower<StrengthPower>(2,1);
+        WithPower<EquipAxePower>(2, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -24,8 +23,7 @@ public class EquipAxe : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var torchhead = await CollectorCmd.Kindle(ctx, this);
+        await CollectorCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<EquipAxePower>(ctx, this);
-        await PowerCmd.Apply<StrengthPower>(ctx, torchhead, DynamicVars.Strength.BaseValue, Owner.Creature, this);
     }
 }

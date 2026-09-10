@@ -8,21 +8,37 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.DynamicVars;
 
-public class CollectorDamageVar : DynamicVar
+public class TorchheadDamageVar : DynamicVar
 {
    
     public ValueProp Props { get; set; }
 
-    public CollectorDamageVar(string name, Decimal damage, ValueProp props)
+    public TorchheadDamageVar(string name, Decimal damage, ValueProp props)
         : base(name, damage)
     {
         Props = props;
     }
 
     
-    public CollectorDamageVar(decimal damage, ValueProp props) : base("CollectorDamage", damage)
+    public TorchheadDamageVar(decimal damage, ValueProp props) : base("TorchheadDamage", damage)
     {
         Props = props;
+    }
+    
+    
+    public void UpdatePowerPreview(
+        PowerModel power,
+        CardPreviewMode previewMode,
+        Creature? target,
+        bool runGlobalHooks)
+    {
+        var originalDamage1 = BaseValue;
+        if (runGlobalHooks)
+        {
+            var combatState = power.CombatState;
+            originalDamage1 = Hook.ModifyDamage(combatState.RunState, combatState, target, power.Owner.PetOwner?.Torchhead, BaseValue, Props, null, null, ModifyDamageHookType.All, previewMode, out _);
+        }
+        PreviewValue = originalDamage1;
     }
     
     public override void UpdateCardPreview(
