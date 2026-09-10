@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Core;
 
@@ -91,6 +92,12 @@ public abstract class CollectorPowerModel(
         WithReserveTip();
         return WithVars(new ReserveVar(baseVal));
     }
+    
+    protected ConstructedPowerModel WithTorchheadDamage(int baseVal)
+    {
+        return WithVars(new TorchheadDamageVar(baseVal, DamageProps.monsterMove));
+    }
+
 
 }
 

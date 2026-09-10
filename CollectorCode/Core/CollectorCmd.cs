@@ -20,7 +20,7 @@ public class CollectorCmd
     public static Task TorchheadAttack(PlayerChoiceContext ctx, CardModel card)
     {
         var player = card.Owner;
-        var damage = card.DynamicVars.CollectorDamage.IntValue;
+        var damage = card.DynamicVars.TorchheadDamage.IntValue;
         return TorchheadAttack(ctx, player, damage);
     }
     
