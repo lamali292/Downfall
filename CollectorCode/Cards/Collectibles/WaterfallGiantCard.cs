@@ -1,6 +1,7 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,7 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
         WithPower<WaterfallGiantCardPower>(3, false);
         WithPower<MiasmaPower>(40, 10);
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
