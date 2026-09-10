@@ -18,6 +18,7 @@ public class Pyrework : CollectorCardModel
         WithPower<PyreworkPower>(1, 1, false);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
+        WithTorchheadDamage(5);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
