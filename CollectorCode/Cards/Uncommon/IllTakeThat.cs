@@ -14,8 +14,8 @@ public class IllTakeThat : CollectorCardModel
 {
     public IllTakeThat() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithVar("IllTakeThat", 10, 3);
-        WithDamage(10, 3);
+        WithVar("IllTakeThat", 10, 4);
+        WithDamage(10, 4);
         WithTip(StaticHoverTip.Block);
     }
 

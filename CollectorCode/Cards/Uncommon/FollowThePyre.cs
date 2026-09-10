@@ -14,7 +14,7 @@ public class FollowThePyre : CollectorCardModel
     
     public FollowThePyre() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(5, 3);
+        WithDamage(5, 2);
         WithPower<FollowThePyrePower>(5, 2, false);
         WithKeyword(CollectorKeyword.Pyre);
     }

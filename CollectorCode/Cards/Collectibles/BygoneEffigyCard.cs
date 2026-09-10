@@ -5,6 +5,8 @@ using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;
+using MegaCrit.Sts2.Core.Models.Powers;
+
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class BygoneEffigyCard : Collectible<BygoneEffigyElite>
@@ -14,7 +16,7 @@ public class BygoneEffigyCard : Collectible<BygoneEffigyElite>
         WithVar("Power", 3);
         WithPower<BygoneEffigyCardPower>(3, -1, false);
         WithReserveTip();
-        WithTip<PlatedArmorPower>();
+        WithTip<StrengthPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

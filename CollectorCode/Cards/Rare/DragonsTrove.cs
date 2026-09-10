@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class DragonsTrove : CollectorCardModel
 {
-    public DragonsTrove() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public DragonsTrove() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithReserve(1);
