@@ -19,6 +19,7 @@ public class SneakyTeakwoodMatch : HexaghostRelicModel, IAfterGhostflameIgnited
     {
         WithTip(HexaghostKeyword.Advance);
         WithTip(HexaghostKeyword.Retract);
+        WithTip(HexaghostTip.Ignite);
     }
 
 

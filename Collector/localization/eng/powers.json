@@ -46,7 +46,7 @@
   "COLLECTOR-RAGING_CALL_POWER.smartDescription": "",
   "COLLECTOR-RESERVE_NEXT_TURN_POWER.title": "Next Turn Reserve",
   "COLLECTOR-RESERVE_NEXT_TURN_POWER.description": "At the start of your next turn, gain {:reserveIcons(1)}.",
-  "COLLECTOR-RESERVE_NEXT_TURN_POWER.smartDescription": "At the start o{:reserveIcons(1)}f your next turn, gain {Amount:reserveIcons()}.",
+  "COLLECTOR-RESERVE_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, gain {Amount:reserveIcons()}.",
   "COLLECTOR-SCORCHED_POWER.title": "Scorched",
   "COLLECTOR-SCORCHED_POWER.description": "At the end of its turn, gains Miasma.",
   "COLLECTOR-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Miasma[/gold]",

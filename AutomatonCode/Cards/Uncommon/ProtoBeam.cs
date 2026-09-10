@@ -6,15 +6,15 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Automaton.AutomatonCode.Cards.Rare;
+namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
 public class ProtoBeam : AutomatonCardModel
 {
-    public ProtoBeam() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public ProtoBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(9, 4);
-        WithEnergy(1);
+        WithEnergy(2);
         WithKeyword(CardKeyword.Ethereal);
     }
 

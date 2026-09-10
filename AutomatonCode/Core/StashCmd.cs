@@ -2,6 +2,7 @@
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Vfx;
+using Downfall.DownfallCode.Commands;
 using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -144,6 +145,16 @@ public class StashCmd
         var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(source.Owner), source.Owner, prefs);
         await Stash(ctx, source.Owner, cards);
     }
+    
+    public static async Task StashFromPiles(CardModel source, PlayerChoiceContext ctx, Func<CardModel,bool>? filter = null, 
+        params PileType[] pileTypes)
+    {
+        var amount = source.DynamicVars["Stash"].IntValue;
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
+        var cards = await DownfallCardCmd.MulitPileSelect(ctx, source.Owner, prefs, filter, pileTypes);
+        await Stash(ctx, source.Owner, cards);
+    }
+    
 
     // ---- draw-from-stash (unchanged) ----------------------------------------
 

@@ -1,9 +1,9 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
+using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Events;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class PlatinumCore : AutomatonRelicModel
+public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
 {
     public PlatinumCore() : base(RelicRarity.Starter)
     {
@@ -21,18 +21,25 @@ public class PlatinumCore : AutomatonRelicModel
         WithTip(AutomatonTip.Encode);
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (player != Owner) return;
-        if (player.PlayerCombatState is { TurnNumber: 1 })
-        {
-            await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
-            await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
-        }
-
-        var card = AutomatonCmd.GetEncodableCards(player, 1).FirstOrDefault();
-        if (card == null) return;
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+        var card = cardPlay.Card;
+        var owner = card.Owner;
+        if (Owner != owner || !card.IsBasicStrikeOrDefend) return;
+        await AutomatonCmd.EncodeCard(card, ctx);
         Flash();
+    }
+
+    public bool ModifyCompiledFunction(FunctionCard function, Player player)
+    {
+        if (function.SourceCards.Count(e => e.Rarity == CardRarity.Basic) < 2) return false;
+        function.EnergyCost.SetUntilPlayed(0);
+        return true;
+    }
+
+    public Task AfterModifyCompiledFunction(FunctionCard result, Player player)
+    {
+        Flash();
+        return Task.CompletedTask;
     }
 }
