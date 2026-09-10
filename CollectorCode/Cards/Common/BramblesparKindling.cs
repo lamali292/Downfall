@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +17,7 @@ public class BramblesparKindling : CollectorCardModel
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithKindle(3, 1);
         WithTip(new TooltipSource(card =>
         {

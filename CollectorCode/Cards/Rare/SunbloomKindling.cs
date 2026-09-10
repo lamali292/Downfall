@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +17,7 @@ public class SunbloomKindling : CollectorCardModel
     public SunbloomKindling() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithKindle(5, 3);
         WithPower<StrengthPower>(2);
         WithCards(2);

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,7 @@ public class IronbarkKindling : CollectorCardModel
     public IronbarkKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CollectorKeyword.Flicker);
         WithBlock(5, 1);
         WithKindle(4, 2);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
