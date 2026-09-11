@@ -13,7 +13,7 @@ public class BobAndWeave : ChampCardModel
     public BobAndWeave() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(4, 2);
-        WithPower<VigorPower>(4, 1);
+        WithPower<VigorPower>(3, 1);
         WithEnterBerserker();
     }
 

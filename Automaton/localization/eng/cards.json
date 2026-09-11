@@ -214,7 +214,7 @@
   "AUTOMATON-UPTICK.title": "Uptick",
   "AUTOMATON-UPTICK.description": "ALL players draw {DrawCardsNextTurnPower:diff()} additional cards and gain {Energy:energyIcons()} at the start of their next turn.",
   "AUTOMATON-HOOK.title": "Hook",
-  "AUTOMATON-HOOK.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] a card from your [gold]Draw Pile[/gold].",
+  "AUTOMATON-HOOK.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Stash[/gold] a card from your [gold]Hand[/gold], [gold]Draw Pile[/gold] or [gold]Discard Pile[/gold]",
   "AUTOMATON-EXPORT.title": "Export",
   "AUTOMATON-EXPORT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAnother player gains {Energy:energyIcons()}.",
   "AUTOMATON-SHARE.title": "Share",

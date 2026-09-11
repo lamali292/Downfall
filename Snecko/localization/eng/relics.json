@@ -1,6 +1,6 @@
 {
   "SNECKO-LOADED_DIE.title": "Loaded Die",
-  "SNECKO-LOADED_DIE.description": "Whenever a card is [gold]Muddled[/gold], gain [blue]{Block}[/blue] [gold]Block[/gold].",
+  "SNECKO-LOADED_DIE.description": "Whenever a card is [gold]Muddled[/gold], gain [gold]Block[/gold] equal to its new cost.",
   "SNECKO-LOADED_DIE.flavor": "Cheese-stuffed.",
   "SNECKO-LUCKY_HORSESHOE.title": "Lucky Horseshoe",
   "SNECKO-LUCKY_HORSESHOE.description": "Upon pickup, choose [blue]1[/blue] of [blue]3[/blue] Characters. Obtain [blue]3[/blue] [gold]Upgraded[/gold] [gold]Uncommon[/gold] cards and [blue]2[/blue] [gold]Rare[/gold] cards. All combats drop an additional card reward of the chosen character's cards.",
@@ -30,10 +30,13 @@
   "SNECKO-SUPER_SNECKO_SOUL.description": "At the start of each combat, add [gold]Soul Roll[/gold] to your [gold]Hand[/gold].\nAt the start of your turn, draw a card and [gold]Muddle[/gold] it.",
   "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
   "SNECKO-UNIDENTIFIED_EGG.title": "Unidentified Egg",
-  "SNECKO-UNIDENTIFIED_EGG.description": "Whenever you add an [gold]Offclass[/gold] card to your [gold]Deck[/gold], [gold]Upgrade[/gold] it.\nUpon pickup, [gold]Upgrade[/gold] [blue]{Cards}[/blue] random [gold]Offclass[/gold] cards.",
+  "SNECKO-UNIDENTIFIED_EGG.description": "Whenever you add an [gold]Offclass[/gold] card to your [gold]Deck[/gold], [gold]Upgrade[/gold] it.",
   "SNECKO-UNIDENTIFIED_EGG.flavor": "What will hatch? Pay $1000 to see.",
   "SEA_GLASS.SNECKO-SNECKO.title": "Prism Glass",
   "SNECKO-SNECKO_CHOICE.title": "{character}'s Blessing",
   "SNECKO-SNECKO_CHOICE.description": "You now gain cards from [blue]{borrowed}[/blue] in [gold]Gift[/gold] rewards.",
-  "SNECKO-SNECKO_CHOICE.flavor": ""
+  "SNECKO-SNECKO_CHOICE.flavor": "",
+  "SNECKO-VIPER_SKULL.title": "ViperSkull",
+  "SNECKO-VIPER_SKULL.description": "At the start of each combat, apply [blue]{VenomPower}[/blue] [gold]Venom[/gold] to ALL enemies.",
+  "SNECKO-VIPER_SKULL.flavor": ""
 }

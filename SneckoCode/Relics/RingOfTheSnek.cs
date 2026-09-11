@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Events;
 
 namespace Snecko.SneckoCode.Relics;
@@ -18,9 +19,6 @@ namespace Snecko.SneckoCode.Relics;
 [Pool(typeof(SneckoRelicPool))]
 public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
 {
-    private bool _isActivating;
-    private int _overflowEffectsPlayed;
-
     public RingOfTheSnek() : base(RelicRarity.Rare)
     {
         WithVars(
@@ -28,6 +26,7 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
             new PowerVar<VulnerablePower>(1),
             new CardsVar(3)
         );
+        WithTip(SneckoKeywords.Overflow);
     }
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
@@ -38,22 +37,22 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
 
     private bool IsActivating
     {
-        get => _isActivating;
+        get;
         set
         {
             AssertMutable();
-            _isActivating = value;
+            field = value;
             UpdateDisplay();
         }
     }
 
     private int OverflowEffectsPlayed
     {
-        get => _overflowEffectsPlayed;
+        get;
         set
         {
             AssertMutable();
-            _overflowEffectsPlayed = value;
+            field = value;
             UpdateDisplay();
         }
     }

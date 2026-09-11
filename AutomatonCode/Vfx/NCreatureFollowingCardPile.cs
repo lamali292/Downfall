@@ -34,7 +34,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
     protected override bool SelfPositions => true;
 
     protected virtual float BobAmplitude => 8f;
-    protected virtual float BobSpeed => 2f;
+    protected virtual float BobSpeed => 0.8f;
     protected virtual float BobPhase => 0f;
 
     private Vector2 IconCenter =>
@@ -52,6 +52,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         }
 
         RefreshCardVisual();
+        StartBob();
     }
     
     public override void _ExitTree()
@@ -67,6 +68,8 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
 
         _cardBumpTween?.Kill();
         _cardBumpTween = null;
+        _bobTween?.Kill();
+        _bobTween = null;
         _creatureNode = null;
         ClearCardVisuals();
     }
@@ -197,14 +200,12 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
 
         if (!IsInstanceValid(_creatureNode.Visuals)) return;
 
-        _bobTime += delta;
-        var bob = new Vector2(0f, Mathf.Sin((float)_bobTime * BobSpeed + BobPhase) * BobAmplitude);
-
         GlobalPosition = _creatureNode.GlobalPosition +
-                         (new Vector2(-75, -75) + FollowOffset + ButtonOffsets + bob) * _creatureNode.Visuals.Scale;
+                         (new Vector2(-75, -75) + FollowOffset + ButtonOffsets + _bobOffset)
+                         * _creatureNode.Visuals.Scale;
         Scale = _creatureNode.Visuals.Scale;
     }
-
+    
     public override void AnimIn()
     {
         if (!IsInstanceValid(this)) return;
@@ -235,6 +236,21 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         };
     }
 
+    private Tween? _bobTween;
+    private Vector2 _bobOffset;
+    private void StartBob()
+    {
+        _bobTween?.Kill();
+        _bobTween = CreateTween().SetLoops();
+        _bobTween.TweenMethod(
+                Callable.From<float>(y => _bobOffset = new Vector2(0f, y)),
+                -BobAmplitude, BobAmplitude, 0.5 / BobSpeed)
+            .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+        _bobTween.TweenMethod(
+                Callable.From<float>(y => _bobOffset = new Vector2(0f, y)),
+                BobAmplitude, -BobAmplitude, 0.5 / BobSpeed)
+            .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+    }
     public override void PlayAnimOut()
     {
         if (!IsInstanceValid(this)) return;

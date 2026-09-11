@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Automaton.AutomatonCode.Cards.Uncommon;
+namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
 public class Repair : AutomatonCardModel
 {
-    public Repair() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Repair() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<SelfRepairPower>(7, 3, false);
     }

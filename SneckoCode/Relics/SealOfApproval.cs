@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -9,8 +11,14 @@ using Snecko.SneckoCode.Core;
 namespace Snecko.SneckoCode.Relics;
 
 [Pool(typeof(SneckoRelicPool))]
-public class SealOfApproval() : SneckoRelicModel(RelicRarity.Common)
+public class SealOfApproval : SneckoRelicModel
 {
+    public SealOfApproval() : base(RelicRarity.Common)
+    {
+        WithTip(DownfallTip.Offclass);
+    }
+
+
     public override bool HasUponPickupEffect => true;
 
     public override async Task AfterObtained()

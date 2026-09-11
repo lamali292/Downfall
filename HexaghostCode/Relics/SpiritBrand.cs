@@ -19,6 +19,7 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
     public SpiritBrand() : base(RelicRarity.Starter)
     {
         WithTip(HexaghostTip.Ignite);
+        WithBlock(3);
     }
 
 
@@ -30,7 +31,7 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
         UsedThisTurn = true;
         Flash();
         Status = RelicStatus.Normal;
-        await CreatureCmd.GainBlock(Owner.Creature, 3, BlockProps.nonCardUnpowered, null, true);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue, BlockProps.nonCardUnpowered, null, true);
     }
 
 

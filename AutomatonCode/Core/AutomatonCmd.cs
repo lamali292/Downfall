@@ -13,7 +13,10 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Automaton.AutomatonCode.Core;
 
@@ -90,7 +93,13 @@ public static class AutomatonCmd
         functionCard.SetSourceCards(snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
-        var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player); ;
+        await Cmd.CustomScaledWait(0.1f, 0.3f);
+        if (LocalContext.IsMe(player))
+            NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(NCardSmithVfx.Create([
+                functionCard
+            ])!);
+        await Cmd.Wait(1.5f);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
         await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result);
         return functionCard;
     }
