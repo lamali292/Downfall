@@ -27,7 +27,7 @@ public class IronbarkKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
         await CollectorCmd.Kindle(ctx, this);
+        await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
     }
 }

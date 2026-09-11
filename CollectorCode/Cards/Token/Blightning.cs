@@ -1,4 +1,6 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,10 +14,12 @@ public class Blightning : CollectorCardModel
 {
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(6, 3);
-        WithPower<MiasmaPower>(3, 1);
-        WithCards(1);
+        WithKindle(1, 2);
+        WithTorchheadDamage(9, 2);
+        WithPower<MiasmaPower>(3, 2);
+        WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -23,7 +27,9 @@ public class Blightning : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CollectorCmd.Kindle(ctx, this);
+        await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
+        //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
 

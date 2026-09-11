@@ -14,8 +14,8 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>
 {
     public DecimillipedeCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.66f)
     {
-        WithKindle(4, 2);
-        WithBlock(4, 2);
+        WithKindle(5, 2);
+        WithBlock(5, 2);
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
     }
