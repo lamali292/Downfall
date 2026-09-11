@@ -16,12 +16,17 @@ public class FeelMyPainPower : CollectorPowerModel
     {
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner || !card.VisualCardPool.IsColorless) return;
+        
+        var bCtx = new BlockingPlayerChoiceContext();
         Flash();
-        await CreatureCmd.Damage(ctx,
-            CombatState.HittableEnemies,
-            Amount,
-            DamageProps.nonCardHpLoss,
-            Owner);
+        var currentEnemies = CombatState.Enemies.ToList();
+        foreach (var enemy in currentEnemies)
+            if (enemy is { IsHittable: true, IsAlive: true })
+                await CreatureCmd.Damage(bCtx,
+                    enemy,
+                    Amount,
+                    DamageProps.nonCardHpLoss,
+                    Owner);
   
     }
 }

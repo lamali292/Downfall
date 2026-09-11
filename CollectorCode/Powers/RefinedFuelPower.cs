@@ -46,7 +46,7 @@ public class RefinedFuelPower : CollectorPowerModel, IAfterCardPyred
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (card.Owner.Creature != Owner || card.Type != CardType.Status) return;
+        if (card.Owner.Creature != Owner || pyred.Type != CardType.Status) return;
         if (StatusExhaustedThisTurn > Amount) return;
         await PowerCmd.Apply<ReserveNextTurnPower>(ctx, Owner, DynamicVars.Reserve.BaseValue, Owner, null);
         InvokeDisplayAmountChanged();
