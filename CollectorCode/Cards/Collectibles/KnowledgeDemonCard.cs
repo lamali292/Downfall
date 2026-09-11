@@ -3,8 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Encounters;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
@@ -17,43 +15,18 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-
-        var prismatic = Owner.UnlockState.CharacterCardPools.ToList();
-        IEnumerable<CardModel> pool = null;
-        foreach (var cardPoolModel in prismatic)
-        {
-            var newCM = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
-            if (pool is null)
-            {
-                pool = newCM;
-            }
-            else
-            {
-                pool = pool.Concat(newCM);
-            }
-        }
-        var notPrismatic = ModelDb.AllSharedCardPools.ToList();
-        foreach (var cardPoolModel in notPrismatic)
-        {
-            if (cardPoolModel is DeprecatedCardPool)
-            {
-                continue;//Dont get any deprecated cards.
-            }
-            var newCM = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
-            if (pool is null)
-            {
-                pool = newCM;
-            }
-            else
-            {
-                pool = pool.Concat(newCM);
-            }
-        }
-        if (pool is null)
-        {
-            throw new NullReferenceException("No pool found");
-        }
-        
+        var pool = Owner.UnlockState.CharacterCardPools
+            .Where( e => e != Owner.Character.CardPool)
+            .SelectMany(cardPoolModel => cardPoolModel
+                .AllCards
+                .Where(c => c
+                                .EnergyCost.Canonical >= 0
+                            && !c.HasStarCostX &&  
+                            c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true })
+            );
+        // we can't do ANY pool. 
+        // it might be funny. but it will certainly break with other mods.
+        // I don't want every buggy jank card to be draftable that's hidden in a random modded non-character pool. 
         var list = CardFactory.GetDistinctForCombat(Owner, pool, 
             DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var card in list)
