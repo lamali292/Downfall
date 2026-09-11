@@ -108,6 +108,7 @@ public static class AwakenedCmd
         Player player)
     {
         if (!CanConjure(player)) return null;
+        InitSpellbook(player);
         var spellbook = GetSpellbook(player);
         while (spellbook.NextSpell == null) spellbook.SetNextSpell(player);
         var spell = spellbook.NextSpell;
@@ -121,6 +122,7 @@ public static class AwakenedCmd
         CardModel selectedSpell)
     {
         if (!CanConjure(player)) return null;
+        InitSpellbook(player);
         var spellbook = GetSpellbook(player);
         if (!spellbook.Cards.Contains(selectedSpell)) return null;
         return await ConjureSpell(player, selectedSpell, spellbook);
@@ -131,7 +133,7 @@ public static class AwakenedCmd
         CardModel spell,
         AwakenedPile spellbook)
     {
-        InitSpellbook(player);
+  
         await Cmd.Wait(0.1f);
         spellbook.RemoveInternal(spell);
 
