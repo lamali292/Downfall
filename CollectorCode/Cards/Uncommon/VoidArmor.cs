@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -26,10 +27,10 @@ public class VoidArmor : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         //await CommonActions.Apply<StrengthPower>(ctx,cardPlay.Target, this, 1);
-        await CommonActions.CardBlock(this, cardPlay);
+        var a = await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
         foreach (var creature in CombatState.HittableEnemies)
-            await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
+            await CreatureCmd.GainBlock(creature, a, BlockProps.cardUnpowered, cardPlay);
         await CommonActions.Apply<BlurPower>(ctx, this, cardPlay);
     }
 
