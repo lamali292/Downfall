@@ -34,7 +34,7 @@
     "HERMIT-COMBO_POWER.title": "コンボ",
     "HERMIT-BRAWL_POWER.description": "ターン開始時、すべての敵に[gold]打撲[/gold][blue]1[/blue]を付与する。",
     "HERMIT-BRAWL_POWER.smartDescription": "ターン開始時、すべての敵に[gold]打撲[/gold][blue]{Amount}[/blue]を付与する。",
-    "HERMIT-BRAWL_POWER.title": "乱闘",
+    "HERMIT-BRAWL_POWER.title": "大喧嘩",
     "HERMIT-RUGGED_POWER.description": "ブロックされない攻撃ダメージを受ける時、それを[blue]2[/blue]に軽減する。",
     "HERMIT-RUGGED_POWER.smartDescription": "次の[blue]{Amount}[/blue]回、ブロックされない攻撃ダメージを受ける時、それを[blue]2[/blue]に軽減する。",
     "HERMIT-RUGGED_POWER.title": "堅牢",
