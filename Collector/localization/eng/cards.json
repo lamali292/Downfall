@@ -45,7 +45,7 @@
   "COLLECTOR-EMBER.description": "When this card is [gold]Exhausted[/gold], gain {StrengthPower:diff()} [gold]Strength[/gold].\nAt the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.",
   "COLLECTOR-EMPOWER.description": "At the start of your next {EmpowerPower:diff()} turns, add an [gold]Ember[/gold] into your [gold]Hand[/gold] and [gold]Upgrade[/gold] it {IfUpgraded:show:X+1|X} times.",
   "COLLECTOR-EMPOWER.title": "Empower",
-  "COLLECTOR-FEEL_OUR_PAIN.description": "Whenever a Colorless card is played, ALL enemies lose {FeelMyPainPower:diff()} HP.",
+  "COLLECTOR-FEEL_OUR_PAIN.description": "Whenever you play a Colorless card, ALL enemies lose {FeelMyPainPower:diff()} HP.",
   "COLLECTOR-FEEL_OUR_PAIN.title": "Feel Our Pain",
   "COLLECTOR-FIEND_FIRE.description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal {Damage:diff()} damage for each card [gold]Exhausted[/gold].",
   "COLLECTOR-FIEND_FIRE.title": "Fiend Fire",
