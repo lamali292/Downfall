@@ -16,6 +16,8 @@ namespace Collector.CollectorCode.Cards.Token;
 public interface ICollectible
 {
     EncounterModel GetEncounterModel();
+    ActModel? Act();
+    RoomType RoomType();
 }
 
 [Pool(typeof(CollectibleCardPool))]
@@ -32,8 +34,8 @@ public abstract class Collectible<T>(
 {
     public override bool HasBuiltInOverlay => false;
    
-    public ActModel? Act => ModelDb.Acts.FirstOrDefault(e => e.AllEncounters.Contains(EncounterModel));
-    public RoomType RoomType => EncounterModel.RoomType;
+    public ActModel? Act() => ModelDb.Acts.FirstOrDefault(e => e.AllEncounters.Contains(EncounterModel));
+    public RoomType RoomType() => EncounterModel.RoomType;
     
     //public override string CustomPortraitPath => "collectible.png".CardImagePath<Character.Collector>();
     public override string CustomPortraitPath => "collectible.tres".CardImageAtlasPath<Core.Collector>();

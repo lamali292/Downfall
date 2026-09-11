@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Hooks;
@@ -36,7 +37,7 @@ public class TorchheadDamageVar : DynamicVar
         if (runGlobalHooks)
         {
             var combatState = power.CombatState;
-            originalDamage1 = Hook.ModifyDamage(combatState.RunState, combatState, target, power.Owner.PetOwner?.Torchhead, BaseValue, Props, null, null, ModifyDamageHookType.All, previewMode, out _);
+            originalDamage1 =  CompatibilityHook.ModifyDamage(combatState.RunState, combatState, target, power.Owner.PetOwner?.Torchhead, BaseValue, Props, null, null, ModifyDamageHookType.All, previewMode, out _);
         }
         PreviewValue = originalDamage1;
     }
@@ -59,7 +60,7 @@ public class TorchheadDamageVar : DynamicVar
         if (runGlobalHooks)
         {
             var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
-            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, combatState, target, card.Owner.Torchhead, BaseValue, Props, card, null, ModifyDamageHookType.All, previewMode, out _);
+            originalDamage1 = CompatibilityHook.ModifyDamage(card.Owner.RunState, combatState, target, card.Owner.Torchhead, BaseValue, Props, card, null, ModifyDamageHookType.All, previewMode, out _);
         }
         PreviewValue = originalDamage1;
     }

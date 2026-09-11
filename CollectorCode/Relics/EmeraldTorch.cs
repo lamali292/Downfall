@@ -51,29 +51,7 @@ public class EmeraldTorch : CollectorRelicModel
     
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
-        if (Owner != player
-            || creationOptions.Source != CardCreationSource.Encounter
-            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsCardReward)
-            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsFromCombat))
-            return false;
-        
-        var room = player.RunState.CurrentRoom as CombatRoom;
-        if (room?.RoomType is not (RoomType.Elite or RoomType.Boss))
-            return false;
-
-        var encounterId = room.Encounter.Id;
-
-        var model = ModelDb.CardPool<CollectibleCardPool>().AllCards
-            .FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
-        if (model is null)
-            return false;
-
-        var card = player.RunState.CreateCard(model, player);
-        var result = new CardCreationResult(card);
-        result.ModifyCard(card, this);
-        cardRewardOptions.Add(result);
-        return true;
-        
+        return Owner == player && CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
     }
 
     /*

@@ -21,7 +21,7 @@ public class CollectionBountyPower : CollectorPowerModel
         if (players == null) return;
         foreach (var combatStatePlayer in players)
         {
-            await CollectorCmd.GetReserve(combatStatePlayer, Amount);
+            await CollectorCmd.GainReserve(combatStatePlayer, Amount);
         }
     }
 }

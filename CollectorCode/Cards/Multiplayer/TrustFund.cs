@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,13 +33,13 @@ public class TrustFund : CollectorCardModel
         var ownerCreature = Owner.Creature;
         var ownerBlock = ownerCreature.Block;
 
-        await CreatureCmd.LoseBlock(ctx, targetCreature, targetBlock, ownerCreature);
-        await CreatureCmd.LoseBlock(ctx, ownerCreature, ownerBlock, ownerCreature);
+        await CompatibilityCreatureCmd.LoseBlock(ctx, targetCreature, targetBlock, ownerCreature);
+        await CompatibilityCreatureCmd.LoseBlock(ctx, ownerCreature, ownerBlock, ownerCreature);
         
         await CreatureCmd.GainBlock(targetCreature, ownerBlock, BlockProps.cardUnpowered, cardPlay);
         await CreatureCmd.GainBlock(ownerCreature, targetBlock, BlockProps.cardUnpowered, cardPlay);
 
-        await CollectorCmd.GetReserve(Owner, DynamicVars.Reserve.IntValue);
-        await CollectorCmd.GetReserve(targetPlayer, DynamicVars.Reserve.IntValue);
+        await CollectorCmd.GainReserve(Owner, DynamicVars.Reserve.IntValue);
+        await CollectorCmd.GainReserve(targetPlayer, DynamicVars.Reserve.IntValue);
     }
 }

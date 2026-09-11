@@ -73,7 +73,7 @@ public partial class NGuardianDisplay : Control
     private void EnsureSlotCount(int count)
     {
         if (_slotContainer == null || _stasisSlotScene == null) return;
-
+        if (count <= 0) return;
         while (_slots.Count > count)
         {
             var last = _slots[^1];

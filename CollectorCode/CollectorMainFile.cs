@@ -30,6 +30,10 @@ public static class CollectorMainFile
         FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
 
 
-        ModPatcher.Create(ModId, Logger).Add(typeof(AddMyPoolFilterPatch)).Add(typeof(NDamageNumVfxOverkillPatch)).PatchAll();
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(AddMyPoolFilterPatch))
+            .Add(typeof(NDamageNumVfxOverkillPatch))
+            .Add(typeof(NMultiplayerPlayerStatePatch))
+            .PatchAll();
     }
 }

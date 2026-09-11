@@ -16,7 +16,7 @@ public class ReserveNextTurnPower : CollectorPowerModel
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
         if (Owner != player.Creature) return;
-        await CollectorCmd.GetReserve(player, Amount);
+        await CollectorCmd.GainReserve(player, Amount);
         await PowerCmd.Remove(this);
     }
 }

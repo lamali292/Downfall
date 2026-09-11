@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianCreatureVisuals.cs" id="1_depl1"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_depl1"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="2_im64a"]
 
 [node name="GuardianCombat" type="Node2D"]
@@ -11,10 +11,7 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Node2D" type="Node2D" parent="."]
-scale = Vector2(-0.5, 0.5)
-
-[node name="Visuals" parent="Node2D" instance=ExtResource("2_im64a")]
+[node name="Visuals" parent="." instance=ExtResource("2_im64a")]
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]

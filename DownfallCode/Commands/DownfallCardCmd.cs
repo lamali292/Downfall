@@ -1,5 +1,7 @@
-﻿using BaseLib.Commands;
+﻿using System.Reflection;
+using BaseLib.Commands;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
@@ -20,7 +22,6 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
@@ -346,9 +347,8 @@ public class DownfallCardCmd
         }
         await CardPileCmd.RemoveFromCombat(list, true);
     }
-  
     
-
+    
     private static async Task PlayDestroyPreview(CardModel card, float delay)
     {
         if (!LocalContext.IsMine(card)) return;
@@ -372,18 +372,17 @@ public class DownfallCardCmd
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
  
-        if (!TestMode.IsOn)
+        if (!TestMode.IsOn && CardRemoveVfxCompat.IsAvailable)
         {
             tween.TweenInterval(0.25);
             tween.TweenCallback(Callable.From(() =>
             {
-                var vfx = NCardRemoveVfx.Create(cardNode);
+                var vfx = CardRemoveVfxCompat.Create(cardNode);
                 if (vfx != null)
                     container.AddChildSafely(vfx);
             }));
-            tween.TweenInterval(NCardRemoveVfx.deleteCardDelay);
+            tween.TweenInterval(CardRemoveVfxCompat.DeleteCardDelay);
         }
- 
         tween.TweenCallback(Callable.From(cardNode.QueueFreeSafely));
     }
     
