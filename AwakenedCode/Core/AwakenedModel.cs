@@ -13,7 +13,7 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
 {
     private static readonly PlayerField<int> AwakenMeter = new(() => 0);
     private static readonly PlayerField<bool> AwakenDispatched = new(() => false);
-    
+
     public override Task BeforeCombatStart()
     {
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -22,7 +22,8 @@ public class AwakenedModel() : CustomSingletonModel(HookType.Combat)
         {
             AwakenMeter.Set(player, 0);
             AwakenDispatched.Set(player, false);
-            AwakenedCmd.RefreshSpellbook(player);
+            if (player.Character is not Awakened) continue;
+            AwakenedCmd.InitSpellbook(player);
         }
         return Task.CompletedTask;
     }

@@ -92,7 +92,7 @@
     "AWAKENED-GATHER.title": "聚集",
     "AWAKENED-GLOOMGUARD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果你的[gold]手牌[/gold]中有[gold]虚空[/gold]，这张牌的耗能变为0{energyPrefix:energyIcons(1)}。",
     "AWAKENED-GLOOMGUARD.title": "幽黯护卫",
-    "AWAKENED-GREAT_HEX.title": "六芒大咒",
+    "AWAKENED-GREAT_HEX.title": "伟大诅咒",
     "AWAKENED-HYMN.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]祭仪[/gold]加入[gold]手牌[/gold]。\n下个回合，失去{Energy:energyIcons()}。",
     "AWAKENED-HYMN.title": "赞歌",
     "AWAKENED-IMMOLATION.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n每当你[gold]力竭[/gold]时，此牌的耗能将在下一次打出前减少{Energy:energyIcons()}。",

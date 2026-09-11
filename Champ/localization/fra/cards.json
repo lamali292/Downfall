@@ -32,7 +32,7 @@
     "CHAMP-CROOKED_STRIKE.title": "Frappe Déloyale",
     "CHAMP-CROWNARANG.description": "Infligez {Damage:diff()} dégâts.\n[gold]Combo du Destructeur[/gold] : \nPiochez {Cards:diff()} cartes.",
     "CHAMP-CROWNARANG.title": "Couronnerang",
-    "CHAMP-DANCING_MASTER.description": "La prmière fois que vous jouez un [gold]Finisher[/gold] chaque tour, gagnez {Energy:energyIcons()} et piochez une carte.",
+    "CHAMP-DANCING_MASTER.description": "La première fois que vous jouez un [gold]Finisher[/gold] chaque tour, gagnez {Energy:energyIcons()} et piochez une carte.",
     "CHAMP-DANCING_MASTER.title": "Maître de la Danse",
     "CHAMP-DEATH_BLOW.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\nGagnez {VigorPower:diff()} de [gold]Vigueur[/gold].",
     "CHAMP-DEATH_BLOW.title": "Coup Mortel",

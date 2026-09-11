@@ -12,7 +12,7 @@
         <AssemblyName>Downfall</AssemblyName>
         <ModOutputFolder>Downfall</ModOutputFolder>
         
-        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector</Submods>
+        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
         <PackFolders>$(Submods)</PackFolders>
         
         <ImplicitUsings>true</ImplicitUsings>

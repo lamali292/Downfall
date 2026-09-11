@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -10,7 +11,7 @@ namespace Collector.CollectorCode.Powers;
 
 public class FollowThePyrePower : CollectorPowerModel, IModifyDamageAdditive
 {
-    public FollowThePyrePower()
+    public FollowThePyrePower() : base(PowerType.Debuff)
     {
         WithCardTip<FollowThePyre>();
     }
