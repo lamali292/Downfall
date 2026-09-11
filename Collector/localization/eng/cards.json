@@ -71,7 +71,7 @@
   "COLLECTOR-ILL_TAKE_THAT.title": "I'll Take That",
   "COLLECTOR-INEVITABLE_DEMISE.description": "Deal {Damage:diff()} damage.\nThis enemy's [gold]Miasma[/gold] increases by {InevitableDemisePower:diff()} each turn.",
   "COLLECTOR-INEVITABLE_DEMISE.title": "Inevitable Demise",
-  "COLLECTOR-INFLICT_AGONY.description": "Deal {Damage:diff()} damage.\nIf the enemy does not have [gold]Weak[/gold], apply {Power:diff()} Weak then repeat for [gold]Vulnerable[/gold] and [gold]Miasma[/gold].",
+  "COLLECTOR-INFLICT_AGONY.description": "Deal {Damage:diff()} damage.\nIf the enemy does not have [gold]Weak[/gold], apply {Power:diff()} [gold]Weak[/gold] then repeat for [gold]Vulnerable[/gold] and [gold]Miasma[/gold].",
   "COLLECTOR-INFLICT_AGONY.title": "Inflict Agony",
   "COLLECTOR-IRONBARK_KINDLING.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Kindle[/gold] {Kindle:diff()}.",
   "COLLECTOR-IRONBARK_KINDLING.title": "Ironbark Kindling",
