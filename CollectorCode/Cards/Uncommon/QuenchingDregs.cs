@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class QuenchingDregs : CollectorCardModel
 {
-    public QuenchingDregs() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public QuenchingDregs() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(13, 3);
         WithCards(2);

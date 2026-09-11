@@ -16,7 +16,7 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithPower<PlatedArmorPower>(4, 3);
+        WithPower<PlatedArmorPower>(4, 2);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)

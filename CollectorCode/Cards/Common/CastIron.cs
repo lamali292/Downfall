@@ -13,13 +13,13 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class CastIron : CollectorCardModel
 {
-    public CastIron() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public CastIron() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithUpgradeChangingCardTip<Burn, Ember>();
-        WithCalculatedVar("KindleCalc", 0, 3, Calc);
-        WithKindle(3); // only for the tip
+        WithCalculatedVar("KindleCalc", 0, 4, Calc, 1);
+        WithKindle(4, 1); // only for the tip
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
