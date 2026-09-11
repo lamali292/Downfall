@@ -17,7 +17,7 @@ public class ViciousMockery : ChampCardModel
 {
     public ViciousMockery() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<VigorPower>(5, 1);
+        WithPower<VigorPower>(4, 1);
         WithPower<WeakPower>(1, 1);
         WithTip(ChampKeyword.TriggerSkillBonus);
     }

@@ -19,7 +19,7 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override Vector2 HoverTipOffset => new(0, 0);
     protected override Vector2 ButtonOffsets => new(0, 0);
     protected override Vector2 FollowOffset => new(150f, -250f);
-    protected override float BobSpeed => 1.8f;       
+    protected override float BobSpeed => 0.7f;       
     protected override bool StartHidden(Player player)
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
 

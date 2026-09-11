@@ -17,6 +17,6 @@ public class Hook : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        await StashCmd.StashFromDraw(this, ctx);
+        await StashCmd.StashFromPiles(this, ctx, null, PileType.Draw, PileType.Discard, PileType.Hand);
     }
 }

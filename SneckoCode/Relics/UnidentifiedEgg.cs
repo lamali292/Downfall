@@ -1,5 +1,7 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
+using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -18,10 +20,11 @@ public class UnidentifiedEgg : SneckoRelicModel
 {
     public UnidentifiedEgg() : base(RelicRarity.Rare)
     {
-        WithVars(new CardsVar(2));
+        WithTip(DownfallTip.Offclass);
     }
-
-    public override bool HasUponPickupEffect => true;
+    
+    /*
+   public override bool HasUponPickupEffect => true;
 
     public override Task AfterObtained()
     {
@@ -33,6 +36,8 @@ public class UnidentifiedEgg : SneckoRelicModel
             CardCmd.Upgrade(card);
         return Task.CompletedTask;
     }
+
+     */
 
     public override bool TryModifyCardRewardOptionsLate(
         Player player,
