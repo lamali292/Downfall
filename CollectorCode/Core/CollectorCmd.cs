@@ -138,7 +138,7 @@ public class CollectorCmd
         var encounterId = room.Encounter.Id;
         var pool = ModelDb.CardPool<CollectibleCardPool>().AllCards.ToList();
         var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
-
+        model ??=   GetCardForModdedEnemy(encounterId);
         // fallback. pick random elite or boss with the same act number.
         if (model is null)
         {
@@ -155,6 +155,39 @@ public class CollectorCmd
         result.ModifyCard(card, relic);
         cardRewardOptions.Add(result);
         return true;
+    }
+
+    private static CardModel? GetCardForModdedEnemy(ModelId encounterId)
+    {
+        var moddedEnemyMap = new Dictionary<string, string>
+        {
+            { "RUINA2-ALRIUNE_ELITE", "RUINA2-FAINT_AROMA" },
+            { "RUINA2-HELPERS_ELITE", "RUINA2-GRINDER" },
+            { "RUINA2-LAETITIA_ELITE", "RUINA2-LAETITIA" },
+            { "RUINA2-FAIRY_BOSS", "RUINA2-WINGBEAT" },
+            { "RUINA2-NOTHING_DER_BOSS", "RUINA2-MAGIC_BULLET" },
+            { "RUINA2-BLACK_SWAN_BOSS", "RUINA2-BLACK_SWAN" },
+            { "RUINA2-ORCHESTRA_BOSS", "RUINA2-DA_CAPO" },
+            { "RUINA2-MOUNTAIN_ELITE", "RUINA2-SMILE" },
+            { "RUINA2-WRATH_ELITE", "RUINA2-BLIND_RAGE" },
+            { "RUINA2-ROAD_HOME_ELITE", "RUINA2-HOMING_INSTINCT" },
+            { "RUINA2-RED_WOLF_BOSS", "RUINA2-CRIMSON_SCAR" },
+            { "RUINA2-JESTER_BOSS", "RUINA2-NIHIL" },
+            { "RUINA2-OZ_BOSS", "RUINA2-FALSE_THRONE" },
+            { "RUINA2-BIG_BIRD_ELITE", "RUINA2-LAMP" },
+            { "RUINA2-BLUE_STAR_ELITE", "RUINA2-SOUND_OF_A_STAR" },
+            { "RUINA2-SNOW_QUEEN_ELITE", "RUINA2-FROST_SPLINTER" },
+            { "RUINA2-TWILIGHT_BOSS", "RUINA2-APOCALYPSE" },
+            { "RUINA2-WHITE_NIGHT_BOSS", "RUINA2-PARADISE_LOST" },
+            { "RUINA2-SILENT_GIRL_BOSS", "RUINA2-REMORSE" },
+        };
+        if (moddedEnemyMap.ContainsKey(encounterId.Entry))
+        {
+            ModelId id = new ModelId("CARD", moddedEnemyMap[encounterId.Entry]);
+            var card = ModelDb.GetById<CardModel>(id);
+            return card;
+        }
+        return null;
     }
     
     
