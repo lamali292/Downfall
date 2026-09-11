@@ -16,6 +16,7 @@ public class Replication : SlimeBossCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithCostUpgradeBy(-1);
     }
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

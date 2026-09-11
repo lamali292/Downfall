@@ -19,6 +19,8 @@ public class Clone : GuardianCardModel
         WithTip(GuardianTip.Stasis);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ApplySelectionPrompt, this))

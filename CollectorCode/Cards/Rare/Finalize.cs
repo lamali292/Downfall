@@ -17,6 +17,8 @@ public class Finalize : CollectorCardModel
         WithPower<FinalizePower>(7, 3, false);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+    
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

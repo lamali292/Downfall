@@ -1,11 +1,14 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Events;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
@@ -16,11 +19,14 @@ public class IllTakeThat : CollectorCardModel
     public IllTakeThat() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithVar("IllTakeThat", 10, 4);
-        WithDamage(10, 4);
+        WithTorchheadDamage(10, 4);
+        //WithDamage(10, 4);
         WithTip(StaticHoverTip.Block);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
+    
+    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -32,6 +38,14 @@ public class IllTakeThat : CollectorCardModel
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
 
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
+    }
+    
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
+        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        base.AddExtraArgsToDescription(description);
     }
 }

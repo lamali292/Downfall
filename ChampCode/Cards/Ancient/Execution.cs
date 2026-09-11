@@ -16,6 +16,8 @@ public class Execution : ChampCardModel
         WithFinisher();
         // WithTip(ChampTip.Stance);
     }
+    
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
