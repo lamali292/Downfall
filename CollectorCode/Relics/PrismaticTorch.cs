@@ -61,7 +61,13 @@ public class PrismaticTorch : CollectorRelicModel
         var model = ModelDb.CardPool<CollectibleCardPool>().AllCards
             .FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
         if (model is null)
-            return false;
+        {
+            model = EmeraldTorch.GetCardForModdedEnemy(encounterId);
+            if (model is null)
+            {
+                return false;
+            }
+        }
 
         var card = player.RunState.CreateCard(model, player);
         CardCmd.Upgrade(card);
