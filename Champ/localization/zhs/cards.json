@@ -46,7 +46,7 @@
     "CHAMP-DEVASTATE.title": "坏灭",
     "CHAMP-DOUBLE_STYLE.description": "[gold]技术奖励[/gold]给予的[gold]活力[/gold]和[gold]反击[/gold]增加{DefensiveStylePower:diff()}点。",
     "CHAMP-DOUBLE_STYLE.title": "双重姿态",
-    "CHAMP-EMERGENCY_PIVOT.title": "紧急转身",
+    "CHAMP-EMERGENCY_PIVOT.title": "紧急旋身",
     "CHAMP-EMERGENCY_PIVOT.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
     "CHAMP-ENCHANT_CROWN.description": "为你[gold]手牌[/gold]中的一张牌[gold]附魔[/gold][purple]加冕[/purple]。",
     "CHAMP-ENCHANT_CROWN.title": "附魔金冠",
