@@ -16,7 +16,7 @@ public class MergeConflict : AutomatonCardModel
         WithDamage(5, 5);
         WithPower<MergeConflictPower>(1);
     }
-
+    public override bool CanBeGeneratedInCombat => false;
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

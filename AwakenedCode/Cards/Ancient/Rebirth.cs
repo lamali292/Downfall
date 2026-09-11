@@ -20,6 +20,8 @@ public class Rebirth : AwakenedCardModel
         WithTip<FrailPower>();
         WithTip(AwakenedTip.Awaken);
     }
+    
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override Artist Artist => Artist.Get<Opal>();
 
