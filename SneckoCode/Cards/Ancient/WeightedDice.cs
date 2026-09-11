@@ -15,6 +15,8 @@ public class WeightedDice : SneckoCardModel
         WithPower<WeightedDicePower>(1, false);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<WeightedDicePower>(ctx, this);

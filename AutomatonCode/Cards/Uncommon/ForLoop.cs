@@ -17,7 +17,7 @@ public class ForLoop : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithTip(AutomatonTip.Encode);
     }
-
+    public override bool CanBeGeneratedInCombat => false;
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override bool HasEnergyCostX => true;
