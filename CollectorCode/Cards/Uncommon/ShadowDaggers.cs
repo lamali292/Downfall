@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ShadowDaggers : CollectorCardModel
 {
-    public ShadowDaggers() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);
@@ -23,7 +23,7 @@ public class ShadowDaggers : CollectorCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        return card.Owner.GetAllCombatCards.Count(c => c.VisualCardPool.IsColorless);
+        return card.Owner.DeckPile.Count(c => c.VisualCardPool.IsColorless);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

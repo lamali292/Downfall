@@ -9,6 +9,7 @@ using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
 using Guardian.GuardianCode.Vfx;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,8 @@ using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Guardian.GuardianCode.Core;
 
@@ -42,6 +45,31 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         GuardianDisplay.Refresh(player);
     }
 
+    public override Task BeforeCombatStart()
+    {
+        StasisSlots.Clear();
+        ActiveMode.Clear();
+        StasisCounter._table.Clear();
+        
+        foreach (var player in RunManager.Instance.State?.Players ?? [])
+        {
+            if (StasisSlots[player] < 0)
+                StasisSlots.Set(player, player.Character is Guardian ? 3 : 1);
+        }
+        
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        StasisSlots.Clear();
+        ActiveMode.Clear();
+        StasisCounter._table.Clear();
+        return Task.CompletedTask;
+        
+    }
+
+
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (card.Pile != null && card.Pile.Type != GuardianPile.Stasis) return Task.CompletedTask;
@@ -53,10 +81,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     {
         var combatRoomNode = NCombatRoom.Instance;
         if (combatRoomNode == null) return;
-
-        foreach (var player in state.Players)
-            StasisSlots.Set(player, -1);
-
+        
         foreach (var player in state.Players)
         {
             if (player.Character is not Guardian) continue;
@@ -73,8 +98,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     internal static void InitStasisUi(Player player)
     {
-        if (StasisSlots[player] < 0)
-            StasisSlots.Set(player, player.Character is Guardian ? 3 : 1);
+       
 
         var combatRoom = NCombatRoom.Instance;
         if (combatRoom != null && !GuardianDisplay.HasDisplay(player))
@@ -91,22 +115,19 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         var mutable = newCanonical.ToMutable(player);
         ActiveMode[player] = mutable;
         await mutable.OnEnter();
-        await Cmd.Wait(0.2f);
-        TriggerModeAnimation(player);
-        await Cmd.Wait(0.2f);
+        if (newCanonical is GuardianDefensiveMode)
+        {
+            await CreatureCmd.TriggerAnim(player.Creature, "TransitionIn", 0.5f);
+        }
+        else
+        {
+            await CreatureCmd.TriggerAnim(player.Creature, "TransitionOut", 0.5f);
+        }
+     
         await GuardianHook.AfterGuardianModeChangeEarly(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
         await GuardianHook.AfterGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
-    }
-
-    private static void TriggerModeAnimation(Player player)
-    {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        if (creatureNode?.Visuals is not NGuardianCreatureVisuals guardianVisuals) return;
-
-        guardianVisuals.IsDefensive = ActiveMode[player] is GuardianDefensiveMode;
-        guardianVisuals.OnAnimationTrigger("Idle");
     }
 }
 

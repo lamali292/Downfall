@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Vfx;
 using Downfall.DownfallCode.Abstract;
@@ -37,7 +38,7 @@ public class CollectorEnergy : CardResource
                 return (0, 0);
             }
 
-            Spend(player, cost);
+            player.PlayerCombatState?.Reserve -= cost;
             _lastSpent[card] = cost;
             return (0, 0);
         }
@@ -53,7 +54,7 @@ public class CollectorEnergy : CardResource
         var available = Get(player);
         var cover = Math.Min(deficit, available);
 
-        if (cover > 0) Spend(player, cover);
+        if (cover > 0) player.PlayerCombatState?.Reserve -= cover;;
         _lastSpent[card] = cover;
         return (energy, 0);
     }

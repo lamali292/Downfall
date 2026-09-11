@@ -1,4 +1,6 @@
-﻿using Collector.CollectorCode.Events;
+﻿using BaseLib.Extensions;
+using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Abstract;
@@ -7,11 +9,14 @@ using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Core;
 
@@ -109,19 +114,48 @@ public class CollectorCmd
         return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
     }
 
-    public static Task GetReserve(AbstractModel card)
+    public static Task GainReserve(AbstractModel card)
     {
-        return GetReserve(card.Player, card.DynamicVars.Reserve.IntValue);
+        return GainReserve(card.Player, card.DynamicVars.Reserve.IntValue);
     }
     
-    public static Task GetReserve(Player player, int amount)
+    public static Task GainReserve(Player player, int amount)
     {
-        CardResourceRegistry.Get<CollectorEnergy>()?.Gain(player, amount);
+        player.PlayerCombatState?.Reserve += amount;
         return Task.CompletedTask;
     }
     
-    public static Creature? Torchhead(Player summoner)
+    public static bool TryAddCollectiblesReward(RelicModel relic, Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions, Action<CardModel>? action = null)
     {
-        return DownfallCmd.GainPet<TorchheadMonsterModel>(summoner);
+        if (creationOptions.Source != CardCreationSource.Encounter
+            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsCardReward)
+            )
+            return false;
+        // maybe add || !creationOptions.Flags.HasFlag(CardCreationFlags.IsFromCombat) back
+        if (player.RunState.CurrentRoom is not CombatRoom { RoomType: RoomType.Elite or RoomType.Boss } room)
+            return false;
+
+        var encounterId = room.Encounter.Id;
+        var pool = ModelDb.CardPool<CollectibleCardPool>().AllCards.ToList();
+        var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
+
+        // fallback. pick random elite or boss with the same act number.
+        if (model is null)
+        {
+            var actNumber = room.Act.ActNumber();
+            model = player.RunState.Rng.Niche.NextItem(pool
+                .Where(c => c is ICollectible g && (g.Act()?.ActNumber() ?? -1) == actNumber && g.RoomType() == room.RoomType));
+            if (model is null)
+                return false;
+        }
+
+        var card = player.RunState.CreateCard(model, player);
+        action?.Invoke(card);
+        var result = new CardCreationResult(card);
+        result.ModifyCard(card, relic);
+        cardRewardOptions.Add(result);
+        return true;
     }
+    
+    
 }

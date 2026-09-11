@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/guardian.tscn" id="1_6iq6a"]
-[ext_resource type="Script" path="res://GuardianCode/Vfx/NGuardianMerchantCharacter.cs" id="1_15ttq"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_15ttq"]
 
 [node name="Merchant" type="Node2D"]
 script = ExtResource("1_15ttq")
 
 [node name="Guardian2" parent="." instance=ExtResource("1_6iq6a")]
-position = Vector2(35, 196)
-scale = Vector2(-0.854761, 0.854761)

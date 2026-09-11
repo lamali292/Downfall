@@ -87,7 +87,7 @@ public class Champ : DownfallCharacterModel
     
     private Func<Creature, ChampStanceModel?> Stance => creature => creature.Player == null ? null : ChampModel.GetStanceModel(creature.Player);
 
-
+    
     public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
     {
         var idle = new AnimState("idle_loop", true);
