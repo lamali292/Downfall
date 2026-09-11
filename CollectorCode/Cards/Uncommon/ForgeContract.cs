@@ -12,10 +12,10 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ForgeContract : CollectorCardModel
 {
-    public ForgeContract() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ForgeContract() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithTorchheadDamage(6, 3);
+        WithTorchheadDamage(5, 2);
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;

@@ -4,7 +4,7 @@
   "COLLECTOR-ASHEN_STRIKE.description": "Deal {Damage:diff()} damage.\nAdd {IfUpgraded:show:an [gold]Ember[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-ASHEN_STRIKE.title": "Charcoal Strike",
   "COLLECTOR-BELLOW_COLLECTOR.title": "Bellow",
-  "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Doom[/gold] equal to unused [gold]Block[/gold] last turn.\n(Applies {UnusedBlock:diff()} [gold]Doom[/gold])",
+  "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Miasma[/gold] equal to unused [gold]Block[/gold] last turn.\n(Applies {UnusedBlock:diff()} [gold]Miasma[/gold])",
   "COLLECTOR-BILLOW.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, add [gold]Bellow[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-BILLOW.title": "Billow",
   "COLLECTOR-BLACK_BINDINGS.description": "Apply {WeakPower:diff()} [gold]Weak.[/gold]\nApply {MiasmaExtra:diff()} [gold]Miasma[/gold] for each unique debuff on the enemy.",

@@ -10,7 +10,7 @@ public class HiredGuards : CollectorCardModel
 {
     public HiredGuards() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
-        WithKindle(5, 3);
+        WithKindle(8, 3);
     }
     
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
