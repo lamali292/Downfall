@@ -137,9 +137,11 @@ public class CollectorCmd
 
         var encounterId = room.Encounter.Id;
         var pool = ModelDb.CardPool<CollectibleCardPool>().AllCards.ToList();
+        // get our collectibles
         var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
-        model ??=   GetCardForModdedEnemy(encounterId);
-        // fallback. pick random elite or boss with the same act number.
+        // fallback to other mods
+        model ??= GetCardForModdedEnemy(encounterId);
+        // final fallback. pick random elite or boss with the same act number.
         if (model is null)
         {
             var actNumber = room.Act.ActNumber();
@@ -181,13 +183,10 @@ public class CollectorCmd
             { "RUINA2-WHITE_NIGHT_BOSS", "RUINA2-PARADISE_LOST" },
             { "RUINA2-SILENT_GIRL_BOSS", "RUINA2-REMORSE" },
         };
-        if (moddedEnemyMap.ContainsKey(encounterId.Entry))
-        {
-            ModelId id = new ModelId("CARD", moddedEnemyMap[encounterId.Entry]);
-            var card = ModelDb.GetById<CardModel>(id);
-            return card;
-        }
-        return null;
+        if (!moddedEnemyMap.TryGetValue(encounterId.Entry, out var value)) return null;
+        var id = new ModelId("CARD", value);
+        var card = ModelDb.GetById<CardModel>(id);
+        return card;
     }
     
     
