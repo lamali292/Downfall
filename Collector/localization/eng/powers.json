@@ -48,7 +48,7 @@
   "COLLECTOR-RESERVE_NEXT_TURN_POWER.description": "At the start of your next turn, gain {:reserveIcons(1)}.",
   "COLLECTOR-RESERVE_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, gain {Amount:reserveIcons()}.",
   "COLLECTOR-SCORCHED_POWER.title": "Scorched",
-  "COLLECTOR-SCORCHED_POWER.description": "At the end of its turn, gains Miasma.",
+  "COLLECTOR-SCORCHED_POWER.description": "At the end of its turn, gains [gold]Miasma[/gold].",
   "COLLECTOR-SCORCHED_POWER.smartDescription": "At the end of its turn, gains [blue]{Amount}[/blue] [gold]Miasma[/gold]",
   "COLLECTOR-SHOOTING_STAR_POWER.title": "Shooting Star",
   "COLLECTOR-SHOOTING_STAR_POWER.description": "The first time you [gold]Pyre[/gold] an Attack each turn, add a copy of it into your [gold]Hand[/gold].\nIt's free to play that turn.",
@@ -80,7 +80,7 @@
   "COLLECTOR-MIASMA_POWER.smartDescription": "At the end of its turn, takes [blue]{Amount}[/blue] damage.",
   "COLLECTOR-REFINED_FUEL_POWER.title": "Refined Fuel",
   "COLLECTOR-REFINED_FUEL_POWER.description": "The first time you [gold]Pyre[/gold] a Status each turn, gain {:reserveIcons(1)} next turn.",
-  "COLLECTOR-REFINED_FUEL_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Exhaust[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn.",
+  "COLLECTOR-REFINED_FUEL_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Pyre[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn.",
   "COLLECTOR-EQUIP_STAFF_POWER.title": "Equip: Staff",
   "COLLECTOR-EQUIP_STAFF_POWER.description": "Whenever [gold]Torchhead[/gold] attacks, it applies [gold]Miasma[/gold].",
   "COLLECTOR-EQUIP_STAFF_POWER.smartDescription": "Whenever [gold]Torchhead[/gold] attacks, it applies [blue]{Amount}[/blue] [gold]Miasma[/gold].",
@@ -131,5 +131,5 @@
   "COLLECTOR-COLLECTION_BOUNTY_POWER.smartDescription": "When this enemy dies, ALL players gain {Amount:reserveIcons()}. ",
   "COLLECTOR-PYREWORK_POWER.title": "Pyrework",
   "COLLECTOR-PYREWORK_POWER.description": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals damage.",
-  "COLLECTOR-PYREWORK_POWER.smartDescription": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals {TorchheadDamage} damage{TorchheadTargetsAll:cond: to ALL enemies|}{Amount:plural:| [blue]{Amount}[/blue] times}."
+  "COLLECTOR-PYREWORK_POWER.smartDescription": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals [blue]{TorchheadDamage}[/blue] damage{TorchheadTargetsAll:cond: to ALL enemies|}{Amount:plural:| [blue]{Amount}[/blue] times}."
 }

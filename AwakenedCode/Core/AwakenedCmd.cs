@@ -5,6 +5,7 @@ using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Powers;
 using Awakened.AwakenedCode.Vfx;
+using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,17 @@ public static class AwakenedCmd
         return (AwakenedPile)AwakenedPile.Spellbook.GetPile(player);
     }
 
-    public static void RefreshSpellbook(Player player)
+    
+    private static readonly PlayerField<bool> SpellbookInitialized = new(() => false);
+    public static void InitSpellbook(Player player)
+    {
+        if (SpellbookInitialized.Get(player)) return;
+        SpellbookInitialized.Set(player, true);
+        GetSpellbook(player).Refresh(player);
+    }
+
+
+    private static void RefreshSpellbook(Player player)
     {
         GetSpellbook(player).Refresh(player);
     }
@@ -120,6 +131,8 @@ public static class AwakenedCmd
         CardModel spell,
         AwakenedPile spellbook)
     {
+        InitSpellbook(player);
+        await Cmd.Wait(0.1f);
         spellbook.RemoveInternal(spell);
 
         await CardPileCmd.AddGeneratedCardToCombat(

@@ -68,7 +68,7 @@
     "SNECKO-MULLIGAN_POWER.title": "调换",
     "SNECKO-MULLIGAN_POWER.description": "每当你打出一张耗能高于其原始值的牌时，下回合获得{energyPrefix:energyIcons(1)}。",
     "SNECKO-MULLIGAN_POWER.smartDescription": "每当你打出一张耗能高于其原始值的牌时，下回合获得{Amount:energyIcons()}。",
-    "SNECKO-PARALYTIC_VENOM_POWER.title": "麻痹毒液",
+    "SNECKO-PARALYTIC_VENOM_POWER.title": "神经毒素",
     "SNECKO-PARALYTIC_VENOM_POWER.description": "每当你造成未被格挡的伤害时，给予[gold]剧毒[/gold]。",
     "SNECKO-PARALYTIC_VENOM_POWER.smartDescription": "每当你造成未被格挡的伤害时，给予[blue]{Amount}[/blue]层[gold]剧毒[/gold]。",
     "SNECKO-MUDDY_POWER.title": "泥泞",
