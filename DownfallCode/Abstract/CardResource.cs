@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Core;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -70,7 +69,7 @@ public abstract class CardResource : CustomSingletonModel
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
-            player.PlayerCombatState?.Reserve = 0;
+            Reset(player);
         return Task.CompletedTask;
     }
 
@@ -81,8 +80,14 @@ public abstract class CardResource : CustomSingletonModel
     {
         if (!ResetOnTurnStart) return Task.CompletedTask;
         foreach (var player in combatState.Players)
-            player.PlayerCombatState?.Reserve = 0;
+            Reset(player);
         return Task.CompletedTask;
+    }
+
+    private void Reset(Player player)
+    {
+        if (player.PlayerCombatState == null) return;
+        Set(player.PlayerCombatState, 0);
     }
 
     // Only implement these if InteractsWithEnergy = true
