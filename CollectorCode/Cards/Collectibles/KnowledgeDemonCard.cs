@@ -1,8 +1,11 @@
-﻿using Collector.CollectorCode.Cards.Token;
+﻿using BaseLib.Cards;
+using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Encounters;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
@@ -20,7 +23,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
         
         foreach (var cardPoolModel in prismatic)
         {
-            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
+            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));//Not unplayable and does not have star cost.
             pool = pool is null ? newCm : pool.Concat(newCm);
         }
         var notPrismatic = ModelDb.AllSharedCardPools.ToList();
@@ -30,7 +33,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             {
                 continue;//Dont get any deprecated cards.
             }
-            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
+            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));//Not unplayable and does not have star cost.
             pool = pool is null ? newCm : pool.Concat(newCm);
         }
         
@@ -39,7 +42,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             throw new NullReferenceException("No pool found");
         }
         
-        var mungus = ModelDb.CardPool<EventCardPool>().AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});
+        var mungus = ModelDb.CardPool<EventCardPool>().AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));
         pool = pool.Concat(mungus);//The event card pool is removed at some point from ALlSharedPools for some reason so i add it back in here.
         
 
@@ -58,8 +61,8 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
         // it might be funny. but it will certainly break with other mods.
         // I don't want every buggy jank card to be draftable that's hidden in a random modded non-character pool. 
 
-        // There are enough safeguards already, the card must be playable and cant cost stars, the specific "unplayable" keyword,
-		// "purge" and a few others can be added later to make it more resilient if you are worried.
+        // There are enough safeguards already, the card must be playable and cant cost stars, 
+        // I added additional checks for "Purge" (Fleeting), "Unplayable" if for some reason the modder did not set invalid cost and "Eternal" for cards that shouldn't be in the random pool anyway.
 		
         var list = CardFactory.GetDistinctForCombat(Owner, pool, 
             DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
