@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Powers;
 using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;

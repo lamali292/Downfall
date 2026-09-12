@@ -4,6 +4,8 @@ using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Powers;
+using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
