@@ -1,7 +1,7 @@
 ﻿<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Slay the Spire 2 Client 1002" type="RunExe" factoryName=".NET Executable">
+  <configuration default="false" name="Slay the Spire 2 Client 2000" type="RunExe" factoryName=".NET Executable">
     <option name="EXE_PATH" value="$STS2_DIR$/SlayTheSpire2.exe" />
-    <option name="PROGRAM_PARAMETERS" value="--fastmp=join clientId=1002" />
+    <option name="PROGRAM_PARAMETERS" value="--fastmp=join clientId=2000" />
     <option name="WORKING_DIRECTORY" value="$STS2_DIR$" />
     <option name="PASS_PARENT_ENVS" value="1" />
     <option name="ENV_FILE_PATHS" value="" />
