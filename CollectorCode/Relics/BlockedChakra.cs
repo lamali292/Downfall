@@ -20,16 +20,17 @@ public class BlockedChakra : CollectorRelicModel
      
         //WithEnergy(1);
     }
-    
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+
+    public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
     {
-        if(target != Owner.Torchhead) return;
-        var toTake = (int)Math.Ceiling(result.UnblockedDamage / 3.0);
-        if (toTake == 0) return;
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, toTake,
-                DamageProps.nonCardHpLoss, null, null);
+        if(creature != Owner.Torchhead || delta >= 0) return;
+        var toTake = (int)Math.Ceiling(-delta / 3);
+        if (toTake <= 0) return;
+        Flash();
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner.Creature, toTake,
+            DamageProps.nonCardHpLoss, null, null);
     }
+    
 
     public override async Task AfterSideTurnStart(CombatSide side,
         IReadOnlyList<Creature> participants,
