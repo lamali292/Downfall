@@ -29,39 +29,31 @@ public abstract class CardResource : CustomSingletonModel
     protected virtual bool ResetOnTurnStart => false; // opt-in
     protected virtual bool InteractsWithEnergy => false;
 
-    public event Action<Player, int>? Changed;
+    public event Action<PlayerCombatState, int>? Changed;
 
     public int Get(Player player)
     {
-        return _current[player];
+        return _current.Get(player);
+    }
+    
+    public int Get(PlayerCombatState player)
+    {
+        return _current.Get(player);
     }
 
-    protected virtual void Set(Player player, int amount)
+    public void Set(PlayerCombatState player, int amount)
     {
         var clamped = Math.Max(0, amount);
         _current[player] = clamped;
+        GD.Print($"[CollectorEnergy] Set fired: player={player.GetHashCode()} value={clamped}");
         Changed?.Invoke(player, clamped);
     }
 
-    public virtual void Gain(Player player, int amount)
-    {
-        Set(player, Get(player) + amount);
-    }
-
-    public virtual void Spend(Player player, int amount)
-    {
-        Set(player, Get(player) - amount);
-    }
-
-    public virtual bool CanAfford(Player player, int cost)
+    protected virtual bool CanAfford(Player player, int cost)
     {
         return Get(player) >= cost;
     }
-
-    public virtual void Reset(Player player)
-    {
-        Set(player, 0);
-    }
+    
 
     // Only create UI if position is specified
     public virtual Control? CreateCounter(Player player)
@@ -90,6 +82,12 @@ public abstract class CardResource : CustomSingletonModel
         foreach (var player in combatState.Players)
             Reset(player);
         return Task.CompletedTask;
+    }
+
+    private void Reset(Player player)
+    {
+        if (player.PlayerCombatState == null) return;
+        Set(player.PlayerCombatState, 0);
     }
 
     // Only implement these if InteractsWithEnergy = true

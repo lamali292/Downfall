@@ -25,6 +25,6 @@ public class DragonsTrove : CollectorCardModel
     {
         var cards = Owner.DrawPile.Where(e => e.VisualCardPool.IsColorless);
         await CardPileCmd.Add(cards, PileType.Hand);
-        await CollectorCmd.GetReserve(this);
+        await CollectorCmd.GainReserve(this);
     }
 }

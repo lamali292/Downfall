@@ -63,9 +63,9 @@ public partial class NCollectorEnergyCounter : Control, IAnimatedCounter
             _rotationLayers.GetChild<Control>(i).RotationDegrees += (float)delta * 30f * (i + 1);
     }
 
-    private void OnEnergyChanged(Player player, int amount)
+    private void OnEnergyChanged(PlayerCombatState player, int amount)
     {
-        if (player != _player) return;
+        if (player != _player?.PlayerCombatState) return;
         Refresh();
     }
 

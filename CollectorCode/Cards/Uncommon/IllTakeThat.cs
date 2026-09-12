@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,7 +34,7 @@ public class IllTakeThat : CollectorCardModel
         var stolenBlock = Math.Min(cardPlay.Target.Block, DynamicVars["IllTakeThat"].IntValue);
         if (stolenBlock > 0)
         {
-            await CreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
+            await CompatibilityCreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
 

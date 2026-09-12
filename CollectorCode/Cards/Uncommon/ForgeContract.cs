@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
@@ -25,6 +26,7 @@ public class ForgeContract : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await Cmd.CustomScaledWait(0.1f, 0.3f);
         await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
     }
 

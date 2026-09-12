@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Collector.CollectorCode.Rewards;
 
+[Obsolete]
 public class CollectibleReward(ModelId encounterModel, Player player, bool upgraded) : CustomReward(player)
 {
     [CustomEnum] public static RewardType CustomCardRewardType;

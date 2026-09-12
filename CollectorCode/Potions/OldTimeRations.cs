@@ -19,7 +19,7 @@ public class OldTimeRations : CollectorPotionModel
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         if (target?.Player == null) return;
-        await CollectorCmd.GetReserve(target.Player, DynamicVars.Reserve.IntValue);
+        await CollectorCmd.GainReserve(target.Player, DynamicVars.Reserve.IntValue);
     }
    
 }
