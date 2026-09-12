@@ -1,10 +1,12 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
@@ -46,5 +48,12 @@ public class ShadowDaggers : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay, hits)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
+    }
+    
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
+        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        base.AddExtraArgsToDescription(description);
     }
 }

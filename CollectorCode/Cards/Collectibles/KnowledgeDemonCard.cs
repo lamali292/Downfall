@@ -19,18 +19,12 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
     {
 
         var prismatic = Owner.UnlockState.CharacterCardPools.ToList();
-        IEnumerable<CardModel> pool = null;
+        IEnumerable<CardModel>? pool = null;
+        
         foreach (var cardPoolModel in prismatic)
         {
-            var newCM = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
-            if (pool is null)
-            {
-                pool = newCM;
-            }
-            else
-            {
-                pool = pool.Concat(newCM);
-            }
+            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
+            pool = pool is null ? newCm : pool.Concat(newCm);
         }
         var notPrismatic = ModelDb.AllSharedCardPools.ToList();
         foreach (var cardPoolModel in notPrismatic)
@@ -39,20 +33,17 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             {
                 continue;//Dont get any deprecated cards.
             }
-            var newCM = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
-            if (pool is null)
-            {
-                pool = newCM;
-            }
-            else
-            {
-                pool = pool.Concat(newCM);
-            }
+            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});//Not unplayable and does not have star cost.
+            pool = pool is null ? newCm : pool.Concat(newCm);
         }
+        
         if (pool is null)
         {
             throw new NullReferenceException("No pool found");
         }
+        
+        var mungus = ModelDb.CardPool<EventCardPool>().AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true});
+        pool = pool.Concat(mungus);//The event card pool is removed at some point from ALlSharedPools for some reason so i add it back in here.
         
         var list = CardFactory.GetDistinctForCombat(Owner, pool, 
             DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
