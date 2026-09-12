@@ -7,9 +7,11 @@ namespace Collector.CollectorCode.Cards.Collectibles.ActsFromThePast;
 
 public class BookOfStabbing : ActsFromThePastCard
 {
-    public BookOfStabbing() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BOOK_OF_STABBING_ELITE")
+    public BookOfStabbing() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BOOK_OF_STABBING_ELITE")
     {
-        WithCostUpgradeBy(-1);
+        //WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithPower<BookOfStabbingPower>(1, false);
         WithTip<MiasmaPower>();
     }
