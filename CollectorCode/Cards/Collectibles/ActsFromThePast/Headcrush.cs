@@ -9,9 +9,9 @@ namespace Collector.CollectorCode.Cards.Collectibles.ActsFromThePast;
 [Pool(typeof(TokenCardPool))]
 public class Headcrush : CollectorCardModel
 {
-    public Headcrush() : base(4, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, IsModLoaded("ActsFromThePast"), IsModLoaded("ActsFromThePast"))
+    public Headcrush() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, IsModLoaded("ActsFromThePast"), IsModLoaded("ActsFromThePast"))
     {
-        WithDamage(70, 30);
+        WithDamage(33, 19);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

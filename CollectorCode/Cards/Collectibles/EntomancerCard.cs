@@ -10,7 +10,7 @@ public class EntomancerCard : Collectible<EntomancerElite>
     public EntomancerCard() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.54f)
     {
         WithDamage(1);
-        WithRepeat(7, 1);
+        WithRepeat(8);
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
     }

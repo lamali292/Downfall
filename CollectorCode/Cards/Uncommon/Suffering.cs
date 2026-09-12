@@ -14,9 +14,7 @@ public class Suffering : CollectorCardModel
 {
     public Suffering() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<SufferingPower>(2, 1, false);
-        WithTip<WeakPower>();
-        WithTip<VulnerablePower>();
+        WithPower<SufferingPower>(1, 1, false);
         WithTip<MiasmaPower>();
     }
 
