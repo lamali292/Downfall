@@ -18,7 +18,7 @@ public class AshenStrike : CollectorCardModel
     // rename
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.Self)
     {
-        WithTorchheadDamage(14, 5);
+        WithTorchheadDamage(14, 3);
         WithUpgradeChangingCardTip<Burn, Ember>();
         WithTags(CardTag.Strike);
     }
