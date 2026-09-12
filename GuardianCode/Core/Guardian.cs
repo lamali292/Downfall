@@ -3,8 +3,11 @@ using Downfall.DownfallCode.Config;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Relics;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -65,25 +68,73 @@ public class Guardian : DownfallCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<GuardianRelicPool>();
 
 
-    /*
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    private Func<Creature, bool> IsDefensive => creature => creature.Player != null && GuardianCmd.IsInMode<GuardianDefensiveMode>(creature.Player);
+
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
     {
-        var idleNormal = new AnimState("idle", true);
-        var idleDefensive = new AnimState("defensive", true);
+        var idle          = new AnimState("idle_loop", true);
+        var idleDefensive = new AnimState("idle_loop_defensive", true);
 
+        var idles = new (string name, AnimState state, Func<bool> when)[]
+        {
+            ("IdleDefensive", idleDefensive, () => IsDefensive(creature)),
+            ("Idle",          idle,          () => !IsDefensive(creature)),
+        };
 
-        var animator = new CreatureAnimator(idleNormal, controller);
-        animator.AddAnyState("Idle", idleNormal, IsInMode<GuardianNormalMode>);
-        animator.AddAnyState("Idle", idleDefensive, IsInMode<GuardianDefensiveMode>);
+        var animator = new CreatureAnimator(PickIdle(), controller);
+
+        foreach (var (name, state, when) in idles)
+            animator.AddAnyState(name, state, when);
+
+        var attack          = new AnimState("attack");
+        var attackDefensive = new AnimState("attack_defensive");
+        var hurt            = new AnimState("hurt");
+        var hurtDefensive   = new AnimState("hurt_defensive");
+
+       
+        var attacks = new (AnimState state, Func<bool> when)[]
+        {
+            (attackDefensive, () => IsDefensive(creature)),
+            (attack,          () => !IsDefensive(creature)),
+        };
+
+        
+        var transitionIn   = new AnimState("transition_in");
+        foreach (var (_, idleState, idleWhen) in idles)
+            transitionIn.AddNextState(idleState, idleWhen);
+        animator.AddAnyState("TransitionIn", transitionIn);
+        
+        var transitionOut   = new AnimState("transition_out");
+        foreach (var (_, idleState, idleWhen) in idles)
+            transitionOut.AddNextState(idleState, idleWhen);
+        animator.AddAnyState("TransitionOut", transitionOut);
+        
+        foreach (var (state, when) in attacks)
+        {
+            foreach (var (_, idleState, idleWhen) in idles)
+                state.AddNextState(idleState, idleWhen);
+            animator.AddAnyState(CreatureAnimator.attackTrigger, state, when);
+        }
+
+        var hurts = new (AnimState state, Func<bool> when)[]
+        {
+            (hurtDefensive, () => IsDefensive(creature)),
+            (hurt,          () => !IsDefensive(creature)),
+        };
+
+        foreach (var (state, when) in hurts)
+        {
+            foreach (var (_, idleState, idleWhen) in idles)
+                state.AddNextState(idleState, idleWhen);
+            animator.AddAnyState(CreatureAnimator.hitTrigger, state, when);
+        }
+
+        animator.AddAnyState(CreatureAnimator.deathTrigger, new AnimState("die"));
         return animator;
 
-        bool IsInMode<T>() where T : GuardianModeModel
-        {
-            return ControllerToPlayer.TryGetValue(controller, out var player)
-                   && GuardianCmd.IsInMode<T>(player);
-        }
+        AnimState PickIdle() => idles.First(i => i.when()).state;
     }
-    */
+
 }
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;

@@ -19,7 +19,7 @@ public class CoalescenceFormPower : CollectorPowerModel
         if (player.Creature != Owner)
             return;
         
-        await CollectorCmd.GetReserve(player, DynamicVars.Reserve.IntValue);
+        await CollectorCmd.GainReserve(player, DynamicVars.Reserve.IntValue);
         DynamicVars.Reserve.BaseValue += Amount;
         InvokeDisplayAmountChanged();
     }

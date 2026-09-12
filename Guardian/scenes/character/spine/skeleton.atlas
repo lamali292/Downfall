@@ -1,7 +1,6 @@
 skeleton.png
 size:2017,449
 filter:Linear,Linear
-pma:true
 defensive/b2
 bounds:1960,5,36,64
 offsets:0,0,38,64

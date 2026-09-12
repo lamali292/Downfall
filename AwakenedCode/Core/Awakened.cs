@@ -95,7 +95,7 @@ public class Awakened : DownfallCharacterModel
             animator.AddAnyState(trigger, animState);
         }
 
-        animator.AddAnyState("Dead", new AnimState("die"));
+        animator.AddAnyState(CreatureAnimator.deathTrigger, new AnimState("die"));
         animator.AddAnyState("Relaxed", new AnimState("relaxed_loop", true));
         return animator;
 

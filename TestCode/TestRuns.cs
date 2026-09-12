@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Rare;
 using Champ.ChampCode.Cards.Ancient;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -82,7 +83,7 @@ public class TestRuns
             
             var card3 = ctx.Combat.CreateCard(model, ctx.Player);
             await CardPileCmd.AddGeneratedCardToCombat(card3, PileType.Hand, ctx.Player);
-            var b = await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card3);
+            var b = await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card3);
             if (b.HasValue) Assert.AreEqual(card3, b.Value.cardAdded);
 
             PlayerCmd.EndTurn(ctx.Player, false);
