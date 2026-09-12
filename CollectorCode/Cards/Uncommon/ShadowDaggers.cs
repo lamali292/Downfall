@@ -46,11 +46,4 @@ public class ShadowDaggers : CollectorCardModel
         description.Add("TorchheadTargetsAll", shouldTargetAll);
         base.AddExtraArgsToDescription(description);
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
-        description.Add("TorchheadTargetsAll", shouldTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
 }

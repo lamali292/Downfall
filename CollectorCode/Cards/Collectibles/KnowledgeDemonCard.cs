@@ -1,5 +1,6 @@
 ﻿using BaseLib.Cards;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
@@ -16,34 +17,60 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
         WithCards(5);
     }
 
+    private readonly List<CardPoolModel> _validPools =
+    [
+        ModelDb.CardPool<ColorlessCardPool>(), ModelDb.CardPool<CurseCardPool>(), ModelDb.CardPool<StatusCardPool>(),
+        ModelDb.CardPool<CollectibleCardPool>()
+    ];
+    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prismatic = Owner.UnlockState.CharacterCardPools.ToList();
         IEnumerable<CardModel>? pool = null;
-        
+
         foreach (var cardPoolModel in prismatic)
         {
-            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));//Not unplayable and does not have star cost.
+            var newCm = cardPoolModel.AllCards
+                .Where(c => c.EnergyCost.Canonical >= 0 && !c.HasStarCostX &&
+                            c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true }).Where(c =>
+                    !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) ||
+                      c.Keywords.Contains(CardKeyword.Eternal)));
+            //Must be playable, cannot cost stars, cannot be fleeting/purge and cannot be eternal.
             pool = pool is null ? newCm : pool.Concat(newCm);
         }
+
         var notPrismatic = ModelDb.AllSharedCardPools.ToList();
         foreach (var cardPoolModel in notPrismatic)
         {
-            if (cardPoolModel is DeprecatedCardPool)
+            if (!_validPools.Contains(cardPoolModel))
             {
-                continue;//Dont get any deprecated cards.
+                continue;
+                //Don't get from any non-allowed pools. (I.E event and token)
+                //Only collect from safe pools (I.E Colourless, status, curse, collectibles...)
             }
-            var newCm = cardPoolModel.AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));//Not unplayable and does not have star cost.
+
+            var newCm = cardPoolModel.AllCards
+                .Where(c => c.EnergyCost.Canonical >= 0 && !c.HasStarCostX &&
+                            c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true }).Where(c =>
+                    !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) ||
+                      c.Keywords.Contains(CardKeyword.Eternal)));
+            //Must be playable, cannot cost stars, cannot be fleeting/purge and cannot be eternal.
             pool = pool is null ? newCm : pool.Concat(newCm);
         }
-        
+
         if (pool is null)
         {
             throw new NullReferenceException("No pool found");
         }
-        
-        var mungus = ModelDb.CardPool<EventCardPool>().AllCards.Where(c => c.EnergyCost.Canonical >= 0 && c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true}).Where(c => !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge) || c.Keywords.Contains(CardKeyword.Eternal)));
-        pool = pool.Concat(mungus);//The event card pool is removed at some point from ALlSharedPools for some reason so i add it back in here.
+
+        var mungus = ModelDb.CardPool<EventCardPool>().AllCards
+            .Where(c => c.Rarity == CardRarity.Ancient && c.EnergyCost.Canonical >= 0 && !c.HasStarCostX &&
+                        c is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true }).Where(c =>
+                !(c.Keywords.Contains(CardKeyword.Unplayable) || c.Keywords.Contains(BaseLibKeywords.Purge)));
+        //Event pool has unique restrictions to exclude any non-ancient cards due to the presence of things like "MadScience" which can cause issues when generated mid-combat.
+        pool = pool.Concat(
+            mungus);
         
 
         /*
