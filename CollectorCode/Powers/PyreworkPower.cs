@@ -22,10 +22,8 @@ public class PyreworkPower : CollectorPowerModel, IAddDumbVariablesToPowerDescri
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
-        for (var i = 0; i < Amount; i++)
-        {
-            await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
-        }
+        await (CollectorCmd.TorchheadAttack(this)?.WithHitCount(Amount)).ExecuteIfPresent(ctx);
+       
     }
   
     

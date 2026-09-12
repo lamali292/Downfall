@@ -29,7 +29,6 @@ public class BlockedChakra : CollectorRelicModel
         if (toTake == 0) return;
         await CreatureCmd.Damage(choiceContext, Owner.Creature, toTake,
                 DamageProps.nonCardHpLoss, null, null);
-        
     }
 
     public override async Task AfterSideTurnStart(CombatSide side,
