@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
 {
-    public WaterfallGiantCard() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy, 0.88f)
+    public WaterfallGiantCard() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.88f)
     {
         
         WithPower<WaterfallGiantCardPower>(3, false);
