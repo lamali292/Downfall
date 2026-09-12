@@ -14,6 +14,9 @@ public class ExhaustStatusesPower : GuardianPowerModel
     private int _triggers;
     public override bool ShouldReceiveCombatHooks => true;
 
+
+    public override int DisplayAmount => Math.Max(Amount - _triggers, 0);
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         if (card.Owner != Owner.Player) return;
@@ -23,12 +26,14 @@ public class ExhaustStatusesPower : GuardianPowerModel
         _triggers++;
         await CardCmdCompatibility.Exhaust(choiceContext, card);
         await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
+        InvokeDisplayAmountChanged();
     }
 
     public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player == Owner.Player)
             _triggers = 0;
+        InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

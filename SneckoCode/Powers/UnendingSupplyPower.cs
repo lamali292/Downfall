@@ -25,6 +25,6 @@ public class UnendingSupplyPower : SneckoPowerModel
         var mutableCards = SneckoModel.GetCombatSneckoCards(player, Amount).ToList();
         foreach (var card in mutableCards) card.ToEcho();
 
-        await CardPileCmd.Add(mutableCards, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardsToCombat(mutableCards, PileType.Hand, player);
     }
 }

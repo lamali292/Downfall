@@ -1,11 +1,11 @@
-using Hermit.HermitCode.Core;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 
-namespace Hermit.HermitCode.Powers;
+namespace Downfall.DownfallCode.Powers;
 
-public sealed class DrainedPower : HermitPowerModel
+public sealed class DrainedPower : DownfallPowerModel
 {
     public DrainedPower() : base(PowerType.Debuff)
     {
