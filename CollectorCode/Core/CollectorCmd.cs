@@ -1,11 +1,17 @@
-﻿using BaseLib.Extensions;
+﻿using Automaton.AutomatonCode.Cards.Rare;
+using Awakened.AwakenedCode.Cards.Rare;
+using BaseLib.Extensions;
+using Champ.ChampCode.Cards.Rare;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
+using Guardian.GuardianCode.Cards.Rare;
+using Hexaghost.HexaghostCode.Cards.Rare;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -13,10 +19,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using SlimeBoss.SlimeBossCode.Cards.Rare;
+using SlimeBoss.SlimeBossCode.Cards.Token;
 
 namespace Collector.CollectorCode.Core;
 
@@ -138,8 +147,12 @@ public class CollectorCmd
         var encounterId = room.Encounter.Id;
         var pool = ModelDb.CardPool<CollectibleCardPool>().AllCards.ToList();
         // get our collectibles
-        var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterId);
+        var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel()?.Id == encounterId);
         // fallback to other mods
+        foreach (var mod in ModManager.Mods)
+        {
+            DownfallMainFile.Logger.Info($"{mod.manifest?.id}");
+        }
         model ??= GetCardForModdedEnemy(encounterId);
         // final fallback. pick random elite or boss with the same act number.
         if (model is null)
@@ -182,12 +195,19 @@ public class CollectorCmd
             { "RUINA2-TWILIGHT_BOSS", "RUINA2-APOCALYPSE" },
             { "RUINA2-WHITE_NIGHT_BOSS", "RUINA2-PARADISE_LOST" },
             { "RUINA2-SILENT_GIRL_BOSS", "RUINA2-REMORSE" },
+            { "ACTSFROMTHEPAST-SLIME_BOSS_BOSS", ModelDb.Card<PrepareCrush>().Id.Entry},
+            { "ACTSFROMTHEPAST-GUARDIAN_BOSS", ModelDb.Card<BodyCrash>().Id.Entry},
+            { "ACTSFROMTHEPAST-HEXAGHOST_BOSS", ModelDb.Card<EtherStep>().Id.Entry},
+            { "ACTSFROMTHEPAST-BRONZE_AUTOMATON_BOSS", ModelDb.Card<HyperBeamAutomaton>().Id.Entry},
+            { "ACTSFROMTHEPAST-CHAMP_BOSS", ModelDb.Card<MurderStrike>().Id.Entry},
+            { "ACTSFROMTHEPAST-AWAKENED_ONE_BOSS", ModelDb.Card<Murder>().Id.Entry}
         };
         if (!moddedEnemyMap.TryGetValue(encounterId.Entry, out var value)) return null;
         var id = new ModelId("CARD", value);
-        var card = ModelDb.GetById<CardModel>(id);
+        var card = ModelDb.GetByIdOrNull<CardModel>(id);
         return card;
     }
+    
     
     
 }
