@@ -125,7 +125,7 @@
   "COLLECTOR-STRIKE_COLLECTOR.title": "Strike",
   "COLLECTOR-SUCKER_PUNCH.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
   "COLLECTOR-SUCKER_PUNCH.title": "Clothesline",
-  "COLLECTOR-SUFFERING.description": "Whenever you apply [gold]Weak[/gold] or [gold]Vulnerable[/gold] to an enemy, also apply {SufferingPower:diff()} [gold]Miasma[/gold] to them.",
+  "COLLECTOR-SUFFERING.description": "Whenever you apply a debuff other than [gold]Miasma[/gold] to an enemy, also apply {SufferingPower:diff()} [gold]Miasma[/gold] to them.",
   "COLLECTOR-SUFFERING.title": "Suffering",
   "COLLECTOR-SUNBLOOM_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Ember+[/gold]|[gold]Ember[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-SUNBLOOM_KINDLING.title": "Sunbloom Kindling",
@@ -256,11 +256,11 @@
   "COLLECTOR-LEADER_SASH.title": "Leader Sash",
   "COLLECTOR-LEADER_SASH.description": "Gain {LeaderSashPower:diff()} [gold]Strength[/gold] this turn.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "COLLECTOR-HAUNTED_SCYTHE.title": "Haunted Scythe",
-  "COLLECTOR-HAUNTED_SCYTHE.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Embers[/gold]|[gold]Burns[/gold]} into your [gold]Draw Pile[/gold].",
+  "COLLECTOR-HAUNTED_SCYTHE.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Embers[/gold]|[gold]Burns[/gold]} into your {IfUpgraded:show:[gold]Discard[/gold]|[gold]Draw[/gold]}[gold] Pile[/gold].",
   "COLLECTOR-HEADCRUSH.title": "Headcrush",
   "COLLECTOR-HEADCRUSH.description": "Deal {Damage:diff()} damage to ALL enemies.",
-  "COLLECTOR-LAGAVULIN_CLAW.title": "Lagavulin Claw",
-  "COLLECTOR-LAGAVULIN_CLAW.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.\nALL enemies lose {LagavulinClawPower:diff()} [gold]Strength[/gold] this turn.",
+  "COLLECTOR-LAGAVULIN_CLAW.title": "Lagavulin Siphon",
+  "COLLECTOR-LAGAVULIN_CLAW.description": "ALL enemies lose {LagavulinClawPower:diff()} [gold]Dexterity[/gold].\nALL enemies lose {LagavulinClawPower:diff()} [gold]Strength[/gold] this turn.",
   "COLLECTOR-TASKMASTER_WHIP.title": "Taskmaster Whip",
   "COLLECTOR-TASKMASTER_WHIP.description": "Deal {Damage:diff()} damage.\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-SHAPERS_BLESSING.title": "Shaper's Blessing",
@@ -268,5 +268,5 @@
   "COLLECTOR-YOU_YOURSELF.title": "You Yourself",
   "COLLECTOR-YOU_YOURSELF.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].\n[gold]Kindle[/gold] {Kindle:diff()}.",
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
-  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold].\nRepeat for each [gold]Dazed[/gold] in your [gold]Exhaust Pile[/gold]."
+  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} Weak X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold]."
 }

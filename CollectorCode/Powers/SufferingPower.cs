@@ -11,8 +11,6 @@ public class SufferingPower : CollectorPowerModel
 {
     public SufferingPower()
     {
-        WithTip<WeakPower>();
-        WithTip<VulnerablePower>();
         WithTip<MiasmaPower>();
     }
     
@@ -21,7 +19,7 @@ public class SufferingPower : CollectorPowerModel
         Creature? applier,
         CardModel? cardSource)
     {
-        if (applier != Owner || power is not (VulnerablePower or WeakPower) || power.Owner == Owner) return;
+        if (applier != Owner || power is MiasmaPower || power.Owner == Owner) return;
         await PowerCmd.Apply<MiasmaPower>(ctx, power.Owner, Amount, Owner, null);
     }
 }

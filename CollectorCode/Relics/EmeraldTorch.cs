@@ -17,7 +17,7 @@ public class EmeraldTorch : CollectorRelicModel
 {
     public EmeraldTorch() : base(RelicRarity.Starter)
     {
-        WithKindle(4);
+        WithKindle(3);
     }
     
     public override RelicModel GetUpgradeReplacement()

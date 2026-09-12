@@ -16,8 +16,8 @@ public class IronbarkKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithBlock(5, 1);
-        WithKindle(4, 2);
+        WithBlock(6, 2);
+        WithKindle(3, 1);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

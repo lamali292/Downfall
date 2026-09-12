@@ -13,8 +13,8 @@ public class CantTouchThis : CollectorCardModel
 {
     public CantTouchThis() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<DexterityPower>(1);
-        WithPower<CantTouchThisPower>(1, 1, false);
+        WithPower<DexterityPower>(1, 1);
+        WithPower<CantTouchThisPower>(1, false);
         WithTip<MiasmaPower>();
     }
 

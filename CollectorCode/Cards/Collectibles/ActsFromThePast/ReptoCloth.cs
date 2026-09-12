@@ -12,9 +12,9 @@ public class ReptoCloth : ActsFromThePastCard
 {
     public ReptoCloth() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, "REPTOMANCER_ELITE")
     {
-        WithKindle(3, 1);
+        WithKindle(6, 1);
         WithTip<PoisonPower>();
-        WithPower<EquipDaggerPower>(2, 1, false);
+        WithPower<EquipDaggerPower>(1, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

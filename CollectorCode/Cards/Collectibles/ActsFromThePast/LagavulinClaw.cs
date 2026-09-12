@@ -8,17 +8,17 @@ namespace Collector.CollectorCode.Cards.Collectibles.ActsFromThePast;
 
 public class LagavulinClaw : ActsFromThePastCard
 {
-    public LagavulinClaw() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "LAGAVULIN_ELITE")
+    public LagavulinClaw() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "LAGAVULIN_ELITE")
     {
-        WithPower<WeakPower>(1);
-        WithPower<LagavulinClawPower>(2, 4, false);
+        WithPower<DexterityPower>(-5, -5);
+        WithPower<LagavulinClawPower>(6, 2, false);
         WithTip<StrengthPower>();
         WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<DexterityPower>(ctx, this, cardPlay);
         await CommonActions.Apply<LagavulinClawPower>(ctx, this, cardPlay);
     }
 }

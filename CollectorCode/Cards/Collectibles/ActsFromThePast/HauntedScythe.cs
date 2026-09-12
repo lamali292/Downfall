@@ -12,9 +12,9 @@ public class HauntedScythe : ActsFromThePastCard
 {
     public HauntedScythe() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "NEMESIS_ELITE")
     {
-        WithCostUpgradeBy(-1);
+        //WithCostUpgradeBy(-1);
         WithPower<IntangiblePower>(1);
-        WithCards(5);
+        WithCards(3, -1);
         WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -24,7 +24,7 @@ public class HauntedScythe : ActsFromThePastCard
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);
         if (IsUpgraded)
         {
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Draw, DynamicVars.Cards.IntValue, CardPilePosition.Random);
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Discard, DynamicVars.Cards.IntValue, CardPilePosition.Random);
         }
         else
         {
