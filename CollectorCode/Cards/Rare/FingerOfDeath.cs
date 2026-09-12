@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
 {
-    public FingerOfDeath() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public FingerOfDeath() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithPower<MiasmaPower>(54, 10);
         WithReserveTip();

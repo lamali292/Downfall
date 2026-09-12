@@ -131,5 +131,17 @@
   "COLLECTOR-COLLECTION_BOUNTY_POWER.smartDescription": "When this enemy dies, ALL players gain {Amount:reserveIcons()}. ",
   "COLLECTOR-PYREWORK_POWER.title": "Pyrework",
   "COLLECTOR-PYREWORK_POWER.description": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals damage.",
-  "COLLECTOR-PYREWORK_POWER.smartDescription": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals [blue]{TorchheadDamage}[/blue] damage{TorchheadTargetsAll:cond: to ALL enemies|}{Amount:plural:| [blue]{Amount}[/blue] times}."
+  "COLLECTOR-PYREWORK_POWER.smartDescription": "Whenever you play a card that requires [gold]Pyre[/gold] to play, [gold]Torchhead[/gold] deals [blue]{TorchheadDamage}[/blue] damage{TorchheadTargetsAll:cond: to ALL enemies|}{Amount:plural:| [blue]{Amount}[/blue] times}.",
+  "COLLECTOR-EQUIP_DAGGER_POWER.title": "Equip: Dagger",
+  "COLLECTOR-EQUIP_DAGGER_POWER.description": "Whenever [gold]Torchhead[/gold] attacks, it applies [gold]Poison[/gold].",
+  "COLLECTOR-EQUIP_DAGGER_POWER.smartDescription": "Whenever [gold]Torchhead[/gold] attacks, it applies [blue]{Amount}[/blue] [gold]Poison[/gold].",
+  "COLLECTOR-BOOK_OF_STABBING_POWER.title": "Painful Stabs",
+  "COLLECTOR-BOOK_OF_STABBING_POWER.description": "Whenever Attacks deal unblocked damage, apply [gold]Miasma[/gold].",
+  "COLLECTOR-BOOK_OF_STABBING_POWER.smartDescription": "Whenever Attacks deal unblocked damage, apply [blue]{Amount}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-CHRONO_BOOST_POWER.title": "Chrono-Boost",
+  "COLLECTOR-CHRONO_BOOST_POWER.description": "Every [blue]12[/blue] cards you play, gain [gold]Strength[/gold].",
+  "COLLECTOR-CHRONO_BOOST_POWER.smartDescription": "Every [blue]{CardPlays}[/blue] cards you play, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
+  "COLLECTOR-GREMLIN_AXE_POWER.title": "Gremlin Axe",
+  "COLLECTOR-GREMLIN_AXE_POWER.description": "Whenever you play a Skill, gain [gold]Vigor[/gold].",
+  "COLLECTOR-GREMLIN_AXE_POWER.smartDescription": "Whenever you play a Skill, gain [blue]{Amount}[/blue] [gold]Vigor[/gold]."
 }
