@@ -15,8 +15,8 @@ loc_editor_settings.json
 .run/*
 !.run/Publish Downfall to folder.run.xml
 !.run/Slay the Spire 2.run.xml
-!.run/Slay the Spire 2 Client 1001.run.xml
-!.run/Slay the Spire 2 Client 1002.run.xml
+!.run/Slay the Spire 2 Client 2000.run.xml
+!.run/Slay the Spire 2 Client 3000.run.xml
 !.run/Slay the Spire 2 Host.run.xml
 !.run/Slay the Spire 2 no build.run.xml
 !.run/ImageGen.run.xml
