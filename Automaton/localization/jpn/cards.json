@@ -121,7 +121,7 @@
     "AUTOMATON-SEPARATOR.title": "セパレータ",
     "AUTOMATON-SHIP_IT.description": "{Damage:diff()}ダメージを与える。\nこのカードを引くたび、カードを{Cards:diff()}枚引く。",
     "AUTOMATON-SHIP_IT.title": "出荷",
-    "AUTOMATON-SPAGHETTI_CODE.description": "ランダムな3枚のカードから1枚を選んで[gold]エンコード[/gold]する。\n関数が作成されるまで繰り返す。\n{IfUpgraded:show:このターン、それはコストを支払わずにプレイできる。|}",
+    "AUTOMATON-SPAGHETTI_CODE.description": "ランダムな3枚のカードから1枚を選んで[gold]エンコード[/gold]する。\n関数が作成されるまで繰り返す。{IfUpgraded:show:\nこのターン、それはコストを支払わずにプレイできる。|}",
     "AUTOMATON-SPAGHETTI_CODE.title": "スパゲティコード",
     "AUTOMATON-STICKY_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]山札[/gold]に[gold]粘液[/gold]を1枚加える。",
     "AUTOMATON-STICKY_SHIELD.title": "粘着シールド",

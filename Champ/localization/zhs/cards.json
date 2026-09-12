@@ -127,7 +127,7 @@
     "CHAMP-PREEMPTIVE_STRIKE.description": "对所有敌人造成等同于你的[gold]反击[/gold]层数的伤害。\n如果不处于[gold]防守[/gold]，失去一半的[gold]反击[/gold]层数。{InCombat:cond:\n（造成{CalculatedDamage:diff()}点伤害）|}",
     "CHAMP-PREEMPTIVE_STRIKE.title": "先手打击",
     "CHAMP-PROTECTIVE_AURA.title": "守护光环",
-    "CHAMP-PROTECTIVE_AURA.description": "[gold]防守终极技[/gold]额外获得{ProtectiveAuraPower:diff()}点[gold]格挡[/gold]。",
+    "CHAMP-PROTECTIVE_AURA.description": "[gold]防守终结技[/gold]额外获得{ProtectiveAuraPower:diff()}点[gold]格挡[/gold]。",
     "CHAMP-RAPID_STRIKES.description": "造成{Damage:diff()}点伤害两次。\n[gold]手牌[/gold]中随机一张“打击”牌在本回合耗能变为0{energyPrefix:energyIcons(1)}。",
     "CHAMP-RAPID_STRIKES.title": "连续打击",
     "CHAMP-RECKLESS_STRIKE.description": "造成{Damage:diff()}点伤害。\n获得{StrengthPower:diff()}点[gold]力量[/gold]。\n进入[gold]战狂[/gold]。",
@@ -198,5 +198,5 @@
     "CHAMP-CROWD_FAVORITE.title": "观众的最爱",
     "CHAMP-CROWD_FAVORITE.description": "每当其他玩家攻击敌人时，获得{CrowdFavoritePower:diff()}点[gold]活力[/gold]。",
     "CHAMP-GROUP_EFFORT.title": "并肩作战",
-    "CHAMP-GROUP_EFFORT.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n这张牌的[gold]终极技[/gold]效果作用于所有玩家。"
+    "CHAMP-GROUP_EFFORT.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n这张牌的[gold]终结技[/gold]效果作用于所有玩家。"
 }
