@@ -109,7 +109,7 @@
   "COLLECTOR-SEED_OF_DOUBT.title": "Seed of Doubt",
   "COLLECTOR-EXTRICATE.description": "[gold]Exhaust[/gold] all non-Attack cards in your [gold]Hand[/gold].\nDeal {Damage:diff()} damage.",
   "COLLECTOR-EXTRICATE.title": "Extricate",
-  "COLLECTOR-SHADOW_DAGGERS.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} for ALL your Colorless cards.{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
+  "COLLECTOR-SHADOW_DAGGERS.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} for each Colorless cards in your [gold]Deck[/gold].{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "COLLECTOR-SHADOW_DAGGERS.title": "Shadow Daggers",
   "COLLECTOR-SHOOTING_STAR.description": "The first time you [gold]Pyre[/gold] an Attack each turn, add a copy of it into your [gold]Hand[/gold].\nIt's free to play that turn.",
   "COLLECTOR-SHOOTING_STAR.title": "Shooting Star",
