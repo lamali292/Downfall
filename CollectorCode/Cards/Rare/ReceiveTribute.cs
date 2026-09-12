@@ -32,15 +32,6 @@ public class ReceiveTribute : CollectorCardModel
             .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration)
             .Select(Select)
             .ToList();
-        
-/*
-        var list = CardFactory.GetDistinctForCombat(Owner, 
-            ModelDb.CardPool<CollectibleCardPool>()
-                .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint), 
-            DynamicVars.Cards.IntValue, 
-            Owner.RunState.Rng.CombatCardGeneration)
-            .ToList();
-*/
 
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, list, Owner, true);
         if (card == null)

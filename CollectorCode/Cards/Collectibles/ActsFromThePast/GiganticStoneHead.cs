@@ -6,7 +6,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.ActsFromThePast;
 
 public class GiganticStoneHead : ActsFromThePastCard
 {
-    public GiganticStoneHead() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies, "GIANT_HEAD_ELITE")
+    public GiganticStoneHead() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies, "GIANT_HEAD_ELITE")
     {
         WithUpgradingCardTip<Headcrush>();
         WithKeyword(CardKeyword.Exhaust);

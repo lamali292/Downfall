@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.ActsFromThePast;
 
 public class GremlinAxe : ActsFromThePastCard
 {
-    public GremlinAxe() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "GREMLIN_NOB_ELITE")
+    public GremlinAxe() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, "GREMLIN_NOB_ELITE")
     {
         WithCostUpgradeBy(-1);
         WithPower<GremlinAxePower>(1, false);

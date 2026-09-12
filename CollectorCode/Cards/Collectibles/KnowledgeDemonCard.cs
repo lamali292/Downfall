@@ -15,7 +15,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
     {
         WithCards(5);
     }
-
+    
     private static bool IsCardWeWant(CardModel card)
     {
         return card.EnergyCost.Canonical >= 0 
@@ -27,6 +27,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+
         var pool = Owner.UnlockState.CharacterCardPools
             .Append(ModelDb.CardPool<EventCardPool>())
             .Append(ModelDb.CardPool<ColorlessCardPool>())
@@ -35,12 +36,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             .Append(ModelDb.CardPool<StatusCardPool>())
             .Append(ModelDb.CardPool<TokenCardPool>())
             .SelectMany(cardPoolModel => cardPoolModel.AllCards.Where(IsCardWeWant));
-        // we can't do ANY pool. 
-        // it might be funny. but it will certainly break with other mods.
-        // I don't want every buggy jank card to be draftable that's hidden in a random modded non-character pool. 
 
-        // There are enough safeguards already, the card must be playable and cant cost stars, 
-        // I added additional checks for "Purge" (Fleeting), "Unplayable" if for some reason the modder did not set invalid cost and "Eternal" for cards that shouldn't be in the random pool anyway.
         var list = CardFactory.GetDistinctForCombat(Owner, pool, 
             DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var card in list)
