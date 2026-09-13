@@ -37,7 +37,10 @@ public class ShadowDaggers : CollectorCardModel
     {
         if (Owner.IsTorchheadMissing) return;//If no Torchhead, do not run.
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
-        await (CollectorCmd.TorchheadAttack(this)?.WithHitCount(hits).WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+        for (var v = 0; v < hits; v++)//Loop rather than multihit so the Torchhead doesn't waste hits.
+        {
+            await (CollectorCmd.TorchheadAttack(this)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+        }
     }
     
     protected override void AddExtraArgsToDescription(LocString description)
