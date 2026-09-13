@@ -110,7 +110,7 @@
   "COLLECTOR-FOLLOW_THE_PYRE_POWER.smartDescription": "This enemy takes [blue]{Amount}[/blue] additional damage from ALL [gold]Catalyst[/gold] cards.",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.title": "Mecha Knight Card Power",
   "COLLECTOR-MECHA_KNIGHT_CARD_POWER.description": "Whenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] random Orbs. ",
-  "COLLECTOR-MECHA_KNIGHT_CARD_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold], [gold]Channel[/gold] [blue]{Amount}[/blue] random {Amount:plural:Orb|Orbs}. ",
+  "COLLECTOR-MECHA_KNIGHT_CARD_POWER.smartDescription": "Whenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] [blue]{Amount}[/blue] random {Amount:plural:Orb|Orbs}. ",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.title": "Stone Head Power",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.description": "At the end of this turn, gain {:reserveIcons(1)} and [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-BYGONE_EFFIGY_CARD_POWER.smartDescription": "At the end of {Amount:plural:this turn|[blue]{}[/blue] turns}, gain {Reserve:reserveIcons()} and [blue]{StrengthPower:diff()}[/blue] [gold]Strength[/gold].",
