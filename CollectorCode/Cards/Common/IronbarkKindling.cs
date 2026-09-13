@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class IronbarkKindling : CollectorCardModel
+public class IronbarkKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
     public IronbarkKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -27,7 +28,13 @@ public class IronbarkKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CollectorCmd.Kindle(ctx, this);
-        await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CollectorCmd.Kindle(ctx, this);
+            await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
+        }
+
+      
     }
 }

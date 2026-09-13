@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class RotwoodKindling : CollectorCardModel
+public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
     public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -26,7 +27,11 @@ public class RotwoodKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this || CombatState == null) return;
-        await CollectorCmd.Kindle(ctx, this);
-        await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CollectorCmd.Kindle(ctx, this);
+            await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
+        }
     }
 }

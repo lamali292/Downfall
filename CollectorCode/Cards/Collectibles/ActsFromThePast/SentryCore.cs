@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -42,5 +43,6 @@ public class SentryCore : ActsFromThePastCard
         var x = ResolveEnergyXValue();
         await CommonActions.CardAttack(this, cardPlay, x).Execute(ctx);
         for (var i = 0; i < x; i++) await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await DownfallCardCmd.GiveCard<Dazed>(Owner, PileType.Draw, CardPilePosition.Top);
     }
 }

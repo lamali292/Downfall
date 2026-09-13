@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class DarkwillowKindling : CollectorCardModel
+public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
     public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -28,7 +29,11 @@ public class DarkwillowKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CollectorCmd.Kindle(ctx, this);
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CollectorCmd.Kindle(ctx, this);
+            await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
+        }
     }
 }
