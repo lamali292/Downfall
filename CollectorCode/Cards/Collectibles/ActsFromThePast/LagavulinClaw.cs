@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -10,7 +11,7 @@ public class LagavulinClaw : ActsFromThePastCard
 {
     public LagavulinClaw() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "LAGAVULIN_ELITE")
     {
-        WithPower<DexterityPower>(-5, -5);
+        WithPower<DexterityPower>(5, 5);
         WithPower<LagavulinClawPower>(6, 2, false);
         WithTip<StrengthPower>();
         WithKeyword(CardKeyword.Exhaust);
@@ -18,7 +19,8 @@ public class LagavulinClaw : ActsFromThePastCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<DexterityPower>(ctx, this, cardPlay);
+        await PowerCmd.Apply<DexterityPower>(ctx, CombatState!.HittableEnemies, -DynamicVars.Dexterity.BaseValue,
+            Owner.Creature, this);
         await CommonActions.Apply<LagavulinClawPower>(ctx, this, cardPlay);
     }
 }

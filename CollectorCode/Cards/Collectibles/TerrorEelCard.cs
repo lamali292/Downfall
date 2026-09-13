@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -9,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class TerrorEelCard
-    : Collectible<TerrorEelElite>
+    : Collectible<TerrorEelElite>, ISkipReplayOnSelfExhaust
 {
     public TerrorEelCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
@@ -21,6 +22,10 @@ public class TerrorEelCard
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this || CombatState == null) return;
-        await CommonActions.Apply<VulnerablePower>(ctx, CombatState.HittableEnemies, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CommonActions.Apply<VulnerablePower>(ctx, CombatState.HittableEnemies, this);
+        }
     }
 }

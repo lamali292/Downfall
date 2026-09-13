@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class BramblesparKindling : CollectorCardModel
+public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -35,7 +36,11 @@ public class BramblesparKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CollectorCmd.Kindle(choiceContext, this);
-        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CollectorCmd.Kindle(choiceContext, this);
+            await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
+        }
     }
 }

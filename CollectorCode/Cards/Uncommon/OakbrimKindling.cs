@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class OakbrimKindling : CollectorCardModel
+public class OakbrimKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
     public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -25,7 +26,11 @@ public class OakbrimKindling : CollectorCardModel
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card != this) return;
-        await CollectorCmd.Kindle(ctx, this);
-        await CommonActions.Draw(this, ctx);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CollectorCmd.Kindle(ctx, this);
+            await CommonActions.Draw(this, ctx);
+        }
     }
 }
