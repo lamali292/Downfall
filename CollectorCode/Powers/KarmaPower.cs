@@ -18,8 +18,7 @@ public class KarmaPower : CollectorPowerModel
         WithTip(StaticHoverTip.Block);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
-        IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         var unique = DynamicVars["Debuffs"].IntValue;
@@ -29,6 +28,7 @@ public class KarmaPower : CollectorPowerModel
             await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
         }
     }
+    
 
     private static bool ShouldCountPower(PowerModel power)
     {
