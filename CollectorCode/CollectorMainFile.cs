@@ -1,9 +1,13 @@
+using Awakened.AwakenedCode.Cards.Uncommon;
+using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
+using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Patches;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -19,6 +23,7 @@ public static class CollectorMainFile
 
     public static void Initialize()
     {
+        PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
 
@@ -29,11 +34,25 @@ public static class CollectorMainFile
         FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
 
-
+        HarmonyLib.Harmony.DEBUG = true;
+        
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(AddMyPoolFilterPatch))
             .Add(typeof(NDamageNumVfxOverkillPatch))
             .Add(typeof(NMultiplayerPlayerStatePatch))
+            .Add(typeof(OnPlayWrapperPlayCountPatch))
             .PatchAll();
+    }
+    
+    
+    private static void PostModelInit()
+    {
+        CustomBundleRegistry.Register<Core.Collector>(new CustomPackage
+        {
+            ChancePercent = 50,
+            Card1 = ModelDb.Card<FollowThePyre>(),
+            Card2 = ModelDb.Card<FollowThePyre>(),
+            Card3 = ModelDb.Card<FollowThePyre>()
+        });
     }
 }

@@ -80,6 +80,10 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     {
         if (card is not IHasAfterlifeEffect afterlifeEffect) return;
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/afterlife");
-        await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
+        var playCount = await card.GeneratePlayCount(card.CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
+        }
     }
 }
