@@ -16,7 +16,7 @@ public class Degrade : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         
-        WithPower<MiasmaPower>(2, 1);
+        WithPower<MiasmaPower>(1, 1);
         WithPower<StrengthPower>(1);
     }
 

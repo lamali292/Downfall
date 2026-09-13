@@ -12,7 +12,7 @@ public class TheInsatiableCard : Collectible<TheInsatiableBoss>
 {
     public TheInsatiableCard() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, 0.61f)
     {
-        WithPower<TheInsatiableCardPower>(3, 1, false);
+        WithPower<TheInsatiableCardPower>(2, 1, false);
         WithTip(CollectorTip.Kindle);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);

@@ -17,7 +17,7 @@ public class Hellfire : CollectorCardModel, IUsesPyredCards
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(6, 3);
+        WithPower<MiasmaPower>(5, 3);
     }
 
     public IEnumerable<CardModel> PyredCards { get; set; } = [];

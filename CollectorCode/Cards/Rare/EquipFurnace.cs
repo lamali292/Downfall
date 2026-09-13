@@ -12,11 +12,11 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class EquipFurnace : CollectorCardModel
 {
-    public EquipFurnace() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public EquipFurnace() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<EquipFurnacePower>(1, false);
-        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
-        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithPower<EquipFurnacePower>(1, 1, false);
+        //WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip<Ember>();
         WithTip<Burn>();
         WithTip<Soot>();

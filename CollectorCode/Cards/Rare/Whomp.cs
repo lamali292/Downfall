@@ -11,8 +11,8 @@ public class Whomp : CollectorCardModel
 {
     public Whomp() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(14, 5);
-        WithKindle(10, 4);
+        WithDamage(14, 4);
+        WithKindle(10, 3);
         WithKeyword(CardKeyword.Exhaust);
     }
 

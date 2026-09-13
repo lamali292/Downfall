@@ -10,9 +10,9 @@ public class PhantasmalGardenerCard
 {
     public PhantasmalGardenerCard() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, 0.05f)
     {
-        WithBlock(7, 2);
+        WithBlock(7, 3);
         WithDamage(1);
-        WithRepeat(3, 1);
+        WithRepeat(3);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

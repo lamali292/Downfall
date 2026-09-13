@@ -15,7 +15,7 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>, ISkipReplayOnS
 {
     public DecimillipedeCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.66f)
     {
-        WithKindle(5, 2);
+        WithKindle(4, 1);
         WithBlock(5, 2);
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
