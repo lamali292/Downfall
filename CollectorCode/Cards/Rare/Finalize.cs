@@ -13,7 +13,7 @@ public class Finalize : CollectorCardModel
     public Finalize() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(16, 6);
+        WithPower<MiasmaPower>(12, 4);
         WithPower<FinalizePower>(7, 3, false);
     }
 

@@ -13,8 +13,8 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
 {
     public Pyreblast() : base(10, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithKeyword(CardKeyword.Retain);
-        WithDamage(60, 40);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithDamage(100);
         WithEnergy(1);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);

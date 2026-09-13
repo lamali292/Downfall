@@ -10,10 +10,10 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class Misdirect : CollectorCardModel
 {
-    public Misdirect() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Misdirect() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(2, 3);
-        WithPower<ReserveNextTurnPower>(1, false);
+        //WithBlock(2, 3);
+        WithPower<ReserveNextTurnPower>(1, 1, false);
         WithReserveTip();
         WithKeyword(CardKeyword.Exhaust);
     }

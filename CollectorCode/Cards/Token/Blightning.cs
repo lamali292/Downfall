@@ -16,9 +16,9 @@ public class Blightning : CollectorCardModel
 {
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithKindle(1, 2);
+        WithKindle(1, 1);
         WithTorchheadDamage(9, 2);
-        WithPower<MiasmaPower>(3, 2);
+        WithPower<MiasmaPower>(3, 1);
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithTags(CardTag.Strike);

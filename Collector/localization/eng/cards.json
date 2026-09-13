@@ -87,7 +87,7 @@
   "COLLECTOR-LUCKY_WICK.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.",
   "COLLECTOR-MINI_CURSE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.",
   "COLLECTOR-MINI_CURSE.title": "Mini-Curse",
-  "COLLECTOR-MISDIRECT.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.",
+  "COLLECTOR-MISDIRECT.description": "Next turn, gain {ReserveNextTurnPower:reserveIcons()}.",
   "COLLECTOR-MISDIRECT.title": "Misdirect",
   "COLLECTOR-MYSTERY_WEAVING.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGrants {CalculationExtra:diff()} less [gold]Block[/gold] for each other card in your [gold]Hand[/gold].",
   "COLLECTOR-MYSTERY_WEAVING.title": "Mystery Weaving",
@@ -119,7 +119,7 @@
   "COLLECTOR-SOULFORGE.title": "Soulforge",
   "COLLECTOR-SPIRIT_LEECH.description": "Deal {Damage:diff()} damage.\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.",
   "COLLECTOR-SPIRIT_LEECH.title": "Spirit Leech",
-  "COLLECTOR-STASH_AWAY.description": "Next turn, gain X+2 {Reserve:reserveIcons()}{IfUpgraded:show: and draw X+1 cards|}.",
+  "COLLECTOR-STASH_AWAY.description": "Next turn, gain X+1 {Reserve:reserveIcons()}{IfUpgraded:show: and draw X+1 cards|}.",
   "COLLECTOR-STASH_AWAY.title": "Stash Away",
   "COLLECTOR-STRIKE_COLLECTOR.description": "Deal {Damage:diff()} damage.",
   "COLLECTOR-STRIKE_COLLECTOR.title": "Strike",
@@ -148,7 +148,7 @@
   "COLLECTOR-YOU_ARE_MINE.title": "YOU ARE MINE!!!",
   "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold], [gold]Frail[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-PYREBLAST.title": "Pyreblast",
-  "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nCosts {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Pyred[/gold] this combat, while this is in your [gold]Hand[/gold].",
+  "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nWhile this card is in your Hand, costs {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Pyred[/gold].",
   "COLLECTOR-HELLFIRE.title": "Hellfire",
   "COLLECTOR-HELLFIRE.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold] for each [gold]Pyred[/gold] card.",
   "COLLECTOR-EQUIP_SHIELD.title": "Equip: Shield",
@@ -268,5 +268,5 @@
   "COLLECTOR-YOU_YOURSELF.title": "You Yourself",
   "COLLECTOR-YOU_YOURSELF.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].\n[gold]Kindle[/gold] {Kindle:diff()}.",
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
-  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} Weak X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold]."
+  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold]."
 }

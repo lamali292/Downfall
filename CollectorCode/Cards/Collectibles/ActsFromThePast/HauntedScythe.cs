@@ -14,7 +14,7 @@ public class HauntedScythe : ActsFromThePastCard
     {
         //WithCostUpgradeBy(-1);
         WithPower<IntangiblePower>(1);
-        WithCards(3, -1);
+        WithCards(3);
         WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }

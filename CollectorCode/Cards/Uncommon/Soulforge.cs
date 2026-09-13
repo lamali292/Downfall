@@ -14,9 +14,8 @@ public class Soulforge : CollectorCardModel
     public Soulforge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         //WithKeyword(CollectorKeyword.Pyre);
-        //WithKeyword(CardKeyword.Exhaust);
-        WithCards(2, 1);
-
+        WithKeyword(CardKeyword.Exhaust);
+        WithCards(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

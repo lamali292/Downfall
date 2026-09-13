@@ -12,12 +12,13 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class AstralFlames : CollectorCardModel
 {
-    public AstralFlames() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public AstralFlames() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(7, 2);
-        WithVar("Increase", 2, 1);
+        WithBlock(10, 2);
+        WithVar("Increase", 3, 1);
         WithEnergyTip();
         WithTip(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

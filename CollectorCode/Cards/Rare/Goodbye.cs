@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Goodbye : CollectorCardModel
 {
-    public Goodbye() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip<MiasmaPower>();

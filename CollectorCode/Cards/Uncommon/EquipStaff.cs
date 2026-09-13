@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class EquipStaff : CollectorCardModel
 {
-    public EquipStaff() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public EquipStaff() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKindle(6, 2);
         WithPower<EquipStaffPower>(3, 1, false);
