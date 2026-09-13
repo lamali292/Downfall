@@ -58,7 +58,6 @@ public class CollectorCmd
         return target == null ? null: attack.Targeting(target);
     }
     
-    
     private static async Task PyreCards(PlayerChoiceContext ctx, CardModel card, IEnumerable<CardModel> pyred)
     {
         if (card.CombatState == null) return;
@@ -89,9 +88,6 @@ public class CollectorCmd
         await PyreCards(ctx, card, cards);
         return cards;
     }
-
-
-    
     
     public static Task<Creature> Kindle(
         PlayerChoiceContext ctx,
@@ -108,19 +104,13 @@ public class CollectorCmd
         return Kindle(ctx, summoner, source.DynamicVars.Kindle.IntValue, source);
     }
     
-    
     public static async Task<Creature> Kindle(
         PlayerChoiceContext ctx,
         Player summoner,
         int hp,
         AbstractModel? source)
     {
-        if (summoner is not { Osty: not null, Torchhead: null }) //User has an Osty already! (But does not have a Torchhead).
-            return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp,
-                source); //No Osty, summon on Torchhead instead.
-        await CreatureCmd.TriggerAnim(summoner.Creature, Necrobinder.GetSummonAnimIfApplicable(summoner.Character), Necrobinder.GetSummonDelayIfApplicable(summoner.Character));
-        await OstyCmd.Summon(ctx, summoner, hp, source);
-        return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);//No Osty, summon on Torchhead instead.
+        return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
     }
 
     public static Task GainReserve(AbstractModel card)

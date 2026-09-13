@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Powers;
 
-public class OverheatPower : AutomatonPowerModel
+public class OverheatPower() : AutomatonPowerModel(PowerType.Debuff)
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
