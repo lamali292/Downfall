@@ -148,7 +148,7 @@
     "HERMIT-HEROIC_BRAVADO.title": "勇ましき豪傑",
     "HERMIT-HEROIC_BRAVADO.description": "[gold]堅牢[/gold]1を得る。\nこのカードのコストを{CostIncrease:diff()}増加させる。",
     "HERMIT-FROM_BEYOND.title": "彼方より",
-    "HERMIT-FROM_BEYOND.description": "[gold]廃棄札[/gold]のカード1枚につき、ランダムな敵1体がHPを{HpLoss:diff()}失う。{InCombat:cond:\n(攻撃回数は{CalculatedHits:diff()}回)|}",
+    "HERMIT-FROM_BEYOND.description": "[gold]廃棄札[/gold]のカード1枚につき、ランダムな敵がHPを{HpLoss:diff()}失う。{InCombat:cond:\n(攻撃回数は{CalculatedHits:diff()}回)|}",
     "HERMIT-VIRTUE.title": "美徳",
     "HERMIT-VIRTUE.description": "自分の蓄積型デバフをそれぞれ{Reduce:diff()}減少させる。",
     "HERMIT-LONE_WOLF.selectionScreenPrompt": "このカード以外をすべて捨てる。",
