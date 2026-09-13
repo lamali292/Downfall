@@ -30,9 +30,14 @@ public class CoffinNail : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-        var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
-        if (power == null) return;
-        power.Card = this;
-        power.OnAdd = c => c.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; i++)
+        {
+            var power = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
+            if (power == null) return;
+            power.Card = this;
+ 
+            power.OnAdd = c => c.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        }
     }
 }
