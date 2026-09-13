@@ -58,7 +58,7 @@
     "SNECKO-MIMICRY_POWER.smartDescription": "[gold]他クラス[/gold]カードをプレイするたび、1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "SNECKO-THROWING_CARDS_POWER.title": "カードスロー",
     "SNECKO-THROWING_CARDS_POWER.description": "次に[gold]他クラス[/gold]のカードをプレイした時、ランダムな敵にダメージを与えてカードを1枚引く。",
-    "SNECKO-THROWING_CARDS_POWER.smartDescription": "次に[blue]{Amount}[/blue]回[gold]他クラス[/gold]のカードをプレイした時、ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与えてカードを[blue]{Cards:diff()}[/blue]枚引く。",
+    "SNECKO-THROWING_CARDS_POWER.smartDescription": "次の[blue]{Amount}[/blue]回、[gold]他クラス[/gold]のカードをプレイした時、ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与えてカードを[blue]{Cards:diff()}[/blue]枚引く。",
     "SNECKO-DICE_CASE_POWER.title": "ダイスケース",
     "SNECKO-DICE_CASE_POWER.description": "ターン開始時、他のプレイヤー1人の[gold]手札[/gold]に[gold]ソウルロール[/gold]を1枚加える。",
     "SNECKO-DICE_CASE_POWER.smartDescription": "ターン開始時、[orange]{OtherName}[/orange]の[gold]手札[/gold]に[gold]ソウルロール[/gold]を[blue]{Amount}[/blue]枚加える。",

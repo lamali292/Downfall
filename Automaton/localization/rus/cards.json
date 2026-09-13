@@ -1,7 +1,7 @@
 {
     "AUTOMATON-ALLOCATE.description": "Дает {energyPrefix:energyIcons(1)} за каждый Статус в [gold]стопке добора[/gold] и [gold]стопке Запаса[/gold].{InCombat:cond:\n(Дает {Status:diff()}{energyPrefix:energyIcons(1)})|}",
     "AUTOMATON-ALLOCATE.title": "Распределить",
-    "AUTOMATON-ASSEMBLY.description": "Вы добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт} и [gold]Программируете[/gold] {Cards:plural:ее|их}, если возможно.",
+    "AUTOMATON-ASSEMBLY.description": "Вы добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт} и [gold]Программируете[/gold] {Cards:plural(ru):ее|их|их}, если возможно.",
     "AUTOMATON-ASSEMBLY.title": "Собрать",
     "AUTOMATON-BACKTRACE.title": "Трассировка",
     "AUTOMATON-BIT_SHIFT.description": "Дает {Block:diff()} [gold]защиты[/gold].\nВы кладете карту с верха [gold]стопки добора[/gold] в [gold]Запас[/gold].",
@@ -117,7 +117,7 @@
     "AUTOMATON-SAFEGUARD.title": "Предосторожность",
     "AUTOMATON-SENTIENT_FORM.description": "Ваши [gold]Функции[/gold] получают [gold]повтор[/gold] 1.",
     "AUTOMATON-SENTIENT_FORM.title": "Облик сознания",
-    "AUTOMATON-SEPARATOR.description": "Урон повышается на {ExtraDamage:diff()}, когда [gold]Запрограммирована[/gold] в середине [gold]Функции[/gold].",
+    "AUTOMATON-SEPARATOR.description": "Урон повышается на {ExtraDamage:diff()}, когда эта карта - в середине [gold]Кода[/gold].",
     "AUTOMATON-SEPARATOR.title": "Сепаратор",
     "AUTOMATON-SHIP_IT.description": "Наносит {Damage:diff()} урона.\nВы добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}, когда добираете эту карту.",
     "AUTOMATON-SHIP_IT.title": "Отправить",
