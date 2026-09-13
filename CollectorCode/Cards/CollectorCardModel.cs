@@ -3,6 +3,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.DynamicVars;
+using Collector.CollectorCode.Events;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -29,6 +30,8 @@ public abstract class CollectorCardModel
             : []);
     }
     
+    
+    protected bool ShouldTorcheadTargetAll => _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
     
     protected override bool IsPlayable =>
         !HasPyre|| (HasPyre && Owner.Hand.Any(e => e != this));
