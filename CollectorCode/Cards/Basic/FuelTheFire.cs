@@ -17,7 +17,7 @@ public class FuelTheFire : CollectorCardModel, ITranscendenceCard
 {
     public FuelTheFire() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        
+        WithBlock(6, 2);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithKeyword(CollectorKeyword.Pyre);
@@ -27,6 +27,7 @@ public class FuelTheFire : CollectorCardModel, ITranscendenceCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, 1);
     }
