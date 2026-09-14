@@ -159,7 +159,7 @@
     "HERMIT-SPECTRE.title": "亡霊",
     "HERMIT-SPECTRE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の{IfUpgraded:show:|ランダムな}カード1枚に[gold]エセリアル[/gold]を付与する。",
     "HERMIT-MAGAZINE.title": "弾倉",
-    "HERMIT-MAGAZINE.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン最初にプレイした[gold]基本[/gold][gold]ストライク[/gold]は追加で{MagazinePower:diff()}ダメージを与える。",
+    "HERMIT-MAGAZINE.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]基本[/gold][gold]ストライク[/gold]が追加で{MagazinePower:diff()}ダメージを与える。",
     "HERMIT-SCOPE_OUT.title": "偵察",
     "HERMIT-SCOPE_OUT.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]基本[/gold][gold]ストライク[/gold]がすべての敵にダメージを与えるようになる。",
     "HERMIT-CURSED_SKULL.title": "呪われた頭蓋骨",
@@ -190,5 +190,5 @@
     "HERMIT-TECHNIQUE.title": "業",
     "HERMIT-TECHNIQUE.description": "すべてのプレイヤーの[gold]基本[/gold][gold]ストライク[/gold]が追加で{MaintenanceStrikePower:diff()}ダメージを与える。",
     "HERMIT-LONG_SHADOWS.title": "伸びる影",
-    "HERMIT-LONG_SHADOWS.description": "[red]呪い[/red]を引くたび、カードを{LongShadowsPower:diff()}枚引く。"
+    "HERMIT-LONG_SHADOWS.description": "[red]呪い[/red]を1枚引くたび、カードを{LongShadowsPower:diff()}枚引く。"
 }
