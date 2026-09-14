@@ -11,13 +11,26 @@ namespace Downfall.TestCode;
 
 public class TestContext
 {
-    public CombatState Combat { get; }   // now settable
+    public CombatState Combat { get; }
+    /// The local player (net id 1).
     public Player Player { get; }
+    /// Every player in the combat, local first. Only has more than one entry for tests declared with playerCount > 1.
+    public IReadOnlyList<Player> Players { get; }
 
-    public TestContext(CombatState combat, Player player)
+    public TestContext(CombatState combat, IReadOnlyList<Player> players)
     {
         Combat = combat;
-        Player = player;
+        Players = players;
+        Player = players[0];
+    }
+
+    public Task<CardModel> AddCardToHand<T>() where T : CardModel => AddCardToHand<T>(Player);
+
+    public async Task<CardModel> AddCardToHand<T>(Player player) where T : CardModel
+    {
+        var card = Combat.CreateCard(ModelDb.Card<T>(), player);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+        return card;
     }
 
 
@@ -25,13 +38,6 @@ public class TestContext
     {
         var card = Combat.CreateCard(ModelDb.Card<T>(), Player);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, Player, CardPilePosition.Top);
-        return card;
-    }
-
-    public async Task<CardModel> AddCardToHand<T>() where T : CardModel
-    {
-        var card = Combat.CreateCard(ModelDb.Card<T>(), Player);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Player);
         return card;
     }
 

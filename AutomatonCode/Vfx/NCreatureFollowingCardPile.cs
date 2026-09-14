@@ -47,6 +47,9 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         base.Initialize(player);
         if (_pile != null)
         {
+            // CardAddFinished only fires once the card-fly VFX lands (NCardFlyVfx), which never happens
+            // for cards without a table node or with skipped visuals; ContentsChanged fires on every add/remove.
+            _pile.ContentsChanged += RefreshCardVisual;
             _pile.CardAddFinished += RefreshCardVisual;
             _pile.CardRemoveFinished += RefreshCardVisual;
         }
@@ -61,6 +64,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         _followActive = false;
         if (_pile != null)
         {
+            _pile.ContentsChanged -= RefreshCardVisual;
             _pile.CardAddFinished -= RefreshCardVisual;
             _pile.CardRemoveFinished -= RefreshCardVisual;
             _pile = null;
@@ -143,7 +147,12 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             card.PivotOffset = IconCenter - pos;
             card.Scale = fanned ? Vector2.One * BigScale : Vector2.One * SmallScale;
         }
+
+        AfterCardVisualsRefreshed(models);
     }
+
+    /// <summary>Called after the shown card visuals were rebuilt for a new set of <paramref name="models"/>.</summary>
+    protected virtual void AfterCardVisualsRefreshed(IReadOnlyList<CardModel> models) { }
 
     protected virtual List<CardModel> GetCards()
     {
@@ -209,6 +218,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
     public override void AnimIn()
     {
         if (!IsInstanceValid(this)) return;
+        RefreshCardVisual();
         Visible = true;
         _followActive = false;
 

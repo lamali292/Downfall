@@ -246,6 +246,20 @@
           "optional": false
         }
       ]
+    },
+    {
+      "id": "compilable",
+      "markers": [
+        "Compilable",
+        "CardToPileCompile"
+      ],
+      "fields": [
+        {
+          "name": "compile",
+          "file": "encode.json",
+          "optional": false
+        }
+      ]
     }
   ],
   "pinnedColors": [],

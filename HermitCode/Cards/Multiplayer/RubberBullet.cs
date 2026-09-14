@@ -3,6 +3,7 @@ using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Multiplayer;
 
@@ -16,15 +17,23 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
+    // The copy that replaced this card in a teammate's hand. Set by the first Dead On trigger of a
+    // play; a second trigger (Snipe) must stack its damage increase on that copy, since this card
+    // is no longer in combat by then, and must not hand the card off again.
+    private CardModel? _handedOff;
+
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        var live = _handedOff ?? this;
+        live.DynamicVars.Damage.UpgradeValueBy(live.DynamicVars["Increase"].IntValue);
+        if (_handedOff != null) return;
 
         var player = Owner.RandomOtherTeammate;
         if (player == null) return;
 
         // TODO: use CreateCloneForPlayer on main / beta merge
         var clone = CreateClone();
+        _handedOff = clone;
         clone._owner = player;
         clone.EnergyCost.AfterCardPlayedCleanup();
         clone.EnergyCost.EndOfTurnCleanup();

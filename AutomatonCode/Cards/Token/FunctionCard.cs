@@ -1,5 +1,6 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
+using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
@@ -28,10 +29,14 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
 
     private IReadOnlyList<CardModel> _sourceCards = [];
     public IReadOnlyList<CardModel> SourceCards => _sourceCards;
-    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        Encodable.All.Select(e => e.FunctionDynamicVar)
+            .Concat(Compilable.All.SelectMany(c => c.FunctionDynamicVars));
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
+        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : [])
+            .Concat(Compilable.All.SelectMany(c =>
+                DynamicVars[c.FunctionDynamicVar.Name].BaseValue > 0 ? c.HoverTips(this) : []));
 
     public override int MaxUpgradeLevel => 0;
     public override bool CanBeGeneratedInCombat => false;
@@ -97,9 +102,15 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
         foreach (var sourceCard in _sourceCards)
         {
             var pos = i == 1 ? FunctionPosition.Start : i == max ? FunctionPosition.End : FunctionPosition.Middle;
-            if (sourceCard is not IEncodable encodable) continue;
-            encodable.ApplyEncode(this, pos);
-            foreach (var encodableEncoding in encodable.Encodings) encodableEncoding.ApplyEncode(this, sourceCard);
+            if (sourceCard is IEncodable encodable)
+            {
+                encodable.ApplyEncode(this, pos);
+                foreach (var encodableEncoding in encodable.Encodings) encodableEncoding.ApplyEncode(this, sourceCard);
+            }
+
+            if (sourceCard is ICompilable compilable)
+                foreach (var compilation in compilable.Compilations)
+                    compilation.ApplyCompile(this, sourceCard);
 
             i++;
         }
@@ -108,10 +119,41 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var lines = (from encodable in Encodable.All
-            where encodable.DynamicVar(this).BaseValue > 0
-            select encodable.GetDescription(this).GetFormattedText()).ToList();
-        description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
+        // Compile effects are not part of the Function's text; they are listed in NFunctionDisplay.
+        description.Add("effects", string.Join("\n", GetEncodeLines()));
+    }
+
+    /// <summary>Formatted description of every encode effect this Function has, one line each.</summary>
+    public IEnumerable<string> GetEncodeLines()
+    {
+        return (from encodable in Encodable.All
+                where encodable.DynamicVar(this).BaseValue > 0
+                select encodable.GetDescription(this).GetFormattedText())
+            .Where(l => !string.IsNullOrWhiteSpace(l));
+    }
+
+    /// <summary>Formatted description of every compile effect this Function triggers, one line each.</summary>
+    public IEnumerable<string> GetCompileLines()
+    {
+        // Card-level changes to the Function itself (Frontload's Retain, Null Pointer's cost, ...).
+        foreach (var sourceCard in _sourceCards)
+            if (sourceCard is IEncodable encodable && encodable.CompileDescription(sourceCard) is { } loc)
+                yield return loc.GetFormattedText();
+
+        foreach (var compilable in Compilable.All)
+        {
+            if (compilable.MergesOnFunction)
+            {
+                if (DynamicVars[compilable.FunctionDynamicVar.Name].BaseValue > 0)
+                    yield return compilable.GetDescription(this).GetFormattedText();
+            }
+            else
+            {
+                foreach (var sourceCard in _sourceCards)
+                    if (sourceCard is ICompilable ic && ic.Compilations.Any(c => c.GetType() == compilable.GetType()))
+                        yield return compilable.GetDescription(sourceCard).GetFormattedText();
+            }
+        }
     }
 
 

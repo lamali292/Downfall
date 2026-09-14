@@ -1,10 +1,10 @@
-﻿using Automaton.AutomatonCode.Core;
+﻿using Automaton.AutomatonCode.Compile;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
@@ -20,11 +20,6 @@ public class Spike : AutomatonCardModel, IEncodable, ICompilable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public Task OnCompile(PlayerChoiceContext ctx)
-    {
-        return CommonActions.ApplySelf<ThornsPower>(ctx, this);
-    }
-
-
+    public IEnumerable<Compilable> Compilations => [new ThornsCompile()];
     public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

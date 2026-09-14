@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,10 +18,13 @@ namespace Downfall.TestCode;
 public class CardTestRunner
 {
 	private readonly List<(string testName, Exception ex)> _failures = [];
+	private readonly List<string> _passed = [];
 	private RunState _run = null!;
-	
-	public async Task RunAllTestsAsync(string seed, CancellationToken ct)
+
+	/// <param name="filter">Optional case-insensitive substring matched against "Type.Method"; null runs everything.</param>
+	public async Task<TestRunResult> RunAllTestsAsync(string seed, CancellationToken ct, string? filter = null)
 	{
+		var started = DateTime.UtcNow;
 		var wasTestMode = TestMode.IsOn;
 		TestMode.IsOn = true;
 		var selectorScope = CardSelectCmd.UseSelector(new FirstCardSelector());
@@ -32,9 +35,15 @@ public class CardTestRunner
 				.GetTypes()
 				.SelectMany(t => t.GetMethods())
 				.Where(m => m.GetCustomAttributes(typeof(CardTestAttribute), false).Length > 0)
+				.Where(m => string.IsNullOrEmpty(filter) ||
+				            $"{m.DeclaringType?.Name}.{m.Name}".Contains(filter, StringComparison.OrdinalIgnoreCase))
+				// Quick single-combat tests first, slow "play every card" pool tests last.
+				.OrderBy(m => typeof(Task).IsAssignableFrom(m.ReturnType) ? 0 : 1)
+				.ThenBy(m => m.DeclaringType?.Name)
 				.ToList();
 
-			AutoSlayLog.Action($"[TestRunner] Found {testMethods.Count} test cases.");
+			AutoSlayLog.Action($"[TestRunner] Found {testMethods.Count} test cases" +
+			                   (string.IsNullOrEmpty(filter) ? "." : $" matching '{filter}'."));
 
 			foreach (var method in testMethods)
 			{
@@ -48,6 +57,7 @@ public class CardTestRunner
 					{
 						// Single-combat test: one combat, run the method, tear down.
 						await RunSingleTest(method, testName, seed, attr);
+						_passed.Add(testName);
 					}
 					else if (typeof(IEnumerable<CardTestCase>).IsAssignableFrom(method.ReturnType))
 					{
@@ -74,13 +84,16 @@ public class CardTestRunner
 			TestMode.IsOn = wasTestMode;
 			Report();
 		}
+
+		return new TestRunResult(seed, DateTime.UtcNow - started, _passed.ToList(),
+			_failures.Select(f => new TestFailure(f.testName, f.ex.Message, f.ex.ToString())).ToList());
 	}
 
 	private async Task RunSingleTest(MethodInfo method, string testName, string seed,
 									 CardTestAttribute attr)
 	{
-		var (combat, player) = await NewCombatAsync(seed, attr.CharacterType, attr.EncounterType);
-		var context = new TestContext(combat, player);
+		var (combat, players) = await NewCombatAsync(seed, attr);
+		var context = new TestContext(combat, players);
 		try
 		{
 			AutoSlayLog.Info($"Running: {testName}");
@@ -109,12 +122,13 @@ public class CardTestRunner
 		{
 			ct.ThrowIfCancellationRequested();
 			
-			var (combat, player) = await NewCombatAsync(seed, attr.CharacterType, attr.EncounterType);
-			var context = new TestContext(combat, player);
+			var (combat, players) = await NewCombatAsync(seed, attr);
+			var context = new TestContext(combat, players);
 
 			try
 			{
 				await testCase.Run(context);
+				_passed.Add($"{testName}:{testCase.Name}");
 			}
 			catch (Exception ex)
 			{
@@ -141,31 +155,37 @@ public class CardTestRunner
 			AutoSlayLog.Warn($"  - {name}: {ex.Message}");
 	}
 
-	private async Task<(CombatState combat, Player player)> NewCombatAsync(
-		string seed, Type? characterType = null, Type? encounterType = null)
+	private async Task<(CombatState combat, IReadOnlyList<Player> players)> NewCombatAsync(
+		string seed, CardTestAttribute attr)
 	{
 		if (CombatManager.Instance.DebugOnlyGetState() != null)
 			CombatManager.Instance.Reset(true);
 
-		characterType ??= typeof(Ironclad);
-
+		var characterType = attr.CharacterType ?? typeof(Ironclad);
 		var characterModel = (CharacterModel)ModelDb.Get(characterType);
-		var playerObj = Player.CreateForNewRun(characterModel, UnlockState.all, 1UL);
 
-		_run = RunState.CreateForTest(players: [playerObj], seed: seed);
+		// Net ids 1..N; the singleplayer net service reports id 1, so player 1 is "us" and the rest are
+		// treated as remote teammates. Card selection is short-circuited by FirstCardSelector, so
+		// nothing ever waits on a remote choice.
+		var newPlayers = Enumerable.Range(1, Math.Max(1, attr.PlayerCount))
+			.Select(netId => Player.CreateForNewRun(characterModel, UnlockState.all, (ulong)netId))
+			.ToList();
+
+		_run = RunState.CreateForTest(players: newPlayers, seed: seed);
 		var run = _run;
 
 		RunManager.Instance.SetUpTest(_run, new NetSingleplayerGameService(), shouldSave: false);
 		LocalContext.NetId = RunManager.Instance.NetService.NetId;
-		var player = run.Players[0];
+		var players = run.Players.ToList();
+		var player = players[0];
 
-		var encounter = encounterType != null
-			? ((EncounterModel)ModelDb.Get(encounterType)).ToMutable()
+		var encounter = attr.EncounterType != null
+			? ((EncounterModel)ModelDb.Get(attr.EncounterType)).ToMutable()
 			: ModelDb.AllEncounters.First().ToMutable();
 		encounter.DebugRandomizeRng();
 
 		var combat = new CombatState(encounter, run, run.Modifiers, run.BadgeModels, run.MultiplayerScalingModel);
-		combat.AddPlayer(player);
+		foreach (var p in players) combat.AddPlayer(p);
 
 		if (!encounter.HaveMonstersBeenGenerated)
 			encounter.GenerateMonstersWithSlots(run);
@@ -187,7 +207,7 @@ public class CardTestRunner
 		while (player.PlayerCombatState?.Phase != PlayerTurnPhase.Play && sw.Elapsed < TimeSpan.FromSeconds(10))
 			await Task.Yield();
 
-		return (combat, player);
+		return (combat, players);
 	}
 
 	private void EndCombat()
