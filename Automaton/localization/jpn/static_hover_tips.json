@@ -2,7 +2,7 @@
     "AUTOMATON-ENCODE.title": "エンコード",
     "AUTOMATON-ENCODE.description": "このカードを[gold]エンコードオーブ[/gold]に配置する。\nそこに[blue]3[/blue]枚のカードが揃うと、このキーワードより上の効果が、コスト[blue]1[/blue]の関数に統合される。",
     "AUTOMATON-STASH.title": "格納",
-    "AUTOMATON-STASH.description": "カードを[gold]格納オーブ[/gold]の中に、最大[blue]5[/blue]枚まで置く。",
+    "AUTOMATON-STASH.description": "カードを[gold]格納オーブ[/gold]に配置する。最大[blue]5[/blue]枚まで保持できる。",
     "AUTOMATON-COMPILE.title": "コンパイル",
     "AUTOMATON-COMPILE.description": "このカードが関数に統合された時に発動する効果。",
     "AUTOMATON-ENCODE_PILE.title": "エンコードオーブ",
