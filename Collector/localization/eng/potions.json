@@ -1,8 +1,8 @@
 {
-  "COLLECTOR-BOTTLED_HEX.title": "Bottled Hex",
-  "COLLECTOR-BOTTLED_HEX.description": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold].",
-  "COLLECTOR-EMBALMING_OILS.title": "Embalming Oils",
-  "COLLECTOR-EMBALMING_OILS.description": "Increase any debuff by [blue]{Increase}[/blue]. ",
-  "COLLECTOR-OLD_TIME_RATIONS.title": "Old Time Rations",
-  "COLLECTOR-OLD_TIME_RATIONS.description": "Gain {Reserve:reserveIcons()}."
+  "COLLECTOR-BOTTLED_ROPE.title": "Bottled Rope",
+  "COLLECTOR-BOTTLED_ROPE.description": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-LAMP_OIL.title": "Lamp Oil",
+  "COLLECTOR-LAMP_OIL.description": "[gold]Kindle[/gold] [blue]{Kindle}[/blue].",
+  "COLLECTOR-SMOKE_BOMB.title": "Smoke Bomb",
+  "COLLECTOR-SMOKE_BOMB.description": "Apply [blue]{Miasma}[/blue] [gold]Miasma[/gold] to ALL enemies."
 }

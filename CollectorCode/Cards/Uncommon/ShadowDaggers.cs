@@ -40,7 +40,7 @@ public class ShadowDaggers : CollectorCardModel
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
         for (var i = 0; i < hits; i++)
         {
-           await (CollectorCmd.TorchheadAttack(this)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+           await (CollectorCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
         }
 
     }
