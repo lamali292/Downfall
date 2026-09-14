@@ -24,6 +24,7 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 
     public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        // todo make this like the ball
         var live = _handedOff ?? this;
         live.DynamicVars.Damage.UpgradeValueBy(live.DynamicVars["Increase"].IntValue);
         if (_handedOff != null) return;
