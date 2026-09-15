@@ -22,8 +22,6 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
-
-    protected override Artist Artist => Artist.Get<Opal>();
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
