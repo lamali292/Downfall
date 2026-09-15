@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Token;
 
 [Pool(typeof(StatusCardPool))]
-public class Ember : CollectorCardModel
+public class Ember : CollectorCardModel, IStackingUpgradeCard
 {
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {

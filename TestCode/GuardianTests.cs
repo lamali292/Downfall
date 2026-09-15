@@ -1,14 +1,18 @@
+using BaseLib.Abstracts;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Cards.Uncommon;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Enchantments;
+using Guardian.GuardianCode.Gems;
+using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Relics;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
@@ -199,5 +203,102 @@ public class GuardianTests
         Assert.IsTrue(removedFromHand,
             "Hand should fire CardRemoved when Temporal pulls a card that was already visibly in Hand, " +
             "or its UI node is orphaned instead of cleaned up.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task DowngradingAStackedRefractedBeamOnlyRemovesOneLevel(TestContext ctx)
+    {
+        // Reported bug: Refracted Beam's MaxUpgradeLevel grows with its own upgrade level (it can
+        // sit at +2, +3, ...), but CardModel.DowngradeInternal (used by e.g. the Reflections
+        // event) unconditionally resets CurrentUpgradeLevel to 0 - a +3 card was fully wiped to
+        // +0 by a single downgrade that should only have removed one level.
+        var card = (RefractedBeam)await ctx.AddCardToHand<RefractedBeam>();
+        CardCmd.Upgrade(card);
+        CardCmd.Upgrade(card);
+        Assert.AreEqual(2, card.CurrentUpgradeLevel, "Sanity check: card should be +2 before downgrading.");
+
+        CardCmd.Downgrade(card);
+
+        Assert.AreEqual(1, card.CurrentUpgradeLevel,
+            "Downgrading a stacked Refracted Beam should remove exactly one level, not reset it to +0.");
+
+        // The fix works by fully resetting the card (the game's own DowngradeInternal) and then
+        // replaying upgrades back up - the same mechanism the game itself uses to restore upgrade
+        // levels from a save file. Checking CurrentUpgradeLevel alone wouldn't catch a case where
+        // that replay left the card's actual values (damage repeats, gem slots) stale, so compare
+        // against a card that was genuinely upgraded once from scratch and never downgraded.
+        var reference = (RefractedBeam)await ctx.AddCardToHand<RefractedBeam>();
+        CardCmd.Upgrade(reference);
+
+        Assert.AreEqual(reference.DynamicVars.Repeat.IntValue, card.DynamicVars.Repeat.IntValue,
+            "The downgraded card's Repeat value should match a genuinely-once-upgraded card's, not be stale.");
+        Assert.AreEqual(reference.GemSlots, card.GemSlots,
+            "The downgraded card's GemSlots should match a genuinely-once-upgraded card's, not be stale.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task DowngradingAStackedRefractedBeamDoesNotUnsocketItsGems(TestContext ctx)
+    {
+        // Gems live in BaseLib's own CardModifier list on the card instance, entirely separate
+        // from the CurrentUpgradeLevel/DynamicVars/keywords state that DowngradeInternal (and our
+        // patch's re-upgrade replay) touches, so downgrading should never unsocket them - confirm
+        // that directly, and that a socketed gem still fires its effect (Strength) when played.
+        var card = (RefractedBeam)await ctx.AddCardToHand<RefractedBeam>();
+        var socketCard = (IGemSocketCard)card;
+        CardCmd.Upgrade(card);
+        CardCmd.Upgrade(card);
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+        Assert.AreEqual(1, socketCard.Gems.Count, "Sanity check: gem should be socketed before downgrading.");
+        var gem = socketCard.Gems[0]; // AddGem clones the canonical modifier to make it mutable, so grab the real instance.
+
+        CardCmd.Downgrade(card);
+
+        Assert.AreEqual(1, socketCard.Gems.Count, "Downgrading should not unsocket an already-socketed gem.");
+        Assert.IsTrue(socketCard.Gems.Contains(gem), "The same gem instance should still be socketed after downgrading.");
+
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var strengthBefore = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        await ctx.PlayCard(card, enemy);
+        var strengthAfter = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        Assert.IsTrue(strengthAfter > strengthBefore,
+            "The socketed Ruby Gem should still grant Strength when the downgraded card is played.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task DowngradeDeactivatesOverflowGemsButKeepsThemForWhenSlotsComeBack(TestContext ctx)
+    {
+        // A +2 Refracted Beam has 3 gem slots; downgrading to +1 shrinks that to 2. With all 3
+        // slots filled, the 3rd gem shouldn't just keep firing invisibly (it's not shown in the
+        // socket display, which only ever draws GemSlots-many icons) - but it also shouldn't be
+        // deleted: re-upgrading back should bring it back to life with no extra bookkeeping,
+        // since it's still physically socketed the whole time.
+        var card = (RefractedBeam)await ctx.AddCardToHand<RefractedBeam>();
+        var socketCard = (IGemSocketCard)card;
+        CardCmd.Upgrade(card);
+        CardCmd.Upgrade(card);
+        Assert.AreEqual(3, socketCard.GemSlots, "Sanity: +2 Refracted Beam should have 3 gem slots.");
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+        Assert.AreEqual(3, socketCard.Gems.Count, "Sanity: 3 gems socketed into 3 slots.");
+
+        CardCmd.Downgrade(card);
+        Assert.AreEqual(2, socketCard.GemSlots, "Sanity: downgrading to +1 should shrink capacity to 2 slots.");
+        Assert.AreEqual(3, socketCard.Gems.Count, "The overflow gem should stay socketed, not be removed.");
+
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var strengthBeforeShrunk = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        await ctx.PlayCard(card, enemy);
+        var strengthAfterShrunk = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        Assert.AreEqual(4, strengthAfterShrunk - strengthBeforeShrunk,
+            "Only the 2 gems within the shrunk capacity should fire (2 Strength each), not the 3rd overflow gem.");
+
+        CardCmd.Upgrade(card);
+        Assert.AreEqual(3, socketCard.GemSlots, "Sanity: re-upgrading should restore the 3rd slot.");
+        var strengthBeforeRestored = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        await ctx.PlayCard(card, enemy);
+        var strengthAfterRestored = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        Assert.AreEqual(6, strengthAfterRestored - strengthBeforeRestored,
+            "Once the slot is restored, the previously-overflowing gem should fire again too, with no re-socketing needed.");
     }
 }

@@ -21,6 +21,15 @@ public interface IGemSocketCard : IModifyReplayCount, ICardOverlay
     int GemCount => Gems.Count;
     int FreeSlots => Math.Max(0, GemSlots - Gems.Count);
 
+    /// <summary>
+    /// Gems beyond GemSlots (e.g. left over after a downgrade shrinks capacity below what's
+    /// socketed) stay attached but don't play - matching the socket display, which only ever
+    /// draws the first GemSlots gems. They aren't lost: if GemSlots grows again (a re-upgrade,
+    /// CryoChamber, ...) they become active again automatically, since this is just a live slice
+    /// of the full Gems list rather than a separate tracked state.
+    /// </summary>
+    IEnumerable<GemModel> ActiveGems => Gems.Take(GemSlots);
+
     private bool IsFull => Gems.Count >= GemSlots;
 
     Control ICardOverlay.CreateCustomOverlay()
@@ -35,7 +44,7 @@ public interface IGemSocketCard : IModifyReplayCount, ICardOverlay
 
     int IModifyReplayCount.ModifyReplayCount(int current)
     {
-        return Gems.Aggregate(current, (c, gem) => gem.ModifyPlayCount(c));
+        return ActiveGems.Aggregate(current, (c, gem) => gem.ModifyPlayCount(c));
     }
 
     bool CanAddGem(GemModel gem)
