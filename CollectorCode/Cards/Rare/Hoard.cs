@@ -15,7 +15,7 @@ public class Hoard : CollectorCardModel
     public Hoard() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithCards(6, 1);
+        WithCards(7, 1);
         WithPower<RetainHandPower>(1, false);
         WithTip(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);

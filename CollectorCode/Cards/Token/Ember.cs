@@ -3,8 +3,11 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -44,10 +47,21 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, BlockProps.cardUnpowered, this, null);
-        if (Pile == null || Pile.Type == PileType.Hand)
+    }
+
+    public override async Task BeforeHandDraw(
+        Player player,
+        PlayerChoiceContext choiceContext,
+        ICombatState combatState)
+    {
+        if (player != Owner || !CombatManager.Instance.History.CardPlaysFinished.Any(
+                e => e.HappenedLastPlayerTurn(Owner) && e.CardPlay.Card == this))
         {
-            return;
+            if (Pile == null || Pile.Type == PileType.Hand)
+            {
+                return;
+            }
+            CardPileAddResult cardPileAddResult = await CardPileCmd.Add(this, PileType.Hand);
         }
-        CardPileAddResult cardPileAddResult = await CardPileCmd.Add(this, PileType.Hand);
     }
 }
