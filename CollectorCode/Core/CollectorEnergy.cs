@@ -28,6 +28,23 @@ public class CollectorEnergy : CardResource
     public override (int energySpent, int starsSpent) HandleSpending(CardModel card)
     {
         var player = card.Owner;
+
+        if (card.EnergyCost.CostsX)
+        {
+            // X-cost cards spend all Energy AND all Reserve. Merge Reserve into Energy before
+            // the base CardModel.SpendResources() (which still runs after this prefix, since
+            // X-cost cards aren't UsesResourceExclusively) computes/captures the amount spent,
+            // so the vanilla plumbing (CapturedXValue, history, hooks) sees the combined total.
+            var xReserve = Get(player);
+            if (xReserve > 0 && player.PlayerCombatState != null)
+            {
+                player.PlayerCombatState.GainEnergy(xReserve);
+                player.PlayerCombatState.Reserve -= xReserve;
+            }
+            _lastSpent[card] = xReserve;
+            return (0, 0);
+        }
+
         var cost = card.EnergyCost.GetAmountToSpend();
 
         if (UsesResourceExclusively(card))
