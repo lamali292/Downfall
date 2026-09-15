@@ -32,9 +32,11 @@ public class Clutch : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = PileType.Draw.GetPile(Owner)
-            .Cards.FirstOrDefault(c => c.EnergyCost.GetAmountToSpend() == 0 && !c.EnergyCost.CostsX);
-        if (card == null) return;
+        var candidates = Owner.DrawPile
+            .Where(c => c.EnergyCost.GetAmountToSpend() == 0 && !c.EnergyCost.CostsX)
+            .ToList();
+        if (candidates.Count == 0) return;
+        var card = Owner.RunState.Rng.CombatCardSelection.NextItem(candidates)!;
         await CardPileCmd.Add(card, PileType.Hand);
     }
 }

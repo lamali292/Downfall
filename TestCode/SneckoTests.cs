@@ -1,6 +1,8 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Snecko.SneckoCode.Cards.Common;
 using Snecko.SneckoCode.Core;
 
 namespace Downfall.TestCode;
@@ -33,5 +35,17 @@ public class SneckoTests
 
         Assert.AreEqual(1, added.Count, "Gift should add exactly one card to the deck.");
         Assert.IsTrue(!added[0].IsUpgraded, "Without Silver Crucible, Gift shouldn't upgrade the obtained card.");
+    }
+
+    // Beyond Armor doesn't draw (it puts a specific Offclass card from the draw pile into hand,
+    // per its own wording), so it shouldn't interact with draw hooks/relics like Fiddle at all.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task BeyondArmorPutsOffclassCardIntoHand(TestContext ctx)
+    {
+        var offclass = await ctx.AddCardToTopOfDraw<StrikeIronclad>();
+        var beyondArmor = await ctx.AddCardToHand<BeyondArmor>();
+        await ctx.PlayCard(beyondArmor);
+
+        Assert.IsTrue(ctx.Player.Hand.Contains(offclass), "Beyond Armor should put the Offclass card into hand.");
     }
 }
