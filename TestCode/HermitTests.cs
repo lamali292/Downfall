@@ -5,6 +5,7 @@ using Hermit.HermitCode.Cards.Uncommon;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Powers;
+using Hermit.HermitCode.Relics;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,6 +13,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
@@ -148,5 +150,39 @@ public class HermitTests
 
         Assert.AreEqual(1, DeadOnEntries(dive), "Dive's Dead On should trigger once via Cheat.");
         Assert.AreEqual(1, DeadOnEntries(cheat), "Cheat's own Dead On should be recorded.");
+    }
+
+    // ---- Red Scarf ----
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task RedScarfGainsBlockOnNewEnemyDebuff(TestContext ctx)
+    {
+        await RelicCmd.Obtain<RedScarf>(ctx.Player);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startBlock = ctx.Player.Creature.Block;
+
+        await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+
+        AutoSlayLog.Info($"[HermitTests] RedScarf (no Artifact): block {startBlock} -> {ctx.Player.Creature.Block} " +
+                         $"weak={enemy.GetPowerAmount<WeakPower>()}");
+        Assert.AreEqual(1, enemy.GetPowerAmount<WeakPower>(), "Weak should have been applied.");
+        Assert.AreEqual(startBlock + 3, ctx.Player.Creature.Block, "Red Scarf should grant 3 Block for a new debuff.");
+    }
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task RedScarfDoesNotGainBlockWhenArtifactBlocksDebuff(TestContext ctx)
+    {
+        await RelicCmd.Obtain<RedScarf>(ctx.Player);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await PowerCmd.Apply<ArtifactPower>(new BlockingPlayerChoiceContext(), enemy, 1, enemy, null);
+        var startBlock = ctx.Player.Creature.Block;
+
+        await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+
+        AutoSlayLog.Info($"[HermitTests] RedScarf (with Artifact): block {startBlock} -> {ctx.Player.Creature.Block} " +
+                         $"artifactLeft={enemy.GetPowerAmount<ArtifactPower>()} weak={enemy.GetPowerAmount<WeakPower>()}");
+        Assert.AreEqual(0, enemy.GetPowerAmount<WeakPower>(), "Weak should have been fully blocked by Artifact.");
+        Assert.AreEqual(startBlock, ctx.Player.Creature.Block,
+            "Red Scarf should not grant Block when Artifact blocks the debuff.");
     }
 }

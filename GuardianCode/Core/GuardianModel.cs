@@ -32,6 +32,12 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     internal static readonly PlayerField<int> StasisSlots = new(() => -1);
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
+    // The card, if any, a IModifyCardPlayResultLocation redirect (Reroute) has already committed
+    // to sending into Stasis this play but that hasn't physically moved there yet — see
+    // GetEffectiveStasisCount. A single slot, not a collection: card plays for one player are
+    // never concurrent, so at most one redirect can be in flight at a time.
+    internal static readonly PlayerField<CardModel?> PendingStasisRedirect = new(() => null);
+
     // Hooks
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
@@ -50,13 +56,14 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         StasisSlots.Clear();
         ActiveMode.Clear();
         StasisCounter._table.Clear();
-        
+        PendingStasisRedirect.Clear();
+
         foreach (var player in RunManager.Instance.State?.Players ?? [])
         {
             if (StasisSlots[player] < 0)
                 StasisSlots.Set(player, player.Character is Guardian ? 3 : 1);
         }
-        
+
         return Task.CompletedTask;
     }
 
@@ -65,13 +72,19 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         StasisSlots.Clear();
         ActiveMode.Clear();
         StasisCounter._table.Clear();
+        PendingStasisRedirect.Clear();
         return Task.CompletedTask;
-        
+
     }
 
 
     public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source)
     {
+        // The redirected card's play has resolved one way or another (landed in Stasis, or ended
+        // up elsewhere for some other reason) — clear the reservation the instant we know, rather
+        // than waiting for the next GetEffectiveStasisCount caller to notice.
+        if (PendingStasisRedirect[card.Owner] == card) PendingStasisRedirect[card.Owner] = null;
+
         if (card.Pile != null && card.Pile.Type != GuardianPile.Stasis) return Task.CompletedTask;
         GuardianDisplay.Refresh(card.Owner);
         return Task.CompletedTask;
@@ -94,6 +107,21 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         var pile = GuardianCmd.GetStasisPile(player);
         InitStasisUi(player);
         return pile;
+    }
+
+    /// <summary>
+    ///     Stasis occupancy including a card Reroute has already committed to sending into Stasis
+    ///     this play but that is still resolving its own effect (see
+    ///     <see cref="PendingStasisRedirect" />). Without this, a card whose own effect independently
+    ///     stasis'd another card would still land in Stasis itself afterward via Reroute's earlier
+    ///     decision — decided before that effect ran — overflowing the pile past its slot cap.
+    ///     <see cref="AfterCardChangedPilesLate" /> clears the pending slot the instant that card's
+    ///     play resolves, so there's nothing left to prune here.
+    /// </summary>
+    internal static int GetEffectiveStasisCount(Player player)
+    {
+        var pile = GetOrInitStasis(player);
+        return pile.Cards.Count + (PendingStasisRedirect[player] != null ? 1 : 0);
     }
 
     internal static void InitStasisUi(Player player)

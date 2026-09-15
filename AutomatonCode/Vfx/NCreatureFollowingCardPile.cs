@@ -101,7 +101,13 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
         return (pos, rot);
     }
 
-    private void RefreshCardVisual()
+    /// <summary>Force-rebuild the shown card visuals even if the pile's contents (by reference) haven't changed.
+    /// Needed after in-place card mutations, e.g. an upgrade, that don't fire a pile content event.</summary>
+    public void ForceRefreshCardVisual() => RefreshCardVisual(true);
+
+    private void RefreshCardVisual() => RefreshCardVisual(false);
+
+    private void RefreshCardVisual(bool force)
     {
         RefreshCount();
 
@@ -109,7 +115,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
             return;
 
         var models = GetCards();
-        if (models.SequenceEqual(_shownModels)) return;
+        if (!force && models.SequenceEqual(_shownModels)) return;
 
         ClearCardVisuals();
         _shownModels.AddRange(models);

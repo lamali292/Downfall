@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Events;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
@@ -42,6 +43,24 @@ public static class GuardianHook
     {
         return HookUtils.Dispatch<IAfterCardEntersStasis>(cs, ctx,
             m => m.AfterCardEntersStasis(ctx, card, source));
+    }
+
+    /// <summary>
+    ///     Overloads for callers with no <see cref="PlayerChoiceContext" /> at hand (e.g. a
+    ///     <c>IModifyCardPlayResultLocation</c> redirect into Stasis, which never calls
+    ///     <see cref="GuardianCmd.PutIntoStasis" />) — a fresh context is created per listener via
+    ///     <see cref="MyHookUtils.DispatchWithContext{THook}" />.
+    /// </summary>
+    public static Task BeforeCardEntersStasis(Player player, CardModel card, AbstractModel source)
+    {
+        return MyHookUtils.DispatchWithContext<IBeforeCardEntersStasis>(player,
+            (m, ctx) => m.BeforeCardEntersStasis(ctx, card, source));
+    }
+
+    public static Task AfterCardEntersStasis(Player player, CardModel card, AbstractModel source)
+    {
+        return MyHookUtils.DispatchWithContext<IAfterCardEntersStasis>(player,
+            (m, ctx) => m.AfterCardEntersStasis(ctx, card, source));
     }
 
 
