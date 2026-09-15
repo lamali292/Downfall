@@ -39,7 +39,7 @@
   "AWAKENED-CHOSEN_VERSE.title": "Chosen Verse",
   "AWAKENED-CLARION_CALL.description": "Deal {Damage:diff()} damage.\nThe next time you are [gold]Drained[/gold], gain {energyPrefix:energyIcons(1)}.",
   "AWAKENED-CLARION_CALL.title": "Clarion Call",
-  "AWAKENED-CLUTCH.description": "Deal {Damage:diff()} damage.\nDraw a 0{energyPrefix:energyIcons(1)} card.",
+  "AWAKENED-CLUTCH.description": "Deal {Damage:diff()} damage.\nPut a random 0{energyPrefix:energyIcons(1)} card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].",
   "AWAKENED-CLUTCH.title": "Clutch",
   "AWAKENED-CRUSHER.description": "Deal {Damage:diff()} damage.\nWhen a card is created, reduce this card's cost by 1 until played.",
   "AWAKENED-CRUSHER.title": "Crusher",

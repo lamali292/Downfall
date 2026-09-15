@@ -13,7 +13,7 @@ public class Repair : AutomatonCardModel
 {
     public Repair() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<SelfRepairPower>(7, 3, false);
+        WithPower<SelfRepairPower>(6, 3, false);
     }
 
     public override bool CanBeGeneratedInCombat => false;

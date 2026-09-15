@@ -8,6 +8,14 @@ public static class MainMenuButtonRegistry
 	private static readonly List<Entry> entries = new();
 	public static IReadOnlyList<Entry> Entries => entries;
 
+	/// Fired every time NMainMenu finishes _Ready (also when returning to the menu).
+	public static event Action? MainMenuReady;
+
+	internal static void InvokeMainMenuReady()
+	{
+		MainMenuReady?.Invoke();
+	}
+
 	public static void Register(Entry entry)
 	{
 		entries.Add(entry);

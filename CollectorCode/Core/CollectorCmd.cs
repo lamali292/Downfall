@@ -33,14 +33,12 @@ namespace Collector.CollectorCode.Core;
 public class CollectorCmd
 {
     
-    public static AttackCommand? TorchheadAttack(AbstractModel card)
+    public static AttackCommand? TorchheadAttack(AbstractModel model, CardPlay? cardplay = null)
     {
-        var player = card.Player;
-        var damage = card.DynamicVars.TorchheadDamage.IntValue;
-        return TorchheadAttack(player, damage);
+        return TorchheadAttack(model.Player, model.DynamicVars.TorchheadDamage.IntValue, model as CardModel, cardplay);
     }
     
-    public static AttackCommand? TorchheadAttack(Player player, int damage)
+    public static AttackCommand? TorchheadAttack(Player player, int damage, CardModel? card = null, CardPlay? cardplay = null)
     {
         var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out _);
         if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead)
@@ -48,7 +46,7 @@ public class CollectorCmd
             return null;
         }
         var attack = DamageCmd.Attack(damage)
-            .FromTorchhead(torchhead)
+            .FromTorchhead(torchhead, card, cardplay)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3");
         if (shouldTargetAll)
         {
@@ -140,21 +138,14 @@ public class CollectorCmd
         // get our collectibles
         var model = pool.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel()?.Id == encounterId);
         // fallback to other mods
-        foreach (var mod in ModManager.Mods)
-        {
-            DownfallMainFile.Logger.Info($"{mod.manifest?.id}");
-        }
         model ??= GetCardForModdedEnemy(player, encounterId);
         // final fallback. pick random elite or boss with the same act number.
-        if (model is null)
-        {
-            var actNumber = room.Act.ActNumber();
-            model = player.RunState.Rng.Niche.NextItem(pool
-                .Where(c => c is ICollectible g && (g.Act()?.ActNumber() ?? -1) == actNumber && g.RoomType() == room.RoomType));
-            if (model is null)
-                return false;
-        }
-
+        model ??= player.RunState.Rng.Niche.NextItem(pool
+                .Where(c => c is ICollectible g && 
+                            (g.Act()?.ActNumber() ?? -1) == room.Act.ActNumber() &&
+                            g.RoomType() == room.RoomType)
+        );
+        if (model is null) return false;
         var card = player.RunState.CreateCard(model, player);
         action?.Invoke(card);
         var result = new CardCreationResult(card);
@@ -194,7 +185,8 @@ public class CollectorCmd
             { "ACTSFROMTHEPAST-AWAKENED_ONE_BOSS", [ModelDb.Card<Murder>().Id.Entry]}
         };
         if (!moddedEnemyMap.TryGetValue(encounterId.Entry, out var value)) return null;
-        if (value.Count > 0) value.StableShuffle(player.PlayerRng.Rewards);
+        if (value.Count > 1) value.StableShuffle(player.PlayerRng.Rewards);
+        if (value.Count == 0) return null;
         var id = new ModelId("CARD", value[0]);
         var card = ModelDb.GetByIdOrNull<CardModel>(id);
         return card;

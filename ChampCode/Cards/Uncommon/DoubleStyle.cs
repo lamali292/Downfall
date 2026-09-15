@@ -12,10 +12,10 @@ namespace Champ.ChampCode.Cards.Uncommon;
 [Pool(typeof(ChampCardPool))]
 public class DoubleStyle : ChampCardModel
 {
-    public DoubleStyle() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<DefensiveStylePower>(1, 1, false);
-        WithPower<BerserkerStylePower>(1, 1, false);
+        WithPower<DefensiveStylePower>(2, 1, false);
+        WithPower<BerserkerStylePower>(2, 1, false);
         WithTip<VigorPower>();
         WithTip<CounterPower>();
         WithTip(ChampKeyword.TriggerSkillBonus);

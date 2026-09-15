@@ -13,6 +13,7 @@ public class SplitMire : SlimeBossCardModel
     public SplitMire() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithCommand(2, 1);
+        WithTips(_ => [SlimeBossModelDb.Slime<MireSlime>().SlimeTip]);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

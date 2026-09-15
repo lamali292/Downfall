@@ -38,7 +38,7 @@ public static class HermitCmd
 
     private static bool WasThisPlayedDeadOn(CardModel card)
     {
-        return DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasDeadOn;
+        return DeadOnPatch.WasPlayedDeadOn(card);
     }
 
     public static bool IsAdjacentToCurse(CardModel card)
@@ -49,7 +49,7 @@ public static class HermitCmd
 
     private static bool WasThisPlayedAdjacentToCurse(CardModel card)
     {
-        return DeadOnPatch.LastPlayed == card && DeadOnPatch.LastWasAdjacentToCurse;
+        return DeadOnPatch.WasPlayedAdjacentToCurse(card);
     }
 
 

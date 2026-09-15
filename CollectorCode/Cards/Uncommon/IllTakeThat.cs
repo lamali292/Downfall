@@ -39,13 +39,12 @@ public class IllTakeThat : CollectorCardModel
         }
 
         //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
+        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
     }
     
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
-        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
         base.AddExtraArgsToDescription(description);
     }
 }

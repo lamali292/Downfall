@@ -48,7 +48,7 @@ public class CollectibleReward(ModelId encounterModel, Player player, bool upgra
 
     public override void Populate()
     {
-        _card = ModelDb.CardPool<CollectibleCardPool>().AllCards.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel().Id == encounterModel);
+        _card = ModelDb.CardPool<CollectibleCardPool>().AllCards.FirstOrDefault(c => c is ICollectible g && g.GetEncounterModel()?.Id == encounterModel);
     }
 
     private CardModel? _card;

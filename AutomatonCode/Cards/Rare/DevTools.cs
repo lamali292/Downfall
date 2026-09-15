@@ -22,6 +22,7 @@ public class DevTools : AutomatonCardModel
         WithTip(AutomatonTip.Encode);
         WithCostUpgradeBy(-1);
         WithCalculatedVar("Dev", 0, Calc);
+        WithKeyword(CardKeyword.Retain);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

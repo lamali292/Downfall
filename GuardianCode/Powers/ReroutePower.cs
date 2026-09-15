@@ -1,5 +1,6 @@
 using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Piles;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,16 +24,28 @@ public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
             card is not { Type: CardType.Attack or CardType.Skill } || player.Creature != Owner)
             return cardLocation;
 
-        var stasisPile = GuardianCombatModel.GetOrInitStasis(player);
-        return stasisPile.Cards.Count >= GuardianCmd.GetMaxStasisSlots(player)
-            ? cardLocation
-            : new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
+        // This decision runs before the card's own OnPlay effect (see CardModel.OnPlayWrapper),
+        // so a card that independently stasis'd another card during its own effect (e.g. Curl Up)
+        // wouldn't be reflected in a plain pile count check here. GetEffectiveStasisCount also
+        // counts cards already committed to Stasis by an earlier redirect this play.
+        if (GuardianCombatModel.GetEffectiveStasisCount(player) >= GuardianCmd.GetMaxStasisSlots(player))
+            return cardLocation;
+
+        GuardianCombatModel.PendingStasisRedirect[player] = card;
+        return new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
     }
 
     public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card,
         CardLocationCompatiblity cardLocation)
     {
+        // This only fires when we actually redirected the card into Stasis (see
+        // HookUtils.Modify in ModifyCardPlayResultLocationPatch), and the vanilla move has
+        // already happened by this point. Unlike GuardianCmd.PutIntoStasis, this path never
+        // dispatches the Stasis-entry hooks itself, so relics like CryoChamber (upgrade on
+        // entry) and QuantumChamber (after entry) never fired for a Reroute-stashed card.
+        await GuardianHook.BeforeCardEntersStasis(card.Owner, card, this);
         GuardianCmd.SetStasisCounter(card);
+        await GuardianHook.AfterCardEntersStasis(card.Owner, card, this);
         card.EnergyCost.AfterCardPlayedCleanup();
         await PowerCmd.Decrement(this);
     }

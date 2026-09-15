@@ -12,8 +12,7 @@ public class InfernalForm : HexaghostCardModel
 {
     public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        WithPower<InfernalFormPower>(2, 1, false);
-        WithKeyword(CardKeyword.Innate);
+        WithPower<InfernalFormPower>(3, 1, false);
         WithTip<IntensityPower>();
     }
 

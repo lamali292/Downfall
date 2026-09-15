@@ -1,0 +1,239 @@
+[gd_scene load_steps=10 format=3 ]
+
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NFunctionDisplay.cs" id="1_fndsp"]
+[ext_resource type="Texture2D" path="res://images/ui/hover_tip.png" id="2_bgtex"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_bold"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="4_label"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="5_reg"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="6_rich"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="7_hsv"]
+[ext_resource type="Texture2D" path="res://Automaton/images/ui/orb.png" id="8_orb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_compile"]
+shader = ExtResource("7_hsv")
+shader_parameter/h = 0.96
+shader_parameter/s = 1.6
+shader_parameter/v = 0.95
+
+[node name="FunctionDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 200.0
+mouse_filter = 2
+script = ExtResource("1_fndsp")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="Header" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Portrait" type="TextureRect" parent="Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 78)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeaderText" type="VBoxContainer" parent="Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="Layout/Header/HeaderText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 26
+text = "Function"
+vertical_alignment = 1
+script = ExtResource("4_label")
+AutoSizeEnabled = false
+
+[node name="Pips" type="HBoxContainer" parent="Layout/Header/HeaderText"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="PipTemplate" type="TextureRect" parent="Layout/Header/HeaderText/Pips"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EncodePanel" type="MarginContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = -8
+theme_override_constants/margin_bottom = -8
+
+[node name="Shadow" type="NinePatchRect" parent="Layout/EncodePanel"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 2
+texture = ExtResource("2_bgtex")
+region_rect = Rect2(-8, -8, 339, 107)
+patch_margin_left = 55
+patch_margin_top = 43
+patch_margin_right = 91
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Bg" type="NinePatchRect" parent="Layout/EncodePanel"]
+layout_mode = 2
+texture = ExtResource("2_bgtex")
+region_rect = Rect2(0, 0, 339, 107)
+patch_margin_left = 55
+patch_margin_top = 43
+patch_margin_right = 91
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TextContainer" type="MarginContainer" parent="Layout/EncodePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Layout/EncodePanel/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="EncodeTitle" type="Label" parent="Layout/EncodePanel/TextContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 20
+text = "Encode"
+script = ExtResource("4_label")
+AutoSizeEnabled = false
+
+[node name="EncodeText" type="RichTextLabel" parent="Layout/EncodePanel/TextContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_separation = -2
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("5_reg")
+theme_override_fonts/bold_font = ExtResource("3_bold")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = ""
+fit_content = true
+autowrap_mode = 3
+script = ExtResource("6_rich")
+AutoSizeEnabled = false
+
+[node name="CompilePanel" type="MarginContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = -8
+theme_override_constants/margin_bottom = -8
+
+[node name="Shadow" type="NinePatchRect" parent="Layout/CompilePanel"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 2
+texture = ExtResource("2_bgtex")
+region_rect = Rect2(-8, -8, 339, 107)
+patch_margin_left = 55
+patch_margin_top = 43
+patch_margin_right = 91
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Bg" type="NinePatchRect" parent="Layout/CompilePanel"]
+material = SubResource("ShaderMaterial_compile")
+layout_mode = 2
+texture = ExtResource("2_bgtex")
+region_rect = Rect2(0, 0, 339, 107)
+patch_margin_left = 55
+patch_margin_top = 43
+patch_margin_right = 91
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TextContainer" type="MarginContainer" parent="Layout/CompilePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Layout/CompilePanel/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="CompileTitle" type="Label" parent="Layout/CompilePanel/TextContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 20
+text = "Compile"
+script = ExtResource("4_label")
+AutoSizeEnabled = false
+
+[node name="CompileText" type="RichTextLabel" parent="Layout/CompilePanel/TextContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_separation = -2
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("5_reg")
+theme_override_fonts/bold_font = ExtResource("3_bold")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = ""
+fit_content = true
+autowrap_mode = 3
+script = ExtResource("6_rich")
+AutoSizeEnabled = false

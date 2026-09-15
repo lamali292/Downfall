@@ -11,9 +11,9 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Potions;
 
 [Pool(typeof(CollectorPotionPool))]
-public class BottledHex : CollectorPotionModel
+public class BottledRope : CollectorPotionModel
 {
-    public BottledHex() : base(PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyEnemy)
+    public BottledRope() : base(PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
