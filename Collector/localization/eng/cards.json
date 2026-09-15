@@ -270,5 +270,7 @@
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
   "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-MENACING_MUSHROOMS.title": "Menacing Mushrooms",
-  "COLLECTOR-MENACING_MUSHROOMS.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+  "COLLECTOR-MENACING_MUSHROOMS.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "COLLECTOR-SLAG_TEAM.title": "Slag Team",
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhen you [gold]Pyre[/gold] an [gold]Ember[/gold], put this into your [gold]Hand[/gold]."
 }

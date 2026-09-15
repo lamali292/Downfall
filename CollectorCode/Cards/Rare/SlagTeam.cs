@@ -1,21 +1,18 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class ForgeContract : CollectorCardModel
+public class SlagTeam : CollectorCardModel
 {
-    public ForgeContract() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(6, 3);
         WithTorchheadDamage(6, 3);
     }
     
@@ -25,8 +22,6 @@ public class ForgeContract : CollectorCardModel
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await Cmd.CustomScaledWait(0.1f, 0.3f);
         await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
     }
 
