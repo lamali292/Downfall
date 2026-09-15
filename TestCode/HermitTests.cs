@@ -133,6 +133,30 @@ public class HermitTests
         Assert.IsTrue(!ctx.Player.Creature.HasPower<SnipePower>(), "Snipe should be consumed.");
     }
 
+    // Combo redirects a Dead On card back into the owner's own hand - Rubber Bullet's own Dead On
+    // hand-off must not fight that over the same card (Combo wins, matching other Dead On
+    // multiplayer cards).
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit), playerCount: 2)]
+    public async Task RubberBulletDeadOnStaysInOwnHandWithCombo(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        await ClearHand(ctx);
+        await PowerCmd.Apply<ComboPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var bullet = await ctx.AddCardToHand<RubberBullet>();
+        var baseDamage = bullet.DynamicVars.Damage.BaseValue;
+        var increase = bullet.DynamicVars["Increase"].BaseValue;
+
+        await ctx.PlayCard(bullet, ctx.Combat.HittableEnemies.First());
+
+        var copies = ctx.Players.SelectMany(p => p.Hand).Where(c => c is RubberBullet).ToList();
+        AutoSlayLog.Info($"[HermitTests] rubber bullet + combo: copies={copies.Count} " +
+                         $"ownerHand={RubberBulletInHandOf(ctx.Player) != null} teammateHand={RubberBulletInHandOf(teammate) != null}");
+        Assert.AreEqual(1, copies.Count, "Exactly one Rubber Bullet should exist.");
+        Assert.IsTrue(copies[0].Owner == ctx.Player, "Combo should keep Rubber Bullet in the owner's own hand.");
+        Assert.AreEqual(baseDamage + increase, copies[0].DynamicVars.Damage.BaseValue,
+            "Damage should still be increased once even though the hand-off was skipped.");
+    }
+
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit), playerCount: 2)]
     public async Task CheatDeadOnWorksWhileTeammatePlaysCards(TestContext ctx)
     {

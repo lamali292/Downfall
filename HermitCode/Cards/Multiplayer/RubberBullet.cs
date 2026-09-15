@@ -1,13 +1,14 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Multiplayer;
 
-public class RubberBullet : HermitCardModel, IHasDeadOnEffect
+public class RubberBullet : HermitCardModel, IHasDeadOnEffect, IModifyCardPlayResultLocation
 {
     public RubberBullet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -17,30 +18,30 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    // The copy that replaced this card in a teammate's hand. Set by the first Dead On trigger of a
-    // play; a second trigger (Snipe) must stack its damage increase on that copy, since this card
-    // is no longer in combat by then, and must not hand the card off again.
-    private CardModel? _handedOff;
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    // Runs before this card's own effect (see CardModel.OnPlayWrapper), same as every other
+    // IModifyCardPlayResultLocation redirect (Combo, Feral, Reroute, ...) - so this composes with
+    // them generically instead of RubberBullet needing to know about any of them by name: if
+    // something else already committed this exact card to the owner's own hand (e.g. Combo), that
+    // wins and we back off, whichever order the hooks happen to run in.
+    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
-        // todo make this like the ball
-        var live = _handedOff ?? this;
-        live.DynamicVars.Damage.UpgradeValueBy(live.DynamicVars["Increase"].IntValue);
-        if (_handedOff != null) return;
+        if (card != this || !HermitCmd.HasActiveDeadOnEffect(card) || cardLocation is { PileType: PileType.Hand, Player: var p } && p == card.Owner) return cardLocation;
+        var teammate = Owner.RandomOtherTeammate;
+        return teammate == null ? cardLocation : new CardLocationCompatiblity(Player: teammate, PileType: PileType.Hand, Position: CardPilePosition.Bottom);
+    }
 
-        var player = Owner.RandomOtherTeammate;
-        if (player == null) return;
+    public Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
+    {
+        if (card == this && cardLocation.Player != card.Owner)
+            HermitSfx.PlayReload();
+        return Task.CompletedTask;
+    }
 
-        // TODO: use CreateCloneForPlayer on main / beta merge
-        var clone = CreateClone();
-        _handedOff = clone;
-        clone._owner = player;
-        clone.EnergyCost.AfterCardPlayedCleanup();
-        clone.EnergyCost.EndOfTurnCleanup();
-        await CardPileCmd.RemoveFromCombat(this);
-        await CardPileCmd.Add(clone, PileType.Hand);
-        HermitSfx.PlayReload();
+    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+        return Task.CompletedTask;
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
