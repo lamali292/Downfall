@@ -1,6 +1,7 @@
 ﻿using Downfall.DownfallCode.Abstract;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,6 +15,12 @@ public class Temporal : DownfallEnchantmentModel<Core.Guardian>
         ICombatState combatState)
     {
         if (player != Card.Owner || player.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await GuardianCmd.PutIntoStasis(Card, ctx, this, true);
+        // Normally the card is still sitting invisibly in the Draw pile here, so the move into
+        // Stasis can skip visuals. But another turn-1 effect (e.g. Jeweled Mask) may have already
+        // moved it into a visible pile (Hand) earlier in this same BeforeHandDraw phase — if we
+        // skip visuals then, the removal from Hand never fires CardRemoved/ContentsChanged, and
+        // the card's old on-screen node is orphaned in Hand instead of being cleaned up.
+        var alreadyVisible = Card.Pile?.Type == PileType.Hand;
+        await GuardianCmd.PutIntoStasis(Card, ctx, this, !alreadyVisible);
     }
 }

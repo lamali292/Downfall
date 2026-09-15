@@ -1,6 +1,8 @@
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;
+using Guardian.GuardianCode.Cards.Uncommon;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Enchantments;
 using Guardian.GuardianCode.Relics;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
@@ -170,5 +172,32 @@ public class GuardianTests
         Assert.IsTrue(myStasis.Cards.Contains(curlUp), "My Curl Up should have been redirected into my own Stasis.");
         Assert.IsTrue(teammateStasis.Cards.Contains(teammateCurlUp),
             "Teammate's Curl Up should have been redirected into their own Stasis, unaffected by mine.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task TemporalStasisEntryCleansUpAnEarlierVisibleHandPlacement(TestContext ctx)
+    {
+        // Reported bug: Bottled Black Hole's Temporal enchantment moves its card into Stasis on
+        // turn 1 via BeforeHandDrawLate, always skipping pile-change visuals under the assumption
+        // the card is still sitting unseen in the Draw pile. Jeweled Mask (a vanilla relic) can
+        // put a Power card into Hand — visibly — earlier in that same turn-1 BeforeHandDraw phase.
+        // If Temporal then removes it from Hand silently, Hand never fires CardRemoved, leaving a
+        // stale on-screen card node behind (the "phantom Orbwalk stuck in hand position #2" the
+        // player saw). Simulate that ordering directly against Temporal's own hook.
+        await ClearHand(ctx);
+        var orbwalk = await ctx.AddCardToHand<Orbwalk>();
+        CardCmd.Enchant<Temporal>(orbwalk, 1);
+
+        var removedFromHand = false;
+        PileType.Hand.GetPile(ctx.Player).CardRemoved += _ => removedFromHand = true;
+
+        var enchantment = (Temporal)orbwalk.Enchantment!;
+        await enchantment.BeforeHandDrawLate(ctx.Player, new BlockingPlayerChoiceContext(), ctx.Combat);
+
+        var stasis = GuardianCmd.GetStasisPile(ctx.Player);
+        Assert.IsTrue(stasis.Cards.Contains(orbwalk), "Temporal should have moved the card into Stasis.");
+        Assert.IsTrue(removedFromHand,
+            "Hand should fire CardRemoved when Temporal pulls a card that was already visibly in Hand, " +
+            "or its UI node is orphaned instead of cleaned up.");
     }
 }
