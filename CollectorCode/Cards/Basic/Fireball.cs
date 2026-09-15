@@ -13,10 +13,10 @@ namespace Collector.CollectorCode.Cards.Basic;
 [Pool(typeof(CollectorCardPool))]
 public class Fireball : CollectorCardModel
 {
-    public Fireball() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    public Fireball() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Retain);
-        WithDamage(15, 3);
+        WithDamage(12, 4);
         WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
