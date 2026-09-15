@@ -6,9 +6,11 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.CardRewardAlternatives;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Multiplayer;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.Unlocks;
@@ -173,6 +175,10 @@ public class CardTestRunner
 
 		_run = RunState.CreateForTest(players: newPlayers, seed: seed);
 		var run = _run;
+		// A bare test RunState has no map progression, so RunState.CurrentMapPointHistoryEntry is
+		// null - that NREs in code that assumes a real run (e.g. CardReward.OnSelect logging card
+		// choices to run history). Seed one entry so that machinery works under test too.
+		run.AppendToMapPointHistory(MapPointType.Monster, RoomType.Monster, null);
 
 		RunManager.Instance.SetUpTest(_run, new NetSingleplayerGameService(), shouldSave: false);
 		LocalContext.NetId = RunManager.Instance.NetService.NetId;
