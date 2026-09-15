@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KinPriestCard : Collectible<TheKinBoss>
 {
-    public KinPriestCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.786f)
+    public KinPriestCard() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.786f)
     {
         WithDamage(14, 4);
         WithPower<WeakPower>(3);
