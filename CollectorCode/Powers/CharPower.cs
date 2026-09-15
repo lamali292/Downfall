@@ -6,19 +6,20 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Char = Collector.CollectorCode.Cards.Common.Char;
 
 namespace Collector.CollectorCode.Powers;
 
-public class FollowThePyrePower : CollectorPowerModel, IModifyDamageAdditive
+public class CharPower : CollectorPowerModel, IModifyDamageAdditive
 {
-    public FollowThePyrePower() : base(PowerType.Debuff)
+    public CharPower() : base(PowerType.Debuff)
     {
-        WithCardTip<FollowThePyre>();
+        WithCardTip<Char>();
     }
     
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        return cardSource is FollowThePyre && props.IsPoweredAttack() && target == Owner ? Amount : 0;
+        return cardSource is Char && props.IsPoweredAttack() && target == Owner ? Amount : 0;
     }
 }

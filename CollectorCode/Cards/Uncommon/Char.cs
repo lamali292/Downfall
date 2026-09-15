@@ -9,13 +9,13 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class FollowThePyre : CollectorCardModel
+public class Char : CollectorCardModel
 {
     
-    public FollowThePyre() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Char() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 2);
-        WithPower<FollowThePyrePower>(5, 2, false);
+        WithPower<CharPower>(5, 2, false);
         WithKeyword(CollectorKeyword.Pyre);
     }
 
@@ -29,6 +29,6 @@ public class FollowThePyre : CollectorCardModel
         if (card != this || CombatState == null) return;
         var randomEnemy = RunState?.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (randomEnemy == null) return;
-        await CommonActions.Apply<FollowThePyrePower>(ctx, randomEnemy, this);
+        await CommonActions.Apply<CharPower>(ctx, randomEnemy, this);
     }
 }

@@ -25,7 +25,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         WithKeyword(CardKeyword.Unplayable);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(1, DamageProps.cardUnpowered).WithUpgrade(1));
+        WithVar(new DamageVar(1, DamageProps.cardUnpowered));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
