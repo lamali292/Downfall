@@ -1,9 +1,12 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -12,16 +15,19 @@ public class Extricate : CollectorCardModel
 {
     public Extricate() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(15, 5);
+        WithCalculatedDamage(10, 1, Calc, DamageProps.card, 5);
         WithTip(CardKeyword.Exhaust);
+    }
+
+    private static decimal Calc(CardModel arg1, Creature? creature)
+    {
+        return creature?.GetPowerAmount<MiasmaPower>() ?? 0;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cardsToExhaust = Owner.Hand.Where(c => c.Type != CardType.Attack).ToList();
-        foreach (var card in cardsToExhaust) await CardCmdCompatibility.Exhaust(ctx, card);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }
