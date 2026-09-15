@@ -44,5 +44,10 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, BlockProps.cardUnpowered, this, null);
+        if (Pile == null || Pile.Type == PileType.Hand)
+        {
+            return;
+        }
+        CardPileAddResult cardPileAddResult = await CardPileCmd.Add(this, PileType.Hand);
     }
 }

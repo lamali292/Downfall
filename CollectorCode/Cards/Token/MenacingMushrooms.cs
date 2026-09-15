@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class MenacingMushrooms : CollectorCardModel
 {
-    public MenacingMushrooms() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+    public MenacingMushrooms() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithBlock(8, 2);
         WithPower<VulnerablePower>(2,1);
