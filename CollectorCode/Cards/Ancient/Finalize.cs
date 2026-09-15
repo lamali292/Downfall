@@ -5,7 +5,7 @@ using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Collector.CollectorCode.Cards.Rare;
+namespace Collector.CollectorCode.Cards.Ancient;
 
 [Pool(typeof(CollectorCardPool))]
 public class Finalize : CollectorCardModel
