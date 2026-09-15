@@ -29,10 +29,8 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
     {
 
         var pool = Owner.UnlockState.CharacterCardPools
-            .Append(ModelDb.CardPool<EventCardPool>())
             .Append(ModelDb.CardPool<ColorlessCardPool>())
             .Append(ModelDb.CardPool<CurseCardPool>())
-            .Append(ModelDb.CardPool<QuestCardPool>())
             .Append(ModelDb.CardPool<StatusCardPool>())
             .Append(ModelDb.CardPool<TokenCardPool>())
             .SelectMany(cardPoolModel => cardPoolModel.AllCards.Where(IsCardWeWant));

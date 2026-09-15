@@ -31,7 +31,7 @@ public class SentryCore : ActsFromThePastCard
         /*
         if (cardPlay.Target == null || CombatState == null) return;
         var repeat = ((CalculatedVar)DynamicVars["Repeat"]).Calculate(cardPlay.Target);
-        var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
+        var context = await AttackContextCompatibility.CreateContextAsync(CombatState, ctx, cardPlay);
         for (var i = 0; i < repeat; i++)
         {
             context.AddHit(await CompatibilityCreatureCmd.Damage(ctx,cardPlay.Target, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, this, cardPlay));

@@ -3,6 +3,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -37,16 +38,16 @@ public class ShadowDaggers : CollectorCardModel
     {
         if (Owner.IsTorchheadMissing) return;//If no Torchhead, do not run.
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
-        for (var v = 0; v < hits; v++)//Loop rather than multihit so the Torchhead doesn't waste hits.
+        for (var i = 0; i < hits; i++)
         {
-            await (CollectorCmd.TorchheadAttack(this)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+           await (CollectorCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
         }
+
     }
     
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
-        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
         base.AddExtraArgsToDescription(description);
     }
 }

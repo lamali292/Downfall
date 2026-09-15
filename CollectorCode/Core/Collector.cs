@@ -116,6 +116,12 @@ public abstract class CollectorPotionModel(PotionRarity potionRarity, PotionUsag
     {
         return WithTip(new PotionTooltipSource(_ => CollectorTip.ReserveTip));
     }
+    
+    protected ConstructedPotionModel WithKindle(int baseVal)
+    {
+        return WithVars(new KindleVar(baseVal));
+    }
+
 }
 
 public class CollectorCardPool : DownfallCardPool<Collector>;

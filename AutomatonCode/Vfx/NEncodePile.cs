@@ -19,7 +19,8 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override Vector2 HoverTipOffset => new(0, 0);
     protected override Vector2 ButtonOffsets => new(0, 0);
     protected override Vector2 FollowOffset => new(150f, -250f);
-    protected override float BobSpeed => 0.7f;       
+    protected override float BobSpeed => 0.7f;
+
     protected override bool StartHidden(Player player)
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
 
@@ -29,11 +30,14 @@ public partial class NEncodePile : NCreatureFollowingCardPile
 
     protected override LocString BuildEmptyPileMessage()
         => new("combat_messages", "OPEN_EMPTY_ENCODE");
-    
-    
+
+
     private CardModel? _previewModel;
     private readonly List<CardModel> _previewSource = new();
-    
+
+    // Compile effects of the previewed Function, shown as a hover tip (they are not printed on the Function itself).
+    private string _compileLines = string.Empty;
+
     protected override List<CardModel> GetCards()
     {
         var list = _pile?.Cards;
@@ -64,7 +68,24 @@ public partial class NEncodePile : NCreatureFollowingCardPile
             player, out _);
 
     }
-    
+
+    protected override void AfterCardVisualsRefreshed(IReadOnlyList<CardModel> models)
+    {
+        _compileLines = string.Join("\n", models.OfType<FunctionCard>()
+            .SelectMany(fn => fn.GetCompileLines())
+            .Where(l => !string.IsNullOrWhiteSpace(l)));
+    }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            if (_compileLines.Length > 0)
+                yield return new HoverTip(new LocString("static_hover_tips", "AUTOMATON-COMPILE.title"), _compileLines);
+            foreach (var tip in base.ExtraHoverTips) yield return tip;
+        }
+    }
+
     public static void RevealFor(Player player)
     {
         if (!LocalContext.IsMe(player)) return;   // only the local player's pile reveals

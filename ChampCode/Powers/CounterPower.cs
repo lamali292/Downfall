@@ -21,7 +21,7 @@ public class CounterPower : ChampPowerModel
 
     private static CardHoverTip GetPowerTooltip(PowerModel arg)
     {
-        var card = ModelDb.Card<RiposteStrike>();
+        var card = ModelDb.Card<RiposteStrike>().ToMutable();
         card.DynamicVars.Damage.BaseValue = arg.Amount;
         return new CardHoverTip(card);
     }

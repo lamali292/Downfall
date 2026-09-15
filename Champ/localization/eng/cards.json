@@ -178,7 +178,7 @@
   "CHAMP-TRIPLE_STRIKE.title": "Triple Strike",
   "CHAMP-ULTIMATE_STANCE.description": "Gain {GloryPower:diff()} [gold]Glory[/gold].",
   "CHAMP-ULTIMATE_STANCE.title": "Ultimate Stance",
-  "CHAMP-VICIOUS_MOCKERY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold].\nTrigger your current Stance's [gold]Skill Bonus[/gold].",
+  "CHAMP-VICIOUS_MOCKERY.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold].\nApply {WeakPower:diff()} [gold]Weak[/gold].\nTrigger your current [gold]Stance's[/gold] [gold]Skill Bonus[/gold].",
   "CHAMP-VICIOUS_MOCKERY.title": "Vicious Mockery",
   "CHAMP-VICIOUS_MOCKERY.banter.1": "You call that a weapon?",
   "CHAMP-VICIOUS_MOCKERY.banter.2": "Come at me!",

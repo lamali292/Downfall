@@ -4,7 +4,6 @@ using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;
-using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class VantomCard : Collectible<VantomBoss>
@@ -16,6 +15,6 @@ public class VantomCard : Collectible<VantomBoss>
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SlipperyPower>(ctx, this);
+        await CommonActions.ApplySelf<RuggedPower>(ctx, this);
     }
 }

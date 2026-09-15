@@ -35,6 +35,8 @@ internal static class MainMenuButtonsPatch
                 else if (captured.SubmenuType != null) _stack?.PushSubmenuType(captured.SubmenuType);
             }));
         }
+
+        MainMenuButtonRegistry.InvokeMainMenuReady();
     }
 
     private static NMainMenuSubmenuStack? FindStack(Node root)

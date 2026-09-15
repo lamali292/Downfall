@@ -54,6 +54,7 @@ public static class AutomatonCmd
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
+        NFunctionDisplay.ShowFor(player);
         await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, EncodePile.FunctionSequence);
         await Cmd.Wait(0.2f);
@@ -87,7 +88,8 @@ public static class AutomatonCmd
         //NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
             if (cardModel is ICompilable compilable)
-                await compilable.OnCompile(ctx);
+                foreach (var compilation in compilable.Compilations)
+                    await compilation.OnCompile(cardModel, ctx);
 
         var functionCard = combatState.CreateCard<FunctionCard>(player);
         functionCard.SetSourceCards(snapshot);

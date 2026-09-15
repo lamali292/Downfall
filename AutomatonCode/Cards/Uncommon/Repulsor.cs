@@ -13,7 +13,7 @@ public class Repulsor : AutomatonCardModel
 {
     public Repulsor() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<RepulsePower>(4, 1, false);
+        WithPower<RepulsePower>(2, 1, false);
         WithTip(StaticHoverTip.Block);
     }
 

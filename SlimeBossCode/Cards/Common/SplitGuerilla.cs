@@ -13,6 +13,7 @@ public class SplitGuerilla : SlimeBossCardModel
     public SplitGuerilla() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithCommand(2, 1);
+        WithTips(_ => [SlimeBossModelDb.Slime<GuerillaSlime>().SlimeTip]);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

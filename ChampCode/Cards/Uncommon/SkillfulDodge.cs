@@ -16,7 +16,7 @@ public class SkillfulDodge : ChampCardModel, IDefensiveComboCard
     {
         WithBlock(4, 1);
         WithPower<CounterPower>(4, 1);
-        WithVar("Increase", 3, 1);
+        WithVar("Increase", 4, 1);
     }
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();

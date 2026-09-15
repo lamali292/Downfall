@@ -78,6 +78,8 @@
     "AWAKENED-RAZOR_SHARP_POWER.description": "羽根撃ちの攻撃回数が1回増える。",
     "AWAKENED-RAZOR_SHARP_POWER.smartDescription": "羽根撃ちの攻撃回数が[blue]{Amount}[/blue]回増える。",
     "AWAKENED-RISING_CHORUS_POWER.title": "高まる祈り",
+    "AWAKENED-RISING_CHORUS_POWER.description": "毎ターン、最初に発動する[gold]詠唱[/gold]効果は2回発動する。",
+    "AWAKENED-RISING_CHORUS_POWER.smartDescription": "毎ターン、最初に発動する[blue]{Amount}[/blue]個の[gold]詠唱[/gold]効果は2回発動する。",
     "AWAKENED-SCHEME_POWER.title": "スキーム",
     "AWAKENED-SCHEME_POWER.description": "このターン、次にプレイするコスト1以下のカードは2回プレイされる。",
     "AWAKENED-SCHEME_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚のコスト1以下のカードは2回プレイされる。",

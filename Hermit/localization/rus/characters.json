@@ -10,7 +10,7 @@
     "HERMIT-HERMIT.eventDeathPrevention": "Не сейчас... У меня еще остались незаконченные дела...",
     "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...выжить, собрать добычу, двигаться дальше...[/blue][/sine]",
     "HERMIT-HERMIT.cardsModifierTitle": "Карты Отшельника",
-    "HERMIT-HERMIT.cardsModifierDescription": "Карты Отшельника теперь будут появляться в наградах и магазинах.",
+    "HERMIT-HERMIT.cardsModifierDescription": "Карты Отшельника теперь будут появляться в наградах и у Торговца.",
     "HERMIT-HERMIT.banter.alive.endTurnPing": "Тик-так...",
     "HERMIT-HERMIT.banter.dead.endTurnPing": "..."
 }

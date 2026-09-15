@@ -48,9 +48,11 @@
   "AUTOMATON-FRAGMENT.functionEnd": "F",
   "AUTOMATON-FRAGMENT.functionName": "Fragment",
   "AUTOMATON-FRAGMENT.functionPrefix": "clean",
+  "AUTOMATON-FRONTLOAD.compile": "Function gains [gold]Retain[/gold].",
   "AUTOMATON-FRONTLOAD.functionEnd": "F",
   "AUTOMATON-FRONTLOAD.functionName": "Wall",
   "AUTOMATON-FRONTLOAD.functionPrefix": "sturdy",
+  "AUTOMATON-FULL_RELEASE.compile": "Function becomes a [gold]Power[/gold] with \"Now and at the start of your turn...\".",
   "AUTOMATON-FULL_RELEASE.encode": "The Function is a Power with \"Now and at the start of your turn...\".",
   "AUTOMATON-FULL_RELEASE.functionEnd": "F",
   "AUTOMATON-FULL_RELEASE.functionName": "Release",
@@ -64,6 +66,7 @@
   "AUTOMATON-MINOR_BEAM.functionEnd": "M",
   "AUTOMATON-MINOR_BEAM.functionName": "Scratch",
   "AUTOMATON-MINOR_BEAM.functionPrefix": "minor",
+  "AUTOMATON-NULL_POINTER.compile": "Function costs {Energy:energyIcons()}.",
   "AUTOMATON-NULL_POINTER.functionEnd": "N",
   "AUTOMATON-NULL_POINTER.functionName": "Pointer",
   "AUTOMATON-NULL_POINTER.functionPrefix": "null",
@@ -93,5 +96,11 @@
   "AUTOMATON-TERMINATOR.functionPrefix": "sad",
   "AUTOMATON-FUNCTION.functionParentheses": "()",
   "AUTOMATON-FUNCTION.title": "{prefix}{name}{end3}{end4}{parentheses}",
-  "AUTOMATON-PERFECTION.functionName": "perfection()"
+  "AUTOMATON-PERFECTION.functionName": "perfection()",
+  "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "Gain a copy of [gold]{Card}[/gold] with {CompileLoopIncrease:diff()} additional damage.",
+  "AUTOMATON-STRENGTH_COMPILE.compile": "Gain {CompileStrength:diff()} [gold]Strength[/gold].",
+  "AUTOMATON-THORNS_COMPILE.compile": "Gain {CompileThorns:diff()} [gold]Thorns[/gold].",
+  "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "Add {CompileDazed:diff()} [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
+  "AUTOMATON-BURN_TO_DRAW_COMPILE.compile": "Add {CompileBurn:diff()} {CompileBurn:plural:[gold]Burn[/gold]|[gold]Burns[/gold]} into your [gold]Draw Pile[/gold].",
+  "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Stash[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Error|Errors}[/gold]."
 }

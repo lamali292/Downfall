@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Piles;
+using Automaton.AutomatonCode.Vfx;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -30,6 +31,10 @@ public class PiercingShot : AutomatonCardModel
             new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, DynamicVars.Cards.IntValue),
             card => card.IsUpgradable)).ToList();
         foreach (var card in cards) CardCmd.Upgrade(card);
-        // if (cards.Count != 0) NStashDisplay.GetDisplay(Owner)?.Refresh(true);
+        if (cards.Count != 0)
+        {
+            NStashDisplay.GetDisplay(Owner)?.Refresh(true);
+            NStashPile.RefreshFor(Owner);
+        }
     }
 }

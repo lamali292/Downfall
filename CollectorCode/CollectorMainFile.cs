@@ -49,7 +49,7 @@ public static class CollectorMainFile
     {
         CustomBundleRegistry.Register<Core.Collector>(new CustomPackage
         {
-            ChancePercent = 50,
+            ChancePercent = 2,
             Card1 = ModelDb.Card<FollowThePyre>(),
             Card2 = ModelDb.Card<FollowThePyre>(),
             Card3 = ModelDb.Card<FollowThePyre>()

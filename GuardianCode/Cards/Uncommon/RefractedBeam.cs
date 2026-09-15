@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Guardian.GuardianCode.Cards.Uncommon;
 
 [Pool(typeof(GuardianCardPool))]
-public class RefractedBeam : GuardianCardModel, IGemSocketCard
+public class RefractedBeam : GuardianCardModel, IGemSocketCard, IStackingUpgradeCard
 {
     public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {

@@ -6,7 +6,7 @@ using SlimeBoss.SlimeBossCode.Events;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class DouseInSlimePower : SlimeBossPowerModel, IModifyGoopConsume
+public class DouseInSlimePower() : SlimeBossPowerModel(PowerType.Debuff), IModifyGoopConsume
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 

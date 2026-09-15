@@ -11,7 +11,7 @@ namespace Champ.ChampCode.Cards.Rare;
 [Pool(typeof(ChampCardPool))]
 public class CheapShot : ChampCardModel
 {
-    public CheapShot() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public CheapShot() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(5);
         WithKeywords(CardKeyword.Exhaust);

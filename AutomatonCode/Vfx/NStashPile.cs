@@ -41,4 +41,13 @@ public partial class NStashPile : NCreatureFollowingCardPile
         var btn = GetPileNode<NStashPile>();
         btn?.Reveal();
     }
+
+    /// <summary>Rebuild the shown card visual, e.g. after the top stash card was upgraded in place
+    /// (Piercing Shot) — an in-place mutation doesn't fire a pile content event on its own.</summary>
+    public static void RefreshFor(Player player)
+    {
+        if (!LocalContext.IsMe(player)) return;
+        var btn = GetPileNode<NStashPile>();
+        btn?.ForceRefreshCardVisual();
+    }
 }

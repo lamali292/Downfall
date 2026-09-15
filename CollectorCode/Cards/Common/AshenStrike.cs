@@ -29,7 +29,7 @@ public class AshenStrike : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
+        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
         else 
@@ -38,8 +38,7 @@ public class AshenStrike : CollectorCardModel
     
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
-        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
         base.AddExtraArgsToDescription(description);
     }
 }

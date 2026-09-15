@@ -169,6 +169,9 @@ public abstract class GemModel : CardModifier, ICustomModel
     {
         if (TestMode.IsOff) GuardianMainFile.Logger.Info($"Played Gem : {Id.Entry}");
         if (cardPlay?.Card is IGemSocketCard { ShouldPlayGems: false }) return;
+        // A gem left over past GemSlots (e.g. a downgrade shrank capacity below what's socketed)
+        // stays attached but is inactive - it doesn't play, matching what the socket display shows.
+        if (cardPlay?.Card is IGemSocketCard socket && SocketIndex >= socket.GemSlots) return;
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
         var targetPlayers = TargetPlayers(affectsAll).ToList();

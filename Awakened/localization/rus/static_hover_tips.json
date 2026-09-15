@@ -1,0 +1,14 @@
+{
+    "AWAKENED-AWAKEN.title": "Пробуждение",
+    "AWAKENED-AWAKEN.description": "Разыграв [blue]7[/blue] Талантов за бой, вы [gold]Пробуждаетесь[/gold].\n[gold]Пробуждение[/gold] [gold]улучшает[/gold] ВСЕ [gold]Наколдованные[/gold] Заклинания до конца боя.",
+    "AWAKENED-CONJURE.title": "Колдовство",
+    "AWAKENED-CONJURE.description": "Добавляет в [gold]руку[/gold] следующую карту из [gold]Книги заклинаний[/gold].",
+    "AWAKENED-CHANT.title": "Зов",
+    "AWAKENED-CHANT.description": "Карта с этим эффектом усиливается до конца боя, если последняя разыгранная карта в этом бою - Талант.",
+    "AWAKENED-CHANTED.title": "Хор",
+    "AWAKENED-CHANTED.description": "Эффекты этой карты были усилены.",
+    "AWAKENED-DRAINED.title": "Истощение",
+    "AWAKENED-DRAINED.description": "Эффект, вызванный любой потерей {Energy:energyIcons()}, даже при отсутствии [gold]энергии[/gold] (кроме траты {Energy:energyIcons()} на разыгрывание карт).",
+    "AWAKENED-SPELLBOOK.title": "Книга заклинаний",
+    "AWAKENED-SPELLBOOK.description": "Ваша коллекция Заклинаний.{HasSpell:cond:\nВаше следующее Заклинание: [gold]«{Spell}»[/gold].|}"
+}

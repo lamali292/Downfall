@@ -13,6 +13,7 @@ public class SplitBruiser : SlimeBossCardModel
     public SplitBruiser() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithCommand(2, 1);
+        WithTips(_ => [SlimeBossModelDb.Slime<BruiserSlime>().SlimeTip]);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

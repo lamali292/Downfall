@@ -22,8 +22,8 @@
     "HERMIT-TAKE_AIM_POWER.title": "狙う",
     "HERMIT-ADAPT_POWER.description": "ターン開始時、カードを最大[blue]1[/blue]枚[gold]廃棄[/gold]し、1枚につき[blue]8[/blue][gold]ブロック[/gold]を得る。",
     "HERMIT-ADAPT_POWER.smartDescription": "ターン開始時、カードを最大[blue]{Amount}[/blue]枚[gold]廃棄[/gold]し、1枚につき[blue]8[/blue][gold]ブロック[/gold]を得る。",
-    "HERMIT-ADAPT_POWER.title": "適応",
-    "HERMIT-BRUISE_POWER.description": "このターン、あなたの攻撃は対象に追加ダメージを与える。",
+    "HERMIT-ADAPT_POWER.title": "アダプト",
+    "HERMIT-BRUISE_POWER.description": "このターン、あなたのアタックは対象に追加ダメージを与える。",
     "HERMIT-BRUISE_POWER.smartDescription": "このターン、{HasBigBruiser:|あなたの}アタックから[blue]{Amount}[/blue]の追加ダメージを受ける。",
     "HERMIT-BRUISE_POWER.title": "打撲",
     "HERMIT-HORROR_POWER.description": "このターン、打撲が消えない。",
@@ -63,8 +63,8 @@
     "HERMIT-SMOKING_BARREL_POWER.smartDescription": "[gold]命中[/gold]効果を発動するたび、[gold]活力[/gold][blue]{Amount}[/blue]を得る。",
     "HERMIT-SMOKING_BARREL_POWER.title": "煙る銃口",
     "HERMIT-MAGAZINE_POWER.title": "弾倉",
-    "HERMIT-MAGAZINE_POWER.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン最初にプレイした[gold]基本[/gold][gold]ストライク[/gold]は追加ダメージを与える。",
-    "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン最初にプレイした[gold]基本[/gold][gold]ストライク[/gold]は追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "HERMIT-MAGAZINE_POWER.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]基本[/gold][gold]ストライク[/gold]が追加ダメージを与える。",
+    "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]基本[/gold][gold]ストライク[/gold]が追加で[blue]{Amount}[/blue]ダメージを与える。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.title": "真昼の決闘+",
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]基本[/gold][gold]防御[/gold]が[gold]リプレイ[/gold]を得る。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]基本[/gold][gold]防御[/gold]が[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
@@ -86,8 +86,8 @@
     "HERMIT-BURDENED_POWER.title": "重荷",
     "HERMIT-BURDENED_POWER.description": "ターン開始時、[gold]活力[/gold]を得て、[red]腐敗[/red]を[gold]手札[/gold]に加える。",
     "HERMIT-BURDENED_POWER.smartDescription": "ターン開始時、[gold]活力[/gold][blue]{Amount}[/blue]を得て、[red]腐敗[/red]を[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。",
-    "HERMIT-BRUISE_POWER.remoteDescription": "このターン、{HasBigBruiser:|[orange]{ApplierName}[/orange]の}攻撃は対象に追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "HERMIT-BRUISE_POWER.remoteDescription": "このターン、{HasBigBruiser:|[orange]{ApplierName}[/orange]の}アタックから[blue]{Amount}[/blue]の追加ダメージを受ける。",
     "HERMIT-LONG_SHADOWS_POWER.title": "伸びる影",
-    "HERMIT-LONG_SHADOWS_POWER.description": "[red]呪い[/red]を引くたび、カードを1枚引く。",
-    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "[red]呪い[/red]を引くたび、カードを[blue]{Amount}[/blue]枚引く。"
+    "HERMIT-LONG_SHADOWS_POWER.description": "[red]呪い[/red]を1枚引くたび、カードを1枚引く。",
+    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "[red]呪い[/red]を1枚引くたび、カードを[blue]{Amount}[/blue]枚引く。"
 }

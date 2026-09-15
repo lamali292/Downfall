@@ -30,6 +30,8 @@ public static class AutomatonMainFile
         CardExecutionRegistry.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
+        CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
+            new CompileDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
         FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");

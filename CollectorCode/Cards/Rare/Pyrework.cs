@@ -27,8 +27,7 @@ public class Pyrework : CollectorCardModel
     
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        var shouldTargetAll = _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
-        description.Add("TorchheadTargetsAll", shouldTargetAll);
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
         base.AddExtraArgsToDescription(description);
     }
 }
