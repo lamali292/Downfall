@@ -1,4 +1,8 @@
 {
-    "COLLECTOR-PYRE.description": "需额外[gold]消耗[/gold]一张[gold]手牌[/gold]才能打出。",
-    "COLLECTOR-PYRE.title": "焰藏"
+    "COLLECTOR-PYRE.description": "[gold]消耗[/gold]你[gold]手牌[/gold]中的一张牌后才能打出。",
+    "COLLECTOR-PYRE.title": "焰葬",
+    "COLLECTOR-MEGAPYRE.description": "[gold]消耗[/gold]你[gold]手牌[/gold]中的所有牌后才能打出。",
+    "COLLECTOR-MEGAPYRE.title": "煌葬",
+    "COLLECTOR-FLICKER.description": "这张牌的效果会在它被[gold]消耗[/gold]时触发，而不是在它被使用时。",
+    "COLLECTOR-FLICKER.title": "烛光"
 }
