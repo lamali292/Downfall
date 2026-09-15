@@ -101,7 +101,7 @@
   "COLLECTOR-RECEIVE_TRIBUTE.title": "Receive Tribute",
   "COLLECTOR-ROAST.description": "Deal {Damage:diff()} damage.",
   "COLLECTOR-ROAST.title": "Roast",
-  "COLLECTOR-ROTWOOD_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nApply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
+  "COLLECTOR-ROTWOOD_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nAdd a [gold]Menacing Mushrooms{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-ROTWOOD_KINDLING.title": "Rotwood Kindling",
   "COLLECTOR-SCORCHING_RAY.description": "Deal {Damage:diff()} damage to a random enemy X times.",
   "COLLECTOR-SCORCHING_RAY.title": "Scorching Ray",
@@ -268,5 +268,7 @@
   "COLLECTOR-YOU_YOURSELF.title": "You Yourself",
   "COLLECTOR-YOU_YOURSELF.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].\n[gold]Kindle[/gold] {Kindle:diff()}.",
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
-  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold]."
+  "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold].",
+  "COLLECTOR-MENACING_MUSHROOMS.title": "Menacing Mushrooms",
+  "COLLECTOR-MENACING_MUSHROOMS.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
 }

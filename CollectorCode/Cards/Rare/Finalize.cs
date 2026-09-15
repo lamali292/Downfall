@@ -10,11 +10,11 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Finalize : CollectorCardModel
 {
-    public Finalize() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Finalize() : base(4, CardType.Skill, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(12, 4);
-        WithPower<FinalizePower>(7, 3, false);
+        WithPower<MiasmaPower>(24, 4);
+        WithPower<FinalizePower>(10, 3, false);
     }
 
     public override bool CanBeGeneratedInCombat => false;
