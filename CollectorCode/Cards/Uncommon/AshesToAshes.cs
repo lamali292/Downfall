@@ -21,17 +21,14 @@ public class AshesToAshes : CollectorCardModel
         WithCardTip<Ember>(WithPreviewModifiers);
     }
     
-    private void WithPreviewModifiers(Ember ember, CardModel cardModel)
+    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
     {
         var val = 1;
-        if (cardModel.IsUpgraded) val += _currentUpgradeLevel;
-        WithModifiers(ember, val);
+        if (cardModel.IsUpgraded) val += 1;
+        for (var i = 0; i< val; i++) CardCmd.Upgrade(ember);
     }
     
-    private static void WithModifiers(Ember ember, int ups)
-    {
-        DownfallCardCmd.ForceUpgrade(ember, ups);
-    }
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

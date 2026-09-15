@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Patches;
+using Char = Collector.CollectorCode.Cards.Common.Char;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Collector.CollectorCode;
@@ -50,9 +51,9 @@ public static class CollectorMainFile
         CustomBundleRegistry.Register<Core.Collector>(new CustomPackage
         {
             ChancePercent = 2,
-            Card1 = ModelDb.Card<FollowThePyre>(),
-            Card2 = ModelDb.Card<FollowThePyre>(),
-            Card3 = ModelDb.Card<FollowThePyre>()
+            Card1 = ModelDb.Card<Char>(),
+            Card2 = ModelDb.Card<Char>(),
+            Card3 = ModelDb.Card<Char>()
         });
     }
 }

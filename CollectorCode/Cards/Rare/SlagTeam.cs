@@ -15,7 +15,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SlagTeam : CollectorCardModel, IAfterCardPyred
 {
-    public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.Self)
+    public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithTorchheadDamage(6, 3);
         WithTip(CollectorTip.Pyred);
