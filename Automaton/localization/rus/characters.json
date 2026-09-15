@@ -2,7 +2,7 @@
     "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Ошибок не обнаружено. Ошибок не обнаружено.[/blue][/sine]",
     "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Внимание: превышено время отклика союзника.[/red]",
     "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
-    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Карты Автоматона теперь могут появляться в наградах и магазинах.",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Карты Автоматона теперь могут появляться в наградах и у Торговца.",
     "AUTOMATON-AUTOMATON.cardsModifierTitle": "Карты Автоматона",
     "AUTOMATON-AUTOMATON.description": "Механический страж Города.\nАдаптируется к любым боевым ситуациям.",
     "AUTOMATON-AUTOMATON.eventDeathPrevention": "Отключение прервано. Задача еще не выполнена.",

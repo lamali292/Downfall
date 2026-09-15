@@ -1,0 +1,12 @@
+{
+    "AWAKENED-RECITATION.chant": "Наносит {Damage:diff()} урона еще раз.",
+    "AWAKENED-CAW.chant": "Повышает урон ВСЕХ [gold]«Каров»[/gold] на {Caw:diff()} до конца боя.",
+    "AWAKENED-FEATHER_FLARE.chant": "Вы доберете 1 карту в начале следующего хода.",
+    "AWAKENED-GATHER.chant": "Вы кладете карту из [gold]стопки сброса[/gold] в [gold]руку[/gold].",
+    "AWAKENED-GREAT_HEX.chant": "Враг получает {GreatHexPower:diff()} [gold]Ожога маны[/gold] в конце каждого своего хода.",
+    "AWAKENED-NIHIL.chant": "Отнимает у ВСЕХ врагов ОЗ, равные их [gold]Ожогу маны[/gold].",
+    "AWAKENED-RAVEN_STRIKE.chant": "Вы разыгрываете карту с верха [gold]стопки добора[/gold].",
+    "AWAKENED-TAKE_FLIGHT.chant": "[gold]Защита[/gold] не пропадет в начале следующего хода.",
+    "AWAKENED-VICTUALS.chant": "Дает {Energy:energyIcons()}.",
+    "AWAKENED-SIPHON.chant": "Вы крадете у врага {SiphonPower:diff()} [gold]силы[/gold] на этот ход."
+}
