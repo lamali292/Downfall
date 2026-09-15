@@ -1,3 +1,4 @@
+/*
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Rare;
 using Collector.CollectorCode.Core;
@@ -27,3 +28,4 @@ public class DarkLordForm : CollectorCardModel
             await CommonActions.ApplySelf<DarkLordFormPower>(ctx, this, 1);
     }
 }
+*/

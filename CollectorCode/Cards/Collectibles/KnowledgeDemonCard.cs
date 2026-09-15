@@ -34,6 +34,8 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             .Append(ModelDb.CardPool<StatusCardPool>())
             .Append(ModelDb.CardPool<TokenCardPool>())
             .SelectMany(cardPoolModel => cardPoolModel.AllCards.Where(IsCardWeWant));
+        var ancients = ModelDb.AllCards.Where(c => c.Rarity is CardRarity.Ancient);
+        pool = pool.Concat(ancients);
 
         var list = CardFactory.GetDistinctForCombat(Owner, pool, 
             DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
