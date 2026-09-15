@@ -14,6 +14,7 @@ public class QuenchingDregs : CollectorCardModel
         WithDamage(13, 3);
         WithCards(2);
         WithEnergy(1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
