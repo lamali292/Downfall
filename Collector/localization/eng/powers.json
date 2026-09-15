@@ -60,7 +60,7 @@
   "COLLECTOR-TORCHHEAD_POWER.description": "At the end of your turn, [gold]Torchhead[/gold] deals [blue]5[/blue] damage.\n[gold]Torchhead[/gold] always targets the lowest HP enemy.\n[gold]Torchhead[/gold] aborbs all unblocked attack damage.",
   "COLLECTOR-TORCHHEAD_POWER.smartDescription": "At the end of your turn, [gold]Torchhead[/gold] deals [blue]{TorchheadDamage:diff()}[/blue] damage{TorchheadTargetsAll:cond: to ALL enemies.|.\n[gold]Torchhead[/gold] always targets the lowest HP enemy.}\n[gold]Torchhead[/gold] absorbs all unblocked attack damage.",
   "COLLECTOR-MIASMA_POWER.title": "Miasma",
-  "COLLECTOR-MIASMA_POWER.description": "At the end of its turn, takes X damage.",
+  "COLLECTOR-MIASMA_POWER.description": "At the end of its turn, takes [blue]X[/blue] damage.",
   "COLLECTOR-FINALIZE_POWER.remoteDescription": "When [gold]{OwnerName}[/gold] dies, [orange]{ApplierName}[/orange] heals [blue]{Amount}[/blue] HP.",
   "COLLECTOR-EQUIP_SHIELD_POWER.title": "Equip: Shield",
   "COLLECTOR-EQUIP_SHIELD_POWER.description": "Whenever [gold]Torchhead[/gold] attacks, gain [gold]Block[/gold].",
