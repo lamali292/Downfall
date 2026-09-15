@@ -13,8 +13,8 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
 {
     public Pyreblast() : base(10, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithDamage(100);
+        WithKeyword(CardKeyword.Retain);
+        WithDamage(75, 25);
         WithEnergy(1);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
@@ -27,15 +27,6 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
-
-    /*
-    public override Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
-    {
-        if (card.Owner != Owner || card.Type is not (CardType.Curse or CardType.Status) || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
-        EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
-        return Task.CompletedTask;
-    }
-    */
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
