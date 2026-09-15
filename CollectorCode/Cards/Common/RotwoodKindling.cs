@@ -8,7 +8,6 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
@@ -21,12 +20,7 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         WithKindle( 1);
-        WithTip(new TooltipSource(card =>
-        {
-            var beam = ModelDb.GetById<MenacingMushrooms>(ModelDb.Card<MenacingMushrooms>().Id).ToMutable();
-            if (card.IsUpgraded) beam.UpgradeInternal();
-            return HoverTipFactory.FromCard(beam);
-        }));
+        WithUpgradingCardTip<MenacingMushrooms>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

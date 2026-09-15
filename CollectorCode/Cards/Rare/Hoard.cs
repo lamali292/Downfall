@@ -18,6 +18,7 @@ public class Hoard : CollectorCardModel
         WithCards(6, 1);
         WithPower<RetainHandPower>(1, false);
         WithTip(CardKeyword.Retain);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

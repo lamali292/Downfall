@@ -107,7 +107,7 @@
   "COLLECTOR-SCORCHING_RAY.title": "Scorching Ray",
   "COLLECTOR-SEED_OF_DOUBT.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold].\nWhenever a card is [gold]Exhausted[/gold] while this is in [gold]Hand[/gold], increase its [gold]Miasma[/gold] by {Increase:diff()}.",
   "COLLECTOR-SEED_OF_DOUBT.title": "Seed of Doubt",
-  "COLLECTOR-EXTRICATE.description": "[gold]Exhaust[/gold] all non-Attack cards in your [gold]Hand[/gold].\nDeal {Damage:diff()} damage.",
+  "COLLECTOR-EXTRICATE.description": "Deal {Damage:diff()} damage.\nDeals {ExtraDamage:diff()} more damage for each [gold]Miasma[/gold] on the enemy.",
   "COLLECTOR-EXTRICATE.title": "Extricate",
   "COLLECTOR-SHADOW_DAGGERS.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} for each Colorless card in your [gold]Deck[/gold].{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "COLLECTOR-SHADOW_DAGGERS.title": "Shadow Daggers",
