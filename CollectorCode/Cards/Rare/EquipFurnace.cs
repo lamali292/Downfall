@@ -12,8 +12,9 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class EquipFurnace : CollectorCardModel
 {
-    public EquipFurnace() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public EquipFurnace() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithKindle( 5, 1);
         WithPower<EquipFurnacePower>(1, 1, false);
         //WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
@@ -25,6 +26,7 @@ public class EquipFurnace : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CollectorCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<EquipFurnacePower>(ctx, this);
     }
 }

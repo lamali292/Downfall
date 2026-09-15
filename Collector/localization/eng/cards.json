@@ -154,7 +154,7 @@
   "COLLECTOR-EQUIP_SHIELD.title": "Equip: Shield",
   "COLLECTOR-EQUIP_SHIELD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, gain {EquipShieldPower:diff()} [gold]Block[/gold].",
   "COLLECTOR-EQUIP_FURNACE.title": "Equip: Furnace",
-  "COLLECTOR-EQUIP_FURNACE.description": "[gold]Torchhead[/gold] deals {EquipFurnacePower:diff()} additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].",
+  "COLLECTOR-EQUIP_FURNACE.description": "Kindle {Kindle:diff()}.\n[gold]Torchhead[/gold] deals {EquipFurnacePower:diff()} additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].",
   "COLLECTOR-FOLLOW_THE_PYRE.title": "Catalyst",
   "COLLECTOR-FOLLOW_THE_PYRE.description": "Deal {Damage:diff()} damage.\nWhenever you draw this card, a random enemy takes {FollowThePyrePower:diff()} additional damage from ALL [gold]Catalyst[/gold] cards.",
   "COLLECTOR-DEGRADE.title": "Degrade",
@@ -270,5 +270,7 @@
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
   "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-MENACING_MUSHROOMS.title": "Menacing Mushrooms",
-  "COLLECTOR-MENACING_MUSHROOMS.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+  "COLLECTOR-MENACING_MUSHROOMS.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "COLLECTOR-SLAG_TEAM.title": "Slag Team",
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], return this to your [gold]Hand[/gold]."
 }

@@ -19,7 +19,7 @@ public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(3, 1);
+        WithKindle(2, 1);
         WithTip(new TooltipSource(card =>
         {
             var beam = ModelDb.GetById<BurningStrike>(ModelDb.Card<BurningStrike>().Id).ToMutable();
