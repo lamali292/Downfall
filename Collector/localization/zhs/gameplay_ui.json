@@ -1,5 +1,3 @@
 {
-    "COMBAT_REWARD_ESSENCE": "获得{essence}点魂粹。",
-    "COLLECTIBLE_REWARD": "消耗{essence}点魂粹来获得{Card}。",
-    "COLLECTIBLE_REWARD_CANT_AFFORD": "需要{essence}点魂粹来获得{Card}。"
+    "COLLECTIBLE_REWARD": "将[gold]{Card}[/gold]加入你的牌组。"
 }
