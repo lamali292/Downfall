@@ -14,7 +14,7 @@ public class StashAway : CollectorCardModel
 {
     public StashAway() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
-        WithBlock(7, 3);
+        WithBlock(7, 2);
         WithKeyword(CollectorKeyword.Pyre);
         WithReserve(1);
         //WithKeyword(CardKeyword.Exhaust);
