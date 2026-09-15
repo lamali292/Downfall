@@ -12,8 +12,8 @@ public class Mushroom : CollectorCardModel
 {
     public Mushroom() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithBlock(8, 2);
-        WithPower<VulnerablePower>(2,1);
+        WithBlock(8, 3);
+        WithPower<VulnerablePower>(2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

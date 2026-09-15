@@ -11,7 +11,7 @@ public class CollectionBounty : CollectorCardModel
 {
     public CollectionBounty() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
+        WithDamage(9, 3);
         WithPower<CollectionBountyPower>(1, false);
         WithReserveTip();
     }
