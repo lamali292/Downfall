@@ -92,7 +92,7 @@
     "AUTOMATON-NULL_POINTER.title": "Null Pointer",
     "AUTOMATON-OIL_SPILL.description": "[gold]コンパイル[/gold] - [gold]エラー[/gold]を1枚[gold]格納[/gold]する。",
     "AUTOMATON-OIL_SPILL.title": "オイル漏れ",
-    "AUTOMATON-OPTIMIZE.description": "ターン開始時、[gold]格納オーブ[/gold]から追加で1枚引く。",
+    "AUTOMATON-OPTIMIZE.description": "ターン開始時、[gold]格納オーブ[/gold]から追加でカードを1枚引く。",
     "AUTOMATON-OPTIMIZE.title": "最適化",
     "AUTOMATON-OVERHEAT.description": "{Damage:diff()}ダメージを与える。\n次にカードを作成する時、対象の敵はHPを{OverheatPower:diff()}失う。",
     "AUTOMATON-OVERHEAT.title": "熱暴走",
