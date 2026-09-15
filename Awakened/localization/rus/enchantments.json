@@ -1,3 +1,5 @@
 {
-    "AWAKENED-CONJURATION.title": "Заклинание"
+    "AWAKENED-CONJURATION.title": "Заклинание",
+    "AWAKENED-CONJURATION.description": "Эта карта получает эффект [gold]Колдовство[/gold].",
+    "AWAKENED-CONJURATION.extraCardText": "[gold]Сотворение[/gold]."
 }

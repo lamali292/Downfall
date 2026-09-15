@@ -1,0 +1,16 @@
+{
+    "AWAKENED-AWAKENED.aromaPrinciple": "[sine][purple]Пустота зовет. Я отвечаю на зов. Пустота зовет. Я отвечаю на зов. [jitter]Я всегда отвечаю на зов.[/jitter][/purple][/sine]",
+    "AWAKENED-AWAKENED.banter.alive.endTurnPing": "Вечность ждет.",
+    "AWAKENED-AWAKENED.banter.dead.endTurnPing": "...",
+    "AWAKENED-AWAKENED.cardsModifierDescription": "Карты Пробужденного теперь могут появляться в наградах и у Торговца.",
+    "AWAKENED-AWAKENED.cardsModifierTitle": "Карты Пробужденного",
+    "AWAKENED-AWAKENED.description": "Триумф Культа и бессмертный тёмный колдун Запределья.\nОбладает властью над Пустотой и всеми прочими стихиями.",
+    "AWAKENED-AWAKENED.eventDeathPrevention": "Я бессмертен. Я не могу пасть перед такой незначительной угрозой.",
+    "AWAKENED-AWAKENED.goldMonologue": "[sine]Богатство ничего не значит для того, кто преодолел смертность... и все же...[/sine]",
+    "AWAKENED-AWAKENED.possessiveAdjective": "его",
+    "AWAKENED-AWAKENED.pronounObject": "его",
+    "AWAKENED-AWAKENED.pronounPossessive": "его",
+    "AWAKENED-AWAKENED.pronounSubject": "он",
+    "AWAKENED-AWAKENED.title": "Пробужденный",
+    "AWAKENED-AWAKENED.titleObject": "Пробужденного"
+}

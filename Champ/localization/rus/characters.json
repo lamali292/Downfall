@@ -2,7 +2,7 @@
     "CHAMP-CHAMP.aromaPrinciple": "[sine][orange]Я ни разу не проигрывал. Я никогда не проиграю. [jitter]Я не могу проиграть.[/jitter][/orange][/sine]",
     "CHAMP-CHAMP.banter.alive.endTurnPing": "Ходи давай.",
     "CHAMP-CHAMP.banter.dead.endTurnPing": "...",
-    "CHAMP-CHAMP.cardsModifierDescription": "Карты Чемпиона теперь могут появляться в наградах и магазинах.",
+    "CHAMP-CHAMP.cardsModifierDescription": "Карты Чемпиона теперь могут появляться в наградах и у Торговца.",
     "CHAMP-CHAMP.cardsModifierTitle": "Карты Чемпиона",
     "CHAMP-CHAMP.description": "Бесспорный король арены.\nНикогда не проигрывал и матча.[fly_in][/fly_in]",
     "CHAMP-CHAMP.eventDeathPrevention": "Чемпион не будет побежден. Не здесь. И никогда.",
