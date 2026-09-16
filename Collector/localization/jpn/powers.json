@@ -50,9 +50,6 @@
     "COLLECTOR-SCORCHED_POWER.title": "焼け焦げ",
     "COLLECTOR-SCORCHED_POWER.description": "自身のターン終了時、[gold]破滅[/gold]を得る。",
     "COLLECTOR-SCORCHED_POWER.smartDescription": "自身のターン終了時、[gold]破滅[/gold][blue]{Amount}[/blue]を得る。",
-    "COLLECTOR-SHOOTING_STAR_POWER.title": "流れ星",
-    "COLLECTOR-SHOOTING_STAR_POWER.description": "毎ターン最初にアタックを[gold]火葬[/gold]した時、そのコピーを1枚得る。プレイするまでコストは[blue]0[/blue]。",
-    "COLLECTOR-SHOOTING_STAR_POWER.smartDescription": "毎ターン最初に[blue]{Amount}[/blue]回アタックを[gold]火葬[/gold]した時、そのコピーを1枚得る。プレイするまでコストは[blue]0[/blue]。",
     "COLLECTOR-SUFFERING_POWER.title": "苦しみ",
     "COLLECTOR-SUFFERING_POWER.description": "[gold]脱力[/gold]か[gold]弱体[/gold]を付与するたび、対象に[gold]破滅[/gold]も付与する。",
     "COLLECTOR-SUFFERING_POWER.smartDescription": "[gold]脱力[/gold]か[gold]弱体[/gold]を付与するたび、対象に[gold]破滅[/gold][blue]{Amount}[/blue]も付与する。"
