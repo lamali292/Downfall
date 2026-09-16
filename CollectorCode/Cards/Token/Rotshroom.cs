@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class Rotshroom : CollectorCardModel
 {
-    public Rotshroom() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
+    public Rotshroom() : base(1, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithBlock(8, 3);
         WithPower<VulnerablePower>(2);
