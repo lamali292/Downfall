@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
@@ -17,14 +18,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Token;
 
 [Pool(typeof(StatusCardPool))]
-public class Ember : CollectorCardModel, IStackingUpgradeCard
+public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
 {
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(1, DamageProps.cardUnpowered));
+        WithVar(new DamageVar(1, DamageProps.cardUnpowered).WithUpgrade(1));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
@@ -42,6 +43,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         var instance = NCombatRoom.Instance;
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
+        HasSingleTurnRetain = true;
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
     }
 }

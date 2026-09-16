@@ -1,6 +1,9 @@
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Cards.Uncommon;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Downfall.TestCode;
@@ -55,5 +58,23 @@ public class CollectorTests
         Assert.AreEqual(1, energySpent, "BidingBlast costs 1.");
         Assert.AreEqual(0, ctx.Player.PlayerCombatState.Energy, "Energy was already empty.");
         Assert.AreEqual(4, ctx.Player.PlayerCombatState.Reserve, "Only the 1-cost deficit should be covered by Reserve.");
+    }
+
+    // Regression guard for ReturnToHandAfterTurnEndPatch: the game hardcodes moving a HasTurnEndInHandEffect
+    // card to Discard once its turn-end effect resolves (CombatManager.ResolveTurnEndCardEffects), so without
+    // the patch Ember would end its turn in Discard instead of Hand despite implementing IReturnsToHandAfterTurnEnd.
+    [CardTest]
+    public async Task EmberReturnsToHandInsteadOfDiscardAfterTurnEnd(TestContext ctx)
+    {
+        var ember = await ctx.AddCardToHand<Ember>();
+        var startingHp = ctx.Player.Creature.CurrentHp;
+
+        PlayerCmd.EndTurn(ctx.Player, false);
+        await Cmd.Wait(1f);
+
+        Assert.AreEqual(PileType.Hand, ember.Pile?.Type,
+            "Ember should return to Hand after its turn-end effect, not be discarded.");
+        Assert.IsTrue(ctx.Player.Creature.CurrentHp < startingHp,
+            "Ember's turn-end effect should still deal its self-damage.");
     }
 }
