@@ -28,12 +28,11 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
-        if (card != this || CombatState == null) return;
+        if (card != this) return;
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
             await CollectorCmd.Kindle(ctx, this);
-            await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
             await DownfallCardCmd.GiveCard<Rotshroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
         }
     }

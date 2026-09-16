@@ -152,7 +152,7 @@
   "COLLECTOR-EQUIP_SHIELD.title": "Equip: Shield",
   "COLLECTOR-EQUIP_SHIELD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, gain {EquipShieldPower:diff()} [gold]Block[/gold].",
   "COLLECTOR-EQUIP_FURNACE.title": "Equip: Furnace",
-  "COLLECTOR-EQUIP_FURNACE.description": "Kindle {Kindle:diff()}.\n[gold]Torchhead[/gold] deals {EquipFurnacePower:diff()} additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot[/gold] in your [gold]Exhaust Pile[/gold].",
+  "COLLECTOR-EQUIP_FURNACE.description": "Kindle {Kindle:diff()}.\n[gold]Torchhead[/gold] deals {EquipFurnacePower:diff()} additional damage for each [gold]Ember[/gold], [gold]Burn[/gold], or [gold]Soot [/gold]in your [gold]Exhaust Pile[/gold].",
   "COLLECTOR-CHAR.title": "Char",
   "COLLECTOR-CHAR.description": "Deal {Damage:diff()} damage.\nWhenever you draw this card, a random enemy takes {CharPower:diff()} additional damage from ALL [gold]Char[/gold] cards.",
   "COLLECTOR-DEGRADE.title": "Degrade",
