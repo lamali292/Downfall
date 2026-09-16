@@ -1,10 +1,8 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -23,6 +21,8 @@ namespace Collector.CollectorCode.Cards.Token;
 [Pool(typeof(StatusCardPool))]
 public class Ember : CollectorCardModel, IStackingUpgradeCard
 {
+    private bool wasPlayedLast = false;
+    
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
@@ -47,5 +47,19 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
+        await Cmd.Wait(0.25f);
+        wasPlayedLast = true;
+    }
+
+    public override async Task AfterCardChangedPilesLate(//Late to avoid as much visual jank as possible
+        CardModel card,
+        PileType oldPileType,
+        AbstractModel? clonedBy)
+    {
+        if (wasPlayedLast)
+        {
+            await CardPileCmd.Add(this, PileType.Hand);
+            wasPlayedLast = false;
+        }
     }
 }
