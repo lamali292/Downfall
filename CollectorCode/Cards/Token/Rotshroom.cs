@@ -8,9 +8,9 @@ namespace Collector.CollectorCode.Cards.Token;
 
 
 [Pool(typeof(TokenCardPool))]
-public class Mushroom : CollectorCardModel
+public class Rotshroom : CollectorCardModel
 {
-    public Mushroom() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
+    public Rotshroom() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithBlock(8, 3);
         WithPower<VulnerablePower>(2);

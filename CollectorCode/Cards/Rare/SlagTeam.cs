@@ -33,7 +33,7 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (pyred is not Ember || card.Owner != Owner) return;
+        if (pyred is not Ember || pyred.Owner != Owner || card.Owner != Owner) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 
