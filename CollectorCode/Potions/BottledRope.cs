@@ -16,8 +16,8 @@ public class BottledRope : CollectorPotionModel
     public BottledRope() : base(PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1);
-        WithPower<VulnerablePower>(1);
-        WithPower<MiasmaPower>(1);
+        WithPower<VulnerablePower>(2);
+        WithPower<MiasmaPower>(3);
     }
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
