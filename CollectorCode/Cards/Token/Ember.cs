@@ -21,9 +21,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Token;
 
 [Pool(typeof(StatusCardPool))]
-public class Ember : CollectorCardModel, IStackingUpgradeCard
+public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
 {
-    private bool wasPlayedLast = false;
     
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
@@ -49,20 +48,5 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
-        wasPlayedLast = true;
-    }
-
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
-        ICombatState combatState)
-    {
-        if (wasPlayedLast)
-        {
-            //I WAIT!
-            await Cmd.Wait(0.25f);
-            await Cmd.Wait(0.25f);
-            await Cmd.Wait(0.17f);
-            await CardPileCmd.Add(this, PileType.Hand);
-            wasPlayedLast = false;
-        }
     }
 }
