@@ -26,7 +26,7 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
     private static decimal Calc(CardModel card, Creature? arg2)
     {
         if (card is not JadedJabs get || get._cost is null){return 0;}
-        return ((decimal)get._cost! * (get._currentUpgradeLevel >= 1 ? 4 : 3));
+        return (decimal)get._cost;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
