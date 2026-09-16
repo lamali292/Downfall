@@ -47,7 +47,6 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
-        await Cmd.Wait(0.25f);
         wasPlayedLast = true;
     }
 
@@ -58,6 +57,11 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
     {
         if (wasPlayedLast)
         {
+            //I WAIT!
+            await Cmd.Wait(0.25f);
+            await Cmd.Wait(0.20f);
+            await Cmd.Wait(0.15f);
+            await Cmd.Wait(0.10f);
             await CardPileCmd.Add(this, PileType.Hand);
             wasPlayedLast = false;
         }
