@@ -270,5 +270,5 @@
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "COLLECTOR-SLAG_TEAM.title": "Slag Team",
-  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], return this to your [gold]Hand[/gold]."
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], put this into your [gold]Hand[/gold]."
 }
