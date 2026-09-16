@@ -27,7 +27,8 @@ public static class CollectorMainFile
         PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-
+        CardExecutionRegistry.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
+        
         BundledSubmodLocRegistry.Register(ModId);
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");

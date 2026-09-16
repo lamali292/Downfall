@@ -24,4 +24,10 @@ public static class CollectorCardEffectHandler
         }
         return true;
     }
+    
+    public static Task DoAfterPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (card is IUsesPyredCards pyre) pyre.PyredCards = [];
+        return Task.CompletedTask;
+    }
 }
