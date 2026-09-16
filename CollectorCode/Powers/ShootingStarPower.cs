@@ -10,9 +10,9 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Powers;
 
-public class RequiemPower : CollectorPowerModel, IAfterCardPyred
+public class ShootingStarPower : CollectorPowerModel, IAfterCardPyred
 {
-    public RequiemPower()
+    public ShootingStarPower()
     {
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
