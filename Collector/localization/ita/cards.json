@@ -101,8 +101,6 @@
     "COLLECTOR-SEED_OF_DOUBT.title": "Seme del Dubbio",
     "COLLECTOR-SHADOW_DAGGERS.description": "Infliggi {Damage:diff()} di danno per ogni carta Collezionata giocata in questo combattimento.{InCombat:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta|volte})|}",
     "COLLECTOR-SHADOW_DAGGERS.title": "Pugnali d'Ombra",
-    "COLLECTOR-SHOOTING_STAR.description": "La prima volta che [gold]Piri[/gold] un Attacco ogni turno, ottienine una copia.\nCosta 0 finché non viene giocata.",
-    "COLLECTOR-SHOOTING_STAR.title": "Stella Cadente",
     "COLLECTOR-SOMBER_SHIELD.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nIl prossimo turno, ottieni una copia della carta [gold]Esaurita[/gold].",
     "COLLECTOR-SOMBER_SHIELD.title": "Scudo Lugubre",
     "COLLECTOR-SOULFORGE.description": "Pesca una carta dalla tua pila di Collezione.\nOttieni {Cards:diff()} {IfUpgraded:show:copie|copia} [gold]Potenziata[/gold] di essa.",
