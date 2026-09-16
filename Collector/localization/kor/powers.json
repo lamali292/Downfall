@@ -50,9 +50,6 @@
     "COLLECTOR-SCORCHED_POWER.title": "그을림",
     "COLLECTOR-SCORCHED_POWER.description": "이 생명체는 자신의 턴이 끝날 때 [gold]파멸[/gold]을 얻습니다.",
     "COLLECTOR-SCORCHED_POWER.smartDescription": "이 생명체는 자신의 턴이 끝날 때 [gold]파멸[/gold]을 [blue]{Amount}[/blue]만큼 얻습니다.",
-    "COLLECTOR-SHOOTING_STAR_POWER.title": "유성",
-    "COLLECTOR-SHOOTING_STAR_POWER.description": "매 턴 공격 카드를 처음으로 [gold]땔감[/gold]으로 만들면, 그 카드의 복사본을 1장 얻습니다. 그 카드는 사용하기 전까지 비용이 [blue]0[/blue]이 됩니다.",
-    "COLLECTOR-SHOOTING_STAR_POWER.smartDescription": "매 턴 공격 카드를 처음으로 [gold]땔감[/gold]으로 만들 때마다 {Amount:plural:그 카드의 복사본을 1장| [blue]{Amount}[/blue]번} 얻습니다. 그 카드는 사용하기 전까지 비용이 [blue]0[/blue]이 됩니다.",
     "COLLECTOR-SUFFERING_POWER.title": "고통",
     "COLLECTOR-SUFFERING_POWER.description": "적에게 [gold]약화[/gold]나 [gold]취약[/gold]을 부여할 때마다, 해당 적에게 [gold]파멸[/gold]도 함께 부여합니다.",
     "COLLECTOR-SUFFERING_POWER.smartDescription": "적에게 [gold]약화[/gold]나 [gold]취약[/gold]을 부여할 때마다, 해당 적에게 [gold]파멸[/gold]을 [blue]{Amount}[/blue]만큼 함께 부여합니다."
