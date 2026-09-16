@@ -19,10 +19,10 @@ public class ItsAFeaturePower : AutomatonPowerModel
     public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
         if (card.Owner.Creature != Owner || card.Type is not (CardType.Curse or CardType.Status)) return;
-        await PowerCmd.Apply<ItsAFeaturePowerStrengthPower>(ctx, Owner, Amount, Owner, null);
-        await PowerCmd.Apply<ItsAFeaturePowerDexterityPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ItsAFeatureStrengthPower>(ctx, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ItsAFeatureDexterityPower>(ctx, Owner, Amount, Owner, null);
     }
 }
 
-public class ItsAFeaturePowerStrengthPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, StrengthPower>;
-public class ItsAFeaturePowerDexterityPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, DexterityPower>;
+public class ItsAFeatureStrengthPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, StrengthPower>;
+public class ItsAFeatureDexterityPower : CustomTemporaryPowerModelWrapper<ItsAFeaturePower, DexterityPower>;

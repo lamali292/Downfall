@@ -8,11 +8,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Requiem : CollectorCardModel
+public class ShootingStar : CollectorCardModel
 {
-    public Requiem() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public ShootingStar() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<RequiemPower>(1, false);
+        WithPower<ShootingStarPower>(1, false);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
@@ -21,6 +21,6 @@ public class Requiem : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<RequiemPower>(ctx, this);
+        await CommonActions.ApplySelf<ShootingStarPower>(ctx, this);
     }
 }
