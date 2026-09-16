@@ -20,7 +20,7 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         WithKindle( 1);
-        WithUpgradingCardTip<Mushroom>();
+        WithUpgradingCardTip<Rotshroom>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -34,7 +34,7 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         {
             await CollectorCmd.Kindle(ctx, this);
             await CommonActions.Apply<MiasmaPower>(ctx, CombatState.HittableEnemies, this);
-            await DownfallCardCmd.GiveCard<Mushroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
+            await DownfallCardCmd.GiveCard<Rotshroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
         }
     }
 }
