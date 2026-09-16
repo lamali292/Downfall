@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://c500x2jsitst5"]
+[gd_scene load_steps=10 format=3 ]
 
-[ext_resource type="Script" uid="uid://dus5v1fdksdai" path="res://AutomatonCode/Vfx/NFunctionDisplay.cs" id="1_fndsp"]
-[ext_resource type="Texture2D" uid="uid://d3vmiycr36blt" path="res://images/ui/hover_tip.png" id="2_bgtex"]
-[ext_resource type="FontVariation" uid="uid://ux4d708e7mk6" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_bold"]
-[ext_resource type="Script" uid="uid://dtfio45agppyj" path="res://addons/mega_text/MegaLabel.cs" id="4_label"]
-[ext_resource type="Texture2D" uid="uid://bom7o3x2rff4a" path="res://Automaton/images/powers/full_release_power.png" id="4_y4npu"]
-[ext_resource type="FontVariation" uid="uid://cfurftqxyn4mn" path="res://themes/kreon_regular_glyph_space_one.tres" id="5_reg"]
-[ext_resource type="Script" uid="uid://c2oywrx8xbqfx" path="res://addons/mega_text/MegaRichTextLabel.cs" id="6_rich"]
-[ext_resource type="Shader" uid="uid://c66gb6g7tup3n" path="res://shaders/hsv.gdshader" id="7_hsv"]
-[ext_resource type="Texture2D" uid="uid://c7kumcmbdvuji" path="res://images/packed/common_ui/settings_tiny_right_arrow.png" id="9_arrowr"]
-[ext_resource type="Texture2D" uid="uid://cakri10dsey1d" path="res://images/packed/common_ui/settings_tiny_left_arrow.png" id="10_arrowl"]
+[ext_resource type="Script" path="res://AutomatonCode/Vfx/NFunctionDisplay.cs" id="1_fndsp"]
+[ext_resource type="Texture2D" path="res://images/ui/hover_tip.png" id="2_bgtex"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_bold"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="4_label"]
+[ext_resource type="Texture2D" path="res://Automaton/images/powers/full_release_power.png" id="4_y4npu"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="5_reg"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="6_rich"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="7_hsv"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_right_arrow.png" id="9_arrowr"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_left_arrow.png" id="10_arrowl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_compile"]
 shader = ExtResource("7_hsv")
@@ -54,6 +54,8 @@ theme_override_constants/separation = 12
 [node name="Title" type="Label" parent="Layout/HeaderMargin/Header"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
 theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
