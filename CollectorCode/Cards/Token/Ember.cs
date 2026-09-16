@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
@@ -29,7 +30,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         WithKeyword(CardKeyword.Unplayable);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(1, DamageProps.cardUnpowered));
+        WithVar(new DamageVar(1, DamageProps.cardUnpowered).WithUpgrade(1));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
