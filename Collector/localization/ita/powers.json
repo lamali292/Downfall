@@ -49,9 +49,6 @@
     "COLLECTOR-SCORCHED_POWER.title": "Ustionato",
     "COLLECTOR-SCORCHED_POWER.description": "Alla fine del suo turno, ottiene [gold]Destino[/gold].",
     "COLLECTOR-SCORCHED_POWER.smartDescription": "Alla fine del suo turno, ottiene [blue]{Amount}[/blue] [gold]Destino[/gold]",
-    "COLLECTOR-SHOOTING_STAR_POWER.title": "Stella Cadente",
-    "COLLECTOR-SHOOTING_STAR_POWER.description": "La prima volta che [gold]Piri[/gold] un Attacco ogni turno, ottienine una copia. Costa [blue]0[/blue] finché non viene giocata.",
-    "COLLECTOR-SHOOTING_STAR_POWER.smartDescription": "Le prime {Amount:plural:volta|[blue]{Amount}[/blue] volte} che [gold]Piri[/gold] un Attacco ogni turno, ottienine una copia. Costa [blue]0[/blue] finché non viene giocata.",
     "COLLECTOR-SUFFERING_POWER.title": "Sofferenza",
     "COLLECTOR-SUFFERING_POWER.description": "Ogni volta che applichi [gold]Debolezza[/gold] o [gold]Vulnerabilità[/gold] applica anche [gold]Destino[/gold].",
     "COLLECTOR-SUFFERING_POWER.smartDescription": "Ogni volta che applichi [gold]Debolezza[/gold] o [gold]Vulnerabilità[/gold] applica anche [blue]{Amount}[/blue] [gold]Destino[/gold]."

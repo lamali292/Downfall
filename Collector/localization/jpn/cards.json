@@ -102,8 +102,6 @@
     "COLLECTOR-SEED_OF_DOUBT.title": "疑惑の種",
     "COLLECTOR-SHADOW_DAGGERS.description": "この戦闘中にプレイした収集されたカード1枚につき{Damage:diff()}ダメージを与える。{InCombat:\n(攻撃回数は{CalculatedHits:diff()}回)|}",
     "COLLECTOR-SHADOW_DAGGERS.title": "シャドウダガー",
-    "COLLECTOR-SHOOTING_STAR.description": "毎ターン最初にアタックを[gold]火葬[/gold]した時、そのコピーを1枚得る。\nプレイするまでコストは0。",
-    "COLLECTOR-SHOOTING_STAR.title": "流星",
     "COLLECTOR-SOMBER_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン、[gold]廃棄[/gold]されたカードのコピーを1枚得る。",
     "COLLECTOR-SOMBER_SHIELD.title": "暗澹たる盾",
     "COLLECTOR-SOULFORGE.description": "収集の山からカードを1枚引く。\nその[gold]アップグレード[/gold]されたコピーを{Cards:diff()}枚得る。",
