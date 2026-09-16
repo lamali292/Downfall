@@ -13,7 +13,7 @@ public class VeilOfSmoke : CollectorCardModel
 {
     public VeilOfSmoke() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPower<VeilOfSmokePower>(5, 2, false);
+        WithPower<VeilOfSmokePower>(6, 2, false);
         WithTip(StaticHoverTip.Block);
         WithKeyword(CardKeyword.Exhaust);
     }
