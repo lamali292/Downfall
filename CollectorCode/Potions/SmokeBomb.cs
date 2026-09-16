@@ -19,7 +19,6 @@ public class SmokeBomb : CollectorPotionModel
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
-        if (target?.Player == null) return;
         await MyCommonActions.Apply<MiasmaPower>(ctx, this, Owner.Creature.CombatState?.HittableEnemies);
     }
    
