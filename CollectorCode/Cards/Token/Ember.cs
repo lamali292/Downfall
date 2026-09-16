@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -50,18 +51,15 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         wasPlayedLast = true;
     }
 
-    public override async Task AfterCardChangedPilesLate(//Late to avoid as much visual jank as possible
-        CardModel card,
-        PileType oldPileType,
-        AbstractModel? clonedBy)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (wasPlayedLast)
         {
             //I WAIT!
             await Cmd.Wait(0.25f);
-            await Cmd.Wait(0.20f);
-            await Cmd.Wait(0.15f);
-            await Cmd.Wait(0.10f);
+            await Cmd.Wait(0.25f);
+            await Cmd.Wait(0.17f);
             await CardPileCmd.Add(this, PileType.Hand);
             wasPlayedLast = false;
         }
